@@ -13,7 +13,13 @@ if (!key) {
   fs.writeFileSync(keyFile, `${key}\n`);
 }
 
-const keyLocation = siteUrl("indexnow-key.txt");
+const keyFileName = `${key}.txt`;
+const keyFilePath = path.join(root, keyFileName);
+if (!fs.existsSync(keyFilePath) || fs.readFileSync(keyFilePath, "utf8").trim() !== key) {
+  fs.writeFileSync(keyFilePath, `${key}\n`);
+}
+
+const keyLocation = `${siteUrl("").replace(/\/+$/, "")}/${keyFileName}`;
 const urls = routes
   .filter((route) => route.index !== false)
   .map((route) => siteUrl(route.path));
@@ -32,7 +38,10 @@ async function main() {
   });
   const text = await response.text();
   if (!response.ok && response.status !== 202) {
-    throw new Error(`IndexNow ${response.status}: ${text}`);
+    console.warn(`IndexNow skipped with ${response.status}: ${text}`);
+    console.warn(`Key URL checked: ${keyLocation}`);
+    console.warn("This does not block Google indexing; Search Console sitemap submission is the primary indexing path.");
+    return;
   }
   console.log(`IndexNow submitted ${urls.length} URLs with status ${response.status}.`);
 }

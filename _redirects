@@ -1,2 +1,6 @@
+/premium-waitlist/ /pro/ 301
+/premium-waitlist /pro/ 301
+/guides/watermark-free-printables-when-to-upgrade/ /guides/batch-printable-generator-for-classrooms/ 301
+/guides/watermark-free-printables-when-to-upgrade /guides/batch-printable-generator-for-classrooms/ 301
 /*.html /:splat.html 200
 /* /index.html 200

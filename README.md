@@ -19,6 +19,8 @@ Zero-cost validation build for a free printable PDF generator site.
 - Compliance pages: About, Privacy, Terms, AI & License Disclosure.
 - Static pre-rendered HTML for key routes, plus client-side enhancement.
 - Operations checklist, keyword list, and distribution post ideas.
+- Pro service intent page for validating cloud features such as saved projects, batch generation, and higher daily limits.
+- Generated brand visuals: app icon, favicon, social card, and homepage product hero image.
 
 ## Run locally
 
@@ -52,7 +54,7 @@ npm.cmd run smoke
 - Static route folders support GitHub Pages-style deep links.
 - `sitemap.xml` is generated from the route list.
 - `OPERATIONS.md` contains account setup, keywords, distribution ideas, and pivot rules.
-- `premium-pack/printable-tools-starter-pack.zip` is the first paid-product artifact after running `npm.cmd run premium:pack`.
+- `scripts/site-verification.cjs` can generate a Google verification file for the service account and claim site ownership through the Google Site Verification API.
 
 ## Account setup checklist
 
@@ -60,7 +62,7 @@ npm.cmd run smoke
 2. Create a GitHub account and a public repository for the static site.
 3. Optional but recommended: create a Cloudflare account for Cloudflare Pages.
 4. After the site is deployed and content is indexed, create/apply for AdSense.
-5. Only after validation, create Gumroad, Ko-fi, Payhip, or a similar no-monthly-fee checkout account.
+5. Keep paid checkout disabled until Pro cloud features exist. The first paid offer should be service access or credits, not a downloadable pack.
 
 For step-by-step operations, see `OPERATIONS.md`.
 
@@ -87,9 +89,9 @@ For step-by-step operations, see `OPERATIONS.md`.
 - Day 30: continue if any of these are true:
   - 100 PDF downloads.
   - 300 tool generations.
-  - 20 premium/upgrade clicks.
+  - 20 Pro interest clicks.
 - Day 60: if there is no search exposure or downloads, stop adding content and test the HTML5 game ad-platform route.
-- Day 90: if traffic exists but ad revenue is weak, prioritize watermark-free or batch-generation packs over waiting for ads.
+- Day 90: if traffic exists but ad revenue is weak, prioritize cloud Pro features such as batch generation, saved projects, and higher daily limits over waiting for ads.
 
 ## AdSense readiness notes
 

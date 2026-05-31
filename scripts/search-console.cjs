@@ -16,16 +16,24 @@ if (!KEY_FILE) {
 async function main() {
   const token = await getAccessToken(KEY_FILE, SCOPE);
   if (COMMAND === "sites") return listSites(token);
+  if (COMMAND === "add-site") return addSite(token);
   if (COMMAND === "submit-sitemap") return submitSitemap(token);
   if (COMMAND === "sitemaps") return listSitemaps(token);
   if (COMMAND === "inspect") return inspectUrls(token);
   if (COMMAND === "status") {
     await listSites(token);
+    await addSite(token);
     await submitSitemap(token);
     await listSitemaps(token);
     return;
   }
   throw new Error(`Unknown command: ${COMMAND}`);
+}
+
+async function addSite(token) {
+  const url = `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(SITE_URL)}`;
+  await googleFetch(url, token, { method: "PUT" });
+  console.log(`Added Search Console site: ${SITE_URL}`);
 }
 
 async function listSites(token) {

@@ -25,7 +25,7 @@ const tools = [
     description: "Build a printable reward chart PDF with goals, sticker boxes, and a reward note.",
     body: [
       "Choose the number of boxes, write a goal statement, and print a chart that works for short behavior or habit challenges.",
-      "The free PDF includes one page with a light watermark and can be upgraded later if validation data supports premium templates.",
+      "The free PDF includes one page with a light watermark. If usage data supports it, the Pro cloud service can later add saved projects and batch generation.",
     ],
   },
   {
@@ -52,7 +52,7 @@ const tools = [
     description: "Create a free printable habit tracker PDF for daily routines, reading goals, wellness habits, or classroom practice.",
     body: [
       "Add four to six habits, choose 21, 30, or 31 days, and print a simple grid for daily check-ins.",
-      "Habit trackers are a high-intent printable category that can later support watermark-free bundles or affiliate links for planners and stationery.",
+      "Habit trackers are a high-intent printable category that can later support Pro features such as saved projects, higher limits, or affiliate links for planners and stationery.",
     ],
   },
 ];
@@ -69,7 +69,7 @@ const guides = [
   ["guides/printable-worksheets-for-preschool-at-home", "Printable worksheets for preschool at home", "A practical way to use short printable pages without overloading young children.", "Preschool worksheets work best when they are quick, concrete, and connected to a real routine. A five-minute page can support a habit."],
   ["guides/black-and-white-printable-design-tips", "Black-and-white printable design tips", "Design worksheets and charts that still look clear on a basic home printer.", "Most printable pages are used on ordinary printers. Strong borders, readable headings, and clean spacing matter more than color fills."],
   ["guides/a4-vs-us-letter-printable-guide", "A4 vs US Letter for printable PDFs", "Choose the right paper size for families, schools, and international downloads.", "US Letter is common in the United States and Canada, while A4 is common in many other countries. Offering both sizes reduces printing frustration."],
-  ["guides/watermark-free-printables-when-to-upgrade", "When watermark-free printables are worth it", "Understand when a free printable is enough and when a clean classroom or commercial copy is worth paying for.", "A light watermark is usually fine for one-time home practice. Watermark-free versions make sense for classroom packets, therapy folders, and tutoring materials."],
+  ["guides/batch-printable-generator-for-classrooms", "When batch printable generation is worth it", "Understand when a free one-page printable is enough and when cloud batch generation saves real prep time.", "Teachers, tutors, and homeschool families often need many personalized pages at once. A cloud Pro version can save names, generate batches, keep projects, and remove repeated setup work."],
   ["guides/free-weekly-planner-generator", "Free weekly planner generator", "Create a printable weekly planner for family schedules, classroom planning, errands, and meal notes.", "A weekly planner should show only the decisions that need to stay visible: appointments, meals, tasks, and reminders. One printable page is enough for a lightweight planning loop."],
   ["guides/free-habit-tracker-generator", "Free habit tracker generator", "Build a simple habit tracker printable for routines, reading goals, wellness habits, or classroom practice.", "A habit tracker works best when it tracks a few repeatable behaviors. A simple grid is easier to keep using than a heavily decorated page with too many categories."],
 ].map(([path, title, description, intro]) => ({ path, title, description, intro }));
@@ -88,6 +88,12 @@ const pages = [
             <a class="button" href="/tools/name-tracing/">Start with name tracing</a>
             <a class="button secondary" href="/guides/">Read printable guides</a>
           </div>
+        </div>
+        <div class="hero-preview" aria-hidden="true">
+          <picture class="hero-image">
+            <source srcset="/assets/images/hero-printable-workspace-small.webp" media="(max-width: 680px)">
+            <img src="/assets/images/hero-printable-workspace-web.webp" alt="">
+          </picture>
         </div>
       </section>
       <section class="shell section">
@@ -140,18 +146,18 @@ const pages = [
     html: `<article class="article-shell article"><h1>AI & License Disclosure</h1><p>PrintableTools Lab uses code-driven templates and may use AI assistance during product design, wording, and template ideation.</p><p>The default templates avoid third-party characters, trademarked brands, and protected artwork.</p></article>`,
   },
   {
-    path: "premium-waitlist",
-    title: "PrintableTools Starter Pack",
-    description: "A paid starter bundle for parents, teachers, tutors, and homeschool families who want clean printable PDFs.",
+    path: "pro",
+    title: "PrintableTools Pro",
+    description: "Cloud printable generation for teachers, tutors, homeschool families, and busy parents who need batch PDFs and saved projects.",
     index: false,
-    html: `<article class="article-shell article"><h1>PrintableTools Starter Pack</h1><p>A paid starter bundle for parents, teachers, tutors, and homeschool families who want clean printable PDFs.</p><p>Recommended launch price test: $2.99 to $4.99. Add a no-monthly-fee checkout link when payment is ready.</p></article>`,
+    html: `<article class="article-shell article"><h1>PrintableTools Pro</h1><p>PrintableTools Pro is the planned cloud service layer for users who outgrow one-page free generation.</p><p>The first paid service should unlock saved projects, batch generation, no-watermark exports, and more daily PDFs instead of selling a downloadable template pack.</p></article>`,
   },
   {
     path: "launch-kit",
     title: "Launch Kit",
     description: "Distribution copy, links, and validation steps for launching PrintableTools Lab.",
     index: false,
-    html: `<article class="article-shell article"><h1>Launch Kit</h1><p>Use this page to coordinate the first distribution push. Share the homepage and tool links, then measure downloads, Search Console impressions, and premium clicks.</p></article>`,
+    html: `<article class="article-shell article"><h1>Launch Kit</h1><p>Use this page to coordinate the first distribution push. Share the homepage and tool links, then measure downloads, Search Console impressions, and Pro clicks.</p></article>`,
   },
 ];
 
@@ -206,7 +212,7 @@ function guideHtml(guide) {
         <p class="lead">${escapeHtml(guide.description)}</p>
         <p>${escapeHtml(guide.intro)}</p>
         <h2>Use this guide with the free tools</h2>
-        <p>PrintableTools Lab focuses on one-page PDFs that can be generated quickly, tested with real users, and improved based on download and upgrade-click data.</p>
+        <p>PrintableTools Lab focuses on one-page PDFs that can be generated quickly, tested with real users, and improved based on download and Pro-click data.</p>
       </article>`;
 }
 

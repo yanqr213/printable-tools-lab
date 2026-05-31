@@ -3,9 +3,10 @@ window.PTL_CONFIG = {
   googleSiteVerification: "",
   googleAnalyticsId: "",
   adsenseClientId: "",
-  premiumCheckoutUrl: "/premium-waitlist/",
+  proServiceUrl: "/pro/",
+  proCheckoutUrl: "",
   contactEmail: "",
   enableAds: false,
   enableAnalytics: false,
-  enablePremiumCheckout: false
+  enableProCheckout: false
 };

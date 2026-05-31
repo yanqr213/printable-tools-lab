@@ -4,7 +4,7 @@
   const SITE = {
     name: "PrintableTools Lab",
     dailyLimit: 5,
-    premiumUrl: "/premium-waitlist/",
+    proUrl: "/pro/",
   };
 
   const CONFIG = Object.assign({
@@ -12,15 +12,19 @@
     googleSiteVerification: "",
     googleAnalyticsId: "",
     adsenseClientId: "",
-    premiumCheckoutUrl: "",
+    proServiceUrl: "/pro/",
+    proCheckoutUrl: "",
     contactEmail: "",
     enableAds: false,
     enableAnalytics: false,
-    enablePremiumCheckout: false,
+    enableProCheckout: false,
   }, window.PTL_CONFIG || {});
 
-  if (CONFIG.enablePremiumCheckout && CONFIG.premiumCheckoutUrl) {
-    SITE.premiumUrl = CONFIG.premiumCheckoutUrl;
+  if (CONFIG.proServiceUrl) {
+    SITE.proUrl = CONFIG.proServiceUrl;
+  }
+  if (CONFIG.enableProCheckout && CONFIG.proCheckoutUrl) {
+    SITE.proUrl = CONFIG.proCheckoutUrl;
   }
 
   bootstrapConfiguredIntegrations();
@@ -301,14 +305,14 @@
       ],
     },
     {
-      slug: "watermark-free-printables-when-to-upgrade",
-      title: "When watermark-free printables are worth it",
-      description: "Understand when a free printable is enough and when a clean classroom or commercial copy is worth paying for.",
+      slug: "batch-printable-generator-for-classrooms",
+      title: "When batch printable generation is worth it",
+      description: "Understand when a free one-page printable is enough and when cloud batch generation saves real prep time.",
       content: [
-        ["h2", "Free is enough for quick home use"],
-        ["p", "A light watermark is usually fine for one-time home practice. It helps keep free tools sustainable while still giving families a usable page."],
-        ["h2", "Upgrade for repeated use"],
-        ["p", "Watermark-free versions make sense for classroom packets, therapy folders, tutoring materials, or any printable that will be used repeatedly with many children."],
+        ["h2", "Free is enough for quick one-off pages"],
+        ["p", "A single free printable works well when a parent or teacher needs one chart, one worksheet, or one planner page today."],
+        ["h2", "Batch generation is a cloud-service problem"],
+        ["p", "Teachers, tutors, and homeschool families often need many personalized pages at once. A cloud Pro version can save names, generate batches, keep projects, and remove repeated setup work."],
       ],
     },
   ];
@@ -328,7 +332,7 @@
       description: "Privacy policy for PrintableTools Lab.",
       body: [
         ["p", "PrintableTools Lab is designed to generate PDFs in your browser. The first version does not require an account and does not send your worksheet text to a server."],
-        ["p", "The site stores a small amount of local data in your browser to remember daily generation counts and anonymous local event totals such as page views, generate clicks, downloads, and upgrade clicks."],
+        ["p", "The site stores a small amount of local data in your browser to remember daily generation counts and anonymous local event totals such as page views, generate clicks, downloads, and Pro interest clicks."],
         ["p", "If analytics, advertising, or payment tools are added later, this policy should be updated before launch to describe those providers, cookies, and opt-out choices."],
       ],
     },
@@ -337,8 +341,8 @@
       description: "Terms of use for PrintableTools Lab.",
       body: [
         ["p", "The free printable generators are provided as-is for personal, classroom, and small-group use. You are responsible for checking that a generated worksheet is appropriate before giving it to a child or group."],
-        ["p", "Do not use the tools to create unlawful, harmful, infringing, or misleading materials. Do not remove service marks from free downloads unless a watermark-free option is explicitly provided."],
-        ["p", "Commercial resale of generated pages as standalone products is not allowed in the free version. Paid licensing terms may be added if premium versions are launched."],
+        ["p", "Do not use the tools to create unlawful, harmful, infringing, or misleading materials. Do not remove service marks from free downloads unless a Pro option is explicitly provided."],
+        ["p", "Commercial resale of generated pages as standalone products is not allowed in the free version. Paid licensing terms may be added if Pro cloud features are launched."],
       ],
     },
     license: {
@@ -350,23 +354,25 @@
         ["p", "If external fonts, icon sets, or datasets are added later, their license notes should be listed here before public launch."],
       ],
     },
-    "premium-waitlist": {
-      title: "PrintableTools Starter Pack",
-      description: "A paid starter bundle for parents, teachers, tutors, and homeschool families who want clean printable PDFs.",
+    pro: {
+      title: "PrintableTools Pro",
+      description: "Cloud printable generation for teachers, tutors, homeschool families, and busy parents who need batch PDFs and saved projects.",
       body: [
-        ["p", "The Starter Pack is the first paid offer for PrintableTools Lab. It bundles name tracing, chore chart, reward chart, flashcard, weekly planner, and habit tracker printable samples for quick home, classroom, tutoring, and homeschool use."],
-        ["p", "Recommended launch price test: $2.99 to $4.99. Use Gumroad, Payhip, Ko-fi, or Lemon Squeezy when a checkout account is ready."],
-        ["h2", "Included"],
-        ["ul", ["Name tracing worksheet sample", "Weekly chore chart sample", "Reward chart sample", "Vocabulary flashcards sample", "Weekly planner sample", "30-day habit tracker sample", "Listing copy and usage notes"]],
+        ["p", "PrintableTools Pro is the planned cloud service layer for users who outgrow one-page free generation. The free site stays useful and ad-supported; Pro exists for repeated classroom, tutoring, homeschool, and family workflow use."],
+        ["p", "The first paid service should be a lightweight subscription or credit product, not a downloadable template pack. It should unlock saved projects, batch generation, no-watermark exports, and more daily PDFs."],
+        ["h2", "Planned Pro features"],
+        ["ul", ["Save projects and reuse common names, chores, goals, and card lists.", "Batch-generate many personalized PDFs in one session.", "Remove the free-version footer watermark.", "Increase daily generation limits.", "Keep a private cloud history of recent printable jobs."]],
+        ["h2", "Free version"],
+        ["p", "The free version remains the acquisition channel: useful tools, one-page exports, local daily limits, and ad placements only after AdSense approval."],
         ["h2", "Checkout status"],
-        ["p", "If a checkout URL has not been configured yet, the button records local purchase interest. Once the checkout URL is configured in site-config.js, the same button sends buyers to payment."],
+        ["p", "Payment is not connected yet. The button records Pro interest locally until a real cloud backend and checkout provider are configured."],
       ],
     },
     "launch-kit": {
       title: "Launch Kit",
       description: "Distribution copy, links, and validation steps for launching PrintableTools Lab.",
       body: [
-        ["p", "Use this page to coordinate the first distribution push. The goal is not to look busy; it is to create enough real traffic for Search Console, AdSense readiness, and upgrade-click validation."],
+        ["p", "Use this page to coordinate the first distribution push. The goal is not to look busy; it is to create enough real traffic for Search Console, AdSense readiness, and Pro-click validation."],
         ["h2", "Primary links"],
         ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Name tracing: https://printable-tools-lab.pages.dev/tools/name-tracing/", "Chore chart: https://printable-tools-lab.pages.dev/tools/chore-chart/", "Reward chart: https://printable-tools-lab.pages.dev/tools/reward-chart/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
         ["h2", "First distribution copy"],
@@ -433,7 +439,7 @@
             <a class="button secondary" href="/guides/">Read printable guides</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>3</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>6</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
             <div class="proof-tile"><strong>12</strong><span>SEO-ready guides</span></div>
           </div>
@@ -543,14 +549,14 @@
               <h2>Live preview</h2>
               <p class="help">Preview is rendered as the same canvas used for the PDF export.</p>
             </div>
-            <a class="button ghost premium-click" href="${escapeHtml(SITE.premiumUrl)}" data-premium-source="${tool.id}">${CONFIG.enablePremiumCheckout ? "Remove watermark" : "Remove watermark later"}</a>
+            <a class="button ghost pro-click" href="${escapeHtml(SITE.proUrl)}" data-pro-source="${tool.id}">${CONFIG.enableProCheckout ? "Open Pro" : "Need batch or saved projects?"}</a>
           </div>
           <div class="preview-stage">
             <canvas id="previewCanvas" class="preview-canvas" width="1275" height="1650" aria-label="Printable PDF preview"></canvas>
           </div>
           <div class="placeholder-ad" role="note">Future ad placement: content-adjacent only, never blocking the download button.</div>
           <div class="callout">
-            <strong>Validation gate:</strong> continue this tool if it gets repeated downloads, upgrade clicks, or search traffic within the 30-day checkpoint.
+            <strong>Validation gate:</strong> continue this tool if it gets repeated downloads, Pro clicks, or search traffic within the 30-day checkpoint.
           </div>
         </div>
       </section>
@@ -618,8 +624,8 @@
       track("generate_pdf", { tool: tool.id });
       track("download_pdf", { tool: tool.id });
     });
-    document.querySelectorAll(".premium-click").forEach((link) => {
-      link.addEventListener("click", () => track("premium_click", { source: link.dataset.premiumSource || tool.id }));
+    document.querySelectorAll(".pro-click").forEach((link) => {
+      link.addEventListener("click", () => track("pro_click", { source: link.dataset.proSource || tool.id }));
     });
     draw();
   }
@@ -660,16 +666,16 @@
       <article class="article-shell article">
         <h1>${escapeHtml(page.title)}</h1>
         ${renderBlocks(page.body)}
-        ${key === "premium-waitlist" ? `<p><a class="button premium-click" id="recordPremium" href="${escapeHtml(SITE.premiumUrl)}" data-premium-source="premium_page">${CONFIG.enablePremiumCheckout ? "Buy starter pack" : "Record purchase interest"}</a></p>` : ""}
+        ${key === "pro" ? `<p><a class="button pro-click" id="recordPro" href="${escapeHtml(SITE.proUrl)}" data-pro-source="pro_page">${CONFIG.enableProCheckout ? "Open Pro checkout" : "Record Pro interest"}</a></p>` : ""}
       </article>
     `;
-    const premium = document.getElementById("recordPremium");
-    if (premium && !CONFIG.enablePremiumCheckout) {
-      premium.addEventListener("click", (event) => {
+    const pro = document.getElementById("recordPro");
+    if (pro && !CONFIG.enableProCheckout) {
+      pro.addEventListener("click", (event) => {
         event.preventDefault();
-        track("premium_click", { source: "waitlist_page" });
-        premium.textContent = "Recorded locally";
-        premium.setAttribute("aria-disabled", "true");
+        track("pro_click", { source: "pro_page" });
+        pro.textContent = "Recorded locally";
+        pro.setAttribute("aria-disabled", "true");
       });
     }
   }
@@ -686,12 +692,12 @@
           <div class="metric-tile"><strong>${totals.page_view || 0}</strong><span>page views</span></div>
           <div class="metric-tile"><strong>${totals.generate_pdf || 0}</strong><span>PDF generations</span></div>
           <div class="metric-tile"><strong>${totals.download_pdf || 0}</strong><span>downloads</span></div>
-          <div class="metric-tile"><strong>${totals.premium_click || 0}</strong><span>upgrade clicks</span></div>
+          <div class="metric-tile"><strong>${totals.pro_click || 0}</strong><span>Pro clicks</span></div>
         </div>
         <div class="panel">
           <h2>Validation gates</h2>
-          <p><strong>30-day continue gate:</strong> 100 PDF downloads, 300 tool generations, or 20 premium clicks. If no search exposure or downloads after 60 days, pause this track and test HTML5 game distribution.</p>
-          <p><strong>Configured integrations:</strong> Analytics ${CONFIG.enableAnalytics && CONFIG.googleAnalyticsId ? "on" : "off"}, AdSense ${CONFIG.enableAds && CONFIG.adsenseClientId ? "on" : "off"}, Premium checkout ${CONFIG.enablePremiumCheckout && CONFIG.premiumCheckoutUrl ? "on" : "off"}.</p>
+          <p><strong>30-day continue gate:</strong> 100 PDF downloads, 300 tool generations, or 20 Pro clicks. If no search exposure or downloads after 60 days, pause this track and test HTML5 game distribution.</p>
+          <p><strong>Configured integrations:</strong> Analytics ${CONFIG.enableAnalytics && CONFIG.googleAnalyticsId ? "on" : "off"}, AdSense ${CONFIG.enableAds && CONFIG.adsenseClientId ? "on" : "off"}, Pro checkout ${CONFIG.enableProCheckout && CONFIG.proCheckoutUrl ? "on" : "off"}.</p>
           <div class="actions">
             <button class="button" id="exportCsv">Export CSV</button>
             <button class="button secondary" id="clearData">Clear local data</button>

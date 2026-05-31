@@ -36,7 +36,7 @@ Continue this direction if any one of these is true:
 
 - 100 PDF downloads.
 - 300 tool generations.
-- 20 upgrade/premium clicks.
+- 20 Pro interest clicks.
 - Search Console shows growing impressions for printable generator queries.
 
 If none are true, adjust titles and tool focus before adding more features.
@@ -53,6 +53,6 @@ If there is no search exposure and no meaningful usage:
 
 If traffic exists but ad earnings are weak:
 
-- Add a no-monthly-fee checkout for watermark-free PDF packs.
-- Prioritize batch generation for teachers and tutors.
+- Build the smallest Pro cloud layer: saved projects, batch generation, no-watermark exports, and higher daily limits.
+- Add checkout only after the Pro service path can deliver access or credits.
 - Do not rely on ads alone.
