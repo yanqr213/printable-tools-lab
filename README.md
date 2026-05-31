@@ -2,6 +2,10 @@
 
 Zero-cost validation build for a free printable PDF generator site.
 
+Live site: https://printable-tools-lab.pages.dev/
+
+PrintableTools Lab is a no-signup utility site for practical one-page PDFs: invoices, estimates, purchase orders, sale records, receipts, resumes, cover letters, resignation letters, monthly calendars, meal planners, worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
+
 ## What is included
 
 - Static website with optional Cloudflare Pages Function for the AI idea helper.
@@ -30,6 +34,7 @@ Zero-cost validation build for a free printable PDF generator site.
 - Compliance pages: About, Privacy, Terms, AI & License Disclosure.
 - Static pre-rendered HTML for key routes, plus client-side enhancement.
 - `robots.txt`, canonical URLs, sitemap, and SoftwareApplication structured data for tool pages.
+- `llms.txt`, `tools.json`, and `DISTRIBUTION.md` for AI/tool discovery and low-friction launch submissions.
 - Operations checklist, keyword list, and distribution post ideas.
 - Noindex roadmap page for future decisions after the free ad-supported version is validated.
 - Generated brand visuals: app icon, favicon, social card, and homepage product hero image.
@@ -80,6 +85,7 @@ npm.cmd run test:events
 - `_headers` adds basic content/security headers for Cloudflare Pages.
 - Static route folders support GitHub Pages-style deep links.
 - `sitemap.xml` and `robots.txt` are generated from the route list.
+- `llms.txt`, `tools.json`, and `DISTRIBUTION.md` are generated from the same route/tool metadata.
 - `OPERATIONS.md` contains account setup, keywords, distribution ideas, and pivot rules.
 - `scripts/site-verification.cjs` can generate a Google verification file for the service account and claim site ownership through the Google Site Verification API.
 

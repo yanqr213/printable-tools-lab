@@ -107,8 +107,11 @@ Keep these files deployed for crawler and ad review readiness:
 
 - `sitemap.xml`: indexable public pages only.
 - `robots.txt`: allows public pages, blocks noindex internal pages, and points crawlers to the sitemap.
+- `llms.txt`: short machine-readable site summary for AI assistants and emerging tool crawlers.
+- `tools.json`: structured inventory of tools and guides for directories, crawlers, and manual distribution.
 - Tool page JSON-LD: each public tool route includes `SoftwareApplication` structured data with a free offer.
 - `_headers`: basic content/security headers and explicit content types for sitemap, robots, and verification files.
+- `DISTRIBUTION.md`: reusable low-friction launch copy and directory submission fields.
 
 Run before every deploy:
 
@@ -254,7 +257,22 @@ Current Search Console checkpoint:
 - Sample `/guides/` and `/about/`: still unknown to Google.
 - `2026-05-31T19:24:38Z`: sitemap resubmitted after adding `/tools/` index and thicker tool pages with FAQ content.
 - Repeated inspection still shows homepage crawled but not indexed; `/tools/` is currently unknown to Google.
+- `llms.txt`, `tools.json`, and distribution pack added after this checkpoint to improve external discovery and manual submission readiness.
+- `2026-05-31T19:31:34Z`: sitemap resubmitted after deploying `llms.txt`, `tools.json`, `DISTRIBUTION.md`, and GitHub repository metadata/topics.
 - Action: keep site stable, improve useful content/navigation, thicken tool pages, and avoid repeated low-value resubmission loops.
+
+## External Discovery Queue
+
+Manual posts should be useful, honest, and placed only where self-promotion is allowed.
+
+1. Add GitHub repository topics: `pdf-generator`, `printable`, `invoice-generator`, `resume-builder`, `cover-letter`, `education-tools`, `cloudflare-pages`, `adsense-ready`.
+2. Use `DISTRIBUTION.md` for one product-directory submission.
+3. Share a specific tool in a relevant community only when it directly answers a request.
+4. Record every external URL here with the post date and observed referral/downloads.
+
+Completed:
+
+- `2026-05-31`: GitHub repo description, homepage, and topics updated through the GitHub API.
 
 Submit Google sitemap:
 

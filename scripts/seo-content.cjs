@@ -1,5 +1,12 @@
 const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pages.dev").replace(/\/+$/, "");
 
+const SITE_SUMMARY = {
+  name: "PrintableTools Lab",
+  description: "Free browser-based PDF generators for invoices, estimates, purchase orders, sale records, receipts, resumes, cover letters, resignation letters, calendars, meal planners, worksheets, charts, flashcards, and habit trackers.",
+  audience: "Freelancers, small businesses, job seekers, parents, teachers, tutors, homeschool families, tenants, landlords, and household planners.",
+  monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
+};
+
 const tools = [
   {
     path: "tools/name-tracing",
@@ -745,4 +752,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, SITE_SUMMARY };

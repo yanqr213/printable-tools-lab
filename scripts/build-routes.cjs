@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { routes, renderRoute, siteUrl } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, keywordClusters, SITE_SUMMARY } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -49,9 +49,122 @@ const robots = [
   "Disallow: /dashboard/",
   "Disallow: /roadmap/",
   "Disallow: /launch-kit/",
-  `Sitemap: ${siteUrl("sitemap.xml").replace(/\/$/, "")}`,
+  `Sitemap: ${fileUrl("sitemap.xml")}`,
   "",
 ].join("\n");
 fs.writeFileSync(path.join(root, "robots.txt"), robots);
 
-console.log(`Generated ${routes.length - 1} static route entries, sitemap.xml, and robots.txt.`);
+const toolsJson = {
+  name: SITE_SUMMARY.name,
+  description: SITE_SUMMARY.description,
+  url: siteUrl(""),
+  generatedAt: new Date().toISOString(),
+  tools: tools.map((tool) => ({
+    title: tool.title,
+    url: siteUrl(tool.path),
+    description: tool.description,
+    category: categoryForTool(tool.path),
+  })),
+  guides: guides.map((guide) => ({
+    title: guide.title,
+    url: siteUrl(guide.path),
+    description: guide.description,
+  })),
+};
+fs.writeFileSync(path.join(root, "tools.json"), `${JSON.stringify(toolsJson, null, 2)}\n`);
+
+const llms = [
+  `# ${SITE_SUMMARY.name}`,
+  "",
+  SITE_SUMMARY.description,
+  "",
+  `Audience: ${SITE_SUMMARY.audience}`,
+  "",
+  `Monetization model: ${SITE_SUMMARY.monetization}`,
+  "",
+  "## Primary URLs",
+  "",
+  `- Homepage: ${siteUrl("")}`,
+  `- Tools index: ${siteUrl("tools")}`,
+  `- Guides index: ${siteUrl("guides")}`,
+  `- Sitemap: ${fileUrl("sitemap.xml")}`,
+  `- Machine-readable tool list: ${fileUrl("tools.json")}`,
+  "",
+  "## Tools",
+  "",
+  ...tools.map((tool) => `- [${tool.title}](${siteUrl(tool.path)}): ${tool.description}`),
+  "",
+  "## Useful Guide Pages",
+  "",
+  ...guides.slice(0, 24).map((guide) => `- [${guide.title}](${siteUrl(guide.path)}): ${guide.description}`),
+  "",
+  "## Notes For Crawlers And Assistants",
+  "",
+  "- Ordinary PDF generation runs in the browser and does not require an account.",
+  "- Optional AI idea suggestions are server-side and limited to non-sensitive fields.",
+  "- Ads are not used as a gate for downloading PDFs.",
+  "- Paid checkout is intentionally disabled until free usage and search demand are validated.",
+  "",
+].join("\n");
+fs.writeFileSync(path.join(root, "llms.txt"), llms);
+
+const distribution = [
+  "# PrintableTools Lab Distribution Pack",
+  "",
+  "Use these snippets for low-friction external discovery. Do not spam communities; post only where free tools are relevant.",
+  "",
+  "## One-line pitch",
+  "",
+  "PrintableTools Lab is a free no-signup PDF generator site for invoices, estimates, resumes, cover letters, calendars, meal planners, worksheets, charts, and flashcards.",
+  "",
+  "## Short launch post",
+  "",
+  "I built PrintableTools Lab, a free browser-based PDF tool site. It creates practical one-page PDFs like invoices, estimates, purchase orders, resumes, cover letters, resignation letters, monthly calendars, meal planners, name tracing worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers. No account and no surprise download fee. Feedback on which tools are most useful would help shape the next batch.",
+  "",
+  "## Directory submission fields",
+  "",
+  "- Product name: PrintableTools Lab",
+  "- URL: https://printable-tools-lab.pages.dev/",
+  "- Category: Productivity, Education, Small Business Tools, Job Search Tools",
+  "- Tagline: Free no-signup printable PDF generators",
+  "- Description: Create practical one-page PDFs in the browser, including invoices, estimates, purchase orders, sale records, receipts, resumes, cover letters, resignation letters, calendars, meal planners, worksheets, charts, flashcards, and habit trackers.",
+  "- Pricing: Free",
+  "",
+  "## Community-safe angles",
+  "",
+  "- For freelancers: free invoice, estimate, purchase order, and bill of sale PDFs without account creation.",
+  "- For job seekers: free resume, cover letter, and resignation letter PDFs without a hidden export fee.",
+  "- For parents and teachers: printable name tracing, chore charts, reward charts, flashcards, weekly planners, and habit trackers.",
+  "- For household planning: monthly calendars and meal planners with grocery lists.",
+  "",
+  "## Places to consider manually",
+  "",
+  "- Indie Hackers product update or milestone post",
+  "- Product Hunt upcoming/manual launch after indexing starts",
+  "- Reddit communities only when rules allow self-promotion and the tool directly solves a request",
+  "- Startup/tool directories with free submissions",
+  "- GitHub repository topics and README link",
+  "",
+  "## Rules",
+  "",
+  "- Never ask users to click ads.",
+  "- Never claim legal, tax, employment, or financial advice.",
+  "- Keep the post framed as a free utility and ask for feedback.",
+  "- Record the posted URL and date in OPERATIONS.md.",
+  "",
+].join("\n");
+fs.writeFileSync(path.join(root, "DISTRIBUTION.md"), distribution);
+
+console.log(`Generated ${routes.length - 1} static route entries, sitemap.xml, robots.txt, tools.json, llms.txt, and DISTRIBUTION.md.`);
+
+function categoryForTool(toolPath) {
+  const slug = toolPath.replace(/^tools\//, "");
+  if (["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt"].includes(slug)) return "Business paperwork";
+  if (["resume-builder", "cover-letter", "resignation-letter"].includes(slug)) return "Career documents";
+  if (["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"].includes(slug)) return "Planning";
+  return "Education and family printables";
+}
+
+function fileUrl(fileName) {
+  return siteUrl(fileName).replace(/\/$/, "");
+}

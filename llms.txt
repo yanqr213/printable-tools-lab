@@ -1,0 +1,68 @@
+# PrintableTools Lab
+
+Free browser-based PDF generators for invoices, estimates, purchase orders, sale records, receipts, resumes, cover letters, resignation letters, calendars, meal planners, worksheets, charts, flashcards, and habit trackers.
+
+Audience: Freelancers, small businesses, job seekers, parents, teachers, tutors, homeschool families, tenants, landlords, and household planners.
+
+Monetization model: Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.
+
+## Primary URLs
+
+- Homepage: https://printable-tools-lab.pages.dev/
+- Tools index: https://printable-tools-lab.pages.dev/tools/
+- Guides index: https://printable-tools-lab.pages.dev/guides/
+- Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml
+- Machine-readable tool list: https://printable-tools-lab.pages.dev/tools.json
+
+## Tools
+
+- [Name Tracing Worksheet Generator](https://printable-tools-lab.pages.dev/tools/name-tracing/): Create a free one-page name tracing worksheet PDF for preschool and kindergarten handwriting practice.
+- [Chore Chart Generator](https://printable-tools-lab.pages.dev/tools/chore-chart/): Make a weekly printable chore chart PDF for children, families, roommates, or classroom jobs.
+- [Reward Chart Generator](https://printable-tools-lab.pages.dev/tools/reward-chart/): Build a printable reward chart PDF with goals, sticker boxes, and a reward note.
+- [Flashcard Generator](https://printable-tools-lab.pages.dev/tools/flashcards/): Create a free one-page printable flashcard PDF for vocabulary, classroom review, memory games, and homeschool practice.
+- [Weekly Planner Generator](https://printable-tools-lab.pages.dev/tools/weekly-planner/): Make a free printable weekly planner PDF for family schedules, class planning, errands, and meal notes.
+- [Habit Tracker Generator](https://printable-tools-lab.pages.dev/tools/habit-tracker/): Create a free printable habit tracker PDF for daily routines, reading goals, wellness habits, or classroom practice.
+- [Invoice Generator](https://printable-tools-lab.pages.dev/tools/invoice-generator/): Create a clean free invoice PDF for freelance work, small business services, consulting, or one-off projects.
+- [Estimate Generator](https://printable-tools-lab.pages.dev/tools/estimate-generator/): Create a free estimate PDF for freelance work, home services, consulting, repairs, or small business quotes.
+- [Purchase Order Generator](https://printable-tools-lab.pages.dev/tools/purchase-order/): Make a free purchase order PDF for supplies, services, small vendors, internal approvals, or project records.
+- [Bill of Sale Generator](https://printable-tools-lab.pages.dev/tools/bill-of-sale/): Create a simple bill of sale PDF for a private item sale, equipment transfer, furniture sale, or vehicle record draft.
+- [Rent Receipt Generator](https://printable-tools-lab.pages.dev/tools/rent-receipt/): Make a free printable rent receipt PDF for a tenant payment, room rental, cash payment record, or landlord file.
+- [Resume Builder PDF](https://printable-tools-lab.pages.dev/tools/resume-builder/): Build a simple free resume PDF without an account, paywall, or surprise download fee.
+- [Cover Letter Generator](https://printable-tools-lab.pages.dev/tools/cover-letter/): Create a free one-page cover letter PDF for job applications without an account or surprise download fee.
+- [Resignation Letter Generator](https://printable-tools-lab.pages.dev/tools/resignation-letter/): Make a simple resignation letter PDF with notice date, last day, appreciation, and handoff wording.
+- [Monthly Calendar Generator](https://printable-tools-lab.pages.dev/tools/monthly-calendar/): Create a free printable monthly calendar PDF for appointments, school events, chores, meals, or family planning.
+- [Meal Planner Generator](https://printable-tools-lab.pages.dev/tools/meal-planner/): Make a printable weekly meal planner PDF with breakfast, lunch, dinner, grocery list, and prep notes.
+
+## Useful Guide Pages
+
+- [Free printable name tracing worksheet maker](https://printable-tools-lab.pages.dev/guides/free-printable-name-tracing-worksheet-maker/): How to create a readable name tracing page for preschool and kindergarten handwriting practice.
+- [Free chore chart generator for kids](https://printable-tools-lab.pages.dev/guides/free-chore-chart-generator-for-kids/): Make a printable weekly chore chart that children can understand without a complicated app.
+- [Free reward chart generator](https://printable-tools-lab.pages.dev/guides/free-reward-chart-generator/): Create a printable sticker chart for goals, habits, classroom behavior, or family routines.
+- [Free sticker chart printable maker](https://printable-tools-lab.pages.dev/guides/free-sticker-chart-printable-maker/): Create a simple printable sticker chart for reading, bedtime, chores, classroom behavior, or kindness goals.
+- [Bedtime routine chart printable](https://printable-tools-lab.pages.dev/guides/bedtime-routine-chart-printable/): Make a bedtime routine chart that turns repeated reminders into a simple printable checklist.
+- [Classroom job chart printable](https://printable-tools-lab.pages.dev/guides/classroom-job-chart-printable/): Use a printable job chart for weekly classroom helpers, centers, small groups, and clean-up routines.
+- [Free printable weekly calendar for kids](https://printable-tools-lab.pages.dev/guides/free-printable-weekly-calendar-for-kids/): Create a simple weekly calendar printable for school events, chores, reading, meals, and family reminders.
+- [Printable morning routine chart ideas](https://printable-tools-lab.pages.dev/guides/printable-routine-chart-for-mornings/): Simple morning chart layouts that help kids move from wake-up to school without constant reminders.
+- [How to build a weekly family planner printable](https://printable-tools-lab.pages.dev/guides/weekly-family-planner-printable/): Plan meals, school events, chores, and appointments on one printable weekly page.
+- [Classroom label generator ideas](https://printable-tools-lab.pages.dev/guides/classroom-label-generator-ideas/): Use printable labels for bins, centers, cubbies, small groups, and take-home folders.
+- [Habit tracker printable for beginners](https://printable-tools-lab.pages.dev/guides/habit-tracker-printable-for-beginners/): Create a printable habit tracker that tracks progress without turning into a guilt chart.
+- [Printable flashcard generator guide](https://printable-tools-lab.pages.dev/guides/flashcard-generator-printable-guide/): Make flashcards that are easy to cut, review, and reuse for vocabulary or classroom games.
+- [Printable worksheets for preschool at home](https://printable-tools-lab.pages.dev/guides/printable-worksheets-for-preschool-at-home/): A practical way to use short printable pages without overloading young children.
+- [Black-and-white printable design tips](https://printable-tools-lab.pages.dev/guides/black-and-white-printable-design-tips/): Design worksheets and charts that still look clear on a basic home printer.
+- [A4 vs US Letter for printable PDFs](https://printable-tools-lab.pages.dev/guides/a4-vs-us-letter-printable-guide/): Choose the right paper size for families, schools, and international downloads.
+- [When batch printable generation is worth it](https://printable-tools-lab.pages.dev/guides/batch-printable-generator-for-classrooms/): Understand when a free one-page printable is enough and when repeated printable workflows need a better process.
+- [Free weekly planner generator](https://printable-tools-lab.pages.dev/guides/free-weekly-planner-generator/): Create a printable weekly planner for family schedules, classroom planning, errands, and meal notes.
+- [Free habit tracker generator](https://printable-tools-lab.pages.dev/guides/free-habit-tracker-generator/): Build a simple habit tracker printable for routines, reading goals, wellness habits, or classroom practice.
+- [Free invoice generator without signup](https://printable-tools-lab.pages.dev/guides/free-invoice-generator-no-signup/): Create a clean invoice PDF without an account, template marketplace, or surprise download fee.
+- [Freelance invoice PDF template](https://printable-tools-lab.pages.dev/guides/freelance-invoice-pdf-template/): Make a one-page freelance invoice PDF for design, writing, consulting, development, and project work.
+- [Free estimate generator PDF](https://printable-tools-lab.pages.dev/guides/free-estimate-generator-pdf/): Create a free estimate PDF for services, repairs, project work, consulting, or home jobs.
+- [Service quote PDF template](https://printable-tools-lab.pages.dev/guides/service-quote-pdf-template/): Make a printable service quote PDF for contractors, freelancers, consultants, or small local businesses.
+- [Free purchase order generator](https://printable-tools-lab.pages.dev/guides/free-purchase-order-generator/): Create a purchase order PDF for vendor orders, supply requests, services, or internal approvals.
+- [Purchase order PDF template](https://printable-tools-lab.pages.dev/guides/purchase-order-pdf-template/): Use a clean purchase order PDF template when a small team needs approval before buying goods or services.
+
+## Notes For Crawlers And Assistants
+
+- Ordinary PDF generation runs in the browser and does not require an account.
+- Optional AI idea suggestions are server-side and limited to non-sensitive fields.
+- Ads are not used as a gate for downloading PDFs.
+- Paid checkout is intentionally disabled until free usage and search demand are validated.

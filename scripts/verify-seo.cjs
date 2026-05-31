@@ -38,7 +38,35 @@ else {
   const robots = fs.readFileSync(robotsFile, "utf8");
   if (!robots.includes("User-agent: *")) failures.push("robots.txt missing user-agent.");
   if (!robots.includes(`Sitemap: ${siteUrl("sitemap.xml").replace(/\/$/, "")}`)) failures.push("robots.txt missing sitemap directive.");
+  if (robots.includes("Sitemap: https://printable-tools-lab.pages.dev/llms.txt")) failures.push("robots.txt should not list llms.txt as a sitemap.");
+  if (robots.includes("Sitemap: https://printable-tools-lab.pages.dev/tools.json")) failures.push("robots.txt should not list tools.json as a sitemap.");
   if (!robots.includes("Disallow: /dashboard/")) failures.push("robots.txt should disallow dashboard.");
+}
+
+const llmsFile = path.join(root, "llms.txt");
+if (!fs.existsSync(llmsFile)) failures.push("Missing llms.txt.");
+else {
+  const llms = fs.readFileSync(llmsFile, "utf8");
+  if (!llms.includes("# PrintableTools Lab")) failures.push("llms.txt missing title.");
+  if (!llms.includes("## Tools")) failures.push("llms.txt missing tools section.");
+  if (!llms.includes(siteUrl("tools"))) failures.push("llms.txt missing tools URL.");
+  if (!llms.includes(siteUrl("tools.json").replace(/\/$/, ""))) failures.push("llms.txt missing tools.json URL.");
+}
+
+const toolsJsonFile = path.join(root, "tools.json");
+if (!fs.existsSync(toolsJsonFile)) failures.push("Missing tools.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(toolsJsonFile, "utf8"));
+  if (!Array.isArray(data.tools) || data.tools.length < 16) failures.push("tools.json missing tools.");
+  if (!Array.isArray(data.guides) || data.guides.length < 38) failures.push("tools.json missing guides.");
+  if (!data.tools.some((tool) => tool.url === siteUrl("tools/invoice-generator"))) failures.push("tools.json missing invoice URL.");
+}
+
+const distributionFile = path.join(root, "DISTRIBUTION.md");
+if (!fs.existsSync(distributionFile)) failures.push("Missing DISTRIBUTION.md.");
+else {
+  const distribution = fs.readFileSync(distributionFile, "utf8");
+  if (!distribution.includes("Directory submission fields")) failures.push("DISTRIBUTION.md missing directory fields.");
 }
 
 const verificationFile = path.join(root, "google1b771d6159b52de7.html");
