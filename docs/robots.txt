@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://yanqr213.github.io/printable-tools-lab/sitemap.xml

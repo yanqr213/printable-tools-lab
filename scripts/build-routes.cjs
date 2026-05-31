@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { execFileSync } = require("child_process");
 const { routes, renderRoute, siteUrl, tools, guides, keywordClusters, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
@@ -247,6 +248,8 @@ const distribution = [
   "",
 ].join("\n");
 fs.writeFileSync(path.join(root, "DISTRIBUTION.md"), distribution);
+
+execFileSync(process.execPath, [path.join(root, "scripts", "build-github-pages.cjs")], { cwd: root, stdio: "inherit" });
 
 console.log(`Generated ${routes.length - 1} static route entries, sitemap.xml, robots.txt, tools.json, discovery.json, llms.txt, and DISTRIBUTION.md.`);
 

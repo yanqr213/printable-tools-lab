@@ -130,6 +130,7 @@ function releaseBody() {
     "",
     `- [Free PDF tools without signup](${siteUrl("free-pdf-tools")})`,
     `- [PDF tool finder](${siteUrl("pdf-tool-finder")})`,
+    "- [GitHub Pages discovery directory](https://yanqr213.github.io/printable-tools-lab/)",
     `- [Machine-readable tools.json](${siteUrl("tools.json").replace(/\/$/, "")})`,
     `- [Web app manifest](${siteUrl("site.webmanifest").replace(/\/$/, "")})`,
     ...toolLinks,

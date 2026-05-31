@@ -118,6 +118,23 @@ else {
   if (discovery.opensearch !== siteUrl("opensearch.xml").replace(/\/$/, "")) failures.push("discovery.json missing OpenSearch URL.");
 }
 
+const docsIndexFile = path.join(root, "docs", "index.html");
+if (!fs.existsSync(docsIndexFile)) failures.push("Missing GitHub Pages discovery index.");
+else {
+  const html = fs.readFileSync(docsIndexFile, "utf8");
+  if (!html.includes("Free PDF tools without signup")) failures.push("GitHub Pages discovery page missing heading.");
+  if (!html.includes(siteUrl("free-pdf-tools"))) failures.push("GitHub Pages discovery page missing main directory link.");
+  if (!html.includes(siteUrl("tools/image-to-pdf"))) failures.push("GitHub Pages discovery page missing image-to-PDF link.");
+  if (!html.includes("rel=\"canonical\" href=\"https://yanqr213.github.io/printable-tools-lab/\"")) failures.push("GitHub Pages discovery page missing canonical.");
+}
+
+const docsToolsFile = path.join(root, "docs", "tools.json");
+if (!fs.existsSync(docsToolsFile)) failures.push("Missing GitHub Pages discovery tools.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(docsToolsFile, "utf8"));
+  if (!Array.isArray(data.tools) || data.tools.length < 8) failures.push("GitHub Pages discovery tools.json missing high-intent tools.");
+}
+
 const verificationFile = path.join(root, "google1b771d6159b52de7.html");
 if (!fs.existsSync(verificationFile)) failures.push("Missing Google HTML verification file.");
 else {

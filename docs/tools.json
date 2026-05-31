@@ -1,0 +1,59 @@
+{
+  "name": "PrintableTools Lab",
+  "liveSite": "https://printable-tools-lab.pages.dev/",
+  "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
+  "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
+  "generatedAt": "2026-05-31T22:19:41.064Z",
+  "tools": [
+    {
+      "title": "Image to PDF Converter",
+      "description": "Convert JPG, PNG, or WebP images into a clean one-page PDF in your browser without uploading files.",
+      "url": "https://printable-tools-lab.pages.dev/tools/image-to-pdf/"
+    },
+    {
+      "title": "Multiple Images to PDF Converter",
+      "description": "Turn several JPG, PNG, or WebP images into one multi-page PDF in your browser without uploading files.",
+      "url": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/"
+    },
+    {
+      "title": "Text to PDF Converter",
+      "description": "Paste plain text and download a clean one-page PDF without an account or file upload.",
+      "url": "https://printable-tools-lab.pages.dev/tools/text-to-pdf/"
+    },
+    {
+      "title": "Invoice Generator",
+      "description": "Create a clean free invoice PDF for freelance work, small business services, consulting, or one-off projects.",
+      "url": "https://printable-tools-lab.pages.dev/tools/invoice-generator/"
+    },
+    {
+      "title": "Receipt Generator",
+      "description": "Create a simple printable receipt PDF for a sale, service payment, deposit, or reimbursement record.",
+      "url": "https://printable-tools-lab.pages.dev/tools/receipt-generator/"
+    },
+    {
+      "title": "Timesheet Generator",
+      "description": "Make a printable weekly timesheet PDF for freelance hours, staff records, projects, or approvals.",
+      "url": "https://printable-tools-lab.pages.dev/tools/timesheet-generator/"
+    },
+    {
+      "title": "Resume Builder PDF",
+      "description": "Build a simple free resume PDF without an account, paywall, or surprise download fee.",
+      "url": "https://printable-tools-lab.pages.dev/tools/resume-builder/"
+    },
+    {
+      "title": "Certificate Generator",
+      "description": "Create a printable certificate PDF for completion, participation, classroom awards, or small events.",
+      "url": "https://printable-tools-lab.pages.dev/tools/certificate-generator/"
+    },
+    {
+      "title": "To Do List Generator",
+      "description": "Build a printable checklist PDF for errands, work tasks, study sessions, home projects, or event prep.",
+      "url": "https://printable-tools-lab.pages.dev/tools/todo-list/"
+    },
+    {
+      "title": "Graph Paper Generator",
+      "description": "Generate printable graph paper PDF with quarter-inch, half-inch, or small grid spacing for math, notes, and design sketches.",
+      "url": "https://printable-tools-lab.pages.dev/tools/graph-paper/"
+    }
+  ]
+}
