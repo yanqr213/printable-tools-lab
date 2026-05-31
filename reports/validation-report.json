@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-31T22:55:15.265Z",
+  "generatedAt": "2026-05-31T22:56:57.752Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 26,
@@ -34,21 +34,21 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 10488,
+        "bytes": 11846,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 17572,
+        "bytes": 18220,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 10728,
+        "bytes": 11700,
         "json": null
       },
       "/robots.txt": {
@@ -71,7 +71,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 12089,
+        "bytes": 13359,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, co"
       },
@@ -79,7 +79,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 12331,
+        "bytes": 16152,
         "json": null
       },
       "/tools.json": {
@@ -91,7 +91,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-05-31T22:34:44.775Z",
+          "generatedAt": "2026-05-31T22:52:50.924Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -518,11 +518,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 1884,
+        "bytes": 4853,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-05-31T22:34:44.775Z",
+          "generatedAt": "2026-05-31T22:52:50.924Z",
           "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -530,6 +530,14 @@
           "highIntentEntryPoints": [
             "https://printable-tools-lab.pages.dev/free-pdf-tools/",
             "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
+            "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
+            "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
+            "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
+            "https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/",
+            "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
+            "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
+            "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
+            "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
             "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
             "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
             "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
@@ -540,6 +548,56 @@
             "https://printable-tools-lab.pages.dev/tools/certificate-generator/",
             "https://printable-tools-lab.pages.dev/tools/todo-list/",
             "https://printable-tools-lab.pages.dev/tools/graph-paper/"
+          ],
+          "landingPages": [
+            {
+              "title": "Free Invoice Generator Without Signup",
+              "url": "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
+              "intent": "invoice PDF now, no account, no hidden export fee",
+              "tool": "https://printable-tools-lab.pages.dev/tools/invoice-generator/"
+            },
+            {
+              "title": "JPG to PDF Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
+              "intent": "private image conversion, no upload, fast PDF",
+              "tool": "https://printable-tools-lab.pages.dev/tools/image-to-pdf/"
+            },
+            {
+              "title": "Multiple Images to PDF Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
+              "intent": "combine images into one PDF without upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/"
+            },
+            {
+              "title": "Text to PDF Converter Without Signup",
+              "url": "https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/",
+              "intent": "plain text to PDF with no account",
+              "tool": "https://printable-tools-lab.pages.dev/tools/text-to-pdf/"
+            },
+            {
+              "title": "Free Resume Builder Without Signup",
+              "url": "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
+              "intent": "resume PDF download without account or paywall",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resume-builder/"
+            },
+            {
+              "title": "Free Receipt Generator Without Signup",
+              "url": "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
+              "intent": "receipt PDF now, no account, quick proof of payment",
+              "tool": "https://printable-tools-lab.pages.dev/tools/receipt-generator/"
+            },
+            {
+              "title": "Weekly Timesheet PDF Without Signup",
+              "url": "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
+              "intent": "weekly timesheet PDF with fast export",
+              "tool": "https://printable-tools-lab.pages.dev/tools/timesheet-generator/"
+            },
+            {
+              "title": "Free Certificate Maker Without Signup",
+              "url": "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
+              "intent": "certificate PDF download without account",
+              "tool": "https://printable-tools-lab.pages.dev/tools/certificate-generator/"
+            }
           ],
           "constraints": [
             "No account required.",
@@ -863,7 +921,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-05-31T22:37:11.379Z",
+          "lastSubmitted": "2026-05-31T22:56:29.891Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
