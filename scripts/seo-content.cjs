@@ -712,6 +712,7 @@ function toolsIndexHtml() {
         <div class="grid-3">
           ${tools.map((tool) => `<article class="tool-card"><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.description)}</p><a class="button" href="/${tool.path}/">Open generator</a></article>`).join("\n")}
         </div>
+        ${jsonLdHtml(itemListSchema("Free PDF tools", tools))}
       </section>`;
 }
 
@@ -770,6 +771,7 @@ function freePdfToolsHtml() {
         <div class="grid-3">
           ${tools.map((tool) => `<article class="tool-card"><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.description)}</p><a class="button" href="/${tool.path}/">Open generator</a></article>`).join("\n")}
         </div>
+        ${jsonLdHtml(itemListSchema("Free PDF tools without signup", tools))}
       </section>`;
 }
 
@@ -835,6 +837,7 @@ function pdfToolFinderHtml() {
         <h2>Free tool limits</h2>
         <p>The tools are designed for fast one-page PDFs and simple records. They do not replace legal, tax, accounting, or employment advice. Review every document before sending or printing it.</p>
         <p>Ads are disabled during validation and should never be used as a condition for downloading a PDF.</p>
+        ${jsonLdHtml(itemListSchema("PDF tool finder", TOOL_FINDER_ROWS.map((row) => tools.find((tool) => tool.path === row.toolPath)).filter(Boolean)))}
       </section>`;
 }
 
@@ -872,6 +875,20 @@ function faqSchema(faq) {
         "@type": "Answer",
         text: item.a,
       },
+    })),
+  };
+}
+
+function itemListSchema(name, items) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.title,
+      url: siteUrl(item.path),
     })),
   };
 }

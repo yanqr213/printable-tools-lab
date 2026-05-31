@@ -26,6 +26,7 @@ for (const route of routes) {
 }
 
 const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
+if (!sitemap.includes("<lastmod>")) failures.push("sitemap.xml missing lastmod entries.");
 for (const route of routes) {
   if (route.index === false) continue;
   const loc = siteUrl(route.path);
@@ -53,7 +54,18 @@ else {
   if (!llms.includes(siteUrl("tools"))) failures.push("llms.txt missing tools URL.");
   if (!llms.includes(siteUrl("site.webmanifest").replace(/\/$/, ""))) failures.push("llms.txt missing manifest URL.");
   if (!llms.includes(siteUrl("opensearch.xml").replace(/\/$/, ""))) failures.push("llms.txt missing OpenSearch URL.");
+  if (!llms.includes(siteUrl("feed.xml").replace(/\/$/, ""))) failures.push("llms.txt missing RSS feed URL.");
   if (!llms.includes(siteUrl("tools.json").replace(/\/$/, ""))) failures.push("llms.txt missing tools.json URL.");
+}
+
+const feedFile = path.join(root, "feed.xml");
+if (!fs.existsSync(feedFile)) failures.push("Missing feed.xml.");
+else {
+  const feed = fs.readFileSync(feedFile, "utf8");
+  if (!feed.includes("<rss version=\"2.0\"")) failures.push("feed.xml missing RSS root.");
+  if (!feed.includes(siteUrl("free-pdf-tools"))) failures.push("feed.xml missing free PDF tools directory.");
+  if (!feed.includes(siteUrl("tools/image-to-pdf"))) failures.push("feed.xml missing high-intent image-to-PDF URL.");
+  if (!feed.includes("<lastBuildDate>")) failures.push("feed.xml missing lastBuildDate.");
 }
 
 const manifestFile = path.join(root, "site.webmanifest");
@@ -91,6 +103,7 @@ else {
   const html = fs.readFileSync(freePdfToolsFile, "utf8");
   if (!html.includes("Free PDF tools without signup")) failures.push("Free PDF tools page missing target heading.");
   if (!html.includes("/tools/multi-image-pdf/") || !html.includes("/tools/text-to-pdf/")) failures.push("Free PDF tools page missing conversion links.");
+  if (!html.includes('"@type":"ItemList"')) failures.push("Free PDF tools page missing ItemList schema.");
 }
 
 const finderFile = path.join(root, "pdf-tool-finder", "index.html");
@@ -100,6 +113,7 @@ else {
   if (!html.includes("Which free PDF tool should I use?")) failures.push("PDF tool finder missing target heading.");
   if (!html.includes("/tools/image-to-pdf/") || !html.includes("/tools/receipt-generator/")) failures.push("PDF tool finder missing high-intent tool links.");
   if (!html.includes("Invoice vs receipt")) failures.push("PDF tool finder missing decision content.");
+  if (!html.includes('"@type":"ItemList"')) failures.push("PDF tool finder missing ItemList schema.");
 }
 
 const distributionFile = path.join(root, "DISTRIBUTION.md");
@@ -114,6 +128,7 @@ if (!fs.existsSync(discoveryFile)) failures.push("Missing discovery.json.");
 else {
   const discovery = JSON.parse(fs.readFileSync(discoveryFile, "utf8"));
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("tools/multi-image-pdf"))) failures.push("discovery.json missing high-intent multi-image route.");
+  if (discovery.feed !== siteUrl("feed.xml").replace(/\/$/, "")) failures.push("discovery.json missing RSS feed URL.");
   if (discovery.manifest !== siteUrl("site.webmanifest").replace(/\/$/, "")) failures.push("discovery.json missing manifest URL.");
   if (discovery.opensearch !== siteUrl("opensearch.xml").replace(/\/$/, "")) failures.push("discovery.json missing OpenSearch URL.");
 }
@@ -133,6 +148,7 @@ if (!fs.existsSync(docsToolsFile)) failures.push("Missing GitHub Pages discovery
 else {
   const data = JSON.parse(fs.readFileSync(docsToolsFile, "utf8"));
   if (!Array.isArray(data.tools) || data.tools.length < 8) failures.push("GitHub Pages discovery tools.json missing high-intent tools.");
+  if (data.feed !== siteUrl("feed.xml").replace(/\/$/, "")) failures.push("GitHub Pages discovery tools.json missing feed URL.");
 }
 
 const verificationFile = path.join(root, "google1b771d6159b52de7.html");

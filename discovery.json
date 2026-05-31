@@ -1,8 +1,9 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-05-31T22:19:41.037Z",
+  "generatedAt": "2026-05-31T22:34:44.775Z",
   "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
+  "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
   "opensearch": "https://printable-tools-lab.pages.dev/opensearch.xml",
   "highIntentEntryPoints": [

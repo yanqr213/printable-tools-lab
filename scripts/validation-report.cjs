@@ -37,8 +37,10 @@ function readLocalState() {
   const sitemap = readText("sitemap.xml");
   const robots = readText("robots.txt");
   const llms = readText("llms.txt");
+  const feed = readText("feed.xml");
   const manifest = readJson("site.webmanifest", {});
   const opensearch = readText("opensearch.xml");
+  const discoveryJson = readJson("discovery.json", {});
   const adsTxt = readText("ads.txt").trim();
   const config = readText("site-config.js");
   const indexableRoutes = routes.filter((route) => route.index !== false).length;
@@ -50,10 +52,12 @@ function readLocalState() {
     generatedToolInventoryAt: toolsJson.generatedAt || null,
     discoveryAssets: {
       sitemap: Boolean(sitemap.includes("<urlset")),
+      sitemapLastmod: Boolean(sitemap.includes("<lastmod>")),
       robots: Boolean(robots.includes("Sitemap:")),
       llms: Boolean(llms.includes("# PrintableTools Lab")),
+      feed: Boolean(feed.includes("<rss version=\"2.0\"") && feed.includes(siteUrl("free-pdf-tools"))),
       toolsJson: Array.isArray(toolsJson.tools),
-      discoveryJson: fs.existsSync(path.join(root, "discovery.json")),
+      discoveryJson: discoveryJson.feed === siteUrl("feed.xml").replace(/\/$/, ""),
       distributionPack: fs.existsSync(path.join(root, "DISTRIBUTION.md")),
       webManifest: manifest.name === "PrintableTools Lab" && Array.isArray(manifest.shortcuts),
       opensearch: opensearch.includes("<OpenSearchDescription") && opensearch.includes("PrintableTools Lab"),
@@ -69,7 +73,7 @@ function readLocalState() {
 }
 
 async function readLiveState() {
-  const paths = ["/", "/tools/", "/sitemap.xml", "/robots.txt", "/ads.txt", "/llms.txt", "/tools.json", "/discovery.json", "/site.webmanifest", "/opensearch.xml", "/api/metrics"];
+  const paths = ["/", "/tools/", "/sitemap.xml", "/robots.txt", "/ads.txt", "/llms.txt", "/feed.xml", "/tools.json", "/discovery.json", "/site.webmanifest", "/opensearch.xml", "/api/metrics"];
   const checks = {};
   for (const pathname of paths) {
     checks[pathname] = await liveCheck(pathname);

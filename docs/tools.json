@@ -3,7 +3,8 @@
   "liveSite": "https://printable-tools-lab.pages.dev/",
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
-  "generatedAt": "2026-05-31T22:19:41.064Z",
+  "feed": "https://printable-tools-lab.pages.dev/feed.xml",
+  "generatedAt": "2026-05-31T22:34:44.829Z",
   "tools": [
     {
       "title": "Image to PDF Converter",

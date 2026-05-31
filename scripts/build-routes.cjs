@@ -5,6 +5,9 @@ const { routes, renderRoute, siteUrl, tools, guides, keywordClusters, SITE_SUMMA
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
+const generatedAt = new Date();
+const generatedAtIso = generatedAt.toISOString();
+const lastmod = generatedAtIso.slice(0, 10);
 
 function pageHtml(route) {
   const rendered = renderRoute(route);
@@ -40,7 +43,7 @@ for (const route of routes) {
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes
   .filter((route) => route.index !== false)
-  .map((route) => `  <url><loc>${siteUrl(route.path)}</loc></url>`)
+  .map((route) => `  <url><loc>${siteUrl(route.path)}</loc><lastmod>${lastmod}</lastmod></url>`)
   .join("\n")}\n</urlset>\n`;
 fs.writeFileSync(path.join(root, "sitemap.xml"), sitemap);
 
@@ -102,6 +105,9 @@ if (fs.existsSync(headersPath)) {
   if (!headers.includes("/opensearch.xml")) {
     fs.appendFileSync(headersPath, "\n/opensearch.xml\n  Content-Type: application/opensearchdescription+xml; charset=utf-8\n");
   }
+  if (!headers.includes("/feed.xml")) {
+    fs.appendFileSync(headersPath, "\n/feed.xml\n  Content-Type: application/rss+xml; charset=utf-8\n");
+  }
 }
 
 const adsTxtPath = path.join(root, "ads.txt");
@@ -113,7 +119,7 @@ const toolsJson = {
   name: SITE_SUMMARY.name,
   description: SITE_SUMMARY.description,
   url: siteUrl(""),
-  generatedAt: new Date().toISOString(),
+  generatedAt: generatedAtIso,
   tools: tools.map((tool) => ({
     title: tool.title,
     url: siteUrl(tool.path),
@@ -145,6 +151,7 @@ const llms = [
   `- PDF tool finder: ${siteUrl("pdf-tool-finder")}`,
   `- Guides index: ${siteUrl("guides")}`,
   `- Sitemap: ${fileUrl("sitemap.xml")}`,
+  `- RSS feed: ${fileUrl("feed.xml")}`,
   `- Web app manifest: ${fileUrl("site.webmanifest")}`,
   `- OpenSearch description: ${fileUrl("opensearch.xml")}`,
   `- Machine-readable tool list: ${fileUrl("tools.json")}`,
@@ -171,8 +178,9 @@ fs.writeFileSync(path.join(root, "llms.txt"), llms);
 const discoveryIndex = {
   name: SITE_SUMMARY.name,
   url: siteUrl(""),
-  generatedAt: new Date().toISOString(),
+  generatedAt: generatedAtIso,
   positioning: "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
+  feed: fileUrl("feed.xml"),
   manifest: fileUrl("site.webmanifest"),
   opensearch: fileUrl("opensearch.xml"),
   highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
@@ -189,6 +197,37 @@ const discoveryIndex = {
   },
 };
 fs.writeFileSync(path.join(root, "discovery.json"), `${JSON.stringify(discoveryIndex, null, 2)}\n`);
+
+const feedItems = [
+  routeToFeedItem(routes.find((route) => route.path === "free-pdf-tools")),
+  routeToFeedItem(routes.find((route) => route.path === "pdf-tool-finder")),
+  routeToFeedItem(routes.find((route) => route.path === "tools")),
+  ...HIGH_INTENT_TOOL_PATHS
+    .map((toolPath) => routes.find((route) => route.path === toolPath))
+    .filter(Boolean)
+    .map(routeToFeedItem),
+  ...guides.slice(0, 12).map(routeToFeedItem),
+].filter(Boolean);
+const feed = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>${escapeXml(SITE_SUMMARY.name)}</title>
+    <link>${escapeXml(siteUrl(""))}</link>
+    <atom:link href="${escapeXml(fileUrl("feed.xml"))}" rel="self" type="application/rss+xml"/>
+    <description>${escapeXml(SITE_SUMMARY.description)}</description>
+    <language>en-us</language>
+    <lastBuildDate>${generatedAt.toUTCString()}</lastBuildDate>
+${feedItems.map((item) => `    <item>
+      <title>${escapeXml(item.title)}</title>
+      <link>${escapeXml(item.url)}</link>
+      <guid isPermaLink="true">${escapeXml(item.url)}</guid>
+      <description>${escapeXml(item.description)}</description>
+      <pubDate>${generatedAt.toUTCString()}</pubDate>
+    </item>`).join("\n")}
+  </channel>
+</rss>
+`;
+fs.writeFileSync(path.join(root, "feed.xml"), feed);
 
 const distribution = [
   "# PrintableTools Lab Distribution Pack",
@@ -251,7 +290,7 @@ fs.writeFileSync(path.join(root, "DISTRIBUTION.md"), distribution);
 
 execFileSync(process.execPath, [path.join(root, "scripts", "build-github-pages.cjs")], { cwd: root, stdio: "inherit" });
 
-console.log(`Generated ${routes.length - 1} static route entries, sitemap.xml, robots.txt, tools.json, discovery.json, llms.txt, and DISTRIBUTION.md.`);
+console.log(`Generated ${routes.length - 1} static route entries, sitemap.xml, robots.txt, feed.xml, tools.json, discovery.json, llms.txt, and DISTRIBUTION.md.`);
 
 function categoryForTool(toolPath) {
   const slug = toolPath.replace(/^tools\//, "");
@@ -265,4 +304,22 @@ function categoryForTool(toolPath) {
 
 function fileUrl(fileName) {
   return siteUrl(fileName).replace(/\/$/, "");
+}
+
+function routeToFeedItem(route) {
+  if (!route) return null;
+  return {
+    title: route.title,
+    description: route.description,
+    url: siteUrl(route.path),
+  };
+}
+
+function escapeXml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
 }

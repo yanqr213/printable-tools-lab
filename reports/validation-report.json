@@ -1,16 +1,18 @@
 {
-  "generatedAt": "2026-05-31T22:22:53.367Z",
+  "generatedAt": "2026-05-31T22:35:26.628Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 26,
     "guideCount": 52,
     "indexableRoutes": 87,
     "sitemapLocCount": 87,
-    "generatedToolInventoryAt": "2026-05-31T22:19:41.036Z",
+    "generatedToolInventoryAt": "2026-05-31T22:34:44.775Z",
     "discoveryAssets": {
       "sitemap": true,
+      "sitemapLastmod": true,
       "robots": true,
       "llms": true,
+      "feed": true,
       "toolsJson": true,
       "discoveryJson": true,
       "distributionPack": true,
@@ -71,6 +73,13 @@
         "bytes": 12030,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, co"
+      },
+      "/feed.xml": {
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 10385,
+        "json": null
       },
       "/tools.json": {
         "ok": true,
@@ -852,7 +861,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-05-31T22:16:00.955Z",
+          "lastSubmitted": "2026-05-31T22:23:30.543Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",

@@ -14,6 +14,7 @@ Monetization model: Free tools first, then responsible display advertising after
 - PDF tool finder: https://printable-tools-lab.pages.dev/pdf-tool-finder/
 - Guides index: https://printable-tools-lab.pages.dev/guides/
 - Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml
+- RSS feed: https://printable-tools-lab.pages.dev/feed.xml
 - Web app manifest: https://printable-tools-lab.pages.dev/site.webmanifest
 - OpenSearch description: https://printable-tools-lab.pages.dev/opensearch.xml
 - Machine-readable tool list: https://printable-tools-lab.pages.dev/tools.json

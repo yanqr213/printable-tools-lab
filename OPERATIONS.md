@@ -102,8 +102,10 @@ Keep these files deployed for crawler and ad review readiness:
 - `sitemap.xml`: indexable public pages only.
 - `robots.txt`: allows public pages, blocks noindex internal pages, and points crawlers to the sitemap.
 - `llms.txt`: short machine-readable site summary for AI assistants and emerging tool crawlers.
+- `feed.xml`: RSS discovery feed for high-intent tools, directories, and monitoring services.
 - `tools.json`: structured inventory of tools and guides for directories, crawlers, and manual distribution.
 - `discovery.json`: compact high-intent route index for tool directories, launch notes, and automated discovery checks.
+- Directory page JSON-LD: `/tools/`, `/free-pdf-tools/`, and `/pdf-tool-finder/` include `ItemList` structured data.
 - Tool page JSON-LD: each public tool route includes `SoftwareApplication` structured data with a free offer.
 - `_headers`: basic content/security headers and explicit content types for sitemap, robots, and verification files.
 - `DISTRIBUTION.md`: reusable low-friction launch copy and directory submission fields.
@@ -304,6 +306,7 @@ Current Search Console checkpoint:
 - `llms.txt`, `tools.json`, and distribution pack added after this checkpoint to improve external discovery and manual submission readiness.
 - `2026-05-31T19:31:34Z`: sitemap resubmitted after deploying `llms.txt`, `tools.json`, `DISTRIBUTION.md`, and GitHub repository metadata/topics.
 - `2026-06-01`: expanded to 26 tools and 52 guide pages, including multi-image PDF, text-to-PDF, receipt, timesheet, certificate, and to-do list routes. Added `discovery.json` for high-intent route discovery.
+- `2026-06-01`: added `feed.xml`, sitemap `lastmod`, and `ItemList` JSON-LD on directory/finder pages. Google sitemap documentation supports `lastmod` when accurate, and feeds are useful discovery/monitoring assets, but neither replaces external links or real usage.
 - Action: keep site stable, improve useful content/navigation, thicken tool pages, and avoid repeated low-value resubmission loops.
 
 ## External Discovery Queue
@@ -321,6 +324,7 @@ Completed:
 - `2026-05-31`: AdSense config automation added; live `/ads.txt` returns a no-sellers placeholder while ads remain disabled.
 - `2026-06-01`: GitHub discovery release created at `https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools` with high-intent tool links.
 - `2026-06-01`: GitHub Pages discovery directory added at `https://yanqr213.github.io/printable-tools-lab/` as a free external entry point linking to high-intent tools.
+- `2026-06-01`: RSS feed exposed at `https://printable-tools-lab.pages.dev/feed.xml` and linked from `llms.txt`, `discovery.json`, GitHub release notes, and the GitHub Pages discovery directory.
 
 Submit Google sitemap:
 

@@ -5,6 +5,9 @@ const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, siteUrl, tools } = require("./seo-
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
 const pagesBase = "https://yanqr213.github.io/printable-tools-lab/";
+const generatedAt = new Date();
+const generatedAtIso = generatedAt.toISOString();
+const lastmod = generatedAtIso.slice(0, 10);
 
 fs.mkdirSync(docsDir, { recursive: true });
 
@@ -60,6 +63,7 @@ const html = `<!doctype html>
         <li><a href="${siteUrl("pdf-tool-finder")}">PDF tool finder</a> for choosing between tools such as invoice vs receipt or one image vs multi-image PDF.</li>
         <li><a href="${siteUrl("tools")}">All free PDF generators</a> for browsing every tool.</li>
         <li><a href="${siteUrl("guides")}">Printable guides</a> for original help pages around PDF and printable workflows.</li>
+        <li><a href="${siteUrl("feed.xml").replace(/\/$/, "")}">RSS feed</a> for monitoring newly published discovery pages and high-intent tools.</li>
         <li><a href="${siteUrl("tools.json").replace(/\/$/, "")}">Machine-readable tools.json</a> for tool directories and crawlers.</li>
       </ul>
 
@@ -76,7 +80,8 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
   liveSite: siteUrl(""),
   directory: siteUrl("free-pdf-tools"),
   finder: siteUrl("pdf-tool-finder"),
-  generatedAt: new Date().toISOString(),
+  feed: siteUrl("feed.xml").replace(/\/$/, ""),
+  generatedAt: generatedAtIso,
   tools: highIntentTools.map((tool) => ({
     title: tool.title,
     description: tool.description,
@@ -93,7 +98,7 @@ fs.writeFileSync(path.join(docsDir, "robots.txt"), [
 
 fs.writeFileSync(path.join(docsDir, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>${pagesBase}</loc></url>
+  <url><loc>${pagesBase}</loc><lastmod>${lastmod}</lastmod></url>
 </urlset>
 `);
 
