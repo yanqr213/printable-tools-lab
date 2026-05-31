@@ -5,10 +5,13 @@ Zero-cost validation build for a free printable PDF generator site.
 ## What is included
 
 - Static website with no backend requirement.
-- Three browser-side generators:
+- Six browser-side generators:
   - Name Tracing Worksheet Generator
   - Chore Chart Generator
   - Reward Chart Generator
+  - Flashcard Generator
+  - Weekly Planner Generator
+  - Habit Tracker Generator
 - One-page PDF export through Canvas-to-PDF.
 - Daily free limit stored in `localStorage`.
 - Local validation events stored in `localStorage`.

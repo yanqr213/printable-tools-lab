@@ -59,6 +59,9 @@ Use these in titles, page headings, pins, and short posts:
 - printable name tracing worksheet maker
 - free chore chart generator for kids
 - printable reward chart generator
+- free printable flashcard generator
+- free weekly planner generator
+- free habit tracker generator
 - sticker chart printable maker
 - weekly chore chart PDF
 - free printable routine chart
@@ -90,6 +93,10 @@ Create one image or short post per item. Do not promise outcomes; show the print
 18. Weekly family chores printable.
 19. Sticker chart for classroom behavior goals.
 20. One-page printable tools for parents and teachers.
+21. Free flashcard generator for vocabulary review.
+22. Printable weekly planner for family schedules.
+23. Habit tracker generator for simple daily routines.
+24. One-page planner tools that do not require an account.
 
 ## Weekly operating loop
 

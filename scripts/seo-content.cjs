@@ -28,6 +28,33 @@ const tools = [
       "The free PDF includes one page with a light watermark and can be upgraded later if validation data supports premium templates.",
     ],
   },
+  {
+    path: "tools/flashcards",
+    title: "Flashcard Generator",
+    description: "Create a free one-page printable flashcard PDF for vocabulary, classroom review, memory games, and homeschool practice.",
+    body: [
+      "Enter one card per line, choose six or eight cards per page, and download a printable sheet with cut lines.",
+      "This tool targets evergreen teacher and homeschool searches while keeping the first version simple enough to run without a backend.",
+    ],
+  },
+  {
+    path: "tools/weekly-planner",
+    title: "Weekly Planner Generator",
+    description: "Make a free printable weekly planner PDF for family schedules, class planning, errands, and meal notes.",
+    body: [
+      "Create a one-page weekly planner with seven day boxes and optional note sections for meals, errands, calls, or school items.",
+      "Weekly planning is a broader audience test than kids-only worksheets and helps validate whether utility printables can bring non-teacher traffic.",
+    ],
+  },
+  {
+    path: "tools/habit-tracker",
+    title: "Habit Tracker Generator",
+    description: "Create a free printable habit tracker PDF for daily routines, reading goals, wellness habits, or classroom practice.",
+    body: [
+      "Add four to six habits, choose 21, 30, or 31 days, and print a simple grid for daily check-ins.",
+      "Habit trackers are a high-intent printable category that can later support watermark-free bundles or affiliate links for planners and stationery.",
+    ],
+  },
 ];
 
 const guides = [
@@ -43,6 +70,8 @@ const guides = [
   ["guides/black-and-white-printable-design-tips", "Black-and-white printable design tips", "Design worksheets and charts that still look clear on a basic home printer.", "Most printable pages are used on ordinary printers. Strong borders, readable headings, and clean spacing matter more than color fills."],
   ["guides/a4-vs-us-letter-printable-guide", "A4 vs US Letter for printable PDFs", "Choose the right paper size for families, schools, and international downloads.", "US Letter is common in the United States and Canada, while A4 is common in many other countries. Offering both sizes reduces printing frustration."],
   ["guides/watermark-free-printables-when-to-upgrade", "When watermark-free printables are worth it", "Understand when a free printable is enough and when a clean classroom or commercial copy is worth paying for.", "A light watermark is usually fine for one-time home practice. Watermark-free versions make sense for classroom packets, therapy folders, and tutoring materials."],
+  ["guides/free-weekly-planner-generator", "Free weekly planner generator", "Create a printable weekly planner for family schedules, classroom planning, errands, and meal notes.", "A weekly planner should show only the decisions that need to stay visible: appointments, meals, tasks, and reminders. One printable page is enough for a lightweight planning loop."],
+  ["guides/free-habit-tracker-generator", "Free habit tracker generator", "Build a simple habit tracker printable for routines, reading goals, wellness habits, or classroom practice.", "A habit tracker works best when it tracks a few repeatable behaviors. A simple grid is easier to keep using than a heavily decorated page with too many categories."],
 ].map(([path, title, description, intro]) => ({ path, title, description, intro }));
 
 const pages = [
@@ -67,6 +96,9 @@ const pages = [
           <li><a href="/tools/name-tracing/">Name Tracing Worksheet Generator</a></li>
           <li><a href="/tools/chore-chart/">Chore Chart Generator</a></li>
           <li><a href="/tools/reward-chart/">Reward Chart Generator</a></li>
+          <li><a href="/tools/flashcards/">Flashcard Generator</a></li>
+          <li><a href="/tools/weekly-planner/">Weekly Planner Generator</a></li>
+          <li><a href="/tools/habit-tracker/">Habit Tracker Generator</a></li>
         </ul>
       </section>`,
   },

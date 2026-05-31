@@ -9,7 +9,7 @@ Pass all items before public deployment:
 - `npm.cmd run build:routes` completes.
 - `npm.cmd run smoke` completes.
 - Static route HTML contains page-specific title, description, canonical, and visible body content before JavaScript runs.
-- Three tool pages export PDF files.
+- Six tool pages export PDF files.
 - Mobile viewport shows the preview canvas and form without overlap.
 - Privacy, Terms, About, and AI & License Disclosure pages exist.
 - No live ad code is installed.
@@ -19,7 +19,7 @@ Pass all items before public deployment:
 Goal: prove the tool experience works.
 
 - Fix any PDF rendering or mobile issues reported by users.
-- Confirm at least 3 tools are usable on desktop and mobile.
+- Confirm at least 6 tools are usable on desktop and mobile.
 - Add screenshots or sample PDFs only if users need more trust signals.
 
 ## Day 14 gate

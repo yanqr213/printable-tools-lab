@@ -97,6 +97,75 @@
       ],
       draw: drawRewardChart,
     },
+    "flashcards": {
+      id: "flashcards",
+      icon: "▦",
+      title: "Flashcard Generator",
+      shortTitle: "Flashcards",
+      description: "Create a one-page set of printable flashcards for vocabulary, classroom review, memory games, or homeschool practice.",
+      keywords: ["flashcards", "vocabulary", "classroom", "printable"],
+      defaultValues: {
+        title: "Vocabulary Flashcards",
+        cards: "apple - red fruit\nbook - reading\nsun - bright sky\nwater - drink\nhappy - feeling\ntree - plant",
+        paper: "letter",
+        layout: "six",
+        theme: "clean",
+      },
+      fields: [
+        { id: "title", label: "Set title", type: "text", maxLength: 58 },
+        { id: "cards", label: "Cards", type: "textarea", maxLength: 420, help: "One card per line. Use word - hint if you want a smaller hint line." },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+        { id: "layout", label: "Cards per page", type: "select", options: [["six", "6 large cards"], ["eight", "8 compact cards"]] },
+        { id: "theme", label: "Theme", type: "select", options: [["clean", "Clean"], ["study", "Study"], ["kids", "Kids"]] },
+      ],
+      draw: drawFlashcards,
+    },
+    "weekly-planner": {
+      id: "weekly-planner",
+      icon: "7",
+      title: "Weekly Planner Generator",
+      shortTitle: "Weekly planner",
+      description: "Make a printable weekly planner PDF for family schedules, class planning, errands, and meal notes.",
+      keywords: ["weekly planner", "schedule", "meal plan", "printable"],
+      defaultValues: {
+        title: "Weekly Planner",
+        focus: "Top focus: keep the week simple",
+        notes: "Meals\nErrands\nCalls\nSchool items",
+        paper: "letter",
+        layout: "balanced",
+      },
+      fields: [
+        { id: "title", label: "Planner title", type: "text", maxLength: 58 },
+        { id: "focus", label: "Focus line", type: "text", maxLength: 90 },
+        { id: "notes", label: "Side note headings", type: "textarea", maxLength: 180, help: "One heading per line." },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+        { id: "layout", label: "Layout", type: "select", options: [["balanced", "Balanced"], ["notes", "More notes"], ["minimal", "Minimal"]] },
+      ],
+      draw: drawWeeklyPlanner,
+    },
+    "habit-tracker": {
+      id: "habit-tracker",
+      icon: "○",
+      title: "Habit Tracker Generator",
+      shortTitle: "Habit tracker",
+      description: "Create a simple printable habit tracker for daily routines, reading goals, wellness habits, or classroom practice.",
+      keywords: ["habit tracker", "routine", "goals", "printable"],
+      defaultValues: {
+        title: "30-Day Habit Tracker",
+        habits: "Read\nWalk\nWater\nSleep routine",
+        days: "30",
+        paper: "letter",
+        theme: "calm",
+      },
+      fields: [
+        { id: "title", label: "Tracker title", type: "text", maxLength: 58 },
+        { id: "habits", label: "Habits", type: "textarea", maxLength: 220, help: "One habit per line. Four to six habits print best." },
+        { id: "days", label: "Number of days", type: "select", options: [["21", "21"], ["30", "30"], ["31", "31"]] },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+        { id: "theme", label: "Theme", type: "select", options: [["calm", "Calm"], ["bold", "Bold"], ["minimal", "Minimal"]] },
+      ],
+      draw: drawHabitTracker,
+    },
   };
 
   const guides = [
@@ -819,6 +888,146 @@
     drawPromptBox(ctx, margin, paper.height - 235, paper.width - margin * 2, reward || "Reward:");
   }
 
+  function drawFlashcards(ctx, paper, values) {
+    const margin = 70;
+    const title = sanitizePrintable(values.title || "Vocabulary Flashcards");
+    const cards = splitList(values.cards || "", "\n").slice(0, values.layout === "eight" ? 8 : 6);
+    const accent = values.theme === "study" ? "#176b87" : values.theme === "kids" ? "#e76f51" : "#17313b";
+    drawPageFrame(ctx, paper, accent);
+    drawTextFit(ctx, title, paper.width / 2, 120, paper.width - margin * 2, 54, { align: "center", weight: "800", color: "#17313b" });
+    ctx.font = "22px Arial";
+    ctx.fillStyle = "#5b6f78";
+    ctx.textAlign = "center";
+    ctx.fillText("Cut along the dashed lines. Fold or laminate for repeated practice.", paper.width / 2, 170);
+
+    const cols = 2;
+    const rows = values.layout === "eight" ? 4 : 3;
+    const gap = 18;
+    const gridTop = 230;
+    const gridW = paper.width - margin * 2;
+    const gridH = paper.height - gridTop - 170;
+    const cardW = (gridW - gap) / cols;
+    const cardH = (gridH - gap * (rows - 1)) / rows;
+
+    for (let i = 0; i < rows * cols; i += 1) {
+      const col = i % cols;
+      const row = Math.floor(i / cols);
+      const x = margin + col * (cardW + gap);
+      const y = gridTop + row * (cardH + gap);
+      drawDashedRect(ctx, x, y, cardW, cardH, "rgba(23,49,59,0.42)");
+      const [front, hint] = parseCard(cards[i] || "");
+      drawTextFit(ctx, front || "Blank card", x + cardW / 2, y + cardH / 2 - 16, cardW - 34, 36, {
+        align: "center",
+        weight: "800",
+        color: front ? "#17313b" : "rgba(23,49,59,0.35)",
+      });
+      if (hint) {
+        ctx.font = "22px Arial";
+        ctx.fillStyle = "#5b6f78";
+        ctx.textAlign = "center";
+        ctx.fillText(hint, x + cardW / 2, y + cardH / 2 + 34);
+      }
+    }
+  }
+
+  function drawWeeklyPlanner(ctx, paper, values) {
+    const margin = 66;
+    const title = sanitizePrintable(values.title || "Weekly Planner");
+    const focus = sanitizePrintable(values.focus || "");
+    const noteHeads = splitList(values.notes || "", "\n").slice(0, values.layout === "notes" ? 5 : 4);
+    drawPageFrame(ctx, paper, "#5a9367");
+    drawTextFit(ctx, title, paper.width / 2, 118, paper.width - margin * 2, 58, { align: "center", weight: "800", color: "#17313b" });
+    ctx.font = "24px Arial";
+    ctx.fillStyle = "#5b6f78";
+    ctx.textAlign = "center";
+    ctx.fillText(focus, paper.width / 2, 166);
+
+    const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    const top = 220;
+    const fullW = paper.width - margin * 2;
+    const notesW = values.layout === "minimal" ? 0 : values.layout === "notes" ? fullW * 0.34 : fullW * 0.28;
+    const dayW = notesW ? fullW - notesW - 18 : fullW;
+    const rowH = (paper.height - top - 170) / 7;
+
+    for (let i = 0; i < 7; i += 1) {
+      const y = top + i * rowH;
+      ctx.strokeStyle = "#17313b";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(margin, y, dayW, rowH - 10);
+      ctx.fillStyle = i >= 5 ? "rgba(242,184,75,0.16)" : "rgba(237,247,246,0.9)";
+      ctx.fillRect(margin + 2, y + 2, dayW - 4, rowH - 14);
+      ctx.fillStyle = "#17313b";
+      ctx.font = "700 23px Arial";
+      ctx.textAlign = "left";
+      ctx.fillText(days[i], margin + 18, y + 32);
+      drawNoteLines(ctx, margin + 18, y + 55, dayW - 36, Math.max(2, Math.floor((rowH - 70) / 30)));
+    }
+
+    if (notesW) {
+      const x = margin + dayW + 18;
+      const blockH = (paper.height - top - 170) / Math.max(2, noteHeads.length);
+      noteHeads.forEach((heading, index) => {
+        const y = top + index * blockH;
+        ctx.strokeStyle = "rgba(23,49,59,0.35)";
+        ctx.lineWidth = 2;
+        ctx.strokeRect(x, y, notesW, blockH - 12);
+        ctx.fillStyle = "#176b87";
+        ctx.font = "700 22px Arial";
+        ctx.textAlign = "left";
+        ctx.fillText(heading, x + 14, y + 34);
+        drawNoteLines(ctx, x + 14, y + 60, notesW - 28, Math.max(2, Math.floor((blockH - 75) / 28)));
+      });
+    }
+  }
+
+  function drawHabitTracker(ctx, paper, values) {
+    const margin = 62;
+    const title = sanitizePrintable(values.title || "30-Day Habit Tracker");
+    const habits = splitList(values.habits || "", "\n").slice(0, 7);
+    const days = Number(values.days || 30);
+    const accent = values.theme === "bold" ? "#e76f51" : values.theme === "minimal" ? "#17313b" : "#176b87";
+    drawPageFrame(ctx, paper, accent);
+    drawTextFit(ctx, title, paper.width / 2, 118, paper.width - margin * 2, 56, { align: "center", weight: "800", color: "#17313b" });
+    ctx.font = "23px Arial";
+    ctx.fillStyle = "#5b6f78";
+    ctx.textAlign = "center";
+    ctx.fillText("Mark each day you complete the habit. Progress beats perfection.", paper.width / 2, 168);
+
+    const gridTop = 240;
+    const labelW = 220;
+    const gridW = paper.width - margin * 2 - labelW;
+    const cell = Math.min(30, gridW / days, (paper.height - gridTop - 180) / Math.max(1, habits.length));
+    const rowH = cell + 28;
+    const startX = margin + labelW;
+
+    ctx.font = "18px Arial";
+    ctx.fillStyle = "#5b6f78";
+    ctx.textAlign = "center";
+    for (let d = 1; d <= days; d += 1) {
+      if (d === 1 || d % 5 === 0 || d === days) ctx.fillText(String(d), startX + (d - 0.5) * cell, gridTop - 14);
+    }
+
+    habits.forEach((habit, row) => {
+      const y = gridTop + row * rowH;
+      ctx.fillStyle = "#17313b";
+      ctx.font = "700 22px Arial";
+      ctx.textAlign = "left";
+      drawTextFit(ctx, habit, margin, y + cell / 2, labelW - 18, 22, { align: "left", weight: "700", color: "#17313b" });
+      for (let d = 0; d < days; d += 1) {
+        const x = startX + d * cell;
+        ctx.strokeStyle = "rgba(23,49,59,0.48)";
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(x + 2, y, cell - 4, cell - 4);
+        if (values.theme === "calm" && d % 2 === 0) {
+          ctx.fillStyle = "rgba(23,107,135,0.06)";
+          ctx.fillRect(x + 3, y + 1, cell - 6, cell - 6);
+        }
+      }
+    });
+
+    drawPromptBox(ctx, margin, paper.height - 235, paper.width - margin * 2, "Reflection: What made this easier this week?");
+  }
+
   function drawPageFrame(ctx, paper, accent) {
     ctx.strokeStyle = accent;
     ctx.lineWidth = 8;
@@ -853,6 +1062,35 @@
     ctx.textAlign = "left";
     ctx.fillText(label, x + 18, y + 42);
     ctx.restore();
+  }
+
+  function drawDashedRect(ctx, x, y, width, height, color) {
+    ctx.save();
+    ctx.strokeStyle = color || "rgba(23,49,59,0.42)";
+    ctx.lineWidth = 2;
+    ctx.setLineDash([10, 8]);
+    ctx.strokeRect(x, y, width, height);
+    ctx.setLineDash([]);
+    ctx.strokeStyle = "rgba(23,49,59,0.16)";
+    ctx.strokeRect(x + 8, y + 8, width - 16, height - 16);
+    ctx.restore();
+  }
+
+  function drawNoteLines(ctx, x, y, width, count) {
+    ctx.save();
+    ctx.strokeStyle = "rgba(23,49,59,0.22)";
+    ctx.lineWidth = 1.5;
+    for (let i = 0; i < count; i += 1) {
+      line(ctx, x, y + i * 28, x + width, y + i * 28);
+    }
+    ctx.restore();
+  }
+
+  function parseCard(value) {
+    const text = sanitizePrintable(value);
+    if (!text) return ["", ""];
+    const parts = text.split(/\s[-–—:]\s/);
+    return [parts[0] || text, parts.slice(1).join(" - ")];
   }
 
   function drawWatermark(ctx, paper) {
