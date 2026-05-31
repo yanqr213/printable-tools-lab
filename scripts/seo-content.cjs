@@ -1,4 +1,4 @@
-const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printabletoolslab.pages.dev").replace(/\/+$/, "");
+const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pages.dev").replace(/\/+$/, "");
 
 const tools = [
   {
