@@ -17,6 +17,7 @@ for (const route of routes) {
   if (!html.includes(`content="${escapeAttr(route.description)}"`)) failures.push(`Missing description: ${route.path || "/"}`);
   if (!html.includes(`rel="canonical" href="${siteUrl(route.path)}"`)) failures.push(`Missing canonical: ${route.path || "/"}`);
   if (!/<main id="app" tabindex="-1">\s*[\s\S]{120,}\s*<\/main>/.test(html)) failures.push(`Weak static body: ${route.path || "/"}`);
+  if (route.path && route.path.startsWith("tools/") && !html.includes('"@type":"SoftwareApplication"')) failures.push(`Missing tool SoftwareApplication schema: ${route.path}`);
 }
 
 const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
@@ -24,6 +25,15 @@ for (const route of routes) {
   if (route.index === false) continue;
   const loc = siteUrl(route.path);
   if (!sitemap.includes(`<loc>${loc}</loc>`)) failures.push(`Missing sitemap loc: ${loc}`);
+}
+
+const robotsFile = path.join(root, "robots.txt");
+if (!fs.existsSync(robotsFile)) failures.push("Missing robots.txt.");
+else {
+  const robots = fs.readFileSync(robotsFile, "utf8");
+  if (!robots.includes("User-agent: *")) failures.push("robots.txt missing user-agent.");
+  if (!robots.includes(`Sitemap: ${siteUrl("sitemap.xml").replace(/\/$/, "")}`)) failures.push("robots.txt missing sitemap directive.");
+  if (!robots.includes("Disallow: /dashboard/")) failures.push("robots.txt should disallow dashboard.");
 }
 
 const verificationFile = path.join(root, "google1b771d6159b52de7.html");

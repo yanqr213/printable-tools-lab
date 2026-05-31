@@ -29,6 +29,7 @@ Zero-cost validation build for a free printable PDF generator site.
 - 38 original guide pages plus keyword clusters for SEO and future AdSense review.
 - Compliance pages: About, Privacy, Terms, AI & License Disclosure.
 - Static pre-rendered HTML for key routes, plus client-side enhancement.
+- `robots.txt`, canonical URLs, sitemap, and SoftwareApplication structured data for tool pages.
 - Operations checklist, keyword list, and distribution post ideas.
 - Noindex roadmap page for future decisions after the free ad-supported version is validated.
 - Generated brand visuals: app icon, favicon, social card, and homepage product hero image.
@@ -76,8 +77,9 @@ npm.cmd run test:events
 ## Deployment artifacts
 
 - `_redirects` supports Cloudflare Pages rewrites.
+- `_headers` adds basic content/security headers for Cloudflare Pages.
 - Static route folders support GitHub Pages-style deep links.
-- `sitemap.xml` is generated from the route list.
+- `sitemap.xml` and `robots.txt` are generated from the route list.
 - `OPERATIONS.md` contains account setup, keywords, distribution ideas, and pivot rules.
 - `scripts/site-verification.cjs` can generate a Google verification file for the service account and claim site ownership through the Google Site Verification API.
 

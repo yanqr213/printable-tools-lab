@@ -101,6 +101,22 @@ Invoke-RestMethod -Uri "https://printable-tools-lab.pages.dev/api/ideas" -Method
 
 Do not ask users for sensitive personal information. The helper should generate printable-safe ideas only, and ordinary PDF generation should continue to work without the AI service. For invoices, receipts, and resumes, only generic writing fields should be sent to the AI helper; names, contact lines, clients, tenants, landlords, property addresses, amounts, and payment details stay local.
 
+### Search crawler assets
+
+Keep these files deployed for crawler and ad review readiness:
+
+- `sitemap.xml`: indexable public pages only.
+- `robots.txt`: allows public pages, blocks noindex internal pages, and points crawlers to the sitemap.
+- Tool page JSON-LD: each public tool route includes `SoftwareApplication` structured data with a free offer.
+- `_headers`: basic content/security headers and explicit content types for sitemap, robots, and verification files.
+
+Run before every deploy:
+
+```powershell
+npm.cmd run build:routes
+npm.cmd run verify:seo
+```
+
 ### AdSense account
 
 Do not add live ad code until public pages work and Search Console can crawl the site.
@@ -230,6 +246,13 @@ Create one image or short post per item. Show the printable use case and never p
 7. Record the change and compare the next week.
 
 ## Search And Indexing
+
+Current Search Console checkpoint:
+
+- `2026-05-31T19:17:52Z`: sitemap submitted, pending, 0 warnings, 0 errors.
+- Homepage inspection: `Crawled - currently not indexed`, indexing allowed.
+- Sample `/guides/` and `/about/`: still unknown to Google.
+- Action: keep site stable, improve useful content/navigation, and avoid repeated low-value resubmission loops.
 
 Submit Google sitemap:
 

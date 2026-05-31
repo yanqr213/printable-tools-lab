@@ -501,7 +501,8 @@ canvas.preview-canvas {
 }
 
 .notice,
-.callout {
+.callout,
+.download-complete {
   padding: 14px;
 }
 
@@ -513,6 +514,29 @@ canvas.preview-canvas {
 
 .callout {
   background: var(--soft);
+}
+
+.download-complete {
+  display: grid;
+  gap: 12px;
+  border: 1px solid rgba(90, 147, 103, 0.34);
+  border-radius: var(--radius);
+  background: #f4faf2;
+}
+
+.download-complete[hidden] {
+  display: none;
+}
+
+.download-complete strong {
+  display: block;
+  margin-bottom: 3px;
+}
+
+.next-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .placeholder-ad,

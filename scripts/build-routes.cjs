@@ -43,4 +43,15 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://w
   .join("\n")}\n</urlset>\n`;
 fs.writeFileSync(path.join(root, "sitemap.xml"), sitemap);
 
-console.log(`Generated ${routes.length - 1} static route entries and sitemap.xml.`);
+const robots = [
+  "User-agent: *",
+  "Allow: /",
+  "Disallow: /dashboard/",
+  "Disallow: /roadmap/",
+  "Disallow: /launch-kit/",
+  `Sitemap: ${siteUrl("sitemap.xml").replace(/\/$/, "")}`,
+  "",
+].join("\n");
+fs.writeFileSync(path.join(root, "robots.txt"), robots);
+
+console.log(`Generated ${routes.length - 1} static route entries, sitemap.xml, and robots.txt.`);

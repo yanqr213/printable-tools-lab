@@ -1089,6 +1089,8 @@
   const app = document.getElementById("app");
   let currentToolState = null;
 
+  const SOFTWARE_SCHEMA_IDS = new Set(["tools"]);
+
   function route() {
     const hash = window.location.hash.replace(/^#\/?/, "");
     const path = hash || window.location.pathname.replace(/^\/+|\/+$/g, "");
@@ -1107,6 +1109,7 @@
     setMetaTag("description", description);
     setMetaProperty("og:title", title);
     setMetaProperty("og:description", description);
+    setJsonLd(null);
     track("page_view", { path: getCurrentRoutePath() });
     window.scrollTo(0, 0);
     app.focus({ preventScroll: true });
@@ -1121,6 +1124,21 @@
   function setMetaProperty(property, content) {
     const el = document.querySelector(`meta[property="${property}"]`);
     if (el) el.setAttribute("content", content);
+  }
+
+  function setJsonLd(payload) {
+    let el = document.getElementById("ptl-jsonld");
+    if (!payload) {
+      if (el) el.remove();
+      return;
+    }
+    if (!el) {
+      el = document.createElement("script");
+      el.id = "ptl-jsonld";
+      el.type = "application/ld+json";
+      document.head.appendChild(el);
+    }
+    el.textContent = JSON.stringify(payload);
   }
 
   function renderHome() {
@@ -1229,6 +1247,7 @@
   function renderTool(id) {
     const tool = tools[id];
     setMeta(tool.title, tool.description);
+    setToolJsonLd(tool);
     const count = getDailyCount();
     app.innerHTML = `
       <section class="shell tool-header">
@@ -1266,6 +1285,7 @@
             <canvas id="previewCanvas" class="preview-canvas" width="1275" height="1650" aria-label="Printable PDF preview"></canvas>
           </div>
           ${renderAdUnit("tool", "content-adjacent only, never blocking the download button")}
+          <div id="downloadComplete" class="download-complete" hidden></div>
           <div class="callout">
             <strong>Validation gate:</strong> continue this tool if it gets repeated downloads, search traffic, or strong free usage within the 30-day checkpoint.
           </div>
@@ -1282,6 +1302,29 @@
       </section>
     `;
     bindTool(tool);
+  }
+
+  function setToolJsonLd(tool) {
+    setJsonLd({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: `${tool.title} - ${SITE.name}`,
+      applicationCategory: "UtilitiesApplication",
+      operatingSystem: "Web",
+      url: absoluteUrl(`/tools/${tool.id}/`),
+      description: tool.description,
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      featureList: [
+        "Browser-based PDF generation",
+        "No account required",
+        "US Letter and A4 support",
+        "One-page printable export",
+      ],
+    });
   }
 
   function renderField(field, value) {
@@ -1303,6 +1346,7 @@
     const aiIdeas = document.getElementById("aiIdeas");
     const aiIdeasPanel = document.getElementById("aiIdeasPanel");
     const limitCounter = document.getElementById("limitCounter");
+    const downloadComplete = document.getElementById("downloadComplete");
     const notice = document.getElementById("limitNotice");
     currentToolState = { tool, form, canvas };
 
@@ -1337,10 +1381,40 @@
       incrementDailyCount();
       const remaining = SITE.dailyLimit - getDailyCount();
       limitCounter.textContent = `${remaining} free left today`;
+      showDownloadComplete(tool, downloadComplete, remaining);
       track("generate_pdf", { tool: tool.id });
       track("download_pdf", { tool: tool.id });
     });
     draw();
+  }
+
+  function showDownloadComplete(tool, target, remaining) {
+    if (!target) return;
+    const related = getRelatedTools(tool.id).slice(0, 3);
+    target.hidden = false;
+    target.innerHTML = `
+      <div>
+        <strong>PDF downloaded</strong>
+        <p class="help">Review the file before sharing or printing. You have ${Math.max(0, remaining)} free ${remaining === 1 ? "generation" : "generations"} left today in this browser.</p>
+      </div>
+      <div class="next-links">
+        ${related.map((item) => `<a class="tag" href="/tools/${item.id}/">${escapeHtml(item.shortTitle)}</a>`).join("")}
+        <a class="tag" href="/guides/">Guides</a>
+      </div>
+      ${renderAdUnit("tool", "download-complete area, clearly separated from the PDF action")}
+    `;
+    setTimeout(pushVisibleAds, 0);
+  }
+
+  function getRelatedTools(currentId) {
+    const groups = [
+      ["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt"],
+      ["resume-builder", "cover-letter", "resignation-letter"],
+      ["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"],
+      ["name-tracing", "chore-chart", "reward-chart", "flashcards"],
+    ];
+    const group = groups.find((items) => items.includes(currentId)) || toolOrder;
+    return group.filter((id) => id !== currentId && tools[id]).map((id) => tools[id]);
   }
 
   function renderGuides() {
@@ -2659,6 +2733,12 @@
     link.click();
     link.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  function absoluteUrl(path) {
+    const base = String(CONFIG.siteUrl || window.location.origin).replace(/\/+$/, "");
+    const suffix = String(path || "/").startsWith("/") ? path : `/${path}`;
+    return `${base}${suffix}`;
   }
 
   function getDailyKey() {

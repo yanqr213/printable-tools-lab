@@ -397,7 +397,35 @@ function toolHtml(tool) {
         ${tool.body.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("\n")}
         <p><a class="button" href="/${tool.path}/">Open generator</a></p>
         <p>${relatedGuideLinks(tool.path).map((guide) => `<a class="tag" href="/${guide.path}/">${escapeHtml(guide.title)}</a>`).join(" ")}</p>
+        ${jsonLdHtml(softwareSchema(tool))}
       </section>`;
+}
+
+function softwareSchema(tool) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: `${tool.title} - PrintableTools Lab`,
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "Web",
+    url: siteUrl(tool.path),
+    description: tool.description,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    featureList: [
+      "Browser-based PDF generation",
+      "No account required",
+      "US Letter and A4 support",
+      "One-page printable export",
+    ],
+  };
+}
+
+function jsonLdHtml(payload) {
+  return `<script type="application/ld+json">${escapeScript(JSON.stringify(payload))}</script>`;
 }
 
 function guideHtml(guide) {
@@ -466,6 +494,10 @@ function escapeHtml(value) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
+}
+
+function escapeScript(value) {
+  return String(value).replace(/</g, "\\u003c");
 }
 
 module.exports = { routes, renderRoute, siteUrl };
