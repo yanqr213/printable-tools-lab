@@ -586,6 +586,89 @@ canvas.preview-canvas {
   border-color: var(--teal);
 }
 
+.keyword-cluster {
+  display: grid;
+  gap: 12px;
+}
+
+.keyword-cluster h3,
+.keyword-cluster p {
+  margin: 0;
+}
+
+.cluster-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cluster-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--teal-dark);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.cluster-links a:hover {
+  border-color: var(--teal);
+  text-decoration: none;
+}
+
+.ai-panel {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.ai-panel[hidden] {
+  display: none;
+}
+
+.ai-panel strong {
+  display: block;
+}
+
+.idea-list {
+  display: grid;
+  gap: 8px;
+}
+
+.idea-button {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+}
+
+.idea-button:hover {
+  border-color: var(--teal);
+  background: var(--soft);
+}
+
+.idea-button span {
+  font-weight: 750;
+}
+
+.idea-button small {
+  color: var(--muted);
+}
+
 .dashboard {
   padding: 34px 0 56px;
 }

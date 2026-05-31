@@ -55,6 +55,33 @@ const tools = [
       "Habit trackers are a high-intent printable category that can later support more free templates or affiliate links for planners and stationery.",
     ],
   },
+  {
+    path: "tools/invoice-generator",
+    title: "Invoice Generator",
+    description: "Create a clean free invoice PDF for freelance work, small business services, consulting, or one-off projects.",
+    body: [
+      "Add your business details, client details, invoice number, line items, terms, and notes to download a one-page invoice PDF.",
+      "This tool targets users who need a document immediately and do not want an account, template marketplace, or surprise fee at download time.",
+    ],
+  },
+  {
+    path: "tools/rent-receipt",
+    title: "Rent Receipt Generator",
+    description: "Make a free printable rent receipt PDF for a tenant payment, room rental, cash payment record, or landlord file.",
+    body: [
+      "Enter the tenant, recipient, property, amount, rental period, payment date, and payment method to generate a simple receipt PDF.",
+      "Receipt searches have clear intent because the user often needs a printable record immediately after a payment.",
+    ],
+  },
+  {
+    path: "tools/resume-builder",
+    title: "Resume Builder PDF",
+    description: "Build a simple free resume PDF without an account, paywall, or surprise download fee.",
+    body: [
+      "Create a one-page resume with contact details, summary, experience, skills, and education in a clean single-column layout.",
+      "Many resume builders let users type for free and charge at download. This version keeps the first PDF export free to build trust and search demand.",
+    ],
+  },
 ];
 
 const guides = [
@@ -76,21 +103,89 @@ const guides = [
   ["guides/batch-printable-generator-for-classrooms", "When batch printable generation is worth it", "Understand when a free one-page printable is enough and when repeated printable workflows need a better process.", "Teachers, tutors, and homeschool families sometimes need many personalized pages at once. The free tools are the first test for which workflows deserve more automation later."],
   ["guides/free-weekly-planner-generator", "Free weekly planner generator", "Create a printable weekly planner for family schedules, classroom planning, errands, and meal notes.", "A weekly planner should show only the decisions that need to stay visible: appointments, meals, tasks, and reminders. One printable page is enough for a lightweight planning loop."],
   ["guides/free-habit-tracker-generator", "Free habit tracker generator", "Build a simple habit tracker printable for routines, reading goals, wellness habits, or classroom practice.", "A habit tracker works best when it tracks a few repeatable behaviors. A simple grid is easier to keep using than a heavily decorated page with too many categories."],
+  ["guides/free-invoice-generator-no-signup", "Free invoice generator without signup", "Create a clean invoice PDF without an account, template marketplace, or surprise download fee.", "Many freelancers only need one invoice today. A tool that opens quickly, avoids account creation, and downloads a clean PDF can satisfy a high-intent search faster than a full accounting app."],
+  ["guides/freelance-invoice-pdf-template", "Freelance invoice PDF template", "Make a one-page freelance invoice PDF for design, writing, consulting, development, and project work.", "A freelance invoice should make it easy for the client to approve payment. Keep each line item short: project phase, quantity, rate, and the resulting amount."],
+  ["guides/free-rent-receipt-generator", "Free rent receipt generator", "Generate a printable rent receipt PDF for tenant records, landlord files, or cash payment documentation.", "A rent receipt gives both sides a simple record of who paid, how much was paid, when it was received, and what rental period the payment covers."],
+  ["guides/rent-receipt-for-cash-payment", "Rent receipt for cash payment", "Create a simple receipt PDF when rent is paid by cash, bank transfer, check, or another payment method.", "Cash rent payments can be easy to dispute later if no record is created. A dated receipt gives both parties a reference."],
+  ["guides/free-resume-builder-pdf", "Free resume builder PDF", "Build a clean resume PDF without an account, paywall, or complicated design tool.", "Many job seekers do not need a heavy design template. They need a readable document with a clear name, contact line, summary, experience, skills, and education."],
+  ["guides/ats-friendly-resume-pdf-guide", "ATS friendly resume PDF guide", "Format a simple resume PDF so it stays readable for recruiters and applicant tracking systems.", "Use clear section headings, normal text, and a single-column structure. Avoid putting important experience inside images, icons, or complex tables."],
 ].map(([path, title, description, intro]) => ({ path, title, description, intro }));
+
+const keywordClusters = [
+  {
+    title: "Kids routine charts",
+    description: "Morning, bedtime, chore, and reward charts for families who want a visible routine instead of another app.",
+    links: [
+      ["Chore chart generator", "tools/chore-chart"],
+      ["Bedtime routine chart printable", "guides/bedtime-routine-chart-printable"],
+      ["Printable morning routine chart ideas", "guides/printable-routine-chart-for-mornings"],
+    ],
+  },
+  {
+    title: "Preschool worksheets",
+    description: "Name tracing, handwriting warmups, and short black-and-white pages designed for ordinary home printers.",
+    links: [
+      ["Name tracing worksheet generator", "tools/name-tracing"],
+      ["Free printable name tracing worksheet maker", "guides/free-printable-name-tracing-worksheet-maker"],
+      ["Printable worksheets for preschool at home", "guides/printable-worksheets-for-preschool-at-home"],
+    ],
+  },
+  {
+    title: "Classroom printables",
+    description: "Fast one-page resources for teachers, tutors, homeschool groups, and small classroom routines.",
+    links: [
+      ["Flashcard generator", "tools/flashcards"],
+      ["Classroom job chart printable", "guides/classroom-job-chart-printable"],
+      ["Printable flashcard generator guide", "guides/flashcard-generator-printable-guide"],
+    ],
+  },
+  {
+    title: "Family planning pages",
+    description: "Weekly calendars, habit trackers, and simple planners for families that need one visible page.",
+    links: [
+      ["Weekly planner generator", "tools/weekly-planner"],
+      ["Habit tracker generator", "tools/habit-tracker"],
+      ["Free printable weekly calendar for kids", "guides/free-printable-weekly-calendar-for-kids"],
+    ],
+  },
+  {
+    title: "Business paperwork",
+    description: "Clean PDF invoices and receipts for freelancers, landlords, and small service businesses that need a document now.",
+    links: [
+      ["Invoice generator", "tools/invoice-generator"],
+      ["Rent receipt generator", "tools/rent-receipt"],
+      ["Free invoice generator without signup", "guides/free-invoice-generator-no-signup"],
+    ],
+  },
+  {
+    title: "Career documents",
+    description: "Free resume PDFs for job seekers who need a professional document without a surprise paywall at download time.",
+    links: [
+      ["Resume builder PDF", "tools/resume-builder"],
+      ["Free resume builder PDF guide", "guides/free-resume-builder-pdf"],
+      ["ATS friendly resume PDF guide", "guides/ats-friendly-resume-pdf-guide"],
+    ],
+  },
+];
 
 const pages = [
   {
     path: "",
     title: "Free Printable PDF Generators",
-    description: "Create name tracing worksheets, chore charts, and reward charts as free printable PDF files.",
+    description: "Create invoices, rent receipts, resumes, worksheets, charts, and planners as free printable PDF files.",
     html: `
       <section class="shell hero">
         <div>
           <h1>Make useful printable PDFs in under a minute.</h1>
-          <p>Free browser-based generators for name tracing worksheets, chore charts, and reward charts. No account, no server upload, no design software.</p>
+          <p>Free browser-based generators for invoices, rent receipts, resumes, worksheets, chore charts, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
-            <a class="button" href="/tools/name-tracing/">Start with name tracing</a>
+            <a class="button" href="/tools/invoice-generator/">Create an invoice</a>
             <a class="button secondary" href="/guides/">Read printable guides</a>
+          </div>
+          <div class="hero-proof" aria-label="Launch validation goals">
+            <div class="proof-tile"><strong>9</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
+            <div class="proof-tile"><strong>24</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -98,6 +193,12 @@ const pages = [
             <source srcset="/assets/images/hero-printable-workspace-small.webp" media="(max-width: 680px)">
             <img src="/assets/images/hero-printable-workspace-web.webp" alt="">
           </picture>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Popular printable searches</h2>
+        <div class="grid-2">
+          ${keywordClusters.map(keywordClusterHtml).join("\n")}
         </div>
       </section>
       <section class="shell section">
@@ -109,6 +210,9 @@ const pages = [
           <li><a href="/tools/flashcards/">Flashcard Generator</a></li>
           <li><a href="/tools/weekly-planner/">Weekly Planner Generator</a></li>
           <li><a href="/tools/habit-tracker/">Habit Tracker Generator</a></li>
+          <li><a href="/tools/invoice-generator/">Invoice Generator</a></li>
+          <li><a href="/tools/rent-receipt/">Rent Receipt Generator</a></li>
+          <li><a href="/tools/resume-builder/">Resume Builder PDF</a></li>
         </ul>
       </section>`,
   },
@@ -135,7 +239,7 @@ const pages = [
     path: "privacy",
     title: "Privacy Policy",
     description: "Privacy policy for PrintableTools Lab.",
-    html: `<article class="article-shell article"><h1>Privacy Policy</h1><p>PrintableTools Lab generates PDFs in your browser. The first version does not require an account and does not send worksheet text to a server.</p><p>The site stores local generation counts and validation events in your browser.</p></article>`,
+    html: `<article class="article-shell article"><h1>Privacy Policy</h1><p>PrintableTools Lab generates PDFs in your browser. Ordinary PDF generation does not require an account and keeps form text on your device.</p><p>If you choose the optional AI idea helper, the current tool type and short form text are sent to the site's AI service only to return printable suggestions. Do not enter sensitive personal information.</p><p>The site stores local generation counts and validation events in your browser.</p></article>`,
   },
   {
     path: "terms",
@@ -205,6 +309,7 @@ function toolHtml(tool) {
       <section class="shell section">
         ${tool.body.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("\n")}
         <p><a class="button" href="/${tool.path}/">Open generator</a></p>
+        <p>${relatedGuideLinks(tool.path).map((guide) => `<a class="tag" href="/${guide.path}/">${escapeHtml(guide.title)}</a>`).join(" ")}</p>
       </section>`;
 }
 
@@ -227,10 +332,37 @@ function guideIndexHtml() {
         <p>Short practical guides for parents, teachers, and organizers. These pages support real search intent while the tools validate demand.</p>
       </section>
       <section class="shell section">
+        <h2>Search by use case</h2>
+        <div class="grid-2">
+          ${keywordClusters.map(keywordClusterHtml).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
         <div class="grid-3">
           ${guides.map((guide) => `<a class="guide-card" href="/${guide.path}/"><h3>${escapeHtml(guide.title)}</h3><p>${escapeHtml(guide.description)}</p></a>`).join("\n")}
         </div>
       </section>`;
+}
+
+function keywordClusterHtml(cluster) {
+  return `<article class="panel keyword-cluster"><h3>${escapeHtml(cluster.title)}</h3><p>${escapeHtml(cluster.description)}</p><div class="cluster-links">${cluster.links.map(([label, href]) => `<a href="/${href}/">${escapeHtml(label)}</a>`).join("")}</div></article>`;
+}
+
+function relatedGuideLinks(toolPath) {
+  const slug = toolPath.replace(/^tools\//, "");
+  const guideHints = {
+    "invoice-generator": ["invoice"],
+    "rent-receipt": ["rent receipt"],
+    "resume-builder": ["resume", "ATS"],
+    "name-tracing": ["name tracing", "preschool"],
+    "chore-chart": ["chore", "routine", "job chart"],
+    "reward-chart": ["reward", "sticker"],
+    flashcards: ["flashcard"],
+    "weekly-planner": ["weekly"],
+    "habit-tracker": ["habit"],
+  };
+  const hints = guideHints[slug] || [];
+  return guides.filter((guide) => hints.some((hint) => guide.title.toLowerCase().includes(hint.toLowerCase()))).slice(0, 3);
 }
 
 function escapeHtml(value) {

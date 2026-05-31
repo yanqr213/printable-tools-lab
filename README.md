@@ -4,23 +4,28 @@ Zero-cost validation build for a free printable PDF generator site.
 
 ## What is included
 
-- Static website with no backend requirement.
-- Six browser-side generators:
+- Static website with optional Cloudflare Pages Function for the AI idea helper.
+- Nine browser-side generators:
   - Name Tracing Worksheet Generator
   - Chore Chart Generator
   - Reward Chart Generator
   - Flashcard Generator
   - Weekly Planner Generator
   - Habit Tracker Generator
+  - Invoice Generator
+  - Rent Receipt Generator
+  - Resume Builder PDF
 - One-page PDF export through Canvas-to-PDF.
 - Daily free limit stored in `localStorage`.
 - Local validation events stored in `localStorage`.
-- 12 original guide pages for SEO and future AdSense review.
+- 24 original guide pages plus keyword clusters for SEO and future AdSense review.
 - Compliance pages: About, Privacy, Terms, AI & License Disclosure.
 - Static pre-rendered HTML for key routes, plus client-side enhancement.
 - Operations checklist, keyword list, and distribution post ideas.
 - Noindex roadmap page for future decisions after the free ad-supported version is validated.
 - Generated brand visuals: app icon, favicon, social card, and homepage product hero image.
+- Optional AI idea helper for printable-safe form suggestions. The API key is a Cloudflare secret, never frontend code.
+- Privacy-sensitive document fields are generated locally; the AI helper only receives limited generic fields for business and career tools.
 
 ## Run locally
 
@@ -48,6 +53,12 @@ Run the smoke test:
 npm.cmd run smoke
 ```
 
+Run the AI helper contract test:
+
+```powershell
+npm.cmd run test:ai
+```
+
 ## Deployment artifacts
 
 - `_redirects` supports Cloudflare Pages rewrites.
@@ -69,7 +80,7 @@ For step-by-step operations, see `OPERATIONS.md`.
 ## Launch checklist
 
 1. Deploy the full folder contents after running `npm.cmd run build:routes`.
-2. Open `/`, `/tools/name-tracing/`, `/tools/chore-chart/`, `/tools/reward-chart/`, `/guides/`, `/privacy/`, and `/dashboard/`.
+2. Open `/`, `/tools/invoice-generator/`, `/tools/rent-receipt/`, `/tools/resume-builder/`, `/tools/name-tracing/`, `/guides/`, `/privacy/`, and `/dashboard/`.
 3. Generate and download one PDF from each tool.
 4. Confirm the dashboard shows page views, PDF generations, and downloads.
 5. Submit the public URL to Google Search Console.
@@ -81,11 +92,13 @@ For step-by-step operations, see `OPERATIONS.md`.
 - The site uses real path URLs instead of hash-only URLs because Search Console and AdSense workflows are easier with crawlable, shareable page paths.
 - The app generates static route entry files so GitHub Pages-style hosting can serve deep links without a server rewrite.
 - Live ads are not included in the MVP. Placeholder ad zones mark future placements without risking early AdSense policy problems.
+- The AI idea helper is server-side only. Configure `AI_BASE_URL`, `AI_API_KEY`, and `AI_MODEL` as Cloudflare Pages secrets/environment variables before using it in production.
+- New business and career tools were added because invoice, receipt, and resume queries have stronger immediate pain than light classroom printables and many competing tools monetize at account creation or download.
 
 ## Validation gates
 
-- Day 7: 3 tools export stable PDFs on desktop and mobile.
-- Day 14: 12 guide pages live; submit sitemap/site to Google Search Console.
+- Day 7: 9 tools export stable PDFs on desktop and mobile.
+- Day 14: 24 guide pages live; submit sitemap/site to Google Search Console.
 - Day 30: continue if any of these are true:
   - 100 PDF downloads.
   - 300 tool generations.

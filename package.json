@@ -6,6 +6,8 @@
     "start": "node scripts/server.cjs",
     "build:routes": "node scripts/build-routes.cjs",
     "verify:seo": "node scripts/verify-seo.cjs",
+    "test:ai": "node scripts/test-ai-ideas.cjs",
+    "visual": "node scripts/visual-check.cjs",
     "site-verification": "node scripts/site-verification.cjs",
     "search-console": "node scripts/search-console.cjs",
     "indexnow": "node scripts/indexnow.cjs",

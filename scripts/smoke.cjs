@@ -28,10 +28,16 @@ function delay(ms) {
     "/tools/flashcards/",
     "/tools/weekly-planner/",
     "/tools/habit-tracker/",
+    "/tools/invoice-generator/",
+    "/tools/rent-receipt/",
+    "/tools/resume-builder/",
     "/guides/",
     "/guides/free-printable-name-tracing-worksheet-maker/",
     "/guides/free-weekly-planner-generator/",
     "/guides/free-habit-tracker-generator/",
+    "/guides/free-invoice-generator-no-signup/",
+    "/guides/free-rent-receipt-generator/",
+    "/guides/free-resume-builder-pdf/",
     "/privacy/",
     "/dashboard/",
   ];
@@ -43,7 +49,7 @@ function delay(ms) {
     if (!title.includes("PrintableTools Lab")) throw new Error(`Bad title for ${route}: ${title}`);
   }
 
-  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/"]) {
+  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/rent-receipt/", "/tools/resume-builder/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
     await page.evaluate(() => localStorage.removeItem("ptl_daily"));
     const button = page.getByRole("button", { name: "Generate PDF" });

@@ -77,6 +77,30 @@ Cloudflare Pages is the current host.
 4. Output directory is the repository root.
 5. Test `/`, `/tools/name-tracing/`, `/guides/`, `/privacy/`, and `/sitemap.xml`.
 
+### AI idea helper
+
+The optional AI idea helper runs through Cloudflare Pages Functions. It should never expose the model provider, base URL, or API key in frontend code.
+
+Required production variables:
+
+- `AI_BASE_URL`: OpenAI-compatible base URL for the model gateway.
+- `AI_API_KEY`: model gateway key, stored as a Cloudflare secret.
+- `AI_MODEL`: current low-cost model for short printable suggestions.
+
+Local validation:
+
+```powershell
+npm.cmd run test:ai
+```
+
+Production smoke:
+
+```powershell
+Invoke-RestMethod -Uri "https://printable-tools-lab.pages.dev/api/ideas" -Method Post -ContentType "application/json" -Body '{"tool":"chore-chart","values":{"title":"Weekly Chore Chart","names":"Ava","chores":"Make bed\nBrush teeth"}}'
+```
+
+Do not ask users for sensitive personal information. The helper should generate printable-safe ideas only, and ordinary PDF generation should continue to work without the AI service. For invoices, receipts, and resumes, only generic writing fields should be sent to the AI helper; names, contact lines, clients, tenants, landlords, property addresses, amounts, and payment details stay local.
+
 ### AdSense account
 
 Do not add live ad code until public pages work and Search Console can crawl the site.
@@ -111,6 +135,16 @@ Practical order if a paid product is added later:
 
 ## First Launch Keywords
 
+- free invoice generator no signup
+- free invoice PDF generator
+- freelance invoice PDF template
+- invoice generator without watermark
+- rent receipt generator
+- rent receipt for cash payment
+- printable rent receipt PDF
+- free resume builder PDF
+- resume builder no signup
+- ATS friendly resume PDF
 - free name tracing worksheet generator
 - printable name tracing worksheet maker
 - free chore chart generator for kids
@@ -155,6 +189,10 @@ Create one image or short post per item. Show the printable use case and never p
 22. Printable weekly planner for family schedules.
 23. Habit tracker generator for simple daily routines.
 24. One-page planner tools that do not require an account.
+25. Free invoice generator with a clean PDF download.
+26. Freelance invoice PDF without creating an account.
+27. Printable rent receipt for cash or bank transfer payments.
+28. Simple resume builder with no surprise download fee.
 
 ## Weekly Operating Loop
 

@@ -20,6 +20,12 @@
 
   bootstrapConfiguredIntegrations();
 
+  const AI_FIELD_ALLOWLIST = {
+    "invoice-generator": ["items", "due", "notes"],
+    "rent-receipt": ["period", "method", "notes"],
+    "resume-builder": ["headline", "summary", "experience", "skills", "education"],
+  };
+
   const tools = {
     "name-tracing": {
       id: "name-tracing",
@@ -161,7 +167,160 @@
       ],
       draw: drawHabitTracker,
     },
+    "invoice-generator": {
+      id: "invoice-generator",
+      icon: "$",
+      title: "Invoice Generator",
+      shortTitle: "Invoice",
+      description: "Create a clean free invoice PDF for freelance work, small business services, consulting, or one-off projects.",
+      keywords: ["invoice generator", "free invoice", "freelance invoice", "PDF invoice"],
+      watermark: false,
+      defaultValues: {
+        business: "Bright Studio\nhello@example.com",
+        client: "Client Name\nclient@example.com",
+        invoiceNo: "INV-001",
+        date: "2026-06-01",
+        due: "Due on receipt",
+        items: "Design work | 1 | 350\nRevision support | 2 | 45",
+        currency: "USD",
+        notes: "Thank you for your business.",
+        paper: "letter",
+      },
+      fields: [
+        { id: "business", label: "Your business", type: "textarea", maxLength: 140, help: "Name, email, address, or payment note. Keep private details minimal." },
+        { id: "client", label: "Bill to", type: "textarea", maxLength: 140 },
+        { id: "invoiceNo", label: "Invoice number", type: "text", maxLength: 36 },
+        { id: "date", label: "Invoice date", type: "text", maxLength: 32 },
+        { id: "due", label: "Payment terms", type: "text", maxLength: 42 },
+        { id: "items", label: "Line items", type: "textarea", maxLength: 420, help: "One item per line: Description | Qty | Rate" },
+        { id: "currency", label: "Currency", type: "select", options: [["USD", "USD $"], ["EUR", "EUR €"], ["GBP", "GBP £"], ["CAD", "CAD $"], ["AUD", "AUD $"]] },
+        { id: "notes", label: "Footer note", type: "textarea", maxLength: 160 },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawInvoice,
+    },
+    "rent-receipt": {
+      id: "rent-receipt",
+      icon: "RC",
+      title: "Rent Receipt Generator",
+      shortTitle: "Rent receipt",
+      description: "Make a free printable rent receipt PDF for a tenant payment, room rental, cash payment record, or landlord file.",
+      keywords: ["rent receipt", "receipt generator", "landlord receipt", "PDF receipt"],
+      watermark: false,
+      defaultValues: {
+        receivedFrom: "Tenant Name",
+        landlord: "Landlord or property manager",
+        property: "123 Main Street, Unit 4",
+        amount: "1200",
+        currency: "USD",
+        period: "June 2026 rent",
+        paidDate: "2026-06-01",
+        method: "Bank transfer",
+        notes: "Payment received for the rental period above.",
+        paper: "letter",
+      },
+      fields: [
+        { id: "receivedFrom", label: "Received from", type: "text", maxLength: 70 },
+        { id: "landlord", label: "Received by", type: "text", maxLength: 70 },
+        { id: "property", label: "Property or unit", type: "textarea", maxLength: 140 },
+        { id: "amount", label: "Amount", type: "text", maxLength: 24 },
+        { id: "currency", label: "Currency", type: "select", options: [["USD", "USD $"], ["EUR", "EUR €"], ["GBP", "GBP £"], ["CAD", "CAD $"], ["AUD", "AUD $"]] },
+        { id: "period", label: "Rental period", type: "text", maxLength: 70 },
+        { id: "paidDate", label: "Payment date", type: "text", maxLength: 32 },
+        { id: "method", label: "Payment method", type: "text", maxLength: 50 },
+        { id: "notes", label: "Note", type: "textarea", maxLength: 160 },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawRentReceipt,
+    },
+    "resume-builder": {
+      id: "resume-builder",
+      icon: "CV",
+      title: "Resume Builder PDF",
+      shortTitle: "Resume",
+      description: "Build a simple free resume PDF without an account, paywall, or surprise download fee.",
+      keywords: ["resume builder", "free resume", "CV PDF", "job application"],
+      watermark: false,
+      defaultValues: {
+        name: "Maya Chen",
+        headline: "Operations Coordinator",
+        contact: "maya@example.com | San Francisco, CA | linkedin.com/in/maya",
+        summary: "Organized operations professional with experience coordinating projects, vendors, schedules, and team documentation.",
+        experience: "Operations Coordinator | Northstar Studio | Coordinated weekly project schedules and reduced late handoffs by 18%.\nAdministrative Assistant | Greenline Services | Managed calendars, invoices, and client follow-ups for a five-person team.",
+        skills: "Scheduling, vendor coordination, spreadsheets, documentation, customer support",
+        education: "B.A. Business Administration, State University",
+        paper: "letter",
+      },
+      fields: [
+        { id: "name", label: "Name", type: "text", maxLength: 70 },
+        { id: "headline", label: "Headline", type: "text", maxLength: 90 },
+        { id: "contact", label: "Contact line", type: "text", maxLength: 140, help: "Generated locally. Do not use the AI helper for sensitive details." },
+        { id: "summary", label: "Professional summary", type: "textarea", maxLength: 360 },
+        { id: "experience", label: "Experience", type: "textarea", maxLength: 620, help: "One role per line: Role | Company | achievement" },
+        { id: "skills", label: "Skills", type: "textarea", maxLength: 260 },
+        { id: "education", label: "Education", type: "textarea", maxLength: 180 },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawResume,
+    },
   };
+
+  const keywordClusters = [
+    {
+      title: "Kids routine charts",
+      description: "Morning, bedtime, chore, and reward charts for families who want a visible routine instead of another app.",
+      links: [
+        ["Chore chart generator", "/tools/chore-chart/"],
+        ["Bedtime routine chart printable", "/guides/bedtime-routine-chart-printable/"],
+        ["Printable morning routine chart ideas", "/guides/printable-routine-chart-for-mornings/"],
+      ],
+    },
+    {
+      title: "Preschool worksheets",
+      description: "Name tracing, handwriting warmups, and short black-and-white pages designed for ordinary home printers.",
+      links: [
+        ["Name tracing worksheet generator", "/tools/name-tracing/"],
+        ["Free printable name tracing worksheet maker", "/guides/free-printable-name-tracing-worksheet-maker/"],
+        ["Printable worksheets for preschool at home", "/guides/printable-worksheets-for-preschool-at-home/"],
+      ],
+    },
+    {
+      title: "Classroom printables",
+      description: "Fast one-page resources for teachers, tutors, homeschool groups, and small classroom routines.",
+      links: [
+        ["Flashcard generator", "/tools/flashcards/"],
+        ["Classroom job chart printable", "/guides/classroom-job-chart-printable/"],
+        ["Printable flashcard generator guide", "/guides/flashcard-generator-printable-guide/"],
+      ],
+    },
+    {
+      title: "Family planning pages",
+      description: "Weekly calendars, habit trackers, and simple planners for families that need one visible page.",
+      links: [
+        ["Weekly planner generator", "/tools/weekly-planner/"],
+        ["Habit tracker generator", "/tools/habit-tracker/"],
+        ["Free printable weekly calendar for kids", "/guides/free-printable-weekly-calendar-for-kids/"],
+      ],
+    },
+    {
+      title: "Business paperwork",
+      description: "Clean PDF invoices and receipts for freelancers, landlords, and small service businesses that need a document now.",
+      links: [
+        ["Invoice generator", "/tools/invoice-generator/"],
+        ["Rent receipt generator", "/tools/rent-receipt/"],
+        ["Free invoice generator without signup", "/guides/free-invoice-generator-no-signup/"],
+      ],
+    },
+    {
+      title: "Career documents",
+      description: "Free resume PDFs for job seekers who need a professional document without a surprise paywall at download time.",
+      links: [
+        ["Resume builder PDF", "/tools/resume-builder/"],
+        ["Free resume builder PDF guide", "/guides/free-resume-builder-pdf/"],
+        ["ATS friendly resume PDF guide", "/guides/ats-friendly-resume-pdf-guide/"],
+      ],
+    },
+  ];
 
   const guides = [
     {
@@ -362,6 +521,82 @@
         ["p", "Teachers, tutors, and homeschool families sometimes need many personalized pages at once. For now, use the free one-page tools and watch which workflows get repeated downloads before building anything larger."],
       ],
     },
+    {
+      slug: "free-invoice-generator-no-signup",
+      title: "Free invoice generator without signup",
+      description: "Create a clean invoice PDF without an account, template marketplace, or surprise download fee.",
+      tool: "invoice-generator",
+      content: [
+        ["h2", "Why a free invoice tool wins clicks"],
+        ["p", "Many freelancers only need one invoice today. A tool that opens quickly, avoids account creation, and downloads a clean PDF can satisfy a high-intent search faster than a full accounting app."],
+        ["h2", "What to include"],
+        ["ul", ["Business name and contact line.", "Client name.", "Invoice number and date.", "Line items with quantity and rate.", "Payment terms and a short footer note."]],
+        ["h2", "Keep records outside the tool"],
+        ["p", "This generator does not store invoices. Download the PDF and keep your own copy with your bookkeeping or client folder."],
+      ],
+    },
+    {
+      slug: "freelance-invoice-pdf-template",
+      title: "Freelance invoice PDF template",
+      description: "Make a one-page freelance invoice PDF for design, writing, consulting, development, and project work.",
+      tool: "invoice-generator",
+      content: [
+        ["h2", "Use service descriptions that are clear"],
+        ["p", "A freelance invoice should make it easy for the client to approve payment. Keep each line item short: project phase, quantity, rate, and the resulting amount."],
+        ["h2", "Avoid payment confusion"],
+        ["p", "Add payment terms such as due on receipt, net 7, or net 15. If you include payment instructions, keep them accurate and avoid unnecessary personal details."],
+      ],
+    },
+    {
+      slug: "free-rent-receipt-generator",
+      title: "Free rent receipt generator",
+      description: "Generate a printable rent receipt PDF for tenant records, landlord files, or cash payment documentation.",
+      tool: "rent-receipt",
+      content: [
+        ["h2", "When a rent receipt is useful"],
+        ["p", "A rent receipt gives both sides a simple record of who paid, how much was paid, when it was received, and what rental period the payment covers."],
+        ["h2", "Information to check before printing"],
+        ["ul", ["Tenant name.", "Landlord or property manager name.", "Property or unit.", "Payment amount.", "Payment date and method.", "Rental period."]],
+        ["h2", "Legal note"],
+        ["p", "Rules for receipts vary by location. This tool creates a practical record, not legal advice."],
+      ],
+    },
+    {
+      slug: "rent-receipt-for-cash-payment",
+      title: "Rent receipt for cash payment",
+      description: "Create a simple receipt PDF when rent is paid by cash, bank transfer, check, or another payment method.",
+      tool: "rent-receipt",
+      content: [
+        ["h2", "Cash payments need a clear record"],
+        ["p", "Cash rent payments can be easy to dispute later if no record is created. A dated receipt with the amount, rental period, and recipient gives both parties a reference."],
+        ["h2", "Print two copies when needed"],
+        ["p", "For in-person payments, print one copy for the tenant and one for the landlord or property manager."],
+      ],
+    },
+    {
+      slug: "free-resume-builder-pdf",
+      title: "Free resume builder PDF",
+      description: "Build a clean resume PDF without an account, paywall, or complicated design tool.",
+      tool: "resume-builder",
+      content: [
+        ["h2", "Why simple resumes work"],
+        ["p", "Many job seekers do not need a heavy design template. They need a readable document with a clear name, contact line, summary, experience, skills, and education."],
+        ["h2", "Avoid surprise download fees"],
+        ["p", "The resume builder creates a one-page PDF directly in the browser. Review the text carefully before using it for a real application."],
+      ],
+    },
+    {
+      slug: "ats-friendly-resume-pdf-guide",
+      title: "ATS friendly resume PDF guide",
+      description: "Format a simple resume PDF so it stays readable for recruiters and applicant tracking systems.",
+      tool: "resume-builder",
+      content: [
+        ["h2", "Keep layout predictable"],
+        ["p", "Use clear section headings, normal text, and a single-column structure. Avoid putting important experience inside images, icons, or complex tables."],
+        ["h2", "Write achievement bullets"],
+        ["ul", ["Start with an action verb.", "Mention the project, customer, or process.", "Add a number when it is true.", "Keep each bullet short enough to scan."]],
+      ],
+    },
   ];
 
   const pages = {
@@ -378,7 +613,8 @@
       title: "Privacy Policy",
       description: "Privacy policy for PrintableTools Lab.",
       body: [
-        ["p", "PrintableTools Lab is designed to generate PDFs in your browser. The first version does not require an account and does not send your worksheet text to a server."],
+        ["p", "PrintableTools Lab is designed to generate PDFs in your browser. The first version does not require an account and keeps ordinary PDF generation on your device."],
+        ["p", "If you choose the optional AI idea helper, the current tool type and short form text are sent to the site's AI service only to return printable suggestions. Do not enter sensitive personal information."],
         ["p", "The site stores a small amount of local data in your browser to remember daily generation counts and anonymous local event totals such as page views, generate clicks, downloads, and limit notices."],
         ["p", "If analytics, advertising, or payment tools are added later, this policy should be updated before launch to describe those providers, cookies, and opt-out choices."],
       ],
@@ -435,6 +671,18 @@
     pages,
   };
 
+  const toolOrder = [
+    "invoice-generator",
+    "resume-builder",
+    "rent-receipt",
+    "name-tracing",
+    "chore-chart",
+    "reward-chart",
+    "flashcards",
+    "weekly-planner",
+    "habit-tracker",
+  ];
+
   const app = document.getElementById("app");
   let currentToolState = null;
 
@@ -473,20 +721,20 @@
   }
 
   function renderHome() {
-    setMeta("Free Printable PDF Generators", "Create name tracing worksheets, chore charts, and reward charts as free printable PDF files.");
+    setMeta("Free Printable PDF Generators", "Create invoices, rent receipts, resumes, worksheets, charts, and planners as free printable PDF files.");
     app.innerHTML = `
       <section class="shell hero">
         <div>
           <h1>Make useful printable PDFs in under a minute.</h1>
-          <p>Free browser-based generators for name tracing worksheets, chore charts, and reward charts. No account, no server upload, no design software.</p>
+          <p>Free browser-based generators for invoices, rent receipts, resumes, worksheets, chore charts, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
-            <a class="button" href="/tools/name-tracing/">Start with name tracing</a>
+            <a class="button" href="/tools/invoice-generator/">Create an invoice</a>
             <a class="button secondary" href="/guides/">Read printable guides</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>6</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>9</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>12</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>24</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -499,12 +747,21 @@
       <section class="shell section">
         <div class="section-head">
           <div>
+            <h2>Popular printable searches</h2>
+            <p>Quick entry points for the long-tail searches this site is built around.</p>
+          </div>
+        </div>
+        <div class="grid-2">${keywordClusters.map(keywordClusterCard).join("")}</div>
+      </section>
+      <section class="shell section">
+        <div class="section-head">
+          <div>
             <h2>Free printable tools</h2>
-            <p>Each tool creates a one-page PDF in your browser. The free version includes a small footer watermark while the project validates demand.</p>
+            <p>Each tool creates a one-page PDF in your browser. Business and career documents export clean PDFs; worksheet tools include a small footer mark while the project validates demand.</p>
           </div>
           <a class="button ghost" href="/dashboard/">View local data</a>
         </div>
-        <div class="grid-3">${Object.values(tools).map(toolCard).join("")}</div>
+        <div class="grid-3">${toolOrder.map((id) => toolCard(tools[id])).join("")}</div>
       </section>
       <section class="shell section">
         <div class="section-head">
@@ -554,6 +811,18 @@
     `;
   }
 
+  function keywordClusterCard(cluster) {
+    return `
+      <article class="panel keyword-cluster">
+        <h3>${escapeHtml(cluster.title)}</h3>
+        <p>${escapeHtml(cluster.description)}</p>
+        <div class="cluster-links">
+          ${cluster.links.map(([label, href]) => `<a href="${href}">${escapeHtml(label)}</a>`).join("")}
+        </div>
+      </article>
+    `;
+  }
+
   function renderTool(id) {
     const tool = tools[id];
     setMeta(tool.title, tool.description);
@@ -574,10 +843,12 @@
             ${tool.fields.map((field) => renderField(field, tool.defaultValues[field.id])).join("")}
             <div class="actions">
               <button class="button" type="submit">Generate PDF</button>
+              <button class="button secondary" type="button" id="aiIdeas">AI ideas</button>
               <button class="button secondary" type="button" id="refreshPreview">Refresh preview</button>
             </div>
-            <p class="help">The free version creates one page and adds a small footer watermark. Daily limits are stored locally in this browser.</p>
+            <p class="help">${tool.watermark === false ? "The free version creates one clean one-page PDF. Daily limits are stored locally in this browser." : "The free version creates one page and adds a small footer watermark. Daily limits are stored locally in this browser."}</p>
           </form>
+          <div id="aiIdeasPanel" class="ai-panel" hidden></div>
           <div id="limitNotice" class="notice" hidden></div>
         </aside>
         <div class="preview-wrap">
@@ -626,6 +897,8 @@
     const form = document.getElementById("generatorForm");
     const canvas = document.getElementById("previewCanvas");
     const refresh = document.getElementById("refreshPreview");
+    const aiIdeas = document.getElementById("aiIdeas");
+    const aiIdeasPanel = document.getElementById("aiIdeasPanel");
     const limitCounter = document.getElementById("limitCounter");
     const notice = document.getElementById("limitNotice");
     currentToolState = { tool, form, canvas };
@@ -639,6 +912,9 @@
     refresh.addEventListener("click", () => {
       track("generate_preview", { tool: tool.id });
       draw();
+    });
+    aiIdeas.addEventListener("click", async () => {
+      await requestAiIdeas(tool, form, aiIdeas, aiIdeasPanel, draw);
     });
     form.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -670,6 +946,15 @@
       <section class="shell page-title section">
         <h1>Printable guides</h1>
         <p>Short practical guides for parents, teachers, and organizers. These pages support real search intent while the tools validate demand.</p>
+      </section>
+      <section class="shell section">
+        <div class="section-head">
+          <div>
+            <h2>Search by use case</h2>
+            <p>Grouped entry points help parents and teachers move from a problem to the right printable.</p>
+          </div>
+        </div>
+        <div class="grid-2">${keywordClusters.map(keywordClusterCard).join("")}</div>
       </section>
       <section class="shell section">
         <div class="grid-3">${guides.map(guideCard).join("")}</div>
@@ -792,6 +1077,89 @@
     return Object.fromEntries(data.entries());
   }
 
+  async function requestAiIdeas(tool, form, button, panel, draw) {
+    button.disabled = true;
+    button.textContent = "Thinking...";
+    panel.hidden = false;
+    panel.innerHTML = `<p class="help">Creating printable-safe ideas for this ${escapeHtml(tool.shortTitle.toLowerCase())}...</p>`;
+    track("ai_ideas", { tool: tool.id });
+    try {
+      const response = await fetch("/api/ideas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tool: tool.id, values: getAiIdeaValues(tool, form) }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !Array.isArray(data.suggestions) || !data.suggestions.length) {
+        throw new Error(data.error || "No suggestions returned");
+      }
+      renderAiIdeas(tool, form, panel, data.suggestions.slice(0, 3), draw);
+    } catch (error) {
+      panel.innerHTML = `
+        <strong>Idea helper is unavailable right now.</strong>
+        <p class="help">You can still use the examples already in the form and generate the PDF locally.</p>
+      `;
+      track("ai_ideas_error", { tool: tool.id });
+    } finally {
+      button.disabled = false;
+      button.textContent = "AI ideas";
+    }
+  }
+
+  function renderAiIdeas(tool, form, panel, suggestions, draw) {
+    panel.innerHTML = `
+      <strong>AI idea helper</strong>
+      <p class="help">Pick an option to fill the printable. Review it before downloading.</p>
+      <div class="idea-list">
+        ${suggestions.map((suggestion, index) => renderIdeaButton(tool, suggestion, index)).join("")}
+      </div>
+    `;
+    panel.querySelectorAll("[data-idea-index]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const suggestion = suggestions[Number(button.dataset.ideaIndex)];
+        applySuggestion(form, suggestion);
+        draw();
+        track("ai_ideas_apply", { tool: tool.id });
+      });
+    });
+  }
+
+  function renderIdeaButton(tool, suggestion, index) {
+    const title = suggestion.title || `${tool.shortTitle} idea ${index + 1}`;
+    const summary = suggestion.summary || summarizeSuggestion(suggestion);
+    return `
+      <button class="idea-button" type="button" data-idea-index="${index}">
+        <span>${escapeHtml(title)}</span>
+        <small>${escapeHtml(summary)}</small>
+      </button>
+    `;
+  }
+
+  function summarizeSuggestion(suggestion) {
+    const fields = Object.keys(suggestion.fields || {});
+    return fields.length ? `Updates ${fields.join(", ")}` : "Apply printable-ready text";
+  }
+
+  function applySuggestion(form, suggestion) {
+    const fields = suggestion.fields || {};
+    Object.keys(fields).forEach((key) => {
+      const input = form.elements[key];
+      if (!input) return;
+      const maxLength = input.getAttribute("maxlength");
+      input.value = maxLength ? String(fields[key]).slice(0, Number(maxLength)) : String(fields[key]);
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    });
+  }
+
+  function getAiIdeaValues(tool, form) {
+    const values = getFormValues(form);
+    const allowlist = AI_FIELD_ALLOWLIST[tool.id] || tool.fields.map((field) => field.id);
+    return allowlist.reduce((acc, field) => {
+      if (values[field] != null) acc[field] = values[field];
+      return acc;
+    }, {});
+  }
+
   function renderCanvas(tool, canvas, values) {
     const paper = getPaper(values.paper);
     if (canvas.width !== paper.width || canvas.height !== paper.height) {
@@ -803,7 +1171,7 @@
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     tool.draw(ctx, paper, values);
-    drawWatermark(ctx, paper);
+    if (tool.watermark !== false) drawWatermark(ctx, paper);
     ctx.restore();
   }
 
@@ -1081,6 +1449,108 @@
     drawPromptBox(ctx, margin, paper.height - 235, paper.width - margin * 2, "Reflection: What made this easier this week?");
   }
 
+  function drawInvoice(ctx, paper, values) {
+    const margin = 70;
+    const currency = currencySymbol(values.currency);
+    const items = parseMoneyItems(values.items);
+    const subtotal = items.reduce((sum, item) => sum + item.total, 0);
+    drawBusinessFrame(ctx, paper, "#176b87");
+    drawTextFit(ctx, "INVOICE", margin, 110, 360, 58, { align: "left", weight: "900", color: "#17313b" });
+    ctx.font = "22px Arial";
+    ctx.fillStyle = "#5b6f78";
+    ctx.textAlign = "right";
+    ctx.fillText(sanitizePrintable(values.invoiceNo || "INV-001"), paper.width - margin, 92);
+    ctx.fillText(`Date: ${sanitizePrintable(values.date || "")}`, paper.width - margin, 126);
+    ctx.fillText(sanitizePrintable(values.due || "Due on receipt"), paper.width - margin, 160);
+
+    drawBusinessBlock(ctx, "From", values.business, margin, 215, (paper.width - margin * 2 - 24) / 2);
+    drawBusinessBlock(ctx, "Bill to", values.client, paper.width / 2 + 12, 215, (paper.width - margin * 2 - 24) / 2);
+
+    const tableY = 420;
+    const tableW = paper.width - margin * 2;
+    const descW = tableW * 0.54;
+    const qtyW = tableW * 0.14;
+    const rateW = tableW * 0.16;
+    const totalW = tableW - descW - qtyW - rateW;
+    drawTableHeader(ctx, margin, tableY, tableW, ["Description", "Qty", "Rate", "Amount"], [descW, qtyW, rateW, totalW]);
+    let y = tableY + 58;
+    items.slice(0, 8).forEach((item) => {
+      drawInvoiceRow(ctx, margin, y, [descW, qtyW, rateW, totalW], item, currency);
+      y += 64;
+    });
+    if (!items.length) {
+      drawInvoiceRow(ctx, margin, y, [descW, qtyW, rateW, totalW], { description: "Service", qty: 1, rate: 0, total: 0 }, currency);
+      y += 64;
+    }
+
+    const totalBoxW = 320;
+    const totalX = paper.width - margin - totalBoxW;
+    ctx.strokeStyle = "rgba(23,49,59,0.25)";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(totalX, y + 22, totalBoxW, 92);
+    ctx.fillStyle = "#edf7f6";
+    ctx.fillRect(totalX + 2, y + 24, totalBoxW - 4, 88);
+    ctx.fillStyle = "#17313b";
+    ctx.font = "700 24px Arial";
+    ctx.textAlign = "left";
+    ctx.fillText("Total", totalX + 22, y + 77);
+    ctx.textAlign = "right";
+    ctx.font = "800 30px Arial";
+    ctx.fillText(formatMoney(subtotal, currency), totalX + totalBoxW - 22, y + 77);
+
+    drawWrappedText(ctx, sanitizePrintable(values.notes || "Thank you for your business."), margin, paper.height - 230, paper.width - margin * 2, 28, "#5b6f78", "22px Arial", 4);
+    drawFooterNote(ctx, paper, "Generated locally with PrintableTools Lab. Review before sending.");
+  }
+
+  function drawRentReceipt(ctx, paper, values) {
+    const margin = 78;
+    const currency = currencySymbol(values.currency);
+    drawBusinessFrame(ctx, paper, "#5a9367");
+    drawTextFit(ctx, "RENT RECEIPT", paper.width / 2, 120, paper.width - margin * 2, 58, { align: "center", weight: "900", color: "#17313b" });
+    ctx.font = "24px Arial";
+    ctx.fillStyle = "#5b6f78";
+    ctx.textAlign = "center";
+    ctx.fillText(`Payment date: ${sanitizePrintable(values.paidDate || "")}`, paper.width / 2, 166);
+
+    const amountText = formatMoney(parseAmount(values.amount), currency);
+    ctx.fillStyle = "#edf7f6";
+    roundRect(ctx, margin, 220, paper.width - margin * 2, 130, 8, true, false);
+    drawTextFit(ctx, amountText, paper.width / 2, 286, paper.width - margin * 2 - 40, 54, { align: "center", weight: "900", color: "#176b87" });
+
+    const rows = [
+      ["Received from", values.receivedFrom],
+      ["Received by", values.landlord],
+      ["Property", values.property],
+      ["Rental period", values.period],
+      ["Payment method", values.method],
+    ];
+    let y = 410;
+    rows.forEach(([label, value]) => {
+      drawReceiptLine(ctx, margin, y, paper.width - margin * 2, label, sanitizePrintable(value));
+      y += 82;
+    });
+
+    drawWrappedText(ctx, sanitizePrintable(values.notes || ""), margin, y + 20, paper.width - margin * 2, 28, "#5b6f78", "22px Arial", 4);
+    drawSignatureLine(ctx, margin, paper.height - 260, "Recipient signature");
+    drawSignatureLine(ctx, paper.width / 2 + 30, paper.height - 260, "Date");
+    drawFooterNote(ctx, paper, "Receipt format only. Local laws and record requirements may vary.");
+  }
+
+  function drawResume(ctx, paper, values) {
+    const margin = 76;
+    drawBusinessFrame(ctx, paper, "#17313b");
+    drawTextFit(ctx, sanitizePrintable(values.name || "Your Name"), paper.width / 2, 104, paper.width - margin * 2, 50, { align: "center", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, sanitizePrintable(values.headline || ""), paper.width / 2, 154, paper.width - margin * 2, 26, { align: "center", weight: "700", color: "#176b87" });
+    drawTextFit(ctx, sanitizePrintable(values.contact || ""), paper.width / 2, 192, paper.width - margin * 2, 20, { align: "center", weight: "400", color: "#5b6f78" });
+
+    let y = 260;
+    y = drawResumeSection(ctx, "Summary", values.summary, margin, y, paper.width - margin * 2, 4);
+    y = drawResumeSection(ctx, "Experience", values.experience, margin, y + 18, paper.width - margin * 2, 10, true);
+    y = drawResumeSection(ctx, "Skills", values.skills, margin, y + 18, paper.width - margin * 2, 4);
+    drawResumeSection(ctx, "Education", values.education, margin, y + 18, paper.width - margin * 2, 4);
+    drawFooterNote(ctx, paper, "Generated locally with PrintableTools Lab. Proofread before applying.");
+  }
+
   function drawPageFrame(ctx, paper, accent) {
     ctx.strokeStyle = accent;
     ctx.lineWidth = 8;
@@ -1088,6 +1558,137 @@
     ctx.strokeStyle = "rgba(23,49,59,0.16)";
     ctx.lineWidth = 2;
     ctx.strokeRect(58, 58, paper.width - 116, paper.height - 116);
+  }
+
+  function drawBusinessFrame(ctx, paper, accent) {
+    ctx.save();
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, paper.width, paper.height);
+    ctx.fillStyle = accent;
+    ctx.fillRect(0, 0, paper.width, 18);
+    ctx.strokeStyle = "rgba(23,49,59,0.18)";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(44, 44, paper.width - 88, paper.height - 88);
+    ctx.restore();
+  }
+
+  function drawBusinessBlock(ctx, label, value, x, y, width) {
+    ctx.save();
+    ctx.fillStyle = "#176b87";
+    ctx.font = "700 21px Arial";
+    ctx.textAlign = "left";
+    ctx.fillText(label, x, y);
+    drawWrappedText(ctx, sanitizePrintable(value), x, y + 38, width, 27, "#17313b", "22px Arial", 4);
+    ctx.restore();
+  }
+
+  function drawTableHeader(ctx, x, y, width, labels, widths) {
+    ctx.save();
+    ctx.fillStyle = "#17313b";
+    ctx.fillRect(x, y, width, 50);
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "700 18px Arial";
+    ctx.textAlign = "left";
+    let cursor = x;
+    labels.forEach((label, index) => {
+      ctx.fillText(label, cursor + 12, y + 32);
+      cursor += widths[index];
+    });
+    ctx.restore();
+  }
+
+  function drawInvoiceRow(ctx, x, y, widths, item, currency) {
+    ctx.save();
+    const rowW = widths.reduce((sum, width) => sum + width, 0);
+    ctx.strokeStyle = "rgba(23,49,59,0.2)";
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(x, y, rowW, 58);
+    ctx.fillStyle = "#17313b";
+    ctx.font = "20px Arial";
+    ctx.textAlign = "left";
+    drawTextFit(ctx, item.description || "Service", x + 12, y + 30, widths[0] - 24, 20, { align: "left", weight: "500", color: "#17313b" });
+    ctx.textAlign = "right";
+    ctx.fillText(String(item.qty || 1), x + widths[0] + widths[1] - 16, y + 36);
+    ctx.fillText(formatMoney(item.rate || 0, currency), x + widths[0] + widths[1] + widths[2] - 16, y + 36);
+    ctx.fillText(formatMoney(item.total || 0, currency), x + rowW - 16, y + 36);
+    ctx.restore();
+  }
+
+  function drawReceiptLine(ctx, x, y, width, label, value) {
+    ctx.save();
+    ctx.fillStyle = "#5b6f78";
+    ctx.font = "700 20px Arial";
+    ctx.textAlign = "left";
+    ctx.fillText(label, x, y);
+    ctx.strokeStyle = "rgba(23,49,59,0.28)";
+    ctx.lineWidth = 2;
+    line(ctx, x, y + 50, x + width, y + 50);
+    drawTextFit(ctx, value, x + 190, y + 28, width - 210, 24, { align: "left", weight: "500", color: "#17313b" });
+    ctx.restore();
+  }
+
+  function drawSignatureLine(ctx, x, y, label) {
+    ctx.save();
+    ctx.strokeStyle = "rgba(23,49,59,0.42)";
+    ctx.lineWidth = 2;
+    line(ctx, x, y, x + 360, y);
+    ctx.fillStyle = "#5b6f78";
+    ctx.font = "18px Arial";
+    ctx.textAlign = "left";
+    ctx.fillText(label, x, y + 30);
+    ctx.restore();
+  }
+
+  function drawResumeSection(ctx, title, content, x, y, width, maxLines, isExperience) {
+    ctx.save();
+    ctx.fillStyle = "#17313b";
+    ctx.font = "800 22px Arial";
+    ctx.textAlign = "left";
+    ctx.fillText(title.toUpperCase(), x, y);
+    ctx.strokeStyle = "rgba(23,49,59,0.25)";
+    ctx.lineWidth = 1.5;
+    line(ctx, x, y + 12, x + width, y + 12);
+    ctx.restore();
+
+    const lines = splitList(content || "", "\n");
+    let cursor = y + 48;
+    if (isExperience) {
+      lines.slice(0, 4).forEach((lineText) => {
+        const parts = lineText.split("|").map((part) => sanitizePrintable(part));
+        const heading = [parts[0], parts[1]].filter(Boolean).join(" - ");
+        if (heading) {
+          drawTextFit(ctx, heading, x, cursor, width, 21, { align: "left", weight: "800", color: "#17313b" });
+          cursor += 28;
+        }
+        const detail = parts.slice(2).join(" - ") || lineText;
+        cursor = drawWrappedTextReturnY(ctx, detail, x + 18, cursor, width - 18, 25, "#5b6f78", "20px Arial", 2);
+        cursor += 12;
+      });
+      return cursor;
+    }
+
+    const text = lines.length ? lines.join("; ") : sanitizePrintable(content || "");
+    return drawWrappedTextReturnY(ctx, text, x, cursor, width, 25, "#5b6f78", "20px Arial", maxLines) + 8;
+  }
+
+  function drawWrappedTextReturnY(ctx, text, x, y, maxWidth, lineHeight, color, font, maxLines) {
+    const lines = wrapText(ctx, text, maxWidth, font, maxLines);
+    ctx.save();
+    ctx.font = font || "24px Arial";
+    ctx.fillStyle = color || "#17313b";
+    ctx.textAlign = "left";
+    lines.forEach((lineText, index) => ctx.fillText(lineText, x, y + index * lineHeight));
+    ctx.restore();
+    return y + lines.length * lineHeight;
+  }
+
+  function drawFooterNote(ctx, paper, note) {
+    ctx.save();
+    ctx.font = "17px Arial";
+    ctx.fillStyle = "rgba(23,49,59,0.48)";
+    ctx.textAlign = "center";
+    ctx.fillText(note, paper.width / 2, paper.height - 26);
+    ctx.restore();
   }
 
   function drawHandwritingGuides(ctx, x, y, width) {
@@ -1246,26 +1847,73 @@
   }
 
   function drawWrappedText(ctx, text, x, y, maxWidth, lineHeight, color, font, maxLines) {
+    const lines = wrapText(ctx, text, maxWidth, font, maxLines);
     ctx.save();
     ctx.font = font || "24px Arial";
     ctx.fillStyle = color || "#17313b";
     ctx.textAlign = "left";
+    lines.forEach((lineText, index) => ctx.fillText(lineText, x, y + index * lineHeight));
+    ctx.restore();
+  }
+
+  function wrapText(ctx, text, maxWidth, font, maxLines) {
+    ctx.save();
+    ctx.font = font || "24px Arial";
     const words = sanitizePrintable(text).split(/\s+/).filter(Boolean);
     let lineText = "";
-    let lines = 0;
+    const lines = [];
     for (let i = 0; i < words.length; i += 1) {
       const test = lineText ? `${lineText} ${words[i]}` : words[i];
       if (ctx.measureText(test).width > maxWidth && lineText) {
-        ctx.fillText(lineText, x, y + lines * lineHeight);
-        lines += 1;
+        lines.push(lineText);
         lineText = words[i];
-        if (maxLines && lines >= maxLines) break;
+        if (maxLines && lines.length >= maxLines) break;
       } else {
         lineText = test;
       }
     }
-    if (lineText && (!maxLines || lines < maxLines)) ctx.fillText(lineText, x, y + lines * lineHeight);
+    if (lineText && (!maxLines || lines.length < maxLines)) lines.push(lineText);
     ctx.restore();
+    return lines.length ? lines : [""];
+  }
+
+  function parseMoneyItems(value) {
+    return splitList(value || "", "\n").map((lineText) => {
+      const parts = lineText.split("|").map((part) => sanitizePrintable(part));
+      const description = parts[0] || "Service";
+      const qty = Math.max(0, Number((parts[1] || "1").replace(/[^0-9.]/g, "")) || 1);
+      const rate = parseAmount(parts[2]);
+      return { description, qty, rate, total: qty * rate };
+    });
+  }
+
+  function parseAmount(value) {
+    return Number(String(value || "0").replace(/[^0-9.-]/g, "")) || 0;
+  }
+
+  function currencySymbol(currency) {
+    if (currency === "EUR") return "EUR ";
+    if (currency === "GBP") return "GBP ";
+    if (currency === "CAD") return "CAD ";
+    if (currency === "AUD") return "AUD ";
+    return "$";
+  }
+
+  function formatMoney(value, symbol) {
+    return `${symbol}${Number(value || 0).toFixed(2)}`;
+  }
+
+  function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+    const r = Math.min(radius || 8, width / 2, height / 2);
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + width, y, x + width, y + height, r);
+    ctx.arcTo(x + width, y + height, x, y + height, r);
+    ctx.arcTo(x, y + height, x, y, r);
+    ctx.arcTo(x, y, x + width, y, r);
+    ctx.closePath();
+    if (fill) ctx.fill();
+    if (stroke) ctx.stroke();
   }
 
   function line(ctx, x1, y1, x2, y2) {
