@@ -1,4 +1,5 @@
 const http = require("http");
+const fs = require("fs");
 const path = require("path");
 const { chromium } = require("playwright-core");
 
@@ -40,9 +41,15 @@ function delay(ms) {
     "/tools/monthly-calendar/",
     "/tools/meal-planner/",
     "/tools/image-to-pdf/",
+    "/tools/multi-image-pdf/",
+    "/tools/text-to-pdf/",
     "/tools/sign-in-sheet/",
     "/tools/graph-paper/",
     "/tools/packing-list/",
+    "/tools/receipt-generator/",
+    "/tools/timesheet-generator/",
+    "/tools/certificate-generator/",
+    "/tools/todo-list/",
     "/guides/",
     "/guides/free-printable-name-tracing-worksheet-maker/",
     "/guides/free-weekly-planner-generator/",
@@ -58,9 +65,15 @@ function delay(ms) {
     "/guides/free-monthly-calendar-generator/",
     "/guides/free-meal-planner-generator/",
     "/guides/free-image-to-pdf-converter/",
+    "/guides/multiple-images-to-pdf-without-uploading/",
+    "/guides/text-to-pdf-converter-no-signup/",
     "/guides/free-sign-in-sheet-generator/",
     "/guides/free-printable-graph-paper-generator/",
     "/guides/free-packing-list-generator/",
+    "/guides/free-receipt-generator-pdf/",
+    "/guides/weekly-timesheet-generator-pdf/",
+    "/guides/free-certificate-generator-pdf/",
+    "/guides/printable-to-do-list-generator/",
     "/privacy/",
     "/dashboard/",
   ];
@@ -72,7 +85,7 @@ function delay(ms) {
     if (!title.includes("PrintableTools Lab")) throw new Error(`Bad title for ${route}: ${title}`);
   }
 
-  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/"]) {
+  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/text-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
     await page.evaluate(() => localStorage.removeItem("ptl_daily"));
     if (route === "/tools/image-to-pdf/") {
@@ -94,6 +107,25 @@ function delay(ms) {
       });
       if (!hasRenderedFileName) throw new Error("Image-to-PDF upload did not render selected file details.");
     }
+    if (route === "/tools/multi-image-pdf/") {
+      await page.setInputFiles("input[type=file]", [
+        { name: "first.png", mimeType: "image/png", buffer: samplePng() },
+        { name: "second.png", mimeType: "image/png", buffer: samplePng() },
+      ]);
+      await page.waitForTimeout(750);
+      const hasRenderedImages = await page.evaluate(() => {
+        const canvas = document.querySelector("canvas.preview-canvas");
+        if (!canvas) return false;
+        const ctx = canvas.getContext("2d");
+        const data = ctx.getImageData(Math.floor(canvas.width / 2) - 160, 260, 320, 320).data;
+        let changed = 0;
+        for (let i = 0; i < data.length; i += 4) {
+          if (data[i] < 245 || data[i + 1] < 245 || data[i + 2] < 245) changed += 1;
+        }
+        return changed > 400;
+      });
+      if (!hasRenderedImages) throw new Error("Multi-image PDF preview did not render selected files.");
+    }
     const button = page.getByRole("button", { name: "Generate PDF" });
     const [download] = await Promise.all([
       page.waitForEvent("download"),
@@ -101,6 +133,11 @@ function delay(ms) {
     ]);
     const name = download.suggestedFilename();
     if (!name.endsWith(".pdf")) throw new Error(`Expected PDF download on ${route}, got ${name}`);
+    if (route === "/tools/multi-image-pdf/") {
+      const filePath = await download.path();
+      const pdf = fs.readFileSync(filePath, "latin1");
+      if (!/\/Count\s+2\b/.test(pdf)) throw new Error(`Expected multi-image PDF export to contain two pages. Header sample: ${pdf.slice(0, 220)}`);
+    }
   }
 
   await page.goto(`${base}/dashboard/`, { waitUntil: "networkidle" });

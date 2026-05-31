@@ -58,10 +58,11 @@ const toolsJsonFile = path.join(root, "tools.json");
 if (!fs.existsSync(toolsJsonFile)) failures.push("Missing tools.json.");
 else {
   const data = JSON.parse(fs.readFileSync(toolsJsonFile, "utf8"));
-  if (!Array.isArray(data.tools) || data.tools.length < 20) failures.push("tools.json missing tools.");
-  if (!Array.isArray(data.guides) || data.guides.length < 46) failures.push("tools.json missing guides.");
+  if (!Array.isArray(data.tools) || data.tools.length < 26) failures.push("tools.json missing tools.");
+  if (!Array.isArray(data.guides) || data.guides.length < 50) failures.push("tools.json missing guides.");
   if (!data.tools.some((tool) => tool.url === siteUrl("tools/invoice-generator"))) failures.push("tools.json missing invoice URL.");
   if (!data.tools.some((tool) => tool.url === siteUrl("tools/image-to-pdf"))) failures.push("tools.json missing image-to-PDF URL.");
+  if (!data.tools.some((tool) => tool.url === siteUrl("tools/multi-image-pdf"))) failures.push("tools.json missing multi-image PDF URL.");
 }
 
 const distributionFile = path.join(root, "DISTRIBUTION.md");
@@ -69,6 +70,13 @@ if (!fs.existsSync(distributionFile)) failures.push("Missing DISTRIBUTION.md.");
 else {
   const distribution = fs.readFileSync(distributionFile, "utf8");
   if (!distribution.includes("Directory submission fields")) failures.push("DISTRIBUTION.md missing directory fields.");
+}
+
+const discoveryFile = path.join(root, "discovery.json");
+if (!fs.existsSync(discoveryFile)) failures.push("Missing discovery.json.");
+else {
+  const discovery = JSON.parse(fs.readFileSync(discoveryFile, "utf8"));
+  if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("tools/multi-image-pdf"))) failures.push("discovery.json missing high-intent multi-image route.");
 }
 
 const verificationFile = path.join(root, "google1b771d6159b52de7.html");

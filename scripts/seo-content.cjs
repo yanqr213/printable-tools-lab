@@ -2,7 +2,7 @@ const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pa
 
 const SITE_SUMMARY = {
   name: "PrintableTools Lab",
-  description: "Free browser-based PDF generators for image conversion, invoices, estimates, purchase orders, sale records, receipts, resumes, cover letters, resignation letters, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, and habit trackers.",
+  description: "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   audience: "Freelancers, small businesses, job seekers, parents, teachers, tutors, homeschool families, students, event organizers, travelers, tenants, landlords, and household planners.",
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
@@ -162,6 +162,24 @@ const tools = [
     ],
   },
   {
+    path: "tools/multi-image-pdf",
+    title: "Multiple Images to PDF Converter",
+    description: "Turn several JPG, PNG, or WebP images into one multi-page PDF in your browser without uploading files.",
+    body: [
+      "Select up to eight images, choose US Letter or A4, and download one PDF where each image gets its own page.",
+      "Multi-image conversion is a high-intent utility category because many paid or ad-heavy converters monetize exactly at the export step.",
+    ],
+  },
+  {
+    path: "tools/text-to-pdf",
+    title: "Text to PDF Converter",
+    description: "Paste plain text and download a clean one-page PDF without an account or file upload.",
+    body: [
+      "Paste notes, instructions, a short letter, or a plain text draft, choose a readable text size, and export a simple PDF.",
+      "Text-to-PDF searches often come from people who need a document immediately and do not want to install an editor or upload content.",
+    ],
+  },
+  {
     path: "tools/sign-in-sheet",
     title: "Sign-in Sheet Generator",
     description: "Create a printable sign-in sheet PDF for events, classrooms, workshops, meetings, or visitor logs.",
@@ -186,6 +204,42 @@ const tools = [
     body: [
       "Enter trip details and grouped packing sections to create a one-page checklist with checkboxes and reminder space.",
       "Packing lists are practical repeat-use printables that can reach travelers, families, students, and event planners without requiring an account.",
+    ],
+  },
+  {
+    path: "tools/receipt-generator",
+    title: "Receipt Generator",
+    description: "Create a simple printable receipt PDF for a sale, service payment, deposit, or reimbursement record.",
+    body: [
+      "Enter payer, recipient, amount, method, date, description, and notes to generate a practical one-page receipt PDF.",
+      "Receipts are urgent business paperwork with clear user intent, and a free no-signup export can compete against paywalled template tools.",
+    ],
+  },
+  {
+    path: "tools/timesheet-generator",
+    title: "Timesheet Generator",
+    description: "Make a printable weekly timesheet PDF for freelance hours, staff records, projects, or approvals.",
+    body: [
+      "Add a worker, period, rows of day/project/hours/notes, and create a printable sheet with a total-hours line and approval signature.",
+      "Timesheets can bring repeat use from freelancers, contractors, small teams, and service businesses that need a quick printable record.",
+    ],
+  },
+  {
+    path: "tools/certificate-generator",
+    title: "Certificate Generator",
+    description: "Create a printable certificate PDF for completion, participation, classroom awards, or small events.",
+    body: [
+      "Enter a certificate title, recipient, award reason, date, and signer to generate a clean award page.",
+      "Certificate makers are commonly paywalled around templates or downloads; a simple free printable version gives teachers and organizers immediate value.",
+    ],
+  },
+  {
+    path: "tools/todo-list",
+    title: "To Do List Generator",
+    description: "Build a printable checklist PDF for errands, work tasks, study sessions, home projects, or event prep.",
+    body: [
+      "Group tasks into sections, add a reminder note, and download a one-page checklist with clear checkboxes.",
+      "Checklist searches are broad and repeatable, making this a useful ad-supported free tool while the site validates demand.",
     ],
   },
 ];
@@ -231,12 +285,18 @@ const guides = [
   ["guides/weekly-meal-plan-grocery-list-pdf", "Weekly meal plan and grocery list PDF", "Create one printable page that combines a weekly meal plan with a grocery list and prep reminders.", "A meal plan is easier to use when the grocery list is on the same sheet. That keeps the planning decision connected to the shopping task."],
   ["guides/free-image-to-pdf-converter", "Free image to PDF converter", "Convert a JPG, PNG, or WebP image into a one-page PDF without uploading files.", "Image-to-PDF searches are urgent: people often need to submit a document, receipt, form, or photo as a PDF. This converter keeps the file in the browser instead of uploading it to a server."],
   ["guides/jpg-to-pdf-without-uploading", "JPG to PDF without uploading", "Make a PDF from a JPG file in the browser when you do not want to send the image to a conversion server.", "Photos of receipts, IDs, forms, and school documents can contain private information. A local converter is a safer first choice because the image is drawn into a PDF on your device."],
+  ["guides/multiple-images-to-pdf-without-uploading", "Multiple images to PDF without uploading", "Combine several JPG, PNG, or WebP images into one multi-page PDF in the browser.", "Multi-image PDF conversion is useful for receipts, homework pages, forms, screenshots, and photo scans that need to be submitted together. A browser-side workflow avoids sending those files to a conversion server."],
+  ["guides/text-to-pdf-converter-no-signup", "Text to PDF converter without signup", "Paste plain text and download a clean one-page PDF without installing an editor.", "Text-to-PDF searches are practical and time-sensitive. People often need to turn notes, instructions, or a plain letter into a PDF without creating an account or uploading the text to a file service."],
   ["guides/free-sign-in-sheet-generator", "Free sign-in sheet generator", "Create a printable sign-in sheet PDF for events, classes, workshops, meetings, or visitor logs.", "For small events, a printed sign-in sheet is often enough. It gives the organizer names, attendance, signatures, and contact details without needing a registration app."],
   ["guides/attendance-sheet-pdf-template", "Attendance sheet PDF template", "Use a simple printable attendance sheet for classes, clubs, workshops, and small meetings.", "A useful attendance sheet leaves enough writing space. Fewer rows per page can be better than a cramped page nobody can read later."],
   ["guides/free-printable-graph-paper-generator", "Free printable graph paper generator", "Generate graph paper PDF with quarter-inch, half-inch, or small grid spacing.", "Students, teachers, makers, and planners often need graph paper immediately. A generator with paper size and spacing options is useful even without decorative templates."],
   ["guides/quarter-inch-graph-paper-pdf", "Quarter inch graph paper PDF", "Create a quarter-inch graph paper PDF for math practice, planning, and sketching.", "Quarter-inch graph paper is readable without using too much page space. It is a good default for math work, simple layouts, and hand-drawn plans."],
   ["guides/free-packing-list-generator", "Free packing list generator", "Make a printable packing checklist PDF for travel, camping, family vacations, or business trips.", "A printed checklist works well because packing happens away from the screen: bedroom, laundry area, suitcase, car, or entryway."],
   ["guides/travel-checklist-pdf", "Travel checklist PDF", "Create a one-page travel checklist PDF with categories, checkboxes, and reminder notes.", "A travel checklist is easier to use when items are grouped by where they are packed or used. Separate clothes, toiletries, documents, and electronics."],
+  ["guides/free-receipt-generator-pdf", "Free receipt generator PDF", "Create a simple printable receipt for a sale, service payment, deposit, or reimbursement.", "Receipt searches usually have immediate intent. Someone has received or sent money and needs a dated record that is clear enough for both parties to keep."],
+  ["guides/weekly-timesheet-generator-pdf", "Weekly timesheet generator PDF", "Make a printable timesheet for freelance hours, staff records, project tracking, or approvals.", "Timesheets have repeat use because hours need to be recorded again every week or pay period. A quick printable sheet can be enough for freelancers, contractors, and small teams."],
+  ["guides/free-certificate-generator-pdf", "Free certificate generator PDF", "Create a printable certificate for completion, participation, classroom awards, or small events.", "A certificate generator is useful when a teacher, coach, organizer, or club needs a polished award quickly without paying for a template package."],
+  ["guides/printable-to-do-list-generator", "Printable to do list generator", "Build a one-page checklist for errands, work tasks, study sessions, home projects, or events.", "A printable to-do list works best when it limits the day to a few visible sections. The goal is action, not a giant task archive."],
 ].map(([path, title, description, intro]) => ({ path, title, description, intro }));
 
 const keywordClusters = [
@@ -279,22 +339,36 @@ const keywordClusters = [
   },
   {
     title: "Everyday utility PDFs",
-    description: "High-intent PDF tools for image conversion, sign-in sheets, graph paper, and travel checklists.",
+    description: "High-intent PDF tools for image conversion, text conversion, checklists, sign-in sheets, graph paper, and travel paperwork.",
     links: [
       ["Image to PDF converter", "tools/image-to-pdf"],
+      ["Multiple images to PDF", "tools/multi-image-pdf"],
+      ["Text to PDF converter", "tools/text-to-pdf"],
       ["Sign-in sheet generator", "tools/sign-in-sheet"],
       ["Graph paper generator", "tools/graph-paper"],
       ["Packing list generator", "tools/packing-list"],
+      ["To do list generator", "tools/todo-list"],
     ],
   },
   {
     title: "Business paperwork",
-    description: "Clean PDF invoices, estimates, purchase orders, sale records, and receipts for people who need a document now.",
+    description: "Clean PDF invoices, estimates, purchase orders, sale records, receipts, and timesheets for people who need a document now.",
     links: [
       ["Invoice generator", "tools/invoice-generator"],
       ["Estimate generator", "tools/estimate-generator"],
       ["Purchase order generator", "tools/purchase-order"],
+      ["Receipt generator", "tools/receipt-generator"],
+      ["Timesheet generator", "tools/timesheet-generator"],
       ["Rent receipt generator", "tools/rent-receipt"],
+    ],
+  },
+  {
+    title: "Events and awards",
+    description: "Printable certificates, sign-in sheets, and checklists for small events, classrooms, workshops, and clubs.",
+    links: [
+      ["Certificate generator", "tools/certificate-generator"],
+      ["Sign-in sheet generator", "tools/sign-in-sheet"],
+      ["To do list generator", "tools/todo-list"],
     ],
   },
   {
@@ -318,16 +392,16 @@ const pages = [
       <section class="shell hero">
         <div>
           <h1>Make useful printable PDFs in under a minute.</h1>
-          <p>Free browser-based generators for image-to-PDF conversion, invoices, rent receipts, resumes, worksheets, sign-in sheets, graph paper, and planners. No account, no surprise download fee.</p>
+          <p>Free browser-based generators for image conversion, text-to-PDF, invoices, receipts, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/tools/invoice-generator/">Create an invoice</a>
             <a class="button secondary" href="/tools/">Browse all tools</a>
             <a class="button secondary" href="/guides/">Read printable guides</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>20</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>26</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>38</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>50</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -363,9 +437,15 @@ const pages = [
           <li><a href="/tools/monthly-calendar/">Monthly Calendar Generator</a></li>
           <li><a href="/tools/meal-planner/">Meal Planner Generator</a></li>
           <li><a href="/tools/image-to-pdf/">Image to PDF Converter</a></li>
+          <li><a href="/tools/multi-image-pdf/">Multiple Images to PDF Converter</a></li>
+          <li><a href="/tools/text-to-pdf/">Text to PDF Converter</a></li>
           <li><a href="/tools/sign-in-sheet/">Sign-in Sheet Generator</a></li>
           <li><a href="/tools/graph-paper/">Graph Paper Generator</a></li>
           <li><a href="/tools/packing-list/">Packing List Generator</a></li>
+          <li><a href="/tools/receipt-generator/">Receipt Generator</a></li>
+          <li><a href="/tools/timesheet-generator/">Timesheet Generator</a></li>
+          <li><a href="/tools/certificate-generator/">Certificate Generator</a></li>
+          <li><a href="/tools/todo-list/">To Do List Generator</a></li>
         </ul>
       </section>`,
   },
@@ -427,6 +507,35 @@ const pages = [
     html: `<article class="article-shell article"><h1>Launch Kit</h1><p>Use this page to coordinate the first distribution push. Share the homepage and tool links, then measure downloads and Search Console impressions.</p></article>`,
   },
 ];
+
+const GUIDE_HINTS_FOR_LINKS = {
+  "invoice-generator": ["invoice"],
+  "estimate-generator": ["estimate", "quote"],
+  "purchase-order": ["purchase order"],
+  "bill-of-sale": ["bill of sale", "private sale"],
+  "rent-receipt": ["rent receipt"],
+  "resume-builder": ["resume", "ATS"],
+  "cover-letter": ["cover letter"],
+  "resignation-letter": ["resignation", "two weeks"],
+  "monthly-calendar": ["monthly calendar", "calendar"],
+  "meal-planner": ["meal planner", "meal plan", "grocery"],
+  "image-to-pdf": ["image to PDF", "JPG to PDF"],
+  "multi-image-pdf": ["multiple images", "image to PDF"],
+  "text-to-pdf": ["text to PDF"],
+  "sign-in-sheet": ["sign-in", "attendance sheet"],
+  "graph-paper": ["graph paper", "quarter inch"],
+  "packing-list": ["packing list", "travel checklist"],
+  "receipt-generator": ["receipt"],
+  "timesheet-generator": ["timesheet"],
+  "certificate-generator": ["certificate"],
+  "todo-list": ["to do list"],
+  "name-tracing": ["name tracing", "preschool"],
+  "chore-chart": ["chore", "routine", "job chart"],
+  "reward-chart": ["reward", "sticker"],
+  flashcards: ["flashcard"],
+  "weekly-planner": ["weekly"],
+  "habit-tracker": ["habit"],
+};
 
 const routes = [
   ...pages,
@@ -503,7 +612,7 @@ function toolsIndexHtml() {
   return `
       <section class="shell page-title section">
         <h1>Free PDF tools</h1>
-        <p>Choose a browser-based generator for business paperwork, job applications, planning pages, classroom printables, and family routines. Each tool creates a one-page PDF without requiring an account.</p>
+        <p>Choose a browser-based generator for business paperwork, job applications, image conversion, text conversion, planning pages, classroom printables, event certificates, checklists, and family routines. Each tool creates a practical PDF without requiring an account.</p>
       </section>
       <section class="shell section">
         <h2>Tools by use case</h2>
@@ -692,6 +801,33 @@ function toolDetails(tool) {
         { q: "Can I add several images?", a: "Yes. Gallery mode places up to four images on one page." },
       ],
     },
+    "multi-image-pdf": {
+      privacy: "Selected image files are loaded into the browser preview and are not uploaded by the converter.",
+      limit: "The free version exports up to eight selected images as a multi-page PDF and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Receipts to PDF", text: "Combine several receipt photos into one PDF for a reimbursement or expense record." },
+        { title: "Homework scan", text: "Turn several worksheet or homework photos into a single file." },
+        { title: "No upload conversion", text: "Use browser-side conversion when the images may contain private information." },
+      ],
+      faq: [
+        { q: "Are the images uploaded?", a: "No. The selected images are drawn into PDF pages in your browser." },
+        { q: "How many images can I add?", a: "The free tool accepts up to eight images for one multi-page PDF." },
+        { q: "Does each image get its own page?", a: "Yes. The export creates a multi-page PDF with one image per page." },
+      ],
+    },
+    "text-to-pdf": {
+      privacy: "Text is rendered into the PDF in your browser. Use the AI helper only for generic wording, not private or sensitive content.",
+      useCases: [
+        { title: "Plain notes", text: "Turn short notes, meeting summaries, or instructions into a clean PDF." },
+        { title: "Letter draft", text: "Create a simple one-page letter without opening a heavier editor." },
+        { title: "Printable instructions", text: "Paste a short process or checklist explanation for a quick handout." },
+      ],
+      faq: [
+        { q: "Can I paste a long document?", a: "The first version is designed for a readable one-page PDF, so long text is trimmed in the preview." },
+        { q: "Do I need to upload a text file?", a: "No. Paste text into the form and generate the PDF locally." },
+        { q: "Can I choose a font size?", a: "Yes. Choose small, medium, or large text before generating the PDF." },
+      ],
+    },
     "sign-in-sheet": {
       useCases: [
         { title: "Event check-in", text: "Print a sign-in page for workshops, clubs, meetings, and community events." },
@@ -711,6 +847,55 @@ function toolDetails(tool) {
         { title: "Travel checklist", text: "Plan clothing, toiletries, documents, electronics, and trip-specific items." },
         { title: "Family vacation", text: "Group shared items so the same charger, document, or medicine is not packed twice." },
         { title: "Business trip", text: "Create a focused list for work gear, documents, clothing, and personal essentials." },
+      ],
+    },
+    "receipt-generator": {
+      useCases: [
+        { title: "Service receipt", text: "Create a simple receipt after a service payment or local job." },
+        { title: "Deposit record", text: "Record a deposit amount, date, payment method, and description." },
+        { title: "Reimbursement proof", text: "Make a printable receipt record for small reimbursements or shared expenses." },
+      ],
+      privacy: "The receipt is generated locally. Only generic description and note fields are eligible for optional AI suggestions.",
+      faq: [
+        { q: "Is this accounting software?", a: "No. It creates a simple printable receipt PDF and does not store bookkeeping records." },
+        { q: "Can I use it for cash payments?", a: "Yes, choose cash or write another payment method, then keep signed copies as needed." },
+        { q: "Does it store customer details?", a: "No. The tool runs in the browser and does not create an account or receipt archive." },
+      ],
+    },
+    "timesheet-generator": {
+      useCases: [
+        { title: "Freelance hours", text: "Track day, project, hours, and notes for a client approval record." },
+        { title: "Staff timesheet", text: "Create a printable weekly sheet for small teams that do not need payroll software." },
+        { title: "Project log", text: "Group hours by project when you need a simple approval page." },
+      ],
+      faq: [
+        { q: "Does the timesheet calculate totals?", a: "Yes. The PDF shows a total-hours line based on the rows you enter." },
+        { q: "Can I use decimals?", a: "Yes. Hours such as 7.5 are supported." },
+        { q: "Is it payroll software?", a: "No. It is a printable record only. Confirm hours and payroll rules separately." },
+      ],
+    },
+    "certificate-generator": {
+      useCases: [
+        { title: "Classroom award", text: "Create a quick completion, participation, kindness, or reading certificate." },
+        { title: "Workshop certificate", text: "Print an award or participation record after a small event." },
+        { title: "Club recognition", text: "Make a simple printable certificate without buying a template pack." },
+      ],
+      faq: [
+        { q: "Can I print it on regular paper?", a: "Yes. The design is built for ordinary US Letter or A4 paper." },
+        { q: "Does it use copyrighted artwork?", a: "No. The default certificate uses simple code-driven borders and text." },
+        { q: "Can I use it for official credentials?", a: "Only use it for events or recognition you are authorized to issue. It is not a licensing system." },
+      ],
+    },
+    "todo-list": {
+      useCases: [
+        { title: "Daily checklist", text: "Print a short task list for errands, home projects, or focused work." },
+        { title: "Event prep", text: "Group before, during, and after tasks for a small event or workshop." },
+        { title: "Study session", text: "Break a study block into preparation, practice, and finish steps." },
+      ],
+      faq: [
+        { q: "How should I enter sections?", a: "Use one line per section, such as Errands: grocery, post office, return item." },
+        { q: "How many sections fit?", a: "The PDF shows up to six sections clearly on one page." },
+        { q: "Can I use it every day?", a: "Yes. Edit the form and download a fresh one-page checklist whenever needed." },
       ],
     },
     "name-tracing": {
@@ -774,6 +959,10 @@ function jsonLdHtml(payload) {
 }
 
 function guideHtml(guide) {
+  const slug = Object.keys(GUIDE_HINTS_FOR_LINKS).find((toolSlug) => {
+    const hints = GUIDE_HINTS_FOR_LINKS[toolSlug] || [];
+    return hints.some((hint) => guide.title.toLowerCase().includes(hint.toLowerCase()));
+  });
   return `
       <article class="article-shell article">
         <a href="/guides/">All guides</a>
@@ -782,6 +971,7 @@ function guideHtml(guide) {
         <p>${escapeHtml(guide.intro)}</p>
         <h2>Use this guide with the free tools</h2>
         <p>PrintableTools Lab focuses on one-page PDFs that can be generated quickly, tested with real users, and improved based on downloads and Search Console data.</p>
+        ${slug ? `<p><a class="button" href="/tools/${slug}/">Open related generator</a></p>` : ""}
       </article>`;
 }
 
@@ -810,29 +1000,7 @@ function keywordClusterHtml(cluster) {
 
 function relatedGuideLinks(toolPath) {
   const slug = toolPath.replace(/^tools\//, "");
-  const guideHints = {
-    "invoice-generator": ["invoice"],
-    "estimate-generator": ["estimate", "quote"],
-    "purchase-order": ["purchase order"],
-    "bill-of-sale": ["bill of sale", "private sale"],
-    "rent-receipt": ["rent receipt"],
-    "resume-builder": ["resume", "ATS"],
-    "cover-letter": ["cover letter"],
-    "resignation-letter": ["resignation", "two weeks"],
-    "monthly-calendar": ["monthly calendar", "calendar"],
-    "meal-planner": ["meal planner", "meal plan", "grocery"],
-    "image-to-pdf": ["image to PDF", "JPG to PDF"],
-    "sign-in-sheet": ["sign-in", "attendance sheet"],
-    "graph-paper": ["graph paper", "quarter inch"],
-    "packing-list": ["packing list", "travel checklist"],
-    "name-tracing": ["name tracing", "preschool"],
-    "chore-chart": ["chore", "routine", "job chart"],
-    "reward-chart": ["reward", "sticker"],
-    flashcards: ["flashcard"],
-    "weekly-planner": ["weekly"],
-    "habit-tracker": ["habit"],
-  };
-  const hints = guideHints[slug] || [];
+  const hints = GUIDE_HINTS_FOR_LINKS[slug] || [];
   return guides.filter((guide) => hints.some((hint) => guide.title.toLowerCase().includes(hint.toLowerCase()))).slice(0, 3);
 }
 

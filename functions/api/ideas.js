@@ -17,6 +17,11 @@ const TOOL_FIELDS = {
   "meal-planner": ["title", "meals", "grocery", "notes"],
   "sign-in-sheet": ["title", "event", "date", "notes"],
   "packing-list": ["title", "destination", "sections", "notes"],
+  "text-to-pdf": ["title", "body"],
+  "receipt-generator": ["description", "notes"],
+  "timesheet-generator": ["period", "rows", "notes"],
+  "certificate-generator": ["title", "reason", "signer"],
+  "todo-list": ["title", "sections", "notes"],
 };
 
 const FIELD_LIMITS = {
@@ -65,6 +70,11 @@ const FIELD_LIMITS = {
   event: 90,
   destination: 90,
   sections: 680,
+  body: 1800,
+  description: 220,
+  rows: 760,
+  reason: 220,
+  signer: 70,
 };
 
 export async function onRequestPost(context) {
@@ -476,6 +486,145 @@ function fallbackSuggestions(tool, values) {
           destination: values.destination || "Work trip",
           sections: "Work: laptop, charger, notebook, business cards\nClothing: outfits, shoes, sleepwear, jacket\nDocuments: ID, itinerary, hotel details, meeting notes\nPersonal: toiletries, medicine, headphones, snacks",
           notes: "Confirm meeting dress code, airport timing, and charger compatibility.",
+        },
+      },
+    ],
+    "text-to-pdf": [
+      {
+        title: "Meeting notes PDF",
+        summary: "A clean one-page meeting note",
+        fields: {
+          title: values.title || "Meeting Notes",
+          body: "Topic:\nDecisions:\nAction items:\nOwners:\nNext check-in:",
+        },
+      },
+      {
+        title: "Short instruction sheet",
+        summary: "Printable steps for a simple process",
+        fields: {
+          title: "Instruction Sheet",
+          body: "Purpose:\nStep 1:\nStep 2:\nStep 3:\nReminder:\nContact:",
+        },
+      },
+      {
+        title: "Plain letter draft",
+        summary: "Short one-page letter layout",
+        fields: {
+          title: "Plain Letter",
+          body: "Date:\n\nRecipient:\n\nMessage:\n\nThank you,\nName",
+        },
+      },
+    ],
+    "receipt-generator": [
+      {
+        title: "Service payment receipt",
+        summary: "Receipt wording for a completed service",
+        fields: {
+          description: values.description || "Service payment",
+          notes: "Payment received for the item or service listed above.",
+        },
+      },
+      {
+        title: "Deposit receipt",
+        summary: "Short note for a deposit record",
+        fields: {
+          description: "Deposit payment",
+          notes: "Deposit received and applied to the listed service or order.",
+        },
+      },
+      {
+        title: "Reimbursement receipt",
+        summary: "Simple reimbursement record",
+        fields: {
+          description: "Reimbursement payment",
+          notes: "Payment issued for the approved reimbursement described above.",
+        },
+      },
+    ],
+    "timesheet-generator": [
+      {
+        title: "Freelance weekly hours",
+        summary: "Project rows for a client timesheet",
+        fields: {
+          period: values.period || "Current week",
+          rows: "Monday | Client project | 8 | Drafting and review\nTuesday | Client project | 7.5 | Revisions\nWednesday | Admin | 2 | Follow-up and notes\nThursday | Client project | 8 | Delivery work\nFriday | Client project | 6 | Handoff",
+          notes: "Review hours before sending for approval.",
+        },
+      },
+      {
+        title: "Staff weekly log",
+        summary: "Simple work log for staff approval",
+        fields: {
+          period: values.period || "Current pay period",
+          rows: "Monday | Operations | 8 | Daily tasks\nTuesday | Operations | 8 | Customer follow-up\nWednesday | Training | 4 | Documentation\nThursday | Operations | 8 | Project support\nFriday | Operations | 7 | Weekly wrap-up",
+          notes: "Manager approval:",
+        },
+      },
+      {
+        title: "Project tracking sheet",
+        summary: "Hours grouped by project",
+        fields: {
+          period: values.period || "Project week",
+          rows: "Monday | Project A | 4 | Planning\nMonday | Project B | 3 | Support\nTuesday | Project A | 6 | Build work\nWednesday | Admin | 2 | Notes\nFriday | Project B | 5 | Review",
+          notes: "Use project names that match the client or internal record.",
+        },
+      },
+    ],
+    "certificate-generator": [
+      {
+        title: "Completion award",
+        summary: "Certificate for finishing a course or challenge",
+        fields: {
+          title: values.title || "Certificate of Completion",
+          reason: "for completing the activity with focus, effort, and steady progress",
+          signer: values.signer || "Organizer",
+        },
+      },
+      {
+        title: "Participation certificate",
+        summary: "Simple event participation wording",
+        fields: {
+          title: "Certificate of Participation",
+          reason: "for participating in the workshop and contributing to the group activity",
+          signer: values.signer || "Event organizer",
+        },
+      },
+      {
+        title: "Classroom award",
+        summary: "Positive classroom certificate wording",
+        fields: {
+          title: "Classroom Award",
+          reason: "for showing kindness, responsibility, and a helpful attitude",
+          signer: values.signer || "Teacher",
+        },
+      },
+    ],
+    "todo-list": [
+      {
+        title: "Daily priorities",
+        summary: "A focused task list for one day",
+        fields: {
+          title: values.title || "Today To Do",
+          sections: "Top priorities: finish main task, send update, review calendar\nErrands: groceries, post office, return item\nFollow-up: email Sam, confirm schedule",
+          notes: "Pick three tasks that matter most today.",
+        },
+      },
+      {
+        title: "Event prep checklist",
+        summary: "Checklist for a small event",
+        fields: {
+          title: "Event Prep Checklist",
+          sections: "Before event: confirm time, print signs, pack supplies\nAt venue: set up table, test equipment, place sign-in sheet\nAfter event: collect forms, send follow-up, clean up",
+          notes: "Print one copy for the organizer and one for the venue bag.",
+        },
+      },
+      {
+        title: "Study session checklist",
+        summary: "Short checklist for study planning",
+        fields: {
+          title: "Study Session Checklist",
+          sections: "Prepare: choose topic, gather notes, set timer\nPractice: review examples, solve problems, mark questions\nFinish: summarize, plan next session, pack materials",
+          notes: "Keep the list visible while studying.",
         },
       },
     ],

@@ -1,0 +1,28 @@
+{
+  "name": "PrintableTools Lab",
+  "url": "https://printable-tools-lab.pages.dev/",
+  "generatedAt": "2026-05-31T20:58:56.770Z",
+  "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
+  "highIntentEntryPoints": [
+    "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
+    "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
+    "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
+    "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
+    "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
+    "https://printable-tools-lab.pages.dev/tools/timesheet-generator/",
+    "https://printable-tools-lab.pages.dev/tools/resume-builder/",
+    "https://printable-tools-lab.pages.dev/tools/certificate-generator/",
+    "https://printable-tools-lab.pages.dev/tools/todo-list/"
+  ],
+  "constraints": [
+    "No account required.",
+    "No ad interaction gate.",
+    "No paid checkout in the validation version.",
+    "No upload for image conversion tools."
+  ],
+  "validationGates": {
+    "continue30Day": "100 PDF downloads, 300 tool generations, or growing Search Console impressions.",
+    "pivot60Day": "If no search exposure or downloads, stop adding printable content and test another ad-supported route.",
+    "review90Day": "If traffic exists but ad revenue is weak, improve high-intent pages or test compliant affiliate links before paid features."
+  }
+}

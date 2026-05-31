@@ -1,8 +1,8 @@
 {
   "name": "PrintableTools Lab",
-  "description": "Free browser-based PDF generators for image conversion, invoices, estimates, purchase orders, sale records, receipts, resumes, cover letters, resignation letters, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, and habit trackers.",
+  "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-05-31T20:24:56.286Z",
+  "generatedAt": "2026-05-31T20:58:56.769Z",
   "tools": [
     {
       "title": "Name Tracing Worksheet Generator",
@@ -107,6 +107,18 @@
       "category": "Everyday utility PDFs"
     },
     {
+      "title": "Multiple Images to PDF Converter",
+      "url": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
+      "description": "Turn several JPG, PNG, or WebP images into one multi-page PDF in your browser without uploading files.",
+      "category": "Everyday utility PDFs"
+    },
+    {
+      "title": "Text to PDF Converter",
+      "url": "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
+      "description": "Paste plain text and download a clean one-page PDF without an account or file upload.",
+      "category": "Everyday utility PDFs"
+    },
+    {
       "title": "Sign-in Sheet Generator",
       "url": "https://printable-tools-lab.pages.dev/tools/sign-in-sheet/",
       "description": "Create a printable sign-in sheet PDF for events, classrooms, workshops, meetings, or visitor logs.",
@@ -122,6 +134,30 @@
       "title": "Packing List Generator",
       "url": "https://printable-tools-lab.pages.dev/tools/packing-list/",
       "description": "Make a printable packing list PDF for travel, school trips, business travel, camping, or family vacations.",
+      "category": "Everyday utility PDFs"
+    },
+    {
+      "title": "Receipt Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
+      "description": "Create a simple printable receipt PDF for a sale, service payment, deposit, or reimbursement record.",
+      "category": "Business paperwork"
+    },
+    {
+      "title": "Timesheet Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/timesheet-generator/",
+      "description": "Make a printable weekly timesheet PDF for freelance hours, staff records, projects, or approvals.",
+      "category": "Business paperwork"
+    },
+    {
+      "title": "Certificate Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/certificate-generator/",
+      "description": "Create a printable certificate PDF for completion, participation, classroom awards, or small events.",
+      "category": "Events and awards"
+    },
+    {
+      "title": "To Do List Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/todo-list/",
+      "description": "Build a printable checklist PDF for errands, work tasks, study sessions, home projects, or event prep.",
       "category": "Everyday utility PDFs"
     }
   ],
@@ -327,6 +363,16 @@
       "description": "Make a PDF from a JPG file in the browser when you do not want to send the image to a conversion server."
     },
     {
+      "title": "Multiple images to PDF without uploading",
+      "url": "https://printable-tools-lab.pages.dev/guides/multiple-images-to-pdf-without-uploading/",
+      "description": "Combine several JPG, PNG, or WebP images into one multi-page PDF in the browser."
+    },
+    {
+      "title": "Text to PDF converter without signup",
+      "url": "https://printable-tools-lab.pages.dev/guides/text-to-pdf-converter-no-signup/",
+      "description": "Paste plain text and download a clean one-page PDF without installing an editor."
+    },
+    {
       "title": "Free sign-in sheet generator",
       "url": "https://printable-tools-lab.pages.dev/guides/free-sign-in-sheet-generator/",
       "description": "Create a printable sign-in sheet PDF for events, classes, workshops, meetings, or visitor logs."
@@ -355,6 +401,26 @@
       "title": "Travel checklist PDF",
       "url": "https://printable-tools-lab.pages.dev/guides/travel-checklist-pdf/",
       "description": "Create a one-page travel checklist PDF with categories, checkboxes, and reminder notes."
+    },
+    {
+      "title": "Free receipt generator PDF",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-receipt-generator-pdf/",
+      "description": "Create a simple printable receipt for a sale, service payment, deposit, or reimbursement."
+    },
+    {
+      "title": "Weekly timesheet generator PDF",
+      "url": "https://printable-tools-lab.pages.dev/guides/weekly-timesheet-generator-pdf/",
+      "description": "Make a printable timesheet for freelance hours, staff records, project tracking, or approvals."
+    },
+    {
+      "title": "Free certificate generator PDF",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-certificate-generator-pdf/",
+      "description": "Create a printable certificate for completion, participation, classroom awards, or small events."
+    },
+    {
+      "title": "Printable to do list generator",
+      "url": "https://printable-tools-lab.pages.dev/guides/printable-to-do-list-generator/",
+      "description": "Build a one-page checklist for errands, work tasks, study sessions, home projects, or events."
     }
   ]
 }

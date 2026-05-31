@@ -51,6 +51,7 @@ function readLocalState() {
       robots: Boolean(robots.includes("Sitemap:")),
       llms: Boolean(llms.includes("# PrintableTools Lab")),
       toolsJson: Array.isArray(toolsJson.tools),
+      discoveryJson: fs.existsSync(path.join(root, "discovery.json")),
       distributionPack: fs.existsSync(path.join(root, "DISTRIBUTION.md")),
     },
     ads: {
@@ -64,7 +65,7 @@ function readLocalState() {
 }
 
 async function readLiveState() {
-  const paths = ["/", "/tools/", "/sitemap.xml", "/robots.txt", "/ads.txt", "/llms.txt", "/tools.json", "/api/metrics"];
+  const paths = ["/", "/tools/", "/sitemap.xml", "/robots.txt", "/ads.txt", "/llms.txt", "/tools.json", "/discovery.json", "/api/metrics"];
   const checks = {};
   for (const pathname of paths) {
     checks[pathname] = await liveCheck(pathname);
@@ -239,9 +240,9 @@ function evaluateGates(local, live, searchConsole, discovery) {
   const sitemap = Array.isArray(searchConsole.sitemaps?.sitemap) ? searchConsole.sitemaps.sitemap[0] : null;
   const indexed = searchConsole.inspected.filter((item) => item.verdict === "PASS").length;
   const unknown = searchConsole.inspected.filter((item) => /unknown/i.test(item.coverageState || "")).length;
-  const productReady = local.toolCount >= 20
-    && local.guideCount >= 46
-    && local.indexableRoutes >= 69
+  const productReady = local.toolCount >= 26
+    && local.guideCount >= 50
+    && local.indexableRoutes >= 79
     && local.sitemapLocCount >= local.indexableRoutes
     && Object.values(local.discoveryAssets).every(Boolean)
     && live.checks["/"]?.ok
@@ -263,7 +264,7 @@ function evaluateGates(local, live, searchConsole, discovery) {
     pivot60Day: !searchVisible && (totals.download_pdf || 0) === 0 && (totals.generate_pdf || 0) === 0,
     review90Day: searchVisible && (totals.download_pdf || 0) > 0 && !local.ads.enabled,
     reasons: {
-      productReady: productReady ? ["20 tools, 46 guides, sitemap, discovery assets, and live metrics are present."] : missingProductReasons(local, live),
+      productReady: productReady ? [`${local.toolCount} tools, ${local.guideCount} guides, sitemap, discovery assets, and live metrics are present.`] : missingProductReasons(local, live),
       adsenseApplyReady: adsenseApplyReady ? ["Product is ready, Search Console has visibility, and a real publisher ID is configured."] : missingAdsenseReasons(local, searchConsole, searchVisible),
       searchConsole: summarizeSearchConsoleReasons(searchConsole, sitemap, unknown),
       externalDiscovery: summarizeDiscoveryReasons(discovery),
@@ -273,8 +274,8 @@ function evaluateGates(local, live, searchConsole, discovery) {
 
 function missingProductReasons(local, live) {
   const reasons = [];
-  if (local.toolCount < 20) reasons.push(`Only ${local.toolCount} tools found; target is 20 or more.`);
-  if (local.guideCount < 46) reasons.push(`Only ${local.guideCount} guides found; target is 46 or more.`);
+  if (local.toolCount < 26) reasons.push(`Only ${local.toolCount} tools found; target is 26 or more.`);
+  if (local.guideCount < 50) reasons.push(`Only ${local.guideCount} guides found; target is 50 or more.`);
   if (local.sitemapLocCount < local.indexableRoutes) reasons.push("Sitemap has fewer URLs than the indexable route list.");
   for (const [name, ok] of Object.entries(local.discoveryAssets)) {
     if (!ok) reasons.push(`Missing discovery asset: ${name}.`);

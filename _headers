@@ -15,6 +15,9 @@
 /tools.json
   Content-Type: application/json; charset=utf-8
 
+/discovery.json
+  Content-Type: application/json; charset=utf-8
+
 /ads.txt
   Content-Type: text/plain; charset=utf-8
 

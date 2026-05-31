@@ -55,6 +55,14 @@ const robots = [
 ].join("\n");
 fs.writeFileSync(path.join(root, "robots.txt"), robots);
 
+const headersPath = path.join(root, "_headers");
+if (fs.existsSync(headersPath)) {
+  const headers = fs.readFileSync(headersPath, "utf8");
+  if (!headers.includes("/discovery.json")) {
+    fs.appendFileSync(headersPath, "\n/discovery.json\n  Content-Type: application/json; charset=utf-8\n");
+  }
+}
+
 const adsTxtPath = path.join(root, "ads.txt");
 if (!fs.existsSync(adsTxtPath)) {
   fs.writeFileSync(adsTxtPath, "# No authorized advertising sellers configured yet.\n");
@@ -95,6 +103,7 @@ const llms = [
   `- Guides index: ${siteUrl("guides")}`,
   `- Sitemap: ${fileUrl("sitemap.xml")}`,
   `- Machine-readable tool list: ${fileUrl("tools.json")}`,
+  `- Discovery index: ${fileUrl("discovery.json")}`,
   "",
   "## Tools",
   "",
@@ -114,6 +123,36 @@ const llms = [
 ].join("\n");
 fs.writeFileSync(path.join(root, "llms.txt"), llms);
 
+const discoveryIndex = {
+  name: SITE_SUMMARY.name,
+  url: siteUrl(""),
+  generatedAt: new Date().toISOString(),
+  positioning: "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
+  highIntentEntryPoints: [
+    siteUrl("tools/image-to-pdf"),
+    siteUrl("tools/multi-image-pdf"),
+    siteUrl("tools/text-to-pdf"),
+    siteUrl("tools/invoice-generator"),
+    siteUrl("tools/receipt-generator"),
+    siteUrl("tools/timesheet-generator"),
+    siteUrl("tools/resume-builder"),
+    siteUrl("tools/certificate-generator"),
+    siteUrl("tools/todo-list"),
+  ],
+  constraints: [
+    "No account required.",
+    "No ad interaction gate.",
+    "No paid checkout in the validation version.",
+    "No upload for image conversion tools.",
+  ],
+  validationGates: {
+    continue30Day: "100 PDF downloads, 300 tool generations, or growing Search Console impressions.",
+    pivot60Day: "If no search exposure or downloads, stop adding printable content and test another ad-supported route.",
+    review90Day: "If traffic exists but ad revenue is weak, improve high-intent pages or test compliant affiliate links before paid features.",
+  },
+};
+fs.writeFileSync(path.join(root, "discovery.json"), `${JSON.stringify(discoveryIndex, null, 2)}\n`);
+
 const distribution = [
   "# PrintableTools Lab Distribution Pack",
   "",
@@ -121,28 +160,29 @@ const distribution = [
   "",
   "## One-line pitch",
   "",
-  "PrintableTools Lab is a free no-signup PDF generator site for image-to-PDF conversion, invoices, estimates, resumes, cover letters, calendars, meal planners, sign-in sheets, graph paper, packing lists, worksheets, charts, and flashcards.",
+  "PrintableTools Lab is a free no-signup PDF generator site for image conversion, text-to-PDF, invoices, estimates, receipts, timesheets, resumes, cover letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, and flashcards.",
   "",
   "## Short launch post",
   "",
-  "I built PrintableTools Lab, a free browser-based PDF tool site. It creates practical one-page PDFs like image-to-PDF conversions, invoices, estimates, purchase orders, resumes, cover letters, resignation letters, monthly calendars, meal planners, sign-in sheets, graph paper, packing lists, name tracing worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers. No account and no surprise download fee. Feedback on which tools are most useful would help shape the next batch.",
+  "I built PrintableTools Lab, a free browser-based PDF tool site. It creates practical PDFs like image-to-PDF conversions, multi-image PDFs, text-to-PDF documents, invoices, estimates, purchase orders, receipts, timesheets, resumes, cover letters, resignation letters, certificates, monthly calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, name tracing worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers. No account and no surprise download fee. Feedback on which tools are most useful would help shape the next batch.",
   "",
   "## Directory submission fields",
   "",
   "- Product name: PrintableTools Lab",
   "- URL: https://printable-tools-lab.pages.dev/",
-  "- Category: Productivity, PDF Tools, Education, Small Business Tools, Job Search Tools",
+  "- Category: Productivity, PDF Tools, Document Tools, Education, Small Business Tools, Job Search Tools",
   "- Tagline: Free no-signup printable PDF generators",
-  "- Description: Create practical one-page PDFs in the browser, including image-to-PDF conversions, invoices, estimates, purchase orders, sale records, receipts, resumes, cover letters, resignation letters, calendars, meal planners, sign-in sheets, graph paper, packing lists, worksheets, charts, flashcards, and habit trackers.",
+  "- Description: Create practical PDFs in the browser, including image conversions, multi-image PDFs, text-to-PDF documents, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, flashcards, and habit trackers.",
   "- Pricing: Free",
   "",
   "## Community-safe angles",
   "",
-  "- For freelancers: free invoice, estimate, purchase order, and bill of sale PDFs without account creation.",
+  "- For freelancers: free invoice, estimate, purchase order, receipt, bill of sale, and timesheet PDFs without account creation.",
   "- For job seekers: free resume, cover letter, and resignation letter PDFs without a hidden export fee.",
   "- For parents and teachers: printable name tracing, chore charts, reward charts, flashcards, weekly planners, and habit trackers.",
+  "- For teachers and organizers: free certificate, sign-in sheet, and event checklist PDFs.",
   "- For household planning: monthly calendars and meal planners with grocery lists.",
-  "- For everyday utility needs: image-to-PDF conversion, sign-in sheets, graph paper, and packing lists.",
+  "- For everyday utility needs: image-to-PDF conversion, multi-image PDF export, text-to-PDF, sign-in sheets, graph paper, to-do lists, and packing lists.",
   "",
   "## Places to consider manually",
   "",
@@ -163,14 +203,15 @@ const distribution = [
 ].join("\n");
 fs.writeFileSync(path.join(root, "DISTRIBUTION.md"), distribution);
 
-console.log(`Generated ${routes.length - 1} static route entries, sitemap.xml, robots.txt, tools.json, llms.txt, and DISTRIBUTION.md.`);
+console.log(`Generated ${routes.length - 1} static route entries, sitemap.xml, robots.txt, tools.json, discovery.json, llms.txt, and DISTRIBUTION.md.`);
 
 function categoryForTool(toolPath) {
   const slug = toolPath.replace(/^tools\//, "");
-  if (["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt"].includes(slug)) return "Business paperwork";
+  if (["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt", "receipt-generator", "timesheet-generator"].includes(slug)) return "Business paperwork";
   if (["resume-builder", "cover-letter", "resignation-letter"].includes(slug)) return "Career documents";
   if (["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"].includes(slug)) return "Planning";
-  if (["image-to-pdf", "sign-in-sheet", "graph-paper", "packing-list"].includes(slug)) return "Everyday utility PDFs";
+  if (["image-to-pdf", "multi-image-pdf", "text-to-pdf", "sign-in-sheet", "graph-paper", "packing-list", "todo-list"].includes(slug)) return "Everyday utility PDFs";
+  if (["certificate-generator"].includes(slug)) return "Events and awards";
   return "Education and family printables";
 }
 

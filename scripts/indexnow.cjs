@@ -27,8 +27,14 @@ const priorityUrls = [
   siteUrl(""),
   siteUrl("tools"),
   siteUrl("tools/image-to-pdf"),
+  siteUrl("tools/multi-image-pdf"),
+  siteUrl("tools/text-to-pdf"),
   siteUrl("tools/invoice-generator"),
+  siteUrl("tools/receipt-generator"),
+  siteUrl("tools/timesheet-generator"),
   siteUrl("tools/resume-builder"),
+  siteUrl("tools/certificate-generator"),
+  siteUrl("tools/todo-list"),
   siteUrl("tools/graph-paper"),
 ].filter((url, index, list) => list.indexOf(url) === index);
 

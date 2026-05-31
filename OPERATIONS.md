@@ -6,7 +6,7 @@ This file keeps the project pointed at the current model: free ad-supported prin
 
 ### Free acquisition layer
 
-- Twenty free browser PDF generators.
+- Twenty-six free browser PDF generators.
 - Daily free limit stored locally.
 - One-page PDF exports with a light footer watermark.
 - Original guide pages for search traffic and AdSense review.
@@ -37,16 +37,10 @@ For automation with the service account:
 3. Set the local key path before running scripts:
 
 ```powershell
-$env:GOOGLE_APPLICATION_CREDENTIALS="E:\下载\canvas-sum-498016-g5-11e9a0be90a2.json"
+$env:GOOGLE_APPLICATION_CREDENTIALS="E:\path\to\service-account.json"
 ```
 
-The service account email from the provided key is:
-
-```text
-codex-258@canvas-sum-498016-g5.iam.gserviceaccount.com
-```
-
-If Search Console cannot manually add that email as a user, use the Site Verification API script:
+If Search Console cannot manually add the service-account email as a user, use the Site Verification API script:
 
 ```powershell
 npm.cmd run site-verification -- verify-file
@@ -109,6 +103,7 @@ Keep these files deployed for crawler and ad review readiness:
 - `robots.txt`: allows public pages, blocks noindex internal pages, and points crawlers to the sitemap.
 - `llms.txt`: short machine-readable site summary for AI assistants and emerging tool crawlers.
 - `tools.json`: structured inventory of tools and guides for directories, crawlers, and manual distribution.
+- `discovery.json`: compact high-intent route index for tool directories, launch notes, and automated discovery checks.
 - Tool page JSON-LD: each public tool route includes `SoftwareApplication` structured data with a free offer.
 - `_headers`: basic content/security headers and explicit content types for sitemap, robots, and verification files.
 - `DISTRIBUTION.md`: reusable low-friction launch copy and directory submission fields.
@@ -176,6 +171,8 @@ Practical order if a paid product is added later:
 
 - free invoice generator no signup
 - free image to PDF converter
+- multiple images to PDF converter
+- text to PDF converter no signup
 - JPG to PDF without uploading
 - image to PDF no upload
 - PNG to PDF converter free
@@ -185,6 +182,10 @@ Practical order if a paid product is added later:
 - quarter inch graph paper PDF
 - free packing list generator
 - travel checklist PDF
+- free receipt generator PDF
+- weekly timesheet generator PDF
+- free certificate generator PDF
+- printable to do list generator
 - free invoice PDF generator
 - freelance invoice PDF template
 - invoice generator without watermark
@@ -273,6 +274,12 @@ Create one image or short post per item. Show the printable use case and never p
 43. Attendance sheet PDF with readable rows.
 44. Printable graph paper with quarter-inch grid.
 45. Travel packing list with grouped checkboxes.
+46. Multiple images to PDF without uploading files.
+47. Text to PDF converter for plain notes and letters.
+48. Free receipt generator for service payments and deposits.
+49. Weekly timesheet PDF for freelance hours.
+50. Certificate generator for classrooms and events.
+51. Printable to-do list for errands, study, and event prep.
 
 ## Weekly Operating Loop
 
@@ -296,6 +303,7 @@ Current Search Console checkpoint:
 - Repeated inspection still shows homepage crawled but not indexed; `/tools/` is currently unknown to Google.
 - `llms.txt`, `tools.json`, and distribution pack added after this checkpoint to improve external discovery and manual submission readiness.
 - `2026-05-31T19:31:34Z`: sitemap resubmitted after deploying `llms.txt`, `tools.json`, `DISTRIBUTION.md`, and GitHub repository metadata/topics.
+- `2026-06-01`: expanded to 26 tools and 52 guide pages, including multi-image PDF, text-to-PDF, receipt, timesheet, certificate, and to-do list routes. Added `discovery.json` for high-intent route discovery.
 - Action: keep site stable, improve useful content/navigation, thicken tool pages, and avoid repeated low-value resubmission loops.
 
 ## External Discovery Queue
