@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-31T23:02:08.269Z",
+  "generatedAt": "2026-05-31T23:04:07.662Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 26,
@@ -91,7 +91,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-05-31T22:52:50.924Z",
+          "generatedAt": "2026-05-31T23:01:18.254Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -522,7 +522,7 @@
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-05-31T22:52:50.924Z",
+          "generatedAt": "2026-05-31T23:01:18.254Z",
           "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1002,7 +1002,7 @@
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 1,
+      "sitemapUrlCount": 9,
       "landingPagesLinked": 8,
       "error": ""
     },
@@ -1015,7 +1015,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": false
+    "externalDiscoveryReady": true
   },
   "gates": {
     "productReady": true,
@@ -1023,7 +1023,7 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": false,
+    "externalDiscoveryReady": true,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
@@ -1044,7 +1044,7 @@
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 8 landing page link(s).",
-        "GitHub Pages discovery sitemap has 1 URL(s).",
+        "GitHub Pages discovery sitemap has 9 URL(s).",
         "IndexNow key file is reachable from the site root."
       ]
     }
