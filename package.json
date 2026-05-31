@@ -8,6 +8,7 @@
     "verify:seo": "node scripts/verify-seo.cjs",
     "search-console": "node scripts/search-console.cjs",
     "indexnow": "node scripts/indexnow.cjs",
+    "premium:pack": "node scripts/create-premium-pack.cjs",
     "smoke": "node scripts/smoke.cjs"
   }
 }

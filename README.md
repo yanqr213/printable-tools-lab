@@ -52,6 +52,7 @@ npm.cmd run smoke
 - Static route folders support GitHub Pages-style deep links.
 - `sitemap.xml` is generated from the route list.
 - `OPERATIONS.md` contains account setup, keywords, distribution ideas, and pivot rules.
+- `premium-pack/printable-tools-starter-pack.zip` is the first paid-product artifact after running `npm.cmd run premium:pack`.
 
 ## Account setup checklist
 

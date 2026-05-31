@@ -141,10 +141,10 @@ const pages = [
   },
   {
     path: "premium-waitlist",
-    title: "Premium tools are not open yet",
-    description: "The free version is validating demand before any paid plan is launched.",
+    title: "PrintableTools Starter Pack",
+    description: "A paid starter bundle for parents, teachers, tutors, and homeschool families who want clean printable PDFs.",
     index: false,
-    html: `<article class="article-shell article"><h1>Premium tools are not open yet</h1><p>Premium features such as watermark-free PDFs, batch generation, and classroom template bundles are planned only if users show real demand.</p></article>`,
+    html: `<article class="article-shell article"><h1>PrintableTools Starter Pack</h1><p>A paid starter bundle for parents, teachers, tutors, and homeschool families who want clean printable PDFs.</p><p>Recommended launch price test: $2.99 to $4.99. Add a no-monthly-fee checkout link when payment is ready.</p></article>`,
   },
   {
     path: "launch-kit",

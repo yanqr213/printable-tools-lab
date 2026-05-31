@@ -148,3 +148,32 @@ The script creates `indexnow-key.txt`, hosts it at the site root, and submits al
 - If there are clicks but no downloads, improve above-the-fold tool clarity.
 - If there are downloads but no premium clicks, keep ads/affiliate as the main path.
 - If premium clicks exceed 20 before meaningful traffic, create a watermark-free pack before adding new free tools.
+
+## First paid product
+
+The first paid product is generated locally:
+
+```powershell
+npm.cmd run premium:pack
+```
+
+Artifact:
+
+```text
+premium-pack/printable-tools-starter-pack.zip
+```
+
+Use `premium-pack/printable-tools-starter-pack/LISTING-COPY.md` for Gumroad, Payhip, Ko-fi, Lemon Squeezy, Etsy, or TPT listing copy.
+
+Recommended price test:
+
+- $2.99 launch price
+- $4.99 normal starter price
+- $9.99 expanded no-watermark classroom bundle after demand is proven
+
+When checkout is ready, edit `site-config.js`:
+
+```js
+enablePremiumCheckout: true,
+premiumCheckoutUrl: "https://YOUR-CHECKOUT-LINK"
+```

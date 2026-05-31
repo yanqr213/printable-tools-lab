@@ -351,11 +351,15 @@
       ],
     },
     "premium-waitlist": {
-      title: "Premium tools are not open yet",
-      description: "The free version is validating demand before any paid plan is launched.",
+      title: "PrintableTools Starter Pack",
+      description: "A paid starter bundle for parents, teachers, tutors, and homeschool families who want clean printable PDFs.",
       body: [
-        ["p", "PrintableTools Lab is currently in a zero-cost validation phase. Premium features such as watermark-free PDFs, batch generation, and classroom template bundles are planned only if users show real demand."],
-        ["p", "For now, this button records local upgrade interest in your browser. On a live site, it can be replaced with an email waitlist or a no-monthly-fee checkout link after validation gates are met."],
+        ["p", "The Starter Pack is the first paid offer for PrintableTools Lab. It bundles name tracing, chore chart, reward chart, flashcard, weekly planner, and habit tracker printable samples for quick home, classroom, tutoring, and homeschool use."],
+        ["p", "Recommended launch price test: $2.99 to $4.99. Use Gumroad, Payhip, Ko-fi, or Lemon Squeezy when a checkout account is ready."],
+        ["h2", "Included"],
+        ["ul", ["Name tracing worksheet sample", "Weekly chore chart sample", "Reward chart sample", "Vocabulary flashcards sample", "Weekly planner sample", "30-day habit tracker sample", "Listing copy and usage notes"]],
+        ["h2", "Checkout status"],
+        ["p", "If a checkout URL has not been configured yet, the button records local purchase interest. Once the checkout URL is configured in site-config.js, the same button sends buyers to payment."],
       ],
     },
     "launch-kit": {
@@ -656,15 +660,16 @@
       <article class="article-shell article">
         <h1>${escapeHtml(page.title)}</h1>
         ${renderBlocks(page.body)}
-        ${key === "premium-waitlist" ? `<p><button class="button" id="recordPremium">Record local upgrade interest</button></p>` : ""}
+        ${key === "premium-waitlist" ? `<p><a class="button premium-click" id="recordPremium" href="${escapeHtml(SITE.premiumUrl)}" data-premium-source="premium_page">${CONFIG.enablePremiumCheckout ? "Buy starter pack" : "Record purchase interest"}</a></p>` : ""}
       </article>
     `;
     const premium = document.getElementById("recordPremium");
-    if (premium) {
-      premium.addEventListener("click", () => {
+    if (premium && !CONFIG.enablePremiumCheckout) {
+      premium.addEventListener("click", (event) => {
+        event.preventDefault();
         track("premium_click", { source: "waitlist_page" });
         premium.textContent = "Recorded locally";
-        premium.disabled = true;
+        premium.setAttribute("aria-disabled", "true");
       });
     }
   }
