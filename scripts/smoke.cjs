@@ -39,6 +39,10 @@ function delay(ms) {
     "/tools/resignation-letter/",
     "/tools/monthly-calendar/",
     "/tools/meal-planner/",
+    "/tools/image-to-pdf/",
+    "/tools/sign-in-sheet/",
+    "/tools/graph-paper/",
+    "/tools/packing-list/",
     "/guides/",
     "/guides/free-printable-name-tracing-worksheet-maker/",
     "/guides/free-weekly-planner-generator/",
@@ -53,6 +57,10 @@ function delay(ms) {
     "/guides/free-resignation-letter-generator/",
     "/guides/free-monthly-calendar-generator/",
     "/guides/free-meal-planner-generator/",
+    "/guides/free-image-to-pdf-converter/",
+    "/guides/free-sign-in-sheet-generator/",
+    "/guides/free-printable-graph-paper-generator/",
+    "/guides/free-packing-list-generator/",
     "/privacy/",
     "/dashboard/",
   ];
@@ -64,7 +72,7 @@ function delay(ms) {
     if (!title.includes("PrintableTools Lab")) throw new Error(`Bad title for ${route}: ${title}`);
   }
 
-  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/"]) {
+  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
     await page.evaluate(() => localStorage.removeItem("ptl_daily"));
     const button = page.getByRole("button", { name: "Generate PDF" });

@@ -15,6 +15,8 @@ const TOOL_FIELDS = {
   "resignation-letter": ["role", "company", "lastDay", "tone", "appreciation", "handoff"],
   "monthly-calendar": ["title", "month", "year", "notes"],
   "meal-planner": ["title", "meals", "grocery", "notes"],
+  "sign-in-sheet": ["title", "event", "date", "notes"],
+  "packing-list": ["title", "destination", "sections", "notes"],
 };
 
 const FIELD_LIMITS = {
@@ -60,6 +62,9 @@ const FIELD_LIMITS = {
   month: 16,
   meals: 620,
   grocery: 420,
+  event: 90,
+  destination: 90,
+  sections: 680,
 };
 
 export async function onRequestPost(context) {
@@ -407,6 +412,70 @@ function fallbackSuggestions(tool, values) {
           meals: "Monday | yogurt | salad | sheet pan dinner\nTuesday | smoothie | wraps | tacos\nWednesday | eggs | leftovers | stir fry\nThursday | toast | soup | pasta\nFriday | oats | sandwiches | takeout backup\nSaturday | pancakes | leftovers | burgers\nSunday | fruit | noodles | batch cook",
           grocery: "Quick breakfasts\nWraps\nSalad kit\nProtein\nFrozen vegetables\nPasta\nFruit",
           notes: "Choose two prep tasks on Sunday and leave Friday flexible.",
+        },
+      },
+    ],
+    "sign-in-sheet": [
+      {
+        title: "Workshop sign-in",
+        summary: "Simple event attendance sheet",
+        fields: {
+          title: "Workshop Sign-in Sheet",
+          event: values.event || "Workshop",
+          date: values.date || "Event date",
+          notes: "Please print clearly and sign on your row.",
+        },
+      },
+      {
+        title: "Class attendance",
+        summary: "Attendance wording for a class or club",
+        fields: {
+          title: "Class Attendance Sheet",
+          event: values.event || "Class or club name",
+          date: values.date || "Today",
+          notes: "Mark attendance at the start of the session.",
+        },
+      },
+      {
+        title: "Visitor log",
+        summary: "Front-desk visitor record wording",
+        fields: {
+          title: "Visitor Sign-in Sheet",
+          event: values.event || "Visitor log",
+          date: values.date || "Today",
+          notes: "Collect only the contact details required for this visit.",
+        },
+      },
+    ],
+    "packing-list": [
+      {
+        title: "Weekend trip",
+        summary: "Short packing list for a weekend away",
+        fields: {
+          title: "Weekend Packing List",
+          destination: values.destination || "Weekend trip",
+          sections: "Clothing: shirts, pants, socks, sleepwear\nToiletries: toothbrush, toothpaste, shampoo, sunscreen\nDocuments: ID, tickets, reservation notes\nElectronics: phone charger, headphones, power bank",
+          notes: "Check weather and luggage size before packing.",
+        },
+      },
+      {
+        title: "Family vacation",
+        summary: "Family trip checklist with shared items",
+        fields: {
+          title: "Family Vacation Packing List",
+          destination: values.destination || "Family vacation",
+          sections: "Kids: outfits, pajamas, comfort item, snacks\nDocuments: IDs, tickets, insurance cards, booking notes\nHealth: medicine, sunscreen, first-aid items\nTravel: chargers, headphones, entertainment, water bottles",
+          notes: "Pack shared items once and keep important documents in one easy-to-reach bag.",
+        },
+      },
+      {
+        title: "Business travel",
+        summary: "Work trip packing checklist",
+        fields: {
+          title: "Business Travel Checklist",
+          destination: values.destination || "Work trip",
+          sections: "Work: laptop, charger, notebook, business cards\nClothing: outfits, shoes, sleepwear, jacket\nDocuments: ID, itinerary, hotel details, meeting notes\nPersonal: toiletries, medicine, headphones, snacks",
+          notes: "Confirm meeting dress code, airport timing, and charger compatibility.",
         },
       },
     ],

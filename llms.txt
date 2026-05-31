@@ -1,8 +1,8 @@
 # PrintableTools Lab
 
-Free browser-based PDF generators for invoices, estimates, purchase orders, sale records, receipts, resumes, cover letters, resignation letters, calendars, meal planners, worksheets, charts, flashcards, and habit trackers.
+Free browser-based PDF generators for image conversion, invoices, estimates, purchase orders, sale records, receipts, resumes, cover letters, resignation letters, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, and habit trackers.
 
-Audience: Freelancers, small businesses, job seekers, parents, teachers, tutors, homeschool families, tenants, landlords, and household planners.
+Audience: Freelancers, small businesses, job seekers, parents, teachers, tutors, homeschool families, students, event organizers, travelers, tenants, landlords, and household planners.
 
 Monetization model: Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.
 
@@ -32,6 +32,10 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Resignation Letter Generator](https://printable-tools-lab.pages.dev/tools/resignation-letter/): Make a simple resignation letter PDF with notice date, last day, appreciation, and handoff wording.
 - [Monthly Calendar Generator](https://printable-tools-lab.pages.dev/tools/monthly-calendar/): Create a free printable monthly calendar PDF for appointments, school events, chores, meals, or family planning.
 - [Meal Planner Generator](https://printable-tools-lab.pages.dev/tools/meal-planner/): Make a printable weekly meal planner PDF with breakfast, lunch, dinner, grocery list, and prep notes.
+- [Image to PDF Converter](https://printable-tools-lab.pages.dev/tools/image-to-pdf/): Convert JPG, PNG, or WebP images into a clean one-page PDF in your browser without uploading files.
+- [Sign-in Sheet Generator](https://printable-tools-lab.pages.dev/tools/sign-in-sheet/): Create a printable sign-in sheet PDF for events, classrooms, workshops, meetings, or visitor logs.
+- [Graph Paper Generator](https://printable-tools-lab.pages.dev/tools/graph-paper/): Generate printable graph paper PDF with quarter-inch, half-inch, or small grid spacing for math, notes, and design sketches.
+- [Packing List Generator](https://printable-tools-lab.pages.dev/tools/packing-list/): Make a printable packing list PDF for travel, school trips, business travel, camping, or family vacations.
 
 ## Useful Guide Pages
 

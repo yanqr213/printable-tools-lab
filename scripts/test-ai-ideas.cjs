@@ -143,6 +143,26 @@ async function main() {
   });
   const coverLetterPayload = await coverLetterFallback.json();
   assert(coverLetterPayload.suggestions.length === 3, "Career expansion tools should have fallback ideas");
+  const packingListFallback = await onRequestPost({
+    request: new Request("https://example.test/api/ideas", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        tool: "packing-list",
+        values: {
+          destination: "Weekend trip",
+          sections: "Clothing: shirts, socks",
+        },
+      }),
+    }),
+    env: {
+      AI_BASE_URL: "https://ai.example.test/v1",
+      AI_API_KEY: "test-key",
+      AI_MODEL: "test-model",
+    },
+  });
+  const packingListPayload = await packingListFallback.json();
+  assert(packingListPayload.suggestions.length === 3, "New utility tools should have fallback ideas");
   global.fetch = previousFetch;
   console.log("AI helper test passed.");
 }

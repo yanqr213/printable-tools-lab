@@ -3,4 +3,5 @@ Allow: /
 Disallow: /dashboard/
 Disallow: /roadmap/
 Disallow: /launch-kit/
+Disallow: /reports/
 Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml

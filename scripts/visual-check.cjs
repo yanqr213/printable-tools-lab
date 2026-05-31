@@ -17,7 +17,7 @@ function delay(ms) {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 1366, height: 900 } });
 
-  for (const route of ["/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/"]) {
+  for (const route of ["/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
     const canvas = page.locator("canvas.preview-canvas");
     await canvas.waitFor();
@@ -31,7 +31,8 @@ function delay(ms) {
     });
     if (sample[3] === 0) throw new Error(`Canvas appears transparent on ${route}`);
     const text = await page.locator("main").innerText();
-    if (!text.includes("AI ideas") || !text.includes("Generate PDF")) throw new Error(`Core actions missing on ${route}`);
+    if (!text.includes("Generate PDF")) throw new Error(`Core action missing on ${route}`);
+    if (!route.includes("image-to-pdf") && !route.includes("graph-paper") && !text.includes("AI ideas")) throw new Error(`AI action missing on ${route}`);
   }
 
   await page.setViewportSize({ width: 390, height: 844 });

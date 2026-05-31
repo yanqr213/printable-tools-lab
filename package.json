@@ -14,6 +14,7 @@
     "site-verification": "node scripts/site-verification.cjs",
     "search-console": "node scripts/search-console.cjs",
     "indexnow": "node scripts/indexnow.cjs",
+    "validate:ops": "node scripts/validation-report.cjs",
     "smoke": "node scripts/smoke.cjs"
   }
 }

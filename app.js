@@ -31,6 +31,8 @@
     "resignation-letter": ["role", "company", "lastDay", "tone", "appreciation", "handoff"],
     "monthly-calendar": ["title", "month", "year", "notes"],
     "meal-planner": ["title", "meals", "grocery", "notes"],
+    "sign-in-sheet": ["title", "event", "date", "notes"],
+    "packing-list": ["title", "destination", "sections", "notes"],
   };
 
   const tools = {
@@ -484,6 +486,105 @@
       ],
       draw: drawMealPlanner,
     },
+    "image-to-pdf": {
+      id: "image-to-pdf",
+      icon: "IMG",
+      title: "Image to PDF Converter",
+      shortTitle: "Image to PDF",
+      description: "Convert JPG, PNG, or WebP images into a clean one-page PDF in your browser without uploading files.",
+      keywords: ["image to PDF", "JPG to PDF", "PNG to PDF", "no upload"],
+      watermark: false,
+      ai: false,
+      defaultValues: {
+        title: "Image to PDF",
+        layout: "fit",
+        paper: "letter",
+        caption: "",
+        images: "",
+      },
+      fields: [
+        { id: "images", label: "Images", type: "file", accept: "image/png,image/jpeg,image/webp", multiple: true, help: "Select up to 4 images. They stay in your browser and are not uploaded." },
+        { id: "title", label: "PDF title", type: "text", maxLength: 70 },
+        { id: "layout", label: "Layout", type: "select", options: [["fit", "Fit first image"], ["gallery", "Gallery up to 4 images"], ["fill", "Fill page with first image"]] },
+        { id: "caption", label: "Optional caption", type: "text", maxLength: 90 },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawImageToPdf,
+    },
+    "sign-in-sheet": {
+      id: "sign-in-sheet",
+      icon: "IN",
+      title: "Sign-in Sheet Generator",
+      shortTitle: "Sign-in sheet",
+      description: "Create a printable sign-in sheet PDF for events, classrooms, workshops, meetings, or visitor logs.",
+      keywords: ["sign-in sheet", "attendance sheet", "visitor log", "printable"],
+      defaultValues: {
+        title: "Event Sign-in Sheet",
+        event: "Workshop or meeting name",
+        date: "2026-06-01",
+        rows: "16",
+        columns: "name-email-signature",
+        notes: "Please print clearly.",
+        paper: "letter",
+      },
+      fields: [
+        { id: "title", label: "Sheet title", type: "text", maxLength: 70 },
+        { id: "event", label: "Event or class", type: "text", maxLength: 90 },
+        { id: "date", label: "Date", type: "text", maxLength: 32 },
+        { id: "rows", label: "Rows", type: "select", options: [["12", "12"], ["16", "16"], ["20", "20"], ["24", "24"]] },
+        { id: "columns", label: "Columns", type: "select", options: [["name-signature", "Name + signature"], ["name-email-signature", "Name + email + signature"], ["name-phone-signature", "Name + phone + signature"], ["name-time-signature", "Name + time + signature"]] },
+        { id: "notes", label: "Small note", type: "text", maxLength: 90 },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawSignInSheet,
+    },
+    "graph-paper": {
+      id: "graph-paper",
+      icon: "GRID",
+      title: "Graph Paper Generator",
+      shortTitle: "Graph paper",
+      description: "Generate printable graph paper PDF with quarter-inch, half-inch, or small grid spacing for math, notes, and design sketches.",
+      keywords: ["graph paper", "grid paper", "printable PDF", "math paper"],
+      ai: false,
+      defaultValues: {
+        title: "Printable Graph Paper",
+        spacing: "0.25",
+        style: "major",
+        paper: "letter",
+        color: "blue",
+      },
+      fields: [
+        { id: "title", label: "Page title", type: "text", maxLength: 70 },
+        { id: "spacing", label: "Grid spacing", type: "select", options: [["0.2", "5 lines per inch"], ["0.25", "Quarter inch"], ["0.5", "Half inch"]] },
+        { id: "style", label: "Grid style", type: "select", options: [["major", "Major lines"], ["plain", "Plain grid"], ["dots", "Dot grid"]] },
+        { id: "color", label: "Line color", type: "select", options: [["blue", "Soft blue"], ["gray", "Gray"], ["green", "Soft green"]] },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawGraphPaper,
+    },
+    "packing-list": {
+      id: "packing-list",
+      icon: "BAG",
+      title: "Packing List Generator",
+      shortTitle: "Packing list",
+      description: "Make a printable packing list PDF for travel, school trips, business travel, camping, or family vacations.",
+      keywords: ["packing list", "travel checklist", "vacation packing", "printable"],
+      defaultValues: {
+        title: "Travel Packing List",
+        destination: "Weekend trip",
+        sections: "Clothing: shirts, pants, socks, sleepwear\nToiletries: toothbrush, toothpaste, shampoo, sunscreen\nDocuments: ID, tickets, reservation notes\nElectronics: phone charger, headphones, power bank",
+        notes: "Check weather and luggage limits before packing.",
+        paper: "letter",
+      },
+      fields: [
+        { id: "title", label: "List title", type: "text", maxLength: 70 },
+        { id: "destination", label: "Trip or destination", type: "text", maxLength: 90 },
+        { id: "sections", label: "Packing sections", type: "textarea", maxLength: 680, help: "One section per line: Category: item, item, item" },
+        { id: "notes", label: "Reminder note", type: "textarea", maxLength: 220 },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawPackingList,
+    },
   };
 
   const keywordClusters = [
@@ -522,6 +623,16 @@
         ["Monthly calendar generator", "/tools/monthly-calendar/"],
         ["Meal planner generator", "/tools/meal-planner/"],
         ["Habit tracker generator", "/tools/habit-tracker/"],
+      ],
+    },
+    {
+      title: "Everyday utility PDFs",
+      description: "High-intent PDF tools for image conversion, sign-in sheets, graph paper, and travel checklists.",
+      links: [
+        ["Image to PDF converter", "/tools/image-to-pdf/"],
+        ["Sign-in sheet generator", "/tools/sign-in-sheet/"],
+        ["Graph paper generator", "/tools/graph-paper/"],
+        ["Packing list generator", "/tools/packing-list/"],
       ],
     },
     {
@@ -993,6 +1104,110 @@
         ["p", "Do not over-plan every snack and detail. Leave one dinner open for leftovers, schedule, or a quick pantry meal."],
       ],
     },
+    {
+      slug: "free-image-to-pdf-converter",
+      title: "Free image to PDF converter",
+      description: "Convert a JPG, PNG, or WebP image into a one-page PDF without uploading files.",
+      tool: "image-to-pdf",
+      content: [
+        ["h2", "Why local conversion matters"],
+        ["p", "Image-to-PDF searches are urgent: people often need to submit a document, receipt, form, or photo as a PDF. This converter keeps the file in the browser instead of uploading it to a server."],
+        ["h2", "Best uses"],
+        ["ul", ["Turn a photo of a form into a PDF.", "Convert a screenshot or image scan for a quick upload.", "Make a single-page PDF from a PNG, JPG, or WebP file.", "Use gallery mode when several images belong on one page."]],
+        ["h2", "Before sharing"],
+        ["p", "Open the PDF after downloading and confirm the image is readable, not cropped, and oriented the way the receiving site expects."],
+      ],
+    },
+    {
+      slug: "jpg-to-pdf-without-uploading",
+      title: "JPG to PDF without uploading",
+      description: "Make a PDF from a JPG file in the browser when you do not want to send the image to a conversion server.",
+      tool: "image-to-pdf",
+      content: [
+        ["h2", "Use browser-side conversion for sensitive images"],
+        ["p", "Photos of receipts, IDs, forms, and school documents can contain private information. A local converter is a safer first choice because the image is drawn into a PDF on your device."],
+        ["h2", "Fit or fill"],
+        ["p", "Use fit mode when the entire image must remain visible. Use fill mode only for image-heavy pages where edge cropping is acceptable."],
+      ],
+    },
+    {
+      slug: "free-sign-in-sheet-generator",
+      title: "Free sign-in sheet generator",
+      description: "Create a printable sign-in sheet PDF for events, classes, workshops, meetings, or visitor logs.",
+      tool: "sign-in-sheet",
+      content: [
+        ["h2", "A fast sheet beats a complicated form"],
+        ["p", "For small events, a printed sign-in sheet is often enough. It gives the organizer names, attendance, signatures, and contact details without needing a registration app."],
+        ["h2", "Choose only the columns you need"],
+        ["ul", ["Name and signature for attendance.", "Name, email, and signature for follow-up.", "Name, phone, and signature for visitor logs.", "Name, time, and signature for check-in records."]],
+        ["h2", "Privacy note"],
+        ["p", "Only collect information you actually need. If the sheet is public on a table, avoid asking for sensitive details."],
+      ],
+    },
+    {
+      slug: "attendance-sheet-pdf-template",
+      title: "Attendance sheet PDF template",
+      description: "Use a simple printable attendance sheet for classes, clubs, workshops, and small meetings.",
+      tool: "sign-in-sheet",
+      content: [
+        ["h2", "Keep attendance rows readable"],
+        ["p", "A useful attendance sheet leaves enough writing space. Fewer rows per page can be better than a cramped page nobody can read later."],
+        ["h2", "Print before the room gets busy"],
+        ["p", "Add the event name, date, and note before printing so people only need to write their own line."],
+      ],
+    },
+    {
+      slug: "free-printable-graph-paper-generator",
+      title: "Free printable graph paper generator",
+      description: "Generate graph paper PDF with quarter-inch, half-inch, or small grid spacing.",
+      tool: "graph-paper",
+      content: [
+        ["h2", "Grid paper is a repeat-use printable"],
+        ["p", "Students, teachers, makers, and planners often need graph paper immediately. A generator with paper size and spacing options is useful even without decorative templates."],
+        ["h2", "Choose the spacing"],
+        ["ul", ["Quarter inch is a common general-purpose grid.", "Half inch is easier for younger students or sketching.", "Five lines per inch gives a tighter technical grid.", "Dot grid works for lighter planning and notes."]],
+        ["h2", "Print check"],
+        ["p", "Use actual size or 100 percent print scaling when accurate spacing matters."],
+      ],
+    },
+    {
+      slug: "quarter-inch-graph-paper-pdf",
+      title: "Quarter inch graph paper PDF",
+      description: "Create a quarter-inch graph paper PDF for math practice, planning, and sketching.",
+      tool: "graph-paper",
+      content: [
+        ["h2", "A practical default for school and planning"],
+        ["p", "Quarter-inch graph paper is readable without using too much page space. It is a good default for math work, simple layouts, and hand-drawn plans."],
+        ["h2", "Use major lines for scanning"],
+        ["p", "Major lines every inch make the page easier to scan after printing, especially when students or planners write over the grid."],
+      ],
+    },
+    {
+      slug: "free-packing-list-generator",
+      title: "Free packing list generator",
+      description: "Make a printable packing checklist PDF for travel, camping, family vacations, or business trips.",
+      tool: "packing-list",
+      content: [
+        ["h2", "Packing lists prevent last-minute mistakes"],
+        ["p", "A printed checklist works well because packing happens away from the screen: bedroom, laundry area, suitcase, car, or entryway."],
+        ["h2", "Useful sections"],
+        ["ul", ["Clothing.", "Toiletries.", "Documents.", "Electronics.", "Kids or baby items.", "Medicine and health items.", "Camping or outdoor gear."]],
+        ["h2", "Before you print"],
+        ["p", "Check the weather, activity plan, luggage limits, and any required documents before finalizing the list."],
+      ],
+    },
+    {
+      slug: "travel-checklist-pdf",
+      title: "Travel checklist PDF",
+      description: "Create a one-page travel checklist PDF with categories, checkboxes, and reminder notes.",
+      tool: "packing-list",
+      content: [
+        ["h2", "Keep the checklist grouped"],
+        ["p", "A travel checklist is easier to use when items are grouped by where they are packed or used. Separate clothes, toiletries, documents, and electronics."],
+        ["h2", "Leave space for trip-specific items"],
+        ["p", "Every trip has odd items. Add a notes area for passports, tickets, chargers, gifts, school forms, or event-specific supplies."],
+      ],
+    },
   ];
 
   const pages = {
@@ -1001,7 +1216,7 @@
       description: "PrintableTools Lab makes quick, practical PDF generators for families, teachers, tutors, and home organizers.",
       body: [
         ["p", "PrintableTools Lab is built around a simple idea: useful printable pages should be fast to make, easy to print, and readable on ordinary home or school printers."],
-        ["p", "The first version focuses on name tracing worksheets, chore charts, and reward charts because these have clear everyday use cases and can be generated without storing personal data on a server."],
+        ["p", "The current version focuses on practical browser-side PDF work: image conversion, business documents, career documents, planning pages, classroom resources, and household checklists."],
         ["p", "The free tools run in the browser. We use a light watermark and a daily generation limit while the project validates demand and prepares for responsible advertising."],
       ],
     },
@@ -1050,11 +1265,11 @@
       body: [
         ["p", "Use this page to coordinate the first distribution push. The goal is not to look busy; it is to create enough real traffic for Search Console, AdSense readiness, and download validation."],
         ["h2", "Primary links"],
-        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Name tracing: https://printable-tools-lab.pages.dev/tools/name-tracing/", "Chore chart: https://printable-tools-lab.pages.dev/tools/chore-chart/", "Reward chart: https://printable-tools-lab.pages.dev/tools/reward-chart/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
+        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Tools index: https://printable-tools-lab.pages.dev/tools/", "Image to PDF: https://printable-tools-lab.pages.dev/tools/image-to-pdf/", "Invoice generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
         ["h2", "First distribution copy"],
-        ["p", "Free printable PDF makers for parents and teachers: create a name tracing worksheet, chore chart, or reward chart in your browser. No account required."],
-        ["p", "Try the free name tracing worksheet generator: enter a name, choose A4 or US Letter, and download a printable PDF in under a minute."],
-        ["p", "Need a quick chore chart for kids? This free generator makes a one-page weekly PDF with checkboxes for every day."],
+        ["p", "Free browser PDF tools: convert images to PDF, create invoices, resumes, sign-in sheets, graph paper, calendars, worksheets, and checklists. No account required."],
+        ["p", "Try the free image to PDF converter: select a JPG, PNG, or WebP file and generate a one-page PDF locally without uploading the image."],
+        ["p", "Need a quick invoice, sign-in sheet, or packing checklist? PrintableTools Lab creates practical one-page PDFs in the browser."],
         ["h2", "Do not do this"],
         ["ul", ["Do not request ad interactions from visitors.", "Do not submit to AdSense before Search Console sees public pages.", "Do not buy traffic before tool usage proves basic conversion."]],
       ],
@@ -1077,6 +1292,10 @@
     "resignation-letter",
     "monthly-calendar",
     "meal-planner",
+    "image-to-pdf",
+    "sign-in-sheet",
+    "graph-paper",
+    "packing-list",
     "rent-receipt",
     "name-tracing",
     "chore-chart",
@@ -1088,6 +1307,7 @@
 
   const app = document.getElementById("app");
   let currentToolState = null;
+  const imageToolState = new Map();
 
   const SOFTWARE_SCHEMA_IDS = new Set(["tools"]);
 
@@ -1148,13 +1368,13 @@
       <section class="shell hero">
         <div>
           <h1>Make useful printable PDFs in under a minute.</h1>
-          <p>Free browser-based generators for invoices, rent receipts, resumes, worksheets, chore charts, and planners. No account, no surprise download fee.</p>
+          <p>Free browser-based generators for image-to-PDF conversion, invoices, rent receipts, resumes, worksheets, sign-in sheets, graph paper, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/tools/invoice-generator/">Create an invoice</a>
             <a class="button secondary" href="/guides/">Read printable guides</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>16</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>20</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
             <div class="proof-tile"><strong>38</strong><span>SEO-ready guides</span></div>
           </div>
@@ -1228,7 +1448,7 @@
     app.innerHTML = `
       <section class="shell page-title section">
         <h1>Free PDF tools</h1>
-        <p>Choose a browser-based generator for business paperwork, job applications, planning pages, classroom printables, and family routines. Each tool creates a one-page PDF without requiring an account.</p>
+        <p>Choose a browser-based generator for business paperwork, job applications, image conversion, planning pages, classroom printables, and family routines. Each tool creates a one-page PDF without requiring an account.</p>
       </section>
       <section class="shell section">
         <div class="section-head">
@@ -1243,7 +1463,7 @@
         <div class="section-head">
           <div>
             <h2>All generators</h2>
-            <p>All tools run in the browser and are designed for fast, practical one-page PDFs.</p>
+            <p>All tools run in the browser and are designed for fast, practical one-page PDFs. Image conversion stays local and does not upload files.</p>
           </div>
         </div>
         <div class="grid-3">${toolOrder.map((id) => toolCard(tools[id])).join("")}</div>
@@ -1294,7 +1514,7 @@
             ${tool.fields.map((field) => renderField(field, tool.defaultValues[field.id])).join("")}
             <div class="actions">
               <button class="button" type="submit">Generate PDF</button>
-              <button class="button secondary" type="button" id="aiIdeas">AI ideas</button>
+              ${tool.ai === false ? "" : `<button class="button secondary" type="button" id="aiIdeas">AI ideas</button>`}
               <button class="button secondary" type="button" id="refreshPreview">Refresh preview</button>
             </div>
             <p class="help">${tool.watermark === false ? "The free version creates one clean one-page PDF. Daily limits are stored locally in this browser." : "The free version creates one page and adds a small footer watermark. Daily limits are stored locally in this browser."}</p>
@@ -1359,6 +1579,9 @@
   function renderField(field, value) {
     const common = `id="${field.id}" name="${field.id}" ${field.maxLength ? `maxlength="${field.maxLength}"` : ""}`;
     const help = field.help ? `<span class="help">${escapeHtml(field.help)}</span>` : "";
+    if (field.type === "file") {
+      return `<div class="field"><label for="${field.id}">${escapeHtml(field.label)}</label><input ${common} type="file" ${field.accept ? `accept="${escapeHtml(field.accept)}"` : ""} ${field.multiple ? "multiple" : ""}>${help}</div>`;
+    }
     if (field.type === "textarea") {
       return `<div class="field"><label for="${field.id}">${escapeHtml(field.label)}</label><textarea ${common}>${escapeHtml(value || "")}</textarea>${help}</div>`;
     }
@@ -1385,13 +1608,22 @@
     };
 
     form.addEventListener("input", draw);
+    form.addEventListener("change", (event) => {
+      if (event.target && event.target.type === "file") {
+        loadImageFiles(tool, event.target.files, draw);
+        return;
+      }
+      draw();
+    });
     refresh.addEventListener("click", () => {
       track("generate_preview", { tool: tool.id });
       draw();
     });
-    aiIdeas.addEventListener("click", async () => {
-      await requestAiIdeas(tool, form, aiIdeas, aiIdeasPanel, draw);
-    });
+    if (aiIdeas) {
+      aiIdeas.addEventListener("click", async () => {
+        await requestAiIdeas(tool, form, aiIdeas, aiIdeasPanel, draw);
+      });
+    }
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       notice.hidden = true;
@@ -1586,7 +1818,47 @@
 
   function getFormValues(form) {
     const data = new FormData(form);
-    return Object.fromEntries(data.entries());
+    const values = {};
+    for (const [key, value] of data.entries()) {
+      if (value instanceof File) continue;
+      values[key] = value;
+    }
+    return values;
+  }
+
+  function loadImageFiles(tool, fileList, draw) {
+    if (tool.id !== "image-to-pdf") return;
+    const files = Array.from(fileList || [])
+      .filter((file) => /^image\/(png|jpeg|webp)$/.test(file.type))
+      .slice(0, 4);
+    if (!files.length) {
+      imageToolState.set(tool.id, []);
+      draw();
+      return;
+    }
+    Promise.all(files.map(readImageFile))
+      .then((items) => {
+        imageToolState.set(tool.id, items.filter(Boolean));
+        draw();
+      })
+      .catch(() => {
+        imageToolState.set(tool.id, []);
+        draw();
+      });
+  }
+
+  function readImageFile(file) {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const image = new Image();
+        image.onload = () => resolve({ image, name: file.name, width: image.naturalWidth || image.width, height: image.naturalHeight || image.height });
+        image.onerror = () => resolve(null);
+        image.src = reader.result;
+      };
+      reader.onerror = () => resolve(null);
+      reader.readAsDataURL(file);
+    });
   }
 
   async function requestAiIdeas(tool, form, button, panel, draw) {
@@ -2267,6 +2539,238 @@
     drawListPanel(ctx, margin, lowerTop, groceryW, paper.height - lowerTop - 110, "Grocery list", splitList(values.grocery || "", "\n").slice(0, 12));
     drawListPanel(ctx, margin + groceryW + 30, lowerTop, tableW - groceryW - 30, paper.height - lowerTop - 110, "Prep notes", wrapText(ctx, sanitizePrintable(values.notes || ""), tableW - groceryW - 70, "22px Arial", 8));
     drawFooterNote(ctx, paper, "Generated locally with PrintableTools Lab. Adjust meals and groceries before shopping.");
+  }
+
+  function drawImageToPdf(ctx, paper, values) {
+    const margin = 70;
+    const images = imageToolState.get("image-to-pdf") || [];
+    drawBusinessFrame(ctx, paper, "#176b87");
+    drawTextFit(ctx, sanitizePrintable(values.title || "Image to PDF"), paper.width / 2, 108, paper.width - margin * 2, 46, { align: "center", weight: "900", color: "#17313b" });
+    const caption = sanitizePrintable(values.caption || "");
+    const contentTop = caption ? 182 : 154;
+    if (caption) drawTextFit(ctx, caption, paper.width / 2, 158, paper.width - margin * 2, 22, { align: "center", weight: "500", color: "#5b6f78" });
+
+    if (!images.length) {
+      ctx.save();
+      ctx.strokeStyle = "rgba(23,49,59,0.28)";
+      ctx.lineWidth = 3;
+      ctx.setLineDash([14, 10]);
+      roundRect(ctx, margin, contentTop + 40, paper.width - margin * 2, paper.height - contentTop - 230, 8, false, true);
+      ctx.setLineDash([]);
+      drawTextFit(ctx, "Select an image to preview the PDF", paper.width / 2, paper.height / 2 - 28, paper.width - margin * 2 - 60, 38, { align: "center", weight: "800", color: "#17313b" });
+      drawTextFit(ctx, "JPG, PNG, and WebP files are processed locally in this browser.", paper.width / 2, paper.height / 2 + 26, paper.width - margin * 2 - 80, 23, { align: "center", weight: "500", color: "#5b6f78" });
+      ctx.restore();
+      drawFooterNote(ctx, paper, "No upload image-to-PDF tool. Review the downloaded PDF before sharing.");
+      return;
+    }
+
+    if (values.layout === "gallery" && images.length > 1) {
+      drawImageGallery(ctx, paper, images, margin, contentTop);
+    } else {
+      const box = { x: margin, y: contentTop, width: paper.width - margin * 2, height: paper.height - contentTop - 125 };
+      drawImageInBox(ctx, images[0].image, box, values.layout === "fill");
+      drawTextFit(ctx, images[0].name || "Selected image", margin, paper.height - 86, paper.width - margin * 2, 18, { align: "left", weight: "500", color: "#5b6f78" });
+    }
+    drawFooterNote(ctx, paper, "Image converted locally with PrintableTools Lab. No image upload required.");
+  }
+
+  function drawImageGallery(ctx, paper, images, margin, top) {
+    const gap = 22;
+    const cols = 2;
+    const rows = 2;
+    const gridW = paper.width - margin * 2;
+    const gridH = paper.height - top - 125;
+    const cellW = (gridW - gap) / cols;
+    const cellH = (gridH - gap) / rows;
+    images.slice(0, 4).forEach((item, index) => {
+      const col = index % cols;
+      const row = Math.floor(index / cols);
+      const x = margin + col * (cellW + gap);
+      const y = top + row * (cellH + gap);
+      ctx.strokeStyle = "rgba(23,49,59,0.2)";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(x, y, cellW, cellH);
+      drawImageInBox(ctx, item.image, { x: x + 10, y: y + 10, width: cellW - 20, height: cellH - 48 }, false);
+      drawTextFit(ctx, item.name || `Image ${index + 1}`, x + 12, y + cellH - 20, cellW - 24, 17, { align: "left", weight: "500", color: "#5b6f78" });
+    });
+  }
+
+  function drawImageInBox(ctx, image, box, fill) {
+    const imageW = image.naturalWidth || image.width || 1;
+    const imageH = image.naturalHeight || image.height || 1;
+    const scale = fill ? Math.max(box.width / imageW, box.height / imageH) : Math.min(box.width / imageW, box.height / imageH);
+    const drawW = imageW * scale;
+    const drawH = imageH * scale;
+    const x = box.x + (box.width - drawW) / 2;
+    const y = box.y + (box.height - drawH) / 2;
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(box.x, box.y, box.width, box.height);
+    ctx.clip();
+    ctx.fillStyle = "#f7faf8";
+    ctx.fillRect(box.x, box.y, box.width, box.height);
+    ctx.drawImage(image, x, y, drawW, drawH);
+    ctx.restore();
+  }
+
+  function drawSignInSheet(ctx, paper, values) {
+    const margin = 64;
+    const rowCount = Number(values.rows || 16);
+    const columns = signInColumns(values.columns);
+    drawPageFrame(ctx, paper, "#176b87");
+    drawTextFit(ctx, sanitizePrintable(values.title || "Sign-in Sheet"), paper.width / 2, 105, paper.width - margin * 2, 48, { align: "center", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, sanitizePrintable(values.event || "Event"), margin, 158, paper.width * 0.58, 24, { align: "left", weight: "700", color: "#17313b" });
+    drawTextFit(ctx, sanitizePrintable(values.date || ""), paper.width - margin, 158, paper.width * 0.3, 22, { align: "right", weight: "500", color: "#5b6f78" });
+    const tableTop = 215;
+    const tableW = paper.width - margin * 2;
+    const headerH = 52;
+    const rowH = Math.min(70, (paper.height - tableTop - 185) / rowCount);
+    const widths = columns.map((column) => column.width * tableW);
+    drawTableHeader(ctx, margin, tableTop, tableW, columns.map((column) => column.label), widths);
+    for (let i = 0; i < rowCount; i += 1) {
+      const y = tableTop + headerH + i * rowH;
+      ctx.strokeStyle = "rgba(23,49,59,0.24)";
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(margin, y, tableW, rowH);
+      let cursor = margin;
+      for (let c = 0; c < widths.length - 1; c += 1) {
+        cursor += widths[c];
+        line(ctx, cursor, y, cursor, y + rowH);
+      }
+    }
+    drawWrappedText(ctx, sanitizePrintable(values.notes || "Please print clearly."), margin, paper.height - 135, tableW, 26, "#5b6f78", "21px Arial", 3);
+  }
+
+  function signInColumns(key) {
+    const map = {
+      "name-signature": [
+        { label: "Name", width: 0.55 },
+        { label: "Signature", width: 0.45 },
+      ],
+      "name-phone-signature": [
+        { label: "Name", width: 0.4 },
+        { label: "Phone", width: 0.28 },
+        { label: "Signature", width: 0.32 },
+      ],
+      "name-time-signature": [
+        { label: "Name", width: 0.42 },
+        { label: "Time", width: 0.2 },
+        { label: "Signature", width: 0.38 },
+      ],
+    };
+    return map[key] || [
+      { label: "Name", width: 0.38 },
+      { label: "Email", width: 0.34 },
+      { label: "Signature", width: 0.28 },
+    ];
+  }
+
+  function drawGraphPaper(ctx, paper, values) {
+    const margin = 64;
+    const title = sanitizePrintable(values.title || "Printable Graph Paper");
+    const accent = values.color === "green" ? "#5a9367" : values.color === "gray" ? "#6b7280" : "#176b87";
+    const minorColor = values.color === "gray" ? "rgba(107,114,128,0.30)" : values.color === "green" ? "rgba(90,147,103,0.28)" : "rgba(23,107,135,0.28)";
+    const majorColor = values.color === "gray" ? "rgba(23,49,59,0.45)" : values.color === "green" ? "rgba(90,147,103,0.52)" : "rgba(23,107,135,0.52)";
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, paper.width, paper.height);
+    drawTextFit(ctx, title, paper.width / 2, 70, paper.width - margin * 2, 32, { align: "center", weight: "800", color: "#17313b" });
+    const grid = { x: margin, y: 112, width: paper.width - margin * 2, height: paper.height - 185 };
+    const pxPerInch = 150;
+    const step = Math.max(18, Number(values.spacing || 0.25) * pxPerInch);
+    ctx.save();
+    if (values.style === "dots") {
+      ctx.fillStyle = minorColor;
+      for (let x = grid.x; x <= grid.x + grid.width + 1; x += step) {
+        for (let y = grid.y; y <= grid.y + grid.height + 1; y += step) {
+          ctx.beginPath();
+          ctx.arc(x, y, 2.4, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    } else {
+      ctx.strokeStyle = minorColor;
+      ctx.lineWidth = 1;
+      for (let x = grid.x; x <= grid.x + grid.width + 1; x += step) line(ctx, x, grid.y, x, grid.y + grid.height);
+      for (let y = grid.y; y <= grid.y + grid.height + 1; y += step) line(ctx, grid.x, y, grid.x + grid.width, y);
+      if (values.style === "major") {
+        ctx.strokeStyle = majorColor;
+        ctx.lineWidth = 2;
+        const majorEvery = Math.max(1, Math.round(pxPerInch / step));
+        let index = 0;
+        for (let x = grid.x; x <= grid.x + grid.width + 1; x += step) {
+          if (index % majorEvery === 0) line(ctx, x, grid.y, x, grid.y + grid.height);
+          index += 1;
+        }
+        index = 0;
+        for (let y = grid.y; y <= grid.y + grid.height + 1; y += step) {
+          if (index % majorEvery === 0) line(ctx, grid.x, y, grid.x + grid.width, y);
+          index += 1;
+        }
+      }
+    }
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 4;
+    ctx.strokeRect(grid.x, grid.y, grid.width, grid.height);
+    ctx.restore();
+    drawFooterNote(ctx, paper, "Print at actual size when grid spacing matters.");
+  }
+
+  function drawPackingList(ctx, paper, values) {
+    const margin = 68;
+    drawPageFrame(ctx, paper, "#5a9367");
+    drawTextFit(ctx, sanitizePrintable(values.title || "Packing List"), paper.width / 2, 104, paper.width - margin * 2, 48, { align: "center", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, sanitizePrintable(values.destination || "Trip"), paper.width / 2, 154, paper.width - margin * 2, 24, { align: "center", weight: "600", color: "#5b6f78" });
+    const sections = parsePackingSections(values.sections);
+    const top = 220;
+    const gap = 18;
+    const cols = 2;
+    const rows = Math.max(2, Math.ceil(Math.min(sections.length || 1, 6) / cols));
+    const gridW = paper.width - margin * 2;
+    const panelW = (gridW - gap) / cols;
+    const panelH = Math.min(310, (paper.height - top - 270 - gap * (rows - 1)) / rows);
+    sections.slice(0, 6).forEach((section, index) => {
+      const col = index % cols;
+      const row = Math.floor(index / cols);
+      const x = margin + col * (panelW + gap);
+      const y = top + row * (panelH + gap);
+      drawChecklistPanel(ctx, x, y, panelW, panelH, section.title, section.items);
+    });
+    drawPromptBox(ctx, margin, paper.height - 220, gridW, sanitizePrintable(values.notes || "Trip reminders"));
+  }
+
+  function parsePackingSections(value) {
+    const lines = splitList(value || "", "\n");
+    const sections = lines.map((lineText) => {
+      const parts = lineText.split(":");
+      const title = sanitizePrintable(parts[0] || "Items");
+      const items = parts.slice(1).join(":").split(",").map((item) => sanitizePrintable(item)).filter(Boolean);
+      return { title, items: items.length ? items : [""] };
+    });
+    return sections.length ? sections : [
+      { title: "Clothing", items: ["Shirts", "Pants", "Socks", "Sleepwear"] },
+      { title: "Toiletries", items: ["Toothbrush", "Toothpaste", "Shampoo"] },
+      { title: "Documents", items: ["ID", "Tickets", "Reservation notes"] },
+      { title: "Electronics", items: ["Phone charger", "Headphones"] },
+    ];
+  }
+
+  function drawChecklistPanel(ctx, x, y, width, height, title, items) {
+    ctx.save();
+    ctx.fillStyle = "#ffffff";
+    roundRect(ctx, x, y, width, height, 8, true, false);
+    ctx.strokeStyle = "rgba(23,49,59,0.24)";
+    ctx.lineWidth = 2;
+    roundRect(ctx, x, y, width, height, 8, false, true);
+    ctx.fillStyle = "#edf7f6";
+    ctx.fillRect(x + 2, y + 2, width - 4, 48);
+    drawTextFit(ctx, title, x + 18, y + 28, width - 36, 22, { align: "left", weight: "800", color: "#17313b" });
+    let cursor = y + 78;
+    items.slice(0, Math.floor((height - 78) / 34)).forEach((item) => {
+      drawCheckBox(ctx, x + 18, cursor - 18, 22);
+      drawTextFit(ctx, item || "Item", x + 52, cursor - 7, width - 70, 18, { align: "left", weight: "500", color: "#17313b" });
+      cursor += 34;
+    });
+    ctx.restore();
   }
 
   function drawPageFrame(ctx, paper, accent) {

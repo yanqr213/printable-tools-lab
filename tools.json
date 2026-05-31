@@ -1,8 +1,8 @@
 {
   "name": "PrintableTools Lab",
-  "description": "Free browser-based PDF generators for invoices, estimates, purchase orders, sale records, receipts, resumes, cover letters, resignation letters, calendars, meal planners, worksheets, charts, flashcards, and habit trackers.",
+  "description": "Free browser-based PDF generators for image conversion, invoices, estimates, purchase orders, sale records, receipts, resumes, cover letters, resignation letters, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, and habit trackers.",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-05-31T19:40:32.761Z",
+  "generatedAt": "2026-05-31T20:04:04.159Z",
   "tools": [
     {
       "title": "Name Tracing Worksheet Generator",
@@ -99,6 +99,30 @@
       "url": "https://printable-tools-lab.pages.dev/tools/meal-planner/",
       "description": "Make a printable weekly meal planner PDF with breakfast, lunch, dinner, grocery list, and prep notes.",
       "category": "Planning"
+    },
+    {
+      "title": "Image to PDF Converter",
+      "url": "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
+      "description": "Convert JPG, PNG, or WebP images into a clean one-page PDF in your browser without uploading files.",
+      "category": "Everyday utility PDFs"
+    },
+    {
+      "title": "Sign-in Sheet Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/sign-in-sheet/",
+      "description": "Create a printable sign-in sheet PDF for events, classrooms, workshops, meetings, or visitor logs.",
+      "category": "Everyday utility PDFs"
+    },
+    {
+      "title": "Graph Paper Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/graph-paper/",
+      "description": "Generate printable graph paper PDF with quarter-inch, half-inch, or small grid spacing for math, notes, and design sketches.",
+      "category": "Everyday utility PDFs"
+    },
+    {
+      "title": "Packing List Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/packing-list/",
+      "description": "Make a printable packing list PDF for travel, school trips, business travel, camping, or family vacations.",
+      "category": "Everyday utility PDFs"
     }
   ],
   "guides": [
@@ -291,6 +315,46 @@
       "title": "Weekly meal plan and grocery list PDF",
       "url": "https://printable-tools-lab.pages.dev/guides/weekly-meal-plan-grocery-list-pdf/",
       "description": "Create one printable page that combines a weekly meal plan with a grocery list and prep reminders."
+    },
+    {
+      "title": "Free image to PDF converter",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-image-to-pdf-converter/",
+      "description": "Convert a JPG, PNG, or WebP image into a one-page PDF without uploading files."
+    },
+    {
+      "title": "JPG to PDF without uploading",
+      "url": "https://printable-tools-lab.pages.dev/guides/jpg-to-pdf-without-uploading/",
+      "description": "Make a PDF from a JPG file in the browser when you do not want to send the image to a conversion server."
+    },
+    {
+      "title": "Free sign-in sheet generator",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-sign-in-sheet-generator/",
+      "description": "Create a printable sign-in sheet PDF for events, classes, workshops, meetings, or visitor logs."
+    },
+    {
+      "title": "Attendance sheet PDF template",
+      "url": "https://printable-tools-lab.pages.dev/guides/attendance-sheet-pdf-template/",
+      "description": "Use a simple printable attendance sheet for classes, clubs, workshops, and small meetings."
+    },
+    {
+      "title": "Free printable graph paper generator",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-printable-graph-paper-generator/",
+      "description": "Generate graph paper PDF with quarter-inch, half-inch, or small grid spacing."
+    },
+    {
+      "title": "Quarter inch graph paper PDF",
+      "url": "https://printable-tools-lab.pages.dev/guides/quarter-inch-graph-paper-pdf/",
+      "description": "Create a quarter-inch graph paper PDF for math practice, planning, and sketching."
+    },
+    {
+      "title": "Free packing list generator",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-packing-list-generator/",
+      "description": "Make a printable packing checklist PDF for travel, camping, family vacations, or business trips."
+    },
+    {
+      "title": "Travel checklist PDF",
+      "url": "https://printable-tools-lab.pages.dev/guides/travel-checklist-pdf/",
+      "description": "Create a one-page travel checklist PDF with categories, checkboxes, and reminder notes."
     }
   ]
 }

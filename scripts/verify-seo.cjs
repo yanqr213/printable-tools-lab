@@ -41,6 +41,7 @@ else {
   if (robots.includes("Sitemap: https://printable-tools-lab.pages.dev/llms.txt")) failures.push("robots.txt should not list llms.txt as a sitemap.");
   if (robots.includes("Sitemap: https://printable-tools-lab.pages.dev/tools.json")) failures.push("robots.txt should not list tools.json as a sitemap.");
   if (!robots.includes("Disallow: /dashboard/")) failures.push("robots.txt should disallow dashboard.");
+  if (!robots.includes("Disallow: /reports/")) failures.push("robots.txt should disallow reports.");
 }
 
 const llmsFile = path.join(root, "llms.txt");
@@ -57,9 +58,10 @@ const toolsJsonFile = path.join(root, "tools.json");
 if (!fs.existsSync(toolsJsonFile)) failures.push("Missing tools.json.");
 else {
   const data = JSON.parse(fs.readFileSync(toolsJsonFile, "utf8"));
-  if (!Array.isArray(data.tools) || data.tools.length < 16) failures.push("tools.json missing tools.");
-  if (!Array.isArray(data.guides) || data.guides.length < 38) failures.push("tools.json missing guides.");
+  if (!Array.isArray(data.tools) || data.tools.length < 20) failures.push("tools.json missing tools.");
+  if (!Array.isArray(data.guides) || data.guides.length < 46) failures.push("tools.json missing guides.");
   if (!data.tools.some((tool) => tool.url === siteUrl("tools/invoice-generator"))) failures.push("tools.json missing invoice URL.");
+  if (!data.tools.some((tool) => tool.url === siteUrl("tools/image-to-pdf"))) failures.push("tools.json missing image-to-PDF URL.");
 }
 
 const distributionFile = path.join(root, "DISTRIBUTION.md");

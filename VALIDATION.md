@@ -1,58 +1,53 @@
 # Validation Gates
 
-This project should be judged by usage signals, not by whether it looks finished.
+Last generated: 2026-05-31T20:10:11.268Z
 
-## Pre-launch gate
+## Current Automated Status
 
-Pass all items before public deployment:
+- Product ready: yes.
+- Tools live in inventory: 20.
+- Guide pages live in inventory: 46.
+- Indexable routes: 73.
+- Live downloads: 1.
+- Live generations: 0.
+- Search impressions: 0.
+- Search clicks: 0.
+- Ads enabled: no.
+- AdSense apply-ready: no.
 
-- `npm.cmd run build:routes` completes.
-- `npm.cmd run smoke` completes.
-- Static route HTML contains page-specific title, description, canonical, and visible body content before JavaScript runs.
-- Six tool pages export PDF files.
-- Mobile viewport shows the preview canvas and form without overlap.
-- Privacy, Terms, About, and AI & License Disclosure pages exist.
-- No live ad code is installed.
+## Product Gate
 
-## Day 7 gate
+- 20 tools, 46 guides, sitemap, discovery assets, and live metrics are present.
 
-Goal: prove the tool experience works.
+## Search Console Gate
 
-- Fix any PDF rendering or mobile issues reported by users.
-- Confirm at least 6 tools are usable on desktop and mobile.
-- Add screenshots or sample PDFs only if users need more trust signals.
+- Sitemap submitted: https://printable-tools-lab.pages.dev/sitemap.xml.
+- Sitemap pending: yes; warnings: 0; errors: 0.
+- Sitemap status: pending=true, warnings=0, errors=0.
+- Search performance: 0 impressions, 0 clicks.
+- 2 inspected sample URL(s) are still unknown to Google.
 
-## Day 14 gate
+## Monetization Gate
 
-Goal: make the site indexable and review-ready.
+- Real AdSense publisher ID is not configured, so ads remain disabled.
+- Search Console has no impressions/indexed sample yet, so applying now is premature.
 
-- Submit the live URL and sitemap in Google Search Console.
-- Confirm all 12 guide pages are reachable from `/guides/`.
-- Do not apply for AdSense until the public site has visible original content.
+## Validation Gates
 
-## Day 30 gate
+- 30-day continue gate: no. Continue if downloads >= 100, generations >= 300, or Search Console impressions are growing.
+- 60-day pivot warning: no. If still true at the 60-day checkpoint, pause printable expansion and test another ad-supported route.
+- 90-day monetization review: no. If true later, optimize ad/affiliate revenue before building paid features.
 
-Continue this direction if any one of these is true:
+## Next Actions
 
-- 100 PDF downloads.
-- 300 tool generations.
-- Search Console shows growing impressions for printable generator queries.
-- Repeated daily limit hits on the free tools.
+- Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.
+- When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.
+- Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.
 
-If none are true, adjust titles and tool focus before adding more features.
+## Commands
 
-## Day 60 gate
-
-If there is no search exposure and no meaningful usage:
-
-- Stop adding printable content.
-- Keep the site live as a passive asset.
-- Start a separate HTML5 game ad-platform validation project.
-
-## Day 90 gate
-
-If traffic exists but ad earnings are weak:
-
-- Improve high-intent SEO pages and internal links.
-- Test relevant affiliate links only where they help the user.
-- Defer paid features until repeated usage proves a specific workflow is worth building.
+```powershell
+npm.cmd run validate:ops
+npm.cmd run verify:seo
+npm.cmd run verify:adsense
+```

@@ -6,7 +6,7 @@ This file keeps the project pointed at the current model: free ad-supported prin
 
 ### Free acquisition layer
 
-- Sixteen free browser PDF generators.
+- Twenty free browser PDF generators.
 - Daily free limit stored locally.
 - One-page PDF exports with a light footer watermark.
 - Original guide pages for search traffic and AdSense review.
@@ -118,7 +118,10 @@ Run before every deploy:
 ```powershell
 npm.cmd run build:routes
 npm.cmd run verify:seo
+npm.cmd run validate:ops
 ```
+
+`validate:ops` writes `VALIDATION.md` and `reports/validation-report.json`. It checks local route inventory, live endpoints, `/api/metrics`, Search Console data when credentials are available, and the AdSense readiness gate. Treat this as the operating source of truth before changing direction.
 
 ### AdSense account
 
@@ -172,6 +175,16 @@ Practical order if a paid product is added later:
 ## First Launch Keywords
 
 - free invoice generator no signup
+- free image to PDF converter
+- JPG to PDF without uploading
+- image to PDF no upload
+- PNG to PDF converter free
+- free sign-in sheet generator
+- attendance sheet PDF template
+- free printable graph paper generator
+- quarter inch graph paper PDF
+- free packing list generator
+- travel checklist PDF
 - free invoice PDF generator
 - freelance invoice PDF template
 - invoice generator without watermark
@@ -254,16 +267,23 @@ Create one image or short post per item. Show the printable use case and never p
 37. Printable calendar maker with Sunday or Monday start.
 38. Weekly meal planner with grocery list.
 39. Budget meal plan printable for busy families.
+40. Image to PDF converter that does not upload files.
+41. JPG to PDF for receipts, scans, and screenshots.
+42. Printable sign-in sheet for events and classes.
+43. Attendance sheet PDF with readable rows.
+44. Printable graph paper with quarter-inch grid.
+45. Travel packing list with grouped checkboxes.
 
 ## Weekly Operating Loop
 
 1. Open `/dashboard/` and check live Cloudflare-backed counters.
-2. Export local events from `/dashboard/` when testing manually.
-3. Check Search Console impressions and queries.
-4. Pick the top query with impressions but weak clicks.
-5. Improve the matching page title and intro.
-6. Add one guide or tool variation only if data points to it.
-7. Record the change and compare the next week.
+2. Run `npm.cmd run validate:ops` with Search Console credentials available.
+3. Export local events from `/dashboard/` when testing manually.
+4. Check Search Console impressions and queries.
+5. Pick the top query with impressions but weak clicks.
+6. Improve the matching page title and intro.
+7. Add one guide or tool variation only if data points to it.
+8. Record the change and compare the next week.
 
 ## Search And Indexing
 
