@@ -36,8 +36,8 @@ Continue this direction if any one of these is true:
 
 - 100 PDF downloads.
 - 300 tool generations.
-- 20 Pro interest clicks.
 - Search Console shows growing impressions for printable generator queries.
+- Repeated daily limit hits on the free tools.
 
 If none are true, adjust titles and tool focus before adding more features.
 
@@ -53,6 +53,6 @@ If there is no search exposure and no meaningful usage:
 
 If traffic exists but ad earnings are weak:
 
-- Build the smallest Pro cloud layer: saved projects, batch generation, no-watermark exports, and higher daily limits.
-- Add checkout only after the Pro service path can deliver access or credits.
-- Do not rely on ads alone.
+- Improve high-intent SEO pages and internal links.
+- Test relevant affiliate links only where they help the user.
+- Defer paid features until repeated usage proves a specific workflow is worth building.

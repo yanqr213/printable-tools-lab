@@ -1,6 +1,6 @@
 # PrintableTools Lab Operations
 
-This file keeps the project pointed at the actual model: free ad-supported tools first, then a cloud Pro service if usage proves demand.
+This file keeps the project pointed at the current model: free ad-supported printable tools first. Paid features are deferred until the free product has traffic and usage data.
 
 ## Business Model
 
@@ -12,23 +12,9 @@ This file keeps the project pointed at the actual model: free ad-supported tools
 - Original guide pages for search traffic and AdSense review.
 - Ads only after AdSense approval, never blocking downloads or disguised as controls.
 
-### Pro cloud layer
+### Deferred paid layer
 
-Only build paid checkout after there is enough evidence that users need more than a one-off printable.
-
-Pro should sell service access or credits, not a static file pack:
-
-- Saved projects.
-- Batch generation for class lists, tutoring groups, or repeated routines.
-- No-watermark exports.
-- Higher daily limits.
-- Private recent-job history.
-
-Recommended first price test after the Pro service exists:
-
-- $3 to $5 monthly for light users.
-- $9 monthly for tutors or teachers needing batch generation.
-- Optional one-time credit pack if subscription conversion is weak.
+Do not add checkout yet. If free traffic proves demand later, use data to decide whether saved projects, batch generation, higher daily limits, no-watermark exports, affiliate links, or another route is worth building.
 
 ## Account Setup Steps
 
@@ -89,7 +75,7 @@ Cloudflare Pages is the current host.
 2. Confirm project `printable-tools-lab`.
 3. Use build command `npm run build:routes`.
 4. Output directory is the repository root.
-5. Test `/`, `/tools/name-tracing/`, `/pro/`, `/guides/`, and `/sitemap.xml`.
+5. Test `/`, `/tools/name-tracing/`, `/guides/`, `/privacy/`, and `/sitemap.xml`.
 
 ### AdSense account
 
@@ -105,7 +91,7 @@ Do not add live ad code until public pages work and Search Console can crawl the
 
 For the current strategy, payment is intentionally disabled.
 
-Use ads first. Add checkout only after Pro cloud features can deliver real service access.
+Use ads first. Add checkout only after a paid feature can deliver real service access and refund handling is ready.
 
 Compliance priority:
 
@@ -117,7 +103,7 @@ Compliance priority:
 
 If Alipay payout is required, use only a China-friendly checkout page or service platform that officially supports Alipay collection for the account holder. Most overseas creator and SaaS platforms settle to a bank account, card processor balance, or PayPal rather than directly into an Alipay balance.
 
-Practical order when Pro is ready:
+Practical order if a paid product is added later:
 
 1. Merchant-of-record provider for tax/VAT handling if the owner can pass onboarding.
 2. Stripe/PayPal-style checkout if the owner has a supported bank account and can satisfy KYC.
@@ -139,7 +125,7 @@ Practical order when Pro is ready:
 - A4 and US Letter printable PDF
 - classroom chart generator
 - batch printable generator for teachers
-- worksheet generator with saved projects
+- free printable worksheet generator
 
 ## First Distribution Posts
 
@@ -206,6 +192,5 @@ Google does not provide a general public API to request indexing for ordinary pa
 - If Search Console shows no impressions after 60 days, stop adding printable content.
 - If there are impressions but no clicks, improve titles and meta descriptions.
 - If there are clicks but no downloads, improve above-the-fold tool clarity.
-- If there are downloads but no Pro clicks, keep ads and affiliate tests as the main path.
-- If Pro clicks exceed 20 before meaningful ad revenue, build the smallest cloud Pro layer before adding new free tools.
-- If traffic exists but ads are weak, prioritize batch generation and saved projects over waiting for ad revenue.
+- If there are downloads but weak revenue, keep ads and affiliate tests as the main path.
+- If traffic exists but ads are weak, improve high-intent pages and test relevant affiliate links before building paid features.

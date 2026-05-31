@@ -4,7 +4,6 @@
   const SITE = {
     name: "PrintableTools Lab",
     dailyLimit: 5,
-    proUrl: "/pro/",
   };
 
   const CONFIG = Object.assign({
@@ -12,20 +11,12 @@
     googleSiteVerification: "",
     googleAnalyticsId: "",
     adsenseClientId: "",
-    proServiceUrl: "/pro/",
-    proCheckoutUrl: "",
+    adsenseToolSlot: "",
+    adsenseContentSlot: "",
     contactEmail: "",
     enableAds: false,
     enableAnalytics: false,
-    enableProCheckout: false,
   }, window.PTL_CONFIG || {});
-
-  if (CONFIG.proServiceUrl) {
-    SITE.proUrl = CONFIG.proServiceUrl;
-  }
-  if (CONFIG.enableProCheckout && CONFIG.proCheckoutUrl) {
-    SITE.proUrl = CONFIG.proCheckoutUrl;
-  }
 
   bootstrapConfiguredIntegrations();
 
@@ -217,6 +208,62 @@
       ],
     },
     {
+      slug: "free-sticker-chart-printable-maker",
+      title: "Free sticker chart printable maker",
+      description: "Create a simple printable sticker chart for reading, bedtime, chores, classroom behavior, or kindness goals.",
+      tool: "reward-chart",
+      content: [
+        ["h2", "Start with one clear goal"],
+        ["p", "A sticker chart works best when the child can understand exactly what earns a sticker. Choose one behavior such as read for ten minutes, stay with bedtime steps, use kind words, or finish a morning routine."],
+        ["h2", "Pick a short target"],
+        ["ul", ["Use 12 boxes for a quick win.", "Use 20 boxes for a normal goal.", "Write the reward before printing.", "Keep the chart where the routine happens."]],
+        ["h2", "Print in black and white"],
+        ["p", "The free reward chart generator is designed to print clearly on ordinary home printers. Use stickers, stamps, or simple check marks after printing."],
+      ],
+    },
+    {
+      slug: "bedtime-routine-chart-printable",
+      title: "Bedtime routine chart printable",
+      description: "Make a bedtime routine chart that turns repeated reminders into a simple printable checklist.",
+      tool: "chore-chart",
+      content: [
+        ["h2", "Keep bedtime steps predictable"],
+        ["p", "A bedtime routine chart should be short enough to finish without negotiation. Good steps include pajamas, bathroom, brush teeth, choose clothes, pack bag, story, and lights out."],
+        ["h2", "Use checklist language"],
+        ["p", "Children follow short action phrases more easily than long explanations. Print the same chart for a full week before changing the order."],
+        ["h2", "Where to put it"],
+        ["p", "Place the chart near the bathroom, bedroom door, or nightstand. A plain chart in the right place is more useful than a decorative chart that is hidden away."],
+      ],
+    },
+    {
+      slug: "classroom-job-chart-printable",
+      title: "Classroom job chart printable",
+      description: "Use a printable job chart for weekly classroom helpers, centers, small groups, and clean-up routines.",
+      tool: "chore-chart",
+      content: [
+        ["h2", "Make jobs easy to scan"],
+        ["p", "Classroom job charts work when job names stay short and consistent. Use helper, line leader, lights, library, materials, plants, calendar, clean-up, and messenger."],
+        ["h2", "Rotate weekly"],
+        ["p", "A weekly chart gives students enough time to learn the role without requiring the teacher to rewrite assignments every day."],
+        ["h2", "Use the free chart maker"],
+        ["p", "Enter student names and job names in the chore chart generator, then print one page for the week."],
+      ],
+    },
+    {
+      slug: "free-printable-weekly-calendar-for-kids",
+      title: "Free printable weekly calendar for kids",
+      description: "Create a simple weekly calendar printable for school events, chores, reading, meals, and family reminders.",
+      tool: "weekly-planner",
+      content: [
+        ["h2", "One week is enough"],
+        ["p", "A weekly calendar helps children see what is coming without overwhelming them with a full monthly planner. Use it for school days, practices, appointments, chores, and reading goals."],
+        ["h2", "Add a focus line"],
+        ["p", "A short focus line such as this week we practice mornings or remember library books turns the calendar into a useful reminder instead of another piece of paper."],
+        ["h2", "Print and reuse"],
+        ["p", "The weekly planner generator creates a one-page PDF that can be printed each week or placed in a clear sleeve and marked with a dry-erase pen."],
+      ],
+    },
+    {
       slug: "printable-routine-chart-for-mornings",
       title: "Printable morning routine chart ideas",
       description: "Simple morning chart layouts that help kids move from wake-up to school without constant reminders.",
@@ -311,8 +358,8 @@
       content: [
         ["h2", "Free is enough for quick one-off pages"],
         ["p", "A single free printable works well when a parent or teacher needs one chart, one worksheet, or one planner page today."],
-        ["h2", "Batch generation is a cloud-service problem"],
-        ["p", "Teachers, tutors, and homeschool families often need many personalized pages at once. A cloud Pro version can save names, generate batches, keep projects, and remove repeated setup work."],
+        ["h2", "Batch needs are a useful future signal"],
+        ["p", "Teachers, tutors, and homeschool families sometimes need many personalized pages at once. For now, use the free one-page tools and watch which workflows get repeated downloads before building anything larger."],
       ],
     },
   ];
@@ -332,7 +379,7 @@
       description: "Privacy policy for PrintableTools Lab.",
       body: [
         ["p", "PrintableTools Lab is designed to generate PDFs in your browser. The first version does not require an account and does not send your worksheet text to a server."],
-        ["p", "The site stores a small amount of local data in your browser to remember daily generation counts and anonymous local event totals such as page views, generate clicks, downloads, and Pro interest clicks."],
+        ["p", "The site stores a small amount of local data in your browser to remember daily generation counts and anonymous local event totals such as page views, generate clicks, downloads, and limit notices."],
         ["p", "If analytics, advertising, or payment tools are added later, this policy should be updated before launch to describe those providers, cookies, and opt-out choices."],
       ],
     },
@@ -341,8 +388,8 @@
       description: "Terms of use for PrintableTools Lab.",
       body: [
         ["p", "The free printable generators are provided as-is for personal, classroom, and small-group use. You are responsible for checking that a generated worksheet is appropriate before giving it to a child or group."],
-        ["p", "Do not use the tools to create unlawful, harmful, infringing, or misleading materials. Do not remove service marks from free downloads unless a Pro option is explicitly provided."],
-        ["p", "Commercial resale of generated pages as standalone products is not allowed in the free version. Paid licensing terms may be added if Pro cloud features are launched."],
+        ["p", "Do not use the tools to create unlawful, harmful, infringing, or misleading materials. Do not remove service marks from free downloads."],
+        ["p", "Commercial resale of generated pages as standalone products is not allowed in the free version. Future licensing terms may be added only after the free product is validated."],
       ],
     },
     license: {
@@ -354,25 +401,22 @@
         ["p", "If external fonts, icon sets, or datasets are added later, their license notes should be listed here before public launch."],
       ],
     },
-    pro: {
-      title: "PrintableTools Pro",
-      description: "Cloud printable generation for teachers, tutors, homeschool families, and busy parents who need batch PDFs and saved projects.",
+    roadmap: {
+      title: "PrintableTools Lab Roadmap",
+      description: "A noindex roadmap for future PrintableTools Lab product decisions after the free version is validated.",
       body: [
-        ["p", "PrintableTools Pro is the planned cloud service layer for users who outgrow one-page free generation. The free site stays useful and ad-supported; Pro exists for repeated classroom, tutoring, homeschool, and family workflow use."],
-        ["p", "The first paid service should be a lightweight subscription or credit product, not a downloadable template pack. It should unlock saved projects, batch generation, no-watermark exports, and more daily PDFs."],
-        ["h2", "Planned Pro features"],
-        ["ul", ["Save projects and reuse common names, chores, goals, and card lists.", "Batch-generate many personalized PDFs in one session.", "Remove the free-version footer watermark.", "Increase daily generation limits.", "Keep a private cloud history of recent printable jobs."]],
-        ["h2", "Free version"],
-        ["p", "The free version remains the acquisition channel: useful tools, one-page exports, local daily limits, and ad placements only after AdSense approval."],
-        ["h2", "Checkout status"],
-        ["p", "Payment is not connected yet. The button records Pro interest locally until a real cloud backend and checkout provider are configured."],
+        ["p", "The current product focus is the free ad-supported printable tool site. Paid features are intentionally deferred until the free tools show search traffic, downloads, and repeated usage."],
+        ["h2", "Signals to watch"],
+        ["ul", ["Search Console impressions for generator keywords.", "PDF downloads by tool.", "Daily limit hits.", "Requests for classroom or batch workflows."]],
+        ["h2", "Possible later work"],
+        ["p", "If the data proves demand, the next layer can include saved projects, batch generation, higher daily limits, and no-watermark exports. No checkout should be enabled before those features can be delivered."],
       ],
     },
     "launch-kit": {
       title: "Launch Kit",
       description: "Distribution copy, links, and validation steps for launching PrintableTools Lab.",
       body: [
-        ["p", "Use this page to coordinate the first distribution push. The goal is not to look busy; it is to create enough real traffic for Search Console, AdSense readiness, and Pro-click validation."],
+        ["p", "Use this page to coordinate the first distribution push. The goal is not to look busy; it is to create enough real traffic for Search Console, AdSense readiness, and download validation."],
         ["h2", "Primary links"],
         ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Name tracing: https://printable-tools-lab.pages.dev/tools/name-tracing/", "Chore chart: https://printable-tools-lab.pages.dev/tools/chore-chart/", "Reward chart: https://printable-tools-lab.pages.dev/tools/reward-chart/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
         ["h2", "First distribution copy"],
@@ -415,6 +459,7 @@
     track("page_view", { path: getCurrentRoutePath() });
     window.scrollTo(0, 0);
     app.focus({ preventScroll: true });
+    setTimeout(pushVisibleAds, 0);
   }
 
   function setMetaTag(name, content) {
@@ -445,18 +490,10 @@
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
-          <div class="paper-stack">
-            <div class="sample-sheet">
-              <h2>Weekly Chore Chart</h2>
-              <div class="sample-lines">
-                <div class="sample-line"></div>
-                <div class="sample-line"></div>
-                <div class="sample-line"></div>
-                <div class="sample-line"></div>
-                <div class="sample-line"></div>
-              </div>
-            </div>
-          </div>
+          <picture class="hero-image">
+            <source srcset="/assets/images/hero-printable-workspace-small.webp" media="(max-width: 680px)">
+            <img src="/assets/images/hero-printable-workspace-web.webp" alt="">
+          </picture>
         </div>
       </section>
       <section class="shell section">
@@ -549,14 +586,14 @@
               <h2>Live preview</h2>
               <p class="help">Preview is rendered as the same canvas used for the PDF export.</p>
             </div>
-            <a class="button ghost pro-click" href="${escapeHtml(SITE.proUrl)}" data-pro-source="${tool.id}">${CONFIG.enableProCheckout ? "Open Pro" : "Need batch or saved projects?"}</a>
+            <a class="button ghost" href="/guides/">Printable tips</a>
           </div>
           <div class="preview-stage">
             <canvas id="previewCanvas" class="preview-canvas" width="1275" height="1650" aria-label="Printable PDF preview"></canvas>
           </div>
-          <div class="placeholder-ad" role="note">Future ad placement: content-adjacent only, never blocking the download button.</div>
+          ${renderAdUnit("tool", "content-adjacent only, never blocking the download button")}
           <div class="callout">
-            <strong>Validation gate:</strong> continue this tool if it gets repeated downloads, Pro clicks, or search traffic within the 30-day checkpoint.
+            <strong>Validation gate:</strong> continue this tool if it gets repeated downloads, search traffic, or strong free usage within the 30-day checkpoint.
           </div>
         </div>
       </section>
@@ -564,7 +601,7 @@
         <div class="section-head">
           <div>
             <h2>Related guides</h2>
-            <p>These pages make the tool more useful and provide crawlable content for future AdSense review.</p>
+            <p>These pages make the free tools more useful and provide crawlable content for future AdSense review.</p>
           </div>
         </div>
         <div class="grid-3">${guides.filter((g) => g.tool === id).concat(guides.filter((g) => !g.tool).slice(0, 2)).slice(0, 3).map(guideCard).join("")}</div>
@@ -624,9 +661,6 @@
       track("generate_pdf", { tool: tool.id });
       track("download_pdf", { tool: tool.id });
     });
-    document.querySelectorAll(".pro-click").forEach((link) => {
-      link.addEventListener("click", () => track("pro_click", { source: link.dataset.proSource || tool.id }));
-    });
     draw();
   }
 
@@ -653,7 +687,7 @@
         <h1>${escapeHtml(guide.title)}</h1>
         <p class="lead">${escapeHtml(guide.description)}</p>
         ${guide.tool ? `<p><a class="button" href="/tools/${guide.tool}/">Open ${escapeHtml(tools[guide.tool].shortTitle)}</a></p>` : ""}
-        <div class="placeholder-ad">Future ad placement after AdSense approval. This slot is separated from core actions.</div>
+        ${renderAdUnit("content", "after AdSense approval, separated from core actions")}
         ${renderBlocks(guide.content)}
       </article>
     `;
@@ -666,18 +700,8 @@
       <article class="article-shell article">
         <h1>${escapeHtml(page.title)}</h1>
         ${renderBlocks(page.body)}
-        ${key === "pro" ? `<p><a class="button pro-click" id="recordPro" href="${escapeHtml(SITE.proUrl)}" data-pro-source="pro_page">${CONFIG.enableProCheckout ? "Open Pro checkout" : "Record Pro interest"}</a></p>` : ""}
       </article>
     `;
-    const pro = document.getElementById("recordPro");
-    if (pro && !CONFIG.enableProCheckout) {
-      pro.addEventListener("click", (event) => {
-        event.preventDefault();
-        track("pro_click", { source: "pro_page" });
-        pro.textContent = "Recorded locally";
-        pro.setAttribute("aria-disabled", "true");
-      });
-    }
   }
 
   function renderDashboard() {
@@ -692,12 +716,12 @@
           <div class="metric-tile"><strong>${totals.page_view || 0}</strong><span>page views</span></div>
           <div class="metric-tile"><strong>${totals.generate_pdf || 0}</strong><span>PDF generations</span></div>
           <div class="metric-tile"><strong>${totals.download_pdf || 0}</strong><span>downloads</span></div>
-          <div class="metric-tile"><strong>${totals.pro_click || 0}</strong><span>Pro clicks</span></div>
+          <div class="metric-tile"><strong>${totals.limit_hit || 0}</strong><span>limit hits</span></div>
         </div>
         <div class="panel">
           <h2>Validation gates</h2>
-          <p><strong>30-day continue gate:</strong> 100 PDF downloads, 300 tool generations, or 20 Pro clicks. If no search exposure or downloads after 60 days, pause this track and test HTML5 game distribution.</p>
-          <p><strong>Configured integrations:</strong> Analytics ${CONFIG.enableAnalytics && CONFIG.googleAnalyticsId ? "on" : "off"}, AdSense ${CONFIG.enableAds && CONFIG.adsenseClientId ? "on" : "off"}, Pro checkout ${CONFIG.enableProCheckout && CONFIG.proCheckoutUrl ? "on" : "off"}.</p>
+          <p><strong>30-day continue gate:</strong> 100 PDF downloads, 300 tool generations, or growing Search Console impressions. If no search exposure or downloads after 60 days, pause this track and test HTML5 game distribution.</p>
+          <p><strong>Configured integrations:</strong> Analytics ${CONFIG.enableAnalytics && CONFIG.googleAnalyticsId ? "on" : "off"}, AdSense ${CONFIG.enableAds && CONFIG.adsenseClientId ? "on" : "off"}.</p>
           <div class="actions">
             <button class="button" id="exportCsv">Export CSV</button>
             <button class="button secondary" id="clearData">Clear local data</button>
@@ -743,6 +767,24 @@
       if (type === "ol") return `<ol>${value.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol>`;
       return "";
     }).join("");
+  }
+
+  function renderAdUnit(kind, note) {
+    const slot = kind === "tool" ? CONFIG.adsenseToolSlot : CONFIG.adsenseContentSlot;
+    if (CONFIG.enableAds && CONFIG.adsenseClientId && slot) {
+      return `
+        <div class="ad-wrap" aria-label="Advertisement">
+          <span>Advertisement</span>
+          <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="${escapeHtml(CONFIG.adsenseClientId)}"
+            data-ad-slot="${escapeHtml(slot)}"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        </div>
+      `;
+    }
+    return `<div class="placeholder-ad" role="note">Future ad placement: ${escapeHtml(note)}.</div>`;
   }
 
   function getFormValues(form) {
@@ -1350,7 +1392,21 @@
       ads.crossOrigin = "anonymous";
       ads.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(CONFIG.adsenseClientId)}`;
       document.head.appendChild(ads);
+      ads.addEventListener("load", pushVisibleAds);
     }
+  }
+
+  function pushVisibleAds() {
+    if (!window.adsbygoogle) return;
+    document.querySelectorAll("ins.adsbygoogle").forEach((unit) => {
+      if (unit.dataset.adsPushed) return;
+      unit.dataset.adsPushed = "true";
+      try {
+        window.adsbygoogle.push({});
+      } catch (error) {
+        unit.dataset.adsPushed = "";
+      }
+    });
   }
 
   function getEvents() {

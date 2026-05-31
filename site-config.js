@@ -3,10 +3,9 @@ window.PTL_CONFIG = {
   googleSiteVerification: "",
   googleAnalyticsId: "",
   adsenseClientId: "",
-  proServiceUrl: "/pro/",
-  proCheckoutUrl: "",
+  adsenseToolSlot: "",
+  adsenseContentSlot: "",
   contactEmail: "",
   enableAds: false,
-  enableAnalytics: false,
-  enableProCheckout: false
+  enableAnalytics: false
 };

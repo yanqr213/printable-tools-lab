@@ -20,6 +20,7 @@ async function main() {
   if (COMMAND === "submit-sitemap") return submitSitemap(token);
   if (COMMAND === "sitemaps") return listSitemaps(token);
   if (COMMAND === "inspect") return inspectUrls(token);
+  if (COMMAND === "performance") return queryPerformance(token);
   if (COMMAND === "status") {
     await listSites(token);
     await addSite(token);
@@ -81,6 +82,44 @@ async function inspectUrls(token) {
   }
 }
 
+async function queryPerformance(token) {
+  const days = Number(process.env.SEARCH_DAYS || 28);
+  const rowLimit = Number(process.env.SEARCH_ROW_LIMIT || 50);
+  const endDate = new Date();
+  endDate.setUTCDate(endDate.getUTCDate() - 1);
+  const startDate = new Date(endDate);
+  startDate.setUTCDate(startDate.getUTCDate() - days + 1);
+  const body = {
+    startDate: formatDate(startDate),
+    endDate: formatDate(endDate),
+    dimensions: ["query", "page"],
+    rowLimit,
+    startRow: 0,
+  };
+  const url = `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(SITE_URL)}/searchAnalytics/query`;
+  const response = await googleFetch(url, token, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  const rows = response.rows || [];
+  console.log(JSON.stringify({
+    siteUrl: SITE_URL,
+    startDate: body.startDate,
+    endDate: body.endDate,
+    rowCount: rows.length,
+    totals: summarizeSearchRows(rows),
+    rows: rows.map((row) => ({
+      query: row.keys && row.keys[0],
+      page: row.keys && row.keys[1],
+      clicks: row.clicks || 0,
+      impressions: row.impressions || 0,
+      ctr: row.ctr || 0,
+      position: row.position || 0,
+    })),
+  }, null, 2));
+}
+
 async function googleFetch(url, token, options = {}) {
   const response = await fetch(url, {
     ...options,
@@ -131,6 +170,18 @@ async function getAccessToken(keyFile, scope) {
 
 function base64url(input) {
   return Buffer.from(input).toString("base64url");
+}
+
+function formatDate(date) {
+  return date.toISOString().slice(0, 10);
+}
+
+function summarizeSearchRows(rows) {
+  return rows.reduce((acc, row) => {
+    acc.clicks += row.clicks || 0;
+    acc.impressions += row.impressions || 0;
+    return acc;
+  }, { clicks: 0, impressions: 0 });
 }
 
 main().catch((error) => {
