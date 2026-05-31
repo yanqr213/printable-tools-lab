@@ -107,6 +107,28 @@ Create one image or short post per item. Do not promise outcomes; show the print
 5. Add one new guide or tool variation only if data points to it.
 6. Record the change and compare the next week.
 
+## Search Console automation
+
+Use the service account only after its email has been added to the Search Console property.
+
+```powershell
+$env:GOOGLE_APPLICATION_CREDENTIALS="E:\path\to\service-account.json"
+npm.cmd run search-console -- status
+npm.cmd run search-console -- inspect
+```
+
+The script can submit and list sitemaps through the Search Console API. It can inspect URL indexing status, but Google does not provide a general public API to request indexing for ordinary pages.
+
+## IndexNow submission
+
+IndexNow can notify participating search engines without a Google account.
+
+```powershell
+npm.cmd run indexnow
+```
+
+The script creates `indexnow-key.txt`, hosts it at the site root, and submits all indexable URLs.
+
 ## Kill or pivot rules
 
 - If Search Console shows no impressions after 60 days, stop adding printable content.

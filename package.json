@@ -6,6 +6,8 @@
     "start": "node scripts/server.cjs",
     "build:routes": "node scripts/build-routes.cjs",
     "verify:seo": "node scripts/verify-seo.cjs",
+    "search-console": "node scripts/search-console.cjs",
+    "indexnow": "node scripts/indexnow.cjs",
     "smoke": "node scripts/smoke.cjs"
   }
 }
