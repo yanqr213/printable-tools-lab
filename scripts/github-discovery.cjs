@@ -129,6 +129,7 @@ function releaseBody() {
     "Start here:",
     "",
     `- [Free PDF tools without signup](${siteUrl("free-pdf-tools")})`,
+    `- [PDF tool finder](${siteUrl("pdf-tool-finder")})`,
     ...toolLinks,
     "",
     "Why this exists:",

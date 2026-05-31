@@ -1,13 +1,13 @@
 # Validation Gates
 
-Last generated: 2026-05-31T21:53:47.439Z
+Last generated: 2026-05-31T22:05:38.030Z
 
 ## Current Automated Status
 
 - Product ready: yes.
 - Tools live in inventory: 26.
 - Guide pages live in inventory: 52.
-- Indexable routes: 86.
+- Indexable routes: 87.
 - Live downloads: 1.
 - Live generations: 0.
 - Search impressions: 0.

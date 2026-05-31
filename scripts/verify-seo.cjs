@@ -73,6 +73,15 @@ else {
   if (!html.includes("/tools/multi-image-pdf/") || !html.includes("/tools/text-to-pdf/")) failures.push("Free PDF tools page missing conversion links.");
 }
 
+const finderFile = path.join(root, "pdf-tool-finder", "index.html");
+if (!fs.existsSync(finderFile)) failures.push("Missing PDF tool finder page.");
+else {
+  const html = fs.readFileSync(finderFile, "utf8");
+  if (!html.includes("Which free PDF tool should I use?")) failures.push("PDF tool finder missing target heading.");
+  if (!html.includes("/tools/image-to-pdf/") || !html.includes("/tools/receipt-generator/")) failures.push("PDF tool finder missing high-intent tool links.");
+  if (!html.includes("Invoice vs receipt")) failures.push("PDF tool finder missing decision content.");
+}
+
 const distributionFile = path.join(root, "DISTRIBUTION.md");
 if (!fs.existsSync(distributionFile)) failures.push("Missing DISTRIBUTION.md.");
 else {

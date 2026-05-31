@@ -20,6 +20,69 @@ const HIGH_INTENT_TOOL_PATHS = [
   "tools/graph-paper",
 ];
 
+const TOOL_FINDER_ROWS = [
+  {
+    need: "I need to turn a photo, scan, or screenshot into a PDF",
+    toolPath: "tools/image-to-pdf",
+    why: "Best for one image or a small gallery on one page. The file is processed locally in the browser.",
+  },
+  {
+    need: "I need one PDF with several image pages",
+    toolPath: "tools/multi-image-pdf",
+    why: "Best when each image should become its own PDF page, such as receipts, scans, or phone photos.",
+  },
+  {
+    need: "I have plain text and need a simple PDF",
+    toolPath: "tools/text-to-pdf",
+    why: "Best for notes, short letters, checklists, or copied text that needs a clean one-page export.",
+  },
+  {
+    need: "I need to bill a client or record a service payment",
+    toolPath: "tools/invoice-generator",
+    why: "Use an invoice before payment is due. Use the receipt tool after money has been paid.",
+  },
+  {
+    need: "I need a quote before work starts",
+    toolPath: "tools/estimate-generator",
+    why: "Best for service quotes, repair estimates, consulting scopes, and small project proposals.",
+  },
+  {
+    need: "I need proof that something was paid",
+    toolPath: "tools/receipt-generator",
+    why: "Best for deposits, reimbursements, service payments, and simple sale records.",
+  },
+  {
+    need: "I need to track hours for a week or pay period",
+    toolPath: "tools/timesheet-generator",
+    why: "Best for freelancers, contractors, staff records, project approvals, and recurring weekly hour logs.",
+  },
+  {
+    need: "I need a job application PDF",
+    toolPath: "tools/resume-builder",
+    why: "Start with the resume. Use the cover letter tool when the application asks for a separate letter.",
+  },
+  {
+    need: "I need an event or classroom printable",
+    toolPath: "tools/sign-in-sheet",
+    why: "Best for attendance, workshop check-in, visitor logs, and simple event records.",
+  },
+  {
+    need: "I need a blank printable page for math, notes, or sketches",
+    toolPath: "tools/graph-paper",
+    why: "Best for quarter-inch grids, half-inch grids, dot grids, math practice, and design planning.",
+  },
+  {
+    need: "I need a certificate or award quickly",
+    toolPath: "tools/certificate-generator",
+    why: "Best for participation, completion, classroom awards, clubs, and small event recognition.",
+  },
+  {
+    need: "I need a practical checklist",
+    toolPath: "tools/todo-list",
+    why: "Best for errands, study sessions, event prep, home projects, or work tasks that should fit on one page.",
+  },
+];
+
 const tools = [
   {
     path: "tools/name-tracing",
@@ -474,6 +537,12 @@ const pages = [
     html: freePdfToolsHtml(),
   },
   {
+    path: "pdf-tool-finder",
+    title: "Which Free PDF Tool Should I Use?",
+    description: "Find the right free PDF generator for images, text, invoices, receipts, timesheets, resumes, certificates, checklists, graph paper, and event sheets.",
+    html: pdfToolFinderHtml(),
+  },
+  {
     path: "guides",
     title: "Printable Guides",
     description: "Original guides for printable worksheets, charts, planners, flashcards, and classroom resources.",
@@ -701,6 +770,71 @@ function freePdfToolsHtml() {
         <div class="grid-3">
           ${tools.map((tool) => `<article class="tool-card"><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.description)}</p><a class="button" href="/${tool.path}/">Open generator</a></article>`).join("\n")}
         </div>
+      </section>`;
+}
+
+function pdfToolFinderHtml() {
+  const rows = TOOL_FINDER_ROWS.map((row) => {
+    const tool = tools.find((item) => item.path === row.toolPath);
+    if (!tool) return "";
+    return `
+      <tr>
+        <td>${escapeHtml(row.need)}</td>
+        <td><a href="/${tool.path}/">${escapeHtml(tool.title)}</a></td>
+        <td>${escapeHtml(row.why)}</td>
+      </tr>`;
+  }).join("\n");
+  const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator"];
+  const personalTools = ["resume-builder", "cover-letter", "resignation-letter", "certificate-generator", "todo-list", "packing-list", "monthly-calendar", "meal-planner"];
+  return `
+      <section class="shell page-title section">
+        <h1>Which free PDF tool should I use?</h1>
+        <p>Start with the job, not the template name. This finder points you to the free browser PDF generator that best matches the document you need right now.</p>
+      </section>
+      <section class="shell section">
+        <h2>Quick PDF tool finder</h2>
+        <table class="event-table">
+          <thead><tr><th>What you need</th><th>Use this tool</th><th>Why it fits</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </section>
+      <section class="shell section">
+        <h2>Common choices</h2>
+        <div class="grid-2">
+          <article class="panel">
+            <h3>Invoice vs receipt</h3>
+            <p>Use an invoice when you are asking someone to pay. Use a receipt when payment has already happened and you need a record.</p>
+            <p><a class="button" href="/tools/invoice-generator/">Create an invoice</a> <a class="button secondary" href="/tools/receipt-generator/">Create a receipt</a></p>
+          </article>
+          <article class="panel">
+            <h3>One image vs many images</h3>
+            <p>Use the one-page image converter when layout matters on a single sheet. Use multiple images to PDF when each image should become its own page.</p>
+            <p><a class="button" href="/tools/image-to-pdf/">One image PDF</a> <a class="button secondary" href="/tools/multi-image-pdf/">Multi-page PDF</a></p>
+          </article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Business document tools</h2>
+        <div class="cluster-links">
+          ${businessTools.map((slug) => {
+            const tool = tools.find((item) => item.path === `tools/${slug}`);
+            return tool ? `<a href="/${tool.path}/">${escapeHtml(tool.title)}</a>` : "";
+          }).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Personal, school, and event tools</h2>
+        <div class="cluster-links">
+          ${personalTools.map((slug) => {
+            const tool = tools.find((item) => item.path === `tools/${slug}`);
+            return tool ? `<a href="/${tool.path}/">${escapeHtml(tool.title)}</a>` : "";
+          }).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Free tool limits</h2>
+        <p>The tools are designed for fast one-page PDFs and simple records. They do not replace legal, tax, accounting, or employment advice. Review every document before sending or printing it.</p>
+        <p>Ads are disabled during validation and should never be used as a condition for downloading a PDF.</p>
       </section>`;
 }
 

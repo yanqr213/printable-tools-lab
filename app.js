@@ -855,6 +855,59 @@
     },
   ];
 
+  const toolFinderRows = [
+    {
+      need: "Turn a photo, scan, or screenshot into a PDF",
+      tool: "image-to-pdf",
+      why: "Best for one image or a small gallery on one page.",
+    },
+    {
+      need: "Create one PDF with several image pages",
+      tool: "multi-image-pdf",
+      why: "Best when each image should become its own PDF page.",
+    },
+    {
+      need: "Paste text and download a simple PDF",
+      tool: "text-to-pdf",
+      why: "Best for notes, short letters, and copied text.",
+    },
+    {
+      need: "Bill a client or record work before payment",
+      tool: "invoice-generator",
+      why: "Use an invoice before payment is due.",
+    },
+    {
+      need: "Show proof after money was paid",
+      tool: "receipt-generator",
+      why: "Use a receipt after payment happens.",
+    },
+    {
+      need: "Track hours for a week or pay period",
+      tool: "timesheet-generator",
+      why: "Best for freelancers, contractors, and staff records.",
+    },
+    {
+      need: "Make a job application PDF",
+      tool: "resume-builder",
+      why: "Start with the resume, then add a cover letter if needed.",
+    },
+    {
+      need: "Make an event or classroom sheet",
+      tool: "sign-in-sheet",
+      why: "Best for attendance, check-in, and visitor logs.",
+    },
+    {
+      need: "Make graph paper or a blank grid",
+      tool: "graph-paper",
+      why: "Best for math, notes, sketching, and planning.",
+    },
+    {
+      need: "Make an award or participation certificate",
+      tool: "certificate-generator",
+      why: "Best for classrooms, clubs, events, and simple recognition.",
+    },
+  ];
+
   const guides = [
     {
       slug: "free-printable-name-tracing-worksheet-maker",
@@ -1612,6 +1665,7 @@
     if (parts[0] === "guides" && !parts[1]) return renderGuides();
     if (parts[0] === "guides" && parts[1]) return renderGuide(parts[1]);
     if (parts[0] === "free-pdf-tools") return renderFreePdfTools();
+    if (parts[0] === "pdf-tool-finder") return renderPdfToolFinder();
     if (parts[0] === "dashboard") return renderDashboard();
     if (pages[parts[0]]) return renderStaticPage(parts[0]);
     return renderNotFound();
@@ -1830,6 +1884,68 @@
           ${group.links.map((id) => `<a href="/tools/${id}/">${escapeHtml(tools[id].title)}</a>`).join("")}
         </div>
       </article>
+    `;
+  }
+
+  function renderPdfToolFinder() {
+    setMeta("Which Free PDF Tool Should I Use?", "Find the right free PDF generator for images, text, invoices, receipts, timesheets, resumes, certificates, checklists, graph paper, and event sheets.");
+    setJsonLd({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Which Free PDF Tool Should I Use?",
+      url: `${CONFIG.siteUrl.replace(/\/$/, "")}/pdf-tool-finder/`,
+      description: "A practical finder for choosing the right free PDF generator by task.",
+    });
+    app.innerHTML = `
+      <section class="shell page-title section">
+        <h1>Which free PDF tool should I use?</h1>
+        <p>Start with the job, not the template name. This finder points you to the free browser PDF generator that best matches the document you need right now.</p>
+      </section>
+      <section class="shell section">
+        <div class="section-head">
+          <div>
+            <h2>Quick PDF tool finder</h2>
+            <p>Pick the row that sounds closest to your task.</p>
+          </div>
+        </div>
+        <table class="event-table">
+          <thead><tr><th>What you need</th><th>Use this tool</th><th>Why it fits</th></tr></thead>
+          <tbody>
+            ${toolFinderRows.map((row) => `
+              <tr>
+                <td>${escapeHtml(row.need)}</td>
+                <td><a href="/tools/${row.tool}/">${escapeHtml(tools[row.tool].title)}</a></td>
+                <td>${escapeHtml(row.why)}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </section>
+      <section class="shell section">
+        <div class="grid-2">
+          <article class="panel">
+            <h3>Invoice vs receipt</h3>
+            <p>Use an invoice when you are asking someone to pay. Use a receipt when payment has already happened and you need a record.</p>
+            <p><a class="button" href="/tools/invoice-generator/">Create an invoice</a> <a class="button secondary" href="/tools/receipt-generator/">Create a receipt</a></p>
+          </article>
+          <article class="panel">
+            <h3>One image vs many images</h3>
+            <p>Use the one-page image converter when layout matters on a single sheet. Use multiple images to PDF when each image should become its own page.</p>
+            <p><a class="button" href="/tools/image-to-pdf/">One image PDF</a> <a class="button secondary" href="/tools/multi-image-pdf/">Multi-page PDF</a></p>
+          </article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Browse all tools</h2>
+        <div class="cluster-links">
+          ${toolOrder.map((id) => `<a href="/tools/${id}/">${escapeHtml(tools[id].title)}</a>`).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Free tool limits</h2>
+        <p>The tools are designed for fast one-page PDFs and simple records. They do not replace legal, tax, accounting, or employment advice. Review every document before sending or printing it.</p>
+        <p>Ads are disabled during validation and should never be used as a condition for downloading a PDF.</p>
+      </section>
     `;
   }
 

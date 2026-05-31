@@ -13,7 +13,7 @@ async function main() {
   const local = readLocalState();
   const live = await readLiveState();
   const searchConsole = readSearchConsoleState();
-  const discovery = readDiscoveryState();
+  const discovery = await readDiscoveryState();
   const gates = evaluateGates(local, live, searchConsole, discovery);
   const nextActions = buildNextActions(gates, local, live, searchConsole, discovery);
   const report = {
@@ -146,10 +146,10 @@ function readSearchConsoleState() {
   return state;
 }
 
-function readDiscoveryState() {
+async function readDiscoveryState() {
   const state = {
-    github: readGithubState(),
-    indexNow: readIndexNowState(),
+    github: await readGithubState(),
+    indexNow: await readIndexNowState(),
   };
   state.externalDiscoveryReady = Boolean(state.github.homepage)
     && state.github.topics.length >= 6
@@ -158,7 +158,7 @@ function readDiscoveryState() {
   return state;
 }
 
-function readGithubState() {
+async function readGithubState() {
   const remote = runLocalCommand("git", ["remote", "get-url", "origin"]);
   const repoUrl = remote.ok ? remote.stdout.trim().replace(/\.git$/, "") : "";
   const apiUrl = repoUrl.includes("github.com/")
@@ -174,9 +174,9 @@ function readGithubState() {
   };
   if (!apiUrl) return fallback;
   try {
-    const response = fetchSyncJson(apiUrl, { headers: { "User-Agent": "PrintableToolsLab-Ops" } });
+    const response = await fetchJsonWithTimeout(apiUrl, { headers: { "User-Agent": "PrintableToolsLab-Ops" } });
     if (!response.ok) return { ...fallback, error: `GitHub API ${response.status}` };
-    const release = fetchSyncJson(`${apiUrl}/releases/tags/free-pdf-tools`, { headers: { "User-Agent": "PrintableToolsLab-Ops" } });
+    const release = await fetchJsonWithTimeout(`${apiUrl}/releases/tags/free-pdf-tools`, { headers: { "User-Agent": "PrintableToolsLab-Ops" } });
     return {
       available: true,
       repoUrl,
@@ -195,7 +195,7 @@ function readGithubState() {
   }
 }
 
-function readIndexNowState() {
+async function readIndexNowState() {
   const key = readText("indexnow-key.txt").trim();
   const keyFile = key ? `${key}.txt` : "";
   const keyFileExists = keyFile ? fs.existsSync(path.join(root, keyFile)) : false;
@@ -211,10 +211,10 @@ function readIndexNowState() {
   };
   if (!key || !keyFileExists) return state;
   try {
-    const keyCheck = fetchSyncText(keyLocation);
+    const keyCheck = await fetchTextWithTimeout(keyLocation);
     state.keyFileReachable = keyCheck.ok && keyCheck.text.trim() === key;
     const endpoint = `https://www.bing.com/indexnow?url=${encodeURIComponent(siteUrl("tools/image-to-pdf"))}&key=${encodeURIComponent(key)}`;
-    const single = fetchSyncText(endpoint);
+    const single = await fetchTextWithTimeout(endpoint);
     state.singleUrlAccepted = single.ok || single.status === 202;
   } catch (error) {
     state.error = error.message;
@@ -424,63 +424,25 @@ function runLocalCommand(command, args) {
   }
 }
 
-function fetchSyncJson(url, options = {}) {
-  const headersLiteral = Object.entries(options.headers || {})
-    .map(([key, value]) => `"${escapePowerShell(key)}"="${escapePowerShell(value)}"`)
-    .join(";");
-  const script = [
-    "$ProgressPreference='SilentlyContinue'",
-    `$headers = @{${headersLiteral}}`,
-    "$status = 0",
-    "$content = ''",
-    "try {",
-    `  $response = Invoke-WebRequest -Uri ${JSON.stringify(url)} -UseBasicParsing -Headers $headers`,
-    "  $status = [int]$response.StatusCode",
-    "  $content = [string]$response.Content",
-    "} catch {",
-    "  if ($_.Exception.Response) {",
-    "    $status = [int]$_.Exception.Response.StatusCode",
-    "    try {",
-    "      $reader = New-Object System.IO.StreamReader($_.Exception.Response.GetResponseStream())",
-    "      $content = $reader.ReadToEnd()",
-    "    } catch { $content = $_.Exception.Message }",
-    "  } else { $content = $_.Exception.Message }",
-    "}",
-    "[Console]::Out.Write(($status.ToString() + \"`n\" + $content))",
-  ].join("; ");
-  const result = execFileSync("powershell", ["-NoProfile", "-Command", script], { encoding: "utf8", timeout: 30000 });
-  const [statusLine, ...bodyLines] = result.split(/\r?\n/);
-  return { ok: Number(statusLine) >= 200 && Number(statusLine) < 300, status: Number(statusLine), json: safeJson(bodyLines.join("\n")) || {} };
+async function fetchJsonWithTimeout(url, options = {}) {
+  const response = await fetchWithTimeout(url, options);
+  const text = await response.text();
+  return { ok: response.ok, status: response.status, json: safeJson(text) || {} };
 }
 
-function fetchSyncText(url) {
-  const script = [
-    "$ProgressPreference='SilentlyContinue'",
-    "$status = 0",
-    "$content = ''",
-    "try {",
-    `  $response = Invoke-WebRequest -Uri ${JSON.stringify(url)} -UseBasicParsing`,
-    "  $status = [int]$response.StatusCode",
-    "  $content = [string]$response.Content",
-    "} catch {",
-    "  if ($_.Exception.Response) {",
-    "    $status = [int]$_.Exception.Response.StatusCode",
-    "    try {",
-    "      $reader = New-Object System.IO.StreamReader($_.Exception.Response.GetResponseStream())",
-    "      $content = $reader.ReadToEnd()",
-    "    } catch { $content = $_.Exception.Message }",
-    "  } else { $content = $_.Exception.Message }",
-    "}",
-    "[Console]::Out.Write(($status.ToString() + \"`n\" + $content))",
-  ].join("; ");
-  const result = execFileSync("powershell", ["-NoProfile", "-Command", script], { encoding: "utf8", timeout: 30000 });
-  const [statusLine, ...bodyLines] = result.split(/\r?\n/);
-  const status = Number(statusLine);
-  return { ok: status >= 200 && status < 300, status, text: bodyLines.join("\n") };
+async function fetchTextWithTimeout(url, options = {}) {
+  const response = await fetchWithTimeout(url, options);
+  return { ok: response.ok, status: response.status, text: await response.text() };
 }
 
-function escapePowerShell(value) {
-  return String(value).replace(/`/g, "``").replace(/"/g, "`\"");
+async function fetchWithTimeout(url, options = {}) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), Number(process.env.VALIDATION_FETCH_TIMEOUT_MS || 12000));
+  try {
+    return await fetch(url, { ...options, signal: controller.signal, cache: "no-store" });
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 function readText(file) {

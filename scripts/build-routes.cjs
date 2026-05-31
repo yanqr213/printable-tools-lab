@@ -101,6 +101,7 @@ const llms = [
   `- Homepage: ${siteUrl("")}`,
   `- Tools index: ${siteUrl("tools")}`,
   `- Free PDF tools directory: ${siteUrl("free-pdf-tools")}`,
+  `- PDF tool finder: ${siteUrl("pdf-tool-finder")}`,
   `- Guides index: ${siteUrl("guides")}`,
   `- Sitemap: ${fileUrl("sitemap.xml")}`,
   `- Machine-readable tool list: ${fileUrl("tools.json")}`,
@@ -129,7 +130,7 @@ const discoveryIndex = {
   url: siteUrl(""),
   generatedAt: new Date().toISOString(),
   positioning: "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
-  highIntentEntryPoints: [siteUrl("free-pdf-tools"), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   constraints: [
     "No account required.",
     "No ad interaction gate.",
@@ -169,6 +170,7 @@ const distribution = [
   "## High-intent links",
   "",
   `- Free PDF tools directory: ${siteUrl("free-pdf-tools")}`,
+  `- PDF tool finder: ${siteUrl("pdf-tool-finder")}`,
   ...HIGH_INTENT_TOOL_PATHS.map((toolPath) => {
     const tool = tools.find((item) => item.path === toolPath);
     return tool ? `- ${tool.title}: ${siteUrl(tool.path)}` : "";

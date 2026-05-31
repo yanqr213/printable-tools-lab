@@ -22,6 +22,7 @@ I built PrintableTools Lab, a free browser-based PDF tool site. It creates pract
 ## High-intent links
 
 - Free PDF tools directory: https://printable-tools-lab.pages.dev/free-pdf-tools/
+- PDF tool finder: https://printable-tools-lab.pages.dev/pdf-tool-finder/
 - Image to PDF Converter: https://printable-tools-lab.pages.dev/tools/image-to-pdf/
 - Multiple Images to PDF Converter: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/
 - Text to PDF Converter: https://printable-tools-lab.pages.dev/tools/text-to-pdf/

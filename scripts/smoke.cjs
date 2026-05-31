@@ -25,6 +25,7 @@ function delay(ms) {
     "/",
     "/tools/",
     "/free-pdf-tools/",
+    "/pdf-tool-finder/",
     "/tools/name-tracing/",
     "/tools/chore-chart/",
     "/tools/reward-chart/",
@@ -94,6 +95,16 @@ function delay(ms) {
   for (const href of ["/tools/multi-image-pdf/", "/tools/text-to-pdf/", "/tools/timesheet-generator/"]) {
     const linkCount = await page.locator(`main a[href="${href}"]`).count();
     if (!linkCount) throw new Error(`Free PDF tools page is missing link ${href}`);
+  }
+
+  await page.goto(`${base}/pdf-tool-finder/`, { waitUntil: "networkidle" });
+  const finderText = await page.locator("main").innerText();
+  for (const phrase of ["Which free PDF tool should I use?", "Invoice vs receipt", "One image vs many images"]) {
+    if (!finderText.includes(phrase)) throw new Error(`PDF tool finder page is missing ${phrase}`);
+  }
+  for (const href of ["/tools/image-to-pdf/", "/tools/receipt-generator/", "/tools/timesheet-generator/"]) {
+    const linkCount = await page.locator(`main a[href="${href}"]`).count();
+    if (!linkCount) throw new Error(`PDF tool finder page is missing link ${href}`);
   }
 
   for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/text-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {

@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-05-31T21:53:47.439Z",
+  "generatedAt": "2026-05-31T22:05:38.030Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 26,
     "guideCount": 52,
-    "indexableRoutes": 86,
-    "sitemapLocCount": 86,
-    "generatedToolInventoryAt": "2026-05-31T21:50:27.926Z",
+    "indexableRoutes": 87,
+    "sitemapLocCount": 87,
+    "generatedToolInventoryAt": "2026-05-31T22:01:02.346Z",
     "discoveryAssets": {
       "sitemap": true,
       "robots": true,
@@ -79,7 +79,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-05-31T21:38:41.863Z",
+          "generatedAt": "2026-05-31T21:50:27.926Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -506,23 +506,24 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 1554,
+        "bytes": 1618,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-05-31T21:38:41.864Z",
+          "generatedAt": "2026-05-31T21:50:27.927Z",
           "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
           "highIntentEntryPoints": [
+            "https://printable-tools-lab.pages.dev/free-pdf-tools/",
             "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
             "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
             "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
-            "https://printable-tools-lab.pages.dev/free-pdf-tools/",
             "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
             "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
             "https://printable-tools-lab.pages.dev/tools/timesheet-generator/",
             "https://printable-tools-lab.pages.dev/tools/resume-builder/",
             "https://printable-tools-lab.pages.dev/tools/certificate-generator/",
-            "https://printable-tools-lab.pages.dev/tools/todo-list/"
+            "https://printable-tools-lab.pages.dev/tools/todo-list/",
+            "https://printable-tools-lab.pages.dev/tools/graph-paper/"
           ],
           "constraints": [
             "No account required.",
@@ -832,7 +833,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-05-31T21:45:09.350Z",
+          "lastSubmitted": "2026-05-31T21:54:38.327Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
