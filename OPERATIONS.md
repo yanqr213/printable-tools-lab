@@ -139,6 +139,12 @@ Practical order if a paid product is added later:
 - free invoice PDF generator
 - freelance invoice PDF template
 - invoice generator without watermark
+- free estimate generator PDF
+- service quote PDF template
+- free purchase order generator
+- purchase order PDF template
+- free bill of sale generator
+- private sale receipt PDF
 - rent receipt generator
 - rent receipt for cash payment
 - printable rent receipt PDF
@@ -193,6 +199,9 @@ Create one image or short post per item. Show the printable use case and never p
 26. Freelance invoice PDF without creating an account.
 27. Printable rent receipt for cash or bank transfer payments.
 28. Simple resume builder with no surprise download fee.
+29. Free estimate PDF for home services or freelance work.
+30. Purchase order PDF for small vendor orders.
+31. Bill of sale PDF for private item sales.
 
 ## Weekly Operating Loop
 

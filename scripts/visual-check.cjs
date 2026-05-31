@@ -17,7 +17,7 @@ function delay(ms) {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 1366, height: 900 } });
 
-  for (const route of ["/tools/invoice-generator/", "/tools/rent-receipt/", "/tools/resume-builder/"]) {
+  for (const route of ["/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/resume-builder/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
     const canvas = page.locator("canvas.preview-canvas");
     await canvas.waitFor();

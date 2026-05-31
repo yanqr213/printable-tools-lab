@@ -65,6 +65,33 @@ const tools = [
     ],
   },
   {
+    path: "tools/estimate-generator",
+    title: "Estimate Generator",
+    description: "Create a free estimate PDF for freelance work, home services, consulting, repairs, or small business quotes.",
+    body: [
+      "Add business details, client details, estimate number, scope items, validity terms, and notes to download a one-page estimate PDF.",
+      "Estimate and quote searches are high-intent because the user is often trying to win a job or respond to a client request quickly.",
+    ],
+  },
+  {
+    path: "tools/purchase-order",
+    title: "Purchase Order Generator",
+    description: "Make a free purchase order PDF for supplies, services, small vendors, internal approvals, or project records.",
+    body: [
+      "Enter buyer and vendor details, a PO number, order items, delivery terms, and notes to generate a clean purchase order PDF.",
+      "Purchase order PDFs are useful for small teams that need an approval record before an invoice arrives.",
+    ],
+  },
+  {
+    path: "tools/bill-of-sale",
+    title: "Bill of Sale Generator",
+    description: "Create a simple bill of sale PDF for a private item sale, equipment transfer, furniture sale, or vehicle record draft.",
+    body: [
+      "Add seller, buyer, sale date, item description, price, terms, and disclosure notes to create a practical sale record PDF.",
+      "This generator is a simple record template, not legal advice. Requirements vary by location and item type.",
+    ],
+  },
+  {
     path: "tools/rent-receipt",
     title: "Rent Receipt Generator",
     description: "Make a free printable rent receipt PDF for a tenant payment, room rental, cash payment record, or landlord file.",
@@ -105,6 +132,12 @@ const guides = [
   ["guides/free-habit-tracker-generator", "Free habit tracker generator", "Build a simple habit tracker printable for routines, reading goals, wellness habits, or classroom practice.", "A habit tracker works best when it tracks a few repeatable behaviors. A simple grid is easier to keep using than a heavily decorated page with too many categories."],
   ["guides/free-invoice-generator-no-signup", "Free invoice generator without signup", "Create a clean invoice PDF without an account, template marketplace, or surprise download fee.", "Many freelancers only need one invoice today. A tool that opens quickly, avoids account creation, and downloads a clean PDF can satisfy a high-intent search faster than a full accounting app."],
   ["guides/freelance-invoice-pdf-template", "Freelance invoice PDF template", "Make a one-page freelance invoice PDF for design, writing, consulting, development, and project work.", "A freelance invoice should make it easy for the client to approve payment. Keep each line item short: project phase, quantity, rate, and the resulting amount."],
+  ["guides/free-estimate-generator-pdf", "Free estimate generator PDF", "Create a free estimate PDF for services, repairs, project work, consulting, or home jobs.", "A user searching for an estimate generator is often preparing to win a job today. A fast PDF with line items and clear validity terms can solve that moment without forcing accounting software."],
+  ["guides/service-quote-pdf-template", "Service quote PDF template", "Make a printable service quote PDF for contractors, freelancers, consultants, or small local businesses.", "A service quote should make the work, assumptions, timeline, and price easy to scan. Keep each line item short and avoid promising work that is not included."],
+  ["guides/free-purchase-order-generator", "Free purchase order generator", "Create a purchase order PDF for vendor orders, supply requests, services, or internal approvals.", "A purchase order gives the buyer and vendor a shared reference before an invoice arrives. It is useful for supplies, project materials, services, and approvals."],
+  ["guides/purchase-order-pdf-template", "Purchase order PDF template", "Use a clean purchase order PDF template when a small team needs approval before buying goods or services.", "Even small teams benefit from a simple PO because it records what was approved, who the vendor is, and what cost was expected."],
+  ["guides/free-bill-of-sale-generator", "Free bill of sale generator", "Create a simple bill of sale PDF for a private item sale, equipment transfer, or sale record.", "A bill of sale records who sold an item, who bought it, what was sold, the price, and the date. It is useful for private sales and simple transfers."],
+  ["guides/private-sale-receipt-pdf", "Private sale receipt PDF", "Make a printable receipt for a private sale of equipment, furniture, electronics, or household items.", "Use a short description that identifies the item well enough for both parties. Add model, serial number, or condition notes when appropriate."],
   ["guides/free-rent-receipt-generator", "Free rent receipt generator", "Generate a printable rent receipt PDF for tenant records, landlord files, or cash payment documentation.", "A rent receipt gives both sides a simple record of who paid, how much was paid, when it was received, and what rental period the payment covers."],
   ["guides/rent-receipt-for-cash-payment", "Rent receipt for cash payment", "Create a simple receipt PDF when rent is paid by cash, bank transfer, check, or another payment method.", "Cash rent payments can be easy to dispute later if no record is created. A dated receipt gives both parties a reference."],
   ["guides/free-resume-builder-pdf", "Free resume builder PDF", "Build a clean resume PDF without an account, paywall, or complicated design tool.", "Many job seekers do not need a heavy design template. They need a readable document with a clear name, contact line, summary, experience, skills, and education."],
@@ -150,11 +183,12 @@ const keywordClusters = [
   },
   {
     title: "Business paperwork",
-    description: "Clean PDF invoices and receipts for freelancers, landlords, and small service businesses that need a document now.",
+    description: "Clean PDF invoices, estimates, purchase orders, sale records, and receipts for people who need a document now.",
     links: [
       ["Invoice generator", "tools/invoice-generator"],
+      ["Estimate generator", "tools/estimate-generator"],
+      ["Purchase order generator", "tools/purchase-order"],
       ["Rent receipt generator", "tools/rent-receipt"],
-      ["Free invoice generator without signup", "guides/free-invoice-generator-no-signup"],
     ],
   },
   {
@@ -183,9 +217,9 @@ const pages = [
             <a class="button secondary" href="/guides/">Read printable guides</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>9</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>12</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>24</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>30</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -211,6 +245,9 @@ const pages = [
           <li><a href="/tools/weekly-planner/">Weekly Planner Generator</a></li>
           <li><a href="/tools/habit-tracker/">Habit Tracker Generator</a></li>
           <li><a href="/tools/invoice-generator/">Invoice Generator</a></li>
+          <li><a href="/tools/estimate-generator/">Estimate Generator</a></li>
+          <li><a href="/tools/purchase-order/">Purchase Order Generator</a></li>
+          <li><a href="/tools/bill-of-sale/">Bill of Sale Generator</a></li>
           <li><a href="/tools/rent-receipt/">Rent Receipt Generator</a></li>
           <li><a href="/tools/resume-builder/">Resume Builder PDF</a></li>
         </ul>
@@ -352,6 +389,9 @@ function relatedGuideLinks(toolPath) {
   const slug = toolPath.replace(/^tools\//, "");
   const guideHints = {
     "invoice-generator": ["invoice"],
+    "estimate-generator": ["estimate", "quote"],
+    "purchase-order": ["purchase order"],
+    "bill-of-sale": ["bill of sale", "private sale"],
     "rent-receipt": ["rent receipt"],
     "resume-builder": ["resume", "ATS"],
     "name-tracing": ["name tracing", "preschool"],

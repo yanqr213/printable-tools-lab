@@ -5,7 +5,7 @@ Zero-cost validation build for a free printable PDF generator site.
 ## What is included
 
 - Static website with optional Cloudflare Pages Function for the AI idea helper.
-- Nine browser-side generators:
+- Twelve browser-side generators:
   - Name Tracing Worksheet Generator
   - Chore Chart Generator
   - Reward Chart Generator
@@ -13,13 +13,16 @@ Zero-cost validation build for a free printable PDF generator site.
   - Weekly Planner Generator
   - Habit Tracker Generator
   - Invoice Generator
+  - Estimate Generator
+  - Purchase Order Generator
+  - Bill of Sale Generator
   - Rent Receipt Generator
   - Resume Builder PDF
 - One-page PDF export through Canvas-to-PDF.
 - Daily free limit stored in `localStorage`.
 - Local validation events stored in `localStorage`.
 - Anonymous Cloudflare KV counters for live page views, PDF generations, downloads, limit hits, and AI idea applies.
-- 24 original guide pages plus keyword clusters for SEO and future AdSense review.
+- 30 original guide pages plus keyword clusters for SEO and future AdSense review.
 - Compliance pages: About, Privacy, Terms, AI & License Disclosure.
 - Static pre-rendered HTML for key routes, plus client-side enhancement.
 - Operations checklist, keyword list, and distribution post ideas.
@@ -87,7 +90,7 @@ For step-by-step operations, see `OPERATIONS.md`.
 ## Launch checklist
 
 1. Deploy the full folder contents after running `npm.cmd run build:routes`.
-2. Open `/`, `/tools/invoice-generator/`, `/tools/rent-receipt/`, `/tools/resume-builder/`, `/tools/name-tracing/`, `/guides/`, `/privacy/`, and `/dashboard/`.
+2. Open `/`, `/tools/invoice-generator/`, `/tools/estimate-generator/`, `/tools/purchase-order/`, `/tools/bill-of-sale/`, `/tools/rent-receipt/`, `/tools/resume-builder/`, `/guides/`, `/privacy/`, and `/dashboard/`.
 3. Generate and download one PDF from each tool.
 4. Confirm the dashboard shows page views, PDF generations, and downloads.
 5. Submit the public URL to Google Search Console.
@@ -100,12 +103,12 @@ For step-by-step operations, see `OPERATIONS.md`.
 - The app generates static route entry files so GitHub Pages-style hosting can serve deep links without a server rewrite.
 - Live ads are not included in the MVP. Placeholder ad zones mark future placements without risking early AdSense policy problems.
 - The AI idea helper is server-side only. Configure `AI_BASE_URL`, `AI_API_KEY`, and `AI_MODEL` as Cloudflare Pages secrets/environment variables before using it in production.
-- New business and career tools were added because invoice, receipt, and resume queries have stronger immediate pain than light classroom printables and many competing tools monetize at account creation or download.
+- New business and career tools were added because invoice, estimate, purchase order, sale record, receipt, and resume queries have stronger immediate pain than light classroom printables and many competing tools monetize at account creation or download.
 
 ## Validation gates
 
-- Day 7: 9 tools export stable PDFs on desktop and mobile.
-- Day 14: 24 guide pages live; submit sitemap/site to Google Search Console.
+- Day 7: 12 tools export stable PDFs on desktop and mobile.
+- Day 14: 30 guide pages live; submit sitemap/site to Google Search Console.
 - Day 30: continue if any of these are true:
   - 100 PDF downloads.
   - 300 tool generations.

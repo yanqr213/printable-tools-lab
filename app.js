@@ -22,6 +22,9 @@
 
   const AI_FIELD_ALLOWLIST = {
     "invoice-generator": ["items", "due", "notes"],
+    "estimate-generator": ["items", "due", "notes"],
+    "purchase-order": ["items", "due", "notes"],
+    "bill-of-sale": ["items", "due", "notes"],
     "rent-receipt": ["period", "method", "notes"],
     "resume-builder": ["headline", "summary", "experience", "skills", "education"],
   };
@@ -199,6 +202,102 @@
       ],
       draw: drawInvoice,
     },
+    "estimate-generator": {
+      id: "estimate-generator",
+      icon: "EST",
+      title: "Estimate Generator",
+      shortTitle: "Estimate",
+      description: "Create a free estimate PDF for freelance work, home services, consulting, repairs, or small business quotes.",
+      keywords: ["estimate generator", "quote PDF", "free estimate", "service estimate"],
+      watermark: false,
+      defaultValues: {
+        business: "Bright Studio\nhello@example.com",
+        client: "Client Name\nclient@example.com",
+        invoiceNo: "EST-001",
+        date: "2026-06-01",
+        due: "Valid for 14 days",
+        items: "Discovery call | 1 | 0\nDesign concept | 1 | 450\nImplementation support | 4 | 75",
+        currency: "USD",
+        notes: "This estimate is based on the scope listed above.",
+        paper: "letter",
+      },
+      fields: [
+        { id: "business", label: "Your business", type: "textarea", maxLength: 140, help: "Name, email, address, or payment note. Keep private details minimal." },
+        { id: "client", label: "Prepared for", type: "textarea", maxLength: 140 },
+        { id: "invoiceNo", label: "Estimate number", type: "text", maxLength: 36 },
+        { id: "date", label: "Estimate date", type: "text", maxLength: 32 },
+        { id: "due", label: "Validity or terms", type: "text", maxLength: 42 },
+        { id: "items", label: "Estimate items", type: "textarea", maxLength: 420, help: "One item per line: Description | Qty | Rate" },
+        { id: "currency", label: "Currency", type: "select", options: [["USD", "USD $"], ["EUR", "EUR €"], ["GBP", "GBP £"], ["CAD", "CAD $"], ["AUD", "AUD $"]] },
+        { id: "notes", label: "Footer note", type: "textarea", maxLength: 160 },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawEstimate,
+    },
+    "purchase-order": {
+      id: "purchase-order",
+      icon: "PO",
+      title: "Purchase Order Generator",
+      shortTitle: "Purchase order",
+      description: "Make a free purchase order PDF for supplies, services, small vendors, internal approvals, or project records.",
+      keywords: ["purchase order", "PO generator", "free purchase order", "PDF purchase order"],
+      watermark: false,
+      defaultValues: {
+        business: "Buyer Name\nbuyer@example.com",
+        client: "Vendor Name\nvendor@example.com",
+        invoiceNo: "PO-001",
+        date: "2026-06-01",
+        due: "Requested delivery: 2026-06-15",
+        items: "Print materials | 100 | 1.25\nSetup fee | 1 | 45\nShipping | 1 | 18",
+        currency: "USD",
+        notes: "Please reference this purchase order on the invoice.",
+        paper: "letter",
+      },
+      fields: [
+        { id: "business", label: "Buyer", type: "textarea", maxLength: 140 },
+        { id: "client", label: "Vendor", type: "textarea", maxLength: 140 },
+        { id: "invoiceNo", label: "PO number", type: "text", maxLength: 36 },
+        { id: "date", label: "PO date", type: "text", maxLength: 32 },
+        { id: "due", label: "Delivery or terms", type: "text", maxLength: 60 },
+        { id: "items", label: "Order items", type: "textarea", maxLength: 420, help: "One item per line: Description | Qty | Unit price" },
+        { id: "currency", label: "Currency", type: "select", options: [["USD", "USD $"], ["EUR", "EUR €"], ["GBP", "GBP £"], ["CAD", "CAD $"], ["AUD", "AUD $"]] },
+        { id: "notes", label: "Footer note", type: "textarea", maxLength: 160 },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawPurchaseOrder,
+    },
+    "bill-of-sale": {
+      id: "bill-of-sale",
+      icon: "BOS",
+      title: "Bill of Sale Generator",
+      shortTitle: "Bill of sale",
+      description: "Create a simple bill of sale PDF for a private item sale, equipment transfer, furniture sale, or vehicle record draft.",
+      keywords: ["bill of sale", "sale receipt", "private sale", "PDF bill of sale"],
+      watermark: false,
+      defaultValues: {
+        business: "Seller Name\nseller@example.com",
+        client: "Buyer Name\nbuyer@example.com",
+        invoiceNo: "SALE-001",
+        date: "2026-06-01",
+        due: "Sold as-is unless otherwise noted",
+        items: "Used laptop, serial/model noted separately | 1 | 650",
+        currency: "USD",
+        notes: "Buyer and seller should review local requirements before signing.",
+        paper: "letter",
+      },
+      fields: [
+        { id: "business", label: "Seller", type: "textarea", maxLength: 140 },
+        { id: "client", label: "Buyer", type: "textarea", maxLength: 140 },
+        { id: "invoiceNo", label: "Sale record number", type: "text", maxLength: 36 },
+        { id: "date", label: "Sale date", type: "text", maxLength: 32 },
+        { id: "due", label: "Terms", type: "text", maxLength: 70 },
+        { id: "items", label: "Item sold", type: "textarea", maxLength: 420, help: "One item per line: Description | Qty | Price" },
+        { id: "currency", label: "Currency", type: "select", options: [["USD", "USD $"], ["EUR", "EUR €"], ["GBP", "GBP £"], ["CAD", "CAD $"], ["AUD", "AUD $"]] },
+        { id: "notes", label: "Disclosure note", type: "textarea", maxLength: 180 },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawBillOfSale,
+    },
     "rent-receipt": {
       id: "rent-receipt",
       icon: "RC",
@@ -304,11 +403,12 @@
     },
     {
       title: "Business paperwork",
-      description: "Clean PDF invoices and receipts for freelancers, landlords, and small service businesses that need a document now.",
+      description: "Clean PDF invoices, estimates, purchase orders, sale records, and receipts for people who need a document now.",
       links: [
         ["Invoice generator", "/tools/invoice-generator/"],
+        ["Estimate generator", "/tools/estimate-generator/"],
+        ["Purchase order generator", "/tools/purchase-order/"],
         ["Rent receipt generator", "/tools/rent-receipt/"],
-        ["Free invoice generator without signup", "/guides/free-invoice-generator-no-signup/"],
       ],
     },
     {
@@ -548,6 +648,78 @@
       ],
     },
     {
+      slug: "free-estimate-generator-pdf",
+      title: "Free estimate generator PDF",
+      description: "Create a free estimate PDF for services, repairs, project work, consulting, or home jobs.",
+      tool: "estimate-generator",
+      content: [
+        ["h2", "Why estimates are high-intent"],
+        ["p", "A user searching for an estimate generator is often preparing to win a job today. A fast PDF with line items and clear validity terms can solve that moment without forcing accounting software."],
+        ["h2", "What to include"],
+        ["ul", ["Business and client names.", "Estimate number and date.", "Line items with quantity and rate.", "How long the estimate is valid.", "A note that the estimate may change if scope changes."]],
+      ],
+    },
+    {
+      slug: "service-quote-pdf-template",
+      title: "Service quote PDF template",
+      description: "Make a printable service quote PDF for contractors, freelancers, consultants, or small local businesses.",
+      tool: "estimate-generator",
+      content: [
+        ["h2", "Quote wording should reduce confusion"],
+        ["p", "A service quote should make the work, assumptions, timeline, and price easy to scan. Keep each line item short and avoid promising work that is not included."],
+        ["h2", "Use it before the invoice"],
+        ["p", "Send an estimate or quote first, then create an invoice after the work is approved or completed."],
+      ],
+    },
+    {
+      slug: "free-purchase-order-generator",
+      title: "Free purchase order generator",
+      description: "Create a purchase order PDF for vendor orders, supply requests, services, or internal approvals.",
+      tool: "purchase-order",
+      content: [
+        ["h2", "When a PO helps"],
+        ["p", "A purchase order gives the buyer and vendor a shared reference before an invoice arrives. It is useful for supplies, project materials, services, and approvals."],
+        ["h2", "Keep the PO simple"],
+        ["ul", ["Buyer and vendor details.", "PO number and date.", "Items, quantities, and unit prices.", "Delivery request or terms.", "A footer note for invoice reference."]],
+      ],
+    },
+    {
+      slug: "purchase-order-pdf-template",
+      title: "Purchase order PDF template",
+      description: "Use a clean purchase order PDF template when a small team needs approval before buying goods or services.",
+      tool: "purchase-order",
+      content: [
+        ["h2", "Approval records matter"],
+        ["p", "Even small teams benefit from a simple PO because it records what was approved, who the vendor is, and what cost was expected."],
+        ["h2", "Before sending"],
+        ["p", "Check item quantities, prices, delivery notes, and the vendor name before downloading the PDF."],
+      ],
+    },
+    {
+      slug: "free-bill-of-sale-generator",
+      title: "Free bill of sale generator",
+      description: "Create a simple bill of sale PDF for a private item sale, equipment transfer, or sale record.",
+      tool: "bill-of-sale",
+      content: [
+        ["h2", "A bill of sale is a record"],
+        ["p", "A bill of sale records who sold an item, who bought it, what was sold, the price, and the date. It is useful for private sales and simple transfers."],
+        ["h2", "Check local rules"],
+        ["p", "Requirements vary by location and item type, especially for vehicles. This generator creates a practical draft, not legal advice."],
+      ],
+    },
+    {
+      slug: "private-sale-receipt-pdf",
+      title: "Private sale receipt PDF",
+      description: "Make a printable receipt for a private sale of equipment, furniture, electronics, or household items.",
+      tool: "bill-of-sale",
+      content: [
+        ["h2", "Record the item clearly"],
+        ["p", "Use a short description that identifies the item well enough for both parties. Add model, serial number, or condition notes when appropriate."],
+        ["h2", "Print before handoff"],
+        ["p", "For in-person sales, print a copy for the buyer and seller, then sign after payment and item handoff."],
+      ],
+    },
+    {
       slug: "free-rent-receipt-generator",
       title: "Free rent receipt generator",
       description: "Generate a printable rent receipt PDF for tenant records, landlord files, or cash payment documentation.",
@@ -673,6 +845,9 @@
 
   const toolOrder = [
     "invoice-generator",
+    "estimate-generator",
+    "purchase-order",
+    "bill-of-sale",
     "resume-builder",
     "rent-receipt",
     "name-tracing",
@@ -732,9 +907,9 @@
             <a class="button secondary" href="/guides/">Read printable guides</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>9</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>12</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>24</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>30</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -1456,21 +1631,82 @@
   }
 
   function drawInvoice(ctx, paper, values) {
+    drawBusinessDocument(ctx, paper, values, {
+      title: "INVOICE",
+      accent: "#176b87",
+      fromLabel: "From",
+      toLabel: "Bill to",
+      numberFallback: "INV-001",
+      metaLabel: "Date",
+      tableHeaders: ["Description", "Qty", "Rate", "Amount"],
+      totalLabel: "Total",
+      footer: "Generated locally with PrintableTools Lab. Review before sending.",
+      defaultNote: "Thank you for your business.",
+    });
+  }
+
+  function drawEstimate(ctx, paper, values) {
+    drawBusinessDocument(ctx, paper, values, {
+      title: "ESTIMATE",
+      accent: "#5a9367",
+      fromLabel: "Prepared by",
+      toLabel: "Prepared for",
+      numberFallback: "EST-001",
+      metaLabel: "Date",
+      tableHeaders: ["Description", "Qty", "Rate", "Estimate"],
+      totalLabel: "Estimated total",
+      footer: "Estimate only. Final scope and cost may change after approval.",
+      defaultNote: "This estimate is based on the scope listed above.",
+    });
+  }
+
+  function drawPurchaseOrder(ctx, paper, values) {
+    drawBusinessDocument(ctx, paper, values, {
+      title: "PURCHASE ORDER",
+      accent: "#17313b",
+      fromLabel: "Buyer",
+      toLabel: "Vendor",
+      numberFallback: "PO-001",
+      metaLabel: "Date",
+      tableHeaders: ["Item", "Qty", "Unit", "Amount"],
+      totalLabel: "Order total",
+      footer: "Purchase order format only. Confirm vendor terms before ordering.",
+      defaultNote: "Please reference this purchase order on the invoice.",
+    });
+  }
+
+  function drawBillOfSale(ctx, paper, values) {
+    drawBusinessDocument(ctx, paper, values, {
+      title: "BILL OF SALE",
+      accent: "#e76f51",
+      fromLabel: "Seller",
+      toLabel: "Buyer",
+      numberFallback: "SALE-001",
+      metaLabel: "Sale date",
+      tableHeaders: ["Item sold", "Qty", "Price", "Amount"],
+      totalLabel: "Sale total",
+      footer: "Bill of sale draft only. Local requirements may vary.",
+      defaultNote: "Buyer and seller should review local requirements before signing.",
+      signatures: true,
+    });
+  }
+
+  function drawBusinessDocument(ctx, paper, values, config) {
     const margin = 70;
     const currency = currencySymbol(values.currency);
     const items = parseMoneyItems(values.items);
     const subtotal = items.reduce((sum, item) => sum + item.total, 0);
-    drawBusinessFrame(ctx, paper, "#176b87");
-    drawTextFit(ctx, "INVOICE", margin, 110, 360, 58, { align: "left", weight: "900", color: "#17313b" });
+    drawBusinessFrame(ctx, paper, config.accent);
+    drawTextFit(ctx, config.title, margin, 110, 520, config.title.length > 14 ? 46 : 58, { align: "left", weight: "900", color: "#17313b" });
     ctx.font = "22px Arial";
     ctx.fillStyle = "#5b6f78";
     ctx.textAlign = "right";
-    ctx.fillText(sanitizePrintable(values.invoiceNo || "INV-001"), paper.width - margin, 92);
-    ctx.fillText(`Date: ${sanitizePrintable(values.date || "")}`, paper.width - margin, 126);
+    ctx.fillText(sanitizePrintable(values.invoiceNo || config.numberFallback), paper.width - margin, 92);
+    ctx.fillText(`${config.metaLabel}: ${sanitizePrintable(values.date || "")}`, paper.width - margin, 126);
     ctx.fillText(sanitizePrintable(values.due || "Due on receipt"), paper.width - margin, 160);
 
-    drawBusinessBlock(ctx, "From", values.business, margin, 215, (paper.width - margin * 2 - 24) / 2);
-    drawBusinessBlock(ctx, "Bill to", values.client, paper.width / 2 + 12, 215, (paper.width - margin * 2 - 24) / 2);
+    drawBusinessBlock(ctx, config.fromLabel, values.business, margin, 215, (paper.width - margin * 2 - 24) / 2);
+    drawBusinessBlock(ctx, config.toLabel, values.client, paper.width / 2 + 12, 215, (paper.width - margin * 2 - 24) / 2);
 
     const tableY = 420;
     const tableW = paper.width - margin * 2;
@@ -1478,7 +1714,7 @@
     const qtyW = tableW * 0.14;
     const rateW = tableW * 0.16;
     const totalW = tableW - descW - qtyW - rateW;
-    drawTableHeader(ctx, margin, tableY, tableW, ["Description", "Qty", "Rate", "Amount"], [descW, qtyW, rateW, totalW]);
+    drawTableHeader(ctx, margin, tableY, tableW, config.tableHeaders, [descW, qtyW, rateW, totalW]);
     let y = tableY + 58;
     items.slice(0, 8).forEach((item) => {
       drawInvoiceRow(ctx, margin, y, [descW, qtyW, rateW, totalW], item, currency);
@@ -1499,13 +1735,17 @@
     ctx.fillStyle = "#17313b";
     ctx.font = "700 24px Arial";
     ctx.textAlign = "left";
-    ctx.fillText("Total", totalX + 22, y + 77);
+    ctx.fillText(config.totalLabel, totalX + 22, y + 77);
     ctx.textAlign = "right";
     ctx.font = "800 30px Arial";
     ctx.fillText(formatMoney(subtotal, currency), totalX + totalBoxW - 22, y + 77);
 
-    drawWrappedText(ctx, sanitizePrintable(values.notes || "Thank you for your business."), margin, paper.height - 230, paper.width - margin * 2, 28, "#5b6f78", "22px Arial", 4);
-    drawFooterNote(ctx, paper, "Generated locally with PrintableTools Lab. Review before sending.");
+    drawWrappedText(ctx, sanitizePrintable(values.notes || config.defaultNote), margin, paper.height - 230, paper.width - margin * 2, 28, "#5b6f78", "22px Arial", 4);
+    if (config.signatures) {
+      drawSignatureLine(ctx, margin, paper.height - 135, "Seller signature");
+      drawSignatureLine(ctx, paper.width / 2 + 30, paper.height - 135, "Buyer signature");
+    }
+    drawFooterNote(ctx, paper, config.footer);
   }
 
   function drawRentReceipt(ctx, paper, values) {

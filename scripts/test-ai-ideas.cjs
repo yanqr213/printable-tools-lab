@@ -101,6 +101,27 @@ async function main() {
   const fallbackPayload = await fallbackResponse.json();
   assert(fallbackResponse.status === 200, "AI helper should fall back when model request fails");
   assert(fallbackPayload.suggestions.length === 3, "Fallback should return useful suggestions");
+
+  const estimateFallback = await onRequestPost({
+    request: new Request("https://example.test/api/ideas", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        tool: "estimate-generator",
+        values: {
+          due: "Valid for 14 days",
+          items: "Labor | 2 | 80",
+        },
+      }),
+    }),
+    env: {
+      AI_BASE_URL: "https://ai.example.test/v1",
+      AI_API_KEY: "test-key",
+      AI_MODEL: "test-model",
+    },
+  });
+  const estimatePayload = await estimateFallback.json();
+  assert(estimatePayload.suggestions.length === 3, "New business document tools should have fallback ideas");
   global.fetch = previousFetch;
   console.log("AI helper test passed.");
 }

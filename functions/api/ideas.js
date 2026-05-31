@@ -6,6 +6,9 @@ const TOOL_FIELDS = {
   "weekly-planner": ["title", "focus", "notes"],
   "habit-tracker": ["title", "habits"],
   "invoice-generator": ["due", "items", "notes"],
+  "estimate-generator": ["due", "items", "notes"],
+  "purchase-order": ["due", "items", "notes"],
+  "bill-of-sale": ["due", "items", "notes"],
   "rent-receipt": ["period", "method", "notes"],
   "resume-builder": ["headline", "summary", "experience", "skills", "education"],
 };
@@ -128,6 +131,93 @@ function fallbackSuggestions(tool, values) {
           period: "Room rental payment",
           method: "Electronic transfer",
           notes: "Receipt issued for the room rental payment described above.",
+        },
+      },
+    ],
+    "estimate-generator": [
+      {
+        title: "Home service estimate",
+        summary: "A clear estimate for local service work",
+        fields: {
+          due: values.due || "Valid for 14 days",
+          items: "Site visit | 1 | 0\nLabor estimate | 4 | 85\nMaterials allowance | 1 | 120",
+          notes: "This estimate is based on the scope currently described and may change if the scope changes.",
+        },
+      },
+      {
+        title: "Freelance project quote",
+        summary: "Project quote wording for creative or consulting work",
+        fields: {
+          due: "Valid for 30 days",
+          items: "Discovery and planning | 1 | 150\nProject delivery | 1 | 650\nRevision round | 1 | 120",
+          notes: "Approval of this estimate confirms the listed scope only.",
+        },
+      },
+      {
+        title: "Repair estimate",
+        summary: "Simple repair quote with labor and parts",
+        fields: {
+          due: "Valid while parts pricing is available",
+          items: "Diagnostic review | 1 | 45\nLabor | 2 | 75\nParts estimate | 1 | 90",
+          notes: "Final cost may change after inspection or parts confirmation.",
+        },
+      },
+    ],
+    "purchase-order": [
+      {
+        title: "Office supply PO",
+        summary: "Purchase order for supplies and delivery",
+        fields: {
+          due: values.due || "Requested delivery: next available date",
+          items: "Office supplies | 1 | 125\nDelivery | 1 | 18\nSetup or handling | 1 | 25",
+          notes: "Please reference this purchase order on the invoice.",
+        },
+      },
+      {
+        title: "Vendor service PO",
+        summary: "Purchase order for an approved service",
+        fields: {
+          due: "Service window to be confirmed",
+          items: "Approved service work | 1 | 500\nMaterials allowance | 1 | 150",
+          notes: "Work should not exceed the listed amount without approval.",
+        },
+      },
+      {
+        title: "Project materials PO",
+        summary: "Itemized materials order",
+        fields: {
+          due: "Deliver by project start date",
+          items: "Project materials | 10 | 24\nShipping | 1 | 35\nHandling | 1 | 20",
+          notes: "Notify the buyer if any item is unavailable or substituted.",
+        },
+      },
+    ],
+    "bill-of-sale": [
+      {
+        title: "Private item sale",
+        summary: "Simple wording for a private sale record",
+        fields: {
+          due: values.due || "Sold as-is unless otherwise noted",
+          items: "Used item, condition noted by seller | 1 | 250",
+          notes: "Buyer and seller acknowledge the item and price listed above.",
+        },
+      },
+      {
+        title: "Equipment sale",
+        summary: "Bill of sale for equipment or tools",
+        fields: {
+          due: "Seller confirms ownership to the best of their knowledge",
+          items: "Used equipment, model/serial noted separately | 1 | 900",
+          notes: "Record any serial number, included accessories, and visible condition before signing.",
+        },
+      },
+      {
+        title: "Furniture sale",
+        summary: "Simple receipt for furniture or household item sale",
+        fields: {
+          due: "Final sale after pickup",
+          items: "Furniture item, buyer inspected before pickup | 1 | 180",
+          notes: "Buyer accepts the item in the condition observed at pickup.",
         },
       },
     ],

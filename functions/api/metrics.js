@@ -1,6 +1,9 @@
 const EVENTS = ["page_view", "generate_pdf", "download_pdf", "limit_hit", "ai_ideas", "ai_ideas_apply"];
 const TOOLS = [
   "invoice-generator",
+  "estimate-generator",
+  "purchase-order",
+  "bill-of-sale",
   "resume-builder",
   "rent-receipt",
   "name-tracing",
