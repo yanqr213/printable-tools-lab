@@ -26,6 +26,9 @@ async function main() {
   assert(metricsPayload.totals.download_pdf === 1, "Metrics should count downloads");
   const invoice = metricsPayload.tools.find((row) => row.tool === "invoice-generator");
   assert(invoice.download_pdf === 1, "Metrics should count per-tool downloads");
+  for (const tool of ["multi-image-pdf", "text-to-pdf", "receipt-generator", "timesheet-generator", "certificate-generator", "todo-list"]) {
+    assert(metricsPayload.tools.some((row) => row.tool === tool), `Metrics should include ${tool}`);
+  }
 
   const rejectResponse = await eventSource.onRequestPost({
     request: new Request("https://example.test/api/event", {

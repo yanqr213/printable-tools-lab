@@ -456,6 +456,12 @@ const pages = [
     html: toolsIndexHtml(),
   },
   {
+    path: "free-pdf-tools",
+    title: "Free PDF Tools Without Signup",
+    description: "Start with free browser PDF tools for image conversion, text-to-PDF, invoices, receipts, timesheets, certificates, checklists, and printable pages.",
+    html: freePdfToolsHtml(),
+  },
+  {
     path: "guides",
     title: "Printable Guides",
     description: "Original guides for printable worksheets, charts, planners, flashcards, and classroom resources.",
@@ -622,6 +628,64 @@ function toolsIndexHtml() {
       </section>
       <section class="shell section">
         <h2>All generators</h2>
+        <div class="grid-3">
+          ${tools.map((tool) => `<article class="tool-card"><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.description)}</p><a class="button" href="/${tool.path}/">Open generator</a></article>`).join("\n")}
+        </div>
+      </section>`;
+}
+
+function freePdfToolsHtml() {
+  const groups = [
+    {
+      title: "No-upload conversion tools",
+      text: "Use these when a photo, scan, screenshot, or plain text note needs to become a PDF quickly. The image tools load files in the browser instead of uploading them to a converter server.",
+      links: ["image-to-pdf", "multi-image-pdf", "text-to-pdf"],
+    },
+    {
+      title: "Free business PDF tools",
+      text: "Create simple paperwork for freelance jobs, small services, deposits, timesheets, private sales, rent payments, and vendor orders without opening a full accounting app.",
+      links: ["invoice-generator", "estimate-generator", "purchase-order", "receipt-generator", "timesheet-generator", "bill-of-sale", "rent-receipt"],
+    },
+    {
+      title: "Free career PDF tools",
+      text: "Make a clean resume, cover letter, or resignation letter PDF without the common hidden export fee many document builders add at the end.",
+      links: ["resume-builder", "cover-letter", "resignation-letter"],
+    },
+    {
+      title: "Free printable planning tools",
+      text: "Print simple one-page calendars, meal plans, checklists, graph paper, certificates, and routine pages for home, school, work, or events.",
+      links: ["monthly-calendar", "meal-planner", "todo-list", "graph-paper", "certificate-generator", "sign-in-sheet", "packing-list"],
+    },
+  ];
+  return `
+      <section class="shell page-title section">
+        <h1>Free PDF tools without signup</h1>
+        <p>Open a browser-based generator, edit the sample fields, and download a practical PDF. No account, no surprise download fee, and no ad-click requirement.</p>
+      </section>
+      <section class="shell section">
+        <h2>Start with the PDF job</h2>
+        <div class="grid-2">
+          ${groups.map((group) => `
+            <article class="panel tool-directory">
+              <h3>${escapeHtml(group.title)}</h3>
+              <p>${escapeHtml(group.text)}</p>
+              <div class="cluster-links">
+                ${group.links.map((slug) => {
+                  const tool = tools.find((item) => item.path === `tools/${slug}`);
+                  return tool ? `<a href="/${tool.path}/">${escapeHtml(tool.title)}</a>` : "";
+                }).join("")}
+              </div>
+            </article>
+          `).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Why the tools are free</h2>
+        <p>The validation version is free because the project is testing which PDF jobs attract real search traffic and repeat downloads. If ads are enabled later, they should sit away from generator controls and never become a condition for downloading.</p>
+        <p>For privacy-sensitive jobs, avoid entering unnecessary personal details. Image conversion stays local in the browser; optional AI suggestions are limited to generic writing fields.</p>
+      </section>
+      <section class="shell section">
+        <h2>All free PDF generators</h2>
         <div class="grid-3">
           ${tools.map((tool) => `<article class="tool-card"><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.description)}</p><a class="button" href="/${tool.path}/">Open generator</a></article>`).join("\n")}
         </div>

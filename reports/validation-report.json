@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-05-31T21:03:00.549Z",
+  "generatedAt": "2026-05-31T21:11:00.360Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 26,
     "guideCount": 52,
-    "indexableRoutes": 85,
-    "sitemapLocCount": 85,
-    "generatedToolInventoryAt": "2026-05-31T20:58:56.769Z",
+    "indexableRoutes": 86,
+    "sitemapLocCount": 86,
+    "generatedToolInventoryAt": "2026-05-31T21:08:51.803Z",
     "discoveryAssets": {
       "sitemap": true,
       "robots": true,
@@ -823,7 +823,7 @@
         "indexingState": "INDEXING_STATE_UNSPECIFIED"
       },
       {
-        "url": "https://printable-tools-lab.pages.dev/guides/",
+        "url": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
         "verdict": "NEUTRAL",
         "coverageState": "URL is unknown to Google",
         "indexingState": "INDEXING_STATE_UNSPECIFIED"

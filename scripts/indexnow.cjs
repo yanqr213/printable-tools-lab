@@ -26,6 +26,7 @@ const urls = routes
 const priorityUrls = [
   siteUrl(""),
   siteUrl("tools"),
+  siteUrl("free-pdf-tools"),
   siteUrl("tools/image-to-pdf"),
   siteUrl("tools/multi-image-pdf"),
   siteUrl("tools/text-to-pdf"),

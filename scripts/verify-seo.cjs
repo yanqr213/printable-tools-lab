@@ -65,6 +65,14 @@ else {
   if (!data.tools.some((tool) => tool.url === siteUrl("tools/multi-image-pdf"))) failures.push("tools.json missing multi-image PDF URL.");
 }
 
+const freePdfToolsFile = path.join(root, "free-pdf-tools", "index.html");
+if (!fs.existsSync(freePdfToolsFile)) failures.push("Missing free PDF tools directory page.");
+else {
+  const html = fs.readFileSync(freePdfToolsFile, "utf8");
+  if (!html.includes("Free PDF tools without signup")) failures.push("Free PDF tools page missing target heading.");
+  if (!html.includes("/tools/multi-image-pdf/") || !html.includes("/tools/text-to-pdf/")) failures.push("Free PDF tools page missing conversion links.");
+}
+
 const distributionFile = path.join(root, "DISTRIBUTION.md");
 if (!fs.existsSync(distributionFile)) failures.push("Missing DISTRIBUTION.md.");
 else {

@@ -1506,6 +1506,21 @@
         ["p", "If the data proves demand, the next layer can include saved projects, batch generation, higher daily limits, and no-watermark exports. No checkout should be enabled before those features can be delivered."],
       ],
     },
+    "free-pdf-tools": {
+      title: "Free PDF Tools Without Signup",
+      description: "Start with free browser PDF tools for image conversion, text-to-PDF, invoices, receipts, timesheets, certificates, checklists, and printable pages.",
+      body: [
+        ["p", "Use this directory when you need a PDF now and do not want an account, hidden export fee, or ad-click requirement."],
+        ["h2", "No-upload conversion tools"],
+        ["ul", ["Image to PDF Converter: turn JPG, PNG, or WebP images into a one-page PDF.", "Multiple Images to PDF Converter: combine up to eight images into one multi-page PDF.", "Text to PDF Converter: paste plain text and download a clean one-page document."]],
+        ["h2", "Business and work PDFs"],
+        ["ul", ["Invoice, estimate, purchase order, receipt, timesheet, bill of sale, and rent receipt PDFs are built for quick records, not full accounting software.", "Resume, cover letter, and resignation letter tools export without a surprise download fee."]],
+        ["h2", "Printable planning PDFs"],
+        ["ul", ["Calendar, meal planner, graph paper, sign-in sheet, certificate, packing list, to-do list, classroom chart, and worksheet tools support common home, school, and event tasks."]],
+        ["h2", "Why free first"],
+        ["p", "The project validates demand through downloads, Search Console data, and anonymous usage counters before enabling responsible advertising or paid features."],
+      ],
+    },
     "launch-kit": {
       title: "Launch Kit",
       description: "Distribution copy, links, and validation steps for launching PrintableTools Lab.",
@@ -3834,6 +3849,13 @@
       const response = await fetch("/api/metrics", { cache: "no-store" });
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error("Metrics unavailable");
+      const rows = (data.tools || []).slice().sort((a, b) => {
+        const bScore = (b.download_pdf || 0) * 3 + (b.generate_pdf || 0);
+        const aScore = (a.download_pdf || 0) * 3 + (a.generate_pdf || 0);
+        return bScore - aScore || String(a.tool).localeCompare(String(b.tool));
+      });
+      const activeRows = rows.filter((row) => (row.download_pdf || 0) || (row.generate_pdf || 0) || (row.limit_hit || 0));
+      const displayRows = activeRows.length ? activeRows : rows;
       target.innerHTML = `
         <div class="metric-grid compact">
           <div class="metric-tile"><strong>${data.totals.page_view || 0}</strong><span>live page views</span></div>
@@ -3841,10 +3863,11 @@
           <div class="metric-tile"><strong>${data.totals.download_pdf || 0}</strong><span>live downloads</span></div>
           <div class="metric-tile"><strong>${data.totals.ai_ideas_apply || 0}</strong><span>AI applies</span></div>
         </div>
+        <p class="help">Tools are sorted by download and generation signal so the next SEO or ad placement decision starts from actual usage.</p>
         <div class="preview-stage">
           <table class="event-table">
             <thead><tr><th>Tool</th><th>Downloads</th><th>Generations</th><th>Limit hits</th></tr></thead>
-            <tbody>${data.tools.map((row) => `<tr><td>${escapeHtml(row.tool)}</td><td>${row.download_pdf || 0}</td><td>${row.generate_pdf || 0}</td><td>${row.limit_hit || 0}</td></tr>`).join("")}</tbody>
+            <tbody>${displayRows.map((row) => `<tr><td>${escapeHtml(row.tool)}</td><td>${row.download_pdf || 0}</td><td>${row.generate_pdf || 0}</td><td>${row.limit_hit || 0}</td></tr>`).join("")}</tbody>
           </table>
         </div>
       `;
