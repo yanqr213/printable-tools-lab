@@ -158,10 +158,13 @@ function readSearchConsoleState() {
 async function readDiscoveryState() {
   const state = {
     github: await readGithubState(),
+    githubPages: await readGithubPagesState(),
     indexNow: await readIndexNowState(),
   };
   state.externalDiscoveryReady = Boolean(state.github.homepage)
     && state.github.topics.length >= 6
+    && state.githubPages.pageOk
+    && state.githubPages.sitemapUrlCount >= landingPages.length + 1
     && state.indexNow.keyFileReachable
     && Boolean(state.github.discoveryRelease?.url);
   return state;
@@ -225,6 +228,29 @@ async function readIndexNowState() {
     const endpoint = `https://www.bing.com/indexnow?url=${encodeURIComponent(siteUrl("tools/image-to-pdf"))}&key=${encodeURIComponent(key)}`;
     const single = await fetchTextWithTimeout(endpoint);
     state.singleUrlAccepted = single.ok || single.status === 202;
+  } catch (error) {
+    state.error = error.message;
+  }
+  return state;
+}
+
+async function readGithubPagesState() {
+  const base = "https://yanqr213.github.io/printable-tools-lab/";
+  const state = {
+    base,
+    pageOk: false,
+    sitemapOk: false,
+    sitemapUrlCount: 0,
+    landingPagesLinked: 0,
+    error: "",
+  };
+  try {
+    const page = await fetchTextWithTimeout(base);
+    state.pageOk = page.ok && page.text.includes("Free PDF tools without signup");
+    state.landingPagesLinked = landingPages.filter((landing) => page.text.includes(siteUrl(landing.path))).length;
+    const sitemap = await fetchTextWithTimeout(`${base}sitemap.xml`);
+    state.sitemapOk = sitemap.ok && sitemap.text.includes("<urlset");
+    state.sitemapUrlCount = countMatches(sitemap.text, /<loc>/g);
   } catch (error) {
     state.error = error.message;
   }
@@ -335,6 +361,9 @@ function summarizeDiscoveryReasons(discovery) {
   } else {
     reasons.push(`GitHub discovery metadata unavailable: ${discovery.github.error || "unknown error"}.`);
   }
+  if (discovery.githubPages.pageOk) reasons.push(`GitHub Pages discovery directory is live with ${discovery.githubPages.landingPagesLinked} landing page link(s).`);
+  else reasons.push(`GitHub Pages discovery directory unavailable: ${discovery.githubPages.error || "page check failed"}.`);
+  if (discovery.githubPages.sitemapOk) reasons.push(`GitHub Pages discovery sitemap has ${discovery.githubPages.sitemapUrlCount} URL(s).`);
   if (discovery.indexNow.keyFileReachable) reasons.push("IndexNow key file is reachable from the site root.");
   else reasons.push("IndexNow key file is not reachable or does not match the configured key.");
   if (discovery.indexNow.singleUrlAccepted) reasons.push("Bing IndexNow single-URL notification accepts the key.");

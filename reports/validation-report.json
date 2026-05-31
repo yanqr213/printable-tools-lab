@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-31T22:56:57.752Z",
+  "generatedAt": "2026-05-31T23:02:08.269Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 26,
@@ -7,7 +7,7 @@
     "landingPageCount": 8,
     "indexableRoutes": 95,
     "sitemapLocCount": 95,
-    "generatedToolInventoryAt": "2026-05-31T22:52:50.924Z",
+    "generatedToolInventoryAt": "2026-05-31T23:01:18.254Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -998,6 +998,14 @@
       },
       "error": ""
     },
+    "githubPages": {
+      "base": "https://yanqr213.github.io/printable-tools-lab/",
+      "pageOk": true,
+      "sitemapOk": true,
+      "sitemapUrlCount": 1,
+      "landingPagesLinked": 8,
+      "error": ""
+    },
     "indexNow": {
       "keyConfigured": true,
       "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
@@ -1007,7 +1015,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": true
+    "externalDiscoveryReady": false
   },
   "gates": {
     "productReady": true,
@@ -1015,7 +1023,7 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": true,
+    "externalDiscoveryReady": false,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
@@ -1035,6 +1043,8 @@
       "externalDiscovery": [
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
+        "GitHub Pages discovery directory is live with 8 landing page link(s).",
+        "GitHub Pages discovery sitemap has 1 URL(s).",
         "IndexNow key file is reachable from the site root."
       ]
     }

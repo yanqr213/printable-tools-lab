@@ -168,6 +168,29 @@ else {
   if (data.feed !== siteUrl("feed.xml").replace(/\/$/, "")) failures.push("GitHub Pages discovery tools.json missing feed URL.");
 }
 
+const docsSitemapFile = path.join(root, "docs", "sitemap.xml");
+if (!fs.existsSync(docsSitemapFile)) failures.push("Missing GitHub Pages discovery sitemap.");
+else {
+  const docsSitemap = fs.readFileSync(docsSitemapFile, "utf8");
+  if (countMatches(docsSitemap, /<loc>/g) < landingPages.length + 1) failures.push("GitHub Pages discovery sitemap missing landing pages.");
+  for (const page of landingPages) {
+    const githubUrl = `https://yanqr213.github.io/printable-tools-lab/${page.path}/`;
+    if (!docsSitemap.includes(`<loc>${githubUrl}</loc>`)) failures.push(`GitHub Pages sitemap missing landing page: ${page.path}`);
+  }
+}
+
+for (const page of landingPages) {
+  const file = path.join(root, "docs", page.path, "index.html");
+  if (!fs.existsSync(file)) {
+    failures.push(`Missing GitHub Pages landing discovery page: ${page.path}`);
+    continue;
+  }
+  const html = fs.readFileSync(file, "utf8");
+  if (!html.includes(page.headline)) failures.push(`GitHub Pages landing page missing headline: ${page.path}`);
+  if (!html.includes(siteUrl(page.path))) failures.push(`GitHub Pages landing page missing live landing URL: ${page.path}`);
+  if (!html.includes(siteUrl(page.primaryTool))) failures.push(`GitHub Pages landing page missing primary tool URL: ${page.path}`);
+}
+
 const verificationFile = path.join(root, "google1b771d6159b52de7.html");
 if (!fs.existsSync(verificationFile)) failures.push("Missing Google HTML verification file.");
 else {
@@ -191,4 +214,9 @@ console.log(`SEO verification passed for ${routes.filter((route) => route.index 
 
 function escapeAttr(value) {
   return String(value).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+}
+
+function countMatches(value, pattern) {
+  const match = String(value).match(pattern);
+  return match ? match.length : 0;
 }
