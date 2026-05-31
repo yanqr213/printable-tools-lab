@@ -252,7 +252,9 @@ Current Search Console checkpoint:
 - `2026-05-31T19:17:52Z`: sitemap submitted, pending, 0 warnings, 0 errors.
 - Homepage inspection: `Crawled - currently not indexed`, indexing allowed.
 - Sample `/guides/` and `/about/`: still unknown to Google.
-- Action: keep site stable, improve useful content/navigation, and avoid repeated low-value resubmission loops.
+- `2026-05-31T19:24:38Z`: sitemap resubmitted after adding `/tools/` index and thicker tool pages with FAQ content.
+- Repeated inspection still shows homepage crawled but not indexed; `/tools/` is currently unknown to Google.
+- Action: keep site stable, improve useful content/navigation, thicken tool pages, and avoid repeated low-value resubmission loops.
 
 Submit Google sitemap:
 

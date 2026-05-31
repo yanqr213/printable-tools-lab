@@ -1096,6 +1096,7 @@
     const path = hash || window.location.pathname.replace(/^\/+|\/+$/g, "");
     const parts = path.split("/").filter(Boolean);
     if (!parts.length) return renderHome();
+    if (parts[0] === "tools" && !parts[1]) return renderToolsIndex();
     if (parts[0] === "tools" && tools[parts[1]]) return renderTool(parts[1]);
     if (parts[0] === "guides" && !parts[1]) return renderGuides();
     if (parts[0] === "guides" && parts[1]) return renderGuide(parts[1]);
@@ -1219,6 +1220,34 @@
         <div class="meta">${tool.keywords.map((k) => `<span class="tag">${escapeHtml(k)}</span>`).join("")}</div>
         <a class="button" href="/tools/${tool.id}/">Open generator</a>
       </article>
+    `;
+  }
+
+  function renderToolsIndex() {
+    setMeta("Free PDF Tools", "Browse free printable PDF tools for business paperwork, career documents, calendars, meal planning, worksheets, and classroom routines.");
+    app.innerHTML = `
+      <section class="shell page-title section">
+        <h1>Free PDF tools</h1>
+        <p>Choose a browser-based generator for business paperwork, job applications, planning pages, classroom printables, and family routines. Each tool creates a one-page PDF without requiring an account.</p>
+      </section>
+      <section class="shell section">
+        <div class="section-head">
+          <div>
+            <h2>Tools by use case</h2>
+            <p>Start with the problem you need to solve, then open the matching generator.</p>
+          </div>
+        </div>
+        <div class="grid-2">${keywordClusters.map(keywordClusterCard).join("")}</div>
+      </section>
+      <section class="shell section">
+        <div class="section-head">
+          <div>
+            <h2>All generators</h2>
+            <p>All tools run in the browser and are designed for fast, practical one-page PDFs.</p>
+          </div>
+        </div>
+        <div class="grid-3">${toolOrder.map((id) => toolCard(tools[id])).join("")}</div>
+      </section>
     `;
   }
 

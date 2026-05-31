@@ -17,7 +17,12 @@ for (const route of routes) {
   if (!html.includes(`content="${escapeAttr(route.description)}"`)) failures.push(`Missing description: ${route.path || "/"}`);
   if (!html.includes(`rel="canonical" href="${siteUrl(route.path)}"`)) failures.push(`Missing canonical: ${route.path || "/"}`);
   if (!/<main id="app" tabindex="-1">\s*[\s\S]{120,}\s*<\/main>/.test(html)) failures.push(`Weak static body: ${route.path || "/"}`);
-  if (route.path && route.path.startsWith("tools/") && !html.includes('"@type":"SoftwareApplication"')) failures.push(`Missing tool SoftwareApplication schema: ${route.path}`);
+  if (route.path && route.path.startsWith("tools/")) {
+    if (!html.includes('"@type":"SoftwareApplication"')) failures.push(`Missing tool SoftwareApplication schema: ${route.path}`);
+    if (!html.includes('"@type":"FAQPage"')) failures.push(`Missing tool FAQPage schema: ${route.path}`);
+    if (!html.includes("How to use this free PDF tool")) failures.push(`Missing tool instructions: ${route.path}`);
+    if (!html.includes("Privacy and limits")) failures.push(`Missing tool privacy content: ${route.path}`);
+  }
 }
 
 const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");

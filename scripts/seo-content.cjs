@@ -260,6 +260,7 @@ const pages = [
           <p>Free browser-based generators for invoices, rent receipts, resumes, worksheets, chore charts, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/tools/invoice-generator/">Create an invoice</a>
+            <a class="button secondary" href="/tools/">Browse all tools</a>
             <a class="button secondary" href="/guides/">Read printable guides</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
@@ -302,6 +303,12 @@ const pages = [
           <li><a href="/tools/meal-planner/">Meal Planner Generator</a></li>
         </ul>
       </section>`,
+  },
+  {
+    path: "tools",
+    title: "Free PDF Tools",
+    description: "Browse free printable PDF tools for business paperwork, career documents, calendars, meal planning, worksheets, and classroom routines.",
+    html: toolsIndexHtml(),
   },
   {
     path: "guides",
@@ -387,17 +394,63 @@ function siteUrl(pathName) {
 }
 
 function toolHtml(tool) {
+  const details = toolDetails(tool);
+  const related = relatedGuideLinks(tool.path);
   return `
       <section class="shell tool-header">
-        <a href="/">All tools</a>
+        <a href="/tools/">All tools</a>
         <h1>${escapeHtml(tool.title)}</h1>
         <p class="lead">${escapeHtml(tool.description)}</p>
       </section>
       <section class="shell section">
         ${tool.body.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("\n")}
         <p><a class="button" href="/${tool.path}/">Open generator</a></p>
-        <p>${relatedGuideLinks(tool.path).map((guide) => `<a class="tag" href="/${guide.path}/">${escapeHtml(guide.title)}</a>`).join(" ")}</p>
+      </section>
+      <section class="shell section">
+        <h2>How to use this free PDF tool</h2>
+        <ol>
+          ${details.steps.map((step) => `<li>${escapeHtml(step)}</li>`).join("\n")}
+        </ol>
+      </section>
+      <section class="shell section">
+        <h2>Good use cases</h2>
+        <div class="grid-3">
+          ${details.useCases.map((item) => `<article class="panel"><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Privacy and limits</h2>
+        <p>${escapeHtml(details.privacy)}</p>
+        <p>${escapeHtml(details.limit)}</p>
+      </section>
+      <section class="shell section">
+        <h2>Frequently asked questions</h2>
+        <div class="faq-list">
+          ${details.faq.map((item) => `<details><summary>${escapeHtml(item.q)}</summary><p>${escapeHtml(item.a)}</p></details>`).join("\n")}
+        </div>
+        <p>${related.map((guide) => `<a class="tag" href="/${guide.path}/">${escapeHtml(guide.title)}</a>`).join(" ")}</p>
         ${jsonLdHtml(softwareSchema(tool))}
+        ${jsonLdHtml(faqSchema(details.faq))}
+      </section>`;
+}
+
+function toolsIndexHtml() {
+  return `
+      <section class="shell page-title section">
+        <h1>Free PDF tools</h1>
+        <p>Choose a browser-based generator for business paperwork, job applications, planning pages, classroom printables, and family routines. Each tool creates a one-page PDF without requiring an account.</p>
+      </section>
+      <section class="shell section">
+        <h2>Tools by use case</h2>
+        <div class="grid-2">
+          ${keywordClusters.map(keywordClusterHtml).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>All generators</h2>
+        <div class="grid-3">
+          ${tools.map((tool) => `<article class="tool-card"><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.description)}</p><a class="button" href="/${tool.path}/">Open generator</a></article>`).join("\n")}
+        </div>
       </section>`;
 }
 
@@ -421,6 +474,198 @@ function softwareSchema(tool) {
       "US Letter and A4 support",
       "One-page printable export",
     ],
+  };
+}
+
+function faqSchema(faq) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
+}
+
+function toolDetails(tool) {
+  const title = tool.title.replace(/\s+PDF$/, "");
+  const shared = {
+    steps: [
+      `Open the ${title} and review the example text already in the form.`,
+      "Replace the sample fields with your own short, accurate wording.",
+      "Choose US Letter or A4 before generating if the tool offers paper size options.",
+      "Preview the page, then download the PDF and review it before printing or sharing.",
+    ],
+    useCases: [
+      {
+        title: "One-off document",
+        text: "Use the tool when you need a single clean PDF quickly and do not want to create an account.",
+      },
+      {
+        title: "Printable copy",
+        text: "The layout is designed for ordinary home or office printers with clear spacing and readable text.",
+      },
+      {
+        title: "Fast first draft",
+        text: "Start from the built-in example, then edit the wording so the final PDF matches your situation.",
+      },
+    ],
+    privacy: "Most PDF generation happens in your browser. For tools with the optional AI idea helper, only limited non-sensitive writing fields are sent to the server for suggestions.",
+    limit: "The free version is limited to one-page PDFs and a small daily generation count in the same browser while usage is validated.",
+    faq: [
+      {
+        q: "Do I need an account?",
+        a: "No. The generator opens in the browser and lets you download a PDF without creating an account.",
+      },
+      {
+        q: "Is the PDF really free?",
+        a: "Yes. The first version is free and does not hide the PDF export behind a checkout.",
+      },
+      {
+        q: "Can I edit the PDF later?",
+        a: "The simplest workflow is to edit the form fields and generate a fresh PDF. Keep your own copy of important documents.",
+      },
+    ],
+  };
+  const slug = tool.path.replace(/^tools\//, "");
+  const overrides = {
+    "invoice-generator": {
+      useCases: [
+        { title: "Freelance invoice", text: "Create a simple invoice for design, writing, consulting, repair, tutoring, or project work." },
+        { title: "Small business service", text: "List service visits, materials, labor, or support time with quantity and rate." },
+        { title: "Client payment record", text: "Use invoice numbers and payment terms so both sides know what is being requested." },
+      ],
+      faq: [
+        { q: "Does this store invoices?", a: "No. Download the PDF and keep your own copy with your bookkeeping records." },
+        { q: "Can I add payment instructions?", a: "Yes, use the note field, but only include payment details you are comfortable putting in a document." },
+        { q: "Is it accounting software?", a: "No. It is a fast PDF generator for simple invoices, not bookkeeping or tax software." },
+      ],
+    },
+    "estimate-generator": {
+      useCases: [
+        { title: "Service quote", text: "Prepare a clear quote for repair, consulting, freelance, or home service work." },
+        { title: "Scope preview", text: "List the work and assumptions before creating a final invoice." },
+        { title: "Client approval", text: "Give clients a one-page document they can review before work begins." },
+      ],
+    },
+    "purchase-order": {
+      useCases: [
+        { title: "Vendor order", text: "Create a PO for supplies, materials, or small service purchases." },
+        { title: "Internal approval", text: "Record what was approved before an invoice arrives." },
+        { title: "Project buying", text: "List project items, quantities, unit prices, and requested delivery notes." },
+      ],
+    },
+    "bill-of-sale": {
+      privacy: "This tool creates a practical draft in your browser. Requirements vary by location and item type, especially for vehicles or regulated items.",
+      useCases: [
+        { title: "Private sale record", text: "Record the buyer, seller, item, price, date, and terms for a private sale." },
+        { title: "Equipment transfer", text: "Document a transfer of tools, furniture, electronics, or equipment." },
+        { title: "Signed handoff", text: "Print copies so both parties can sign after payment and item handoff." },
+      ],
+    },
+    "rent-receipt": {
+      useCases: [
+        { title: "Cash rent record", text: "Create a dated receipt when rent is paid in cash or in person." },
+        { title: "Tenant copy", text: "Give tenants a simple record of amount, date, property, and rental period." },
+        { title: "Landlord files", text: "Keep a printable copy for household or property records." },
+      ],
+    },
+    "resume-builder": {
+      useCases: [
+        { title: "Simple resume", text: "Build a clean one-page resume without decorative layouts or hidden export fees." },
+        { title: "ATS-friendly draft", text: "Use a single-column structure with readable headings and normal text." },
+        { title: "Quick application", text: "Create a practical first PDF when you need to apply soon and improve the wording later." },
+      ],
+      privacy: "Contact details, names, and work history are generated locally unless you choose to place generic text in the AI idea fields.",
+    },
+    "cover-letter": {
+      useCases: [
+        { title: "Last-minute application", text: "Write a concise cover letter when an application requires one before submission." },
+        { title: "Role-specific draft", text: "Mention the role and company, then add a short strengths paragraph." },
+        { title: "No signup export", text: "Avoid writing into a tool that asks for payment only after the letter is complete." },
+      ],
+      privacy: "Name and contact fields stay local. Use the AI idea helper only for generic wording, not private personal details.",
+    },
+    "resignation-letter": {
+      useCases: [
+        { title: "Two weeks notice", text: "State your resignation, final working day, appreciation, and handoff plan." },
+        { title: "Professional handoff", text: "Keep the tone clear and neutral for workplace records." },
+        { title: "Personal copy", text: "Download a PDF copy for your own records after sending or printing." },
+      ],
+      privacy: "This is a practical draft, not legal advice. Review employment policies and local requirements before sending.",
+    },
+    "monthly-calendar": {
+      useCases: [
+        { title: "Family schedule", text: "Track appointments, school events, bills, and household plans on one month page." },
+        { title: "Student planner", text: "Mark assignments, exams, study blocks, and project deadlines." },
+        { title: "Printable wall calendar", text: "Print a clean black-and-white calendar with enough writing space." },
+      ],
+    },
+    "meal-planner": {
+      useCases: [
+        { title: "Weekly meals", text: "Plan breakfast, lunch, and dinner for each day of the week." },
+        { title: "Grocery list", text: "Keep shopping items on the same page as the meal plan." },
+        { title: "Budget planning", text: "Repeat ingredients across meals and leave a flexible dinner for leftovers." },
+      ],
+    },
+    "name-tracing": {
+      useCases: [
+        { title: "Preschool practice", text: "Create a familiar handwriting warmup using a child's name or short word." },
+        { title: "Take-home page", text: "Print one simple worksheet for quick daily practice." },
+        { title: "Letter confidence", text: "Use tracing lines and blank lines to build pencil control." },
+      ],
+    },
+    "chore-chart": {
+      useCases: [
+        { title: "Family chores", text: "List weekly tasks and make progress visible with daily checkboxes." },
+        { title: "Roommates", text: "Use one page for shared chores without needing another app." },
+        { title: "Classroom jobs", text: "Assign helpers and rotate responsibilities across the week." },
+      ],
+    },
+    "reward-chart": {
+      useCases: [
+        { title: "Sticker chart", text: "Track one clear behavior with a short, visible reward target." },
+        { title: "Reading goal", text: "Use boxes for reading practice, bedtime routines, or kindness goals." },
+        { title: "Classroom behavior", text: "Print a simple progress chart for a small group or individual student." },
+      ],
+    },
+    flashcards: {
+      useCases: [
+        { title: "Vocabulary review", text: "Create cut-out cards for words, definitions, language practice, or memory games." },
+        { title: "Classroom activity", text: "Print a small set for centers, tutoring, or homeschool practice." },
+        { title: "Study deck starter", text: "Use one page to test a topic before creating a larger deck." },
+      ],
+    },
+    "weekly-planner": {
+      useCases: [
+        { title: "Family week", text: "Plan appointments, errands, meals, school notes, and reminders." },
+        { title: "Class planning", text: "Use day boxes for lessons, materials, or tutoring sessions." },
+        { title: "Simple task view", text: "Keep one visible page for the week instead of a complicated planner app." },
+      ],
+    },
+    "habit-tracker": {
+      useCases: [
+        { title: "Daily routines", text: "Track reading, water, walks, sleep routines, or practice habits." },
+        { title: "Wellness check-in", text: "Use a simple grid to mark progress without turning it into a guilt chart." },
+        { title: "Classroom practice", text: "Track repeatable student routines or reading goals." },
+      ],
+    },
+  };
+  return mergeDetails(shared, overrides[slug] || {});
+}
+
+function mergeDetails(base, override) {
+  return {
+    steps: override.steps || base.steps,
+    useCases: override.useCases || base.useCases,
+    privacy: override.privacy || base.privacy,
+    limit: override.limit || base.limit,
+    faq: override.faq || base.faq,
   };
 }
 

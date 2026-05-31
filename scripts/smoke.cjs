@@ -22,6 +22,7 @@ function delay(ms) {
 
   const routes = [
     "/",
+    "/tools/",
     "/tools/name-tracing/",
     "/tools/chore-chart/",
     "/tools/reward-chart/",
