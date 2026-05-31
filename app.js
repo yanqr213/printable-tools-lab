@@ -1004,6 +1004,11 @@
           <div class="metric-tile"><strong>${totals.limit_hit || 0}</strong><span>limit hits</span></div>
         </div>
         <div class="panel">
+          <h2>Live site signals</h2>
+          <p class="help">Cloudflare-hosted counters show whether real visitors are generating and downloading PDFs. They are approximate and anonymous.</p>
+          <div id="remoteMetrics" class="metric-remote">Loading live metrics...</div>
+        </div>
+        <div class="panel">
           <h2>Validation gates</h2>
           <p><strong>30-day continue gate:</strong> 100 PDF downloads, 300 tool generations, or growing Search Console impressions. If no search exposure or downloads after 60 days, pause this track and test HTML5 game distribution.</p>
           <p><strong>Configured integrations:</strong> Analytics ${CONFIG.enableAnalytics && CONFIG.googleAnalyticsId ? "on" : "off"}, AdSense ${CONFIG.enableAds && CONFIG.adsenseClientId ? "on" : "off"}.</p>
@@ -1031,6 +1036,7 @@
         renderDashboard();
       }
     });
+    loadRemoteMetrics();
   }
 
   function renderNotFound() {
@@ -2010,6 +2016,52 @@
     localStorage.setItem("ptl_events", JSON.stringify(events.slice(-1000)));
     if (window.gtag && CONFIG.enableAnalytics) {
       window.gtag("event", name, data || {});
+    }
+    sendRemoteEvent(name, data || {});
+  }
+
+  function sendRemoteEvent(name, data) {
+    if (!navigator.sendBeacon && !window.fetch) return;
+    const payload = JSON.stringify({
+      name,
+      tool: data.tool || "site",
+      path: getCurrentRoutePath(),
+    });
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon("/api/event", new Blob([payload], { type: "application/json" }));
+      return;
+    }
+    fetch("/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: payload,
+      keepalive: true,
+    }).catch(() => {});
+  }
+
+  async function loadRemoteMetrics() {
+    const target = document.getElementById("remoteMetrics");
+    if (!target) return;
+    try {
+      const response = await fetch("/api/metrics", { cache: "no-store" });
+      const data = await response.json();
+      if (!response.ok || !data.ok) throw new Error("Metrics unavailable");
+      target.innerHTML = `
+        <div class="metric-grid compact">
+          <div class="metric-tile"><strong>${data.totals.page_view || 0}</strong><span>live page views</span></div>
+          <div class="metric-tile"><strong>${data.totals.generate_pdf || 0}</strong><span>live generations</span></div>
+          <div class="metric-tile"><strong>${data.totals.download_pdf || 0}</strong><span>live downloads</span></div>
+          <div class="metric-tile"><strong>${data.totals.ai_ideas_apply || 0}</strong><span>AI applies</span></div>
+        </div>
+        <div class="preview-stage">
+          <table class="event-table">
+            <thead><tr><th>Tool</th><th>Downloads</th><th>Generations</th><th>Limit hits</th></tr></thead>
+            <tbody>${data.tools.map((row) => `<tr><td>${escapeHtml(row.tool)}</td><td>${row.download_pdf || 0}</td><td>${row.generate_pdf || 0}</td><td>${row.limit_hit || 0}</td></tr>`).join("")}</tbody>
+          </table>
+        </div>
+      `;
+    } catch (error) {
+      target.innerHTML = `<p class="help">Live metrics are not available yet. Local browser metrics still work.</p>`;
     }
   }
 

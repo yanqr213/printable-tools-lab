@@ -680,6 +680,15 @@ canvas.preview-canvas {
   margin: 20px 0;
 }
 
+.metric-grid.compact {
+  margin-top: 12px;
+}
+
+.metric-remote {
+  display: grid;
+  gap: 14px;
+}
+
 .metric-tile {
   padding: 16px;
 }

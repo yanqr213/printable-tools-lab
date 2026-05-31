@@ -18,6 +18,7 @@ Zero-cost validation build for a free printable PDF generator site.
 - One-page PDF export through Canvas-to-PDF.
 - Daily free limit stored in `localStorage`.
 - Local validation events stored in `localStorage`.
+- Anonymous Cloudflare KV counters for live page views, PDF generations, downloads, limit hits, and AI idea applies.
 - 24 original guide pages plus keyword clusters for SEO and future AdSense review.
 - Compliance pages: About, Privacy, Terms, AI & License Disclosure.
 - Static pre-rendered HTML for key routes, plus client-side enhancement.
@@ -57,6 +58,12 @@ Run the AI helper contract test:
 
 ```powershell
 npm.cmd run test:ai
+```
+
+Run the live metrics contract test:
+
+```powershell
+npm.cmd run test:events
 ```
 
 ## Deployment artifacts

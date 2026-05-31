@@ -196,12 +196,13 @@ Create one image or short post per item. Show the printable use case and never p
 
 ## Weekly Operating Loop
 
-1. Export local events from `/dashboard/`.
-2. Check Search Console impressions and queries.
-3. Pick the top query with impressions but weak clicks.
-4. Improve the matching page title and intro.
-5. Add one guide or tool variation only if data points to it.
-6. Record the change and compare the next week.
+1. Open `/dashboard/` and check live Cloudflare-backed counters.
+2. Export local events from `/dashboard/` when testing manually.
+3. Check Search Console impressions and queries.
+4. Pick the top query with impressions but weak clicks.
+5. Improve the matching page title and intro.
+6. Add one guide or tool variation only if data points to it.
+7. Record the change and compare the next week.
 
 ## Search And Indexing
 
