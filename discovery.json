@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-05-31T22:34:44.775Z",
+  "generatedAt": "2026-05-31T22:52:50.924Z",
   "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -9,6 +9,14 @@
   "highIntentEntryPoints": [
     "https://printable-tools-lab.pages.dev/free-pdf-tools/",
     "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
+    "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
+    "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
+    "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
+    "https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/",
+    "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
+    "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
+    "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
+    "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
     "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
     "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
     "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
@@ -19,6 +27,56 @@
     "https://printable-tools-lab.pages.dev/tools/certificate-generator/",
     "https://printable-tools-lab.pages.dev/tools/todo-list/",
     "https://printable-tools-lab.pages.dev/tools/graph-paper/"
+  ],
+  "landingPages": [
+    {
+      "title": "Free Invoice Generator Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
+      "intent": "invoice PDF now, no account, no hidden export fee",
+      "tool": "https://printable-tools-lab.pages.dev/tools/invoice-generator/"
+    },
+    {
+      "title": "JPG to PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
+      "intent": "private image conversion, no upload, fast PDF",
+      "tool": "https://printable-tools-lab.pages.dev/tools/image-to-pdf/"
+    },
+    {
+      "title": "Multiple Images to PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
+      "intent": "combine images into one PDF without upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/"
+    },
+    {
+      "title": "Text to PDF Converter Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/",
+      "intent": "plain text to PDF with no account",
+      "tool": "https://printable-tools-lab.pages.dev/tools/text-to-pdf/"
+    },
+    {
+      "title": "Free Resume Builder Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
+      "intent": "resume PDF download without account or paywall",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resume-builder/"
+    },
+    {
+      "title": "Free Receipt Generator Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
+      "intent": "receipt PDF now, no account, quick proof of payment",
+      "tool": "https://printable-tools-lab.pages.dev/tools/receipt-generator/"
+    },
+    {
+      "title": "Weekly Timesheet PDF Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
+      "intent": "weekly timesheet PDF with fast export",
+      "tool": "https://printable-tools-lab.pages.dev/tools/timesheet-generator/"
+    },
+    {
+      "title": "Free Certificate Maker Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
+      "intent": "certificate PDF download without account",
+      "tool": "https://printable-tools-lab.pages.dev/tools/certificate-generator/"
+    }
   ],
   "constraints": [
     "No account required.",

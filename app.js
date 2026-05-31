@@ -188,7 +188,6 @@
       shortTitle: "Invoice",
       description: "Create a clean free invoice PDF for freelance work, small business services, consulting, or one-off projects.",
       keywords: ["invoice generator", "free invoice", "freelance invoice", "PDF invoice"],
-      watermark: false,
       defaultValues: {
         business: "Bright Studio\nhello@example.com",
         client: "Client Name\nclient@example.com",
@@ -220,7 +219,6 @@
       shortTitle: "Estimate",
       description: "Create a free estimate PDF for freelance work, home services, consulting, repairs, or small business quotes.",
       keywords: ["estimate generator", "quote PDF", "free estimate", "service estimate"],
-      watermark: false,
       defaultValues: {
         business: "Bright Studio\nhello@example.com",
         client: "Client Name\nclient@example.com",
@@ -252,7 +250,6 @@
       shortTitle: "Purchase order",
       description: "Make a free purchase order PDF for supplies, services, small vendors, internal approvals, or project records.",
       keywords: ["purchase order", "PO generator", "free purchase order", "PDF purchase order"],
-      watermark: false,
       defaultValues: {
         business: "Buyer Name\nbuyer@example.com",
         client: "Vendor Name\nvendor@example.com",
@@ -284,7 +281,6 @@
       shortTitle: "Bill of sale",
       description: "Create a simple bill of sale PDF for a private item sale, equipment transfer, furniture sale, or vehicle record draft.",
       keywords: ["bill of sale", "sale receipt", "private sale", "PDF bill of sale"],
-      watermark: false,
       defaultValues: {
         business: "Seller Name\nseller@example.com",
         client: "Buyer Name\nbuyer@example.com",
@@ -316,7 +312,6 @@
       shortTitle: "Rent receipt",
       description: "Make a free printable rent receipt PDF for a tenant payment, room rental, cash payment record, or landlord file.",
       keywords: ["rent receipt", "receipt generator", "landlord receipt", "PDF receipt"],
-      watermark: false,
       defaultValues: {
         receivedFrom: "Tenant Name",
         landlord: "Landlord or property manager",
@@ -350,7 +345,6 @@
       shortTitle: "Resume",
       description: "Build a simple free resume PDF without an account, paywall, or surprise download fee.",
       keywords: ["resume builder", "free resume", "CV PDF", "job application"],
-      watermark: false,
       defaultValues: {
         name: "Maya Chen",
         headline: "Operations Coordinator",
@@ -380,7 +374,6 @@
       shortTitle: "Cover letter",
       description: "Create a free one-page cover letter PDF for job applications without an account or surprise download fee.",
       keywords: ["cover letter generator", "free cover letter", "job application", "PDF cover letter"],
-      watermark: false,
       defaultValues: {
         name: "Maya Chen",
         contact: "maya@example.com | San Francisco, CA",
@@ -414,7 +407,6 @@
       shortTitle: "Resignation letter",
       description: "Make a simple resignation letter PDF with notice date, last day, appreciation, and handoff wording.",
       keywords: ["resignation letter", "two weeks notice", "free resignation letter", "PDF resignation letter"],
-      watermark: false,
       defaultValues: {
         name: "Maya Chen",
         contact: "maya@example.com",
@@ -498,7 +490,6 @@
       shortTitle: "Image to PDF",
       description: "Convert JPG, PNG, or WebP images into a clean one-page PDF in your browser without uploading files.",
       keywords: ["image to PDF", "JPG to PDF", "PNG to PDF", "no upload"],
-      watermark: false,
       ai: false,
       defaultValues: {
         title: "Image to PDF",
@@ -523,7 +514,6 @@
       shortTitle: "Images to PDF",
       description: "Turn several JPG, PNG, or WebP images into one multi-page PDF in your browser without uploading files.",
       keywords: ["images to PDF", "JPG to PDF", "multi-page PDF", "no upload"],
-      watermark: false,
       ai: false,
       acceptsImages: true,
       maxImages: 8,
@@ -551,7 +541,6 @@
       shortTitle: "Text to PDF",
       description: "Paste plain text and download a clean one-page PDF without an account or file upload.",
       keywords: ["text to PDF", "plain text PDF", "no signup", "document"],
-      watermark: false,
       defaultValues: {
         title: "Text to PDF",
         body: "Paste notes, a short letter, instructions, meeting notes, or a plain text document here.\n\nThe free version creates one readable page in your browser.",
@@ -647,7 +636,6 @@
       shortTitle: "Receipt",
       description: "Create a simple printable receipt PDF for a sale, service payment, deposit, or reimbursement record.",
       keywords: ["receipt generator", "payment receipt", "cash receipt", "PDF receipt"],
-      watermark: false,
       defaultValues: {
         receivedFrom: "Customer Name",
         receivedBy: "Business or recipient",
@@ -679,7 +667,6 @@
       shortTitle: "Timesheet",
       description: "Make a printable weekly timesheet PDF for freelance hours, staff records, projects, or approvals.",
       keywords: ["timesheet generator", "weekly timesheet", "hours PDF", "work log"],
-      watermark: false,
       defaultValues: {
         title: "Weekly Timesheet",
         worker: "Worker or team member",
@@ -791,8 +778,11 @@
       description: "High-intent PDF tools for image conversion, text conversion, checklists, sign-in sheets, graph paper, and travel paperwork.",
       links: [
         ["Image to PDF converter", "/tools/image-to-pdf/"],
+        ["JPG to PDF without uploading", "/jpg-to-pdf-no-upload/"],
         ["Multiple images to PDF", "/tools/multi-image-pdf/"],
+        ["Multiple images to PDF without uploading", "/multiple-images-to-pdf-no-upload/"],
         ["Text to PDF converter", "/tools/text-to-pdf/"],
+        ["Text to PDF converter without signup", "/text-to-pdf-no-signup/"],
         ["Sign-in sheet generator", "/tools/sign-in-sheet/"],
         ["Graph paper generator", "/tools/graph-paper/"],
         ["Packing list generator", "/tools/packing-list/"],
@@ -804,10 +794,13 @@
       description: "Clean PDF invoices, estimates, purchase orders, sale records, receipts, and timesheets for people who need a document now.",
       links: [
         ["Invoice generator", "/tools/invoice-generator/"],
+        ["Free invoice generator without signup", "/free-invoice-generator-no-signup/"],
         ["Estimate generator", "/tools/estimate-generator/"],
         ["Purchase order generator", "/tools/purchase-order/"],
         ["Receipt generator", "/tools/receipt-generator/"],
+        ["Free receipt generator without signup", "/free-receipt-generator-no-signup/"],
         ["Timesheet generator", "/tools/timesheet-generator/"],
+        ["Weekly timesheet PDF without signup", "/weekly-timesheet-pdf-no-signup/"],
         ["Rent receipt generator", "/tools/rent-receipt/"],
       ],
     },
@@ -816,6 +809,7 @@
       description: "Printable certificates, sign-in sheets, and checklists for small events, classrooms, workshops, and clubs.",
       links: [
         ["Certificate generator", "/tools/certificate-generator/"],
+        ["Free certificate maker without signup", "/free-certificate-maker-no-signup/"],
         ["Sign-in sheet generator", "/tools/sign-in-sheet/"],
         ["To do list generator", "/tools/todo-list/"],
       ],
@@ -825,6 +819,7 @@
       description: "Free resume, cover letter, and resignation letter PDFs for job seekers who need useful documents without a surprise paywall.",
       links: [
         ["Resume builder PDF", "/tools/resume-builder/"],
+        ["Free resume builder without signup", "/free-resume-builder-no-signup/"],
         ["Cover letter generator", "/tools/cover-letter/"],
         ["Resignation letter generator", "/tools/resignation-letter/"],
         ["Free resume builder PDF guide", "/guides/free-resume-builder-pdf/"],
@@ -854,6 +849,131 @@
       links: ["monthly-calendar", "meal-planner", "todo-list", "graph-paper", "certificate-generator", "sign-in-sheet", "packing-list"],
     },
   ];
+
+  const landingPages = [
+    {
+      slug: "free-invoice-generator-no-signup",
+      title: "Free Invoice Generator Without Signup",
+      headline: "Free invoice generator without signup",
+      description: "Create and download a clean invoice PDF without creating an account, uploading data, or hitting a surprise export paywall.",
+      lead: "Make a practical invoice PDF in the browser, review it, and download it without creating an account. This page is built for freelancers and small businesses who need one clean invoice now.",
+      tool: "invoice-generator",
+      intent: "invoice PDF now, no account, no hidden export fee",
+      sections: [
+        ["Why this page exists", "Many invoice tools are free until the export step. PrintableTools Lab keeps the first invoice workflow lightweight: fill the form, generate the PDF locally, and keep your own copy."],
+        ["What the invoice includes", "Business and client details, invoice number, date, payment terms, line items, currency, totals, and a footer note. It is a simple record format, not tax or accounting advice."],
+        ["Best fit", "Use it for freelance services, consulting work, small one-off jobs, deposits, creative work, or quick client records when full accounting software is unnecessary."],
+      ],
+      related: ["estimate-generator", "receipt-generator", "timesheet-generator"],
+    },
+    {
+      slug: "jpg-to-pdf-no-upload",
+      title: "JPG to PDF Without Uploading",
+      headline: "JPG to PDF without uploading",
+      description: "Convert JPG, PNG, or WebP images to PDF in your browser without uploading private files to a conversion server.",
+      lead: "Choose an image and create a PDF locally in the browser. It is useful for receipts, scans, forms, screenshots, homework pages, and other files you do not want to send to a converter server.",
+      tool: "image-to-pdf",
+      intent: "private image conversion, no upload, fast PDF",
+      sections: [
+        ["Local-first conversion", "The image is loaded into your browser preview and drawn into the PDF on your device. Avoid entering or uploading private documents unless you have reviewed them first."],
+        ["One image or several", "Use the one-image converter for a single page or gallery layout. Use the multi-image converter when each image should become its own PDF page."],
+        ["Before sharing", "Open the downloaded PDF and confirm the image is readable, oriented correctly, and not cropped in a way that hides important information."],
+      ],
+      related: ["multi-image-pdf", "text-to-pdf", "packing-list"],
+    },
+    {
+      slug: "multiple-images-to-pdf-no-upload",
+      title: "Multiple Images to PDF Without Uploading",
+      headline: "Multiple images to PDF without uploading",
+      description: "Combine several JPG, PNG, or WebP images into one multi-page PDF locally in your browser.",
+      lead: "Create a multi-page PDF where each selected image becomes one page. This is designed for quick scans, receipts, forms, screenshots, homework, and grouped photo documents.",
+      tool: "multi-image-pdf",
+      intent: "combine images into one PDF without upload",
+      sections: [
+        ["One PDF, several pages", "Select up to eight images and export them as a single PDF. The first version keeps the workflow simple so the page can load fast on mobile and desktop."],
+        ["Privacy positioning", "The images stay in the browser for ordinary generation. That is a stronger promise than tools that require an upload before showing the final PDF."],
+        ["Practical limits", "Very large images can make large PDFs. Resize or crop photos first if the receiving website has strict upload limits."],
+      ],
+      related: ["image-to-pdf", "text-to-pdf", "receipt-generator"],
+    },
+    {
+      slug: "text-to-pdf-no-signup",
+      title: "Text to PDF Converter Without Signup",
+      headline: "Text to PDF converter without signup",
+      description: "Paste plain text and download a clean PDF without installing an editor, uploading a file, or creating an account.",
+      lead: "Turn notes, instructions, short letters, meeting summaries, or plain text drafts into a simple one-page PDF. No account is required for the free export.",
+      tool: "text-to-pdf",
+      intent: "plain text to PDF with no account",
+      sections: [
+        ["Fast plain text workflow", "Paste text, choose a readable size, generate the preview, and download the PDF. This is intentionally simpler than a full document editor."],
+        ["Good use cases", "Use it for short notes, printable instructions, handouts, simple letters, checklists, and text copied from another app."],
+        ["One-page focus", "The free version is best for concise documents. Long text should be shortened or split into sections before export."],
+      ],
+      related: ["image-to-pdf", "todo-list", "sign-in-sheet"],
+    },
+    {
+      slug: "free-resume-builder-no-signup",
+      title: "Free Resume Builder Without Signup",
+      headline: "Free resume builder without signup",
+      description: "Build and download a clean one-page resume PDF without creating an account or paying at the export step.",
+      lead: "Create a simple resume PDF for job applications without a hidden download fee. The layout is plain, readable, and built for quick edits before applying.",
+      tool: "resume-builder",
+      intent: "resume PDF download without account or paywall",
+      sections: [
+        ["Avoid the export surprise", "Some resume builders let users type the whole resume and then charge at download. This tool is positioned around a free one-page PDF export first."],
+        ["Readable structure", "The resume includes name, headline, contact line, summary, experience, skills, and education in a simple single-column format."],
+        ["Before applying", "Proofread every line, avoid private details you do not want to share, and tailor the summary and experience bullets to the role."],
+      ],
+      related: ["cover-letter", "resignation-letter", "text-to-pdf"],
+    },
+    {
+      slug: "free-receipt-generator-no-signup",
+      title: "Free Receipt Generator Without Signup",
+      headline: "Free receipt generator without signup",
+      description: "Create a printable receipt PDF for a sale, deposit, service payment, reimbursement, or rent record without an account.",
+      lead: "Make a simple dated receipt PDF when money has already changed hands. It is useful for service payments, deposits, private sales, reimbursements, and basic records.",
+      tool: "receipt-generator",
+      intent: "receipt PDF now, no account, quick proof of payment",
+      sections: [
+        ["Invoice vs receipt", "Use an invoice before payment is due. Use a receipt after payment is made and both sides need a record."],
+        ["What to include", "Payer, recipient, payment date, amount, method, description, and a short note. Keep copies with your own records."],
+        ["Limits", "This is a practical receipt format, not legal, tax, or accounting advice. Requirements vary by business type and location."],
+      ],
+      related: ["invoice-generator", "rent-receipt", "bill-of-sale"],
+    },
+    {
+      slug: "weekly-timesheet-pdf-no-signup",
+      title: "Weekly Timesheet PDF Without Signup",
+      headline: "Weekly timesheet PDF without signup",
+      description: "Create a printable weekly timesheet PDF for freelance hours, staff records, project tracking, or approvals without creating an account.",
+      lead: "Track days, projects, hours, notes, total hours, and approval signature on one printable page. Good for freelancers, contractors, and small teams.",
+      tool: "timesheet-generator",
+      intent: "weekly timesheet PDF with fast export",
+      sections: [
+        ["Repeat use", "Timesheets are naturally recurring. A fast no-signup page can serve weekly or pay-period workflows without forcing a full HR app."],
+        ["What it includes", "Worker, period, day/project/hour rows, notes, total hours, and signature lines. Review hours before submitting them."],
+        ["When to use a system", "If payroll, compliance, overtime, or approvals are complex, use proper time-tracking or payroll software. This page is for simple printable records."],
+      ],
+      related: ["invoice-generator", "receipt-generator", "todo-list"],
+    },
+    {
+      slug: "free-certificate-maker-no-signup",
+      title: "Free Certificate Maker Without Signup",
+      headline: "Free certificate maker without signup",
+      description: "Create and download a printable certificate PDF for classroom awards, participation, completion, clubs, and small events.",
+      lead: "Generate a certificate PDF quickly for a classroom, club, workshop, team, or small event. The first version focuses on a clean printable layout instead of a template marketplace.",
+      tool: "certificate-generator",
+      intent: "certificate PDF download without account",
+      sections: [
+        ["Useful moments", "Use it for completion, participation, appreciation, classroom awards, clubs, small events, and workshops."],
+        ["Simple fields", "Certificate title, recipient name, reason, date, style, and signer are enough for a practical printable certificate."],
+        ["Print check", "Preview the PDF before printing and confirm names, dates, and signer spelling. Certificates are usually noticed for typos."],
+      ],
+      related: ["sign-in-sheet", "todo-list", "flashcards"],
+    },
+  ];
+
+  const landingPagesBySlug = Object.fromEntries(landingPages.map((page) => [page.slug, page]));
 
   const toolFinderRows = [
     {
@@ -909,6 +1029,102 @@
   ];
 
   const guides = [
+    {
+      slug: "free-invoice-generator-no-signup",
+      title: "Free invoice generator without signup",
+      description: "Create a clean invoice PDF without an account, upload step, or surprise export paywall.",
+      tool: "invoice-generator",
+      content: [
+        ["h2", "Fast invoice PDF export"],
+        ["p", "A user searching for a no-signup invoice generator usually needs one PDF immediately. The invoice tool opens in the browser, exports a clean PDF, and avoids the common pay-at-download surprise."],
+        ["h2", "What to check before sending"],
+        ["ul", ["Business and client details.", "Invoice number and date.", "Line items, quantity, rate, and total.", "Payment terms and any footer note."]],
+      ],
+    },
+    {
+      slug: "jpg-to-pdf-no-upload",
+      title: "JPG to PDF without uploading",
+      description: "Convert JPG, PNG, or WebP files to PDF locally in the browser without sending images to a server.",
+      tool: "image-to-pdf",
+      content: [
+        ["h2", "Local image conversion"],
+        ["p", "Photos and screenshots can contain private information. A no-upload workflow draws the image into a PDF in the browser, then lets you review the downloaded file before sharing it."],
+        ["h2", "When to use it"],
+        ["ul", ["A photo of a receipt.", "A scan or form image.", "A screenshot that must be submitted as PDF.", "A simple one-page image PDF."]],
+      ],
+    },
+    {
+      slug: "multiple-images-to-pdf-no-upload",
+      title: "Multiple images to PDF without uploading",
+      description: "Combine several image files into one multi-page PDF locally in the browser.",
+      tool: "multi-image-pdf",
+      content: [
+        ["h2", "One PDF for several images"],
+        ["p", "Use the multi-image converter when each image should become its own page, such as receipts, homework pages, forms, screenshots, or phone scans."],
+        ["h2", "Practical limits"],
+        ["p", "Very large photos can make large PDFs. Resize photos first if the receiving website has strict upload limits."],
+      ],
+    },
+    {
+      slug: "text-to-pdf-no-signup",
+      title: "Text to PDF converter without signup",
+      description: "Paste plain text and download a clean one-page PDF without creating an account.",
+      tool: "text-to-pdf",
+      content: [
+        ["h2", "Plain text to PDF"],
+        ["p", "Paste notes, instructions, simple letters, or meeting summaries and export a readable one-page PDF without installing an editor."],
+        ["h2", "Best for short documents"],
+        ["p", "The free version is intentionally focused on one-page drafts. Shorten or split very long text before export."],
+      ],
+    },
+    {
+      slug: "free-resume-builder-no-signup",
+      title: "Free resume builder without signup",
+      description: "Build and download a clean resume PDF without an account or hidden export fee.",
+      tool: "resume-builder",
+      content: [
+        ["h2", "Avoid the export surprise"],
+        ["p", "Many resume builders let users type first and pay later. This resume builder is designed around a free one-page PDF export so job seekers can get a usable file quickly."],
+        ["h2", "Keep it readable"],
+        ["p", "Use clear section headings, normal text, and a single-column structure. Proofread before sending it with a real application."],
+      ],
+    },
+    {
+      slug: "free-receipt-generator-no-signup",
+      title: "Free receipt generator without signup",
+      description: "Create a simple receipt PDF for payments, deposits, sales, reimbursements, or basic records.",
+      tool: "receipt-generator",
+      content: [
+        ["h2", "Receipt vs invoice"],
+        ["p", "Use an invoice before payment is due. Use a receipt after payment happens and both sides need a record."],
+        ["h2", "What to include"],
+        ["ul", ["Payer and recipient.", "Amount and date.", "Payment method.", "Description and notes."]],
+      ],
+    },
+    {
+      slug: "weekly-timesheet-pdf-no-signup",
+      title: "Weekly timesheet PDF without signup",
+      description: "Create a printable weekly timesheet PDF for freelance hours, staff records, project tracking, or approvals.",
+      tool: "timesheet-generator",
+      content: [
+        ["h2", "Repeatable weekly record"],
+        ["p", "Timesheets are naturally recurring. A fast no-signup generator can be enough for simple freelance, contractor, and small team hour records."],
+        ["h2", "Review before submitting"],
+        ["p", "Check dates, projects, hours, notes, and the total-hours line before printing or sending the PDF."],
+      ],
+    },
+    {
+      slug: "free-certificate-maker-no-signup",
+      title: "Free certificate maker without signup",
+      description: "Create a printable certificate PDF for classroom awards, completion, participation, clubs, and small events.",
+      tool: "certificate-generator",
+      content: [
+        ["h2", "Quick certificate PDF"],
+        ["p", "Use the certificate maker for classroom awards, participation, completion, clubs, teams, and workshops when a clean printable certificate is enough."],
+        ["h2", "Print check"],
+        ["p", "Preview the name, date, reason, and signer spelling before printing. Certificate typos are easy to notice."],
+      ],
+    },
     {
       slug: "free-printable-name-tracing-worksheet-maker",
       title: "Free printable name tracing worksheet maker",
@@ -1540,7 +1756,7 @@
       body: [
         ["p", "PrintableTools Lab is built around a simple idea: useful printable pages should be fast to make, easy to print, and readable on ordinary home or school printers."],
         ["p", "The current version focuses on practical browser-side PDF work: image conversion, text conversion, business documents, career documents, planning pages, event certificates, classroom resources, and household checklists."],
-        ["p", "The free tools run in the browser. We use a light watermark and a daily generation limit while the project validates demand and prepares for responsible advertising."],
+        ["p", "The free tools run in the browser with clean one-page exports and a small daily generation limit while the project validates demand and prepares for responsible advertising."],
       ],
     },
     privacy: {
@@ -1558,7 +1774,7 @@
       description: "Terms of use for PrintableTools Lab.",
       body: [
         ["p", "The free printable generators are provided as-is for personal, classroom, and small-group use. You are responsible for checking that a generated worksheet is appropriate before giving it to a child or group."],
-        ["p", "Do not use the tools to create unlawful, harmful, infringing, or misleading materials. Do not remove service marks from free downloads."],
+        ["p", "Do not use the tools to create unlawful, harmful, infringing, or misleading materials."],
         ["p", "Commercial resale of generated pages as standalone products is not allowed in the free version. Future licensing terms may be added only after the free product is validated."],
       ],
     },
@@ -1579,7 +1795,7 @@
         ["h2", "Signals to watch"],
         ["ul", ["Search Console impressions for generator keywords.", "PDF downloads by tool.", "Daily limit hits.", "Requests for classroom or batch workflows."]],
         ["h2", "Possible later work"],
-        ["p", "If the data proves demand, the next layer can include saved projects, batch generation, higher daily limits, and no-watermark exports. No checkout should be enabled before those features can be delivered."],
+        ["p", "If the data proves demand, the next layer can include saved projects, batch generation, higher daily limits, team workflows, and richer template controls. No checkout should be enabled before those features can be delivered."],
       ],
     },
     "free-pdf-tools": {
@@ -1617,6 +1833,7 @@
   window.PRINTABLE_TOOLS_LAB_ROUTES = {
     tools,
     guides,
+    landingPages,
     pages,
   };
 
@@ -1666,6 +1883,7 @@
     if (parts[0] === "guides" && parts[1]) return renderGuide(parts[1]);
     if (parts[0] === "free-pdf-tools") return renderFreePdfTools();
     if (parts[0] === "pdf-tool-finder") return renderPdfToolFinder();
+    if (landingPagesBySlug[parts[0]]) return renderLandingPage(parts[0]);
     if (parts[0] === "dashboard") return renderDashboard();
     if (pages[parts[0]]) return renderStaticPage(parts[0]);
     return renderNotFound();
@@ -1739,13 +1957,14 @@
             <p>Quick entry points for the long-tail searches this site is built around.</p>
           </div>
         </div>
+        <div class="cluster-links">${landingPages.map((page) => `<a href="/${page.slug}/">${escapeHtml(page.headline)}</a>`).join("")}</div>
         <div class="grid-2">${keywordClusters.map(keywordClusterCard).join("")}</div>
       </section>
       <section class="shell section">
         <div class="section-head">
           <div>
             <h2>Free printable tools</h2>
-            <p>Each tool creates a one-page PDF in your browser. Business and career documents export clean PDFs; worksheet tools include a small footer mark while the project validates demand.</p>
+            <p>Each tool creates a one-page PDF in your browser. The free version now prioritizes clean exports, no account wall, and no ad-click requirement so visitors have a real reason to return.</p>
           </div>
           <a class="button ghost" href="/dashboard/">View local data</a>
         </div>
@@ -1949,6 +2168,53 @@
     `;
   }
 
+  function renderLandingPage(slug) {
+    const page = landingPagesBySlug[slug];
+    const tool = tools[page.tool];
+    const related = page.related.map((id) => tools[id]).filter(Boolean);
+    setMeta(page.title, page.description);
+    setJsonLd({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: page.title,
+      url: absoluteUrl(`/${page.slug}/`),
+      description: page.description,
+      mainEntity: {
+        "@type": "SoftwareApplication",
+        name: tool.title,
+        url: absoluteUrl(`/tools/${tool.id}/`),
+        applicationCategory: "UtilitiesApplication",
+        operatingSystem: "Web",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      },
+    });
+    app.innerHTML = `
+      <section class="shell page-title section">
+        <a href="/free-pdf-tools/">Free PDF tools</a>
+        <h1>${escapeHtml(page.headline)}</h1>
+        <p>${escapeHtml(page.lead)}</p>
+        <p><a class="button" href="/tools/${tool.id}/">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> <a class="button secondary" href="/pdf-tool-finder/">Compare PDF tools</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Why this matches the search</h2>
+        <div class="grid-3">
+          <article class="panel"><h3>Intent</h3><p>${escapeHtml(page.intent)}</p></article>
+          <article class="panel"><h3>No signup</h3><p>The free workflow starts in the browser and does not require an account before PDF export.</p></article>
+          <article class="panel"><h3>Ad-safe</h3><p>Downloads are not gated behind ad clicks or ad views. Ads remain disabled until policy review and search visibility are ready.</p></article>
+        </div>
+      </section>
+      ${page.sections.map(([heading, text]) => `
+      <section class="shell section">
+        <h2>${escapeHtml(heading)}</h2>
+        <p>${escapeHtml(text)}</p>
+      </section>`).join("")}
+      <section class="shell section">
+        <h2>Related free PDF tools</h2>
+        <div class="grid-3">${related.map(toolCard).join("")}</div>
+      </section>
+    `;
+  }
+
   function guideCard(guide) {
     return `
       <a class="guide-card" href="/guides/${guide.slug}/">
@@ -1995,7 +2261,7 @@
               ${tool.ai === false ? "" : `<button class="button secondary" type="button" id="aiIdeas">AI ideas</button>`}
               <button class="button secondary" type="button" id="refreshPreview">Refresh preview</button>
             </div>
-            <p class="help">${tool.watermark === false ? "The free version creates one clean one-page PDF. Daily limits are stored locally in this browser." : "The free version creates one page and adds a small footer watermark. Daily limits are stored locally in this browser."}</p>
+            <p class="help">The free version creates one clean one-page PDF. Daily limits are stored locally in this browser.</p>
           </form>
           <div id="aiIdeasPanel" class="ai-panel" hidden></div>
           <div id="limitNotice" class="notice" hidden></div>
@@ -2049,7 +2315,7 @@
         "Browser-based PDF generation",
         "No account required",
         "US Letter and A4 support",
-        "One-page printable export",
+        "Clean one-page printable export",
       ],
     });
   }
@@ -2457,7 +2723,6 @@
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     tool.draw(ctx, paper, values);
-    if (tool.watermark !== false) drawWatermark(ctx, paper);
     ctx.restore();
   }
 
@@ -3746,15 +4011,6 @@
     if (!text) return ["", ""];
     const parts = text.split(/\s[-:]\s/);
     return [parts[0] || text, parts.slice(1).join(" - ")];
-  }
-
-  function drawWatermark(ctx, paper) {
-    ctx.save();
-    ctx.font = "20px Arial";
-    ctx.fillStyle = "rgba(23,49,59,0.45)";
-    ctx.textAlign = "center";
-    ctx.fillText("Made with PrintableTools Lab - free version", paper.width / 2, paper.height - 26);
-    ctx.restore();
   }
 
   function languageNote(kind, text) {

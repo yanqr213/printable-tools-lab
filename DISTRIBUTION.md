@@ -23,6 +23,14 @@ I built PrintableTools Lab, a free browser-based PDF tool site. It creates pract
 
 - Free PDF tools directory: https://printable-tools-lab.pages.dev/free-pdf-tools/
 - PDF tool finder: https://printable-tools-lab.pages.dev/pdf-tool-finder/
+- No-signup invoice page: https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/
+- JPG to PDF without upload page: https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/
+- No-signup resume page: https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/
+- Multiple Images to PDF Without Uploading: https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/
+- Text to PDF Converter Without Signup: https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/
+- Free Receipt Generator Without Signup: https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/
+- Weekly Timesheet PDF Without Signup: https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/
+- Free Certificate Maker Without Signup: https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/
 - Image to PDF Converter: https://printable-tools-lab.pages.dev/tools/image-to-pdf/
 - Multiple Images to PDF Converter: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/
 - Text to PDF Converter: https://printable-tools-lab.pages.dev/tools/text-to-pdf/
@@ -37,6 +45,7 @@ I built PrintableTools Lab, a free browser-based PDF tool site. It creates pract
 ## Community-safe angles
 
 - For freelancers: free invoice, estimate, purchase order, receipt, bill of sale, and timesheet PDFs without account creation.
+- For high-intent search visitors: no-signup landing pages for invoices, receipts, timesheets, resumes, certificates, text-to-PDF, JPG-to-PDF, and multi-image PDF.
 - For job seekers: free resume, cover letter, and resignation letter PDFs without a hidden export fee.
 - For parents and teachers: printable name tracing, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
 - For teachers and organizers: free certificate, sign-in sheet, and event checklist PDFs.

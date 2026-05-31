@@ -8,13 +8,14 @@ This file keeps the project pointed at the current model: free ad-supported prin
 
 - Twenty-six free browser PDF generators.
 - Daily free limit stored locally.
-- One-page PDF exports with a light footer watermark.
+- Clean one-page PDF exports with no account wall and no ad-click requirement.
 - Original guide pages for search traffic and AdSense review.
+- High-intent landing pages for no-signup and no-upload PDF searches.
 - Ads only after AdSense approval, never blocking downloads or disguised as controls.
 
 ### Deferred paid layer
 
-Do not add checkout yet. If free traffic proves demand later, use data to decide whether saved projects, batch generation, higher daily limits, no-watermark exports, affiliate links, or another route is worth building.
+Do not add checkout yet. If free traffic proves demand later, use data to decide whether saved projects, batch generation, higher daily limits, richer templates, affiliate links, or another route is worth building.
 
 ## Account Setup Steps
 
@@ -190,7 +191,7 @@ Practical order if a paid product is added later:
 - printable to do list generator
 - free invoice PDF generator
 - freelance invoice PDF template
-- invoice generator without watermark
+- invoice generator no signup
 - free estimate generator PDF
 - service quote PDF template
 - free purchase order generator
@@ -307,6 +308,7 @@ Current Search Console checkpoint:
 - `2026-05-31T19:31:34Z`: sitemap resubmitted after deploying `llms.txt`, `tools.json`, `DISTRIBUTION.md`, and GitHub repository metadata/topics.
 - `2026-06-01`: expanded to 26 tools and 52 guide pages, including multi-image PDF, text-to-PDF, receipt, timesheet, certificate, and to-do list routes. Added `discovery.json` for high-intent route discovery.
 - `2026-06-01`: added `feed.xml`, sitemap `lastmod`, and `ItemList` JSON-LD on directory/finder pages. Google sitemap documentation supports `lastmod` when accurate, and feeds are useful discovery/monitoring assets, but neither replaces external links or real usage.
+- `2026-06-01`: added 8 high-intent no-signup/no-upload landing pages for invoice, receipt, weekly timesheet, resume, certificate, JPG-to-PDF, multi-image PDF, and text-to-PDF searches. Clean free exports are now the default acquisition promise.
 - Action: keep site stable, improve useful content/navigation, thicken tool pages, and avoid repeated low-value resubmission loops.
 
 ## External Discovery Queue

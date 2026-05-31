@@ -1,12 +1,13 @@
 {
-  "generatedAt": "2026-05-31T22:37:39.000Z",
+  "generatedAt": "2026-05-31T22:55:15.265Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 26,
     "guideCount": 52,
-    "indexableRoutes": 87,
-    "sitemapLocCount": 87,
-    "generatedToolInventoryAt": "2026-05-31T22:34:44.775Z",
+    "landingPageCount": 8,
+    "indexableRoutes": 95,
+    "sitemapLocCount": 95,
+    "generatedToolInventoryAt": "2026-05-31T22:52:50.924Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -962,7 +963,7 @@
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "26 tools, 52 guides, sitemap, discovery assets, and live metrics are present."
+        "26 tools, 52 guides, 8 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Real AdSense publisher ID is not configured, so ads remain disabled.",

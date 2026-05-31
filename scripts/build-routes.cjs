@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { routes, renderRoute, siteUrl, tools, guides, keywordClusters, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -161,6 +161,10 @@ const llms = [
   "",
   ...tools.map((tool) => `- [${tool.title}](${siteUrl(tool.path)}): ${tool.description}`),
   "",
+  "## High-Intent Landing Pages",
+  "",
+  ...landingPages.map((page) => `- [${page.title}](${siteUrl(page.path)}): ${page.intent}`),
+  "",
   "## Useful Guide Pages",
   "",
   ...guides.slice(0, 24).map((guide) => `- [${guide.title}](${siteUrl(guide.path)}): ${guide.description}`),
@@ -183,7 +187,13 @@ const discoveryIndex = {
   feed: fileUrl("feed.xml"),
   manifest: fileUrl("site.webmanifest"),
   opensearch: fileUrl("opensearch.xml"),
-  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  landingPages: landingPages.map((page) => ({
+    title: page.title,
+    url: siteUrl(page.path),
+    intent: page.intent,
+    tool: siteUrl(page.primaryTool),
+  })),
   constraints: [
     "No account required.",
     "No ad interaction gate.",
@@ -202,6 +212,10 @@ const feedItems = [
   routeToFeedItem(routes.find((route) => route.path === "free-pdf-tools")),
   routeToFeedItem(routes.find((route) => route.path === "pdf-tool-finder")),
   routeToFeedItem(routes.find((route) => route.path === "tools")),
+  ...HIGH_INTENT_LANDING_PATHS
+    .map((pagePath) => routes.find((route) => route.path === pagePath))
+    .filter(Boolean)
+    .map(routeToFeedItem),
   ...HIGH_INTENT_TOOL_PATHS
     .map((toolPath) => routes.find((route) => route.path === toolPath))
     .filter(Boolean)
@@ -255,6 +269,12 @@ const distribution = [
   "",
   `- Free PDF tools directory: ${siteUrl("free-pdf-tools")}`,
   `- PDF tool finder: ${siteUrl("pdf-tool-finder")}`,
+  `- No-signup invoice page: ${siteUrl("free-invoice-generator-no-signup")}`,
+  `- JPG to PDF without upload page: ${siteUrl("jpg-to-pdf-no-upload")}`,
+  `- No-signup resume page: ${siteUrl("free-resume-builder-no-signup")}`,
+  ...landingPages
+    .filter((page) => !["free-invoice-generator-no-signup", "jpg-to-pdf-no-upload", "free-resume-builder-no-signup"].includes(page.path))
+    .map((page) => `- ${page.title}: ${siteUrl(page.path)}`),
   ...HIGH_INTENT_TOOL_PATHS.map((toolPath) => {
     const tool = tools.find((item) => item.path === toolPath);
     return tool ? `- ${tool.title}: ${siteUrl(tool.path)}` : "";
@@ -263,6 +283,7 @@ const distribution = [
   "## Community-safe angles",
   "",
   "- For freelancers: free invoice, estimate, purchase order, receipt, bill of sale, and timesheet PDFs without account creation.",
+  "- For high-intent search visitors: no-signup landing pages for invoices, receipts, timesheets, resumes, certificates, text-to-PDF, JPG-to-PDF, and multi-image PDF.",
   "- For job seekers: free resume, cover letter, and resignation letter PDFs without a hidden export fee.",
   "- For parents and teachers: printable name tracing, chore charts, reward charts, flashcards, weekly planners, and habit trackers.",
   "- For teachers and organizers: free certificate, sign-in sheet, and event checklist PDFs.",

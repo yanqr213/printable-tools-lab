@@ -4,7 +4,49 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-05-31T22:34:44.829Z",
+  "generatedAt": "2026-05-31T22:52:50.987Z",
+  "landingPages": [
+    {
+      "title": "Free Invoice Generator Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
+      "intent": "invoice PDF now, no account, no hidden export fee"
+    },
+    {
+      "title": "JPG to PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
+      "intent": "private image conversion, no upload, fast PDF"
+    },
+    {
+      "title": "Multiple Images to PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
+      "intent": "combine images into one PDF without upload"
+    },
+    {
+      "title": "Text to PDF Converter Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/",
+      "intent": "plain text to PDF with no account"
+    },
+    {
+      "title": "Free Resume Builder Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
+      "intent": "resume PDF download without account or paywall"
+    },
+    {
+      "title": "Free Receipt Generator Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
+      "intent": "receipt PDF now, no account, quick proof of payment"
+    },
+    {
+      "title": "Weekly Timesheet PDF Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
+      "intent": "weekly timesheet PDF with fast export"
+    },
+    {
+      "title": "Free Certificate Maker Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
+      "intent": "certificate PDF download without account"
+    }
+  ],
   "tools": [
     {
       "title": "Image to PDF Converter",

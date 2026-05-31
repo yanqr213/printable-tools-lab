@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, siteUrl, tools } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, siteUrl, tools, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
@@ -63,6 +63,7 @@ const html = `<!doctype html>
         <li><a href="${siteUrl("pdf-tool-finder")}">PDF tool finder</a> for choosing between tools such as invoice vs receipt or one image vs multi-image PDF.</li>
         <li><a href="${siteUrl("tools")}">All free PDF generators</a> for browsing every tool.</li>
         <li><a href="${siteUrl("guides")}">Printable guides</a> for original help pages around PDF and printable workflows.</li>
+        ${landingPages.slice(0, 8).map((page) => `<li><a href="${siteUrl(page.path)}">${escapeHtml(page.title)}</a> for ${escapeHtml(page.intent)}.</li>`).join("\n")}
         <li><a href="${siteUrl("feed.xml").replace(/\/$/, "")}">RSS feed</a> for monitoring newly published discovery pages and high-intent tools.</li>
         <li><a href="${siteUrl("tools.json").replace(/\/$/, "")}">Machine-readable tools.json</a> for tool directories and crawlers.</li>
       </ul>
@@ -82,6 +83,11 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
   finder: siteUrl("pdf-tool-finder"),
   feed: siteUrl("feed.xml").replace(/\/$/, ""),
   generatedAt: generatedAtIso,
+  landingPages: landingPages.map((page) => ({
+    title: page.title,
+    url: siteUrl(page.path),
+    intent: page.intent,
+  })),
   tools: highIntentTools.map((tool) => ({
     title: tool.title,
     description: tool.description,

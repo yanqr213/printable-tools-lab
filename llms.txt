@@ -49,6 +49,17 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Certificate Generator](https://printable-tools-lab.pages.dev/tools/certificate-generator/): Create a printable certificate PDF for completion, participation, classroom awards, or small events.
 - [To Do List Generator](https://printable-tools-lab.pages.dev/tools/todo-list/): Build a printable checklist PDF for errands, work tasks, study sessions, home projects, or event prep.
 
+## High-Intent Landing Pages
+
+- [Free Invoice Generator Without Signup](https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/): invoice PDF now, no account, no hidden export fee
+- [JPG to PDF Without Uploading](https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/): private image conversion, no upload, fast PDF
+- [Multiple Images to PDF Without Uploading](https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/): combine images into one PDF without upload
+- [Text to PDF Converter Without Signup](https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/): plain text to PDF with no account
+- [Free Resume Builder Without Signup](https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/): resume PDF download without account or paywall
+- [Free Receipt Generator Without Signup](https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/): receipt PDF now, no account, quick proof of payment
+- [Weekly Timesheet PDF Without Signup](https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/): weekly timesheet PDF with fast export
+- [Free Certificate Maker Without Signup](https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/): certificate PDF download without account
+
 ## Useful Guide Pages
 
 - [Free printable name tracing worksheet maker](https://printable-tools-lab.pages.dev/guides/free-printable-name-tracing-worksheet-maker/): How to create a readable name tracing page for preschool and kindergarten handwriting practice.

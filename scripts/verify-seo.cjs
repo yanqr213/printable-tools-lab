@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { routes, siteUrl } = require("./seo-content.cjs");
+const { routes, siteUrl, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const failures = [];
@@ -64,6 +64,7 @@ else {
   const feed = fs.readFileSync(feedFile, "utf8");
   if (!feed.includes("<rss version=\"2.0\"")) failures.push("feed.xml missing RSS root.");
   if (!feed.includes(siteUrl("free-pdf-tools"))) failures.push("feed.xml missing free PDF tools directory.");
+  if (!feed.includes(siteUrl("free-invoice-generator-no-signup"))) failures.push("feed.xml missing high-intent no-signup invoice URL.");
   if (!feed.includes(siteUrl("tools/image-to-pdf"))) failures.push("feed.xml missing high-intent image-to-PDF URL.");
   if (!feed.includes("<lastBuildDate>")) failures.push("feed.xml missing lastBuildDate.");
 }
@@ -129,8 +130,22 @@ else {
   const discovery = JSON.parse(fs.readFileSync(discoveryFile, "utf8"));
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("tools/multi-image-pdf"))) failures.push("discovery.json missing high-intent multi-image route.");
   if (discovery.feed !== siteUrl("feed.xml").replace(/\/$/, "")) failures.push("discovery.json missing RSS feed URL.");
+  if (!Array.isArray(discovery.landingPages) || discovery.landingPages.length < 8) failures.push("discovery.json missing high-intent landing pages.");
   if (discovery.manifest !== siteUrl("site.webmanifest").replace(/\/$/, "")) failures.push("discovery.json missing manifest URL.");
   if (discovery.opensearch !== siteUrl("opensearch.xml").replace(/\/$/, "")) failures.push("discovery.json missing OpenSearch URL.");
+}
+
+for (const page of landingPages) {
+  const file = path.join(root, page.path, "index.html");
+  if (!fs.existsSync(file)) {
+    failures.push(`Missing landing page: ${page.path}`);
+    continue;
+  }
+  const html = fs.readFileSync(file, "utf8");
+  if (!html.includes(page.headline)) failures.push(`Landing page missing headline: ${page.path}`);
+  if (!html.includes(`/${page.primaryTool}/`)) failures.push(`Landing page missing primary tool link: ${page.path}`);
+  if (!html.includes('"@type":"CollectionPage"')) failures.push(`Landing page missing CollectionPage schema: ${page.path}`);
+  if (!sitemap.includes(`<loc>${siteUrl(page.path)}</loc>`)) failures.push(`Sitemap missing landing page: ${page.path}`);
 }
 
 const docsIndexFile = path.join(root, "docs", "index.html");
@@ -139,6 +154,7 @@ else {
   const html = fs.readFileSync(docsIndexFile, "utf8");
   if (!html.includes("Free PDF tools without signup")) failures.push("GitHub Pages discovery page missing heading.");
   if (!html.includes(siteUrl("free-pdf-tools"))) failures.push("GitHub Pages discovery page missing main directory link.");
+  if (!html.includes(siteUrl("free-invoice-generator-no-signup"))) failures.push("GitHub Pages discovery page missing no-signup invoice landing link.");
   if (!html.includes(siteUrl("tools/image-to-pdf"))) failures.push("GitHub Pages discovery page missing image-to-PDF link.");
   if (!html.includes("rel=\"canonical\" href=\"https://yanqr213.github.io/printable-tools-lab/\"")) failures.push("GitHub Pages discovery page missing canonical.");
 }
@@ -148,6 +164,7 @@ if (!fs.existsSync(docsToolsFile)) failures.push("Missing GitHub Pages discovery
 else {
   const data = JSON.parse(fs.readFileSync(docsToolsFile, "utf8"));
   if (!Array.isArray(data.tools) || data.tools.length < 8) failures.push("GitHub Pages discovery tools.json missing high-intent tools.");
+  if (!Array.isArray(data.landingPages) || data.landingPages.length < 8) failures.push("GitHub Pages discovery tools.json missing high-intent landing pages.");
   if (data.feed !== siteUrl("feed.xml").replace(/\/$/, "")) failures.push("GitHub Pages discovery tools.json missing feed URL.");
 }
 

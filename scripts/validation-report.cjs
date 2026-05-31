@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { routes, siteUrl } = require("./seo-content.cjs");
+const { routes, siteUrl, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const siteBase = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pages.dev").replace(/\/+$/, "");
@@ -47,6 +47,7 @@ function readLocalState() {
   return {
     toolCount: Array.isArray(toolsJson.tools) ? toolsJson.tools.length : 0,
     guideCount: Array.isArray(toolsJson.guides) ? toolsJson.guides.length : 0,
+    landingPageCount: landingPages.length,
     indexableRoutes,
     sitemapLocCount: countMatches(sitemap, /<loc>/g),
     generatedToolInventoryAt: toolsJson.generatedAt || null,
@@ -257,6 +258,7 @@ function evaluateGates(local, live, searchConsole, discovery) {
   const unknown = searchConsole.inspected.filter((item) => /unknown/i.test(item.coverageState || "")).length;
   const productReady = local.toolCount >= 26
     && local.guideCount >= 50
+    && local.landingPageCount >= 8
     && local.indexableRoutes >= 79
     && local.sitemapLocCount >= local.indexableRoutes
     && Object.values(local.discoveryAssets).every(Boolean)
@@ -279,7 +281,7 @@ function evaluateGates(local, live, searchConsole, discovery) {
     pivot60Day: !searchVisible && (totals.download_pdf || 0) === 0 && (totals.generate_pdf || 0) === 0,
     review90Day: searchVisible && (totals.download_pdf || 0) > 0 && !local.ads.enabled,
     reasons: {
-      productReady: productReady ? [`${local.toolCount} tools, ${local.guideCount} guides, sitemap, discovery assets, and live metrics are present.`] : missingProductReasons(local, live),
+      productReady: productReady ? [`${local.toolCount} tools, ${local.guideCount} guides, ${local.landingPageCount} high-intent landing pages, sitemap, discovery assets, and live metrics are present.`] : missingProductReasons(local, live),
       adsenseApplyReady: adsenseApplyReady ? ["Product is ready, Search Console has visibility, and a real publisher ID is configured."] : missingAdsenseReasons(local, searchConsole, searchVisible),
       searchConsole: summarizeSearchConsoleReasons(searchConsole, sitemap, unknown),
       externalDiscovery: summarizeDiscoveryReasons(discovery),
@@ -291,6 +293,7 @@ function missingProductReasons(local, live) {
   const reasons = [];
   if (local.toolCount < 26) reasons.push(`Only ${local.toolCount} tools found; target is 26 or more.`);
   if (local.guideCount < 50) reasons.push(`Only ${local.guideCount} guides found; target is 50 or more.`);
+  if (local.landingPageCount < 8) reasons.push(`Only ${local.landingPageCount} high-intent landing pages found; target is 8 or more.`);
   if (local.sitemapLocCount < local.indexableRoutes) reasons.push("Sitemap has fewer URLs than the indexable route list.");
   for (const [name, ok] of Object.entries(local.discoveryAssets)) {
     if (!ok) reasons.push(`Missing discovery asset: ${name}.`);
@@ -367,6 +370,7 @@ function renderValidationMarkdown(report) {
     `- Product ready: ${yesNo(report.gates.productReady)}.`,
     `- Tools live in inventory: ${report.local.toolCount}.`,
     `- Guide pages live in inventory: ${report.local.guideCount}.`,
+    `- High-intent landing pages: ${report.local.landingPageCount}.`,
     `- Indexable routes: ${report.local.indexableRoutes}.`,
     `- Live downloads: ${totals.download_pdf || 0}.`,
     `- Live generations: ${totals.generate_pdf || 0}.`,
@@ -417,7 +421,7 @@ function renderValidationMarkdown(report) {
 function printSummary(report) {
   const totals = report.live.metrics?.totals || {};
   console.log(`Validation report written to ${path.relative(root, reportPath)} and VALIDATION.md`);
-  console.log(`Product ready: ${yesNo(report.gates.productReady)} | Tools: ${report.local.toolCount} | Guides: ${report.local.guideCount}`);
+  console.log(`Product ready: ${yesNo(report.gates.productReady)} | Tools: ${report.local.toolCount} | Guides: ${report.local.guideCount} | Landing pages: ${report.local.landingPageCount}`);
   console.log(`Downloads: ${totals.download_pdf || 0} | Generations: ${totals.generate_pdf || 0} | Search visible: ${yesNo(report.gates.searchVisible)} | External discovery: ${yesNo(report.gates.externalDiscoveryReady)} | AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}`);
 }
 
