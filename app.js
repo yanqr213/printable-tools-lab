@@ -832,6 +832,29 @@
     },
   ];
 
+  const freePdfToolGroups = [
+    {
+      title: "No-upload conversion tools",
+      description: "Use these when a photo, scan, screenshot, or plain text note needs to become a PDF quickly. The image tools load files in the browser instead of uploading them to a converter server.",
+      links: ["image-to-pdf", "multi-image-pdf", "text-to-pdf"],
+    },
+    {
+      title: "Free business PDF tools",
+      description: "Create simple paperwork for freelance jobs, small services, deposits, timesheets, private sales, rent payments, and vendor orders without opening a full accounting app.",
+      links: ["invoice-generator", "estimate-generator", "purchase-order", "receipt-generator", "timesheet-generator", "bill-of-sale", "rent-receipt"],
+    },
+    {
+      title: "Free career PDF tools",
+      description: "Make a clean resume, cover letter, or resignation letter PDF without the common hidden export fee many document builders add at the end.",
+      links: ["resume-builder", "cover-letter", "resignation-letter"],
+    },
+    {
+      title: "Free printable planning tools",
+      description: "Print one-page calendars, meal plans, checklists, graph paper, certificates, and routine pages for home, school, work, or events.",
+      links: ["monthly-calendar", "meal-planner", "todo-list", "graph-paper", "certificate-generator", "sign-in-sheet", "packing-list"],
+    },
+  ];
+
   const guides = [
     {
       slug: "free-printable-name-tracing-worksheet-maker",
@@ -1588,6 +1611,7 @@
     if (parts[0] === "tools" && tools[parts[1]]) return renderTool(parts[1]);
     if (parts[0] === "guides" && !parts[1]) return renderGuides();
     if (parts[0] === "guides" && parts[1]) return renderGuide(parts[1]);
+    if (parts[0] === "free-pdf-tools") return renderFreePdfTools();
     if (parts[0] === "dashboard") return renderDashboard();
     if (pages[parts[0]]) return renderStaticPage(parts[0]);
     return renderNotFound();
@@ -1638,13 +1662,13 @@
           <h1>Make useful printable PDFs in under a minute.</h1>
           <p>Free browser-based generators for image conversion, text-to-PDF, invoices, receipts, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
-            <a class="button" href="/tools/invoice-generator/">Create an invoice</a>
-            <a class="button secondary" href="/guides/">Read printable guides</a>
+            <a class="button" href="/free-pdf-tools/">Browse free PDF tools</a>
+            <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
             <div class="proof-tile"><strong>26</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>46+</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>52</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -1736,6 +1760,76 @@
         </div>
         <div class="grid-3">${toolOrder.map((id) => toolCard(tools[id])).join("")}</div>
       </section>
+    `;
+  }
+
+  function renderFreePdfTools() {
+    setMeta("Free PDF Tools Without Signup", "Start with free browser PDF tools for image conversion, text-to-PDF, invoices, receipts, timesheets, certificates, checklists, and printable pages.");
+    setJsonLd({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Free PDF Tools Without Signup",
+      url: `${CONFIG.siteUrl.replace(/\/$/, "")}/free-pdf-tools/`,
+      description: "Free no-signup browser PDF tools for conversion, business paperwork, career documents, and printable planning pages.",
+      hasPart: toolOrder.map((id) => ({
+        "@type": "SoftwareApplication",
+        name: tools[id].title,
+        url: `${CONFIG.siteUrl.replace(/\/$/, "")}/tools/${id}/`,
+        applicationCategory: "UtilitiesApplication",
+        operatingSystem: "Web",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      })),
+    });
+    app.innerHTML = `
+      <section class="shell page-title section">
+        <h1>Free PDF tools without signup</h1>
+        <p>Open a browser-based generator, edit the sample fields, and download a practical PDF. No account, no surprise download fee, and no ad-click requirement.</p>
+      </section>
+      <section class="shell section">
+        <div class="section-head">
+          <div>
+            <h2>Start with the PDF job</h2>
+            <p>These groups target high-intent searches where users usually want a file immediately.</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          ${freePdfToolGroups.map(freePdfToolGroupCard).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <div class="section-head">
+          <div>
+            <h2>Why the tools are free</h2>
+            <p>The validation version measures downloads, Search Console visibility, and anonymous usage counters before enabling responsible advertising or paid features.</p>
+          </div>
+        </div>
+        <div class="grid-3">
+          <div class="panel"><h3>No account wall</h3><p>Users can generate and download PDFs without creating an account, which keeps the first visit lightweight.</p></div>
+          <div class="panel"><h3>No ad interaction gate</h3><p>Ads, once approved, should sit away from generator controls and never become a condition for downloading.</p></div>
+          <div class="panel"><h3>Local-first tools</h3><p>Image conversion stays in the browser. For privacy-sensitive documents, users should avoid entering unnecessary personal details.</p></div>
+        </div>
+      </section>
+      <section class="shell section">
+        <div class="section-head">
+          <div>
+            <h2>All free PDF generators</h2>
+            <p>Use this full list when you know the document type you need.</p>
+          </div>
+        </div>
+        <div class="grid-3">${toolOrder.map((id) => toolCard(tools[id])).join("")}</div>
+      </section>
+    `;
+  }
+
+  function freePdfToolGroupCard(group) {
+    return `
+      <article class="panel keyword-cluster">
+        <h3>${escapeHtml(group.title)}</h3>
+        <p>${escapeHtml(group.description)}</p>
+        <div class="cluster-links">
+          ${group.links.map((id) => `<a href="/tools/${id}/">${escapeHtml(tools[id].title)}</a>`).join("")}
+        </div>
+      </article>
     `;
   }
 

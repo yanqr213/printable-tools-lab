@@ -24,6 +24,7 @@ async function main() {
   const metricsPayload = await metricsResponse.json();
   assert(metricsPayload.ok, "Metrics endpoint should respond");
   assert(metricsPayload.totals.download_pdf === 1, "Metrics should count downloads");
+  assert(metricsPayload.tools.length === 26, "Metrics should include every active tool");
   const invoice = metricsPayload.tools.find((row) => row.tool === "invoice-generator");
   assert(invoice.download_pdf === 1, "Metrics should count per-tool downloads");
   for (const tool of ["multi-image-pdf", "text-to-pdf", "receipt-generator", "timesheet-generator", "certificate-generator", "todo-list"]) {

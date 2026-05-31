@@ -31,25 +31,25 @@ const TOOLS = [
 export async function onRequestGet({ env }) {
   if (!env.PTL_EVENTS) return json({ ok: false, error: "Metrics store unavailable" }, 503);
   const today = new Date().toISOString().slice(0, 10);
-  const totals = {};
-  const todayTotals = {};
-  for (const event of EVENTS) {
-    totals[event] = Number(await env.PTL_EVENTS.get(`total:event:${event}`)) || 0;
-    todayTotals[event] = Number(await env.PTL_EVENTS.get(`day:${today}:event:${event}`)) || 0;
-  }
-  const tools = [];
-  for (const tool of TOOLS) {
-    const row = { tool };
-    for (const event of ["generate_pdf", "download_pdf", "limit_hit", "ai_ideas_apply"]) {
-      row[event] = Number(await env.PTL_EVENTS.get(`total:tool:${tool}:event:${event}`)) || 0;
-    }
-    tools.push(row);
-  }
+  const count = async (key) => Number(await env.PTL_EVENTS.get(key)) || 0;
+  const [totalEntries, todayEntries, tools] = await Promise.all([
+    Promise.all(EVENTS.map(async (event) => [event, await count(`total:event:${event}`)])),
+    Promise.all(EVENTS.map(async (event) => [event, await count(`day:${today}:event:${event}`)])),
+    Promise.all(TOOLS.map(async (tool) => {
+      const eventEntries = await Promise.all(
+        ["generate_pdf", "download_pdf", "limit_hit", "ai_ideas_apply"].map(async (event) => [
+          event,
+          await count(`total:tool:${tool}:event:${event}`),
+        ]),
+      );
+      return { tool, ...Object.fromEntries(eventEntries) };
+    })),
+  ]);
   return json({
     ok: true,
     today,
-    totals,
-    todayTotals,
+    totals: Object.fromEntries(totalEntries),
+    todayTotals: Object.fromEntries(todayEntries),
     tools,
   });
 }

@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-05-31T21:11:00.360Z",
+  "generatedAt": "2026-05-31T21:39:54.606Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 26,
     "guideCount": 52,
     "indexableRoutes": 86,
     "sitemapLocCount": 86,
-    "generatedToolInventoryAt": "2026-05-31T21:08:51.803Z",
+    "generatedToolInventoryAt": "2026-05-31T21:38:41.863Z",
     "discoveryAssets": {
       "sitemap": true,
       "robots": true,
@@ -43,7 +43,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 8048,
+        "bytes": 8126,
         "json": null
       },
       "/robots.txt": {
@@ -66,7 +66,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 11720,
+        "bytes": 11802,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, co"
       },
@@ -79,7 +79,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-05-31T20:58:56.769Z",
+          "generatedAt": "2026-05-31T21:08:51.803Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -506,16 +506,17 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 1493,
+        "bytes": 1554,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-05-31T20:58:56.770Z",
+          "generatedAt": "2026-05-31T21:08:51.804Z",
           "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
           "highIntentEntryPoints": [
             "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
             "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
             "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
+            "https://printable-tools-lab.pages.dev/free-pdf-tools/",
             "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
             "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
             "https://printable-tools-lab.pages.dev/tools/timesheet-generator/",
@@ -540,7 +541,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 2102,
+        "bytes": 2668,
         "json": {
           "ok": true,
           "today": "2026-05-31",
@@ -632,6 +633,20 @@
               "ai_ideas_apply": 0
             },
             {
+              "tool": "multi-image-pdf",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "text-to-pdf",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
               "tool": "sign-in-sheet",
               "generate_pdf": 0,
               "download_pdf": 0,
@@ -647,6 +662,34 @@
             },
             {
               "tool": "packing-list",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "receipt-generator",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "timesheet-generator",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "certificate-generator",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "todo-list",
               "generate_pdf": 0,
               "download_pdf": 0,
               "limit_hit": 0,
@@ -789,7 +832,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-05-31T21:01:01.940Z",
+          "lastSubmitted": "2026-05-31T21:12:49.866Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
