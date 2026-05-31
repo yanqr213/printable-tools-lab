@@ -11,6 +11,10 @@ const TOOL_FIELDS = {
   "bill-of-sale": ["due", "items", "notes"],
   "rent-receipt": ["period", "method", "notes"],
   "resume-builder": ["headline", "summary", "experience", "skills", "education"],
+  "cover-letter": ["role", "company", "opening", "strengths", "closing"],
+  "resignation-letter": ["role", "company", "lastDay", "tone", "appreciation", "handoff"],
+  "monthly-calendar": ["title", "month", "year", "notes"],
+  "meal-planner": ["title", "meals", "grocery", "notes"],
 };
 
 const FIELD_LIMITS = {
@@ -43,6 +47,19 @@ const FIELD_LIMITS = {
   experience: 620,
   skills: 260,
   education: 180,
+  role: 90,
+  company: 90,
+  opening: 360,
+  strengths: 520,
+  closing: 320,
+  lastDay: 42,
+  tone: 32,
+  appreciation: 260,
+  handoff: 260,
+  year: 4,
+  month: 16,
+  meals: 620,
+  grocery: 420,
 };
 
 export async function onRequestPost(context) {
@@ -253,6 +270,143 @@ function fallbackSuggestions(tool, values) {
           experience: "Team Project | School or Volunteer Role | Coordinated tasks, tracked deadlines, and prepared shared notes.\nPart-Time Role | Organization | Supported customers and maintained accurate daily records.",
           skills: "Organization, communication, spreadsheets, scheduling, attention to detail",
           education: values.education || "Education or certification",
+        },
+      },
+    ],
+    "cover-letter": [
+      {
+        title: "Operations cover letter",
+        summary: "A practical job application letter",
+        fields: {
+          role: values.role || "Operations Coordinator",
+          company: values.company || "the company",
+          opening: "I am excited to apply for the Operations Coordinator role because it matches my experience with schedules, documentation, and team coordination.",
+          strengths: "In previous roles, I have helped organize busy workflows, track deadlines, communicate next steps, and keep records accurate for the team.",
+          closing: "I would welcome the opportunity to discuss how my organization and follow-through can support your team.",
+        },
+      },
+      {
+        title: "Customer support cover letter",
+        summary: "Clear wording for service and support roles",
+        fields: {
+          role: "Customer Support Specialist",
+          company: values.company || "your team",
+          opening: "I am applying for the Customer Support Specialist role and am interested in helping customers get clear, timely answers.",
+          strengths: "My strengths include careful listening, organized follow-up, documentation, and calm communication when solving customer issues.",
+          closing: "I would be glad to share how my support experience can contribute to a reliable customer experience.",
+        },
+      },
+      {
+        title: "Entry-level cover letter",
+        summary: "Simple structure for early career applications",
+        fields: {
+          role: values.role || "Entry-Level Assistant",
+          company: values.company || "your organization",
+          opening: "I am interested in this role because it offers the chance to contribute, learn quickly, and support a team with practical daily work.",
+          strengths: "I bring strong organization, communication, attention to detail, and a willingness to learn new processes carefully.",
+          closing: "Thank you for considering my application. I would appreciate the chance to discuss how I can help the team.",
+        },
+      },
+    ],
+    "resignation-letter": [
+      {
+        title: "Standard resignation",
+        summary: "Professional notice with handoff language",
+        fields: {
+          role: values.role || "my position",
+          company: values.company || "the company",
+          lastDay: values.lastDay || "two weeks from today",
+          tone: "professional",
+          appreciation: "I appreciate the opportunities and support I have received during my time with the team.",
+          handoff: "I will help document current work and support a smooth transition before my last day.",
+        },
+      },
+      {
+        title: "Warm resignation",
+        summary: "Appreciative tone for a positive departure",
+        fields: {
+          role: values.role || "my position",
+          company: values.company || "the company",
+          lastDay: values.lastDay || "my final working day",
+          tone: "warm",
+          appreciation: "I am grateful for the experience, collaboration, and growth I have had while working with the team.",
+          handoff: "I will do what I can to make the transition organized and helpful for the people taking over my work.",
+        },
+      },
+      {
+        title: "Brief resignation",
+        summary: "Short and neutral wording",
+        fields: {
+          role: values.role || "my position",
+          company: values.company || "the company",
+          lastDay: values.lastDay || "my last working day",
+          tone: "brief",
+          appreciation: "Thank you for the opportunity to work with the team.",
+          handoff: "I will complete current handoff tasks before my final day.",
+        },
+      },
+    ],
+    "monthly-calendar": [
+      {
+        title: "Family calendar",
+        summary: "Appointments, school, and household reminders",
+        fields: {
+          title: "Family Monthly Calendar",
+          month: values.month || "June",
+          year: values.year || "2026",
+          notes: "Appointments\nSchool events\nBills\nFamily plans",
+        },
+      },
+      {
+        title: "Student calendar",
+        summary: "Study dates and deadlines",
+        fields: {
+          title: "Study Calendar",
+          month: values.month || "June",
+          year: values.year || "2026",
+          notes: "Assignments\nExam dates\nStudy blocks\nProject deadlines",
+        },
+      },
+      {
+        title: "Work planning calendar",
+        summary: "Simple monthly work overview",
+        fields: {
+          title: "Work Planning Calendar",
+          month: values.month || "June",
+          year: values.year || "2026",
+          notes: "Meetings\nDeadlines\nFollow-ups\nAdmin tasks",
+        },
+      },
+    ],
+    "meal-planner": [
+      {
+        title: "Simple family meal plan",
+        summary: "Balanced week with repeatable meals",
+        fields: {
+          title: "Weekly Family Meal Plan",
+          meals: "Monday | oatmeal | leftovers | pasta\nTuesday | eggs | salad | tacos\nWednesday | yogurt | soup | stir fry\nThursday | toast | wraps | chicken rice\nFriday | smoothie | sandwiches | pizza\nSaturday | pancakes | picnic | burgers\nSunday | fruit | noodles | roast dinner",
+          grocery: "Fruit\nVegetables\nEggs\nChicken or tofu\nRice or pasta\nSalad greens\nSnacks",
+          notes: "Prep vegetables early in the week and keep one flexible dinner for leftovers.",
+        },
+      },
+      {
+        title: "Budget meal plan",
+        summary: "Low-waste groceries and leftovers",
+        fields: {
+          title: "Budget Weekly Meal Plan",
+          meals: "Monday | oats | rice bowl | chili\nTuesday | eggs | leftovers | pasta\nWednesday | toast | soup | fried rice\nThursday | yogurt | wraps | baked potatoes\nFriday | oatmeal | leftovers | tacos\nSaturday | pancakes | sandwiches | curry\nSunday | fruit | noodles | soup night",
+          grocery: "Oats\nRice\nBeans\nEggs\nFrozen vegetables\nPotatoes\nPasta\nFruit",
+          notes: "Use leftovers for lunch and repeat ingredients across meals to reduce waste.",
+        },
+      },
+      {
+        title: "Busy week meal plan",
+        summary: "Fast dinners and prep notes",
+        fields: {
+          title: "Busy Week Meal Planner",
+          meals: "Monday | yogurt | salad | sheet pan dinner\nTuesday | smoothie | wraps | tacos\nWednesday | eggs | leftovers | stir fry\nThursday | toast | soup | pasta\nFriday | oats | sandwiches | takeout backup\nSaturday | pancakes | leftovers | burgers\nSunday | fruit | noodles | batch cook",
+          grocery: "Quick breakfasts\nWraps\nSalad kit\nProtein\nFrozen vegetables\nPasta\nFruit",
+          notes: "Choose two prep tasks on Sunday and leave Friday flexible.",
         },
       },
     ],

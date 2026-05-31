@@ -27,6 +27,10 @@
     "bill-of-sale": ["items", "due", "notes"],
     "rent-receipt": ["period", "method", "notes"],
     "resume-builder": ["headline", "summary", "experience", "skills", "education"],
+    "cover-letter": ["role", "company", "opening", "strengths", "closing"],
+    "resignation-letter": ["role", "company", "lastDay", "tone", "appreciation", "handoff"],
+    "monthly-calendar": ["title", "month", "year", "notes"],
+    "meal-planner": ["title", "meals", "grocery", "notes"],
   };
 
   const tools = {
@@ -362,6 +366,124 @@
       ],
       draw: drawResume,
     },
+    "cover-letter": {
+      id: "cover-letter",
+      icon: "CL",
+      title: "Cover Letter Generator",
+      shortTitle: "Cover letter",
+      description: "Create a free one-page cover letter PDF for job applications without an account or surprise download fee.",
+      keywords: ["cover letter generator", "free cover letter", "job application", "PDF cover letter"],
+      watermark: false,
+      defaultValues: {
+        name: "Maya Chen",
+        contact: "maya@example.com | San Francisco, CA",
+        role: "Operations Coordinator",
+        company: "Northstar Studio",
+        greeting: "Dear Hiring Manager,",
+        opening: "I am excited to apply for the Operations Coordinator role at Northstar Studio.",
+        strengths: "I have experience coordinating schedules, vendor follow-ups, documentation, and team handoffs. I enjoy turning busy workflows into clear next steps.",
+        closing: "I would welcome the opportunity to discuss how my organization and communication skills can support your team.",
+        signoff: "Sincerely,",
+        paper: "letter",
+      },
+      fields: [
+        { id: "name", label: "Name", type: "text", maxLength: 70 },
+        { id: "contact", label: "Contact line", type: "text", maxLength: 140, help: "This stays local unless you copy it into another field." },
+        { id: "role", label: "Target role", type: "text", maxLength: 90 },
+        { id: "company", label: "Company", type: "text", maxLength: 90 },
+        { id: "greeting", label: "Greeting", type: "text", maxLength: 80 },
+        { id: "opening", label: "Opening paragraph", type: "textarea", maxLength: 360 },
+        { id: "strengths", label: "Strengths paragraph", type: "textarea", maxLength: 520 },
+        { id: "closing", label: "Closing paragraph", type: "textarea", maxLength: 320 },
+        { id: "signoff", label: "Signoff", type: "text", maxLength: 60 },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawCoverLetter,
+    },
+    "resignation-letter": {
+      id: "resignation-letter",
+      icon: "RL",
+      title: "Resignation Letter Generator",
+      shortTitle: "Resignation letter",
+      description: "Make a simple resignation letter PDF with notice date, last day, appreciation, and handoff wording.",
+      keywords: ["resignation letter", "two weeks notice", "free resignation letter", "PDF resignation letter"],
+      watermark: false,
+      defaultValues: {
+        name: "Maya Chen",
+        contact: "maya@example.com",
+        manager: "Manager Name",
+        company: "Company Name",
+        role: "Operations Coordinator",
+        date: "2026-06-01",
+        lastDay: "2026-06-15",
+        tone: "professional",
+        appreciation: "I appreciate the opportunities for growth and collaboration during my time with the team.",
+        handoff: "I will help document current work and support a smooth transition before my last day.",
+        paper: "letter",
+      },
+      fields: [
+        { id: "name", label: "Your name", type: "text", maxLength: 70 },
+        { id: "contact", label: "Contact line", type: "text", maxLength: 120, help: "Optional. This stays local unless you copy it into another AI-enabled field." },
+        { id: "manager", label: "Manager or recipient", type: "text", maxLength: 90 },
+        { id: "company", label: "Company", type: "text", maxLength: 90 },
+        { id: "role", label: "Role", type: "text", maxLength: 90 },
+        { id: "date", label: "Letter date", type: "text", maxLength: 32 },
+        { id: "lastDay", label: "Last working day", type: "text", maxLength: 42 },
+        { id: "tone", label: "Tone", type: "select", options: [["professional", "Professional"], ["warm", "Warm"], ["brief", "Brief"]] },
+        { id: "appreciation", label: "Appreciation line", type: "textarea", maxLength: 260 },
+        { id: "handoff", label: "Handoff line", type: "textarea", maxLength: 260 },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawResignationLetter,
+    },
+    "monthly-calendar": {
+      id: "monthly-calendar",
+      icon: "31",
+      title: "Monthly Calendar Generator",
+      shortTitle: "Monthly calendar",
+      description: "Create a free printable monthly calendar PDF for appointments, school events, chores, meals, or family planning.",
+      keywords: ["monthly calendar", "printable calendar", "free calendar", "PDF calendar"],
+      defaultValues: {
+        title: "Monthly Calendar",
+        month: "June",
+        year: "2026",
+        startDay: "monday",
+        notes: "Appointments\nSchool events\nBills\nFamily plans",
+        paper: "letter",
+      },
+      fields: [
+        { id: "title", label: "Calendar title", type: "text", maxLength: 70 },
+        { id: "month", label: "Month", type: "select", options: [["January", "January"], ["February", "February"], ["March", "March"], ["April", "April"], ["May", "May"], ["June", "June"], ["July", "July"], ["August", "August"], ["September", "September"], ["October", "October"], ["November", "November"], ["December", "December"]] },
+        { id: "year", label: "Year", type: "text", maxLength: 4 },
+        { id: "startDay", label: "Week starts", type: "select", options: [["sunday", "Sunday"], ["monday", "Monday"]] },
+        { id: "notes", label: "Note headings", type: "textarea", maxLength: 180, help: "One heading per line for the notes area." },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawMonthlyCalendar,
+    },
+    "meal-planner": {
+      id: "meal-planner",
+      icon: "MP",
+      title: "Meal Planner Generator",
+      shortTitle: "Meal planner",
+      description: "Make a printable weekly meal planner PDF with breakfast, lunch, dinner, grocery list, and prep notes.",
+      keywords: ["meal planner", "grocery list", "weekly meal plan", "printable meal planner"],
+      defaultValues: {
+        title: "Weekly Meal Planner",
+        meals: "Monday | oatmeal | leftovers | pasta\nTuesday | yogurt | salad | tacos\nWednesday | eggs | soup | stir fry\nThursday | toast | wraps | chicken rice\nFriday | smoothie | sandwiches | pizza\nSaturday | pancakes | picnic | burgers\nSunday | fruit | noodles | roast dinner",
+        grocery: "Fruit\nVegetables\nProtein\nRice or pasta\nSnacks",
+        notes: "Prep vegetables on Sunday. Keep one flexible dinner for leftovers.",
+        paper: "letter",
+      },
+      fields: [
+        { id: "title", label: "Planner title", type: "text", maxLength: 70 },
+        { id: "meals", label: "Meals", type: "textarea", maxLength: 620, help: "One day per line: Day | Breakfast | Lunch | Dinner" },
+        { id: "grocery", label: "Grocery list", type: "textarea", maxLength: 420, help: "One item per line." },
+        { id: "notes", label: "Prep notes", type: "textarea", maxLength: 240 },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawMealPlanner,
+    },
   };
 
   const keywordClusters = [
@@ -394,11 +516,12 @@
     },
     {
       title: "Family planning pages",
-      description: "Weekly calendars, habit trackers, and simple planners for families that need one visible page.",
+      description: "Weekly planners, monthly calendars, meal plans, habit trackers, and simple pages for families that need one visible plan.",
       links: [
         ["Weekly planner generator", "/tools/weekly-planner/"],
+        ["Monthly calendar generator", "/tools/monthly-calendar/"],
+        ["Meal planner generator", "/tools/meal-planner/"],
         ["Habit tracker generator", "/tools/habit-tracker/"],
-        ["Free printable weekly calendar for kids", "/guides/free-printable-weekly-calendar-for-kids/"],
       ],
     },
     {
@@ -413,11 +536,12 @@
     },
     {
       title: "Career documents",
-      description: "Free resume PDFs for job seekers who need a professional document without a surprise paywall at download time.",
+      description: "Free resume, cover letter, and resignation letter PDFs for job seekers who need useful documents without a surprise paywall.",
       links: [
         ["Resume builder PDF", "/tools/resume-builder/"],
+        ["Cover letter generator", "/tools/cover-letter/"],
+        ["Resignation letter generator", "/tools/resignation-letter/"],
         ["Free resume builder PDF guide", "/guides/free-resume-builder-pdf/"],
-        ["ATS friendly resume PDF guide", "/guides/ats-friendly-resume-pdf-guide/"],
       ],
     },
   ];
@@ -769,6 +893,106 @@
         ["ul", ["Start with an action verb.", "Mention the project, customer, or process.", "Add a number when it is true.", "Keep each bullet short enough to scan."]],
       ],
     },
+    {
+      slug: "free-cover-letter-generator-pdf",
+      title: "Free cover letter generator PDF",
+      description: "Create a one-page cover letter PDF for job applications without an account or download paywall.",
+      tool: "cover-letter",
+      content: [
+        ["h2", "Why cover letter tools get search intent"],
+        ["p", "A job seeker often needs a cover letter right before submitting an application. A fast generator that exports a PDF without signup solves that moment better than a template marketplace with a hidden download fee."],
+        ["h2", "What to include"],
+        ["ul", ["The target role and company.", "One opening sentence that names the application.", "A short strengths paragraph with relevant skills.", "A closing paragraph that invites a conversation.", "A clean signoff and contact line."]],
+        ["h2", "Keep it honest"],
+        ["p", "Use the AI idea helper for structure and wording, then edit every sentence so it matches your real experience. Do not invent credentials or employers."],
+      ],
+    },
+    {
+      slug: "cover-letter-no-signup",
+      title: "Cover letter generator without signup",
+      description: "Use a free cover letter PDF maker when you need a quick application document without creating an account.",
+      tool: "cover-letter",
+      content: [
+        ["h2", "Avoid the common download trap"],
+        ["p", "Many writing tools let users type a letter for free and then ask for payment at export. This generator keeps the first one-page PDF free so the value is visible immediately."],
+        ["h2", "Best first draft structure"],
+        ["p", "Use four short blocks: greeting, opening, strengths, and closing. A simple structure is easier to edit than a long generic letter."],
+      ],
+    },
+    {
+      slug: "free-resignation-letter-generator",
+      title: "Free resignation letter generator",
+      description: "Create a professional resignation letter PDF with last working day, appreciation, and transition wording.",
+      tool: "resignation-letter",
+      content: [
+        ["h2", "Resignation letters should be clear"],
+        ["p", "A resignation letter does not need to be long. It should state the role, company, date, last working day, appreciation, and a simple handoff offer."],
+        ["h2", "Before downloading"],
+        ["ul", ["Confirm the notice period required by your contract or local policy.", "Check the exact last working day.", "Keep the tone professional even if the job was difficult.", "Save a copy for your own records."]],
+        ["h2", "Not legal advice"],
+        ["p", "This tool creates a practical letter draft. Employment requirements vary by location and agreement."],
+      ],
+    },
+    {
+      slug: "two-weeks-notice-letter-pdf",
+      title: "Two weeks notice letter PDF",
+      description: "Make a simple two weeks notice PDF that states your resignation date and final working day.",
+      tool: "resignation-letter",
+      content: [
+        ["h2", "Use plain wording"],
+        ["p", "A two weeks notice letter works best when the message is direct: you are resigning, your final day is listed, and you will help with transition tasks where possible."],
+        ["h2", "Tone options"],
+        ["p", "Choose brief for a minimal letter, professional for a standard workplace note, or warm when you want a more appreciative tone."],
+      ],
+    },
+    {
+      slug: "free-monthly-calendar-generator",
+      title: "Free monthly calendar generator",
+      description: "Create a printable monthly calendar PDF for appointments, bills, family plans, classes, or routines.",
+      tool: "monthly-calendar",
+      content: [
+        ["h2", "Monthly calendars are broad search tools"],
+        ["p", "A monthly calendar is useful for families, students, small teams, and anyone planning appointments or recurring tasks. It is a wider audience test than kids-only printables."],
+        ["h2", "Make the page practical"],
+        ["ul", ["Choose Sunday or Monday start.", "Keep notes short.", "Print one month at a time.", "Use the notes area for bills, school events, errands, or meals."]],
+      ],
+    },
+    {
+      slug: "printable-calendar-pdf-maker",
+      title: "Printable calendar PDF maker",
+      description: "Generate a simple black-and-white monthly calendar PDF that works on home printers.",
+      tool: "monthly-calendar",
+      content: [
+        ["h2", "Print clarity matters"],
+        ["p", "A printable calendar should leave enough writing space in each day cell. Heavy decoration can make the page harder to use after printing."],
+        ["h2", "Use it with other tools"],
+        ["p", "Pair the monthly calendar with the weekly planner, habit tracker, or meal planner when one page is not enough for the week."],
+      ],
+    },
+    {
+      slug: "free-meal-planner-generator",
+      title: "Free meal planner generator",
+      description: "Make a weekly meal planner PDF with meals, grocery list, and prep notes.",
+      tool: "meal-planner",
+      content: [
+        ["h2", "Meal planning has repeat use"],
+        ["p", "Families often repeat meal planning every week, which makes it a useful validation category for downloads and return visits."],
+        ["h2", "What to plan"],
+        ["ul", ["Breakfast, lunch, and dinner for each day.", "A grocery list grouped by what you actually need.", "One prep note for leftovers or batch cooking.", "One flexible meal for busy nights."]],
+      ],
+    },
+    {
+      slug: "weekly-meal-plan-grocery-list-pdf",
+      title: "Weekly meal plan and grocery list PDF",
+      description: "Create one printable page that combines a weekly meal plan with a grocery list and prep reminders.",
+      tool: "meal-planner",
+      content: [
+        ["h2", "One page reduces friction"],
+        ["p", "A meal plan is easier to use when the grocery list is on the same sheet. That keeps the planning decision connected to the shopping task."],
+        ["h2", "Keep the first version flexible"],
+        ["p", "Do not over-plan every snack and detail. Leave one dinner open for leftovers, schedule, or a quick pantry meal."],
+      ],
+    },
   ];
 
   const pages = {
@@ -849,6 +1073,10 @@
     "purchase-order",
     "bill-of-sale",
     "resume-builder",
+    "cover-letter",
+    "resignation-letter",
+    "monthly-calendar",
+    "meal-planner",
     "rent-receipt",
     "name-tracing",
     "chore-chart",
@@ -907,9 +1135,9 @@
             <a class="button secondary" href="/guides/">Read printable guides</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>12</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>16</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>30</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>38</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -1797,6 +2025,147 @@
     drawFooterNote(ctx, paper, "Generated locally with PrintableTools Lab. Proofread before applying.");
   }
 
+  function drawCoverLetter(ctx, paper, values) {
+    const margin = 94;
+    drawBusinessFrame(ctx, paper, "#176b87");
+    drawTextFit(ctx, sanitizePrintable(values.name || "Your Name"), paper.width / 2, 112, paper.width - margin * 2, 46, { align: "center", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, sanitizePrintable(values.contact || ""), paper.width / 2, 154, paper.width - margin * 2, 20, { align: "center", weight: "400", color: "#5b6f78" });
+
+    const date = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+    let y = 230;
+    ctx.fillStyle = "#5b6f78";
+    ctx.font = "21px Arial";
+    ctx.textAlign = "left";
+    ctx.fillText(date, margin, y);
+    y += 58;
+    drawTextFit(ctx, sanitizePrintable(values.greeting || "Dear Hiring Manager,"), margin, y, paper.width - margin * 2, 24, { align: "left", weight: "700", color: "#17313b" });
+    y += 58;
+
+    const role = sanitizePrintable(values.role || "the open role");
+    const company = sanitizePrintable(values.company || "your organization");
+    const paragraphs = [
+      values.opening || `I am excited to apply for the ${role} role at ${company}.`,
+      values.strengths || "My background includes practical coordination, communication, and follow-through skills that can support the team from day one.",
+      values.closing || "I would welcome the opportunity to discuss how my experience can support your team.",
+    ];
+    paragraphs.forEach((paragraph) => {
+      y = drawWrappedTextReturnY(ctx, sanitizePrintable(paragraph), margin, y, paper.width - margin * 2, 32, "#17313b", "23px Arial", 5);
+      y += 34;
+    });
+    drawTextFit(ctx, sanitizePrintable(values.signoff || "Sincerely,"), margin, y + 20, paper.width - margin * 2, 23, { align: "left", weight: "500", color: "#17313b" });
+    drawTextFit(ctx, sanitizePrintable(values.name || "Your Name"), margin, y + 78, paper.width - margin * 2, 24, { align: "left", weight: "800", color: "#17313b" });
+    drawFooterNote(ctx, paper, "Generated locally with PrintableTools Lab. Edit carefully before sending.");
+  }
+
+  function drawResignationLetter(ctx, paper, values) {
+    const margin = 94;
+    drawBusinessFrame(ctx, paper, "#5a9367");
+    let y = 108;
+    drawTextFit(ctx, "RESIGNATION LETTER", paper.width / 2, y, paper.width - margin * 2, 46, { align: "center", weight: "900", color: "#17313b" });
+    y += 74;
+    drawWrappedText(ctx, sanitizePrintable(values.name || "Your Name"), margin, y, paper.width - margin * 2, 28, "#17313b", "23px Arial", 2);
+    drawTextFit(ctx, sanitizePrintable(values.contact || ""), margin, y + 34, paper.width - margin * 2, 20, { align: "left", weight: "400", color: "#5b6f78" });
+    y += 105;
+    ctx.fillStyle = "#5b6f78";
+    ctx.font = "22px Arial";
+    ctx.textAlign = "left";
+    ctx.fillText(sanitizePrintable(values.date || ""), margin, y);
+    y += 58;
+    drawTextFit(ctx, sanitizePrintable(values.manager || "Manager Name"), margin, y, paper.width - margin * 2, 23, { align: "left", weight: "700", color: "#17313b" });
+    drawTextFit(ctx, sanitizePrintable(values.company || "Company Name"), margin, y + 34, paper.width - margin * 2, 22, { align: "left", weight: "500", color: "#5b6f78" });
+    y += 100;
+
+    const greeting = `Dear ${sanitizePrintable(values.manager || "Manager")},`;
+    const role = sanitizePrintable(values.role || "my role");
+    const company = sanitizePrintable(values.company || "the company");
+    const lastDay = sanitizePrintable(values.lastDay || "my final working day");
+    const intro = values.tone === "brief"
+      ? `Please accept this letter as notice of my resignation from my position as ${role} at ${company}. My last working day will be ${lastDay}.`
+      : `Please accept this letter as formal notice of my resignation from my position as ${role} at ${company}. My last working day will be ${lastDay}.`;
+    const paragraphs = [
+      greeting,
+      intro,
+      sanitizePrintable(values.appreciation || "I appreciate the opportunities and support I have received during my time with the team."),
+      sanitizePrintable(values.handoff || "I will help document current work and support a smooth transition before my last day."),
+      values.tone === "warm" ? "Thank you again for the opportunity to be part of the team." : "Thank you for your understanding.",
+    ];
+    paragraphs.forEach((paragraph, index) => {
+      y = drawWrappedTextReturnY(ctx, paragraph, margin, y, paper.width - margin * 2, 31, "#17313b", index === 0 ? "700 23px Arial" : "23px Arial", index === 0 ? 1 : 4);
+      y += index === 0 ? 38 : 32;
+    });
+    drawTextFit(ctx, "Sincerely,", margin, y + 15, paper.width - margin * 2, 23, { align: "left", weight: "500", color: "#17313b" });
+    drawTextFit(ctx, sanitizePrintable(values.name || "Your Name"), margin, y + 74, paper.width - margin * 2, 24, { align: "left", weight: "800", color: "#17313b" });
+    drawFooterNote(ctx, paper, "Practical letter draft only. Review contract, policy, and local requirements.");
+  }
+
+  function drawMonthlyCalendar(ctx, paper, values) {
+    const margin = 66;
+    const monthName = sanitizePrintable(values.month || "June");
+    const year = Math.max(1970, Math.min(2100, Number(String(values.year || "2026").replace(/\D/g, "")) || 2026));
+    const monthIndex = Math.max(0, MONTHS.indexOf(monthName));
+    const weekStartsMonday = values.startDay === "monday";
+    drawPageFrame(ctx, paper, "#176b87");
+    drawTextFit(ctx, sanitizePrintable(values.title || "Monthly Calendar"), paper.width / 2, 112, paper.width - margin * 2, 52, { align: "center", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, `${MONTHS[monthIndex]} ${year}`, paper.width / 2, 162, paper.width - margin * 2, 34, { align: "center", weight: "700", color: "#176b87" });
+
+    const days = weekStartsMonday ? ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const first = new Date(year, monthIndex, 1);
+    const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+    const startOffset = weekStartsMonday ? (first.getDay() + 6) % 7 : first.getDay();
+    const gridTop = 230;
+    const gridW = paper.width - margin * 2;
+    const dayW = gridW / 7;
+    const rowH = 154;
+    ctx.fillStyle = "#17313b";
+    ctx.fillRect(margin, gridTop, gridW, 46);
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "700 18px Arial";
+    ctx.textAlign = "center";
+    days.forEach((day, index) => ctx.fillText(day, margin + dayW * index + dayW / 2, gridTop + 30));
+    let day = 1;
+    for (let row = 0; row < 6; row += 1) {
+      for (let col = 0; col < 7; col += 1) {
+        const x = margin + col * dayW;
+        const y = gridTop + 46 + row * rowH;
+        ctx.strokeStyle = "rgba(23,49,59,0.26)";
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(x, y, dayW, rowH);
+        if (row === 0 && col < startOffset) continue;
+        if (day > daysInMonth) continue;
+        ctx.fillStyle = "#17313b";
+        ctx.font = "700 22px Arial";
+        ctx.textAlign = "left";
+        ctx.fillText(String(day), x + 12, y + 30);
+        drawNoteLines(ctx, x + 12, y + 55, dayW - 24, 3);
+        day += 1;
+      }
+    }
+    const notes = splitList(values.notes || "", "\n").slice(0, 4);
+    drawPromptBox(ctx, margin, paper.height - 215, gridW, notes.length ? `Notes: ${notes.join(" / ")}` : "Notes");
+  }
+
+  function drawMealPlanner(ctx, paper, values) {
+    const margin = 64;
+    drawPageFrame(ctx, paper, "#5a9367");
+    drawTextFit(ctx, sanitizePrintable(values.title || "Weekly Meal Planner"), paper.width / 2, 112, paper.width - margin * 2, 54, { align: "center", weight: "900", color: "#17313b" });
+    const tableTop = 188;
+    const tableW = paper.width - margin * 2;
+    const dayW = tableW * 0.16;
+    const mealW = (tableW - dayW) / 3;
+    drawTableHeader(ctx, margin, tableTop, tableW, ["Day", "Breakfast", "Lunch", "Dinner"], [dayW, mealW, mealW, mealW]);
+    const rows = parseMealRows(values.meals);
+    let y = tableTop + 54;
+    rows.slice(0, 7).forEach((row) => {
+      drawMealRow(ctx, margin, y, [dayW, mealW, mealW, mealW], row);
+      y += 80;
+    });
+    const lowerTop = y + 36;
+    const groceryW = tableW * 0.46;
+    drawListPanel(ctx, margin, lowerTop, groceryW, paper.height - lowerTop - 110, "Grocery list", splitList(values.grocery || "", "\n").slice(0, 12));
+    drawListPanel(ctx, margin + groceryW + 30, lowerTop, tableW - groceryW - 30, paper.height - lowerTop - 110, "Prep notes", wrapText(ctx, sanitizePrintable(values.notes || ""), tableW - groceryW - 70, "22px Arial", 8));
+    drawFooterNote(ctx, paper, "Generated locally with PrintableTools Lab. Adjust meals and groceries before shopping.");
+  }
+
   function drawPageFrame(ctx, paper, accent) {
     ctx.strokeStyle = accent;
     ctx.lineWidth = 8;
@@ -1882,6 +2251,66 @@
     ctx.font = "18px Arial";
     ctx.textAlign = "left";
     ctx.fillText(label, x, y + 30);
+    ctx.restore();
+  }
+
+  const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+  function parseMealRows(value) {
+    const defaults = [
+      ["Monday", "", "", ""],
+      ["Tuesday", "", "", ""],
+      ["Wednesday", "", "", ""],
+      ["Thursday", "", "", ""],
+      ["Friday", "", "", ""],
+      ["Saturday", "", "", ""],
+      ["Sunday", "", "", ""],
+    ];
+    const rows = splitList(value || "", "\n").map((lineText) => {
+      const parts = lineText.split("|").map((part) => sanitizePrintable(part));
+      return [parts[0] || "Day", parts[1] || "", parts[2] || "", parts[3] || ""];
+    });
+    return rows.length ? rows.concat(defaults).slice(0, 7) : defaults;
+  }
+
+  function drawMealRow(ctx, x, y, widths, row) {
+    const rowW = widths.reduce((sum, width) => sum + width, 0);
+    ctx.save();
+    ctx.strokeStyle = "rgba(23,49,59,0.22)";
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(x, y, rowW, 74);
+    let cursor = x;
+    row.forEach((value, index) => {
+      drawTextFit(ctx, value || "-", cursor + 12, y + 40, widths[index] - 24, index === 0 ? 20 : 18, { align: "left", weight: index === 0 ? "800" : "500", color: "#17313b" });
+      cursor += widths[index];
+      if (index < row.length - 1) {
+        ctx.strokeStyle = "rgba(23,49,59,0.16)";
+        line(ctx, cursor, y, cursor, y + 74);
+      }
+    });
+    ctx.restore();
+  }
+
+  function drawListPanel(ctx, x, y, width, height, title, items) {
+    ctx.save();
+    ctx.fillStyle = "#edf7f6";
+    roundRect(ctx, x, y, width, height, 8, true, false);
+    ctx.strokeStyle = "rgba(23,49,59,0.2)";
+    ctx.lineWidth = 1.5;
+    roundRect(ctx, x, y, width, height, 8, false, true);
+    ctx.fillStyle = "#17313b";
+    ctx.font = "800 23px Arial";
+    ctx.textAlign = "left";
+    ctx.fillText(title, x + 22, y + 38);
+    const list = items.length ? items : [""];
+    let cursor = y + 78;
+    list.slice(0, Math.floor((height - 85) / 34)).forEach((item) => {
+      ctx.strokeStyle = "rgba(23,49,59,0.32)";
+      ctx.lineWidth = 1.5;
+      line(ctx, x + 22, cursor + 12, x + width - 22, cursor + 12);
+      if (item) drawTextFit(ctx, item, x + 30, cursor + 4, width - 60, 18, { align: "left", weight: "500", color: "#17313b" });
+      cursor += 34;
+    });
     ctx.restore();
   }
 

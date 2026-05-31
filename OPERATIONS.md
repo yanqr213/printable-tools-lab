@@ -6,7 +6,7 @@ This file keeps the project pointed at the current model: free ad-supported prin
 
 ### Free acquisition layer
 
-- Six free browser PDF generators.
+- Sixteen free browser PDF generators.
 - Daily free limit stored locally.
 - One-page PDF exports with a light footer watermark.
 - Original guide pages for search traffic and AdSense review.
@@ -151,6 +151,14 @@ Practical order if a paid product is added later:
 - free resume builder PDF
 - resume builder no signup
 - ATS friendly resume PDF
+- free cover letter generator PDF
+- cover letter generator no signup
+- free resignation letter generator
+- two weeks notice letter PDF
+- free monthly calendar generator
+- printable calendar PDF maker
+- free meal planner generator
+- weekly meal plan grocery list PDF
 - free name tracing worksheet generator
 - printable name tracing worksheet maker
 - free chore chart generator for kids
@@ -202,6 +210,14 @@ Create one image or short post per item. Show the printable use case and never p
 29. Free estimate PDF for home services or freelance work.
 30. Purchase order PDF for small vendor orders.
 31. Bill of sale PDF for private item sales.
+32. Free cover letter PDF without a signup wall.
+33. Cover letter generator for last-minute job applications.
+34. Two weeks notice letter PDF with a clear last day.
+35. Professional resignation letter generator.
+36. Monthly calendar PDF for appointments and bills.
+37. Printable calendar maker with Sunday or Monday start.
+38. Weekly meal planner with grocery list.
+39. Budget meal plan printable for busy families.
 
 ## Weekly Operating Loop
 

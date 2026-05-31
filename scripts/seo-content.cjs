@@ -109,6 +109,42 @@ const tools = [
       "Many resume builders let users type for free and charge at download. This version keeps the first PDF export free to build trust and search demand.",
     ],
   },
+  {
+    path: "tools/cover-letter",
+    title: "Cover Letter Generator",
+    description: "Create a free one-page cover letter PDF for job applications without an account or surprise download fee.",
+    body: [
+      "Write a clean cover letter with target role, company, opening paragraph, strengths, and closing text, then download a one-page PDF.",
+      "Cover letter searches are high-intent because users often need a document right before submitting an application.",
+    ],
+  },
+  {
+    path: "tools/resignation-letter",
+    title: "Resignation Letter Generator",
+    description: "Make a simple resignation letter PDF with notice date, last day, appreciation, and handoff wording.",
+    body: [
+      "Create a professional resignation letter that states the role, company, date, last working day, appreciation, and transition note.",
+      "This free generator targets a common urgent document need while keeping the result practical and editable.",
+    ],
+  },
+  {
+    path: "tools/monthly-calendar",
+    title: "Monthly Calendar Generator",
+    description: "Create a free printable monthly calendar PDF for appointments, school events, chores, meals, or family planning.",
+    body: [
+      "Choose a month, year, week start, and note headings to generate a simple black-and-white monthly calendar PDF.",
+      "Monthly calendars are broad utility printables with repeat use and a larger audience than a single niche worksheet.",
+    ],
+  },
+  {
+    path: "tools/meal-planner",
+    title: "Meal Planner Generator",
+    description: "Make a printable weekly meal planner PDF with breakfast, lunch, dinner, grocery list, and prep notes.",
+    body: [
+      "Plan breakfast, lunch, dinner, grocery items, and prep notes on one printable page for the week.",
+      "Meal planning has recurring weekly intent, which helps test whether free tools can produce return visits and ad-supported usage.",
+    ],
+  },
 ];
 
 const guides = [
@@ -142,6 +178,14 @@ const guides = [
   ["guides/rent-receipt-for-cash-payment", "Rent receipt for cash payment", "Create a simple receipt PDF when rent is paid by cash, bank transfer, check, or another payment method.", "Cash rent payments can be easy to dispute later if no record is created. A dated receipt gives both parties a reference."],
   ["guides/free-resume-builder-pdf", "Free resume builder PDF", "Build a clean resume PDF without an account, paywall, or complicated design tool.", "Many job seekers do not need a heavy design template. They need a readable document with a clear name, contact line, summary, experience, skills, and education."],
   ["guides/ats-friendly-resume-pdf-guide", "ATS friendly resume PDF guide", "Format a simple resume PDF so it stays readable for recruiters and applicant tracking systems.", "Use clear section headings, normal text, and a single-column structure. Avoid putting important experience inside images, icons, or complex tables."],
+  ["guides/free-cover-letter-generator-pdf", "Free cover letter generator PDF", "Create a one-page cover letter PDF for job applications without an account or download paywall.", "A job seeker often needs a cover letter right before submitting an application. A fast generator that exports a PDF without signup solves that moment better than a hidden download fee."],
+  ["guides/cover-letter-no-signup", "Cover letter generator without signup", "Use a free cover letter PDF maker when you need a quick application document without creating an account.", "Many writing tools let users type a letter for free and then ask for payment at export. This generator keeps the first one-page PDF free so the value is visible immediately."],
+  ["guides/free-resignation-letter-generator", "Free resignation letter generator", "Create a professional resignation letter PDF with last working day, appreciation, and transition wording.", "A resignation letter does not need to be long. It should state the role, company, date, last working day, appreciation, and a simple handoff offer."],
+  ["guides/two-weeks-notice-letter-pdf", "Two weeks notice letter PDF", "Make a simple two weeks notice PDF that states your resignation date and final working day.", "A two weeks notice letter works best when the message is direct: you are resigning, your final day is listed, and you will help with transition tasks where possible."],
+  ["guides/free-monthly-calendar-generator", "Free monthly calendar generator", "Create a printable monthly calendar PDF for appointments, bills, family plans, classes, or routines.", "A monthly calendar is useful for families, students, small teams, and anyone planning appointments or recurring tasks. It is a wider audience test than kids-only printables."],
+  ["guides/printable-calendar-pdf-maker", "Printable calendar PDF maker", "Generate a simple black-and-white monthly calendar PDF that works on home printers.", "A printable calendar should leave enough writing space in each day cell. Heavy decoration can make the page harder to use after printing."],
+  ["guides/free-meal-planner-generator", "Free meal planner generator", "Make a weekly meal planner PDF with meals, grocery list, and prep notes.", "Families often repeat meal planning every week, which makes it a useful validation category for downloads and return visits."],
+  ["guides/weekly-meal-plan-grocery-list-pdf", "Weekly meal plan and grocery list PDF", "Create one printable page that combines a weekly meal plan with a grocery list and prep reminders.", "A meal plan is easier to use when the grocery list is on the same sheet. That keeps the planning decision connected to the shopping task."],
 ].map(([path, title, description, intro]) => ({ path, title, description, intro }));
 
 const keywordClusters = [
@@ -174,11 +218,12 @@ const keywordClusters = [
   },
   {
     title: "Family planning pages",
-    description: "Weekly calendars, habit trackers, and simple planners for families that need one visible page.",
+    description: "Weekly planners, monthly calendars, meal plans, habit trackers, and simple pages for families that need one visible plan.",
     links: [
       ["Weekly planner generator", "tools/weekly-planner"],
+      ["Monthly calendar generator", "tools/monthly-calendar"],
+      ["Meal planner generator", "tools/meal-planner"],
       ["Habit tracker generator", "tools/habit-tracker"],
-      ["Free printable weekly calendar for kids", "guides/free-printable-weekly-calendar-for-kids"],
     ],
   },
   {
@@ -193,11 +238,12 @@ const keywordClusters = [
   },
   {
     title: "Career documents",
-    description: "Free resume PDFs for job seekers who need a professional document without a surprise paywall at download time.",
+    description: "Free resume, cover letter, and resignation letter PDFs for job seekers who need useful documents without a surprise paywall.",
     links: [
       ["Resume builder PDF", "tools/resume-builder"],
+      ["Cover letter generator", "tools/cover-letter"],
+      ["Resignation letter generator", "tools/resignation-letter"],
       ["Free resume builder PDF guide", "guides/free-resume-builder-pdf"],
-      ["ATS friendly resume PDF guide", "guides/ats-friendly-resume-pdf-guide"],
     ],
   },
 ];
@@ -217,9 +263,9 @@ const pages = [
             <a class="button secondary" href="/guides/">Read printable guides</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>12</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>16</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>30</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>38</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -250,6 +296,10 @@ const pages = [
           <li><a href="/tools/bill-of-sale/">Bill of Sale Generator</a></li>
           <li><a href="/tools/rent-receipt/">Rent Receipt Generator</a></li>
           <li><a href="/tools/resume-builder/">Resume Builder PDF</a></li>
+          <li><a href="/tools/cover-letter/">Cover Letter Generator</a></li>
+          <li><a href="/tools/resignation-letter/">Resignation Letter Generator</a></li>
+          <li><a href="/tools/monthly-calendar/">Monthly Calendar Generator</a></li>
+          <li><a href="/tools/meal-planner/">Meal Planner Generator</a></li>
         </ul>
       </section>`,
   },
@@ -394,6 +444,10 @@ function relatedGuideLinks(toolPath) {
     "bill-of-sale": ["bill of sale", "private sale"],
     "rent-receipt": ["rent receipt"],
     "resume-builder": ["resume", "ATS"],
+    "cover-letter": ["cover letter"],
+    "resignation-letter": ["resignation", "two weeks"],
+    "monthly-calendar": ["monthly calendar", "calendar"],
+    "meal-planner": ["meal planner", "meal plan", "grocery"],
     "name-tracing": ["name tracing", "preschool"],
     "chore-chart": ["chore", "routine", "job chart"],
     "reward-chart": ["reward", "sticker"],
