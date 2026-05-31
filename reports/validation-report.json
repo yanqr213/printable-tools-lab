@@ -1,17 +1,18 @@
 {
-  "generatedAt": "2026-05-31T20:26:41.050Z",
+  "generatedAt": "2026-05-31T21:03:00.549Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
-    "toolCount": 20,
-    "guideCount": 46,
-    "indexableRoutes": 73,
-    "sitemapLocCount": 73,
-    "generatedToolInventoryAt": "2026-05-31T20:24:56.286Z",
+    "toolCount": 26,
+    "guideCount": 52,
+    "indexableRoutes": 85,
+    "sitemapLocCount": 85,
+    "generatedToolInventoryAt": "2026-05-31T20:58:56.769Z",
     "discoveryAssets": {
       "sitemap": true,
       "robots": true,
       "llms": true,
       "toolsJson": true,
+      "discoveryJson": true,
       "distributionPack": true
     },
     "ads": {
@@ -28,21 +29,21 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 9041,
+        "bytes": 10283,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 11415,
+        "bytes": 13650,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 6923,
+        "bytes": 8048,
         "json": null
       },
       "/robots.txt": {
@@ -65,20 +66,20 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 10460,
+        "bytes": 11720,
         "json": null,
-        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators for image conversion, invoices, estimates, purchase orders, sale records, receipts, resumes, cover letters, resignation lett"
+        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, co"
       },
       "/tools.json": {
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 19084,
+        "bytes": 22529,
         "json": {
           "name": "PrintableTools Lab",
-          "description": "Free browser-based PDF generators for image conversion, invoices, estimates, purchase orders, sale records, receipts, resumes, cover letters, resignation letters, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, and habit trackers.",
+          "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-05-31T20:04:04.159Z",
+          "generatedAt": "2026-05-31T20:58:56.769Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -183,6 +184,18 @@
               "category": "Everyday utility PDFs"
             },
             {
+              "title": "Multiple Images to PDF Converter",
+              "url": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
+              "description": "Turn several JPG, PNG, or WebP images into one multi-page PDF in your browser without uploading files.",
+              "category": "Everyday utility PDFs"
+            },
+            {
+              "title": "Text to PDF Converter",
+              "url": "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
+              "description": "Paste plain text and download a clean one-page PDF without an account or file upload.",
+              "category": "Everyday utility PDFs"
+            },
+            {
               "title": "Sign-in Sheet Generator",
               "url": "https://printable-tools-lab.pages.dev/tools/sign-in-sheet/",
               "description": "Create a printable sign-in sheet PDF for events, classrooms, workshops, meetings, or visitor logs.",
@@ -198,6 +211,30 @@
               "title": "Packing List Generator",
               "url": "https://printable-tools-lab.pages.dev/tools/packing-list/",
               "description": "Make a printable packing list PDF for travel, school trips, business travel, camping, or family vacations.",
+              "category": "Everyday utility PDFs"
+            },
+            {
+              "title": "Receipt Generator",
+              "url": "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
+              "description": "Create a simple printable receipt PDF for a sale, service payment, deposit, or reimbursement record.",
+              "category": "Business paperwork"
+            },
+            {
+              "title": "Timesheet Generator",
+              "url": "https://printable-tools-lab.pages.dev/tools/timesheet-generator/",
+              "description": "Make a printable weekly timesheet PDF for freelance hours, staff records, projects, or approvals.",
+              "category": "Business paperwork"
+            },
+            {
+              "title": "Certificate Generator",
+              "url": "https://printable-tools-lab.pages.dev/tools/certificate-generator/",
+              "description": "Create a printable certificate PDF for completion, participation, classroom awards, or small events.",
+              "category": "Events and awards"
+            },
+            {
+              "title": "To Do List Generator",
+              "url": "https://printable-tools-lab.pages.dev/tools/todo-list/",
+              "description": "Build a printable checklist PDF for errands, work tasks, study sessions, home projects, or event prep.",
               "category": "Everyday utility PDFs"
             }
           ],
@@ -403,6 +440,16 @@
               "description": "Make a PDF from a JPG file in the browser when you do not want to send the image to a conversion server."
             },
             {
+              "title": "Multiple images to PDF without uploading",
+              "url": "https://printable-tools-lab.pages.dev/guides/multiple-images-to-pdf-without-uploading/",
+              "description": "Combine several JPG, PNG, or WebP images into one multi-page PDF in the browser."
+            },
+            {
+              "title": "Text to PDF converter without signup",
+              "url": "https://printable-tools-lab.pages.dev/guides/text-to-pdf-converter-no-signup/",
+              "description": "Paste plain text and download a clean one-page PDF without installing an editor."
+            },
+            {
               "title": "Free sign-in sheet generator",
               "url": "https://printable-tools-lab.pages.dev/guides/free-sign-in-sheet-generator/",
               "description": "Create a printable sign-in sheet PDF for events, classes, workshops, meetings, or visitor logs."
@@ -431,8 +478,62 @@
               "title": "Travel checklist PDF",
               "url": "https://printable-tools-lab.pages.dev/guides/travel-checklist-pdf/",
               "description": "Create a one-page travel checklist PDF with categories, checkboxes, and reminder notes."
+            },
+            {
+              "title": "Free receipt generator PDF",
+              "url": "https://printable-tools-lab.pages.dev/guides/free-receipt-generator-pdf/",
+              "description": "Create a simple printable receipt for a sale, service payment, deposit, or reimbursement."
+            },
+            {
+              "title": "Weekly timesheet generator PDF",
+              "url": "https://printable-tools-lab.pages.dev/guides/weekly-timesheet-generator-pdf/",
+              "description": "Make a printable timesheet for freelance hours, staff records, project tracking, or approvals."
+            },
+            {
+              "title": "Free certificate generator PDF",
+              "url": "https://printable-tools-lab.pages.dev/guides/free-certificate-generator-pdf/",
+              "description": "Create a printable certificate for completion, participation, classroom awards, or small events."
+            },
+            {
+              "title": "Printable to do list generator",
+              "url": "https://printable-tools-lab.pages.dev/guides/printable-to-do-list-generator/",
+              "description": "Build a one-page checklist for errands, work tasks, study sessions, home projects, or events."
             }
           ]
+        }
+      },
+      "/discovery.json": {
+        "ok": true,
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "bytes": 1493,
+        "json": {
+          "name": "PrintableTools Lab",
+          "url": "https://printable-tools-lab.pages.dev/",
+          "generatedAt": "2026-05-31T20:58:56.770Z",
+          "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
+          "highIntentEntryPoints": [
+            "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
+            "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
+            "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
+            "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
+            "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
+            "https://printable-tools-lab.pages.dev/tools/timesheet-generator/",
+            "https://printable-tools-lab.pages.dev/tools/resume-builder/",
+            "https://printable-tools-lab.pages.dev/tools/certificate-generator/",
+            "https://printable-tools-lab.pages.dev/tools/todo-list/"
+          ],
+          "constraints": [
+            "No account required.",
+            "No ad interaction gate.",
+            "No paid checkout in the validation version.",
+            "No upload for image conversion tools."
+          ],
+          "validationGates": {
+            "continue30Day": "100 PDF downloads, 300 tool generations, or growing Search Console impressions.",
+            "pivot60Day": "If no search exposure or downloads, stop adding printable content and test another ad-supported route.",
+            "review90Day": "If traffic exists but ad revenue is weak, improve high-intent pages or test compliant affiliate links before paid features."
+          }
         }
       },
       "/api/metrics": {
@@ -688,7 +789,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-05-31T20:09:10.246Z",
+          "lastSubmitted": "2026-05-31T21:01:01.940Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -735,18 +836,24 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Free no-signup printable PDF generators for invoices, resumes, cover letters, calendars, planners, worksheets, and charts.",
+      "description": "Free no-signup browser PDF tools for image conversion, text-to-PDF, invoices, receipts, timesheets, resumes, certificates, calendars, worksheets, and checklists.",
       "topics": [
         "adsense-ready",
+        "certificate-generator",
+        "checklist",
         "cloudflare-pages",
-        "cover-letter",
+        "document-tools",
         "education-tools",
+        "image-to-pdf",
         "invoice-generator",
         "no-signup",
         "pdf-generator",
         "printable",
         "productivity-tools",
-        "resume-builder"
+        "receipt-generator",
+        "resume-builder",
+        "text-to-pdf",
+        "timesheet"
       ],
       "error": ""
     },
@@ -773,7 +880,7 @@
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "20 tools, 46 guides, sitemap, discovery assets, and live metrics are present."
+        "26 tools, 52 guides, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Real AdSense publisher ID is not configured, so ads remain disabled.",
@@ -785,7 +892,7 @@
         "2 inspected sample URL(s) are still unknown to Google."
       ],
       "externalDiscovery": [
-        "GitHub repo has 10 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub repo has 16 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "IndexNow key file is reachable from the site root."
       ]
     }

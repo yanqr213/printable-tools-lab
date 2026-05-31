@@ -1,13 +1,13 @@
 # Validation Gates
 
-Last generated: 2026-05-31T20:26:41.050Z
+Last generated: 2026-05-31T21:03:00.549Z
 
 ## Current Automated Status
 
 - Product ready: yes.
-- Tools live in inventory: 20.
-- Guide pages live in inventory: 46.
-- Indexable routes: 73.
+- Tools live in inventory: 26.
+- Guide pages live in inventory: 52.
+- Indexable routes: 85.
 - Live downloads: 1.
 - Live generations: 0.
 - Search impressions: 0.
@@ -18,7 +18,7 @@ Last generated: 2026-05-31T20:26:41.050Z
 
 ## Product Gate
 
-- 20 tools, 46 guides, sitemap, discovery assets, and live metrics are present.
+- 26 tools, 52 guides, sitemap, discovery assets, and live metrics are present.
 
 ## Search Console Gate
 
@@ -30,7 +30,7 @@ Last generated: 2026-05-31T20:26:41.050Z
 
 ## External Discovery Gate
 
-- GitHub repo has 10 topic(s) and homepage https://printable-tools-lab.pages.dev/.
+- GitHub repo has 16 topic(s) and homepage https://printable-tools-lab.pages.dev/.
 - IndexNow key file is reachable from the site root.
 
 ## Monetization Gate
