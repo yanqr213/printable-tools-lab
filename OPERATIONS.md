@@ -130,6 +130,23 @@ Do not add live ad code until public pages work and Search Console can crawl the
 4. Keep ads separated from download buttons.
 5. Never ask or reward users for ad clicks.
 
+Automation after the real publisher ID is available:
+
+```powershell
+npm.cmd run configure:adsense -- --publisher ca-pub-0000000000000000 --tool-slot 1234567890 --content-slot 2345678901
+npm.cmd run verify:adsense
+npm.cmd run build:routes
+npm.cmd run verify:seo
+```
+
+Notes:
+
+- `configure:adsense` writes `site-config.js` and `ads.txt`.
+- While ads are disabled, `ads.txt` contains a no-sellers placeholder so `/ads.txt` never falls through to the homepage.
+- `verify:adsense` fails if ads are enabled without a valid `ca-pub-...`, if `ads.txt` does not match, or if ad placement labels are missing.
+- If AdSense only asks for review code/auto ads first, configure only `--publisher`; fixed ad slot IDs can be added later.
+- Keep `enableAds: false` until the real publisher ID is available. Do not deploy fake publisher IDs.
+
 ### Payment account
 
 For the current strategy, payment is intentionally disabled.
@@ -273,6 +290,7 @@ Manual posts should be useful, honest, and placed only where self-promotion is a
 Completed:
 
 - `2026-05-31`: GitHub repo description, homepage, and topics updated through the GitHub API.
+- `2026-05-31`: AdSense config automation added; live `/ads.txt` returns a no-sellers placeholder while ads remain disabled.
 
 Submit Google sitemap:
 

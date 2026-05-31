@@ -1056,7 +1056,7 @@
         ["p", "Try the free name tracing worksheet generator: enter a name, choose A4 or US Letter, and download a printable PDF in under a minute."],
         ["p", "Need a quick chore chart for kids? This free generator makes a one-page weekly PDF with checkboxes for every day."],
         ["h2", "Do not do this"],
-        ["ul", ["Do not ask anyone to click ads.", "Do not submit to AdSense before Search Console sees public pages.", "Do not buy traffic before tool usage proves basic conversion."]],
+        ["ul", ["Do not request ad interactions from visitors.", "Do not submit to AdSense before Search Console sees public pages.", "Do not buy traffic before tool usage proves basic conversion."]],
       ],
     },
   };
@@ -1194,7 +1194,7 @@
         </div>
         <div class="grid-3">
           <div class="panel"><h3>Original content</h3><p>Guide pages explain practical use cases instead of relying on empty generator pages.</p></div>
-          <div class="panel"><h3>Responsible ads later</h3><p>Ad spaces are separated from buttons and never require users to click or watch ads to download.</p></div>
+          <div class="panel"><h3>Responsible ads later</h3><p>Ad spaces are separated from buttons and never used as a condition for downloading PDFs.</p></div>
           <div class="panel"><h3>Zero server cost</h3><p>PDF generation, daily limits, and validation events work locally in the browser.</p></div>
         </div>
       </section>

@@ -79,6 +79,15 @@ Run the live metrics contract test:
 npm.cmd run test:events
 ```
 
+Prepare or verify AdSense configuration:
+
+```powershell
+npm.cmd run verify:adsense
+npm.cmd run configure:adsense -- --publisher ca-pub-0000000000000000 --tool-slot 1234567890 --content-slot 2345678901
+```
+
+Keep ads disabled until the real AdSense publisher ID and policy review are ready.
+
 ## Deployment artifacts
 
 - `_redirects` supports Cloudflare Pages rewrites.
@@ -88,6 +97,7 @@ npm.cmd run test:events
 - `llms.txt`, `tools.json`, and `DISTRIBUTION.md` are generated from the same route/tool metadata.
 - `OPERATIONS.md` contains account setup, keywords, distribution ideas, and pivot rules.
 - `scripts/site-verification.cjs` can generate a Google verification file for the service account and claim site ownership through the Google Site Verification API.
+- `scripts/configure-adsense.cjs` can write `site-config.js` and `ads.txt` after a real AdSense publisher ID is available.
 
 ## Account setup checklist
 

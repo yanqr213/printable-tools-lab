@@ -6,6 +6,8 @@
     "start": "node scripts/server.cjs",
     "build:routes": "node scripts/build-routes.cjs",
     "verify:seo": "node scripts/verify-seo.cjs",
+    "configure:adsense": "node scripts/configure-adsense.cjs",
+    "verify:adsense": "node scripts/verify-adsense.cjs",
     "test:ai": "node scripts/test-ai-ideas.cjs",
     "test:events": "node scripts/test-events.cjs",
     "visual": "node scripts/visual-check.cjs",

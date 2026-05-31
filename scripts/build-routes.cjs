@@ -54,6 +54,11 @@ const robots = [
 ].join("\n");
 fs.writeFileSync(path.join(root, "robots.txt"), robots);
 
+const adsTxtPath = path.join(root, "ads.txt");
+if (!fs.existsSync(adsTxtPath)) {
+  fs.writeFileSync(adsTxtPath, "# No authorized advertising sellers configured yet.\n");
+}
+
 const toolsJson = {
   name: SITE_SUMMARY.name,
   description: SITE_SUMMARY.description,
