@@ -1,0 +1,10 @@
+{
+  "name": "printable-tools-lab",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node scripts/server.cjs",
+    "build:routes": "node scripts/build-routes.cjs",
+    "smoke": "node scripts/smoke.cjs"
+  }
+}
