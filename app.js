@@ -61,7 +61,7 @@
     },
     "chore-chart": {
       id: "chore-chart",
-      icon: "✓",
+      icon: "CHK",
       title: "Chore Chart Generator",
       shortTitle: "Chore chart",
       description: "Make a weekly chore chart PDF for kids, roommates, family routines, or small classroom jobs.",
@@ -84,7 +84,7 @@
     },
     "reward-chart": {
       id: "reward-chart",
-      icon: "★",
+      icon: "STAR",
       title: "Reward Chart Generator",
       shortTitle: "Reward chart",
       description: "Build a printable reward chart with goals, sticker boxes, and a reward note for positive behavior routines.",
@@ -109,7 +109,7 @@
     },
     "flashcards": {
       id: "flashcards",
-      icon: "▦",
+      icon: "CARD",
       title: "Flashcard Generator",
       shortTitle: "Flashcards",
       description: "Create a one-page set of printable flashcards for vocabulary, classroom review, memory games, or homeschool practice.",
@@ -155,7 +155,7 @@
     },
     "habit-tracker": {
       id: "habit-tracker",
-      icon: "○",
+      icon: "HAB",
       title: "Habit Tracker Generator",
       shortTitle: "Habit tracker",
       description: "Create a simple printable habit tracker for daily routines, reading goals, wellness habits, or classroom practice.",
@@ -202,7 +202,7 @@
         { id: "date", label: "Invoice date", type: "text", maxLength: 32 },
         { id: "due", label: "Payment terms", type: "text", maxLength: 42 },
         { id: "items", label: "Line items", type: "textarea", maxLength: 420, help: "One item per line: Description | Qty | Rate" },
-        { id: "currency", label: "Currency", type: "select", options: [["USD", "USD $"], ["EUR", "EUR €"], ["GBP", "GBP £"], ["CAD", "CAD $"], ["AUD", "AUD $"]] },
+        { id: "currency", label: "Currency", type: "select", options: [["USD", "USD $"], ["EUR", "EUR"], ["GBP", "GBP"], ["CAD", "CAD $"], ["AUD", "AUD $"]] },
         { id: "notes", label: "Footer note", type: "textarea", maxLength: 160 },
         { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
       ],
@@ -234,7 +234,7 @@
         { id: "date", label: "Estimate date", type: "text", maxLength: 32 },
         { id: "due", label: "Validity or terms", type: "text", maxLength: 42 },
         { id: "items", label: "Estimate items", type: "textarea", maxLength: 420, help: "One item per line: Description | Qty | Rate" },
-        { id: "currency", label: "Currency", type: "select", options: [["USD", "USD $"], ["EUR", "EUR €"], ["GBP", "GBP £"], ["CAD", "CAD $"], ["AUD", "AUD $"]] },
+        { id: "currency", label: "Currency", type: "select", options: [["USD", "USD $"], ["EUR", "EUR"], ["GBP", "GBP"], ["CAD", "CAD $"], ["AUD", "AUD $"]] },
         { id: "notes", label: "Footer note", type: "textarea", maxLength: 160 },
         { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
       ],
@@ -266,7 +266,7 @@
         { id: "date", label: "PO date", type: "text", maxLength: 32 },
         { id: "due", label: "Delivery or terms", type: "text", maxLength: 60 },
         { id: "items", label: "Order items", type: "textarea", maxLength: 420, help: "One item per line: Description | Qty | Unit price" },
-        { id: "currency", label: "Currency", type: "select", options: [["USD", "USD $"], ["EUR", "EUR €"], ["GBP", "GBP £"], ["CAD", "CAD $"], ["AUD", "AUD $"]] },
+        { id: "currency", label: "Currency", type: "select", options: [["USD", "USD $"], ["EUR", "EUR"], ["GBP", "GBP"], ["CAD", "CAD $"], ["AUD", "AUD $"]] },
         { id: "notes", label: "Footer note", type: "textarea", maxLength: 160 },
         { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
       ],
@@ -298,7 +298,7 @@
         { id: "date", label: "Sale date", type: "text", maxLength: 32 },
         { id: "due", label: "Terms", type: "text", maxLength: 70 },
         { id: "items", label: "Item sold", type: "textarea", maxLength: 420, help: "One item per line: Description | Qty | Price" },
-        { id: "currency", label: "Currency", type: "select", options: [["USD", "USD $"], ["EUR", "EUR €"], ["GBP", "GBP £"], ["CAD", "CAD $"], ["AUD", "AUD $"]] },
+        { id: "currency", label: "Currency", type: "select", options: [["USD", "USD $"], ["EUR", "EUR"], ["GBP", "GBP"], ["CAD", "CAD $"], ["AUD", "AUD $"]] },
         { id: "notes", label: "Disclosure note", type: "textarea", maxLength: 180 },
         { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
       ],
@@ -329,7 +329,7 @@
         { id: "landlord", label: "Received by", type: "text", maxLength: 70 },
         { id: "property", label: "Property or unit", type: "textarea", maxLength: 140 },
         { id: "amount", label: "Amount", type: "text", maxLength: 24 },
-        { id: "currency", label: "Currency", type: "select", options: [["USD", "USD $"], ["EUR", "EUR €"], ["GBP", "GBP £"], ["CAD", "CAD $"], ["AUD", "AUD $"]] },
+        { id: "currency", label: "Currency", type: "select", options: [["USD", "USD $"], ["EUR", "EUR"], ["GBP", "GBP"], ["CAD", "CAD $"], ["AUD", "AUD $"]] },
         { id: "period", label: "Rental period", type: "text", maxLength: 70 },
         { id: "paidDate", label: "Payment date", type: "text", maxLength: 32 },
         { id: "method", label: "Payment method", type: "text", maxLength: 50 },
@@ -1500,7 +1500,7 @@
     const count = getDailyCount();
     app.innerHTML = `
       <section class="shell tool-header">
-        <a href="/">← All tools</a>
+        <a href="/">Back to all tools</a>
         <h1>${escapeHtml(tool.title)}</h1>
         <p class="lead">${escapeHtml(tool.description)}</p>
       </section>
@@ -1706,7 +1706,7 @@
     setMeta(guide.title, guide.description);
     app.innerHTML = `
       <article class="article-shell article">
-        <a href="/guides/">← All guides</a>
+        <a href="/guides/">Back to all guides</a>
         <h1>${escapeHtml(guide.title)}</h1>
         <p class="lead">${escapeHtml(guide.description)}</p>
         ${guide.tool ? `<p><a class="button" href="/tools/${guide.tool}/">Open ${escapeHtml(tools[guide.tool].shortTitle)}</a></p>` : ""}
@@ -3025,7 +3025,7 @@
   function parseCard(value) {
     const text = sanitizePrintable(value);
     if (!text) return ["", ""];
-    const parts = text.split(/\s[-–—:]\s/);
+    const parts = text.split(/\s[-:]\s/);
     return [parts[0] || text, parts.slice(1).join(" - ")];
   }
 
