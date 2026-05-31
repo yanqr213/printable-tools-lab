@@ -114,6 +114,13 @@ const pages = [
     index: false,
     html: `<article class="article-shell article"><h1>Premium tools are not open yet</h1><p>Premium features such as watermark-free PDFs, batch generation, and classroom template bundles are planned only if users show real demand.</p></article>`,
   },
+  {
+    path: "launch-kit",
+    title: "Launch Kit",
+    description: "Distribution copy, links, and validation steps for launching PrintableTools Lab.",
+    index: false,
+    html: `<article class="article-shell article"><h1>Launch Kit</h1><p>Use this page to coordinate the first distribution push. Share the homepage and tool links, then measure downloads, Search Console impressions, and premium clicks.</p></article>`,
+  },
 ];
 
 const routes = [

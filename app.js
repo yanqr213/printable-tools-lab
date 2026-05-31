@@ -7,6 +7,24 @@
     premiumUrl: "/premium-waitlist/",
   };
 
+  const CONFIG = Object.assign({
+    siteUrl: window.location.origin,
+    googleSiteVerification: "",
+    googleAnalyticsId: "",
+    adsenseClientId: "",
+    premiumCheckoutUrl: "",
+    contactEmail: "",
+    enableAds: false,
+    enableAnalytics: false,
+    enablePremiumCheckout: false,
+  }, window.PTL_CONFIG || {});
+
+  if (CONFIG.enablePremiumCheckout && CONFIG.premiumCheckoutUrl) {
+    SITE.premiumUrl = CONFIG.premiumCheckoutUrl;
+  }
+
+  bootstrapConfiguredIntegrations();
+
   const tools = {
     "name-tracing": {
       id: "name-tracing",
@@ -271,6 +289,21 @@
         ["p", "For now, this button records local upgrade interest in your browser. On a live site, it can be replaced with an email waitlist or a no-monthly-fee checkout link after validation gates are met."],
       ],
     },
+    "launch-kit": {
+      title: "Launch Kit",
+      description: "Distribution copy, links, and validation steps for launching PrintableTools Lab.",
+      body: [
+        ["p", "Use this page to coordinate the first distribution push. The goal is not to look busy; it is to create enough real traffic for Search Console, AdSense readiness, and upgrade-click validation."],
+        ["h2", "Primary links"],
+        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Name tracing: https://printable-tools-lab.pages.dev/tools/name-tracing/", "Chore chart: https://printable-tools-lab.pages.dev/tools/chore-chart/", "Reward chart: https://printable-tools-lab.pages.dev/tools/reward-chart/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
+        ["h2", "First distribution copy"],
+        ["p", "Free printable PDF makers for parents and teachers: create a name tracing worksheet, chore chart, or reward chart in your browser. No account required."],
+        ["p", "Try the free name tracing worksheet generator: enter a name, choose A4 or US Letter, and download a printable PDF in under a minute."],
+        ["p", "Need a quick chore chart for kids? This free generator makes a one-page weekly PDF with checkboxes for every day."],
+        ["h2", "Do not do this"],
+        ["ul", ["Do not ask anyone to click ads.", "Do not submit to AdSense before Search Console sees public pages.", "Do not buy traffic before tool usage proves basic conversion."]],
+      ],
+    },
   };
 
   window.PRINTABLE_TOOLS_LAB_ROUTES = {
@@ -437,7 +470,7 @@
               <h2>Live preview</h2>
               <p class="help">Preview is rendered as the same canvas used for the PDF export.</p>
             </div>
-            <a class="button ghost premium-click" href="${SITE.premiumUrl}" data-premium-source="${tool.id}">Remove watermark later</a>
+            <a class="button ghost premium-click" href="${escapeHtml(SITE.premiumUrl)}" data-premium-source="${tool.id}">${CONFIG.enablePremiumCheckout ? "Remove watermark" : "Remove watermark later"}</a>
           </div>
           <div class="preview-stage">
             <canvas id="previewCanvas" class="preview-canvas" width="1275" height="1650" aria-label="Printable PDF preview"></canvas>
@@ -574,7 +607,7 @@
     app.innerHTML = `
       <section class="shell dashboard">
         <h1>Local validation dashboard</h1>
-        <p class="lead">This zero-cost version records events in localStorage. After launch, replace or supplement this with Search Console, Analytics, and platform revenue data.</p>
+        <p class="lead">This zero-cost version records events in localStorage. After launch, supplement this with Search Console, Analytics, and platform revenue data.</p>
         <div class="metric-grid">
           <div class="metric-tile"><strong>${totals.page_view || 0}</strong><span>page views</span></div>
           <div class="metric-tile"><strong>${totals.generate_pdf || 0}</strong><span>PDF generations</span></div>
@@ -584,6 +617,7 @@
         <div class="panel">
           <h2>Validation gates</h2>
           <p><strong>30-day continue gate:</strong> 100 PDF downloads, 300 tool generations, or 20 premium clicks. If no search exposure or downloads after 60 days, pause this track and test HTML5 game distribution.</p>
+          <p><strong>Configured integrations:</strong> Analytics ${CONFIG.enableAnalytics && CONFIG.googleAnalyticsId ? "on" : "off"}, AdSense ${CONFIG.enableAds && CONFIG.adsenseClientId ? "on" : "off"}, Premium checkout ${CONFIG.enablePremiumCheckout && CONFIG.premiumCheckoutUrl ? "on" : "off"}.</p>
           <div class="actions">
             <button class="button" id="exportCsv">Export CSV</button>
             <button class="button secondary" id="clearData">Clear local data</button>
@@ -1035,6 +1069,39 @@
       data: Object.assign({ ref: document.referrer || "direct" }, data || {}),
     });
     localStorage.setItem("ptl_events", JSON.stringify(events.slice(-1000)));
+    if (window.gtag && CONFIG.enableAnalytics) {
+      window.gtag("event", name, data || {});
+    }
+  }
+
+  function bootstrapConfiguredIntegrations() {
+    if (CONFIG.googleSiteVerification) {
+      const meta = document.createElement("meta");
+      meta.name = "google-site-verification";
+      meta.content = CONFIG.googleSiteVerification;
+      document.head.appendChild(meta);
+    }
+
+    if (CONFIG.enableAnalytics && CONFIG.googleAnalyticsId) {
+      const ga = document.createElement("script");
+      ga.async = true;
+      ga.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(CONFIG.googleAnalyticsId)}`;
+      document.head.appendChild(ga);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function gtag() {
+        window.dataLayer.push(arguments);
+      };
+      window.gtag("js", new Date());
+      window.gtag("config", CONFIG.googleAnalyticsId);
+    }
+
+    if (CONFIG.enableAds && CONFIG.adsenseClientId) {
+      const ads = document.createElement("script");
+      ads.async = true;
+      ads.crossOrigin = "anonymous";
+      ads.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(CONFIG.adsenseClientId)}`;
+      document.head.appendChild(ads);
+    }
   }
 
   function getEvents() {

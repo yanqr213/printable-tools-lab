@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node scripts/server.cjs",
     "build:routes": "node scripts/build-routes.cjs",
+    "verify:seo": "node scripts/verify-seo.cjs",
     "smoke": "node scripts/smoke.cjs"
   }
 }
