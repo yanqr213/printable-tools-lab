@@ -332,6 +332,13 @@ npm.cmd run indexnow
 
 Google does not provide a general public API to request indexing for ordinary pages. Search Console API can submit/list sitemaps and inspect URLs after the property is verified.
 
+IndexNow note:
+
+- The IndexNow key file is deployed at the site root.
+- If `pages.dev` returns `UserForbiddedToAccessSite`, treat it as a non-blocking Bing/Yandex discovery fallback.
+- The primary indexing path remains Search Console sitemap submission plus external links from useful directories or relevant community posts.
+- Re-test IndexNow after moving to a custom domain; subdomain ownership can be stricter than ordinary URL-prefix verification.
+
 ## Kill Or Pivot Rules
 
 - If Search Console shows no impressions after 60 days, stop adding printable content.

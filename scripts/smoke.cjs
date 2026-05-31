@@ -75,6 +75,25 @@ function delay(ms) {
   for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
     await page.evaluate(() => localStorage.removeItem("ptl_daily"));
+    if (route === "/tools/image-to-pdf/") {
+      await page.setInputFiles("input[type=file]", {
+        name: "sample.png",
+        mimeType: "image/png",
+        buffer: samplePng(),
+      });
+      await page.waitForTimeout(750);
+      const hasRenderedFileName = await page.evaluate(() => {
+        const canvas = document.querySelector("canvas.preview-canvas");
+        if (!canvas) return false;
+        const ctx = canvas.getContext("2d");
+        const data = ctx.getImageData(45, canvas.height - 120, canvas.width - 90, 80).data;
+        for (let i = 0; i < data.length; i += 4) {
+          if (data[i] < 245 || data[i + 1] < 245 || data[i + 2] < 245) return true;
+        }
+        return false;
+      });
+      if (!hasRenderedFileName) throw new Error("Image-to-PDF upload did not render selected file details.");
+    }
     const button = page.getByRole("button", { name: "Generate PDF" });
     const [download] = await Promise.all([
       page.waitForEvent("download"),
@@ -100,3 +119,10 @@ function delay(ms) {
   console.error(error);
   process.exit(1);
 });
+
+function samplePng() {
+  return Buffer.from(
+    "iVBORw0KGgoAAAANSUhEUgAAAMgAAABkCAIAAAD2HxkiAAAAA3NCSVQICAjb4U/gAAABQklEQVR4nO3YQQ6CMBAF0fz/0zv2FQvEgpcqJmO0ZeEyr0wIgYHfWesJAOB/JAQkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkBCTE9WxbKx3Hsd2z7fq+3/d9zvM8jmPbdk3TzPM8x3Hc932/7/v+933f930fAKhkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJMT1bFsrnU6n0+k8z/Pbtk3TzPM8x3Hc930fR+n7PgBQyQhICEgISAiICEgISAiICEgISAiICEgISAiICEgISAiICEgISIjr2bZWCoVCoVAoFAqFQqFQKBSKxWLRdV2n0+n7fgBQyQhICEgISAiICEgISAiICEgISAiICEgISAiICEgISAiICEgISIjr2bZWkiRJkiRJkiRJkiRJkiRJkmRZFsfxAIBKRkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkxPUH5+YedERKmfUAAAAASUVORK5CYII=",
+    "base64",
+  );
+}

@@ -13,14 +13,16 @@ async function main() {
   const local = readLocalState();
   const live = await readLiveState();
   const searchConsole = readSearchConsoleState();
-  const gates = evaluateGates(local, live, searchConsole);
-  const nextActions = buildNextActions(gates, local, live, searchConsole);
+  const discovery = readDiscoveryState();
+  const gates = evaluateGates(local, live, searchConsole, discovery);
+  const nextActions = buildNextActions(gates, local, live, searchConsole, discovery);
   const report = {
     generatedAt: new Date().toISOString(),
     siteUrl: `${siteBase}/`,
     local,
     live,
     searchConsole,
+    discovery,
     gates,
     nextActions,
   };
@@ -143,6 +145,75 @@ function readSearchConsoleState() {
   return state;
 }
 
+function readDiscoveryState() {
+  const state = {
+    github: readGithubState(),
+    indexNow: readIndexNowState(),
+  };
+  state.externalDiscoveryReady = Boolean(state.github.homepage)
+    && state.github.topics.length >= 6
+    && state.indexNow.keyFileReachable;
+  return state;
+}
+
+function readGithubState() {
+  const remote = runLocalCommand("git", ["remote", "get-url", "origin"]);
+  const repoUrl = remote.ok ? remote.stdout.trim().replace(/\.git$/, "") : "";
+  const apiUrl = repoUrl.includes("github.com/")
+    ? `https://api.github.com/repos/${repoUrl.split("github.com/").pop()}`
+    : "";
+  const fallback = {
+    available: false,
+    repoUrl,
+    homepage: "",
+    description: "",
+    topics: [],
+    error: apiUrl ? "" : "GitHub remote was not recognized.",
+  };
+  if (!apiUrl) return fallback;
+  try {
+    const response = fetchSyncJson(apiUrl, { headers: { "User-Agent": "PrintableToolsLab-Ops" } });
+    if (!response.ok) return { ...fallback, error: `GitHub API ${response.status}` };
+    return {
+      available: true,
+      repoUrl,
+      homepage: response.json.homepage || "",
+      description: response.json.description || "",
+      topics: Array.isArray(response.json.topics) ? response.json.topics : [],
+      error: "",
+    };
+  } catch (error) {
+    return { ...fallback, error: error.message };
+  }
+}
+
+function readIndexNowState() {
+  const key = readText("indexnow-key.txt").trim();
+  const keyFile = key ? `${key}.txt` : "";
+  const keyFileExists = keyFile ? fs.existsSync(path.join(root, keyFile)) : false;
+  const keyLocation = keyFile ? `${siteBase}/${keyFile}` : "";
+  const state = {
+    keyConfigured: Boolean(key),
+    keyFile,
+    keyFileExists,
+    keyLocation,
+    keyFileReachable: false,
+    singleUrlAccepted: false,
+    error: "",
+  };
+  if (!key || !keyFileExists) return state;
+  try {
+    const keyCheck = fetchSyncText(keyLocation);
+    state.keyFileReachable = keyCheck.ok && keyCheck.text.trim() === key;
+    const endpoint = `https://www.bing.com/indexnow?url=${encodeURIComponent(siteUrl("tools/image-to-pdf"))}&key=${encodeURIComponent(key)}`;
+    const single = fetchSyncText(endpoint);
+    state.singleUrlAccepted = single.ok || single.status === 202;
+  } catch (error) {
+    state.error = error.message;
+  }
+  return state;
+}
+
 function runSearchConsole(args, env) {
   try {
     const stdout = execFileSync(process.execPath, [path.join(root, "scripts", "search-console.cjs"), ...args], {
@@ -162,7 +233,7 @@ function runSearchConsole(args, env) {
   }
 }
 
-function evaluateGates(local, live, searchConsole) {
+function evaluateGates(local, live, searchConsole, discovery) {
   const totals = live.metrics?.totals || {};
   const performanceTotals = searchConsole.performance?.totals || {};
   const sitemap = Array.isArray(searchConsole.sitemaps?.sitemap) ? searchConsole.sitemaps.sitemap[0] : null;
@@ -187,6 +258,7 @@ function evaluateGates(local, live, searchConsole) {
     adsenseApplyReady,
     adsEnabled: local.ads.enabled,
     searchVisible,
+    externalDiscoveryReady: discovery.externalDiscoveryReady,
     continue30Day: (totals.download_pdf || 0) >= 100 || (totals.generate_pdf || 0) >= 300 || (performanceTotals.impressions || 0) > 0,
     pivot60Day: !searchVisible && (totals.download_pdf || 0) === 0 && (totals.generate_pdf || 0) === 0,
     review90Day: searchVisible && (totals.download_pdf || 0) > 0 && !local.ads.enabled,
@@ -194,6 +266,7 @@ function evaluateGates(local, live, searchConsole) {
       productReady: productReady ? ["20 tools, 46 guides, sitemap, discovery assets, and live metrics are present."] : missingProductReasons(local, live),
       adsenseApplyReady: adsenseApplyReady ? ["Product is ready, Search Console has visibility, and a real publisher ID is configured."] : missingAdsenseReasons(local, searchConsole, searchVisible),
       searchConsole: summarizeSearchConsoleReasons(searchConsole, sitemap, unknown),
+      externalDiscovery: summarizeDiscoveryReasons(discovery),
     },
   };
 }
@@ -235,11 +308,25 @@ function summarizeSearchConsoleReasons(searchConsole, sitemap, unknown) {
   return reasons.length ? reasons : ["Search Console calls completed without notable warnings."];
 }
 
-function buildNextActions(gates, local, live, searchConsole) {
+function summarizeDiscoveryReasons(discovery) {
+  const reasons = [];
+  if (discovery.github.available) {
+    reasons.push(`GitHub repo has ${discovery.github.topics.length} topic(s) and homepage ${discovery.github.homepage || "missing"}.`);
+  } else {
+    reasons.push(`GitHub discovery metadata unavailable: ${discovery.github.error || "unknown error"}.`);
+  }
+  if (discovery.indexNow.keyFileReachable) reasons.push("IndexNow key file is reachable from the site root.");
+  else reasons.push("IndexNow key file is not reachable or does not match the configured key.");
+  if (discovery.indexNow.singleUrlAccepted) reasons.push("Bing IndexNow single-URL notification accepts the key.");
+  return reasons;
+}
+
+function buildNextActions(gates, local, live, searchConsole, discovery) {
   const totals = live.metrics?.totals || {};
   const actions = [];
   if (!gates.productReady) actions.push("Fix product readiness failures before adding more tools.");
   if (!gates.searchVisible) actions.push("Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.");
+  if (!discovery.indexNow.singleUrlAccepted) actions.push("Fix IndexNow key verification or keep it documented as a non-Google fallback.");
   if (!local.ads.publisherConfigured) actions.push("When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.");
   if (local.ads.publisherConfigured && !local.ads.enabled && gates.searchVisible) actions.push("Apply/continue AdSense review, then enable ads only after approval and placement verification.");
   if ((totals.download_pdf || 0) < 100 && (totals.generate_pdf || 0) < 300) actions.push("Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.");
@@ -267,6 +354,7 @@ function renderValidationMarkdown(report) {
     `- Live generations: ${totals.generate_pdf || 0}.`,
     `- Search impressions: ${perf?.totals?.impressions || 0}.`,
     `- Search clicks: ${perf?.totals?.clicks || 0}.`,
+    `- External discovery ready: ${yesNo(report.gates.externalDiscoveryReady)}.`,
     `- Ads enabled: ${yesNo(report.gates.adsEnabled)}.`,
     `- AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}.`,
     "",
@@ -278,6 +366,10 @@ function renderValidationMarkdown(report) {
     "",
     ...(sitemap ? [`- Sitemap submitted: ${sitemap.path || "unknown"}.`, `- Sitemap pending: ${yesNo(Boolean(sitemap.isPending))}; warnings: ${sitemap.warnings || 0}; errors: ${sitemap.errors || 0}.`] : ["- Sitemap data unavailable in this run."]),
     ...report.gates.reasons.searchConsole.map((reason) => `- ${reason}`),
+    "",
+    "## External Discovery Gate",
+    "",
+    ...report.gates.reasons.externalDiscovery.map((reason) => `- ${reason}`),
     "",
     "## Monetization Gate",
     "",
@@ -308,7 +400,77 @@ function printSummary(report) {
   const totals = report.live.metrics?.totals || {};
   console.log(`Validation report written to ${path.relative(root, reportPath)} and VALIDATION.md`);
   console.log(`Product ready: ${yesNo(report.gates.productReady)} | Tools: ${report.local.toolCount} | Guides: ${report.local.guideCount}`);
-  console.log(`Downloads: ${totals.download_pdf || 0} | Generations: ${totals.generate_pdf || 0} | Search visible: ${yesNo(report.gates.searchVisible)} | AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}`);
+  console.log(`Downloads: ${totals.download_pdf || 0} | Generations: ${totals.generate_pdf || 0} | Search visible: ${yesNo(report.gates.searchVisible)} | External discovery: ${yesNo(report.gates.externalDiscoveryReady)} | AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}`);
+}
+
+function runLocalCommand(command, args) {
+  try {
+    return {
+      ok: true,
+      stdout: execFileSync(command, args, { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 15000 }),
+    };
+  } catch (error) {
+    return { ok: false, stdout: "", error: error.message };
+  }
+}
+
+function fetchSyncJson(url, options = {}) {
+  const headersLiteral = Object.entries(options.headers || {})
+    .map(([key, value]) => `"${escapePowerShell(key)}"="${escapePowerShell(value)}"`)
+    .join(";");
+  const script = [
+    "$ProgressPreference='SilentlyContinue'",
+    `$headers = @{${headersLiteral}}`,
+    "$status = 0",
+    "$content = ''",
+    "try {",
+    `  $response = Invoke-WebRequest -Uri ${JSON.stringify(url)} -UseBasicParsing -Headers $headers`,
+    "  $status = [int]$response.StatusCode",
+    "  $content = [string]$response.Content",
+    "} catch {",
+    "  if ($_.Exception.Response) {",
+    "    $status = [int]$_.Exception.Response.StatusCode",
+    "    try {",
+    "      $reader = New-Object System.IO.StreamReader($_.Exception.Response.GetResponseStream())",
+    "      $content = $reader.ReadToEnd()",
+    "    } catch { $content = $_.Exception.Message }",
+    "  } else { $content = $_.Exception.Message }",
+    "}",
+    "[Console]::Out.Write(($status.ToString() + \"`n\" + $content))",
+  ].join("; ");
+  const result = execFileSync("powershell", ["-NoProfile", "-Command", script], { encoding: "utf8", timeout: 30000 });
+  const [statusLine, ...bodyLines] = result.split(/\r?\n/);
+  return { ok: Number(statusLine) >= 200 && Number(statusLine) < 300, status: Number(statusLine), json: safeJson(bodyLines.join("\n")) || {} };
+}
+
+function fetchSyncText(url) {
+  const script = [
+    "$ProgressPreference='SilentlyContinue'",
+    "$status = 0",
+    "$content = ''",
+    "try {",
+    `  $response = Invoke-WebRequest -Uri ${JSON.stringify(url)} -UseBasicParsing`,
+    "  $status = [int]$response.StatusCode",
+    "  $content = [string]$response.Content",
+    "} catch {",
+    "  if ($_.Exception.Response) {",
+    "    $status = [int]$_.Exception.Response.StatusCode",
+    "    try {",
+    "      $reader = New-Object System.IO.StreamReader($_.Exception.Response.GetResponseStream())",
+    "      $content = $reader.ReadToEnd()",
+    "    } catch { $content = $_.Exception.Message }",
+    "  } else { $content = $_.Exception.Message }",
+    "}",
+    "[Console]::Out.Write(($status.ToString() + \"`n\" + $content))",
+  ].join("; ");
+  const result = execFileSync("powershell", ["-NoProfile", "-Command", script], { encoding: "utf8", timeout: 30000 });
+  const [statusLine, ...bodyLines] = result.split(/\r?\n/);
+  const status = Number(statusLine);
+  return { ok: status >= 200 && status < 300, status, text: bodyLines.join("\n") };
+}
+
+function escapePowerShell(value) {
+  return String(value).replace(/`/g, "``").replace(/"/g, "`\"");
 }
 
 function readText(file) {

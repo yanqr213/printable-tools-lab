@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-31T20:10:11.268Z",
+  "generatedAt": "2026-05-31T20:18:47.967Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 20,
@@ -730,12 +730,44 @@
     ],
     "errors": []
   },
+  "discovery": {
+    "github": {
+      "available": true,
+      "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
+      "homepage": "https://printable-tools-lab.pages.dev/",
+      "description": "Free no-signup printable PDF generators for invoices, resumes, cover letters, calendars, planners, worksheets, and charts.",
+      "topics": [
+        "adsense-ready",
+        "cloudflare-pages",
+        "cover-letter",
+        "education-tools",
+        "invoice-generator",
+        "no-signup",
+        "pdf-generator",
+        "printable",
+        "productivity-tools",
+        "resume-builder"
+      ],
+      "error": ""
+    },
+    "indexNow": {
+      "keyConfigured": true,
+      "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
+      "keyFileExists": true,
+      "keyLocation": "https://printable-tools-lab.pages.dev/fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
+      "keyFileReachable": true,
+      "singleUrlAccepted": false,
+      "error": ""
+    },
+    "externalDiscoveryReady": true
+  },
   "gates": {
     "productReady": true,
     "adsenseAutomationReady": true,
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
+    "externalDiscoveryReady": true,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
@@ -751,11 +783,16 @@
         "Sitemap status: pending=true, warnings=0, errors=0.",
         "Search performance: 0 impressions, 0 clicks.",
         "2 inspected sample URL(s) are still unknown to Google."
+      ],
+      "externalDiscovery": [
+        "GitHub repo has 10 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "IndexNow key file is reachable from the site root."
       ]
     }
   },
   "nextActions": [
     "Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.",
+    "Fix IndexNow key verification or keep it documented as a non-Google fallback.",
     "When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.",
     "Keep the current free product live and track downloads/generations until the 30-day gate has enough signal."
   ]

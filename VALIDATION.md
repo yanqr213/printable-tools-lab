@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-05-31T20:10:11.268Z
+Last generated: 2026-05-31T20:18:47.967Z
 
 ## Current Automated Status
 
@@ -12,6 +12,7 @@ Last generated: 2026-05-31T20:10:11.268Z
 - Live generations: 0.
 - Search impressions: 0.
 - Search clicks: 0.
+- External discovery ready: yes.
 - Ads enabled: no.
 - AdSense apply-ready: no.
 
@@ -27,6 +28,11 @@ Last generated: 2026-05-31T20:10:11.268Z
 - Search performance: 0 impressions, 0 clicks.
 - 2 inspected sample URL(s) are still unknown to Google.
 
+## External Discovery Gate
+
+- GitHub repo has 10 topic(s) and homepage https://printable-tools-lab.pages.dev/.
+- IndexNow key file is reachable from the site root.
+
 ## Monetization Gate
 
 - Real AdSense publisher ID is not configured, so ads remain disabled.
@@ -41,6 +47,7 @@ Last generated: 2026-05-31T20:10:11.268Z
 ## Next Actions
 
 - Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.
+- Fix IndexNow key verification or keep it documented as a non-Google fallback.
 - When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.
 - Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.
 
