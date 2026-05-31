@@ -37,6 +37,8 @@ function readLocalState() {
   const sitemap = readText("sitemap.xml");
   const robots = readText("robots.txt");
   const llms = readText("llms.txt");
+  const manifest = readJson("site.webmanifest", {});
+  const opensearch = readText("opensearch.xml");
   const adsTxt = readText("ads.txt").trim();
   const config = readText("site-config.js");
   const indexableRoutes = routes.filter((route) => route.index !== false).length;
@@ -53,6 +55,8 @@ function readLocalState() {
       toolsJson: Array.isArray(toolsJson.tools),
       discoveryJson: fs.existsSync(path.join(root, "discovery.json")),
       distributionPack: fs.existsSync(path.join(root, "DISTRIBUTION.md")),
+      webManifest: manifest.name === "PrintableTools Lab" && Array.isArray(manifest.shortcuts),
+      opensearch: opensearch.includes("<OpenSearchDescription") && opensearch.includes("PrintableTools Lab"),
     },
     ads: {
       enabled: readBool(config, "enableAds"),
@@ -65,7 +69,7 @@ function readLocalState() {
 }
 
 async function readLiveState() {
-  const paths = ["/", "/tools/", "/sitemap.xml", "/robots.txt", "/ads.txt", "/llms.txt", "/tools.json", "/discovery.json", "/api/metrics"];
+  const paths = ["/", "/tools/", "/sitemap.xml", "/robots.txt", "/ads.txt", "/llms.txt", "/tools.json", "/discovery.json", "/site.webmanifest", "/opensearch.xml", "/api/metrics"];
   const checks = {};
   for (const pathname of paths) {
     checks[pathname] = await liveCheck(pathname);
@@ -436,13 +440,25 @@ async function fetchTextWithTimeout(url, options = {}) {
 }
 
 async function fetchWithTimeout(url, options = {}) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), Number(process.env.VALIDATION_FETCH_TIMEOUT_MS || 12000));
-  try {
-    return await fetch(url, { ...options, signal: controller.signal, cache: "no-store" });
-  } finally {
-    clearTimeout(timer);
+  const attempts = Number(process.env.VALIDATION_FETCH_ATTEMPTS || 3);
+  let lastError = null;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), Number(process.env.VALIDATION_FETCH_TIMEOUT_MS || 12000));
+    try {
+      return await fetch(url, { ...options, signal: controller.signal, cache: "no-store" });
+    } catch (error) {
+      lastError = error;
+      if (attempt < attempts) await delay(350 * attempt);
+    } finally {
+      clearTimeout(timer);
+    }
   }
+  throw lastError;
+}
+
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function readText(file) {

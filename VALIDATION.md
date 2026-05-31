@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-05-31T22:05:38.030Z
+Last generated: 2026-05-31T22:11:49.017Z
 
 ## Current Automated Status
 
@@ -12,7 +12,7 @@ Last generated: 2026-05-31T22:05:38.030Z
 - Live generations: 0.
 - Search impressions: 0.
 - Search clicks: 0.
-- External discovery ready: yes.
+- External discovery ready: no.
 - Ads enabled: no.
 - AdSense apply-ready: no.
 
@@ -30,8 +30,7 @@ Last generated: 2026-05-31T22:05:38.030Z
 
 ## External Discovery Gate
 
-- GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.
-- GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.
+- GitHub discovery metadata unavailable: fetch failed.
 - IndexNow key file is reachable from the site root.
 
 ## Monetization Gate
@@ -48,6 +47,7 @@ Last generated: 2026-05-31T22:05:38.030Z
 ## Next Actions
 
 - Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.
+- Create or refresh the GitHub discovery release with high-intent tool links.
 - Fix IndexNow key verification or keep it documented as a non-Google fallback.
 - When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.
 - Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.

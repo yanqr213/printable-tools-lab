@@ -51,7 +51,27 @@ else {
   if (!llms.includes("# PrintableTools Lab")) failures.push("llms.txt missing title.");
   if (!llms.includes("## Tools")) failures.push("llms.txt missing tools section.");
   if (!llms.includes(siteUrl("tools"))) failures.push("llms.txt missing tools URL.");
+  if (!llms.includes(siteUrl("site.webmanifest").replace(/\/$/, ""))) failures.push("llms.txt missing manifest URL.");
+  if (!llms.includes(siteUrl("opensearch.xml").replace(/\/$/, ""))) failures.push("llms.txt missing OpenSearch URL.");
   if (!llms.includes(siteUrl("tools.json").replace(/\/$/, ""))) failures.push("llms.txt missing tools.json URL.");
+}
+
+const manifestFile = path.join(root, "site.webmanifest");
+if (!fs.existsSync(manifestFile)) failures.push("Missing site.webmanifest.");
+else {
+  const manifest = JSON.parse(fs.readFileSync(manifestFile, "utf8"));
+  if (manifest.name !== "PrintableTools Lab") failures.push("site.webmanifest missing app name.");
+  if (manifest.start_url !== "/free-pdf-tools/") failures.push("site.webmanifest should start at the free PDF tools page.");
+  if (!Array.isArray(manifest.shortcuts) || !manifest.shortcuts.some((item) => item.url === "/pdf-tool-finder/")) failures.push("site.webmanifest missing PDF tool finder shortcut.");
+}
+
+const opensearchFile = path.join(root, "opensearch.xml");
+if (!fs.existsSync(opensearchFile)) failures.push("Missing opensearch.xml.");
+else {
+  const opensearch = fs.readFileSync(opensearchFile, "utf8");
+  if (!opensearch.includes("<OpenSearchDescription")) failures.push("opensearch.xml missing root element.");
+  if (!opensearch.includes("PrintableTools Lab")) failures.push("opensearch.xml missing site name.");
+  if (!opensearch.includes(siteUrl("tools").replace(/&/g, "&amp;"))) failures.push("opensearch.xml missing tools URL template.");
 }
 
 const toolsJsonFile = path.join(root, "tools.json");
@@ -94,6 +114,8 @@ if (!fs.existsSync(discoveryFile)) failures.push("Missing discovery.json.");
 else {
   const discovery = JSON.parse(fs.readFileSync(discoveryFile, "utf8"));
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("tools/multi-image-pdf"))) failures.push("discovery.json missing high-intent multi-image route.");
+  if (discovery.manifest !== siteUrl("site.webmanifest").replace(/\/$/, "")) failures.push("discovery.json missing manifest URL.");
+  if (discovery.opensearch !== siteUrl("opensearch.xml").replace(/\/$/, "")) failures.push("discovery.json missing OpenSearch URL.");
 }
 
 const verificationFile = path.join(root, "google1b771d6159b52de7.html");

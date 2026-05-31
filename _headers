@@ -23,3 +23,9 @@
 
 /google1b771d6159b52de7.html
   Content-Type: text/html; charset=utf-8
+
+/site.webmanifest
+  Content-Type: application/manifest+json; charset=utf-8
+
+/opensearch.xml
+  Content-Type: application/opensearchdescription+xml; charset=utf-8

@@ -130,6 +130,8 @@ function releaseBody() {
     "",
     `- [Free PDF tools without signup](${siteUrl("free-pdf-tools")})`,
     `- [PDF tool finder](${siteUrl("pdf-tool-finder")})`,
+    `- [Machine-readable tools.json](${siteUrl("tools.json").replace(/\/$/, "")})`,
+    `- [Web app manifest](${siteUrl("site.webmanifest").replace(/\/$/, "")})`,
     ...toolLinks,
     "",
     "Why this exists:",

@@ -55,11 +55,51 @@ const robots = [
 ].join("\n");
 fs.writeFileSync(path.join(root, "robots.txt"), robots);
 
+const manifest = {
+  name: SITE_SUMMARY.name,
+  short_name: "PrintableTools",
+  description: SITE_SUMMARY.description,
+  start_url: "/free-pdf-tools/",
+  scope: "/",
+  display: "standalone",
+  background_color: "#f7fbfc",
+  theme_color: "#176b87",
+  categories: ["productivity", "utilities", "education", "business"],
+  icons: [
+    { src: "/assets/images/app-icon-192.png", sizes: "192x192", type: "image/png" },
+    { src: "/assets/images/app-icon-512.png", sizes: "512x512", type: "image/png" },
+  ],
+  shortcuts: [
+    { name: "Free PDF tools", short_name: "PDF tools", url: "/free-pdf-tools/" },
+    { name: "PDF tool finder", short_name: "Finder", url: "/pdf-tool-finder/" },
+    { name: "Image to PDF", short_name: "Image PDF", url: "/tools/image-to-pdf/" },
+    { name: "Invoice generator", short_name: "Invoice", url: "/tools/invoice-generator/" },
+  ],
+};
+fs.writeFileSync(path.join(root, "site.webmanifest"), `${JSON.stringify(manifest, null, 2)}\n`);
+
+const opensearch = `<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>PrintableTools Lab</ShortName>
+  <Description>Search free no-signup browser PDF generators from PrintableTools Lab.</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Image height="32" width="32" type="image/png">${fileUrl("assets/images/favicon.png")}</Image>
+  <Url type="text/html" template="${siteUrl("tools").replace(/&/g, "&amp;")}?q={searchTerms}"/>
+</OpenSearchDescription>
+`;
+fs.writeFileSync(path.join(root, "opensearch.xml"), opensearch);
+
 const headersPath = path.join(root, "_headers");
 if (fs.existsSync(headersPath)) {
   const headers = fs.readFileSync(headersPath, "utf8");
   if (!headers.includes("/discovery.json")) {
     fs.appendFileSync(headersPath, "\n/discovery.json\n  Content-Type: application/json; charset=utf-8\n");
+  }
+  if (!headers.includes("/site.webmanifest")) {
+    fs.appendFileSync(headersPath, "\n/site.webmanifest\n  Content-Type: application/manifest+json; charset=utf-8\n");
+  }
+  if (!headers.includes("/opensearch.xml")) {
+    fs.appendFileSync(headersPath, "\n/opensearch.xml\n  Content-Type: application/opensearchdescription+xml; charset=utf-8\n");
   }
 }
 
@@ -104,6 +144,8 @@ const llms = [
   `- PDF tool finder: ${siteUrl("pdf-tool-finder")}`,
   `- Guides index: ${siteUrl("guides")}`,
   `- Sitemap: ${fileUrl("sitemap.xml")}`,
+  `- Web app manifest: ${fileUrl("site.webmanifest")}`,
+  `- OpenSearch description: ${fileUrl("opensearch.xml")}`,
   `- Machine-readable tool list: ${fileUrl("tools.json")}`,
   `- Discovery index: ${fileUrl("discovery.json")}`,
   "",
@@ -130,6 +172,8 @@ const discoveryIndex = {
   url: siteUrl(""),
   generatedAt: new Date().toISOString(),
   positioning: "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
+  manifest: fileUrl("site.webmanifest"),
+  opensearch: fileUrl("opensearch.xml"),
   highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   constraints: [
     "No account required.",
