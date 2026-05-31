@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-05-31T21:39:54.606Z
+Last generated: 2026-05-31T21:53:47.439Z
 
 ## Current Automated Status
 
@@ -30,7 +30,8 @@ Last generated: 2026-05-31T21:39:54.606Z
 
 ## External Discovery Gate
 
-- GitHub repo has 16 topic(s) and homepage https://printable-tools-lab.pages.dev/.
+- GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.
+- GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.
 - IndexNow key file is reachable from the site root.
 
 ## Monetization Gate

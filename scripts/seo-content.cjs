@@ -7,6 +7,19 @@ const SITE_SUMMARY = {
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
 
+const HIGH_INTENT_TOOL_PATHS = [
+  "tools/image-to-pdf",
+  "tools/multi-image-pdf",
+  "tools/text-to-pdf",
+  "tools/invoice-generator",
+  "tools/receipt-generator",
+  "tools/timesheet-generator",
+  "tools/resume-builder",
+  "tools/certificate-generator",
+  "tools/todo-list",
+  "tools/graph-paper",
+];
+
 const tools = [
   {
     path: "tools/name-tracing",
@@ -1080,4 +1093,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, SITE_SUMMARY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS };

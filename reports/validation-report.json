@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-05-31T21:39:54.606Z",
+  "generatedAt": "2026-05-31T21:53:47.439Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 26,
     "guideCount": 52,
     "indexableRoutes": 86,
     "sitemapLocCount": 86,
-    "generatedToolInventoryAt": "2026-05-31T21:38:41.863Z",
+    "generatedToolInventoryAt": "2026-05-31T21:50:27.926Z",
     "discoveryAssets": {
       "sitemap": true,
       "robots": true,
@@ -29,7 +29,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 10283,
+        "bytes": 10215,
         "json": null
       },
       "/tools/": {
@@ -79,7 +79,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-05-31T21:08:51.803Z",
+          "generatedAt": "2026-05-31T21:38:41.863Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -510,7 +510,7 @@
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-05-31T21:08:51.804Z",
+          "generatedAt": "2026-05-31T21:38:41.864Z",
           "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
           "highIntentEntryPoints": [
             "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
@@ -832,7 +832,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-05-31T21:12:49.866Z",
+          "lastSubmitted": "2026-05-31T21:45:09.350Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -879,7 +879,7 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Free no-signup browser PDF tools for image conversion, text-to-PDF, invoices, receipts, timesheets, resumes, certificates, calendars, worksheets, and checklists.",
+      "description": "Free no-signup browser PDF tools for image conversion, text-to-PDF, invoices, receipts, timesheets, resumes, certificates, graph paper, and checklists.",
       "topics": [
         "adsense-ready",
         "certificate-generator",
@@ -887,17 +887,26 @@
         "cloudflare-pages",
         "document-tools",
         "education-tools",
+        "free-tools",
         "image-to-pdf",
         "invoice-generator",
+        "job-search-tools",
         "no-signup",
         "pdf-generator",
+        "pdf-tools",
         "printable",
         "productivity-tools",
         "receipt-generator",
         "resume-builder",
+        "small-business-tools",
         "text-to-pdf",
         "timesheet"
       ],
+      "discoveryRelease": {
+        "tag": "free-pdf-tools",
+        "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
+        "name": "Free PDF Tools Without Signup"
+      },
       "error": ""
     },
     "indexNow": {
@@ -935,7 +944,8 @@
         "2 inspected sample URL(s) are still unknown to Google."
       ],
       "externalDiscovery": [
-        "GitHub repo has 16 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "IndexNow key file is reachable from the site root."
       ]
     }

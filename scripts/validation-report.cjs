@@ -153,7 +153,8 @@ function readDiscoveryState() {
   };
   state.externalDiscoveryReady = Boolean(state.github.homepage)
     && state.github.topics.length >= 6
-    && state.indexNow.keyFileReachable;
+    && state.indexNow.keyFileReachable
+    && Boolean(state.github.discoveryRelease?.url);
   return state;
 }
 
@@ -175,12 +176,18 @@ function readGithubState() {
   try {
     const response = fetchSyncJson(apiUrl, { headers: { "User-Agent": "PrintableToolsLab-Ops" } });
     if (!response.ok) return { ...fallback, error: `GitHub API ${response.status}` };
+    const release = fetchSyncJson(`${apiUrl}/releases/tags/free-pdf-tools`, { headers: { "User-Agent": "PrintableToolsLab-Ops" } });
     return {
       available: true,
       repoUrl,
       homepage: response.json.homepage || "",
       description: response.json.description || "",
       topics: Array.isArray(response.json.topics) ? response.json.topics : [],
+      discoveryRelease: release.ok ? {
+        tag: release.json.tag_name || "",
+        url: release.json.html_url || "",
+        name: release.json.name || "",
+      } : null,
       error: "",
     };
   } catch (error) {
@@ -313,6 +320,7 @@ function summarizeDiscoveryReasons(discovery) {
   const reasons = [];
   if (discovery.github.available) {
     reasons.push(`GitHub repo has ${discovery.github.topics.length} topic(s) and homepage ${discovery.github.homepage || "missing"}.`);
+    if (discovery.github.discoveryRelease?.url) reasons.push(`GitHub discovery release is live: ${discovery.github.discoveryRelease.url}.`);
   } else {
     reasons.push(`GitHub discovery metadata unavailable: ${discovery.github.error || "unknown error"}.`);
   }
@@ -327,6 +335,7 @@ function buildNextActions(gates, local, live, searchConsole, discovery) {
   const actions = [];
   if (!gates.productReady) actions.push("Fix product readiness failures before adding more tools.");
   if (!gates.searchVisible) actions.push("Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.");
+  if (!discovery.github.discoveryRelease?.url) actions.push("Create or refresh the GitHub discovery release with high-intent tool links.");
   if (!discovery.indexNow.singleUrlAccepted) actions.push("Fix IndexNow key verification or keep it documented as a non-Google fallback.");
   if (!local.ads.publisherConfigured) actions.push("When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.");
   if (local.ads.publisherConfigured && !local.ads.enabled && gates.searchVisible) actions.push("Apply/continue AdSense review, then enable ads only after approval and placement verification.");

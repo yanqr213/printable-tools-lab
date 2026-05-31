@@ -6,6 +6,20 @@ Live site: https://printable-tools-lab.pages.dev/
 
 PrintableTools Lab is a no-signup utility site for practical PDFs: image-to-PDF conversion, multi-image PDFs, text-to-PDF, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, cover letters, resignation letters, certificates, monthly calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
 
+## Free PDF tool directory
+
+- [Free PDF tools without signup](https://printable-tools-lab.pages.dev/free-pdf-tools/)
+- [Image to PDF Converter](https://printable-tools-lab.pages.dev/tools/image-to-pdf/)
+- [Multiple Images to PDF Converter](https://printable-tools-lab.pages.dev/tools/multi-image-pdf/)
+- [Text to PDF Converter](https://printable-tools-lab.pages.dev/tools/text-to-pdf/)
+- [Invoice Generator](https://printable-tools-lab.pages.dev/tools/invoice-generator/)
+- [Receipt Generator](https://printable-tools-lab.pages.dev/tools/receipt-generator/)
+- [Timesheet Generator](https://printable-tools-lab.pages.dev/tools/timesheet-generator/)
+- [Resume Builder PDF](https://printable-tools-lab.pages.dev/tools/resume-builder/)
+- [Certificate Generator](https://printable-tools-lab.pages.dev/tools/certificate-generator/)
+- [To Do List Generator](https://printable-tools-lab.pages.dev/tools/todo-list/)
+- [Graph Paper Generator](https://printable-tools-lab.pages.dev/tools/graph-paper/)
+
 ## What is included
 
 - Static website with optional Cloudflare Pages Function for the AI idea helper.

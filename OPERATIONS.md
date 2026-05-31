@@ -319,6 +319,7 @@ Completed:
 
 - `2026-05-31`: GitHub repo description, homepage, and topics updated through the GitHub API.
 - `2026-05-31`: AdSense config automation added; live `/ads.txt` returns a no-sellers placeholder while ads remain disabled.
+- `2026-06-01`: GitHub discovery release created at `https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools` with high-intent tool links.
 
 Submit Google sitemap:
 

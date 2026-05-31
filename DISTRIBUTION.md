@@ -19,6 +19,20 @@ I built PrintableTools Lab, a free browser-based PDF tool site. It creates pract
 - Description: Create practical PDFs in the browser, including image conversions, multi-image PDFs, text-to-PDF documents, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, flashcards, and habit trackers.
 - Pricing: Free
 
+## High-intent links
+
+- Free PDF tools directory: https://printable-tools-lab.pages.dev/free-pdf-tools/
+- Image to PDF Converter: https://printable-tools-lab.pages.dev/tools/image-to-pdf/
+- Multiple Images to PDF Converter: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/
+- Text to PDF Converter: https://printable-tools-lab.pages.dev/tools/text-to-pdf/
+- Invoice Generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/
+- Receipt Generator: https://printable-tools-lab.pages.dev/tools/receipt-generator/
+- Timesheet Generator: https://printable-tools-lab.pages.dev/tools/timesheet-generator/
+- Resume Builder PDF: https://printable-tools-lab.pages.dev/tools/resume-builder/
+- Certificate Generator: https://printable-tools-lab.pages.dev/tools/certificate-generator/
+- To Do List Generator: https://printable-tools-lab.pages.dev/tools/todo-list/
+- Graph Paper Generator: https://printable-tools-lab.pages.dev/tools/graph-paper/
+
 ## Community-safe angles
 
 - For freelancers: free invoice, estimate, purchase order, receipt, bill of sale, and timesheet PDFs without account creation.

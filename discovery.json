@@ -1,19 +1,20 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-05-31T21:38:41.864Z",
+  "generatedAt": "2026-05-31T21:50:27.927Z",
   "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
   "highIntentEntryPoints": [
+    "https://printable-tools-lab.pages.dev/free-pdf-tools/",
     "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
     "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
     "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
-    "https://printable-tools-lab.pages.dev/free-pdf-tools/",
     "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
     "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
     "https://printable-tools-lab.pages.dev/tools/timesheet-generator/",
     "https://printable-tools-lab.pages.dev/tools/resume-builder/",
     "https://printable-tools-lab.pages.dev/tools/certificate-generator/",
-    "https://printable-tools-lab.pages.dev/tools/todo-list/"
+    "https://printable-tools-lab.pages.dev/tools/todo-list/",
+    "https://printable-tools-lab.pages.dev/tools/graph-paper/"
   ],
   "constraints": [
     "No account required.",

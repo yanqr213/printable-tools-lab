@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { routes, renderRoute, siteUrl, tools, guides, keywordClusters, SITE_SUMMARY } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, keywordClusters, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -129,18 +129,7 @@ const discoveryIndex = {
   url: siteUrl(""),
   generatedAt: new Date().toISOString(),
   positioning: "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
-  highIntentEntryPoints: [
-    siteUrl("tools/image-to-pdf"),
-    siteUrl("tools/multi-image-pdf"),
-    siteUrl("tools/text-to-pdf"),
-    siteUrl("free-pdf-tools"),
-    siteUrl("tools/invoice-generator"),
-    siteUrl("tools/receipt-generator"),
-    siteUrl("tools/timesheet-generator"),
-    siteUrl("tools/resume-builder"),
-    siteUrl("tools/certificate-generator"),
-    siteUrl("tools/todo-list"),
-  ],
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   constraints: [
     "No account required.",
     "No ad interaction gate.",
@@ -176,6 +165,14 @@ const distribution = [
   "- Tagline: Free no-signup printable PDF generators",
   "- Description: Create practical PDFs in the browser, including image conversions, multi-image PDFs, text-to-PDF documents, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, flashcards, and habit trackers.",
   "- Pricing: Free",
+  "",
+  "## High-intent links",
+  "",
+  `- Free PDF tools directory: ${siteUrl("free-pdf-tools")}`,
+  ...HIGH_INTENT_TOOL_PATHS.map((toolPath) => {
+    const tool = tools.find((item) => item.path === toolPath);
+    return tool ? `- ${tool.title}: ${siteUrl(tool.path)}` : "";
+  }).filter(Boolean),
   "",
   "## Community-safe angles",
   "",
