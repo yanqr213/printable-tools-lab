@@ -119,6 +119,18 @@ npm.cmd run search-console -- inspect
 
 The script can submit and list sitemaps through the Search Console API. It can inspect URL indexing status, but Google does not provide a general public API to request indexing for ordinary pages.
 
+Current service account email from the provided key:
+
+```text
+codex-258@canvas-sum-498016-g5.iam.gserviceaccount.com
+```
+
+If the API returns `SERVICE_DISABLED`, enable the Search Console API in the same Google Cloud project that owns the service account:
+
+```text
+https://console.developers.google.com/apis/api/searchconsole.googleapis.com/overview?project=967823041457
+```
+
 ## IndexNow submission
 
 IndexNow can notify participating search engines without a Google account.
