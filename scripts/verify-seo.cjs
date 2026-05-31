@@ -33,6 +33,13 @@ else {
   if (content !== "google-site-verification: google1b771d6159b52de7.html") failures.push("Unexpected Google verification file content.");
 }
 
+const extensionlessVerificationFile = path.join(root, "google1b771d6159b52de7");
+if (!fs.existsSync(extensionlessVerificationFile)) failures.push("Missing extensionless Google verification fallback file.");
+else {
+  const content = fs.readFileSync(extensionlessVerificationFile, "utf8").trim();
+  if (content !== "google-site-verification: google1b771d6159b52de7.html") failures.push("Unexpected extensionless Google verification file content.");
+}
+
 if (failures.length) {
   console.error(failures.join("\n"));
   process.exit(1);
