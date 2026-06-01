@@ -105,31 +105,36 @@ async function checkDirectory(directory) {
 }
 
 async function checkJsOrg(directory) {
-  const [page, api] = await Promise.all([
+  const [page, api, checks] = await Promise.all([
     fetchText(directory.url),
     fetchJson("https://api.github.com/repos/js-org/js.org/pulls/11512"),
+    fetchJson("https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs"),
   ]);
-  const comments = await fetchJson("https://api.github.com/repos/js-org/js.org/issues/11512/comments");
-  const commentText = Array.isArray(comments.json)
-    ? comments.json.map((comment) => comment.body || "").join("\n")
-    : "";
   const body = String(api.json?.body || "");
   const templateOk = body.includes("- [x] There is reasonable content")
     && body.includes("- [x] I have read and accepted")
     && body.includes("https://printable-tools-lab.pages.dev/")
     && body.includes("relevant to JavaScript developers");
+  const latestChecks = latestCheckRuns(checks.json?.check_runs || []);
+  const checksOk = latestChecks.length > 0 && latestChecks.every((check) => check.conclusion === "success");
   let status = "pending";
   if (api.json?.merged || /merged/i.test(page.text || "")) status = "listed";
   else if (api.json?.state === "closed") status = "error";
-  else if (!templateOk && /validation failed/i.test(commentText)) status = "error";
+  else if (!templateOk || latestChecks.some((check) => check.conclusion === "failure")) status = "error";
   return {
     ...directory,
     status,
     evidenceUrl: directory.url,
     templateOk,
+    checksOk,
+    checks: latestChecks,
     prState: api.json?.state || "unknown",
     mergeable: api.json?.mergeable ?? null,
-    checked: [page, api, { url: "https://api.github.com/repos/js-org/js.org/issues/11512/comments", ok: Boolean(comments.ok), status: comments.status, bytes: JSON.stringify(comments.json || "").length, matched: templateOk }],
+    checked: [
+      slimCheck(page),
+      slimCheck(api, { matched: templateOk }),
+      slimCheck(checks, { matched: checksOk }),
+    ],
   };
 }
 
@@ -200,6 +205,32 @@ async function fetchJson(url) {
 function hasExpectedText(text, expected) {
   const haystack = String(text).toLowerCase();
   return expected.some((needle) => haystack.includes(String(needle).toLowerCase()));
+}
+
+function latestCheckRuns(runs) {
+  const byName = new Map();
+  for (const run of runs) {
+    const current = byName.get(run.name);
+    if (!current || Date.parse(run.started_at || "") > Date.parse(current.started_at || "")) byName.set(run.name, run);
+  }
+  return Array.from(byName.values()).map((run) => ({
+    name: run.name,
+    status: run.status,
+    conclusion: run.conclusion,
+    startedAt: run.started_at,
+    url: run.html_url,
+  }));
+}
+
+function slimCheck(result, overrides = {}) {
+  return {
+    url: result.url,
+    ok: Boolean(result.ok),
+    status: result.status,
+    bytes: result.bytes,
+    matched: Boolean(overrides.matched ?? result.matched),
+    error: result.error || undefined,
+  };
 }
 
 function printReport(report) {
