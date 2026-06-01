@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-01T16:12:56.089Z",
+  "generatedAt": "2026-06-01T16:45:28.801Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
     "customDomainConfigured": false,
-    "toolCount": 63,
-    "guideCount": 92,
-    "landingPageCount": 51,
-    "indexableRoutes": 216,
-    "sitemapLocCount": 216,
-    "generatedToolInventoryAt": "2026-06-01T16:04:43.985Z",
+    "toolCount": 64,
+    "guideCount": 93,
+    "landingPageCount": 52,
+    "indexableRoutes": 219,
+    "sitemapLocCount": 219,
+    "generatedToolInventoryAt": "2026-06-01T16:36:55.722Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -36,21 +36,21 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 23908,
+        "bytes": 24172,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 37658,
+        "bytes": 38155,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 26254,
+        "bytes": 26607,
         "json": null
       },
       "/robots.txt": {
@@ -73,7 +73,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 27721,
+        "bytes": 28105,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, passport photo sizing, transparent signature PNG generation, stati"
       },
@@ -81,19 +81,19 @@
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 52527,
+        "bytes": 53474,
         "json": null
       },
       "/tools.json": {
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 44889,
+        "bytes": 45492,
         "json": {
           "name": "PrintableTools Lab",
-          "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+          "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T16:04:43.985Z",
+          "generatedAt": "2026-06-01T16:36:55.722Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -279,6 +279,12 @@
               "title": "PDF to Text Converter",
               "url": "https://printable-tools-lab.pages.dev/tools/pdf-to-text/",
               "description": "Extract selectable text from PDF pages locally in your browser without uploading the document.",
+              "category": "Everyday file utilities"
+            },
+            {
+              "title": "PDF to Word Converter",
+              "url": "https://printable-tools-lab.pages.dev/tools/pdf-to-word/",
+              "description": "Convert selectable PDF text into a simple DOCX document locally in your browser without uploading the PDF.",
               "category": "Everyday file utilities"
             },
             {
@@ -791,6 +797,11 @@
               "description": "Turn selectable PDF text into a downloadable TXT file locally in your browser."
             },
             {
+              "title": "PDF to Word without uploading",
+              "url": "https://printable-tools-lab.pages.dev/guides/pdf-to-word-without-uploading/",
+              "description": "Convert selectable PDF text into a simple DOCX document locally in your browser."
+            },
+            {
               "title": "Signature PNG generator",
               "url": "https://printable-tools-lab.pages.dev/guides/signature-png-generator/",
               "description": "Draw or type a signature and download a transparent PNG locally without signup or upload."
@@ -942,11 +953,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 22886,
+        "bytes": 23298,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T16:04:43.985Z",
+          "generatedAt": "2026-06-01T16:36:55.722Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -994,6 +1005,7 @@
             "https://printable-tools-lab.pages.dev/sign-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
             "https://printable-tools-lab.pages.dev/ats-resume-checker-free/",
+            "https://printable-tools-lab.pages.dev/pdf-to-word-no-upload/",
             "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
             "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
             "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
@@ -1011,6 +1023,7 @@
             "https://printable-tools-lab.pages.dev/tools/compress-pdf/",
             "https://printable-tools-lab.pages.dev/tools/pdf-to-images/",
             "https://printable-tools-lab.pages.dev/tools/pdf-to-text/",
+            "https://printable-tools-lab.pages.dev/tools/pdf-to-word/",
             "https://printable-tools-lab.pages.dev/tools/compress-image/",
             "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/",
             "https://printable-tools-lab.pages.dev/tools/resize-image/",
@@ -1290,6 +1303,12 @@
               "tool": "https://printable-tools-lab.pages.dev/tools/ats-resume-checker/"
             },
             {
+              "title": "PDF to Word Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/pdf-to-word-no-upload/",
+              "intent": "PDF to Word, PDF to DOCX, no upload PDF converter",
+              "tool": "https://printable-tools-lab.pages.dev/tools/pdf-to-word/"
+            },
+            {
               "title": "Free Receipt Generator Without Signup",
               "url": "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
               "intent": "receipt PDF now, no account, quick proof of payment",
@@ -1379,7 +1398,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/manifest+json; charset=utf-8",
-        "bytes": 3552,
+        "bytes": 3706,
         "json": null
       },
       "/opensearch.xml": {
@@ -1393,7 +1412,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 11011,
+        "bytes": 11137,
         "json": {
           "ok": true,
           "today": "2026-06-01",
@@ -1627,6 +1646,15 @@
             },
             {
               "tool": "pdf-to-text",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "pdf-to-word",
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
@@ -2304,7 +2332,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T16:12:01.188Z",
+          "lastSubmitted": "2026-06-01T16:44:43.566Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -2371,7 +2399,7 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Free no-signup browser PDF, image, QR, and text-data tools for ATS resume checks, PDF compression, passport photos, image compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
+      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF-to-Word, ATS resume checks, PDF compression, passport photos, image compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
       "topics": [
         "compress-pdf",
         "free-tools",
@@ -2387,7 +2415,7 @@
         "passport-photo",
         "pdf-generator",
         "pdf-to-jpg",
-        "pdf-to-text",
+        "pdf-to-word",
         "pdf-tools",
         "qr-code",
         "resume-checker",
@@ -2405,8 +2433,8 @@
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 52,
-      "landingPagesLinked": 51,
+      "sitemapUrlCount": 53,
+      "landingPagesLinked": 52,
       "error": ""
     },
     "indexNow": {
@@ -2432,7 +2460,7 @@
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "63 tools, 92 guides, 51 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "64 tools, 93 guides, 52 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
@@ -2450,8 +2478,8 @@
       "externalDiscovery": [
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
-        "GitHub Pages discovery directory is live with 51 landing page link(s).",
-        "GitHub Pages discovery sitemap has 52 URL(s).",
+        "GitHub Pages discovery directory is live with 52 landing page link(s).",
+        "GitHub Pages discovery sitemap has 53 URL(s).",
         "IndexNow key file is reachable from the site root."
       ]
     }
