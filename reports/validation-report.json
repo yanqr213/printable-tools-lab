@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T21:00:11.497Z",
+  "generatedAt": "2026-06-01T21:08:11.748Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 61,
     "indexableRoutes": 233,
     "sitemapLocCount": 233,
-    "generatedToolInventoryAt": "2026-06-01T20:13:25.534Z",
+    "generatedToolInventoryAt": "2026-06-01T21:05:13.726Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -51,7 +51,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 12103,
+        "bytes": 15654,
         "json": null
       },
       "/sitemap.xml": {
@@ -81,7 +81,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 30243,
+        "bytes": 31762,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for"
       },
@@ -101,7 +101,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T20:13:25.534Z",
+          "generatedAt": "2026-06-01T21:05:13.726Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -983,11 +983,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 27246,
+        "bytes": 32612,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T20:13:25.534Z",
+          "generatedAt": "2026-06-01T21:05:13.726Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1113,7 +1113,105 @@
           "distributionAssets": {
             "shareKit": "https://printable-tools-lab.pages.dev/share-kit/",
             "shareKitJson": "https://printable-tools-lab.pages.dev/share-kit.json",
-            "distributionPack": "https://printable-tools-lab.pages.dev/DISTRIBUTION.md"
+            "distributionPack": "https://printable-tools-lab.pages.dev/DISTRIBUTION.md",
+            "campaignVideos": [
+              {
+                "id": "pdf-under-1mb",
+                "title": "Compress PDF to 1MB",
+                "downloadUrl": "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-pdf-under-1mb.mp4",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-under-1mb",
+                "captionEn": "PDF upload blocked by a 1MB limit? This free no-upload tool tries to compress scans and image-heavy PDFs in your browser.",
+                "captionZh": "表格要求 PDF 小于 1MB？这个免费工具在浏览器里压缩，不用上传文件，适合扫描件和图片型 PDF，下载前记得检查效果。",
+                "hashtags": [
+                  "#PDFTools",
+                  "#FileUpload",
+                  "#NoSignup",
+                  "#JobSearch",
+                  "#StudentTools"
+                ],
+                "sizeBytes": 171841
+              },
+              {
+                "id": "pdf-under-500kb",
+                "title": "Compress PDF to 500KB",
+                "downloadUrl": "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-pdf-under-500kb.mp4",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-under-500kb",
+                "captionEn": "When a form asks for a tiny 500KB PDF, use a no-upload compressor and check the result before submitting.",
+                "captionZh": "遇到 500KB 的 PDF 上传限制，可以先用这个无上传压缩工具试一下。压得越小画质可能越差，提交前一定检查。",
+                "hashtags": [
+                  "#PDFCompressor",
+                  "#UploadLimit",
+                  "#NoUpload",
+                  "#FormHelp",
+                  "#FreeTools"
+                ],
+                "sizeBytes": 168466
+              },
+              {
+                "id": "image-under-100kb",
+                "title": "Compress Image to 100KB",
+                "downloadUrl": "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-image-under-100kb.mp4",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/compress-image-to-100kb?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=image-under-100kb",
+                "captionEn": "Photo upload too large? Compress an image toward 100KB locally in the browser, without creating an account.",
+                "captionZh": "照片超过 100KB 被表单拒绝？这个工具可以在浏览器本地压缩，不需要注册账号，也不用上传原图。",
+                "hashtags": [
+                  "#ImageCompressor",
+                  "#100KB",
+                  "#ProfilePhoto",
+                  "#NoSignup",
+                  "#BrowserTools"
+                ],
+                "sizeBytes": 170417
+              },
+              {
+                "id": "image-under-50kb",
+                "title": "Compress Image to 50KB",
+                "downloadUrl": "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-image-under-50kb.mp4",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/compress-image-to-50kb?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=image-under-50kb",
+                "captionEn": "Need a very small 50KB image? Try browser-local compression and review the preview before uploading it anywhere.",
+                "captionZh": "如果系统要求图片小于 50KB，可以先用这个本地压缩工具试一下。50KB 很小，预览确认后再提交。",
+                "hashtags": [
+                  "#50KB",
+                  "#ImageTools",
+                  "#UploadFix",
+                  "#NoUpload",
+                  "#FreeUtility"
+                ],
+                "sizeBytes": 168237
+              },
+              {
+                "id": "pdf-to-jpg-no-upload",
+                "title": "PDF to JPG Without Upload",
+                "downloadUrl": "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-pdf-to-jpg-no-upload.mp4",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-to-jpg-no-upload",
+                "captionEn": "If a form rejects PDF but accepts JPG, convert PDF pages to images locally in the browser.",
+                "captionZh": "有些表单不要 PDF、只收 JPG。这个工具可以在浏览器里把 PDF 页面转成图片，不用上传文件。",
+                "hashtags": [
+                  "#PDFToJPG",
+                  "#NoUpload",
+                  "#FileConverter",
+                  "#FormHelp",
+                  "#FreeTools"
+                ],
+                "sizeBytes": 179406
+              },
+              {
+                "id": "background-removal",
+                "title": "Remove Background Without Upload",
+                "downloadUrl": "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-background-removal.mp4",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/remove-background-no-upload?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=background-removal",
+                "captionEn": "For simple white or solid backgrounds, remove the background locally and export a transparent PNG.",
+                "captionZh": "白底商品图、Logo 或签名扫描件，可以试试这个本地去背景工具。它适合简单背景，不是人像精修工具。",
+                "hashtags": [
+                  "#TransparentPNG",
+                  "#BackgroundRemover",
+                  "#ProductPhoto",
+                  "#NoUpload",
+                  "#DesignTools"
+                ],
+                "sizeBytes": 177067
+              }
+            ]
           },
           "landingPages": [
             {
@@ -1500,10 +1598,10 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 5907,
+        "bytes": 11074,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-01T20:13:25.534Z",
+          "generatedAt": "2026-06-01T21:05:13.726Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -1592,6 +1690,104 @@
               "cta": "List as a free productivity and file utility tool.",
               "linkPath": "submit-directory",
               "url": "https://printable-tools-lab.pages.dev/submit-directory?utm_source=directory&utm_medium=organic"
+            }
+          ],
+          "videoAssets": [
+            {
+              "id": "pdf-under-1mb",
+              "title": "Compress PDF to 1MB",
+              "downloadUrl": "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-pdf-under-1mb.mp4",
+              "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-under-1mb",
+              "captionEn": "PDF upload blocked by a 1MB limit? This free no-upload tool tries to compress scans and image-heavy PDFs in your browser.",
+              "captionZh": "表格要求 PDF 小于 1MB？这个免费工具在浏览器里压缩，不用上传文件，适合扫描件和图片型 PDF，下载前记得检查效果。",
+              "hashtags": [
+                "#PDFTools",
+                "#FileUpload",
+                "#NoSignup",
+                "#JobSearch",
+                "#StudentTools"
+              ],
+              "sizeBytes": 171841
+            },
+            {
+              "id": "pdf-under-500kb",
+              "title": "Compress PDF to 500KB",
+              "downloadUrl": "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-pdf-under-500kb.mp4",
+              "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-under-500kb",
+              "captionEn": "When a form asks for a tiny 500KB PDF, use a no-upload compressor and check the result before submitting.",
+              "captionZh": "遇到 500KB 的 PDF 上传限制，可以先用这个无上传压缩工具试一下。压得越小画质可能越差，提交前一定检查。",
+              "hashtags": [
+                "#PDFCompressor",
+                "#UploadLimit",
+                "#NoUpload",
+                "#FormHelp",
+                "#FreeTools"
+              ],
+              "sizeBytes": 168466
+            },
+            {
+              "id": "image-under-100kb",
+              "title": "Compress Image to 100KB",
+              "downloadUrl": "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-image-under-100kb.mp4",
+              "trackedUrl": "https://printable-tools-lab.pages.dev/compress-image-to-100kb?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=image-under-100kb",
+              "captionEn": "Photo upload too large? Compress an image toward 100KB locally in the browser, without creating an account.",
+              "captionZh": "照片超过 100KB 被表单拒绝？这个工具可以在浏览器本地压缩，不需要注册账号，也不用上传原图。",
+              "hashtags": [
+                "#ImageCompressor",
+                "#100KB",
+                "#ProfilePhoto",
+                "#NoSignup",
+                "#BrowserTools"
+              ],
+              "sizeBytes": 170417
+            },
+            {
+              "id": "image-under-50kb",
+              "title": "Compress Image to 50KB",
+              "downloadUrl": "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-image-under-50kb.mp4",
+              "trackedUrl": "https://printable-tools-lab.pages.dev/compress-image-to-50kb?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=image-under-50kb",
+              "captionEn": "Need a very small 50KB image? Try browser-local compression and review the preview before uploading it anywhere.",
+              "captionZh": "如果系统要求图片小于 50KB，可以先用这个本地压缩工具试一下。50KB 很小，预览确认后再提交。",
+              "hashtags": [
+                "#50KB",
+                "#ImageTools",
+                "#UploadFix",
+                "#NoUpload",
+                "#FreeUtility"
+              ],
+              "sizeBytes": 168237
+            },
+            {
+              "id": "pdf-to-jpg-no-upload",
+              "title": "PDF to JPG Without Upload",
+              "downloadUrl": "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-pdf-to-jpg-no-upload.mp4",
+              "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-to-jpg-no-upload",
+              "captionEn": "If a form rejects PDF but accepts JPG, convert PDF pages to images locally in the browser.",
+              "captionZh": "有些表单不要 PDF、只收 JPG。这个工具可以在浏览器里把 PDF 页面转成图片，不用上传文件。",
+              "hashtags": [
+                "#PDFToJPG",
+                "#NoUpload",
+                "#FileConverter",
+                "#FormHelp",
+                "#FreeTools"
+              ],
+              "sizeBytes": 179406
+            },
+            {
+              "id": "background-removal",
+              "title": "Remove Background Without Upload",
+              "downloadUrl": "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-background-removal.mp4",
+              "trackedUrl": "https://printable-tools-lab.pages.dev/remove-background-no-upload?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=background-removal",
+              "captionEn": "For simple white or solid backgrounds, remove the background locally and export a transparent PNG.",
+              "captionZh": "白底商品图、Logo 或签名扫描件，可以试试这个本地去背景工具。它适合简单背景，不是人像精修工具。",
+              "hashtags": [
+                "#TransparentPNG",
+                "#BackgroundRemover",
+                "#ProductPhoto",
+                "#NoUpload",
+                "#DesignTools"
+              ],
+              "sizeBytes": 177067
             }
           ],
           "rules": [
@@ -2559,7 +2755,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T20:18:11.014Z",
+          "lastSubmitted": "2026-06-01T21:07:38.848Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
