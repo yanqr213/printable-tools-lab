@@ -72,6 +72,7 @@ I built PrintableTools Lab, a free browser-based PDF tool site. It creates pract
 - DeepLaunch free listing after signing in; their public submit page says free submissions are reviewed within 48 hours
 - BootstrapArena normal free startup listing after sign-in flow is available
 - Zearches free URL directory for one homepage submission only
+- ListAi.cc free no-account AI tool directory submission; submitted on 2026-06-01 and awaiting review
 - Reddit communities only when rules allow self-promotion and the tool directly solves a request
 - Startup/tool directories with free submissions
 - GitHub repository topics and README link

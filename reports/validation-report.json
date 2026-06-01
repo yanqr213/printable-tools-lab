@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T01:12:52.368Z",
+  "generatedAt": "2026-06-01T01:24:09.059Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 32,
@@ -1106,11 +1106,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         }
       ]

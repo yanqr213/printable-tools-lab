@@ -5,6 +5,7 @@ node_modules/
 *.tmp
 dist/
 .wrangler/
+.playwright-cli/
 premium-pack/printable-tools-starter-pack/
 secrets/
 *.private.json

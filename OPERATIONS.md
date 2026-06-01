@@ -322,6 +322,7 @@ Current Search Console checkpoint:
 - `2026-06-01`: added `feed.xml`, sitemap `lastmod`, and `ItemList` JSON-LD on directory/finder pages. Google sitemap documentation supports `lastmod` when accurate, and feeds are useful discovery/monitoring assets, but neither replaces external links or real usage.
 - `2026-06-01`: added 8 high-intent no-signup/no-upload landing pages for invoice, receipt, weekly timesheet, resume, certificate, JPG-to-PDF, multi-image PDF, and text-to-PDF searches. Clean free exports are now the default acquisition promise.
 - `2026-06-01`: expanded the same site to 32 tools, 64 guides, and 14 high-intent landing pages by adding local-business print assets: business cards, address labels, barcode labels, price tags, flyers, and coupons. This keeps domain authority/data in one property while testing more commercial search intent.
+- `2026-06-01`: GitHub Pages discovery directory was verified as its own Search Console URL-prefix property and its sitemap was submitted through the Search Console API. This creates a second crawlable discovery surface that still points back to the same main site.
 - Action: keep site stable, improve useful content/navigation, thicken tool pages, and avoid repeated low-value resubmission loops.
 
 ## External Discovery Queue
@@ -336,6 +337,7 @@ Manual posts should be useful, honest, and placed only where self-promotion is a
 Current directory queue:
 
 - Zearches: completed one free homepage submission to `Resources, Tools & Directories`; result was `status=ok`.
+- ListAi.cc: submitted `PrintableTools Lab` through the free no-account form under `Productivity`; the page returned `Submission Received` and says approved tools are published within 24-48 hours. Do not resubmit unless the listing is rejected or material product positioning changes.
 - DeepLaunch: candidate for a free tool listing. The public submit page says free submissions are reviewed within 48 hours, but the actual flow redirects to sign-in after image upload, so it requires an authenticated Google/GitHub session.
 - BootstrapArena: candidate for a normal free startup listing. The public page exposes a `Normal Free` option, but browser validation did not reveal a no-login form.
 - Product Hunt: defer until indexing or a visible usage milestone; it is a launch surface, not an indexing shortcut.
@@ -349,6 +351,7 @@ Completed:
 - `2026-06-01`: GitHub Pages discovery directory added at `https://yanqr213.github.io/printable-tools-lab/` as a free external entry point linking to high-intent tools.
 - `2026-06-01`: RSS feed exposed at `https://printable-tools-lab.pages.dev/feed.xml` and linked from `llms.txt`, `discovery.json`, GitHub release notes, and the GitHub Pages discovery directory.
 - `2026-06-01`: Zearches free directory submission completed for `https://printable-tools-lab.pages.dev/` in the resources/tools directory.
+- `2026-06-01`: ListAi.cc free submission completed for `https://printable-tools-lab.pages.dev/`; awaiting 24-48 hour human review.
 
 Submit Google sitemap:
 
