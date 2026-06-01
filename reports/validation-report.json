@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-01T16:45:28.801Z",
+  "generatedAt": "2026-06-01T17:20:24.806Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
     "customDomainConfigured": false,
-    "toolCount": 64,
-    "guideCount": 93,
-    "landingPageCount": 52,
-    "indexableRoutes": 219,
-    "sitemapLocCount": 219,
-    "generatedToolInventoryAt": "2026-06-01T16:36:55.722Z",
+    "toolCount": 65,
+    "guideCount": 94,
+    "landingPageCount": 53,
+    "indexableRoutes": 222,
+    "sitemapLocCount": 222,
+    "generatedToolInventoryAt": "2026-06-01T17:05:57.791Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -36,21 +36,21 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 24172,
+        "bytes": 24457,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 38155,
+        "bytes": 38676,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 26607,
+        "bytes": 26978,
         "json": null
       },
       "/robots.txt": {
@@ -73,27 +73,27 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 28105,
+        "bytes": 28576,
         "json": null,
-        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, passport photo sizing, transparent signature PNG generation, stati"
+        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, passport photo si"
       },
       "/feed.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 53474,
+        "bytes": 54477,
         "json": null
       },
       "/tools.json": {
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 45492,
+        "bytes": 46181,
         "json": {
           "name": "PrintableTools Lab",
-          "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+          "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T16:36:55.722Z",
+          "generatedAt": "2026-06-01T17:05:57.791Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -321,6 +321,12 @@
               "title": "Convert Image Format",
               "url": "https://printable-tools-lab.pages.dev/tools/convert-image/",
               "description": "Convert JPG, PNG, and WebP images locally in your browser without uploading the file.",
+              "category": "Everyday file utilities"
+            },
+            {
+              "title": "Remove Background Online",
+              "url": "https://printable-tools-lab.pages.dev/tools/remove-background/",
+              "description": "Remove a solid or near-solid image background locally and download a transparent PNG without uploading the file.",
               "category": "Everyday file utilities"
             },
             {
@@ -832,6 +838,11 @@
               "description": "Convert JPG, PNG, and WebP files locally when a website requires a different image format."
             },
             {
+              "title": "Remove background without uploading",
+              "url": "https://printable-tools-lab.pages.dev/guides/remove-background-without-uploading/",
+              "description": "Create a transparent PNG from a white, solid, or near-solid background image locally in your browser."
+            },
+            {
               "title": "Merge PDF without uploading",
               "url": "https://printable-tools-lab.pages.dev/guides/merge-pdf-without-uploading/",
               "description": "Combine several PDF files into one PDF locally in your browser."
@@ -953,11 +964,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 23298,
+        "bytes": 23762,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T16:36:55.722Z",
+          "generatedAt": "2026-06-01T17:05:57.791Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -978,6 +989,7 @@
             "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
             "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
             "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
+            "https://printable-tools-lab.pages.dev/remove-background-no-upload/",
             "https://printable-tools-lab.pages.dev/crop-image-no-upload/",
             "https://printable-tools-lab.pages.dev/rotate-image-no-upload/",
             "https://printable-tools-lab.pages.dev/watermark-image-no-upload/",
@@ -1028,6 +1040,7 @@
             "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/",
             "https://printable-tools-lab.pages.dev/tools/resize-image/",
             "https://printable-tools-lab.pages.dev/tools/convert-image/",
+            "https://printable-tools-lab.pages.dev/tools/remove-background/",
             "https://printable-tools-lab.pages.dev/tools/crop-image/",
             "https://printable-tools-lab.pages.dev/tools/rotate-image/",
             "https://printable-tools-lab.pages.dev/tools/watermark-image/",
@@ -1139,6 +1152,12 @@
               "url": "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
               "intent": "convert image format, JPG to PNG, PNG to WebP, no upload",
               "tool": "https://printable-tools-lab.pages.dev/tools/convert-image/"
+            },
+            {
+              "title": "Remove Background Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/remove-background-no-upload/",
+              "intent": "remove background, transparent PNG, white background remover, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/remove-background/"
             },
             {
               "title": "Crop Image Without Uploading",
@@ -1398,7 +1417,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/manifest+json; charset=utf-8",
-        "bytes": 3706,
+        "bytes": 3908,
         "json": null
       },
       "/opensearch.xml": {
@@ -1412,7 +1431,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 11137,
+        "bytes": 11269,
         "json": {
           "ok": true,
           "today": "2026-06-01",
@@ -1691,6 +1710,15 @@
             },
             {
               "tool": "convert-image",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "remove-background",
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
@@ -2319,11 +2347,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         }
       ]
@@ -2332,7 +2360,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T16:44:43.566Z",
+          "lastSubmitted": "2026-06-01T17:19:51.754Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -2399,8 +2427,9 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF-to-Word, ATS resume checks, PDF compression, passport photos, image compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
+      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF-to-Word, ATS resume checks, PDF compression, background removal, passport photos, image compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
       "topics": [
+        "background-remover",
         "compress-pdf",
         "free-tools",
         "image-compression",
@@ -2419,8 +2448,7 @@
         "pdf-tools",
         "qr-code",
         "resume-checker",
-        "signature-png",
-        "text-to-pdf"
+        "signature-png"
       ],
       "discoveryRelease": {
         "tag": "free-pdf-tools",
@@ -2433,8 +2461,8 @@
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 53,
-      "landingPagesLinked": 52,
+      "sitemapUrlCount": 54,
+      "landingPagesLinked": 53,
       "error": ""
     },
     "indexNow": {
@@ -2460,7 +2488,7 @@
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "64 tools, 93 guides, 52 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "65 tools, 94 guides, 53 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
@@ -2478,8 +2506,8 @@
       "externalDiscovery": [
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
-        "GitHub Pages discovery directory is live with 52 landing page link(s).",
-        "GitHub Pages discovery sitemap has 53 URL(s).",
+        "GitHub Pages discovery directory is live with 53 landing page link(s).",
+        "GitHub Pages discovery sitemap has 54 URL(s).",
         "IndexNow key file is reachable from the site root."
       ]
     }
