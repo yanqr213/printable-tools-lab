@@ -1,43 +1,36 @@
 # Validation Gates
 
-Last generated: 2026-06-01T12:59:28.965Z
+Last generated: 2026-06-01T13:23:53.848Z
 
 ## Current Automated Status
 
 - Product ready: yes.
-- Tools live in inventory: 58.
-- Guide pages live in inventory: 87.
-- High-intent landing pages: 46.
-- Indexable routes: 201.
+- Tools live in inventory: 59.
+- Guide pages live in inventory: 88.
+- High-intent landing pages: 47.
+- Indexable routes: 204.
 - Custom domain configured: no.
 - Live downloads: 1.
 - Live generations: 0.
 - Search impressions: 0.
 - Search clicks: 0.
-- External discovery ready: yes.
+- External discovery ready: no.
 - Ads enabled: no.
 - AdSense apply-ready: no.
 
 ## Product Gate
 
-- 58 tools, 87 guides, 46 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
+- 59 tools, 88 guides, 47 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
 
 ## Search Console Gate
 
-- Sitemap submitted: https://printable-tools-lab.pages.dev/sitemap.xml.
-- Sitemap pending: yes; warnings: 0; errors: 0.
-- GitHub Pages discovery sitemap submitted: https://yanqr213.github.io/printable-tools-lab/sitemap.xml.
-- GitHub Pages sitemap pending: yes; warnings: 0; errors: 0.
-- Main Search Console property verified: yes.
-- GitHub Pages discovery property verified: yes.
-- Sitemap status: pending=true, warnings=0, errors=0.
-- GitHub Pages discovery sitemap: pending=true, warnings=0, errors=0.
-- Search performance: 0 impressions, 0 clicks.
-- 2 inspected sample URL(s) are still unknown to Google.
+- Sitemap data unavailable in this run.
+- GitHub Pages discovery sitemap data unavailable in this run.
+- GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing.
 
 ## External Discovery Gate
 
-- GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.
+- GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.
 - GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.
 - GitHub Pages discovery directory is live with 46 landing page link(s).
 - GitHub Pages discovery sitemap has 47 URL(s).
@@ -47,6 +40,7 @@ Last generated: 2026-06-01T12:59:28.965Z
 
 - Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.
 - Real AdSense publisher ID is not configured, so ads remain disabled.
+- Search Console API data was unavailable during this run.
 - Search Console has no impressions/indexed sample yet, so applying now is premature.
 
 ## Validation Gates

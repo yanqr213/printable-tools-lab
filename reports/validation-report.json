@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-01T12:59:28.965Z",
+  "generatedAt": "2026-06-01T13:23:53.848Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
     "customDomainConfigured": false,
-    "toolCount": 58,
-    "guideCount": 87,
-    "landingPageCount": 46,
-    "indexableRoutes": 201,
-    "sitemapLocCount": 201,
-    "generatedToolInventoryAt": "2026-06-01T12:58:33.014Z",
+    "toolCount": 59,
+    "guideCount": 88,
+    "landingPageCount": 47,
+    "indexableRoutes": 204,
+    "sitemapLocCount": 204,
+    "generatedToolInventoryAt": "2026-06-01T13:18:46.685Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -36,21 +36,21 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 22529,
+        "bytes": 22895,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 35067,
+        "bytes": 35572,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 24471,
+        "bytes": 24844,
         "json": null
       },
       "/robots.txt": {
@@ -73,7 +73,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 25836,
+        "bytes": 26200,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, static QR code tools, and text-data converters for compressing images, compressing "
       },
@@ -81,19 +81,19 @@
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 48009,
+        "bytes": 48900,
         "json": null
       },
       "/tools.json": {
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 41875,
+        "bytes": 42460,
         "json": {
           "name": "PrintableTools Lab",
-          "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+          "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T12:46:16.175Z",
+          "generatedAt": "2026-06-01T13:18:46.685Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -261,6 +261,12 @@
               "title": "PDF to JPG Converter",
               "url": "https://printable-tools-lab.pages.dev/tools/pdf-to-images/",
               "description": "Convert PDF pages to JPG or PNG images locally in your browser without uploading the document.",
+              "category": "Everyday file utilities"
+            },
+            {
+              "title": "PDF to Text Converter",
+              "url": "https://printable-tools-lab.pages.dev/tools/pdf-to-text/",
+              "description": "Extract selectable text from PDF pages locally in your browser without uploading the document.",
               "category": "Everyday file utilities"
             },
             {
@@ -746,6 +752,11 @@
               "description": "Convert PDF pages to JPG or PNG images locally in your browser."
             },
             {
+              "title": "Extract text from PDF without uploading",
+              "url": "https://printable-tools-lab.pages.dev/guides/extract-text-from-pdf-without-uploading/",
+              "description": "Turn selectable PDF text into a downloadable TXT file locally in your browser."
+            },
+            {
               "title": "Compress image without uploading",
               "url": "https://printable-tools-lab.pages.dev/guides/compress-image-without-uploading/",
               "description": "Reduce JPG, PNG, or WebP file size in the browser before uploading elsewhere."
@@ -887,11 +898,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 20765,
+        "bytes": 21203,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T12:46:16.175Z",
+          "generatedAt": "2026-06-01T13:18:46.685Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -904,6 +915,7 @@
             "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/",
+            "https://printable-tools-lab.pages.dev/extract-text-from-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
             "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
             "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
@@ -949,6 +961,7 @@
             "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
             "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
             "https://printable-tools-lab.pages.dev/tools/pdf-to-images/",
+            "https://printable-tools-lab.pages.dev/tools/pdf-to-text/",
             "https://printable-tools-lab.pages.dev/tools/compress-image/",
             "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/",
             "https://printable-tools-lab.pages.dev/tools/resize-image/",
@@ -1013,6 +1026,12 @@
               "url": "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/",
               "intent": "PDF to JPG, PDF to PNG, no upload converter",
               "tool": "https://printable-tools-lab.pages.dev/tools/pdf-to-images/"
+            },
+            {
+              "title": "Extract Text From PDF Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/extract-text-from-pdf-no-upload/",
+              "intent": "PDF to text, extract text from PDF, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/pdf-to-text/"
             },
             {
               "title": "Compress Image Without Uploading",
@@ -1284,7 +1303,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/manifest+json; charset=utf-8",
-        "bytes": 2804,
+        "bytes": 2934,
         "json": null
       },
       "/opensearch.xml": {
@@ -1298,7 +1317,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 10368,
+        "bytes": 10494,
         "json": {
           "ok": true,
           "today": "2026-06-01",
@@ -1505,6 +1524,15 @@
             },
             {
               "tool": "pdf-to-images",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "pdf-to-text",
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
@@ -2147,119 +2175,29 @@
     }
   },
   "searchConsole": {
-    "available": true,
-    "sites": {
-      "siteEntry": [
-        {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
-          "permissionLevel": "siteOwner"
-        },
-        {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
-          "permissionLevel": "siteOwner"
-        }
-      ]
-    },
-    "sitemaps": {
-      "sitemap": [
-        {
-          "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T12:58:37.409Z",
-          "isPending": true,
-          "isSitemapsIndex": false,
-          "warnings": "0",
-          "errors": "0"
-        },
-        {
-          "path": "https://printable-tools-lab.pages.dev/sitemap.xml/",
-          "lastSubmitted": "2026-06-01T08:44:49.432Z",
-          "isPending": true,
-          "isSitemapsIndex": false,
-          "warnings": "0",
-          "errors": "0"
-        }
-      ]
-    },
-    "githubPagesSitemaps": {
-      "sitemap": [
-        {
-          "path": "https://yanqr213.github.io/printable-tools-lab/sitemap.xml",
-          "lastSubmitted": "2026-06-01T12:58:38.681Z",
-          "isPending": true,
-          "isSitemapsIndex": false,
-          "warnings": "0",
-          "errors": "0"
-        }
-      ]
-    },
-    "performance": {
-      "siteUrl": "https://printable-tools-lab.pages.dev/",
-      "startDate": "2026-05-04",
-      "endDate": "2026-05-31",
-      "rowCount": 0,
-      "totals": {
-        "clicks": 0,
-        "impressions": 0
-      },
-      "rows": []
-    },
-    "inspected": [
-      {
-        "url": "https://printable-tools-lab.pages.dev/",
-        "verdict": "NEUTRAL",
-        "coverageState": "Crawled - currently not indexed",
-        "indexingState": "INDEXING_ALLOWED",
-        "lastCrawlTime": "2026-05-31T16:42:59Z"
-      },
-      {
-        "url": "https://printable-tools-lab.pages.dev/tools/",
-        "verdict": "NEUTRAL",
-        "coverageState": "URL is unknown to Google",
-        "indexingState": "INDEXING_STATE_UNSPECIFIED"
-      },
-      {
-        "url": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
-        "verdict": "NEUTRAL",
-        "coverageState": "URL is unknown to Google",
-        "indexingState": "INDEXING_STATE_UNSPECIFIED"
-      }
-    ],
-    "errors": []
+    "available": false,
+    "reason": "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
   },
   "discovery": {
     "github": {
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Free no-signup browser PDF, image, QR, and text-data tools for compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
+      "description": "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
       "topics": [
-        "browser-tools",
-        "csv-to-pdf",
-        "document-tools",
-        "free-tools",
-        "image-compression",
-        "image-compressor",
-        "image-converter",
-        "image-resizer",
-        "image-to-pdf",
-        "image-tools",
-        "invoice-generator",
-        "json-to-pdf",
-        "label-generator",
-        "markdown-to-pdf",
-        "no-signup",
-        "pdf-generator",
-        "pdf-to-jpg",
         "pdf-tools",
+        "image-tools",
         "qr-code",
-        "text-to-pdf"
+        "no-signup",
+        "browser-tools",
+        "free-tools"
       ],
+      "error": "GitHub API fallback used: GitHub API 403",
       "discoveryRelease": {
         "tag": "free-pdf-tools",
         "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
         "name": "Free PDF, Image, and QR Tools Without Signup"
-      },
-      "error": ""
+      }
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
@@ -2278,7 +2216,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": true
+    "externalDiscoveryReady": false
   },
   "gates": {
     "productReady": true,
@@ -2286,29 +2224,25 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": true,
+    "externalDiscoveryReady": false,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "58 tools, 87 guides, 46 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "59 tools, 88 guides, 47 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
         "Real AdSense publisher ID is not configured, so ads remain disabled.",
+        "Search Console API data was unavailable during this run.",
         "Search Console has no impressions/indexed sample yet, so applying now is premature."
       ],
       "searchConsole": [
-        "Main Search Console property verified: yes.",
-        "GitHub Pages discovery property verified: yes.",
-        "Sitemap status: pending=true, warnings=0, errors=0.",
-        "GitHub Pages discovery sitemap: pending=true, warnings=0, errors=0.",
-        "Search performance: 0 impressions, 0 clicks.",
-        "2 inspected sample URL(s) are still unknown to Google."
+        "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
       ],
       "externalDiscovery": [
-        "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 46 landing page link(s).",
         "GitHub Pages discovery sitemap has 47 URL(s).",
