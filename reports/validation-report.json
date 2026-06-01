@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T14:49:42.088Z",
+  "generatedAt": "2026-06-01T14:54:05.252Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -36,21 +36,21 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 23166,
+        "bytes": 23424,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 36080,
+        "bytes": 36583,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 25195,
+        "bytes": 25541,
         "json": null
       },
       "/robots.txt": {
@@ -73,27 +73,27 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 26615,
+        "bytes": 26999,
         "json": null,
-        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, transparent signature PNG generation, static QR code tools, and text-data converter"
+        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, passport photo sizing, transparent signature PNG generation, static QR code tools, "
       },
       "/feed.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 49833,
+        "bytes": 50746,
         "json": null
       },
       "/tools.json": {
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 43085,
+        "bytes": 43709,
         "json": {
           "name": "PrintableTools Lab",
-          "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, transparent signature PNG generation, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+          "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T14:10:01.289Z",
+          "generatedAt": "2026-06-01T14:44:01.751Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -273,6 +273,12 @@
               "title": "Signature PNG Generator",
               "url": "https://printable-tools-lab.pages.dev/tools/signature-png/",
               "description": "Draw or type a signature and download a transparent PNG locally in your browser without uploading anything.",
+              "category": "Everyday file utilities"
+            },
+            {
+              "title": "Passport Photo Maker",
+              "url": "https://printable-tools-lab.pages.dev/tools/passport-photo/",
+              "description": "Crop a passport-style photo locally for US 2x2, UK 35x45, Canada 50x70, and Australia 35x45 sizes.",
               "category": "Everyday file utilities"
             },
             {
@@ -768,6 +774,11 @@
               "description": "Draw or type a signature and download a transparent PNG locally without signup or upload."
             },
             {
+              "title": "Passport photo maker without uploading",
+              "url": "https://printable-tools-lab.pages.dev/guides/passport-photo-maker/",
+              "description": "Crop a passport-style photo locally for common print sizes before checking official requirements."
+            },
+            {
               "title": "Compress image without uploading",
               "url": "https://printable-tools-lab.pages.dev/guides/compress-image-without-uploading/",
               "description": "Reduce JPG, PNG, or WebP file size in the browser before uploading elsewhere."
@@ -909,11 +920,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 21627,
+        "bytes": 22040,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T14:10:01.289Z",
+          "generatedAt": "2026-06-01T14:44:01.751Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -928,6 +939,7 @@
             "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/",
             "https://printable-tools-lab.pages.dev/extract-text-from-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/signature-png-generator/",
+            "https://printable-tools-lab.pages.dev/passport-photo-maker/",
             "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
             "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
             "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
@@ -982,6 +994,7 @@
             "https://printable-tools-lab.pages.dev/tools/rotate-image/",
             "https://printable-tools-lab.pages.dev/tools/watermark-image/",
             "https://printable-tools-lab.pages.dev/tools/signature-png/",
+            "https://printable-tools-lab.pages.dev/tools/passport-photo/",
             "https://printable-tools-lab.pages.dev/tools/qr-code/",
             "https://printable-tools-lab.pages.dev/tools/wifi-qr-code/",
             "https://printable-tools-lab.pages.dev/tools/vcard-qr-code/",
@@ -1051,6 +1064,12 @@
               "url": "https://printable-tools-lab.pages.dev/signature-png-generator/",
               "intent": "signature PNG, transparent signature, draw signature online",
               "tool": "https://printable-tools-lab.pages.dev/tools/signature-png/"
+            },
+            {
+              "title": "Passport Photo Maker",
+              "url": "https://printable-tools-lab.pages.dev/passport-photo-maker/",
+              "intent": "passport photo maker, 2x2 photo, 35x45 photo, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/passport-photo/"
             },
             {
               "title": "Compress Image Without Uploading",
@@ -1322,7 +1341,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/manifest+json; charset=utf-8",
-        "bytes": 3113,
+        "bytes": 3283,
         "json": null
       },
       "/opensearch.xml": {
@@ -1336,7 +1355,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 10622,
+        "bytes": 10751,
         "json": {
           "ok": true,
           "today": "2026-06-01",
@@ -1624,6 +1643,15 @@
             },
             {
               "tool": "signature-png",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "passport-photo",
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
@@ -2207,11 +2235,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         }
       ]
@@ -2220,7 +2248,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T14:10:06.633Z",
+          "lastSubmitted": "2026-06-01T14:52:30.537Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -2240,7 +2268,7 @@
       "sitemap": [
         {
           "path": "https://yanqr213.github.io/printable-tools-lab/sitemap.xml",
-          "lastSubmitted": "2026-06-01T14:10:07.669Z",
+          "lastSubmitted": "2026-06-01T14:52:31.585Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -2321,8 +2349,8 @@
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 49,
-      "landingPagesLinked": 48,
+      "sitemapUrlCount": 50,
+      "landingPagesLinked": 49,
       "error": ""
     },
     "indexNow": {
@@ -2334,7 +2362,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": false
+    "externalDiscoveryReady": true
   },
   "gates": {
     "productReady": true,
@@ -2342,7 +2370,7 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": false,
+    "externalDiscoveryReady": true,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
@@ -2366,8 +2394,8 @@
       "externalDiscovery": [
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
-        "GitHub Pages discovery directory is live with 48 landing page link(s).",
-        "GitHub Pages discovery sitemap has 49 URL(s).",
+        "GitHub Pages discovery directory is live with 49 landing page link(s).",
+        "GitHub Pages discovery sitemap has 50 URL(s).",
         "IndexNow key file is reachable from the site root."
       ]
     }
