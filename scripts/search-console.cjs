@@ -2,10 +2,11 @@ const fs = require("fs");
 const crypto = require("crypto");
 const { routes, siteUrl } = require("./seo-content.cjs");
 
-const SITE_URL = withTrailingSlash(process.env.SEARCH_CONSOLE_SITE_URL || "https://printable-tools-lab.pages.dev/");
-const SITEMAP_URL = normalizeSitemapUrl(process.env.SITEMAP_URL || "https://printable-tools-lab.pages.dev/sitemap.xml");
-const KEY_FILE = process.env.GOOGLE_APPLICATION_CREDENTIALS || process.argv[3];
 const COMMAND = process.argv[2] || "status";
+const args = parseArgs(process.argv.slice(3));
+const SITE_URL = withTrailingSlash(args.site || process.env.SEARCH_CONSOLE_SITE_URL || "https://printable-tools-lab.pages.dev/");
+const SITEMAP_URL = normalizeSitemapUrl(args.sitemap || process.env.SITEMAP_URL || "https://printable-tools-lab.pages.dev/sitemap.xml");
+const KEY_FILE = process.env.GOOGLE_APPLICATION_CREDENTIALS || args.key || args.credentials || "";
 const SCOPE = "https://www.googleapis.com/auth/webmasters";
 
 if (!KEY_FILE) {
@@ -190,6 +191,17 @@ function withTrailingSlash(value) {
 
 function normalizeSitemapUrl(value) {
   return String(value || "").replace(/\/+$/, "");
+}
+
+function parseArgs(argv) {
+  const parsed = {};
+  for (let i = 0; i < argv.length; i += 1) {
+    const arg = argv[i];
+    if (!arg.startsWith("--")) continue;
+    parsed[arg.slice(2)] = argv[i + 1] || "";
+    i += 1;
+  }
+  return parsed;
 }
 
 main().catch((error) => {

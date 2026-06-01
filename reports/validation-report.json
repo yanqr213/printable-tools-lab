@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T11:51:11.538Z",
+  "generatedAt": "2026-06-01T12:11:56.434Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 45,
     "indexableRoutes": 198,
     "sitemapLocCount": 198,
-    "generatedToolInventoryAt": "2026-06-01T11:50:17.700Z",
+    "generatedToolInventoryAt": "2026-06-01T12:05:26.257Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -36,21 +36,21 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 21640,
+        "bytes": 21932,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 33794,
+        "bytes": 34303,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 23742,
+        "bytes": 24118,
         "json": null
       },
       "/robots.txt": {
@@ -73,27 +73,27 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 25077,
+        "bytes": 25473,
         "json": null,
-        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, static QR code tools, and text-data converters for compressing images, resizing ima"
+        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, static QR code tools, and text-data converters for compressing images, compressing "
       },
       "/feed.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 46168,
+        "bytes": 47110,
         "json": null
       },
       "/tools.json": {
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 40679,
+        "bytes": 41304,
         "json": {
           "name": "PrintableTools Lab",
-          "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, static QR code tools, and text-data converters for compressing images, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+          "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T11:19:58.283Z",
+          "generatedAt": "2026-06-01T12:05:26.257Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -261,6 +261,12 @@
               "title": "Compress Image Online",
               "url": "https://printable-tools-lab.pages.dev/tools/compress-image/",
               "description": "Compress JPG, PNG, or WebP images locally in your browser without uploading files.",
+              "category": "Everyday file utilities"
+            },
+            {
+              "title": "Compress Image to KB",
+              "url": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/",
+              "description": "Compress an image toward a target KB size locally for upload limits, forms, profiles, and portals.",
               "category": "Everyday file utilities"
             },
             {
@@ -734,6 +740,11 @@
               "description": "Reduce JPG, PNG, or WebP file size in the browser before uploading elsewhere."
             },
             {
+              "title": "Compress image to 100KB without uploading",
+              "url": "https://printable-tools-lab.pages.dev/guides/compress-image-to-100kb-without-uploading/",
+              "description": "Reduce a JPG, PNG, or WebP image toward a 100KB upload limit locally in the browser."
+            },
+            {
               "title": "Resize image without uploading",
               "url": "https://printable-tools-lab.pages.dev/guides/resize-image-without-uploading/",
               "description": "Change image width, height, or preset size locally in the browser."
@@ -865,11 +876,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 19908,
+        "bytes": 20358,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T11:19:58.283Z",
+          "generatedAt": "2026-06-01T12:05:26.257Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -882,6 +893,7 @@
             "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
+            "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
             "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
             "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
             "https://printable-tools-lab.pages.dev/crop-image-no-upload/",
@@ -925,6 +937,7 @@
             "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
             "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
             "https://printable-tools-lab.pages.dev/tools/compress-image/",
+            "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/",
             "https://printable-tools-lab.pages.dev/tools/resize-image/",
             "https://printable-tools-lab.pages.dev/tools/convert-image/",
             "https://printable-tools-lab.pages.dev/tools/crop-image/",
@@ -987,6 +1000,12 @@
               "url": "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
               "intent": "compress image online, reduce image size, no upload",
               "tool": "https://printable-tools-lab.pages.dev/tools/compress-image/"
+            },
+            {
+              "title": "Compress Image to 100KB Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
+              "intent": "compress image to 100KB, reduce image size, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/"
             },
             {
               "title": "Resize Image Without Uploading",
@@ -1246,7 +1265,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/manifest+json; charset=utf-8",
-        "bytes": 2495,
+        "bytes": 2652,
         "json": null
       },
       "/opensearch.xml": {
@@ -1260,12 +1279,12 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 10105,
+        "bytes": 10240,
         "json": {
           "ok": true,
           "today": "2026-06-01",
           "totals": {
-            "page_view": 17,
+            "page_view": 22,
             "generate_pdf": 0,
             "download_pdf": 1,
             "generate_file": 0,
@@ -1275,7 +1294,7 @@
             "ai_ideas_apply": 0
           },
           "todayTotals": {
-            "page_view": 14,
+            "page_view": 20,
             "generate_pdf": 0,
             "download_pdf": 0,
             "generate_file": 0,
@@ -1467,6 +1486,15 @@
             },
             {
               "tool": "compress-image",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "compress-image-to-kb",
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
@@ -1793,13 +1821,13 @@
           "sources": [
             {
               "source": "direct",
-              "page_view": 11,
+              "page_view": 16,
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
               "today": {
-                "page_view": 10,
+                "page_view": 15,
                 "generate_pdf": 0,
                 "download_pdf": 0,
                 "generate_file": 0,
@@ -1993,7 +2021,7 @@
     "metrics": {
       "today": "2026-06-01",
       "totals": {
-        "page_view": 17,
+        "page_view": 22,
         "generate_pdf": 0,
         "download_pdf": 1,
         "generate_file": 0,
@@ -2003,7 +2031,7 @@
         "ai_ideas_apply": 0
       },
       "todayTotals": {
-        "page_view": 14,
+        "page_view": 20,
         "generate_pdf": 0,
         "download_pdf": 0,
         "generate_file": 0,
@@ -2108,7 +2136,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T11:50:19.874Z",
+          "lastSubmitted": "2026-06-01T12:11:21.589Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -2175,42 +2203,28 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Free no-signup browser PDF, image, QR, and text-data tools for compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
+      "description": "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
       "topics": [
-        "browser-tools",
-        "csv-to-pdf",
-        "document-tools",
-        "free-tools",
-        "image-compression",
-        "image-converter",
-        "image-resizer",
-        "image-to-pdf",
-        "image-tools",
-        "invoice-generator",
-        "json-to-pdf",
-        "label-generator",
-        "markdown-to-pdf",
-        "no-signup",
-        "pdf-generator",
         "pdf-tools",
-        "productivity-tools",
+        "image-tools",
         "qr-code",
-        "small-business-tools",
-        "text-to-pdf"
+        "no-signup",
+        "browser-tools",
+        "free-tools"
       ],
+      "error": "GitHub API fallback used: GitHub API 403",
       "discoveryRelease": {
         "tag": "free-pdf-tools",
         "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
         "name": "Free PDF, Image, and QR Tools Without Signup"
-      },
-      "error": ""
+      }
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 45,
-      "landingPagesLinked": 44,
+      "sitemapUrlCount": 46,
+      "landingPagesLinked": 45,
       "error": ""
     },
     "indexNow": {
@@ -2222,7 +2236,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": false
+    "externalDiscoveryReady": true
   },
   "gates": {
     "productReady": true,
@@ -2230,7 +2244,7 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": false,
+    "externalDiscoveryReady": true,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
@@ -2252,10 +2266,10 @@
         "2 inspected sample URL(s) are still unknown to Google."
       ],
       "externalDiscovery": [
-        "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
-        "GitHub Pages discovery directory is live with 44 landing page link(s).",
-        "GitHub Pages discovery sitemap has 45 URL(s).",
+        "GitHub Pages discovery directory is live with 45 landing page link(s).",
+        "GitHub Pages discovery sitemap has 46 URL(s).",
         "IndexNow key file is reachable from the site root."
       ]
     }
