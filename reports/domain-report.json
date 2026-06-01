@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-01T14:05:14.049Z",
+  "generatedAt": "2026-06-01T14:52:29.610Z",
   "preferredDomain": "printabletoolslab.com",
   "maxRegistrationUsd": 15,
-  "registerRequested": true,
+  "registerRequested": false,
   "attachRequested": true,
   "selectedDomain": "printabletoolslab.com",
   "candidates": [
@@ -77,12 +77,8 @@
       }
     }
   ],
-  "registrationAttempt": {
-    "status": "failed",
-    "domain": "printabletoolslab.com",
-    "error": "No registrant contact provided and no default address book entry found for this account."
-  },
+  "registrationAttempt": null,
   "attachAttempt": null,
-  "blocker": "Domain registration failed for printabletoolslab.com: No registrant contact provided and no default address book entry found for this account.",
-  "nextAction": "Add a default registrant contact and valid payment method in Cloudflare Registrar, then rerun this script with --register."
+  "blocker": "",
+  "nextAction": "Domain printabletoolslab.com is available for $10.46 USD; rerun with --register after Cloudflare has a default registrant contact."
 }
