@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-06-01T11:50:35.911Z",
+  "generatedAt": "2026-06-01T12:14:53.914Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 0,
-  "pendingCount": 4,
-  "errorCount": 0,
+  "pendingCount": 3,
+  "errorCount": 1,
   "results": [
     {
       "name": "Zearches",
@@ -14,22 +14,24 @@
       ],
       "submittedAt": "2026-06-01",
       "reviewWindow": "unknown",
-      "status": "pending",
+      "status": "error",
       "evidenceUrl": "",
       "checked": [
         {
           "url": "https://zearches.com/?s=PrintableTools+Lab",
-          "ok": true,
-          "status": 200,
-          "bytes": 117655,
-          "matched": true
+          "ok": false,
+          "status": 0,
+          "bytes": 0,
+          "matched": false,
+          "error": "fetch failed"
         },
         {
           "url": "https://zearches.com/",
-          "ok": true,
-          "status": 200,
-          "bytes": 117655,
-          "matched": true
+          "ok": false,
+          "status": 0,
+          "bytes": 0,
+          "matched": false,
+          "error": "fetch failed"
         }
       ]
     },
@@ -47,10 +49,11 @@
       "checked": [
         {
           "url": "https://listai.cc/?s=PrintableTools+Lab",
-          "ok": true,
-          "status": 200,
-          "bytes": 318649,
-          "matched": false
+          "ok": false,
+          "status": 0,
+          "bytes": 0,
+          "matched": false,
+          "error": "fetch failed"
         },
         {
           "url": "https://listai.cc/",
