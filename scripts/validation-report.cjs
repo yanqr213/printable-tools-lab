@@ -5,6 +5,7 @@ const { routes, siteUrl, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const siteBase = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pages.dev").replace(/\/+$/, "");
+const githubPagesBase = (process.env.GITHUB_PAGES_DISCOVERY_URL || "https://yanqr213.github.io/printable-tools-lab").replace(/\/+$/, "");
 const reportDir = path.join(root, "reports");
 const reportPath = path.join(reportDir, "validation-report.json");
 const validationPath = path.join(root, "VALIDATION.md");
@@ -129,7 +130,9 @@ function readSearchConsoleState() {
   }
   const state = {
     available: true,
+    sites: null,
     sitemaps: null,
+    githubPagesSitemaps: null,
     performance: null,
     inspected: [],
     errors: [],
@@ -140,9 +143,22 @@ function readSearchConsoleState() {
     SEARCH_CONSOLE_SITE_URL: `${siteBase}/`,
     SITEMAP_URL: `${siteBase}/sitemap.xml`,
   };
+  const sitesOutput = runSearchConsole(["sites"], env);
+  if (sitesOutput.ok) state.sites = parseJsonFromOutput(sitesOutput.stdout);
+  else state.errors.push(`sites: ${sitesOutput.error}`);
+
   const sitemapOutput = runSearchConsole(["sitemaps"], env);
   if (sitemapOutput.ok) state.sitemaps = parseJsonFromOutput(sitemapOutput.stdout);
   else state.errors.push(`sitemaps: ${sitemapOutput.error}`);
+
+  const githubPagesEnv = {
+    ...env,
+    SEARCH_CONSOLE_SITE_URL: `${githubPagesBase}/`,
+    SITEMAP_URL: `${githubPagesBase}/sitemap.xml`,
+  };
+  const githubPagesSitemapOutput = runSearchConsole(["sitemaps"], githubPagesEnv);
+  if (githubPagesSitemapOutput.ok) state.githubPagesSitemaps = parseJsonFromOutput(githubPagesSitemapOutput.stdout);
+  else state.errors.push(`github pages sitemaps: ${githubPagesSitemapOutput.error}`);
 
   const performanceOutput = runSearchConsole(["performance"], env);
   if (performanceOutput.ok) state.performance = parseJsonFromOutput(performanceOutput.stdout);
@@ -280,6 +296,10 @@ function evaluateGates(local, live, searchConsole, discovery) {
   const totals = live.metrics?.totals || {};
   const performanceTotals = searchConsole.performance?.totals || {};
   const sitemap = Array.isArray(searchConsole.sitemaps?.sitemap) ? searchConsole.sitemaps.sitemap[0] : null;
+  const verifiedSites = Array.isArray(searchConsole.sites?.siteEntry) ? searchConsole.sites.siteEntry : [];
+  const mainSearchConsoleVerified = verifiedSites.some((entry) => entry.siteUrl === `${siteBase}/` && /owner/i.test(entry.permissionLevel || ""));
+  const githubPagesSearchConsoleVerified = verifiedSites.some((entry) => entry.siteUrl === `${githubPagesBase}/` && /owner/i.test(entry.permissionLevel || ""));
+  const githubPagesSitemap = Array.isArray(searchConsole.githubPagesSitemaps?.sitemap) ? searchConsole.githubPagesSitemaps.sitemap[0] : null;
   const indexed = searchConsole.inspected.filter((item) => item.verdict === "PASS").length;
   const unknown = searchConsole.inspected.filter((item) => /unknown/i.test(item.coverageState || "")).length;
   const productReady = local.toolCount >= 32
@@ -309,7 +329,7 @@ function evaluateGates(local, live, searchConsole, discovery) {
     reasons: {
       productReady: productReady ? [`${local.toolCount} tools, ${local.guideCount} guides, ${local.landingPageCount} high-intent landing pages, sitemap, discovery assets, and live metrics are present.`] : missingProductReasons(local, live),
       adsenseApplyReady: adsenseApplyReady ? ["Product is ready, Search Console has visibility, and a real publisher ID is configured."] : missingAdsenseReasons(local, searchConsole, searchVisible),
-      searchConsole: summarizeSearchConsoleReasons(searchConsole, sitemap, unknown),
+      searchConsole: summarizeSearchConsoleReasons(searchConsole, sitemap, githubPagesSitemap, unknown, { mainSearchConsoleVerified, githubPagesSearchConsoleVerified }),
       externalDiscovery: summarizeDiscoveryReasons(discovery),
     },
   };
@@ -339,11 +359,16 @@ function missingAdsenseReasons(local, searchConsole, searchVisible) {
   return reasons;
 }
 
-function summarizeSearchConsoleReasons(searchConsole, sitemap, unknown) {
+function summarizeSearchConsoleReasons(searchConsole, sitemap, githubPagesSitemap, unknown, verification) {
   if (!searchConsole.available) return [searchConsole.reason];
   const reasons = [];
+  reasons.push(`Main Search Console property verified: ${yesNo(verification.mainSearchConsoleVerified)}.`);
+  reasons.push(`GitHub Pages discovery property verified: ${yesNo(verification.githubPagesSearchConsoleVerified)}.`);
   if (sitemap) {
     reasons.push(`Sitemap status: pending=${Boolean(sitemap.isPending)}, warnings=${sitemap.warnings || 0}, errors=${sitemap.errors || 0}.`);
+  }
+  if (githubPagesSitemap) {
+    reasons.push(`GitHub Pages discovery sitemap: pending=${Boolean(githubPagesSitemap.isPending)}, warnings=${githubPagesSitemap.warnings || 0}, errors=${githubPagesSitemap.errors || 0}.`);
   }
   if (searchConsole.performance) {
     reasons.push(`Search performance: ${searchConsole.performance.totals?.impressions || 0} impressions, ${searchConsole.performance.totals?.clicks || 0} clicks.`);
@@ -389,6 +414,7 @@ function renderValidationMarkdown(report) {
   const totals = report.live.metrics?.totals || {};
   const perf = report.searchConsole.performance;
   const sitemap = Array.isArray(report.searchConsole.sitemaps?.sitemap) ? report.searchConsole.sitemaps.sitemap[0] : null;
+  const githubPagesSitemap = Array.isArray(report.searchConsole.githubPagesSitemaps?.sitemap) ? report.searchConsole.githubPagesSitemaps.sitemap[0] : null;
   return [
     "# Validation Gates",
     "",
@@ -416,6 +442,7 @@ function renderValidationMarkdown(report) {
     "## Search Console Gate",
     "",
     ...(sitemap ? [`- Sitemap submitted: ${sitemap.path || "unknown"}.`, `- Sitemap pending: ${yesNo(Boolean(sitemap.isPending))}; warnings: ${sitemap.warnings || 0}; errors: ${sitemap.errors || 0}.`] : ["- Sitemap data unavailable in this run."]),
+    ...(githubPagesSitemap ? [`- GitHub Pages discovery sitemap submitted: ${githubPagesSitemap.path || "unknown"}.`, `- GitHub Pages sitemap pending: ${yesNo(Boolean(githubPagesSitemap.isPending))}; warnings: ${githubPagesSitemap.warnings || 0}; errors: ${githubPagesSitemap.errors || 0}.`] : ["- GitHub Pages discovery sitemap data unavailable in this run."]),
     ...report.gates.reasons.searchConsole.map((reason) => `- ${reason}`),
     "",
     "## External Discovery Gate",

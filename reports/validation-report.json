@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T01:02:14.400Z",
+  "generatedAt": "2026-06-01T01:12:52.368Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 32,
@@ -1103,11 +1103,35 @@
   },
   "searchConsole": {
     "available": true,
+    "sites": {
+      "siteEntry": [
+        {
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "permissionLevel": "siteOwner"
+        },
+        {
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "permissionLevel": "siteOwner"
+        }
+      ]
+    },
     "sitemaps": {
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
           "lastSubmitted": "2026-06-01T00:58:58.211Z",
+          "isPending": true,
+          "isSitemapsIndex": false,
+          "warnings": "0",
+          "errors": "0"
+        }
+      ]
+    },
+    "githubPagesSitemaps": {
+      "sitemap": [
+        {
+          "path": "https://yanqr213.github.io/printable-tools-lab/sitemap.xml",
+          "lastSubmitted": "2026-06-01T01:10:36.156Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -1222,7 +1246,10 @@
         "Search Console has no impressions/indexed sample yet, so applying now is premature."
       ],
       "searchConsole": [
+        "Main Search Console property verified: yes.",
+        "GitHub Pages discovery property verified: yes.",
         "Sitemap status: pending=true, warnings=0, errors=0.",
+        "GitHub Pages discovery sitemap: pending=true, warnings=0, errors=0.",
         "Search performance: 0 impressions, 0 clicks.",
         "2 inspected sample URL(s) are still unknown to Google."
       ],
