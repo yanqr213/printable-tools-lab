@@ -27,7 +27,10 @@ const TOOL_FIELDS = {
   "price-tag": ["title", "subtitle", "footer"],
   "flyer-maker": ["headline", "subhead", "details", "callToAction"],
   "barcode-labels": [],
-  "coupon-maker": ["offer", "details", "finePrint"],
+    "coupon-maker": ["offer", "details", "finePrint"],
+  "packing-slip": ["items", "notes"],
+  "work-order": ["items", "instructions", "notes"],
+  "inventory-sheet": ["items", "notes"],
 };
 
 const FIELD_LIMITS = {
@@ -87,7 +90,8 @@ const FIELD_LIMITS = {
   callToAction: 100,
   offer: 90,
   finePrint: 180,
-  footer: 90,
+    footer: 90,
+  instructions: 240,
 };
 
 export async function onRequestPost(context) {
@@ -754,6 +758,252 @@ function fallbackSuggestions(tool, values) {
           offer: "Event day special",
           details: "Use this coupon during the listed event or pop-up date.",
           finePrint: "Cannot be combined with other offers.",
+        },
+      },
+    ],
+    "name-tracing": [
+      {
+        title: "Preschool name practice",
+        summary: "Simple tracing page for early handwriting",
+        fields: {
+          name: values.name || "Maya",
+          subtitle: "Trace each letter, then write it on your own.",
+        },
+      },
+      {
+        title: "Big outline letters",
+        summary: "Large name practice with a coloring-friendly prompt",
+        fields: {
+          name: values.name || "Ava",
+          subtitle: "Trace, write, and color your name.",
+        },
+      },
+      {
+        title: "Morning warmup",
+        summary: "Short daily handwriting warmup",
+        fields: {
+          name: values.name || "Leo",
+          subtitle: "Start with tracing, then try two neat lines.",
+        },
+      },
+    ],
+    "chore-chart": [
+      {
+        title: "School week chores",
+        summary: "A family chart for weekday routines",
+        fields: {
+          title: values.title || "School Week Chore Chart",
+          names: values.names || "Ava, Leo",
+          chores: "Make bed\nPack backpack\nClear dishes\nFeed pet\nRead 20 minutes",
+        },
+      },
+      {
+        title: "Roommate cleaning chart",
+        summary: "Shared home tasks without kid-focused wording",
+        fields: {
+          title: "Roommate Cleaning Chart",
+          names: values.names || "Kitchen, Bathroom, Floors",
+          chores: "Take out trash\nWipe counters\nVacuum shared areas\nRestock supplies\nReset sink area",
+        },
+      },
+      {
+        title: "Classroom helper chart",
+        summary: "Simple weekly classroom jobs",
+        fields: {
+          title: "Classroom Helper Jobs",
+          names: values.names || "Table 1, Table 2, Table 3",
+          chores: "Line leader\nPaper helper\nBoard cleaner\nLibrary helper\nPlant waterer",
+        },
+      },
+    ],
+    "reward-chart": [
+      {
+        title: "Reading goal chart",
+        summary: "Reward chart for steady practice",
+        fields: {
+          title: values.title || "Reading Reward Chart",
+          goal: values.goal || "Read for 15 minutes",
+          reward: values.reward || "Reward: choose a family activity",
+        },
+      },
+      {
+        title: "Bedtime routine reward",
+        summary: "Track one bedtime habit at a time",
+        fields: {
+          title: "Bedtime Routine Chart",
+          goal: "Finish pajamas, teeth, and book without reminders",
+          reward: "Reward: pick the weekend breakfast",
+        },
+      },
+      {
+        title: "Kindness sticker chart",
+        summary: "Positive behavior chart for one clear action",
+        fields: {
+          title: "Kindness Sticker Chart",
+          goal: "Use kind words and helpful actions",
+          reward: "Reward: special one-on-one time",
+        },
+      },
+    ],
+    "weekly-planner": [
+      {
+        title: "Family week planner",
+        summary: "Plan appointments, meals, and reminders",
+        fields: {
+          title: values.title || "Family Weekly Planner",
+          focus: values.focus || "Keep school, meals, and errands visible",
+          notes: "Appointments\nMeal notes\nErrands\nHomework reminders",
+        },
+      },
+      {
+        title: "Student study planner",
+        summary: "Simple weekly study focus",
+        fields: {
+          title: "Weekly Study Planner",
+          focus: "Prepare for tests and finish assignments",
+          notes: "Study blocks\nAssignment deadlines\nQuestions to ask\nReview checklist",
+        },
+      },
+      {
+        title: "Work sprint planner",
+        summary: "A lightweight planning sheet for priorities",
+        fields: {
+          title: "Weekly Work Sprint",
+          focus: "Choose the top outcomes for the week",
+          notes: "Must finish\nMeetings\nFollow-ups\nFriday review",
+        },
+      },
+    ],
+    "habit-tracker": [
+      {
+        title: "Wellness habit tracker",
+        summary: "Track small daily habits",
+        fields: {
+          title: values.title || "Daily Habit Tracker",
+          habits: values.habits || "Drink water\nWalk outside\nRead 10 minutes\nPrepare tomorrow",
+        },
+      },
+      {
+        title: "Student habit tracker",
+        summary: "Simple academic routine tracker",
+        fields: {
+          title: "Study Habit Tracker",
+          habits: "Pack bag\nRead notes\nPractice problems\nSleep on time",
+        },
+      },
+      {
+        title: "Household reset tracker",
+        summary: "Daily home reset checklist",
+        fields: {
+          title: "Home Reset Tracker",
+          habits: "Clear sink\nReset table\nLaundry check\nPlan tomorrow",
+        },
+      },
+    ],
+    flashcards: [
+      {
+        title: "Vocabulary flashcards",
+        summary: "Term and definition cards",
+        fields: {
+          title: values.title || "Vocabulary Flashcards",
+          cards: values.cards || "evaporate | to change from liquid to gas\ncompare | to tell how things are alike\ncontrast | to tell how things are different",
+        },
+      },
+      {
+        title: "Math fact cards",
+        summary: "Quick arithmetic review",
+        fields: {
+          title: "Math Fact Flashcards",
+          cards: "6 x 7 | 42\n8 x 4 | 32\n9 x 5 | 45\n12 x 3 | 36",
+        },
+      },
+      {
+        title: "Language practice cards",
+        summary: "Prompt and answer format",
+        fields: {
+          title: "Practice Flashcards",
+          cards: "hello | hola\nthank you | gracias\ngood morning | buenos dias",
+        },
+      },
+    ],
+    "packing-slip": [
+      {
+        title: "Small order packing slip",
+        summary: "Packed status rows for a customer shipment",
+        fields: {
+          items: values.items || "Item A | 1 | Packed\nItem B | 2 | Packed\nThank-you card | 1 | Inserted",
+          notes: values.notes || "Please check the package contents on arrival.",
+        },
+      },
+      {
+        title: "Craft market order insert",
+        summary: "Simple handmade product packing note",
+        fields: {
+          items: "Handmade item | 1 | Packed\nCare card | 1 | Inserted\nReceipt copy | 1 | Included",
+          notes: "Thank you for supporting a small shop.",
+        },
+      },
+      {
+        title: "Local delivery packing slip",
+        summary: "Useful for hand-delivered orders",
+        fields: {
+          items: "Main order | 1 | Packed\nAdd-on item | 1 | Packed\nDelivery note | 1 | Included",
+          notes: "Confirm recipient name before handing off the package.",
+        },
+      },
+    ],
+    "work-order": [
+      {
+        title: "Maintenance visit",
+        summary: "Work order for a repair appointment",
+        fields: {
+          items: values.items || "Inspection | 1 | 0\nRepair labor | 2 | 85\nCleanup and test | 1 | 25",
+          instructions: values.instructions || "Confirm access, inspect the issue, and document any parts needed.",
+          notes: values.notes || "Client approval required before additional work.",
+        },
+      },
+      {
+        title: "Cleaning service order",
+        summary: "Task list for a scheduled cleaning job",
+        fields: {
+          items: "Standard clean | 1 | 120\nWindow add-on | 1 | 35\nSupply fee | 1 | 10",
+          instructions: "Check priority rooms first and note anything that needs follow-up.",
+          notes: "Confirm completion with the client before leaving.",
+        },
+      },
+      {
+        title: "Contractor punch list",
+        summary: "Small task list for field work",
+        fields: {
+          items: "Patch wall | 1 | 80\nPaint touch-up | 1 | 65\nFinal walkthrough | 1 | 0",
+          instructions: "Photograph finished work and keep receipts for materials.",
+          notes: "Additional scope requires written approval.",
+        },
+      },
+    ],
+    "inventory-sheet": [
+      {
+        title: "Market table count",
+        summary: "Count sheet for a small sales table",
+        fields: {
+          items: values.items || "SKU-1001 | Candle | 24 | 18 | Restock\nSKU-1002 | Soap | 30 | 27 | OK\nSKU-1003 | Tote | 12 | 9 | Reorder",
+          notes: values.notes || "Count before opening and after closing.",
+        },
+      },
+      {
+        title: "Classroom supplies count",
+        summary: "Track shared classroom materials",
+        fields: {
+          items: "Pencils | Supply bin | 60 | 42 | Restock\nGlue sticks | Art shelf | 20 | 11 | Low\nMarkers | Drawer 2 | 36 | 30 | OK",
+          notes: "Review low-stock items before the next project day.",
+        },
+      },
+      {
+        title: "Storage bin inventory",
+        summary: "Simple stock list for bins or shelves",
+        fields: {
+          items: "Bin A | Shipping mailers | 100 | 64 | Reorder soon\nBin B | Labels | 200 | 150 | OK\nShelf 1 | Product samples | 15 | 12 | Check",
+          notes: "Keep the latest count sheet with the storage area.",
         },
       },
     ],
