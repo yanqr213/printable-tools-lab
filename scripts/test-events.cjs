@@ -13,7 +13,7 @@ async function main() {
     request: new Request("https://example.test/api/event", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: "download_pdf", tool: "invoice-generator", path: "/tools/invoice-generator/" }),
+      body: JSON.stringify({ name: "download_pdf", tool: "invoice-generator", path: "/tools/invoice-generator/", source: "nosignuptools" }),
     }),
     env,
   });
@@ -24,10 +24,12 @@ async function main() {
   const metricsPayload = await metricsResponse.json();
   assert(metricsPayload.ok, "Metrics endpoint should respond");
   assert(metricsPayload.totals.download_pdf === 1, "Metrics should count downloads");
-  assert(metricsPayload.tools.length === 32, "Metrics should include every active tool");
+  assert(metricsPayload.tools.length === 35, "Metrics should include every active tool");
   const invoice = metricsPayload.tools.find((row) => row.tool === "invoice-generator");
   assert(invoice.download_pdf === 1, "Metrics should count per-tool downloads");
-  for (const tool of ["multi-image-pdf", "text-to-pdf", "receipt-generator", "timesheet-generator", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker", "certificate-generator", "todo-list"]) {
+  const noSignupTools = metricsPayload.sources.find((row) => row.source === "nosignuptools");
+  assert(noSignupTools.download_pdf === 1, "Metrics should count per-source downloads");
+  for (const tool of ["multi-image-pdf", "text-to-pdf", "receipt-generator", "timesheet-generator", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker", "packing-slip", "work-order", "inventory-sheet", "certificate-generator", "todo-list"]) {
     assert(metricsPayload.tools.some((row) => row.tool === tool), `Metrics should include ${tool}`);
   }
 
@@ -40,6 +42,32 @@ async function main() {
     env,
   });
   assert(rejectResponse.status === 400, "Event collector should reject unsupported events");
+
+  const unknownSourceResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "page_view", tool: "site", source: "weird forum source" }),
+    }),
+    env,
+  });
+  assert(unknownSourceResponse.status === 200, "Event collector should accept and normalize unknown sources");
+  const unknownSourceMetrics = await (await metricsSource.onRequestGet({ env })).json();
+  const referral = unknownSourceMetrics.sources.find((row) => row.source === "referral");
+  assert(referral.page_view === 1, "Unknown source labels should roll into referral");
+
+  const unknownToolResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "generate_pdf", tool: "unexpected-tool-id", source: "github" }),
+    }),
+    env,
+  });
+  assert(unknownToolResponse.status === 200, "Event collector should accept and normalize unknown tool IDs");
+  const unknownToolMetrics = await (await metricsSource.onRequestGet({ env })).json();
+  assert(unknownToolMetrics.totals.generate_pdf === 1, "Unknown tool IDs should still count total generations");
+  assert(!unknownToolMetrics.tools.some((row) => row.tool === "unexpected-tool-id"), "Unknown tool IDs should not create public metric rows");
   console.log("Event metrics test passed.");
 }
 

@@ -18,6 +18,22 @@
     enableAnalytics: false,
   }, window.PTL_CONFIG || {});
 
+  const TRAFFIC_SOURCES = new Set([
+    "direct",
+    "google",
+    "bing",
+    "github",
+    "github-pages",
+    "zearches",
+    "listai",
+    "nosignuptools",
+    "freenosignup",
+    "directory",
+    "community",
+    "referral",
+    "unknown",
+  ]);
+
   bootstrapConfiguredIntegrations();
 
   const AI_FIELD_ALLOWLIST = {
@@ -2429,6 +2445,7 @@
         ["p", "PrintableTools Lab is designed to generate PDFs in your browser. The first version does not require an account and keeps ordinary PDF generation on your device."],
         ["p", "If you choose the optional AI idea helper, the current tool type and short form text are sent to the site's AI service only to return printable suggestions. Do not enter sensitive personal information."],
         ["p", "The site stores a small amount of local data in your browser to remember daily generation counts and anonymous local event totals such as page views, generate clicks, downloads, and limit notices."],
+        ["p", "The site's anonymous event counter may also store a normalized source label such as direct, google, github, directory, or referral. It does not store full referrer URLs in that counter."],
         ["p", "If analytics, advertising, or payment tools are added later, this policy should be updated before launch to describe those providers, cookies, and opt-out choices."],
       ],
     },
@@ -2555,6 +2572,7 @@
     if (parts[0] === "guides" && parts[1]) return renderGuide(parts[1]);
     if (parts[0] === "free-pdf-tools") return renderFreePdfTools();
     if (parts[0] === "pdf-tool-finder") return renderPdfToolFinder();
+    if (parts[0] === "submit-directory") return renderDirectorySubmissionPack();
     if (landingPagesBySlug[parts[0]]) return renderLandingPage(parts[0]);
     if (parts[0] === "dashboard") return renderDashboard();
     if (pages[parts[0]]) return renderStaticPage(parts[0]);
@@ -2836,6 +2854,89 @@
         <h2>Free tool limits</h2>
         <p>The tools are designed for fast one-page PDFs and simple records. They do not replace legal, tax, accounting, or employment advice. Review every document before sending or printing it.</p>
         <p>Ads are disabled during validation and should never be used as a condition for downloading a PDF.</p>
+      </section>
+    `;
+  }
+
+  function renderDirectorySubmissionPack() {
+    const primaryToolIds = [
+      "image-to-pdf",
+      "multi-image-pdf",
+      "text-to-pdf",
+      "invoice-generator",
+      "receipt-generator",
+      "packing-slip",
+      "work-order",
+      "inventory-sheet",
+      "resume-builder",
+      "certificate-generator",
+    ];
+    const directoryFields = [
+      ["Product name", "PrintableTools Lab"],
+      ["URL", absoluteUrl("/")],
+      ["Category", "Files, Productivity, PDF Tools, Document Tools, Small Business Tools"],
+      ["Pricing", "Free"],
+      ["Tagline", "Free no-signup browser PDF generators"],
+      ["Short description", "Create practical PDFs in the browser, including image-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, resumes, certificates, and printable tools."],
+    ];
+    setMeta("PrintableTools Lab Directory Submission Pack", "Copy-ready directory submission details, screenshots, core links, and compliance notes for listing PrintableTools Lab as a free no-signup PDF tool site.");
+    setJsonLd({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "PrintableTools Lab representative free PDF tools",
+      itemListElement: primaryToolIds.map((id, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `${CONFIG.siteUrl.replace(/\/$/, "")}/tools/${id}/`,
+        name: tools[id].title,
+      })),
+    });
+    app.innerHTML = `
+      <section class="shell page-title section">
+        <a href="/free-pdf-tools/">Free PDF tools</a>
+        <h1>PrintableTools Lab directory submission pack</h1>
+        <p>This page gives directory editors, community moderators, and launch-listing reviewers the exact facts needed to evaluate PrintableTools Lab as a free no-signup PDF tool collection.</p>
+      </section>
+      <section class="shell section">
+        <h2>Copy-ready listing details</h2>
+        <table class="event-table">
+          <tbody>
+            ${directoryFields.map(([label, value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`).join("")}
+          </tbody>
+        </table>
+      </section>
+      <section class="shell section">
+        <h2>Review notes</h2>
+        <div class="grid-3">
+          <article class="panel"><h3>No signup</h3><p>Core PDF generators open directly in the browser and do not require an account before export.</p></article>
+          <article class="panel"><h3>Free export</h3><p>The validation version keeps PDF downloads free and avoids surprise checkout screens.</p></article>
+          <article class="panel"><h3>Ad-safe</h3><p>Ads are disabled during validation and downloads are not gated behind ad clicks or ad views.</p></article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Primary links for reviewers</h2>
+        <div class="cluster-links">
+          <a href="/free-pdf-tools/">Free PDF tools directory</a>
+          <a href="/pdf-tool-finder/">PDF tool finder</a>
+          <a href="/tools/">All tools</a>
+          <a href="/tools.json">Machine-readable tools.json</a>
+          <a href="/feed.xml">RSS feed</a>
+          <a href="/llms.txt">llms.txt</a>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Representative tools</h2>
+        <div class="grid-2">
+          ${primaryToolIds.map((id) => `<article class="tool-card"><h3>${escapeHtml(tools[id].title)}</h3><p>${escapeHtml(tools[id].description)}</p><a class="button" href="/tools/${id}/">Open generator</a></article>`).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Assets</h2>
+        <p>Use the icon and screenshot below for directory review. They are provided to make free-tool submissions easier to verify without inventing claims.</p>
+        <div class="grid-2">
+          <article class="panel"><h3>Icon</h3><p><a href="/assets/images/app-icon-512.png">512px PNG app icon</a></p></article>
+          <article class="panel"><h3>Screenshot</h3><p><a href="/assets/images/free-pdf-tools-screenshot.png">Free PDF tools page screenshot</a></p></article>
+        </div>
       </section>
     `;
   }
@@ -5347,17 +5448,19 @@
   }
 
   function track(name, data) {
+    const source = getTrafficSource();
+    const details = Object.assign({}, data || {}, { source });
     const events = getEvents();
     events.push({
       time: new Date().toISOString(),
       name,
-      data: Object.assign({ ref: document.referrer || "direct" }, data || {}),
+      data: details,
     });
     localStorage.setItem("ptl_events", JSON.stringify(events.slice(-1000)));
     if (window.gtag && CONFIG.enableAnalytics) {
-      window.gtag("event", name, data || {});
+      window.gtag("event", name, details);
     }
-    sendRemoteEvent(name, data || {});
+    sendRemoteEvent(name, details);
   }
 
   function sendRemoteEvent(name, data) {
@@ -5366,6 +5469,7 @@
       name,
       tool: data.tool || "site",
       path: getCurrentRoutePath(),
+      source: data.source || getTrafficSource(),
     });
     if (navigator.sendBeacon) {
       navigator.sendBeacon("/api/event", new Blob([payload], { type: "application/json" }));
@@ -5391,6 +5495,12 @@
         const aScore = (a.download_pdf || 0) * 3 + (a.generate_pdf || 0);
         return bScore - aScore || String(a.tool).localeCompare(String(b.tool));
       });
+      const sourceRows = (data.sources || []).slice().sort((a, b) => {
+        const bScore = (b.download_pdf || 0) * 3 + (b.generate_pdf || 0) + (b.page_view || 0);
+        const aScore = (a.download_pdf || 0) * 3 + (a.generate_pdf || 0) + (a.page_view || 0);
+        return bScore - aScore || String(a.source).localeCompare(String(b.source));
+      });
+      const activeSourceRows = sourceRows.filter((row) => (row.page_view || 0) || (row.generate_pdf || 0) || (row.download_pdf || 0));
       const activeRows = rows.filter((row) => (row.download_pdf || 0) || (row.generate_pdf || 0) || (row.limit_hit || 0));
       const displayRows = activeRows.length ? activeRows : rows;
       target.innerHTML = `
@@ -5403,6 +5513,12 @@
         <p class="help">Tools are sorted by download and generation signal so the next SEO or ad placement decision starts from actual usage.</p>
         <div class="preview-stage">
           <table class="event-table">
+            <thead><tr><th>Source</th><th>Views</th><th>Generations</th><th>Downloads</th></tr></thead>
+            <tbody>${(activeSourceRows.length ? activeSourceRows : sourceRows).map((row) => `<tr><td>${escapeHtml(row.source)}</td><td>${row.page_view || 0}</td><td>${row.generate_pdf || 0}</td><td>${row.download_pdf || 0}</td></tr>`).join("")}</tbody>
+          </table>
+        </div>
+        <div class="preview-stage">
+          <table class="event-table">
             <thead><tr><th>Tool</th><th>Downloads</th><th>Generations</th><th>Limit hits</th></tr></thead>
             <tbody>${displayRows.map((row) => `<tr><td>${escapeHtml(row.tool)}</td><td>${row.download_pdf || 0}</td><td>${row.generate_pdf || 0}</td><td>${row.limit_hit || 0}</td></tr>`).join("")}</tbody>
           </table>
@@ -5410,6 +5526,69 @@
       `;
     } catch (error) {
       target.innerHTML = `<p class="help">Live metrics are not available yet. Local browser metrics still work.</p>`;
+    }
+  }
+
+  function getTrafficSource() {
+    const params = new URLSearchParams(window.location.search || "");
+    const taggedSource = normalizeTrafficSource(params.get("utm_source") || params.get("ref"));
+    if (taggedSource) {
+      saveSessionSource(taggedSource);
+      return taggedSource;
+    }
+    const storedSource = normalizeTrafficSource(getSessionSource());
+    if (storedSource) return storedSource;
+    const inferredSource = inferTrafficSourceFromReferrer(document.referrer);
+    saveSessionSource(inferredSource);
+    return inferredSource;
+  }
+
+  function getSessionSource() {
+    try {
+      return sessionStorage.getItem("ptl_source");
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function saveSessionSource(source) {
+    try {
+      sessionStorage.setItem("ptl_source", source);
+    } catch (error) {
+      // Session storage can be unavailable in strict privacy modes; metrics still work.
+    }
+  }
+
+  function normalizeTrafficSource(value) {
+    const source = String(value || "")
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9_-]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 48);
+    if (!source) return "";
+    if (source === "free-no-signup") return "freenosignup";
+    if (TRAFFIC_SOURCES.has(source)) return source;
+    return "referral";
+  }
+
+  function inferTrafficSourceFromReferrer(referrer) {
+    if (!referrer) return "direct";
+    try {
+      const host = new URL(referrer).hostname.toLowerCase();
+      const currentHost = window.location.hostname.toLowerCase();
+      if (!host || host === currentHost) return "direct";
+      if (host.includes("google.")) return "google";
+      if (host.includes("bing.")) return "bing";
+      if (host.includes("github.io")) return "github-pages";
+      if (host.includes("github.com")) return "github";
+      if (host.includes("zearches.com")) return "zearches";
+      if (host.includes("listai.cc")) return "listai";
+      if (host.includes("nosignuptools.com")) return "nosignuptools";
+      if (host.includes("freenosignup.com")) return "freenosignup";
+      return "referral";
+    } catch (error) {
+      return "unknown";
     }
   }
 

@@ -19,6 +19,14 @@ I built PrintableTools Lab, a free browser-based PDF tool site. It creates pract
 - Description: Create practical PDFs in the browser, including image conversions, multi-image PDFs, text-to-PDF documents, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, flashcards, and habit trackers.
 - Pricing: Free
 
+## Tracked campaign links
+
+Use these only for posts or listings that allow URL parameters. Directory fields can still use the clean homepage URL when a reviewer prefers canonical links.
+
+- Directory campaign: https://printable-tools-lab.pages.dev?utm_source=directory
+- GitHub campaign: https://printable-tools-lab.pages.dev?utm_source=github
+- Community campaign: https://printable-tools-lab.pages.dev?utm_source=community
+
 ## High-intent links
 
 - Free PDF tools directory: https://printable-tools-lab.pages.dev/free-pdf-tools/

@@ -1018,7 +1018,7 @@ const pages = [
     path: "privacy",
     title: "Privacy Policy",
     description: "Privacy policy for PrintableTools Lab.",
-    html: `<article class="article-shell article"><h1>Privacy Policy</h1><p>PrintableTools Lab generates PDFs in your browser. Ordinary PDF generation does not require an account and keeps form text on your device.</p><p>If you choose the optional AI idea helper, the current tool type and short form text are sent to the site's AI service only to return printable suggestions. Do not enter sensitive personal information.</p><p>The site stores local generation counts and validation events in your browser.</p></article>`,
+    html: `<article class="article-shell article"><h1>Privacy Policy</h1><p>PrintableTools Lab generates PDFs in your browser. Ordinary PDF generation does not require an account and keeps form text on your device.</p><p>If you choose the optional AI idea helper, the current tool type and short form text are sent to the site's AI service only to return printable suggestions. Do not enter sensitive personal information.</p><p>The site stores local generation counts and validation events in your browser. The site's anonymous event counter may also store a normalized source label such as direct, google, github, directory, or referral. It does not store full referrer URLs in that counter.</p></article>`,
   },
   {
     path: "terms",

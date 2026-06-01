@@ -9,20 +9,78 @@ const ALLOWED_EVENTS = new Set([
   "ai_ideas_error",
 ]);
 
+const ALLOWED_SOURCES = new Set([
+  "direct",
+  "google",
+  "bing",
+  "github",
+  "github-pages",
+  "zearches",
+  "listai",
+  "nosignuptools",
+  "freenosignup",
+  "directory",
+  "community",
+  "referral",
+  "unknown",
+]);
+
+const ALLOWED_TOOLS = new Set([
+  "site",
+  "invoice-generator",
+  "estimate-generator",
+  "purchase-order",
+  "bill-of-sale",
+  "business-card",
+  "address-labels",
+  "price-tag",
+  "flyer-maker",
+  "barcode-labels",
+  "coupon-maker",
+  "packing-slip",
+  "work-order",
+  "inventory-sheet",
+  "resume-builder",
+  "cover-letter",
+  "resignation-letter",
+  "monthly-calendar",
+  "meal-planner",
+  "image-to-pdf",
+  "multi-image-pdf",
+  "text-to-pdf",
+  "sign-in-sheet",
+  "graph-paper",
+  "packing-list",
+  "receipt-generator",
+  "timesheet-generator",
+  "certificate-generator",
+  "todo-list",
+  "rent-receipt",
+  "name-tracing",
+  "chore-chart",
+  "reward-chart",
+  "flashcards",
+  "weekly-planner",
+  "habit-tracker",
+]);
+
 export async function onRequestPost({ request, env }) {
   if (!env.PTL_EVENTS) return json({ ok: false, error: "Event store unavailable" }, 503);
   try {
     const body = await request.json();
     const name = cleanKey(body.name, 40);
     if (!ALLOWED_EVENTS.has(name)) return json({ ok: false, error: "Unsupported event" }, 400);
-    const tool = cleanKey(body.tool || "site", 64) || "site";
+    const tool = cleanTool(body.tool || "site");
+    const source = cleanSource(body.source || "direct");
     const path = cleanPath(body.path || "/");
     const day = new Date().toISOString().slice(0, 10);
     const keys = [
       `day:${day}:event:${name}`,
       `day:${day}:tool:${tool}:event:${name}`,
+      `day:${day}:source:${source}:event:${name}`,
       `total:event:${name}`,
       `total:tool:${tool}:event:${name}`,
+      `total:source:${source}:event:${name}`,
     ];
     if (name === "page_view") keys.push(`day:${day}:path:${path}:views`);
     await Promise.all(keys.map((key) => increment(env.PTL_EVENTS, key)));
@@ -47,6 +105,17 @@ function cleanKey(value, maxLength) {
     .replace(/[^a-z0-9_-]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .slice(0, maxLength);
+}
+
+function cleanSource(value) {
+  const source = cleanKey(value || "direct", 48);
+  if (!source) return "direct";
+  return ALLOWED_SOURCES.has(source) ? source : "referral";
+}
+
+function cleanTool(value) {
+  const tool = cleanKey(value || "site", 64);
+  return ALLOWED_TOOLS.has(tool) ? tool : "site";
 }
 
 function cleanPath(value) {

@@ -1,4 +1,5 @@
 const EVENTS = ["page_view", "generate_pdf", "download_pdf", "limit_hit", "ai_ideas", "ai_ideas_apply"];
+const SOURCE_EVENTS = ["page_view", "generate_pdf", "download_pdf"];
 const TOOLS = [
   "invoice-generator",
   "estimate-generator",
@@ -10,6 +11,9 @@ const TOOLS = [
   "flyer-maker",
   "barcode-labels",
   "coupon-maker",
+  "packing-slip",
+  "work-order",
+  "inventory-sheet",
   "resume-builder",
   "cover-letter",
   "resignation-letter",
@@ -33,12 +37,27 @@ const TOOLS = [
   "weekly-planner",
   "habit-tracker",
 ];
+const SOURCES = [
+  "direct",
+  "google",
+  "bing",
+  "github",
+  "github-pages",
+  "zearches",
+  "listai",
+  "nosignuptools",
+  "freenosignup",
+  "directory",
+  "community",
+  "referral",
+  "unknown",
+];
 
 export async function onRequestGet({ env }) {
   if (!env.PTL_EVENTS) return json({ ok: false, error: "Metrics store unavailable" }, 503);
   const today = new Date().toISOString().slice(0, 10);
   const count = async (key) => Number(await env.PTL_EVENTS.get(key)) || 0;
-  const [totalEntries, todayEntries, tools] = await Promise.all([
+  const [totalEntries, todayEntries, tools, sources] = await Promise.all([
     Promise.all(EVENTS.map(async (event) => [event, await count(`total:event:${event}`)])),
     Promise.all(EVENTS.map(async (event) => [event, await count(`day:${today}:event:${event}`)])),
     Promise.all(TOOLS.map(async (tool) => {
@@ -50,6 +69,23 @@ export async function onRequestGet({ env }) {
       );
       return { tool, ...Object.fromEntries(eventEntries) };
     })),
+    Promise.all(SOURCES.map(async (source) => {
+      const [totalSourceEntries, todaySourceEntries] = await Promise.all([
+        Promise.all(SOURCE_EVENTS.map(async (event) => [
+          event,
+          await count(`total:source:${source}:event:${event}`),
+        ])),
+        Promise.all(SOURCE_EVENTS.map(async (event) => [
+          event,
+          await count(`day:${today}:source:${source}:event:${event}`),
+        ])),
+      ]);
+      return {
+        source,
+        ...Object.fromEntries(totalSourceEntries),
+        today: Object.fromEntries(todaySourceEntries),
+      };
+    })),
   ]);
   return json({
     ok: true,
@@ -57,6 +93,7 @@ export async function onRequestGet({ env }) {
     totals: Object.fromEntries(totalEntries),
     todayTotals: Object.fromEntries(todayEntries),
     tools,
+    sources,
   });
 }
 

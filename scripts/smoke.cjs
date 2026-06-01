@@ -111,6 +111,7 @@ function delay(ms) {
     "/guides/weekly-timesheet-generator-pdf/",
     "/guides/free-certificate-generator-pdf/",
     "/guides/printable-to-do-list-generator/",
+    "/submit-directory/",
     "/privacy/",
     "/dashboard/",
   ];
@@ -121,6 +122,19 @@ function delay(ms) {
     const title = await page.title();
     if (!title.includes("PrintableTools Lab")) throw new Error(`Bad title for ${route}: ${title}`);
   }
+
+  await page.goto(`${base}/?utm_source=github`, { waitUntil: "networkidle" });
+  let latestSource = await page.evaluate(() => {
+    const events = JSON.parse(localStorage.getItem("ptl_events") || "[]");
+    return events.at(-1)?.data?.source;
+  });
+  if (latestSource !== "github") throw new Error(`Campaign source was not captured: ${latestSource}`);
+  await page.goto(`${base}/tools/invoice-generator/`, { waitUntil: "networkidle" });
+  latestSource = await page.evaluate(() => {
+    const events = JSON.parse(localStorage.getItem("ptl_events") || "[]");
+    return events.at(-1)?.data?.source;
+  });
+  if (latestSource !== "github") throw new Error(`Campaign source did not persist for the session: ${latestSource}`);
 
   await page.goto(`${base}/free-pdf-tools/`, { waitUntil: "networkidle" });
   const freePdfText = await page.locator("main").innerText();
@@ -140,6 +154,12 @@ function delay(ms) {
   for (const href of ["/tools/image-to-pdf/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/price-tag/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
     const linkCount = await page.locator(`main a[href="${href}"]`).count();
     if (!linkCount) throw new Error(`PDF tool finder page is missing link ${href}`);
+  }
+
+  await page.goto(`${base}/submit-directory/`, { waitUntil: "networkidle" });
+  const submissionPackText = await page.locator("main").innerText();
+  for (const phrase of ["Copy-ready listing details", "Primary links for reviewers", "Representative tools"]) {
+    if (!submissionPackText.includes(phrase)) throw new Error(`Directory submission pack is missing ${phrase}`);
   }
 
   for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/text-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
