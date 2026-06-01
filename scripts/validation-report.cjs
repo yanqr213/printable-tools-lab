@@ -282,9 +282,9 @@ function evaluateGates(local, live, searchConsole, discovery) {
   const sitemap = Array.isArray(searchConsole.sitemaps?.sitemap) ? searchConsole.sitemaps.sitemap[0] : null;
   const indexed = searchConsole.inspected.filter((item) => item.verdict === "PASS").length;
   const unknown = searchConsole.inspected.filter((item) => /unknown/i.test(item.coverageState || "")).length;
-  const productReady = local.toolCount >= 26
-    && local.guideCount >= 50
-    && local.landingPageCount >= 8
+  const productReady = local.toolCount >= 32
+    && local.guideCount >= 64
+    && local.landingPageCount >= 14
     && local.indexableRoutes >= 79
     && local.sitemapLocCount >= local.indexableRoutes
     && Object.values(local.discoveryAssets).every(Boolean)
@@ -317,9 +317,9 @@ function evaluateGates(local, live, searchConsole, discovery) {
 
 function missingProductReasons(local, live) {
   const reasons = [];
-  if (local.toolCount < 26) reasons.push(`Only ${local.toolCount} tools found; target is 26 or more.`);
-  if (local.guideCount < 50) reasons.push(`Only ${local.guideCount} guides found; target is 50 or more.`);
-  if (local.landingPageCount < 8) reasons.push(`Only ${local.landingPageCount} high-intent landing pages found; target is 8 or more.`);
+  if (local.toolCount < 32) reasons.push(`Only ${local.toolCount} tools found; target is 32 or more.`);
+  if (local.guideCount < 64) reasons.push(`Only ${local.guideCount} guides found; target is 64 or more.`);
+  if (local.landingPageCount < 14) reasons.push(`Only ${local.landingPageCount} high-intent landing pages found; target is 14 or more.`);
   if (local.sitemapLocCount < local.indexableRoutes) reasons.push("Sitemap has fewer URLs than the indexable route list.");
   for (const [name, ok] of Object.entries(local.discoveryAssets)) {
     if (!ok) reasons.push(`Missing discovery asset: ${name}.`);

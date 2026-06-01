@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-05-31T23:01:18.254Z",
+  "generatedAt": "2026-06-01T00:03:23.764Z",
   "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -17,12 +17,24 @@
     "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
     "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
+    "https://printable-tools-lab.pages.dev/free-business-card-generator-printable/",
+    "https://printable-tools-lab.pages.dev/free-address-label-generator-printable/",
+    "https://printable-tools-lab.pages.dev/free-barcode-label-generator-printable/",
+    "https://printable-tools-lab.pages.dev/free-price-tag-generator-printable/",
+    "https://printable-tools-lab.pages.dev/free-flyer-maker-pdf-no-signup/",
+    "https://printable-tools-lab.pages.dev/free-coupon-maker-printable/",
     "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
     "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
     "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
     "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
     "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
     "https://printable-tools-lab.pages.dev/tools/timesheet-generator/",
+    "https://printable-tools-lab.pages.dev/tools/business-card/",
+    "https://printable-tools-lab.pages.dev/tools/address-labels/",
+    "https://printable-tools-lab.pages.dev/tools/barcode-labels/",
+    "https://printable-tools-lab.pages.dev/tools/price-tag/",
+    "https://printable-tools-lab.pages.dev/tools/flyer-maker/",
+    "https://printable-tools-lab.pages.dev/tools/coupon-maker/",
     "https://printable-tools-lab.pages.dev/tools/resume-builder/",
     "https://printable-tools-lab.pages.dev/tools/certificate-generator/",
     "https://printable-tools-lab.pages.dev/tools/todo-list/",
@@ -76,6 +88,42 @@
       "url": "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
       "intent": "certificate PDF download without account",
       "tool": "https://printable-tools-lab.pages.dev/tools/certificate-generator/"
+    },
+    {
+      "title": "Free Printable Business Card Generator",
+      "url": "https://printable-tools-lab.pages.dev/free-business-card-generator-printable/",
+      "intent": "printable business cards now, no account, no design software",
+      "tool": "https://printable-tools-lab.pages.dev/tools/business-card/"
+    },
+    {
+      "title": "Free Printable Address Label Generator",
+      "url": "https://printable-tools-lab.pages.dev/free-address-label-generator-printable/",
+      "intent": "mailing label PDF, return address labels, no signup",
+      "tool": "https://printable-tools-lab.pages.dev/tools/address-labels/"
+    },
+    {
+      "title": "Free Printable Barcode Label Generator",
+      "url": "https://printable-tools-lab.pages.dev/free-barcode-label-generator-printable/",
+      "intent": "barcode label PDF, SKU labels, inventory stickers",
+      "tool": "https://printable-tools-lab.pages.dev/tools/barcode-labels/"
+    },
+    {
+      "title": "Free Printable Price Tag Generator",
+      "url": "https://printable-tools-lab.pages.dev/free-price-tag-generator-printable/",
+      "intent": "price tag PDF, shelf labels, yard sale tags",
+      "tool": "https://printable-tools-lab.pages.dev/tools/price-tag/"
+    },
+    {
+      "title": "Free Flyer Maker PDF Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/free-flyer-maker-pdf-no-signup/",
+      "intent": "flyer PDF now, no signup, local event flyer",
+      "tool": "https://printable-tools-lab.pages.dev/tools/flyer-maker/"
+    },
+    {
+      "title": "Free Printable Coupon Maker",
+      "url": "https://printable-tools-lab.pages.dev/free-coupon-maker-printable/",
+      "intent": "printable coupon cards, discount coupon PDF, no signup",
+      "tool": "https://printable-tools-lab.pages.dev/tools/coupon-maker/"
     }
   ],
   "constraints": [

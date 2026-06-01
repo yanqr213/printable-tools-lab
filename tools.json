@@ -1,8 +1,8 @@
 {
   "name": "PrintableTools Lab",
-  "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-05-31T23:01:18.254Z",
+  "generatedAt": "2026-06-01T00:03:23.764Z",
   "tools": [
     {
       "title": "Name Tracing Worksheet Generator",
@@ -68,6 +68,42 @@
       "title": "Rent Receipt Generator",
       "url": "https://printable-tools-lab.pages.dev/tools/rent-receipt/",
       "description": "Make a free printable rent receipt PDF for a tenant payment, room rental, cash payment record, or landlord file.",
+      "category": "Business paperwork"
+    },
+    {
+      "title": "Business Card Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/business-card/",
+      "description": "Create a printable business card PDF sheet for a small business, side project, local service, or event contact card.",
+      "category": "Business paperwork"
+    },
+    {
+      "title": "Address Label Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/address-labels/",
+      "description": "Make a printable sheet of return address labels, mailing labels, classroom labels, or event badge labels.",
+      "category": "Business paperwork"
+    },
+    {
+      "title": "Price Tag Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/price-tag/",
+      "description": "Create printable price tags or shelf labels for yard sales, craft fairs, pop-up shops, and small retail displays.",
+      "category": "Business paperwork"
+    },
+    {
+      "title": "Flyer Maker PDF",
+      "url": "https://printable-tools-lab.pages.dev/tools/flyer-maker/",
+      "description": "Make a one-page printable flyer PDF for a local service, yard sale, class, community event, or small business offer.",
+      "category": "Business paperwork"
+    },
+    {
+      "title": "Barcode Label Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/barcode-labels/",
+      "description": "Generate printable Code 39 barcode labels for inventory bins, event check-in, SKU stickers, and internal tracking.",
+      "category": "Business paperwork"
+    },
+    {
+      "title": "Coupon Maker PDF",
+      "url": "https://printable-tools-lab.pages.dev/tools/coupon-maker/",
+      "description": "Create printable coupon cards for a local service, class, pop-up event, small shop, or limited-time offer.",
       "category": "Business paperwork"
     },
     {
@@ -301,6 +337,66 @@
       "title": "Rent receipt for cash payment",
       "url": "https://printable-tools-lab.pages.dev/guides/rent-receipt-for-cash-payment/",
       "description": "Create a simple receipt PDF when rent is paid by cash, bank transfer, check, or another payment method."
+    },
+    {
+      "title": "Free printable business card generator",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-business-card-generator-printable/",
+      "description": "Create printable business cards for a service, side business, class, event, or pop-up table."
+    },
+    {
+      "title": "Business card PDF for local services",
+      "url": "https://printable-tools-lab.pages.dev/guides/business-card-pdf-for-local-services/",
+      "description": "Make a practical contact card for notaries, tutors, cleaners, repair services, coaches, and small local businesses."
+    },
+    {
+      "title": "Free printable address label generator",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-address-label-generator-printable/",
+      "description": "Create return address labels, mailing labels, classroom labels, bin labels, or badge labels as a PDF sheet."
+    },
+    {
+      "title": "Mailing label PDF template",
+      "url": "https://printable-tools-lab.pages.dev/guides/mailing-label-pdf-template/",
+      "description": "Use a printable mailing label sheet for small batches of envelopes, packages, folders, and event materials."
+    },
+    {
+      "title": "Free printable barcode label generator",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-barcode-label-generator-printable/",
+      "description": "Generate Code 39 barcode labels for SKU stickers, inventory bins, event check-in, and internal tracking."
+    },
+    {
+      "title": "SKU label PDF template",
+      "url": "https://printable-tools-lab.pages.dev/guides/sku-label-pdf-template/",
+      "description": "Create a simple SKU label PDF for handmade products, market tables, storage bins, or internal inventory."
+    },
+    {
+      "title": "Free printable price tag generator",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-price-tag-generator-printable/",
+      "description": "Make price tags and shelf labels for yard sales, craft fairs, pop-up shops, and small retail tables."
+    },
+    {
+      "title": "Yard sale price tags PDF",
+      "url": "https://printable-tools-lab.pages.dev/guides/yard-sale-price-tags-pdf/",
+      "description": "Create quick printable price tags for garage sales, estate sales, moving sales, and community markets."
+    },
+    {
+      "title": "Free flyer maker PDF without signup",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-flyer-maker-pdf-no-signup/",
+      "description": "Make a one-page flyer PDF for a local service, yard sale, class, club, or community event."
+    },
+    {
+      "title": "Local service flyer PDF template",
+      "url": "https://printable-tools-lab.pages.dev/guides/local-service-flyer-pdf-template/",
+      "description": "Create a simple printable flyer for cleaning, tutoring, repair, notary, coaching, or neighborhood services."
+    },
+    {
+      "title": "Free printable coupon maker",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-coupon-maker-printable/",
+      "description": "Create printable coupon cards for local services, pop-up shops, classes, events, and small offers."
+    },
+    {
+      "title": "Discount coupon PDF template",
+      "url": "https://printable-tools-lab.pages.dev/guides/discount-coupon-pdf-template/",
+      "description": "Make a coupon PDF sheet with offer text, coupon code, expiration note, and fine print."
     },
     {
       "title": "Free resume builder PDF",

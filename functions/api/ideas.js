@@ -22,6 +22,12 @@ const TOOL_FIELDS = {
   "timesheet-generator": ["period", "rows", "notes"],
   "certificate-generator": ["title", "reason", "signer"],
   "todo-list": ["title", "sections", "notes"],
+  "business-card": ["role", "tagline"],
+  "address-labels": [],
+  "price-tag": ["title", "subtitle", "footer"],
+  "flyer-maker": ["headline", "subhead", "details", "callToAction"],
+  "barcode-labels": [],
+  "coupon-maker": ["offer", "details", "finePrint"],
 };
 
 const FIELD_LIMITS = {
@@ -75,6 +81,13 @@ const FIELD_LIMITS = {
   rows: 760,
   reason: 220,
   signer: 70,
+  tagline: 90,
+  subhead: 90,
+  details: 420,
+  callToAction: 100,
+  offer: 90,
+  finePrint: 180,
+  footer: 90,
 };
 
 export async function onRequestPost(context) {
@@ -625,6 +638,122 @@ function fallbackSuggestions(tool, values) {
           title: "Study Session Checklist",
           sections: "Prepare: choose topic, gather notes, set timer\nPractice: review examples, solve problems, mark questions\nFinish: summarize, plan next session, pack materials",
           notes: "Keep the list visible while studying.",
+        },
+      },
+    ],
+    "business-card": [
+      {
+        title: "Local service card",
+        summary: "Clear service wording for a practical contact card",
+        fields: {
+          role: values.role || "Local service provider",
+          tagline: "Fast appointments, clear communication, reliable follow-up",
+        },
+      },
+      {
+        title: "Event contact card",
+        summary: "Simple wording for classes, clubs, or events",
+        fields: {
+          role: values.role || "Event organizer",
+          tagline: "Keep this card for updates, booking, and questions",
+        },
+      },
+      {
+        title: "Side project card",
+        summary: "Friendly wording for a small independent project",
+        fields: {
+          role: values.role || "Independent creator",
+          tagline: "Practical help, simple booking, friendly service",
+        },
+      },
+    ],
+    "price-tag": [
+      {
+        title: "Market sale tag",
+        summary: "Simple retail wording for a craft fair or table",
+        fields: {
+          title: values.title || "Market Special",
+          subtitle: "Handmade item",
+          footer: "Ask about bundle pricing",
+        },
+      },
+      {
+        title: "Yard sale tag",
+        summary: "Readable tag copy for quick selling",
+        fields: {
+          title: "Yard Sale",
+          subtitle: "Good condition",
+          footer: "Cash or local payment accepted",
+        },
+      },
+      {
+        title: "Shelf label",
+        summary: "Clean shelf label copy",
+        fields: {
+          title: values.title || "Featured Item",
+          subtitle: "Limited quantity",
+          footer: "Price before tax if applicable",
+        },
+      },
+    ],
+    "flyer-maker": [
+      {
+        title: "Local service flyer",
+        summary: "A concise flyer for neighborhood services",
+        fields: {
+          headline: values.headline || "Local Service Available",
+          subhead: "Fast scheduling and friendly support",
+          details: "Describe the service, who it helps, and what makes it easy to book. Keep the flyer focused on one offer or service area.",
+          callToAction: "Call or message to request a time",
+        },
+      },
+      {
+        title: "Community event flyer",
+        summary: "Simple event announcement wording",
+        fields: {
+          headline: "Community Event",
+          subhead: "Open to neighbors and friends",
+          details: "Add the date, time, location, and what people should bring. Keep the most important details near the top.",
+          callToAction: "Save the date and share with someone nearby",
+        },
+      },
+      {
+        title: "Yard sale flyer",
+        summary: "Clear sale flyer copy",
+        fields: {
+          headline: "Weekend Yard Sale",
+          subhead: "Household items, books, clothes, and more",
+          details: "Add the address, hours, payment notes, and a short list of the best item categories.",
+          callToAction: "Stop by early for the best selection",
+        },
+      },
+    ],
+    "coupon-maker": [
+      {
+        title: "First visit offer",
+        summary: "A clear coupon for a new customer",
+        fields: {
+          offer: values.offer || "10% off your first visit",
+          details: "Show this coupon when booking or checking out.",
+          finePrint: "One coupon per customer. Not redeemable for cash.",
+        },
+      },
+      {
+        title: "Referral coupon",
+        summary: "Simple referral card wording",
+        fields: {
+          offer: "Bring a friend and save",
+          details: "Use this coupon for a shared booking or referral visit.",
+          finePrint: "Offer valid for eligible services only.",
+        },
+      },
+      {
+        title: "Event special",
+        summary: "Short-term promo wording",
+        fields: {
+          offer: "Event day special",
+          details: "Use this coupon during the listed event or pop-up date.",
+          finePrint: "Cannot be combined with other offers.",
         },
       },
     ],

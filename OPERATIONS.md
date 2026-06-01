@@ -283,6 +283,18 @@ Create one image or short post per item. Show the printable use case and never p
 49. Weekly timesheet PDF for freelance hours.
 50. Certificate generator for classrooms and events.
 51. Printable to-do list for errands, study, and event prep.
+52. Free printable business card sheet for local services.
+53. Business card PDF before ordering professional prints.
+54. Address label sheet for small mailing batches.
+55. Badge labels for events, workshops, and classrooms.
+56. Barcode label PDF for SKU stickers and inventory bins.
+57. SKU labels for handmade products and market tables.
+58. Price tag generator for yard sales and pop-up shops.
+59. Shelf label PDF for small retail displays.
+60. Flyer maker PDF for a local service or class.
+61. Yard sale flyer with clear time and location.
+62. Printable coupon maker for local offers.
+63. Discount coupon PDF with code and expiration note.
 
 ## Weekly Operating Loop
 
@@ -309,6 +321,7 @@ Current Search Console checkpoint:
 - `2026-06-01`: expanded to 26 tools and 52 guide pages, including multi-image PDF, text-to-PDF, receipt, timesheet, certificate, and to-do list routes. Added `discovery.json` for high-intent route discovery.
 - `2026-06-01`: added `feed.xml`, sitemap `lastmod`, and `ItemList` JSON-LD on directory/finder pages. Google sitemap documentation supports `lastmod` when accurate, and feeds are useful discovery/monitoring assets, but neither replaces external links or real usage.
 - `2026-06-01`: added 8 high-intent no-signup/no-upload landing pages for invoice, receipt, weekly timesheet, resume, certificate, JPG-to-PDF, multi-image PDF, and text-to-PDF searches. Clean free exports are now the default acquisition promise.
+- `2026-06-01`: expanded the same site to 32 tools, 64 guides, and 14 high-intent landing pages by adding local-business print assets: business cards, address labels, barcode labels, price tags, flyers, and coupons. This keeps domain authority/data in one property while testing more commercial search intent.
 - Action: keep site stable, improve useful content/navigation, thicken tool pages, and avoid repeated low-value resubmission loops.
 
 ## External Discovery Queue

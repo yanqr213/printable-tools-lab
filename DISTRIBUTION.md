@@ -4,11 +4,11 @@ Use these snippets for low-friction external discovery. Do not spam communities;
 
 ## One-line pitch
 
-PrintableTools Lab is a free no-signup PDF generator site for image conversion, text-to-PDF, invoices, estimates, receipts, timesheets, resumes, cover letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, and flashcards.
+PrintableTools Lab is a free no-signup PDF generator site for image conversion, text-to-PDF, invoices, estimates, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, and flashcards.
 
 ## Short launch post
 
-I built PrintableTools Lab, a free browser-based PDF tool site. It creates practical PDFs like image-to-PDF conversions, multi-image PDFs, text-to-PDF documents, invoices, estimates, purchase orders, receipts, timesheets, resumes, cover letters, resignation letters, certificates, monthly calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, name tracing worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers. No account and no surprise download fee. Feedback on which tools are most useful would help shape the next batch.
+I built PrintableTools Lab, a free browser-based PDF tool site. It creates practical PDFs like image-to-PDF conversions, multi-image PDFs, text-to-PDF documents, invoices, estimates, purchase orders, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, monthly calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, name tracing worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers. No account and no surprise download fee. Feedback on which tools are most useful would help shape the next batch.
 
 ## Directory submission fields
 
@@ -16,7 +16,7 @@ I built PrintableTools Lab, a free browser-based PDF tool site. It creates pract
 - URL: https://printable-tools-lab.pages.dev/
 - Category: Productivity, PDF Tools, Document Tools, Education, Small Business Tools, Job Search Tools
 - Tagline: Free no-signup printable PDF generators
-- Description: Create practical PDFs in the browser, including image conversions, multi-image PDFs, text-to-PDF documents, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, flashcards, and habit trackers.
+- Description: Create practical PDFs in the browser, including image conversions, multi-image PDFs, text-to-PDF documents, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, flashcards, and habit trackers.
 - Pricing: Free
 
 ## High-intent links
@@ -31,12 +31,24 @@ I built PrintableTools Lab, a free browser-based PDF tool site. It creates pract
 - Free Receipt Generator Without Signup: https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/
 - Weekly Timesheet PDF Without Signup: https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/
 - Free Certificate Maker Without Signup: https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/
+- Free Printable Business Card Generator: https://printable-tools-lab.pages.dev/free-business-card-generator-printable/
+- Free Printable Address Label Generator: https://printable-tools-lab.pages.dev/free-address-label-generator-printable/
+- Free Printable Barcode Label Generator: https://printable-tools-lab.pages.dev/free-barcode-label-generator-printable/
+- Free Printable Price Tag Generator: https://printable-tools-lab.pages.dev/free-price-tag-generator-printable/
+- Free Flyer Maker PDF Without Signup: https://printable-tools-lab.pages.dev/free-flyer-maker-pdf-no-signup/
+- Free Printable Coupon Maker: https://printable-tools-lab.pages.dev/free-coupon-maker-printable/
 - Image to PDF Converter: https://printable-tools-lab.pages.dev/tools/image-to-pdf/
 - Multiple Images to PDF Converter: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/
 - Text to PDF Converter: https://printable-tools-lab.pages.dev/tools/text-to-pdf/
 - Invoice Generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/
 - Receipt Generator: https://printable-tools-lab.pages.dev/tools/receipt-generator/
 - Timesheet Generator: https://printable-tools-lab.pages.dev/tools/timesheet-generator/
+- Business Card Generator: https://printable-tools-lab.pages.dev/tools/business-card/
+- Address Label Generator: https://printable-tools-lab.pages.dev/tools/address-labels/
+- Barcode Label Generator: https://printable-tools-lab.pages.dev/tools/barcode-labels/
+- Price Tag Generator: https://printable-tools-lab.pages.dev/tools/price-tag/
+- Flyer Maker PDF: https://printable-tools-lab.pages.dev/tools/flyer-maker/
+- Coupon Maker PDF: https://printable-tools-lab.pages.dev/tools/coupon-maker/
 - Resume Builder PDF: https://printable-tools-lab.pages.dev/tools/resume-builder/
 - Certificate Generator: https://printable-tools-lab.pages.dev/tools/certificate-generator/
 - To Do List Generator: https://printable-tools-lab.pages.dev/tools/todo-list/
@@ -45,7 +57,8 @@ I built PrintableTools Lab, a free browser-based PDF tool site. It creates pract
 ## Community-safe angles
 
 - For freelancers: free invoice, estimate, purchase order, receipt, bill of sale, and timesheet PDFs without account creation.
-- For high-intent search visitors: no-signup landing pages for invoices, receipts, timesheets, resumes, certificates, text-to-PDF, JPG-to-PDF, and multi-image PDF.
+- For high-intent search visitors: no-signup landing pages for invoices, receipts, labels, business cards, barcodes, price tags, flyers, coupons, timesheets, resumes, certificates, text-to-PDF, JPG-to-PDF, and multi-image PDF.
+- For small businesses and local sellers: printable business cards, address labels, barcode labels, price tags, flyers, and coupons without design-account friction.
 - For job seekers: free resume, cover letter, and resignation letter PDFs without a hidden export fee.
 - For parents and teachers: printable name tracing, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
 - For teachers and organizers: free certificate, sign-in sheet, and event checklist PDFs.

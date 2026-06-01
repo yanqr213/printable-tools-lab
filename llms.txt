@@ -1,8 +1,8 @@
 # PrintableTools Lab
 
-Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
+Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
 
-Audience: Freelancers, small businesses, job seekers, parents, teachers, tutors, homeschool families, students, event organizers, travelers, tenants, landlords, and household planners.
+Audience: Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, and household planners.
 
 Monetization model: Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.
 
@@ -33,6 +33,12 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Purchase Order Generator](https://printable-tools-lab.pages.dev/tools/purchase-order/): Make a free purchase order PDF for supplies, services, small vendors, internal approvals, or project records.
 - [Bill of Sale Generator](https://printable-tools-lab.pages.dev/tools/bill-of-sale/): Create a simple bill of sale PDF for a private item sale, equipment transfer, furniture sale, or vehicle record draft.
 - [Rent Receipt Generator](https://printable-tools-lab.pages.dev/tools/rent-receipt/): Make a free printable rent receipt PDF for a tenant payment, room rental, cash payment record, or landlord file.
+- [Business Card Generator](https://printable-tools-lab.pages.dev/tools/business-card/): Create a printable business card PDF sheet for a small business, side project, local service, or event contact card.
+- [Address Label Generator](https://printable-tools-lab.pages.dev/tools/address-labels/): Make a printable sheet of return address labels, mailing labels, classroom labels, or event badge labels.
+- [Price Tag Generator](https://printable-tools-lab.pages.dev/tools/price-tag/): Create printable price tags or shelf labels for yard sales, craft fairs, pop-up shops, and small retail displays.
+- [Flyer Maker PDF](https://printable-tools-lab.pages.dev/tools/flyer-maker/): Make a one-page printable flyer PDF for a local service, yard sale, class, community event, or small business offer.
+- [Barcode Label Generator](https://printable-tools-lab.pages.dev/tools/barcode-labels/): Generate printable Code 39 barcode labels for inventory bins, event check-in, SKU stickers, and internal tracking.
+- [Coupon Maker PDF](https://printable-tools-lab.pages.dev/tools/coupon-maker/): Create printable coupon cards for a local service, class, pop-up event, small shop, or limited-time offer.
 - [Resume Builder PDF](https://printable-tools-lab.pages.dev/tools/resume-builder/): Build a simple free resume PDF without an account, paywall, or surprise download fee.
 - [Cover Letter Generator](https://printable-tools-lab.pages.dev/tools/cover-letter/): Create a free one-page cover letter PDF for job applications without an account or surprise download fee.
 - [Resignation Letter Generator](https://printable-tools-lab.pages.dev/tools/resignation-letter/): Make a simple resignation letter PDF with notice date, last day, appreciation, and handoff wording.
@@ -59,6 +65,12 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Free Receipt Generator Without Signup](https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/): receipt PDF now, no account, quick proof of payment
 - [Weekly Timesheet PDF Without Signup](https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/): weekly timesheet PDF with fast export
 - [Free Certificate Maker Without Signup](https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/): certificate PDF download without account
+- [Free Printable Business Card Generator](https://printable-tools-lab.pages.dev/free-business-card-generator-printable/): printable business cards now, no account, no design software
+- [Free Printable Address Label Generator](https://printable-tools-lab.pages.dev/free-address-label-generator-printable/): mailing label PDF, return address labels, no signup
+- [Free Printable Barcode Label Generator](https://printable-tools-lab.pages.dev/free-barcode-label-generator-printable/): barcode label PDF, SKU labels, inventory stickers
+- [Free Printable Price Tag Generator](https://printable-tools-lab.pages.dev/free-price-tag-generator-printable/): price tag PDF, shelf labels, yard sale tags
+- [Free Flyer Maker PDF Without Signup](https://printable-tools-lab.pages.dev/free-flyer-maker-pdf-no-signup/): flyer PDF now, no signup, local event flyer
+- [Free Printable Coupon Maker](https://printable-tools-lab.pages.dev/free-coupon-maker-printable/): printable coupon cards, discount coupon PDF, no signup
 
 ## Useful Guide Pages
 

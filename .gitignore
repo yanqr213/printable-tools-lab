@@ -10,3 +10,4 @@ secrets/
 *.private.json
 .DS_Store
 Thumbs.db
+reports/screenshots/

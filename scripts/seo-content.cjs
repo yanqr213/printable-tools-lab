@@ -2,8 +2,8 @@ const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pa
 
 const SITE_SUMMARY = {
   name: "PrintableTools Lab",
-  description: "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
-  audience: "Freelancers, small businesses, job seekers, parents, teachers, tutors, homeschool families, students, event organizers, travelers, tenants, landlords, and household planners.",
+  description: "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  audience: "Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, and household planners.",
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
 
@@ -14,6 +14,12 @@ const HIGH_INTENT_TOOL_PATHS = [
   "tools/invoice-generator",
   "tools/receipt-generator",
   "tools/timesheet-generator",
+  "tools/business-card",
+  "tools/address-labels",
+  "tools/barcode-labels",
+  "tools/price-tag",
+  "tools/flyer-maker",
+  "tools/coupon-maker",
   "tools/resume-builder",
   "tools/certificate-generator",
   "tools/todo-list",
@@ -55,6 +61,26 @@ const TOOL_FINDER_ROWS = [
     need: "I need to track hours for a week or pay period",
     toolPath: "tools/timesheet-generator",
     why: "Best for freelancers, contractors, staff records, project approvals, and recurring weekly hour logs.",
+  },
+  {
+    need: "I need contact cards for a service, event, or side business",
+    toolPath: "tools/business-card",
+    why: "Best for a printable sheet of quick cards before ordering professional prints.",
+  },
+  {
+    need: "I need return address, mailing, badge, or bin labels",
+    toolPath: "tools/address-labels",
+    why: "Best for printable label sheets when full label software is unnecessary.",
+  },
+  {
+    need: "I need simple barcode or SKU labels",
+    toolPath: "tools/barcode-labels",
+    why: "Best for internal Code 39 labels, inventory bins, and event check-in workflows.",
+  },
+  {
+    need: "I need price tags, coupons, or a local flyer",
+    toolPath: "tools/price-tag",
+    why: "Best for small sellers preparing a yard sale, pop-up table, market booth, or simple promotion.",
   },
   {
     need: "I need a job application PDF",
@@ -204,6 +230,96 @@ const landingPages = [
     ],
     relatedTools: ["tools/sign-in-sheet", "tools/todo-list", "tools/flashcards"],
   },
+  {
+    path: "free-business-card-generator-printable",
+    title: "Free Printable Business Card Generator",
+    description: "Create a printable business card PDF sheet without signing up, uploading a logo, or paying at download.",
+    headline: "Free printable business card generator",
+    lead: "Make a simple contact card sheet for a side project, local service, pop-up table, class, or event. It is built for people who need usable cards today, not a full design suite.",
+    primaryTool: "tools/business-card",
+    intent: "printable business cards now, no account, no design software",
+    sections: [
+      ["Why this works as a free tool", "Business card builders often push users toward print orders or paid template downloads. A browser-side sheet solves the one-time need first and can validate whether small-business searches bring repeat usage."],
+      ["Best fit", "Use it for simple service cards, networking cards, appointment cards, event contact cards, and temporary cards before ordering professional prints."],
+      ["Print check", "Print one test page, trim along the card edges, and confirm the email, phone, and URL are readable before printing more."],
+    ],
+    relatedTools: ["tools/flyer-maker", "tools/coupon-maker", "tools/address-labels"],
+  },
+  {
+    path: "free-address-label-generator-printable",
+    title: "Free Printable Address Label Generator",
+    description: "Create return address labels, mailing labels, badge labels, or classroom labels as a printable PDF sheet.",
+    headline: "Free printable address label generator",
+    lead: "Generate a clean label sheet in the browser for mail, bins, folders, event badges, or small shipping workflows. No account is required for the free PDF export.",
+    primaryTool: "tools/address-labels",
+    intent: "mailing label PDF, return address labels, no signup",
+    sections: [
+      ["Recurring pain", "Labels are needed in bursts: mailing, events, classrooms, inventory, and small office admin. A free printable sheet can attract practical repeat searches without a backend."],
+      ["What it includes", "Choose 30 address labels, 14 shipping-style labels, or 10 badge labels, then edit the label title, recipient, address text, and note."],
+      ["Before printing on sticker sheets", "Run a plain-paper test first and hold it behind the label sheet to check alignment before using adhesive stock."],
+    ],
+    relatedTools: ["tools/barcode-labels", "tools/business-card", "tools/price-tag"],
+  },
+  {
+    path: "free-barcode-label-generator-printable",
+    title: "Free Printable Barcode Label Generator",
+    description: "Generate printable Code 39 barcode labels for SKUs, inventory bins, event check-in, and internal tracking.",
+    headline: "Free printable barcode label generator",
+    lead: "Create a label sheet with scannable Code 39-style bars and optional human-readable text. It is intended for simple internal labels, not regulated retail compliance.",
+    primaryTool: "tools/barcode-labels",
+    intent: "barcode label PDF, SKU labels, inventory stickers",
+    sections: [
+      ["High-intent utility", "Barcode tools are commonly monetized through subscriptions, dynamic inventory systems, or paid label software. A free static label PDF covers small internal workflows."],
+      ["Supported codes", "Use uppercase letters, numbers, spaces, dashes, dots, dollar signs, slashes, plus signs, and percent signs. Keep codes short for better scanning."],
+      ["Validation note", "Print and test a sample with the scanner or app you plan to use before producing a full sheet."],
+    ],
+    relatedTools: ["tools/address-labels", "tools/price-tag", "tools/purchase-order"],
+  },
+  {
+    path: "free-price-tag-generator-printable",
+    title: "Free Printable Price Tag Generator",
+    description: "Create printable price tags or shelf labels for yard sales, pop-up shops, craft fairs, and small retail tables.",
+    headline: "Free printable price tag generator",
+    lead: "Make a sheet of clean price tags with a title, price, subtitle, and footer. This helps small sellers prepare a table quickly without buying a template pack.",
+    primaryTool: "tools/price-tag",
+    intent: "price tag PDF, shelf labels, yard sale tags",
+    sections: [
+      ["Why this has commercial intent", "People searching for price tags are often preparing to sell at a market, garage sale, or shop. That makes the traffic more business-adjacent than generic printables."],
+      ["Best fit", "Use it for craft fairs, yard sales, pop-up tables, shelf labels, sale tags, and quick event pricing."],
+      ["Print tip", "Use thicker paper if tags will be handled often, and keep prices large enough to read from a few feet away."],
+    ],
+    relatedTools: ["tools/coupon-maker", "tools/flyer-maker", "tools/barcode-labels"],
+  },
+  {
+    path: "free-flyer-maker-pdf-no-signup",
+    title: "Free Flyer Maker PDF Without Signup",
+    description: "Make a printable flyer PDF for a local service, yard sale, community event, class, or small business offer.",
+    headline: "Free flyer maker PDF without signup",
+    lead: "Create a one-page flyer with a headline, subhead, details, call to action, and contact line. The free export is designed for urgent local promotion.",
+    primaryTool: "tools/flyer-maker",
+    intent: "flyer PDF now, no signup, local event flyer",
+    sections: [
+      ["Why users click", "Flyer searches often come from time-sensitive local promotion: a sale, class, service, club, or community event. A fast PDF can satisfy that need without a design account."],
+      ["What the flyer includes", "The layout keeps the headline prominent, uses short detail copy, and leaves a clear contact or location line."],
+      ["Responsible use", "Only create flyers for events, offers, and services you are authorized to promote. Review local posting rules before printing."],
+    ],
+    relatedTools: ["tools/business-card", "tools/coupon-maker", "tools/price-tag"],
+  },
+  {
+    path: "free-coupon-maker-printable",
+    title: "Free Printable Coupon Maker",
+    description: "Create printable coupon cards for local services, small shops, pop-up events, classes, or simple promotions.",
+    headline: "Free printable coupon maker",
+    lead: "Build a coupon sheet with an offer, code, details, expiration note, and fine print. It is useful for local promotions without adding payment or account friction.",
+    primaryTool: "tools/coupon-maker",
+    intent: "printable coupon cards, discount coupon PDF, no signup",
+    sections: [
+      ["Commercial intent", "Coupons are attached to offers, services, and local sales. That makes the category a better monetization test than purely decorative printables."],
+      ["What to include", "Keep the offer clear, add a short code if needed, state the expiration note, and include simple limitations so customers know how to use it."],
+      ["Compliance note", "Do not create misleading offers or coupons for brands you do not own. Keep terms accurate and easy to read."],
+    ],
+    relatedTools: ["tools/flyer-maker", "tools/price-tag", "tools/business-card"],
+  },
 ];
 
 const HIGH_INTENT_LANDING_PATHS = landingPages.map((page) => page.path);
@@ -306,6 +422,60 @@ const tools = [
     body: [
       "Enter the tenant, recipient, property, amount, rental period, payment date, and payment method to generate a simple receipt PDF.",
       "Receipt searches have clear intent because the user often needs a printable record immediately after a payment.",
+    ],
+  },
+  {
+    path: "tools/business-card",
+    title: "Business Card Generator",
+    description: "Create a printable business card PDF sheet for a small business, side project, local service, or event contact card.",
+    body: [
+      "Enter your name, role, business, contact details, and tagline to generate a sheet of simple printable contact cards.",
+      "Business card searches have commercial intent because users are often preparing to promote a service, event, or side business immediately.",
+    ],
+  },
+  {
+    path: "tools/address-labels",
+    title: "Address Label Generator",
+    description: "Make a printable sheet of return address labels, mailing labels, classroom labels, or event badge labels.",
+    body: [
+      "Choose an address, shipping-style, or badge layout, then fill the label title, recipient, address text, and note.",
+      "Labels are practical repeat-use pages for mailing, events, classrooms, office storage, and small shipping workflows.",
+    ],
+  },
+  {
+    path: "tools/price-tag",
+    title: "Price Tag Generator",
+    description: "Create printable price tags or shelf labels for yard sales, craft fairs, pop-up shops, and small retail displays.",
+    body: [
+      "Add a title, price, subtitle, and footer to generate a sheet of tags for selling tables, shelves, or event displays.",
+      "Price tags attract business-adjacent searches because users are often getting ready to sell products in person.",
+    ],
+  },
+  {
+    path: "tools/flyer-maker",
+    title: "Flyer Maker PDF",
+    description: "Make a one-page printable flyer PDF for a local service, yard sale, class, community event, or small business offer.",
+    body: [
+      "Create a flyer with a large headline, supporting subhead, details, call to action, and contact or location line.",
+      "Flyer searches are time-sensitive and commercial enough to support advertising validation once the site earns search visibility.",
+    ],
+  },
+  {
+    path: "tools/barcode-labels",
+    title: "Barcode Label Generator",
+    description: "Generate printable Code 39 barcode labels for inventory bins, event check-in, SKU stickers, and internal tracking.",
+    body: [
+      "Enter one code per line, optionally add a label after a vertical bar, and print a sheet of Code 39-style barcode labels.",
+      "Barcode label tools are often bundled into paid inventory software, so a free static PDF version can solve small internal workflows.",
+    ],
+  },
+  {
+    path: "tools/coupon-maker",
+    title: "Coupon Maker PDF",
+    description: "Create printable coupon cards for a local service, class, pop-up event, small shop, or limited-time offer.",
+    body: [
+      "Add a business name, offer, coupon code, details, expiration note, and fine print to create a sheet of printable coupon cards.",
+      "Coupon and promotion searches are linked to real selling activity, making this a stronger monetization test than purely decorative pages.",
     ],
   },
   {
@@ -474,6 +644,18 @@ const guides = [
   ["guides/private-sale-receipt-pdf", "Private sale receipt PDF", "Make a printable receipt for a private sale of equipment, furniture, electronics, or household items.", "Use a short description that identifies the item well enough for both parties. Add model, serial number, or condition notes when appropriate."],
   ["guides/free-rent-receipt-generator", "Free rent receipt generator", "Generate a printable rent receipt PDF for tenant records, landlord files, or cash payment documentation.", "A rent receipt gives both sides a simple record of who paid, how much was paid, when it was received, and what rental period the payment covers."],
   ["guides/rent-receipt-for-cash-payment", "Rent receipt for cash payment", "Create a simple receipt PDF when rent is paid by cash, bank transfer, check, or another payment method.", "Cash rent payments can be easy to dispute later if no record is created. A dated receipt gives both parties a reference."],
+  ["guides/free-business-card-generator-printable", "Free printable business card generator", "Create printable business cards for a service, side business, class, event, or pop-up table.", "A simple business card sheet is useful when someone needs contact cards today and does not want to create a design account or order a print run."],
+  ["guides/business-card-pdf-for-local-services", "Business card PDF for local services", "Make a practical contact card for notaries, tutors, cleaners, repair services, coaches, and small local businesses.", "Local service cards should make the name, service, phone, email, and booking note easy to read. Decorative design matters less than legibility."],
+  ["guides/free-address-label-generator-printable", "Free printable address label generator", "Create return address labels, mailing labels, classroom labels, bin labels, or badge labels as a PDF sheet.", "Label sheets are easiest to use when the first test print is done on plain paper. Check alignment before printing on adhesive stock."],
+  ["guides/mailing-label-pdf-template", "Mailing label PDF template", "Use a printable mailing label sheet for small batches of envelopes, packages, folders, and event materials.", "A small batch of labels often does not need full shipping software. A clean PDF sheet is enough for mail, folders, badges, and classroom bins."],
+  ["guides/free-barcode-label-generator-printable", "Free printable barcode label generator", "Generate Code 39 barcode labels for SKU stickers, inventory bins, event check-in, and internal tracking.", "Static barcode labels are useful for internal workflows when a full inventory system is unnecessary. Always test scanning before printing a full sheet."],
+  ["guides/sku-label-pdf-template", "SKU label PDF template", "Create a simple SKU label PDF for handmade products, market tables, storage bins, or internal inventory.", "SKU labels work best when the code is short, consistent, and printed with enough white space around the bars."],
+  ["guides/free-price-tag-generator-printable", "Free printable price tag generator", "Make price tags and shelf labels for yard sales, craft fairs, pop-up shops, and small retail tables.", "A price tag page has commercial intent because the user is often preparing to sell products. Large prices and short item labels are easier for shoppers to scan."],
+  ["guides/yard-sale-price-tags-pdf", "Yard sale price tags PDF", "Create quick printable price tags for garage sales, estate sales, moving sales, and community markets.", "Yard sale tags should be readable from a few feet away and simple enough to cut quickly before the sale starts."],
+  ["guides/free-flyer-maker-pdf-no-signup", "Free flyer maker PDF without signup", "Make a one-page flyer PDF for a local service, yard sale, class, club, or community event.", "Flyer searches are often urgent. A clear headline, date or offer, short details, and contact line matter more than heavy decoration."],
+  ["guides/local-service-flyer-pdf-template", "Local service flyer PDF template", "Create a simple printable flyer for cleaning, tutoring, repair, notary, coaching, or neighborhood services.", "A local service flyer should state what you do, who it helps, how to contact you, and one clear next step."],
+  ["guides/free-coupon-maker-printable", "Free printable coupon maker", "Create printable coupon cards for local services, pop-up shops, classes, events, and small offers.", "Coupon pages should make the offer and terms clear. Avoid misleading discounts or unclear expiration notes."],
+  ["guides/discount-coupon-pdf-template", "Discount coupon PDF template", "Make a coupon PDF sheet with offer text, coupon code, expiration note, and fine print.", "Coupons connect directly to local promotion and selling activity, so they are a stronger commercial validation category than generic decorative templates."],
   ["guides/free-resume-builder-pdf", "Free resume builder PDF", "Build a clean resume PDF without an account, paywall, or complicated design tool.", "Many job seekers do not need a heavy design template. They need a readable document with a clear name, contact line, summary, experience, skills, and education."],
   ["guides/ats-friendly-resume-pdf-guide", "ATS friendly resume PDF guide", "Format a simple resume PDF so it stays readable for recruiters and applicant tracking systems.", "Use clear section headings, normal text, and a single-column structure. Avoid putting important experience inside images, icons, or complex tables."],
   ["guides/free-cover-letter-generator-pdf", "Free cover letter generator PDF", "Create a one-page cover letter PDF for job applications without an account or download paywall.", "A job seeker often needs a cover letter right before submitting an application. A fast generator that exports a PDF without signup solves that moment better than a hidden download fee."],
@@ -540,7 +722,7 @@ const keywordClusters = [
   },
   {
     title: "Everyday utility PDFs",
-    description: "High-intent PDF tools for image conversion, text conversion, checklists, sign-in sheets, graph paper, and travel paperwork.",
+    description: "High-intent PDF tools for image conversion, text conversion, labels, checklists, sign-in sheets, graph paper, and travel paperwork.",
     links: [
       ["Image to PDF converter", "tools/image-to-pdf"],
       ["JPG to PDF without uploading", "jpg-to-pdf-no-upload"],
@@ -556,12 +738,18 @@ const keywordClusters = [
   },
   {
     title: "Business paperwork",
-    description: "Clean PDF invoices, estimates, purchase orders, sale records, receipts, and timesheets for people who need a document now.",
+    description: "Clean PDF invoices, estimates, purchase orders, sale records, receipts, timesheets, cards, labels, and barcodes for people who need a document now.",
     links: [
       ["Invoice generator", "tools/invoice-generator"],
       ["Free invoice generator without signup", "free-invoice-generator-no-signup"],
       ["Estimate generator", "tools/estimate-generator"],
       ["Purchase order generator", "tools/purchase-order"],
+      ["Business card generator", "tools/business-card"],
+      ["Free business card generator", "free-business-card-generator-printable"],
+      ["Address label generator", "tools/address-labels"],
+      ["Free address label generator", "free-address-label-generator-printable"],
+      ["Barcode label generator", "tools/barcode-labels"],
+      ["Free barcode label generator", "free-barcode-label-generator-printable"],
       ["Receipt generator", "tools/receipt-generator"],
       ["Free receipt generator without signup", "free-receipt-generator-no-signup"],
       ["Timesheet generator", "tools/timesheet-generator"],
@@ -575,6 +763,12 @@ const keywordClusters = [
     links: [
       ["Certificate generator", "tools/certificate-generator"],
       ["Free certificate maker without signup", "free-certificate-maker-no-signup"],
+      ["Flyer maker", "tools/flyer-maker"],
+      ["Free flyer maker PDF", "free-flyer-maker-pdf-no-signup"],
+      ["Coupon maker", "tools/coupon-maker"],
+      ["Free coupon maker", "free-coupon-maker-printable"],
+      ["Price tag generator", "tools/price-tag"],
+      ["Free price tag generator", "free-price-tag-generator-printable"],
       ["Sign-in sheet generator", "tools/sign-in-sheet"],
       ["To do list generator", "tools/todo-list"],
     ],
@@ -596,20 +790,20 @@ const pages = [
   {
     path: "",
     title: "Free Printable PDF Generators",
-    description: "Create image-to-PDF conversions, invoices, rent receipts, resumes, worksheets, charts, and planners as free printable PDF files.",
+    description: "Create image-to-PDF conversions, invoices, receipts, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free printable PDF files.",
     html: `
       <section class="shell hero">
         <div>
           <h1>Make useful printable PDFs in under a minute.</h1>
-          <p>Free browser-based generators for image conversion, text-to-PDF, invoices, receipts, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
+          <p>Free browser-based generators for image conversion, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free PDF tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>26</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>32</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>52</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>64</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -628,7 +822,7 @@ const pages = [
       <section class="shell section">
         <h2>Free printable tools</h2>
         <div class="cluster-links">
-          ${landingPages.slice(0, 8).map((page) => `<a href="/${page.path}/">${escapeHtml(page.headline)}</a>`).join("")}
+          ${landingPages.map((page) => `<a href="/${page.path}/">${escapeHtml(page.headline)}</a>`).join("")}
         </div>
         <ul>
           <li><a href="/tools/name-tracing/">Name Tracing Worksheet Generator</a></li>
@@ -642,6 +836,12 @@ const pages = [
           <li><a href="/tools/purchase-order/">Purchase Order Generator</a></li>
           <li><a href="/tools/bill-of-sale/">Bill of Sale Generator</a></li>
           <li><a href="/tools/rent-receipt/">Rent Receipt Generator</a></li>
+          <li><a href="/tools/business-card/">Business Card Generator</a></li>
+          <li><a href="/tools/address-labels/">Address Label Generator</a></li>
+          <li><a href="/tools/price-tag/">Price Tag Generator</a></li>
+          <li><a href="/tools/flyer-maker/">Flyer Maker PDF</a></li>
+          <li><a href="/tools/barcode-labels/">Barcode Label Generator</a></li>
+          <li><a href="/tools/coupon-maker/">Coupon Maker PDF</a></li>
           <li><a href="/tools/resume-builder/">Resume Builder PDF</a></li>
           <li><a href="/tools/cover-letter/">Cover Letter Generator</a></li>
           <li><a href="/tools/resignation-letter/">Resignation Letter Generator</a></li>
@@ -663,19 +863,19 @@ const pages = [
   {
     path: "tools",
     title: "Free PDF Tools",
-    description: "Browse free printable PDF tools for image conversion, business paperwork, career documents, calendars, meal planning, worksheets, and classroom routines.",
+    description: "Browse free printable PDF tools for image conversion, business paperwork, local promotion printables, labels, career documents, calendars, meal planning, worksheets, and classroom routines.",
     html: toolsIndexHtml(),
   },
   {
     path: "free-pdf-tools",
     title: "Free PDF Tools Without Signup",
-    description: "Start with free browser PDF tools for image conversion, text-to-PDF, invoices, receipts, timesheets, certificates, checklists, and printable pages.",
+    description: "Start with free browser PDF tools for image conversion, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, certificates, checklists, and printable pages.",
     html: freePdfToolsHtml(),
   },
   {
     path: "pdf-tool-finder",
     title: "Which Free PDF Tool Should I Use?",
-    description: "Find the right free PDF generator for images, text, invoices, receipts, timesheets, resumes, certificates, checklists, graph paper, and event sheets.",
+    description: "Find the right free PDF generator for images, text, invoices, receipts, labels, barcodes, flyers, coupons, timesheets, resumes, certificates, checklists, graph paper, and event sheets.",
     html: pdfToolFinderHtml(),
   },
   ...landingPages.map((page) => ({
@@ -743,6 +943,12 @@ const GUIDE_HINTS_FOR_LINKS = {
   "purchase-order": ["purchase order"],
   "bill-of-sale": ["bill of sale", "private sale"],
   "rent-receipt": ["rent receipt"],
+  "business-card": ["business card", "local services"],
+  "address-labels": ["address label", "mailing label"],
+  "barcode-labels": ["barcode label", "SKU label"],
+  "price-tag": ["price tag", "yard sale"],
+  "flyer-maker": ["flyer"],
+  "coupon-maker": ["coupon"],
   "resume-builder": ["resume", "ATS"],
   "cover-letter": ["cover letter"],
   "resignation-letter": ["resignation", "two weeks"],
@@ -867,8 +1073,8 @@ function freePdfToolsHtml() {
     },
     {
       title: "Free business PDF tools",
-      text: "Create simple paperwork for freelance jobs, small services, deposits, timesheets, private sales, rent payments, and vendor orders without opening a full accounting app.",
-      links: ["invoice-generator", "estimate-generator", "purchase-order", "receipt-generator", "timesheet-generator", "bill-of-sale", "rent-receipt"],
+      text: "Create simple paperwork and print assets for freelance jobs, local services, deposits, timesheets, private sales, rent payments, vendor orders, inventory labels, and quick promotions without opening a full design or accounting app.",
+      links: ["invoice-generator", "estimate-generator", "purchase-order", "receipt-generator", "timesheet-generator", "bill-of-sale", "rent-receipt", "business-card", "address-labels", "barcode-labels"],
     },
     {
       title: "Free career PDF tools",
@@ -877,8 +1083,8 @@ function freePdfToolsHtml() {
     },
     {
       title: "Free printable planning tools",
-      text: "Print simple one-page calendars, meal plans, checklists, graph paper, certificates, and routine pages for home, school, work, or events.",
-      links: ["monthly-calendar", "meal-planner", "todo-list", "graph-paper", "certificate-generator", "sign-in-sheet", "packing-list"],
+      text: "Print simple one-page calendars, meal plans, checklists, graph paper, certificates, flyers, coupons, price tags, and routine pages for home, school, work, or events.",
+      links: ["monthly-calendar", "meal-planner", "todo-list", "graph-paper", "certificate-generator", "sign-in-sheet", "packing-list", "flyer-maker", "price-tag", "coupon-maker"],
     },
   ];
   return `
@@ -928,8 +1134,8 @@ function pdfToolFinderHtml() {
         <td>${escapeHtml(row.why)}</td>
       </tr>`;
   }).join("\n");
-  const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator"];
-  const personalTools = ["resume-builder", "cover-letter", "resignation-letter", "certificate-generator", "todo-list", "packing-list", "monthly-calendar", "meal-planner"];
+  const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"];
+  const personalTools = ["resume-builder", "cover-letter", "resignation-letter", "certificate-generator", "todo-list", "packing-list", "monthly-calendar", "meal-planner", "sign-in-sheet", "graph-paper"];
   return `
       <section class="shell page-title section">
         <h1>Which free PDF tool should I use?</h1>
@@ -1179,6 +1385,85 @@ function toolDetails(tool) {
         { title: "Cash rent record", text: "Create a dated receipt when rent is paid in cash or in person." },
         { title: "Tenant copy", text: "Give tenants a simple record of amount, date, property, and rental period." },
         { title: "Landlord files", text: "Keep a printable copy for household or property records." },
+      ],
+    },
+    "business-card": {
+      useCases: [
+        { title: "Local service card", text: "Create contact cards for notary, tutoring, repair, cleaning, coaching, or other neighborhood services." },
+        { title: "Pop-up table", text: "Print quick cards for a market booth, class, club, or temporary sales table." },
+        { title: "Before a print order", text: "Test wording and contact details before ordering a professional batch." },
+      ],
+      privacy: "Business card details are generated locally. Do not publish personal phone numbers or addresses unless you intend to share them.",
+      faq: [
+        { q: "Does this order printed cards?", a: "No. It creates a printable PDF sheet that you can print and trim yourself." },
+        { q: "Can I use it for a side business?", a: "Yes. It is designed for simple service, event, and contact cards." },
+        { q: "Should I test print first?", a: "Yes. Print one page and confirm text size, spacing, and trimming before printing more." },
+      ],
+    },
+    "address-labels": {
+      useCases: [
+        { title: "Return address labels", text: "Create a sheet for envelopes, cards, office mail, or small batches." },
+        { title: "Classroom and bin labels", text: "Use simple labels for folders, cubbies, supplies, or storage bins." },
+        { title: "Event badges", text: "Choose the badge-style layout for quick visitor, workshop, or table labels." },
+      ],
+      privacy: "Labels are generated in your browser. Be careful with home addresses or other private details before printing or sharing.",
+      limit: "The free version creates one printable label sheet. Run a plain-paper alignment test before using adhesive labels.",
+      faq: [
+        { q: "Does it match every Avery template?", a: "No. It provides common printable layouts, but sticker sheet alignment can vary by printer." },
+        { q: "Can I use it for classroom labels?", a: "Yes. The label text can be used for bins, folders, cubbies, or event badges." },
+        { q: "Should I print a test page?", a: "Yes. Test on plain paper before printing on label stock." },
+      ],
+    },
+    "barcode-labels": {
+      useCases: [
+        { title: "SKU labels", text: "Print short codes for handmade products, market stock, storage bins, or internal inventory." },
+        { title: "Event check-in", text: "Create simple code labels for badges, envelopes, or check-in packets." },
+        { title: "Internal tracking", text: "Use static labels when a full inventory system is unnecessary." },
+      ],
+      privacy: "Barcode labels are generated locally. These are simple Code 39-style labels for internal use, not regulated retail compliance labels.",
+      limit: "The free version creates one static label sheet. Test scanning with your device before printing a full batch.",
+      faq: [
+        { q: "What barcode type is used?", a: "The tool draws Code 39-style bars for uppercase letters, numbers, and common symbols." },
+        { q: "Can I use these for official retail products?", a: "Use proper barcode registration and compliance tools for official retail distribution." },
+        { q: "Why should codes be short?", a: "Shorter codes print wider bars and are easier to scan on ordinary printers." },
+      ],
+    },
+    "price-tag": {
+      useCases: [
+        { title: "Yard sale tags", text: "Print large prices for garage sales, estate sales, moving sales, or community tables." },
+        { title: "Craft fair table", text: "Create simple tags for handmade goods, bundles, or sale offers." },
+        { title: "Shelf labels", text: "Use clean labels for small retail shelves, bins, or pop-up displays." },
+      ],
+      faq: [
+        { q: "Can I print several tags on one page?", a: "Yes. Choose 8, 10, or 12 tags per page." },
+        { q: "Can I use it for a craft fair?", a: "Yes. It is designed for simple market tables, pop-up shops, and yard sales." },
+        { q: "What should be largest?", a: "The price should be the largest text so shoppers can scan it quickly." },
+      ],
+    },
+    "flyer-maker": {
+      useCases: [
+        { title: "Local service flyer", text: "Promote tutoring, cleaning, repair, notary, coaching, or neighborhood services." },
+        { title: "Community event", text: "Create a simple flyer for a class, club, sale, fundraiser, or workshop." },
+        { title: "Yard sale flyer", text: "Print a clear event flyer with time, location, and short details." },
+      ],
+      privacy: "The flyer is generated locally. Only publish contact details and locations you are comfortable making public.",
+      faq: [
+        { q: "Is this a design marketplace?", a: "No. It makes one practical flyer PDF quickly without requiring an account." },
+        { q: "Can I use it for paid services?", a: "Yes, as long as the offer is accurate and you are authorized to promote it." },
+        { q: "Where should ads appear later?", a: "Ads should stay outside the editing and download controls and never block the PDF." },
+      ],
+    },
+    "coupon-maker": {
+      useCases: [
+        { title: "Local discount card", text: "Create a simple coupon for a service, class, shop, or event offer." },
+        { title: "Pop-up promotion", text: "Print cards for a market booth, neighborhood event, or small seasonal sale." },
+        { title: "Referral handout", text: "Use a short code and clear fine print for trackable offline promotion." },
+      ],
+      privacy: "Coupons are generated locally. Use accurate terms and avoid creating coupons for brands or offers you do not control.",
+      faq: [
+        { q: "Can I add fine print?", a: "Yes. Use the fine print field for simple limits such as dates or one-per-customer terms." },
+        { q: "Does it process payments?", a: "No. It only creates printable coupon cards." },
+        { q: "Can I use it commercially?", a: "Use it only for offers and businesses you are authorized to promote." },
       ],
     },
     "resume-builder": {

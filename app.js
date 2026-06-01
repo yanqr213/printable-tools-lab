@@ -38,6 +38,12 @@
     "timesheet-generator": ["period", "rows", "notes"],
     "certificate-generator": ["title", "reason", "signer"],
     "todo-list": ["title", "sections", "notes"],
+    "business-card": ["role", "tagline"],
+    "address-labels": [],
+    "price-tag": ["title", "subtitle", "footer"],
+    "flyer-maker": ["headline", "subhead", "details", "callToAction"],
+    "barcode-labels": [],
+    "coupon-maker": ["offer", "details", "finePrint"],
   };
 
   const tools = {
@@ -733,6 +739,172 @@
       ],
       draw: drawTodoList,
     },
+    "business-card": {
+      id: "business-card",
+      icon: "BC",
+      title: "Business Card Generator",
+      shortTitle: "Business card",
+      description: "Create a printable business card PDF sheet for a small business, side project, local service, or event contact card.",
+      keywords: ["business card", "printable cards", "small business", "contact card"],
+      defaultValues: {
+        name: "Maya Chen",
+        role: "Mobile Notary",
+        business: "Northline Services",
+        email: "hello@example.com",
+        phone: "(555) 010-2244",
+        website: "northline.example",
+        tagline: "Appointments by request",
+        style: "clean",
+        paper: "letter",
+      },
+      fields: [
+        { id: "name", label: "Name", type: "text", maxLength: 70 },
+        { id: "role", label: "Role or service", type: "text", maxLength: 70 },
+        { id: "business", label: "Business name", type: "text", maxLength: 70 },
+        { id: "email", label: "Email", type: "text", maxLength: 80 },
+        { id: "phone", label: "Phone", type: "text", maxLength: 50 },
+        { id: "website", label: "Website or social", type: "text", maxLength: 80 },
+        { id: "tagline", label: "Short tagline", type: "text", maxLength: 90 },
+        { id: "style", label: "Style", type: "select", options: [["clean", "Clean"], ["bold", "Bold"], ["soft", "Soft"]] },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawBusinessCard,
+    },
+    "address-labels": {
+      id: "address-labels",
+      icon: "LBL",
+      title: "Address Label Generator",
+      shortTitle: "Address labels",
+      description: "Make a printable sheet of return address labels, mailing labels, classroom labels, or event badge labels.",
+      keywords: ["address labels", "mailing labels", "label PDF", "return address"],
+      defaultValues: {
+        labelTitle: "Northline Services",
+        recipient: "Maya Chen",
+        address: "120 Market Street\nSuite 400\nSan Francisco, CA 94105",
+        note: "Appointments by request",
+        layout: "30",
+        style: "address",
+        paper: "letter",
+      },
+      fields: [
+        { id: "labelTitle", label: "Label title", type: "text", maxLength: 70 },
+        { id: "recipient", label: "Recipient or line 1", type: "text", maxLength: 80 },
+        { id: "address", label: "Address or label text", type: "textarea", maxLength: 180 },
+        { id: "note", label: "Small note", type: "text", maxLength: 80 },
+        { id: "layout", label: "Labels per page", type: "select", options: [["30", "30 address labels"], ["14", "14 shipping-style labels"], ["10", "10 badge labels"]] },
+        { id: "style", label: "Label type", type: "select", options: [["address", "Address"], ["classroom", "Classroom"], ["event", "Event"]] },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      ai: false,
+      draw: drawAddressLabels,
+    },
+    "price-tag": {
+      id: "price-tag",
+      icon: "$$",
+      title: "Price Tag Generator",
+      shortTitle: "Price tags",
+      description: "Create printable price tags or shelf labels for yard sales, craft fairs, pop-up shops, and small retail displays.",
+      keywords: ["price tag", "shelf label", "yard sale", "retail label"],
+      defaultValues: {
+        title: "Summer Sale",
+        price: "$12",
+        subtitle: "Handmade candle",
+        footer: "Buy 2, save 10%",
+        count: "8",
+        theme: "sale",
+        paper: "letter",
+      },
+      fields: [
+        { id: "title", label: "Tag title", type: "text", maxLength: 60 },
+        { id: "price", label: "Price", type: "text", maxLength: 30 },
+        { id: "subtitle", label: "Subtitle", type: "text", maxLength: 90 },
+        { id: "footer", label: "Small footer", type: "text", maxLength: 90 },
+        { id: "count", label: "Tags per page", type: "select", options: [["8", "8 large tags"], ["10", "10 medium tags"], ["12", "12 small tags"]] },
+        { id: "theme", label: "Theme", type: "select", options: [["sale", "Sale"], ["minimal", "Minimal"], ["market", "Market"]] },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawPriceTag,
+    },
+    "flyer-maker": {
+      id: "flyer-maker",
+      icon: "FLY",
+      title: "Flyer Maker PDF",
+      shortTitle: "Flyer",
+      description: "Make a one-page printable flyer PDF for a local service, yard sale, class, community event, or small business offer.",
+      keywords: ["flyer maker", "poster PDF", "event flyer", "small business flyer"],
+      defaultValues: {
+        headline: "Weekend Yard Sale",
+        subhead: "Saturday 9 AM - 2 PM",
+        details: "Home goods, books, kids clothes, small furniture, and kitchen items. Cash and card accepted.",
+        callToAction: "Stop by early for the best selection",
+        contact: "120 Market Street",
+        theme: "community",
+        paper: "letter",
+      },
+      fields: [
+        { id: "headline", label: "Headline", type: "text", maxLength: 70 },
+        { id: "subhead", label: "Subhead", type: "text", maxLength: 90 },
+        { id: "details", label: "Details", type: "textarea", maxLength: 420 },
+        { id: "callToAction", label: "Call to action", type: "text", maxLength: 100 },
+        { id: "contact", label: "Contact or location", type: "text", maxLength: 120 },
+        { id: "theme", label: "Theme", type: "select", options: [["community", "Community"], ["service", "Service"], ["sale", "Sale"]] },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawFlyer,
+    },
+    "barcode-labels": {
+      id: "barcode-labels",
+      icon: "BAR",
+      title: "Barcode Label Generator",
+      shortTitle: "Barcode labels",
+      description: "Generate printable Code 39 barcode labels for inventory bins, event check-in, SKU stickers, and internal tracking.",
+      keywords: ["barcode generator", "barcode labels", "SKU labels", "inventory labels"],
+      defaultValues: {
+        title: "Inventory Labels",
+        codes: "SKU-1001 | Beeswax Candle\nSKU-1002 | Lavender Soap\nSKU-1003 | Market Tote\nSKU-1004 | Gift Box",
+        layout: "12",
+        showText: "yes",
+        paper: "letter",
+      },
+      fields: [
+        { id: "title", label: "Sheet title", type: "text", maxLength: 70 },
+        { id: "codes", label: "Codes", type: "textarea", maxLength: 620, help: "One label per line: CODE | label. Code 39 supports A-Z, 0-9, space, dash, dot, $, /, +, %." },
+        { id: "layout", label: "Labels per page", type: "select", options: [["8", "8 large labels"], ["12", "12 standard labels"], ["20", "20 compact labels"]] },
+        { id: "showText", label: "Human-readable text", type: "select", options: [["yes", "Show code text"], ["no", "Hide code text"]] },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      ai: false,
+      draw: drawBarcodeLabels,
+    },
+    "coupon-maker": {
+      id: "coupon-maker",
+      icon: "CPN",
+      title: "Coupon Maker PDF",
+      shortTitle: "Coupons",
+      description: "Create printable coupon cards for a local service, class, pop-up event, small shop, or limited-time offer.",
+      keywords: ["coupon maker", "printable coupons", "discount card", "small business promo"],
+      defaultValues: {
+        business: "Northline Services",
+        offer: "10% off your first appointment",
+        details: "Show this coupon when booking a weekday service.",
+        code: "WELCOME10",
+        expires: "Valid through July 31",
+        finePrint: "One coupon per customer. Not redeemable for cash.",
+        style: "bold",
+        paper: "letter",
+      },
+      fields: [
+        { id: "business", label: "Business or event", type: "text", maxLength: 70 },
+        { id: "offer", label: "Offer", type: "text", maxLength: 90 },
+        { id: "details", label: "Details", type: "textarea", maxLength: 240 },
+        { id: "code", label: "Coupon code", type: "text", maxLength: 40 },
+        { id: "expires", label: "Expiration note", type: "text", maxLength: 60 },
+        { id: "finePrint", label: "Fine print", type: "textarea", maxLength: 180 },
+        { id: "style", label: "Style", type: "select", options: [["bold", "Bold"], ["clean", "Clean"], ["market", "Market"]] },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawCoupon,
+    },
   };
 
   const keywordClusters = [
@@ -775,7 +947,7 @@
     },
     {
       title: "Everyday utility PDFs",
-      description: "High-intent PDF tools for image conversion, text conversion, checklists, sign-in sheets, graph paper, and travel paperwork.",
+      description: "High-intent PDF tools for image conversion, text conversion, QR-free print assets, checklists, sign-in sheets, graph paper, and travel paperwork.",
       links: [
         ["Image to PDF converter", "/tools/image-to-pdf/"],
         ["JPG to PDF without uploading", "/jpg-to-pdf-no-upload/"],
@@ -797,6 +969,9 @@
         ["Free invoice generator without signup", "/free-invoice-generator-no-signup/"],
         ["Estimate generator", "/tools/estimate-generator/"],
         ["Purchase order generator", "/tools/purchase-order/"],
+        ["Business card generator", "/tools/business-card/"],
+        ["Address label generator", "/tools/address-labels/"],
+        ["Barcode label generator", "/tools/barcode-labels/"],
         ["Receipt generator", "/tools/receipt-generator/"],
         ["Free receipt generator without signup", "/free-receipt-generator-no-signup/"],
         ["Timesheet generator", "/tools/timesheet-generator/"],
@@ -810,6 +985,9 @@
       links: [
         ["Certificate generator", "/tools/certificate-generator/"],
         ["Free certificate maker without signup", "/free-certificate-maker-no-signup/"],
+        ["Flyer maker", "/tools/flyer-maker/"],
+        ["Coupon maker", "/tools/coupon-maker/"],
+        ["Price tag generator", "/tools/price-tag/"],
         ["Sign-in sheet generator", "/tools/sign-in-sheet/"],
         ["To do list generator", "/tools/todo-list/"],
       ],
@@ -836,7 +1014,7 @@
     {
       title: "Free business PDF tools",
       description: "Create simple paperwork for freelance jobs, small services, deposits, timesheets, private sales, rent payments, and vendor orders without opening a full accounting app.",
-      links: ["invoice-generator", "estimate-generator", "purchase-order", "receipt-generator", "timesheet-generator", "bill-of-sale", "rent-receipt"],
+      links: ["invoice-generator", "estimate-generator", "purchase-order", "receipt-generator", "timesheet-generator", "bill-of-sale", "rent-receipt", "business-card", "address-labels", "barcode-labels"],
     },
     {
       title: "Free career PDF tools",
@@ -846,7 +1024,7 @@
     {
       title: "Free printable planning tools",
       description: "Print one-page calendars, meal plans, checklists, graph paper, certificates, and routine pages for home, school, work, or events.",
-      links: ["monthly-calendar", "meal-planner", "todo-list", "graph-paper", "certificate-generator", "sign-in-sheet", "packing-list"],
+      links: ["monthly-calendar", "meal-planner", "todo-list", "graph-paper", "certificate-generator", "sign-in-sheet", "packing-list", "flyer-maker", "price-tag", "coupon-maker"],
     },
   ];
 
@@ -971,6 +1149,96 @@
       ],
       related: ["sign-in-sheet", "todo-list", "flashcards"],
     },
+    {
+      slug: "free-business-card-generator-printable",
+      title: "Free Printable Business Card Generator",
+      headline: "Free printable business card generator",
+      description: "Create a printable business card PDF sheet without signing up, uploading a logo, or paying at download.",
+      lead: "Make a simple contact card sheet for a side project, local service, pop-up table, class, or event. It is built for people who need usable cards today, not a full design suite.",
+      tool: "business-card",
+      intent: "printable business cards now, no account, no design software",
+      sections: [
+        ["Why this works as a free tool", "Business card builders often push users toward print orders or paid template downloads. A browser-side sheet solves the one-time need first and can validate whether small-business searches bring repeat usage."],
+        ["Best fit", "Use it for simple service cards, networking cards, appointment cards, event contact cards, and temporary cards before ordering professional prints."],
+        ["Print check", "Print one test page, trim along the card edges, and confirm the email, phone, and URL are readable before printing more."],
+      ],
+      related: ["flyer-maker", "coupon-maker", "address-labels"],
+    },
+    {
+      slug: "free-address-label-generator-printable",
+      title: "Free Printable Address Label Generator",
+      headline: "Free printable address label generator",
+      description: "Create return address labels, mailing labels, badge labels, or classroom labels as a printable PDF sheet.",
+      lead: "Generate a clean label sheet in the browser for mail, bins, folders, event badges, or small shipping workflows. No account is required for the free PDF export.",
+      tool: "address-labels",
+      intent: "mailing label PDF, return address labels, no signup",
+      sections: [
+        ["Recurring pain", "Labels are needed in bursts: mailing, events, classrooms, inventory, and small office admin. A free printable sheet can attract practical repeat searches without a backend."],
+        ["What it includes", "Choose 30 address labels, 14 shipping-style labels, or 10 badge labels, then edit the label title, recipient, address text, and note."],
+        ["Before printing on sticker sheets", "Run a plain-paper test first and hold it behind the label sheet to check alignment before using adhesive stock."],
+      ],
+      related: ["barcode-labels", "business-card", "price-tag"],
+    },
+    {
+      slug: "free-barcode-label-generator-printable",
+      title: "Free Printable Barcode Label Generator",
+      headline: "Free printable barcode label generator",
+      description: "Generate printable Code 39 barcode labels for SKUs, inventory bins, event check-in, and internal tracking.",
+      lead: "Create a label sheet with scannable Code 39-style bars and optional human-readable text. It is intended for simple internal labels, not regulated retail compliance.",
+      tool: "barcode-labels",
+      intent: "barcode label PDF, SKU labels, inventory stickers",
+      sections: [
+        ["High-intent utility", "Barcode tools are commonly monetized through subscriptions, dynamic inventory systems, or paid label software. A free static label PDF covers small internal workflows."],
+        ["Supported codes", "Use uppercase letters, numbers, spaces, dashes, dots, dollar signs, slashes, plus signs, and percent signs. Keep codes short for better scanning."],
+        ["Validation note", "Print and test a sample with the scanner or app you plan to use before producing a full sheet."],
+      ],
+      related: ["address-labels", "price-tag", "purchase-order"],
+    },
+    {
+      slug: "free-price-tag-generator-printable",
+      title: "Free Printable Price Tag Generator",
+      headline: "Free printable price tag generator",
+      description: "Create printable price tags or shelf labels for yard sales, pop-up shops, craft fairs, and small retail tables.",
+      lead: "Make a sheet of clean price tags with a title, price, subtitle, and footer. This helps small sellers prepare a table quickly without buying a template pack.",
+      tool: "price-tag",
+      intent: "price tag PDF, shelf labels, yard sale tags",
+      sections: [
+        ["Why this has commercial intent", "People searching for price tags are often preparing to sell at a market, garage sale, or shop. That makes the traffic more business-adjacent than generic printables."],
+        ["Best fit", "Use it for craft fairs, yard sales, pop-up tables, shelf labels, sale tags, and quick event pricing."],
+        ["Print tip", "Use thicker paper if tags will be handled often, and keep prices large enough to read from a few feet away."],
+      ],
+      related: ["coupon-maker", "flyer-maker", "barcode-labels"],
+    },
+    {
+      slug: "free-flyer-maker-pdf-no-signup",
+      title: "Free Flyer Maker PDF Without Signup",
+      headline: "Free flyer maker PDF without signup",
+      description: "Make a printable flyer PDF for a local service, yard sale, community event, class, or small business offer.",
+      lead: "Create a one-page flyer with a headline, subhead, details, call to action, and contact line. The free export is designed for urgent local promotion.",
+      tool: "flyer-maker",
+      intent: "flyer PDF now, no signup, local event flyer",
+      sections: [
+        ["Why users click", "Flyer searches often come from time-sensitive local promotion: a sale, class, service, club, or community event. A fast PDF can satisfy that need without a design account."],
+        ["What the flyer includes", "The layout keeps the headline prominent, uses short detail copy, and leaves a clear contact or location line."],
+        ["Responsible use", "Only create flyers for events, offers, and services you are authorized to promote. Review local posting rules before printing."],
+      ],
+      related: ["business-card", "coupon-maker", "price-tag"],
+    },
+    {
+      slug: "free-coupon-maker-printable",
+      title: "Free Printable Coupon Maker",
+      headline: "Free printable coupon maker",
+      description: "Create printable coupon cards for local services, small shops, pop-up events, classes, or simple promotions.",
+      lead: "Build a coupon sheet with an offer, code, details, expiration note, and fine print. It is useful for local promotions without adding payment or account friction.",
+      tool: "coupon-maker",
+      intent: "printable coupon cards, discount coupon PDF, no signup",
+      sections: [
+        ["Commercial intent", "Coupons are attached to offers, services, and local sales. That makes the category a better monetization test than purely decorative printables."],
+        ["What to include", "Keep the offer clear, add a short code if needed, state the expiration note, and include simple limitations so customers know how to use it."],
+        ["Compliance note", "Do not create misleading offers or coupons for brands you do not own. Keep terms accurate and easy to read."],
+      ],
+      related: ["flyer-maker", "price-tag", "business-card"],
+    },
   ];
 
   const landingPagesBySlug = Object.fromEntries(landingPages.map((page) => [page.slug, page]));
@@ -1005,6 +1273,26 @@
       need: "Track hours for a week or pay period",
       tool: "timesheet-generator",
       why: "Best for freelancers, contractors, and staff records.",
+    },
+    {
+      need: "Print quick contact cards for a service or side business",
+      tool: "business-card",
+      why: "Best for one-page business card sheets without ordering prints.",
+    },
+    {
+      need: "Make mailing, return address, badge, or bin labels",
+      tool: "address-labels",
+      why: "Best for printable label sheets that do not require label software.",
+    },
+    {
+      need: "Create simple barcode or SKU labels",
+      tool: "barcode-labels",
+      why: "Best for internal Code 39 labels, inventory bins, and event check-in.",
+    },
+    {
+      need: "Print price tags, coupons, or a local flyer",
+      tool: "price-tag",
+      why: "Start with price tags for selling tables, then use flyer or coupon tools for promotion.",
     },
     {
       need: "Make a job application PDF",
@@ -1448,6 +1736,150 @@
       ],
     },
     {
+      slug: "free-business-card-generator-printable",
+      title: "Free printable business card generator",
+      description: "Create printable business cards for a service, side business, class, event, or pop-up table.",
+      tool: "business-card",
+      content: [
+        ["h2", "Why a simple card sheet helps"],
+        ["p", "A simple business card sheet is useful when someone needs contact cards today and does not want to create a design account or order a print run."],
+        ["h2", "What to include"],
+        ["ul", ["Name.", "Role or service.", "Business name.", "Email, phone, or website.", "One short tagline."]],
+      ],
+    },
+    {
+      slug: "business-card-pdf-for-local-services",
+      title: "Business card PDF for local services",
+      description: "Make a practical contact card for notaries, tutors, cleaners, repair services, coaches, and small local businesses.",
+      tool: "business-card",
+      content: [
+        ["h2", "Prioritize readability"],
+        ["p", "Local service cards should make the name, service, phone, email, and booking note easy to read. Decorative design matters less than legibility."],
+        ["h2", "Test before printing many"],
+        ["p", "Print one sheet first, trim one card, and make sure every line is readable at card size."],
+      ],
+    },
+    {
+      slug: "free-address-label-generator-printable",
+      title: "Free printable address label generator",
+      description: "Create return address labels, mailing labels, classroom labels, bin labels, or badge labels as a PDF sheet.",
+      tool: "address-labels",
+      content: [
+        ["h2", "Labels are batch work"],
+        ["p", "Label sheets are easiest to use when the first test print is done on plain paper. Check alignment before printing on adhesive stock."],
+        ["h2", "Good uses"],
+        ["ul", ["Return address labels.", "Mailing labels.", "Classroom bin labels.", "Event badge labels.", "Folder or supply labels."]],
+      ],
+    },
+    {
+      slug: "mailing-label-pdf-template",
+      title: "Mailing label PDF template",
+      description: "Use a printable mailing label sheet for small batches of envelopes, packages, folders, and event materials.",
+      tool: "address-labels",
+      content: [
+        ["h2", "Small batches do not need heavy software"],
+        ["p", "A small batch of labels often does not need full shipping software. A clean PDF sheet is enough for mail, folders, badges, and classroom bins."],
+        ["h2", "Check the print path"],
+        ["p", "Use plain paper first, then compare it against label stock before printing on adhesive sheets."],
+      ],
+    },
+    {
+      slug: "free-barcode-label-generator-printable",
+      title: "Free printable barcode label generator",
+      description: "Generate Code 39 barcode labels for SKU stickers, inventory bins, event check-in, and internal tracking.",
+      tool: "barcode-labels",
+      content: [
+        ["h2", "Static barcodes for internal use"],
+        ["p", "Static barcode labels are useful for internal workflows when a full inventory system is unnecessary. Always test scanning before printing a full sheet."],
+        ["h2", "Keep codes short"],
+        ["p", "Shorter codes print wider bars and scan more reliably on ordinary office or home printers."],
+      ],
+    },
+    {
+      slug: "sku-label-pdf-template",
+      title: "SKU label PDF template",
+      description: "Create a simple SKU label PDF for handmade products, market tables, storage bins, or internal inventory.",
+      tool: "barcode-labels",
+      content: [
+        ["h2", "Use a consistent code system"],
+        ["p", "SKU labels work best when the code is short, consistent, and printed with enough white space around the bars."],
+        ["h2", "Not for regulated retail distribution"],
+        ["p", "Use proper barcode registration and compliance tools for official retail products."],
+      ],
+    },
+    {
+      slug: "free-price-tag-generator-printable",
+      title: "Free printable price tag generator",
+      description: "Make price tags and shelf labels for yard sales, craft fairs, pop-up shops, and small retail tables.",
+      tool: "price-tag",
+      content: [
+        ["h2", "Commercial intent is built in"],
+        ["p", "A price tag page has commercial intent because the user is often preparing to sell products. Large prices and short item labels are easier for shoppers to scan."],
+        ["h2", "Print tip"],
+        ["p", "Use heavier paper if tags will be handled, and keep the price larger than every other line."],
+      ],
+    },
+    {
+      slug: "yard-sale-price-tags-pdf",
+      title: "Yard sale price tags PDF",
+      description: "Create quick printable price tags for garage sales, estate sales, moving sales, and community markets.",
+      tool: "price-tag",
+      content: [
+        ["h2", "Make prices obvious"],
+        ["p", "Yard sale tags should be readable from a few feet away and simple enough to cut quickly before the sale starts."],
+        ["h2", "Use simple groups"],
+        ["p", "If many items share a price, print a few large category tags instead of labeling every small item."],
+      ],
+    },
+    {
+      slug: "free-flyer-maker-pdf-no-signup",
+      title: "Free flyer maker PDF without signup",
+      description: "Make a one-page flyer PDF for a local service, yard sale, class, club, or community event.",
+      tool: "flyer-maker",
+      content: [
+        ["h2", "Flyer searches are urgent"],
+        ["p", "Flyer searches are often urgent. A clear headline, date or offer, short details, and contact line matter more than heavy decoration."],
+        ["h2", "Keep one call to action"],
+        ["p", "Ask the reader to call, visit, save the date, or book. One next step is easier to act on than several choices."],
+      ],
+    },
+    {
+      slug: "local-service-flyer-pdf-template",
+      title: "Local service flyer PDF template",
+      description: "Create a simple printable flyer for cleaning, tutoring, repair, notary, coaching, or neighborhood services.",
+      tool: "flyer-maker",
+      content: [
+        ["h2", "State the service clearly"],
+        ["p", "A local service flyer should state what you do, who it helps, how to contact you, and one clear next step."],
+        ["h2", "Review posting rules"],
+        ["p", "Only post flyers where they are allowed and make sure the offer and contact details are accurate."],
+      ],
+    },
+    {
+      slug: "free-coupon-maker-printable",
+      title: "Free printable coupon maker",
+      description: "Create printable coupon cards for local services, pop-up shops, classes, events, and small offers.",
+      tool: "coupon-maker",
+      content: [
+        ["h2", "Clear terms build trust"],
+        ["p", "Coupon pages should make the offer and terms clear. Avoid misleading discounts or unclear expiration notes."],
+        ["h2", "Useful fields"],
+        ["ul", ["Business or event name.", "Offer.", "Coupon code.", "Expiration note.", "Simple fine print."]],
+      ],
+    },
+    {
+      slug: "discount-coupon-pdf-template",
+      title: "Discount coupon PDF template",
+      description: "Make a coupon PDF sheet with offer text, coupon code, expiration note, and fine print.",
+      tool: "coupon-maker",
+      content: [
+        ["h2", "Coupons connect to real selling"],
+        ["p", "Coupons connect directly to local promotion and selling activity, so they are a stronger commercial validation category than generic decorative templates."],
+        ["h2", "Use only authorized offers"],
+        ["p", "Do not create coupons for brands, products, or events you do not control."],
+      ],
+    },
+    {
       slug: "free-resume-builder-pdf",
       title: "Free resume builder PDF",
       description: "Build a clean resume PDF without an account, paywall, or complicated design tool.",
@@ -1752,10 +2184,10 @@
   const pages = {
     about: {
       title: "About PrintableTools Lab",
-      description: "PrintableTools Lab makes quick, practical PDF generators for families, teachers, tutors, and home organizers.",
+      description: "PrintableTools Lab makes quick, practical PDF generators for small businesses, families, teachers, tutors, event organizers, and home organizers.",
       body: [
         ["p", "PrintableTools Lab is built around a simple idea: useful printable pages should be fast to make, easy to print, and readable on ordinary home or school printers."],
-        ["p", "The current version focuses on practical browser-side PDF work: image conversion, text conversion, business documents, career documents, planning pages, event certificates, classroom resources, and household checklists."],
+        ["p", "The current version focuses on practical browser-side PDF work: image conversion, text conversion, business documents, labels, business cards, flyers, coupons, career documents, planning pages, event certificates, classroom resources, and household checklists."],
         ["p", "The free tools run in the browser with clean one-page exports and a small daily generation limit while the project validates demand and prepares for responsible advertising."],
       ],
     },
@@ -1800,13 +2232,13 @@
     },
     "free-pdf-tools": {
       title: "Free PDF Tools Without Signup",
-      description: "Start with free browser PDF tools for image conversion, text-to-PDF, invoices, receipts, timesheets, certificates, checklists, and printable pages.",
+      description: "Start with free browser PDF tools for image conversion, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, certificates, checklists, and printable pages.",
       body: [
         ["p", "Use this directory when you need a PDF now and do not want an account, hidden export fee, or ad-click requirement."],
         ["h2", "No-upload conversion tools"],
         ["ul", ["Image to PDF Converter: turn JPG, PNG, or WebP images into a one-page PDF.", "Multiple Images to PDF Converter: combine up to eight images into one multi-page PDF.", "Text to PDF Converter: paste plain text and download a clean one-page document."]],
         ["h2", "Business and work PDFs"],
-        ["ul", ["Invoice, estimate, purchase order, receipt, timesheet, bill of sale, and rent receipt PDFs are built for quick records, not full accounting software.", "Resume, cover letter, and resignation letter tools export without a surprise download fee."]],
+        ["ul", ["Invoice, estimate, purchase order, receipt, timesheet, bill of sale, and rent receipt PDFs are built for quick records, not full accounting software.", "Business card, address label, barcode label, price tag, flyer, and coupon PDFs are built for local-business print needs without design-account friction.", "Resume, cover letter, and resignation letter tools export without a surprise download fee."]],
         ["h2", "Printable planning PDFs"],
         ["ul", ["Calendar, meal planner, graph paper, sign-in sheet, certificate, packing list, to-do list, classroom chart, and worksheet tools support common home, school, and event tasks."]],
         ["h2", "Why free first"],
@@ -1819,9 +2251,9 @@
       body: [
         ["p", "Use this page to coordinate the first distribution push. The goal is not to look busy; it is to create enough real traffic for Search Console, AdSense readiness, and download validation."],
         ["h2", "Primary links"],
-        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Tools index: https://printable-tools-lab.pages.dev/tools/", "Image to PDF: https://printable-tools-lab.pages.dev/tools/image-to-pdf/", "Multiple images to PDF: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/", "Text to PDF: https://printable-tools-lab.pages.dev/tools/text-to-pdf/", "Invoice generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
+        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Tools index: https://printable-tools-lab.pages.dev/tools/", "Image to PDF: https://printable-tools-lab.pages.dev/tools/image-to-pdf/", "Multiple images to PDF: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/", "Text to PDF: https://printable-tools-lab.pages.dev/tools/text-to-pdf/", "Invoice generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/", "Business card generator: https://printable-tools-lab.pages.dev/tools/business-card/", "Barcode label generator: https://printable-tools-lab.pages.dev/tools/barcode-labels/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
         ["h2", "First distribution copy"],
-        ["p", "Free browser PDF tools: convert images to PDF, combine multiple images, turn text into PDF, create invoices, receipts, timesheets, resumes, certificates, sign-in sheets, graph paper, calendars, worksheets, and checklists. No account required."],
+        ["p", "Free browser PDF tools: convert images to PDF, combine multiple images, turn text into PDF, create invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, sign-in sheets, graph paper, calendars, worksheets, and checklists. No account required."],
         ["p", "Try the free image to PDF converter: select a JPG, PNG, or WebP file and generate a one-page PDF locally without uploading the image."],
         ["p", "Need a quick invoice, receipt, timesheet, sign-in sheet, or packing checklist? PrintableTools Lab creates practical PDFs in the browser."],
         ["h2", "Do not do this"],
@@ -1842,6 +2274,12 @@
     "estimate-generator",
     "purchase-order",
     "bill-of-sale",
+    "business-card",
+    "address-labels",
+    "price-tag",
+    "flyer-maker",
+    "barcode-labels",
+    "coupon-maker",
     "resume-builder",
     "cover-letter",
     "resignation-letter",
@@ -1927,20 +2365,20 @@
   }
 
   function renderHome() {
-    setMeta("Free Printable PDF Generators", "Create invoices, rent receipts, resumes, worksheets, charts, and planners as free printable PDF files.");
+    setMeta("Free Printable PDF Generators", "Create image-to-PDF conversions, invoices, receipts, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free printable PDF files.");
     app.innerHTML = `
       <section class="shell hero">
         <div>
           <h1>Make useful printable PDFs in under a minute.</h1>
-          <p>Free browser-based generators for image conversion, text-to-PDF, invoices, receipts, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
+          <p>Free browser-based generators for image conversion, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free PDF tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>26</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>32</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>52</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>64</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -2009,7 +2447,7 @@
   }
 
   function renderToolsIndex() {
-    setMeta("Free PDF Tools", "Browse free printable PDF tools for image conversion, text conversion, business paperwork, career documents, calendars, meal planning, certificates, checklists, worksheets, and classroom routines.");
+    setMeta("Free PDF Tools", "Browse free printable PDF tools for image conversion, text conversion, business paperwork, local promotion printables, labels, career documents, calendars, meal planning, certificates, checklists, worksheets, and classroom routines.");
     app.innerHTML = `
       <section class="shell page-title section">
         <h1>Free PDF tools</h1>
@@ -2413,12 +2851,12 @@
 
   function getRelatedTools(currentId) {
     const groups = [
-      ["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt", "receipt-generator", "timesheet-generator"],
+      ["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt", "receipt-generator", "timesheet-generator", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"],
       ["resume-builder", "cover-letter", "resignation-letter"],
       ["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"],
       ["name-tracing", "chore-chart", "reward-chart", "flashcards"],
       ["image-to-pdf", "multi-image-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
-      ["certificate-generator", "sign-in-sheet", "todo-list"],
+      ["certificate-generator", "sign-in-sheet", "todo-list", "flyer-maker", "coupon-maker"],
     ];
     const group = groups.find((items) => items.includes(currentId)) || toolOrder;
     return group.filter((id) => id !== currentId && tools[id]).map((id) => tools[id]);
@@ -3662,6 +4100,120 @@
     drawFooterNote(ctx, paper, "Printable checklist only. Keep the list short enough to act on today.");
   }
 
+  function drawBusinessCard(ctx, paper, values) {
+    const margin = 72;
+    const gap = 24;
+    const cols = 2;
+    const rows = 5;
+    const cardW = (paper.width - margin * 2 - gap) / cols;
+    const cardH = Math.min(210, (paper.height - margin * 2 - gap * (rows - 1)) / rows);
+    const accent = values.style === "bold" ? "#e76f51" : values.style === "soft" ? "#5a9367" : "#176b87";
+    drawCutGuides(ctx, paper, margin);
+    for (let row = 0; row < rows; row += 1) {
+      for (let col = 0; col < cols; col += 1) {
+        const x = margin + col * (cardW + gap);
+        const y = margin + row * (cardH + gap);
+        drawBusinessCardUnit(ctx, x, y, cardW, cardH, values, accent);
+      }
+    }
+    drawFooterNote(ctx, paper, "Printable contact cards. Test print before using card stock.");
+  }
+
+  function drawAddressLabels(ctx, paper, values) {
+    const margin = 52;
+    const config = labelLayout(values.layout, paper, margin);
+    const accent = values.style === "classroom" ? "#5a9367" : values.style === "event" ? "#e76f51" : "#176b87";
+    drawTextFit(ctx, sanitizePrintable(values.labelTitle || "Address Labels"), paper.width / 2, 36, paper.width - 160, 26, { align: "center", weight: "800", color: "#5b6f78" });
+    for (let i = 0; i < config.count; i += 1) {
+      const col = i % config.cols;
+      const row = Math.floor(i / config.cols);
+      const x = margin + col * (config.w + config.gapX);
+      const y = config.top + row * (config.h + config.gapY);
+      drawLabelUnit(ctx, x, y, config.w, config.h, values, accent);
+    }
+    drawFooterNote(ctx, paper, "Plain-paper test recommended before printing on adhesive label sheets.");
+  }
+
+  function drawPriceTag(ctx, paper, values) {
+    const margin = 70;
+    const count = Number(values.count || 8);
+    const cols = count >= 12 ? 3 : count >= 10 ? 2 : 2;
+    const rows = Math.ceil(count / cols);
+    const gap = 24;
+    const tagW = (paper.width - margin * 2 - gap * (cols - 1)) / cols;
+    const tagH = Math.min(260, (paper.height - margin * 2 - 64 - gap * (rows - 1)) / rows);
+    const accent = values.theme === "market" ? "#5a9367" : values.theme === "minimal" ? "#17313b" : "#e76f51";
+    drawTextFit(ctx, "Printable price tags", paper.width / 2, 58, paper.width - 160, 32, { align: "center", weight: "900", color: "#17313b" });
+    for (let i = 0; i < count; i += 1) {
+      const col = i % cols;
+      const row = Math.floor(i / cols);
+      const x = margin + col * (tagW + gap);
+      const y = 104 + row * (tagH + gap);
+      drawPriceTagUnit(ctx, x, y, tagW, tagH, values, accent);
+    }
+    drawFooterNote(ctx, paper, "Printable price tags only. Keep prices large and easy to read.");
+  }
+
+  function drawFlyer(ctx, paper, values) {
+    const margin = 86;
+    const accent = values.theme === "service" ? "#176b87" : values.theme === "sale" ? "#e76f51" : "#5a9367";
+    drawPageFrame(ctx, paper, accent);
+    ctx.save();
+    ctx.fillStyle = accent;
+    ctx.fillRect(margin, 110, paper.width - margin * 2, 18);
+    ctx.fillRect(margin, paper.height - 178, paper.width - margin * 2, 18);
+    ctx.restore();
+    drawTextFit(ctx, sanitizePrintable(values.headline || "Flyer"), paper.width / 2, 235, paper.width - margin * 2, 78, { align: "center", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, sanitizePrintable(values.subhead || ""), paper.width / 2, 332, paper.width - margin * 2, 34, { align: "center", weight: "800", color: accent });
+    drawWrappedText(ctx, sanitizePrintable(values.details || ""), margin + 28, 465, paper.width - margin * 2 - 56, 42, "#17313b", "31px Arial", 8);
+    ctx.save();
+    ctx.fillStyle = "#edf7f6";
+    roundRect(ctx, margin + 45, paper.height - 425, paper.width - margin * 2 - 90, 128, 8, true, false);
+    ctx.restore();
+    drawTextFit(ctx, sanitizePrintable(values.callToAction || "Learn more"), paper.width / 2, paper.height - 360, paper.width - margin * 2 - 140, 36, { align: "center", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, sanitizePrintable(values.contact || ""), paper.width / 2, paper.height - 235, paper.width - margin * 2, 28, { align: "center", weight: "700", color: "#5b6f78" });
+    drawFooterNote(ctx, paper, "Printable flyer PDF. Review event details and posting rules before printing.");
+  }
+
+  function drawBarcodeLabels(ctx, paper, values) {
+    const margin = 66;
+    const count = Number(values.layout || 12);
+    const cols = count >= 20 ? 4 : count >= 12 ? 3 : 2;
+    const rows = Math.ceil(count / cols);
+    const gap = 18;
+    const labelW = (paper.width - margin * 2 - gap * (cols - 1)) / cols;
+    const labelH = Math.min(180, (paper.height - 160 - margin - gap * (rows - 1)) / rows);
+    const entries = parseBarcodeEntries(values.codes).slice(0, count);
+    drawTextFit(ctx, sanitizePrintable(values.title || "Barcode Labels"), paper.width / 2, 64, paper.width - margin * 2, 34, { align: "center", weight: "900", color: "#17313b" });
+    for (let i = 0; i < count; i += 1) {
+      const entry = entries[i % Math.max(1, entries.length)] || { code: "SKU-1001", label: "Label" };
+      const col = i % cols;
+      const row = Math.floor(i / cols);
+      const x = margin + col * (labelW + gap);
+      const y = 118 + row * (labelH + gap);
+      drawBarcodeLabelUnit(ctx, x, y, labelW, labelH, entry, values.showText !== "no");
+    }
+    drawFooterNote(ctx, paper, "Code 39-style labels for internal use. Test scanning before full printing.");
+  }
+
+  function drawCoupon(ctx, paper, values) {
+    const margin = 70;
+    const cols = 2;
+    const rows = 4;
+    const gap = 24;
+    const couponW = (paper.width - margin * 2 - gap) / cols;
+    const couponH = Math.min(255, (paper.height - margin * 2 - gap * (rows - 1)) / rows);
+    const accent = values.style === "market" ? "#5a9367" : values.style === "clean" ? "#176b87" : "#e76f51";
+    for (let row = 0; row < rows; row += 1) {
+      for (let col = 0; col < cols; col += 1) {
+        const x = margin + col * (couponW + gap);
+        const y = margin + row * (couponH + gap);
+        drawCouponUnit(ctx, x, y, couponW, couponH, values, accent);
+      }
+    }
+    drawFooterNote(ctx, paper, "Printable coupons only. Use accurate offers and clear terms.");
+  }
+
   function parseChecklistSections(value) {
     const lines = splitList(value || "", "\n");
     const sections = lines.map((lineText) => {
@@ -3755,6 +4307,184 @@
       cursor += 34;
     });
     ctx.restore();
+  }
+
+  function drawBusinessCardUnit(ctx, x, y, width, height, values, accent) {
+    ctx.save();
+    ctx.fillStyle = "#ffffff";
+    roundRect(ctx, x, y, width, height, 8, true, false);
+    ctx.strokeStyle = "rgba(23,49,59,0.28)";
+    ctx.lineWidth = 2;
+    roundRect(ctx, x, y, width, height, 8, false, true);
+    ctx.fillStyle = accent;
+    ctx.fillRect(x, y, width, 12);
+    drawTextFit(ctx, sanitizePrintable(values.name || "Name"), x + 24, y + 58, width - 48, 27, { align: "left", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, sanitizePrintable(values.role || ""), x + 24, y + 92, width - 48, 19, { align: "left", weight: "700", color: accent });
+    drawTextFit(ctx, sanitizePrintable(values.business || ""), x + 24, y + 126, width - 48, 21, { align: "left", weight: "800", color: "#17313b" });
+    const contact = [values.email, values.phone, values.website].map(sanitizePrintable).filter(Boolean).join("  |  ");
+    drawTextFit(ctx, contact, x + 24, y + 161, width - 48, 17, { align: "left", weight: "500", color: "#5b6f78" });
+    drawTextFit(ctx, sanitizePrintable(values.tagline || ""), x + 24, y + height - 26, width - 48, 16, { align: "left", weight: "700", color: "#5b6f78" });
+    ctx.restore();
+  }
+
+  function drawLabelUnit(ctx, x, y, width, height, values, accent) {
+    ctx.save();
+    ctx.fillStyle = "#ffffff";
+    roundRect(ctx, x, y, width, height, 8, true, false);
+    ctx.strokeStyle = "rgba(23,49,59,0.18)";
+    ctx.lineWidth = 1.5;
+    roundRect(ctx, x, y, width, height, 8, false, true);
+    ctx.fillStyle = accent;
+    ctx.fillRect(x + 10, y + 12, 5, height - 24);
+    drawTextFit(ctx, sanitizePrintable(values.recipient || values.labelTitle || "Label"), x + 28, y + 33, width - 46, 18, { align: "left", weight: "900", color: "#17313b" });
+    drawWrappedText(ctx, sanitizePrintable(values.address || ""), x + 28, y + 60, width - 46, 20, "#17313b", "16px Arial", Math.max(2, Math.floor((height - 78) / 20)));
+    drawTextFit(ctx, sanitizePrintable(values.note || ""), x + 28, y + height - 22, width - 46, 14, { align: "left", weight: "700", color: "#5b6f78" });
+    ctx.restore();
+  }
+
+  function drawPriceTagUnit(ctx, x, y, width, height, values, accent) {
+    ctx.save();
+    ctx.fillStyle = "#ffffff";
+    roundRect(ctx, x, y, width, height, 8, true, false);
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 3;
+    roundRect(ctx, x, y, width, height, 8, false, true);
+    ctx.fillStyle = "rgba(242,184,75,0.18)";
+    if (accent === "#5a9367") ctx.fillStyle = "rgba(90,147,103,0.15)";
+    if (accent === "#17313b") ctx.fillStyle = "rgba(23,49,59,0.08)";
+    ctx.fillRect(x + 8, y + 8, width - 16, 52);
+    drawTextFit(ctx, sanitizePrintable(values.title || "Sale"), x + width / 2, y + 36, width - 32, 22, { align: "center", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, sanitizePrintable(values.price || "$0"), x + width / 2, y + height / 2 + 2, width - 34, Math.min(58, height * 0.28), { align: "center", weight: "900", color: accent });
+    drawTextFit(ctx, sanitizePrintable(values.subtitle || ""), x + width / 2, y + height - 68, width - 32, 19, { align: "center", weight: "700", color: "#17313b" });
+    drawTextFit(ctx, sanitizePrintable(values.footer || ""), x + width / 2, y + height - 34, width - 32, 16, { align: "center", weight: "600", color: "#5b6f78" });
+    ctx.restore();
+  }
+
+  function drawBarcodeLabelUnit(ctx, x, y, width, height, entry, showText) {
+    ctx.save();
+    ctx.fillStyle = "#ffffff";
+    roundRect(ctx, x, y, width, height, 8, true, false);
+    ctx.strokeStyle = "rgba(23,49,59,0.24)";
+    ctx.lineWidth = 1.5;
+    roundRect(ctx, x, y, width, height, 8, false, true);
+    drawTextFit(ctx, entry.label || "Label", x + width / 2, y + 28, width - 24, 16, { align: "center", weight: "800", color: "#17313b" });
+    drawCode39(ctx, entry.code, x + 18, y + 52, width - 36, Math.max(54, height - 98));
+    if (showText) drawTextFit(ctx, entry.code, x + width / 2, y + height - 23, width - 28, 16, { align: "center", weight: "700", color: "#17313b" });
+    ctx.restore();
+  }
+
+  function drawCouponUnit(ctx, x, y, width, height, values, accent) {
+    ctx.save();
+    ctx.fillStyle = "#ffffff";
+    roundRect(ctx, x, y, width, height, 8, true, false);
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 3;
+    ctx.setLineDash([12, 8]);
+    roundRect(ctx, x, y, width, height, 8, false, true);
+    ctx.setLineDash([]);
+    ctx.fillStyle = accent;
+    ctx.fillRect(x, y, width, 46);
+    drawTextFit(ctx, sanitizePrintable(values.business || "Coupon"), x + width / 2, y + 26, width - 32, 18, { align: "center", weight: "900", color: "#ffffff" });
+    drawTextFit(ctx, sanitizePrintable(values.offer || "Special offer"), x + width / 2, y + 88, width - 34, 30, { align: "center", weight: "900", color: "#17313b" });
+    drawWrappedText(ctx, sanitizePrintable(values.details || ""), x + 22, y + 122, width - 44, 21, "#5b6f78", "17px Arial", 3);
+    drawTextFit(ctx, `Code: ${sanitizePrintable(values.code || "OFFER")}`, x + 24, y + height - 70, width - 48, 17, { align: "left", weight: "900", color: accent });
+    drawTextFit(ctx, sanitizePrintable(values.expires || ""), x + width - 24, y + height - 70, width * 0.48, 15, { align: "right", weight: "700", color: "#5b6f78" });
+    drawTextFit(ctx, sanitizePrintable(values.finePrint || ""), x + 24, y + height - 30, width - 48, 13, { align: "left", weight: "500", color: "#5b6f78" });
+    ctx.restore();
+  }
+
+  function drawCutGuides(ctx, paper, margin) {
+    ctx.save();
+    ctx.strokeStyle = "rgba(23,49,59,0.14)";
+    ctx.lineWidth = 1;
+    ctx.setLineDash([5, 8]);
+    ctx.strokeRect(margin - 14, margin - 14, paper.width - margin * 2 + 28, paper.height - margin * 2 + 28);
+    ctx.restore();
+  }
+
+  function labelLayout(layout, paper, margin) {
+    if (layout === "14") return { count: 14, cols: 2, w: (paper.width - margin * 2 - 18) / 2, h: 134, gapX: 18, gapY: 16, top: 72 };
+    if (layout === "10") return { count: 10, cols: 2, w: (paper.width - margin * 2 - 18) / 2, h: 180, gapX: 18, gapY: 18, top: 82 };
+    return { count: 30, cols: 3, w: (paper.width - margin * 2 - 24) / 3, h: 92, gapX: 12, gapY: 10, top: 72 };
+  }
+
+  function parseBarcodeEntries(value) {
+    const entries = splitList(value || "", "\n").map((lineText) => {
+      const parts = lineText.split("|").map((part) => sanitizePrintable(part));
+      const code = normalizeCode39(parts[0] || "SKU-1001");
+      return { code, label: parts[1] || code };
+    });
+    return entries.length ? entries : [{ code: "SKU-1001", label: "Label" }];
+  }
+
+  function normalizeCode39(value) {
+    const clean = String(value || "SKU-1001").toUpperCase().replace(/[^A-Z0-9 \-.$/+%]/g, "-").replace(/\s+/g, " ").trim();
+    return clean.slice(0, 22) || "SKU-1001";
+  }
+
+  function drawCode39(ctx, value, x, y, width, height) {
+    const encoded = `*${normalizeCode39(value)}*`;
+    const bits = code39Bits(encoded);
+    const unit = Math.max(1, Math.floor(width / bits.length));
+    const totalW = unit * bits.length;
+    let cursor = x + (width - totalW) / 2;
+    ctx.save();
+    ctx.fillStyle = "#17313b";
+    for (let i = 0; i < bits.length; i += 1) {
+      if (bits[i] === "1") ctx.fillRect(cursor, y, unit, height);
+      cursor += unit;
+    }
+    ctx.restore();
+  }
+
+  function code39Bits(text) {
+    const patterns = {
+      "0": "101001101101",
+      "1": "110100101011",
+      "2": "101100101011",
+      "3": "110110010101",
+      "4": "101001101011",
+      "5": "110100110101",
+      "6": "101100110101",
+      "7": "101001011011",
+      "8": "110100101101",
+      "9": "101100101101",
+      A: "110101001011",
+      B: "101101001011",
+      C: "110110100101",
+      D: "101011001011",
+      E: "110101100101",
+      F: "101101100101",
+      G: "101010011011",
+      H: "110101001101",
+      I: "101101001101",
+      J: "101011001101",
+      K: "110101010011",
+      L: "101101010011",
+      M: "110110101001",
+      N: "101011010011",
+      O: "110101101001",
+      P: "101101101001",
+      Q: "101010110011",
+      R: "110101011001",
+      S: "101101011001",
+      T: "101011011001",
+      U: "110010101011",
+      V: "100110101011",
+      W: "110011010101",
+      X: "100101101011",
+      Y: "110010110101",
+      Z: "100110110101",
+      "-": "100101011011",
+      ".": "110010101101",
+      " ": "100110101101",
+      "$": "100100100101",
+      "/": "100100101001",
+      "+": "100101001001",
+      "%": "101001001001",
+      "*": "100101101101",
+    };
+    return String(text).split("").map((char) => patterns[char] || patterns["-"]).join("0");
   }
 
   function drawPageFrame(ctx, paper, accent) {

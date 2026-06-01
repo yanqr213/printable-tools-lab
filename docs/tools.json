@@ -4,7 +4,7 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-05-31T23:01:18.311Z",
+  "generatedAt": "2026-06-01T00:03:23.842Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -45,6 +45,36 @@
       "title": "Free Certificate Maker Without Signup",
       "url": "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
       "intent": "certificate PDF download without account"
+    },
+    {
+      "title": "Free Printable Business Card Generator",
+      "url": "https://printable-tools-lab.pages.dev/free-business-card-generator-printable/",
+      "intent": "printable business cards now, no account, no design software"
+    },
+    {
+      "title": "Free Printable Address Label Generator",
+      "url": "https://printable-tools-lab.pages.dev/free-address-label-generator-printable/",
+      "intent": "mailing label PDF, return address labels, no signup"
+    },
+    {
+      "title": "Free Printable Barcode Label Generator",
+      "url": "https://printable-tools-lab.pages.dev/free-barcode-label-generator-printable/",
+      "intent": "barcode label PDF, SKU labels, inventory stickers"
+    },
+    {
+      "title": "Free Printable Price Tag Generator",
+      "url": "https://printable-tools-lab.pages.dev/free-price-tag-generator-printable/",
+      "intent": "price tag PDF, shelf labels, yard sale tags"
+    },
+    {
+      "title": "Free Flyer Maker PDF Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/free-flyer-maker-pdf-no-signup/",
+      "intent": "flyer PDF now, no signup, local event flyer"
+    },
+    {
+      "title": "Free Printable Coupon Maker",
+      "url": "https://printable-tools-lab.pages.dev/free-coupon-maker-printable/",
+      "intent": "printable coupon cards, discount coupon PDF, no signup"
     }
   ],
   "tools": [
@@ -77,6 +107,36 @@
       "title": "Timesheet Generator",
       "description": "Make a printable weekly timesheet PDF for freelance hours, staff records, projects, or approvals.",
       "url": "https://printable-tools-lab.pages.dev/tools/timesheet-generator/"
+    },
+    {
+      "title": "Business Card Generator",
+      "description": "Create a printable business card PDF sheet for a small business, side project, local service, or event contact card.",
+      "url": "https://printable-tools-lab.pages.dev/tools/business-card/"
+    },
+    {
+      "title": "Address Label Generator",
+      "description": "Make a printable sheet of return address labels, mailing labels, classroom labels, or event badge labels.",
+      "url": "https://printable-tools-lab.pages.dev/tools/address-labels/"
+    },
+    {
+      "title": "Barcode Label Generator",
+      "description": "Generate printable Code 39 barcode labels for inventory bins, event check-in, SKU stickers, and internal tracking.",
+      "url": "https://printable-tools-lab.pages.dev/tools/barcode-labels/"
+    },
+    {
+      "title": "Price Tag Generator",
+      "description": "Create printable price tags or shelf labels for yard sales, craft fairs, pop-up shops, and small retail displays.",
+      "url": "https://printable-tools-lab.pages.dev/tools/price-tag/"
+    },
+    {
+      "title": "Flyer Maker PDF",
+      "description": "Make a one-page printable flyer PDF for a local service, yard sale, class, community event, or small business offer.",
+      "url": "https://printable-tools-lab.pages.dev/tools/flyer-maker/"
+    },
+    {
+      "title": "Coupon Maker PDF",
+      "description": "Create printable coupon cards for a local service, class, pop-up event, small shop, or limited-time offer.",
+      "url": "https://printable-tools-lab.pages.dev/tools/coupon-maker/"
     },
     {
       "title": "Resume Builder PDF",

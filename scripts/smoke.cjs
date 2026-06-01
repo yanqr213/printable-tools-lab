@@ -37,6 +37,12 @@ function delay(ms) {
     "/tools/purchase-order/",
     "/tools/bill-of-sale/",
     "/tools/rent-receipt/",
+    "/tools/business-card/",
+    "/tools/address-labels/",
+    "/tools/price-tag/",
+    "/tools/flyer-maker/",
+    "/tools/barcode-labels/",
+    "/tools/coupon-maker/",
     "/tools/resume-builder/",
     "/tools/cover-letter/",
     "/tools/resignation-letter/",
@@ -61,6 +67,12 @@ function delay(ms) {
     "/guides/free-purchase-order-generator/",
     "/guides/free-bill-of-sale-generator/",
     "/guides/free-rent-receipt-generator/",
+    "/guides/free-business-card-generator-printable/",
+    "/guides/free-address-label-generator-printable/",
+    "/guides/free-barcode-label-generator-printable/",
+    "/guides/free-price-tag-generator-printable/",
+    "/guides/free-flyer-maker-pdf-no-signup/",
+    "/guides/free-coupon-maker-printable/",
     "/guides/free-resume-builder-pdf/",
     "/guides/free-cover-letter-generator-pdf/",
     "/guides/free-resignation-letter-generator/",
@@ -92,7 +104,7 @@ function delay(ms) {
   for (const phrase of ["No-upload conversion tools", "Free business PDF tools", "All free PDF generators"]) {
     if (!freePdfText.includes(phrase)) throw new Error(`Free PDF tools page is missing ${phrase}`);
   }
-  for (const href of ["/tools/multi-image-pdf/", "/tools/text-to-pdf/", "/tools/timesheet-generator/"]) {
+  for (const href of ["/tools/multi-image-pdf/", "/tools/text-to-pdf/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/barcode-labels/"]) {
     const linkCount = await page.locator(`main a[href="${href}"]`).count();
     if (!linkCount) throw new Error(`Free PDF tools page is missing link ${href}`);
   }
@@ -102,12 +114,12 @@ function delay(ms) {
   for (const phrase of ["Which free PDF tool should I use?", "Invoice vs receipt", "One image vs many images"]) {
     if (!finderText.includes(phrase)) throw new Error(`PDF tool finder page is missing ${phrase}`);
   }
-  for (const href of ["/tools/image-to-pdf/", "/tools/receipt-generator/", "/tools/timesheet-generator/"]) {
+  for (const href of ["/tools/image-to-pdf/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/price-tag/"]) {
     const linkCount = await page.locator(`main a[href="${href}"]`).count();
     if (!linkCount) throw new Error(`PDF tool finder page is missing link ${href}`);
   }
 
-  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/text-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
+  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/text-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
     await page.evaluate(() => localStorage.removeItem("ptl_daily"));
     if (route === "/tools/image-to-pdf/") {
