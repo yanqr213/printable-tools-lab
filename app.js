@@ -559,6 +559,60 @@
       draw: drawMultiImagePdf,
       exportPdf: exportMultiImagePdf,
     },
+    "merge-pdf": {
+      id: "merge-pdf",
+      icon: "MRG",
+      title: "Merge PDF Tool",
+      shortTitle: "Merge PDF",
+      description: "Combine several PDF files into one PDF in your browser without uploading documents.",
+      keywords: ["merge PDF", "combine PDF", "no upload", "no signup"],
+      ai: false,
+      pdfTool: "merge",
+      defaultValues: {
+        pdfs: "",
+      },
+      fields: [
+        { id: "pdfs", label: "PDF files", type: "file", accept: "application/pdf", multiple: true, help: "Select up to 6 PDFs. Files stay in your browser and are not uploaded." },
+      ],
+    },
+    "split-pdf": {
+      id: "split-pdf",
+      icon: "SPL",
+      title: "Split PDF Tool",
+      shortTitle: "Split PDF",
+      description: "Extract selected pages from a PDF in your browser without uploading the document.",
+      keywords: ["split PDF", "extract PDF pages", "no upload", "no signup"],
+      ai: false,
+      pdfTool: "split",
+      defaultValues: {
+        pdfs: "",
+        pageRange: "1-2",
+      },
+      fields: [
+        { id: "pdfs", label: "PDF file", type: "file", accept: "application/pdf", multiple: false, help: "Select one PDF. It stays in your browser and is not uploaded." },
+        { id: "pageRange", label: "Pages to keep", type: "text", maxLength: 80, help: "Use pages or ranges such as 1,3-5. Pages are 1-based." },
+      ],
+    },
+    "pdf-page-numbers": {
+      id: "pdf-page-numbers",
+      icon: "123",
+      title: "Add Page Numbers to PDF",
+      shortTitle: "PDF page numbers",
+      description: "Add simple page numbers to an existing PDF locally in your browser.",
+      keywords: ["PDF page numbers", "add page numbers", "no upload", "PDF tool"],
+      ai: false,
+      pdfTool: "page-numbers",
+      defaultValues: {
+        pdfs: "",
+        position: "bottom-center",
+        startNumber: "1",
+      },
+      fields: [
+        { id: "pdfs", label: "PDF file", type: "file", accept: "application/pdf", multiple: false, help: "Select one PDF. It stays in your browser and is not uploaded." },
+        { id: "position", label: "Position", type: "select", options: [["bottom-center", "Bottom center"], ["bottom-right", "Bottom right"], ["top-right", "Top right"]] },
+        { id: "startNumber", label: "Start number", type: "text", maxLength: 4 },
+      ],
+    },
     "text-to-pdf": {
       id: "text-to-pdf",
       icon: "TXT",
@@ -1053,12 +1107,15 @@
     },
     {
       title: "Everyday utility PDFs",
-      description: "High-intent PDF tools for image conversion, text conversion, QR-free print assets, checklists, sign-in sheets, graph paper, and travel paperwork.",
+      description: "High-intent PDF tools for image conversion, existing PDF editing, text conversion, checklists, sign-in sheets, graph paper, and travel paperwork.",
       links: [
         ["Image to PDF converter", "/tools/image-to-pdf/"],
         ["JPG to PDF without uploading", "/jpg-to-pdf-no-upload/"],
         ["Multiple images to PDF", "/tools/multi-image-pdf/"],
         ["Multiple images to PDF without uploading", "/multiple-images-to-pdf-no-upload/"],
+        ["Merge PDF without uploading", "/merge-pdf-no-upload/"],
+        ["Split PDF without uploading", "/split-pdf-no-upload/"],
+        ["Add page numbers to PDF", "/add-page-numbers-to-pdf/"],
         ["Text to PDF converter", "/tools/text-to-pdf/"],
         ["Text to PDF converter without signup", "/text-to-pdf-no-signup/"],
         ["Sign-in sheet generator", "/tools/sign-in-sheet/"],
@@ -1117,8 +1174,8 @@
   const freePdfToolGroups = [
     {
       title: "No-upload conversion tools",
-      description: "Use these when a photo, scan, screenshot, or plain text note needs to become a PDF quickly. The image tools load files in the browser instead of uploading them to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "text-to-pdf"],
+      description: "Use these when a photo, scan, existing PDF, or plain text note needs to become the right PDF quickly. Files load in the browser instead of uploading to a converter server.",
+      links: ["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "text-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1197,6 +1254,51 @@
         ["One-page focus", "The free version is best for concise documents. Long text should be shortened or split into sections before export."],
       ],
       related: ["image-to-pdf", "todo-list", "sign-in-sheet"],
+    },
+    {
+      slug: "merge-pdf-no-upload",
+      title: "Merge PDF Without Uploading",
+      headline: "Merge PDF without uploading",
+      description: "Combine PDF files locally in your browser without uploading documents or creating an account.",
+      lead: "Select several PDF files, preview the order, and download one combined PDF. This is built for private paperwork, school forms, receipts, and admin documents you do not want to upload to a converter server.",
+      tool: "merge-pdf",
+      intent: "combine PDF files, no upload, no account",
+      sections: [
+        ["Local merge workflow", "The selected PDFs are read in the browser and copied into a new combined file. Ordinary merging does not send the documents to a server."],
+        ["Best fit", "Use it for forms, receipts, scan batches, school packets, client documents, or any small set of PDFs that needs one file."],
+        ["Practical limits", "Very large PDFs can use a lot of browser memory. For sensitive or high-stakes documents, review the final PDF before sharing it."],
+      ],
+      related: ["split-pdf", "pdf-page-numbers", "multi-image-pdf"],
+    },
+    {
+      slug: "split-pdf-no-upload",
+      title: "Split PDF Without Uploading",
+      headline: "Split PDF without uploading",
+      description: "Extract selected PDF pages locally in your browser without uploading the document.",
+      lead: "Choose one PDF, enter the pages you want to keep, and download a smaller extracted PDF. It is designed for quick page removal and document trimming without an upload step.",
+      tool: "split-pdf",
+      intent: "extract PDF pages, no upload, no account",
+      sections: [
+        ["Extract only what you need", "Use page numbers or ranges such as 1,3-5 to keep the pages that matter and leave the rest out of the new PDF."],
+        ["Privacy positioning", "The source PDF is processed in the browser for ordinary extraction, which is useful when a document includes private pages you do not want to upload."],
+        ["Before sharing", "Open the downloaded file and confirm the page order and page count before sending it to a school, client, employer, or portal."],
+      ],
+      related: ["merge-pdf", "pdf-page-numbers", "text-to-pdf"],
+    },
+    {
+      slug: "add-page-numbers-to-pdf",
+      title: "Add Page Numbers to PDF",
+      headline: "Add page numbers to PDF",
+      description: "Add simple page numbers to an existing PDF locally in your browser without uploading the file.",
+      lead: "Select a PDF, choose where the page numbers should appear, and download a numbered copy. It is useful for packets, handouts, client drafts, and documents that need page references.",
+      tool: "pdf-page-numbers",
+      intent: "add page numbers to PDF, no upload, no account",
+      sections: [
+        ["Why page numbers matter", "Longer PDF packets are easier to review when each page has a clear number. This tool adds simple numbering without forcing a design app."],
+        ["Local-first workflow", "The PDF is loaded and edited in the browser for ordinary numbering. The site does not need the file to add the visible page text."],
+        ["Best fit", "Use it for classroom packets, meeting handouts, client drafts, applications, reports, and merged PDFs that need references."],
+      ],
+      related: ["merge-pdf", "split-pdf", "text-to-pdf"],
     },
     {
       slug: "free-resume-builder-no-signup",
@@ -1412,6 +1514,21 @@
       need: "Paste text and download a simple PDF",
       tool: "text-to-pdf",
       why: "Best for notes, short letters, and copied text.",
+    },
+    {
+      need: "Combine several PDFs into one file",
+      tool: "merge-pdf",
+      why: "Best for local no-upload merging when the files should stay in the browser.",
+    },
+    {
+      need: "Extract only a few pages from a PDF",
+      tool: "split-pdf",
+      why: "Best for keeping page ranges without uploading the source PDF.",
+    },
+    {
+      need: "Add visible page numbers to a PDF",
+      tool: "pdf-page-numbers",
+      why: "Best for packets, handouts, drafts, and combined PDFs that need references.",
     },
     {
       need: "Bill a client or record work before payment",
@@ -2463,6 +2580,7 @@
       description: "How PrintableTools Lab handles generated content, design assets, and licensing.",
       body: [
         ["p", "PrintableTools Lab uses code-driven templates and may use AI assistance during product design, wording, and template ideation. The generated PDFs are assembled in the browser from user input and template rules."],
+        ["p", "Existing PDF merge, split, and page-number operations use the MIT-licensed pdf-lib JavaScript library in the browser."],
         ["p", "The default templates avoid third-party characters, trademarked brands, and protected artwork. Users should not enter copyrighted or trademarked content they do not have permission to use."],
         ["p", "If external fonts, icon sets, or datasets are added later, their license notes should be listed here before public launch."],
       ],
@@ -2484,7 +2602,7 @@
       body: [
         ["p", "Use this directory when you need a PDF now and do not want an account, hidden export fee, or ad-click requirement."],
         ["h2", "No-upload conversion tools"],
-        ["ul", ["Image to PDF Converter: turn JPG, PNG, or WebP images into a one-page PDF.", "Multiple Images to PDF Converter: combine up to eight images into one multi-page PDF.", "Text to PDF Converter: paste plain text and download a clean one-page document."]],
+        ["ul", ["Image to PDF Converter: turn JPG, PNG, or WebP images into a one-page PDF.", "Multiple Images to PDF Converter: combine up to eight images into one multi-page PDF.", "Merge PDF, Split PDF, and PDF Page Numbers: edit existing PDFs locally in the browser.", "Text to PDF Converter: paste plain text and download a clean one-page document."]],
         ["h2", "Business and work PDFs"],
         ["ul", ["Invoice, estimate, purchase order, receipt, timesheet, bill of sale, and rent receipt PDFs are built for quick records, not full accounting software.", "Business card, address label, barcode label, price tag, flyer, and coupon PDFs are built for local-business print needs without design-account friction.", "Resume, cover letter, and resignation letter tools export without a surprise download fee."]],
         ["h2", "Printable planning PDFs"],
@@ -2499,9 +2617,9 @@
       body: [
         ["p", "Use this page to coordinate the first distribution push. The goal is not to look busy; it is to create enough real traffic for Search Console, AdSense readiness, and download validation."],
         ["h2", "Primary links"],
-        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Tools index: https://printable-tools-lab.pages.dev/tools/", "Image to PDF: https://printable-tools-lab.pages.dev/tools/image-to-pdf/", "Multiple images to PDF: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/", "Text to PDF: https://printable-tools-lab.pages.dev/tools/text-to-pdf/", "Invoice generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/", "Business card generator: https://printable-tools-lab.pages.dev/tools/business-card/", "Barcode label generator: https://printable-tools-lab.pages.dev/tools/barcode-labels/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
+        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Tools index: https://printable-tools-lab.pages.dev/tools/", "Image to PDF: https://printable-tools-lab.pages.dev/tools/image-to-pdf/", "Multiple images to PDF: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/", "Merge PDF: https://printable-tools-lab.pages.dev/tools/merge-pdf/", "Split PDF: https://printable-tools-lab.pages.dev/tools/split-pdf/", "PDF page numbers: https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/", "Text to PDF: https://printable-tools-lab.pages.dev/tools/text-to-pdf/", "Invoice generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/", "Business card generator: https://printable-tools-lab.pages.dev/tools/business-card/", "Barcode label generator: https://printable-tools-lab.pages.dev/tools/barcode-labels/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
         ["h2", "First distribution copy"],
-        ["p", "Free browser PDF tools: convert images to PDF, combine multiple images, turn text into PDF, create invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, sign-in sheets, graph paper, calendars, worksheets, and checklists. No account required."],
+        ["p", "Free browser PDF tools: merge PDFs, split PDFs, add PDF page numbers, convert images to PDF, combine multiple images, turn text into PDF, create invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, sign-in sheets, graph paper, calendars, worksheets, and checklists. No account required."],
         ["p", "Try the free image to PDF converter: select a JPG, PNG, or WebP file and generate a one-page PDF locally without uploading the image."],
         ["p", "Need a quick invoice, receipt, timesheet, sign-in sheet, or packing checklist? PrintableTools Lab creates practical PDFs in the browser."],
         ["h2", "Do not do this"],
@@ -2538,6 +2656,9 @@
     "meal-planner",
     "image-to-pdf",
     "multi-image-pdf",
+    "merge-pdf",
+    "split-pdf",
+    "pdf-page-numbers",
     "text-to-pdf",
     "sign-in-sheet",
     "graph-paper",
@@ -2558,6 +2679,7 @@
   const app = document.getElementById("app");
   let currentToolState = null;
   const imageToolState = new Map();
+  const pdfToolState = new Map();
 
   const SOFTWARE_SCHEMA_IDS = new Set(["tools"]);
 
@@ -2628,9 +2750,9 @@
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>35</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>38</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>70</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>73</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -3014,6 +3136,7 @@
     const tool = tools[id];
     setMeta(tool.title, tool.description);
     setToolJsonLd(tool);
+    if (tool.pdfTool) return renderPdfUtilityTool(tool);
     const count = getDailyCount();
     app.innerHTML = `
       <section class="shell tool-header">
@@ -3087,8 +3210,8 @@
       featureList: [
         "Browser-based PDF generation",
         "No account required",
-        "US Letter and A4 support",
-        "Clean one-page printable export",
+        tool.pdfTool ? "No-upload PDF file processing" : "US Letter and A4 support",
+        tool.pdfTool ? "Local PDF export" : "Clean one-page printable export",
       ],
     });
   }
@@ -3166,6 +3289,286 @@
     draw();
   }
 
+  function renderPdfUtilityTool(tool) {
+    const count = getDailyCount();
+    app.innerHTML = `
+      <section class="shell tool-header">
+        <a href="/tools/">Back to all tools</a>
+        <h1>${escapeHtml(tool.title)}</h1>
+        <p class="lead">${escapeHtml(tool.description)}</p>
+      </section>
+      <section class="shell tool-layout">
+        <aside class="panel tool-form">
+          <div class="preview-toolbar">
+            <h2>Choose PDFs</h2>
+            <span class="counter" id="limitCounter">${SITE.dailyLimit - count} free left today</span>
+          </div>
+          <form id="generatorForm" class="form-grid">
+            ${tool.fields.map((field) => renderField(field, tool.defaultValues[field.id])).join("")}
+            <div class="actions">
+              <button class="button" type="submit">${escapeHtml(pdfToolActionLabel(tool))}</button>
+              <button class="button secondary" type="button" id="refreshPreview">Refresh file preview</button>
+            </div>
+            <p class="help">Files are read in this browser for ordinary processing. They are not uploaded to PrintableTools Lab.</p>
+          </form>
+          <div id="limitNotice" class="notice" hidden></div>
+        </aside>
+        <div class="preview-wrap">
+          <div class="preview-toolbar">
+            <div>
+              <h2>File preview</h2>
+              <p class="help">Confirm file order, page counts, and selected page ranges before export.</p>
+            </div>
+            <a class="button ghost" href="/free-pdf-tools/">PDF tools</a>
+          </div>
+          <div class="preview-stage">
+            <div id="pdfFilePreview" class="pdf-file-preview"></div>
+          </div>
+          ${renderAdUnit("tool", "content-adjacent only, never blocking the download button")}
+          <div id="downloadComplete" class="download-complete" hidden></div>
+          <div class="callout">
+            <strong>Privacy note:</strong> this tool uses browser-side PDF processing. Very large PDFs may be slow or fail if the browser runs out of memory.
+          </div>
+        </div>
+      </section>
+      <section class="shell section">
+        <div class="grid-3">${getRelatedTools(tool.id).slice(0, 3).map(toolCard).join("")}</div>
+      </section>
+    `;
+    bindPdfUtilityTool(tool);
+  }
+
+  function bindPdfUtilityTool(tool) {
+    const form = document.getElementById("generatorForm");
+    const refresh = document.getElementById("refreshPreview");
+    const limitCounter = document.getElementById("limitCounter");
+    const downloadComplete = document.getElementById("downloadComplete");
+    const notice = document.getElementById("limitNotice");
+    const preview = document.getElementById("pdfFilePreview");
+    pdfToolState.set(tool.id, []);
+
+    const renderPreview = () => {
+      preview.innerHTML = pdfUtilityPreviewHtml(tool, getPdfFiles(tool.id), getFormValues(form));
+    };
+
+    form.addEventListener("change", async (event) => {
+      if (event.target && event.target.type === "file") {
+        notice.hidden = true;
+        try {
+          await loadPdfFiles(tool, event.target.files);
+        } catch (error) {
+          pdfToolState.set(tool.id, []);
+          notice.textContent = error.message || "Could not read the selected PDF file.";
+          notice.hidden = false;
+        }
+      }
+      renderPreview();
+    });
+    form.addEventListener("input", renderPreview);
+    refresh.addEventListener("click", () => {
+      track("generate_preview", { tool: tool.id });
+      renderPreview();
+    });
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      notice.hidden = true;
+      const count = getDailyCount();
+      if (count >= SITE.dailyLimit) {
+        notice.textContent = "Daily free limit reached in this browser. You can still adjust the selected files or come back tomorrow.";
+        notice.hidden = false;
+        track("limit_hit", { tool: tool.id });
+        return;
+      }
+      try {
+        const values = getFormValues(form);
+        const files = getPdfFiles(tool.id);
+        const pdf = await exportPdfUtility(tool, files, values);
+        downloadBlob(pdf, pdfUtilityFilename(tool, files, values));
+        incrementDailyCount();
+        const remaining = SITE.dailyLimit - getDailyCount();
+        limitCounter.textContent = `${remaining} free left today`;
+        showDownloadComplete(tool, downloadComplete, remaining);
+        track("generate_pdf", { tool: tool.id });
+        track("download_pdf", { tool: tool.id });
+      } catch (error) {
+        notice.textContent = error.message || "Could not generate the PDF. Try a smaller file or a simpler page range.";
+        notice.hidden = false;
+      }
+    });
+    renderPreview();
+  }
+
+  function pdfToolActionLabel(tool) {
+    if (tool.pdfTool === "merge") return "Merge PDF";
+    if (tool.pdfTool === "split") return "Extract pages";
+    if (tool.pdfTool === "page-numbers") return "Add page numbers";
+    return "Generate PDF";
+  }
+
+  function getPdfFiles(toolId) {
+    return pdfToolState.get(toolId) || [];
+  }
+
+  async function loadPdfFiles(tool, fileList) {
+    const files = Array.from(fileList || [])
+      .filter((file) => file.type === "application/pdf" || /\.pdf$/i.test(file.name || ""))
+      .slice(0, tool.pdfTool === "merge" ? 6 : 1);
+    if (!files.length) {
+      pdfToolState.set(tool.id, []);
+      return;
+    }
+    const items = await Promise.all(files.map(readPdfFile));
+    pdfToolState.set(tool.id, items);
+  }
+
+  async function readPdfFile(file) {
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    const pdfLib = getPdfLib();
+    const doc = await pdfLib.PDFDocument.load(bytes, { ignoreEncryption: true });
+    if (doc.isEncrypted) {
+      throw new Error("Encrypted PDFs are not supported in the browser tool.");
+    }
+    return {
+      name: file.name || "document.pdf",
+      size: file.size || bytes.length,
+      bytes,
+      pageCount: doc.getPageCount(),
+    };
+  }
+
+  function pdfUtilityPreviewHtml(tool, files, values) {
+    if (!files.length) {
+      return `
+        <div class="empty-state">
+          <strong>Select PDF file${tool.pdfTool === "merge" ? "s" : ""} to start</strong>
+          <p>Use the file field on the left. The browser will read page counts locally before export.</p>
+        </div>
+      `;
+    }
+    const totalPages = files.reduce((sum, file) => sum + file.pageCount, 0);
+    const rows = files.map((file, index) => `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${escapeHtml(file.name)}</td>
+        <td>${file.pageCount}</td>
+        <td>${formatBytes(file.size)}</td>
+      </tr>
+    `).join("");
+    let note = "";
+    if (tool.pdfTool === "merge") note = `The export will combine ${files.length} PDF file${files.length === 1 ? "" : "s"} into one ${totalPages}-page PDF.`;
+    if (tool.pdfTool === "split") {
+      const selected = parsePageRange(values.pageRange || "", files[0].pageCount);
+      note = `The export will keep ${selected.length} page${selected.length === 1 ? "" : "s"} from ${files[0].pageCount}.`;
+    }
+    if (tool.pdfTool === "page-numbers") note = `The export will add visible page numbers to ${files[0].pageCount} page${files[0].pageCount === 1 ? "" : "s"}.`;
+    return `
+      <table class="event-table">
+        <thead><tr><th>#</th><th>File</th><th>Pages</th><th>Size</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <p class="help">${escapeHtml(note)}</p>
+    `;
+  }
+
+  async function exportPdfUtility(tool, files, values) {
+    if (!files.length) throw new Error("Select at least one PDF file first.");
+    if (tool.pdfTool === "merge") return exportMergedPdf(files);
+    if (tool.pdfTool === "split") return exportSplitPdf(files[0], values);
+    if (tool.pdfTool === "page-numbers") return exportNumberedPdf(files[0], values);
+    throw new Error("Unsupported PDF operation.");
+  }
+
+  async function exportMergedPdf(files) {
+    if (files.length < 2) throw new Error("Select at least two PDFs to merge.");
+    const pdfLib = getPdfLib();
+    const output = await pdfLib.PDFDocument.create();
+    for (const file of files) {
+      const source = await pdfLib.PDFDocument.load(file.bytes, { ignoreEncryption: true });
+      const copiedPages = await output.copyPages(source, source.getPageIndices());
+      copiedPages.forEach((page) => output.addPage(page));
+    }
+    return pdfBytesToBlob(await output.save());
+  }
+
+  async function exportSplitPdf(file, values) {
+    const selected = parsePageRange(values.pageRange || "", file.pageCount);
+    if (!selected.length) throw new Error("Enter at least one valid page number or range.");
+    const pdfLib = getPdfLib();
+    const source = await pdfLib.PDFDocument.load(file.bytes, { ignoreEncryption: true });
+    const output = await pdfLib.PDFDocument.create();
+    const copiedPages = await output.copyPages(source, selected.map((pageNumber) => pageNumber - 1));
+    copiedPages.forEach((page) => output.addPage(page));
+    return pdfBytesToBlob(await output.save());
+  }
+
+  async function exportNumberedPdf(file, values) {
+    const pdfLib = getPdfLib();
+    const doc = await pdfLib.PDFDocument.load(file.bytes, { ignoreEncryption: true });
+    const font = await doc.embedFont(pdfLib.StandardFonts.Helvetica);
+    const pages = doc.getPages();
+    const start = Math.max(1, Number.parseInt(values.startNumber || "1", 10) || 1);
+    pages.forEach((page, index) => {
+      const { width, height } = page.getSize();
+      const text = String(start + index);
+      const size = 11;
+      const textWidth = font.widthOfTextAtSize(text, size);
+      const position = values.position || "bottom-center";
+      const margin = 28;
+      const x = position === "bottom-right" || position === "top-right" ? width - margin - textWidth : (width - textWidth) / 2;
+      const y = position === "top-right" ? height - margin - size : margin;
+      page.drawText(text, {
+        x,
+        y,
+        size,
+        font,
+        color: pdfLib.rgb(0.1, 0.19, 0.23),
+      });
+    });
+    return pdfBytesToBlob(await doc.save());
+  }
+
+  function parsePageRange(value, pageCount) {
+    const pages = new Set();
+    String(value || "")
+      .split(",")
+      .map((part) => part.trim())
+      .filter(Boolean)
+      .forEach((part) => {
+        const match = part.match(/^(\d+)(?:-(\d+))?$/);
+        if (!match) return;
+        const start = Math.max(1, Number(match[1]));
+        const end = Math.min(pageCount, Number(match[2] || match[1]));
+        for (let page = Math.min(start, end); page <= Math.max(start, end); page += 1) {
+          if (page >= 1 && page <= pageCount) pages.add(page);
+        }
+      });
+    return Array.from(pages).sort((a, b) => a - b);
+  }
+
+  function pdfUtilityFilename(tool, files) {
+    const base = slugify((files[0] && files[0].name.replace(/\.pdf$/i, "")) || tool.shortTitle || tool.id);
+    if (tool.pdfTool === "merge") return "merged-pdf.pdf";
+    if (tool.pdfTool === "split") return `${base}-selected-pages.pdf`;
+    if (tool.pdfTool === "page-numbers") return `${base}-page-numbers.pdf`;
+    return `${base}.pdf`;
+  }
+
+  function getPdfLib() {
+    if (!window.PDFLib) throw new Error("PDF engine is still loading. Please try again in a moment.");
+    return window.PDFLib;
+  }
+
+  function pdfBytesToBlob(bytes) {
+    return new Blob([bytes], { type: "application/pdf" });
+  }
+
+  function formatBytes(bytes) {
+    const size = Number(bytes || 0);
+    if (size < 1024) return `${size} B`;
+    if (size < 1024 * 1024) return `${(size / 1024).toFixed(1)} KB`;
+    return `${(size / (1024 * 1024)).toFixed(1)} MB`;
+  }
+
   function showDownloadComplete(tool, target, remaining) {
     if (!target) return;
     const related = getRelatedTools(tool.id).slice(0, 3);
@@ -3190,7 +3593,7 @@
       ["resume-builder", "cover-letter", "resignation-letter"],
       ["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"],
       ["name-tracing", "chore-chart", "reward-chart", "flashcards"],
-      ["image-to-pdf", "multi-image-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
+      ["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
       ["certificate-generator", "sign-in-sheet", "todo-list", "flyer-maker", "coupon-maker"],
     ];
     const group = groups.find((items) => items.includes(currentId)) || toolOrder;

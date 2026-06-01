@@ -1,8 +1,8 @@
 {
   "name": "PrintableTools Lab",
-  "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  "description": "Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T02:22:34.749Z",
+  "generatedAt": "2026-06-01T03:27:42.502Z",
   "tools": [
     {
       "title": "Name Tracing Worksheet Generator",
@@ -165,6 +165,24 @@
       "url": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
       "description": "Turn several JPG, PNG, or WebP images into one multi-page PDF in your browser without uploading files.",
       "category": "Everyday utility PDFs"
+    },
+    {
+      "title": "Merge PDF Tool",
+      "url": "https://printable-tools-lab.pages.dev/tools/merge-pdf/",
+      "description": "Combine several PDF files into one PDF in your browser without uploading documents.",
+      "category": "Education and family printables"
+    },
+    {
+      "title": "Split PDF Tool",
+      "url": "https://printable-tools-lab.pages.dev/tools/split-pdf/",
+      "description": "Extract selected pages from a PDF in your browser without uploading the document.",
+      "category": "Education and family printables"
+    },
+    {
+      "title": "Add Page Numbers to PDF",
+      "url": "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/",
+      "description": "Add simple page numbers to an existing PDF locally in your browser.",
+      "category": "Education and family printables"
     },
     {
       "title": "Text to PDF Converter",
@@ -510,6 +528,21 @@
       "title": "Multiple images to PDF without uploading",
       "url": "https://printable-tools-lab.pages.dev/guides/multiple-images-to-pdf-without-uploading/",
       "description": "Combine several JPG, PNG, or WebP images into one multi-page PDF in the browser."
+    },
+    {
+      "title": "Merge PDF without uploading",
+      "url": "https://printable-tools-lab.pages.dev/guides/merge-pdf-without-uploading/",
+      "description": "Combine several PDF files into one PDF locally in your browser."
+    },
+    {
+      "title": "Split PDF without uploading",
+      "url": "https://printable-tools-lab.pages.dev/guides/split-pdf-without-uploading/",
+      "description": "Extract selected pages from a PDF without uploading the document."
+    },
+    {
+      "title": "Add page numbers to PDF",
+      "url": "https://printable-tools-lab.pages.dev/guides/add-page-numbers-to-pdf/",
+      "description": "Add simple visible page numbers to an existing PDF in the browser."
     },
     {
       "title": "Text to PDF converter without signup",

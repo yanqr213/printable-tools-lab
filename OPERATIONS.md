@@ -6,7 +6,7 @@ This file keeps the project pointed at the current model: free ad-supported prin
 
 ### Free acquisition layer
 
-- Thirty-five free browser PDF generators.
+- Thirty-eight free browser PDF generators and no-upload PDF utilities.
 - Daily free limit stored locally.
 - Clean one-page PDF exports with no account wall and no ad-click requirement.
 - Original guide pages for search traffic and AdSense review.
@@ -273,28 +273,31 @@ Create one image or short post per item. Show the printable use case and never p
 39. Budget meal plan printable for busy families.
 40. Image to PDF converter that does not upload files.
 41. JPG to PDF for receipts, scans, and screenshots.
-42. Printable sign-in sheet for events and classes.
-43. Attendance sheet PDF with readable rows.
-44. Printable graph paper with quarter-inch grid.
-45. Travel packing list with grouped checkboxes.
-46. Multiple images to PDF without uploading files.
-47. Text to PDF converter for plain notes and letters.
-48. Free receipt generator for service payments and deposits.
-49. Weekly timesheet PDF for freelance hours.
-50. Certificate generator for classrooms and events.
-51. Printable to-do list for errands, study, and event prep.
-52. Free printable business card sheet for local services.
-53. Business card PDF before ordering professional prints.
-54. Address label sheet for small mailing batches.
-55. Badge labels for events, workshops, and classrooms.
-56. Barcode label PDF for SKU stickers and inventory bins.
-57. SKU labels for handmade products and market tables.
-58. Price tag generator for yard sales and pop-up shops.
-59. Shelf label PDF for small retail displays.
-60. Flyer maker PDF for a local service or class.
-61. Yard sale flyer with clear time and location.
-62. Printable coupon maker for local offers.
-63. Discount coupon PDF with code and expiration note.
+42. Multiple images to PDF without uploading files.
+43. Merge PDF without uploading documents.
+44. Split PDF without uploading documents.
+45. Add page numbers to PDF locally.
+46. Printable sign-in sheet for events and classes.
+47. Attendance sheet PDF with readable rows.
+48. Printable graph paper with quarter-inch grid.
+49. Travel packing list with grouped checkboxes.
+50. Text to PDF converter for plain notes and letters.
+51. Free receipt generator for service payments and deposits.
+52. Weekly timesheet PDF for freelance hours.
+53. Certificate generator for classrooms and events.
+54. Printable to-do list for errands, study, and event prep.
+55. Free printable business card sheet for local services.
+56. Business card PDF before ordering professional prints.
+57. Address label sheet for small mailing batches.
+58. Badge labels for events, workshops, and classrooms.
+59. Barcode label PDF for SKU stickers and inventory bins.
+60. SKU labels for handmade products and market tables.
+61. Price tag generator for yard sales and pop-up shops.
+62. Shelf label PDF for small retail displays.
+63. Flyer maker PDF for a local service or class.
+64. Yard sale flyer with clear time and location.
+65. Printable coupon maker for local offers.
+66. Discount coupon PDF with code and expiration note.
 
 ## Weekly Operating Loop
 
@@ -323,6 +326,7 @@ Current Search Console checkpoint:
 - `2026-06-01`: added 8 high-intent no-signup/no-upload landing pages for invoice, receipt, weekly timesheet, resume, certificate, JPG-to-PDF, multi-image PDF, and text-to-PDF searches. Clean free exports are now the default acquisition promise.
 - `2026-06-01`: expanded the same site to 32 tools, 64 guides, and 14 high-intent landing pages by adding local-business print assets: business cards, address labels, barcode labels, price tags, flyers, and coupons. This keeps domain authority/data in one property while testing more commercial search intent.
 - `2026-06-01`: expanded to 35 tools, 70 guides, and 17 high-intent landing pages by adding packing slip, work order, and inventory sheet workflows for sellers, contractors, and stock-count use cases.
+- `2026-06-01`: expanded the same site to 38 tools, 73 guides, and 20 high-intent landing pages by adding no-upload Merge PDF, Split PDF, and PDF Page Numbers utilities. These broaden the ad-supported audience into high-frequency existing-PDF tasks while keeping files in the browser.
 - `2026-06-01`: GitHub Pages discovery directory was verified as its own Search Console URL-prefix property and its sitemap was submitted through the Search Console API. This creates a second crawlable discovery surface that still points back to the same main site.
 - Action: keep site stable, improve useful content/navigation, thicken tool pages, and avoid repeated low-value resubmission loops.
 

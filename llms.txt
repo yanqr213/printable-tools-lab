@@ -1,6 +1,6 @@
 # PrintableTools Lab
 
-Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
+Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
 
 Audience: Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, and household planners.
 
@@ -50,6 +50,9 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Meal Planner Generator](https://printable-tools-lab.pages.dev/tools/meal-planner/): Make a printable weekly meal planner PDF with breakfast, lunch, dinner, grocery list, and prep notes.
 - [Image to PDF Converter](https://printable-tools-lab.pages.dev/tools/image-to-pdf/): Convert JPG, PNG, or WebP images into a clean one-page PDF in your browser without uploading files.
 - [Multiple Images to PDF Converter](https://printable-tools-lab.pages.dev/tools/multi-image-pdf/): Turn several JPG, PNG, or WebP images into one multi-page PDF in your browser without uploading files.
+- [Merge PDF Tool](https://printable-tools-lab.pages.dev/tools/merge-pdf/): Combine several PDF files into one PDF in your browser without uploading documents.
+- [Split PDF Tool](https://printable-tools-lab.pages.dev/tools/split-pdf/): Extract selected pages from a PDF in your browser without uploading the document.
+- [Add Page Numbers to PDF](https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/): Add simple page numbers to an existing PDF locally in your browser.
 - [Text to PDF Converter](https://printable-tools-lab.pages.dev/tools/text-to-pdf/): Paste plain text and download a clean one-page PDF without an account or file upload.
 - [Sign-in Sheet Generator](https://printable-tools-lab.pages.dev/tools/sign-in-sheet/): Create a printable sign-in sheet PDF for events, classrooms, workshops, meetings, or visitor logs.
 - [Graph Paper Generator](https://printable-tools-lab.pages.dev/tools/graph-paper/): Generate printable graph paper PDF with quarter-inch, half-inch, or small grid spacing for math, notes, and design sketches.
@@ -65,6 +68,9 @@ Monetization model: Free tools first, then responsible display advertising after
 - [JPG to PDF Without Uploading](https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/): private image conversion, no upload, fast PDF
 - [Multiple Images to PDF Without Uploading](https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/): combine images into one PDF without upload
 - [Text to PDF Converter Without Signup](https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/): plain text to PDF with no account
+- [Merge PDF Without Uploading](https://printable-tools-lab.pages.dev/merge-pdf-no-upload/): combine PDF files, no upload, no account
+- [Split PDF Without Uploading](https://printable-tools-lab.pages.dev/split-pdf-no-upload/): extract PDF pages, no upload, no account
+- [Add Page Numbers to PDF](https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/): add page numbers to PDF, no upload, no account
 - [Free Resume Builder Without Signup](https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/): resume PDF download without account or paywall
 - [Free Receipt Generator Without Signup](https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/): receipt PDF now, no account, quick proof of payment
 - [Weekly Timesheet PDF Without Signup](https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/): weekly timesheet PDF with fast export

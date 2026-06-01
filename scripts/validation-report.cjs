@@ -226,8 +226,9 @@ async function readGithubState() {
 
 function githubHeaders() {
   const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || "";
+  const authScheme = token.startsWith("ghp_") || token.startsWith("github_pat_") ? "token" : "Bearer";
   return {
-    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...(token ? { Authorization: `${authScheme} ${token}` } : {}),
     Accept: "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",
     "User-Agent": "PrintableToolsLab-Ops",
@@ -313,8 +314,8 @@ function evaluateGates(local, live, searchConsole, discovery) {
   const githubPagesSitemap = Array.isArray(searchConsole.githubPagesSitemaps?.sitemap) ? searchConsole.githubPagesSitemaps.sitemap[0] : null;
   const indexed = searchConsole.inspected.filter((item) => item.verdict === "PASS").length;
   const unknown = searchConsole.inspected.filter((item) => /unknown/i.test(item.coverageState || "")).length;
-  const productReady = local.toolCount >= 35
-    && local.guideCount >= 70
+  const productReady = local.toolCount >= 38
+    && local.guideCount >= 73
     && local.landingPageCount >= 17
     && local.indexableRoutes >= 79
     && local.sitemapLocCount >= local.indexableRoutes
@@ -348,8 +349,8 @@ function evaluateGates(local, live, searchConsole, discovery) {
 
 function missingProductReasons(local, live) {
   const reasons = [];
-  if (local.toolCount < 35) reasons.push(`Only ${local.toolCount} tools found; target is 35 or more.`);
-  if (local.guideCount < 70) reasons.push(`Only ${local.guideCount} guides found; target is 70 or more.`);
+  if (local.toolCount < 38) reasons.push(`Only ${local.toolCount} tools found; target is 38 or more.`);
+  if (local.guideCount < 73) reasons.push(`Only ${local.guideCount} guides found; target is 73 or more.`);
   if (local.landingPageCount < 17) reasons.push(`Only ${local.landingPageCount} high-intent landing pages found; target is 17 or more.`);
   if (local.sitemapLocCount < local.indexableRoutes) reasons.push("Sitemap has fewer URLs than the indexable route list.");
   for (const [name, ok] of Object.entries(local.discoveryAssets)) {

@@ -1,25 +1,25 @@
 # Validation Gates
 
-Last generated: 2026-06-01T02:47:40.127Z
+Last generated: 2026-06-01T03:32:32.437Z
 
 ## Current Automated Status
 
 - Product ready: yes.
-- Tools live in inventory: 35.
-- Guide pages live in inventory: 70.
-- High-intent landing pages: 17.
-- Indexable routes: 132.
+- Tools live in inventory: 38.
+- Guide pages live in inventory: 73.
+- High-intent landing pages: 20.
+- Indexable routes: 141.
 - Live downloads: 1.
 - Live generations: 0.
 - Search impressions: 0.
 - Search clicks: 0.
-- External discovery ready: yes.
+- External discovery ready: no.
 - Ads enabled: no.
 - AdSense apply-ready: no.
 
 ## Product Gate
 
-- 35 tools, 70 guides, 17 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
+- 38 tools, 73 guides, 20 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
 
 ## Search Console Gate
 

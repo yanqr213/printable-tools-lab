@@ -32,3 +32,9 @@
 
 /feed.xml
   Content-Type: application/rss+xml; charset=utf-8
+
+/assets/vendor/pdf-lib.min.js
+  Content-Type: application/javascript; charset=utf-8
+
+/assets/vendor/pdf-lib.LICENSE.md
+  Content-Type: text/markdown; charset=utf-8

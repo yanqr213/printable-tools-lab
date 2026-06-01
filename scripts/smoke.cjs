@@ -2,6 +2,7 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 const { chromium } = require("playwright-core");
+const { PDFDocument, StandardFonts, rgb } = require("pdf-lib");
 
 const root = path.resolve(__dirname, "..");
 const serverPath = path.join(root, "scripts", "server.cjs");
@@ -70,6 +71,9 @@ function delay(ms) {
     "/tools/meal-planner/",
     "/tools/image-to-pdf/",
     "/tools/multi-image-pdf/",
+    "/tools/merge-pdf/",
+    "/tools/split-pdf/",
+    "/tools/pdf-page-numbers/",
     "/tools/text-to-pdf/",
     "/tools/sign-in-sheet/",
     "/tools/graph-paper/",
@@ -141,7 +145,7 @@ function delay(ms) {
   for (const phrase of ["No-upload conversion tools", "Free business PDF tools", "All free PDF generators"]) {
     if (!freePdfText.includes(phrase)) throw new Error(`Free PDF tools page is missing ${phrase}`);
   }
-  for (const href of ["/tools/multi-image-pdf/", "/tools/text-to-pdf/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/barcode-labels/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
+  for (const href of ["/tools/multi-image-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/text-to-pdf/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/barcode-labels/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
     const linkCount = await page.locator(`main a[href="${href}"]`).count();
     if (!linkCount) throw new Error(`Free PDF tools page is missing link ${href}`);
   }
@@ -151,7 +155,7 @@ function delay(ms) {
   for (const phrase of ["Which free PDF tool should I use?", "Invoice vs receipt", "One image vs many images"]) {
     if (!finderText.includes(phrase)) throw new Error(`PDF tool finder page is missing ${phrase}`);
   }
-  for (const href of ["/tools/image-to-pdf/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/price-tag/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
+  for (const href of ["/tools/image-to-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/price-tag/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
     const linkCount = await page.locator(`main a[href="${href}"]`).count();
     if (!linkCount) throw new Error(`PDF tool finder page is missing link ${href}`);
   }
@@ -162,7 +166,11 @@ function delay(ms) {
     if (!submissionPackText.includes(phrase)) throw new Error(`Directory submission pack is missing ${phrase}`);
   }
 
-  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/text-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
+  const onePagePdf = await samplePdf("First document");
+  const secondPagePdf = await samplePdf("Second document");
+  const twoPagePdf = await samplePdf("Split source", 2);
+
+  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/text-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
     await page.evaluate(() => localStorage.removeItem("ptl_daily"));
     if (route === "/tools/image-to-pdf/") {
@@ -203,10 +211,38 @@ function delay(ms) {
       });
       if (!hasRenderedImages) throw new Error("Multi-image PDF preview did not render selected files.");
     }
+    if (route === "/tools/merge-pdf/") {
+      await page.setInputFiles("input[type=file]", [
+        { name: "first.pdf", mimeType: "application/pdf", buffer: onePagePdf },
+        { name: "second.pdf", mimeType: "application/pdf", buffer: secondPagePdf },
+      ]);
+      await page.waitForTimeout(750);
+      const previewText = await page.locator("#pdfFilePreview").innerText();
+      if (!previewText.includes("first.pdf") || !previewText.includes("second.pdf") || !previewText.includes("2-page PDF")) throw new Error(`Merge PDF preview is incomplete: ${previewText}`);
+    }
+    if (route === "/tools/split-pdf/") {
+      await page.setInputFiles("input[type=file]", { name: "source.pdf", mimeType: "application/pdf", buffer: twoPagePdf });
+      await page.fill("#pageRange", "2");
+      await page.waitForTimeout(750);
+      const previewText = await page.locator("#pdfFilePreview").innerText();
+      if (!previewText.includes("source.pdf") || !previewText.includes("keep 1 page")) throw new Error(`Split PDF preview is incomplete: ${previewText}`);
+    }
+    if (route === "/tools/pdf-page-numbers/") {
+      await page.setInputFiles("input[type=file]", { name: "number-me.pdf", mimeType: "application/pdf", buffer: twoPagePdf });
+      await page.waitForTimeout(750);
+      const previewText = await page.locator("#pdfFilePreview").innerText();
+      if (!previewText.includes("number-me.pdf") || !previewText.includes("2 pages")) throw new Error(`Page-number PDF preview is incomplete: ${previewText}`);
+    }
     const button = page.getByRole("button", { name: "Generate PDF" });
+    const pdfUtilityButtonNames = {
+      "/tools/merge-pdf/": "Merge PDF",
+      "/tools/split-pdf/": "Extract pages",
+      "/tools/pdf-page-numbers/": "Add page numbers",
+    };
+    const submitButton = pdfUtilityButtonNames[route] ? page.getByRole("button", { name: pdfUtilityButtonNames[route] }) : button;
     const [download] = await Promise.all([
       page.waitForEvent("download"),
-      button.click(),
+      submitButton.click(),
     ]);
     const name = download.suggestedFilename();
     if (!name.endsWith(".pdf")) throw new Error(`Expected PDF download on ${route}, got ${name}`);
@@ -214,6 +250,18 @@ function delay(ms) {
       const filePath = await download.path();
       const pdf = fs.readFileSync(filePath, "latin1");
       if (!/\/Count\s+2\b/.test(pdf)) throw new Error(`Expected multi-image PDF export to contain two pages. Header sample: ${pdf.slice(0, 220)}`);
+    }
+    if (route === "/tools/merge-pdf/") {
+      const exported = await PDFDocument.load(fs.readFileSync(await download.path()));
+      if (exported.getPageCount() !== 2) throw new Error("Merged PDF should contain two pages.");
+    }
+    if (route === "/tools/split-pdf/") {
+      const exported = await PDFDocument.load(fs.readFileSync(await download.path()));
+      if (exported.getPageCount() !== 1) throw new Error("Split PDF should contain one selected page.");
+    }
+    if (route === "/tools/pdf-page-numbers/") {
+      const exported = await PDFDocument.load(fs.readFileSync(await download.path()));
+      if (exported.getPageCount() !== 2) throw new Error("Page-numbered PDF should preserve page count.");
     }
   }
 
@@ -239,4 +287,14 @@ function samplePng() {
     "iVBORw0KGgoAAAANSUhEUgAAAMgAAABkCAIAAAD2HxkiAAAAA3NCSVQICAjb4U/gAAABQklEQVR4nO3YQQ6CMBAF0fz/0zv2FQvEgpcqJmO0ZeEyr0wIgYHfWesJAOB/JAQkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkBCTE9WxbKx3Hsd2z7fq+3/d9zvM8jmPbdk3TzPM8x3Hc932/7/v+933f930fAKhkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJMT1bFsrnU6n0+k8z/Pbtk3TzPM8x3Hc930fR+n7PgBQyQhICEgISAiICEgISAiICEgISAiICEgISAiICEgISAiICEgISIjr2bZWCoVCoVAoFAqFQqFQKBSKxWLRdV2n0+n7fgBQyQhICEgISAiICEgISAiICEgISAiICEgISAiICEgISAiICEgISIjr2bZWkiRJkiRJkiRJkiRJkiRJkmRZFsfxAIBKRkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkBCQEJAQkxPUH5+YedERKmfUAAAAASUVORK5CYII=",
     "base64",
   );
+}
+
+async function samplePdf(label, pageCount = 1) {
+  const doc = await PDFDocument.create();
+  const font = await doc.embedFont(StandardFonts.Helvetica);
+  for (let i = 0; i < pageCount; i += 1) {
+    const page = doc.addPage([360, 240]);
+    page.drawText(`${label} ${i + 1}`, { x: 48, y: 130, size: 20, font, color: rgb(0.1, 0.2, 0.24) });
+  }
+  return Buffer.from(await doc.save());
 }

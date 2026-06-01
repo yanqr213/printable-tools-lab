@@ -4,11 +4,11 @@ Use these snippets for low-friction external discovery. Do not spam communities;
 
 ## One-line pitch
 
-PrintableTools Lab is a free no-signup PDF generator site for image conversion, text-to-PDF, invoices, estimates, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, and flashcards.
+PrintableTools Lab is a free no-signup PDF generator and no-upload PDF utility site for merging PDFs, splitting PDFs, adding page numbers, image conversion, text-to-PDF, invoices, estimates, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, and flashcards.
 
 ## Short launch post
 
-I built PrintableTools Lab, a free browser-based PDF tool site. It creates practical PDFs like image-to-PDF conversions, multi-image PDFs, text-to-PDF documents, invoices, estimates, purchase orders, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, monthly calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, name tracing worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers. No account and no surprise download fee. Feedback on which tools are most useful would help shape the next batch.
+I built PrintableTools Lab, a free browser-based PDF tool site. It can merge PDFs, split PDFs, add PDF page numbers, convert images to PDF, create multi-image PDFs, turn text into PDF, and create practical documents like invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, calendars, sign-in sheets, graph paper, packing lists, worksheets, and charts. No account and no surprise download fee. Feedback on which tools are most useful would help shape the next batch.
 
 ## Directory submission fields
 
@@ -16,7 +16,7 @@ I built PrintableTools Lab, a free browser-based PDF tool site. It creates pract
 - URL: https://printable-tools-lab.pages.dev/
 - Category: Productivity, PDF Tools, Document Tools, Education, Small Business Tools, Job Search Tools
 - Tagline: Free no-signup printable PDF generators
-- Description: Create practical PDFs in the browser, including image conversions, multi-image PDFs, text-to-PDF documents, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, flashcards, and habit trackers.
+- Description: Create practical PDFs in the browser, including PDF merge, PDF split, page numbering, image conversions, multi-image PDFs, text-to-PDF documents, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, certificates, calendars, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, flashcards, and habit trackers.
 - Pricing: Free
 
 ## Tracked campaign links
@@ -32,11 +32,17 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Free PDF tools directory: https://printable-tools-lab.pages.dev/free-pdf-tools/
 - PDF tool finder: https://printable-tools-lab.pages.dev/pdf-tool-finder/
 - Directory submission pack: https://printable-tools-lab.pages.dev/submit-directory/
+- Merge PDF without upload page: https://printable-tools-lab.pages.dev/merge-pdf-no-upload/
+- Split PDF without upload page: https://printable-tools-lab.pages.dev/split-pdf-no-upload/
+- Add page numbers to PDF page: https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/
 - No-signup invoice page: https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/
 - JPG to PDF without upload page: https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/
 - No-signup resume page: https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/
 - Multiple Images to PDF Without Uploading: https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/
 - Text to PDF Converter Without Signup: https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/
+- Merge PDF Without Uploading: https://printable-tools-lab.pages.dev/merge-pdf-no-upload/
+- Split PDF Without Uploading: https://printable-tools-lab.pages.dev/split-pdf-no-upload/
+- Add Page Numbers to PDF: https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/
 - Free Receipt Generator Without Signup: https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/
 - Weekly Timesheet PDF Without Signup: https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/
 - Free Certificate Maker Without Signup: https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/
@@ -51,6 +57,9 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Free Inventory Sheet Generator: https://printable-tools-lab.pages.dev/free-inventory-sheet-generator/
 - Image to PDF Converter: https://printable-tools-lab.pages.dev/tools/image-to-pdf/
 - Multiple Images to PDF Converter: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/
+- Merge PDF Tool: https://printable-tools-lab.pages.dev/tools/merge-pdf/
+- Split PDF Tool: https://printable-tools-lab.pages.dev/tools/split-pdf/
+- Add Page Numbers to PDF: https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/
 - Text to PDF Converter: https://printable-tools-lab.pages.dev/tools/text-to-pdf/
 - Invoice Generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/
 - Receipt Generator: https://printable-tools-lab.pages.dev/tools/receipt-generator/
@@ -72,13 +81,13 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 ## Community-safe angles
 
 - For freelancers: free invoice, estimate, purchase order, receipt, bill of sale, work order, packing slip, inventory sheet, and timesheet PDFs without account creation.
-- For high-intent search visitors: no-signup landing pages for invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, barcodes, price tags, flyers, coupons, timesheets, resumes, certificates, text-to-PDF, JPG-to-PDF, and multi-image PDF.
+- For high-intent search visitors: no-signup and no-upload landing pages for PDF merge, PDF split, PDF page numbers, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, barcodes, price tags, flyers, coupons, timesheets, resumes, certificates, text-to-PDF, JPG-to-PDF, and multi-image PDF.
 - For small businesses and local sellers: printable business cards, address labels, barcode labels, price tags, flyers, coupons, packing slips, and inventory sheets without design-account or spreadsheet friction.
 - For job seekers: free resume, cover letter, and resignation letter PDFs without a hidden export fee.
 - For parents and teachers: printable name tracing, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
 - For teachers and organizers: free certificate, sign-in sheet, and event checklist PDFs.
 - For household planning: monthly calendars and meal planners with grocery lists.
-- For everyday utility needs: image-to-PDF conversion, multi-image PDF export, text-to-PDF, sign-in sheets, graph paper, to-do lists, and packing lists.
+- For everyday utility needs: merge PDF, split PDF, add page numbers, image-to-PDF conversion, multi-image PDF export, text-to-PDF, sign-in sheets, graph paper, to-do lists, and packing lists.
 
 ## Places to consider manually
 

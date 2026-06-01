@@ -19,5 +19,8 @@
     "indexnow": "node scripts/indexnow.cjs",
     "validate:ops": "node scripts/validation-report.cjs",
     "smoke": "node scripts/smoke.cjs"
+  },
+  "dependencies": {
+    "pdf-lib": "1.17.1"
   }
 }

@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-01T02:47:40.127Z",
+  "generatedAt": "2026-06-01T03:32:32.437Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
-    "toolCount": 35,
-    "guideCount": 70,
-    "landingPageCount": 17,
-    "indexableRoutes": 132,
-    "sitemapLocCount": 132,
-    "generatedToolInventoryAt": "2026-06-01T02:22:34.749Z",
+    "toolCount": 38,
+    "guideCount": 73,
+    "landingPageCount": 20,
+    "indexableRoutes": 141,
+    "sitemapLocCount": 141,
+    "generatedToolInventoryAt": "2026-06-01T03:27:42.502Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -79,14 +79,14 @@
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 24752,
+        "bytes": 25120,
         "json": null
       },
       "/tools.json": {
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 30513,
+        "bytes": 31083,
         "json": {
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
@@ -662,7 +662,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 8936,
+        "bytes": 9101,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
@@ -847,12 +847,12 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 3215,
+        "bytes": 5167,
         "json": {
           "ok": true,
           "today": "2026-06-01",
           "totals": {
-            "page_view": 4,
+            "page_view": 7,
             "generate_pdf": 0,
             "download_pdf": 1,
             "limit_hit": 0,
@@ -860,7 +860,7 @@
             "ai_ideas_apply": 0
           },
           "todayTotals": {
-            "page_view": 1,
+            "page_view": 4,
             "generate_pdf": 0,
             "download_pdf": 0,
             "limit_hit": 0,
@@ -933,6 +933,27 @@
             },
             {
               "tool": "coupon-maker",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "packing-slip",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "work-order",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "inventory-sheet",
               "generate_pdf": 0,
               "download_pdf": 0,
               "limit_hit": 0,
@@ -1092,6 +1113,151 @@
               "limit_hit": 0,
               "ai_ideas_apply": 0
             }
+          ],
+          "sources": [
+            {
+              "source": "direct",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "today": {
+                "page_view": 0,
+                "generate_pdf": 0,
+                "download_pdf": 0
+              }
+            },
+            {
+              "source": "google",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "today": {
+                "page_view": 0,
+                "generate_pdf": 0,
+                "download_pdf": 0
+              }
+            },
+            {
+              "source": "bing",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "today": {
+                "page_view": 0,
+                "generate_pdf": 0,
+                "download_pdf": 0
+              }
+            },
+            {
+              "source": "github",
+              "page_view": 3,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "today": {
+                "page_view": 3,
+                "generate_pdf": 0,
+                "download_pdf": 0
+              }
+            },
+            {
+              "source": "github-pages",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "today": {
+                "page_view": 0,
+                "generate_pdf": 0,
+                "download_pdf": 0
+              }
+            },
+            {
+              "source": "zearches",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "today": {
+                "page_view": 0,
+                "generate_pdf": 0,
+                "download_pdf": 0
+              }
+            },
+            {
+              "source": "listai",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "today": {
+                "page_view": 0,
+                "generate_pdf": 0,
+                "download_pdf": 0
+              }
+            },
+            {
+              "source": "nosignuptools",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "today": {
+                "page_view": 0,
+                "generate_pdf": 0,
+                "download_pdf": 0
+              }
+            },
+            {
+              "source": "freenosignup",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "today": {
+                "page_view": 0,
+                "generate_pdf": 0,
+                "download_pdf": 0
+              }
+            },
+            {
+              "source": "directory",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "today": {
+                "page_view": 0,
+                "generate_pdf": 0,
+                "download_pdf": 0
+              }
+            },
+            {
+              "source": "community",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "today": {
+                "page_view": 0,
+                "generate_pdf": 0,
+                "download_pdf": 0
+              }
+            },
+            {
+              "source": "referral",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "today": {
+                "page_view": 0,
+                "generate_pdf": 0,
+                "download_pdf": 0
+              }
+            },
+            {
+              "source": "unknown",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "today": {
+                "page_view": 0,
+                "generate_pdf": 0,
+                "download_pdf": 0
+              }
+            }
           ]
         }
       }
@@ -1099,7 +1265,7 @@
     "metrics": {
       "today": "2026-06-01",
       "totals": {
-        "page_view": 4,
+        "page_view": 7,
         "generate_pdf": 0,
         "download_pdf": 1,
         "limit_hit": 0,
@@ -1107,7 +1273,7 @@
         "ai_ideas_apply": 0
       },
       "todayTotals": {
-        "page_view": 1,
+        "page_view": 4,
         "generate_pdf": 0,
         "download_pdf": 0,
         "limit_hit": 0,
@@ -1179,11 +1345,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         }
       ]
@@ -1298,7 +1464,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": true
+    "externalDiscoveryReady": false
   },
   "gates": {
     "productReady": true,
@@ -1306,13 +1472,13 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": true,
+    "externalDiscoveryReady": false,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "35 tools, 70 guides, 17 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "38 tools, 73 guides, 20 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Real AdSense publisher ID is not configured, so ads remain disabled.",

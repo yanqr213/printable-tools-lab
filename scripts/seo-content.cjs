@@ -2,7 +2,7 @@ const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pa
 
 const SITE_SUMMARY = {
   name: "PrintableTools Lab",
-  description: "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  description: "Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   audience: "Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, and household planners.",
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
@@ -10,6 +10,9 @@ const SITE_SUMMARY = {
 const HIGH_INTENT_TOOL_PATHS = [
   "tools/image-to-pdf",
   "tools/multi-image-pdf",
+  "tools/merge-pdf",
+  "tools/split-pdf",
+  "tools/pdf-page-numbers",
   "tools/text-to-pdf",
   "tools/invoice-generator",
   "tools/receipt-generator",
@@ -44,6 +47,21 @@ const TOOL_FINDER_ROWS = [
     need: "I have plain text and need a simple PDF",
     toolPath: "tools/text-to-pdf",
     why: "Best for notes, short letters, checklists, or copied text that needs a clean one-page export.",
+  },
+  {
+    need: "I need to combine several PDFs into one file",
+    toolPath: "tools/merge-pdf",
+    why: "Best for local no-upload merging when private documents should stay in the browser.",
+  },
+  {
+    need: "I need to extract pages from a PDF",
+    toolPath: "tools/split-pdf",
+    why: "Best for keeping selected pages without uploading the source document.",
+  },
+  {
+    need: "I need to add page numbers to a PDF",
+    toolPath: "tools/pdf-page-numbers",
+    why: "Best for packets, handouts, drafts, and merged PDFs that need page references.",
   },
   {
     need: "I need to bill a client or record a service payment",
@@ -187,6 +205,51 @@ const landingPages = [
       ["One-page focus", "The free version is best for concise documents. Long text should be shortened or split into sections before export."],
     ],
     relatedTools: ["tools/image-to-pdf", "tools/todo-list", "tools/sign-in-sheet"],
+  },
+  {
+    path: "merge-pdf-no-upload",
+    title: "Merge PDF Without Uploading",
+    description: "Combine PDF files locally in your browser without uploading documents or creating an account.",
+    headline: "Merge PDF without uploading",
+    lead: "Select several PDF files, preview their order and page counts, then download one combined PDF. This is built for private paperwork, school forms, receipts, scan batches, and admin documents you do not want to upload.",
+    primaryTool: "tools/merge-pdf",
+    intent: "combine PDF files, no upload, no account",
+    sections: [
+      ["Local merge workflow", "The selected PDFs are read in the browser and copied into a new combined file. Ordinary merging does not require sending the documents to a server."],
+      ["Best fit", "Use it for forms, receipts, scan batches, school packets, client documents, and any small set of PDFs that needs one file."],
+      ["Practical limits", "Very large PDFs can use a lot of browser memory. For sensitive or high-stakes documents, review the final PDF before sharing it."],
+    ],
+    relatedTools: ["tools/split-pdf", "tools/pdf-page-numbers", "tools/multi-image-pdf"],
+  },
+  {
+    path: "split-pdf-no-upload",
+    title: "Split PDF Without Uploading",
+    description: "Extract selected PDF pages locally in your browser without uploading the document.",
+    headline: "Split PDF without uploading",
+    lead: "Choose one PDF, enter the pages you want to keep, and download a smaller extracted PDF. It is designed for quick page removal and document trimming without an upload step.",
+    primaryTool: "tools/split-pdf",
+    intent: "extract PDF pages, no upload, no account",
+    sections: [
+      ["Extract only what you need", "Use page numbers or ranges such as 1,3-5 to keep the pages that matter and leave the rest out of the new PDF."],
+      ["Privacy positioning", "The source PDF is processed in the browser for ordinary extraction, which helps when a document includes private pages you do not want to upload."],
+      ["Before sharing", "Open the downloaded file and confirm the page order and page count before sending it to a school, client, employer, or portal."],
+    ],
+    relatedTools: ["tools/merge-pdf", "tools/pdf-page-numbers", "tools/text-to-pdf"],
+  },
+  {
+    path: "add-page-numbers-to-pdf",
+    title: "Add Page Numbers to PDF",
+    description: "Add simple page numbers to an existing PDF locally in your browser without uploading the file.",
+    headline: "Add page numbers to PDF",
+    lead: "Select a PDF, choose where the page numbers should appear, and download a numbered copy. It is useful for packets, handouts, client drafts, and documents that need page references.",
+    primaryTool: "tools/pdf-page-numbers",
+    intent: "add page numbers to PDF, no upload, no account",
+    sections: [
+      ["Why page numbers matter", "Longer PDF packets are easier to review when each page has a clear number. This tool adds simple numbering without forcing a design app."],
+      ["Local-first workflow", "The PDF is loaded and edited in the browser for ordinary numbering. The site does not need the file to add the visible page text."],
+      ["Best fit", "Use it for classroom packets, meeting handouts, client drafts, applications, reports, and merged PDFs that need references."],
+    ],
+    relatedTools: ["tools/merge-pdf", "tools/split-pdf", "tools/text-to-pdf"],
   },
   {
     path: "free-resume-builder-no-signup",
@@ -632,6 +695,33 @@ const tools = [
     ],
   },
   {
+    path: "tools/merge-pdf",
+    title: "Merge PDF Tool",
+    description: "Combine several PDF files into one PDF in your browser without uploading documents.",
+    body: [
+      "Select up to six PDFs, review the order and page counts, then export one combined PDF locally in the browser.",
+      "PDF merge searches are broad and high-intent because many users need one file immediately but do not want to upload private documents.",
+    ],
+  },
+  {
+    path: "tools/split-pdf",
+    title: "Split PDF Tool",
+    description: "Extract selected pages from a PDF in your browser without uploading the document.",
+    body: [
+      "Select one PDF, enter pages or ranges such as 1,3-5, and download a new PDF with only those pages.",
+      "PDF split searches often come from forms, applications, school packets, and admin documents where users need to remove pages quickly.",
+    ],
+  },
+  {
+    path: "tools/pdf-page-numbers",
+    title: "Add Page Numbers to PDF",
+    description: "Add simple page numbers to an existing PDF locally in your browser.",
+    body: [
+      "Select one PDF, choose a page number position, and download a copy with visible page numbers.",
+      "Page numbering is a small but common PDF editing need for handouts, packets, reports, client drafts, and merged documents.",
+    ],
+  },
+  {
     path: "tools/text-to-pdf",
     title: "Text to PDF Converter",
     description: "Paste plain text and download a clean one-page PDF without an account or file upload.",
@@ -765,6 +855,9 @@ const guides = [
   ["guides/free-image-to-pdf-converter", "Free image to PDF converter", "Convert a JPG, PNG, or WebP image into a one-page PDF without uploading files.", "Image-to-PDF searches are urgent: people often need to submit a document, receipt, form, or photo as a PDF. This converter keeps the file in the browser instead of uploading it to a server."],
   ["guides/jpg-to-pdf-without-uploading", "JPG to PDF without uploading", "Make a PDF from a JPG file in the browser when you do not want to send the image to a conversion server.", "Photos of receipts, IDs, forms, and school documents can contain private information. A local converter is a safer first choice because the image is drawn into a PDF on your device."],
   ["guides/multiple-images-to-pdf-without-uploading", "Multiple images to PDF without uploading", "Combine several JPG, PNG, or WebP images into one multi-page PDF in the browser.", "Multi-image PDF conversion is useful for receipts, homework pages, forms, screenshots, and photo scans that need to be submitted together. A browser-side workflow avoids sending those files to a conversion server."],
+  ["guides/merge-pdf-without-uploading", "Merge PDF without uploading", "Combine several PDF files into one PDF locally in your browser.", "People often need one combined PDF for applications, school packets, receipts, or client documents. A browser-side merge avoids sending private files to a converter server."],
+  ["guides/split-pdf-without-uploading", "Split PDF without uploading", "Extract selected pages from a PDF without uploading the document.", "PDF splitting is useful when a larger packet contains only a few pages you need to send. Page ranges should be checked carefully before sharing."],
+  ["guides/add-page-numbers-to-pdf", "Add page numbers to PDF", "Add simple visible page numbers to an existing PDF in the browser.", "Page numbers help reviewers refer to pages in packets, drafts, reports, and handouts. A local tool can add simple numbering without a full PDF editor."],
   ["guides/text-to-pdf-converter-no-signup", "Text to PDF converter without signup", "Paste plain text and download a clean one-page PDF without installing an editor.", "Text-to-PDF searches are practical and time-sensitive. People often need to turn notes, instructions, or a plain letter into a PDF without creating an account or uploading the text to a file service."],
   ["guides/free-sign-in-sheet-generator", "Free sign-in sheet generator", "Create a printable sign-in sheet PDF for events, classes, workshops, meetings, or visitor logs.", "For small events, a printed sign-in sheet is often enough. It gives the organizer names, attendance, signatures, and contact details without needing a registration app."],
   ["guides/attendance-sheet-pdf-template", "Attendance sheet PDF template", "Use a simple printable attendance sheet for classes, clubs, workshops, and small meetings.", "A useful attendance sheet leaves enough writing space. Fewer rows per page can be better than a cramped page nobody can read later."],
@@ -818,12 +911,15 @@ const keywordClusters = [
   },
   {
     title: "Everyday utility PDFs",
-    description: "High-intent PDF tools for image conversion, text conversion, labels, checklists, sign-in sheets, graph paper, and travel paperwork.",
+    description: "High-intent PDF tools for image conversion, existing PDF edits, text conversion, labels, checklists, sign-in sheets, graph paper, and travel paperwork.",
     links: [
       ["Image to PDF converter", "tools/image-to-pdf"],
       ["JPG to PDF without uploading", "jpg-to-pdf-no-upload"],
       ["Multiple images to PDF", "tools/multi-image-pdf"],
       ["Multiple images to PDF without uploading", "multiple-images-to-pdf-no-upload"],
+      ["Merge PDF without uploading", "merge-pdf-no-upload"],
+      ["Split PDF without uploading", "split-pdf-no-upload"],
+      ["Add page numbers to PDF", "add-page-numbers-to-pdf"],
       ["Text to PDF converter", "tools/text-to-pdf"],
       ["Text to PDF converter without signup", "text-to-pdf-no-signup"],
       ["Sign-in sheet generator", "tools/sign-in-sheet"],
@@ -903,9 +999,9 @@ const pages = [
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>35</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>38</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>70</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>73</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -954,6 +1050,9 @@ const pages = [
           <li><a href="/tools/meal-planner/">Meal Planner Generator</a></li>
           <li><a href="/tools/image-to-pdf/">Image to PDF Converter</a></li>
           <li><a href="/tools/multi-image-pdf/">Multiple Images to PDF Converter</a></li>
+          <li><a href="/tools/merge-pdf/">Merge PDF Tool</a></li>
+          <li><a href="/tools/split-pdf/">Split PDF Tool</a></li>
+          <li><a href="/tools/pdf-page-numbers/">Add Page Numbers to PDF</a></li>
           <li><a href="/tools/text-to-pdf/">Text to PDF Converter</a></li>
           <li><a href="/tools/sign-in-sheet/">Sign-in Sheet Generator</a></li>
           <li><a href="/tools/graph-paper/">Graph Paper Generator</a></li>
@@ -1030,7 +1129,7 @@ const pages = [
     path: "license",
     title: "AI & License Disclosure",
     description: "How PrintableTools Lab handles generated content, design assets, and licensing.",
-    html: `<article class="article-shell article"><h1>AI & License Disclosure</h1><p>PrintableTools Lab uses code-driven templates and may use AI assistance during product design, wording, and template ideation.</p><p>The default templates avoid third-party characters, trademarked brands, and protected artwork.</p></article>`,
+    html: `<article class="article-shell article"><h1>AI & License Disclosure</h1><p>PrintableTools Lab uses code-driven templates and may use AI assistance during product design, wording, and template ideation.</p><p>Existing PDF merge, split, and page-number operations use the MIT-licensed pdf-lib JavaScript library in the browser.</p><p>The default templates avoid third-party characters, trademarked brands, and protected artwork.</p></article>`,
   },
   {
     path: "roadmap",
@@ -1182,8 +1281,8 @@ function freePdfToolsHtml() {
   const groups = [
     {
       title: "No-upload conversion tools",
-      text: "Use these when a photo, scan, screenshot, or plain text note needs to become a PDF quickly. The image tools load files in the browser instead of uploading them to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "text-to-pdf"],
+      text: "Use these when a photo, scan, existing PDF, or plain text note needs to become the right PDF quickly. Files load in the browser instead of uploading to a converter server.",
+      links: ["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "text-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1754,6 +1853,48 @@ function toolDetails(tool) {
         { q: "Are the images uploaded?", a: "No. The selected images are drawn into PDF pages in your browser." },
         { q: "How many images can I add?", a: "The free tool accepts up to eight images for one multi-page PDF." },
         { q: "Does each image get its own page?", a: "Yes. The export creates a multi-page PDF with one image per page." },
+      ],
+    },
+    "merge-pdf": {
+      privacy: "Selected PDF files are read in your browser and are not uploaded by the merge tool.",
+      limit: "The free version merges up to six PDFs in one browser session and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Application packet", text: "Combine forms, scans, and supporting PDFs into one file before uploading." },
+        { title: "Receipt bundle", text: "Merge several receipts or statements into one reimbursement or admin PDF." },
+        { title: "Client document", text: "Create one review file from several smaller PDFs without using a server-side converter." },
+      ],
+      faq: [
+        { q: "Are my PDFs uploaded?", a: "No. The files are read and merged in your browser for ordinary use." },
+        { q: "How many PDFs can I merge?", a: "The free tool accepts up to six PDFs at a time." },
+        { q: "Can it merge huge PDFs?", a: "Very large files may be limited by browser memory. Try smaller batches when needed." },
+      ],
+    },
+    "split-pdf": {
+      privacy: "The source PDF is read in your browser and is not uploaded by the split tool.",
+      limit: "The free version extracts selected pages from one PDF and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Extract form pages", text: "Keep only the pages needed for a school, work, or portal upload." },
+        { title: "Remove private pages", text: "Create a smaller file that leaves unrelated pages out before sharing." },
+        { title: "Trim scan packets", text: "Pull useful pages from a larger scan or downloaded packet." },
+      ],
+      faq: [
+        { q: "How do page ranges work?", a: "Use commas and ranges such as 1,3-5. Pages are counted from the first page as 1." },
+        { q: "Does it upload the PDF?", a: "No. The selected PDF is processed in your browser." },
+        { q: "Can I reorder pages?", a: "The current tool keeps selected pages in ascending order." },
+      ],
+    },
+    "pdf-page-numbers": {
+      privacy: "The PDF is read and numbered in your browser without uploading the file to PrintableTools Lab.",
+      limit: "The free version adds simple page numbers to one PDF and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Meeting packet", text: "Add page references before sharing a PDF handout." },
+        { title: "Classroom packet", text: "Number pages so students and teachers can refer to the same page quickly." },
+        { title: "Merged PDF cleanup", text: "Add simple numbers after combining several files into one PDF." },
+      ],
+      faq: [
+        { q: "Can I choose the position?", a: "Yes. Use bottom center, bottom right, or top right." },
+        { q: "Does this edit the original file?", a: "No. It downloads a new numbered copy." },
+        { q: "Are files uploaded?", a: "No. The page numbering runs in your browser for ordinary use." },
       ],
     },
     "text-to-pdf": {

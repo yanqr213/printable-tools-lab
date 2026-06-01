@@ -739,6 +739,28 @@ canvas.preview-canvas {
   color: var(--teal-dark);
 }
 
+.pdf-file-preview {
+  width: 100%;
+}
+
+.empty-state {
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  padding: 28px;
+  text-align: center;
+  color: var(--muted);
+  border: 2px dashed rgba(23, 107, 135, 0.28);
+  background: linear-gradient(180deg, #fff, #f7fbfc);
+  border-radius: var(--radius);
+}
+
+.empty-state strong {
+  color: var(--ink);
+  font-size: 1.1rem;
+}
+
 .site-footer {
   display: flex;
   justify-content: space-between;

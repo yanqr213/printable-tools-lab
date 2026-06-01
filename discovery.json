@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T02:22:34.749Z",
+  "generatedAt": "2026-06-01T03:27:42.502Z",
   "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -14,6 +14,9 @@
     "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/",
+    "https://printable-tools-lab.pages.dev/merge-pdf-no-upload/",
+    "https://printable-tools-lab.pages.dev/split-pdf-no-upload/",
+    "https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/",
     "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
     "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
@@ -29,6 +32,9 @@
     "https://printable-tools-lab.pages.dev/free-inventory-sheet-generator/",
     "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
     "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
+    "https://printable-tools-lab.pages.dev/tools/merge-pdf/",
+    "https://printable-tools-lab.pages.dev/tools/split-pdf/",
+    "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/",
     "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
     "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
     "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
@@ -71,6 +77,24 @@
       "url": "https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/",
       "intent": "plain text to PDF with no account",
       "tool": "https://printable-tools-lab.pages.dev/tools/text-to-pdf/"
+    },
+    {
+      "title": "Merge PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/merge-pdf-no-upload/",
+      "intent": "combine PDF files, no upload, no account",
+      "tool": "https://printable-tools-lab.pages.dev/tools/merge-pdf/"
+    },
+    {
+      "title": "Split PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/split-pdf-no-upload/",
+      "intent": "extract PDF pages, no upload, no account",
+      "tool": "https://printable-tools-lab.pages.dev/tools/split-pdf/"
+    },
+    {
+      "title": "Add Page Numbers to PDF",
+      "url": "https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/",
+      "intent": "add page numbers to PDF, no upload, no account",
+      "tool": "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/"
     },
     {
       "title": "Free Resume Builder Without Signup",

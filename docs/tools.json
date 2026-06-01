@@ -4,7 +4,7 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-06-01T02:22:34.812Z",
+  "generatedAt": "2026-06-01T03:27:42.566Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -25,6 +25,21 @@
       "title": "Text to PDF Converter Without Signup",
       "url": "https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/",
       "intent": "plain text to PDF with no account"
+    },
+    {
+      "title": "Merge PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/merge-pdf-no-upload/",
+      "intent": "combine PDF files, no upload, no account"
+    },
+    {
+      "title": "Split PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/split-pdf-no-upload/",
+      "intent": "extract PDF pages, no upload, no account"
+    },
+    {
+      "title": "Add Page Numbers to PDF",
+      "url": "https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/",
+      "intent": "add page numbers to PDF, no upload, no account"
     },
     {
       "title": "Free Resume Builder Without Signup",
@@ -102,6 +117,21 @@
       "title": "Multiple Images to PDF Converter",
       "description": "Turn several JPG, PNG, or WebP images into one multi-page PDF in your browser without uploading files.",
       "url": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/"
+    },
+    {
+      "title": "Merge PDF Tool",
+      "description": "Combine several PDF files into one PDF in your browser without uploading documents.",
+      "url": "https://printable-tools-lab.pages.dev/tools/merge-pdf/"
+    },
+    {
+      "title": "Split PDF Tool",
+      "description": "Extract selected pages from a PDF in your browser without uploading the document.",
+      "url": "https://printable-tools-lab.pages.dev/tools/split-pdf/"
+    },
+    {
+      "title": "Add Page Numbers to PDF",
+      "description": "Add simple page numbers to an existing PDF locally in your browser.",
+      "url": "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/"
     },
     {
       "title": "Text to PDF Converter",
