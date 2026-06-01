@@ -23,6 +23,15 @@ Monetization model: Free tools first, then responsible display advertising after
 - Discovery index: https://printable-tools-lab.pages.dev/discovery.json
 - Machine-readable share kit: https://printable-tools-lab.pages.dev/share-kit.json
 
+## Short-Video Campaign Assets
+
+- [Compress PDF to 1MB MP4](https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-pdf-under-1mb.mp4): PDF upload blocked by a 1MB limit? This free no-upload tool tries to compress scans and image-heavy PDFs in your browser.
+- [Compress PDF to 500KB MP4](https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-pdf-under-500kb.mp4): When a form asks for a tiny 500KB PDF, use a no-upload compressor and check the result before submitting.
+- [Compress Image to 100KB MP4](https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-image-under-100kb.mp4): Photo upload too large? Compress an image toward 100KB locally in the browser, without creating an account.
+- [Compress Image to 50KB MP4](https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-image-under-50kb.mp4): Need a very small 50KB image? Try browser-local compression and review the preview before uploading it anywhere.
+- [PDF to JPG Without Upload MP4](https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-pdf-to-jpg-no-upload.mp4): If a form rejects PDF but accepts JPG, convert PDF pages to images locally in the browser.
+- [Remove Background Without Upload MP4](https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-background-removal.mp4): For simple white or solid backgrounds, remove the background locally and export a transparent PNG.
+
 ## Tools
 
 - [Name Tracing Worksheet Generator](https://printable-tools-lab.pages.dev/tools/name-tracing/): Create a free one-page name tracing worksheet PDF for preschool and kindergarten handwriting practice.

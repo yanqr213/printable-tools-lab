@@ -4834,6 +4834,14 @@
       "Do not post private documents, IDs, payment details, or user files in examples.",
       "Use UTM source labels so the live metrics can separate directory, community, video, and social tests.",
     ];
+    const videoAssets = [
+      ["Compress PDF to 1MB", "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-pdf-under-1mb.mp4", "/compress-pdf-to-1mb/?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-under-1mb"],
+      ["Compress PDF to 500KB", "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-pdf-under-500kb.mp4", "/compress-pdf-to-500kb/?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-under-500kb"],
+      ["Compress Image to 100KB", "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-image-under-100kb.mp4", "/compress-image-to-100kb/?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=image-under-100kb"],
+      ["Compress Image to 50KB", "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-image-under-50kb.mp4", "/compress-image-to-50kb/?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=image-under-50kb"],
+      ["PDF to JPG Without Upload", "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-pdf-to-jpg-no-upload.mp4", "/pdf-to-jpg-no-upload/?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-to-jpg-no-upload"],
+      ["Remove Background Without Upload", "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-background-removal.mp4", "/remove-background-no-upload/?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=background-removal"],
+    ];
     setMeta("PrintableTools Lab Share Kit", "Copy-ready short-video hooks, community posts, directory blurbs, campaign links, and compliance rules for sharing PrintableTools Lab without paid ads.");
     setJsonLd({
       "@context": "https://schema.org",
@@ -4870,6 +4878,13 @@
         <h2>Short video scripts</h2>
         <div class="grid-2">
           ${posts.slice(0, 2).map(([title, hook, body, , cta]) => `<article class="panel"><h3>${escapeHtml(title)}</h3><ol><li>${escapeHtml(hook)}</li><li>Show the source file being rejected or too large.</li><li>${escapeHtml(body)}</li><li>${escapeHtml(cta)}.</li></ol></article>`).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Ready-to-upload MP4 assets</h2>
+        <p>These silent 9:16 videos are published on the public GitHub release. Use them with the matching caption and tracked landing page; do not ask for ad clicks or imply guaranteed compression.</p>
+        <div class="grid-2">
+          ${videoAssets.map(([title, downloadUrl, trackedUrl]) => `<article class="panel"><h3>${escapeHtml(title)}</h3><p><a href="${downloadUrl}">Download MP4</a></p><p><a href="${trackedUrl}">Tracked landing page</a></p></article>`).join("")}
         </div>
       </section>
       <section class="shell section">

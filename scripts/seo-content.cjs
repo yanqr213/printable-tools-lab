@@ -1,4 +1,6 @@
 const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pages.dev").replace(/\/+$/, "");
+const fs = require("fs");
+const path = require("path");
 
 const SITE_SUMMARY = {
   name: "PrintableTools Lab",
@@ -60,6 +62,8 @@ const SHARE_KIT_RULES = [
   "Do not post private documents, IDs, payment details, or user files in examples.",
   "Use UTM source labels so the live metrics can separate directory, community, video, and social tests.",
 ];
+
+const CAMPAIGN_VIDEO_ASSETS = readCampaignVideoAssets();
 
 const HIGH_INTENT_TOOL_PATHS = [
   "tools/image-to-pdf",
@@ -2776,6 +2780,7 @@ function directorySubmissionHtml() {
 function shareKitHtml() {
   const featuredLinks = shareKitFeaturedLinks();
   const posts = shareKitPosts();
+  const videoAssets = CAMPAIGN_VIDEO_ASSETS;
   return `
       <section class="shell page-title section">
         <a href="/submit-directory/">Directory pack</a>
@@ -2804,6 +2809,13 @@ function shareKitHtml() {
           ${posts.filter((post) => post.channel === "short-video").map((post) => `<article class="panel"><h3>${escapeHtml(post.title)}</h3><ol><li>${escapeHtml(post.hook)}</li><li>Show the source file being rejected or too large.</li><li>${escapeHtml(post.body)}</li><li>${escapeHtml(post.cta)}.</li></ol></article>`).join("\n")}
         </div>
       </section>
+      ${videoAssets.length ? `<section class="shell section">
+        <h2>Ready-to-upload MP4 assets</h2>
+        <p>These silent 9:16 videos are already published on the public GitHub release. Use them with the matching caption and tracked landing page; do not ask for ad clicks or imply guaranteed compression.</p>
+        <div class="grid-2">
+          ${videoAssets.map((asset) => `<article class="panel"><h3>${escapeHtml(asset.title)}</h3><p>${escapeHtml(asset.captionEn)}</p><p><a href="${escapeHtml(asset.downloadUrl)}">Download MP4</a></p><p><a href="${escapeHtml(asset.trackedUrl)}">Tracked landing page</a></p></article>`).join("\n")}
+        </div>
+      </section>` : ""}
       <section class="shell section">
         <h2>Rules for safe distribution</h2>
         <ul>
@@ -2812,6 +2824,27 @@ function shareKitHtml() {
         <p><a class="button" href="/share-kit.json">Open machine-readable share-kit.json</a> <a class="button secondary" href="/DISTRIBUTION.md">Open distribution pack</a></p>
         ${jsonLdHtml(itemListSchema("PrintableTools Lab share kit priority links", featuredLinks.map((item) => ({ title: item.title, path: item.path }))))}
       </section>`;
+}
+
+function readCampaignVideoAssets() {
+  const reportPath = path.join(__dirname, "..", "reports", "campaign-assets-release.json");
+  if (!fs.existsSync(reportPath)) return [];
+  try {
+    const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
+    if (!Array.isArray(report.assets)) return [];
+    return report.assets.map((asset) => ({
+      id: asset.id,
+      title: asset.title,
+      downloadUrl: asset.downloadUrl,
+      trackedUrl: asset.trackedUrl,
+      captionEn: asset.captionEn,
+      captionZh: asset.captionZh,
+      hashtags: asset.hashtags,
+      sizeBytes: asset.sizeBytes,
+    }));
+  } catch {
+    return [];
+  }
 }
 
 function shareKitFeaturedLinks() {
@@ -3959,4 +3992,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS };

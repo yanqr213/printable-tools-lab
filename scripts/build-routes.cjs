@@ -8,6 +8,7 @@ const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const generatedAt = new Date();
 const generatedAtIso = generatedAt.toISOString();
 const lastmod = generatedAtIso.slice(0, 10);
+const campaignAssets = readCampaignAssets();
 
 function pageHtml(route) {
   const rendered = renderRoute(route);
@@ -184,6 +185,7 @@ const shareKitJson = {
     ...post,
     url: `${siteUrl(post.linkPath).replace(/\/$/, "")}?utm_source=${post.channel}&utm_medium=organic`,
   })),
+  videoAssets: campaignAssets,
   rules: SHARE_KIT_RULES,
 };
 fs.writeFileSync(path.join(root, "share-kit.json"), `${JSON.stringify(shareKitJson, null, 2)}\n`);
@@ -213,6 +215,7 @@ const llms = [
   `- Machine-readable tool list: ${fileUrl("tools.json")}`,
   `- Discovery index: ${fileUrl("discovery.json")}`,
   `- Machine-readable share kit: ${fileUrl("share-kit.json")}`,
+  ...(campaignAssets.length ? ["", "## Short-Video Campaign Assets", "", ...campaignAssets.map((asset) => `- [${asset.title} MP4](${asset.downloadUrl}): ${asset.captionEn}`)] : []),
   "",
   "## Tools",
   "",
@@ -250,6 +253,7 @@ const discoveryIndex = {
     shareKit: siteUrl("share-kit"),
     shareKitJson: fileUrl("share-kit.json"),
     distributionPack: fileUrl("DISTRIBUTION.md"),
+    campaignVideos: campaignAssets,
   },
   landingPages: landingPages.map((page) => ({
     title: page.title,
@@ -420,6 +424,27 @@ fs.writeFileSync(path.join(root, "DISTRIBUTION.md"), distribution);
 execFileSync(process.execPath, [path.join(root, "scripts", "build-github-pages.cjs")], { cwd: root, stdio: "inherit" });
 
 console.log(`Generated ${routes.length - 1} static route entries, sitemap.xml, robots.txt, feed.xml, tools.json, discovery.json, llms.txt, and DISTRIBUTION.md.`);
+
+function readCampaignAssets() {
+  const filePath = path.join(root, "reports", "campaign-assets-release.json");
+  if (!fs.existsSync(filePath)) return [];
+  try {
+    const report = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    if (!Array.isArray(report.assets)) return [];
+    return report.assets.map((asset) => ({
+      id: asset.id,
+      title: asset.title,
+      downloadUrl: asset.downloadUrl,
+      trackedUrl: asset.trackedUrl,
+      captionEn: asset.captionEn,
+      captionZh: asset.captionZh,
+      hashtags: asset.hashtags,
+      sizeBytes: asset.sizeBytes,
+    }));
+  } catch {
+    return [];
+  }
+}
 
 function categoryForTool(toolPath) {
   const slug = toolPath.replace(/^tools\//, "");
