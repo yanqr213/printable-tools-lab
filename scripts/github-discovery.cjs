@@ -58,7 +58,7 @@ async function main() {
   });
 
   const release = await getReleaseByTag(releaseTag);
-  const body = releaseBody();
+  const body = mergePreservedBlocks(releaseBody(), release?.body || "");
   if (release) {
     await github(`/repos/${repo}/releases/${release.id}`, {
       method: "PATCH",
@@ -162,4 +162,22 @@ function releaseBody() {
     "- PDF tools cover PDF-to-Word, compression, merge, split, rotate, remove pages, reorder pages, watermarks, stamps, signatures, page numbers, image-to-PDF, and text-to-PDF workflows.",
     "- Ads are disabled until policy review and real search visibility are ready.",
   ].join("\n");
+}
+
+function mergePreservedBlocks(nextBody, currentBody) {
+  return preserveBlock(nextBody, currentBody, "campaign-video-assets");
+}
+
+function preserveBlock(nextBody, currentBody, blockName) {
+  const start = `<!-- ${blockName}:start -->`;
+  const end = `<!-- ${blockName}:end -->`;
+  const pattern = new RegExp(`${escapeRegExp(start)}[\\s\\S]*?${escapeRegExp(end)}`);
+  const existing = String(currentBody || "").match(pattern);
+  if (!existing) return nextBody;
+  if (pattern.test(nextBody)) return nextBody.replace(pattern, existing[0]);
+  return `${nextBody.trim()}\n\n${existing[0]}\n`;
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
