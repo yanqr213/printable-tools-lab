@@ -13,9 +13,10 @@ const ZERO_DOMAIN_GAME_EXPERIMENT = {
   name: "Upload Limit Panic",
   url: "https://upload-limit-panic.pages.dev/",
   repo: "https://github.com/yanqr213/upload-limit-panic",
+  releaseUrl: "https://github.com/yanqr213/upload-limit-panic/releases/tag/platform-submission-v1",
   packagePath: "upload-limit-panic/reports/upload-limit-panic-html5.tar.gz",
-  zipUrl: "https://github.com/yanqr213/upload-limit-panic/raw/main/reports/upload-limit-panic-html5.zip",
-  demoVideoUrl: "https://github.com/yanqr213/upload-limit-panic/raw/main/reports/upload-limit-panic-demo.mp4",
+  zipUrl: "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-html5.zip",
+  demoVideoUrl: "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-demo.mp4",
   submissionNotesUrl: "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission.md",
   summary: "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them.",
 };
