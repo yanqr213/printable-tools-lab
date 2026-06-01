@@ -1,5 +1,5 @@
-const EVENTS = ["page_view", "generate_pdf", "download_pdf", "limit_hit", "ai_ideas", "ai_ideas_apply"];
-const SOURCE_EVENTS = ["page_view", "generate_pdf", "download_pdf"];
+const EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "limit_hit", "ai_ideas", "ai_ideas_apply"];
+const SOURCE_EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file"];
 const TOOLS = [
   "invoice-generator",
   "estimate-generator",
@@ -21,6 +21,9 @@ const TOOLS = [
   "meal-planner",
   "image-to-pdf",
   "multi-image-pdf",
+  "compress-image",
+  "resize-image",
+  "convert-image",
   "merge-pdf",
   "split-pdf",
   "pdf-page-numbers",
@@ -71,7 +74,7 @@ export async function onRequestGet({ env }) {
     Promise.all(EVENTS.map(async (event) => [event, await count(`day:${today}:event:${event}`)])),
     Promise.all(TOOLS.map(async (tool) => {
       const eventEntries = await Promise.all(
-        ["generate_pdf", "download_pdf", "limit_hit", "ai_ideas_apply"].map(async (event) => [
+        ["generate_pdf", "download_pdf", "generate_file", "download_file", "limit_hit", "ai_ideas_apply"].map(async (event) => [
           event,
           await count(`total:tool:${tool}:event:${event}`),
         ]),

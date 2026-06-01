@@ -24,14 +24,30 @@ async function main() {
   const metricsPayload = await metricsResponse.json();
   assert(metricsPayload.ok, "Metrics endpoint should respond");
   assert(metricsPayload.totals.download_pdf === 1, "Metrics should count downloads");
-  assert(metricsPayload.tools.length === 44, "Metrics should include every active tool");
+  assert(metricsPayload.tools.length === 47, "Metrics should include every active tool");
   const invoice = metricsPayload.tools.find((row) => row.tool === "invoice-generator");
   assert(invoice.download_pdf === 1, "Metrics should count per-tool downloads");
   const noSignupTools = metricsPayload.sources.find((row) => row.source === "nosignuptools");
   assert(noSignupTools.download_pdf === 1, "Metrics should count per-source downloads");
-  for (const tool of ["multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "receipt-generator", "timesheet-generator", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker", "packing-slip", "work-order", "inventory-sheet", "certificate-generator", "todo-list"]) {
+  for (const tool of ["multi-image-pdf", "compress-image", "resize-image", "convert-image", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "receipt-generator", "timesheet-generator", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker", "packing-slip", "work-order", "inventory-sheet", "certificate-generator", "todo-list"]) {
     assert(metricsPayload.tools.some((row) => row.tool === tool), `Metrics should include ${tool}`);
   }
+
+  const fileEventResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "download_file", tool: "compress-image", path: "/tools/compress-image/", source: "google" }),
+    }),
+    env,
+  });
+  assert(fileEventResponse.status === 200, "Event collector should accept image file download events");
+  const fileMetrics = await (await metricsSource.onRequestGet({ env })).json();
+  const compressor = fileMetrics.tools.find((row) => row.tool === "compress-image");
+  assert(compressor.download_file === 1, "Metrics should count per-tool file downloads");
+  assert(fileMetrics.totals.download_file === 1, "Metrics should count total file downloads");
+  const google = fileMetrics.sources.find((row) => row.source === "google");
+  assert(google.download_file === 1, "Metrics should count per-source file downloads");
 
   const rejectResponse = await eventSource.onRequestPost({
     request: new Request("https://example.test/api/event", {

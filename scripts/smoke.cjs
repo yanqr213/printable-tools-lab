@@ -74,6 +74,9 @@ function delay(ms) {
     "/tools/meal-planner/",
     "/tools/image-to-pdf/",
     "/tools/multi-image-pdf/",
+    "/tools/compress-image/",
+    "/tools/resize-image/",
+    "/tools/convert-image/",
     "/tools/merge-pdf/",
     "/tools/split-pdf/",
     "/tools/pdf-page-numbers/",
@@ -115,6 +118,9 @@ function delay(ms) {
     "/guides/free-monthly-calendar-generator/",
     "/guides/free-meal-planner-generator/",
     "/guides/free-image-to-pdf-converter/",
+    "/guides/compress-image-without-uploading/",
+    "/guides/resize-image-without-uploading/",
+    "/guides/convert-image-format-without-uploading/",
     "/guides/multiple-images-to-pdf-without-uploading/",
     "/guides/merge-pdf-without-uploading/",
     "/guides/split-pdf-without-uploading/",
@@ -160,20 +166,20 @@ function delay(ms) {
 
   await page.goto(`${base}/free-pdf-tools/`, { waitUntil: "networkidle" });
   const freePdfText = await page.locator("main").innerText();
-  for (const phrase of ["No-upload conversion tools", "Free business PDF tools", "All free PDF generators"]) {
+  for (const phrase of ["No-upload conversion tools", "Free business PDF tools", "All free generators"]) {
     if (!freePdfText.includes(phrase)) throw new Error(`Free PDF tools page is missing ${phrase}`);
   }
-  for (const href of ["/tools/multi-image-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/text-to-pdf/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/barcode-labels/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
+  for (const href of ["/tools/compress-image/", "/tools/resize-image/", "/tools/convert-image/", "/tools/multi-image-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/text-to-pdf/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/barcode-labels/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
     const linkCount = await page.locator(`main a[href="${href}"]`).count();
     if (!linkCount) throw new Error(`Free PDF tools page is missing link ${href}`);
   }
 
   await page.goto(`${base}/pdf-tool-finder/`, { waitUntil: "networkidle" });
   const finderText = await page.locator("main").innerText();
-  for (const phrase of ["Which free PDF tool should I use?", "Invoice vs receipt", "One image vs many images"]) {
+  for (const phrase of ["Which free PDF or image tool should I use?", "Compress vs resize vs convert", "Invoice vs receipt", "One image vs many images"]) {
     if (!finderText.includes(phrase)) throw new Error(`PDF tool finder page is missing ${phrase}`);
   }
-  for (const href of ["/tools/image-to-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/price-tag/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
+  for (const href of ["/tools/compress-image/", "/tools/resize-image/", "/tools/convert-image/", "/tools/image-to-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/price-tag/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
     const linkCount = await page.locator(`main a[href="${href}"]`).count();
     if (!linkCount) throw new Error(`PDF tool finder page is missing link ${href}`);
   }
@@ -188,7 +194,7 @@ function delay(ms) {
   const secondPagePdf = await samplePdf("Second document");
   const twoPagePdf = await samplePdf("Split source", 2);
 
-  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/text-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
+  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/compress-image/", "/tools/resize-image/", "/tools/convert-image/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/text-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
     await page.evaluate(() => localStorage.removeItem("ptl_daily"));
     if (route === "/tools/image-to-pdf/") {
@@ -228,6 +234,49 @@ function delay(ms) {
         return changed > 400;
       });
       if (!hasRenderedImages) throw new Error("Multi-image PDF preview did not render selected files.");
+    }
+    if (["/tools/compress-image/", "/tools/resize-image/", "/tools/convert-image/"].includes(route)) {
+      await page.setInputFiles("input[type=file]", {
+        name: "photo.png",
+        mimeType: "image/png",
+        buffer: samplePng(),
+      });
+      if (route === "/tools/resize-image/") {
+        await page.selectOption("#preset", "square-1080");
+      }
+      if (route === "/tools/convert-image/") {
+        await page.selectOption("#format", "webp");
+      }
+      await page.waitForTimeout(750);
+      const hasRenderedImagePreview = await page.evaluate(() => {
+        const canvas = document.querySelector("canvas.preview-canvas");
+        if (!canvas) return false;
+        const ctx = canvas.getContext("2d");
+        const data = ctx.getImageData(Math.floor(canvas.width / 2) - 180, 240, 360, 260).data;
+        let changed = 0;
+        for (let i = 0; i < data.length; i += 4) {
+          if (data[i] < 245 || data[i + 1] < 245 || data[i + 2] < 245) changed += 1;
+        }
+        return changed > 400;
+      });
+      if (!hasRenderedImagePreview) throw new Error(`${route} preview did not render selected image.`);
+      const hasOriginalColors = await page.evaluate(() => {
+        const canvas = document.querySelector("canvas.preview-canvas");
+        if (!canvas) return false;
+        const ctx = canvas.getContext("2d");
+        const data = ctx.getImageData(72, 220, canvas.width - 144, canvas.height - 500).data;
+        const counts = { blue: 0, red: 0, green: 0 };
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i];
+          const g = data[i + 1];
+          const b = data[i + 2];
+          if (r < 80 && g > 80 && b > 100) counts.blue += 1;
+          if (r > 180 && g < 150 && b < 140) counts.red += 1;
+          if (r < 150 && g > 110 && b < 150) counts.green += 1;
+        }
+        return counts.blue > 1000 && counts.red > 1000 && counts.green > 1000;
+      });
+      if (!hasOriginalColors) throw new Error(`${route} preview did not render the selected image colors.`);
     }
     if (route === "/tools/merge-pdf/") {
       await page.setInputFiles("input[type=file]", [
@@ -311,7 +360,16 @@ function delay(ms) {
       "/tools/stamp-pdf/": "Stamp PDF",
       "/tools/sign-pdf/": "Add signature",
     };
-    const submitButton = pdfUtilityButtonNames[route] ? page.getByRole("button", { name: pdfUtilityButtonNames[route] }) : button;
+    const imageUtilityButtonNames = {
+      "/tools/compress-image/": "Compress image",
+      "/tools/resize-image/": "Resize image",
+      "/tools/convert-image/": "Convert image",
+    };
+    const submitButton = pdfUtilityButtonNames[route]
+      ? page.getByRole("button", { name: pdfUtilityButtonNames[route] })
+      : imageUtilityButtonNames[route]
+        ? page.getByRole("button", { name: imageUtilityButtonNames[route] })
+        : button;
     let download;
     try {
       [download] = await Promise.all([
@@ -323,6 +381,13 @@ function delay(ms) {
       throw new Error(`Download did not start on ${route}. Notice: ${noticeText || "none"}. ${error.message}`);
     }
     const name = download.suggestedFilename();
+    if (imageUtilityButtonNames[route]) {
+      if (!/\.(jpg|png|webp)$/.test(name)) throw new Error(`Expected image download on ${route}, got ${name}`);
+      const filePath = await download.path();
+      const exported = fs.readFileSync(filePath);
+      if (exported.length < 100) throw new Error(`Image export on ${route} is unexpectedly small.`);
+      continue;
+    }
     if (!name.endsWith(".pdf")) throw new Error(`Expected PDF download on ${route}, got ${name}`);
     if (route === "/tools/multi-image-pdf/") {
       const filePath = await download.path();
@@ -371,7 +436,7 @@ function delay(ms) {
 
   await page.goto(`${base}/dashboard/`, { waitUntil: "networkidle" });
   const dashboardText = await page.locator("main").innerText();
-  if (!dashboardText.includes("PDF generations")) throw new Error("Dashboard did not render metrics.");
+  if (!dashboardText.includes("live generations") || !dashboardText.includes("live downloads")) throw new Error("Dashboard did not render metrics.");
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(`${base}/tools/name-tracing/`, { waitUntil: "networkidle" });
@@ -388,7 +453,7 @@ function delay(ms) {
 
 function samplePng() {
   return Buffer.from(
-    "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",
+    "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",
     "base64",
   );
 }

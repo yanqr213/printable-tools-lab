@@ -4,7 +4,7 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-06-01T04:47:28.225Z",
+  "generatedAt": "2026-06-01T06:04:50.692Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -20,6 +20,21 @@
       "title": "Multiple Images to PDF Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
       "intent": "combine images into one PDF without upload"
+    },
+    {
+      "title": "Compress Image Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
+      "intent": "compress image online, reduce image size, no upload"
+    },
+    {
+      "title": "Resize Image Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
+      "intent": "resize image online, change image dimensions, no upload"
+    },
+    {
+      "title": "Convert Image Format Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
+      "intent": "convert image format, JPG to PNG, PNG to WebP, no upload"
     },
     {
       "title": "Text to PDF Converter Without Signup",
@@ -147,6 +162,21 @@
       "title": "Multiple Images to PDF Converter",
       "description": "Turn several JPG, PNG, or WebP images into one multi-page PDF in your browser without uploading files.",
       "url": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/"
+    },
+    {
+      "title": "Compress Image Online",
+      "description": "Compress JPG, PNG, or WebP images locally in your browser without uploading files.",
+      "url": "https://printable-tools-lab.pages.dev/tools/compress-image/"
+    },
+    {
+      "title": "Resize Image Online",
+      "description": "Resize a JPG, PNG, or WebP image locally by width, height, or common social sizes without uploading it.",
+      "url": "https://printable-tools-lab.pages.dev/tools/resize-image/"
+    },
+    {
+      "title": "Convert Image Format",
+      "description": "Convert JPG, PNG, and WebP images locally in your browser without uploading the file.",
+      "url": "https://printable-tools-lab.pages.dev/tools/convert-image/"
     },
     {
       "title": "Merge PDF Tool",

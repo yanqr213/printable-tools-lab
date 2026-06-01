@@ -15,6 +15,19 @@ const types = {
 
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, `http://localhost:${port}`);
+  if (url.pathname === "/api/metrics") {
+    res.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" });
+    res.end(JSON.stringify({
+      ok: true,
+      today: new Date().toISOString().slice(0, 10),
+      totals: { page_view: 0, generate_pdf: 0, download_pdf: 0, generate_file: 0, download_file: 0, limit_hit: 0, ai_ideas: 0, ai_ideas_apply: 0 },
+      todayTotals: { page_view: 0, generate_pdf: 0, download_pdf: 0, generate_file: 0, download_file: 0, limit_hit: 0, ai_ideas: 0, ai_ideas_apply: 0 },
+      tools: [],
+      sources: [],
+    }));
+    return;
+  }
+
   let filePath = path.join(root, decodeURIComponent(url.pathname));
   if (url.pathname.endsWith("/")) filePath = path.join(filePath, "index.html");
 

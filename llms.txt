@@ -1,6 +1,6 @@
 # PrintableTools Lab
 
-Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
+Free browser-based PDF generators, no-upload PDF tools, and local image tools for compressing images, resizing images, converting image formats, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
 
 Audience: Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, and household planners.
 
@@ -50,6 +50,9 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Meal Planner Generator](https://printable-tools-lab.pages.dev/tools/meal-planner/): Make a printable weekly meal planner PDF with breakfast, lunch, dinner, grocery list, and prep notes.
 - [Image to PDF Converter](https://printable-tools-lab.pages.dev/tools/image-to-pdf/): Convert JPG, PNG, or WebP images into a clean one-page PDF in your browser without uploading files.
 - [Multiple Images to PDF Converter](https://printable-tools-lab.pages.dev/tools/multi-image-pdf/): Turn several JPG, PNG, or WebP images into one multi-page PDF in your browser without uploading files.
+- [Compress Image Online](https://printable-tools-lab.pages.dev/tools/compress-image/): Compress JPG, PNG, or WebP images locally in your browser without uploading files.
+- [Resize Image Online](https://printable-tools-lab.pages.dev/tools/resize-image/): Resize a JPG, PNG, or WebP image locally by width, height, or common social sizes without uploading it.
+- [Convert Image Format](https://printable-tools-lab.pages.dev/tools/convert-image/): Convert JPG, PNG, and WebP images locally in your browser without uploading the file.
 - [Merge PDF Tool](https://printable-tools-lab.pages.dev/tools/merge-pdf/): Combine several PDF files into one PDF in your browser without uploading documents.
 - [Split PDF Tool](https://printable-tools-lab.pages.dev/tools/split-pdf/): Extract selected pages from a PDF in your browser without uploading the document.
 - [Add Page Numbers to PDF](https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/): Add simple page numbers to an existing PDF locally in your browser.
@@ -73,6 +76,9 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Free Invoice Generator Without Signup](https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/): invoice PDF now, no account, no hidden export fee
 - [JPG to PDF Without Uploading](https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/): private image conversion, no upload, fast PDF
 - [Multiple Images to PDF Without Uploading](https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/): combine images into one PDF without upload
+- [Compress Image Without Uploading](https://printable-tools-lab.pages.dev/compress-image-no-upload/): compress image online, reduce image size, no upload
+- [Resize Image Without Uploading](https://printable-tools-lab.pages.dev/resize-image-no-upload/): resize image online, change image dimensions, no upload
+- [Convert Image Format Without Uploading](https://printable-tools-lab.pages.dev/convert-image-format-no-upload/): convert image format, JPG to PNG, PNG to WebP, no upload
 - [Text to PDF Converter Without Signup](https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/): plain text to PDF with no account
 - [Merge PDF Without Uploading](https://printable-tools-lab.pages.dev/merge-pdf-no-upload/): combine PDF files, no upload, no account
 - [Split PDF Without Uploading](https://printable-tools-lab.pages.dev/split-pdf-no-upload/): extract PDF pages, no upload, no account
@@ -128,5 +134,5 @@ Monetization model: Free tools first, then responsible display advertising after
 
 - Ordinary PDF generation runs in the browser and does not require an account.
 - Optional AI idea suggestions are server-side and limited to non-sensitive fields.
-- Ads are not used as a gate for downloading PDFs.
+- Ads are not used as a gate for downloading files.
 - Paid checkout is intentionally disabled until free usage and search demand are validated.

@@ -1,8 +1,8 @@
 {
   "name": "PrintableTools Lab",
-  "description": "Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  "description": "Free browser-based PDF generators, no-upload PDF tools, and local image tools for compressing images, resizing images, converting image formats, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T04:47:28.151Z",
+  "generatedAt": "2026-06-01T06:04:50.596Z",
   "tools": [
     {
       "title": "Name Tracing Worksheet Generator",
@@ -158,91 +158,109 @@
       "title": "Image to PDF Converter",
       "url": "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
       "description": "Convert JPG, PNG, or WebP images into a clean one-page PDF in your browser without uploading files.",
-      "category": "Everyday utility PDFs"
+      "category": "Everyday file utilities"
     },
     {
       "title": "Multiple Images to PDF Converter",
       "url": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
       "description": "Turn several JPG, PNG, or WebP images into one multi-page PDF in your browser without uploading files.",
-      "category": "Everyday utility PDFs"
+      "category": "Everyday file utilities"
+    },
+    {
+      "title": "Compress Image Online",
+      "url": "https://printable-tools-lab.pages.dev/tools/compress-image/",
+      "description": "Compress JPG, PNG, or WebP images locally in your browser without uploading files.",
+      "category": "Everyday file utilities"
+    },
+    {
+      "title": "Resize Image Online",
+      "url": "https://printable-tools-lab.pages.dev/tools/resize-image/",
+      "description": "Resize a JPG, PNG, or WebP image locally by width, height, or common social sizes without uploading it.",
+      "category": "Everyday file utilities"
+    },
+    {
+      "title": "Convert Image Format",
+      "url": "https://printable-tools-lab.pages.dev/tools/convert-image/",
+      "description": "Convert JPG, PNG, and WebP images locally in your browser without uploading the file.",
+      "category": "Everyday file utilities"
     },
     {
       "title": "Merge PDF Tool",
       "url": "https://printable-tools-lab.pages.dev/tools/merge-pdf/",
       "description": "Combine several PDF files into one PDF in your browser without uploading documents.",
-      "category": "Everyday utility PDFs"
+      "category": "Everyday file utilities"
     },
     {
       "title": "Split PDF Tool",
       "url": "https://printable-tools-lab.pages.dev/tools/split-pdf/",
       "description": "Extract selected pages from a PDF in your browser without uploading the document.",
-      "category": "Everyday utility PDFs"
+      "category": "Everyday file utilities"
     },
     {
       "title": "Add Page Numbers to PDF",
       "url": "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/",
       "description": "Add simple page numbers to an existing PDF locally in your browser.",
-      "category": "Everyday utility PDFs"
+      "category": "Everyday file utilities"
     },
     {
       "title": "Rotate PDF Pages",
       "url": "https://printable-tools-lab.pages.dev/tools/rotate-pdf/",
       "description": "Rotate all PDF pages or selected pages locally in your browser without uploading the file.",
-      "category": "Everyday utility PDFs"
+      "category": "Everyday file utilities"
     },
     {
       "title": "Remove Pages from PDF",
       "url": "https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/",
       "description": "Delete selected PDF pages locally in your browser without uploading the document.",
-      "category": "Everyday utility PDFs"
+      "category": "Everyday file utilities"
     },
     {
       "title": "Reorder PDF Pages",
       "url": "https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/",
       "description": "Rearrange PDF pages by typing a new page order, all locally in your browser.",
-      "category": "Everyday utility PDFs"
+      "category": "Everyday file utilities"
     },
     {
       "title": "Add Watermark to PDF",
       "url": "https://printable-tools-lab.pages.dev/tools/watermark-pdf/",
       "description": "Add a light text watermark to all pages or selected PDF pages locally in your browser.",
-      "category": "Everyday utility PDFs"
+      "category": "Everyday file utilities"
     },
     {
       "title": "Stamp PDF Pages",
       "url": "https://printable-tools-lab.pages.dev/tools/stamp-pdf/",
       "description": "Add a simple APPROVED, PAID, DRAFT, or custom text stamp to PDF pages without uploading the file.",
-      "category": "Everyday utility PDFs"
+      "category": "Everyday file utilities"
     },
     {
       "title": "Add Signature Text to PDF",
       "url": "https://printable-tools-lab.pages.dev/tools/sign-pdf/",
       "description": "Place a typed signature block on a selected PDF page locally in your browser.",
-      "category": "Everyday utility PDFs"
+      "category": "Everyday file utilities"
     },
     {
       "title": "Text to PDF Converter",
       "url": "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
       "description": "Paste plain text and download a clean one-page PDF without an account or file upload.",
-      "category": "Everyday utility PDFs"
+      "category": "Everyday file utilities"
     },
     {
       "title": "Sign-in Sheet Generator",
       "url": "https://printable-tools-lab.pages.dev/tools/sign-in-sheet/",
       "description": "Create a printable sign-in sheet PDF for events, classrooms, workshops, meetings, or visitor logs.",
-      "category": "Everyday utility PDFs"
+      "category": "Everyday file utilities"
     },
     {
       "title": "Graph Paper Generator",
       "url": "https://printable-tools-lab.pages.dev/tools/graph-paper/",
       "description": "Generate printable graph paper PDF with quarter-inch, half-inch, or small grid spacing for math, notes, and design sketches.",
-      "category": "Everyday utility PDFs"
+      "category": "Everyday file utilities"
     },
     {
       "title": "Packing List Generator",
       "url": "https://printable-tools-lab.pages.dev/tools/packing-list/",
       "description": "Make a printable packing list PDF for travel, school trips, business travel, camping, or family vacations.",
-      "category": "Everyday utility PDFs"
+      "category": "Everyday file utilities"
     },
     {
       "title": "Receipt Generator",
@@ -266,7 +284,7 @@
       "title": "To Do List Generator",
       "url": "https://printable-tools-lab.pages.dev/tools/todo-list/",
       "description": "Build a printable checklist PDF for errands, work tasks, study sessions, home projects, or event prep.",
-      "category": "Everyday utility PDFs"
+      "category": "Everyday file utilities"
     }
   ],
   "guides": [
@@ -564,6 +582,21 @@
       "title": "Multiple images to PDF without uploading",
       "url": "https://printable-tools-lab.pages.dev/guides/multiple-images-to-pdf-without-uploading/",
       "description": "Combine several JPG, PNG, or WebP images into one multi-page PDF in the browser."
+    },
+    {
+      "title": "Compress image without uploading",
+      "url": "https://printable-tools-lab.pages.dev/guides/compress-image-without-uploading/",
+      "description": "Reduce JPG, PNG, or WebP file size in the browser before uploading elsewhere."
+    },
+    {
+      "title": "Resize image without uploading",
+      "url": "https://printable-tools-lab.pages.dev/guides/resize-image-without-uploading/",
+      "description": "Change image width, height, or preset size locally in the browser."
+    },
+    {
+      "title": "Convert image format without uploading",
+      "url": "https://printable-tools-lab.pages.dev/guides/convert-image-format-without-uploading/",
+      "description": "Convert JPG, PNG, and WebP files locally when a website requires a different image format."
     },
     {
       "title": "Merge PDF without uploading",

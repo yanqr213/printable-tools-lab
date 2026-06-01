@@ -559,6 +559,93 @@
       draw: drawMultiImagePdf,
       exportPdf: exportMultiImagePdf,
     },
+    "compress-image": {
+      id: "compress-image",
+      icon: "CMP",
+      title: "Compress Image Online",
+      shortTitle: "Compress image",
+      description: "Compress JPG, PNG, or WebP images locally in your browser without uploading files.",
+      keywords: ["compress image", "image compressor", "reduce image size", "no upload"],
+      ai: false,
+      acceptsImages: true,
+      maxImages: 1,
+      outputKind: "image",
+      defaultValues: {
+        title: "Image Compressor",
+        images: "",
+        quality: "0.72",
+        maxWidth: "1600",
+        format: "jpeg",
+      },
+      fields: [
+        { id: "images", label: "Image", type: "file", accept: "image/png,image/jpeg,image/webp", multiple: false, help: "Select one image. It stays in your browser and is not uploaded." },
+        { id: "quality", label: "Compression", type: "select", options: [["0.55", "Smaller file"], ["0.72", "Balanced"], ["0.86", "Higher quality"]] },
+        { id: "maxWidth", label: "Maximum width", type: "select", options: [["800", "800 px"], ["1200", "1200 px"], ["1600", "1600 px"], ["2400", "2400 px"], ["original", "Keep original width"]] },
+        { id: "format", label: "Output format", type: "select", options: [["jpeg", "JPG"], ["webp", "WebP"], ["png", "PNG"]] },
+      ],
+      draw: drawImageCompressor,
+      exportFile: exportCompressedImage,
+    },
+    "resize-image": {
+      id: "resize-image",
+      icon: "RSZ",
+      title: "Resize Image Online",
+      shortTitle: "Resize image",
+      description: "Resize a JPG, PNG, or WebP image locally by width, height, or common social sizes without uploading it.",
+      keywords: ["resize image", "image resizer", "change image size", "no upload"],
+      ai: false,
+      acceptsImages: true,
+      maxImages: 1,
+      outputKind: "image",
+      defaultValues: {
+        title: "Image Resizer",
+        images: "",
+        preset: "custom",
+        width: "1200",
+        height: "",
+        fit: "contain",
+        format: "jpeg",
+        quality: "0.82",
+      },
+      fields: [
+        { id: "images", label: "Image", type: "file", accept: "image/png,image/jpeg,image/webp", multiple: false, help: "Select one image. It stays in your browser and is not uploaded." },
+        { id: "preset", label: "Size preset", type: "select", options: [["custom", "Custom"], ["square-1080", "Square 1080 x 1080"], ["story-1080x1920", "Story 1080 x 1920"], ["thumbnail-1280x720", "Thumbnail 1280 x 720"], ["profile-512", "Profile 512 x 512"]] },
+        { id: "width", label: "Custom width", type: "text", maxLength: 5, help: "Used when preset is Custom. Leave height empty to keep the aspect ratio." },
+        { id: "height", label: "Custom height", type: "text", maxLength: 5 },
+        { id: "fit", label: "Fit mode", type: "select", options: [["contain", "Fit inside"], ["cover", "Fill and crop"]] },
+        { id: "format", label: "Output format", type: "select", options: [["jpeg", "JPG"], ["webp", "WebP"], ["png", "PNG"]] },
+        { id: "quality", label: "Quality", type: "select", options: [["0.72", "Small"], ["0.82", "Balanced"], ["0.92", "High"]] },
+      ],
+      draw: drawImageResizer,
+      exportFile: exportResizedImage,
+    },
+    "convert-image": {
+      id: "convert-image",
+      icon: "CVT",
+      title: "Convert Image Format",
+      shortTitle: "Convert image",
+      description: "Convert JPG, PNG, and WebP images locally in your browser without uploading the file.",
+      keywords: ["convert image", "JPG to PNG", "PNG to WebP", "no upload"],
+      ai: false,
+      acceptsImages: true,
+      maxImages: 1,
+      outputKind: "image",
+      defaultValues: {
+        title: "Image Converter",
+        images: "",
+        format: "webp",
+        quality: "0.86",
+        background: "white",
+      },
+      fields: [
+        { id: "images", label: "Image", type: "file", accept: "image/png,image/jpeg,image/webp", multiple: false, help: "Select one image. It stays in your browser and is not uploaded." },
+        { id: "format", label: "Convert to", type: "select", options: [["webp", "WebP"], ["jpeg", "JPG"], ["png", "PNG"]] },
+        { id: "quality", label: "Quality", type: "select", options: [["0.72", "Small"], ["0.86", "Balanced"], ["0.94", "High"]] },
+        { id: "background", label: "JPG background", type: "select", options: [["white", "White"], ["black", "Black"], ["transparent", "Transparent if possible"]] },
+      ],
+      draw: drawImageConverter,
+      exportFile: exportConvertedImage,
+    },
     "merge-pdf": {
       id: "merge-pdf",
       icon: "MRG",
@@ -1236,13 +1323,19 @@
       ],
     },
     {
-      title: "Everyday utility PDFs",
-      description: "High-intent PDF tools for image conversion, existing PDF editing, text conversion, checklists, sign-in sheets, graph paper, and travel paperwork.",
+      title: "Everyday file utilities",
+      description: "High-intent image and PDF tools for compression, resizing, format conversion, existing PDF editing, text conversion, checklists, sign-in sheets, graph paper, and travel paperwork.",
       links: [
         ["Image to PDF converter", "/tools/image-to-pdf/"],
         ["JPG to PDF without uploading", "/jpg-to-pdf-no-upload/"],
         ["Multiple images to PDF", "/tools/multi-image-pdf/"],
         ["Multiple images to PDF without uploading", "/multiple-images-to-pdf-no-upload/"],
+        ["Compress image", "/tools/compress-image/"],
+        ["Compress image without uploading", "/compress-image-no-upload/"],
+        ["Resize image", "/tools/resize-image/"],
+        ["Resize image without uploading", "/resize-image-no-upload/"],
+        ["Convert image format", "/tools/convert-image/"],
+        ["Convert image format without uploading", "/convert-image-format-no-upload/"],
         ["Merge PDF without uploading", "/merge-pdf-no-upload/"],
         ["Split PDF without uploading", "/split-pdf-no-upload/"],
         ["Add page numbers to PDF", "/add-page-numbers-to-pdf/"],
@@ -1316,8 +1409,8 @@
   const freePdfToolGroups = [
     {
       title: "No-upload conversion tools",
-      description: "Use these when a photo, scan, existing PDF, or plain text note needs to become the right PDF quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf"],
+      description: "Use these when a photo, scan, existing PDF, or plain text note needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
+      links: ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1381,6 +1474,51 @@
         ["Practical limits", "Very large images can make large PDFs. Resize or crop photos first if the receiving website has strict upload limits."],
       ],
       related: ["image-to-pdf", "text-to-pdf", "receipt-generator"],
+    },
+    {
+      slug: "compress-image-no-upload",
+      title: "Compress Image Without Uploading",
+      headline: "Compress image without uploading",
+      description: "Compress JPG, PNG, or WebP images in your browser without uploading private files to an image compressor server.",
+      lead: "Choose an image, pick a compression level, and download a smaller file locally in the browser. This helps when an upload form, email, profile page, or marketplace listing rejects a large image.",
+      tool: "compress-image",
+      intent: "compress image online, reduce image size, no upload",
+      sections: [
+        ["Why this has broad demand", "Image compression is a much wider utility search than printables alone. People often need it immediately after an upload fails because a file is too large."],
+        ["Local-first workflow", "The selected image is loaded in the browser, re-encoded locally, and downloaded as a new file. The source image is not uploaded to PrintableTools Lab."],
+        ["Best fit", "Use it for profile pictures, marketplace photos, form uploads, support tickets, email attachments, screenshots, and document photos."],
+      ],
+      related: ["resize-image", "convert-image", "image-to-pdf"],
+    },
+    {
+      slug: "resize-image-no-upload",
+      title: "Resize Image Without Uploading",
+      headline: "Resize image without uploading",
+      description: "Resize a JPG, PNG, or WebP image by width, height, or common preset locally in your browser.",
+      lead: "Select an image, choose a custom size or a common preset, then download a resized copy without creating an account or uploading the file.",
+      tool: "resize-image",
+      intent: "resize image online, change image dimensions, no upload",
+      sections: [
+        ["Why users search", "Image size requirements show up in job portals, ID forms, seller platforms, social profiles, school portals, and support forms. A fast no-upload resizer solves that moment."],
+        ["Fit or crop", "Fit inside keeps the whole image visible. Fill and crop is better when the target size must be exact, such as a square profile image or thumbnail."],
+        ["Before uploading elsewhere", "Open the downloaded image and confirm important content is still visible, especially faces, text, IDs, product details, or form screenshots."],
+      ],
+      related: ["compress-image", "convert-image", "image-to-pdf"],
+    },
+    {
+      slug: "convert-image-format-no-upload",
+      title: "Convert Image Format Without Uploading",
+      headline: "Convert image format without uploading",
+      description: "Convert JPG, PNG, and WebP image formats locally in your browser without uploading the source image.",
+      lead: "Turn a JPG, PNG, or WebP image into another common format in the browser. Use it when a website rejects the current file type or when you need a lighter web-friendly image.",
+      tool: "convert-image",
+      intent: "convert image format, JPG to PNG, PNG to WebP, no upload",
+      sections: [
+        ["Common format mismatch", "Many upload forms accept only one image type. A local converter helps users switch file format without sending private images to a server."],
+        ["Format choices", "JPG is useful for photos and small file size. PNG is useful for sharp graphics. WebP is often smaller for web use when the receiving site accepts it."],
+        ["Review the result", "After conversion, check that transparency, background color, and image clarity still match the destination requirement."],
+      ],
+      related: ["compress-image", "resize-image", "multi-image-pdf"],
     },
     {
       slug: "text-to-pdf-no-signup",
@@ -1741,6 +1879,21 @@
       need: "Create one PDF with several image pages",
       tool: "multi-image-pdf",
       why: "Best when each image should become its own PDF page.",
+    },
+    {
+      need: "Make an image file smaller",
+      tool: "compress-image",
+      why: "Best for reducing a JPG, PNG, or WebP before uploading it to a form, email, marketplace, or profile.",
+    },
+    {
+      need: "Resize an image to exact dimensions",
+      tool: "resize-image",
+      why: "Best for custom width, square profile photos, thumbnails, and social image sizes.",
+    },
+    {
+      need: "Convert JPG, PNG, or WebP",
+      tool: "convert-image",
+      why: "Best when a website rejects the current image type and you need a different format.",
     },
     {
       need: "Paste text and download a simple PDF",
@@ -2668,6 +2821,44 @@
       ],
     },
     {
+      slug: "compress-image-without-uploading",
+      title: "Compress image without uploading",
+      description: "Reduce JPG, PNG, or WebP file size in the browser before uploading elsewhere.",
+      tool: "compress-image",
+      content: [
+        ["h2", "Solve upload size errors"],
+        ["p", "Image compression searches often happen after a form rejects a file as too large. A no-upload workflow lets the user make a smaller copy locally before trying again."],
+        ["h2", "Good uses"],
+        ["ul", ["Profile photos.", "Marketplace product images.", "Support screenshots.", "Email attachments.", "School or work portal uploads."]],
+        ["h2", "Review the result"],
+        ["p", "Open the compressed image and confirm text, faces, product details, or document photos are still clear enough for the destination."],
+      ],
+    },
+    {
+      slug: "resize-image-without-uploading",
+      title: "Resize image without uploading",
+      description: "Change image width, height, or preset size locally in the browser.",
+      tool: "resize-image",
+      content: [
+        ["h2", "Meet exact image dimensions"],
+        ["p", "Image resizing is useful for profile photos, thumbnails, marketplace listings, ID forms, and school portals that require exact dimensions."],
+        ["h2", "Fit vs fill"],
+        ["p", "Fit inside keeps the whole image visible. Fill and crop gives exact dimensions but can trim the edges."],
+      ],
+    },
+    {
+      slug: "convert-image-format-without-uploading",
+      title: "Convert image format without uploading",
+      description: "Convert JPG, PNG, and WebP files locally when a website requires a different image format.",
+      tool: "convert-image",
+      content: [
+        ["h2", "Fix a format mismatch"],
+        ["p", "A format converter solves a common upload problem: the image looks fine, but the receiving site accepts only JPG, PNG, or WebP."],
+        ["h2", "Pick the right format"],
+        ["ul", ["JPG for photos and smaller files.", "PNG for sharp graphics and transparency.", "WebP for smaller web-friendly images when accepted."]],
+      ],
+    },
+    {
       slug: "text-to-pdf-converter-no-signup",
       title: "Text to PDF converter without signup",
       description: "Paste plain text and download a clean one-page PDF without installing an editor.",
@@ -2853,18 +3044,18 @@
       body: [
         ["p", "The current product focus is the free ad-supported printable tool site. Paid features are intentionally deferred until the free tools show search traffic, downloads, and repeated usage."],
         ["h2", "Signals to watch"],
-        ["ul", ["Search Console impressions for generator keywords.", "PDF downloads by tool.", "Daily limit hits.", "Requests for classroom or batch workflows."]],
+        ["ul", ["Search Console impressions for generator keywords.", "PDF and image downloads by tool.", "Daily limit hits.", "Requests for classroom or batch workflows."]],
         ["h2", "Possible later work"],
         ["p", "If the data proves demand, the next layer can include saved projects, batch generation, higher daily limits, team workflows, and richer template controls. No checkout should be enabled before those features can be delivered."],
       ],
     },
     "free-pdf-tools": {
       title: "Free PDF Tools Without Signup",
-      description: "Start with free browser PDF tools for image conversion, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, certificates, checklists, and printable pages.",
+      description: "Start with free browser PDF and image tools for compression, resizing, format conversion, image-to-PDF, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, certificates, checklists, and printable pages.",
       body: [
-        ["p", "Use this directory when you need a PDF now and do not want an account, hidden export fee, or ad-click requirement."],
+        ["p", "Use this directory when you need a PDF or image file now and do not want an account, hidden export fee, or ad-click requirement."],
         ["h2", "No-upload conversion tools"],
-        ["ul", ["Image to PDF Converter: turn JPG, PNG, or WebP images into a one-page PDF.", "Multiple Images to PDF Converter: combine up to eight images into one multi-page PDF.", "Merge, split, rotate, remove, reorder, and number PDF pages locally in the browser.", "Text to PDF Converter: paste plain text and download a clean one-page document."]],
+        ["ul", ["Image compressor, image resizer, and image format converter: make smaller or correctly sized JPG, PNG, and WebP files locally.", "Image to PDF Converter: turn JPG, PNG, or WebP images into a one-page PDF.", "Multiple Images to PDF Converter: combine up to eight images into one multi-page PDF.", "Merge, split, rotate, remove, reorder, and number PDF pages locally in the browser.", "Text to PDF Converter: paste plain text and download a clean one-page document."]],
         ["h2", "Business and work PDFs"],
         ["ul", ["Invoice, estimate, purchase order, receipt, timesheet, bill of sale, and rent receipt PDFs are built for quick records, not full accounting software.", "Business card, address label, barcode label, price tag, flyer, and coupon PDFs are built for local-business print needs without design-account friction.", "Resume, cover letter, and resignation letter tools export without a surprise download fee."]],
         ["h2", "Printable planning PDFs"],
@@ -2879,9 +3070,9 @@
       body: [
         ["p", "Use this page to coordinate the first distribution push. The goal is not to look busy; it is to create enough real traffic for Search Console, AdSense readiness, and download validation."],
         ["h2", "Primary links"],
-        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Tools index: https://printable-tools-lab.pages.dev/tools/", "Image to PDF: https://printable-tools-lab.pages.dev/tools/image-to-pdf/", "Multiple images to PDF: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/", "Merge PDF: https://printable-tools-lab.pages.dev/tools/merge-pdf/", "Split PDF: https://printable-tools-lab.pages.dev/tools/split-pdf/", "PDF page numbers: https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/", "Rotate PDF: https://printable-tools-lab.pages.dev/tools/rotate-pdf/", "Remove PDF pages: https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/", "Reorder PDF pages: https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/", "Watermark PDF: https://printable-tools-lab.pages.dev/tools/watermark-pdf/", "Stamp PDF: https://printable-tools-lab.pages.dev/tools/stamp-pdf/", "Sign PDF: https://printable-tools-lab.pages.dev/tools/sign-pdf/", "Text to PDF: https://printable-tools-lab.pages.dev/tools/text-to-pdf/", "Invoice generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/", "Business card generator: https://printable-tools-lab.pages.dev/tools/business-card/", "Barcode label generator: https://printable-tools-lab.pages.dev/tools/barcode-labels/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
+        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Tools index: https://printable-tools-lab.pages.dev/tools/", "Compress image: https://printable-tools-lab.pages.dev/tools/compress-image/", "Resize image: https://printable-tools-lab.pages.dev/tools/resize-image/", "Convert image: https://printable-tools-lab.pages.dev/tools/convert-image/", "Image to PDF: https://printable-tools-lab.pages.dev/tools/image-to-pdf/", "Multiple images to PDF: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/", "Merge PDF: https://printable-tools-lab.pages.dev/tools/merge-pdf/", "Split PDF: https://printable-tools-lab.pages.dev/tools/split-pdf/", "PDF page numbers: https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/", "Rotate PDF: https://printable-tools-lab.pages.dev/tools/rotate-pdf/", "Remove PDF pages: https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/", "Reorder PDF pages: https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/", "Watermark PDF: https://printable-tools-lab.pages.dev/tools/watermark-pdf/", "Stamp PDF: https://printable-tools-lab.pages.dev/tools/stamp-pdf/", "Sign PDF: https://printable-tools-lab.pages.dev/tools/sign-pdf/", "Text to PDF: https://printable-tools-lab.pages.dev/tools/text-to-pdf/", "Invoice generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/", "Business card generator: https://printable-tools-lab.pages.dev/tools/business-card/", "Barcode label generator: https://printable-tools-lab.pages.dev/tools/barcode-labels/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
         ["h2", "First distribution copy"],
-        ["p", "Free browser PDF tools: merge PDFs, split PDFs, rotate pages, remove pages, reorder pages, watermark PDFs, stamp PDFs, add typed signature blocks, add PDF page numbers, convert images to PDF, combine multiple images, turn text into PDF, create invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, sign-in sheets, graph paper, calendars, worksheets, and checklists. No account required."],
+        ["p", "Free browser PDF and image tools: compress images, resize images, convert image formats, merge PDFs, split PDFs, rotate pages, remove pages, reorder pages, watermark PDFs, stamp PDFs, add typed signature blocks, add PDF page numbers, convert images to PDF, combine multiple images, turn text into PDF, create invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, sign-in sheets, graph paper, calendars, worksheets, and checklists. No account required."],
         ["p", "Try the free image to PDF converter: select a JPG, PNG, or WebP file and generate a one-page PDF locally without uploading the image."],
         ["p", "Need a quick invoice, receipt, timesheet, sign-in sheet, or packing checklist? PrintableTools Lab creates practical PDFs in the browser."],
         ["h2", "Do not do this"],
@@ -2918,6 +3109,9 @@
     "meal-planner",
     "image-to-pdf",
     "multi-image-pdf",
+    "compress-image",
+    "resize-image",
+    "convert-image",
     "merge-pdf",
     "split-pdf",
     "pdf-page-numbers",
@@ -3012,15 +3206,15 @@
       <section class="shell hero">
         <div>
           <h1>Make useful printable PDFs in under a minute.</h1>
-          <p>Free browser-based generators for image conversion, text-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
+            <p>Free browser-based generators for image compression, image resizing, image format conversion, PDF edits, text-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free PDF tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>38</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>47</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>73</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>82</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -3059,7 +3253,7 @@
         </div>
         <div class="grid-3">
           <div class="panel"><h3>Original content</h3><p>Guide pages explain practical use cases instead of relying on empty generator pages.</p></div>
-          <div class="panel"><h3>Responsible ads later</h3><p>Ad spaces are separated from buttons and never used as a condition for downloading PDFs.</p></div>
+          <div class="panel"><h3>Responsible ads later</h3><p>Ad spaces are separated from buttons and never used as a condition for downloading files.</p></div>
           <div class="panel"><h3>Zero server cost</h3><p>PDF generation, daily limits, and validation events work locally in the browser.</p></div>
         </div>
       </section>
@@ -3089,11 +3283,11 @@
   }
 
   function renderToolsIndex() {
-    setMeta("Free PDF Tools", "Browse free printable PDF tools for image conversion, text conversion, business paperwork, work orders, packing slips, inventory sheets, local promotion printables, labels, career documents, calendars, meal planning, certificates, checklists, worksheets, and classroom routines.");
+    setMeta("Free PDF and Image Tools", "Browse free browser PDF and image tools for compression, resizing, format conversion, PDF edits, text conversion, business paperwork, work orders, packing slips, inventory sheets, local promotion printables, labels, career documents, calendars, meal planning, certificates, checklists, worksheets, and classroom routines.");
     app.innerHTML = `
       <section class="shell page-title section">
-        <h1>Free PDF tools</h1>
-        <p>Choose a browser-based generator for business paperwork, work orders, packing slips, inventory sheets, job applications, image conversion, text conversion, planning pages, classroom printables, event certificates, checklists, and family routines. Each tool creates a practical PDF without requiring an account.</p>
+        <h1>Free PDF and image tools</h1>
+        <p>Choose a browser-based generator for business paperwork, work orders, packing slips, inventory sheets, job applications, image compression, resizing, format conversion, PDF editing, text conversion, planning pages, classroom printables, event certificates, checklists, and family routines. Each tool creates a practical PDF or image file without requiring an account.</p>
       </section>
       <section class="shell section">
         <div class="section-head">
@@ -3108,7 +3302,7 @@
         <div class="section-head">
           <div>
             <h2>All generators</h2>
-            <p>All tools run in the browser and are designed for fast, practical one-page PDFs. Image conversion stays local and does not upload files.</p>
+            <p>All tools run in the browser and are designed for fast, practical exports. Image and PDF processing stays local where the tool says no upload.</p>
           </div>
         </div>
         <div class="grid-3">${toolOrder.map((id) => toolCard(tools[id])).join("")}</div>
@@ -3117,13 +3311,13 @@
   }
 
   function renderFreePdfTools() {
-    setMeta("Free PDF Tools Without Signup", "Start with free browser PDF tools for image conversion, text-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, timesheets, certificates, checklists, and printable pages.");
+    setMeta("Free PDF and Image Tools Without Signup", "Start with free browser PDF and image tools for compression, resizing, format conversion, image-to-PDF, text-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, timesheets, certificates, checklists, and printable pages.");
     setJsonLd({
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      name: "Free PDF Tools Without Signup",
+      name: "Free PDF and Image Tools Without Signup",
       url: `${CONFIG.siteUrl.replace(/\/$/, "")}/free-pdf-tools/`,
-      description: "Free no-signup browser PDF tools for conversion, business paperwork, career documents, and printable planning pages.",
+      description: "Free no-signup browser PDF and image tools for conversion, business paperwork, career documents, and printable planning pages.",
       hasPart: toolOrder.map((id) => ({
         "@type": "SoftwareApplication",
         name: tools[id].title,
@@ -3135,17 +3329,17 @@
     });
     app.innerHTML = `
       <section class="shell page-title section">
-        <h1>Free PDF tools without signup</h1>
-        <p>Open a browser-based generator, edit the sample fields, and download a practical PDF. No account, no surprise download fee, and no ad-click requirement.</p>
+        <h1>Free PDF and image tools without signup</h1>
+        <p>Open a browser-based generator, edit the sample fields, and download a practical PDF or image file. No account, no surprise download fee, and no ad-click requirement.</p>
       </section>
       <section class="shell section">
         <div class="section-head">
           <div>
-            <h2>Start with the PDF job</h2>
+            <h2>Start with the file job</h2>
             <p>These groups target high-intent searches where users usually want a file immediately.</p>
           </div>
         </div>
-        <div class="grid-2">
+        <div class="grid-3">
           ${freePdfToolGroups.map(freePdfToolGroupCard).join("")}
         </div>
       </section>
@@ -3157,15 +3351,15 @@
           </div>
         </div>
         <div class="grid-3">
-          <div class="panel"><h3>No account wall</h3><p>Users can generate and download PDFs without creating an account, which keeps the first visit lightweight.</p></div>
+          <div class="panel"><h3>No account wall</h3><p>Users can generate and download useful files without creating an account, which keeps the first visit lightweight.</p></div>
           <div class="panel"><h3>No ad interaction gate</h3><p>Ads, once approved, should sit away from generator controls and never become a condition for downloading.</p></div>
-          <div class="panel"><h3>Local-first tools</h3><p>Image conversion stays in the browser. For privacy-sensitive documents, users should avoid entering unnecessary personal details.</p></div>
+          <div class="panel"><h3>Local-first tools</h3><p>Image and PDF processing stays in the browser where marked no-upload. For privacy-sensitive documents, users should avoid entering unnecessary personal details.</p></div>
         </div>
       </section>
       <section class="shell section">
         <div class="section-head">
           <div>
-            <h2>All free PDF generators</h2>
+            <h2>All free generators</h2>
             <p>Use this full list when you know the document type you need.</p>
           </div>
         </div>
@@ -3187,23 +3381,23 @@
   }
 
   function renderPdfToolFinder() {
-    setMeta("Which Free PDF Tool Should I Use?", "Find the right free PDF generator for images, text, invoices, receipts, timesheets, resumes, certificates, checklists, graph paper, and event sheets.");
+    setMeta("Which Free PDF or Image Tool Should I Use?", "Find the right free PDF or image tool for compression, resizing, format conversion, images, text, invoices, receipts, timesheets, resumes, certificates, checklists, graph paper, and event sheets.");
     setJsonLd({
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      name: "Which Free PDF Tool Should I Use?",
+      name: "Which Free PDF or Image Tool Should I Use?",
       url: `${CONFIG.siteUrl.replace(/\/$/, "")}/pdf-tool-finder/`,
-      description: "A practical finder for choosing the right free PDF generator by task.",
+      description: "A practical finder for choosing the right free PDF or image generator by task.",
     });
     app.innerHTML = `
       <section class="shell page-title section">
-        <h1>Which free PDF tool should I use?</h1>
-        <p>Start with the job, not the template name. This finder points you to the free browser PDF generator that best matches the document you need right now.</p>
+        <h1>Which free PDF or image tool should I use?</h1>
+        <p>Start with the job, not the template name. This finder points you to the free browser PDF or image tool that best matches the file you need right now.</p>
       </section>
       <section class="shell section">
         <div class="section-head">
           <div>
-            <h2>Quick PDF tool finder</h2>
+            <h2>Quick file tool finder</h2>
             <p>Pick the row that sounds closest to your task.</p>
           </div>
         </div>
@@ -3222,6 +3416,11 @@
       </section>
       <section class="shell section">
         <div class="grid-2">
+          <article class="panel">
+            <h3>Compress vs resize vs convert</h3>
+            <p>Compress when the file is too large. Resize when dimensions are wrong. Convert when the file type is rejected.</p>
+            <p><a class="button" href="/tools/compress-image/">Compress image</a> <a class="button secondary" href="/tools/resize-image/">Resize image</a></p>
+          </article>
           <article class="panel">
             <h3>Invoice vs receipt</h3>
             <p>Use an invoice when you are asking someone to pay. Use a receipt when payment has already happened and you need a record.</p>
@@ -3242,8 +3441,8 @@
       </section>
       <section class="shell section">
         <h2>Free tool limits</h2>
-        <p>The tools are designed for fast one-page PDFs and simple records. They do not replace legal, tax, accounting, or employment advice. Review every document before sending or printing it.</p>
-        <p>Ads are disabled during validation and should never be used as a condition for downloading a PDF.</p>
+        <p>The tools are designed for fast practical exports and simple records. They do not replace legal, tax, accounting, or employment advice. Review every file before sending, uploading, or printing it.</p>
+        <p>Ads are disabled during validation and should never be used as a condition for downloading a PDF or image file.</p>
       </section>
     `;
   }
@@ -3252,6 +3451,9 @@
     const primaryToolIds = [
       "image-to-pdf",
       "multi-image-pdf",
+      "compress-image",
+      "resize-image",
+      "convert-image",
       "text-to-pdf",
       "invoice-generator",
       "receipt-generator",
@@ -3266,10 +3468,10 @@
       ["URL", absoluteUrl("/")],
       ["Category", "Files, Productivity, PDF Tools, Document Tools, Small Business Tools"],
       ["Pricing", "Free"],
-      ["Tagline", "Free no-signup browser PDF generators"],
-      ["Short description", "Create practical PDFs in the browser, including image-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, resumes, certificates, and printable tools."],
+      ["Tagline", "Free no-signup browser PDF and image tools"],
+      ["Short description", "Create practical PDFs and image files in the browser, including image compression, image resizing, image format conversion, image-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, resumes, certificates, and printable tools."],
     ];
-    setMeta("PrintableTools Lab Directory Submission Pack", "Copy-ready directory submission details, screenshots, core links, and compliance notes for listing PrintableTools Lab as a free no-signup PDF tool site.");
+    setMeta("PrintableTools Lab Directory Submission Pack", "Copy-ready directory submission details, screenshots, core links, and compliance notes for listing PrintableTools Lab as a free no-signup PDF and image tool site.");
     setJsonLd({
       "@context": "https://schema.org",
       "@type": "ItemList",
@@ -3285,7 +3487,7 @@
       <section class="shell page-title section">
         <a href="/free-pdf-tools/">Free PDF tools</a>
         <h1>PrintableTools Lab directory submission pack</h1>
-        <p>This page gives directory editors, community moderators, and launch-listing reviewers the exact facts needed to evaluate PrintableTools Lab as a free no-signup PDF tool collection.</p>
+        <p>This page gives directory editors, community moderators, and launch-listing reviewers the exact facts needed to evaluate PrintableTools Lab as a free no-signup PDF and image tool collection.</p>
       </section>
       <section class="shell section">
         <h2>Copy-ready listing details</h2>
@@ -3299,7 +3501,7 @@
         <h2>Review notes</h2>
         <div class="grid-3">
           <article class="panel"><h3>No signup</h3><p>Core PDF generators open directly in the browser and do not require an account before export.</p></article>
-          <article class="panel"><h3>Free export</h3><p>The validation version keeps PDF downloads free and avoids surprise checkout screens.</p></article>
+          <article class="panel"><h3>Free export</h3><p>The validation version keeps PDF and image downloads free and avoids surprise checkout screens.</p></article>
           <article class="panel"><h3>Ad-safe</h3><p>Ads are disabled during validation and downloads are not gated behind ad clicks or ad views.</p></article>
         </div>
       </section>
@@ -3353,16 +3555,16 @@
     });
     app.innerHTML = `
       <section class="shell page-title section">
-        <a href="/free-pdf-tools/">Free PDF tools</a>
+        <a href="/free-pdf-tools/">Free PDF and image tools</a>
         <h1>${escapeHtml(page.headline)}</h1>
         <p>${escapeHtml(page.lead)}</p>
-        <p><a class="button" href="/tools/${tool.id}/">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> <a class="button secondary" href="/pdf-tool-finder/">Compare PDF tools</a></p>
+        <p><a class="button" href="/tools/${tool.id}/">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> <a class="button secondary" href="/pdf-tool-finder/">Compare tools</a></p>
       </section>
       <section class="shell section">
         <h2>Why this matches the search</h2>
         <div class="grid-3">
           <article class="panel"><h3>Intent</h3><p>${escapeHtml(page.intent)}</p></article>
-          <article class="panel"><h3>No signup</h3><p>The free workflow starts in the browser and does not require an account before PDF export.</p></article>
+          <article class="panel"><h3>No signup</h3><p>The free workflow starts in the browser and does not require an account before export.</p></article>
           <article class="panel"><h3>Ad-safe</h3><p>Downloads are not gated behind ad clicks or ad views. Ads remain disabled until policy review and search visibility are ready.</p></article>
         </div>
       </section>
@@ -3372,7 +3574,7 @@
         <p>${escapeHtml(text)}</p>
       </section>`).join("")}
       <section class="shell section">
-        <h2>Related free PDF tools</h2>
+        <h2>Related free tools</h2>
         <div class="grid-3">${related.map(toolCard).join("")}</div>
       </section>
     `;
@@ -3405,6 +3607,7 @@
     setMeta(tool.title, tool.description);
     setToolJsonLd(tool);
     if (tool.pdfTool) return renderPdfUtilityTool(tool);
+    if (tool.outputKind === "image") return renderImageUtilityTool(tool);
     const count = getDailyCount();
     app.innerHTML = `
       <section class="shell tool-header">
@@ -3476,10 +3679,10 @@
         priceCurrency: "USD",
       },
       featureList: [
-        "Browser-based PDF generation",
+        tool.outputKind === "image" ? "Browser-based image processing" : "Browser-based PDF generation",
         "No account required",
-        tool.pdfTool ? "No-upload PDF file processing" : "US Letter and A4 support",
-        tool.pdfTool ? "Local PDF export" : "Clean one-page printable export",
+        tool.outputKind === "image" ? "No-upload image conversion" : tool.pdfTool ? "No-upload PDF file processing" : "US Letter and A4 support",
+        tool.outputKind === "image" ? "Local image file export" : tool.pdfTool ? "Local PDF export" : "Clean one-page printable export",
       ],
     });
   }
@@ -3604,6 +3807,123 @@
       </section>
     `;
     bindPdfUtilityTool(tool);
+  }
+
+  function renderImageUtilityTool(tool) {
+    const count = getDailyCount();
+    app.innerHTML = `
+      <section class="shell tool-header">
+        <a href="/tools/">Back to all tools</a>
+        <h1>${escapeHtml(tool.title)}</h1>
+        <p class="lead">${escapeHtml(tool.description)}</p>
+      </section>
+      <section class="shell tool-layout">
+        <aside class="panel tool-form">
+          <div class="preview-toolbar">
+            <h2>Choose image</h2>
+            <span class="counter" id="limitCounter">${SITE.dailyLimit - count} free left today</span>
+          </div>
+          <form id="generatorForm" class="form-grid">
+            ${tool.fields.map((field) => renderField(field, tool.defaultValues[field.id])).join("")}
+            <div class="actions">
+              <button class="button" type="submit">${escapeHtml(imageToolActionLabel(tool))}</button>
+              <button class="button secondary" type="button" id="refreshPreview">Refresh preview</button>
+            </div>
+            <p class="help">Images are processed locally in this browser. They are not uploaded to PrintableTools Lab.</p>
+          </form>
+          <div id="limitNotice" class="notice" hidden></div>
+        </aside>
+        <div class="preview-wrap">
+          <div class="preview-toolbar">
+            <div>
+              <h2>Image preview</h2>
+              <p class="help">The preview shows the selected image and estimated export settings before download.</p>
+            </div>
+            <a class="button ghost" href="/pdf-tool-finder/">Find another tool</a>
+          </div>
+          <div class="preview-stage">
+            <canvas id="previewCanvas" class="preview-canvas" width="1275" height="1650" aria-label="Image processing preview"></canvas>
+          </div>
+          ${renderAdUnit("tool", "content-adjacent only, never blocking the image download button")}
+          <div id="downloadComplete" class="download-complete" hidden></div>
+          <div class="callout">
+            <strong>Privacy note:</strong> this tool uses browser-side image processing. Very large images may be slow or fail if the browser runs out of memory.
+          </div>
+        </div>
+      </section>
+      <section class="shell section">
+        <div class="grid-3">${getRelatedTools(tool.id).slice(0, 3).map(toolCard).join("")}</div>
+      </section>
+    `;
+    bindImageUtilityTool(tool);
+  }
+
+  function bindImageUtilityTool(tool) {
+    const form = document.getElementById("generatorForm");
+    const canvas = document.getElementById("previewCanvas");
+    const refresh = document.getElementById("refreshPreview");
+    const limitCounter = document.getElementById("limitCounter");
+    const downloadComplete = document.getElementById("downloadComplete");
+    const notice = document.getElementById("limitNotice");
+    currentToolState = { tool, form, canvas };
+
+    const draw = () => {
+      const values = getFormValues(form);
+      renderCanvas(tool, canvas, values);
+    };
+
+    form.addEventListener("input", draw);
+    form.addEventListener("change", (event) => {
+      if (event.target && event.target.type === "file") {
+        loadImageFiles(tool, event.target.files, draw);
+        return;
+      }
+      draw();
+    });
+    refresh.addEventListener("click", () => {
+      track("generate_preview", { tool: tool.id });
+      draw();
+    });
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      notice.hidden = true;
+      const count = getDailyCount();
+      if (count >= SITE.dailyLimit) {
+        notice.textContent = "Daily free limit reached in this browser. You can still adjust the preview or come back tomorrow.";
+        notice.hidden = false;
+        track("limit_hit", { tool: tool.id });
+        return;
+      }
+      const images = imageToolState.get(tool.id) || [];
+      if (!images.length) {
+        notice.textContent = "Select an image before downloading the processed file.";
+        notice.hidden = false;
+        return;
+      }
+      try {
+        draw();
+        const values = getFormValues(form);
+        const output = tool.exportFile(values);
+        downloadBlob(output.blob, output.filename);
+        incrementDailyCount();
+        const remaining = SITE.dailyLimit - getDailyCount();
+        limitCounter.textContent = `${remaining} free left today`;
+        showDownloadComplete(tool, downloadComplete, remaining, "Image downloaded");
+        track("generate_file", { tool: tool.id });
+        track("download_file", { tool: tool.id });
+      } catch (error) {
+        notice.textContent = error.message || "Could not process this image. Try a smaller file or a different output format.";
+        notice.hidden = false;
+      }
+    });
+    draw();
+  }
+
+  function imageToolActionLabel(tool) {
+    if (tool.id === "compress-image") return "Compress image";
+    if (tool.id === "resize-image") return "Resize image";
+    if (tool.id === "convert-image") return "Convert image";
+    return "Download image";
   }
 
   function bindPdfUtilityTool(tool) {
@@ -4122,13 +4442,13 @@
     return `${(size / (1024 * 1024)).toFixed(1)} MB`;
   }
 
-  function showDownloadComplete(tool, target, remaining) {
+  function showDownloadComplete(tool, target, remaining, title = "PDF downloaded") {
     if (!target) return;
     const related = getRelatedTools(tool.id).slice(0, 3);
     target.hidden = false;
     target.innerHTML = `
       <div>
-        <strong>PDF downloaded</strong>
+        <strong>${escapeHtml(title)}</strong>
         <p class="help">Review the file before sharing or printing. You have ${Math.max(0, remaining)} free ${remaining === 1 ? "generation" : "generations"} left today in this browser.</p>
       </div>
       <div class="next-links">
@@ -4146,7 +4466,7 @@
       ["resume-builder", "cover-letter", "resignation-letter"],
       ["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"],
       ["name-tracing", "chore-chart", "reward-chart", "flashcards"],
-      ["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
+      ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
       ["certificate-generator", "sign-in-sheet", "todo-list", "flyer-maker", "coupon-maker"],
     ];
     const group = groups.find((items) => items.includes(currentId)) || toolOrder;
@@ -4207,24 +4527,26 @@
     setMeta("Local Validation Dashboard", "Local browser dashboard for PrintableTools Lab validation events.");
     const events = getEvents();
     const totals = summarizeEvents(events);
+    const localGenerations = (totals.generate_pdf || 0) + (totals.generate_file || 0);
+    const localDownloads = (totals.download_pdf || 0) + (totals.download_file || 0);
     app.innerHTML = `
       <section class="shell dashboard">
         <h1>Local validation dashboard</h1>
         <p class="lead">This zero-cost version records events in localStorage. After launch, supplement this with Search Console, Analytics, and platform revenue data.</p>
         <div class="metric-grid">
           <div class="metric-tile"><strong>${totals.page_view || 0}</strong><span>page views</span></div>
-          <div class="metric-tile"><strong>${totals.generate_pdf || 0}</strong><span>PDF generations</span></div>
-          <div class="metric-tile"><strong>${totals.download_pdf || 0}</strong><span>downloads</span></div>
+          <div class="metric-tile"><strong>${localGenerations}</strong><span>generations</span></div>
+          <div class="metric-tile"><strong>${localDownloads}</strong><span>downloads</span></div>
           <div class="metric-tile"><strong>${totals.limit_hit || 0}</strong><span>limit hits</span></div>
         </div>
         <div class="panel">
           <h2>Live site signals</h2>
-          <p class="help">Cloudflare-hosted counters show whether real visitors are generating and downloading PDFs. They are approximate and anonymous.</p>
+          <p class="help">Cloudflare-hosted counters show whether real visitors are generating and downloading files. They are approximate and anonymous.</p>
           <div id="remoteMetrics" class="metric-remote">Loading live metrics...</div>
         </div>
         <div class="panel">
           <h2>Validation gates</h2>
-          <p><strong>30-day continue gate:</strong> 100 PDF downloads, 300 tool generations, or growing Search Console impressions. If no search exposure or downloads after 60 days, pause this track and test HTML5 game distribution.</p>
+          <p><strong>30-day continue gate:</strong> 100 downloads, 300 tool generations, or growing Search Console impressions. If no search exposure or downloads after 60 days, pause this track and test another ad-supported route.</p>
           <p><strong>Configured integrations:</strong> Analytics ${CONFIG.enableAnalytics && CONFIG.googleAnalyticsId ? "on" : "off"}, AdSense ${CONFIG.enableAds && CONFIG.adsenseClientId ? "on" : "off"}.</p>
           <div class="actions">
             <button class="button" id="exportCsv">Export CSV</button>
@@ -5134,6 +5456,217 @@
     return canvasesToPdf(pages);
   }
 
+  function drawImageCompressor(ctx, paper, values) {
+    drawImageUtilityPreview(ctx, paper, values, {
+      toolId: "compress-image",
+      title: "Compress Image",
+      accent: "#5a9367",
+      empty: "Select an image to compress",
+      note: "JPG, PNG, and WebP files are compressed locally in this browser.",
+      statLines: (image) => {
+        const target = imageTransformPlan(image, {
+          maxWidth: values.maxWidth,
+          format: values.format,
+          quality: values.quality,
+        });
+        return [
+          `${image.width} x ${image.height} px original`,
+          `${target.width} x ${target.height} px export`,
+          `${imageFormatLabel(values.format)} at ${Math.round(normalizeQuality(values.quality) * 100)}% quality`,
+        ];
+      },
+      footer: "Image compressed locally with PrintableTools Lab. No image upload required.",
+    });
+  }
+
+  function drawImageResizer(ctx, paper, values) {
+    drawImageUtilityPreview(ctx, paper, values, {
+      toolId: "resize-image",
+      title: "Resize Image",
+      accent: "#176b87",
+      empty: "Select an image to resize",
+      note: "Set a custom size or choose a common social image preset.",
+      statLines: (image) => {
+        const target = resizePlan(image, values);
+        return [
+          `${image.width} x ${image.height} px original`,
+          `${target.width} x ${target.height} px export`,
+          `${values.fit === "cover" ? "Fill and crop" : "Fit inside"} mode`,
+        ];
+      },
+      footer: "Image resized locally with PrintableTools Lab. No image upload required.",
+    });
+  }
+
+  function drawImageConverter(ctx, paper, values) {
+    drawImageUtilityPreview(ctx, paper, values, {
+      toolId: "convert-image",
+      title: "Convert Image",
+      accent: "#e76f51",
+      empty: "Select an image to convert",
+      note: "Convert between JPG, PNG, and WebP without sending the file to a server.",
+      statLines: (image) => [
+        `${image.width} x ${image.height} px original`,
+        `Export as ${imageFormatLabel(values.format)}`,
+        values.format === "png" ? "Lossless PNG export" : `${Math.round(normalizeQuality(values.quality) * 100)}% quality`,
+      ],
+      footer: "Image converted locally with PrintableTools Lab. No image upload required.",
+    });
+  }
+
+  function drawImageUtilityPreview(ctx, paper, values, config) {
+    const margin = 72;
+    const images = imageToolState.get(config.toolId) || [];
+    drawBusinessFrame(ctx, paper, config.accent);
+    drawTextFit(ctx, config.title, paper.width / 2, 104, paper.width - margin * 2, 46, { align: "center", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, config.note, paper.width / 2, 148, paper.width - margin * 2, 22, { align: "center", weight: "500", color: "#5b6f78" });
+    if (!images.length) {
+      drawDashedRect(ctx, margin, 240, paper.width - margin * 2, paper.height - 410, "rgba(23,49,59,0.34)");
+      drawTextFit(ctx, config.empty, paper.width / 2, paper.height / 2 - 26, paper.width - margin * 2 - 80, 38, { align: "center", weight: "800", color: "#17313b" });
+      drawTextFit(ctx, "The file stays on this device during processing.", paper.width / 2, paper.height / 2 + 30, paper.width - margin * 2 - 80, 23, { align: "center", weight: "500", color: "#5b6f78" });
+      drawFooterNote(ctx, paper, config.footer);
+      return;
+    }
+    const item = images[0];
+    const previewBox = { x: margin, y: 220, width: paper.width - margin * 2, height: paper.height - 500 };
+    drawImageInBox(ctx, item.image, previewBox, false);
+    const statY = paper.height - 238;
+    drawTextFit(ctx, item.name || "Selected image", margin, statY, paper.width - margin * 2, 24, { align: "left", weight: "900", color: "#17313b" });
+    const lines = config.statLines(item).slice(0, 4);
+    lines.forEach((lineText, index) => {
+      drawTextFit(ctx, lineText, margin, statY + 42 + index * 32, paper.width - margin * 2, 22, { align: "left", weight: index === 0 ? "700" : "500", color: index === 0 ? config.accent : "#5b6f78" });
+    });
+    drawFooterNote(ctx, paper, config.footer);
+  }
+
+  function exportCompressedImage(values) {
+    const image = getSelectedImageOrThrow("compress-image");
+    const plan = imageTransformPlan(image, {
+      maxWidth: values.maxWidth,
+      format: values.format,
+      quality: values.quality,
+    });
+    const canvas = renderImageToCanvas(image.image, plan.width, plan.height, "contain", values.format === "jpeg" ? "#ffffff" : "transparent");
+    const blob = canvasToImageBlob(canvas, values.format, values.quality);
+    return { blob, filename: `${fileBaseName(image.name)}-compressed.${imageExtension(values.format)}` };
+  }
+
+  function exportResizedImage(values) {
+    const image = getSelectedImageOrThrow("resize-image");
+    const plan = resizePlan(image, values);
+    const canvas = renderImageToCanvas(image.image, plan.width, plan.height, values.fit, values.format === "jpeg" ? "#ffffff" : "transparent");
+    const blob = canvasToImageBlob(canvas, values.format, values.quality);
+    return { blob, filename: `${fileBaseName(image.name)}-${plan.width}x${plan.height}.${imageExtension(values.format)}` };
+  }
+
+  function exportConvertedImage(values) {
+    const image = getSelectedImageOrThrow("convert-image");
+    const background = values.format === "jpeg" ? (values.background === "black" ? "#000000" : "#ffffff") : "transparent";
+    const canvas = renderImageToCanvas(image.image, image.width, image.height, "contain", background);
+    const blob = canvasToImageBlob(canvas, values.format, values.quality);
+    return { blob, filename: `${fileBaseName(image.name)}.${imageExtension(values.format)}` };
+  }
+
+  function getSelectedImageOrThrow(toolId) {
+    const images = imageToolState.get(toolId) || [];
+    if (!images.length) throw new Error("Select an image before downloading.");
+    return images[0];
+  }
+
+  function imageTransformPlan(image, options) {
+    const originalW = Math.max(1, Number(image.width || image.image?.naturalWidth || image.image?.width || 1));
+    const originalH = Math.max(1, Number(image.height || image.image?.naturalHeight || image.image?.height || 1));
+    const maxWidth = options.maxWidth === "original" ? originalW : clampNumber(Number(options.maxWidth || originalW), 64, 6000);
+    const scale = Math.min(1, maxWidth / originalW);
+    return {
+      width: Math.max(1, Math.round(originalW * scale)),
+      height: Math.max(1, Math.round(originalH * scale)),
+    };
+  }
+
+  function resizePlan(image, values) {
+    const preset = values.preset || "custom";
+    const originalW = Math.max(1, Number(image.width || image.image?.naturalWidth || image.image?.width || 1));
+    const originalH = Math.max(1, Number(image.height || image.image?.naturalHeight || image.image?.height || 1));
+    if (preset === "square-1080") return { width: 1080, height: 1080 };
+    if (preset === "story-1080x1920") return { width: 1080, height: 1920 };
+    if (preset === "thumbnail-1280x720") return { width: 1280, height: 720 };
+    if (preset === "profile-512") return { width: 512, height: 512 };
+    const width = clampNumber(Number(String(values.width || "").replace(/\D/g, "")) || 0, 1, 6000);
+    const heightInput = Number(String(values.height || "").replace(/\D/g, "")) || 0;
+    const height = heightInput ? clampNumber(heightInput, 1, 6000) : Math.max(1, Math.round(width * originalH / originalW));
+    return { width, height };
+  }
+
+  function renderImageToCanvas(image, width, height, fitMode, background) {
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d");
+    if (background && background !== "transparent") {
+      ctx.fillStyle = background;
+      ctx.fillRect(0, 0, width, height);
+    } else {
+      ctx.clearRect(0, 0, width, height);
+    }
+    const imageW = image.naturalWidth || image.width || 1;
+    const imageH = image.naturalHeight || image.height || 1;
+    const scale = fitMode === "cover" ? Math.max(width / imageW, height / imageH) : Math.min(width / imageW, height / imageH);
+    const drawW = imageW * scale;
+    const drawH = imageH * scale;
+    const x = (width - drawW) / 2;
+    const y = (height - drawH) / 2;
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(0, 0, width, height);
+    ctx.clip();
+    ctx.drawImage(image, x, y, drawW, drawH);
+    ctx.restore();
+    return canvas;
+  }
+
+  function canvasToImageBlob(canvas, format, quality) {
+    const mime = imageMimeType(format);
+    const dataUrl = canvas.toDataURL(mime, normalizeQuality(quality));
+    return dataUrlToBlob(dataUrl);
+  }
+
+  function dataUrlToBlob(dataUrl) {
+    const [header, body] = String(dataUrl).split(",");
+    const mime = (header.match(/data:([^;]+)/) || [])[1] || "application/octet-stream";
+    const binary = atob(body || "");
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i += 1) bytes[i] = binary.charCodeAt(i);
+    return new Blob([bytes], { type: mime });
+  }
+
+  function normalizeQuality(value) {
+    return clampNumber(Number(value) || 0.82, 0.35, 0.98);
+  }
+
+  function clampNumber(value, min, max) {
+    return Math.min(max, Math.max(min, Number(value) || min));
+  }
+
+  function imageMimeType(format) {
+    if (format === "png") return "image/png";
+    if (format === "webp") return "image/webp";
+    return "image/jpeg";
+  }
+
+  function imageExtension(format) {
+    return format === "jpeg" ? "jpg" : format === "webp" ? "webp" : "png";
+  }
+
+  function imageFormatLabel(format) {
+    return format === "jpeg" ? "JPG" : format === "webp" ? "WebP" : "PNG";
+  }
+
+  function fileBaseName(name) {
+    const clean = String(name || "image").replace(/\.[^.]+$/, "");
+    return slugify(clean || "image");
+  }
+
   function drawImageInBox(ctx, image, box, fill) {
     const imageW = image.naturalWidth || image.width || 1;
     const imageH = image.naturalHeight || image.height || 1;
@@ -5146,8 +5679,10 @@
     ctx.beginPath();
     ctx.rect(box.x, box.y, box.width, box.height);
     ctx.clip();
-    ctx.fillStyle = "#f7faf8";
-    ctx.fillRect(box.x, box.y, box.width, box.height);
+    if (box.x || box.y) {
+      ctx.fillStyle = "#f7faf8";
+      ctx.fillRect(box.x, box.y, box.width, box.height);
+    }
     ctx.drawImage(image, x, y, drawW, drawH);
     ctx.restore();
   }
@@ -6447,36 +6982,38 @@
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error("Metrics unavailable");
       const rows = (data.tools || []).slice().sort((a, b) => {
-        const bScore = (b.download_pdf || 0) * 3 + (b.generate_pdf || 0);
-        const aScore = (a.download_pdf || 0) * 3 + (a.generate_pdf || 0);
+        const bScore = ((b.download_pdf || 0) + (b.download_file || 0)) * 3 + (b.generate_pdf || 0) + (b.generate_file || 0);
+        const aScore = ((a.download_pdf || 0) + (a.download_file || 0)) * 3 + (a.generate_pdf || 0) + (a.generate_file || 0);
         return bScore - aScore || String(a.tool).localeCompare(String(b.tool));
       });
       const sourceRows = (data.sources || []).slice().sort((a, b) => {
-        const bScore = (b.download_pdf || 0) * 3 + (b.generate_pdf || 0) + (b.page_view || 0);
-        const aScore = (a.download_pdf || 0) * 3 + (a.generate_pdf || 0) + (a.page_view || 0);
+        const bScore = ((b.download_pdf || 0) + (b.download_file || 0)) * 3 + (b.generate_pdf || 0) + (b.generate_file || 0) + (b.page_view || 0);
+        const aScore = ((a.download_pdf || 0) + (a.download_file || 0)) * 3 + (a.generate_pdf || 0) + (a.generate_file || 0) + (a.page_view || 0);
         return bScore - aScore || String(a.source).localeCompare(String(b.source));
       });
-      const activeSourceRows = sourceRows.filter((row) => (row.page_view || 0) || (row.generate_pdf || 0) || (row.download_pdf || 0));
-      const activeRows = rows.filter((row) => (row.download_pdf || 0) || (row.generate_pdf || 0) || (row.limit_hit || 0));
+      const activeSourceRows = sourceRows.filter((row) => (row.page_view || 0) || (row.generate_pdf || 0) || (row.download_pdf || 0) || (row.generate_file || 0) || (row.download_file || 0));
+      const activeRows = rows.filter((row) => (row.download_pdf || 0) || (row.generate_pdf || 0) || (row.download_file || 0) || (row.generate_file || 0) || (row.limit_hit || 0));
       const displayRows = activeRows.length ? activeRows : rows;
+      const totalGenerations = (data.totals.generate_pdf || 0) + (data.totals.generate_file || 0);
+      const totalDownloads = (data.totals.download_pdf || 0) + (data.totals.download_file || 0);
       target.innerHTML = `
         <div class="metric-grid compact">
           <div class="metric-tile"><strong>${data.totals.page_view || 0}</strong><span>live page views</span></div>
-          <div class="metric-tile"><strong>${data.totals.generate_pdf || 0}</strong><span>live generations</span></div>
-          <div class="metric-tile"><strong>${data.totals.download_pdf || 0}</strong><span>live downloads</span></div>
+          <div class="metric-tile"><strong>${totalGenerations}</strong><span>live generations</span></div>
+          <div class="metric-tile"><strong>${totalDownloads}</strong><span>live downloads</span></div>
           <div class="metric-tile"><strong>${data.totals.ai_ideas_apply || 0}</strong><span>AI applies</span></div>
         </div>
         <p class="help">Tools are sorted by download and generation signal so the next SEO or ad placement decision starts from actual usage.</p>
         <div class="preview-stage">
           <table class="event-table">
             <thead><tr><th>Source</th><th>Views</th><th>Generations</th><th>Downloads</th></tr></thead>
-            <tbody>${(activeSourceRows.length ? activeSourceRows : sourceRows).map((row) => `<tr><td>${escapeHtml(row.source)}</td><td>${row.page_view || 0}</td><td>${row.generate_pdf || 0}</td><td>${row.download_pdf || 0}</td></tr>`).join("")}</tbody>
+            <tbody>${(activeSourceRows.length ? activeSourceRows : sourceRows).map((row) => `<tr><td>${escapeHtml(row.source)}</td><td>${row.page_view || 0}</td><td>${(row.generate_pdf || 0) + (row.generate_file || 0)}</td><td>${(row.download_pdf || 0) + (row.download_file || 0)}</td></tr>`).join("")}</tbody>
           </table>
         </div>
         <div class="preview-stage">
           <table class="event-table">
             <thead><tr><th>Tool</th><th>Downloads</th><th>Generations</th><th>Limit hits</th></tr></thead>
-            <tbody>${displayRows.map((row) => `<tr><td>${escapeHtml(row.tool)}</td><td>${row.download_pdf || 0}</td><td>${row.generate_pdf || 0}</td><td>${row.limit_hit || 0}</td></tr>`).join("")}</tbody>
+            <tbody>${displayRows.map((row) => `<tr><td>${escapeHtml(row.tool)}</td><td>${(row.download_pdf || 0) + (row.download_file || 0)}</td><td>${(row.generate_pdf || 0) + (row.generate_file || 0)}</td><td>${row.limit_hit || 0}</td></tr>`).join("")}</tbody>
           </table>
         </div>
       `;

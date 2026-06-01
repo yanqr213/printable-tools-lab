@@ -2,7 +2,7 @@ const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pa
 
 const SITE_SUMMARY = {
   name: "PrintableTools Lab",
-  description: "Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  description: "Free browser-based PDF generators, no-upload PDF tools, and local image tools for compressing images, resizing images, converting image formats, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   audience: "Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, and household planners.",
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
@@ -10,6 +10,9 @@ const SITE_SUMMARY = {
 const HIGH_INTENT_TOOL_PATHS = [
   "tools/image-to-pdf",
   "tools/multi-image-pdf",
+  "tools/compress-image",
+  "tools/resize-image",
+  "tools/convert-image",
   "tools/merge-pdf",
   "tools/split-pdf",
   "tools/pdf-page-numbers",
@@ -48,6 +51,21 @@ const TOOL_FINDER_ROWS = [
     need: "I need one PDF with several image pages",
     toolPath: "tools/multi-image-pdf",
     why: "Best when each image should become its own PDF page, such as receipts, scans, or phone photos.",
+  },
+  {
+    need: "I need to make an image file smaller",
+    toolPath: "tools/compress-image",
+    why: "Best for reducing a JPG, PNG, or WebP file before uploading it to a form, email, marketplace, or profile.",
+  },
+  {
+    need: "I need to resize an image to exact dimensions",
+    toolPath: "tools/resize-image",
+    why: "Best for changing image width, height, square posts, thumbnails, profile pictures, and story-sized images locally.",
+  },
+  {
+    need: "I need to convert JPG, PNG, or WebP",
+    toolPath: "tools/convert-image",
+    why: "Best for changing the image format without sending the file to an online converter server.",
   },
   {
     need: "I have plain text and need a simple PDF",
@@ -226,6 +244,51 @@ const landingPages = [
       ["Practical limits", "Very large images can make large PDFs. Resize or crop photos first if the receiving website has strict upload limits."],
     ],
     relatedTools: ["tools/image-to-pdf", "tools/text-to-pdf", "tools/receipt-generator"],
+  },
+  {
+    path: "compress-image-no-upload",
+    title: "Compress Image Without Uploading",
+    description: "Compress JPG, PNG, or WebP images in your browser without uploading private files to an image compressor server.",
+    headline: "Compress image without uploading",
+    lead: "Choose an image, pick a compression level, and download a smaller file locally in the browser. This is useful before submitting forms, emailing photos, uploading marketplace images, or reducing screenshots.",
+    primaryTool: "tools/compress-image",
+    intent: "compress image online, reduce image size, no upload",
+    sections: [
+      ["Why this is a bigger traffic test", "Image compression is a broad utility search, and many users need it right before an upload fails because the file is too large."],
+      ["Local-first workflow", "The image is loaded into your browser, resized or re-encoded there, and downloaded as a new file. The tool is designed for ordinary files, not huge batch processing."],
+      ["Best fit", "Use it for profile pictures, marketplace listings, support tickets, form uploads, email attachments, screenshots, and document photos."],
+    ],
+    relatedTools: ["tools/resize-image", "tools/convert-image", "tools/image-to-pdf"],
+  },
+  {
+    path: "resize-image-no-upload",
+    title: "Resize Image Without Uploading",
+    description: "Resize a JPG, PNG, or WebP image by width, height, or common preset locally in your browser.",
+    headline: "Resize image without uploading",
+    lead: "Select an image, choose a custom width or a common preset, then download a resized copy without creating an account or uploading the file.",
+    primaryTool: "tools/resize-image",
+    intent: "resize image online, change image dimensions, no upload",
+    sections: [
+      ["The urgent user problem", "Image size requirements show up in job portals, ID forms, seller platforms, social profiles, school portals, and support forms. A fast no-upload resizer solves that moment."],
+      ["Fit or crop", "Fit inside keeps the whole image visible. Fill and crop is better when the target size must be exact, such as a square profile image or thumbnail."],
+      ["Before uploading elsewhere", "Open the downloaded image and confirm important content is still visible, especially faces, text, IDs, product details, or form screenshots."],
+    ],
+    relatedTools: ["tools/compress-image", "tools/convert-image", "tools/image-to-pdf"],
+  },
+  {
+    path: "convert-image-format-no-upload",
+    title: "Convert Image Format Without Uploading",
+    description: "Convert JPG, PNG, and WebP image formats locally in your browser without uploading the source image.",
+    headline: "Convert image format without uploading",
+    lead: "Turn a JPG, PNG, or WebP image into another common format in the browser. Use it when a website rejects the current file type or when you need a lighter web-friendly image.",
+    primaryTool: "tools/convert-image",
+    intent: "convert image format, JPG to PNG, PNG to WebP, no upload",
+    sections: [
+      ["Common format mismatch", "Many upload forms accept only one image type. A local converter helps users switch file format without sending private images to a server."],
+      ["Format choices", "JPG is useful for photos and small file size. PNG is useful for sharp graphics. WebP is often smaller for web use when the receiving site accepts it."],
+      ["Review the result", "After conversion, check that transparency, background color, and image clarity still match the destination requirement."],
+    ],
+    relatedTools: ["tools/compress-image", "tools/resize-image", "tools/multi-image-pdf"],
   },
   {
     path: "text-to-pdf-no-signup",
@@ -821,6 +884,33 @@ const tools = [
     ],
   },
   {
+    path: "tools/compress-image",
+    title: "Compress Image Online",
+    description: "Compress JPG, PNG, or WebP images locally in your browser without uploading files.",
+    body: [
+      "Select one image, choose a compression level and maximum width, then download a smaller JPG, PNG, or WebP file.",
+      "Image compression is a broad urgent search category because users often hit upload size limits on forms, emails, profiles, marketplaces, and support portals.",
+    ],
+  },
+  {
+    path: "tools/resize-image",
+    title: "Resize Image Online",
+    description: "Resize a JPG, PNG, or WebP image locally by width, height, or common social sizes without uploading it.",
+    body: [
+      "Select one image, choose a custom size or preset, then export a resized copy as JPG, PNG, or WebP.",
+      "Image resizing reaches a larger audience than printable-only pages because many sites require exact dimensions before an upload succeeds.",
+    ],
+  },
+  {
+    path: "tools/convert-image",
+    title: "Convert Image Format",
+    description: "Convert JPG, PNG, and WebP images locally in your browser without uploading the file.",
+    body: [
+      "Select one image and export it as JPG, PNG, or WebP while keeping the conversion in the browser.",
+      "Format conversion is a practical utility need when an upload form rejects the current image type or a user wants a smaller web-friendly copy.",
+    ],
+  },
+  {
     path: "tools/merge-pdf",
     title: "Merge PDF Tool",
     description: "Combine several PDF files into one PDF in your browser without uploading documents.",
@@ -1035,6 +1125,9 @@ const guides = [
   ["guides/free-image-to-pdf-converter", "Free image to PDF converter", "Convert a JPG, PNG, or WebP image into a one-page PDF without uploading files.", "Image-to-PDF searches are urgent: people often need to submit a document, receipt, form, or photo as a PDF. This converter keeps the file in the browser instead of uploading it to a server."],
   ["guides/jpg-to-pdf-without-uploading", "JPG to PDF without uploading", "Make a PDF from a JPG file in the browser when you do not want to send the image to a conversion server.", "Photos of receipts, IDs, forms, and school documents can contain private information. A local converter is a safer first choice because the image is drawn into a PDF on your device."],
   ["guides/multiple-images-to-pdf-without-uploading", "Multiple images to PDF without uploading", "Combine several JPG, PNG, or WebP images into one multi-page PDF in the browser.", "Multi-image PDF conversion is useful for receipts, homework pages, forms, screenshots, and photo scans that need to be submitted together. A browser-side workflow avoids sending those files to a conversion server."],
+  ["guides/compress-image-without-uploading", "Compress image without uploading", "Reduce JPG, PNG, or WebP file size in the browser before uploading elsewhere.", "Image compression searches often happen after a form rejects a file as too large. A no-upload workflow lets the user make a smaller copy locally before trying again."],
+  ["guides/resize-image-without-uploading", "Resize image without uploading", "Change image width, height, or preset size locally in the browser.", "Image resizing is useful for profile photos, thumbnails, marketplace listings, ID forms, and school portals that require exact dimensions."],
+  ["guides/convert-image-format-without-uploading", "Convert image format without uploading", "Convert JPG, PNG, and WebP files locally when a website requires a different image format.", "A format converter solves a common mismatch: the image looks fine, but the receiving site accepts only JPG, PNG, or WebP."],
   ["guides/merge-pdf-without-uploading", "Merge PDF without uploading", "Combine several PDF files into one PDF locally in your browser.", "People often need one combined PDF for applications, school packets, receipts, or client documents. A browser-side merge avoids sending private files to a converter server."],
   ["guides/split-pdf-without-uploading", "Split PDF without uploading", "Extract selected pages from a PDF without uploading the document.", "PDF splitting is useful when a larger packet contains only a few pages you need to send. Page ranges should be checked carefully before sharing."],
   ["guides/add-page-numbers-to-pdf", "Add page numbers to PDF", "Add simple visible page numbers to an existing PDF in the browser.", "Page numbers help reviewers refer to pages in packets, drafts, reports, and handouts. A local tool can add simple numbering without a full PDF editor."],
@@ -1096,13 +1189,19 @@ const keywordClusters = [
     ],
   },
   {
-    title: "Everyday utility PDFs",
-    description: "High-intent PDF tools for image conversion, existing PDF edits, text conversion, labels, checklists, sign-in sheets, graph paper, and travel paperwork.",
+    title: "Everyday file utilities",
+    description: "High-intent image and PDF tools for compression, resizing, format conversion, existing PDF edits, text conversion, labels, checklists, sign-in sheets, graph paper, and travel paperwork.",
     links: [
       ["Image to PDF converter", "tools/image-to-pdf"],
       ["JPG to PDF without uploading", "jpg-to-pdf-no-upload"],
       ["Multiple images to PDF", "tools/multi-image-pdf"],
       ["Multiple images to PDF without uploading", "multiple-images-to-pdf-no-upload"],
+      ["Compress image", "tools/compress-image"],
+      ["Compress image without uploading", "compress-image-no-upload"],
+      ["Resize image", "tools/resize-image"],
+      ["Resize image without uploading", "resize-image-no-upload"],
+      ["Convert image format", "tools/convert-image"],
+      ["Convert image format without uploading", "convert-image-format-no-upload"],
       ["Merge PDF without uploading", "merge-pdf-no-upload"],
       ["Split PDF without uploading", "split-pdf-no-upload"],
       ["Add page numbers to PDF", "add-page-numbers-to-pdf"],
@@ -1185,21 +1284,21 @@ const keywordClusters = [
 const pages = [
   {
     path: "",
-    title: "Free Printable PDF Generators",
-    description: "Create image-to-PDF conversions, invoices, receipts, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free printable PDF files.",
+    title: "Free Printable PDF and Image Tools",
+    description: "Create image compression, image resizing, format conversion, image-to-PDF conversions, invoices, receipts, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free browser exports.",
     html: `
       <section class="shell hero">
         <div>
           <h1>Make useful printable PDFs in under a minute.</h1>
-          <p>Free browser-based generators for image conversion, no-upload PDF edits, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
+          <p>Free browser-based generators for image compression, image resizing, image format conversion, no-upload PDF edits, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free PDF tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>44</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>47</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>79</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>82</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -1247,8 +1346,11 @@ const pages = [
           <li><a href="/tools/monthly-calendar/">Monthly Calendar Generator</a></li>
           <li><a href="/tools/meal-planner/">Meal Planner Generator</a></li>
           <li><a href="/tools/image-to-pdf/">Image to PDF Converter</a></li>
-          <li><a href="/tools/multi-image-pdf/">Multiple Images to PDF Converter</a></li>
-          <li><a href="/tools/merge-pdf/">Merge PDF Tool</a></li>
+        <li><a href="/tools/multi-image-pdf/">Multiple Images to PDF Converter</a></li>
+          <li><a href="/tools/compress-image/">Compress Image Online</a></li>
+          <li><a href="/tools/resize-image/">Resize Image Online</a></li>
+          <li><a href="/tools/convert-image/">Convert Image Format</a></li>
+        <li><a href="/tools/merge-pdf/">Merge PDF Tool</a></li>
           <li><a href="/tools/split-pdf/">Split PDF Tool</a></li>
           <li><a href="/tools/pdf-page-numbers/">Add Page Numbers to PDF</a></li>
           <li><a href="/tools/rotate-pdf/">Rotate PDF Pages</a></li>
@@ -1271,25 +1373,25 @@ const pages = [
   {
     path: "tools",
     title: "Free PDF Tools",
-    description: "Browse free printable PDF tools for image conversion, business paperwork, local promotion printables, labels, career documents, calendars, meal planning, worksheets, and classroom routines.",
+    description: "Browse free printable PDF and image tools for compression, resizing, format conversion, PDF edits, business paperwork, local promotion printables, labels, career documents, calendars, meal planning, worksheets, and classroom routines.",
     html: toolsIndexHtml(),
   },
   {
     path: "free-pdf-tools",
     title: "Free PDF Tools Without Signup",
-    description: "Start with free browser PDF tools for image conversion, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, certificates, checklists, and printable pages.",
+    description: "Start with free browser PDF and image tools for image compression, resizing, format conversion, image-to-PDF, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, certificates, checklists, and printable pages.",
     html: freePdfToolsHtml(),
   },
   {
     path: "pdf-tool-finder",
     title: "Which Free PDF Tool Should I Use?",
-    description: "Find the right free PDF generator for images, text, invoices, receipts, labels, barcodes, flyers, coupons, timesheets, resumes, certificates, checklists, graph paper, and event sheets.",
+    description: "Find the right free PDF or image tool for compression, resizing, images, text, invoices, receipts, labels, barcodes, flyers, coupons, timesheets, resumes, certificates, checklists, graph paper, and event sheets.",
     html: pdfToolFinderHtml(),
   },
   {
     path: "submit-directory",
     title: "PrintableTools Lab Directory Submission Pack",
-    description: "Copy-ready directory submission details, screenshots, core links, and compliance notes for listing PrintableTools Lab as a free no-signup PDF tool site.",
+    description: "Copy-ready directory submission details, screenshots, core links, and compliance notes for listing PrintableTools Lab as a free no-signup PDF and image tool site.",
     html: directorySubmissionHtml(),
   },
   ...landingPages.map((page) => ({
@@ -1314,8 +1416,8 @@ const pages = [
   {
     path: "about",
     title: "About PrintableTools Lab",
-    description: "PrintableTools Lab makes quick, practical PDF generators for families, teachers, tutors, and home organizers.",
-    html: `<article class="article-shell article"><h1>About PrintableTools Lab</h1><p>PrintableTools Lab makes useful printable pages fast to make, easy to print, and readable on ordinary home or school printers.</p><p>The current version focuses on practical browser-side PDF work: image conversion, business documents, career documents, planning pages, classroom resources, and household checklists.</p></article>`,
+    description: "PrintableTools Lab makes quick, practical PDF generators and image tools for families, small businesses, teachers, tutors, and home organizers.",
+    html: `<article class="article-shell article"><h1>About PrintableTools Lab</h1><p>PrintableTools Lab makes useful printable pages and file utilities fast to make, easy to review, and practical on ordinary browsers.</p><p>The current version focuses on browser-side PDF and image work: image compression, image resizing, image format conversion, image-to-PDF conversion, business documents, career documents, planning pages, classroom resources, and household checklists.</p></article>`,
   },
   {
     path: "privacy",
@@ -1373,6 +1475,9 @@ const GUIDE_HINTS_FOR_LINKS = {
   "meal-planner": ["meal planner", "meal plan", "grocery"],
   "image-to-pdf": ["image to PDF", "JPG to PDF"],
   "multi-image-pdf": ["multiple images", "image to PDF"],
+  "compress-image": ["compress image", "image compressor", "reduce image"],
+  "resize-image": ["resize image", "image resizer"],
+  "convert-image": ["convert image", "JPG to PNG", "PNG to WebP"],
   "merge-pdf": ["merge PDF"],
   "split-pdf": ["split PDF"],
   "pdf-page-numbers": ["page numbers"],
@@ -1431,6 +1536,7 @@ function siteUrl(pathName) {
 function toolHtml(tool) {
   const details = toolDetails(tool);
   const related = relatedGuideLinks(tool.path);
+  const noun = tool.path.includes("image") && !tool.path.includes("image-to-pdf") && !tool.path.includes("multi-image-pdf") ? "image tool" : "PDF tool";
   return `
       <section class="shell tool-header">
         <a href="/tools/">All tools</a>
@@ -1442,7 +1548,7 @@ function toolHtml(tool) {
         <p><a class="button" href="/${tool.path}/">Open generator</a></p>
       </section>
       <section class="shell section">
-        <h2>How to use this free PDF tool</h2>
+        <h2>How to use this free ${noun}</h2>
         <ol>
           ${details.steps.map((step) => `<li>${escapeHtml(step)}</li>`).join("\n")}
         </ol>
@@ -1472,8 +1578,8 @@ function toolHtml(tool) {
 function toolsIndexHtml() {
   return `
       <section class="shell page-title section">
-        <h1>Free PDF tools</h1>
-        <p>Choose a browser-based generator for business paperwork, job applications, image conversion, text conversion, planning pages, classroom printables, event certificates, checklists, and family routines. Each tool creates a practical PDF without requiring an account.</p>
+        <h1>Free PDF and image tools</h1>
+        <p>Choose a browser-based generator for business paperwork, job applications, image compression, image resizing, format conversion, PDF editing, text conversion, planning pages, classroom printables, event certificates, checklists, and family routines. Each tool creates a practical PDF or image export without requiring an account.</p>
       </section>
       <section class="shell section">
         <h2>Tools by use case</h2>
@@ -1486,7 +1592,7 @@ function toolsIndexHtml() {
         <div class="grid-3">
           ${tools.map((tool) => `<article class="tool-card"><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.description)}</p><a class="button" href="/${tool.path}/">Open generator</a></article>`).join("\n")}
         </div>
-        ${jsonLdHtml(itemListSchema("Free PDF tools", tools))}
+        ${jsonLdHtml(itemListSchema("Free PDF and image tools", tools))}
       </section>`;
 }
 
@@ -1494,8 +1600,8 @@ function freePdfToolsHtml() {
   const groups = [
     {
       title: "No-upload conversion tools",
-      text: "Use these when a photo, scan, existing PDF, or plain text note needs to become the right PDF quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf"],
+      text: "Use these when a photo, scan, existing PDF, or plain text note needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
+      links: ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1515,8 +1621,8 @@ function freePdfToolsHtml() {
   ];
   return `
       <section class="shell page-title section">
-        <h1>Free PDF tools without signup</h1>
-        <p>Open a browser-based generator, edit the sample fields, and download a practical PDF. No account, no surprise download fee, and no ad-click requirement.</p>
+        <h1>Free PDF and image tools without signup</h1>
+        <p>Open a browser-based generator, edit the sample fields, and download a practical PDF or image file. No account, no surprise download fee, and no ad-click requirement.</p>
       </section>
       <section class="shell section">
         <h2>Start with the PDF job</h2>
@@ -1537,15 +1643,15 @@ function freePdfToolsHtml() {
       </section>
       <section class="shell section">
         <h2>Why the tools are free</h2>
-        <p>The validation version is free because the project is testing which PDF jobs attract real search traffic and repeat downloads. If ads are enabled later, they should sit away from generator controls and never become a condition for downloading.</p>
-        <p>For privacy-sensitive jobs, avoid entering unnecessary personal details. Image conversion stays local in the browser; optional AI suggestions are limited to generic writing fields.</p>
+        <p>The validation version is free because the project is testing which document and image jobs attract real search traffic and repeat downloads. If ads are enabled later, they should sit away from generator controls and never become a condition for downloading.</p>
+        <p>For privacy-sensitive jobs, avoid entering unnecessary personal details. Image and PDF processing stays local in the browser; optional AI suggestions are limited to generic writing fields.</p>
       </section>
       <section class="shell section">
-        <h2>All free PDF generators</h2>
+        <h2>All free generators</h2>
         <div class="grid-3">
           ${tools.map((tool) => `<article class="tool-card"><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.description)}</p><a class="button" href="/${tool.path}/">Open generator</a></article>`).join("\n")}
         </div>
-        ${jsonLdHtml(itemListSchema("Free PDF tools without signup", tools))}
+        ${jsonLdHtml(itemListSchema("Free PDF and image tools without signup", tools))}
       </section>`;
 }
 
@@ -1560,13 +1666,14 @@ function pdfToolFinderHtml() {
         <td>${escapeHtml(row.why)}</td>
       </tr>`;
   }).join("\n");
+  const imageTools = ["compress-image", "resize-image", "convert-image", "image-to-pdf", "multi-image-pdf"];
   const pdfEditTools = ["merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf"];
   const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"];
   const personalTools = ["resume-builder", "cover-letter", "resignation-letter", "certificate-generator", "todo-list", "packing-list", "monthly-calendar", "meal-planner", "sign-in-sheet", "graph-paper"];
   return `
       <section class="shell page-title section">
-        <h1>Which free PDF tool should I use?</h1>
-        <p>Start with the job, not the template name. This finder points you to the free browser PDF generator that best matches the document you need right now.</p>
+        <h1>Which free PDF or image tool should I use?</h1>
+        <p>Start with the job, not the template name. This finder points you to the free browser PDF or image tool that best matches the file you need right now.</p>
       </section>
       <section class="shell section">
         <h2>Quick PDF tool finder</h2>
@@ -1588,6 +1695,15 @@ function pdfToolFinderHtml() {
             <p>Use the one-page image converter when layout matters on a single sheet. Use multiple images to PDF when each image should become its own page.</p>
             <p><a class="button" href="/tools/image-to-pdf/">One image PDF</a> <a class="button secondary" href="/tools/multi-image-pdf/">Multi-page PDF</a></p>
           </article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>No-upload image tools</h2>
+        <div class="cluster-links">
+          ${imageTools.map((slug) => {
+            const tool = tools.find((item) => item.path === `tools/${slug}`);
+            return tool ? `<a href="/${tool.path}/">${escapeHtml(tool.title)}</a>` : "";
+          }).join("")}
         </div>
       </section>
       <section class="shell section">
@@ -1620,7 +1736,7 @@ function pdfToolFinderHtml() {
       <section class="shell section">
         <h2>Free tool limits</h2>
         <p>The tools are designed for fast one-page PDFs and simple records. They do not replace legal, tax, accounting, or employment advice. Review every document before sending or printing it.</p>
-        <p>Ads are disabled during validation and should never be used as a condition for downloading a PDF.</p>
+        <p>Ads are disabled during validation and should never be used as a condition for downloading a PDF or image file.</p>
         ${jsonLdHtml(itemListSchema("PDF tool finder", TOOL_FINDER_ROWS.map((row) => tools.find((tool) => tool.path === row.toolPath)).filter(Boolean)))}
       </section>`;
 }
@@ -1629,6 +1745,9 @@ function directorySubmissionHtml() {
   const primaryTools = [
     "image-to-pdf",
     "multi-image-pdf",
+    "compress-image",
+    "resize-image",
+    "convert-image",
     "merge-pdf",
     "split-pdf",
     "watermark-pdf",
@@ -1648,8 +1767,8 @@ function directorySubmissionHtml() {
     ["URL", siteUrl("")],
     ["Category", "Files, Productivity, PDF Tools, Document Tools, Small Business Tools"],
     ["Pricing", "Free"],
-    ["Tagline", "Free no-signup browser PDF generators"],
-    ["Short description", "Create practical PDFs in the browser, including image-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, resumes, certificates, and printable tools."],
+    ["Tagline", "Free no-signup browser PDF and image tools"],
+    ["Short description", "Create practical PDFs and image files in the browser, including image compression, image resizing, image format conversion, image-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, resumes, certificates, and printable tools."],
   ];
   return `
       <section class="shell page-title section">
@@ -1669,7 +1788,7 @@ function directorySubmissionHtml() {
         <h2>Review notes</h2>
         <div class="grid-3">
           <article class="panel"><h3>No signup</h3><p>Core PDF generators open directly in the browser and do not require an account before export.</p></article>
-          <article class="panel"><h3>Free export</h3><p>The validation version keeps PDF downloads free and avoids surprise checkout screens.</p></article>
+          <article class="panel"><h3>Free export</h3><p>The validation version keeps PDF and image downloads free and avoids surprise checkout screens.</p></article>
           <article class="panel"><h3>Ad-safe</h3><p>Ads are disabled during validation and downloads are not gated behind ad clicks or ad views.</p></article>
         </div>
       </section>
@@ -1736,6 +1855,7 @@ function landingPageHtml(page) {
 }
 
 function softwareSchema(tool) {
+  const isImageTool = tool.path === "tools/compress-image" || tool.path === "tools/resize-image" || tool.path === "tools/convert-image";
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -1750,10 +1870,10 @@ function softwareSchema(tool) {
       priceCurrency: "USD",
     },
     featureList: [
-      "Browser-based PDF generation",
+      isImageTool ? "Browser-based image processing" : "Browser-based PDF generation",
       "No account required",
-      "US Letter and A4 support",
-      "One-page printable export",
+      isImageTool ? "No-upload image conversion" : "US Letter and A4 support",
+      isImageTool ? "Local image file export" : "One-page printable export",
     ],
   };
 }
@@ -2069,6 +2189,66 @@ function toolDetails(tool) {
         { q: "Can I add several images?", a: "Yes. Gallery mode places up to four images on one page." },
       ],
     },
+    "compress-image": {
+      steps: [
+        "Open the image compressor and select one JPG, PNG, or WebP image.",
+        "Choose a compression level, maximum width, and output format.",
+        "Review the preview and estimated export settings.",
+        "Download the compressed image and test it in the destination form or upload box.",
+      ],
+      privacy: "Selected image files are loaded into your browser and are not uploaded by the compressor.",
+      limit: "The free version processes one image at a time and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Upload size limit", text: "Make a smaller image when a form, portal, or email rejects the original file." },
+        { title: "Marketplace listing", text: "Reduce product photo size before uploading to a seller dashboard." },
+        { title: "Support ticket", text: "Compress screenshots before attaching them to a help desk, school portal, or client email." },
+      ],
+      faq: [
+        { q: "Are images uploaded?", a: "No. The selected image is processed locally in your browser." },
+        { q: "Which format should I choose?", a: "JPG is usually best for photos, WebP is often smaller for web use, and PNG is useful for sharp graphics." },
+        { q: "Will it always be smaller?", a: "Usually, but PNG output can be larger than JPG or WebP depending on the image content." },
+      ],
+    },
+    "resize-image": {
+      steps: [
+        "Open the image resizer and select one image file.",
+        "Choose a preset or enter a custom width and optional height.",
+        "Pick fit inside or fill and crop depending on whether exact dimensions matter.",
+        "Download the resized image and check that important content is still visible.",
+      ],
+      privacy: "Selected image files are loaded into your browser and are not uploaded by the resizer.",
+      limit: "The free version resizes one image at a time and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Profile image", text: "Resize a photo to a square profile or avatar size." },
+        { title: "Thumbnail", text: "Create a 1280 by 720 thumbnail-style export for previews and posts." },
+        { title: "Form requirement", text: "Meet an upload field that asks for a specific width or height." },
+      ],
+      faq: [
+        { q: "Can I keep the aspect ratio?", a: "Yes. Use a custom width and leave height empty to keep the original ratio." },
+        { q: "What does fill and crop do?", a: "It fills the exact target size and trims the edges when the aspect ratios do not match." },
+        { q: "Are images uploaded?", a: "No. The resize runs in your browser." },
+      ],
+    },
+    "convert-image": {
+      steps: [
+        "Open the image converter and select one JPG, PNG, or WebP file.",
+        "Choose the output format and quality setting.",
+        "Use a JPG background option if the source has transparency.",
+        "Download the converted image and check it before uploading elsewhere.",
+      ],
+      privacy: "Selected image files are loaded into your browser and are not uploaded by the converter.",
+      limit: "The free version converts one image at a time and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Wrong file type", text: "Convert an image when an upload form accepts JPG but not WebP, or PNG but not JPG." },
+        { title: "Web-friendly export", text: "Create a WebP copy when the receiving site accepts it and smaller file size matters." },
+        { title: "Transparent graphic", text: "Keep PNG output for simple graphics where sharp edges or transparency are important." },
+      ],
+      faq: [
+        { q: "Can I convert WebP to JPG?", a: "Yes, when the browser can load the WebP file." },
+        { q: "What happens to transparency in JPG?", a: "JPG does not support transparency, so choose a white or black background before export." },
+        { q: "Are images uploaded?", a: "No. The format conversion runs in your browser." },
+      ],
+    },
     "multi-image-pdf": {
       privacy: "Selected image files are loaded into the browser preview and are not uploaded by the converter.",
       limit: "The free version exports up to eight selected images as a multi-page PDF and uses the same daily generation limit as the other tools.",
@@ -2364,7 +2544,7 @@ function guideHtml(guide) {
         <p class="lead">${escapeHtml(guide.description)}</p>
         <p>${escapeHtml(guide.intro)}</p>
         <h2>Use this guide with the free tools</h2>
-        <p>PrintableTools Lab focuses on one-page PDFs that can be generated quickly, tested with real users, and improved based on downloads and Search Console data.</p>
+        <p>PrintableTools Lab focuses on practical PDFs and image files that can be generated quickly, tested with real users, and improved based on downloads and Search Console data.</p>
         ${slug ? `<p><a class="button" href="/tools/${slug}/">Open related generator</a></p>` : ""}
       </article>`;
 }

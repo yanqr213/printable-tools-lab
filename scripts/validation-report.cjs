@@ -87,9 +87,11 @@ async function readLiveState() {
       today: metrics.today,
       totals: metrics.totals || {},
       todayTotals: metrics.todayTotals || {},
+      totalDownloads: totalDownloads(metrics.totals || {}),
+      totalGenerations: totalGenerations(metrics.totals || {}),
       topTools: (metrics.tools || [])
         .slice()
-        .sort((a, b) => (b.download_pdf || 0) - (a.download_pdf || 0) || (b.generate_pdf || 0) - (a.generate_pdf || 0))
+        .sort((a, b) => toolScore(b) - toolScore(a))
         .slice(0, 8),
     } : null,
   };
@@ -274,7 +276,7 @@ async function readGithubPagesState() {
   };
   try {
     const page = await fetchTextWithTimeout(base);
-    state.pageOk = page.ok && page.text.includes("Free PDF tools without signup");
+    state.pageOk = page.ok && page.text.includes("Free PDF and image tools without signup");
     state.landingPagesLinked = landingPages.filter((landing) => page.text.includes(siteUrl(landing.path))).length;
     const sitemap = await fetchTextWithTimeout(`${base}sitemap.xml`);
     state.sitemapOk = sitemap.ok && sitemap.text.includes("<urlset");
@@ -314,10 +316,10 @@ function evaluateGates(local, live, searchConsole, discovery) {
   const githubPagesSitemap = Array.isArray(searchConsole.githubPagesSitemaps?.sitemap) ? searchConsole.githubPagesSitemaps.sitemap[0] : null;
   const indexed = searchConsole.inspected.filter((item) => item.verdict === "PASS").length;
   const unknown = searchConsole.inspected.filter((item) => /unknown/i.test(item.coverageState || "")).length;
-  const productReady = local.toolCount >= 44
-    && local.guideCount >= 79
-    && local.landingPageCount >= 26
-    && local.indexableRoutes >= 79
+  const productReady = local.toolCount >= 47
+    && local.guideCount >= 82
+    && local.landingPageCount >= 29
+    && local.indexableRoutes >= 168
     && local.sitemapLocCount >= local.indexableRoutes
     && Object.values(local.discoveryAssets).every(Boolean)
     && live.checks["/"]?.ok
@@ -335,9 +337,9 @@ function evaluateGates(local, live, searchConsole, discovery) {
     adsEnabled: local.ads.enabled,
     searchVisible,
     externalDiscoveryReady: discovery.externalDiscoveryReady,
-    continue30Day: (totals.download_pdf || 0) >= 100 || (totals.generate_pdf || 0) >= 300 || (performanceTotals.impressions || 0) > 0,
-    pivot60Day: !searchVisible && (totals.download_pdf || 0) === 0 && (totals.generate_pdf || 0) === 0,
-    review90Day: searchVisible && (totals.download_pdf || 0) > 0 && !local.ads.enabled,
+    continue30Day: ((totals.download_pdf || 0) + (totals.download_file || 0)) >= 100 || ((totals.generate_pdf || 0) + (totals.generate_file || 0)) >= 300 || (performanceTotals.impressions || 0) > 0,
+    pivot60Day: !searchVisible && ((totals.download_pdf || 0) + (totals.download_file || 0)) === 0 && ((totals.generate_pdf || 0) + (totals.generate_file || 0)) === 0,
+    review90Day: searchVisible && ((totals.download_pdf || 0) + (totals.download_file || 0)) > 0 && !local.ads.enabled,
     reasons: {
       productReady: productReady ? [`${local.toolCount} tools, ${local.guideCount} guides, ${local.landingPageCount} high-intent landing pages, sitemap, discovery assets, and live metrics are present.`] : missingProductReasons(local, live),
       adsenseApplyReady: adsenseApplyReady ? ["Product is ready, Search Console has visibility, and a real publisher ID is configured."] : missingAdsenseReasons(local, searchConsole, searchVisible),
@@ -349,9 +351,10 @@ function evaluateGates(local, live, searchConsole, discovery) {
 
 function missingProductReasons(local, live) {
   const reasons = [];
-  if (local.toolCount < 44) reasons.push(`Only ${local.toolCount} tools found; target is 44 or more.`);
-  if (local.guideCount < 79) reasons.push(`Only ${local.guideCount} guides found; target is 79 or more.`);
-  if (local.landingPageCount < 26) reasons.push(`Only ${local.landingPageCount} high-intent landing pages found; target is 26 or more.`);
+  if (local.toolCount < 47) reasons.push(`Only ${local.toolCount} tools found; target is 47 or more.`);
+  if (local.guideCount < 82) reasons.push(`Only ${local.guideCount} guides found; target is 82 or more.`);
+  if (local.landingPageCount < 29) reasons.push(`Only ${local.landingPageCount} high-intent landing pages found; target is 29 or more.`);
+  if (local.indexableRoutes < 168) reasons.push(`Only ${local.indexableRoutes} indexable routes found; target is 168 or more.`);
   if (local.sitemapLocCount < local.indexableRoutes) reasons.push("Sitemap has fewer URLs than the indexable route list.");
   for (const [name, ok] of Object.entries(local.discoveryAssets)) {
     if (!ok) reasons.push(`Missing discovery asset: ${name}.`);
@@ -409,6 +412,8 @@ function summarizeDiscoveryReasons(discovery) {
 
 function buildNextActions(gates, local, live, searchConsole, discovery) {
   const totals = live.metrics?.totals || {};
+  const downloads = totalDownloads(totals);
+  const generations = totalGenerations(totals);
   const actions = [];
   if (!gates.productReady) actions.push("Fix product readiness failures before adding more tools.");
   if (!gates.searchVisible) actions.push("Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.");
@@ -416,7 +421,7 @@ function buildNextActions(gates, local, live, searchConsole, discovery) {
   if (!discovery.indexNow.singleUrlAccepted) actions.push("Fix IndexNow key verification or keep it documented as a non-Google fallback.");
   if (!local.ads.publisherConfigured) actions.push("When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.");
   if (local.ads.publisherConfigured && !local.ads.enabled && gates.searchVisible) actions.push("Apply/continue AdSense review, then enable ads only after approval and placement verification.");
-  if ((totals.download_pdf || 0) < 100 && (totals.generate_pdf || 0) < 300) actions.push("Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.");
+  if (downloads < 100 && generations < 300) actions.push("Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.");
   if (searchConsole.performance?.rows?.length) actions.push("Improve titles and intros for queries with impressions but weak CTR.");
   if (!actions.length) actions.push("Maintain the weekly operating loop and compare Search Console plus download trends.");
   return actions;
@@ -424,6 +429,8 @@ function buildNextActions(gates, local, live, searchConsole, discovery) {
 
 function renderValidationMarkdown(report) {
   const totals = report.live.metrics?.totals || {};
+  const downloads = totalDownloads(totals);
+  const generations = totalGenerations(totals);
   const perf = report.searchConsole.performance;
   const sitemap = Array.isArray(report.searchConsole.sitemaps?.sitemap) ? report.searchConsole.sitemaps.sitemap[0] : null;
   const githubPagesSitemap = Array.isArray(report.searchConsole.githubPagesSitemaps?.sitemap) ? report.searchConsole.githubPagesSitemaps.sitemap[0] : null;
@@ -439,8 +446,8 @@ function renderValidationMarkdown(report) {
     `- Guide pages live in inventory: ${report.local.guideCount}.`,
     `- High-intent landing pages: ${report.local.landingPageCount}.`,
     `- Indexable routes: ${report.local.indexableRoutes}.`,
-    `- Live downloads: ${totals.download_pdf || 0}.`,
-    `- Live generations: ${totals.generate_pdf || 0}.`,
+    `- Live downloads: ${downloads}.`,
+    `- Live generations: ${generations}.`,
     `- Search impressions: ${perf?.totals?.impressions || 0}.`,
     `- Search clicks: ${perf?.totals?.clicks || 0}.`,
     `- External discovery ready: ${yesNo(report.gates.externalDiscoveryReady)}.`,
@@ -490,7 +497,19 @@ function printSummary(report) {
   const totals = report.live.metrics?.totals || {};
   console.log(`Validation report written to ${path.relative(root, reportPath)} and VALIDATION.md`);
   console.log(`Product ready: ${yesNo(report.gates.productReady)} | Tools: ${report.local.toolCount} | Guides: ${report.local.guideCount} | Landing pages: ${report.local.landingPageCount}`);
-  console.log(`Downloads: ${totals.download_pdf || 0} | Generations: ${totals.generate_pdf || 0} | Search visible: ${yesNo(report.gates.searchVisible)} | External discovery: ${yesNo(report.gates.externalDiscoveryReady)} | AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}`);
+  console.log(`Downloads: ${totalDownloads(totals)} | Generations: ${totalGenerations(totals)} | Search visible: ${yesNo(report.gates.searchVisible)} | External discovery: ${yesNo(report.gates.externalDiscoveryReady)} | AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}`);
+}
+
+function totalDownloads(totals) {
+  return (totals.download_pdf || 0) + (totals.download_file || 0);
+}
+
+function totalGenerations(totals) {
+  return (totals.generate_pdf || 0) + (totals.generate_file || 0);
+}
+
+function toolScore(row) {
+  return ((row.download_pdf || 0) + (row.download_file || 0)) * 3 + (row.generate_pdf || 0) + (row.generate_file || 0);
 }
 
 function runLocalCommand(command, args) {
