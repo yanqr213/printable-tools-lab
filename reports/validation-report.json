@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-01T05:03:11.371Z",
+  "generatedAt": "2026-06-01T06:12:05.741Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
-    "toolCount": 44,
-    "guideCount": 79,
-    "landingPageCount": 26,
-    "indexableRoutes": 159,
-    "sitemapLocCount": 159,
-    "generatedToolInventoryAt": "2026-06-01T04:47:28.151Z",
+    "toolCount": 47,
+    "guideCount": 82,
+    "landingPageCount": 29,
+    "indexableRoutes": 168,
+    "sitemapLocCount": 168,
+    "generatedToolInventoryAt": "2026-06-01T06:04:50.596Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -34,21 +34,21 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 16997,
+        "bytes": 18021,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 27157,
+        "bytes": 28836,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 19529,
+        "bytes": 20620,
         "json": null
       },
       "/robots.txt": {
@@ -71,27 +71,27 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 19650,
+        "bytes": 20754,
         "json": null,
-        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDF"
+        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, and local image tools for compressing images, resizing images, converting image formats, merging PDFs,"
       },
       "/feed.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 32280,
+        "bytes": 35122,
         "json": null
       },
       "/tools.json": {
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 35194,
+        "bytes": 36964,
         "json": {
           "name": "PrintableTools Lab",
-          "description": "Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+          "description": "Free browser-based PDF generators, no-upload PDF tools, and local image tools for compressing images, resizing images, converting image formats, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T04:47:28.151Z",
+          "generatedAt": "2026-06-01T06:04:50.596Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -247,91 +247,109 @@
               "title": "Image to PDF Converter",
               "url": "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
               "description": "Convert JPG, PNG, or WebP images into a clean one-page PDF in your browser without uploading files.",
-              "category": "Everyday utility PDFs"
+              "category": "Everyday file utilities"
             },
             {
               "title": "Multiple Images to PDF Converter",
               "url": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
               "description": "Turn several JPG, PNG, or WebP images into one multi-page PDF in your browser without uploading files.",
-              "category": "Everyday utility PDFs"
+              "category": "Everyday file utilities"
+            },
+            {
+              "title": "Compress Image Online",
+              "url": "https://printable-tools-lab.pages.dev/tools/compress-image/",
+              "description": "Compress JPG, PNG, or WebP images locally in your browser without uploading files.",
+              "category": "Everyday file utilities"
+            },
+            {
+              "title": "Resize Image Online",
+              "url": "https://printable-tools-lab.pages.dev/tools/resize-image/",
+              "description": "Resize a JPG, PNG, or WebP image locally by width, height, or common social sizes without uploading it.",
+              "category": "Everyday file utilities"
+            },
+            {
+              "title": "Convert Image Format",
+              "url": "https://printable-tools-lab.pages.dev/tools/convert-image/",
+              "description": "Convert JPG, PNG, and WebP images locally in your browser without uploading the file.",
+              "category": "Everyday file utilities"
             },
             {
               "title": "Merge PDF Tool",
               "url": "https://printable-tools-lab.pages.dev/tools/merge-pdf/",
               "description": "Combine several PDF files into one PDF in your browser without uploading documents.",
-              "category": "Everyday utility PDFs"
+              "category": "Everyday file utilities"
             },
             {
               "title": "Split PDF Tool",
               "url": "https://printable-tools-lab.pages.dev/tools/split-pdf/",
               "description": "Extract selected pages from a PDF in your browser without uploading the document.",
-              "category": "Everyday utility PDFs"
+              "category": "Everyday file utilities"
             },
             {
               "title": "Add Page Numbers to PDF",
               "url": "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/",
               "description": "Add simple page numbers to an existing PDF locally in your browser.",
-              "category": "Everyday utility PDFs"
+              "category": "Everyday file utilities"
             },
             {
               "title": "Rotate PDF Pages",
               "url": "https://printable-tools-lab.pages.dev/tools/rotate-pdf/",
               "description": "Rotate all PDF pages or selected pages locally in your browser without uploading the file.",
-              "category": "Everyday utility PDFs"
+              "category": "Everyday file utilities"
             },
             {
               "title": "Remove Pages from PDF",
               "url": "https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/",
               "description": "Delete selected PDF pages locally in your browser without uploading the document.",
-              "category": "Everyday utility PDFs"
+              "category": "Everyday file utilities"
             },
             {
               "title": "Reorder PDF Pages",
               "url": "https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/",
               "description": "Rearrange PDF pages by typing a new page order, all locally in your browser.",
-              "category": "Everyday utility PDFs"
+              "category": "Everyday file utilities"
             },
             {
               "title": "Add Watermark to PDF",
               "url": "https://printable-tools-lab.pages.dev/tools/watermark-pdf/",
               "description": "Add a light text watermark to all pages or selected PDF pages locally in your browser.",
-              "category": "Everyday utility PDFs"
+              "category": "Everyday file utilities"
             },
             {
               "title": "Stamp PDF Pages",
               "url": "https://printable-tools-lab.pages.dev/tools/stamp-pdf/",
               "description": "Add a simple APPROVED, PAID, DRAFT, or custom text stamp to PDF pages without uploading the file.",
-              "category": "Everyday utility PDFs"
+              "category": "Everyday file utilities"
             },
             {
               "title": "Add Signature Text to PDF",
               "url": "https://printable-tools-lab.pages.dev/tools/sign-pdf/",
               "description": "Place a typed signature block on a selected PDF page locally in your browser.",
-              "category": "Everyday utility PDFs"
+              "category": "Everyday file utilities"
             },
             {
               "title": "Text to PDF Converter",
               "url": "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
               "description": "Paste plain text and download a clean one-page PDF without an account or file upload.",
-              "category": "Everyday utility PDFs"
+              "category": "Everyday file utilities"
             },
             {
               "title": "Sign-in Sheet Generator",
               "url": "https://printable-tools-lab.pages.dev/tools/sign-in-sheet/",
               "description": "Create a printable sign-in sheet PDF for events, classrooms, workshops, meetings, or visitor logs.",
-              "category": "Everyday utility PDFs"
+              "category": "Everyday file utilities"
             },
             {
               "title": "Graph Paper Generator",
               "url": "https://printable-tools-lab.pages.dev/tools/graph-paper/",
               "description": "Generate printable graph paper PDF with quarter-inch, half-inch, or small grid spacing for math, notes, and design sketches.",
-              "category": "Everyday utility PDFs"
+              "category": "Everyday file utilities"
             },
             {
               "title": "Packing List Generator",
               "url": "https://printable-tools-lab.pages.dev/tools/packing-list/",
               "description": "Make a printable packing list PDF for travel, school trips, business travel, camping, or family vacations.",
-              "category": "Everyday utility PDFs"
+              "category": "Everyday file utilities"
             },
             {
               "title": "Receipt Generator",
@@ -355,7 +373,7 @@
               "title": "To Do List Generator",
               "url": "https://printable-tools-lab.pages.dev/tools/todo-list/",
               "description": "Build a printable checklist PDF for errands, work tasks, study sessions, home projects, or event prep.",
-              "category": "Everyday utility PDFs"
+              "category": "Everyday file utilities"
             }
           ],
           "guides": [
@@ -655,6 +673,21 @@
               "description": "Combine several JPG, PNG, or WebP images into one multi-page PDF in the browser."
             },
             {
+              "title": "Compress image without uploading",
+              "url": "https://printable-tools-lab.pages.dev/guides/compress-image-without-uploading/",
+              "description": "Reduce JPG, PNG, or WebP file size in the browser before uploading elsewhere."
+            },
+            {
+              "title": "Resize image without uploading",
+              "url": "https://printable-tools-lab.pages.dev/guides/resize-image-without-uploading/",
+              "description": "Change image width, height, or preset size locally in the browser."
+            },
+            {
+              "title": "Convert image format without uploading",
+              "url": "https://printable-tools-lab.pages.dev/guides/convert-image-format-without-uploading/",
+              "description": "Convert JPG, PNG, and WebP files locally when a website requires a different image format."
+            },
+            {
               "title": "Merge PDF without uploading",
               "url": "https://printable-tools-lab.pages.dev/guides/merge-pdf-without-uploading/",
               "description": "Combine several PDF files into one PDF locally in your browser."
@@ -761,12 +794,12 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 12644,
+        "bytes": 13990,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T04:47:28.151Z",
-          "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
+          "generatedAt": "2026-06-01T06:04:50.596Z",
+          "positioning": "Free no-signup browser PDF and image tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
           "opensearch": "https://printable-tools-lab.pages.dev/opensearch.xml",
@@ -777,6 +810,9 @@
             "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
             "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
+            "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
+            "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
+            "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
             "https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/",
             "https://printable-tools-lab.pages.dev/merge-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/split-pdf-no-upload/",
@@ -802,6 +838,9 @@
             "https://printable-tools-lab.pages.dev/free-inventory-sheet-generator/",
             "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
             "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
+            "https://printable-tools-lab.pages.dev/tools/compress-image/",
+            "https://printable-tools-lab.pages.dev/tools/resize-image/",
+            "https://printable-tools-lab.pages.dev/tools/convert-image/",
             "https://printable-tools-lab.pages.dev/tools/merge-pdf/",
             "https://printable-tools-lab.pages.dev/tools/split-pdf/",
             "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/",
@@ -847,6 +886,24 @@
               "url": "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
               "intent": "combine images into one PDF without upload",
               "tool": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/"
+            },
+            {
+              "title": "Compress Image Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
+              "intent": "compress image online, reduce image size, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-image/"
+            },
+            {
+              "title": "Resize Image Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
+              "intent": "resize image online, change image dimensions, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/"
+            },
+            {
+              "title": "Convert Image Format Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
+              "intent": "convert image format, JPG to PNG, PNG to WebP, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/convert-image/"
             },
             {
               "title": "Text to PDF Converter Without Signup",
@@ -991,10 +1048,10 @@
             "No account required.",
             "No ad interaction gate.",
             "No paid checkout in the validation version.",
-            "No upload for image conversion tools."
+            "No upload for image and PDF utility tools that are marked local-first."
           ],
           "validationGates": {
-            "continue30Day": "100 PDF downloads, 300 tool generations, or growing Search Console impressions.",
+            "continue30Day": "100 file downloads, 300 tool generations, or growing Search Console impressions.",
             "pivot60Day": "If no search exposure or downloads, stop adding printable content and test another ad-supported route.",
             "review90Day": "If traffic exists but ad revenue is weak, improve high-intent pages or test compliant affiliate links before paid features."
           }
@@ -1004,21 +1061,21 @@
         "ok": true,
         "status": 200,
         "contentType": "application/manifest+json; charset=utf-8",
-        "bytes": 1664,
+        "bytes": 1981,
         "json": null
       },
       "/opensearch.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/opensearchdescription+xml; charset=utf-8",
-        "bytes": 534,
+        "bytes": 539,
         "json": null
       },
       "/api/metrics": {
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 5985,
+        "bytes": 8961,
         "json": {
           "ok": true,
           "today": "2026-06-01",
@@ -1026,6 +1083,8 @@
             "page_view": 8,
             "generate_pdf": 0,
             "download_pdf": 1,
+            "generate_file": 0,
+            "download_file": 0,
             "limit_hit": 0,
             "ai_ideas": 0,
             "ai_ideas_apply": 0
@@ -1034,6 +1093,8 @@
             "page_view": 5,
             "generate_pdf": 0,
             "download_pdf": 0,
+            "generate_file": 0,
+            "download_file": 0,
             "limit_hit": 0,
             "ai_ideas": 0,
             "ai_ideas_apply": 0
@@ -1043,6 +1104,8 @@
               "tool": "invoice-generator",
               "generate_pdf": 0,
               "download_pdf": 1,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1050,6 +1113,8 @@
               "tool": "estimate-generator",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1057,6 +1122,8 @@
               "tool": "purchase-order",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1064,6 +1131,8 @@
               "tool": "bill-of-sale",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1071,6 +1140,8 @@
               "tool": "business-card",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1078,6 +1149,8 @@
               "tool": "address-labels",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1085,6 +1158,8 @@
               "tool": "price-tag",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1092,6 +1167,8 @@
               "tool": "flyer-maker",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1099,6 +1176,8 @@
               "tool": "barcode-labels",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1106,6 +1185,8 @@
               "tool": "coupon-maker",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1113,6 +1194,8 @@
               "tool": "packing-slip",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1120,6 +1203,8 @@
               "tool": "work-order",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1127,6 +1212,8 @@
               "tool": "inventory-sheet",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1134,6 +1221,8 @@
               "tool": "resume-builder",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1141,6 +1230,8 @@
               "tool": "cover-letter",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1148,6 +1239,8 @@
               "tool": "resignation-letter",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1155,6 +1248,8 @@
               "tool": "monthly-calendar",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1162,6 +1257,8 @@
               "tool": "meal-planner",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1169,6 +1266,8 @@
               "tool": "image-to-pdf",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1176,6 +1275,35 @@
               "tool": "multi-image-pdf",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "compress-image",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "resize-image",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "convert-image",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1183,6 +1311,8 @@
               "tool": "merge-pdf",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1190,6 +1320,8 @@
               "tool": "split-pdf",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1197,6 +1329,8 @@
               "tool": "pdf-page-numbers",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1204,6 +1338,8 @@
               "tool": "rotate-pdf",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1211,6 +1347,8 @@
               "tool": "remove-pdf-pages",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1218,6 +1356,8 @@
               "tool": "reorder-pdf-pages",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1225,6 +1365,8 @@
               "tool": "watermark-pdf",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1232,6 +1374,8 @@
               "tool": "stamp-pdf",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1239,6 +1383,8 @@
               "tool": "sign-pdf",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1246,6 +1392,8 @@
               "tool": "text-to-pdf",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1253,6 +1401,8 @@
               "tool": "sign-in-sheet",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1260,6 +1410,8 @@
               "tool": "graph-paper",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1267,6 +1419,8 @@
               "tool": "packing-list",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1274,6 +1428,8 @@
               "tool": "receipt-generator",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1281,6 +1437,8 @@
               "tool": "timesheet-generator",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1288,6 +1446,8 @@
               "tool": "certificate-generator",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1295,6 +1455,8 @@
               "tool": "todo-list",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1302,6 +1464,8 @@
               "tool": "rent-receipt",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1309,6 +1473,8 @@
               "tool": "name-tracing",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1316,6 +1482,8 @@
               "tool": "chore-chart",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1323,6 +1491,8 @@
               "tool": "reward-chart",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1330,6 +1500,8 @@
               "tool": "flashcards",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1337,6 +1509,8 @@
               "tool": "weekly-planner",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             },
@@ -1344,6 +1518,8 @@
               "tool": "habit-tracker",
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "limit_hit": 0,
               "ai_ideas_apply": 0
             }
@@ -1354,10 +1530,14 @@
               "page_view": 2,
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "today": {
                 "page_view": 1,
                 "generate_pdf": 0,
-                "download_pdf": 0
+                "download_pdf": 0,
+                "generate_file": 0,
+                "download_file": 0
               }
             },
             {
@@ -1365,10 +1545,14 @@
               "page_view": 0,
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "today": {
                 "page_view": 0,
                 "generate_pdf": 0,
-                "download_pdf": 0
+                "download_pdf": 0,
+                "generate_file": 0,
+                "download_file": 0
               }
             },
             {
@@ -1376,10 +1560,14 @@
               "page_view": 0,
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "today": {
                 "page_view": 0,
                 "generate_pdf": 0,
-                "download_pdf": 0
+                "download_pdf": 0,
+                "generate_file": 0,
+                "download_file": 0
               }
             },
             {
@@ -1387,10 +1575,14 @@
               "page_view": 3,
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "today": {
                 "page_view": 3,
                 "generate_pdf": 0,
-                "download_pdf": 0
+                "download_pdf": 0,
+                "generate_file": 0,
+                "download_file": 0
               }
             },
             {
@@ -1398,10 +1590,14 @@
               "page_view": 0,
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "today": {
                 "page_view": 0,
                 "generate_pdf": 0,
-                "download_pdf": 0
+                "download_pdf": 0,
+                "generate_file": 0,
+                "download_file": 0
               }
             },
             {
@@ -1409,10 +1605,14 @@
               "page_view": 0,
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "today": {
                 "page_view": 0,
                 "generate_pdf": 0,
-                "download_pdf": 0
+                "download_pdf": 0,
+                "generate_file": 0,
+                "download_file": 0
               }
             },
             {
@@ -1420,10 +1620,14 @@
               "page_view": 0,
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "today": {
                 "page_view": 0,
                 "generate_pdf": 0,
-                "download_pdf": 0
+                "download_pdf": 0,
+                "generate_file": 0,
+                "download_file": 0
               }
             },
             {
@@ -1431,10 +1635,14 @@
               "page_view": 0,
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "today": {
                 "page_view": 0,
                 "generate_pdf": 0,
-                "download_pdf": 0
+                "download_pdf": 0,
+                "generate_file": 0,
+                "download_file": 0
               }
             },
             {
@@ -1442,10 +1650,14 @@
               "page_view": 0,
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "today": {
                 "page_view": 0,
                 "generate_pdf": 0,
-                "download_pdf": 0
+                "download_pdf": 0,
+                "generate_file": 0,
+                "download_file": 0
               }
             },
             {
@@ -1453,10 +1665,14 @@
               "page_view": 0,
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "today": {
                 "page_view": 0,
                 "generate_pdf": 0,
-                "download_pdf": 0
+                "download_pdf": 0,
+                "generate_file": 0,
+                "download_file": 0
               }
             },
             {
@@ -1464,10 +1680,14 @@
               "page_view": 0,
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "today": {
                 "page_view": 0,
                 "generate_pdf": 0,
-                "download_pdf": 0
+                "download_pdf": 0,
+                "generate_file": 0,
+                "download_file": 0
               }
             },
             {
@@ -1475,10 +1695,14 @@
               "page_view": 0,
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "today": {
                 "page_view": 0,
                 "generate_pdf": 0,
-                "download_pdf": 0
+                "download_pdf": 0,
+                "generate_file": 0,
+                "download_file": 0
               }
             },
             {
@@ -1486,10 +1710,14 @@
               "page_view": 0,
               "generate_pdf": 0,
               "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
               "today": {
                 "page_view": 0,
                 "generate_pdf": 0,
-                "download_pdf": 0
+                "download_pdf": 0,
+                "generate_file": 0,
+                "download_file": 0
               }
             }
           ]
@@ -1502,6 +1730,8 @@
         "page_view": 8,
         "generate_pdf": 0,
         "download_pdf": 1,
+        "generate_file": 0,
+        "download_file": 0,
         "limit_hit": 0,
         "ai_ideas": 0,
         "ai_ideas_apply": 0
@@ -1510,15 +1740,21 @@
         "page_view": 5,
         "generate_pdf": 0,
         "download_pdf": 0,
+        "generate_file": 0,
+        "download_file": 0,
         "limit_hit": 0,
         "ai_ideas": 0,
         "ai_ideas_apply": 0
       },
+      "totalDownloads": 1,
+      "totalGenerations": 0,
       "topTools": [
         {
           "tool": "invoice-generator",
           "generate_pdf": 0,
           "download_pdf": 1,
+          "generate_file": 0,
+          "download_file": 0,
           "limit_hit": 0,
           "ai_ideas_apply": 0
         },
@@ -1526,6 +1762,8 @@
           "tool": "estimate-generator",
           "generate_pdf": 0,
           "download_pdf": 0,
+          "generate_file": 0,
+          "download_file": 0,
           "limit_hit": 0,
           "ai_ideas_apply": 0
         },
@@ -1533,6 +1771,8 @@
           "tool": "purchase-order",
           "generate_pdf": 0,
           "download_pdf": 0,
+          "generate_file": 0,
+          "download_file": 0,
           "limit_hit": 0,
           "ai_ideas_apply": 0
         },
@@ -1540,6 +1780,8 @@
           "tool": "bill-of-sale",
           "generate_pdf": 0,
           "download_pdf": 0,
+          "generate_file": 0,
+          "download_file": 0,
           "limit_hit": 0,
           "ai_ideas_apply": 0
         },
@@ -1547,6 +1789,8 @@
           "tool": "business-card",
           "generate_pdf": 0,
           "download_pdf": 0,
+          "generate_file": 0,
+          "download_file": 0,
           "limit_hit": 0,
           "ai_ideas_apply": 0
         },
@@ -1554,6 +1798,8 @@
           "tool": "address-labels",
           "generate_pdf": 0,
           "download_pdf": 0,
+          "generate_file": 0,
+          "download_file": 0,
           "limit_hit": 0,
           "ai_ideas_apply": 0
         },
@@ -1561,6 +1807,8 @@
           "tool": "price-tag",
           "generate_pdf": 0,
           "download_pdf": 0,
+          "generate_file": 0,
+          "download_file": 0,
           "limit_hit": 0,
           "ai_ideas_apply": 0
         },
@@ -1568,6 +1816,8 @@
           "tool": "flyer-maker",
           "generate_pdf": 0,
           "download_pdf": 0,
+          "generate_file": 0,
+          "download_file": 0,
           "limit_hit": 0,
           "ai_ideas_apply": 0
         }
@@ -1592,7 +1842,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T05:01:54.262Z",
+          "lastSubmitted": "2026-06-01T06:09:54.574Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -1604,7 +1854,7 @@
       "sitemap": [
         {
           "path": "https://yanqr213.github.io/printable-tools-lab/sitemap.xml",
-          "lastSubmitted": "2026-06-01T05:02:39.263Z",
+          "lastSubmitted": "2026-06-01T06:09:54.579Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -1685,8 +1935,8 @@
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 27,
-      "landingPagesLinked": 26,
+      "sitemapUrlCount": 30,
+      "landingPagesLinked": 29,
       "error": ""
     },
     "indexNow": {
@@ -1712,7 +1962,7 @@
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "44 tools, 79 guides, 26 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "47 tools, 82 guides, 29 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Real AdSense publisher ID is not configured, so ads remain disabled.",
@@ -1729,8 +1979,8 @@
       "externalDiscovery": [
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
-        "GitHub Pages discovery directory is live with 26 landing page link(s).",
-        "GitHub Pages discovery sitemap has 27 URL(s).",
+        "GitHub Pages discovery directory is live with 29 landing page link(s).",
+        "GitHub Pages discovery sitemap has 30 URL(s).",
         "IndexNow key file is reachable from the site root."
       ]
     }
