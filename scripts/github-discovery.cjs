@@ -34,7 +34,6 @@ const topics = [
   "signature-png",
   "passport-photo",
   "text-to-pdf",
-  "markdown-to-pdf",
   "no-signup",
   "free-tools",
 ];
