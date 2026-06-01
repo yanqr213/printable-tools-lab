@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ATS Resume Checker - PrintableTools Lab</title>
+    <meta name="description" content="Check pasted resume text against a job description and download a local ATS keyword and readability report PDF.">
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="ATS Resume Checker">
+    <meta property="og:description" content="Check pasted resume text against a job description and download a local ATS keyword and readability report PDF.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://printable-tools-lab.pages.dev/assets/images/social-card.webp">
+    <meta name="theme-color" content="#176b87">
+    <link rel="canonical" href="https://printable-tools-lab.pages.dev/tools/ats-resume-checker/">
+    <link rel="icon" href="/assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/images/app-icon-192.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="search" type="application/opensearchdescription+xml" title="PrintableTools Lab" href="/opensearch.xml">
+    <link rel="alternate" type="application/rss+xml" title="PrintableTools Lab feed" href="/feed.xml">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/site-config.js"></script>
+    <script src="/assets/vendor/fflate.min.js"></script>
+    <script type="module">
+      import * as pdfjsLib from "/assets/vendor/pdf.min.mjs";
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "/assets/vendor/pdf.worker.min.mjs";
+      window.pdfjsLib = pdfjsLib;
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"><img src="/assets/images/app-icon-192.png" alt=""></span>
+        <span>
+          <strong>PrintableTools Lab</strong>
+          <small>Free PDF and image tools</small>
+        </span>
+      </a>
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a href="/tools/name-tracing/">Name tracing</a>
+        <a href="/tools/chore-chart/">Chore chart</a>
+        <a href="/tools/invoice-generator/">Invoice</a>
+        <a href="/tools/resume-builder/">Resume</a>
+        <a href="/tools/reward-chart/">Reward chart</a>
+        <a href="/tools/flashcards/">Flashcards</a>
+        <a href="/tools/">All tools</a>
+        <a href="/guides/">Guides</a>
+        <a href="/dashboard/">Data</a>
+      </nav>
+    </header>
+
+    <main id="app" tabindex="-1">
+
+      <section class="shell tool-header">
+        <a href="/tools/">All tools</a>
+        <h1>ATS Resume Checker</h1>
+        <p class="lead">Check pasted resume text against a job description and download a local ATS keyword and readability report PDF.</p>
+      </section>
+      <section class="shell section">
+        <p>Paste resume text and a job description, then generate a one-page report with keyword matches, missing honest terms, section checks, readability notes, and next edits.</p>
+<p>ATS checker searches are high-intent because job seekers often need quick feedback before applying, while many alternatives require uploads, accounts, or paid exports.</p>
+        <p><a class="button" href="/tools/ats-resume-checker/">Open generator</a></p>
+      </section>
+      <section class="shell section">
+        <h2>How to use this free PDF tool</h2>
+        <ol>
+          <li>Open the ATS resume checker and paste resume text into the resume field.</li>
+<li>Paste the target job description into the comparison field.</li>
+<li>Review the keyword match, missing honest terms, section checks, and next edits.</li>
+<li>Download the one-page PDF report and edit the resume in your preferred editor before applying.</li>
+        </ol>
+      </section>
+      <section class="shell section">
+        <h2>Good use cases</h2>
+        <div class="grid-3">
+          <article class="panel"><h3>Before applying</h3><p>Compare a resume against a role before submitting an application.</p></article>
+<article class="panel"><h3>Keyword review</h3><p>Find honest missing terms from a job description without keyword stuffing.</p></article>
+<article class="panel"><h3>Format sanity check</h3><p>Check standard headings, measurable evidence, and readable wording.</p></article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Privacy and limits</h2>
+        <p>The checker analyzes pasted text locally in the browser and does not upload your resume or job description.</p>
+        <p>The free version creates one local report PDF per generation and uses the same daily generation limit as the other tools.</p>
+      </section>
+      <section class="shell section">
+        <h2>Frequently asked questions</h2>
+        <div class="faq-list">
+          <details><summary>Does this guarantee ATS success?</summary><p>No. It is a local editing aid and cannot guarantee parser behavior, interviews, or hiring outcomes.</p></details>
+<details><summary>Is my resume uploaded?</summary><p>No. The pasted text is analyzed in your browser.</p></details>
+<details><summary>Should I add every missing keyword?</summary><p>No. Add only truthful skills, tools, and responsibilities you can support.</p></details>
+        </div>
+        <p><a class="tag" href="/guides/free-resume-builder-pdf/">Free resume builder PDF</a> <a class="tag" href="/guides/ats-friendly-resume-pdf-guide/">ATS friendly resume PDF guide</a> <a class="tag" href="/guides/ats-resume-keyword-match/">ATS resume keyword match guide</a></p>
+        <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ATS Resume Checker - PrintableTools Lab","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","url":"https://printable-tools-lab.pages.dev/tools/ats-resume-checker/","description":"Check pasted resume text against a job description and download a local ATS keyword and readability report PDF.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Browser-based ATS resume keyword report","No account required","Local pasted-text analysis","Local PDF report export"]}</script>
+        <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does this guarantee ATS success?","acceptedAnswer":{"@type":"Answer","text":"No. It is a local editing aid and cannot guarantee parser behavior, interviews, or hiring outcomes."}},{"@type":"Question","name":"Is my resume uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The pasted text is analyzed in your browser."}},{"@type":"Question","name":"Should I add every missing keyword?","acceptedAnswer":{"@type":"Answer","text":"No. Add only truthful skills, tools, and responsibilities you can support."}}]}</script>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>PrintableTools Lab</strong>
+        <p>Browser-based PDF and image tools for families, classrooms, and small teams.</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <a href="/about/">About</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="/license/">AI & license disclosure</a>
+      </nav>
+    </footer>
+
+    <script src="/assets/vendor/pdf-lib.min.js"></script>
+    <script src="/assets/vendor/qrcode-generator.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>

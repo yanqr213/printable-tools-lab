@@ -59,6 +59,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - No-signup invoice page: https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/
 - JPG to PDF without upload page: https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/
 - No-signup resume page: https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/
+- Free ATS resume checker page: https://printable-tools-lab.pages.dev/ats-resume-checker-free/
 - Multiple Images to PDF Without Uploading: https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/
 - Compress PDF Without Uploading: https://printable-tools-lab.pages.dev/compress-pdf-no-upload/
 - PDF to JPG Without Uploading: https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/
@@ -94,6 +95,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Add Watermark to PDF Without Uploading: https://printable-tools-lab.pages.dev/watermark-pdf-no-upload/
 - Stamp PDF Without Uploading: https://printable-tools-lab.pages.dev/stamp-pdf-no-upload/
 - Add Signature Text to PDF Without Uploading: https://printable-tools-lab.pages.dev/sign-pdf-no-upload/
+- Free ATS Resume Checker: https://printable-tools-lab.pages.dev/ats-resume-checker-free/
 - Free Receipt Generator Without Signup: https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/
 - Weekly Timesheet PDF Without Signup: https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/
 - Free Certificate Maker Without Signup: https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/
@@ -149,6 +151,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Work Order Generator: https://printable-tools-lab.pages.dev/tools/work-order/
 - Inventory Sheet Generator: https://printable-tools-lab.pages.dev/tools/inventory-sheet/
 - Resume Builder PDF: https://printable-tools-lab.pages.dev/tools/resume-builder/
+- ATS Resume Checker: https://printable-tools-lab.pages.dev/tools/ats-resume-checker/
 - Certificate Generator: https://printable-tools-lab.pages.dev/tools/certificate-generator/
 - To Do List Generator: https://printable-tools-lab.pages.dev/tools/todo-list/
 - Graph Paper Generator: https://printable-tools-lab.pages.dev/tools/graph-paper/

@@ -25,6 +25,7 @@ const topics = [
   "image-converter",
   "qr-code",
   "invoice-generator",
+  "resume-checker",
   "label-generator",
   "image-to-pdf",
   "compress-pdf",
@@ -48,7 +49,7 @@ async function main() {
     method: "PATCH",
     body: {
       homepage: siteUrl(""),
-      description: "Free no-signup browser PDF, image, QR, and text-data tools for PDF compression, passport photos, image compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
+      description: "Free no-signup browser PDF, image, QR, and text-data tools for ATS resume checks, PDF compression, passport photos, image compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
     },
   });
   await github(`/repos/${repo}/topics`, {
@@ -142,6 +143,7 @@ function releaseBody() {
     "",
     "- No account required.",
     "- No surprise download fee.",
+    "- ATS resume checks run locally on pasted text and export a practical PDF report without upload.",
     "- Passport photo sizing, image compression, resizing, cropping, rotation, watermarking, and JPG/PNG/WebP conversion run locally in the browser without uploading files.",
     "- Static QR, WiFi QR, and contact QR generation runs in the browser without a signup wall.",
     "- Small business tools cover invoices, receipts, timesheets, business cards, labels, barcode labels, price tags, flyers, and coupons.",

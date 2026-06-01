@@ -56,6 +56,7 @@ function delay(ms) {
     "/csv-to-pdf-no-upload/",
     "/json-to-pdf-no-upload/",
     "/free-resume-builder-no-signup/",
+    "/ats-resume-checker-free/",
     "/free-receipt-generator-no-signup/",
     "/weekly-timesheet-pdf-no-signup/",
     "/free-certificate-maker-no-signup/",
@@ -92,6 +93,7 @@ function delay(ms) {
     "/tools/work-order/",
     "/tools/inventory-sheet/",
     "/tools/resume-builder/",
+    "/tools/ats-resume-checker/",
     "/tools/cover-letter/",
     "/tools/resignation-letter/",
     "/tools/monthly-calendar/",
@@ -152,6 +154,7 @@ function delay(ms) {
     "/guides/free-work-order-generator-pdf/",
     "/guides/free-inventory-sheet-generator/",
     "/guides/free-resume-builder-pdf/",
+    "/guides/ats-resume-keyword-match/",
     "/guides/free-cover-letter-generator-pdf/",
     "/guides/free-resignation-letter-generator/",
     "/guides/free-monthly-calendar-generator/",
@@ -241,7 +244,7 @@ function delay(ms) {
   const secondPagePdf = await samplePdf("Second document");
   const twoPagePdf = await samplePdf("Split source", 2);
 
-  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/compress-pdf/", "/tools/pdf-to-images/", "/tools/pdf-to-text/", "/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/passport-photo/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/text-to-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
+  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/ats-resume-checker/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/compress-pdf/", "/tools/pdf-to-images/", "/tools/pdf-to-text/", "/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/passport-photo/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/text-to-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
     await page.evaluate(() => localStorage.removeItem("ptl_daily"));
     if (route === "/tools/image-to-pdf/") {
@@ -404,6 +407,28 @@ function delay(ms) {
         return dark > 350 && grid > 2000;
       });
       if (!hasSignaturePreview) throw new Error("Signature PNG preview did not render signature and transparent grid.");
+    }
+    if (route === "/tools/ats-resume-checker/") {
+      await page.fill("#targetRole", "Customer Success Specialist");
+      await page.fill("#jobDescription", "Customer Success Specialist role requiring onboarding, CRM, support tickets, retention, reporting, communication, product feedback, and cross-functional follow-up.");
+      await page.waitForTimeout(500);
+      const hasAtsReport = await page.evaluate(() => {
+        const canvas = document.querySelector("canvas.preview-canvas");
+        if (!canvas) return false;
+        const ctx = canvas.getContext("2d");
+        const data = ctx.getImageData(70, 215, canvas.width - 140, 820).data;
+        let dark = 0;
+        let tinted = 0;
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i];
+          const g = data[i + 1];
+          const b = data[i + 2];
+          if (r < 80 && g < 90 && b < 110) dark += 1;
+          if (Math.max(r, g, b) - Math.min(r, g, b) > 12 && r > 210 && g > 220 && b > 220) tinted += 1;
+        }
+        return dark > 1800 && tinted > 6000;
+      });
+      if (!hasAtsReport) throw new Error("ATS checker report preview did not render analysis panels.");
     }
     if (["/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/"].includes(route)) {
       const hasQrMatrix = await page.evaluate(() => {

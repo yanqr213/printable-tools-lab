@@ -51,6 +51,7 @@ const HIGH_INTENT_TOOL_PATHS = [
   "tools/work-order",
   "tools/inventory-sheet",
   "tools/resume-builder",
+  "tools/ats-resume-checker",
   "tools/certificate-generator",
   "tools/todo-list",
   "tools/graph-paper",
@@ -266,6 +267,11 @@ const TOOL_FINDER_ROWS = [
     need: "I need a job application PDF",
     toolPath: "tools/resume-builder",
     why: "Start with the resume. Use the cover letter tool when the application asks for a separate letter.",
+  },
+  {
+    need: "I need to check my resume against a job description",
+    toolPath: "tools/ats-resume-checker",
+    why: "Best for a local keyword, section, readability, and evidence check before applying.",
   },
   {
     need: "I need an event or classroom printable",
@@ -861,6 +867,21 @@ const landingPages = [
     relatedTools: ["tools/cover-letter", "tools/resignation-letter", "tools/text-to-pdf"],
   },
   {
+    path: "ats-resume-checker-free",
+    title: "Free ATS Resume Checker",
+    description: "Check resume text against a job description locally and download a one-page ATS keyword match report.",
+    headline: "Free ATS resume checker",
+    lead: "Paste your resume text and a job description to get a local keyword, section, readability, and evidence check. The report is designed for practical editing before you apply.",
+    primaryTool: "tools/ats-resume-checker",
+    intent: "ATS resume checker, resume keyword match, job description match",
+    sections: [
+      ["Why this is high intent", "Job seekers often search for ATS checks right before applying. Many resume sites show a score or suggestions only after signup, upload, or paid export."],
+      ["Local text check", "This checker runs on pasted text in the browser. It does not upload your resume and does not promise a universal ATS score, interview, or hiring outcome."],
+      ["What to fix first", "Use the report to compare honest keywords, section headings, measurable achievements, contact details, and overly complex wording against the role."],
+    ],
+    relatedTools: ["tools/resume-builder", "tools/cover-letter", "tools/text-to-pdf"],
+  },
+  {
     path: "free-receipt-generator-no-signup",
     title: "Free Receipt Generator Without Signup",
     description: "Create a printable receipt PDF for a sale, deposit, service payment, reimbursement, or rent record without an account.",
@@ -1232,6 +1253,15 @@ const tools = [
     body: [
       "Create a one-page resume with contact details, summary, experience, skills, and education in a clean single-column layout.",
       "Many resume builders let users type for free and charge at download. This version keeps the first PDF export free to build trust and search demand.",
+    ],
+  },
+  {
+    path: "tools/ats-resume-checker",
+    title: "ATS Resume Checker",
+    description: "Check pasted resume text against a job description and download a local ATS keyword and readability report PDF.",
+    body: [
+      "Paste resume text and a job description, then generate a one-page report with keyword matches, missing honest terms, section checks, readability notes, and next edits.",
+      "ATS checker searches are high-intent because job seekers often need quick feedback before applying, while many alternatives require uploads, accounts, or paid exports.",
     ],
   },
   {
@@ -1653,8 +1683,9 @@ const guides = [
       ["guides/free-inventory-sheet-generator", "Free inventory sheet generator", "Create a printable inventory count sheet for stock checks, market tables, storage bins, and classroom supplies.", "Inventory counts repeat often, so a fast printable sheet can earn return visits when it is easier than opening a spreadsheet."],
       ["guides/stock-count-sheet-pdf-template", "Stock count sheet PDF template", "Use a printable stock count sheet for SKU checks, shelf reviews, craft fairs, event supplies, and restock notes.", "A stock count sheet should include enough columns to compare expected and counted quantities without making the rows hard to write on."],
       ["guides/free-resume-builder-pdf", "Free resume builder PDF", "Build a clean resume PDF without an account, paywall, or complicated design tool.", "Many job seekers do not need a heavy design template. They need a readable document with a clear name, contact line, summary, experience, skills, and education."],
-  ["guides/ats-friendly-resume-pdf-guide", "ATS friendly resume PDF guide", "Format a simple resume PDF so it stays readable for recruiters and applicant tracking systems.", "Use clear section headings, normal text, and a single-column structure. Avoid putting important experience inside images, icons, or complex tables."],
-  ["guides/free-cover-letter-generator-pdf", "Free cover letter generator PDF", "Create a one-page cover letter PDF for job applications without an account or download paywall.", "A job seeker often needs a cover letter right before submitting an application. A fast generator that exports a PDF without signup solves that moment better than a hidden download fee."],
+      ["guides/ats-friendly-resume-pdf-guide", "ATS friendly resume PDF guide", "Format a simple resume PDF so it stays readable for recruiters and applicant tracking systems.", "Use clear section headings, normal text, and a single-column structure. Avoid putting important experience inside images, icons, or complex tables."],
+      ["guides/ats-resume-keyword-match", "ATS resume keyword match guide", "Compare a resume against a job description without stuffing fake keywords or uploading private details.", "Use the job description to find skills, tools, job titles, certifications, and repeated responsibilities that genuinely match your background."],
+      ["guides/free-cover-letter-generator-pdf", "Free cover letter generator PDF", "Create a one-page cover letter PDF for job applications without an account or download paywall.", "A job seeker often needs a cover letter right before submitting an application. A fast generator that exports a PDF without signup solves that moment better than a hidden download fee."],
   ["guides/cover-letter-no-signup", "Cover letter generator without signup", "Use a free cover letter PDF maker when you need a quick application document without creating an account.", "Many writing tools let users type a letter for free and then ask for payment at export. This generator keeps the first one-page PDF free so the value is visible immediately."],
   ["guides/free-resignation-letter-generator", "Free resignation letter generator", "Create a professional resignation letter PDF with last working day, appreciation, and transition wording.", "A resignation letter does not need to be long. It should state the role, company, date, last working day, appreciation, and a simple handoff offer."],
   ["guides/two-weeks-notice-letter-pdf", "Two weeks notice letter PDF", "Make a simple two weeks notice PDF that states your resignation date and final working day.", "A two weeks notice letter works best when the message is direct: you are resigning, your final day is listed, and you will help with transition tasks where possible."],
@@ -1859,9 +1890,12 @@ const keywordClusters = [
     links: [
       ["Resume builder PDF", "tools/resume-builder"],
       ["Free resume builder without signup", "free-resume-builder-no-signup"],
+      ["ATS resume checker", "tools/ats-resume-checker"],
+      ["Free ATS resume checker", "ats-resume-checker-free"],
       ["Cover letter generator", "tools/cover-letter"],
       ["Resignation letter generator", "tools/resignation-letter"],
       ["Free resume builder PDF guide", "guides/free-resume-builder-pdf"],
+      ["ATS resume keyword match guide", "guides/ats-resume-keyword-match"],
     ],
   },
 ];
@@ -1875,15 +1909,15 @@ const pages = [
       <section class="shell hero">
         <div>
           <h1>Make useful PDF, image, and QR files in under a minute.</h1>
-          <p>Free browser-based generators for passport photos, PDF compression, image compression, resizing, cropping, rotation, watermarking, transparent signature PNGs, QR codes, WiFi QR signs, contact QR codes, PDF-to-JPG images, PDF-to-text extraction, image format conversion, no-upload PDF edits, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
+          <p>Free browser-based generators for passport photos, ATS resume checks, PDF compression, image compression, resizing, cropping, rotation, watermarking, transparent signature PNGs, QR codes, WiFi QR signs, contact QR codes, PDF-to-JPG images, PDF-to-text extraction, image format conversion, no-upload PDF edits, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>62</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>63</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>91</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>92</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -2066,6 +2100,7 @@ const GUIDE_HINTS_FOR_LINKS = {
   "work-order": ["work order", "service order"],
   "inventory-sheet": ["inventory", "stock count"],
   "resume-builder": ["resume", "ATS"],
+  "ats-resume-checker": ["ATS", "resume", "keyword"],
   "cover-letter": ["cover letter"],
   "resignation-letter": ["resignation", "two weeks"],
   "monthly-calendar": ["monthly calendar", "calendar"],
@@ -2223,7 +2258,7 @@ function freePdfToolsHtml() {
     {
       title: "Free career PDF tools",
       text: "Make a clean resume, cover letter, or resignation letter PDF without the common hidden export fee many document builders add at the end.",
-      links: ["resume-builder", "cover-letter", "resignation-letter"],
+      links: ["resume-builder", "ats-resume-checker", "cover-letter", "resignation-letter"],
     },
     {
       title: "Free printable planning tools",
@@ -2282,7 +2317,7 @@ function pdfToolFinderHtml() {
   const pdfEditTools = ["compress-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf"];
   const textDataTools = ["text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"];
   const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"];
-  const personalTools = ["resume-builder", "cover-letter", "resignation-letter", "certificate-generator", "todo-list", "packing-list", "monthly-calendar", "meal-planner", "sign-in-sheet", "graph-paper"];
+  const personalTools = ["resume-builder", "ats-resume-checker", "cover-letter", "resignation-letter", "certificate-generator", "todo-list", "packing-list", "monthly-calendar", "meal-planner", "sign-in-sheet", "graph-paper"];
   return `
       <section class="shell page-title section">
         <h1>Which free PDF, image, or QR tool should I use?</h1>
@@ -2397,6 +2432,7 @@ function directorySubmissionHtml() {
     "work-order",
     "inventory-sheet",
     "resume-builder",
+    "ats-resume-checker",
     "certificate-generator",
   ].map((slug) => tools.find((item) => item.path === `tools/${slug}`)).filter(Boolean);
   const directoryFields = [
@@ -2495,10 +2531,12 @@ function softwareSchema(tool) {
   const imageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/signature-png", "tools/passport-photo", "tools/pdf-to-images"]);
   const textToolPaths = new Set(["tools/pdf-to-text"]);
   const compressedPdfToolPaths = new Set(["tools/compress-pdf"]);
+  const atsToolPaths = new Set(["tools/ats-resume-checker"]);
   const qrToolPaths = new Set(["tools/qr-code", "tools/wifi-qr-code", "tools/vcard-qr-code"]);
   const isImageTool = imageToolPaths.has(tool.path);
   const isTextTool = textToolPaths.has(tool.path);
   const isCompressedPdfTool = compressedPdfToolPaths.has(tool.path);
+  const isAtsTool = atsToolPaths.has(tool.path);
   const isQrTool = qrToolPaths.has(tool.path);
   return {
     "@context": "https://schema.org",
@@ -2514,10 +2552,10 @@ function softwareSchema(tool) {
       priceCurrency: "USD",
     },
     featureList: [
-      isCompressedPdfTool ? "Browser-based PDF compression" : tool.path === "tools/passport-photo" ? "Browser-based passport photo sizing" : isQrTool ? "Browser-based static QR code generation" : isImageTool ? "Browser-based image processing" : isTextTool ? "Browser-based PDF text extraction" : "Browser-based PDF generation",
+      isAtsTool ? "Browser-based ATS resume keyword report" : isCompressedPdfTool ? "Browser-based PDF compression" : tool.path === "tools/passport-photo" ? "Browser-based passport photo sizing" : isQrTool ? "Browser-based static QR code generation" : isImageTool ? "Browser-based image processing" : isTextTool ? "Browser-based PDF text extraction" : "Browser-based PDF generation",
       "No account required",
-      isCompressedPdfTool ? "No-upload image-based PDF rebuild" : tool.path === "tools/passport-photo" ? "No-upload passport photo crop" : isQrTool ? "Printable QR code PDF" : isImageTool ? "No-upload image conversion" : isTextTool ? "No-upload PDF text extraction" : "US Letter and A4 support",
-      isCompressedPdfTool ? "Smaller PDF copy for scanned or image-heavy files" : tool.path === "tools/passport-photo" ? "Local JPG, PNG, or print sheet export" : isImageTool ? "Local image file export" : isTextTool ? "Local TXT file export" : "One-page printable export",
+      isAtsTool ? "Local pasted-text analysis" : isCompressedPdfTool ? "No-upload image-based PDF rebuild" : tool.path === "tools/passport-photo" ? "No-upload passport photo crop" : isQrTool ? "Printable QR code PDF" : isImageTool ? "No-upload image conversion" : isTextTool ? "No-upload PDF text extraction" : "US Letter and A4 support",
+      isAtsTool ? "Local PDF report export" : isCompressedPdfTool ? "Smaller PDF copy for scanned or image-heavy files" : tool.path === "tools/passport-photo" ? "Local JPG, PNG, or print sheet export" : isImageTool ? "Local image file export" : isTextTool ? "Local TXT file export" : "One-page printable export",
     ],
   };
 }
@@ -2793,6 +2831,26 @@ function toolDetails(tool) {
         { title: "Quick application", text: "Create a practical first PDF when you need to apply soon and improve the wording later." },
       ],
       privacy: "Contact details, names, and work history are generated locally unless you choose to place generic text in the AI idea fields.",
+    },
+    "ats-resume-checker": {
+      steps: [
+        "Open the ATS resume checker and paste resume text into the resume field.",
+        "Paste the target job description into the comparison field.",
+        "Review the keyword match, missing honest terms, section checks, and next edits.",
+        "Download the one-page PDF report and edit the resume in your preferred editor before applying.",
+      ],
+      privacy: "The checker analyzes pasted text locally in the browser and does not upload your resume or job description.",
+      limit: "The free version creates one local report PDF per generation and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Before applying", text: "Compare a resume against a role before submitting an application." },
+        { title: "Keyword review", text: "Find honest missing terms from a job description without keyword stuffing." },
+        { title: "Format sanity check", text: "Check standard headings, measurable evidence, and readable wording." },
+      ],
+      faq: [
+        { q: "Does this guarantee ATS success?", a: "No. It is a local editing aid and cannot guarantee parser behavior, interviews, or hiring outcomes." },
+        { q: "Is my resume uploaded?", a: "No. The pasted text is analyzed in your browser." },
+        { q: "Should I add every missing keyword?", a: "No. Add only truthful skills, tools, and responsibilities you can support." },
+      ],
     },
     "cover-letter": {
       useCases: [

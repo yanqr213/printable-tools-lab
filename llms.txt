@@ -44,6 +44,7 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Work Order Generator](https://printable-tools-lab.pages.dev/tools/work-order/): Make a work order PDF for repairs, field service, maintenance visits, cleaning jobs, and contractor tasks.
 - [Inventory Sheet Generator](https://printable-tools-lab.pages.dev/tools/inventory-sheet/): Create a printable inventory count sheet PDF for stock checks, craft fairs, storage bins, classroom supplies, and small retail shelves.
 - [Resume Builder PDF](https://printable-tools-lab.pages.dev/tools/resume-builder/): Build a simple free resume PDF without an account, paywall, or surprise download fee.
+- [ATS Resume Checker](https://printable-tools-lab.pages.dev/tools/ats-resume-checker/): Check pasted resume text against a job description and download a local ATS keyword and readability report PDF.
 - [Cover Letter Generator](https://printable-tools-lab.pages.dev/tools/cover-letter/): Create a free one-page cover letter PDF for job applications without an account or surprise download fee.
 - [Resignation Letter Generator](https://printable-tools-lab.pages.dev/tools/resignation-letter/): Make a simple resignation letter PDF with notice date, last day, appreciation, and handoff wording.
 - [Monthly Calendar Generator](https://printable-tools-lab.pages.dev/tools/monthly-calendar/): Create a free printable monthly calendar PDF for appointments, school events, chores, meals, or family planning.
@@ -126,6 +127,7 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Stamp PDF Without Uploading](https://printable-tools-lab.pages.dev/stamp-pdf-no-upload/): stamp PDF, paid stamp, approved stamp, no upload
 - [Add Signature Text to PDF Without Uploading](https://printable-tools-lab.pages.dev/sign-pdf-no-upload/): sign PDF, typed signature, no upload
 - [Free Resume Builder Without Signup](https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/): resume PDF download without account or paywall
+- [Free ATS Resume Checker](https://printable-tools-lab.pages.dev/ats-resume-checker-free/): ATS resume checker, resume keyword match, job description match
 - [Free Receipt Generator Without Signup](https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/): receipt PDF now, no account, quick proof of payment
 - [Weekly Timesheet PDF Without Signup](https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/): weekly timesheet PDF with fast export
 - [Free Certificate Maker Without Signup](https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/): certificate PDF download without account

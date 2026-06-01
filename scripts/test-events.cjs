@@ -24,12 +24,12 @@ async function main() {
   const metricsPayload = await metricsResponse.json();
   assert(metricsPayload.ok, "Metrics endpoint should respond");
   assert(metricsPayload.totals.download_pdf === 1, "Metrics should count downloads");
-  assert(metricsPayload.tools.length === 62, "Metrics should include every active tool");
+  assert(metricsPayload.tools.length === 63, "Metrics should include every active tool");
   const invoice = metricsPayload.tools.find((row) => row.tool === "invoice-generator");
   assert(invoice.download_pdf === 1, "Metrics should count per-tool downloads");
   const noSignupTools = metricsPayload.sources.find((row) => row.source === "nosignuptools");
   assert(noSignupTools.download_pdf === 1, "Metrics should count per-source downloads");
-  for (const tool of ["multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf", "receipt-generator", "timesheet-generator", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker", "packing-slip", "work-order", "inventory-sheet", "certificate-generator", "todo-list"]) {
+  for (const tool of ["multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf", "receipt-generator", "timesheet-generator", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker", "packing-slip", "work-order", "inventory-sheet", "resume-builder", "ats-resume-checker", "certificate-generator", "todo-list"]) {
     assert(metricsPayload.tools.some((row) => row.tool === tool), `Metrics should include ${tool}`);
   }
 

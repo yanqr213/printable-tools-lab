@@ -4,7 +4,7 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-06-01T15:39:03.791Z",
+  "generatedAt": "2026-06-01T16:04:44.072Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -195,6 +195,11 @@
       "title": "Free Resume Builder Without Signup",
       "url": "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
       "intent": "resume PDF download without account or paywall"
+    },
+    {
+      "title": "Free ATS Resume Checker",
+      "url": "https://printable-tools-lab.pages.dev/ats-resume-checker-free/",
+      "intent": "ATS resume checker, resume keyword match, job description match"
     },
     {
       "title": "Free Receipt Generator Without Signup",
@@ -472,6 +477,11 @@
       "title": "Resume Builder PDF",
       "description": "Build a simple free resume PDF without an account, paywall, or surprise download fee.",
       "url": "https://printable-tools-lab.pages.dev/tools/resume-builder/"
+    },
+    {
+      "title": "ATS Resume Checker",
+      "description": "Check pasted resume text against a job description and download a local ATS keyword and readability report PDF.",
+      "url": "https://printable-tools-lab.pages.dev/tools/ats-resume-checker/"
     },
     {
       "title": "Certificate Generator",

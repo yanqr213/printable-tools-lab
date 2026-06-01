@@ -43,6 +43,7 @@ const ALLOWED_TOOLS = new Set([
   "work-order",
   "inventory-sheet",
   "resume-builder",
+  "ats-resume-checker",
   "cover-letter",
   "resignation-letter",
   "monthly-calendar",

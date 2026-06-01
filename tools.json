@@ -2,7 +2,7 @@
   "name": "PrintableTools Lab",
   "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T15:39:03.708Z",
+  "generatedAt": "2026-06-01T16:04:43.985Z",
   "tools": [
     {
       "title": "Name Tracing Worksheet Generator",
@@ -128,6 +128,12 @@
       "title": "Resume Builder PDF",
       "url": "https://printable-tools-lab.pages.dev/tools/resume-builder/",
       "description": "Build a simple free resume PDF without an account, paywall, or surprise download fee.",
+      "category": "Career documents"
+    },
+    {
+      "title": "ATS Resume Checker",
+      "url": "https://printable-tools-lab.pages.dev/tools/ats-resume-checker/",
+      "description": "Check pasted resume text against a job description and download a local ATS keyword and readability report PDF.",
       "category": "Career documents"
     },
     {
@@ -617,6 +623,11 @@
       "title": "ATS friendly resume PDF guide",
       "url": "https://printable-tools-lab.pages.dev/guides/ats-friendly-resume-pdf-guide/",
       "description": "Format a simple resume PDF so it stays readable for recruiters and applicant tracking systems."
+    },
+    {
+      "title": "ATS resume keyword match guide",
+      "url": "https://printable-tools-lab.pages.dev/guides/ats-resume-keyword-match/",
+      "description": "Compare a resume against a job description without stuffing fake keywords or uploading private details."
     },
     {
       "title": "Free cover letter generator PDF",

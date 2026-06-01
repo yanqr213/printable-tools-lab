@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T15:39:03.708Z",
+  "generatedAt": "2026-06-01T16:04:43.985Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -48,6 +48,7 @@
     "https://printable-tools-lab.pages.dev/stamp-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/sign-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
+    "https://printable-tools-lab.pages.dev/ats-resume-checker-free/",
     "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
     "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
@@ -103,6 +104,7 @@
     "https://printable-tools-lab.pages.dev/tools/work-order/",
     "https://printable-tools-lab.pages.dev/tools/inventory-sheet/",
     "https://printable-tools-lab.pages.dev/tools/resume-builder/",
+    "https://printable-tools-lab.pages.dev/tools/ats-resume-checker/",
     "https://printable-tools-lab.pages.dev/tools/certificate-generator/",
     "https://printable-tools-lab.pages.dev/tools/todo-list/",
     "https://printable-tools-lab.pages.dev/tools/graph-paper/"
@@ -335,6 +337,12 @@
       "url": "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
       "intent": "resume PDF download without account or paywall",
       "tool": "https://printable-tools-lab.pages.dev/tools/resume-builder/"
+    },
+    {
+      "title": "Free ATS Resume Checker",
+      "url": "https://printable-tools-lab.pages.dev/ats-resume-checker-free/",
+      "intent": "ATS resume checker, resume keyword match, job description match",
+      "tool": "https://printable-tools-lab.pages.dev/tools/ats-resume-checker/"
     },
     {
       "title": "Free Receipt Generator Without Signup",

@@ -395,6 +395,30 @@
       ],
       draw: drawResume,
     },
+    "ats-resume-checker": {
+      id: "ats-resume-checker",
+      icon: "ATS",
+      title: "ATS Resume Checker",
+      shortTitle: "ATS Checker",
+      description: "Check pasted resume text against a job description and download a local ATS keyword and readability report PDF.",
+      keywords: ["ATS resume checker", "resume keyword match", "resume checker", "job application"],
+      ai: false,
+      defaultValues: {
+        targetRole: "Operations Coordinator",
+        resumeText: "Maya Chen\nOperations Coordinator\nmaya@example.com | San Francisco, CA\n\nSummary\nOperations professional with experience coordinating schedules, vendors, documentation, and customer follow-ups.\n\nExperience\nOperations Coordinator, Northstar Studio\nCoordinated weekly project schedules and reduced late handoffs by 18%.\nManaged vendor communication, order tracking, and team documentation.\n\nSkills\nScheduling, vendor coordination, spreadsheets, documentation, customer support\n\nEducation\nB.A. Business Administration, State University",
+        jobDescription: "We are hiring an Operations Coordinator to manage schedules, vendor coordination, documentation, reporting, customer communication, project tracking, and cross-functional follow-up. Experience with spreadsheets, process improvement, and detail-oriented administrative work is preferred.",
+        focus: "balanced",
+        paper: "letter",
+      },
+      fields: [
+        { id: "targetRole", label: "Target role", type: "text", maxLength: 90 },
+        { id: "resumeText", label: "Resume text", type: "textarea", maxLength: 3000, help: "Paste resume text only. It stays in this browser and is not uploaded." },
+        { id: "jobDescription", label: "Job description", type: "textarea", maxLength: 2200, help: "Paste the role description to compare keywords and requirements locally." },
+        { id: "focus", label: "Report focus", type: "select", options: [["balanced", "Balanced"], ["keywords", "Keyword match"], ["readability", "Readability"]] },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawAtsResumeChecker,
+    },
     "cover-letter": {
       id: "cover-letter",
       icon: "CL",
@@ -1834,9 +1858,12 @@
       links: [
         ["Resume builder PDF", "/tools/resume-builder/"],
         ["Free resume builder without signup", "/free-resume-builder-no-signup/"],
+        ["ATS resume checker", "/tools/ats-resume-checker/"],
+        ["ATS resume checker free", "/ats-resume-checker-free/"],
         ["Cover letter generator", "/tools/cover-letter/"],
         ["Resignation letter generator", "/tools/resignation-letter/"],
         ["Free resume builder PDF guide", "/guides/free-resume-builder-pdf/"],
+        ["ATS resume keyword match guide", "/guides/ats-resume-keyword-match/"],
       ],
     },
   ];
@@ -1855,7 +1882,7 @@
     {
       title: "Free career PDF tools",
       description: "Make a clean resume, cover letter, or resignation letter PDF without the common hidden export fee many document builders add at the end.",
-      links: ["resume-builder", "cover-letter", "resignation-letter"],
+      links: ["resume-builder", "ats-resume-checker", "cover-letter", "resignation-letter"],
     },
     {
       title: "Free printable planning tools",
@@ -2434,6 +2461,21 @@
         ["Before applying", "Proofread every line, avoid private details you do not want to share, and tailor the summary and experience bullets to the role."],
       ],
       related: ["cover-letter", "resignation-letter", "text-to-pdf"],
+    },
+    {
+      slug: "ats-resume-checker-free",
+      title: "Free ATS Resume Checker",
+      headline: "Free ATS resume checker",
+      description: "Check resume text against a job description locally and download a one-page ATS keyword match report.",
+      lead: "Paste your resume text and a job description to get a local keyword, section, readability, and evidence check. The report is designed for practical editing before you apply.",
+      tool: "ats-resume-checker",
+      intent: "ATS resume checker, resume keyword match, job description match",
+      sections: [
+        ["Why this is high intent", "Job seekers often search for ATS checks right before applying. Many resume sites show a score or suggestions only after signup, upload, or paid export."],
+        ["Local text check", "This checker runs on pasted text in the browser. It does not upload your resume and does not promise a universal ATS score, interview, or hiring outcome."],
+        ["What to fix first", "Use the report to compare honest keywords, section headings, measurable achievements, contact details, and overly complex wording against the role."],
+      ],
+      related: ["resume-builder", "cover-letter", "text-to-pdf"],
     },
     {
       slug: "free-receipt-generator-no-signup",
@@ -3453,6 +3495,20 @@
       ],
     },
     {
+      slug: "ats-resume-keyword-match",
+      title: "ATS resume keyword match guide",
+      description: "Compare a resume against a job description without stuffing fake keywords or uploading private details.",
+      tool: "ats-resume-checker",
+      content: [
+        ["h2", "Match honest language from the role"],
+        ["p", "Use the job description to find skills, tools, job titles, certifications, and repeated responsibilities that genuinely match your background."],
+        ["h2", "Avoid keyword stuffing"],
+        ["p", "A checker should help you notice missing honest matches, not add claims you cannot support. Keep the wording truthful and readable for a recruiter."],
+        ["h2", "Keep the format easy to parse"],
+        ["ul", ["Use clear section headings.", "Keep key experience in normal text.", "Use a skills section for tools and methods.", "Add numbers only when they are true."]],
+      ],
+    },
+    {
       slug: "free-cover-letter-generator-pdf",
       title: "Free cover letter generator PDF",
       description: "Create a one-page cover letter PDF for job applications without an account or download paywall.",
@@ -3963,6 +4019,7 @@
     "work-order",
     "inventory-sheet",
     "resume-builder",
+    "ats-resume-checker",
     "cover-letter",
     "resignation-letter",
     "monthly-calendar",
@@ -4088,9 +4145,9 @@
             <a class="button secondary" href="/tools/qr-code/">Create a QR code</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>62</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>63</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>91</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>92</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -4343,6 +4400,7 @@
       "work-order",
       "inventory-sheet",
       "resume-builder",
+      "ats-resume-checker",
       "certificate-generator",
     ];
     const directoryFields = [
@@ -4650,7 +4708,7 @@
       }
       draw();
       const values = getFormValues(form);
-      const filename = `${tool.id}-${slugify(values.name || values.title || "printable")}.pdf`;
+      const filename = `${tool.id}-${slugify(values.name || values.title || values.targetRole || "printable")}.pdf`;
       const pdf = tool.id === "multi-image-pdf" ? exportMultiImagePdf(canvas, values) : canvasToPdf(canvas);
       downloadBlob(pdf, filename);
       incrementDailyCount();
@@ -5569,7 +5627,7 @@
   function getRelatedTools(currentId) {
     const groups = [
       ["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt", "receipt-generator", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"],
-      ["resume-builder", "cover-letter", "resignation-letter"],
+      ["resume-builder", "ats-resume-checker", "cover-letter", "resignation-letter"],
       ["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"],
       ["name-tracing", "chore-chart", "reward-chart", "flashcards"],
       ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
@@ -6323,6 +6381,163 @@
     drawResumeSection(ctx, "Education", values.education, margin, y + 18, paper.width - margin * 2, 4);
     drawFooterNote(ctx, paper, "Generated locally with PrintableTools Lab. Proofread before applying.");
   }
+
+  function drawAtsResumeChecker(ctx, paper, values) {
+    const margin = 72;
+    const report = buildAtsResumeReport(values);
+    drawBusinessFrame(ctx, paper, "#2563eb");
+    drawTextFit(ctx, "ATS RESUME CHECK", margin, 100, paper.width - margin * 2, 44, { align: "left", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, sanitizePrintable(values.targetRole || "Target role"), margin, 142, paper.width - margin * 2, 24, { align: "left", weight: "700", color: "#2563eb" });
+    drawTextFit(ctx, "Local report only - no upload, no universal hiring score", margin, 176, paper.width - margin * 2, 18, { align: "left", weight: "500", color: "#5b6f78" });
+
+    const scoreX = paper.width - margin - 265;
+    drawScoreBadge(ctx, scoreX, 76, 235, 126, report.score);
+    drawMetricCard(ctx, margin, 230, 250, 110, "Keyword match", `${report.matchPercent}%`, `${report.matched.length}/${report.keywords.length || 1} role terms`);
+    drawMetricCard(ctx, margin + 278, 230, 250, 110, "Sections", `${report.sectionScore}/${report.requiredSections.length}`, report.missingSections.length ? "Missing basics" : "Core headings found");
+    drawMetricCard(ctx, margin + 556, 230, 250, 110, "Evidence", `${report.numberCount}`, report.numberCount ? "Numbers found" : "Add true metrics");
+    drawMetricCard(ctx, margin + 834, 230, 250, 110, "Readability", report.readabilityLabel, `${report.wordCount} words`);
+
+    let y = 395;
+    drawAtsListPanel(ctx, margin, y, paper.width - margin * 2, 165, "Matched role keywords", report.matched.length ? report.matched.slice(0, 12) : ["No strong job-description matches found yet."], "#edf7ff");
+    y += 195;
+    drawAtsListPanel(ctx, margin, y, paper.width - margin * 2, 165, "Missing honest keywords to review", report.missing.length ? report.missing.slice(0, 12) : ["No obvious high-priority missing terms from the pasted job description."], "#fff7ed");
+    y += 195;
+
+    const leftW = Math.floor((paper.width - margin * 2 - 28) * 0.48);
+    const rightW = paper.width - margin * 2 - leftW - 28;
+    drawAtsListPanel(ctx, margin, y, leftW, 245, "Format checks", report.formatChecks, "#f8fafc");
+    drawAtsListPanel(ctx, margin + leftW + 28, y, rightW, 245, "Next edits", report.recommendations, "#f0fdf4");
+
+    drawFooterNote(ctx, paper, "This local checker supports editing decisions. It does not guarantee ATS parsing, interviews, or hiring outcomes.");
+  }
+
+  function buildAtsResumeReport(values) {
+    const resumeText = normalizeAtsText(values.resumeText || "");
+    const jobText = normalizeAtsText(values.jobDescription || "");
+    const resumeTokens = keywordSet(resumeText);
+    const keywords = extractAtsKeywords(jobText).slice(0, 18);
+    const matched = keywords.filter((keyword) => phraseMatchesText(resumeText, keyword) || resumeTokens.has(keyword));
+    const missing = keywords.filter((keyword) => !matched.includes(keyword));
+    const requiredSections = ["summary", "experience", "skills", "education"];
+    const missingSections = requiredSections.filter((section) => !new RegExp(`\\b${section}\\b`, "i").test(resumeText));
+    const wordCount = resumeText.split(/\s+/).filter(Boolean).length;
+    const numberCount = (resumeText.match(/\b\d+[%+]?\b/g) || []).length;
+    const bulletLikeCount = (resumeText.match(/(^|\n)\s*[-*•]/g) || []).length;
+    const longSentenceCount = resumeText.split(/[.!?]\s+/).filter((sentence) => sentence.split(/\s+/).filter(Boolean).length > 34).length;
+    const matchPercent = keywords.length ? Math.round(matched.length / keywords.length * 100) : 0;
+    const sectionScore = requiredSections.length - missingSections.length;
+    const readabilityLabel = longSentenceCount > 4 ? "Dense" : wordCount < 140 ? "Thin" : "Clear";
+    const score = clampNumber(Math.round(matchPercent * 0.48 + sectionScore / requiredSections.length * 28 + Math.min(numberCount, 4) * 4 + (readabilityLabel === "Clear" ? 8 : 3)), 0, 100);
+    const formatChecks = [
+      missingSections.length ? `Add section heading(s): ${missingSections.join(", ")}.` : "Core section headings are present.",
+      bulletLikeCount ? "Bullet-style lines are present for scanning." : "Consider bullets for experience achievements.",
+      numberCount ? "At least one measurable result appears in the resume." : "Add true numbers such as %, $, volume, time saved, or team size.",
+      longSentenceCount > 4 ? "Several sentences are long; shorten before applying." : "Sentence length looks reasonably scannable.",
+      wordCount < 140 ? "Resume text may be too thin for a full application." : "Resume text has enough substance for a first review.",
+    ];
+    const recommendations = [];
+    if (missing.length) recommendations.push(`Review honest matches for: ${missing.slice(0, 5).join(", ")}.`);
+    if (missingSections.length) recommendations.push("Use standard headings so recruiters and parsers can find key sections.");
+    if (!numberCount) recommendations.push("Turn one responsibility into a measurable achievement if the number is true.");
+    if (longSentenceCount > 4) recommendations.push("Split dense sentences into shorter action-result bullets.");
+    if (!recommendations.length) recommendations.push("Tailor the top summary and first experience bullet to the exact role before applying.");
+    recommendations.push("Keep claims truthful; do not add keywords you cannot support in an interview.");
+    return { score, keywords, matched, missing, matchPercent, requiredSections, missingSections, sectionScore, numberCount, wordCount, readabilityLabel, formatChecks, recommendations };
+  }
+
+  function normalizeAtsText(value) {
+    return String(value || "").toLowerCase().replace(/[^\w\s+#.%/-]/g, " ").replace(/\s+/g, " ").trim();
+  }
+
+  function keywordSet(text) {
+    return new Set(normalizeAtsText(text).split(/\s+/).filter((token) => token.length > 2 && !ATS_STOP_WORDS.has(token)));
+  }
+
+  function extractAtsKeywords(text) {
+    const normalized = normalizeAtsText(text);
+    const tokens = normalized.split(/\s+/).filter((token) => token.length > 2 && !ATS_STOP_WORDS.has(token));
+    const counts = new Map();
+    tokens.forEach((token) => counts.set(token, (counts.get(token) || 0) + 1));
+    const phrases = [];
+    const rawWords = normalized.split(/\s+/);
+    for (let size = 3; size >= 2; size -= 1) {
+      for (let i = 0; i <= rawWords.length - size; i += 1) {
+        const phraseTokens = rawWords.slice(i, i + size);
+        if (phraseTokens.every((token) => token.length > 2 && !ATS_STOP_WORDS.has(token))) phrases.push(phraseTokens.join(" "));
+      }
+    }
+    const phraseCounts = new Map();
+    phrases.forEach((phrase) => phraseCounts.set(phrase, (phraseCounts.get(phrase) || 0) + 1));
+    const rankedPhrases = Array.from(phraseCounts.entries())
+      .filter(([phrase]) => !phrase.split(" ").every((part) => counts.get(part) === 1))
+      .sort((a, b) => b[1] - a[1] || b[0].length - a[0].length)
+      .map(([phrase]) => phrase);
+    const rankedTokens = Array.from(counts.entries())
+      .sort((a, b) => b[1] - a[1] || b[0].length - a[0].length)
+      .map(([token]) => token);
+    return uniqueItems([...rankedPhrases, ...rankedTokens]).slice(0, 24);
+  }
+
+  function phraseMatchesText(text, phrase) {
+    if (!phrase || !phrase.includes(" ")) return false;
+    return normalizeAtsText(text).includes(phrase);
+  }
+
+  function uniqueItems(items) {
+    const seen = new Set();
+    return items.filter((item) => {
+      const key = String(item || "").trim();
+      if (!key || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
+  function drawScoreBadge(ctx, x, y, width, height, score) {
+    ctx.save();
+    ctx.fillStyle = "#eef6ff";
+    roundRect(ctx, x, y, width, height, 8, true, false);
+    ctx.strokeStyle = "rgba(37,99,235,0.3)";
+    ctx.lineWidth = 2;
+    roundRect(ctx, x, y, width, height, 8, false, true);
+    drawTextFit(ctx, String(score), x + width / 2, y + 58, width - 36, 54, { align: "center", weight: "900", color: score >= 72 ? "#15803d" : score >= 50 ? "#b45309" : "#b91c1c" });
+    drawTextFit(ctx, "local fit check", x + width / 2, y + 96, width - 36, 19, { align: "center", weight: "700", color: "#5b6f78" });
+    ctx.restore();
+  }
+
+  function drawMetricCard(ctx, x, y, width, height, label, value, note) {
+    ctx.save();
+    ctx.fillStyle = "#f8fafc";
+    roundRect(ctx, x, y, width, height, 8, true, false);
+    ctx.strokeStyle = "rgba(23,49,59,0.16)";
+    ctx.lineWidth = 1.5;
+    roundRect(ctx, x, y, width, height, 8, false, true);
+    drawTextFit(ctx, label, x + 18, y + 30, width - 36, 17, { align: "left", weight: "700", color: "#5b6f78" });
+    drawTextFit(ctx, value, x + 18, y + 68, width - 36, 30, { align: "left", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, note, x + 18, y + 96, width - 36, 15, { align: "left", weight: "500", color: "#5b6f78" });
+    ctx.restore();
+  }
+
+  function drawAtsListPanel(ctx, x, y, width, height, title, items, fill) {
+    ctx.save();
+    ctx.fillStyle = fill || "#f8fafc";
+    roundRect(ctx, x, y, width, height, 8, true, false);
+    ctx.strokeStyle = "rgba(23,49,59,0.16)";
+    ctx.lineWidth = 1.5;
+    roundRect(ctx, x, y, width, height, 8, false, true);
+    drawTextFit(ctx, title, x + 22, y + 36, width - 44, 22, { align: "left", weight: "900", color: "#17313b" });
+    let cursor = y + 72;
+    const max = Math.max(3, Math.floor((height - 80) / 26));
+    items.slice(0, max).forEach((item) => {
+      drawTextFit(ctx, `- ${sanitizePrintable(item)}`, x + 24, cursor, width - 48, 18, { align: "left", weight: "500", color: "#17313b" });
+      cursor += 27;
+    });
+    ctx.restore();
+  }
+
+  const ATS_STOP_WORDS = new Set([
+    "the", "and", "for", "with", "you", "your", "our", "are", "will", "this", "that", "from", "have", "has", "job", "role", "work", "team", "teams", "candidate", "candidates", "responsibilities", "requirements", "preferred", "experience", "years", "about", "into", "using", "use", "able", "ability", "including", "such", "must", "plus", "good", "strong", "excellent", "company", "within", "across", "support", "supports"
+  ]);
 
   function drawCoverLetter(ctx, paper, values) {
     const margin = 94;

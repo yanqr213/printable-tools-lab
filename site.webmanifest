@@ -37,6 +37,11 @@
       "url": "/pdf-tool-finder/"
     },
     {
+      "name": "ATS Resume Checker",
+      "short_name": "ATS Check",
+      "url": "/tools/ats-resume-checker/"
+    },
+    {
       "name": "Compress PDF",
       "short_name": "PDF ZIP",
       "url": "/tools/compress-pdf/"

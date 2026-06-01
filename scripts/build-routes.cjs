@@ -76,6 +76,7 @@ const manifest = {
   shortcuts: [
     { name: "Free file tools", short_name: "File tools", url: "/free-pdf-tools/" },
     { name: "File tool finder", short_name: "Finder", url: "/pdf-tool-finder/" },
+    { name: "ATS Resume Checker", short_name: "ATS Check", url: "/tools/ats-resume-checker/" },
     { name: "Compress PDF", short_name: "PDF ZIP", url: "/tools/compress-pdf/" },
     { name: "Compress image", short_name: "Compress", url: "/tools/compress-image/" },
     { name: "Image to KB", short_name: "Image KB", url: "/tools/compress-image-to-kb/" },
@@ -334,6 +335,7 @@ const distribution = [
   `- No-signup invoice page: ${siteUrl("free-invoice-generator-no-signup")}`,
   `- JPG to PDF without upload page: ${siteUrl("jpg-to-pdf-no-upload")}`,
   `- No-signup resume page: ${siteUrl("free-resume-builder-no-signup")}`,
+  `- Free ATS resume checker page: ${siteUrl("ats-resume-checker-free")}`,
   ...landingPages
     .filter((page) => !["free-invoice-generator-no-signup", "jpg-to-pdf-no-upload", "free-resume-builder-no-signup"].includes(page.path))
     .map((page) => `- ${page.title}: ${siteUrl(page.path)}`),
@@ -384,7 +386,7 @@ console.log(`Generated ${routes.length - 1} static route entries, sitemap.xml, r
 function categoryForTool(toolPath) {
   const slug = toolPath.replace(/^tools\//, "");
   if (["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt", "receipt-generator", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"].includes(slug)) return "Business paperwork";
-  if (["resume-builder", "cover-letter", "resignation-letter"].includes(slug)) return "Career documents";
+  if (["resume-builder", "ats-resume-checker", "cover-letter", "resignation-letter"].includes(slug)) return "Career documents";
   if (["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"].includes(slug)) return "Planning";
   if (["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf", "sign-in-sheet", "graph-paper", "packing-list", "todo-list"].includes(slug)) return "Everyday file utilities";
   if (["certificate-generator"].includes(slug)) return "Events and awards";
