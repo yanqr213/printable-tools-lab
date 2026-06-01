@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T20:18:59.367Z",
+  "generatedAt": "2026-06-01T20:32:59.171Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -2546,11 +2546,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         }
       ]
@@ -2626,10 +2626,13 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF-to-Word, ATS resume checks, PDF compression, background removal, text-on-image overlays, passport photos, image compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
+      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF size targets, image KB targets, PDF-to-Word, ATS checks, background removal, text overlays, QR codes, PDF edits, paperwork, labels, resumes, and printables.",
       "topics": [
         "background-remover",
+        "compress-image-to-100kb",
         "compress-pdf",
+        "compress-pdf-to-1mb",
+        "compress-pdf-to-500kb",
         "free-tools",
         "image-compressor",
         "image-converter",
@@ -2637,7 +2640,6 @@
         "image-to-pdf",
         "image-tools",
         "invoice-generator",
-        "label-generator",
         "no-signup",
         "passport-photo",
         "pdf-generator",
@@ -2645,9 +2647,7 @@
         "pdf-to-word",
         "pdf-tools",
         "qr-code",
-        "resume-checker",
-        "signature-png",
-        "text-on-image"
+        "resume-checker"
       ],
       "discoveryRelease": {
         "tag": "free-pdf-tools",

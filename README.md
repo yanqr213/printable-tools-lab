@@ -208,6 +208,15 @@ npm.cmd run operate
 
 `operate` builds routes, verifies SEO, verifies ad safety, submits sitemaps, notifies IndexNow, monitors directory listings, probes Cloudflare and AdSense readiness, runs validation gates, and smoke-tests all tools. It writes `reports/operate-report.json`. Missing external credentials are recorded as blockers instead of pretending the step succeeded.
 
+Refresh the public zero-budget share kit and GitHub discovery release:
+
+```powershell
+$env:GITHUB_TOKEN="optional GitHub token for repo metadata refresh"
+npm.cmd run share-kit-push
+```
+
+This writes `reports/share-kit-push.json`, updates GitHub repo discovery metadata, and attempts IndexNow as a non-Google fallback.
+
 Prepare or verify AdSense configuration:
 
 ```powershell

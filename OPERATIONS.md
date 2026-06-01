@@ -454,6 +454,7 @@ Current Search Console checkpoint:
 - `2026-06-02`: expanded to 66 tools, 95 guides, and 61 high-intent landing pages by adding 500KB, 1MB, 2MB, and 5MB PDF compression landing pages that deep-link into the same no-upload PDF compressor with prefilled target sizes. The tool now performs stronger compression attempts when a target is selected and keeps claims honest by saying it tries toward the target rather than guarantees exact output.
 - `2026-06-02`: expanded the GitHub Pages discovery surface from one directory plus 54 landing mirrors to one directory, 61 landing mirrors, and 50 high-intent tool mirrors. This keeps the zero-cost discovery path alive while the main `pages.dev` site has no custom domain, and gives Search Console a broader second sitemap to crawl.
 - `2026-06-02`: added `/share-kit/` and `/share-kit.json` as public zero-budget distribution assets with high-intent tracked links, short-video hooks, community-copy, directory blurbs, and safe posting rules. This addresses the current bottleneck, which is exposure rather than tool functionality, and gives future manual or automated distribution a single source of truth.
+- `2026-06-02`: added `npm.cmd run share-kit-push` to update the GitHub discovery release from the public share kit, keep repository topics at GitHub's 20-topic limit, attempt IndexNow notification, and write `reports/share-kit-push.json`. The first run updated GitHub successfully and confirmed that IndexNow still returns 403 on the `pages.dev` subdomain, so it remains a non-blocking fallback until a custom domain exists.
 - `2026-06-01`: AdSense Management API was enabled on the Google Cloud project through Service Usage API. A service-account probe to `adsense.googleapis.com/v2/accounts` returned no AdSense accounts, so the service account is not currently an AdSense account user. The official AdSense ad-unit creation API is also a restricted method, so publisher/ad-slot creation cannot be completed silently from the current service-account credentials.
 - `2026-06-01`: GitHub Pages discovery directory was verified as its own Search Console URL-prefix property and its sitemap was submitted through the Search Console API. This creates a second crawlable discovery surface that still points back to the same main site.
 - `2026-06-01`: added `npm.cmd run operate` as the unattended operating loop. It rebuilds, verifies, submits sitemaps, checks directories, probes Cloudflare/AdSense readiness, and smoke-tests every tool while recording unavoidable account-level blockers.
@@ -524,6 +525,16 @@ IndexNow note:
 - If `pages.dev` returns `UserForbiddedToAccessSite`, treat it as a non-blocking Bing/Yandex discovery fallback.
 - The primary indexing path remains Search Console sitemap submission plus external links from useful directories or relevant community posts.
 - Re-test IndexNow after moving to a custom domain; subdomain ownership can be stricter than ordinary URL-prefix verification.
+
+## Zero-Cash Platform Checkpoint
+
+No-domain does not mean no distribution, but it changes the monetization clock:
+
+- Keep `pages.dev` live because it has zero cash cost and is already verified in Search Console.
+- Keep the JS.ORG request as a free custom-URL experiment, but do not treat it as equivalent to an owned commercial domain because the service is voluntary and does not grant property rights over the subdomain.
+- Avoid moving the main product to low-quality short-video or mini-game spam. Bilibili and YouTube platform ad revenue requires creator eligibility and review first. Douyin mini games support ad APIs, but still require app/game review, ad-placement compliance, and platform traffic. CrazyGames disables ads during Basic Launch, so low-quality games are not an instant revenue shortcut.
+- Use short video as distribution for the existing tools first: one useful demo per high-intent pain point, tracked with UTM links, without asking for ad clicks or fake engagement.
+- If zero-cost domain approval stalls and Search Console remains flat for 60 days, run a separate HTML5 game experiment only after building a complete game loop that can pass platform review.
 
 ## Kill Or Pivot Rules
 

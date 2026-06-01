@@ -1,5 +1,5 @@
 const { execFileSync } = require("child_process");
-const { HIGH_INTENT_TOOL_PATHS, siteUrl, tools, SITE_SUMMARY } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, siteUrl, tools, SITE_SUMMARY } = require("./seo-content.cjs");
 
 const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || "";
 if (!token) {
@@ -20,19 +20,19 @@ const topics = [
   "pdf-tools",
   "image-tools",
   "image-compressor",
-  "text-on-image",
   "image-resizer",
   "image-converter",
   "background-remover",
   "qr-code",
   "invoice-generator",
   "resume-checker",
-  "label-generator",
   "image-to-pdf",
   "compress-pdf",
   "pdf-to-jpg",
   "pdf-to-word",
-  "signature-png",
+  "compress-pdf-to-1mb",
+  "compress-pdf-to-500kb",
+  "compress-image-to-100kb",
   "passport-photo",
   "no-signup",
   "free-tools",
@@ -48,7 +48,7 @@ async function main() {
     method: "PATCH",
     body: {
       homepage: siteUrl(""),
-      description: "Free no-signup browser PDF, image, QR, and text-data tools for PDF-to-Word, ATS resume checks, PDF compression, background removal, text-on-image overlays, passport photos, image compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
+      description: "Free no-signup browser PDF, image, QR, and text-data tools for PDF size targets, image KB targets, PDF-to-Word, ATS checks, background removal, text overlays, QR codes, PDF edits, paperwork, labels, resumes, and printables.",
     },
   });
   await github(`/repos/${repo}/topics`, {
@@ -131,11 +131,24 @@ function releaseBody() {
     "",
     `- [Free PDF, image, and QR tools without signup](${siteUrl("free-pdf-tools")})`,
     `- [PDF, image, and QR tool finder](${siteUrl("pdf-tool-finder")})`,
+    `- [Zero-budget share kit](${siteUrl("share-kit")})`,
+    `- [Machine-readable share-kit.json](${siteUrl("share-kit.json").replace(/\/$/, "")})`,
     "- [GitHub Pages discovery directory](https://yanqr213.github.io/printable-tools-lab/)",
     `- [Directory submission pack](${siteUrl("submit-directory")})`,
     `- [RSS feed](${siteUrl("feed.xml").replace(/\/$/, "")})`,
     `- [Machine-readable tools.json](${siteUrl("tools.json").replace(/\/$/, "")})`,
     `- [Web app manifest](${siteUrl("site.webmanifest").replace(/\/$/, "")})`,
+    "",
+    "High-intent upload-limit entry points:",
+    "",
+    ...SHARE_KIT_FEATURED_LINKS.map(([title, pathName, reason]) => `- [${title}](${siteUrl(pathName)}): ${reason}`),
+    "",
+    "Share-kit copy angles:",
+    "",
+    ...SHARE_KIT_POSTS.map((post) => `- ${post.title}: ${post.hook}`),
+    "",
+    "High-intent tool pages:",
+    "",
     ...toolLinks,
     "",
     "Why this exists:",

@@ -17,6 +17,7 @@
     "site-verification": "node scripts/site-verification.cjs",
     "search-console": "node scripts/search-console.cjs",
     "github-discovery": "node scripts/github-discovery.cjs",
+    "share-kit-push": "node scripts/share-kit-push.cjs",
     "monitor:directories": "node scripts/directory-monitor.cjs",
     "indexnow": "node scripts/indexnow.cjs",
     "operate": "node scripts/operate.cjs",
