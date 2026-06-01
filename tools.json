@@ -1,8 +1,8 @@
 {
   "name": "PrintableTools Lab",
-  "description": "Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  "description": "Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T03:27:42.502Z",
+  "generatedAt": "2026-06-01T04:13:17.152Z",
   "tools": [
     {
       "title": "Name Tracing Worksheet Generator",
@@ -170,19 +170,37 @@
       "title": "Merge PDF Tool",
       "url": "https://printable-tools-lab.pages.dev/tools/merge-pdf/",
       "description": "Combine several PDF files into one PDF in your browser without uploading documents.",
-      "category": "Education and family printables"
+      "category": "Everyday utility PDFs"
     },
     {
       "title": "Split PDF Tool",
       "url": "https://printable-tools-lab.pages.dev/tools/split-pdf/",
       "description": "Extract selected pages from a PDF in your browser without uploading the document.",
-      "category": "Education and family printables"
+      "category": "Everyday utility PDFs"
     },
     {
       "title": "Add Page Numbers to PDF",
       "url": "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/",
       "description": "Add simple page numbers to an existing PDF locally in your browser.",
-      "category": "Education and family printables"
+      "category": "Everyday utility PDFs"
+    },
+    {
+      "title": "Rotate PDF Pages",
+      "url": "https://printable-tools-lab.pages.dev/tools/rotate-pdf/",
+      "description": "Rotate all PDF pages or selected pages locally in your browser without uploading the file.",
+      "category": "Everyday utility PDFs"
+    },
+    {
+      "title": "Remove Pages from PDF",
+      "url": "https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/",
+      "description": "Delete selected PDF pages locally in your browser without uploading the document.",
+      "category": "Everyday utility PDFs"
+    },
+    {
+      "title": "Reorder PDF Pages",
+      "url": "https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/",
+      "description": "Rearrange PDF pages by typing a new page order, all locally in your browser.",
+      "category": "Everyday utility PDFs"
     },
     {
       "title": "Text to PDF Converter",
@@ -543,6 +561,21 @@
       "title": "Add page numbers to PDF",
       "url": "https://printable-tools-lab.pages.dev/guides/add-page-numbers-to-pdf/",
       "description": "Add simple visible page numbers to an existing PDF in the browser."
+    },
+    {
+      "title": "Rotate PDF pages without uploading",
+      "url": "https://printable-tools-lab.pages.dev/guides/rotate-pdf-pages-without-uploading/",
+      "description": "Fix sideways or upside-down PDF pages locally in your browser."
+    },
+    {
+      "title": "Remove pages from PDF without uploading",
+      "url": "https://printable-tools-lab.pages.dev/guides/remove-pages-from-pdf-without-uploading/",
+      "description": "Delete selected PDF pages locally without sending the source file to a converter."
+    },
+    {
+      "title": "Reorder PDF pages without uploading",
+      "url": "https://printable-tools-lab.pages.dev/guides/reorder-pdf-pages-without-uploading/",
+      "description": "Organize PDF pages by entering a new page order in the browser."
     },
     {
       "title": "Text to PDF converter without signup",

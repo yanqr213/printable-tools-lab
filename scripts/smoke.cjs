@@ -74,6 +74,9 @@ function delay(ms) {
     "/tools/merge-pdf/",
     "/tools/split-pdf/",
     "/tools/pdf-page-numbers/",
+    "/tools/rotate-pdf/",
+    "/tools/remove-pdf-pages/",
+    "/tools/reorder-pdf-pages/",
     "/tools/text-to-pdf/",
     "/tools/sign-in-sheet/",
     "/tools/graph-paper/",
@@ -107,6 +110,12 @@ function delay(ms) {
     "/guides/free-meal-planner-generator/",
     "/guides/free-image-to-pdf-converter/",
     "/guides/multiple-images-to-pdf-without-uploading/",
+    "/guides/merge-pdf-without-uploading/",
+    "/guides/split-pdf-without-uploading/",
+    "/guides/add-page-numbers-to-pdf/",
+    "/guides/rotate-pdf-pages-without-uploading/",
+    "/guides/remove-pages-from-pdf-without-uploading/",
+    "/guides/reorder-pdf-pages-without-uploading/",
     "/guides/text-to-pdf-converter-no-signup/",
     "/guides/free-sign-in-sheet-generator/",
     "/guides/free-printable-graph-paper-generator/",
@@ -145,7 +154,7 @@ function delay(ms) {
   for (const phrase of ["No-upload conversion tools", "Free business PDF tools", "All free PDF generators"]) {
     if (!freePdfText.includes(phrase)) throw new Error(`Free PDF tools page is missing ${phrase}`);
   }
-  for (const href of ["/tools/multi-image-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/text-to-pdf/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/barcode-labels/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
+  for (const href of ["/tools/multi-image-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/text-to-pdf/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/barcode-labels/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
     const linkCount = await page.locator(`main a[href="${href}"]`).count();
     if (!linkCount) throw new Error(`Free PDF tools page is missing link ${href}`);
   }
@@ -155,7 +164,7 @@ function delay(ms) {
   for (const phrase of ["Which free PDF tool should I use?", "Invoice vs receipt", "One image vs many images"]) {
     if (!finderText.includes(phrase)) throw new Error(`PDF tool finder page is missing ${phrase}`);
   }
-  for (const href of ["/tools/image-to-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/price-tag/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
+  for (const href of ["/tools/image-to-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/price-tag/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
     const linkCount = await page.locator(`main a[href="${href}"]`).count();
     if (!linkCount) throw new Error(`PDF tool finder page is missing link ${href}`);
   }
@@ -170,7 +179,7 @@ function delay(ms) {
   const secondPagePdf = await samplePdf("Second document");
   const twoPagePdf = await samplePdf("Split source", 2);
 
-  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/text-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
+  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/text-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
     await page.evaluate(() => localStorage.removeItem("ptl_daily"));
     if (route === "/tools/image-to-pdf/") {
@@ -233,11 +242,36 @@ function delay(ms) {
       const previewText = await page.locator("#pdfFilePreview").innerText();
       if (!previewText.includes("number-me.pdf") || !previewText.includes("2 pages")) throw new Error(`Page-number PDF preview is incomplete: ${previewText}`);
     }
+    if (route === "/tools/rotate-pdf/") {
+      await page.setInputFiles("input[type=file]", { name: "sideways.pdf", mimeType: "application/pdf", buffer: twoPagePdf });
+      await page.fill("#pageRange", "1");
+      await page.selectOption("#rotation", "90");
+      await page.waitForTimeout(750);
+      const previewText = await page.locator("#pdfFilePreview").innerText();
+      if (!previewText.includes("sideways.pdf") || !previewText.includes("rotate 1 of 2 pages by 90 degrees")) throw new Error(`Rotate PDF preview is incomplete: ${previewText}`);
+    }
+    if (route === "/tools/remove-pdf-pages/") {
+      await page.setInputFiles("input[type=file]", { name: "remove-pages.pdf", mimeType: "application/pdf", buffer: twoPagePdf });
+      await page.fill("#removeRange", "1");
+      await page.waitForTimeout(750);
+      const previewText = await page.locator("#pdfFilePreview").innerText();
+      if (!previewText.includes("remove-pages.pdf") || !previewText.includes("remove 1 page") || !previewText.includes("keep 1")) throw new Error(`Remove pages PDF preview is incomplete: ${previewText}`);
+    }
+    if (route === "/tools/reorder-pdf-pages/") {
+      await page.setInputFiles("input[type=file]", { name: "reorder.pdf", mimeType: "application/pdf", buffer: twoPagePdf });
+      await page.fill("#pageOrder", "2,1");
+      await page.waitForTimeout(750);
+      const previewText = await page.locator("#pdfFilePreview").innerText();
+      if (!previewText.includes("reorder.pdf") || !previewText.includes("2-page PDF in the typed order")) throw new Error(`Reorder PDF preview is incomplete: ${previewText}`);
+    }
     const button = page.getByRole("button", { name: "Generate PDF" });
     const pdfUtilityButtonNames = {
       "/tools/merge-pdf/": "Merge PDF",
       "/tools/split-pdf/": "Extract pages",
       "/tools/pdf-page-numbers/": "Add page numbers",
+      "/tools/rotate-pdf/": "Rotate pages",
+      "/tools/remove-pdf-pages/": "Remove pages",
+      "/tools/reorder-pdf-pages/": "Reorder pages",
     };
     const submitButton = pdfUtilityButtonNames[route] ? page.getByRole("button", { name: pdfUtilityButtonNames[route] }) : button;
     const [download] = await Promise.all([
@@ -262,6 +296,20 @@ function delay(ms) {
     if (route === "/tools/pdf-page-numbers/") {
       const exported = await PDFDocument.load(fs.readFileSync(await download.path()));
       if (exported.getPageCount() !== 2) throw new Error("Page-numbered PDF should preserve page count.");
+    }
+    if (route === "/tools/rotate-pdf/") {
+      const exported = await PDFDocument.load(fs.readFileSync(await download.path()));
+      if (exported.getPageCount() !== 2) throw new Error("Rotated PDF should preserve page count.");
+      if ((exported.getPage(0).getRotation().angle || 0) !== 90) throw new Error("Rotated PDF should rotate the selected first page.");
+      if ((exported.getPage(1).getRotation().angle || 0) !== 0) throw new Error("Rotated PDF should not rotate unselected pages.");
+    }
+    if (route === "/tools/remove-pdf-pages/") {
+      const exported = await PDFDocument.load(fs.readFileSync(await download.path()));
+      if (exported.getPageCount() !== 1) throw new Error("Remove-pages PDF should keep one page after removing one from a two-page PDF.");
+    }
+    if (route === "/tools/reorder-pdf-pages/") {
+      const exported = await PDFDocument.load(fs.readFileSync(await download.path()));
+      if (exported.getPageCount() !== 2) throw new Error("Reordered PDF should contain two pages.");
     }
   }
 

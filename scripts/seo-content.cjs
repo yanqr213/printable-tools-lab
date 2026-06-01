@@ -2,7 +2,7 @@ const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pa
 
 const SITE_SUMMARY = {
   name: "PrintableTools Lab",
-  description: "Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  description: "Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   audience: "Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, and household planners.",
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
@@ -13,6 +13,9 @@ const HIGH_INTENT_TOOL_PATHS = [
   "tools/merge-pdf",
   "tools/split-pdf",
   "tools/pdf-page-numbers",
+  "tools/rotate-pdf",
+  "tools/remove-pdf-pages",
+  "tools/reorder-pdf-pages",
   "tools/text-to-pdf",
   "tools/invoice-generator",
   "tools/receipt-generator",
@@ -62,6 +65,21 @@ const TOOL_FINDER_ROWS = [
     need: "I need to add page numbers to a PDF",
     toolPath: "tools/pdf-page-numbers",
     why: "Best for packets, handouts, drafts, and merged PDFs that need page references.",
+  },
+  {
+    need: "I need to rotate sideways PDF pages",
+    toolPath: "tools/rotate-pdf",
+    why: "Best for scanned forms, phone-generated PDFs, and packets with only a few pages facing the wrong way.",
+  },
+  {
+    need: "I need to delete pages from a PDF",
+    toolPath: "tools/remove-pdf-pages",
+    why: "Best for removing blank pages, duplicates, covers, or private pages while keeping the rest of the document.",
+  },
+  {
+    need: "I need to reorder PDF pages",
+    toolPath: "tools/reorder-pdf-pages",
+    why: "Best for organizing scanned packets or drafts where pages were captured out of sequence.",
   },
   {
     need: "I need to bill a client or record a service payment",
@@ -250,6 +268,51 @@ const landingPages = [
       ["Best fit", "Use it for classroom packets, meeting handouts, client drafts, applications, reports, and merged PDFs that need references."],
     ],
     relatedTools: ["tools/merge-pdf", "tools/split-pdf", "tools/text-to-pdf"],
+  },
+  {
+    path: "rotate-pdf-no-upload",
+    title: "Rotate PDF Pages Without Uploading",
+    description: "Rotate PDF pages locally in your browser without uploading the file or creating an account.",
+    headline: "Rotate PDF pages without uploading",
+    lead: "Select a PDF, choose a rotation angle, and rotate all pages or only selected pages. This is useful when scans, forms, or phone-generated PDFs are sideways or upside down.",
+    primaryTool: "tools/rotate-pdf",
+    intent: "rotate PDF pages, no upload, no account",
+    sections: [
+      ["Fix sideways scans quickly", "Scanned forms and phone photos often become PDFs with the wrong orientation. This tool rotates pages locally before you share the file."],
+      ["Selected pages or all pages", "Use all when the whole document is sideways, or enter ranges such as 1,3-5 when only a few pages need correction."],
+      ["Review before sending", "Open the downloaded copy and confirm the orientation is correct on every page before uploading it to a portal or sending it to someone else."],
+    ],
+    relatedTools: ["tools/split-pdf", "tools/remove-pdf-pages", "tools/reorder-pdf-pages"],
+  },
+  {
+    path: "remove-pages-from-pdf-no-upload",
+    title: "Remove Pages from PDF Without Uploading",
+    description: "Delete selected PDF pages locally in your browser without uploading the document.",
+    headline: "Remove pages from PDF without uploading",
+    lead: "Choose a PDF, enter the pages you want to remove, and download a new copy without those pages. This is built for trimming blank pages, cover sheets, duplicates, and private pages.",
+    primaryTool: "tools/remove-pdf-pages",
+    intent: "delete PDF pages, no upload, no account",
+    sections: [
+      ["Trim only the unwanted pages", "Enter pages or ranges such as 1,3-5. The export keeps the remaining pages in their original order."],
+      ["Privacy positioning", "Removing pages locally helps when the source document contains private pages that you do not want to send to an online converter."],
+      ["Avoid mistakes", "Check the preview count, then open the downloaded PDF and confirm the removed pages are really gone before sharing it."],
+    ],
+    relatedTools: ["tools/split-pdf", "tools/reorder-pdf-pages", "tools/merge-pdf"],
+  },
+  {
+    path: "reorder-pdf-pages-no-upload",
+    title: "Reorder PDF Pages Without Uploading",
+    description: "Rearrange PDF pages locally in your browser by entering the new page order.",
+    headline: "Reorder PDF pages without uploading",
+    lead: "Select one PDF and type the page order you want, such as 3,1,2. This creates a new PDF in that order without uploading the source document.",
+    primaryTool: "tools/reorder-pdf-pages",
+    intent: "reorder PDF pages, organize PDF, no upload",
+    sections: [
+      ["Organize pages by number", "Use a comma-separated page order to move pages around. You can also omit pages when you only want a shorter ordered copy."],
+      ["Common use cases", "Reorder scanned forms, handouts, application packets, receipts, classroom files, or client drafts when pages were captured out of sequence."],
+      ["Keep it simple", "This first version uses typed page numbers instead of a drag interface so it stays fast, mobile-friendly, and free to run without a server."],
+    ],
+    relatedTools: ["tools/merge-pdf", "tools/remove-pdf-pages", "tools/pdf-page-numbers"],
   },
   {
     path: "free-resume-builder-no-signup",
@@ -722,6 +785,33 @@ const tools = [
     ],
   },
   {
+    path: "tools/rotate-pdf",
+    title: "Rotate PDF Pages",
+    description: "Rotate all PDF pages or selected pages locally in your browser without uploading the file.",
+    body: [
+      "Select one PDF, choose 90, 180, or 270 degrees, and rotate all pages or only selected page ranges.",
+      "PDF rotation is a common no-upload need for scanned forms, phone-generated packets, sideways receipts, and upside-down handouts.",
+    ],
+  },
+  {
+    path: "tools/remove-pdf-pages",
+    title: "Remove Pages from PDF",
+    description: "Delete selected PDF pages locally in your browser without uploading the document.",
+    body: [
+      "Select one PDF, enter pages or ranges to remove, and export a new PDF with the remaining pages in order.",
+      "Removing pages solves a practical privacy and cleanup problem when users need to strip blanks, duplicates, covers, or sensitive pages before sharing.",
+    ],
+  },
+  {
+    path: "tools/reorder-pdf-pages",
+    title: "Reorder PDF Pages",
+    description: "Rearrange PDF pages by typing a new page order, all locally in your browser.",
+    body: [
+      "Select one PDF and enter the page order you want, such as 3,1,2, then export a new PDF in that order.",
+      "Reordering pages targets users who scanned or assembled packets out of sequence and need a fast organizer without account friction.",
+    ],
+  },
+  {
     path: "tools/text-to-pdf",
     title: "Text to PDF Converter",
     description: "Paste plain text and download a clean one-page PDF without an account or file upload.",
@@ -858,6 +948,9 @@ const guides = [
   ["guides/merge-pdf-without-uploading", "Merge PDF without uploading", "Combine several PDF files into one PDF locally in your browser.", "People often need one combined PDF for applications, school packets, receipts, or client documents. A browser-side merge avoids sending private files to a converter server."],
   ["guides/split-pdf-without-uploading", "Split PDF without uploading", "Extract selected pages from a PDF without uploading the document.", "PDF splitting is useful when a larger packet contains only a few pages you need to send. Page ranges should be checked carefully before sharing."],
   ["guides/add-page-numbers-to-pdf", "Add page numbers to PDF", "Add simple visible page numbers to an existing PDF in the browser.", "Page numbers help reviewers refer to pages in packets, drafts, reports, and handouts. A local tool can add simple numbering without a full PDF editor."],
+  ["guides/rotate-pdf-pages-without-uploading", "Rotate PDF pages without uploading", "Fix sideways or upside-down PDF pages locally in your browser.", "PDF rotation is useful for scanned forms, phone-generated PDFs, receipts, and packets where only a few pages face the wrong direction."],
+  ["guides/remove-pages-from-pdf-without-uploading", "Remove pages from PDF without uploading", "Delete selected PDF pages locally without sending the source file to a converter.", "Removing pages helps trim blank pages, duplicate scans, cover sheets, or private pages before sharing a PDF."],
+  ["guides/reorder-pdf-pages-without-uploading", "Reorder PDF pages without uploading", "Organize PDF pages by entering a new page order in the browser.", "Reordering pages is useful when forms, application packets, classroom files, or client drafts were scanned out of sequence."],
   ["guides/text-to-pdf-converter-no-signup", "Text to PDF converter without signup", "Paste plain text and download a clean one-page PDF without installing an editor.", "Text-to-PDF searches are practical and time-sensitive. People often need to turn notes, instructions, or a plain letter into a PDF without creating an account or uploading the text to a file service."],
   ["guides/free-sign-in-sheet-generator", "Free sign-in sheet generator", "Create a printable sign-in sheet PDF for events, classes, workshops, meetings, or visitor logs.", "For small events, a printed sign-in sheet is often enough. It gives the organizer names, attendance, signatures, and contact details without needing a registration app."],
   ["guides/attendance-sheet-pdf-template", "Attendance sheet PDF template", "Use a simple printable attendance sheet for classes, clubs, workshops, and small meetings.", "A useful attendance sheet leaves enough writing space. Fewer rows per page can be better than a cramped page nobody can read later."],
@@ -920,6 +1013,12 @@ const keywordClusters = [
       ["Merge PDF without uploading", "merge-pdf-no-upload"],
       ["Split PDF without uploading", "split-pdf-no-upload"],
       ["Add page numbers to PDF", "add-page-numbers-to-pdf"],
+      ["Rotate PDF pages", "tools/rotate-pdf"],
+      ["Rotate PDF pages without uploading", "rotate-pdf-no-upload"],
+      ["Remove pages from PDF", "tools/remove-pdf-pages"],
+      ["Remove pages from PDF without uploading", "remove-pages-from-pdf-no-upload"],
+      ["Reorder PDF pages", "tools/reorder-pdf-pages"],
+      ["Reorder PDF pages without uploading", "reorder-pdf-pages-no-upload"],
       ["Text to PDF converter", "tools/text-to-pdf"],
       ["Text to PDF converter without signup", "text-to-pdf-no-signup"],
       ["Sign-in sheet generator", "tools/sign-in-sheet"],
@@ -1282,7 +1381,7 @@ function freePdfToolsHtml() {
     {
       title: "No-upload conversion tools",
       text: "Use these when a photo, scan, existing PDF, or plain text note needs to become the right PDF quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "text-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "text-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1895,6 +1994,48 @@ function toolDetails(tool) {
         { q: "Can I choose the position?", a: "Yes. Use bottom center, bottom right, or top right." },
         { q: "Does this edit the original file?", a: "No. It downloads a new numbered copy." },
         { q: "Are files uploaded?", a: "No. The page numbering runs in your browser for ordinary use." },
+      ],
+    },
+    "rotate-pdf": {
+      privacy: "The PDF is read and rotated in your browser without uploading the file to PrintableTools Lab.",
+      limit: "The free version rotates one PDF and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Sideways scan", text: "Fix a scanned form or receipt that was captured in the wrong orientation." },
+        { title: "Selected page correction", text: "Rotate only the pages that are sideways while leaving the rest untouched." },
+        { title: "Phone-generated PDF", text: "Correct files made from phone scans before sending or uploading them." },
+      ],
+      faq: [
+        { q: "Can I rotate only one page?", a: "Yes. Enter that page number or a range such as 2 or 2-4." },
+        { q: "Does this upload the PDF?", a: "No. The rotation runs in your browser for ordinary use." },
+        { q: "Does it edit the original file?", a: "No. It downloads a new rotated copy." },
+      ],
+    },
+    "remove-pdf-pages": {
+      privacy: "The source PDF is read in your browser and selected pages are removed locally before export.",
+      limit: "The free version removes pages from one PDF and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Blank page cleanup", text: "Remove blank scan pages, cover sheets, or duplicate pages before sharing." },
+        { title: "Private page removal", text: "Delete pages that should not be included in the copy you send." },
+        { title: "Shorter upload file", text: "Create a smaller PDF by keeping only the useful pages." },
+      ],
+      faq: [
+        { q: "Can I remove all pages?", a: "No. At least one page must remain in the exported PDF." },
+        { q: "How do ranges work?", a: "Use commas and ranges such as 1,3-5. Pages are counted from the first page as 1." },
+        { q: "Are files uploaded?", a: "No. The page removal runs in your browser for ordinary use." },
+      ],
+    },
+    "reorder-pdf-pages": {
+      privacy: "The source PDF is read in your browser and copied into the typed page order without uploading the file.",
+      limit: "The free version reorders one PDF and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Out-of-order scan", text: "Fix forms, packets, or handouts that were scanned in the wrong order." },
+        { title: "Custom short copy", text: "Enter only the pages you want when you need a shorter ordered PDF." },
+        { title: "Packet cleanup", text: "Organize receipts, applications, or client drafts before sharing." },
+      ],
+      faq: [
+        { q: "Can I omit pages?", a: "Yes. The export follows the page numbers you enter, so omitted pages are left out." },
+        { q: "Can I repeat a page?", a: "Yes. Repeating a page number creates another copy of that page in the exported PDF." },
+        { q: "Does it upload the PDF?", a: "No. The reorder process runs in your browser for ordinary use." },
       ],
     },
     "text-to-pdf": {

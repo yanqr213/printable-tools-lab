@@ -1,6 +1,6 @@
 # PrintableTools Lab
 
-Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
+Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
 
 Audience: Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, and household planners.
 
@@ -53,6 +53,9 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Merge PDF Tool](https://printable-tools-lab.pages.dev/tools/merge-pdf/): Combine several PDF files into one PDF in your browser without uploading documents.
 - [Split PDF Tool](https://printable-tools-lab.pages.dev/tools/split-pdf/): Extract selected pages from a PDF in your browser without uploading the document.
 - [Add Page Numbers to PDF](https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/): Add simple page numbers to an existing PDF locally in your browser.
+- [Rotate PDF Pages](https://printable-tools-lab.pages.dev/tools/rotate-pdf/): Rotate all PDF pages or selected pages locally in your browser without uploading the file.
+- [Remove Pages from PDF](https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/): Delete selected PDF pages locally in your browser without uploading the document.
+- [Reorder PDF Pages](https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/): Rearrange PDF pages by typing a new page order, all locally in your browser.
 - [Text to PDF Converter](https://printable-tools-lab.pages.dev/tools/text-to-pdf/): Paste plain text and download a clean one-page PDF without an account or file upload.
 - [Sign-in Sheet Generator](https://printable-tools-lab.pages.dev/tools/sign-in-sheet/): Create a printable sign-in sheet PDF for events, classrooms, workshops, meetings, or visitor logs.
 - [Graph Paper Generator](https://printable-tools-lab.pages.dev/tools/graph-paper/): Generate printable graph paper PDF with quarter-inch, half-inch, or small grid spacing for math, notes, and design sketches.
@@ -71,6 +74,9 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Merge PDF Without Uploading](https://printable-tools-lab.pages.dev/merge-pdf-no-upload/): combine PDF files, no upload, no account
 - [Split PDF Without Uploading](https://printable-tools-lab.pages.dev/split-pdf-no-upload/): extract PDF pages, no upload, no account
 - [Add Page Numbers to PDF](https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/): add page numbers to PDF, no upload, no account
+- [Rotate PDF Pages Without Uploading](https://printable-tools-lab.pages.dev/rotate-pdf-no-upload/): rotate PDF pages, no upload, no account
+- [Remove Pages from PDF Without Uploading](https://printable-tools-lab.pages.dev/remove-pages-from-pdf-no-upload/): delete PDF pages, no upload, no account
+- [Reorder PDF Pages Without Uploading](https://printable-tools-lab.pages.dev/reorder-pdf-pages-no-upload/): reorder PDF pages, organize PDF, no upload
 - [Free Resume Builder Without Signup](https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/): resume PDF download without account or paywall
 - [Free Receipt Generator Without Signup](https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/): receipt PDF now, no account, quick proof of payment
 - [Weekly Timesheet PDF Without Signup](https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/): weekly timesheet PDF with fast export

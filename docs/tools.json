@@ -4,7 +4,7 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-06-01T03:27:42.566Z",
+  "generatedAt": "2026-06-01T04:13:17.224Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -40,6 +40,21 @@
       "title": "Add Page Numbers to PDF",
       "url": "https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/",
       "intent": "add page numbers to PDF, no upload, no account"
+    },
+    {
+      "title": "Rotate PDF Pages Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/rotate-pdf-no-upload/",
+      "intent": "rotate PDF pages, no upload, no account"
+    },
+    {
+      "title": "Remove Pages from PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/remove-pages-from-pdf-no-upload/",
+      "intent": "delete PDF pages, no upload, no account"
+    },
+    {
+      "title": "Reorder PDF Pages Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/reorder-pdf-pages-no-upload/",
+      "intent": "reorder PDF pages, organize PDF, no upload"
     },
     {
       "title": "Free Resume Builder Without Signup",
@@ -132,6 +147,21 @@
       "title": "Add Page Numbers to PDF",
       "description": "Add simple page numbers to an existing PDF locally in your browser.",
       "url": "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/"
+    },
+    {
+      "title": "Rotate PDF Pages",
+      "description": "Rotate all PDF pages or selected pages locally in your browser without uploading the file.",
+      "url": "https://printable-tools-lab.pages.dev/tools/rotate-pdf/"
+    },
+    {
+      "title": "Remove Pages from PDF",
+      "description": "Delete selected PDF pages locally in your browser without uploading the document.",
+      "url": "https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/"
+    },
+    {
+      "title": "Reorder PDF Pages",
+      "description": "Rearrange PDF pages by typing a new page order, all locally in your browser.",
+      "url": "https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/"
     },
     {
       "title": "Text to PDF Converter",

@@ -4,7 +4,7 @@ Zero-cost validation build for a free printable PDF generator site.
 
 Live site: https://printable-tools-lab.pages.dev/
 
-PrintableTools Lab is a no-signup utility site for practical PDFs: merge PDF, split PDF, add page numbers, image-to-PDF conversion, multi-image PDFs, text-to-PDF, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, monthly calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
+PrintableTools Lab is a no-signup utility site for practical PDFs: merge PDF, split PDF, rotate PDF pages, remove PDF pages, reorder PDF pages, add page numbers, image-to-PDF conversion, multi-image PDFs, text-to-PDF, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, monthly calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
 
 ## Free PDF tool directory
 
@@ -16,6 +16,9 @@ PrintableTools Lab is a no-signup utility site for practical PDFs: merge PDF, sp
 - [Merge PDF Tool](https://printable-tools-lab.pages.dev/tools/merge-pdf/)
 - [Split PDF Tool](https://printable-tools-lab.pages.dev/tools/split-pdf/)
 - [Add Page Numbers to PDF](https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/)
+- [Rotate PDF Pages](https://printable-tools-lab.pages.dev/tools/rotate-pdf/)
+- [Remove Pages from PDF](https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/)
+- [Reorder PDF Pages](https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/)
 - [Text to PDF Converter](https://printable-tools-lab.pages.dev/tools/text-to-pdf/)
 - [Invoice Generator](https://printable-tools-lab.pages.dev/tools/invoice-generator/)
 - [Receipt Generator](https://printable-tools-lab.pages.dev/tools/receipt-generator/)
@@ -37,12 +40,15 @@ PrintableTools Lab is a no-signup utility site for practical PDFs: merge PDF, sp
 ## What is included
 
 - Static website with optional Cloudflare Pages Function for the AI idea helper.
-- Thirty-eight browser-side generators and PDF utilities:
+- Forty-one browser-side generators and PDF utilities:
   - Image to PDF Converter
   - Multiple Images to PDF Converter
   - Merge PDF Tool
   - Split PDF Tool
   - Add Page Numbers to PDF
+  - Rotate PDF Pages
+  - Remove Pages from PDF
+  - Reorder PDF Pages
   - Text to PDF Converter
   - Sign-in Sheet Generator
   - Graph Paper Generator
@@ -77,11 +83,11 @@ PrintableTools Lab is a no-signup utility site for practical PDFs: merge PDF, sp
   - Monthly Calendar Generator
   - Meal Planner Generator
 - Canvas-to-PDF export, including a multi-page export path for multiple-image PDFs.
-- Browser-side PDF operations for merge, split, and page numbering via the MIT-licensed `pdf-lib` library.
+- Browser-side PDF operations for merge, split, page numbering, rotation, page removal, and page reordering via the MIT-licensed `pdf-lib` library.
 - Daily free limit stored in `localStorage`.
 - Local validation events stored in `localStorage`.
 - Anonymous Cloudflare KV counters for live page views, PDF generations, downloads, limit hits, and AI idea applies.
-- 73 original guide pages plus keyword clusters for SEO and future AdSense review.
+- 76 original guide pages plus keyword clusters for SEO and future AdSense review.
 - Compliance pages: About, Privacy, Terms, AI & License Disclosure.
 - Static pre-rendered HTML for key routes, plus client-side enhancement.
 - `robots.txt`, canonical URLs, sitemap, and SoftwareApplication structured data for tool pages.
@@ -156,7 +162,7 @@ Keep ads disabled until the real AdSense publisher ID and policy review are read
 - `sitemap.xml` and `robots.txt` are generated from the route list.
 - `llms.txt`, `feed.xml`, `tools.json`, `discovery.json`, and `DISTRIBUTION.md` are generated from the same route/tool metadata.
 - Directory pages include `ItemList` structured data; tool pages include `SoftwareApplication` and FAQ structured data.
-- High-intent landing pages target no-signup and no-upload searches for PDF merge, PDF split, PDF page numbers, invoice, receipt, work order, packing slip, inventory sheet, timesheet, resume, certificate, business cards, address labels, barcode labels, price tags, flyers, coupons, image-to-PDF, multi-image PDF, and text-to-PDF workflows.
+- High-intent landing pages target no-signup and no-upload searches for PDF merge, PDF split, PDF rotation, PDF page removal, PDF page reordering, PDF page numbers, invoice, receipt, work order, packing slip, inventory sheet, timesheet, resume, certificate, business cards, address labels, barcode labels, price tags, flyers, coupons, image-to-PDF, multi-image PDF, and text-to-PDF workflows.
 - `OPERATIONS.md` contains account setup, keywords, distribution ideas, and pivot rules.
 - `VALIDATION.md` and `reports/validation-report.json` are generated by `npm.cmd run validate:ops`.
 - `scripts/site-verification.cjs` can generate a Google verification file for the service account and claim site ownership through the Google Site Verification API.
@@ -176,7 +182,7 @@ For step-by-step operations, see `OPERATIONS.md`.
 ## Launch checklist
 
 1. Deploy the full folder contents after running `npm.cmd run build:routes`.
-2. Open `/`, `/tools/image-to-pdf/`, `/tools/multi-image-pdf/`, `/tools/merge-pdf/`, `/tools/split-pdf/`, `/tools/pdf-page-numbers/`, `/tools/text-to-pdf/`, `/tools/invoice-generator/`, `/tools/estimate-generator/`, `/tools/purchase-order/`, `/tools/bill-of-sale/`, `/tools/rent-receipt/`, `/tools/receipt-generator/`, `/tools/timesheet-generator/`, `/tools/packing-slip/`, `/tools/work-order/`, `/tools/inventory-sheet/`, `/tools/business-card/`, `/tools/address-labels/`, `/tools/barcode-labels/`, `/tools/price-tag/`, `/tools/flyer-maker/`, `/tools/coupon-maker/`, `/tools/resume-builder/`, `/tools/cover-letter/`, `/tools/resignation-letter/`, `/tools/certificate-generator/`, `/tools/monthly-calendar/`, `/tools/meal-planner/`, `/tools/sign-in-sheet/`, `/tools/graph-paper/`, `/tools/packing-list/`, `/tools/todo-list/`, `/guides/`, `/privacy/`, and `/dashboard/`.
+2. Open `/`, `/tools/image-to-pdf/`, `/tools/multi-image-pdf/`, `/tools/merge-pdf/`, `/tools/split-pdf/`, `/tools/pdf-page-numbers/`, `/tools/rotate-pdf/`, `/tools/remove-pdf-pages/`, `/tools/reorder-pdf-pages/`, `/tools/text-to-pdf/`, `/tools/invoice-generator/`, `/tools/estimate-generator/`, `/tools/purchase-order/`, `/tools/bill-of-sale/`, `/tools/rent-receipt/`, `/tools/receipt-generator/`, `/tools/timesheet-generator/`, `/tools/packing-slip/`, `/tools/work-order/`, `/tools/inventory-sheet/`, `/tools/business-card/`, `/tools/address-labels/`, `/tools/barcode-labels/`, `/tools/price-tag/`, `/tools/flyer-maker/`, `/tools/coupon-maker/`, `/tools/resume-builder/`, `/tools/cover-letter/`, `/tools/resignation-letter/`, `/tools/certificate-generator/`, `/tools/monthly-calendar/`, `/tools/meal-planner/`, `/tools/sign-in-sheet/`, `/tools/graph-paper/`, `/tools/packing-list/`, `/tools/todo-list/`, `/guides/`, `/privacy/`, and `/dashboard/`.
 3. Generate and download one PDF from each tool.
 4. Confirm the dashboard shows page views, PDF generations, and downloads.
 5. Submit the public URL to Google Search Console.
@@ -191,13 +197,13 @@ For step-by-step operations, see `OPERATIONS.md`.
 - The AI idea helper is server-side only. Configure `AI_BASE_URL`, `AI_API_KEY`, and `AI_MODEL` as Cloudflare Pages secrets/environment variables before using it in production.
 - New document conversion, business, local promotion, label, career, event, checklist, graph paper, packing list, calendar, and meal-planning tools were added because these queries have stronger immediate pain and broader repeat use than light classroom printables. Many competing tools monetize at account creation, download, ads, print orders, or conversion limits, so a complete free PDF export is a clearer acquisition hook.
 - Packing slip, work order, and inventory sheet tools were added because they map to commercial workflows where users are preparing orders, service visits, or stock counts and many alternatives push users into shipping, field-service, or spreadsheet software.
-- Merge PDF, Split PDF, and PDF Page Numbers were added because existing-PDF edits are high-frequency utility searches where competitors often rely on upload flows, usage limits, account walls, or download friction. These three tools keep the same no-upload browser-side promise and broaden the ad-supported audience beyond printable templates.
+- Merge PDF, Split PDF, PDF Page Numbers, Rotate PDF, Remove PDF Pages, and Reorder PDF Pages were added because existing-PDF edits are high-frequency utility searches where competitors often rely on upload flows, usage limits, account walls, or download friction. These tools keep the same no-upload browser-side promise and broaden the ad-supported audience beyond printable templates.
 - New tools stay on the same site during validation so Search Console data, sitemap history, GitHub discovery links, and external directory references concentrate on one property.
 
 ## Validation gates
 
-- Day 7: 38 tools export stable PDFs on desktop and mobile.
-- Day 14: 73 guide pages live; submit sitemap/site to Google Search Console.
+- Day 7: 41 tools export stable PDFs on desktop and mobile.
+- Day 14: 76 guide pages live; submit sitemap/site to Google Search Console.
 - Day 30: continue if any of these are true:
   - 100 PDF downloads.
   - 300 tool generations.

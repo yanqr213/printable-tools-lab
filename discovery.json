@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T03:27:42.502Z",
+  "generatedAt": "2026-06-01T04:13:17.152Z",
   "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -17,6 +17,9 @@
     "https://printable-tools-lab.pages.dev/merge-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/split-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/",
+    "https://printable-tools-lab.pages.dev/rotate-pdf-no-upload/",
+    "https://printable-tools-lab.pages.dev/remove-pages-from-pdf-no-upload/",
+    "https://printable-tools-lab.pages.dev/reorder-pdf-pages-no-upload/",
     "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
     "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
@@ -35,6 +38,9 @@
     "https://printable-tools-lab.pages.dev/tools/merge-pdf/",
     "https://printable-tools-lab.pages.dev/tools/split-pdf/",
     "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/",
+    "https://printable-tools-lab.pages.dev/tools/rotate-pdf/",
+    "https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/",
+    "https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/",
     "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
     "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
     "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
@@ -95,6 +101,24 @@
       "url": "https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/",
       "intent": "add page numbers to PDF, no upload, no account",
       "tool": "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/"
+    },
+    {
+      "title": "Rotate PDF Pages Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/rotate-pdf-no-upload/",
+      "intent": "rotate PDF pages, no upload, no account",
+      "tool": "https://printable-tools-lab.pages.dev/tools/rotate-pdf/"
+    },
+    {
+      "title": "Remove Pages from PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/remove-pages-from-pdf-no-upload/",
+      "intent": "delete PDF pages, no upload, no account",
+      "tool": "https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/"
+    },
+    {
+      "title": "Reorder PDF Pages Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/reorder-pdf-pages-no-upload/",
+      "intent": "reorder PDF pages, organize PDF, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/"
     },
     {
       "title": "Free Resume Builder Without Signup",

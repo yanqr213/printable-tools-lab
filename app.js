@@ -613,6 +613,62 @@
         { id: "startNumber", label: "Start number", type: "text", maxLength: 4 },
       ],
     },
+    "rotate-pdf": {
+      id: "rotate-pdf",
+      icon: "ROT",
+      title: "Rotate PDF Pages",
+      shortTitle: "Rotate PDF",
+      description: "Rotate all pages or selected pages in a PDF locally in your browser without uploading the file.",
+      keywords: ["rotate PDF", "PDF orientation", "no upload", "PDF pages"],
+      ai: false,
+      pdfTool: "rotate",
+      defaultValues: {
+        pdfs: "",
+        rotation: "90",
+        pageRange: "all",
+      },
+      fields: [
+        { id: "pdfs", label: "PDF file", type: "file", accept: "application/pdf", multiple: false, help: "Select one PDF. It stays in your browser and is not uploaded." },
+        { id: "rotation", label: "Rotation", type: "select", options: [["90", "90 degrees clockwise"], ["180", "180 degrees"], ["270", "90 degrees counter-clockwise"]] },
+        { id: "pageRange", label: "Pages to rotate", type: "text", maxLength: 80, help: "Use all, a page number, or ranges such as 1,3-5." },
+      ],
+    },
+    "remove-pdf-pages": {
+      id: "remove-pdf-pages",
+      icon: "DEL",
+      title: "Remove Pages from PDF",
+      shortTitle: "Remove PDF pages",
+      description: "Delete selected pages from a PDF locally in your browser without uploading the document.",
+      keywords: ["remove PDF pages", "delete PDF pages", "no upload", "PDF editor"],
+      ai: false,
+      pdfTool: "remove-pages",
+      defaultValues: {
+        pdfs: "",
+        removeRange: "1",
+      },
+      fields: [
+        { id: "pdfs", label: "PDF file", type: "file", accept: "application/pdf", multiple: false, help: "Select one PDF. It stays in your browser and is not uploaded." },
+        { id: "removeRange", label: "Pages to remove", type: "text", maxLength: 80, help: "Use pages or ranges such as 1,3-5. Pages are 1-based." },
+      ],
+    },
+    "reorder-pdf-pages": {
+      id: "reorder-pdf-pages",
+      icon: "ORD",
+      title: "Reorder PDF Pages",
+      shortTitle: "Reorder PDF",
+      description: "Rearrange PDF pages by entering a new page order, all locally in your browser.",
+      keywords: ["reorder PDF pages", "organize PDF", "arrange PDF pages", "no upload"],
+      ai: false,
+      pdfTool: "reorder",
+      defaultValues: {
+        pdfs: "",
+        pageOrder: "1,2,3",
+      },
+      fields: [
+        { id: "pdfs", label: "PDF file", type: "file", accept: "application/pdf", multiple: false, help: "Select one PDF. It stays in your browser and is not uploaded." },
+        { id: "pageOrder", label: "New page order", type: "text", maxLength: 140, help: "Enter page numbers in the order you want, such as 3,1,2. You can omit pages to create a shorter PDF." },
+      ],
+    },
     "text-to-pdf": {
       id: "text-to-pdf",
       icon: "TXT",
@@ -1175,7 +1231,7 @@
     {
       title: "No-upload conversion tools",
       description: "Use these when a photo, scan, existing PDF, or plain text note needs to become the right PDF quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "text-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "text-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1299,6 +1355,51 @@
         ["Best fit", "Use it for classroom packets, meeting handouts, client drafts, applications, reports, and merged PDFs that need references."],
       ],
       related: ["merge-pdf", "split-pdf", "text-to-pdf"],
+    },
+    {
+      slug: "rotate-pdf-no-upload",
+      title: "Rotate PDF Pages Without Uploading",
+      headline: "Rotate PDF pages without uploading",
+      description: "Rotate PDF pages locally in your browser without uploading the file or creating an account.",
+      lead: "Select a PDF, choose a rotation angle, and rotate all pages or only selected pages. It is useful when scans, forms, or phone-generated PDFs are sideways or upside down.",
+      tool: "rotate-pdf",
+      intent: "rotate PDF pages, no upload, no account",
+      sections: [
+        ["Fix sideways scans quickly", "Scanned forms and phone photos often become PDFs with the wrong orientation. This tool rotates pages locally before you share the file."],
+        ["Selected pages or all pages", "Use all when the whole document is sideways, or enter ranges such as 1,3-5 when only a few pages need correction."],
+        ["Review before sending", "Open the downloaded copy and confirm the orientation is correct on every page before uploading it to a portal or sending it to someone else."],
+      ],
+      related: ["split-pdf", "remove-pdf-pages", "reorder-pdf-pages"],
+    },
+    {
+      slug: "remove-pages-from-pdf-no-upload",
+      title: "Remove Pages from PDF Without Uploading",
+      headline: "Remove pages from PDF without uploading",
+      description: "Delete selected PDF pages locally in your browser without uploading the document.",
+      lead: "Choose a PDF, enter the pages you want to remove, and download a new copy without those pages. It is built for trimming blank pages, cover sheets, duplicates, and private pages.",
+      tool: "remove-pdf-pages",
+      intent: "delete PDF pages, no upload, no account",
+      sections: [
+        ["Trim only the unwanted pages", "Enter pages or ranges such as 1,3-5. The export keeps the remaining pages in their original order."],
+        ["Privacy positioning", "Removing pages locally helps when the source document contains private pages that you do not want to send to an online converter."],
+        ["Avoid mistakes", "Check the preview count, then open the downloaded PDF and confirm the removed pages are really gone before sharing it."],
+      ],
+      related: ["split-pdf", "reorder-pdf-pages", "merge-pdf"],
+    },
+    {
+      slug: "reorder-pdf-pages-no-upload",
+      title: "Reorder PDF Pages Without Uploading",
+      headline: "Reorder PDF pages without uploading",
+      description: "Rearrange PDF pages locally in your browser by entering the new page order.",
+      lead: "Select one PDF and type the page order you want, such as 3,1,2. This creates a new PDF in that order without uploading the source document.",
+      tool: "reorder-pdf-pages",
+      intent: "reorder PDF pages, organize PDF, no upload",
+      sections: [
+        ["Organize pages by number", "Use a comma-separated page order to move pages around. You can also omit pages when you only want a shorter ordered copy."],
+        ["Common use cases", "Reorder scanned forms, handouts, application packets, receipts, classroom files, or client drafts when pages were captured out of sequence."],
+        ["Keep it simple", "This first version uses typed page numbers instead of a drag interface so it stays fast, mobile-friendly, and free to run without a server."],
+      ],
+      related: ["merge-pdf", "remove-pdf-pages", "pdf-page-numbers"],
     },
     {
       slug: "free-resume-builder-no-signup",
@@ -1529,6 +1630,21 @@
       need: "Add visible page numbers to a PDF",
       tool: "pdf-page-numbers",
       why: "Best for packets, handouts, drafts, and combined PDFs that need references.",
+    },
+    {
+      need: "Rotate sideways or upside-down PDF pages",
+      tool: "rotate-pdf",
+      why: "Best for correcting scanned forms and phone-generated PDFs without uploading the file.",
+    },
+    {
+      need: "Delete unwanted pages from a PDF",
+      tool: "remove-pdf-pages",
+      why: "Best for removing blank pages, duplicates, covers, or private pages while keeping the rest.",
+    },
+    {
+      need: "Put PDF pages in a new order",
+      tool: "reorder-pdf-pages",
+      why: "Best for scanned packets or drafts where pages were captured out of sequence.",
     },
     {
       need: "Bill a client or record work before payment",
@@ -2602,7 +2718,7 @@
       body: [
         ["p", "Use this directory when you need a PDF now and do not want an account, hidden export fee, or ad-click requirement."],
         ["h2", "No-upload conversion tools"],
-        ["ul", ["Image to PDF Converter: turn JPG, PNG, or WebP images into a one-page PDF.", "Multiple Images to PDF Converter: combine up to eight images into one multi-page PDF.", "Merge PDF, Split PDF, and PDF Page Numbers: edit existing PDFs locally in the browser.", "Text to PDF Converter: paste plain text and download a clean one-page document."]],
+        ["ul", ["Image to PDF Converter: turn JPG, PNG, or WebP images into a one-page PDF.", "Multiple Images to PDF Converter: combine up to eight images into one multi-page PDF.", "Merge, split, rotate, remove, reorder, and number PDF pages locally in the browser.", "Text to PDF Converter: paste plain text and download a clean one-page document."]],
         ["h2", "Business and work PDFs"],
         ["ul", ["Invoice, estimate, purchase order, receipt, timesheet, bill of sale, and rent receipt PDFs are built for quick records, not full accounting software.", "Business card, address label, barcode label, price tag, flyer, and coupon PDFs are built for local-business print needs without design-account friction.", "Resume, cover letter, and resignation letter tools export without a surprise download fee."]],
         ["h2", "Printable planning PDFs"],
@@ -2617,9 +2733,9 @@
       body: [
         ["p", "Use this page to coordinate the first distribution push. The goal is not to look busy; it is to create enough real traffic for Search Console, AdSense readiness, and download validation."],
         ["h2", "Primary links"],
-        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Tools index: https://printable-tools-lab.pages.dev/tools/", "Image to PDF: https://printable-tools-lab.pages.dev/tools/image-to-pdf/", "Multiple images to PDF: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/", "Merge PDF: https://printable-tools-lab.pages.dev/tools/merge-pdf/", "Split PDF: https://printable-tools-lab.pages.dev/tools/split-pdf/", "PDF page numbers: https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/", "Text to PDF: https://printable-tools-lab.pages.dev/tools/text-to-pdf/", "Invoice generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/", "Business card generator: https://printable-tools-lab.pages.dev/tools/business-card/", "Barcode label generator: https://printable-tools-lab.pages.dev/tools/barcode-labels/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
+        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Tools index: https://printable-tools-lab.pages.dev/tools/", "Image to PDF: https://printable-tools-lab.pages.dev/tools/image-to-pdf/", "Multiple images to PDF: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/", "Merge PDF: https://printable-tools-lab.pages.dev/tools/merge-pdf/", "Split PDF: https://printable-tools-lab.pages.dev/tools/split-pdf/", "PDF page numbers: https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/", "Rotate PDF: https://printable-tools-lab.pages.dev/tools/rotate-pdf/", "Remove PDF pages: https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/", "Reorder PDF pages: https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/", "Text to PDF: https://printable-tools-lab.pages.dev/tools/text-to-pdf/", "Invoice generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/", "Business card generator: https://printable-tools-lab.pages.dev/tools/business-card/", "Barcode label generator: https://printable-tools-lab.pages.dev/tools/barcode-labels/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
         ["h2", "First distribution copy"],
-        ["p", "Free browser PDF tools: merge PDFs, split PDFs, add PDF page numbers, convert images to PDF, combine multiple images, turn text into PDF, create invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, sign-in sheets, graph paper, calendars, worksheets, and checklists. No account required."],
+        ["p", "Free browser PDF tools: merge PDFs, split PDFs, rotate pages, remove pages, reorder pages, add PDF page numbers, convert images to PDF, combine multiple images, turn text into PDF, create invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, sign-in sheets, graph paper, calendars, worksheets, and checklists. No account required."],
         ["p", "Try the free image to PDF converter: select a JPG, PNG, or WebP file and generate a one-page PDF locally without uploading the image."],
         ["p", "Need a quick invoice, receipt, timesheet, sign-in sheet, or packing checklist? PrintableTools Lab creates practical PDFs in the browser."],
         ["h2", "Do not do this"],
@@ -2659,6 +2775,9 @@
     "merge-pdf",
     "split-pdf",
     "pdf-page-numbers",
+    "rotate-pdf",
+    "remove-pdf-pages",
+    "reorder-pdf-pages",
     "text-to-pdf",
     "sign-in-sheet",
     "graph-paper",
@@ -3402,6 +3521,9 @@
     if (tool.pdfTool === "merge") return "Merge PDF";
     if (tool.pdfTool === "split") return "Extract pages";
     if (tool.pdfTool === "page-numbers") return "Add page numbers";
+    if (tool.pdfTool === "rotate") return "Rotate pages";
+    if (tool.pdfTool === "remove-pages") return "Remove pages";
+    if (tool.pdfTool === "reorder") return "Reorder pages";
     return "Generate PDF";
   }
 
@@ -3461,6 +3583,18 @@
       note = `The export will keep ${selected.length} page${selected.length === 1 ? "" : "s"} from ${files[0].pageCount}.`;
     }
     if (tool.pdfTool === "page-numbers") note = `The export will add visible page numbers to ${files[0].pageCount} page${files[0].pageCount === 1 ? "" : "s"}.`;
+    if (tool.pdfTool === "rotate") {
+      const selected = parsePageRangeOrAll(values.pageRange || "all", files[0].pageCount);
+      note = `The export will rotate ${selected.length} of ${files[0].pageCount} page${files[0].pageCount === 1 ? "" : "s"} by ${normalizeRotation(values.rotation || "90")} degrees.`;
+    }
+    if (tool.pdfTool === "remove-pages") {
+      const removed = parsePageRange(values.removeRange || "", files[0].pageCount);
+      note = `The export will remove ${removed.length} page${removed.length === 1 ? "" : "s"} and keep ${Math.max(0, files[0].pageCount - removed.length)}.`;
+    }
+    if (tool.pdfTool === "reorder") {
+      const order = parsePageOrder(values.pageOrder || "", files[0].pageCount);
+      note = `The export will create a ${order.length}-page PDF in the typed order.`;
+    }
     return `
       <table class="event-table">
         <thead><tr><th>#</th><th>File</th><th>Pages</th><th>Size</th></tr></thead>
@@ -3475,6 +3609,9 @@
     if (tool.pdfTool === "merge") return exportMergedPdf(files);
     if (tool.pdfTool === "split") return exportSplitPdf(files[0], values);
     if (tool.pdfTool === "page-numbers") return exportNumberedPdf(files[0], values);
+    if (tool.pdfTool === "rotate") return exportRotatedPdf(files[0], values);
+    if (tool.pdfTool === "remove-pages") return exportRemovedPagesPdf(files[0], values);
+    if (tool.pdfTool === "reorder") return exportReorderedPdf(files[0], values);
     throw new Error("Unsupported PDF operation.");
   }
 
@@ -3527,6 +3664,48 @@
     return pdfBytesToBlob(await doc.save());
   }
 
+  async function exportRotatedPdf(file, values) {
+    const pdfLib = getPdfLib();
+    const doc = await pdfLib.PDFDocument.load(file.bytes, { ignoreEncryption: true });
+    const pages = doc.getPages();
+    const selected = new Set(parsePageRangeOrAll(values.pageRange || "all", pages.length));
+    if (!selected.size) throw new Error("Enter all or at least one valid page number to rotate.");
+    const degrees = normalizeRotation(values.rotation || "90");
+    pages.forEach((page, index) => {
+      if (!selected.has(index + 1)) return;
+      const current = page.getRotation().angle || 0;
+      page.setRotation(pdfLib.degrees((current + degrees) % 360));
+    });
+    return pdfBytesToBlob(await doc.save());
+  }
+
+  async function exportRemovedPagesPdf(file, values) {
+    const removePages = new Set(parsePageRange(values.removeRange || "", file.pageCount));
+    if (!removePages.size) throw new Error("Enter at least one valid page number or range to remove.");
+    if (removePages.size >= file.pageCount) throw new Error("At least one page must remain in the PDF.");
+    const keep = [];
+    for (let page = 1; page <= file.pageCount; page += 1) {
+      if (!removePages.has(page)) keep.push(page - 1);
+    }
+    const pdfLib = getPdfLib();
+    const source = await pdfLib.PDFDocument.load(file.bytes, { ignoreEncryption: true });
+    const output = await pdfLib.PDFDocument.create();
+    const copiedPages = await output.copyPages(source, keep);
+    copiedPages.forEach((page) => output.addPage(page));
+    return pdfBytesToBlob(await output.save());
+  }
+
+  async function exportReorderedPdf(file, values) {
+    const order = parsePageOrder(values.pageOrder || "", file.pageCount);
+    if (!order.length) throw new Error("Enter at least one valid page number for the new order.");
+    const pdfLib = getPdfLib();
+    const source = await pdfLib.PDFDocument.load(file.bytes, { ignoreEncryption: true });
+    const output = await pdfLib.PDFDocument.create();
+    const copiedPages = await output.copyPages(source, order.map((pageNumber) => pageNumber - 1));
+    copiedPages.forEach((page) => output.addPage(page));
+    return pdfBytesToBlob(await output.save());
+  }
+
   function parsePageRange(value, pageCount) {
     const pages = new Set();
     String(value || "")
@@ -3545,11 +3724,36 @@
     return Array.from(pages).sort((a, b) => a - b);
   }
 
+  function parsePageRangeOrAll(value, pageCount) {
+    if (/^\s*all\s*$/i.test(String(value || ""))) {
+      return Array.from({ length: pageCount }, (_, index) => index + 1);
+    }
+    return parsePageRange(value, pageCount);
+  }
+
+  function parsePageOrder(value, pageCount) {
+    const pages = [];
+    String(value || "")
+      .split(",")
+      .map((part) => Number(part.trim()))
+      .filter((page) => Number.isInteger(page) && page >= 1 && page <= pageCount)
+      .forEach((page) => pages.push(page));
+    return pages;
+  }
+
+  function normalizeRotation(value) {
+    const degrees = Number.parseInt(value, 10);
+    return [90, 180, 270].includes(degrees) ? degrees : 90;
+  }
+
   function pdfUtilityFilename(tool, files) {
     const base = slugify((files[0] && files[0].name.replace(/\.pdf$/i, "")) || tool.shortTitle || tool.id);
     if (tool.pdfTool === "merge") return "merged-pdf.pdf";
     if (tool.pdfTool === "split") return `${base}-selected-pages.pdf`;
     if (tool.pdfTool === "page-numbers") return `${base}-page-numbers.pdf`;
+    if (tool.pdfTool === "rotate") return `${base}-rotated.pdf`;
+    if (tool.pdfTool === "remove-pages") return `${base}-pages-removed.pdf`;
+    if (tool.pdfTool === "reorder") return `${base}-reordered.pdf`;
     return `${base}.pdf`;
   }
 

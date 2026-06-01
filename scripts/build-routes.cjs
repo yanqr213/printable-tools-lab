@@ -253,11 +253,11 @@ const distribution = [
   "",
   "## One-line pitch",
   "",
-  "PrintableTools Lab is a free no-signup PDF generator and no-upload PDF utility site for merging PDFs, splitting PDFs, adding page numbers, image conversion, text-to-PDF, invoices, estimates, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, and flashcards.",
+  "PrintableTools Lab is a free no-signup PDF generator and no-upload PDF utility site for merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, adding page numbers, image conversion, text-to-PDF, invoices, estimates, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, and flashcards.",
   "",
   "## Short launch post",
   "",
-  "I built PrintableTools Lab, a free browser-based PDF tool site. It can merge PDFs, split PDFs, add PDF page numbers, convert images to PDF, create multi-image PDFs, turn text into PDF, and create practical documents like invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, calendars, sign-in sheets, graph paper, packing lists, worksheets, and charts. No account and no surprise download fee. Feedback on which tools are most useful would help shape the next batch.",
+  "I built PrintableTools Lab, a free browser-based PDF tool site. It can merge PDFs, split PDFs, rotate pages, remove pages, reorder pages, add PDF page numbers, convert images to PDF, create multi-image PDFs, turn text into PDF, and create practical documents like invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, calendars, sign-in sheets, graph paper, packing lists, worksheets, and charts. No account and no surprise download fee. Feedback on which tools are most useful would help shape the next batch.",
   "",
   "## Directory submission fields",
   "",
@@ -265,7 +265,7 @@ const distribution = [
   "- URL: https://printable-tools-lab.pages.dev/",
   "- Category: Productivity, PDF Tools, Document Tools, Education, Small Business Tools, Job Search Tools",
   "- Tagline: Free no-signup printable PDF generators",
-  "- Description: Create practical PDFs in the browser, including PDF merge, PDF split, page numbering, image conversions, multi-image PDFs, text-to-PDF documents, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, certificates, calendars, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, flashcards, and habit trackers.",
+  "- Description: Create practical PDFs in the browser, including PDF merge, PDF split, page rotation, page removal, page reordering, page numbering, image conversions, multi-image PDFs, text-to-PDF documents, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, certificates, calendars, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, flashcards, and habit trackers.",
   "- Pricing: Free",
   "",
   "## Tracked campaign links",
@@ -284,6 +284,9 @@ const distribution = [
   `- Merge PDF without upload page: ${siteUrl("merge-pdf-no-upload")}`,
   `- Split PDF without upload page: ${siteUrl("split-pdf-no-upload")}`,
   `- Add page numbers to PDF page: ${siteUrl("add-page-numbers-to-pdf")}`,
+  `- Rotate PDF without upload page: ${siteUrl("rotate-pdf-no-upload")}`,
+  `- Remove PDF pages without upload page: ${siteUrl("remove-pages-from-pdf-no-upload")}`,
+  `- Reorder PDF pages without upload page: ${siteUrl("reorder-pdf-pages-no-upload")}`,
   `- No-signup invoice page: ${siteUrl("free-invoice-generator-no-signup")}`,
   `- JPG to PDF without upload page: ${siteUrl("jpg-to-pdf-no-upload")}`,
   `- No-signup resume page: ${siteUrl("free-resume-builder-no-signup")}`,
@@ -298,13 +301,13 @@ const distribution = [
   "## Community-safe angles",
   "",
   "- For freelancers: free invoice, estimate, purchase order, receipt, bill of sale, work order, packing slip, inventory sheet, and timesheet PDFs without account creation.",
-  "- For high-intent search visitors: no-signup and no-upload landing pages for PDF merge, PDF split, PDF page numbers, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, barcodes, price tags, flyers, coupons, timesheets, resumes, certificates, text-to-PDF, JPG-to-PDF, and multi-image PDF.",
+  "- For high-intent search visitors: no-signup and no-upload landing pages for PDF merge, PDF split, PDF rotation, PDF page removal, PDF page reordering, PDF page numbers, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, barcodes, price tags, flyers, coupons, timesheets, resumes, certificates, text-to-PDF, JPG-to-PDF, and multi-image PDF.",
   "- For small businesses and local sellers: printable business cards, address labels, barcode labels, price tags, flyers, coupons, packing slips, and inventory sheets without design-account or spreadsheet friction.",
   "- For job seekers: free resume, cover letter, and resignation letter PDFs without a hidden export fee.",
   "- For parents and teachers: printable name tracing, chore charts, reward charts, flashcards, weekly planners, and habit trackers.",
   "- For teachers and organizers: free certificate, sign-in sheet, and event checklist PDFs.",
   "- For household planning: monthly calendars and meal planners with grocery lists.",
-  "- For everyday utility needs: merge PDF, split PDF, add page numbers, image-to-PDF conversion, multi-image PDF export, text-to-PDF, sign-in sheets, graph paper, to-do lists, and packing lists.",
+  "- For everyday utility needs: merge PDF, split PDF, rotate pages, remove pages, reorder pages, add page numbers, image-to-PDF conversion, multi-image PDF export, text-to-PDF, sign-in sheets, graph paper, to-do lists, and packing lists.",
   "",
   "## Places to consider manually",
   "",
@@ -339,7 +342,7 @@ function categoryForTool(toolPath) {
   if (["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt", "receipt-generator", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"].includes(slug)) return "Business paperwork";
   if (["resume-builder", "cover-letter", "resignation-letter"].includes(slug)) return "Career documents";
   if (["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"].includes(slug)) return "Planning";
-  if (["image-to-pdf", "multi-image-pdf", "text-to-pdf", "sign-in-sheet", "graph-paper", "packing-list", "todo-list"].includes(slug)) return "Everyday utility PDFs";
+  if (["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "text-to-pdf", "sign-in-sheet", "graph-paper", "packing-list", "todo-list"].includes(slug)) return "Everyday utility PDFs";
   if (["certificate-generator"].includes(slug)) return "Events and awards";
   return "Education and family printables";
 }
