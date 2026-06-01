@@ -202,9 +202,10 @@ async function readGithubState() {
   };
   if (!apiUrl) return fallback;
   try {
-    const response = await fetchJsonWithTimeout(apiUrl, { headers: { "User-Agent": "PrintableToolsLab-Ops" } });
+    const headers = githubHeaders();
+    const response = await fetchJsonWithTimeout(apiUrl, { headers });
     if (!response.ok) return { ...fallback, error: `GitHub API ${response.status}` };
-    const release = await fetchJsonWithTimeout(`${apiUrl}/releases/tags/free-pdf-tools`, { headers: { "User-Agent": "PrintableToolsLab-Ops" } });
+    const release = await fetchJsonWithTimeout(`${apiUrl}/releases/tags/free-pdf-tools`, { headers });
     return {
       available: true,
       repoUrl,
@@ -221,6 +222,16 @@ async function readGithubState() {
   } catch (error) {
     return { ...fallback, error: error.message };
   }
+}
+
+function githubHeaders() {
+  const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || "";
+  return {
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    Accept: "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+    "User-Agent": "PrintableToolsLab-Ops",
+  };
 }
 
 async function readIndexNowState() {

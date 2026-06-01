@@ -339,6 +339,7 @@ Current directory queue:
 
 - Zearches: completed one free homepage submission to `Resources, Tools & Directories`; result was `status=ok`.
 - ListAi.cc: submitted `PrintableTools Lab` through the free no-account form under `Productivity`; the page returned `Submission Received` and says approved tools are published within 24-48 hours. Do not resubmit unless the listing is rejected or material product positioning changes.
+- NoSignupTools: submitted `PrintableTools Lab` on `2026-06-01` under `Files` with app icon and product screenshot; icon upload, screenshot upload, and `/api/submit` all returned `200`. Awaiting human review, typically 24-48 hours.
 - DeepLaunch: candidate for a free tool listing. The public submit page says free submissions are reviewed within 48 hours, but the actual flow redirects to sign-in after image upload, so it requires an authenticated Google/GitHub session.
 - BootstrapArena: candidate for a normal free startup listing. The public page exposes a `Normal Free` option, but browser validation did not reveal a no-login form.
 - Product Hunt: defer until indexing or a visible usage milestone; it is a launch surface, not an indexing shortcut.
@@ -353,6 +354,7 @@ Completed:
 - `2026-06-01`: RSS feed exposed at `https://printable-tools-lab.pages.dev/feed.xml` and linked from `llms.txt`, `discovery.json`, GitHub release notes, and the GitHub Pages discovery directory.
 - `2026-06-01`: Zearches free directory submission completed for `https://printable-tools-lab.pages.dev/` in the resources/tools directory.
 - `2026-06-01`: ListAi.cc free submission completed for `https://printable-tools-lab.pages.dev/`; awaiting 24-48 hour human review.
+- `2026-06-01`: NoSignupTools free directory submission completed for `https://printable-tools-lab.pages.dev/`; awaiting 24-48 hour human review.
 
 Submit Google sitemap:
 
