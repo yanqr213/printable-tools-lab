@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-01T15:42:24.272Z",
+  "generatedAt": "2026-06-01T16:12:56.089Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
     "customDomainConfigured": false,
-    "toolCount": 62,
-    "guideCount": 91,
-    "landingPageCount": 50,
-    "indexableRoutes": 213,
-    "sitemapLocCount": 213,
-    "generatedToolInventoryAt": "2026-06-01T15:39:03.708Z",
+    "toolCount": 63,
+    "guideCount": 92,
+    "landingPageCount": 51,
+    "indexableRoutes": 216,
+    "sitemapLocCount": 216,
+    "generatedToolInventoryAt": "2026-06-01T16:04:43.985Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -36,21 +36,21 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 23626,
+        "bytes": 23908,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 37070,
+        "bytes": 37658,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 25897,
+        "bytes": 26254,
         "json": null
       },
       "/robots.txt": {
@@ -73,7 +73,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 27363,
+        "bytes": 27721,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, passport photo sizing, transparent signature PNG generation, stati"
       },
@@ -81,19 +81,19 @@
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 51638,
+        "bytes": 52527,
         "json": null
       },
       "/tools.json": {
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 44310,
+        "bytes": 44889,
         "json": {
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T15:39:03.708Z",
+          "generatedAt": "2026-06-01T16:04:43.985Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -219,6 +219,12 @@
               "title": "Resume Builder PDF",
               "url": "https://printable-tools-lab.pages.dev/tools/resume-builder/",
               "description": "Build a simple free resume PDF without an account, paywall, or surprise download fee.",
+              "category": "Career documents"
+            },
+            {
+              "title": "ATS Resume Checker",
+              "url": "https://printable-tools-lab.pages.dev/tools/ats-resume-checker/",
+              "description": "Check pasted resume text against a job description and download a local ATS keyword and readability report PDF.",
               "category": "Career documents"
             },
             {
@@ -710,6 +716,11 @@
               "description": "Format a simple resume PDF so it stays readable for recruiters and applicant tracking systems."
             },
             {
+              "title": "ATS resume keyword match guide",
+              "url": "https://printable-tools-lab.pages.dev/guides/ats-resume-keyword-match/",
+              "description": "Compare a resume against a job description without stuffing fake keywords or uploading private details."
+            },
+            {
               "title": "Free cover letter generator PDF",
               "url": "https://printable-tools-lab.pages.dev/guides/free-cover-letter-generator-pdf/",
               "description": "Create a one-page cover letter PDF for job applications without an account or download paywall."
@@ -931,11 +942,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 22448,
+        "bytes": 22886,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T15:39:03.708Z",
+          "generatedAt": "2026-06-01T16:04:43.985Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -982,6 +993,7 @@
             "https://printable-tools-lab.pages.dev/stamp-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/sign-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
+            "https://printable-tools-lab.pages.dev/ats-resume-checker-free/",
             "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
             "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
             "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
@@ -1037,6 +1049,7 @@
             "https://printable-tools-lab.pages.dev/tools/work-order/",
             "https://printable-tools-lab.pages.dev/tools/inventory-sheet/",
             "https://printable-tools-lab.pages.dev/tools/resume-builder/",
+            "https://printable-tools-lab.pages.dev/tools/ats-resume-checker/",
             "https://printable-tools-lab.pages.dev/tools/certificate-generator/",
             "https://printable-tools-lab.pages.dev/tools/todo-list/",
             "https://printable-tools-lab.pages.dev/tools/graph-paper/"
@@ -1271,6 +1284,12 @@
               "tool": "https://printable-tools-lab.pages.dev/tools/resume-builder/"
             },
             {
+              "title": "Free ATS Resume Checker",
+              "url": "https://printable-tools-lab.pages.dev/ats-resume-checker-free/",
+              "intent": "ATS resume checker, resume keyword match, job description match",
+              "tool": "https://printable-tools-lab.pages.dev/tools/ats-resume-checker/"
+            },
+            {
               "title": "Free Receipt Generator Without Signup",
               "url": "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
               "intent": "receipt PDF now, no account, quick proof of payment",
@@ -1360,7 +1379,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/manifest+json; charset=utf-8",
-        "bytes": 3428,
+        "bytes": 3552,
         "json": null
       },
       "/opensearch.xml": {
@@ -1374,7 +1393,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 10878,
+        "bytes": 11011,
         "json": {
           "ok": true,
           "today": "2026-06-01",
@@ -1518,6 +1537,15 @@
             },
             {
               "tool": "resume-builder",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "ats-resume-checker",
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
@@ -2263,11 +2291,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         }
       ]
@@ -2276,7 +2304,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T15:40:53.524Z",
+          "lastSubmitted": "2026-06-01T16:12:01.188Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -2343,7 +2371,7 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF compression, passport photos, image compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
+      "description": "Free no-signup browser PDF, image, QR, and text-data tools for ATS resume checks, PDF compression, passport photos, image compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
       "topics": [
         "compress-pdf",
         "free-tools",
@@ -2355,7 +2383,6 @@
         "image-tools",
         "invoice-generator",
         "label-generator",
-        "markdown-to-pdf",
         "no-signup",
         "passport-photo",
         "pdf-generator",
@@ -2363,6 +2390,7 @@
         "pdf-to-text",
         "pdf-tools",
         "qr-code",
+        "resume-checker",
         "signature-png",
         "text-to-pdf"
       ],
@@ -2377,8 +2405,8 @@
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 51,
-      "landingPagesLinked": 50,
+      "sitemapUrlCount": 52,
+      "landingPagesLinked": 51,
       "error": ""
     },
     "indexNow": {
@@ -2404,7 +2432,7 @@
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "62 tools, 91 guides, 50 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "63 tools, 92 guides, 51 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
@@ -2422,8 +2450,8 @@
       "externalDiscovery": [
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
-        "GitHub Pages discovery directory is live with 50 landing page link(s).",
-        "GitHub Pages discovery sitemap has 51 URL(s).",
+        "GitHub Pages discovery directory is live with 51 landing page link(s).",
+        "GitHub Pages discovery sitemap has 52 URL(s).",
         "IndexNow key file is reachable from the site root."
       ]
     }
