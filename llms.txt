@@ -24,8 +24,10 @@ Monetization model: Free tools first, then responsible display advertising after
 - Machine-readable share kit: https://printable-tools-lab.pages.dev/share-kit.json
 - Public Gist share kit: https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb
 - Public GitHub growth issue: https://github.com/yanqr213/printable-tools-lab/issues/1
-- Zero-domain HTML5 game experiment: https://upload-limit-panic.pages.dev/
-- Upload Limit Panic repository: https://github.com/yanqr213/upload-limit-panic
+## Zero-Domain HTML5 Game Experiments
+
+- Upload Limit Panic: https://upload-limit-panic.pages.dev/ | Repository: https://github.com/yanqr213/upload-limit-panic | Release: https://github.com/yanqr213/upload-limit-panic/releases/tag/platform-submission-v1
+- Neon Lane Dash: https://neon-lane-dash.pages.dev/ | Repository: https://github.com/yanqr213/neon-lane-dash | Release: https://github.com/yanqr213/neon-lane-dash/releases/tag/platform-submission-v1
 
 ## Short-Video Campaign Assets
 

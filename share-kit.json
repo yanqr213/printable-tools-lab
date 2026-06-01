@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Share Kit",
-  "generatedAt": "2026-06-01T23:14:15.923Z",
+  "generatedAt": "2026-06-01T23:43:49.488Z",
   "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
   "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
   "featuredLinks": [
@@ -98,6 +98,15 @@
       "cta": "Play the Upload Limit Panic prototype",
       "absoluteUrl": "https://upload-limit-panic.pages.dev/",
       "url": "https://upload-limit-panic.pages.dev/?utm_source=game-platform&utm_medium=organic"
+    },
+    {
+      "channel": "game-platform",
+      "title": "Second zero-domain HTML5 game experiment",
+      "hook": "Neon Lane Dash is a 45-second lane-switching reflex game.",
+      "body": "It is a free standalone HTML5 build for platform review: switch lanes, collect sparks, dodge blockers, and use focus for a short slow-road assist. The standalone version has no forced ads; rewarded hooks are optional for future platform SDK approval.",
+      "cta": "Play the Neon Lane Dash prototype",
+      "absoluteUrl": "https://neon-lane-dash.pages.dev/",
+      "url": "https://neon-lane-dash.pages.dev/?utm_source=game-platform&utm_medium=organic"
     }
   ],
   "videoAssets": [
@@ -212,6 +221,36 @@
     "submissionNotesUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission.md",
     "summary": "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them."
   },
+  "zeroDomainGameExperiments": [
+    {
+      "name": "Upload Limit Panic",
+      "url": "https://upload-limit-panic.pages.dev/",
+      "repo": "https://github.com/yanqr213/upload-limit-panic",
+      "releaseUrl": "https://github.com/yanqr213/upload-limit-panic/releases/tag/platform-submission-v1",
+      "packagePath": "upload-limit-panic/reports/upload-limit-panic-html5.tar.gz",
+      "zipUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-html5.zip",
+      "demoVideoUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-demo.mp4",
+      "iconUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-icon-512.png",
+      "coverUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-cover-16x9.png",
+      "socialCardUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-social-card.png",
+      "submissionNotesUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission.md",
+      "summary": "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them."
+    },
+    {
+      "name": "Neon Lane Dash",
+      "url": "https://neon-lane-dash.pages.dev/",
+      "repo": "https://github.com/yanqr213/neon-lane-dash",
+      "releaseUrl": "https://github.com/yanqr213/neon-lane-dash/releases/tag/platform-submission-v1",
+      "packagePath": "neon-lane-dash/reports/neon-lane-dash-html5.tar.gz",
+      "zipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+      "demoVideoUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-demo.mp4",
+      "iconUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-icon-512.png",
+      "coverUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-cover-16x9.png",
+      "socialCardUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-social-card.png",
+      "submissionNotesUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission.md",
+      "summary": "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them."
+    }
+  ],
   "externalDiscovery": {
     "gist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
     "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/cc73170ba83d12aa0d02f731414c73e82b9eea52/PrintableTools-Lab-zero-cost-share-kit.md",

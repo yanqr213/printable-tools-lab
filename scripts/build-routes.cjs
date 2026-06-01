@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -189,6 +189,7 @@ const shareKitJson = {
   })),
   videoAssets: campaignAssets,
   zeroDomainGameExperiment: ZERO_DOMAIN_GAME_EXPERIMENT,
+  zeroDomainGameExperiments: ZERO_DOMAIN_GAME_EXPERIMENTS,
   externalDiscovery: {
     gist: gistDiscovery?.htmlUrl || "",
     gistRaw: gistDiscovery?.rawUrl || "",
@@ -225,8 +226,9 @@ const llms = [
   `- Machine-readable share kit: ${fileUrl("share-kit.json")}`,
   ...(gistDiscovery?.htmlUrl ? [`- Public Gist share kit: ${gistDiscovery.htmlUrl}`] : []),
   ...(issueDiscovery?.issueUrl ? [`- Public GitHub growth issue: ${issueDiscovery.issueUrl}`] : []),
-  `- Zero-domain HTML5 game experiment: ${ZERO_DOMAIN_GAME_EXPERIMENT.url}`,
-  `- Upload Limit Panic repository: ${ZERO_DOMAIN_GAME_EXPERIMENT.repo}`,
+  "## Zero-Domain HTML5 Game Experiments",
+  "",
+  ...ZERO_DOMAIN_GAME_EXPERIMENTS.map((game) => `- ${game.name}: ${game.url} | Repository: ${game.repo} | Release: ${game.releaseUrl}`),
   ...(campaignAssets.length ? ["", "## Short-Video Campaign Assets", "", ...campaignAssets.map((asset) => `- [${asset.title} MP4](${asset.downloadUrl}): ${asset.captionEn}`)] : []),
   "",
   "## Tools",
@@ -271,6 +273,16 @@ const discoveryIndex = {
     publicGrowthIssue: issueDiscovery?.issueUrl || "",
     zeroDomainGame: ZERO_DOMAIN_GAME_EXPERIMENT.url,
     zeroDomainGameRepo: ZERO_DOMAIN_GAME_EXPERIMENT.repo,
+    zeroDomainGames: ZERO_DOMAIN_GAME_EXPERIMENTS.map((game) => ({
+      name: game.name,
+      url: game.url,
+      repo: game.repo,
+      releaseUrl: game.releaseUrl,
+      zipUrl: game.zipUrl,
+      demoVideoUrl: game.demoVideoUrl,
+      coverUrl: game.coverUrl,
+      iconUrl: game.iconUrl,
+    })),
   },
   landingPages: landingPages.map((page) => ({
     title: page.title,

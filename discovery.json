@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T23:14:15.923Z",
+  "generatedAt": "2026-06-01T23:43:49.488Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -230,7 +230,29 @@
     "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/cc73170ba83d12aa0d02f731414c73e82b9eea52/PrintableTools-Lab-zero-cost-share-kit.md",
     "publicGrowthIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1",
     "zeroDomainGame": "https://upload-limit-panic.pages.dev/",
-    "zeroDomainGameRepo": "https://github.com/yanqr213/upload-limit-panic"
+    "zeroDomainGameRepo": "https://github.com/yanqr213/upload-limit-panic",
+    "zeroDomainGames": [
+      {
+        "name": "Upload Limit Panic",
+        "url": "https://upload-limit-panic.pages.dev/",
+        "repo": "https://github.com/yanqr213/upload-limit-panic",
+        "releaseUrl": "https://github.com/yanqr213/upload-limit-panic/releases/tag/platform-submission-v1",
+        "zipUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-html5.zip",
+        "demoVideoUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-demo.mp4",
+        "coverUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-cover-16x9.png",
+        "iconUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-icon-512.png"
+      },
+      {
+        "name": "Neon Lane Dash",
+        "url": "https://neon-lane-dash.pages.dev/",
+        "repo": "https://github.com/yanqr213/neon-lane-dash",
+        "releaseUrl": "https://github.com/yanqr213/neon-lane-dash/releases/tag/platform-submission-v1",
+        "zipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+        "demoVideoUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-demo.mp4",
+        "coverUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-cover-16x9.png",
+        "iconUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-icon-512.png"
+      }
+    ]
   },
   "landingPages": [
     {

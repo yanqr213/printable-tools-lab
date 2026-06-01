@@ -24,6 +24,24 @@ const ZERO_DOMAIN_GAME_EXPERIMENT = {
   summary: "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them.",
 };
 
+const ZERO_DOMAIN_GAME_EXPERIMENTS = [
+  ZERO_DOMAIN_GAME_EXPERIMENT,
+  {
+    name: "Neon Lane Dash",
+    url: "https://neon-lane-dash.pages.dev/",
+    repo: "https://github.com/yanqr213/neon-lane-dash",
+    releaseUrl: "https://github.com/yanqr213/neon-lane-dash/releases/tag/platform-submission-v1",
+    packagePath: "neon-lane-dash/reports/neon-lane-dash-html5.tar.gz",
+    zipUrl: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+    demoVideoUrl: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-demo.mp4",
+    iconUrl: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-icon-512.png",
+    coverUrl: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-cover-16x9.png",
+    socialCardUrl: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-social-card.png",
+    submissionNotesUrl: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission.md",
+    summary: "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them.",
+  },
+];
+
 const SHARE_KIT_FEATURED_LINKS = [
   ["Compress PDF to 1MB", "compress-pdf-to-1mb", "Urgent upload-limit search for job, school, email, and portal PDFs."],
   ["Compress PDF to 500KB", "compress-pdf-to-500kb", "Strict form and government-style upload limit intent."],
@@ -75,6 +93,14 @@ const SHARE_KIT_POSTS = [
     body: "It is a free standalone HTML5 build for platform review: sort files into Compress, Convert, Send, or Trash before the queue bursts. The standalone version has no forced ads; rewarded hooks are optional for future platform SDK approval.",
     cta: "Play the Upload Limit Panic prototype",
     absoluteUrl: ZERO_DOMAIN_GAME_EXPERIMENT.url,
+  },
+  {
+    channel: "game-platform",
+    title: "Second zero-domain HTML5 game experiment",
+    hook: "Neon Lane Dash is a 45-second lane-switching reflex game.",
+    body: "It is a free standalone HTML5 build for platform review: switch lanes, collect sparks, dodge blockers, and use focus for a short slow-road assist. The standalone version has no forced ads; rewarded hooks are optional for future platform SDK approval.",
+    cta: "Play the Neon Lane Dash prototype",
+    absoluteUrl: "https://neon-lane-dash.pages.dev/",
   },
 ];
 
@@ -2852,17 +2878,22 @@ function shareKitHtml() {
         <p><a class="button" href="${escapeHtml(ISSUE_DISCOVERY.issueUrl)}">Open growth issue</a></p>
       </section>` : ""}
       <section class="shell section">
-        <h2>Zero-domain game experiment</h2>
-        <p>${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.summary)}</p>
-        <p><a class="button" href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.url)}">Play Upload Limit Panic</a> <a class="button secondary" href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.repo)}">Open game repository</a></p>
-        <ul>
-          <li><a href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.zipUrl)}">Download HTML5 ZIP package</a></li>
-          <li><a href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.demoVideoUrl)}">Download 8-second demo MP4</a></li>
-          <li><a href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.coverUrl)}">Download 16:9 platform cover</a></li>
-          <li><a href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.iconUrl)}">Download 512x512 platform icon</a></li>
-          <li><a href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.socialCardUrl)}">Download social preview card</a></li>
-          <li><a href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.submissionNotesUrl)}">Open platform submission notes</a></li>
-        </ul>
+        <h2>Zero-domain game experiments</h2>
+        <div class="grid-2">
+          ${ZERO_DOMAIN_GAME_EXPERIMENTS.map((game) => `<article class="panel">
+            <h3>${escapeHtml(game.name)}</h3>
+            <p>${escapeHtml(game.summary)}</p>
+            <p><a class="button" href="${escapeHtml(game.url)}">Play ${escapeHtml(game.name)}</a> <a class="button secondary" href="${escapeHtml(game.repo)}">Open game repository</a></p>
+            <ul>
+              <li><a href="${escapeHtml(game.zipUrl)}">Download HTML5 ZIP package</a></li>
+              <li><a href="${escapeHtml(game.demoVideoUrl)}">Download 8-second demo MP4</a></li>
+              <li><a href="${escapeHtml(game.coverUrl)}">Download 16:9 platform cover</a></li>
+              <li><a href="${escapeHtml(game.iconUrl)}">Download 512x512 platform icon</a></li>
+              <li><a href="${escapeHtml(game.socialCardUrl)}">Download social preview card</a></li>
+              <li><a href="${escapeHtml(game.submissionNotesUrl)}">Open platform submission notes</a></li>
+            </ul>
+          </article>`).join("\n")}
+        </div>
       </section>
       <section class="shell section">
         <h2>Rules for safe distribution</h2>
@@ -4077,4 +4108,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENT, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
