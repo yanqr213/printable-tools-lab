@@ -28,6 +28,7 @@ const topics = [
   "invoice-generator",
   "label-generator",
   "image-to-pdf",
+  "pdf-to-jpg",
   "text-to-pdf",
   "markdown-to-pdf",
   "csv-to-pdf",
@@ -35,7 +36,6 @@ const topics = [
   "no-signup",
   "free-tools",
   "browser-tools",
-  "small-business-tools",
 ];
 
 main().catch((error) => {

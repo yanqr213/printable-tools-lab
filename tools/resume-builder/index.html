@@ -19,6 +19,12 @@
     <link rel="alternate" type="application/rss+xml" title="PrintableTools Lab feed" href="/feed.xml">
     <link rel="stylesheet" href="/styles.css">
     <script src="/site-config.js"></script>
+    <script src="/assets/vendor/fflate.min.js"></script>
+    <script type="module">
+      import * as pdfjsLib from "/assets/vendor/pdf.min.mjs";
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "/assets/vendor/pdf.worker.min.mjs";
+      window.pdfjsLib = pdfjsLib;
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -60,7 +66,7 @@
           <li>Open the Resume Builder and review the example text already in the form.</li>
 <li>Replace the sample fields with your own short, accurate wording.</li>
 <li>Choose US Letter or A4 before generating if the tool offers paper size options.</li>
-<li>Preview the page, then download the PDF and review it before printing or sharing.</li>
+<li>Preview the result, then download the PDF and review it before printing, uploading, or sharing.</li>
         </ol>
       </section>
       <section class="shell section">
@@ -74,18 +80,18 @@
       <section class="shell section">
         <h2>Privacy and limits</h2>
         <p>Contact details, names, and work history are generated locally unless you choose to place generic text in the AI idea fields.</p>
-        <p>The free version is limited to one-page PDFs and a small daily generation count in the same browser while usage is validated.</p>
+        <p>The free version is limited to practical PDF exports and a small daily generation count in the same browser while usage is validated.</p>
       </section>
       <section class="shell section">
         <h2>Frequently asked questions</h2>
         <div class="faq-list">
           <details><summary>Do I need an account?</summary><p>No. The generator opens in the browser and lets you download a PDF without creating an account.</p></details>
-<details><summary>Is the PDF really free?</summary><p>Yes. The first version is free and does not hide the PDF export behind a checkout.</p></details>
+<details><summary>Is the export really free?</summary><p>Yes. The first version is free and does not hide the file export behind a checkout.</p></details>
 <details><summary>Can I edit the PDF later?</summary><p>The simplest workflow is to edit the form fields and generate a fresh PDF. Keep your own copy of important documents.</p></details>
         </div>
         <p><a class="tag" href="/guides/free-resume-builder-pdf/">Free resume builder PDF</a> <a class="tag" href="/guides/ats-friendly-resume-pdf-guide/">ATS friendly resume PDF guide</a></p>
         <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Resume Builder PDF - PrintableTools Lab","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","url":"https://printable-tools-lab.pages.dev/tools/resume-builder/","description":"Build a simple free resume PDF without an account, paywall, or surprise download fee.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Browser-based PDF generation","No account required","US Letter and A4 support","One-page printable export"]}</script>
-        <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need an account?","acceptedAnswer":{"@type":"Answer","text":"No. The generator opens in the browser and lets you download a PDF without creating an account."}},{"@type":"Question","name":"Is the PDF really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The first version is free and does not hide the PDF export behind a checkout."}},{"@type":"Question","name":"Can I edit the PDF later?","acceptedAnswer":{"@type":"Answer","text":"The simplest workflow is to edit the form fields and generate a fresh PDF. Keep your own copy of important documents."}}]}</script>
+        <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need an account?","acceptedAnswer":{"@type":"Answer","text":"No. The generator opens in the browser and lets you download a PDF without creating an account."}},{"@type":"Question","name":"Is the export really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The first version is free and does not hide the file export behind a checkout."}},{"@type":"Question","name":"Can I edit the PDF later?","acceptedAnswer":{"@type":"Answer","text":"The simplest workflow is to edit the form fields and generate a fresh PDF. Keep your own copy of important documents."}}]}</script>
       </section>
     </main>
 

@@ -44,3 +44,18 @@
 
 /assets/vendor/qrcode-generator.LICENSE.md
   Content-Type: text/markdown; charset=utf-8
+
+/assets/vendor/fflate.min.js
+  Content-Type: application/javascript; charset=utf-8
+
+/assets/vendor/fflate.LICENSE.md
+  Content-Type: text/markdown; charset=utf-8
+
+/assets/vendor/pdf.min.mjs
+  Content-Type: application/javascript; charset=utf-8
+
+/assets/vendor/pdf.worker.min.mjs
+  Content-Type: application/javascript; charset=utf-8
+
+/assets/vendor/pdfjs.LICENSE.md
+  Content-Type: text/markdown; charset=utf-8

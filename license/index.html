@@ -19,6 +19,12 @@
     <link rel="alternate" type="application/rss+xml" title="PrintableTools Lab feed" href="/feed.xml">
     <link rel="stylesheet" href="/styles.css">
     <script src="/site-config.js"></script>
+    <script src="/assets/vendor/fflate.min.js"></script>
+    <script type="module">
+      import * as pdfjsLib from "/assets/vendor/pdf.min.mjs";
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "/assets/vendor/pdf.worker.min.mjs";
+      window.pdfjsLib = pdfjsLib;
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -43,7 +49,7 @@
     </header>
 
     <main id="app" tabindex="-1">
-<article class="article-shell article"><h1>AI & License Disclosure</h1><p>PrintableTools Lab uses code-driven templates and may use AI assistance during product design, wording, and template ideation.</p><p>Existing PDF merge, split, and page-number operations use the MIT-licensed pdf-lib JavaScript library in the browser. Static QR tools use the MIT-licensed qrcode-generator JavaScript library.</p><p>The default templates avoid third-party characters, trademarked brands, and protected artwork.</p></article>
+<article class="article-shell article"><h1>AI & License Disclosure</h1><p>PrintableTools Lab uses code-driven templates and may use AI assistance during product design, wording, and template ideation.</p><p>Existing PDF merge, split, and page-number operations use the MIT-licensed pdf-lib JavaScript library in the browser. PDF-to-image rendering uses the Apache-2.0 pdf.js library, ZIP downloads use the MIT-licensed fflate library, and static QR tools use the MIT-licensed qrcode-generator JavaScript library.</p><p>The default templates avoid third-party characters, trademarked brands, and protected artwork.</p></article>
     </main>
 
     <footer class="site-footer">

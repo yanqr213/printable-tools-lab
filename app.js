@@ -562,6 +562,31 @@
       draw: drawMultiImagePdf,
       exportPdf: exportMultiImagePdf,
     },
+    "pdf-to-images": {
+      id: "pdf-to-images",
+      icon: "JPG",
+      title: "PDF to JPG Converter",
+      shortTitle: "PDF to JPG",
+      description: "Convert PDF pages to JPG or PNG images locally in your browser without uploading the document.",
+      keywords: ["PDF to JPG", "PDF to PNG", "convert PDF pages to images", "no upload"],
+      ai: false,
+      pdfTool: "to-images",
+      outputKind: "file",
+      defaultValues: {
+        pdfs: "",
+        pageRange: "all",
+        format: "jpeg",
+        quality: "0.86",
+        scale: "1.5",
+      },
+      fields: [
+        { id: "pdfs", label: "PDF file", type: "file", accept: "application/pdf", multiple: false, help: "Select one PDF. It stays in your browser and is rendered locally." },
+        { id: "pageRange", label: "Pages to convert", type: "text", maxLength: 80, help: "Use all, 1, or ranges such as 1,3-5. The free version exports up to 8 pages." },
+        { id: "format", label: "Image format", type: "select", options: [["jpeg", "JPG"], ["png", "PNG"]] },
+        { id: "quality", label: "JPG quality", type: "select", options: [["0.72", "Small"], ["0.86", "Balanced"], ["0.94", "High"]] },
+        { id: "scale", label: "Render quality", type: "select", options: [["1", "Fast"], ["1.5", "Balanced"], ["2", "Sharp"]] },
+      ],
+    },
     "compress-image": {
       id: "compress-image",
       icon: "CMP",
@@ -1598,6 +1623,8 @@
         ["JPG to PDF without uploading", "/jpg-to-pdf-no-upload/"],
         ["Multiple images to PDF", "/tools/multi-image-pdf/"],
         ["Multiple images to PDF without uploading", "/multiple-images-to-pdf-no-upload/"],
+        ["PDF to JPG converter", "/tools/pdf-to-images/"],
+        ["PDF to JPG without uploading", "/pdf-to-jpg-no-upload/"],
         ["Compress image", "/tools/compress-image/"],
         ["Compress image without uploading", "/compress-image-no-upload/"],
         ["Compress image to KB", "/tools/compress-image-to-kb/"],
@@ -1704,7 +1731,7 @@
     {
       title: "No-upload conversion tools",
       description: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "pdf-to-images", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1768,6 +1795,21 @@
         ["Practical limits", "Very large images can make large PDFs. Resize or crop photos first if the receiving website has strict upload limits."],
       ],
       related: ["image-to-pdf", "text-to-pdf", "receipt-generator"],
+    },
+    {
+      slug: "pdf-to-jpg-no-upload",
+      title: "PDF to JPG Without Uploading",
+      headline: "PDF to JPG without uploading",
+      description: "Convert PDF pages to JPG or PNG images locally in your browser without uploading the document.",
+      lead: "Choose a PDF, pick the pages, and download JPG or PNG images rendered in your browser. It is useful when a website, message, listing, or form needs image files instead of a PDF.",
+      tool: "pdf-to-images",
+      intent: "PDF to JPG, PDF to PNG, no upload converter",
+      sections: [
+        ["Why this belongs here", "PDF-to-image conversion is a broad file utility search with immediate pain: users often have the right document but the receiving site asks for JPG or PNG."],
+        ["Local rendering", "The PDF is read and rendered in the browser with pdf.js. PrintableTools Lab does not receive the document during ordinary conversion."],
+        ["Practical limits", "The free version converts up to eight selected pages at a time. Multiple pages download as a ZIP so the browser can keep the process simple and private."],
+      ],
+      related: ["image-to-pdf", "compress-image-to-kb", "resize-image"],
     },
     {
       slug: "compress-image-no-upload",
@@ -2413,6 +2455,11 @@
       need: "Create one PDF with several image pages",
       tool: "multi-image-pdf",
       why: "Best when each image should become its own PDF page.",
+    },
+    {
+      need: "Convert PDF pages into JPG or PNG images",
+      tool: "pdf-to-images",
+      why: "Best when a website, message, listing, or form needs image files instead of a PDF.",
     },
     {
       need: "Make an image file smaller",
@@ -3360,6 +3407,20 @@
       ],
     },
     {
+      slug: "pdf-to-jpg-without-uploading",
+      title: "PDF to JPG without uploading",
+      description: "Convert PDF pages to JPG or PNG images locally in your browser.",
+      tool: "pdf-to-images",
+      content: [
+        ["h2", "When PDF-to-image solves the problem"],
+        ["p", "Some sites, forms, chats, and marketplaces ask for JPG or PNG files even when the original document is a PDF. A local PDF-to-image converter lets you create image files without uploading the source document."],
+        ["h2", "Choose only the pages you need"],
+        ["p", "Use all for a short PDF or type a page range such as 1,3-5. The free browser workflow exports up to eight pages so ordinary conversions stay fast."],
+        ["h2", "Review before uploading elsewhere"],
+        ["p", "Open the downloaded JPG or PNG files and confirm text, signatures, photos, and page edges are readable before sending them to another website."],
+      ],
+    },
+    {
       slug: "compress-image-without-uploading",
       title: "Compress image without uploading",
       description: "Reduce JPG, PNG, or WebP file size in the browser before uploading elsewhere.",
@@ -3620,7 +3681,7 @@
       description: "How PrintableTools Lab handles generated content, design assets, and licensing.",
       body: [
         ["p", "PrintableTools Lab uses code-driven templates and may use AI assistance during product design, wording, and template ideation. The generated PDFs are assembled in the browser from user input and template rules."],
-        ["p", "Existing PDF merge, split, and page-number operations use the MIT-licensed pdf-lib JavaScript library in the browser. Static QR tools use the MIT-licensed qrcode-generator JavaScript library."],
+        ["p", "Existing PDF merge, split, and page-number operations use the MIT-licensed pdf-lib JavaScript library in the browser. PDF-to-image rendering uses the Apache-2.0 pdf.js library, ZIP downloads use the MIT-licensed fflate library, and static QR tools use the MIT-licensed qrcode-generator JavaScript library."],
         ["p", "The default templates avoid third-party characters, trademarked brands, and protected artwork. Users should not enter copyrighted or trademarked content they do not have permission to use."],
         ["p", "If external fonts, icon sets, or datasets are added later, their license notes should be listed here before public launch."],
       ],
@@ -3696,6 +3757,7 @@
     "meal-planner",
     "image-to-pdf",
     "multi-image-pdf",
+    "pdf-to-images",
     "compress-image",
     "compress-image-to-kb",
     "resize-image",
@@ -3809,9 +3871,9 @@
             <a class="button secondary" href="/tools/qr-code/">Create a QR code</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>56</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>58</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>85</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>87</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -4048,6 +4110,7 @@
     const primaryToolIds = [
       "image-to-pdf",
       "multi-image-pdf",
+      "pdf-to-images",
       "compress-image",
       "resize-image",
       "convert-image",
@@ -4538,6 +4601,7 @@
     const notice = document.getElementById("limitNotice");
     const preview = document.getElementById("pdfFilePreview");
     pdfToolState.set(tool.id, []);
+    currentToolState = { tool, form };
 
     const renderPreview = () => {
       preview.innerHTML = pdfUtilityPreviewHtml(tool, getPdfFiles(tool.id), getFormValues(form));
@@ -4574,14 +4638,15 @@
       try {
         const values = getFormValues(form);
         const files = getPdfFiles(tool.id);
-        const pdf = await exportPdfUtility(tool, files, values);
-        downloadBlob(pdf, pdfUtilityFilename(tool, files, values));
+        const output = await exportPdfUtility(tool, files, values);
+        downloadBlob(output, pdfUtilityFilename(tool, files, values));
         incrementDailyCount();
         const remaining = SITE.dailyLimit - getDailyCount();
         limitCounter.textContent = `${remaining} free left today`;
-        showDownloadComplete(tool, downloadComplete, remaining);
-        track("generate_pdf", { tool: tool.id });
-        track("download_pdf", { tool: tool.id });
+        showDownloadComplete(tool, downloadComplete, remaining, tool.pdfTool === "to-images" ? "Images downloaded" : "PDF downloaded");
+        const eventKind = tool.pdfTool === "to-images" ? "file" : "pdf";
+        track(`generate_${eventKind}`, { tool: tool.id });
+        track(`download_${eventKind}`, { tool: tool.id });
       } catch (error) {
         notice.textContent = error.message || "Could not generate the PDF. Try a smaller file or a simpler page range.";
         notice.hidden = false;
@@ -4593,6 +4658,7 @@
   function pdfToolActionLabel(tool) {
     if (tool.pdfTool === "merge") return "Merge PDF";
     if (tool.pdfTool === "split") return "Extract pages";
+    if (tool.pdfTool === "to-images") return "Convert to images";
     if (tool.pdfTool === "page-numbers") return "Add page numbers";
     if (tool.pdfTool === "rotate") return "Rotate pages";
     if (tool.pdfTool === "remove-pages") return "Remove pages";
@@ -4658,6 +4724,10 @@
       const selected = parsePageRange(values.pageRange || "", files[0].pageCount);
       note = `The export will keep ${selected.length} page${selected.length === 1 ? "" : "s"} from ${files[0].pageCount}.`;
     }
+    if (tool.pdfTool === "to-images") {
+      const selected = limitedPdfImagePages(values.pageRange || "all", files[0].pageCount);
+      note = `The export will render ${selected.length} page${selected.length === 1 ? "" : "s"} as ${pdfImageFormatLabel(values.format || "jpeg")} image${selected.length === 1 ? "" : "s"}. Multiple pages download as a ZIP.`;
+    }
     if (tool.pdfTool === "page-numbers") note = `The export will add visible page numbers to ${files[0].pageCount} page${files[0].pageCount === 1 ? "" : "s"}.`;
     if (tool.pdfTool === "rotate") {
       const selected = parsePageRangeOrAll(values.pageRange || "all", files[0].pageCount);
@@ -4696,6 +4766,7 @@
     if (!files.length) throw new Error("Select at least one PDF file first.");
     if (tool.pdfTool === "merge") return exportMergedPdf(files);
     if (tool.pdfTool === "split") return exportSplitPdf(files[0], values);
+    if (tool.pdfTool === "to-images") return exportPdfAsImages(files[0], values);
     if (tool.pdfTool === "page-numbers") return exportNumberedPdf(files[0], values);
     if (tool.pdfTool === "rotate") return exportRotatedPdf(files[0], values);
     if (tool.pdfTool === "remove-pages") return exportRemovedPagesPdf(files[0], values);
@@ -4727,6 +4798,37 @@
     const copiedPages = await output.copyPages(source, selected.map((pageNumber) => pageNumber - 1));
     copiedPages.forEach((page) => output.addPage(page));
     return pdfBytesToBlob(await output.save());
+  }
+
+  async function exportPdfAsImages(file, values) {
+    const pdfjsLib = getPdfJsLib();
+    const selectedPages = limitedPdfImagePages(values.pageRange || "all", file.pageCount);
+    if (!selectedPages.length) throw new Error("Enter all or at least one valid page number to convert.");
+    const extension = pdfImageExtension(values.format || "jpeg");
+    const mime = values.format === "png" ? "image/png" : "image/jpeg";
+    const document = await pdfjsLib.getDocument({ data: file.bytes.slice().buffer }).promise;
+    const outputs = [];
+    for (const pageNumber of selectedPages) {
+      const page = await document.getPage(pageNumber);
+      const viewport = page.getViewport({ scale: pdfRenderScale(values.scale || "1.5") });
+      const canvas = window.document.createElement("canvas");
+      canvas.width = Math.ceil(viewport.width);
+      canvas.height = Math.ceil(viewport.height);
+      const ctx = canvas.getContext("2d", { alpha: values.format === "png" });
+      if (values.format !== "png") {
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+      await page.render({ canvasContext: ctx, viewport }).promise;
+      outputs.push({
+        name: `${fileBaseName(file.name)}-page-${String(pageNumber).padStart(2, "0")}.${extension}`,
+        blob: dataUrlToBlob(canvas.toDataURL(mime, normalizeQuality(values.quality || "0.86"))),
+      });
+      page.cleanup();
+    }
+    if (document.destroy) await document.destroy();
+    if (outputs.length === 1) return outputs[0].blob;
+    return await zipImageOutputs(outputs);
   }
 
   async function exportNumberedPdf(file, values) {
@@ -4860,6 +4962,11 @@
       return Array.from({ length: pageCount }, (_, index) => index + 1);
     }
     return parsePageRange(value, pageCount);
+  }
+
+  function limitedPdfImagePages(value, pageCount) {
+    const pages = parsePageRangeOrAll(value || "all", pageCount);
+    return pages.slice(0, 8);
   }
 
   function parsePageOrder(value, pageCount) {
@@ -5031,6 +5138,11 @@
     const base = slugify((files[0] && files[0].name.replace(/\.pdf$/i, "")) || tool.shortTitle || tool.id);
     if (tool.pdfTool === "merge") return "merged-pdf.pdf";
     if (tool.pdfTool === "split") return `${base}-selected-pages.pdf`;
+    if (tool.pdfTool === "to-images") {
+      const values = currentToolState && currentToolState.form ? getFormValues(currentToolState.form) : {};
+      const pages = files[0] ? limitedPdfImagePages(values.pageRange || "all", files[0].pageCount) : [];
+      return `${base}-page-images${pages.length === 1 ? `.${pdfImageExtension(values.format || "jpeg")}` : ".zip"}`;
+    }
     if (tool.pdfTool === "page-numbers") return `${base}-page-numbers.pdf`;
     if (tool.pdfTool === "rotate") return `${base}-rotated.pdf`;
     if (tool.pdfTool === "remove-pages") return `${base}-pages-removed.pdf`;
@@ -5044,6 +5156,38 @@
   function getPdfLib() {
     if (!window.PDFLib) throw new Error("PDF engine is still loading. Please try again in a moment.");
     return window.PDFLib;
+  }
+
+  function getPdfJsLib() {
+    if (!window.pdfjsLib) throw new Error("PDF rendering engine is still loading. Please try again in a moment.");
+    return window.pdfjsLib;
+  }
+
+  function zipImageOutputs(outputs) {
+    if (!window.fflate || !window.fflate.zipSync) {
+      throw new Error("ZIP engine is still loading. Please try again in a moment.");
+    }
+    return Promise.all(outputs.map((item) => item.blob.arrayBuffer().then((buffer) => [item.name, new Uint8Array(buffer)])))
+      .then((entries) => {
+        const zipFiles = {};
+        entries.forEach(([name, bytes]) => {
+          zipFiles[name] = bytes;
+        });
+        return new Blob([window.fflate.zipSync(zipFiles)], { type: "application/zip" });
+      });
+  }
+
+  function pdfRenderScale(value) {
+    const scale = Number.parseFloat(value);
+    return [1, 1.5, 2].includes(scale) ? scale : 1.5;
+  }
+
+  function pdfImageExtension(format) {
+    return format === "png" ? "png" : "jpg";
+  }
+
+  function pdfImageFormatLabel(format) {
+    return format === "png" ? "PNG" : "JPG";
   }
 
   function pdfBytesToBlob(bytes) {

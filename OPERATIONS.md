@@ -6,7 +6,7 @@ This file keeps the project pointed at the current model: free ad-supported brow
 
 ### Free acquisition layer
 
-- Fifty-three free browser PDF generators, no-upload PDF utilities, local image utilities, and static QR utilities.
+- Fifty-eight free browser PDF generators, no-upload PDF utilities, local image utilities, and static QR utilities.
 - Daily free limit stored locally.
 - Clean one-page PDF or image exports with no account wall and no ad-click requirement.
 - Original guide pages for search traffic and display-ad review.
@@ -279,6 +279,8 @@ Practical order if a paid product is added later:
 - compress image without uploading
 - resize image without uploading
 - convert image format without uploading
+- PDF to JPG without uploading
+- PDF to PNG converter no upload
 
 ## First Distribution Posts
 
@@ -366,6 +368,7 @@ Create one image or short post per item. Show the printable use case and never p
 80. WiFi QR code sign for guest networks.
 81. Contact QR code generator for vCard details.
 82. Compress image to 100KB or another strict upload limit.
+83. Convert PDF pages to JPG without uploading.
 
 ## Weekly Operating Loop
 
@@ -404,6 +407,7 @@ Current Search Console checkpoint:
 - `2026-06-01`: expanded to 53 tools and 41 high-intent landing pages by adding local static QR Code, WiFi QR Code, and Contact/vCard QR Code generators. This broadens the same free utility site into urgent QR searches where many competitors push account walls, dynamic-code upsells, or paid exports.
 - `2026-06-01`: expanded to 56 tools, 85 guides, and 44 high-intent landing pages by adding local Markdown-to-PDF, CSV-to-PDF, and JSON-to-PDF converters. This keeps the same no-upload free utility positioning while testing broader work, student, admin, and developer file-conversion searches that can earn ad impressions without sales calls.
 - `2026-06-01`: expanded to 57 tools, 86 guides, and 45 high-intent landing pages by adding a local Compress Image to KB workflow and a 100KB-focused landing page. This targets urgent upload-limit searches where competitors often force uploads, accounts, or paid download friction.
+- `2026-06-01`: expanded to 58 tools, 87 guides, and 46 high-intent landing pages by adding a local PDF-to-JPG/PNG converter and no-upload landing page. This targets high-frequency file-conversion intent where users often want previews, uploads, thumbnails, or shareable images without sending documents to a server.
 - `2026-06-01`: AdSense Management API was enabled on the Google Cloud project through Service Usage API. A service-account probe to `adsense.googleapis.com/v2/accounts` returned no AdSense accounts, so the service account is not currently an AdSense account user. The official AdSense ad-unit creation API is also a restricted method, so publisher/ad-slot creation cannot be completed silently from the current service-account credentials.
 - `2026-06-01`: GitHub Pages discovery directory was verified as its own Search Console URL-prefix property and its sitemap was submitted through the Search Console API. This creates a second crawlable discovery surface that still points back to the same main site.
 - `2026-06-01`: added `npm.cmd run operate` as the unattended operating loop. It rebuilds, verifies, submits sitemaps, checks directories, probes Cloudflare/AdSense readiness, and smoke-tests every tool while recording unavoidable account-level blockers.

@@ -49,6 +49,7 @@ const ALLOWED_TOOLS = new Set([
   "meal-planner",
   "image-to-pdf",
   "multi-image-pdf",
+  "pdf-to-images",
   "compress-image",
   "compress-image-to-kb",
   "resize-image",

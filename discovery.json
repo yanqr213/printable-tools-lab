@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T12:05:26.257Z",
+  "generatedAt": "2026-06-01T12:46:16.175Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -13,6 +13,7 @@
     "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
+    "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/",
     "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
     "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
     "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
@@ -57,6 +58,7 @@
     "https://printable-tools-lab.pages.dev/free-inventory-sheet-generator/",
     "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
     "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
+    "https://printable-tools-lab.pages.dev/tools/pdf-to-images/",
     "https://printable-tools-lab.pages.dev/tools/compress-image/",
     "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/",
     "https://printable-tools-lab.pages.dev/tools/resize-image/",
@@ -115,6 +117,12 @@
       "url": "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
       "intent": "combine images into one PDF without upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/"
+    },
+    {
+      "title": "PDF to JPG Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/",
+      "intent": "PDF to JPG, PDF to PNG, no upload converter",
+      "tool": "https://printable-tools-lab.pages.dev/tools/pdf-to-images/"
     },
     {
       "title": "Compress Image Without Uploading",

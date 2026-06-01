@@ -19,6 +19,12 @@
     <link rel="alternate" type="application/rss+xml" title="PrintableTools Lab feed" href="/feed.xml">
     <link rel="stylesheet" href="/styles.css">
     <script src="/site-config.js"></script>
+    <script src="/assets/vendor/fflate.min.js"></script>
+    <script type="module">
+      import * as pdfjsLib from "/assets/vendor/pdf.min.mjs";
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "/assets/vendor/pdf.worker.min.mjs";
+      window.pdfjsLib = pdfjsLib;
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -60,7 +66,7 @@
           <li>Open the Stamp PDF Pages and review the example text already in the form.</li>
 <li>Replace the sample fields with your own short, accurate wording.</li>
 <li>Choose US Letter or A4 before generating if the tool offers paper size options.</li>
-<li>Preview the page, then download the PDF and review it before printing or sharing.</li>
+<li>Preview the result, then download the PDF and review it before printing, uploading, or sharing.</li>
         </ol>
       </section>
       <section class="shell section">

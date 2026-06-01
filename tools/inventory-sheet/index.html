@@ -19,6 +19,12 @@
     <link rel="alternate" type="application/rss+xml" title="PrintableTools Lab feed" href="/feed.xml">
     <link rel="stylesheet" href="/styles.css">
     <script src="/site-config.js"></script>
+    <script src="/assets/vendor/fflate.min.js"></script>
+    <script type="module">
+      import * as pdfjsLib from "/assets/vendor/pdf.min.mjs";
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "/assets/vendor/pdf.worker.min.mjs";
+      window.pdfjsLib = pdfjsLib;
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -60,7 +66,7 @@
           <li>Open the Inventory Sheet Generator and review the example text already in the form.</li>
 <li>Replace the sample fields with your own short, accurate wording.</li>
 <li>Choose US Letter or A4 before generating if the tool offers paper size options.</li>
-<li>Preview the page, then download the PDF and review it before printing or sharing.</li>
+<li>Preview the result, then download the PDF and review it before printing, uploading, or sharing.</li>
         </ol>
       </section>
       <section class="shell section">
@@ -73,8 +79,8 @@
       </section>
       <section class="shell section">
         <h2>Privacy and limits</h2>
-        <p>Most PDF generation happens in your browser. For tools with the optional AI idea helper, only limited non-sensitive writing fields are sent to the server for suggestions.</p>
-        <p>The free version is limited to one-page PDFs and a small daily generation count in the same browser while usage is validated.</p>
+        <p>Most file generation happens in your browser. For tools with the optional AI idea helper, only limited non-sensitive writing fields are sent to the server for suggestions.</p>
+        <p>The free version is limited to practical PDF exports and a small daily generation count in the same browser while usage is validated.</p>
       </section>
       <section class="shell section">
         <h2>Frequently asked questions</h2>
