@@ -2,7 +2,7 @@ const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pa
 
 const SITE_SUMMARY = {
   name: "PrintableTools Lab",
-  description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, and static QR code tools for compressing images, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, static QR code tools, and text-data converters for compressing images, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   audience: "Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, household planners, cafe operators, booth exhibitors, rental hosts, and office admins.",
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
@@ -29,6 +29,9 @@ const HIGH_INTENT_TOOL_PATHS = [
   "tools/stamp-pdf",
   "tools/sign-pdf",
   "tools/text-to-pdf",
+  "tools/markdown-to-pdf",
+  "tools/csv-to-pdf",
+  "tools/json-to-pdf",
   "tools/invoice-generator",
   "tools/receipt-generator",
   "tools/timesheet-generator",
@@ -107,6 +110,21 @@ const TOOL_FINDER_ROWS = [
     need: "I have plain text and need a simple PDF",
     toolPath: "tools/text-to-pdf",
     why: "Best for notes, short letters, checklists, or copied text that needs a clean one-page export.",
+  },
+  {
+    need: "I have Markdown notes, docs, or README text and need a PDF",
+    toolPath: "tools/markdown-to-pdf",
+    why: "Best for readable headings, lists, quotes, and project notes without opening a full Markdown editor.",
+  },
+  {
+    need: "I have CSV rows and need a printable table",
+    toolPath: "tools/csv-to-pdf",
+    why: "Best for small tables, inventory rows, rosters, price sheets, and order lists that should stay local.",
+  },
+  {
+    need: "I have JSON and need a formatted PDF reference",
+    toolPath: "tools/json-to-pdf",
+    why: "Best for reviewed API samples, config snippets, QA notes, and technical payload references without upload.",
   },
   {
     need: "I need to combine several PDFs into one file",
@@ -520,6 +538,51 @@ const landingPages = [
       ["One-page focus", "The free version is best for concise documents. Long text should be shortened or split into sections before export."],
     ],
     relatedTools: ["tools/image-to-pdf", "tools/todo-list", "tools/sign-in-sheet"],
+  },
+  {
+    path: "markdown-to-pdf-no-signup",
+    title: "Markdown to PDF Converter Without Signup",
+    description: "Paste Markdown notes, README text, docs, or outlines and download a clean PDF locally in your browser.",
+    headline: "Markdown to PDF converter without signup",
+    lead: "Turn Markdown into a readable PDF without creating an account, installing an editor, or uploading the source text. It is useful for README drafts, changelogs, project notes, study notes, and handouts.",
+    primaryTool: "tools/markdown-to-pdf",
+    intent: "Markdown to PDF, no account, no upload",
+    sections: [
+      ["Fast Markdown workflow", "Paste Markdown, choose a simple style, generate the preview, and download the PDF. The first version focuses on readable headings, lists, quotes, and paragraphs."],
+      ["Good use cases", "Use it for README snapshots, project notes, lesson outlines, meeting summaries, simple docs, and checklists that need a PDF copy."],
+      ["Local processing", "The Markdown is rendered in the browser preview and exported as a PDF page without requiring a server upload."],
+    ],
+    relatedTools: ["tools/text-to-pdf", "tools/json-to-pdf", "tools/todo-list"],
+  },
+  {
+    path: "csv-to-pdf-no-upload",
+    title: "CSV to PDF Table Converter Without Uploading",
+    description: "Paste CSV rows and export a readable PDF table locally without uploading a spreadsheet.",
+    headline: "CSV to PDF table converter without uploading",
+    lead: "Create a simple PDF table from CSV rows in the browser. This is useful for inventory lists, event rosters, order lists, task lists, price sheets, and small reports that need a printable copy.",
+    primaryTool: "tools/csv-to-pdf",
+    intent: "CSV to PDF table, no upload, no account",
+    sections: [
+      ["Paste rows, get a table", "The first CSV row becomes the header and the remaining rows become table lines. Keep the table small enough to read clearly on one page."],
+      ["Why local CSV helps", "CSV files can include customer names, small order details, event rosters, or stock counts. A local converter avoids uploading the data for ordinary quick exports."],
+      ["Before sharing", "Open the downloaded PDF and confirm every column is readable, especially when the CSV has long text fields."],
+    ],
+    relatedTools: ["tools/inventory-sheet", "tools/packing-slip", "tools/text-to-pdf"],
+  },
+  {
+    path: "json-to-pdf-no-upload",
+    title: "JSON to PDF Formatter Without Uploading",
+    description: "Paste JSON and download a readable formatted PDF locally in your browser.",
+    headline: "JSON to PDF formatter without uploading",
+    lead: "Format JSON into a clean PDF page without sending the source data to a server. It is useful for API samples, config snippets, bug reports, test fixtures, and technical notes.",
+    primaryTool: "tools/json-to-pdf",
+    intent: "JSON to PDF formatter, no upload, no account",
+    sections: [
+      ["Readable technical notes", "The formatter pretty-prints valid JSON and shows invalid JSON as plain text with a warning so you can still export a review copy."],
+      ["Local-first workflow", "The JSON is processed in the browser. Do not paste secrets, keys, or private production data unless you have reviewed and removed sensitive values."],
+      ["Good use cases", "Use it for sample payloads, documentation snippets, QA notes, configuration examples, and small API response references."],
+    ],
+    relatedTools: ["tools/markdown-to-pdf", "tools/text-to-pdf", "tools/csv-to-pdf"],
   },
   {
     path: "merge-pdf-no-upload",
@@ -1271,6 +1334,33 @@ const tools = [
     ],
   },
   {
+    path: "tools/markdown-to-pdf",
+    title: "Markdown to PDF Converter",
+    description: "Paste Markdown and download a clean PDF preview without installing an editor or uploading a file.",
+    body: [
+      "Paste Markdown notes, README text, changelogs, project outlines, or study notes, choose a simple style, and export a readable PDF.",
+      "Markdown-to-PDF expands the file-utility audience toward students, developers, writers, and small teams who need a quick offline copy.",
+    ],
+  },
+  {
+    path: "tools/csv-to-pdf",
+    title: "CSV to PDF Table Converter",
+    description: "Paste CSV rows and export a readable PDF table locally in your browser.",
+    body: [
+      "Paste a small CSV table, keep the first row as headers, choose a layout, and download a one-page PDF table.",
+      "CSV-to-PDF targets practical admin searches for inventory rows, rosters, order lists, price sheets, and reports without spreadsheet upload friction.",
+    ],
+  },
+  {
+    path: "tools/json-to-pdf",
+    title: "JSON to PDF Formatter",
+    description: "Paste JSON and download a readable formatted PDF locally without uploading data.",
+    body: [
+      "Paste JSON, format it into a readable preview, and export a one-page PDF for documentation, QA notes, API samples, or config snippets.",
+      "JSON-to-PDF is a broader technical utility that keeps the local-first promise while adding high-intent file conversion searches.",
+    ],
+  },
+  {
     path: "tools/sign-in-sheet",
     title: "Sign-in Sheet Generator",
     description: "Create a printable sign-in sheet PDF for events, classrooms, workshops, meetings, or visitor logs.",
@@ -1408,6 +1498,9 @@ const guides = [
   ["guides/stamp-pdf-without-uploading", "Stamp PDF without uploading", "Add a simple PAID, APPROVED, DRAFT, or custom stamp to a PDF locally.", "PDF stamps help people scan the status of receipts, invoices, work orders, and review packets. Use them as visual labels, not as the only proof of payment or approval."],
   ["guides/add-signature-text-to-pdf-without-uploading", "Add signature text to PDF without uploading", "Place a typed signature block on a selected PDF page locally in your browser.", "A typed signature block is useful only when the receiving person or organization accepts it. Some documents require a specific e-sign provider, identity check, witness, or handwritten signature."],
   ["guides/text-to-pdf-converter-no-signup", "Text to PDF converter without signup", "Paste plain text and download a clean one-page PDF without installing an editor.", "Text-to-PDF searches are practical and time-sensitive. People often need to turn notes, instructions, or a plain letter into a PDF without creating an account or uploading the text to a file service."],
+  ["guides/markdown-to-pdf-converter-no-signup", "Markdown to PDF converter without signup", "Paste Markdown and download a readable PDF without creating an account.", "Markdown-to-PDF searches come from people who already have structured notes, docs, README text, or outlines and need a shareable PDF copy without opening a heavier editor."],
+  ["guides/csv-to-pdf-table-no-upload", "CSV to PDF table without uploading", "Paste CSV rows and download a readable PDF table without uploading a spreadsheet.", "CSV-to-PDF is useful for small tables such as inventory rows, rosters, order lists, price sheets, and quick reports that should stay local."],
+  ["guides/json-to-pdf-formatter-no-upload", "JSON to PDF formatter without uploading", "Paste JSON and download a formatted PDF without sending the source data to a server.", "JSON-to-PDF is useful for reviewed API samples, config snippets, bug reports, QA notes, and technical references, but secrets should be removed before exporting."],
   ["guides/free-sign-in-sheet-generator", "Free sign-in sheet generator", "Create a printable sign-in sheet PDF for events, classes, workshops, meetings, or visitor logs.", "For small events, a printed sign-in sheet is often enough. It gives the organizer names, attendance, signatures, and contact details without needing a registration app."],
   ["guides/attendance-sheet-pdf-template", "Attendance sheet PDF template", "Use a simple printable attendance sheet for classes, clubs, workshops, and small meetings.", "A useful attendance sheet leaves enough writing space. Fewer rows per page can be better than a cramped page nobody can read later."],
   ["guides/free-printable-graph-paper-generator", "Free printable graph paper generator", "Generate graph paper PDF with quarter-inch, half-inch, or small grid spacing.", "Students, teachers, makers, and planners often need graph paper immediately. A generator with paper size and spacing options is useful even without decorative templates."],
@@ -1507,6 +1600,12 @@ const keywordClusters = [
       ["Sign PDF without uploading", "sign-pdf-no-upload"],
       ["Text to PDF converter", "tools/text-to-pdf"],
       ["Text to PDF converter without signup", "text-to-pdf-no-signup"],
+      ["Markdown to PDF converter", "tools/markdown-to-pdf"],
+      ["Markdown to PDF without signup", "markdown-to-pdf-no-signup"],
+      ["CSV to PDF table converter", "tools/csv-to-pdf"],
+      ["CSV to PDF without uploading", "csv-to-pdf-no-upload"],
+      ["JSON to PDF formatter", "tools/json-to-pdf"],
+      ["JSON to PDF without uploading", "json-to-pdf-no-upload"],
       ["Sign-in sheet generator", "tools/sign-in-sheet"],
       ["Graph paper generator", "tools/graph-paper"],
       ["Packing list generator", "tools/packing-list"],
@@ -1573,20 +1672,20 @@ const pages = [
   {
     path: "",
     title: "Free Printable PDF, Image, and QR Tools",
-    description: "Create image compression, resizing, cropping, rotation, watermarking, static QR codes, WiFi QR signs, contact QR codes, image-to-PDF conversions, invoices, receipts, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free browser exports.",
+    description: "Create image compression, resizing, cropping, rotation, watermarking, static QR codes, WiFi QR signs, contact QR codes, image-to-PDF conversions, text, Markdown, CSV, and JSON PDF exports, invoices, receipts, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free browser exports.",
     html: `
       <section class="shell hero">
         <div>
           <h1>Make useful PDF, image, and QR files in under a minute.</h1>
-          <p>Free browser-based generators for image compression, resizing, cropping, rotation, watermarking, QR codes, WiFi QR signs, contact QR codes, image format conversion, no-upload PDF edits, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
+          <p>Free browser-based generators for image compression, resizing, cropping, rotation, watermarking, QR codes, WiFi QR signs, contact QR codes, image format conversion, no-upload PDF edits, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>53</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>56</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>82</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>85</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -1654,6 +1753,9 @@ const pages = [
           <li><a href="/tools/stamp-pdf/">Stamp PDF Pages</a></li>
           <li><a href="/tools/sign-pdf/">Add Signature Text to PDF</a></li>
           <li><a href="/tools/text-to-pdf/">Text to PDF Converter</a></li>
+          <li><a href="/tools/markdown-to-pdf/">Markdown to PDF Converter</a></li>
+          <li><a href="/tools/csv-to-pdf/">CSV to PDF Table Converter</a></li>
+          <li><a href="/tools/json-to-pdf/">JSON to PDF Formatter</a></li>
           <li><a href="/tools/sign-in-sheet/">Sign-in Sheet Generator</a></li>
           <li><a href="/tools/graph-paper/">Graph Paper Generator</a></li>
           <li><a href="/tools/packing-list/">Packing List Generator</a></li>
@@ -1673,13 +1775,13 @@ const pages = [
   {
     path: "free-pdf-tools",
     title: "Free PDF Tools Without Signup",
-    description: "Start with free browser PDF, image, and QR tools for image compression, resizing, format conversion, QR codes, image-to-PDF, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, certificates, checklists, and printable pages.",
+    description: "Start with free browser PDF, image, and QR tools for image compression, resizing, format conversion, QR codes, image-to-PDF, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, certificates, checklists, and printable pages.",
     html: freePdfToolsHtml(),
   },
   {
     path: "pdf-tool-finder",
     title: "Which Free PDF Tool Should I Use?",
-    description: "Find the right free PDF, image, or QR tool for compression, resizing, QR codes, images, text, invoices, receipts, labels, barcodes, flyers, coupons, timesheets, resumes, certificates, checklists, graph paper, and event sheets.",
+    description: "Find the right free PDF, image, or QR tool for compression, resizing, QR codes, images, text, Markdown, CSV, JSON, invoices, receipts, labels, barcodes, flyers, coupons, timesheets, resumes, certificates, checklists, graph paper, and event sheets.",
     html: pdfToolFinderHtml(),
   },
   {
@@ -1788,6 +1890,9 @@ const GUIDE_HINTS_FOR_LINKS = {
   "stamp-pdf": ["stamp PDF"],
   "sign-pdf": ["signature", "sign PDF"],
   "text-to-pdf": ["text to PDF"],
+  "markdown-to-pdf": ["Markdown to PDF", "README to PDF"],
+  "csv-to-pdf": ["CSV to PDF", "table PDF"],
+  "json-to-pdf": ["JSON to PDF", "JSON formatter"],
   "sign-in-sheet": ["sign-in", "attendance sheet"],
   "graph-paper": ["graph paper", "quarter inch"],
   "packing-list": ["packing list", "travel checklist"],
@@ -1900,8 +2005,8 @@ function freePdfToolsHtml() {
   const groups = [
     {
       title: "No-upload conversion tools",
-      text: "Use these when a photo, scan, QR code, existing PDF, or plain text note needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf"],
+      text: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
+      links: ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1968,6 +2073,7 @@ function pdfToolFinderHtml() {
   }).join("\n");
   const imageTools = ["compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "image-to-pdf", "multi-image-pdf", "qr-code", "wifi-qr-code", "vcard-qr-code"];
   const pdfEditTools = ["merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf"];
+  const textDataTools = ["text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"];
   const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"];
   const personalTools = ["resume-builder", "cover-letter", "resignation-letter", "certificate-generator", "todo-list", "packing-list", "monthly-calendar", "meal-planner", "sign-in-sheet", "graph-paper"];
   return `
@@ -2010,6 +2116,15 @@ function pdfToolFinderHtml() {
         <h2>No-upload PDF edit tools</h2>
         <div class="cluster-links">
           ${pdfEditTools.map((slug) => {
+            const tool = tools.find((item) => item.path === `tools/${slug}`);
+            return tool ? `<a href="/${tool.path}/">${escapeHtml(tool.title)}</a>` : "";
+          }).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Text and data to PDF tools</h2>
+        <div class="cluster-links">
+          ${textDataTools.map((slug) => {
             const tool = tools.find((item) => item.path === `tools/${slug}`);
             return tool ? `<a href="/${tool.path}/">${escapeHtml(tool.title)}</a>` : "";
           }).join("")}
@@ -2060,6 +2175,9 @@ function directorySubmissionHtml() {
     "stamp-pdf",
     "sign-pdf",
     "text-to-pdf",
+    "markdown-to-pdf",
+    "csv-to-pdf",
+    "json-to-pdf",
     "invoice-generator",
     "receipt-generator",
     "packing-slip",
@@ -2829,6 +2947,45 @@ function toolDetails(tool) {
         { q: "Can I paste a long document?", a: "The first version is designed for a readable one-page PDF, so long text is trimmed in the preview." },
         { q: "Do I need to upload a text file?", a: "No. Paste text into the form and generate the PDF locally." },
         { q: "Can I choose a font size?", a: "Yes. Choose small, medium, or large text before generating the PDF." },
+      ],
+    },
+    "markdown-to-pdf": {
+      privacy: "Markdown is rendered into the PDF preview in your browser. Remove secrets, tokens, or private production details before sharing the exported PDF.",
+      useCases: [
+        { title: "README snapshot", text: "Turn README text, changelogs, or project notes into a readable PDF copy." },
+        { title: "Lesson outline", text: "Create a printable outline with headings, bullets, quotes, and simple paragraphs." },
+        { title: "Meeting notes", text: "Share Markdown notes as a PDF without opening a full editor." },
+      ],
+      faq: [
+        { q: "Which Markdown syntax works?", a: "The first version supports common headings, bullet lists, numbered lists, quotes, and paragraphs." },
+        { q: "Does it upload my Markdown?", a: "No. The preview and PDF export run in your browser for ordinary use." },
+        { q: "Can it export long docs?", a: "It is best for one-page snapshots. Long documents may be truncated in the preview." },
+      ],
+    },
+    "csv-to-pdf": {
+      privacy: "CSV rows are rendered locally in the browser. Do not paste sensitive customer, payment, or confidential business data unless you have reviewed it first.",
+      useCases: [
+        { title: "Inventory rows", text: "Turn a small stock list or count sheet into a readable table PDF." },
+        { title: "Event roster", text: "Create a printable roster, order list, class list, or task table." },
+        { title: "Price sheet", text: "Paste item, quantity, and status rows for a one-page reference." },
+      ],
+      faq: [
+        { q: "Does the first row become headers?", a: "Yes. The first CSV row is treated as the table header." },
+        { q: "Are CSV files uploaded?", a: "No. Paste the rows and the PDF table is generated locally." },
+        { q: "How many rows fit?", a: "The free version is tuned for a readable one-page table, so very long CSV data is truncated." },
+      ],
+    },
+    "json-to-pdf": {
+      privacy: "JSON is formatted locally in the browser. Remove API keys, secrets, passwords, and private records before exporting or sharing.",
+      useCases: [
+        { title: "API sample", text: "Format a small request or response sample for documentation or review." },
+        { title: "Config snippet", text: "Create a readable reference copy of a reviewed configuration example." },
+        { title: "Bug report", text: "Attach a small formatted payload to a QA note without uploading it to a formatter service." },
+      ],
+      faq: [
+        { q: "What happens if the JSON is invalid?", a: "The tool shows the text with a warning so you can still export a review copy." },
+        { q: "Does it upload JSON?", a: "No. Formatting and PDF export run locally in the browser." },
+        { q: "Should I paste secrets?", a: "No. Remove tokens, keys, passwords, and private production data before exporting." },
       ],
     },
     "sign-in-sheet": {

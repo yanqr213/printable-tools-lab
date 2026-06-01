@@ -1,6 +1,6 @@
 # PrintableTools Lab
 
-Free browser-based PDF generators, no-upload PDF tools, local image tools, and static QR code tools for compressing images, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
+Free browser-based PDF generators, no-upload PDF tools, local image tools, static QR code tools, and text-data converters for compressing images, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
 
 Audience: Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, household planners, cafe operators, booth exhibitors, rental hosts, and office admins.
 
@@ -69,6 +69,9 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Stamp PDF Pages](https://printable-tools-lab.pages.dev/tools/stamp-pdf/): Add a simple APPROVED, PAID, DRAFT, or custom text stamp to PDF pages without uploading the file.
 - [Add Signature Text to PDF](https://printable-tools-lab.pages.dev/tools/sign-pdf/): Place a typed signature block on a selected PDF page locally in your browser.
 - [Text to PDF Converter](https://printable-tools-lab.pages.dev/tools/text-to-pdf/): Paste plain text and download a clean one-page PDF without an account or file upload.
+- [Markdown to PDF Converter](https://printable-tools-lab.pages.dev/tools/markdown-to-pdf/): Paste Markdown and download a clean PDF preview without installing an editor or uploading a file.
+- [CSV to PDF Table Converter](https://printable-tools-lab.pages.dev/tools/csv-to-pdf/): Paste CSV rows and export a readable PDF table locally in your browser.
+- [JSON to PDF Formatter](https://printable-tools-lab.pages.dev/tools/json-to-pdf/): Paste JSON and download a readable formatted PDF locally without uploading data.
 - [Sign-in Sheet Generator](https://printable-tools-lab.pages.dev/tools/sign-in-sheet/): Create a printable sign-in sheet PDF for events, classrooms, workshops, meetings, or visitor logs.
 - [Graph Paper Generator](https://printable-tools-lab.pages.dev/tools/graph-paper/): Generate printable graph paper PDF with quarter-inch, half-inch, or small grid spacing for math, notes, and design sketches.
 - [Packing List Generator](https://printable-tools-lab.pages.dev/tools/packing-list/): Make a printable packing list PDF for travel, school trips, business travel, camping, or family vacations.
@@ -98,6 +101,9 @@ Monetization model: Free tools first, then responsible display advertising after
 - [PNG to JPG Without Uploading](https://printable-tools-lab.pages.dev/png-to-jpg-no-upload/): PNG to JPG converter, no upload, browser image conversion
 - [WebP to JPG Without Uploading](https://printable-tools-lab.pages.dev/webp-to-jpg-no-upload/): WebP to JPG converter, no upload, browser image conversion
 - [Text to PDF Converter Without Signup](https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/): plain text to PDF with no account
+- [Markdown to PDF Converter Without Signup](https://printable-tools-lab.pages.dev/markdown-to-pdf-no-signup/): Markdown to PDF, no account, no upload
+- [CSV to PDF Table Converter Without Uploading](https://printable-tools-lab.pages.dev/csv-to-pdf-no-upload/): CSV to PDF table, no upload, no account
+- [JSON to PDF Formatter Without Uploading](https://printable-tools-lab.pages.dev/json-to-pdf-no-upload/): JSON to PDF formatter, no upload, no account
 - [Merge PDF Without Uploading](https://printable-tools-lab.pages.dev/merge-pdf-no-upload/): combine PDF files, no upload, no account
 - [Split PDF Without Uploading](https://printable-tools-lab.pages.dev/split-pdf-no-upload/): extract PDF pages, no upload, no account
 - [Add Page Numbers to PDF](https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/): add page numbers to PDF, no upload, no account

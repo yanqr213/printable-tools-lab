@@ -4,7 +4,7 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-06-01T08:56:22.876Z",
+  "generatedAt": "2026-06-01T11:19:58.366Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -100,6 +100,21 @@
       "title": "Text to PDF Converter Without Signup",
       "url": "https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/",
       "intent": "plain text to PDF with no account"
+    },
+    {
+      "title": "Markdown to PDF Converter Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/markdown-to-pdf-no-signup/",
+      "intent": "Markdown to PDF, no account, no upload"
+    },
+    {
+      "title": "CSV to PDF Table Converter Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/csv-to-pdf-no-upload/",
+      "intent": "CSV to PDF table, no upload, no account"
+    },
+    {
+      "title": "JSON to PDF Formatter Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/json-to-pdf-no-upload/",
+      "intent": "JSON to PDF formatter, no upload, no account"
     },
     {
       "title": "Merge PDF Without Uploading",
@@ -317,6 +332,21 @@
       "title": "Text to PDF Converter",
       "description": "Paste plain text and download a clean one-page PDF without an account or file upload.",
       "url": "https://printable-tools-lab.pages.dev/tools/text-to-pdf/"
+    },
+    {
+      "title": "Markdown to PDF Converter",
+      "description": "Paste Markdown and download a clean PDF preview without installing an editor or uploading a file.",
+      "url": "https://printable-tools-lab.pages.dev/tools/markdown-to-pdf/"
+    },
+    {
+      "title": "CSV to PDF Table Converter",
+      "description": "Paste CSV rows and export a readable PDF table locally in your browser.",
+      "url": "https://printable-tools-lab.pages.dev/tools/csv-to-pdf/"
+    },
+    {
+      "title": "JSON to PDF Formatter",
+      "description": "Paste JSON and download a readable formatted PDF locally without uploading data.",
+      "url": "https://printable-tools-lab.pages.dev/tools/json-to-pdf/"
     },
     {
       "title": "Invoice Generator",

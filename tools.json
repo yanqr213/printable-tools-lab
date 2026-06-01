@@ -1,8 +1,8 @@
 {
   "name": "PrintableTools Lab",
-  "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, and static QR code tools for compressing images, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, static QR code tools, and text-data converters for compressing images, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T08:56:22.787Z",
+  "generatedAt": "2026-06-01T11:19:58.283Z",
   "tools": [
     {
       "title": "Name Tracing Worksheet Generator",
@@ -278,6 +278,24 @@
       "title": "Text to PDF Converter",
       "url": "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
       "description": "Paste plain text and download a clean one-page PDF without an account or file upload.",
+      "category": "Everyday file utilities"
+    },
+    {
+      "title": "Markdown to PDF Converter",
+      "url": "https://printable-tools-lab.pages.dev/tools/markdown-to-pdf/",
+      "description": "Paste Markdown and download a clean PDF preview without installing an editor or uploading a file.",
+      "category": "Everyday file utilities"
+    },
+    {
+      "title": "CSV to PDF Table Converter",
+      "url": "https://printable-tools-lab.pages.dev/tools/csv-to-pdf/",
+      "description": "Paste CSV rows and export a readable PDF table locally in your browser.",
+      "category": "Everyday file utilities"
+    },
+    {
+      "title": "JSON to PDF Formatter",
+      "url": "https://printable-tools-lab.pages.dev/tools/json-to-pdf/",
+      "description": "Paste JSON and download a readable formatted PDF locally without uploading data.",
       "category": "Everyday file utilities"
     },
     {
@@ -683,6 +701,21 @@
       "title": "Text to PDF converter without signup",
       "url": "https://printable-tools-lab.pages.dev/guides/text-to-pdf-converter-no-signup/",
       "description": "Paste plain text and download a clean one-page PDF without installing an editor."
+    },
+    {
+      "title": "Markdown to PDF converter without signup",
+      "url": "https://printable-tools-lab.pages.dev/guides/markdown-to-pdf-converter-no-signup/",
+      "description": "Paste Markdown and download a readable PDF without creating an account."
+    },
+    {
+      "title": "CSV to PDF table without uploading",
+      "url": "https://printable-tools-lab.pages.dev/guides/csv-to-pdf-table-no-upload/",
+      "description": "Paste CSV rows and download a readable PDF table without uploading a spreadsheet."
+    },
+    {
+      "title": "JSON to PDF formatter without uploading",
+      "url": "https://printable-tools-lab.pages.dev/guides/json-to-pdf-formatter-no-upload/",
+      "description": "Paste JSON and download a formatted PDF without sending the source data to a server."
     },
     {
       "title": "Free sign-in sheet generator",

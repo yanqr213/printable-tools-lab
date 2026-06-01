@@ -34,6 +34,9 @@ const topics = [
   "label-generator",
   "image-to-pdf",
   "text-to-pdf",
+  "markdown-to-pdf",
+  "csv-to-pdf",
+  "json-to-pdf",
   "no-signup",
   "free-tools",
   "browser-tools",
@@ -50,7 +53,7 @@ async function main() {
     method: "PATCH",
     body: {
       homepage: siteUrl(""),
-      description: "Free no-signup browser PDF, image, and QR tools for compression, resizing, cropping, rotation, watermarking, QR codes, WiFi QR signs, contact QR codes, PDF edits, paperwork, labels, resumes, and printables.",
+      description: "Free no-signup browser PDF, image, QR, and text-data tools for compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
     },
   });
   await github(`/repos/${repo}/topics`, {

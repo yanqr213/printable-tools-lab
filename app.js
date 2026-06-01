@@ -50,6 +50,9 @@
     "sign-in-sheet": ["title", "event", "date", "notes"],
     "packing-list": ["title", "destination", "sections", "notes"],
     "text-to-pdf": ["title", "body"],
+    "markdown-to-pdf": ["title", "body"],
+    "csv-to-pdf": ["title", "csv"],
+    "json-to-pdf": ["title", "json"],
     "receipt-generator": ["description", "notes"],
     "timesheet-generator": ["period", "rows", "notes"],
     "certificate-generator": ["title", "reason", "signer"],
@@ -1024,6 +1027,69 @@
       ],
       draw: drawTextToPdf,
     },
+    "markdown-to-pdf": {
+      id: "markdown-to-pdf",
+      icon: "MD",
+      title: "Markdown to PDF Converter",
+      shortTitle: "Markdown to PDF",
+      description: "Paste Markdown and download a clean PDF preview without installing an editor or uploading a file.",
+      keywords: ["Markdown to PDF", "markdown converter", "readme to PDF", "no signup"],
+      defaultValues: {
+        title: "Markdown to PDF",
+        body: "# Project Notes\n\n- Scope: one useful page\n- Status: ready to review\n- Next step: share the PDF\n\n## Summary\nPaste Markdown notes, docs, README text, or meeting outlines here.",
+        style: "document",
+        paper: "letter",
+      },
+      fields: [
+        { id: "title", label: "PDF title", type: "text", maxLength: 70 },
+        { id: "body", label: "Markdown", type: "textarea", maxLength: 2200, help: "Supports headings, bullets, numbered lists, quotes, and simple paragraphs." },
+        { id: "style", label: "Style", type: "select", options: [["document", "Document"], ["notes", "Notes"], ["compact", "Compact"]] },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawMarkdownToPdf,
+    },
+    "csv-to-pdf": {
+      id: "csv-to-pdf",
+      icon: "CSV",
+      title: "CSV to PDF Table Converter",
+      shortTitle: "CSV to PDF",
+      description: "Paste CSV rows and export a readable PDF table locally in your browser.",
+      keywords: ["CSV to PDF", "CSV table", "spreadsheet to PDF", "no upload"],
+      defaultValues: {
+        title: "CSV Table",
+        csv: "Item,Qty,Status\nLabels,24,Ready\nFlyers,40,Print\nCoupons,80,Cut",
+        layout: "fit",
+        paper: "letter",
+      },
+      fields: [
+        { id: "title", label: "Table title", type: "text", maxLength: 70 },
+        { id: "csv", label: "CSV rows", type: "textarea", maxLength: 2200, help: "First row becomes the header. Commas inside quotes are supported." },
+        { id: "layout", label: "Layout", type: "select", options: [["fit", "Fit columns"], ["compact", "Compact rows"], ["wide", "Wide first column"]] },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawCsvToPdf,
+    },
+    "json-to-pdf": {
+      id: "json-to-pdf",
+      icon: "JSON",
+      title: "JSON to PDF Formatter",
+      shortTitle: "JSON to PDF",
+      description: "Paste JSON and download a readable formatted PDF locally without uploading data.",
+      keywords: ["JSON to PDF", "JSON formatter", "pretty print JSON", "no upload"],
+      defaultValues: {
+        title: "JSON Summary",
+        json: "{\n  \"project\": \"PrintableTools Lab\",\n  \"status\": \"validation\",\n  \"tools\": [\"PDF\", \"image\", \"QR\"],\n  \"free\": true\n}",
+        theme: "clean",
+        paper: "letter",
+      },
+      fields: [
+        { id: "title", label: "PDF title", type: "text", maxLength: 70 },
+        { id: "json", label: "JSON", type: "textarea", maxLength: 2600, help: "Formatted locally. Invalid JSON is shown as plain text with a warning." },
+        { id: "theme", label: "Theme", type: "select", options: [["clean", "Clean"], ["technical", "Technical"], ["compact", "Compact"]] },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawJsonToPdf,
+    },
     "sign-in-sheet": {
       id: "sign-in-sheet",
       icon: "IN",
@@ -1544,6 +1610,12 @@
         ["Sign PDF without uploading", "/sign-pdf-no-upload/"],
         ["Text to PDF converter", "/tools/text-to-pdf/"],
         ["Text to PDF converter without signup", "/text-to-pdf-no-signup/"],
+        ["Markdown to PDF converter", "/tools/markdown-to-pdf/"],
+        ["Markdown to PDF without signup", "/markdown-to-pdf-no-signup/"],
+        ["CSV to PDF table converter", "/tools/csv-to-pdf/"],
+        ["CSV to PDF without uploading", "/csv-to-pdf-no-upload/"],
+        ["JSON to PDF formatter", "/tools/json-to-pdf/"],
+        ["JSON to PDF without uploading", "/json-to-pdf-no-upload/"],
         ["Sign-in sheet generator", "/tools/sign-in-sheet/"],
         ["Graph paper generator", "/tools/graph-paper/"],
         ["Packing list generator", "/tools/packing-list/"],
@@ -1600,8 +1672,8 @@
   const freePdfToolGroups = [
     {
       title: "No-upload conversion tools",
-      description: "Use these when a photo, scan, QR code, existing PDF, or plain text note needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf"],
+      description: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
+      links: ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1905,6 +1977,51 @@
         ["One-page focus", "The free version is best for concise documents. Long text should be shortened or split into sections before export."],
       ],
       related: ["image-to-pdf", "todo-list", "sign-in-sheet"],
+    },
+    {
+      slug: "markdown-to-pdf-no-signup",
+      title: "Markdown to PDF Converter Without Signup",
+      headline: "Markdown to PDF converter without signup",
+      description: "Paste Markdown notes, README text, docs, or outlines and download a clean PDF locally in your browser.",
+      lead: "Turn Markdown into a readable PDF without creating an account, installing an editor, or uploading the source text. It is useful for README drafts, changelogs, project notes, study notes, and handouts.",
+      tool: "markdown-to-pdf",
+      intent: "Markdown to PDF, no account, no upload",
+      sections: [
+        ["Fast Markdown workflow", "Paste Markdown, choose a simple style, generate the preview, and download the PDF. The first version focuses on readable headings, lists, quotes, and paragraphs."],
+        ["Good use cases", "Use it for README snapshots, project notes, lesson outlines, meeting summaries, simple docs, and checklists that need a PDF copy."],
+        ["Local processing", "The Markdown is rendered in the browser preview and exported as a PDF page without requiring a server upload."],
+      ],
+      related: ["text-to-pdf", "json-to-pdf", "todo-list"],
+    },
+    {
+      slug: "csv-to-pdf-no-upload",
+      title: "CSV to PDF Table Converter Without Uploading",
+      headline: "CSV to PDF table converter without uploading",
+      description: "Paste CSV rows and export a readable PDF table locally without uploading a spreadsheet.",
+      lead: "Create a simple PDF table from CSV rows in the browser. This is useful for inventory lists, event rosters, order lists, task lists, price sheets, and small reports that need a printable copy.",
+      tool: "csv-to-pdf",
+      intent: "CSV to PDF table, no upload, no account",
+      sections: [
+        ["Paste rows, get a table", "The first CSV row becomes the header and the remaining rows become table lines. Keep the table small enough to read clearly on one page."],
+        ["Why local CSV helps", "CSV files can include customer names, small order details, event rosters, or stock counts. A local converter avoids uploading the data for ordinary quick exports."],
+        ["Before sharing", "Open the downloaded PDF and confirm every column is readable, especially when the CSV has long text fields."],
+      ],
+      related: ["inventory-sheet", "packing-slip", "text-to-pdf"],
+    },
+    {
+      slug: "json-to-pdf-no-upload",
+      title: "JSON to PDF Formatter Without Uploading",
+      headline: "JSON to PDF formatter without uploading",
+      description: "Paste JSON and download a readable formatted PDF locally in your browser.",
+      lead: "Format JSON into a clean PDF page without sending the source data to a server. It is useful for API samples, config snippets, bug reports, test fixtures, and technical notes.",
+      tool: "json-to-pdf",
+      intent: "JSON to PDF formatter, no upload, no account",
+      sections: [
+        ["Readable technical notes", "The formatter pretty-prints valid JSON and shows invalid JSON as plain text with a warning so you can still export a review copy."],
+        ["Local-first workflow", "The JSON is processed in the browser. Do not paste secrets, keys, or private production data unless you have reviewed and removed sensitive values."],
+        ["Good use cases", "Use it for sample payloads, documentation snippets, QA notes, configuration examples, and small API response references."],
+      ],
+      related: ["markdown-to-pdf", "text-to-pdf", "csv-to-pdf"],
     },
     {
       slug: "merge-pdf-no-upload",
@@ -3242,6 +3359,42 @@
       ],
     },
     {
+      slug: "markdown-to-pdf-converter-no-signup",
+      title: "Markdown to PDF converter without signup",
+      description: "Paste Markdown and download a readable PDF without creating an account.",
+      tool: "markdown-to-pdf",
+      content: [
+        ["h2", "Use it for short Markdown docs"],
+        ["p", "Markdown-to-PDF is useful for README snapshots, project notes, changelogs, lesson outlines, and meeting summaries that need a clean printable copy."],
+        ["h2", "Keep private content out"],
+        ["p", "The converter runs locally in the browser, but you should still remove secrets, access tokens, or private production details before sharing the exported PDF."],
+      ],
+    },
+    {
+      slug: "csv-to-pdf-table-no-upload",
+      title: "CSV to PDF table without uploading",
+      description: "Paste CSV rows and download a readable PDF table without uploading a spreadsheet.",
+      tool: "csv-to-pdf",
+      content: [
+        ["h2", "Turn small data into a printable table"],
+        ["p", "CSV-to-PDF is useful for inventory lists, order rows, event rosters, price sheets, class lists, task tables, and small reports that need a quick PDF copy."],
+        ["h2", "Make the table readable"],
+        ["p", "Keep columns short and avoid huge tables. A one-page PDF works best when the viewer can scan the headers and rows without zooming."],
+      ],
+    },
+    {
+      slug: "json-to-pdf-formatter-no-upload",
+      title: "JSON to PDF formatter without uploading",
+      description: "Paste JSON and download a formatted PDF without sending the source data to a server.",
+      tool: "json-to-pdf",
+      content: [
+        ["h2", "Use it for technical notes"],
+        ["p", "JSON-to-PDF is useful for API examples, config snippets, bug reports, QA notes, and small payload references that need to be shared or printed."],
+        ["h2", "Remove secrets first"],
+        ["p", "Do not export private keys, passwords, customer records, or production tokens. The tool is for small reviewed snippets, not sensitive data dumps."],
+      ],
+    },
+    {
       slug: "free-sign-in-sheet-generator",
       title: "Free sign-in sheet generator",
       description: "Create a printable sign-in sheet PDF for events, classes, workshops, meetings, or visitor logs.",
@@ -3413,7 +3566,7 @@
       title: "PrintableTools Lab Roadmap",
       description: "A noindex roadmap for future PrintableTools Lab product decisions after the free version is validated.",
       body: [
-        ["p", "The current product focus is the free ad-supported printable tool site. Paid features are intentionally deferred until the free tools show search traffic, downloads, and repeated usage."],
+        ["p", "The current product focus is the free ad-supported printable and file utility site. Paid features are intentionally deferred until the free tools show search traffic, downloads, and repeated usage."],
         ["h2", "Signals to watch"],
         ["ul", ["Search Console impressions for generator keywords.", "PDF, image, and QR downloads by tool.", "Daily limit hits.", "Requests for classroom or batch workflows."]],
         ["h2", "Possible later work"],
@@ -3426,7 +3579,7 @@
       body: [
         ["p", "Use this directory when you need a PDF or image file now and do not want an account, hidden export fee, or ad-click requirement."],
         ["h2", "No-upload conversion tools"],
-        ["ul", ["Image compressor, image resizer, and image format converter: make smaller or correctly sized JPG, PNG, and WebP files locally.", "QR, WiFi QR, and contact QR tools: create printable static codes without a signup wall.", "Image to PDF Converter: turn JPG, PNG, or WebP images into a one-page PDF.", "Multiple Images to PDF Converter: combine up to eight images into one multi-page PDF.", "Merge, split, rotate, remove, reorder, and number PDF pages locally in the browser.", "Text to PDF Converter: paste plain text and download a clean one-page document."]],
+        ["ul", ["Image compressor, image resizer, and image format converter: make smaller or correctly sized JPG, PNG, and WebP files locally.", "QR, WiFi QR, and contact QR tools: create printable static codes without a signup wall.", "Image to PDF Converter: turn JPG, PNG, or WebP images into a one-page PDF.", "Multiple Images to PDF Converter: combine up to eight images into one multi-page PDF.", "Merge, split, rotate, remove, reorder, and number PDF pages locally in the browser.", "Text, Markdown, CSV, and JSON converters: turn common notes, docs, table rows, and technical snippets into readable PDFs."]],
         ["h2", "Business and work PDFs"],
         ["ul", ["Invoice, estimate, purchase order, receipt, timesheet, bill of sale, and rent receipt PDFs are built for quick records, not full accounting software.", "Business card, address label, barcode label, price tag, flyer, and coupon PDFs are built for local-business print needs without design-account friction.", "Resume, cover letter, and resignation letter tools export without a surprise download fee."]],
         ["h2", "Printable planning PDFs"],
@@ -3499,6 +3652,9 @@
     "stamp-pdf",
     "sign-pdf",
     "text-to-pdf",
+    "markdown-to-pdf",
+    "csv-to-pdf",
+    "json-to-pdf",
     "sign-in-sheet",
     "graph-paper",
     "packing-list",
@@ -3578,20 +3734,20 @@
   }
 
   function renderHome() {
-    setMeta("Free Printable PDF, Image, and QR Tools", "Create image-to-PDF conversions, static QR codes, WiFi QR signs, contact QR codes, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free browser files.");
+    setMeta("Free Printable PDF, Image, and QR Tools", "Create image-to-PDF conversions, text, Markdown, CSV, and JSON PDF exports, static QR codes, WiFi QR signs, contact QR codes, invoices, receipts, labels, resumes, worksheets, charts, and planners as free browser files.");
     app.innerHTML = `
       <section class="shell hero">
         <div>
           <h1>Make useful PDF, image, and QR files in under a minute.</h1>
-            <p>Free browser-based generators for image compression, image resizing, image format conversion, QR codes, WiFi QR signs, contact QR codes, PDF edits, text-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
+            <p>Free browser-based generators for image compression, image resizing, image format conversion, QR codes, WiFi QR signs, contact QR codes, PDF edits, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
             <a class="button secondary" href="/tools/qr-code/">Create a QR code</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>53</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>56</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>82</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>85</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -6555,6 +6711,100 @@
     drawFooterNote(ctx, paper, "Plain text converted locally with PrintableTools Lab. Long text may need a shorter one-page draft.");
   }
 
+  function drawMarkdownToPdf(ctx, paper, values) {
+    const margin = 82;
+    const title = sanitizePrintable(values.title || "Markdown to PDF");
+    const accent = values.style === "notes" ? "#5a9367" : values.style === "compact" ? "#6b7280" : "#176b87";
+    drawBusinessFrame(ctx, paper, accent);
+    drawTextFit(ctx, title, paper.width / 2, 106, paper.width - margin * 2, 44, { align: "center", weight: "900", color: "#17313b" });
+    ctx.strokeStyle = "rgba(23,49,59,0.22)";
+    ctx.lineWidth = 2;
+    line(ctx, margin, 166, paper.width - margin, 166);
+    const tokens = parseMarkdownBlocks(values.body || "");
+    let y = 222;
+    const bottom = paper.height - 86;
+    for (const token of tokens) {
+      if (y > bottom) break;
+      if (token.type === "h1" || token.type === "h2") {
+        const size = token.type === "h1" ? 31 : 25;
+        drawTextFit(ctx, token.text, margin, y, paper.width - margin * 2, size, { align: "left", weight: "900", color: "#17313b" });
+        y += token.type === "h1" ? 46 : 38;
+        continue;
+      }
+      if (token.type === "bullet" || token.type === "number") {
+        ctx.save();
+        ctx.fillStyle = accent;
+        ctx.font = "700 21px Arial";
+        ctx.textAlign = "left";
+        ctx.fillText(token.type === "bullet" ? "-" : `${token.index}.`, margin, y);
+        ctx.restore();
+        y = drawWrappedTextReturnY(ctx, token.text, margin + 32, y, paper.width - margin * 2 - 32, 29, "#17313b", values.style === "compact" ? "20px Arial" : "22px Arial", 2) + 7;
+        continue;
+      }
+      if (token.type === "quote") {
+        ctx.save();
+        ctx.fillStyle = "rgba(23,107,135,0.08)";
+        ctx.fillRect(margin, y - 22, paper.width - margin * 2, 52);
+        ctx.fillStyle = accent;
+        ctx.fillRect(margin, y - 22, 6, 52);
+        ctx.restore();
+        y = drawWrappedTextReturnY(ctx, token.text, margin + 22, y, paper.width - margin * 2 - 34, 28, "#17313b", "italic 21px Arial", 2) + 18;
+        continue;
+      }
+      y = drawWrappedTextReturnY(ctx, token.text, margin, y, paper.width - margin * 2, values.style === "compact" ? 27 : 31, "#17313b", values.style === "compact" ? "20px Arial" : "22px Arial", 4) + 16;
+    }
+    drawFooterNote(ctx, paper, "Markdown converted locally. Review the PDF before sharing.");
+  }
+
+  function drawCsvToPdf(ctx, paper, values) {
+    const margin = 58;
+    const title = sanitizePrintable(values.title || "CSV Table");
+    const rows = parseCsvRows(values.csv || "").slice(0, values.layout === "compact" ? 16 : 12);
+    const headers = (rows[0] || ["Column 1", "Column 2", "Column 3"]).slice(0, 5).map((item) => item || "Column");
+    const dataRows = rows.slice(1);
+    const accent = "#176b87";
+    drawBusinessFrame(ctx, paper, accent);
+    drawTextFit(ctx, title, paper.width / 2, 95, paper.width - margin * 2, 42, { align: "center", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, `${Math.max(0, rows.length - 1)} row PDF table generated locally`, paper.width / 2, 138, paper.width - margin * 2, 20, { align: "center", weight: "500", color: "#5b6f78" });
+    const tableTop = 190;
+    const tableW = paper.width - margin * 2;
+    const widths = csvColumnWidths(headers.length, tableW, values.layout);
+    drawTableHeader(ctx, margin, tableTop, tableW, headers, widths);
+    const rowH = values.layout === "compact" ? 58 : 74;
+    const maxRows = Math.floor((paper.height - tableTop - 145) / rowH);
+    const rowsToDraw = dataRows.length ? dataRows.slice(0, maxRows) : [["Paste", "CSV", "rows"]];
+    rowsToDraw.forEach((row, index) => {
+      drawCsvRow(ctx, margin, tableTop + 50 + index * rowH, widths, row, rowH, index);
+    });
+    if (dataRows.length > rowsToDraw.length) {
+      drawTextFit(ctx, `${dataRows.length - rowsToDraw.length} row(s) not shown in this one-page preview.`, margin, paper.height - 78, tableW, 20, { align: "left", weight: "600", color: "#9a3412" });
+    }
+    drawFooterNote(ctx, paper, "CSV table generated locally. Keep private data out of shared exports.");
+  }
+
+  function drawJsonToPdf(ctx, paper, values) {
+    const margin = 82;
+    const title = sanitizePrintable(values.title || "JSON Summary");
+    const parsed = formatJsonForDisplay(values.json || "");
+    const accent = values.theme === "technical" ? "#0f766e" : values.theme === "compact" ? "#6b7280" : "#176b87";
+    drawBusinessFrame(ctx, paper, accent);
+    drawTextFit(ctx, title, paper.width / 2, 95, paper.width - margin * 2, 42, { align: "center", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, parsed.valid ? "Valid JSON formatted locally" : "Plain text export: JSON could not be parsed", paper.width / 2, 138, paper.width - margin * 2, 20, { align: "center", weight: "600", color: parsed.valid ? "#0f766e" : "#9a3412" });
+    const box = { x: margin, y: 185, width: paper.width - margin * 2, height: paper.height - 280 };
+    ctx.save();
+    ctx.fillStyle = values.theme === "technical" ? "#f0fdfa" : "#f7faf8";
+    roundRect(ctx, box.x, box.y, box.width, box.height, 8, true, false);
+    ctx.strokeStyle = "rgba(23,49,59,0.22)";
+    ctx.lineWidth = 2;
+    roundRect(ctx, box.x, box.y, box.width, box.height, 8, false, true);
+    ctx.restore();
+    const font = values.theme === "compact" ? "19px Consolas, monospace" : "21px Consolas, monospace";
+    const lineHeight = values.theme === "compact" ? 25 : 29;
+    const maxLines = Math.floor((box.height - 42) / lineHeight);
+    drawCodeLines(ctx, parsed.text, box.x + 24, box.y + 42, box.width - 48, lineHeight, font, maxLines);
+    drawFooterNote(ctx, paper, "JSON formatted locally. Remove secrets before exporting or sharing.");
+  }
+
   function drawSignInSheet(ctx, paper, values) {
     const margin = 64;
     const rowCount = Number(values.rows || 16);
@@ -6605,6 +6855,164 @@
       { label: "Email", width: 0.34 },
       { label: "Signature", width: 0.28 },
     ];
+  }
+
+  function parseMarkdownBlocks(value) {
+    const lines = String(value || "").replace(/\r/g, "").split("\n");
+    const blocks = [];
+    let paragraph = [];
+    const flush = () => {
+      if (!paragraph.length) return;
+      blocks.push({ type: "p", text: sanitizePrintable(paragraph.join(" ")) });
+      paragraph = [];
+    };
+    for (const rawLine of lines) {
+      const lineText = rawLine.trim();
+      if (!lineText) {
+        flush();
+        continue;
+      }
+      const heading = lineText.match(/^(#{1,3})\s+(.+)/);
+      if (heading) {
+        flush();
+        blocks.push({ type: heading[1].length === 1 ? "h1" : "h2", text: sanitizeMarkdownInline(heading[2]) });
+        continue;
+      }
+      const bullet = lineText.match(/^[-*]\s+(.+)/);
+      if (bullet) {
+        flush();
+        blocks.push({ type: "bullet", text: sanitizeMarkdownInline(bullet[1]) });
+        continue;
+      }
+      const numbered = lineText.match(/^(\d+)[.)]\s+(.+)/);
+      if (numbered) {
+        flush();
+        blocks.push({ type: "number", index: Number(numbered[1]), text: sanitizeMarkdownInline(numbered[2]) });
+        continue;
+      }
+      const quote = lineText.match(/^>\s*(.+)/);
+      if (quote) {
+        flush();
+        blocks.push({ type: "quote", text: sanitizeMarkdownInline(quote[1]) });
+        continue;
+      }
+      paragraph.push(sanitizeMarkdownInline(lineText));
+    }
+    flush();
+    return blocks.length ? blocks.slice(0, 42) : [{ type: "p", text: "Paste Markdown content to preview a readable PDF." }];
+  }
+
+  function sanitizeMarkdownInline(value) {
+    return sanitizePrintable(String(value || "")
+      .replace(/`([^`]+)`/g, "$1")
+      .replace(/\*\*([^*]+)\*\*/g, "$1")
+      .replace(/\*([^*]+)\*/g, "$1")
+      .replace(/__([^_]+)__/g, "$1")
+      .replace(/_([^_]+)_/g, "$1")
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1"));
+  }
+
+  function parseCsvRows(value) {
+    const rows = [];
+    let row = [];
+    let cell = "";
+    let quoted = false;
+    const text = String(value || "").replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+    for (let i = 0; i < text.length; i += 1) {
+      const char = text[i];
+      const next = text[i + 1];
+      if (char === "\"") {
+        if (quoted && next === "\"") {
+          cell += "\"";
+          i += 1;
+        } else {
+          quoted = !quoted;
+        }
+        continue;
+      }
+      if (char === "," && !quoted) {
+        row.push(sanitizePrintable(cell));
+        cell = "";
+        continue;
+      }
+      if (char === "\n" && !quoted) {
+        row.push(sanitizePrintable(cell));
+        rows.push(row);
+        row = [];
+        cell = "";
+        continue;
+      }
+      cell += char;
+    }
+    row.push(sanitizePrintable(cell));
+    rows.push(row);
+    return rows
+      .map((items) => items.map((item) => item.trim()).filter((item, index, list) => item || list.length > 1 || index === 0))
+      .filter((items) => items.some(Boolean));
+  }
+
+  function csvColumnWidths(count, tableW, layout) {
+    const cols = Math.max(1, Math.min(5, count || 3));
+    if (layout === "wide" && cols > 1) {
+      const first = tableW * 0.42;
+      const rest = (tableW - first) / (cols - 1);
+      return [first, ...Array.from({ length: cols - 1 }, () => rest)];
+    }
+    return Array.from({ length: cols }, () => tableW / cols);
+  }
+
+  function drawCsvRow(ctx, x, y, widths, row, rowH, index) {
+    const rowW = widths.reduce((sum, width) => sum + width, 0);
+    ctx.save();
+    ctx.fillStyle = index % 2 ? "rgba(23,107,135,0.04)" : "#ffffff";
+    ctx.fillRect(x, y, rowW, rowH);
+    ctx.strokeStyle = "rgba(23,49,59,0.20)";
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(x, y, rowW, rowH);
+    let cursor = x;
+    widths.forEach((width, columnIndex) => {
+      const value = row[columnIndex] || "";
+      drawTextFit(ctx, value || "-", cursor + 10, y + Math.min(42, rowH / 2 + 9), width - 20, rowH < 62 ? 17 : 19, { align: "left", weight: columnIndex === 0 ? "700" : "500", color: "#17313b" });
+      cursor += width;
+      if (columnIndex < widths.length - 1) line(ctx, cursor, y, cursor, y + rowH);
+    });
+    ctx.restore();
+  }
+
+  function formatJsonForDisplay(value) {
+    const raw = String(value || "").trim();
+    if (!raw) return { valid: false, text: "Paste JSON content here." };
+    try {
+      return { valid: true, text: JSON.stringify(JSON.parse(raw), null, 2) };
+    } catch {
+      return { valid: false, text: raw };
+    }
+  }
+
+  function drawCodeLines(ctx, text, x, y, maxWidth, lineHeight, font, maxLines) {
+    const lines = String(text || "").split("\n");
+    let drawn = 0;
+    for (const lineText of lines) {
+      if (drawn >= maxLines) break;
+      const wrapped = wrapText(ctx, lineText || " ", maxWidth, font, 4);
+      for (const wrappedLine of wrapped) {
+        if (drawn >= maxLines) break;
+        ctx.save();
+        ctx.font = font || "20px Consolas, monospace";
+        ctx.fillStyle = /^\s*"/.test(wrappedLine) ? "#0f766e" : "#17313b";
+        ctx.textAlign = "left";
+        ctx.fillText(wrappedLine, x, y + drawn * lineHeight);
+        ctx.restore();
+        drawn += 1;
+      }
+    }
+    if (lines.length > drawn) {
+      ctx.save();
+      ctx.font = "700 18px Arial";
+      ctx.fillStyle = "#9a3412";
+      ctx.fillText("Output truncated to fit one PDF page.", x, y + Math.min(maxLines, drawn + 1) * lineHeight);
+      ctx.restore();
+    }
   }
 
   function drawGraphPaper(ctx, paper, values) {

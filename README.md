@@ -4,7 +4,7 @@ Zero-cost validation build for a free browser PDF, image, and QR utility site.
 
 Live site: https://printable-tools-lab.pages.dev/
 
-PrintableTools Lab is a no-signup utility site for practical browser files: compress images, resize images, convert JPG/PNG/WebP formats, create static QR codes, WiFi QR signs, contact QR codes, merge PDF, split PDF, rotate PDF pages, remove PDF pages, reorder PDF pages, watermark PDFs, stamp PDFs, add typed signature blocks, add page numbers, image-to-PDF conversion, multi-image PDFs, text-to-PDF, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, monthly calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
+PrintableTools Lab is a no-signup utility site for practical browser files: compress images, resize images, convert JPG/PNG/WebP formats, create static QR codes, WiFi QR signs, contact QR codes, merge PDF, split PDF, rotate PDF pages, remove PDF pages, reorder PDF pages, watermark PDFs, stamp PDFs, add typed signature blocks, add page numbers, image-to-PDF conversion, multi-image PDFs, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, monthly calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
 
 ## Free PDF tool directory
 
@@ -29,6 +29,9 @@ PrintableTools Lab is a no-signup utility site for practical browser files: comp
 - [Stamp PDF Pages](https://printable-tools-lab.pages.dev/tools/stamp-pdf/)
 - [Add Signature Text to PDF](https://printable-tools-lab.pages.dev/tools/sign-pdf/)
 - [Text to PDF Converter](https://printable-tools-lab.pages.dev/tools/text-to-pdf/)
+- [Markdown to PDF Converter](https://printable-tools-lab.pages.dev/tools/markdown-to-pdf/)
+- [CSV to PDF Table Converter](https://printable-tools-lab.pages.dev/tools/csv-to-pdf/)
+- [JSON to PDF Formatter](https://printable-tools-lab.pages.dev/tools/json-to-pdf/)
 - [Invoice Generator](https://printable-tools-lab.pages.dev/tools/invoice-generator/)
 - [Receipt Generator](https://printable-tools-lab.pages.dev/tools/receipt-generator/)
 - [Timesheet Generator](https://printable-tools-lab.pages.dev/tools/timesheet-generator/)
@@ -49,7 +52,7 @@ PrintableTools Lab is a no-signup utility site for practical browser files: comp
 ## What is included
 
 - Static website with optional Cloudflare Pages Function for the AI idea helper.
-- Fifty-three browser-side generators, PDF utilities, image utilities, and QR utilities:
+- Fifty-six browser-side generators, PDF utilities, image utilities, QR utilities, and text-data converters:
   - Compress Image Online
   - Resize Image Online
   - Convert Image Format
@@ -68,6 +71,9 @@ PrintableTools Lab is a no-signup utility site for practical browser files: comp
   - Stamp PDF Pages
   - Add Signature Text to PDF
   - Text to PDF Converter
+  - Markdown to PDF Converter
+  - CSV to PDF Table Converter
+  - JSON to PDF Formatter
   - Sign-in Sheet Generator
   - Graph Paper Generator
   - Packing List Generator
@@ -106,7 +112,7 @@ PrintableTools Lab is a no-signup utility site for practical browser files: comp
 - Daily free limit stored in `localStorage`.
 - Local validation events stored in `localStorage`.
 - Anonymous Cloudflare KV counters for live page views, PDF/file generations, downloads, limit hits, and AI idea applies.
-- 82 original guide pages and 41 high-intent landing pages plus keyword clusters for SEO and future display-ad review.
+- 85 original guide pages and 44 high-intent landing pages plus keyword clusters for SEO and future display-ad review.
 - Compliance pages: About, Privacy, Terms, AI & License Disclosure.
 - Static pre-rendered HTML for key routes, plus client-side enhancement.
 - `robots.txt`, canonical URLs, sitemap, and SoftwareApplication structured data for tool pages.
@@ -202,7 +208,7 @@ npm.cmd run build:routes
 - `sitemap.xml` and `robots.txt` are generated from the route list.
 - `llms.txt`, `feed.xml`, `tools.json`, `discovery.json`, and `DISTRIBUTION.md` are generated from the same route/tool metadata.
 - Directory pages include `ItemList` structured data; tool pages include `SoftwareApplication` and FAQ structured data.
-- High-intent landing pages target no-signup and no-upload searches for image compression, image resizing, image cropping, image rotation, image watermarking, image format conversion, PDF merge, PDF split, PDF rotation, PDF page removal, PDF page reordering, PDF watermarking, PDF stamping, typed PDF signatures, PDF page numbers, invoice, receipt, work order, packing slip, inventory sheet, timesheet, resume, certificate, business cards, address labels, barcode labels, price tags, flyers, coupons, image-to-PDF, multi-image PDF, and text-to-PDF workflows.
+- High-intent landing pages target no-signup and no-upload searches for image compression, image resizing, image cropping, image rotation, image watermarking, image format conversion, PDF merge, PDF split, PDF rotation, PDF page removal, PDF page reordering, PDF watermarking, PDF stamping, typed PDF signatures, PDF page numbers, invoice, receipt, work order, packing slip, inventory sheet, timesheet, resume, certificate, business cards, address labels, barcode labels, price tags, flyers, coupons, image-to-PDF, multi-image PDF, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, and JSON-to-PDF workflows.
 - `OPERATIONS.md` contains account setup, keywords, distribution ideas, and pivot rules.
 - `VALIDATION.md` and `reports/validation-report.json` are generated by `npm.cmd run validate:ops`.
 - `scripts/site-verification.cjs` can generate a Google verification file for the service account and claim site ownership through the Google Site Verification API.
@@ -231,7 +237,7 @@ For step-by-step operations, see `OPERATIONS.md`.
 ## Launch checklist
 
 1. Deploy the full folder contents after running `npm.cmd run build:routes`.
-2. Open `/`, `/tools/image-to-pdf/`, `/tools/multi-image-pdf/`, `/tools/merge-pdf/`, `/tools/split-pdf/`, `/tools/pdf-page-numbers/`, `/tools/rotate-pdf/`, `/tools/remove-pdf-pages/`, `/tools/reorder-pdf-pages/`, `/tools/watermark-pdf/`, `/tools/stamp-pdf/`, `/tools/sign-pdf/`, `/tools/text-to-pdf/`, `/tools/invoice-generator/`, `/tools/estimate-generator/`, `/tools/purchase-order/`, `/tools/bill-of-sale/`, `/tools/rent-receipt/`, `/tools/receipt-generator/`, `/tools/timesheet-generator/`, `/tools/packing-slip/`, `/tools/work-order/`, `/tools/inventory-sheet/`, `/tools/business-card/`, `/tools/address-labels/`, `/tools/barcode-labels/`, `/tools/price-tag/`, `/tools/flyer-maker/`, `/tools/coupon-maker/`, `/tools/resume-builder/`, `/tools/cover-letter/`, `/tools/resignation-letter/`, `/tools/certificate-generator/`, `/tools/monthly-calendar/`, `/tools/meal-planner/`, `/tools/sign-in-sheet/`, `/tools/graph-paper/`, `/tools/packing-list/`, `/tools/todo-list/`, `/guides/`, `/privacy/`, and `/dashboard/`.
+2. Open `/`, `/tools/image-to-pdf/`, `/tools/multi-image-pdf/`, `/tools/merge-pdf/`, `/tools/split-pdf/`, `/tools/pdf-page-numbers/`, `/tools/rotate-pdf/`, `/tools/remove-pdf-pages/`, `/tools/reorder-pdf-pages/`, `/tools/watermark-pdf/`, `/tools/stamp-pdf/`, `/tools/sign-pdf/`, `/tools/text-to-pdf/`, `/tools/markdown-to-pdf/`, `/tools/csv-to-pdf/`, `/tools/json-to-pdf/`, `/tools/invoice-generator/`, `/tools/estimate-generator/`, `/tools/purchase-order/`, `/tools/bill-of-sale/`, `/tools/rent-receipt/`, `/tools/receipt-generator/`, `/tools/timesheet-generator/`, `/tools/packing-slip/`, `/tools/work-order/`, `/tools/inventory-sheet/`, `/tools/business-card/`, `/tools/address-labels/`, `/tools/barcode-labels/`, `/tools/price-tag/`, `/tools/flyer-maker/`, `/tools/coupon-maker/`, `/tools/resume-builder/`, `/tools/cover-letter/`, `/tools/resignation-letter/`, `/tools/certificate-generator/`, `/tools/monthly-calendar/`, `/tools/meal-planner/`, `/tools/sign-in-sheet/`, `/tools/graph-paper/`, `/tools/packing-list/`, `/tools/todo-list/`, `/guides/`, `/privacy/`, and `/dashboard/`.
 3. Generate and download one PDF from each tool.
 4. Confirm the dashboard shows page views, generations, and downloads.
 5. Submit the public URL to Google Search Console.
@@ -248,12 +254,13 @@ For step-by-step operations, see `OPERATIONS.md`.
 - Packing slip, work order, and inventory sheet tools were added because they map to commercial workflows where users are preparing orders, service visits, or stock counts and many alternatives push users into shipping, field-service, or spreadsheet software.
 - Merge PDF, Split PDF, PDF Page Numbers, Rotate PDF, Remove PDF Pages, Reorder PDF Pages, Watermark PDF, Stamp PDF, and Add Signature Text to PDF were added because existing-PDF edits are high-frequency utility searches where competitors often rely on upload flows, usage limits, account walls, or download friction. These tools keep the same no-upload browser-side promise and broaden the ad-supported audience beyond printable templates.
 - Compress Image, Resize Image, and Convert Image Format were added on the same site because image upload failures are a broader daily pain than printable worksheets: users hit file-size, dimension, or format limits on forms, marketplaces, school portals, and profile pages. Dedicated landing pages now cover JPG compression, PNG compression, square resize sizes, PNG-to-JPG, and WebP-to-JPG searches without adding paid infrastructure.
+- Markdown to PDF, CSV to PDF, and JSON to PDF were added because practical file-conversion searches have broader work, student, developer, and admin intent than printable-only templates while preserving the same no-upload, no-account, one-domain validation strategy.
 - New tools stay on the same site during validation so Search Console data, sitemap history, GitHub discovery links, and external directory references concentrate on one property.
 
 ## Validation gates
 
-- Day 7: 53 tools export stable PDFs, image files, or QR PDFs on desktop and mobile.
-- Day 14: 82 guide pages live; submit sitemap/site to Google Search Console.
+- Day 7: 56 tools export stable PDFs, image files, or QR PDFs on desktop and mobile.
+- Day 14: 85 guide pages live; submit sitemap/site to Google Search Console.
 - Day 30: continue if any of these are true:
   - 100 file downloads.
   - 300 tool generations.

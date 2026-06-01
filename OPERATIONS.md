@@ -341,25 +341,28 @@ Create one image or short post per item. Show the printable use case and never p
 57. Printable graph paper with quarter-inch grid.
 58. Travel packing list with grouped checkboxes.
 59. Text to PDF converter for plain notes and letters.
-60. Free receipt generator for service payments and deposits.
-61. Weekly timesheet PDF for freelance hours.
-62. Certificate generator for classrooms and events.
-63. Printable to-do list for errands, study, and event prep.
-64. Free printable business card sheet for local services.
-65. Business card PDF before ordering professional prints.
-66. Address label sheet for small mailing batches.
-67. Badge labels for events, workshops, and classrooms.
-68. Barcode label PDF for SKU stickers and inventory bins.
-69. SKU labels for handmade products and market tables.
-70. Price tag generator for yard sales and pop-up shops.
-71. Shelf label PDF for small retail displays.
-72. Flyer maker PDF for a local service or class.
-73. Yard sale flyer with clear time and location.
-74. Printable coupon maker for local offers.
-75. Discount coupon PDF with code and expiration note.
-76. Free QR code generator without signup.
-77. WiFi QR code sign for guest networks.
-78. Contact QR code generator for vCard details.
+60. Markdown to PDF converter for README notes and outlines.
+61. CSV to PDF table for inventory rows, rosters, and price sheets.
+62. JSON to PDF formatter for reviewed API samples and config notes.
+63. Free receipt generator for service payments and deposits.
+64. Weekly timesheet PDF for freelance hours.
+65. Certificate generator for classrooms and events.
+66. Printable to-do list for errands, study, and event prep.
+67. Free printable business card sheet for local services.
+68. Business card PDF before ordering professional prints.
+69. Address label sheet for small mailing batches.
+70. Badge labels for events, workshops, and classrooms.
+71. Barcode label PDF for SKU stickers and inventory bins.
+72. SKU labels for handmade products and market tables.
+73. Price tag generator for yard sales and pop-up shops.
+74. Shelf label PDF for small retail displays.
+75. Flyer maker PDF for a local service or class.
+76. Yard sale flyer with clear time and location.
+77. Printable coupon maker for local offers.
+78. Discount coupon PDF with code and expiration note.
+79. Free QR code generator without signup.
+80. WiFi QR code sign for guest networks.
+81. Contact QR code generator for vCard details.
 
 ## Weekly Operating Loop
 
@@ -396,6 +399,7 @@ Current Search Console checkpoint:
 - `2026-06-01`: expanded to 50 tools and 38 high-intent landing pages by adding local Crop Image, Rotate Image, and Watermark Image workflows. This keeps the product in the broad file-utility lane while targeting profile-photo, marketplace-photo, scan-orientation, and sample/proof-image intent.
 - `2026-06-01`: advertising strategy updated: keep AdSense as the first mainstream network, add Microsoft pubCenter as a fallback after a custom domain, and avoid high-risk forced-view or download-gated ad networks. A custom domain is now treated as an ad-review prerequisite.
 - `2026-06-01`: expanded to 53 tools and 41 high-intent landing pages by adding local static QR Code, WiFi QR Code, and Contact/vCard QR Code generators. This broadens the same free utility site into urgent QR searches where many competitors push account walls, dynamic-code upsells, or paid exports.
+- `2026-06-01`: expanded to 56 tools, 85 guides, and 44 high-intent landing pages by adding local Markdown-to-PDF, CSV-to-PDF, and JSON-to-PDF converters. This keeps the same no-upload free utility positioning while testing broader work, student, admin, and developer file-conversion searches that can earn ad impressions without sales calls.
 - `2026-06-01`: AdSense Management API was enabled on the Google Cloud project through Service Usage API. A service-account probe to `adsense.googleapis.com/v2/accounts` returned no AdSense accounts, so the service account is not currently an AdSense account user. The official AdSense ad-unit creation API is also a restricted method, so publisher/ad-slot creation cannot be completed silently from the current service-account credentials.
 - `2026-06-01`: GitHub Pages discovery directory was verified as its own Search Console URL-prefix property and its sitemap was submitted through the Search Console API. This creates a second crawlable discovery surface that still points back to the same main site.
 - `2026-06-01`: added `npm.cmd run operate` as the unattended operating loop. It rebuilds, verifies, submits sitemaps, checks directories, probes Cloudflare/AdSense readiness, and smoke-tests every tool while recording unavoidable account-level blockers.

@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T08:56:22.787Z",
+  "generatedAt": "2026-06-01T11:19:58.283Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -29,6 +29,9 @@
     "https://printable-tools-lab.pages.dev/png-to-jpg-no-upload/",
     "https://printable-tools-lab.pages.dev/webp-to-jpg-no-upload/",
     "https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/",
+    "https://printable-tools-lab.pages.dev/markdown-to-pdf-no-signup/",
+    "https://printable-tools-lab.pages.dev/csv-to-pdf-no-upload/",
+    "https://printable-tools-lab.pages.dev/json-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/merge-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/split-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/",
@@ -72,6 +75,9 @@
     "https://printable-tools-lab.pages.dev/tools/stamp-pdf/",
     "https://printable-tools-lab.pages.dev/tools/sign-pdf/",
     "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
+    "https://printable-tools-lab.pages.dev/tools/markdown-to-pdf/",
+    "https://printable-tools-lab.pages.dev/tools/csv-to-pdf/",
+    "https://printable-tools-lab.pages.dev/tools/json-to-pdf/",
     "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
     "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
     "https://printable-tools-lab.pages.dev/tools/timesheet-generator/",
@@ -203,6 +209,24 @@
       "url": "https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/",
       "intent": "plain text to PDF with no account",
       "tool": "https://printable-tools-lab.pages.dev/tools/text-to-pdf/"
+    },
+    {
+      "title": "Markdown to PDF Converter Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/markdown-to-pdf-no-signup/",
+      "intent": "Markdown to PDF, no account, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/markdown-to-pdf/"
+    },
+    {
+      "title": "CSV to PDF Table Converter Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/csv-to-pdf-no-upload/",
+      "intent": "CSV to PDF table, no upload, no account",
+      "tool": "https://printable-tools-lab.pages.dev/tools/csv-to-pdf/"
+    },
+    {
+      "title": "JSON to PDF Formatter Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/json-to-pdf-no-upload/",
+      "intent": "JSON to PDF formatter, no upload, no account",
+      "tool": "https://printable-tools-lab.pages.dev/tools/json-to-pdf/"
     },
     {
       "title": "Merge PDF Without Uploading",

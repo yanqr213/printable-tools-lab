@@ -18,6 +18,9 @@ const TOOL_FIELDS = {
   "sign-in-sheet": ["title", "event", "date", "notes"],
   "packing-list": ["title", "destination", "sections", "notes"],
   "text-to-pdf": ["title", "body"],
+  "markdown-to-pdf": ["title", "body"],
+  "csv-to-pdf": ["title", "csv"],
+  "json-to-pdf": ["title", "json"],
   "receipt-generator": ["description", "notes"],
   "timesheet-generator": ["period", "rows", "notes"],
   "certificate-generator": ["title", "reason", "signer"],
@@ -80,6 +83,8 @@ const FIELD_LIMITS = {
   destination: 90,
   sections: 680,
   body: 1800,
+  csv: 2200,
+  json: 2600,
   description: 220,
   rows: 760,
   reason: 220,
@@ -529,6 +534,84 @@ function fallbackSuggestions(tool, values) {
         fields: {
           title: "Plain Letter",
           body: "Date:\n\nRecipient:\n\nMessage:\n\nThank you,\nName",
+        },
+      },
+    ],
+    "markdown-to-pdf": [
+      {
+        title: "Project README snapshot",
+        summary: "Markdown structure for a one-page project note",
+        fields: {
+          title: values.title || "Project README Snapshot",
+          body: "# Project Overview\n\n## What changed\n- Main feature:\n- Important fix:\n- Remaining risk:\n\n## Next steps\n1. Review the output\n2. Share the PDF\n3. Track feedback",
+        },
+      },
+      {
+        title: "Lesson outline",
+        summary: "Simple Markdown outline for teaching notes",
+        fields: {
+          title: "Lesson Outline",
+          body: "# Lesson Title\n\n## Goal\nStudents should be able to explain the main idea.\n\n## Activities\n- Warm-up question\n- Short example\n- Practice task\n\n> Reminder: keep the handout to one page.",
+        },
+      },
+      {
+        title: "Meeting recap",
+        summary: "Readable Markdown meeting recap",
+        fields: {
+          title: "Meeting Recap",
+          body: "# Meeting Recap\n\n## Decisions\n- Decision one\n- Decision two\n\n## Action Items\n1. Owner: task and due date\n2. Owner: task and due date\n\n## Notes\nAdd context that should travel with the PDF.",
+        },
+      },
+    ],
+    "csv-to-pdf": [
+      {
+        title: "Inventory table",
+        summary: "Small stock-count table",
+        fields: {
+          title: values.title || "Inventory Table",
+          csv: "Item,Quantity,Location,Status\nLabels,24,Storage,Ready\nFlyers,40,Front desk,Print\nCoupons,80,Counter,Cut\nPaper bags,55,Back shelf,Order soon",
+        },
+      },
+      {
+        title: "Event roster",
+        summary: "Simple event check-in table",
+        fields: {
+          title: "Event Roster",
+          csv: "Name,Role,Arrival,Notes\nAlex,Speaker,9:00,Projector\nJordan,Volunteer,8:30,Check-in\nSam,Guest,9:15,Front row",
+        },
+      },
+      {
+        title: "Price sheet",
+        summary: "Small item price table",
+        fields: {
+          title: "Price Sheet",
+          csv: "Item,Size,Price,Note\nCoffee,Small,3.00,Hot\nCoffee,Large,4.50,Hot\nCookie,Single,2.25,Fresh\nBundle,Box,12.00,Preorder",
+        },
+      },
+    ],
+    "json-to-pdf": [
+      {
+        title: "API sample",
+        summary: "Formatted example payload",
+        fields: {
+          title: values.title || "API Sample",
+          json: "{\n  \"status\": \"ok\",\n  \"requestId\": \"demo-001\",\n  \"items\": [\n    { \"name\": \"sample\", \"active\": true }\n  ]\n}",
+        },
+      },
+      {
+        title: "Config reference",
+        summary: "Reviewed configuration snippet",
+        fields: {
+          title: "Config Reference",
+          json: "{\n  \"environment\": \"staging\",\n  \"features\": {\n    \"exports\": true,\n    \"ads\": false\n  },\n  \"notes\": \"Remove secrets before sharing.\"\n}",
+        },
+      },
+      {
+        title: "QA payload note",
+        summary: "Bug-report JSON example",
+        fields: {
+          title: "QA Payload Note",
+          json: "{\n  \"case\": \"PDF export\",\n  \"expected\": \"download starts\",\n  \"actual\": \"review needed\",\n  \"severity\": \"medium\"\n}",
         },
       },
     ],

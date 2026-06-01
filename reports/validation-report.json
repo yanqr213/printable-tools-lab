@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-01T09:11:42.794Z",
+  "generatedAt": "2026-06-01T11:23:09.666Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
     "customDomainConfigured": false,
-    "toolCount": 53,
-    "guideCount": 82,
-    "landingPageCount": 41,
-    "indexableRoutes": 186,
-    "sitemapLocCount": 186,
-    "generatedToolInventoryAt": "2026-06-01T08:56:22.787Z",
+    "toolCount": 56,
+    "guideCount": 85,
+    "landingPageCount": 44,
+    "indexableRoutes": 195,
+    "sitemapLocCount": 195,
+    "generatedToolInventoryAt": "2026-06-01T11:19:58.283Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -2011,11 +2011,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         }
       ]
@@ -2091,21 +2091,34 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
+      "description": "Free no-signup browser PDF and image tools for compression, resizing, cropping, rotation, watermarking, PDF edits, paperwork, labels, resumes, and printables.",
       "topics": [
-        "pdf-tools",
-        "image-tools",
-        "qr-code",
-        "no-signup",
         "browser-tools",
-        "free-tools"
+        "document-tools",
+        "free-tools",
+        "image-compression",
+        "image-converter",
+        "image-cropper",
+        "image-resizer",
+        "image-to-pdf",
+        "image-tools",
+        "invoice-generator",
+        "label-generator",
+        "no-signup",
+        "pdf-generator",
+        "pdf-tools",
+        "productivity-tools",
+        "small-business-tools",
+        "text-to-pdf",
+        "watermark",
+        "webp"
       ],
-      "error": "GitHub API fallback used: GitHub API 403",
       "discoveryRelease": {
         "tag": "free-pdf-tools",
         "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
-        "name": "Free PDF, Image, and QR Tools Without Signup"
-      }
+        "name": "Free PDF and Image Tools Without Signup"
+      },
+      "error": ""
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
@@ -2124,7 +2137,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": true
+    "externalDiscoveryReady": false
   },
   "gates": {
     "productReady": true,
@@ -2132,13 +2145,13 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": true,
+    "externalDiscoveryReady": false,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "53 tools, 82 guides, 41 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "56 tools, 85 guides, 44 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
@@ -2154,7 +2167,7 @@
         "2 inspected sample URL(s) are still unknown to Google."
       ],
       "externalDiscovery": [
-        "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub repo has 19 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 41 landing page link(s).",
         "GitHub Pages discovery sitemap has 42 URL(s).",
