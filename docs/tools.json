@@ -4,7 +4,7 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-06-01T14:10:01.376Z",
+  "generatedAt": "2026-06-01T14:44:01.835Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -35,6 +35,11 @@
       "title": "Signature PNG Generator",
       "url": "https://printable-tools-lab.pages.dev/signature-png-generator/",
       "intent": "signature PNG, transparent signature, draw signature online"
+    },
+    {
+      "title": "Passport Photo Maker",
+      "url": "https://printable-tools-lab.pages.dev/passport-photo-maker/",
+      "intent": "passport photo maker, 2x2 photo, 35x45 photo, no upload"
     },
     {
       "title": "Compress Image Without Uploading",
@@ -307,6 +312,11 @@
       "title": "Signature PNG Generator",
       "description": "Draw or type a signature and download a transparent PNG locally in your browser without uploading anything.",
       "url": "https://printable-tools-lab.pages.dev/tools/signature-png/"
+    },
+    {
+      "title": "Passport Photo Maker",
+      "description": "Crop a passport-style photo locally for US 2x2, UK 35x45, Canada 50x70, and Australia 35x45 sizes.",
+      "url": "https://printable-tools-lab.pages.dev/tools/passport-photo/"
     },
     {
       "title": "Free QR Code Generator",

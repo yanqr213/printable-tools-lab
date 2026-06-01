@@ -32,6 +32,7 @@ function delay(ms) {
     "/multiple-images-to-pdf-no-upload/",
     "/pdf-to-jpg-no-upload/",
     "/extract-text-from-pdf-no-upload/",
+    "/passport-photo-maker/",
     "/compress-image-no-upload/",
     "/resize-image-no-upload/",
     "/convert-image-format-no-upload/",
@@ -106,6 +107,7 @@ function delay(ms) {
     "/tools/rotate-image/",
     "/tools/watermark-image/",
     "/tools/signature-png/",
+    "/tools/passport-photo/",
     "/tools/qr-code/",
     "/tools/wifi-qr-code/",
     "/tools/vcard-qr-code/",
@@ -156,6 +158,7 @@ function delay(ms) {
     "/guides/pdf-to-jpg-without-uploading/",
     "/guides/extract-text-from-pdf-without-uploading/",
     "/guides/signature-png-generator/",
+    "/guides/passport-photo-maker/",
     "/guides/compress-image-without-uploading/",
     "/guides/resize-image-without-uploading/",
     "/guides/convert-image-format-without-uploading/",
@@ -210,7 +213,7 @@ function delay(ms) {
   for (const phrase of ["No-upload conversion tools", "Free business PDF tools", "All free generators"]) {
     if (!freePdfText.includes(phrase)) throw new Error(`Free PDF tools page is missing ${phrase}`);
   }
-  for (const href of ["/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/multi-image-pdf/", "/tools/pdf-to-images/", "/tools/pdf-to-text/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/text-to-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/barcode-labels/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
+  for (const href of ["/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/passport-photo/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/multi-image-pdf/", "/tools/pdf-to-images/", "/tools/pdf-to-text/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/text-to-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/barcode-labels/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
     const linkCount = await page.locator(`main a[href="${href}"]`).count();
     if (!linkCount) throw new Error(`Free PDF tools page is missing link ${href}`);
   }
@@ -220,7 +223,7 @@ function delay(ms) {
   for (const phrase of ["Which free PDF, image, or QR tool should I use?", "Compress vs resize vs convert", "Invoice vs receipt", "One image vs many images"]) {
     if (!finderText.includes(phrase)) throw new Error(`PDF tool finder page is missing ${phrase}`);
   }
-  for (const href of ["/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/image-to-pdf/", "/tools/pdf-to-images/", "/tools/pdf-to-text/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/price-tag/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
+  for (const href of ["/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/passport-photo/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/image-to-pdf/", "/tools/pdf-to-images/", "/tools/pdf-to-text/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/price-tag/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
     const linkCount = await page.locator(`main a[href="${href}"]`).count();
     if (!linkCount) throw new Error(`PDF tool finder page is missing link ${href}`);
   }
@@ -235,7 +238,7 @@ function delay(ms) {
   const secondPagePdf = await samplePdf("Second document");
   const twoPagePdf = await samplePdf("Split source", 2);
 
-  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/pdf-to-images/", "/tools/pdf-to-text/", "/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/text-to-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
+  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/pdf-to-images/", "/tools/pdf-to-text/", "/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/passport-photo/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/text-to-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
     await page.evaluate(() => localStorage.removeItem("ptl_daily"));
     if (route === "/tools/image-to-pdf/") {
@@ -276,7 +279,7 @@ function delay(ms) {
       });
       if (!hasRenderedImages) throw new Error("Multi-image PDF preview did not render selected files.");
     }
-    if (["/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/"].includes(route)) {
+    if (["/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/passport-photo/"].includes(route)) {
       await page.setInputFiles("input[type=file]", {
         name: "photo.png",
         mimeType: "image/png",
@@ -297,6 +300,14 @@ function delay(ms) {
       if (route === "/tools/watermark-image/") {
         await page.fill("#watermarkText", "SAMPLE");
         await page.selectOption("#placement", "diagonal-tile");
+      }
+      if (route === "/tools/passport-photo/") {
+        await page.selectOption("#preset", "us-passport");
+        await page.selectOption("#output", "single-jpg");
+        await page.locator("#zoom").evaluate((input) => {
+          input.value = "1.18";
+          input.dispatchEvent(new Event("input", { bubbles: true }));
+        });
       }
       await page.waitForTimeout(750);
       const hasRenderedImagePreview = await page.evaluate(() => {
@@ -327,7 +338,28 @@ function delay(ms) {
         }
         return counts.blue > 1000 && counts.red > 1000 && counts.green > 1000;
       });
-      if (route !== "/tools/watermark-image/" && !hasOriginalColors) throw new Error(`${route} preview did not render the selected image colors.`);
+      if (route !== "/tools/watermark-image/" && route !== "/tools/passport-photo/" && !hasOriginalColors) throw new Error(`${route} preview did not render the selected image colors.`);
+      if (route === "/tools/passport-photo/") {
+        const hasPassportGuide = await page.evaluate(() => {
+          const canvas = document.querySelector("canvas.preview-canvas");
+          if (!canvas) return false;
+          const ctx = canvas.getContext("2d");
+          const data = ctx.getImageData(72, 220, canvas.width - 144, canvas.height - 500).data;
+          let blue = 0;
+          let red = 0;
+          let green = 0;
+          for (let i = 0; i < data.length; i += 4) {
+            const r = data[i];
+            const g = data[i + 1];
+            const b = data[i + 2];
+            if (b > 150 && r < 120 && g < 150) blue += 1;
+            if (r > 170 && g < 100 && b < 120) red += 1;
+            if (g > 120 && r < 120 && b < 120) green += 1;
+          }
+          return blue > 500 && red > 100 && green > 80;
+        });
+        if (!hasPassportGuide) throw new Error(`${route} preview did not render passport crop guides.`);
+      }
       if (route === "/tools/watermark-image/") {
         const hasWatermarkMark = await page.evaluate(() => {
           const canvas = document.querySelector("canvas.preview-canvas");
@@ -499,6 +531,7 @@ function delay(ms) {
       "/tools/rotate-image/": "Rotate image",
       "/tools/watermark-image/": "Watermark image",
       "/tools/signature-png/": "Download PNG",
+      "/tools/passport-photo/": "Download photo",
     };
     const submitButton = pdfUtilityButtonNames[route]
       ? page.getByRole("button", { name: pdfUtilityButtonNames[route] })
@@ -522,6 +555,7 @@ function delay(ms) {
       const exported = fs.readFileSync(filePath);
       if (exported.length < 100) throw new Error(`Image export on ${route} is unexpectedly small.`);
       if (route === "/tools/signature-png/" && !/signature\.png$/.test(name)) throw new Error(`Expected signature PNG filename on ${route}, got ${name}`);
+      if (route === "/tools/passport-photo/" && !/us-2x2\.jpg$/.test(name)) throw new Error(`Expected passport JPG filename on ${route}, got ${name}`);
       continue;
     }
     if (route === "/tools/pdf-to-images/") {

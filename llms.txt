@@ -1,6 +1,6 @@
 # PrintableTools Lab
 
-Free browser-based PDF generators, no-upload PDF tools, local image tools, transparent signature PNG generation, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
+Free browser-based PDF generators, no-upload PDF tools, local image tools, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
 
 Audience: Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, household planners, cafe operators, booth exhibitors, rental hosts, and office admins.
 
@@ -53,6 +53,7 @@ Monetization model: Free tools first, then responsible display advertising after
 - [PDF to JPG Converter](https://printable-tools-lab.pages.dev/tools/pdf-to-images/): Convert PDF pages to JPG or PNG images locally in your browser without uploading the document.
 - [PDF to Text Converter](https://printable-tools-lab.pages.dev/tools/pdf-to-text/): Extract selectable text from PDF pages locally in your browser without uploading the document.
 - [Signature PNG Generator](https://printable-tools-lab.pages.dev/tools/signature-png/): Draw or type a signature and download a transparent PNG locally in your browser without uploading anything.
+- [Passport Photo Maker](https://printable-tools-lab.pages.dev/tools/passport-photo/): Crop a passport-style photo locally for US 2x2, UK 35x45, Canada 50x70, and Australia 35x45 sizes.
 - [Compress Image Online](https://printable-tools-lab.pages.dev/tools/compress-image/): Compress JPG, PNG, or WebP images locally in your browser without uploading files.
 - [Compress Image to KB](https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/): Compress an image toward a target KB size locally for upload limits, forms, profiles, and portals.
 - [Resize Image Online](https://printable-tools-lab.pages.dev/tools/resize-image/): Resize a JPG, PNG, or WebP image locally by width, height, or common social sizes without uploading it.
@@ -92,6 +93,7 @@ Monetization model: Free tools first, then responsible display advertising after
 - [PDF to JPG Without Uploading](https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/): PDF to JPG, PDF to PNG, no upload converter
 - [Extract Text From PDF Without Uploading](https://printable-tools-lab.pages.dev/extract-text-from-pdf-no-upload/): PDF to text, extract text from PDF, no upload
 - [Signature PNG Generator](https://printable-tools-lab.pages.dev/signature-png-generator/): signature PNG, transparent signature, draw signature online
+- [Passport Photo Maker](https://printable-tools-lab.pages.dev/passport-photo-maker/): passport photo maker, 2x2 photo, 35x45 photo, no upload
 - [Compress Image Without Uploading](https://printable-tools-lab.pages.dev/compress-image-no-upload/): compress image online, reduce image size, no upload
 - [Compress Image to 100KB Without Uploading](https://printable-tools-lab.pages.dev/compress-image-to-100kb/): compress image to 100KB, reduce image size, no upload
 - [Resize Image Without Uploading](https://printable-tools-lab.pages.dev/resize-image-no-upload/): resize image online, change image dimensions, no upload

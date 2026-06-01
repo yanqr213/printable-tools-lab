@@ -846,6 +846,39 @@
       draw: drawSignaturePngPreview,
       exportFile: exportSignaturePng,
     },
+    "passport-photo": {
+      id: "passport-photo",
+      icon: "ID",
+      title: "Passport Photo Maker",
+      shortTitle: "Passport photo",
+      description: "Crop a passport-style photo locally for US 2x2, UK 35x45, Canada 50x70, and Australia 35x45 print sizes without uploading it.",
+      keywords: ["passport photo", "2x2 photo", "35x45 photo", "no upload"],
+      ai: false,
+      acceptsImages: true,
+      maxImages: 1,
+      outputKind: "image",
+      defaultValues: {
+        title: "Passport Photo Maker",
+        images: "",
+        preset: "us-passport",
+        zoom: "1.08",
+        offsetX: "0",
+        offsetY: "0",
+        dpi: "300",
+        output: "single-jpg",
+      },
+      fields: [
+        { id: "images", label: "Photo", type: "file", accept: "image/png,image/jpeg,image/webp", multiple: false, help: "Select a clear photo. It stays in your browser and is not uploaded." },
+        { id: "preset", label: "Photo size", type: "select", options: [["us-passport", "US 2 x 2 in"], ["uk-passport", "UK 35 x 45 mm"], ["eu-35x45", "EU 35 x 45 mm"], ["canada-passport", "Canada 50 x 70 mm"], ["australia-passport", "Australia 35 x 45 mm"]] },
+        { id: "zoom", label: "Zoom", type: "range", min: "1", max: "2.2", step: "0.01", help: "Increase zoom until the head fits the guide." },
+        { id: "offsetX", label: "Move left / right", type: "range", min: "-100", max: "100", step: "1" },
+        { id: "offsetY", label: "Move up / down", type: "range", min: "-100", max: "100", step: "1" },
+        { id: "dpi", label: "Export resolution", type: "select", options: [["300", "300 DPI print"], ["600", "600 DPI high resolution"]] },
+        { id: "output", label: "Download format", type: "select", options: [["single-jpg", "Single JPG photo"], ["single-png", "Single PNG photo"], ["print-4x6-pdf", "4 x 6 print sheet PDF"]] },
+      ],
+      draw: drawPassportPhotoPreview,
+      exportFile: exportPassportPhoto,
+    },
     "qr-code": {
       id: "qr-code",
       icon: "QR",
@@ -1695,6 +1728,8 @@
         ["Watermark image without uploading", "/watermark-image-no-upload/"],
         ["Signature PNG generator", "/tools/signature-png/"],
         ["Transparent signature PNG", "/signature-png-generator/"],
+        ["Passport photo maker", "/tools/passport-photo/"],
+        ["Passport photo 2x2 maker", "/passport-photo-maker/"],
         ["Free QR code generator", "/tools/qr-code/"],
         ["QR code generator without signup", "/free-qr-code-generator-no-signup/"],
         ["WiFi QR code generator", "/tools/wifi-qr-code/"],
@@ -1787,7 +1822,7 @@
     {
       title: "No-upload conversion tools",
       description: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -2001,6 +2036,21 @@
         ["Important limit", "This creates a visual signature image only. It does not verify identity, manage consent, notarize documents, or replace regulated e-signature platforms."],
       ],
       related: ["sign-pdf", "stamp-pdf", "watermark-image"],
+    },
+    {
+      slug: "passport-photo-maker",
+      title: "Passport Photo Maker",
+      headline: "Passport photo maker without uploading",
+      description: "Crop a passport-style photo locally for US 2x2, UK 35x45, Canada 50x70, and Australia 35x45 sizes.",
+      lead: "Upload a photo in your browser, fit it inside a passport-photo guide, and download a correctly sized JPG, PNG, or 4x6 print sheet PDF without sending the image to a server.",
+      tool: "passport-photo",
+      intent: "passport photo maker, 2x2 photo, 35x45 photo, no upload",
+      sections: [
+        ["Why this has urgent intent", "Passport photo searches often happen right before an application, renewal, visa form, exam portal, or document upload. Many photo services charge at export or require uploading a private face photo."],
+        ["Local crop workflow", "The selected photo stays in the browser. Choose a size preset, adjust zoom and position, then export a single image or a 4x6 print sheet."],
+        ["Important limit", "This tool helps with sizing and layout only. It does not check every official lighting, pose, background, expression, recency, or acceptance rule. Always compare the result with the issuing authority's current requirements."],
+      ],
+      related: ["resize-image", "compress-image-to-kb", "crop-image"],
     },
     {
       slug: "free-qr-code-generator-no-signup",
@@ -3891,6 +3941,7 @@
     "rotate-image",
     "watermark-image",
     "signature-png",
+    "passport-photo",
     "qr-code",
     "wifi-qr-code",
     "vcard-qr-code",
@@ -3992,15 +4043,15 @@
       <section class="shell hero">
         <div>
           <h1>Make useful PDF, image, and QR files in under a minute.</h1>
-            <p>Free browser-based generators for image compression, image resizing, image format conversion, QR codes, WiFi QR signs, contact QR codes, PDF edits, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
+            <p>Free browser-based generators for passport photos, image compression, image resizing, image format conversion, QR codes, WiFi QR signs, contact QR codes, PDF edits, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
             <a class="button secondary" href="/tools/qr-code/">Create a QR code</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>60</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>61</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>89</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>90</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -4458,6 +4509,7 @@
 
   function setToolJsonLd(tool) {
     const isPdfTextTool = tool.id === "pdf-to-text";
+    const isPassportPhotoTool = tool.id === "passport-photo";
     setJsonLd({
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
@@ -4472,10 +4524,10 @@
         priceCurrency: "USD",
       },
       featureList: [
-        tool.outputKind === "image" ? "Browser-based image processing" : isPdfTextTool ? "Browser-based PDF text extraction" : "Browser-based PDF generation",
+        isPassportPhotoTool ? "Browser-based passport photo sizing" : tool.outputKind === "image" ? "Browser-based image processing" : isPdfTextTool ? "Browser-based PDF text extraction" : "Browser-based PDF generation",
         "No account required",
-        tool.outputKind === "image" ? "No-upload image conversion" : isPdfTextTool ? "No-upload PDF text extraction" : tool.pdfTool ? "No-upload PDF file processing" : "US Letter and A4 support",
-        tool.outputKind === "image" ? "Local image file export" : isPdfTextTool ? "Local TXT file export" : tool.pdfTool ? "Local PDF export" : "Clean one-page printable export",
+        isPassportPhotoTool ? "No-upload passport photo crop" : tool.outputKind === "image" ? "No-upload image conversion" : isPdfTextTool ? "No-upload PDF text extraction" : tool.pdfTool ? "No-upload PDF file processing" : "US Letter and A4 support",
+        isPassportPhotoTool ? "Local JPG, PNG, or print sheet export" : tool.outputKind === "image" ? "Local image file export" : isPdfTextTool ? "Local TXT file export" : tool.pdfTool ? "Local PDF export" : "Clean one-page printable export",
       ],
     });
   }
@@ -4503,6 +4555,12 @@
     }
     if (field.type === "select") {
       return `<div class="field"><label for="${field.id}">${escapeHtml(field.label)}</label><select ${common}>${field.options.map(([v, label]) => `<option value="${v}" ${v === value ? "selected" : ""}>${escapeHtml(label)}</option>`).join("")}</select>${help}</div>`;
+    }
+    if (field.type === "range") {
+      const min = field.min || "0";
+      const max = field.max || "100";
+      const step = field.step || "1";
+      return `<div class="field"><label for="${field.id}">${escapeHtml(field.label)}</label><input ${common} type="range" min="${escapeHtml(min)}" max="${escapeHtml(max)}" step="${escapeHtml(step)}" value="${escapeHtml(value || "")}">${help}</div>`;
     }
     return `<div class="field"><label for="${field.id}">${escapeHtml(field.label)}</label><input ${common} type="${field.type}" value="${escapeHtml(value || "")}">${help}</div>`;
   }
@@ -4714,7 +4772,7 @@
         incrementDailyCount();
         const remaining = SITE.dailyLimit - getDailyCount();
         limitCounter.textContent = `${remaining} free left today`;
-        showDownloadComplete(tool, downloadComplete, remaining, "Image downloaded");
+        showDownloadComplete(tool, downloadComplete, remaining, output.label || "Image downloaded");
         track("generate_file", { tool: tool.id });
         track("download_file", { tool: tool.id });
       } catch (error) {
@@ -4734,6 +4792,7 @@
     if (tool.id === "rotate-image") return "Rotate image";
     if (tool.id === "watermark-image") return "Watermark image";
     if (tool.id === "signature-png") return "Download PNG";
+    if (tool.id === "passport-photo") return "Download photo";
     return "Download image";
   }
 
@@ -5420,7 +5479,7 @@
       ["resume-builder", "cover-letter", "resignation-letter"],
       ["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"],
       ["name-tracing", "chore-chart", "reward-chart", "flashcards"],
-      ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
+      ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
       ["certificate-generator", "sign-in-sheet", "todo-list", "flyer-maker", "coupon-maker"],
     ];
     const group = groups.find((items) => items.includes(currentId)) || toolOrder;
@@ -6790,6 +6849,49 @@
     });
   }
 
+  function drawPassportPhotoPreview(ctx, paper, values) {
+    const margin = 72;
+    const images = imageToolState.get("passport-photo") || [];
+    const preset = passportPhotoPreset(values.preset);
+    drawBusinessFrame(ctx, paper, "#1d4ed8");
+    drawTextFit(ctx, "Passport Photo Maker", paper.width / 2, 104, paper.width - margin * 2, 46, { align: "center", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, "Crop locally for common passport-style photo sizes. Check official rules before submitting.", paper.width / 2, 148, paper.width - margin * 2, 22, { align: "center", weight: "500", color: "#5b6f78" });
+    if (!images.length) {
+      drawDashedRect(ctx, margin, 240, paper.width - margin * 2, paper.height - 410, "rgba(23,49,59,0.34)");
+      drawTextFit(ctx, "Select a clear photo to crop", paper.width / 2, paper.height / 2 - 26, paper.width - margin * 2 - 80, 38, { align: "center", weight: "800", color: "#17313b" });
+      drawTextFit(ctx, "The photo stays on this device during processing.", paper.width / 2, paper.height / 2 + 30, paper.width - margin * 2 - 80, 23, { align: "center", weight: "500", color: "#5b6f78" });
+      drawFooterNote(ctx, paper, "Passport-style sizing helper only. Always compare with the issuing authority's current photo rules.");
+      return;
+    }
+
+    const photo = renderPassportPhotoCanvas(images[0].image, values);
+    const box = { x: margin + 142, y: 220, width: paper.width - margin * 2 - 284, height: 640 };
+    ctx.save();
+    ctx.fillStyle = "#ffffff";
+    roundRect(ctx, box.x - 24, box.y - 24, box.width + 48, box.height + 48, 8, true, false);
+    ctx.shadowColor = "rgba(23,49,59,0.12)";
+    ctx.shadowBlur = 14;
+    ctx.shadowOffsetY = 6;
+    ctx.restore();
+    drawImageInBox(ctx, photo, box, false);
+    drawPassportGuideOverlay(ctx, box, preset);
+
+    const detailY = 930;
+    const lines = [
+      `${preset.label}: ${preset.widthLabel} x ${preset.heightLabel}`,
+      `${passportExportPixels(values, preset).width} x ${passportExportPixels(values, preset).height} px at ${passportDpi(values)} DPI`,
+      values.output === "print-4x6-pdf" ? "Exports a 4 x 6 inch print sheet PDF" : `Exports a ${values.output === "single-png" ? "PNG" : "JPG"} photo`,
+      "Sizing helper only, not an official acceptance check.",
+    ];
+    ctx.fillStyle = "#eff6ff";
+    roundRect(ctx, margin, detailY, paper.width - margin * 2, 194, 8, true, false);
+    drawTextFit(ctx, "Export details", margin + 26, detailY + 38, paper.width - margin * 2 - 52, 25, { align: "left", weight: "900", color: "#17313b" });
+    lines.forEach((lineText, index) => {
+      drawTextFit(ctx, lineText, margin + 26, detailY + 78 + index * 30, paper.width - margin * 2 - 52, 21, { align: "left", weight: index === 0 ? "800" : "500", color: index === 0 ? "#1d4ed8" : "#5b6f78" });
+    });
+    drawFooterNote(ctx, paper, "Generated locally with PrintableTools Lab. Confirm background, pose, lighting, expression, and recency rules yourself.");
+  }
+
   function initializeSignaturePads(tool, form, draw) {
     const pads = Array.from(form.querySelectorAll("canvas.signature-pad"));
     if (!pads.length) return;
@@ -6971,10 +7073,150 @@
     };
   }
 
+  function exportPassportPhoto(values) {
+    const image = getSelectedImageOrThrow("passport-photo");
+    const preset = passportPhotoPreset(values.preset);
+    const canvas = values.output === "print-4x6-pdf"
+      ? renderPassportPrintSheetCanvas(image.image, values)
+      : renderPassportPhotoCanvas(image.image, values);
+    if (values.output === "print-4x6-pdf") {
+      return {
+        blob: canvasesToPdf([canvas]),
+        filename: `${fileBaseName(image.name)}-${preset.slug}-4x6-sheet.pdf`,
+        label: "Print sheet downloaded",
+      };
+    }
+    const format = values.output === "single-png" ? "png" : "jpeg";
+    return {
+      blob: canvasToImageBlob(canvas, format, 0.94),
+      filename: `${fileBaseName(image.name)}-${preset.slug}.${imageExtension(format)}`,
+      label: "Passport photo downloaded",
+    };
+  }
+
   function getSelectedImageOrThrow(toolId) {
     const images = imageToolState.get(toolId) || [];
     if (!images.length) throw new Error("Select an image before downloading.");
     return images[0];
+  }
+
+  function passportPhotoPreset(value) {
+    const presets = {
+      "uk-passport": { slug: "uk-35x45", label: "UK passport photo", widthMm: 35, heightMm: 45, widthLabel: "35 mm", heightLabel: "45 mm", headMin: 0.64, headMax: 0.8, eyeLine: 0.47 },
+      "eu-35x45": { slug: "eu-35x45", label: "EU-style ID photo", widthMm: 35, heightMm: 45, widthLabel: "35 mm", heightLabel: "45 mm", headMin: 0.62, headMax: 0.78, eyeLine: 0.47 },
+      "canada-passport": { slug: "canada-50x70", label: "Canada passport photo", widthMm: 50, heightMm: 70, widthLabel: "50 mm", heightLabel: "70 mm", headMin: 0.44, headMax: 0.51, eyeLine: 0.42 },
+      "australia-passport": { slug: "australia-35x45", label: "Australia passport photo", widthMm: 35, heightMm: 45, widthLabel: "35 mm", heightLabel: "45 mm", headMin: 0.71, headMax: 0.8, eyeLine: 0.46 },
+      "us-passport": { slug: "us-2x2", label: "US passport photo", widthIn: 2, heightIn: 2, widthLabel: "2 in", heightLabel: "2 in", headMin: 0.5, headMax: 0.69, eyeLine: 0.45 },
+    };
+    return presets[value] || presets["us-passport"];
+  }
+
+  function passportDpi(values) {
+    return Number(values.dpi) === 600 ? 600 : 300;
+  }
+
+  function passportExportPixels(values, preset = passportPhotoPreset(values.preset)) {
+    const dpi = passportDpi(values);
+    const widthIn = preset.widthIn || preset.widthMm / 25.4;
+    const heightIn = preset.heightIn || preset.heightMm / 25.4;
+    return {
+      width: Math.max(1, Math.round(widthIn * dpi)),
+      height: Math.max(1, Math.round(heightIn * dpi)),
+    };
+  }
+
+  function passportSheetPixels(preset) {
+    const pdfPixelsPerInch = 150;
+    const widthIn = preset.widthIn || preset.widthMm / 25.4;
+    const heightIn = preset.heightIn || preset.heightMm / 25.4;
+    return {
+      width: Math.max(1, Math.round(widthIn * pdfPixelsPerInch)),
+      height: Math.max(1, Math.round(heightIn * pdfPixelsPerInch)),
+    };
+  }
+
+  function renderPassportPhotoCanvas(image, values, overrideSize) {
+    const preset = passportPhotoPreset(values.preset);
+    const size = overrideSize || passportExportPixels(values, preset);
+    const canvas = document.createElement("canvas");
+    canvas.width = size.width;
+    canvas.height = size.height;
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drawPassportPhotoImage(ctx, image, values, 0, 0, canvas.width, canvas.height);
+    return canvas;
+  }
+
+  function renderPassportPrintSheetCanvas(image, values) {
+    const pdfPixelsPerInch = 150;
+    const preset = passportPhotoPreset(values.preset);
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.round(6 * pdfPixelsPerInch);
+    canvas.height = Math.round(4 * pdfPixelsPerInch);
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const photo = renderPassportPhotoCanvas(image, values, passportSheetPixels(preset));
+    const margin = Math.round(0.18 * pdfPixelsPerInch);
+    const gap = Math.round(0.12 * pdfPixelsPerInch);
+    let index = 0;
+    for (let y = margin; y + photo.height <= canvas.height - margin; y += photo.height + gap) {
+      for (let x = margin; x + photo.width <= canvas.width - margin; x += photo.width + gap) {
+        ctx.drawImage(photo, x, y);
+        ctx.strokeStyle = "rgba(23,49,59,0.45)";
+        ctx.lineWidth = 1;
+        ctx.strokeRect(x, y, photo.width, photo.height);
+        index += 1;
+        if (index >= 6) return canvas;
+      }
+    }
+    return canvas;
+  }
+
+  function drawPassportPhotoImage(ctx, image, values, x, y, width, height) {
+    const imageW = image.naturalWidth || image.width || 1;
+    const imageH = image.naturalHeight || image.height || 1;
+    const zoom = clampNumber(Number(values.zoom) || 1, 1, 2.2);
+    const coverScale = Math.max(width / imageW, height / imageH) * zoom;
+    const drawW = imageW * coverScale;
+    const drawH = imageH * coverScale;
+    const moveX = Math.min(100, Math.max(-100, Number(values.offsetX) || 0)) / 100;
+    const moveY = Math.min(100, Math.max(-100, Number(values.offsetY) || 0)) / 100;
+    const maxShiftX = Math.max(0, (drawW - width) / 2);
+    const maxShiftY = Math.max(0, (drawH - height) / 2);
+    const drawX = x + (width - drawW) / 2 + moveX * maxShiftX;
+    const drawY = y + (height - drawH) / 2 + moveY * maxShiftY;
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(x, y, width, height);
+    ctx.clip();
+    ctx.drawImage(image, drawX, drawY, drawW, drawH);
+    ctx.restore();
+  }
+
+  function drawPassportGuideOverlay(ctx, box, preset) {
+    const minH = box.height * preset.headMin;
+    const maxH = box.height * preset.headMax;
+    const centerX = box.x + box.width / 2;
+    const topY = box.y + box.height * 0.12;
+    const minY = topY + (maxH - minH) / 2;
+    ctx.save();
+    ctx.strokeStyle = "rgba(29,78,216,0.9)";
+    ctx.lineWidth = 3;
+    ctx.setLineDash([14, 10]);
+    ctx.strokeRect(box.x, box.y, box.width, box.height);
+    ctx.strokeStyle = "rgba(220,38,38,0.86)";
+    ctx.strokeRect(centerX - minH * 0.34, minY, minH * 0.68, minH);
+    ctx.strokeStyle = "rgba(245,158,11,0.78)";
+    ctx.strokeRect(centerX - maxH * 0.34, topY, maxH * 0.68, maxH);
+    ctx.setLineDash([]);
+    ctx.strokeStyle = "rgba(22,163,74,0.9)";
+    line(ctx, box.x + 18, box.y + box.height * preset.eyeLine, box.x + box.width - 18, box.y + box.height * preset.eyeLine);
+    ctx.fillStyle = "rgba(255,255,255,0.88)";
+    roundRect(ctx, box.x + 14, box.y + box.height - 64, box.width - 28, 44, 6, true, false);
+    drawTextFit(ctx, "Guide only: align head and eyes, then verify official rules", box.x + box.width / 2, box.y + box.height - 42, box.width - 52, 18, { align: "center", weight: "800", color: "#17313b" });
+    ctx.restore();
   }
 
   function renderSignatureOutputCanvas(values, options = {}) {

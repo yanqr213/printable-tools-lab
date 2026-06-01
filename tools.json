@@ -1,8 +1,8 @@
 {
   "name": "PrintableTools Lab",
-  "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, transparent signature PNG generation, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T14:10:01.289Z",
+  "generatedAt": "2026-06-01T14:44:01.751Z",
   "tools": [
     {
       "title": "Name Tracing Worksheet Generator",
@@ -182,6 +182,12 @@
       "title": "Signature PNG Generator",
       "url": "https://printable-tools-lab.pages.dev/tools/signature-png/",
       "description": "Draw or type a signature and download a transparent PNG locally in your browser without uploading anything.",
+      "category": "Everyday file utilities"
+    },
+    {
+      "title": "Passport Photo Maker",
+      "url": "https://printable-tools-lab.pages.dev/tools/passport-photo/",
+      "description": "Crop a passport-style photo locally for US 2x2, UK 35x45, Canada 50x70, and Australia 35x45 sizes.",
       "category": "Everyday file utilities"
     },
     {
@@ -675,6 +681,11 @@
       "title": "Signature PNG generator",
       "url": "https://printable-tools-lab.pages.dev/guides/signature-png-generator/",
       "description": "Draw or type a signature and download a transparent PNG locally without signup or upload."
+    },
+    {
+      "title": "Passport photo maker without uploading",
+      "url": "https://printable-tools-lab.pages.dev/guides/passport-photo-maker/",
+      "description": "Crop a passport-style photo locally for common print sizes before checking official requirements."
     },
     {
       "title": "Compress image without uploading",

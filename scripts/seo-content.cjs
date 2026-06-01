@@ -2,7 +2,7 @@ const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pa
 
 const SITE_SUMMARY = {
   name: "PrintableTools Lab",
-  description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, transparent signature PNG generation, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   audience: "Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, household planners, cafe operators, booth exhibitors, rental hosts, and office admins.",
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
@@ -20,6 +20,7 @@ const HIGH_INTENT_TOOL_PATHS = [
   "tools/rotate-image",
   "tools/watermark-image",
   "tools/signature-png",
+  "tools/passport-photo",
   "tools/qr-code",
   "tools/wifi-qr-code",
   "tools/vcard-qr-code",
@@ -114,6 +115,11 @@ const TOOL_FINDER_ROWS = [
     need: "I need a transparent signature PNG",
     toolPath: "tools/signature-png",
     why: "Best for drawing or typing a visual signature image for documents, PDF annotations, proposals, or forms.",
+  },
+  {
+    need: "I need a passport-style photo in 2x2, 35x45, or 50x70 size",
+    toolPath: "tools/passport-photo",
+    why: "Best for local sizing, cropping, and 4x6 print-sheet layout before comparing the result with official photo rules.",
   },
   {
     need: "I need a QR code for a link, sign, menu, or flyer",
@@ -367,6 +373,21 @@ const landingPages = [
       ["Important limit", "This creates a visual signature image only. It does not verify identity, manage consent, notarize documents, or replace regulated e-signature platforms."],
     ],
     relatedTools: ["tools/sign-pdf", "tools/stamp-pdf", "tools/watermark-image"],
+  },
+  {
+    path: "passport-photo-maker",
+    title: "Passport Photo Maker",
+    description: "Crop a passport-style photo locally for US 2x2, UK 35x45, Canada 50x70, and Australia 35x45 sizes.",
+    headline: "Passport photo maker without uploading",
+    lead: "Upload a photo in your browser, fit it inside a passport-photo guide, and download a correctly sized JPG, PNG, or 4x6 print sheet PDF without sending the image to a server.",
+    primaryTool: "tools/passport-photo",
+    intent: "passport photo maker, 2x2 photo, 35x45 photo, no upload",
+    sections: [
+      ["Why this has urgent intent", "Passport photo searches often happen right before an application, renewal, visa form, exam portal, or document upload. Many photo services charge at export or require uploading a private face photo."],
+      ["Local crop workflow", "The selected photo stays in the browser. Choose a size preset, adjust zoom and position, then export a single image or a 4x6 print sheet."],
+      ["Important limit", "This tool helps with sizing and layout only. It does not check every official lighting, pose, background, expression, recency, or acceptance rule. Always compare the result with the issuing authority's current requirements."],
+    ],
+    relatedTools: ["tools/resize-image", "tools/compress-image-to-kb", "tools/crop-image"],
   },
   {
     path: "compress-image-no-upload",
@@ -1274,6 +1295,15 @@ const tools = [
     ],
   },
   {
+    path: "tools/passport-photo",
+    title: "Passport Photo Maker",
+    description: "Crop a passport-style photo locally for US 2x2, UK 35x45, Canada 50x70, and Australia 35x45 sizes.",
+    body: [
+      "Select one photo, choose a common passport-style size, adjust zoom and position, then download a single image or a 4x6 print sheet PDF.",
+      "Passport photo searches are high intent because users often need a correctly sized face photo immediately, but the tool intentionally stays clear that official acceptance depends on the issuing authority's current rules.",
+    ],
+  },
+  {
     path: "tools/compress-image",
     title: "Compress Image Online",
     description: "Compress JPG, PNG, or WebP images locally in your browser without uploading files.",
@@ -1608,6 +1638,7 @@ const guides = [
   ["guides/pdf-to-jpg-without-uploading", "PDF to JPG without uploading", "Convert PDF pages to JPG or PNG images locally in your browser.", "PDF-to-JPG searches often happen when a form or portal accepts images but rejects PDFs. Browser-side rendering keeps the source document local while producing ordinary image files."],
   ["guides/extract-text-from-pdf-without-uploading", "Extract text from PDF without uploading", "Turn selectable PDF text into a downloadable TXT file locally in your browser.", "PDF-to-text searches often happen when someone needs notes, quotes, admin details, or searchable text from a document. Scanned image-only PDFs need OCR, so this browser tool is intentionally clear about extracting embedded text only."],
   ["guides/signature-png-generator", "Signature PNG generator", "Draw or type a signature and download a transparent PNG locally without signup or upload.", "Signature PNG searches often come from document, proposal, and form workflows. A local visual-image tool can be useful, but it should not claim identity verification or regulated e-signature status."],
+  ["guides/passport-photo-maker", "Passport photo maker without uploading", "Crop a passport-style photo locally for common print sizes before checking official requirements.", "Passport photo tools can save a user from paid export walls and unnecessary uploads, but they should be honest: sizing is only one part of acceptance. Users still need to check background, lighting, pose, expression, recency, and country-specific rules."],
   ["guides/compress-image-without-uploading", "Compress image without uploading", "Reduce JPG, PNG, or WebP file size in the browser before uploading elsewhere.", "Image compression searches often happen after a form rejects a file as too large. A no-upload workflow lets the user make a smaller copy locally before trying again."],
   ["guides/compress-image-to-100kb-without-uploading", "Compress image to 100KB without uploading", "Reduce a JPG, PNG, or WebP image toward a 100KB upload limit locally in the browser.", "Many forms, portals, job applications, exam sites, and profile pages reject images above a fixed KB size. A target-size compressor helps create a smaller copy without uploading the source image."],
   ["guides/resize-image-without-uploading", "Resize image without uploading", "Change image width, height, or preset size locally in the browser.", "Image resizing is useful for profile photos, thumbnails, marketplace listings, ID forms, and school portals that require exact dimensions."],
@@ -1703,6 +1734,8 @@ const keywordClusters = [
       ["Watermark image without uploading", "watermark-image-no-upload"],
       ["Signature PNG generator", "tools/signature-png"],
       ["Transparent signature PNG", "signature-png-generator"],
+      ["Passport photo maker", "tools/passport-photo"],
+      ["Passport photo maker without uploading", "passport-photo-maker"],
       ["Free QR code generator", "tools/qr-code"],
       ["QR code generator without signup", "free-qr-code-generator-no-signup"],
       ["WiFi QR code generator", "tools/wifi-qr-code"],
@@ -1804,20 +1837,20 @@ const pages = [
   {
     path: "",
     title: "Free Printable PDF, Image, and QR Tools",
-    description: "Create image compression, resizing, cropping, rotation, watermarking, transparent signature PNGs, static QR codes, WiFi QR signs, contact QR codes, PDF-to-JPG images, PDF-to-text files, image-to-PDF conversions, text, Markdown, CSV, and JSON PDF exports, invoices, receipts, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free browser exports.",
+    description: "Create passport photos, image compression, resizing, cropping, rotation, watermarking, transparent signature PNGs, static QR codes, WiFi QR signs, contact QR codes, PDF-to-JPG images, PDF-to-text files, image-to-PDF conversions, text, Markdown, CSV, and JSON PDF exports, invoices, receipts, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free browser exports.",
     html: `
       <section class="shell hero">
         <div>
           <h1>Make useful PDF, image, and QR files in under a minute.</h1>
-          <p>Free browser-based generators for image compression, resizing, cropping, rotation, watermarking, transparent signature PNGs, QR codes, WiFi QR signs, contact QR codes, PDF-to-JPG images, PDF-to-text extraction, image format conversion, no-upload PDF edits, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
+          <p>Free browser-based generators for passport photos, image compression, resizing, cropping, rotation, watermarking, transparent signature PNGs, QR codes, WiFi QR signs, contact QR codes, PDF-to-JPG images, PDF-to-text extraction, image format conversion, no-upload PDF edits, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>60</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>61</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>89</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>90</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -2016,6 +2049,7 @@ const GUIDE_HINTS_FOR_LINKS = {
   "rotate-image": ["rotate image", "flip image", "sideways photo"],
   "watermark-image": ["watermark image", "text watermark", "sample photo"],
   "signature-png": ["signature PNG", "transparent signature", "draw signature"],
+  "passport-photo": ["passport photo", "2x2 photo", "35x45 photo"],
   "qr-code": ["QR code", "static QR", "no signup"],
   "wifi-qr-code": ["WiFi QR", "guest WiFi", "printable sign"],
   "vcard-qr-code": ["contact QR", "vCard QR", "business card"],
@@ -2145,7 +2179,7 @@ function freePdfToolsHtml() {
     {
       title: "No-upload conversion tools",
       text: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -2210,7 +2244,7 @@ function pdfToolFinderHtml() {
         <td>${escapeHtml(row.why)}</td>
       </tr>`;
   }).join("\n");
-  const imageTools = ["compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "qr-code", "wifi-qr-code", "vcard-qr-code"];
+  const imageTools = ["compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "qr-code", "wifi-qr-code", "vcard-qr-code"];
   const pdfEditTools = ["merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf"];
   const textDataTools = ["text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"];
   const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"];
@@ -2309,6 +2343,7 @@ function directorySubmissionHtml() {
     "rotate-image",
     "watermark-image",
     "signature-png",
+    "passport-photo",
     "qr-code",
     "wifi-qr-code",
     "vcard-qr-code",
@@ -2422,7 +2457,7 @@ function landingPageHtml(page) {
 }
 
 function softwareSchema(tool) {
-  const imageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/signature-png", "tools/pdf-to-images"]);
+  const imageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/signature-png", "tools/passport-photo", "tools/pdf-to-images"]);
   const textToolPaths = new Set(["tools/pdf-to-text"]);
   const qrToolPaths = new Set(["tools/qr-code", "tools/wifi-qr-code", "tools/vcard-qr-code"]);
   const isImageTool = imageToolPaths.has(tool.path);
@@ -2442,10 +2477,10 @@ function softwareSchema(tool) {
       priceCurrency: "USD",
     },
     featureList: [
-      isQrTool ? "Browser-based static QR code generation" : isImageTool ? "Browser-based image processing" : isTextTool ? "Browser-based PDF text extraction" : "Browser-based PDF generation",
+      tool.path === "tools/passport-photo" ? "Browser-based passport photo sizing" : isQrTool ? "Browser-based static QR code generation" : isImageTool ? "Browser-based image processing" : isTextTool ? "Browser-based PDF text extraction" : "Browser-based PDF generation",
       "No account required",
-      isQrTool ? "Printable QR code PDF" : isImageTool ? "No-upload image conversion" : isTextTool ? "No-upload PDF text extraction" : "US Letter and A4 support",
-      isImageTool ? "Local image file export" : isTextTool ? "Local TXT file export" : "One-page printable export",
+      tool.path === "tools/passport-photo" ? "No-upload passport photo crop" : isQrTool ? "Printable QR code PDF" : isImageTool ? "No-upload image conversion" : isTextTool ? "No-upload PDF text extraction" : "US Letter and A4 support",
+      tool.path === "tools/passport-photo" ? "Local JPG, PNG, or print sheet export" : isImageTool ? "Local image file export" : isTextTool ? "Local TXT file export" : "One-page printable export",
     ],
   };
 }
@@ -2510,7 +2545,7 @@ function landingPageSchema(page, tool, related) {
 
 function toolDetails(tool) {
   const title = tool.title.replace(/\s+PDF$/, "");
-  const outputImageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/signature-png", "tools/pdf-to-images"]);
+  const outputImageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/signature-png", "tools/passport-photo", "tools/pdf-to-images"]);
   const outputTextToolPaths = new Set(["tools/pdf-to-text"]);
   const exportsImage = outputImageToolPaths.has(tool.path);
   const exportsText = outputTextToolPaths.has(tool.path);
@@ -3020,6 +3055,20 @@ function toolDetails(tool) {
         { q: "Is the signature uploaded?", a: "No. The signature pad and PNG export run locally in your browser for ordinary use." },
         { q: "Is this an e-signature platform?", a: "No. It creates a visual PNG image only and does not verify identity, collect consent, or manage signing workflows." },
         { q: "Can I get a transparent background?", a: "Yes. Choose Transparent PNG so the signature can sit over a document or image background." },
+      ],
+    },
+    "passport-photo": {
+      privacy: "The selected photo is cropped and rendered in your browser and is not uploaded by the maker.",
+      limit: "The free version exports one passport-style photo or one 4x6 print sheet at a time and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Application photo sizing", text: "Create a correctly sized image for a passport, visa, exam portal, or document workflow before checking the official requirements." },
+        { title: "4x6 print sheet", text: "Place several copies on a 4x6 inch PDF sheet for home or photo-lab printing." },
+        { title: "Private local crop", text: "Avoid uploading a face photo to an online cropper when you only need sizing and layout." },
+      ],
+      faq: [
+        { q: "Is my photo uploaded?", a: "No. The photo is loaded, cropped, and exported locally in your browser for ordinary use." },
+        { q: "Does this guarantee official acceptance?", a: "No. It helps with size and layout only. You still need to check official background, pose, lighting, expression, recency, and country-specific rules." },
+        { q: "Which sizes are included?", a: "The first version includes US 2 x 2 inch, UK 35 x 45 mm, EU-style 35 x 45 mm, Canada 50 x 70 mm, and Australia 35 x 45 mm presets." },
       ],
     },
     "merge-pdf": {

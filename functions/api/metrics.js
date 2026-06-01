@@ -31,6 +31,7 @@ const TOOLS = [
   "rotate-image",
   "watermark-image",
   "signature-png",
+  "passport-photo",
   "qr-code",
   "wifi-qr-code",
   "vcard-qr-code",

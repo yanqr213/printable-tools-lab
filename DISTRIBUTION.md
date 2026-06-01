@@ -40,6 +40,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Rotate image without upload page: https://printable-tools-lab.pages.dev/rotate-image-no-upload/
 - Watermark image without upload page: https://printable-tools-lab.pages.dev/watermark-image-no-upload/
 - Signature PNG generator page: https://printable-tools-lab.pages.dev/signature-png-generator/
+- Passport photo maker page: https://printable-tools-lab.pages.dev/passport-photo-maker/
 - QR code generator without signup page: https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/
 - WiFi QR code generator page: https://printable-tools-lab.pages.dev/wifi-qr-code-generator/
 - Contact QR code generator page: https://printable-tools-lab.pages.dev/contact-qr-code-generator/
@@ -61,6 +62,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - PDF to JPG Without Uploading: https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/
 - Extract Text From PDF Without Uploading: https://printable-tools-lab.pages.dev/extract-text-from-pdf-no-upload/
 - Signature PNG Generator: https://printable-tools-lab.pages.dev/signature-png-generator/
+- Passport Photo Maker: https://printable-tools-lab.pages.dev/passport-photo-maker/
 - Compress Image Without Uploading: https://printable-tools-lab.pages.dev/compress-image-no-upload/
 - Compress Image to 100KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-100kb/
 - Resize Image Without Uploading: https://printable-tools-lab.pages.dev/resize-image-no-upload/
@@ -114,6 +116,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Rotate Image Online: https://printable-tools-lab.pages.dev/tools/rotate-image/
 - Watermark Image Online: https://printable-tools-lab.pages.dev/tools/watermark-image/
 - Signature PNG Generator: https://printable-tools-lab.pages.dev/tools/signature-png/
+- Passport Photo Maker: https://printable-tools-lab.pages.dev/tools/passport-photo/
 - Free QR Code Generator: https://printable-tools-lab.pages.dev/tools/qr-code/
 - WiFi QR Code Generator: https://printable-tools-lab.pages.dev/tools/wifi-qr-code/
 - Contact QR Code Generator: https://printable-tools-lab.pages.dev/tools/vcard-qr-code/
@@ -150,13 +153,13 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 ## Community-safe angles
 
 - For freelancers: free invoice, estimate, purchase order, receipt, bill of sale, work order, packing slip, inventory sheet, and timesheet PDFs without account creation.
-- For high-intent search visitors: no-signup and no-upload landing pages for image compression, image resizing, image cropping, image rotation, image watermarking, QR codes, WiFi QR signs, contact QR codes, image format conversion, PDF-to-JPG, PDF-to-text, PDF merge, PDF split, PDF rotation, PDF page removal, PDF page reordering, PDF watermarking, PDF stamping, typed PDF signatures, PDF page numbers, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, barcodes, price tags, flyers, coupons, timesheets, resumes, certificates, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, JPG-to-PDF, and multi-image PDF.
+- For high-intent search visitors: no-signup and no-upload landing pages for passport photos, image compression, image resizing, image cropping, image rotation, image watermarking, QR codes, WiFi QR signs, contact QR codes, image format conversion, PDF-to-JPG, PDF-to-text, PDF merge, PDF split, PDF rotation, PDF page removal, PDF page reordering, PDF watermarking, PDF stamping, typed PDF signatures, PDF page numbers, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, barcodes, price tags, flyers, coupons, timesheets, resumes, certificates, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, JPG-to-PDF, and multi-image PDF.
 - For small businesses and local sellers: printable business cards, address labels, barcode labels, price tags, flyers, coupons, packing slips, and inventory sheets without design-account or spreadsheet friction.
 - For job seekers: free resume, cover letter, and resignation letter PDFs without a hidden export fee.
 - For parents and teachers: printable name tracing, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
 - For teachers and organizers: free certificate, sign-in sheet, and event checklist PDFs.
 - For household planning: monthly calendars and meal planners with grocery lists.
-- For everyday utility needs: compress images, resize images, crop images, rotate images, watermark images, create QR codes, create WiFi QR signs, create contact QR codes, convert image formats, convert PDF pages to JPG or PNG, extract PDF text, merge PDF, split PDF, rotate pages, remove pages, reorder pages, watermark PDFs, stamp PDFs, add typed signature blocks, add page numbers, image-to-PDF conversion, multi-image PDF export, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, sign-in sheets, graph paper, to-do lists, and packing lists.
+- For everyday utility needs: crop passport photos, compress images, resize images, crop images, rotate images, watermark images, create QR codes, create WiFi QR signs, create contact QR codes, convert image formats, convert PDF pages to JPG or PNG, extract PDF text, merge PDF, split PDF, rotate pages, remove pages, reorder pages, watermark PDFs, stamp PDFs, add typed signature blocks, add page numbers, image-to-PDF conversion, multi-image PDF export, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, sign-in sheets, graph paper, to-do lists, and packing lists.
 
 ## Places to consider manually
 

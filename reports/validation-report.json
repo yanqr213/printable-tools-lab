@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-01T14:11:06.539Z",
+  "generatedAt": "2026-06-01T14:49:42.088Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
     "customDomainConfigured": false,
-    "toolCount": 60,
-    "guideCount": 89,
-    "landingPageCount": 48,
-    "indexableRoutes": 207,
-    "sitemapLocCount": 207,
-    "generatedToolInventoryAt": "2026-06-01T14:10:01.289Z",
+    "toolCount": 61,
+    "guideCount": 90,
+    "landingPageCount": 49,
+    "indexableRoutes": 210,
+    "sitemapLocCount": 210,
+    "generatedToolInventoryAt": "2026-06-01T14:44:01.751Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -93,7 +93,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, transparent signature PNG generation, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T13:54:26.784Z",
+          "generatedAt": "2026-06-01T14:10:01.289Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -913,7 +913,7 @@
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T13:54:26.784Z",
+          "generatedAt": "2026-06-01T14:10:01.289Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -2287,7 +2287,7 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Free no-signup browser PDF, image, QR, and text-data tools for compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
+      "description": "Free no-signup browser PDF, image, QR, and text-data tools for passport photos, compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
       "topics": [
         "csv-to-pdf",
         "free-tools",
@@ -2298,10 +2298,10 @@
         "image-to-pdf",
         "image-tools",
         "invoice-generator",
-        "json-to-pdf",
         "label-generator",
         "markdown-to-pdf",
         "no-signup",
+        "passport-photo",
         "pdf-generator",
         "pdf-to-jpg",
         "pdf-to-text",
@@ -2334,7 +2334,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": true
+    "externalDiscoveryReady": false
   },
   "gates": {
     "productReady": true,
@@ -2342,13 +2342,13 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": true,
+    "externalDiscoveryReady": false,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "60 tools, 89 guides, 48 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "61 tools, 90 guides, 49 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
