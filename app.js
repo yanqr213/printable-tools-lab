@@ -632,6 +632,27 @@
         { id: "layout", label: "Text layout", type: "select", options: [["page-breaks", "Page headings"], ["plain", "Plain text"]] },
       ],
     },
+    "pdf-to-word": {
+      id: "pdf-to-word",
+      icon: "DOC",
+      title: "PDF to Word Converter",
+      shortTitle: "PDF to Word",
+      description: "Convert selectable PDF text into a simple DOCX document locally in your browser without uploading the PDF.",
+      keywords: ["PDF to Word", "PDF to DOCX", "convert PDF to Word", "no upload"],
+      ai: false,
+      pdfTool: "to-docx",
+      outputKind: "file",
+      defaultValues: {
+        pdfs: "",
+        pageRange: "all",
+        layout: "headings",
+      },
+      fields: [
+        { id: "pdfs", label: "PDF file", type: "file", accept: "application/pdf", multiple: false, help: "Select one PDF. The converter reads selectable text locally in your browser." },
+        { id: "pageRange", label: "Pages to convert", type: "text", maxLength: 80, help: "Use all, 1, or ranges such as 1,3-5. The free version exports up to 12 pages into DOCX." },
+        { id: "layout", label: "DOCX layout", type: "select", options: [["headings", "Page headings"], ["paragraphs", "Plain paragraphs"]] },
+      ],
+    },
     "compress-pdf": {
       id: "compress-pdf",
       icon: "ZIP",
@@ -1759,6 +1780,8 @@
         ["PDF to JPG without uploading", "/pdf-to-jpg-no-upload/"],
         ["PDF to text converter", "/tools/pdf-to-text/"],
         ["Extract text from PDF without uploading", "/extract-text-from-pdf-no-upload/"],
+        ["PDF to Word converter", "/tools/pdf-to-word/"],
+        ["PDF to Word without uploading", "/pdf-to-word-no-upload/"],
         ["Compress image", "/tools/compress-image/"],
         ["Compress image without uploading", "/compress-image-no-upload/"],
         ["Compress image to KB", "/tools/compress-image-to-kb/"],
@@ -1872,7 +1895,7 @@
     {
       title: "No-upload conversion tools",
       description: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1981,6 +2004,21 @@
         ["Why this is useful", "PDF-to-text searches often happen when a user needs searchable notes, quotes, plain text, or a lightweight copy of a PDF without opening a heavy editor."],
       ],
       related: ["pdf-to-images", "split-pdf", "text-to-pdf"],
+    },
+    {
+      slug: "pdf-to-word-no-upload",
+      title: "PDF to Word Without Uploading",
+      headline: "PDF to Word without uploading",
+      description: "Convert selectable PDF text into a simple DOCX document locally in your browser without uploading the PDF to a converter server.",
+      lead: "Choose a PDF and download a simple Word-compatible DOCX made from selectable text in the browser. It is built for quick edits when you do not want to send a private document to an online converter.",
+      tool: "pdf-to-word",
+      intent: "PDF to Word, PDF to DOCX, no upload PDF converter",
+      sections: [
+        ["Why this search has urgency", "PDF-to-Word searches often happen when someone must edit a report, letter, assignment, resume, or form right before submitting it. Many converters require upload, queueing, signup, or a paid export step."],
+        ["What this free version does", "The browser reads selectable PDF text and writes a clean DOCX with page headings. It is useful for editing the words, not for perfect visual layout reconstruction."],
+        ["Important limit", "Scanned image-only PDFs need OCR first, and complex tables, columns, forms, or legal formatting may be simplified. Keep the original PDF when exact layout matters."],
+      ],
+      related: ["pdf-to-text", "markdown-to-pdf", "text-to-pdf"],
     },
     {
       slug: "compress-image-no-upload",
@@ -2681,6 +2719,11 @@
       need: "Extract selectable text from a PDF",
       tool: "pdf-to-text",
       why: "Best when you need a local TXT copy of embedded PDF text for notes, review, or cleanup.",
+    },
+    {
+      need: "Turn a PDF into an editable Word document",
+      tool: "pdf-to-word",
+      why: "Best for selectable-text PDFs when you need a simple DOCX draft without uploading the file to a converter.",
     },
     {
       need: "Make an image file smaller",
@@ -3675,6 +3718,20 @@
       ],
     },
     {
+      slug: "pdf-to-word-without-uploading",
+      title: "PDF to Word without uploading",
+      description: "Convert selectable PDF text into a simple DOCX document locally in your browser.",
+      tool: "pdf-to-word",
+      content: [
+        ["h2", "When PDF-to-Word helps"],
+        ["p", "PDF-to-Word searches often come from users who need to edit a file now but do not want to upload private documents to a converter server."],
+        ["h2", "Text-first DOCX output"],
+        ["p", "The converter reads selectable text in the browser and writes a clean Word-compatible DOCX with optional page headings. It is designed for editing words, not recreating every visual detail."],
+        ["h2", "Scans and complex layouts"],
+        ["p", "Image-only scanned PDFs need OCR before this tool can create useful Word text. Complex tables, forms, and columns may be simplified, so keep the original PDF when exact layout matters."],
+      ],
+    },
+    {
       slug: "signature-png-generator",
       title: "Signature PNG generator",
       description: "Draw or type a signature and download a transparent PNG locally without signup or upload.",
@@ -4029,6 +4086,7 @@
     "compress-pdf",
     "pdf-to-images",
     "pdf-to-text",
+    "pdf-to-word",
     "compress-image",
     "compress-image-to-kb",
     "resize-image",
@@ -4943,8 +5001,9 @@
         incrementDailyCount();
         const remaining = SITE.dailyLimit - getDailyCount();
         limitCounter.textContent = `${remaining} free left today`;
-        const fileOutput = tool.pdfTool === "to-images" || tool.pdfTool === "to-text";
-        showDownloadComplete(tool, downloadComplete, remaining, tool.pdfTool === "to-images" ? "Images downloaded" : tool.pdfTool === "to-text" ? "Text downloaded" : "PDF downloaded");
+        const fileOutput = tool.pdfTool === "to-images" || tool.pdfTool === "to-text" || tool.pdfTool === "to-docx";
+        const outputLabel = tool.pdfTool === "to-images" ? "Images downloaded" : tool.pdfTool === "to-text" ? "Text downloaded" : tool.pdfTool === "to-docx" ? "Word document downloaded" : "PDF downloaded";
+        showDownloadComplete(tool, downloadComplete, remaining, outputLabel);
         const eventKind = fileOutput ? "file" : "pdf";
         track(`generate_${eventKind}`, { tool: tool.id });
         track(`download_${eventKind}`, { tool: tool.id });
@@ -4961,6 +5020,7 @@
     if (tool.pdfTool === "split") return "Extract pages";
     if (tool.pdfTool === "to-images") return "Convert to images";
     if (tool.pdfTool === "to-text") return "Extract text";
+    if (tool.pdfTool === "to-docx") return "Convert to DOCX";
     if (tool.pdfTool === "compress") return "Compress PDF";
     if (tool.pdfTool === "page-numbers") return "Add page numbers";
     if (tool.pdfTool === "rotate") return "Rotate pages";
@@ -5035,6 +5095,10 @@
       const selected = parsePageRangeOrAll(values.pageRange || "all", files[0].pageCount);
       note = `The export will extract selectable text from ${selected.length} of ${files[0].pageCount} page${files[0].pageCount === 1 ? "" : "s"} into a TXT file. Scanned image-only PDFs need OCR.`;
     }
+    if (tool.pdfTool === "to-docx") {
+      const selected = limitedPdfWordPages(values.pageRange || "all", files[0].pageCount);
+      note = `The export will convert selectable text from ${selected.length} of ${files[0].pageCount} page${files[0].pageCount === 1 ? "" : "s"} into a simple DOCX file. Scanned PDFs need OCR and complex layouts may be simplified.`;
+    }
     if (tool.pdfTool === "compress") {
       const selected = limitedPdfCompressPages(values.pageRange || "all", files[0].pageCount);
       const profile = pdfCompressProfile(values.mode || "balanced");
@@ -5080,6 +5144,7 @@
     if (tool.pdfTool === "split") return exportSplitPdf(files[0], values);
     if (tool.pdfTool === "to-images") return exportPdfAsImages(files[0], values);
     if (tool.pdfTool === "to-text") return exportPdfText(files[0], values);
+    if (tool.pdfTool === "to-docx") return exportPdfDocx(files[0], values);
     if (tool.pdfTool === "compress") return exportCompressedPdf(files[0], values);
     if (tool.pdfTool === "page-numbers") return exportNumberedPdf(files[0], values);
     if (tool.pdfTool === "rotate") return exportRotatedPdf(files[0], values);
@@ -5146,26 +5211,108 @@
   }
 
   async function exportPdfText(file, values) {
+    const parts = await extractPdfTextParts(file, values, parsePageRangeOrAll);
+    const output = parts.map((part) => {
+      if (values.layout !== "plain") return `--- Page ${part.pageNumber} ---\n${part.text}`;
+      return part.text;
+    }).join("\n\n").trim();
+    if (!output) throw new Error("No selectable text was found. This PDF may be scanned or image-only and may need OCR.");
+    return new Blob([output + "\n"], { type: "text/plain;charset=utf-8" });
+  }
+
+  async function exportPdfDocx(file, values) {
+    const parts = await extractPdfTextParts(file, values, limitedPdfWordPages);
+    const hasText = parts.some((part) => part.text.trim());
+    if (!hasText) throw new Error("No selectable text was found. This PDF may be scanned or image-only and may need OCR before converting to Word.");
+    return createDocxBlob({
+      title: fileBaseName(file.name).replace(/[-_]+/g, " ") || "Converted PDF",
+      sourceName: file.name,
+      parts,
+      layout: values.layout || "headings",
+    });
+  }
+
+  async function extractPdfTextParts(file, values, pageSelector) {
     const pdfjsLib = getPdfJsLib();
-    const selectedPages = parsePageRangeOrAll(values.pageRange || "all", file.pageCount);
+    const selectedPages = pageSelector(values.pageRange || "all", file.pageCount);
     if (!selectedPages.length) throw new Error("Enter all or at least one valid page number to extract.");
     const document = await pdfjsLib.getDocument({ data: file.bytes.slice().buffer }).promise;
     const parts = [];
-    for (const pageNumber of selectedPages) {
-      const page = await document.getPage(pageNumber);
-      const textContent = await page.getTextContent();
-      const text = pdfTextItemsToLines(textContent.items || []);
-      if (values.layout !== "plain") {
-        parts.push(`--- Page ${pageNumber} ---\n${text}`);
-      } else {
-        parts.push(text);
+    try {
+      for (const pageNumber of selectedPages) {
+        const page = await document.getPage(pageNumber);
+        const textContent = await page.getTextContent();
+        const text = pdfTextItemsToLines(textContent.items || []);
+        parts.push({ pageNumber, text });
+        page.cleanup();
       }
-      page.cleanup();
+    } finally {
+      if (document.destroy) await document.destroy();
     }
-    if (document.destroy) await document.destroy();
-    const output = parts.join(values.layout === "plain" ? "\n\n" : "\n\n").trim();
-    if (!output) throw new Error("No selectable text was found. This PDF may be scanned or image-only and may need OCR.");
-    return new Blob([output + "\n"], { type: "text/plain;charset=utf-8" });
+    return parts;
+  }
+
+  function createDocxBlob({ title, sourceName, parts, layout }) {
+    if (!window.fflate || !window.fflate.zipSync) {
+      throw new Error("DOCX engine is still loading. Please try again in a moment.");
+    }
+    const paragraphs = [
+      docxParagraph(title || "Converted PDF", "Title"),
+      docxParagraph(`Converted locally from ${sourceName}. Selectable text only; scanned PDFs need OCR and complex layout may be simplified.`, "Subtitle"),
+    ];
+    parts.forEach((part) => {
+      if (layout !== "paragraphs") paragraphs.push(docxParagraph(`Page ${part.pageNumber}`, "Heading1"));
+      const lines = part.text.split(/\n+/).map((line) => line.trim()).filter(Boolean);
+      if (!lines.length) {
+        paragraphs.push(docxParagraph("[No selectable text found on this page]", "Normal"));
+        return;
+      }
+      lines.forEach((line) => paragraphs.push(docxParagraph(line, "Normal")));
+    });
+    const documentXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>
+${paragraphs.join("\n")}
+<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="720" w:footer="720" w:gutter="0"/></w:sectPr>
+</w:body></w:document>`;
+    const files = {
+      "[Content_Types].xml": utf8Bytes(`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+  <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+  <Default Extension="xml" ContentType="application/xml"/>
+  <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+  <Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>
+</Types>`),
+      "_rels/.rels": utf8Bytes(`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+</Relationships>`),
+      "word/document.xml": utf8Bytes(documentXml),
+      "word/styles.xml": utf8Bytes(docxStylesXml()),
+    };
+    return new Blob([window.fflate.zipSync(files)], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+  }
+
+  function docxParagraph(text, style) {
+    const styleXml = style && style !== "Normal" ? `<w:pPr><w:pStyle w:val="${style}"/></w:pPr>` : "";
+    return `<w:p>${styleXml}<w:r><w:t xml:space="preserve">${docxEscape(text)}</w:t></w:r></w:p>`;
+  }
+
+  function docxStylesXml() {
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+  <w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/><w:pPr><w:spacing w:after="120" w:line="276" w:lineRule="auto"/></w:pPr><w:rPr><w:sz w:val="22"/></w:rPr></w:style>
+  <w:style w:type="paragraph" w:styleId="Title"><w:name w:val="Title"/><w:basedOn w:val="Normal"/><w:pPr><w:spacing w:after="180"/></w:pPr><w:rPr><w:b/><w:sz w:val="32"/></w:rPr></w:style>
+  <w:style w:type="paragraph" w:styleId="Subtitle"><w:name w:val="Subtitle"/><w:basedOn w:val="Normal"/><w:rPr><w:color w:val="53636A"/><w:sz w:val="20"/></w:rPr></w:style>
+  <w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:basedOn w:val="Normal"/><w:pPr><w:spacing w:before="240" w:after="120"/></w:pPr><w:rPr><w:b/><w:sz w:val="26"/></w:rPr></w:style>
+</w:styles>`;
+  }
+
+  function docxEscape(value) {
+    return String(value || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  function utf8Bytes(value) {
+    return new TextEncoder().encode(value);
   }
 
   async function exportCompressedPdf(file, values) {
@@ -5366,6 +5513,11 @@
     return pages.slice(0, 12);
   }
 
+  function limitedPdfWordPages(value, pageCount) {
+    const pages = parsePageRangeOrAll(value || "all", pageCount);
+    return pages.slice(0, 12);
+  }
+
   function pdfCompressProfile(value) {
     if (value === "small") return { label: "Small file", scale: 0.85, quality: 0.58 };
     if (value === "readable") return { label: "More readable", scale: 1.35, quality: 0.82 };
@@ -5547,6 +5699,7 @@
       return `${base}-page-images${pages.length === 1 ? `.${pdfImageExtension(values.format || "jpeg")}` : ".zip"}`;
     }
     if (tool.pdfTool === "to-text") return `${base}-text.txt`;
+    if (tool.pdfTool === "to-docx") return `${base}-word.docx`;
     if (tool.pdfTool === "compress") return `${base}-compressed.pdf`;
     if (tool.pdfTool === "page-numbers") return `${base}-page-numbers.pdf`;
     if (tool.pdfTool === "rotate") return `${base}-rotated.pdf`;
@@ -5630,7 +5783,7 @@
       ["resume-builder", "ats-resume-checker", "cover-letter", "resignation-letter"],
       ["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"],
       ["name-tracing", "chore-chart", "reward-chart", "flashcards"],
-      ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
+      ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
       ["certificate-generator", "sign-in-sheet", "todo-list", "flyer-maker", "coupon-maker"],
     ];
     const group = groups.find((items) => items.includes(currentId)) || toolOrder;

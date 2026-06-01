@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T16:04:43.985Z",
+  "generatedAt": "2026-06-01T16:36:55.722Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -49,6 +49,7 @@
     "https://printable-tools-lab.pages.dev/sign-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
     "https://printable-tools-lab.pages.dev/ats-resume-checker-free/",
+    "https://printable-tools-lab.pages.dev/pdf-to-word-no-upload/",
     "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
     "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
@@ -66,6 +67,7 @@
     "https://printable-tools-lab.pages.dev/tools/compress-pdf/",
     "https://printable-tools-lab.pages.dev/tools/pdf-to-images/",
     "https://printable-tools-lab.pages.dev/tools/pdf-to-text/",
+    "https://printable-tools-lab.pages.dev/tools/pdf-to-word/",
     "https://printable-tools-lab.pages.dev/tools/compress-image/",
     "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/",
     "https://printable-tools-lab.pages.dev/tools/resize-image/",
@@ -343,6 +345,12 @@
       "url": "https://printable-tools-lab.pages.dev/ats-resume-checker-free/",
       "intent": "ATS resume checker, resume keyword match, job description match",
       "tool": "https://printable-tools-lab.pages.dev/tools/ats-resume-checker/"
+    },
+    {
+      "title": "PDF to Word Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/pdf-to-word-no-upload/",
+      "intent": "PDF to Word, PDF to DOCX, no upload PDF converter",
+      "tool": "https://printable-tools-lab.pages.dev/tools/pdf-to-word/"
     },
     {
       "title": "Free Receipt Generator Without Signup",

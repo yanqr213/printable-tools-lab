@@ -2,7 +2,7 @@ const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pa
 
 const SITE_SUMMARY = {
   name: "PrintableTools Lab",
-  description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   audience: "Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, household planners, cafe operators, booth exhibitors, rental hosts, and office admins.",
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
@@ -13,6 +13,7 @@ const HIGH_INTENT_TOOL_PATHS = [
   "tools/compress-pdf",
   "tools/pdf-to-images",
   "tools/pdf-to-text",
+  "tools/pdf-to-word",
   "tools/compress-image",
   "tools/compress-image-to-kb",
   "tools/resize-image",
@@ -82,6 +83,11 @@ const TOOL_FINDER_ROWS = [
     need: "I need to extract selectable text from a PDF",
     toolPath: "tools/pdf-to-text",
     why: "Best when you need a local TXT copy of embedded PDF text for notes, review, or cleanup.",
+  },
+  {
+    need: "I need to turn a PDF into an editable Word document",
+    toolPath: "tools/pdf-to-word",
+    why: "Best for selectable-text PDFs when you need a simple DOCX draft without uploading the file to a converter.",
   },
   {
     need: "I need to make an image file smaller",
@@ -882,6 +888,21 @@ const landingPages = [
     relatedTools: ["tools/resume-builder", "tools/cover-letter", "tools/text-to-pdf"],
   },
   {
+    path: "pdf-to-word-no-upload",
+    title: "PDF to Word Without Uploading",
+    description: "Convert selectable PDF text into a simple DOCX document locally in your browser without uploading the PDF to a converter server.",
+    headline: "PDF to Word without uploading",
+    lead: "Choose a PDF and download a simple Word-compatible DOCX made from selectable text in the browser. It is built for quick edits when you do not want to send a private document to an online converter.",
+    primaryTool: "tools/pdf-to-word",
+    intent: "PDF to Word, PDF to DOCX, no upload PDF converter",
+    sections: [
+      ["Why this search has urgency", "PDF-to-Word searches often happen when someone must edit a report, letter, assignment, resume, or form right before submitting it. Many converters require upload, queueing, signup, or a paid export step."],
+      ["What this free version does", "The browser reads selectable PDF text and writes a clean DOCX with page headings. It is useful for editing the words, not for perfect visual layout reconstruction."],
+      ["Important limit", "Scanned image-only PDFs need OCR first, and complex tables, columns, forms, or legal formatting may be simplified. Keep the original PDF when exact layout matters."],
+    ],
+    relatedTools: ["tools/pdf-to-text", "tools/markdown-to-pdf", "tools/text-to-pdf"],
+  },
+  {
     path: "free-receipt-generator-no-signup",
     title: "Free Receipt Generator Without Signup",
     description: "Create a printable receipt PDF for a sale, deposit, service payment, reimbursement, or rent record without an account.",
@@ -1346,6 +1367,15 @@ const tools = [
     ],
   },
   {
+    path: "tools/pdf-to-word",
+    title: "PDF to Word Converter",
+    description: "Convert selectable PDF text into a simple DOCX document locally in your browser without uploading the PDF.",
+    body: [
+      "Select one PDF, choose all pages or a page range, and download a Word-compatible DOCX built from selectable embedded text.",
+      "PDF-to-Word conversion is a high-intent utility search because users often need an editable file immediately. This local version is privacy-forward and honest: it creates a clean text-first DOCX, not OCR or pixel-perfect layout reconstruction.",
+    ],
+  },
+  {
     path: "tools/signature-png",
     title: "Signature PNG Generator",
     description: "Draw or type a signature and download a transparent PNG locally in your browser without uploading anything.",
@@ -1699,6 +1729,7 @@ const guides = [
   ["guides/compress-pdf-without-uploading", "Compress PDF without uploading", "Reduce a PDF file size locally by rebuilding selected pages as a smaller image-based PDF.", "PDF compression has strong urgent intent because users often arrive after an upload form rejects a file. The local image-based workflow is best for scanned or photo-heavy PDFs and may flatten selectable text."],
   ["guides/pdf-to-jpg-without-uploading", "PDF to JPG without uploading", "Convert PDF pages to JPG or PNG images locally in your browser.", "PDF-to-JPG searches often happen when a form or portal accepts images but rejects PDFs. Browser-side rendering keeps the source document local while producing ordinary image files."],
   ["guides/extract-text-from-pdf-without-uploading", "Extract text from PDF without uploading", "Turn selectable PDF text into a downloadable TXT file locally in your browser.", "PDF-to-text searches often happen when someone needs notes, quotes, admin details, or searchable text from a document. Scanned image-only PDFs need OCR, so this browser tool is intentionally clear about extracting embedded text only."],
+  ["guides/pdf-to-word-without-uploading", "PDF to Word without uploading", "Convert selectable PDF text into a simple DOCX document locally in your browser.", "PDF-to-Word searches often come from users who need to edit a file now but do not want to upload private documents. A local text-first DOCX is best for words and review, while scanned PDFs and exact layout restoration need OCR or a full editor."],
   ["guides/signature-png-generator", "Signature PNG generator", "Draw or type a signature and download a transparent PNG locally without signup or upload.", "Signature PNG searches often come from document, proposal, and form workflows. A local visual-image tool can be useful, but it should not claim identity verification or regulated e-signature status."],
   ["guides/passport-photo-maker", "Passport photo maker without uploading", "Crop a passport-style photo locally for common print sizes before checking official requirements.", "Passport photo tools can save a user from paid export walls and unnecessary uploads, but they should be honest: sizing is only one part of acceptance. Users still need to check background, lighting, pose, expression, recency, and country-specific rules."],
   ["guides/compress-image-without-uploading", "Compress image without uploading", "Reduce JPG, PNG, or WebP file size in the browser before uploading elsewhere.", "Image compression searches often happen after a form rejects a file as too large. A no-upload workflow lets the user make a smaller copy locally before trying again."],
@@ -1782,6 +1813,8 @@ const keywordClusters = [
       ["PDF to JPG without uploading", "pdf-to-jpg-no-upload"],
       ["PDF to text converter", "tools/pdf-to-text"],
       ["Extract text from PDF without uploading", "extract-text-from-pdf-no-upload"],
+      ["PDF to Word converter", "tools/pdf-to-word"],
+      ["PDF to Word without uploading", "pdf-to-word-no-upload"],
       ["Compress image", "tools/compress-image"],
       ["Compress image without uploading", "compress-image-no-upload"],
       ["Compress image to KB", "tools/compress-image-to-kb"],
@@ -1915,9 +1948,9 @@ const pages = [
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>63</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>64</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>92</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>93</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -1968,6 +2001,7 @@ const pages = [
           <li><a href="/tools/multi-image-pdf/">Multiple Images to PDF Converter</a></li>
           <li><a href="/tools/pdf-to-images/">PDF to JPG Converter</a></li>
           <li><a href="/tools/pdf-to-text/">PDF to Text Converter</a></li>
+          <li><a href="/tools/pdf-to-word/">PDF to Word Converter</a></li>
           <li><a href="/tools/compress-image/">Compress Image Online</a></li>
           <li><a href="/tools/compress-image-to-kb/">Compress Image to KB</a></li>
           <li><a href="/tools/resize-image/">Resize Image Online</a></li>
@@ -2110,6 +2144,7 @@ const GUIDE_HINTS_FOR_LINKS = {
   "compress-pdf": ["compress PDF", "reduce PDF size", "PDF compressor"],
   "pdf-to-images": ["PDF to JPG", "PDF to PNG"],
   "pdf-to-text": ["PDF to text", "extract text"],
+  "pdf-to-word": ["PDF to Word", "PDF to DOCX", "Word document"],
   "compress-image": ["compress image", "image compressor", "reduce image"],
   "compress-image-to-kb": ["compress image to KB", "100KB image"],
   "resize-image": ["resize image", "image resizer"],
@@ -2248,7 +2283,7 @@ function freePdfToolsHtml() {
     {
       title: "No-upload conversion tools",
       text: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -2313,7 +2348,7 @@ function pdfToolFinderHtml() {
         <td>${escapeHtml(row.why)}</td>
       </tr>`;
   }).join("\n");
-  const imageTools = ["compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "qr-code", "wifi-qr-code", "vcard-qr-code"];
+  const imageTools = ["compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "qr-code", "wifi-qr-code", "vcard-qr-code"];
   const pdfEditTools = ["compress-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf"];
   const textDataTools = ["text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"];
   const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"];
@@ -2405,6 +2440,7 @@ function directorySubmissionHtml() {
     "compress-pdf",
     "pdf-to-images",
     "pdf-to-text",
+    "pdf-to-word",
     "compress-image",
     "compress-image-to-kb",
     "resize-image",
@@ -2530,11 +2566,13 @@ function landingPageHtml(page) {
 function softwareSchema(tool) {
   const imageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/signature-png", "tools/passport-photo", "tools/pdf-to-images"]);
   const textToolPaths = new Set(["tools/pdf-to-text"]);
+  const docxToolPaths = new Set(["tools/pdf-to-word"]);
   const compressedPdfToolPaths = new Set(["tools/compress-pdf"]);
   const atsToolPaths = new Set(["tools/ats-resume-checker"]);
   const qrToolPaths = new Set(["tools/qr-code", "tools/wifi-qr-code", "tools/vcard-qr-code"]);
   const isImageTool = imageToolPaths.has(tool.path);
   const isTextTool = textToolPaths.has(tool.path);
+  const isDocxTool = docxToolPaths.has(tool.path);
   const isCompressedPdfTool = compressedPdfToolPaths.has(tool.path);
   const isAtsTool = atsToolPaths.has(tool.path);
   const isQrTool = qrToolPaths.has(tool.path);
@@ -2552,10 +2590,10 @@ function softwareSchema(tool) {
       priceCurrency: "USD",
     },
     featureList: [
-      isAtsTool ? "Browser-based ATS resume keyword report" : isCompressedPdfTool ? "Browser-based PDF compression" : tool.path === "tools/passport-photo" ? "Browser-based passport photo sizing" : isQrTool ? "Browser-based static QR code generation" : isImageTool ? "Browser-based image processing" : isTextTool ? "Browser-based PDF text extraction" : "Browser-based PDF generation",
+      isAtsTool ? "Browser-based ATS resume keyword report" : isCompressedPdfTool ? "Browser-based PDF compression" : isDocxTool ? "Browser-based PDF to Word conversion" : tool.path === "tools/passport-photo" ? "Browser-based passport photo sizing" : isQrTool ? "Browser-based static QR code generation" : isImageTool ? "Browser-based image processing" : isTextTool ? "Browser-based PDF text extraction" : "Browser-based PDF generation",
       "No account required",
-      isAtsTool ? "Local pasted-text analysis" : isCompressedPdfTool ? "No-upload image-based PDF rebuild" : tool.path === "tools/passport-photo" ? "No-upload passport photo crop" : isQrTool ? "Printable QR code PDF" : isImageTool ? "No-upload image conversion" : isTextTool ? "No-upload PDF text extraction" : "US Letter and A4 support",
-      isAtsTool ? "Local PDF report export" : isCompressedPdfTool ? "Smaller PDF copy for scanned or image-heavy files" : tool.path === "tools/passport-photo" ? "Local JPG, PNG, or print sheet export" : isImageTool ? "Local image file export" : isTextTool ? "Local TXT file export" : "One-page printable export",
+      isAtsTool ? "Local pasted-text analysis" : isCompressedPdfTool ? "No-upload image-based PDF rebuild" : isDocxTool ? "No-upload PDF text extraction" : tool.path === "tools/passport-photo" ? "No-upload passport photo crop" : isQrTool ? "Printable QR code PDF" : isImageTool ? "No-upload image conversion" : isTextTool ? "No-upload PDF text extraction" : "US Letter and A4 support",
+      isAtsTool ? "Local PDF report export" : isCompressedPdfTool ? "Smaller PDF copy for scanned or image-heavy files" : isDocxTool ? "Local DOCX file export" : tool.path === "tools/passport-photo" ? "Local JPG, PNG, or print sheet export" : isImageTool ? "Local image file export" : isTextTool ? "Local TXT file export" : "One-page printable export",
     ],
   };
 }
@@ -2622,9 +2660,11 @@ function toolDetails(tool) {
   const title = tool.title.replace(/\s+PDF$/, "");
   const outputImageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/signature-png", "tools/passport-photo", "tools/pdf-to-images"]);
   const outputTextToolPaths = new Set(["tools/pdf-to-text"]);
+  const outputDocxToolPaths = new Set(["tools/pdf-to-word"]);
   const exportsImage = outputImageToolPaths.has(tool.path);
   const exportsText = outputTextToolPaths.has(tool.path);
-  const outputLabel = exportsImage ? "image file" : exportsText ? "TXT file" : "PDF";
+  const exportsDocx = outputDocxToolPaths.has(tool.path);
+  const outputLabel = exportsImage ? "image file" : exportsText ? "TXT file" : exportsDocx ? "DOCX file" : "PDF";
   const shared = {
     steps: [
       `Open the ${title} and review the example text already in the form.`,
@@ -2647,19 +2687,19 @@ function toolDetails(tool) {
       },
     ],
     privacy: "Most file generation happens in your browser. For tools with the optional AI idea helper, only limited non-sensitive writing fields are sent to the server for suggestions.",
-    limit: `The free version is limited to practical ${exportsImage ? "image" : exportsText ? "text" : "PDF"} exports and a small daily generation count in the same browser while usage is validated.`,
+    limit: `The free version is limited to practical ${exportsImage ? "image" : exportsText ? "text" : exportsDocx ? "DOCX" : "PDF"} exports and a small daily generation count in the same browser while usage is validated.`,
     faq: [
       {
         q: "Do I need an account?",
-        a: `No. The generator opens in the browser and lets you download a ${exportsImage ? "file" : exportsText ? "TXT file" : "PDF"} without creating an account.`,
+        a: `No. The generator opens in the browser and lets you download a ${exportsImage ? "file" : exportsText ? "TXT file" : exportsDocx ? "DOCX file" : "PDF"} without creating an account.`,
       },
       {
         q: "Is the export really free?",
         a: "Yes. The first version is free and does not hide the file export behind a checkout.",
       },
       {
-        q: exportsText ? "Can I edit the text later?" : "Can I edit the PDF later?",
-        a: exportsText ? "Yes. The export is a plain TXT file, so you can open it in any notes, writing, or document app after downloading." : "The simplest workflow is to edit the form fields and generate a fresh PDF. Keep your own copy of important documents.",
+        q: exportsText ? "Can I edit the text later?" : exportsDocx ? "Can I edit the Word document later?" : "Can I edit the PDF later?",
+        a: exportsText ? "Yes. The export is a plain TXT file, so you can open it in any notes, writing, or document app after downloading." : exportsDocx ? "Yes. The export is a simple DOCX file, so you can open it in Word, Google Docs, LibreOffice, or another compatible editor." : "The simplest workflow is to edit the form fields and generate a fresh PDF. Keep your own copy of important documents.",
       },
     ],
   };
@@ -3156,6 +3196,20 @@ function toolDetails(tool) {
         { q: "Does it upload my PDF?", a: "No. The PDF is read locally in the browser for ordinary text extraction." },
         { q: "Does it OCR scanned PDFs?", a: "No. It extracts selectable embedded text only. Image-only scans need OCR." },
         { q: "What file do I download?", a: "The export is a plain TXT file with page headings unless you choose plain text layout." },
+      ],
+    },
+    "pdf-to-word": {
+      privacy: "The selected PDF is parsed for selectable text in your browser and is not uploaded by the converter.",
+      limit: "The free version converts up to twelve selected pages into one DOCX file and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Quick editable draft", text: "Turn a text-based PDF report, letter, assignment, or resume into a simple Word-compatible document for editing." },
+        { title: "Private document conversion", text: "Use browser-side conversion when the PDF includes personal, business, school, or client details you do not want to upload." },
+        { title: "Text-first cleanup", text: "Extract the words into a DOCX so you can rewrite, summarize, or reformat them in your own document editor." },
+      ],
+      faq: [
+        { q: "Does it upload my PDF?", a: "No. The PDF is read locally in the browser for ordinary conversion." },
+        { q: "Will it preserve the exact PDF layout?", a: "No. It creates a clean text-first DOCX with page headings. Complex columns, forms, tables, and exact styling may be simplified." },
+        { q: "Does it OCR scanned PDFs?", a: "No. It converts selectable embedded text only. Image-only scans need OCR before this tool can create useful Word text." },
       ],
     },
     "signature-png": {

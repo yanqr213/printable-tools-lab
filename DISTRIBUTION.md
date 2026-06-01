@@ -96,6 +96,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Stamp PDF Without Uploading: https://printable-tools-lab.pages.dev/stamp-pdf-no-upload/
 - Add Signature Text to PDF Without Uploading: https://printable-tools-lab.pages.dev/sign-pdf-no-upload/
 - Free ATS Resume Checker: https://printable-tools-lab.pages.dev/ats-resume-checker-free/
+- PDF to Word Without Uploading: https://printable-tools-lab.pages.dev/pdf-to-word-no-upload/
 - Free Receipt Generator Without Signup: https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/
 - Weekly Timesheet PDF Without Signup: https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/
 - Free Certificate Maker Without Signup: https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/
@@ -113,6 +114,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Compress PDF Online: https://printable-tools-lab.pages.dev/tools/compress-pdf/
 - PDF to JPG Converter: https://printable-tools-lab.pages.dev/tools/pdf-to-images/
 - PDF to Text Converter: https://printable-tools-lab.pages.dev/tools/pdf-to-text/
+- PDF to Word Converter: https://printable-tools-lab.pages.dev/tools/pdf-to-word/
 - Compress Image Online: https://printable-tools-lab.pages.dev/tools/compress-image/
 - Compress Image to KB: https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/
 - Resize Image Online: https://printable-tools-lab.pages.dev/tools/resize-image/

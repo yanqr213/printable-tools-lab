@@ -4,7 +4,7 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-06-01T16:04:44.072Z",
+  "generatedAt": "2026-06-01T16:36:55.815Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -202,6 +202,11 @@
       "intent": "ATS resume checker, resume keyword match, job description match"
     },
     {
+      "title": "PDF to Word Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/pdf-to-word-no-upload/",
+      "intent": "PDF to Word, PDF to DOCX, no upload PDF converter"
+    },
+    {
       "title": "Free Receipt Generator Without Signup",
       "url": "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
       "intent": "receipt PDF now, no account, quick proof of payment"
@@ -287,6 +292,11 @@
       "title": "PDF to Text Converter",
       "description": "Extract selectable text from PDF pages locally in your browser without uploading the document.",
       "url": "https://printable-tools-lab.pages.dev/tools/pdf-to-text/"
+    },
+    {
+      "title": "PDF to Word Converter",
+      "description": "Convert selectable PDF text into a simple DOCX document locally in your browser without uploading the PDF.",
+      "url": "https://printable-tools-lab.pages.dev/tools/pdf-to-word/"
     },
     {
       "title": "Compress Image Online",

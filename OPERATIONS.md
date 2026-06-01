@@ -376,6 +376,7 @@ Create one image or short post per item. Show the printable use case and never p
 86. Compress image to 100KB or another strict upload limit.
 87. Convert PDF pages to JPG without uploading.
 88. Extract selectable text from PDF without uploading.
+89. PDF to Word DOCX conversion for selectable text without uploading.
 
 ## Weekly Operating Loop
 
@@ -420,6 +421,7 @@ Current Search Console checkpoint:
 - `2026-06-01`: expanded to 61 tools, 90 guides, and 49 high-intent landing pages by adding a local Passport Photo Maker. This targets urgent passport, visa, ID, and upload-photo searches while keeping the product limited to sizing and print layout rather than official acceptance or biometric checks.
 - `2026-06-01`: expanded to 62 tools, 91 guides, and 50 high-intent landing pages by adding a local Compress PDF tool. This targets urgent upload-limit searches after email, school, job, portal, or government-form file-size rejections while clearly positioning the output as an image-based PDF that may flatten selectable text and links.
 - `2026-06-01`: expanded to 63 tools, 92 guides, and 51 high-intent landing pages by adding a local ATS Resume Checker. This targets job seekers right before application submission, keeps resume text in the browser, and avoids risky promises about ATS parsing, interviews, or hiring outcomes.
+- `2026-06-02`: expanded to 64 tools, 93 guides, and 52 high-intent landing pages by adding a local PDF to Word Converter. This targets urgent editable-DOCX searches while keeping the source PDF in the browser and explicitly limiting the promise to selectable text, not OCR or pixel-perfect layout recovery.
 - `2026-06-01`: AdSense Management API was enabled on the Google Cloud project through Service Usage API. A service-account probe to `adsense.googleapis.com/v2/accounts` returned no AdSense accounts, so the service account is not currently an AdSense account user. The official AdSense ad-unit creation API is also a restricted method, so publisher/ad-slot creation cannot be completed silently from the current service-account credentials.
 - `2026-06-01`: GitHub Pages discovery directory was verified as its own Search Console URL-prefix property and its sitemap was submitted through the Search Console API. This creates a second crawlable discovery surface that still points back to the same main site.
 - `2026-06-01`: added `npm.cmd run operate` as the unattended operating loop. It rebuilds, verifies, submits sitemaps, checks directories, probes Cloudflare/AdSense readiness, and smoke-tests every tool while recording unavoidable account-level blockers.
