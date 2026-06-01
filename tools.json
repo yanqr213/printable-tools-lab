@@ -1,8 +1,8 @@
 {
   "name": "PrintableTools Lab",
-  "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, transparent signature PNG generation, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T13:18:46.685Z",
+  "generatedAt": "2026-06-01T13:54:26.784Z",
   "tools": [
     {
       "title": "Name Tracing Worksheet Generator",
@@ -176,6 +176,12 @@
       "title": "PDF to Text Converter",
       "url": "https://printable-tools-lab.pages.dev/tools/pdf-to-text/",
       "description": "Extract selectable text from PDF pages locally in your browser without uploading the document.",
+      "category": "Everyday file utilities"
+    },
+    {
+      "title": "Signature PNG Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/signature-png/",
+      "description": "Draw or type a signature and download a transparent PNG locally in your browser without uploading anything.",
       "category": "Everyday file utilities"
     },
     {
@@ -664,6 +670,11 @@
       "title": "Extract text from PDF without uploading",
       "url": "https://printable-tools-lab.pages.dev/guides/extract-text-from-pdf-without-uploading/",
       "description": "Turn selectable PDF text into a downloadable TXT file locally in your browser."
+    },
+    {
+      "title": "Signature PNG generator",
+      "url": "https://printable-tools-lab.pages.dev/guides/signature-png-generator/",
+      "description": "Draw or type a signature and download a transparent PNG locally without signup or upload."
     },
     {
       "title": "Compress image without uploading",

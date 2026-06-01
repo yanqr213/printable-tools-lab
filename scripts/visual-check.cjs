@@ -31,17 +31,22 @@ function samplePng() {
     "/tools/crop-image/",
     "/tools/rotate-image/",
     "/tools/watermark-image/",
+    "/tools/signature-png/",
   ]);
 
-  for (const route of ["/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/text-to-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
+  for (const route of ["/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/text-to-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
-    if (imageRoutes.has(route)) {
+    if (imageRoutes.has(route) && route !== "/tools/signature-png/") {
       await page.setInputFiles("input[type=file]", {
         name: "photo.png",
         mimeType: "image/png",
         buffer: samplePng(),
       });
       if (route === "/tools/watermark-image/") await page.fill("#watermarkText", "SAMPLE");
+      await page.waitForTimeout(500);
+    }
+    if (route === "/tools/signature-png/") {
+      await page.fill("#signatureName", "Alex Rivera");
       await page.waitForTimeout(500);
     }
     const canvas = page.locator("canvas.preview-canvas");
@@ -56,7 +61,7 @@ function samplePng() {
     });
     if (sample[3] === 0) throw new Error(`Canvas appears transparent on ${route}`);
     const text = await page.locator("main").innerText();
-    const imageRoute = /\/tools\/(compress-image|compress-image-to-kb|resize-image|convert-image|crop-image|rotate-image|watermark-image)\//.test(route);
+    const imageRoute = /\/tools\/(compress-image|compress-image-to-kb|resize-image|convert-image|crop-image|rotate-image|watermark-image|signature-png)\//.test(route);
     if (!imageRoute && !text.includes("Generate PDF")) throw new Error(`Core action missing on ${route}`);
     if (imageRoute && !text.includes("Image preview")) throw new Error(`Image action area missing on ${route}`);
     const noAiRoute = route.includes("image-to-pdf") || route.includes("multi-image-pdf") || /\/tools\/(qr-code|wifi-qr-code|vcard-qr-code)\//.test(route);

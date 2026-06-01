@@ -815,6 +815,37 @@
       draw: drawImageWatermarker,
       exportFile: exportWatermarkedImage,
     },
+    "signature-png": {
+      id: "signature-png",
+      icon: "SIG",
+      title: "Signature PNG Generator",
+      shortTitle: "Signature PNG",
+      description: "Draw or type a signature and download a transparent PNG locally in your browser without uploading anything.",
+      keywords: ["signature PNG", "draw signature online", "transparent signature", "no signup"],
+      ai: false,
+      outputKind: "image",
+      generatedImage: true,
+      defaultValues: {
+        title: "Signature PNG",
+        signatureName: "Alex Rivera",
+        inkColor: "ink",
+        strokeWidth: "medium",
+        style: "auto",
+        padding: "balanced",
+        background: "transparent",
+      },
+      fields: [
+        { id: "signaturePad", label: "Draw signature", type: "signature-pad", help: "Use a mouse, finger, or stylus. If you leave this blank, the typed name is used." },
+        { id: "signatureName", label: "Typed fallback", type: "text", maxLength: 48, help: "Used for typed signature mode or when the drawing pad is blank." },
+        { id: "inkColor", label: "Ink color", type: "select", options: [["ink", "Deep ink"], ["black", "Black"], ["blue", "Blue"], ["green", "Green"]] },
+        { id: "strokeWidth", label: "Pen width", type: "select", options: [["thin", "Thin"], ["medium", "Medium"], ["bold", "Bold"]] },
+        { id: "style", label: "Signature source", type: "select", options: [["auto", "Use drawing, then typed fallback"], ["typed-script", "Typed script"], ["typed-clean", "Typed clean"]] },
+        { id: "padding", label: "Export padding", type: "select", options: [["tight", "Tight crop"], ["balanced", "Balanced"], ["wide", "Wide"]] },
+        { id: "background", label: "Background", type: "select", options: [["transparent", "Transparent PNG"], ["white", "White PNG"]] },
+      ],
+      draw: drawSignaturePngPreview,
+      exportFile: exportSignaturePng,
+    },
     "qr-code": {
       id: "qr-code",
       icon: "QR",
@@ -1662,6 +1693,8 @@
         ["Rotate image without uploading", "/rotate-image-no-upload/"],
         ["Watermark image", "/tools/watermark-image/"],
         ["Watermark image without uploading", "/watermark-image-no-upload/"],
+        ["Signature PNG generator", "/tools/signature-png/"],
+        ["Transparent signature PNG", "/signature-png-generator/"],
         ["Free QR code generator", "/tools/qr-code/"],
         ["QR code generator without signup", "/free-qr-code-generator-no-signup/"],
         ["WiFi QR code generator", "/tools/wifi-qr-code/"],
@@ -1754,7 +1787,7 @@
     {
       title: "No-upload conversion tools",
       description: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1953,6 +1986,21 @@
         ["Practical limits", "A text watermark is a visual deterrent, not copyright enforcement. Keep original files and use proper licensing or platform tools when the image is commercially important."],
       ],
       related: ["compress-image", "resize-image", "crop-image"],
+    },
+    {
+      slug: "signature-png-generator",
+      title: "Signature PNG Generator",
+      headline: "Signature PNG generator",
+      description: "Draw or type a signature and download a transparent PNG locally without signup or upload.",
+      lead: "Create a transparent signature PNG for documents, PDF annotations, forms, proposals, and internal paperwork. Draw with a finger, mouse, or stylus, or use a typed fallback when a drawn signature is not needed.",
+      tool: "signature-png",
+      intent: "signature PNG, transparent signature, draw signature online",
+      sections: [
+        ["Transparent PNG output", "The export can keep the background transparent so the signature is easier to place on a PDF, image, or document."],
+        ["Local-first workflow", "Drawing and typed fallback rendering happen in the browser. PrintableTools Lab does not receive the signature image during ordinary use."],
+        ["Important limit", "This creates a visual signature image only. It does not verify identity, manage consent, notarize documents, or replace regulated e-signature platforms."],
+      ],
+      related: ["sign-pdf", "stamp-pdf", "watermark-image"],
     },
     {
       slug: "free-qr-code-generator-no-signup",
@@ -2573,6 +2621,11 @@
       need: "Add a typed signature line to a PDF",
       tool: "sign-pdf",
       why: "Best for lightweight signature blocks when a typed signature is acceptable for the document.",
+    },
+    {
+      need: "Download a transparent signature PNG",
+      tool: "signature-png",
+      why: "Best when you need a visual signature image for a document, PDF annotation, proposal, or form.",
     },
     {
       need: "Bill a client or record work before payment",
@@ -3478,6 +3531,20 @@
       ],
     },
     {
+      slug: "signature-png-generator",
+      title: "Signature PNG generator",
+      description: "Draw or type a signature and download a transparent PNG locally without signup or upload.",
+      tool: "signature-png",
+      content: [
+        ["h2", "When a signature PNG helps"],
+        ["p", "A transparent signature image can be useful for proposals, internal approvals, PDF annotations, form screenshots, document drafts, and places where a visual signature image is acceptable."],
+        ["h2", "Local visual export"],
+        ["p", "The drawing pad and typed fallback render in the browser. The free export downloads a PNG without uploading the signature image to PrintableTools Lab."],
+        ["h2", "Not an e-signature service"],
+        ["p", "This tool creates a visual signature image only. It does not verify identity, collect consent, notarize documents, or replace a regulated e-signature workflow."],
+      ],
+    },
+    {
       slug: "compress-image-without-uploading",
       title: "Compress image without uploading",
       description: "Reduce JPG, PNG, or WebP file size in the browser before uploading elsewhere.",
@@ -3823,6 +3890,7 @@
     "crop-image",
     "rotate-image",
     "watermark-image",
+    "signature-png",
     "qr-code",
     "wifi-qr-code",
     "vcard-qr-code",
@@ -3859,6 +3927,7 @@
   let currentToolState = null;
   const imageToolState = new Map();
   const pdfToolState = new Map();
+  const signaturePadState = new Map();
 
   const SOFTWARE_SCHEMA_IDS = new Set(["tools"]);
 
@@ -3929,9 +3998,9 @@
             <a class="button secondary" href="/tools/qr-code/">Create a QR code</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>59</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>60</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>88</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>89</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -4173,6 +4242,7 @@
       "compress-image",
       "resize-image",
       "convert-image",
+      "signature-png",
       "qr-code",
       "wifi-qr-code",
       "vcard-qr-code",
@@ -4419,6 +4489,18 @@
     if (field.type === "textarea") {
       return `<div class="field"><label for="${field.id}">${escapeHtml(field.label)}</label><textarea ${common}>${escapeHtml(value || "")}</textarea>${help}</div>`;
     }
+    if (field.type === "signature-pad") {
+      return `
+        <div class="field signature-field">
+          <label for="${field.id}">${escapeHtml(field.label)}</label>
+          <div class="signature-pad-wrap">
+            <canvas ${common} class="signature-pad" width="720" height="260" aria-label="${escapeHtml(field.label)}"></canvas>
+            <button class="button secondary signature-clear" type="button" data-clear-signature="${escapeHtml(field.id)}">Clear</button>
+          </div>
+          ${help}
+        </div>
+      `;
+    }
     if (field.type === "select") {
       return `<div class="field"><label for="${field.id}">${escapeHtml(field.label)}</label><select ${common}>${field.options.map(([v, label]) => `<option value="${v}" ${v === value ? "selected" : ""}>${escapeHtml(label)}</option>`).join("")}</select>${help}</div>`;
     }
@@ -4441,6 +4523,7 @@
       renderCanvas(tool, canvas, values);
     };
 
+    initializeSignaturePads(tool, form, draw);
     form.addEventListener("input", draw);
     form.addEventListener("change", (event) => {
       if (event.target && event.target.type === "file") {
@@ -4618,7 +4701,7 @@
         return;
       }
       const images = imageToolState.get(tool.id) || [];
-      if (!images.length) {
+      if (!tool.generatedImage && !images.length) {
         notice.textContent = "Select an image before downloading the processed file.";
         notice.hidden = false;
         return;
@@ -4650,6 +4733,7 @@
     if (tool.id === "crop-image") return "Crop image";
     if (tool.id === "rotate-image") return "Rotate image";
     if (tool.id === "watermark-image") return "Watermark image";
+    if (tool.id === "signature-png") return "Download PNG";
     return "Download image";
   }
 
@@ -6407,6 +6491,43 @@
     drawFooterNote(ctx, paper, config.footer || "QR generated locally with PrintableTools Lab. Scan before sharing.");
   }
 
+  function drawSignaturePngPreview(ctx, paper, values) {
+    const margin = 72;
+    const ink = signatureInkColor(values.inkColor);
+    const signatureCanvas = renderSignatureOutputCanvas(values, { preview: true, width: 980, height: 360 });
+    drawBusinessFrame(ctx, paper, "#4f46e5");
+    drawTextFit(ctx, "Signature PNG", paper.width / 2, 104, paper.width - margin * 2, 48, { align: "center", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, "Draw or type a visual signature image. Export can be transparent and local.", paper.width / 2, 150, paper.width - margin * 2, 23, { align: "center", weight: "500", color: "#5b6f78" });
+
+    const box = { x: margin, y: 220, width: paper.width - margin * 2, height: 520 };
+    ctx.save();
+    ctx.fillStyle = values.background === "white" ? "#ffffff" : "#f8fafc";
+    roundRect(ctx, box.x, box.y, box.width, box.height, 8, true, false);
+    ctx.strokeStyle = "rgba(23,49,59,0.18)";
+    ctx.lineWidth = 2;
+    roundRect(ctx, box.x, box.y, box.width, box.height, 8, false, true);
+    if (values.background !== "white") drawTransparencyGrid(ctx, box.x + 24, box.y + 24, box.width - 48, box.height - 48, 22);
+    ctx.restore();
+    drawImageInBox(ctx, signatureCanvas, { x: box.x + 72, y: box.y + 84, width: box.width - 144, height: box.height - 168 }, true);
+
+    const detailY = 820;
+    const source = signaturePadHasInk("signature-png", "signaturePad") && values.style === "auto" ? "Drawn signature" : values.style === "typed-clean" ? "Typed clean signature" : "Typed script signature";
+    const background = values.background === "white" ? "white PNG background" : "transparent PNG background";
+    const lines = [
+      source,
+      `${background}; ${signaturePaddingLabel(values.padding)} crop`,
+      `${signatureStrokeLabel(values.strokeWidth)} ${signatureInkLabel(values.inkColor)} ink`,
+      "Visual signature image only, not identity verification.",
+    ];
+    ctx.fillStyle = "#eef2ff";
+    roundRect(ctx, margin, detailY, paper.width - margin * 2, 190, 8, true, false);
+    drawTextFit(ctx, "Export details", margin + 26, detailY + 38, paper.width - margin * 2 - 52, 25, { align: "left", weight: "900", color: "#17313b" });
+    lines.forEach((lineText, index) => {
+      drawTextFit(ctx, lineText, margin + 26, detailY + 78 + index * 30, paper.width - margin * 2 - 52, 21, { align: "left", weight: index === 0 ? "800" : "500", color: index === 0 ? ink : "#5b6f78" });
+    });
+    drawFooterNote(ctx, paper, "Signature PNG generated locally with PrintableTools Lab. Check acceptance rules before using it.");
+  }
+
   function buildQrMatrix(payload, errorCorrection) {
     const level = ["L", "M", "Q", "H"].includes(errorCorrection) ? errorCorrection : "M";
     if (typeof window.qrcode !== "function") {
@@ -6669,6 +6790,97 @@
     });
   }
 
+  function initializeSignaturePads(tool, form, draw) {
+    const pads = Array.from(form.querySelectorAll("canvas.signature-pad"));
+    if (!pads.length) return;
+    pads.forEach((pad) => {
+      const key = signaturePadKey(tool.id, pad.id);
+      const ctx = pad.getContext("2d");
+      signaturePadState.set(key, { strokes: [], drawing: false, last: null });
+      ctx.clearRect(0, 0, pad.width, pad.height);
+      drawSignaturePadGuide(pad);
+      const pointFromEvent = (event) => {
+        const rect = pad.getBoundingClientRect();
+        const source = event.touches && event.touches[0] ? event.touches[0] : event;
+        return {
+          x: ((source.clientX - rect.left) / Math.max(1, rect.width)) * pad.width,
+          y: ((source.clientY - rect.top) / Math.max(1, rect.height)) * pad.height,
+        };
+      };
+      const start = (event) => {
+        event.preventDefault();
+        const state = signaturePadState.get(key);
+        state.drawing = true;
+        state.last = pointFromEvent(event);
+        state.strokes.push([state.last]);
+      };
+      const move = (event) => {
+        const state = signaturePadState.get(key);
+        if (!state || !state.drawing) return;
+        event.preventDefault();
+        const point = pointFromEvent(event);
+        const stroke = state.strokes[state.strokes.length - 1];
+        stroke.push(point);
+        drawSignaturePadStroke(pad, state.last, point, getFormValues(form));
+        state.last = point;
+        draw();
+      };
+      const end = () => {
+        const state = signaturePadState.get(key);
+        if (!state) return;
+        state.drawing = false;
+        state.last = null;
+        draw();
+      };
+      pad.addEventListener("pointerdown", start);
+      pad.addEventListener("pointermove", move);
+      pad.addEventListener("pointerup", end);
+      pad.addEventListener("pointerleave", end);
+      pad.addEventListener("touchstart", start, { passive: false });
+      pad.addEventListener("touchmove", move, { passive: false });
+      pad.addEventListener("touchend", end);
+    });
+    form.querySelectorAll("[data-clear-signature]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const id = button.getAttribute("data-clear-signature");
+        const pad = form.querySelector(`#${CSS.escape(id)}`);
+        const key = signaturePadKey(tool.id, id);
+        signaturePadState.set(key, { strokes: [], drawing: false, last: null });
+        if (pad) drawSignaturePadGuide(pad);
+        draw();
+      });
+    });
+  }
+
+  function drawSignaturePadGuide(canvas) {
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.save();
+    ctx.strokeStyle = "rgba(23,49,59,0.18)";
+    ctx.lineWidth = 3;
+    ctx.setLineDash([18, 14]);
+    ctx.beginPath();
+    ctx.moveTo(42, canvas.height - 64);
+    ctx.lineTo(canvas.width - 42, canvas.height - 64);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawSignaturePadStroke(canvas, from, to, values) {
+    if (!from || !to) return;
+    const ctx = canvas.getContext("2d");
+    ctx.save();
+    ctx.strokeStyle = signatureInkColor(values.inkColor);
+    ctx.lineWidth = signatureStrokeWidth(values.strokeWidth);
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.beginPath();
+    ctx.moveTo(from.x, from.y);
+    ctx.lineTo(to.x, to.y);
+    ctx.stroke();
+    ctx.restore();
+  }
+
   function drawImageUtilityPreview(ctx, paper, values, config) {
     const margin = 72;
     const images = imageToolState.get(config.toolId) || [];
@@ -6751,10 +6963,206 @@
     return { blob, filename: `${fileBaseName(image.name)}-watermarked.${imageExtension(values.format)}` };
   }
 
+  function exportSignaturePng(values) {
+    const canvas = renderSignatureOutputCanvas(values, { preview: false, width: 1200, height: 420 });
+    return {
+      blob: canvasToImageBlob(canvas, "png", 1),
+      filename: `${slugify(values.signatureName || "signature")}-signature.png`,
+    };
+  }
+
   function getSelectedImageOrThrow(toolId) {
     const images = imageToolState.get(toolId) || [];
     if (!images.length) throw new Error("Select an image before downloading.");
     return images[0];
+  }
+
+  function renderSignatureOutputCanvas(values, options = {}) {
+    const width = options.width || 1200;
+    const height = options.height || 420;
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d");
+    if (values.background === "white") {
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, width, height);
+    } else {
+      ctx.clearRect(0, 0, width, height);
+    }
+    const pad = signaturePaddingPixels(values.padding);
+    const ink = signatureInkColor(values.inkColor);
+    const strokes = signaturePadStrokes("signature-png", "signaturePad");
+    const useDrawn = values.style === "auto" && strokes.length > 0;
+    if (useDrawn) {
+      drawSignatureStrokes(ctx, strokes, { x: pad, y: pad, width: width - pad * 2, height: height - pad * 2 }, values);
+    } else {
+      drawTypedSignature(ctx, values, { x: pad, y: pad, width: width - pad * 2, height: height - pad * 2 });
+    }
+    if (options.preview && !useDrawn && !(values.signatureName || "").trim()) {
+      drawTextFit(ctx, "Type a name or draw in the signature pad", width / 2, height / 2, width - pad * 2, 34, { align: "center", weight: "700", color: "rgba(23,49,59,0.45)" });
+    }
+    if (values.background !== "white") return trimTransparentCanvas(canvas, signaturePaddingPixels(values.padding, true));
+    return canvas;
+  }
+
+  function drawSignatureStrokes(ctx, strokes, target, values) {
+    const bounds = signatureStrokesBounds(strokes);
+    if (!bounds) return;
+    const scale = Math.min(target.width / Math.max(1, bounds.width), target.height / Math.max(1, bounds.height));
+    const offsetX = target.x + (target.width - bounds.width * scale) / 2 - bounds.minX * scale;
+    const offsetY = target.y + (target.height - bounds.height * scale) / 2 - bounds.minY * scale;
+    ctx.save();
+    ctx.strokeStyle = signatureInkColor(values.inkColor);
+    ctx.lineWidth = Math.max(3, signatureStrokeWidth(values.strokeWidth) * scale * 0.72);
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    strokes.forEach((stroke) => {
+      if (!stroke.length) return;
+      ctx.beginPath();
+      stroke.forEach((point, index) => {
+        const x = offsetX + point.x * scale;
+        const y = offsetY + point.y * scale;
+        if (index === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      if (stroke.length === 1) {
+        const point = stroke[0];
+        const x = offsetX + point.x * scale;
+        const y = offsetY + point.y * scale;
+        ctx.arc(x, y, ctx.lineWidth / 2, 0, Math.PI * 2);
+        ctx.fillStyle = signatureInkColor(values.inkColor);
+        ctx.fill();
+      } else {
+        ctx.stroke();
+      }
+    });
+    ctx.restore();
+  }
+
+  function drawTypedSignature(ctx, values, target) {
+    const name = sanitizePrintable(values.signatureName || "Alex Rivera").slice(0, 48) || "Alex Rivera";
+    const script = values.style !== "typed-clean";
+    ctx.save();
+    ctx.fillStyle = signatureInkColor(values.inkColor);
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    const family = script ? '"Brush Script MT", "Segoe Script", "Lucida Handwriting", cursive' : 'Georgia, "Times New Roman", serif';
+    let fontSize = Math.min(target.height * 0.48, target.width / Math.max(7, name.length * (script ? 0.46 : 0.58)));
+    fontSize = clampNumber(fontSize, 52, 190);
+    ctx.font = `${script ? "400" : "600"} ${fontSize}px ${family}`;
+    ctx.fillText(name, target.x + target.width / 2, target.y + target.height / 2);
+    ctx.restore();
+  }
+
+  function trimTransparentCanvas(canvas, padding) {
+    const ctx = canvas.getContext("2d");
+    const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    let minX = canvas.width;
+    let minY = canvas.height;
+    let maxX = -1;
+    let maxY = -1;
+    for (let y = 0; y < canvas.height; y += 1) {
+      for (let x = 0; x < canvas.width; x += 1) {
+        const alpha = data.data[(y * canvas.width + x) * 4 + 3];
+        if (alpha > 12) {
+          minX = Math.min(minX, x);
+          minY = Math.min(minY, y);
+          maxX = Math.max(maxX, x);
+          maxY = Math.max(maxY, y);
+        }
+      }
+    }
+    if (maxX < minX || maxY < minY) return canvas;
+    const cropX = Math.max(0, minX - padding);
+    const cropY = Math.max(0, minY - padding);
+    const cropW = Math.min(canvas.width - cropX, maxX - minX + 1 + padding * 2);
+    const cropH = Math.min(canvas.height - cropY, maxY - minY + 1 + padding * 2);
+    const output = document.createElement("canvas");
+    output.width = Math.max(1, Math.ceil(cropW));
+    output.height = Math.max(1, Math.ceil(cropH));
+    output.getContext("2d").drawImage(canvas, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
+    return output;
+  }
+
+  function signaturePadKey(toolId, fieldId) {
+    return `${toolId}:${fieldId}`;
+  }
+
+  function signaturePadStrokes(toolId, fieldId) {
+    const state = signaturePadState.get(signaturePadKey(toolId, fieldId));
+    return state ? state.strokes.filter((stroke) => stroke.length) : [];
+  }
+
+  function signaturePadHasInk(toolId, fieldId) {
+    return signaturePadStrokes(toolId, fieldId).length > 0;
+  }
+
+  function signatureStrokesBounds(strokes) {
+    let minX = Infinity;
+    let minY = Infinity;
+    let maxX = -Infinity;
+    let maxY = -Infinity;
+    strokes.forEach((stroke) => stroke.forEach((point) => {
+      minX = Math.min(minX, point.x);
+      minY = Math.min(minY, point.y);
+      maxX = Math.max(maxX, point.x);
+      maxY = Math.max(maxY, point.y);
+    }));
+    if (!Number.isFinite(minX)) return null;
+    return { minX, minY, maxX, maxY, width: Math.max(1, maxX - minX), height: Math.max(1, maxY - minY) };
+  }
+
+  function signatureInkColor(value) {
+    if (value === "black") return "#050608";
+    if (value === "blue") return "#1d4ed8";
+    if (value === "green") return "#047857";
+    return "#172033";
+  }
+
+  function signatureInkLabel(value) {
+    if (value === "black") return "black";
+    if (value === "blue") return "blue";
+    if (value === "green") return "green";
+    return "deep ink";
+  }
+
+  function signatureStrokeWidth(value) {
+    if (value === "thin") return 5;
+    if (value === "bold") return 12;
+    return 8;
+  }
+
+  function signatureStrokeLabel(value) {
+    if (value === "thin") return "thin";
+    if (value === "bold") return "bold";
+    return "medium";
+  }
+
+  function signaturePaddingPixels(value, cropped = false) {
+    if (value === "tight") return cropped ? 8 : 24;
+    if (value === "wide") return cropped ? 52 : 86;
+    return cropped ? 24 : 54;
+  }
+
+  function signaturePaddingLabel(value) {
+    if (value === "tight") return "tight";
+    if (value === "wide") return "wide";
+    return "balanced";
+  }
+
+  function drawTransparencyGrid(ctx, x, y, width, height, size) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(x, y, width, height);
+    ctx.clip();
+    for (let row = 0; row * size < height; row += 1) {
+      for (let col = 0; col * size < width; col += 1) {
+        ctx.fillStyle = (row + col) % 2 ? "rgba(148,163,184,0.24)" : "rgba(255,255,255,0.85)";
+        ctx.fillRect(x + col * size, y + row * size, size, size);
+      }
+    }
+    ctx.restore();
   }
 
   function compressImageToTarget(image, values) {

@@ -39,6 +39,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Crop image without upload page: https://printable-tools-lab.pages.dev/crop-image-no-upload/
 - Rotate image without upload page: https://printable-tools-lab.pages.dev/rotate-image-no-upload/
 - Watermark image without upload page: https://printable-tools-lab.pages.dev/watermark-image-no-upload/
+- Signature PNG generator page: https://printable-tools-lab.pages.dev/signature-png-generator/
 - QR code generator without signup page: https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/
 - WiFi QR code generator page: https://printable-tools-lab.pages.dev/wifi-qr-code-generator/
 - Contact QR code generator page: https://printable-tools-lab.pages.dev/contact-qr-code-generator/
@@ -59,6 +60,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Multiple Images to PDF Without Uploading: https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/
 - PDF to JPG Without Uploading: https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/
 - Extract Text From PDF Without Uploading: https://printable-tools-lab.pages.dev/extract-text-from-pdf-no-upload/
+- Signature PNG Generator: https://printable-tools-lab.pages.dev/signature-png-generator/
 - Compress Image Without Uploading: https://printable-tools-lab.pages.dev/compress-image-no-upload/
 - Compress Image to 100KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-100kb/
 - Resize Image Without Uploading: https://printable-tools-lab.pages.dev/resize-image-no-upload/
@@ -111,6 +113,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Crop Image Online: https://printable-tools-lab.pages.dev/tools/crop-image/
 - Rotate Image Online: https://printable-tools-lab.pages.dev/tools/rotate-image/
 - Watermark Image Online: https://printable-tools-lab.pages.dev/tools/watermark-image/
+- Signature PNG Generator: https://printable-tools-lab.pages.dev/tools/signature-png/
 - Free QR Code Generator: https://printable-tools-lab.pages.dev/tools/qr-code/
 - WiFi QR Code Generator: https://printable-tools-lab.pages.dev/tools/wifi-qr-code/
 - Contact QR Code Generator: https://printable-tools-lab.pages.dev/tools/vcard-qr-code/

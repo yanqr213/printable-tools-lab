@@ -446,6 +446,29 @@ main {
   resize: vertical;
 }
 
+.signature-field {
+  gap: 9px;
+}
+
+.signature-pad-wrap {
+  display: grid;
+  gap: 9px;
+}
+
+canvas.signature-pad {
+  display: block;
+  width: 100%;
+  height: 158px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  touch-action: none;
+}
+
+.signature-clear {
+  justify-self: start;
+}
+
 .help {
   color: var(--muted);
   font-size: 0.86rem;

@@ -58,6 +58,7 @@ const ALLOWED_TOOLS = new Set([
   "crop-image",
   "rotate-image",
   "watermark-image",
+  "signature-png",
   "qr-code",
   "wifi-qr-code",
   "vcard-qr-code",

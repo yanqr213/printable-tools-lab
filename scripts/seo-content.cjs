@@ -2,7 +2,7 @@ const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pa
 
 const SITE_SUMMARY = {
   name: "PrintableTools Lab",
-  description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, transparent signature PNG generation, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   audience: "Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, household planners, cafe operators, booth exhibitors, rental hosts, and office admins.",
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
@@ -19,6 +19,7 @@ const HIGH_INTENT_TOOL_PATHS = [
   "tools/crop-image",
   "tools/rotate-image",
   "tools/watermark-image",
+  "tools/signature-png",
   "tools/qr-code",
   "tools/wifi-qr-code",
   "tools/vcard-qr-code",
@@ -108,6 +109,11 @@ const TOOL_FINDER_ROWS = [
     need: "I need to add a text watermark to an image",
     toolPath: "tools/watermark-image",
     why: "Best for samples, drafts, proofs, social posts, and marketplace photos that need a visible label.",
+  },
+  {
+    need: "I need a transparent signature PNG",
+    toolPath: "tools/signature-png",
+    why: "Best for drawing or typing a visual signature image for documents, PDF annotations, proposals, or forms.",
   },
   {
     need: "I need a QR code for a link, sign, menu, or flyer",
@@ -346,6 +352,21 @@ const landingPages = [
       ["Practical use", "PDF-to-text searches are useful when a user needs searchable notes, plain text, quotes, research snippets, or a lightweight copy of a PDF without a heavy editor."],
     ],
     relatedTools: ["tools/pdf-to-images", "tools/split-pdf", "tools/text-to-pdf"],
+  },
+  {
+    path: "signature-png-generator",
+    title: "Signature PNG Generator",
+    description: "Draw or type a signature and download a transparent PNG locally without signup or upload.",
+    headline: "Signature PNG generator",
+    lead: "Create a transparent signature PNG for documents, PDF annotations, forms, proposals, and internal paperwork. Draw with a finger, mouse, or stylus, or use a typed fallback when a drawn signature is not needed.",
+    primaryTool: "tools/signature-png",
+    intent: "signature PNG, transparent signature, draw signature online",
+    sections: [
+      ["Transparent PNG output", "The export can keep the background transparent so the signature is easier to place on a PDF, image, or document."],
+      ["Browser-side generation", "The drawing pad and typed fallback render in the browser. Ordinary signature image generation does not send the image to PrintableTools Lab."],
+      ["Important limit", "This creates a visual signature image only. It does not verify identity, manage consent, notarize documents, or replace regulated e-signature platforms."],
+    ],
+    relatedTools: ["tools/sign-pdf", "tools/stamp-pdf", "tools/watermark-image"],
   },
   {
     path: "compress-image-no-upload",
@@ -1244,6 +1265,15 @@ const tools = [
     ],
   },
   {
+    path: "tools/signature-png",
+    title: "Signature PNG Generator",
+    description: "Draw or type a signature and download a transparent PNG locally in your browser without uploading anything.",
+    body: [
+      "Draw with a mouse, finger, or stylus, or use the typed fallback, then download a transparent PNG signature image.",
+      "Signature image searches have practical document intent, but the tool stays clear that it creates a visual PNG only and does not replace identity-verified e-signature services.",
+    ],
+  },
+  {
     path: "tools/compress-image",
     title: "Compress Image Online",
     description: "Compress JPG, PNG, or WebP images locally in your browser without uploading files.",
@@ -1577,6 +1607,7 @@ const guides = [
   ["guides/multiple-images-to-pdf-without-uploading", "Multiple images to PDF without uploading", "Combine several JPG, PNG, or WebP images into one multi-page PDF in the browser.", "Multi-image PDF conversion is useful for receipts, homework pages, forms, screenshots, and photo scans that need to be submitted together. A browser-side workflow avoids sending those files to a conversion server."],
   ["guides/pdf-to-jpg-without-uploading", "PDF to JPG without uploading", "Convert PDF pages to JPG or PNG images locally in your browser.", "PDF-to-JPG searches often happen when a form or portal accepts images but rejects PDFs. Browser-side rendering keeps the source document local while producing ordinary image files."],
   ["guides/extract-text-from-pdf-without-uploading", "Extract text from PDF without uploading", "Turn selectable PDF text into a downloadable TXT file locally in your browser.", "PDF-to-text searches often happen when someone needs notes, quotes, admin details, or searchable text from a document. Scanned image-only PDFs need OCR, so this browser tool is intentionally clear about extracting embedded text only."],
+  ["guides/signature-png-generator", "Signature PNG generator", "Draw or type a signature and download a transparent PNG locally without signup or upload.", "Signature PNG searches often come from document, proposal, and form workflows. A local visual-image tool can be useful, but it should not claim identity verification or regulated e-signature status."],
   ["guides/compress-image-without-uploading", "Compress image without uploading", "Reduce JPG, PNG, or WebP file size in the browser before uploading elsewhere.", "Image compression searches often happen after a form rejects a file as too large. A no-upload workflow lets the user make a smaller copy locally before trying again."],
   ["guides/compress-image-to-100kb-without-uploading", "Compress image to 100KB without uploading", "Reduce a JPG, PNG, or WebP image toward a 100KB upload limit locally in the browser.", "Many forms, portals, job applications, exam sites, and profile pages reject images above a fixed KB size. A target-size compressor helps create a smaller copy without uploading the source image."],
   ["guides/resize-image-without-uploading", "Resize image without uploading", "Change image width, height, or preset size locally in the browser.", "Image resizing is useful for profile photos, thumbnails, marketplace listings, ID forms, and school portals that require exact dimensions."],
@@ -1670,6 +1701,8 @@ const keywordClusters = [
       ["Rotate image without uploading", "rotate-image-no-upload"],
       ["Watermark image", "tools/watermark-image"],
       ["Watermark image without uploading", "watermark-image-no-upload"],
+      ["Signature PNG generator", "tools/signature-png"],
+      ["Transparent signature PNG", "signature-png-generator"],
       ["Free QR code generator", "tools/qr-code"],
       ["QR code generator without signup", "free-qr-code-generator-no-signup"],
       ["WiFi QR code generator", "tools/wifi-qr-code"],
@@ -1771,20 +1804,20 @@ const pages = [
   {
     path: "",
     title: "Free Printable PDF, Image, and QR Tools",
-    description: "Create image compression, resizing, cropping, rotation, watermarking, static QR codes, WiFi QR signs, contact QR codes, PDF-to-JPG images, PDF-to-text files, image-to-PDF conversions, text, Markdown, CSV, and JSON PDF exports, invoices, receipts, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free browser exports.",
+    description: "Create image compression, resizing, cropping, rotation, watermarking, transparent signature PNGs, static QR codes, WiFi QR signs, contact QR codes, PDF-to-JPG images, PDF-to-text files, image-to-PDF conversions, text, Markdown, CSV, and JSON PDF exports, invoices, receipts, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free browser exports.",
     html: `
       <section class="shell hero">
         <div>
           <h1>Make useful PDF, image, and QR files in under a minute.</h1>
-          <p>Free browser-based generators for image compression, resizing, cropping, rotation, watermarking, QR codes, WiFi QR signs, contact QR codes, PDF-to-JPG images, PDF-to-text extraction, image format conversion, no-upload PDF edits, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
+          <p>Free browser-based generators for image compression, resizing, cropping, rotation, watermarking, transparent signature PNGs, QR codes, WiFi QR signs, contact QR codes, PDF-to-JPG images, PDF-to-text extraction, image format conversion, no-upload PDF edits, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>59</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>60</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>88</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>89</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -1982,6 +2015,7 @@ const GUIDE_HINTS_FOR_LINKS = {
   "crop-image": ["crop image", "square crop", "profile photo"],
   "rotate-image": ["rotate image", "flip image", "sideways photo"],
   "watermark-image": ["watermark image", "text watermark", "sample photo"],
+  "signature-png": ["signature PNG", "transparent signature", "draw signature"],
   "qr-code": ["QR code", "static QR", "no signup"],
   "wifi-qr-code": ["WiFi QR", "guest WiFi", "printable sign"],
   "vcard-qr-code": ["contact QR", "vCard QR", "business card"],
@@ -2111,7 +2145,7 @@ function freePdfToolsHtml() {
     {
       title: "No-upload conversion tools",
       text: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -2176,7 +2210,7 @@ function pdfToolFinderHtml() {
         <td>${escapeHtml(row.why)}</td>
       </tr>`;
   }).join("\n");
-  const imageTools = ["compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "qr-code", "wifi-qr-code", "vcard-qr-code"];
+  const imageTools = ["compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "qr-code", "wifi-qr-code", "vcard-qr-code"];
   const pdfEditTools = ["merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf"];
   const textDataTools = ["text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"];
   const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"];
@@ -2274,6 +2308,7 @@ function directorySubmissionHtml() {
     "crop-image",
     "rotate-image",
     "watermark-image",
+    "signature-png",
     "qr-code",
     "wifi-qr-code",
     "vcard-qr-code",
@@ -2387,7 +2422,7 @@ function landingPageHtml(page) {
 }
 
 function softwareSchema(tool) {
-  const imageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/pdf-to-images"]);
+  const imageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/signature-png", "tools/pdf-to-images"]);
   const textToolPaths = new Set(["tools/pdf-to-text"]);
   const qrToolPaths = new Set(["tools/qr-code", "tools/wifi-qr-code", "tools/vcard-qr-code"]);
   const isImageTool = imageToolPaths.has(tool.path);
@@ -2475,7 +2510,7 @@ function landingPageSchema(page, tool, related) {
 
 function toolDetails(tool) {
   const title = tool.title.replace(/\s+PDF$/, "");
-  const outputImageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/pdf-to-images"]);
+  const outputImageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/signature-png", "tools/pdf-to-images"]);
   const outputTextToolPaths = new Set(["tools/pdf-to-text"]);
   const exportsImage = outputImageToolPaths.has(tool.path);
   const exportsText = outputTextToolPaths.has(tool.path);
@@ -2971,6 +3006,20 @@ function toolDetails(tool) {
         { q: "Does it upload my PDF?", a: "No. The PDF is read locally in the browser for ordinary text extraction." },
         { q: "Does it OCR scanned PDFs?", a: "No. It extracts selectable embedded text only. Image-only scans need OCR." },
         { q: "What file do I download?", a: "The export is a plain TXT file with page headings unless you choose plain text layout." },
+      ],
+    },
+    "signature-png": {
+      privacy: "The signature drawing and typed fallback are rendered in your browser and are not uploaded by the generator.",
+      limit: "The free version downloads one PNG signature image at a time and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Document draft", text: "Create a transparent signature image for proposals, forms, PDF annotations, or internal drafts." },
+        { title: "Typed fallback", text: "Use the typed signature option when a drawn signature is not needed for the document." },
+        { title: "Private local image", text: "Avoid sending the signature image to an online design or conversion service." },
+      ],
+      faq: [
+        { q: "Is the signature uploaded?", a: "No. The signature pad and PNG export run locally in your browser for ordinary use." },
+        { q: "Is this an e-signature platform?", a: "No. It creates a visual PNG image only and does not verify identity, collect consent, or manage signing workflows." },
+        { q: "Can I get a transparent background?", a: "Yes. Choose Transparent PNG so the signature can sit over a document or image background." },
       ],
     },
     "merge-pdf": {

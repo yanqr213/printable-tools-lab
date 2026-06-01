@@ -1,6 +1,6 @@
 # PrintableTools Lab Operations
 
-This file keeps the project pointed at the current model: free ad-supported browser PDF, image, and QR tools first. Paid features are deferred until the free product has traffic and usage data.
+This file keeps the project pointed at the current model: free ad-supported browser PDF, image, QR, and signature tools first. Paid features are deferred until the free product has traffic and usage data.
 
 ## Business Model
 
@@ -350,11 +350,12 @@ Create one image or short post per item. Show the printable use case and never p
 60. Markdown to PDF converter for README notes and outlines.
 61. CSV to PDF table for inventory rows, rosters, and price sheets.
 62. JSON to PDF formatter for reviewed API samples and config notes.
-63. Free receipt generator for service payments and deposits.
-64. Weekly timesheet PDF for freelance hours.
-65. Certificate generator for classrooms and events.
-66. Printable to-do list for errands, study, and event prep.
-67. Free printable business card sheet for local services.
+63. Signature PNG generator with transparent export.
+64. Free receipt generator for service payments and deposits.
+65. Weekly timesheet PDF for freelance hours.
+66. Certificate generator for classrooms and events.
+67. Printable to-do list for errands, study, and event prep.
+68. Free printable business card sheet for local services.
 68. Business card PDF before ordering professional prints.
 69. Address label sheet for small mailing batches.
 70. Badge labels for events, workshops, and classrooms.
@@ -412,6 +413,7 @@ Current Search Console checkpoint:
 - `2026-06-01`: expanded to 57 tools, 86 guides, and 45 high-intent landing pages by adding a local Compress Image to KB workflow and a 100KB-focused landing page. This targets urgent upload-limit searches where competitors often force uploads, accounts, or paid download friction.
 - `2026-06-01`: expanded to 58 tools, 87 guides, and 46 high-intent landing pages by adding a local PDF-to-JPG/PNG converter and no-upload landing page. This targets high-frequency file-conversion intent where users often want previews, uploads, thumbnails, or shareable images without sending documents to a server.
 - `2026-06-01`: expanded to 59 tools, 88 guides, and 47 high-intent landing pages by adding local PDF-to-text extraction and a no-upload landing page. This targets work, research, student, admin, and copy-paste intent while keeping the product honest about extracting embedded text only, not OCR.
+- `2026-06-01`: expanded to 60 tools, 89 guides, and 48 high-intent landing pages by adding a local Signature PNG generator with transparent export. This targets document, proposal, form, and PDF annotation workflows while explicitly avoiding claims of identity verification or regulated e-signature status.
 - `2026-06-01`: AdSense Management API was enabled on the Google Cloud project through Service Usage API. A service-account probe to `adsense.googleapis.com/v2/accounts` returned no AdSense accounts, so the service account is not currently an AdSense account user. The official AdSense ad-unit creation API is also a restricted method, so publisher/ad-slot creation cannot be completed silently from the current service-account credentials.
 - `2026-06-01`: GitHub Pages discovery directory was verified as its own Search Console URL-prefix property and its sitemap was submitted through the Search Console API. This creates a second crawlable discovery surface that still points back to the same main site.
 - `2026-06-01`: added `npm.cmd run operate` as the unattended operating loop. It rebuilds, verifies, submits sitemaps, checks directories, probes Cloudflare/AdSense readiness, and smoke-tests every tool while recording unavoidable account-level blockers.

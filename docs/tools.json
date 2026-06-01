@@ -4,7 +4,7 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-06-01T13:18:46.773Z",
+  "generatedAt": "2026-06-01T13:54:26.878Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -30,6 +30,11 @@
       "title": "Extract Text From PDF Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/extract-text-from-pdf-no-upload/",
       "intent": "PDF to text, extract text from PDF, no upload"
+    },
+    {
+      "title": "Signature PNG Generator",
+      "url": "https://printable-tools-lab.pages.dev/signature-png-generator/",
+      "intent": "signature PNG, transparent signature, draw signature online"
     },
     {
       "title": "Compress Image Without Uploading",
@@ -297,6 +302,11 @@
       "title": "Watermark Image Online",
       "description": "Add a text watermark to JPG, PNG, or WebP images locally for drafts, samples, marketplace photos, and social posts without uploading files.",
       "url": "https://printable-tools-lab.pages.dev/tools/watermark-image/"
+    },
+    {
+      "title": "Signature PNG Generator",
+      "description": "Draw or type a signature and download a transparent PNG locally in your browser without uploading anything.",
+      "url": "https://printable-tools-lab.pages.dev/tools/signature-png/"
     },
     {
       "title": "Free QR Code Generator",

@@ -87,6 +87,7 @@ const manifest = {
     { name: "Image to PDF", short_name: "Image PDF", url: "/tools/image-to-pdf/" },
     { name: "PDF to JPG", short_name: "PDF JPG", url: "/tools/pdf-to-images/" },
     { name: "PDF to Text", short_name: "PDF Text", url: "/tools/pdf-to-text/" },
+    { name: "Signature PNG", short_name: "Signature", url: "/tools/signature-png/" },
     { name: "Invoice generator", short_name: "Invoice", url: "/tools/invoice-generator/" },
   ],
 };
@@ -311,6 +312,7 @@ const distribution = [
   `- Crop image without upload page: ${siteUrl("crop-image-no-upload")}`,
   `- Rotate image without upload page: ${siteUrl("rotate-image-no-upload")}`,
   `- Watermark image without upload page: ${siteUrl("watermark-image-no-upload")}`,
+  `- Signature PNG generator page: ${siteUrl("signature-png-generator")}`,
   `- QR code generator without signup page: ${siteUrl("free-qr-code-generator-no-signup")}`,
   `- WiFi QR code generator page: ${siteUrl("wifi-qr-code-generator")}`,
   `- Contact QR code generator page: ${siteUrl("contact-qr-code-generator")}`,
@@ -380,7 +382,7 @@ function categoryForTool(toolPath) {
   if (["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt", "receipt-generator", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"].includes(slug)) return "Business paperwork";
   if (["resume-builder", "cover-letter", "resignation-letter"].includes(slug)) return "Career documents";
   if (["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"].includes(slug)) return "Planning";
-  if (["image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf", "sign-in-sheet", "graph-paper", "packing-list", "todo-list"].includes(slug)) return "Everyday file utilities";
+  if (["image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf", "sign-in-sheet", "graph-paper", "packing-list", "todo-list"].includes(slug)) return "Everyday file utilities";
   if (["certificate-generator"].includes(slug)) return "Events and awards";
   return "Education and family printables";
 }
