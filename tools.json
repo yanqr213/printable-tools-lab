@@ -1,8 +1,8 @@
 {
   "name": "PrintableTools Lab",
-  "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T16:36:55.722Z",
+  "generatedAt": "2026-06-01T17:05:57.791Z",
   "tools": [
     {
       "title": "Name Tracing Worksheet Generator",
@@ -230,6 +230,12 @@
       "title": "Convert Image Format",
       "url": "https://printable-tools-lab.pages.dev/tools/convert-image/",
       "description": "Convert JPG, PNG, and WebP images locally in your browser without uploading the file.",
+      "category": "Everyday file utilities"
+    },
+    {
+      "title": "Remove Background Online",
+      "url": "https://printable-tools-lab.pages.dev/tools/remove-background/",
+      "description": "Remove a solid or near-solid image background locally and download a transparent PNG without uploading the file.",
       "category": "Everyday file utilities"
     },
     {
@@ -739,6 +745,11 @@
       "title": "Convert image format without uploading",
       "url": "https://printable-tools-lab.pages.dev/guides/convert-image-format-without-uploading/",
       "description": "Convert JPG, PNG, and WebP files locally when a website requires a different image format."
+    },
+    {
+      "title": "Remove background without uploading",
+      "url": "https://printable-tools-lab.pages.dev/guides/remove-background-without-uploading/",
+      "description": "Create a transparent PNG from a white, solid, or near-solid background image locally in your browser."
     },
     {
       "title": "Merge PDF without uploading",

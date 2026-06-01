@@ -343,10 +343,10 @@ function evaluateGates(local, live, searchConsole, discovery) {
   const inspected = Array.isArray(searchConsole.inspected) ? searchConsole.inspected : [];
   const indexed = inspected.filter((item) => item.verdict === "PASS").length;
   const unknown = inspected.filter((item) => /unknown/i.test(item.coverageState || "")).length;
-  const productReady = local.toolCount >= 64
-    && local.guideCount >= 93
-    && local.landingPageCount >= 52
-    && local.indexableRoutes >= 219
+  const productReady = local.toolCount >= 65
+    && local.guideCount >= 94
+    && local.landingPageCount >= 53
+    && local.indexableRoutes >= 222
     && local.sitemapLocCount >= local.indexableRoutes
     && Object.values(local.discoveryAssets).every(Boolean)
     && live.checks["/"]?.ok
@@ -379,10 +379,10 @@ function evaluateGates(local, live, searchConsole, discovery) {
 
 function missingProductReasons(local, live) {
   const reasons = [];
-  if (local.toolCount < 64) reasons.push(`Only ${local.toolCount} tools found; target is 64 or more.`);
-  if (local.guideCount < 93) reasons.push(`Only ${local.guideCount} guides found; target is 93 or more.`);
-  if (local.landingPageCount < 52) reasons.push(`Only ${local.landingPageCount} high-intent landing pages found; target is 52 or more.`);
-  if (local.indexableRoutes < 219) reasons.push(`Only ${local.indexableRoutes} indexable routes found; target is 219 or more.`);
+  if (local.toolCount < 65) reasons.push(`Only ${local.toolCount} tools found; target is 65 or more.`);
+  if (local.guideCount < 94) reasons.push(`Only ${local.guideCount} guides found; target is 94 or more.`);
+  if (local.landingPageCount < 53) reasons.push(`Only ${local.landingPageCount} high-intent landing pages found; target is 53 or more.`);
+  if (local.indexableRoutes < 222) reasons.push(`Only ${local.indexableRoutes} indexable routes found; target is 222 or more.`);
   if (local.sitemapLocCount < local.indexableRoutes) reasons.push("Sitemap has fewer URLs than the indexable route list.");
   for (const [name, ok] of Object.entries(local.discoveryAssets)) {
     if (!ok) reasons.push(`Missing discovery asset: ${name}.`);

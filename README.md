@@ -1,10 +1,10 @@
 # PrintableTools Lab
 
-Zero-cost validation build for a free browser ATS resume checker, PDF compression, image, QR, passport photo, and signature utility site.
+Zero-cost validation build for a free browser ATS resume checker, PDF compression, image background remover, QR, passport photo, and signature utility site.
 
 Live site: https://printable-tools-lab.pages.dev/
 
-PrintableTools Lab is a no-signup utility site for practical browser files: check resume text against job descriptions, compress PDFs, make passport-style photos, compress images, resize images, convert JPG/PNG/WebP formats, create transparent signature PNGs, create static QR codes, WiFi QR signs, contact QR codes, convert PDF pages to JPG/PNG, extract PDF text, convert selectable PDF text to Word DOCX, merge PDF, split PDF, rotate PDF pages, remove PDF pages, reorder PDF pages, watermark PDFs, stamp PDFs, add typed signature blocks, add page numbers, image-to-PDF conversion, multi-image PDFs, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, monthly calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
+PrintableTools Lab is a no-signup utility site for practical browser files: check resume text against job descriptions, compress PDFs, make passport-style photos, compress images, resize images, convert JPG/PNG/WebP formats, remove simple image backgrounds into transparent PNGs, create transparent signature PNGs, create static QR codes, WiFi QR signs, contact QR codes, convert PDF pages to JPG/PNG, extract PDF text, convert selectable PDF text to Word DOCX, merge PDF, split PDF, rotate PDF pages, remove PDF pages, reorder PDF pages, watermark PDFs, stamp PDFs, add typed signature blocks, add page numbers, image-to-PDF conversion, multi-image PDFs, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, monthly calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
 
 ## Free PDF tool directory
 
@@ -16,6 +16,7 @@ PrintableTools Lab is a no-signup utility site for practical browser files: chec
 - [Compress Image Online](https://printable-tools-lab.pages.dev/tools/compress-image/)
 - [Resize Image Online](https://printable-tools-lab.pages.dev/tools/resize-image/)
 - [Convert Image Format](https://printable-tools-lab.pages.dev/tools/convert-image/)
+- [Remove Background Online](https://printable-tools-lab.pages.dev/tools/remove-background/)
 - [Signature PNG Generator](https://printable-tools-lab.pages.dev/tools/signature-png/)
 - [Passport Photo Maker](https://printable-tools-lab.pages.dev/tools/passport-photo/)
 - [Free QR Code Generator](https://printable-tools-lab.pages.dev/tools/qr-code/)
@@ -59,13 +60,14 @@ PrintableTools Lab is a no-signup utility site for practical browser files: chec
 ## What is included
 
 - Static website with optional Cloudflare Pages Function for the AI idea helper.
-- Sixty-four browser-side generators, PDF utilities, image utilities, QR utilities, signature utilities, passport photo utilities, career utilities, and text-data converters:
+- Sixty-five browser-side generators, PDF utilities, image utilities, QR utilities, signature utilities, passport photo utilities, career utilities, and text-data converters:
   - ATS Resume Checker
   - Compress PDF Online
   - Compress Image Online
   - Compress Image to KB
   - Resize Image Online
   - Convert Image Format
+  - Remove Background Online
   - Signature PNG Generator
   - Passport Photo Maker
   - Free QR Code Generator
@@ -126,12 +128,13 @@ PrintableTools Lab is a no-signup utility site for practical browser files: chec
 - Browser-side PDF-to-image rendering, selectable text extraction, and simple PDF-to-Word DOCX conversion via Apache-2.0 `pdfjs-dist`, with multi-page ZIP/DOCX export via MIT-licensed `fflate`.
 - Browser-side transparent signature PNG generation with a local drawing pad and typed fallback.
 - Browser-side passport photo sizing for US 2x2, UK/EU/Australia 35x45 mm, and Canada 50x70 mm exports, including a 4x6 print sheet option.
+- Browser-side background removal for white, solid, near-solid, and green-screen style image backgrounds, exporting transparent PNGs locally.
 - Browser-side ATS resume keyword, section, evidence, and readability checks from pasted text, with a local one-page PDF report export.
 - Browser-side static QR code generation via the MIT-licensed `qrcode-generator` library.
 - Daily free limit stored in `localStorage`.
 - Local validation events stored in `localStorage`.
 - Anonymous Cloudflare KV counters for live page views, PDF/file generations, downloads, limit hits, and AI idea applies.
-- 93 original guide pages and 52 high-intent landing pages plus keyword clusters for SEO and future display-ad review.
+- 94 original guide pages and 53 high-intent landing pages plus keyword clusters for SEO and future display-ad review.
 - Compliance pages: About, Privacy, Terms, AI & License Disclosure.
 - Static pre-rendered HTML for key routes, plus client-side enhancement.
 - `robots.txt`, canonical URLs, sitemap, and SoftwareApplication structured data for tool pages.
@@ -290,14 +293,15 @@ For step-by-step operations, see `OPERATIONS.md`.
 - PDF to Word was added because editable DOCX conversion is an urgent high-volume file task where many alternatives require uploads, queues, signup, or paid export. This version converts selectable text locally and clearly avoids promising OCR or pixel-perfect layout reconstruction.
 - PDF to Text was added because extracting selectable text from PDFs has broad work, student, research, admin, and copy-paste intent. The tool keeps files local and explicitly does not promise OCR for scanned image-only PDFs.
 - Signature PNG was added because visual signature-image searches connect to documents, proposals, forms, and PDF annotation workflows. The tool exports a transparent PNG locally and clearly avoids claiming identity verification or regulated e-signature status.
+- Remove Background was added because transparent PNG and white-background-removal searches are broad across sellers, creators, students, office users, logos, icons, product photos, and signature scans. The tool is intentionally color-based and honest about not being full AI person or hair segmentation.
 - Passport Photo Maker was added because passport, visa, and ID photo searches are urgent and often monetized through paid exports or uploads of private face photos. The tool only handles local sizing, cropping, and 4x6 print layout; it does not claim official acceptance or biometric validation.
 - Markdown to PDF, CSV to PDF, and JSON to PDF were added because practical file-conversion searches have broader work, student, developer, and admin intent than printable-only templates while preserving the same no-upload, no-account, one-domain validation strategy.
 - New tools stay on the same site during validation so Search Console data, sitemap history, GitHub discovery links, and external directory references concentrate on one property.
 
 ## Validation gates
 
-- Day 7: 64 tools export stable PDFs, DOCX files, image files, text files, passport photos, signature PNGs, or QR PDFs on desktop and mobile.
-- Day 14: 93 guide pages live; submit sitemap/site to Google Search Console.
+- Day 7: 65 tools export stable PDFs, DOCX files, image files, text files, transparent PNGs, passport photos, signature PNGs, or QR PDFs on desktop and mobile.
+- Day 14: 94 guide pages live; submit sitemap/site to Google Search Console.
 - Day 30: continue if any of these are true:
   - 100 file downloads.
   - 300 tool generations.

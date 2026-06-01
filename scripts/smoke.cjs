@@ -38,6 +38,7 @@ function delay(ms) {
     "/compress-image-no-upload/",
     "/resize-image-no-upload/",
     "/convert-image-format-no-upload/",
+    "/remove-background-no-upload/",
     "/crop-image-no-upload/",
     "/rotate-image-no-upload/",
     "/watermark-image-no-upload/",
@@ -109,6 +110,7 @@ function delay(ms) {
     "/tools/compress-image-to-kb/",
     "/tools/resize-image/",
     "/tools/convert-image/",
+    "/tools/remove-background/",
     "/tools/crop-image/",
     "/tools/rotate-image/",
     "/tools/watermark-image/",
@@ -171,6 +173,7 @@ function delay(ms) {
     "/guides/compress-image-without-uploading/",
     "/guides/resize-image-without-uploading/",
     "/guides/convert-image-format-without-uploading/",
+    "/guides/remove-background-without-uploading/",
     "/guides/multiple-images-to-pdf-without-uploading/",
     "/guides/merge-pdf-without-uploading/",
     "/guides/split-pdf-without-uploading/",
@@ -222,7 +225,7 @@ function delay(ms) {
   for (const phrase of ["No-upload conversion tools", "Free business PDF tools", "All free generators"]) {
     if (!freePdfText.includes(phrase)) throw new Error(`Free PDF tools page is missing ${phrase}`);
   }
-  for (const href of ["/tools/compress-pdf/", "/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/passport-photo/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/multi-image-pdf/", "/tools/pdf-to-images/", "/tools/pdf-to-text/", "/tools/pdf-to-word/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/text-to-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/barcode-labels/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
+  for (const href of ["/tools/compress-pdf/", "/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/remove-background/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/passport-photo/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/multi-image-pdf/", "/tools/pdf-to-images/", "/tools/pdf-to-text/", "/tools/pdf-to-word/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/text-to-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/barcode-labels/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
     const linkCount = await page.locator(`main a[href="${href}"]`).count();
     if (!linkCount) throw new Error(`Free PDF tools page is missing link ${href}`);
   }
@@ -232,7 +235,7 @@ function delay(ms) {
   for (const phrase of ["Which free PDF, image, or QR tool should I use?", "Compress vs resize vs convert", "Invoice vs receipt", "One image vs many images"]) {
     if (!finderText.includes(phrase)) throw new Error(`PDF tool finder page is missing ${phrase}`);
   }
-  for (const href of ["/tools/compress-pdf/", "/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/passport-photo/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/image-to-pdf/", "/tools/pdf-to-images/", "/tools/pdf-to-text/", "/tools/pdf-to-word/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/price-tag/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
+  for (const href of ["/tools/compress-pdf/", "/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/remove-background/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/passport-photo/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/image-to-pdf/", "/tools/pdf-to-images/", "/tools/pdf-to-text/", "/tools/pdf-to-word/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/price-tag/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
     const linkCount = await page.locator(`main a[href="${href}"]`).count();
     if (!linkCount) throw new Error(`PDF tool finder page is missing link ${href}`);
   }
@@ -247,7 +250,7 @@ function delay(ms) {
   const secondPagePdf = await samplePdf("Second document");
   const twoPagePdf = await samplePdf("Split source", 2);
 
-  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/ats-resume-checker/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/compress-pdf/", "/tools/pdf-to-images/", "/tools/pdf-to-text/", "/tools/pdf-to-word/", "/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/passport-photo/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/text-to-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
+  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/ats-resume-checker/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/compress-pdf/", "/tools/pdf-to-images/", "/tools/pdf-to-text/", "/tools/pdf-to-word/", "/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/remove-background/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/passport-photo/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/text-to-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
     await page.evaluate(() => localStorage.removeItem("ptl_daily"));
     if (route === "/tools/image-to-pdf/") {
@@ -288,7 +291,7 @@ function delay(ms) {
       });
       if (!hasRenderedImages) throw new Error("Multi-image PDF preview did not render selected files.");
     }
-    if (["/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/passport-photo/"].includes(route)) {
+    if (["/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/remove-background/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/passport-photo/"].includes(route)) {
       await page.setInputFiles("input[type=file]", {
         name: "photo.png",
         mimeType: "image/png",
@@ -299,6 +302,10 @@ function delay(ms) {
       }
       if (route === "/tools/convert-image/") {
         await page.selectOption("#format", "webp");
+      }
+      if (route === "/tools/remove-background/") {
+        await page.selectOption("#sample", "white");
+        await page.selectOption("#tolerance", "108");
       }
       if (route === "/tools/crop-image/") {
         await page.selectOption("#preset", "square");
@@ -347,7 +354,26 @@ function delay(ms) {
         }
         return counts.blue > 1000 && counts.red > 1000 && counts.green > 1000;
       });
-      if (route !== "/tools/watermark-image/" && route !== "/tools/passport-photo/" && !hasOriginalColors) throw new Error(`${route} preview did not render the selected image colors.`);
+      if (route !== "/tools/remove-background/" && route !== "/tools/watermark-image/" && route !== "/tools/passport-photo/" && !hasOriginalColors) throw new Error(`${route} preview did not render the selected image colors.`);
+      if (route === "/tools/remove-background/") {
+        const hasTransparentGrid = await page.evaluate(() => {
+          const canvas = document.querySelector("canvas.preview-canvas");
+          if (!canvas) return false;
+          const ctx = canvas.getContext("2d");
+          const data = ctx.getImageData(72, 220, canvas.width - 144, canvas.height - 500).data;
+          let grayGrid = 0;
+          let color = 0;
+          for (let i = 0; i < data.length; i += 4) {
+            const r = data[i];
+            const g = data[i + 1];
+            const b = data[i + 2];
+            if (Math.abs(r - g) < 8 && Math.abs(g - b) < 12 && r > 175 && r < 245) grayGrid += 1;
+            if (Math.max(r, g, b) - Math.min(r, g, b) > 40 && (r < 180 || g < 180 || b < 180)) color += 1;
+          }
+          return grayGrid > 2000 && color > 600;
+        });
+        if (!hasTransparentGrid) throw new Error("Background remover preview did not render transparent grid and foreground colors.");
+      }
       if (route === "/tools/passport-photo/") {
         const hasPassportGuide = await page.evaluate(() => {
           const canvas = document.querySelector("canvas.preview-canvas");
@@ -578,6 +604,7 @@ function delay(ms) {
       "/tools/compress-image-to-kb/": "Compress to KB",
       "/tools/resize-image/": "Resize image",
       "/tools/convert-image/": "Convert image",
+      "/tools/remove-background/": "Download PNG",
       "/tools/crop-image/": "Crop image",
       "/tools/rotate-image/": "Rotate image",
       "/tools/watermark-image/": "Watermark image",
@@ -606,6 +633,7 @@ function delay(ms) {
       const exported = fs.readFileSync(filePath);
       if (exported.length < 100) throw new Error(`Image export on ${route} is unexpectedly small.`);
       if (route === "/tools/signature-png/" && !/signature\.png$/.test(name)) throw new Error(`Expected signature PNG filename on ${route}, got ${name}`);
+      if (route === "/tools/remove-background/" && !/transparent\.png$/.test(name)) throw new Error(`Expected transparent PNG filename on ${route}, got ${name}`);
       if (route === "/tools/passport-photo/" && !/us-2x2\.jpg$/.test(name)) throw new Error(`Expected passport JPG filename on ${route}, got ${name}`);
       continue;
     }

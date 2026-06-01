@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T16:36:55.722Z",
+  "generatedAt": "2026-06-01T17:05:57.791Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -22,6 +22,7 @@
     "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
     "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
     "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
+    "https://printable-tools-lab.pages.dev/remove-background-no-upload/",
     "https://printable-tools-lab.pages.dev/crop-image-no-upload/",
     "https://printable-tools-lab.pages.dev/rotate-image-no-upload/",
     "https://printable-tools-lab.pages.dev/watermark-image-no-upload/",
@@ -72,6 +73,7 @@
     "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/",
     "https://printable-tools-lab.pages.dev/tools/resize-image/",
     "https://printable-tools-lab.pages.dev/tools/convert-image/",
+    "https://printable-tools-lab.pages.dev/tools/remove-background/",
     "https://printable-tools-lab.pages.dev/tools/crop-image/",
     "https://printable-tools-lab.pages.dev/tools/rotate-image/",
     "https://printable-tools-lab.pages.dev/tools/watermark-image/",
@@ -183,6 +185,12 @@
       "url": "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
       "intent": "convert image format, JPG to PNG, PNG to WebP, no upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/convert-image/"
+    },
+    {
+      "title": "Remove Background Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/remove-background-no-upload/",
+      "intent": "remove background, transparent PNG, white background remover, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/remove-background/"
     },
     {
       "title": "Crop Image Without Uploading",

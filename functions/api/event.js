@@ -58,6 +58,7 @@ const ALLOWED_TOOLS = new Set([
   "compress-image-to-kb",
   "resize-image",
   "convert-image",
+  "remove-background",
   "crop-image",
   "rotate-image",
   "watermark-image",

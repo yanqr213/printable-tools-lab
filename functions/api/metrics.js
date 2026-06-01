@@ -30,6 +30,7 @@ const TOOLS = [
   "compress-image-to-kb",
   "resize-image",
   "convert-image",
+  "remove-background",
   "crop-image",
   "rotate-image",
   "watermark-image",

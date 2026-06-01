@@ -790,6 +790,35 @@
       draw: drawImageConverter,
       exportFile: exportConvertedImage,
     },
+    "remove-background": {
+      id: "remove-background",
+      icon: "BG",
+      title: "Remove Background Online",
+      shortTitle: "Remove background",
+      description: "Remove a solid or near-solid image background locally and download a transparent PNG without uploading the file.",
+      keywords: ["remove background", "transparent PNG", "white background remover", "no upload"],
+      ai: false,
+      acceptsImages: true,
+      maxImages: 1,
+      outputKind: "image",
+      defaultValues: {
+        title: "Background Remover",
+        images: "",
+        sample: "auto-corners",
+        tolerance: "52",
+        softness: "22",
+        maxWidth: "original",
+      },
+      fields: [
+        { id: "images", label: "Image", type: "file", accept: "image/png,image/jpeg,image/webp", multiple: false, help: "Select one image. It stays in your browser and is not uploaded." },
+        { id: "sample", label: "Background sample", type: "select", options: [["auto-corners", "Auto from corners"], ["top-left", "Top left"], ["top-right", "Top right"], ["bottom-left", "Bottom left"], ["bottom-right", "Bottom right"], ["white", "White"], ["black", "Black"], ["green", "Green screen"], ["blue", "Blue screen"]] },
+        { id: "tolerance", label: "Color tolerance", type: "select", options: [["28", "Tight"], ["52", "Balanced"], ["78", "Strong"], ["108", "Very strong"]] },
+        { id: "softness", label: "Edge softness", type: "select", options: [["8", "Crisp"], ["22", "Smooth"], ["40", "Soft"]] },
+        { id: "maxWidth", label: "Maximum width", type: "select", options: [["1200", "1200 px"], ["1800", "1800 px"], ["2400", "2400 px"], ["original", "Keep original width"]] },
+      ],
+      draw: drawBackgroundRemover,
+      exportFile: exportBackgroundRemovedImage,
+    },
     "crop-image": {
       id: "crop-image",
       icon: "CRP",
@@ -1790,6 +1819,8 @@
         ["Resize image without uploading", "/resize-image-no-upload/"],
         ["Convert image format", "/tools/convert-image/"],
         ["Convert image format without uploading", "/convert-image-format-no-upload/"],
+        ["Remove background", "/tools/remove-background/"],
+        ["Transparent PNG maker", "/remove-background-no-upload/"],
         ["Crop image", "/tools/crop-image/"],
         ["Crop image without uploading", "/crop-image-no-upload/"],
         ["Rotate image", "/tools/rotate-image/"],
@@ -1895,7 +1926,7 @@
     {
       title: "No-upload conversion tools",
       description: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "remove-background", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -2079,6 +2110,21 @@
         ["Review the result", "After conversion, check that transparency, background color, and image clarity still match the destination requirement."],
       ],
       related: ["compress-image", "resize-image", "multi-image-pdf"],
+    },
+    {
+      slug: "remove-background-no-upload",
+      title: "Remove Background Without Uploading",
+      headline: "Remove background without uploading",
+      description: "Remove a white, solid, green-screen, or near-solid image background locally and download a transparent PNG.",
+      lead: "Choose an image, let the browser sample the background color, adjust tolerance, and download a transparent PNG without sending the file to a server.",
+      tool: "remove-background",
+      intent: "remove background, transparent PNG, white background remover, no upload",
+      sections: [
+        ["Why this is high intent", "Background removal searches often come from sellers, creators, students, and office users who need a cleaner product image, logo, signature scan, or graphic immediately."],
+        ["What this free version does", "The tool removes solid or near-solid backgrounds by color matching in the browser. It works well for white backgrounds, flat product shots, logos, icons, signatures, and green-screen style images."],
+        ["Important limit", "This is not a full AI person or hair segmentation tool. Busy backgrounds, shadows, glass, and complex edges may need a dedicated editor."],
+      ],
+      related: ["compress-image", "convert-image", "signature-png"],
     },
     {
       slug: "crop-image-no-upload",
@@ -2744,6 +2790,11 @@
       need: "Convert JPG, PNG, or WebP",
       tool: "convert-image",
       why: "Best when a website rejects the current image type and you need a different format.",
+    },
+    {
+      need: "Remove a white or solid background from an image",
+      tool: "remove-background",
+      why: "Best for product photos, logos, signature scans, icons, and green-screen images that need a transparent PNG.",
     },
     {
       need: "Paste text and download a simple PDF",
@@ -3796,6 +3847,20 @@
       ],
     },
     {
+      slug: "remove-background-without-uploading",
+      title: "Remove background without uploading",
+      description: "Create a transparent PNG from a white, solid, or near-solid background image locally in your browser.",
+      tool: "remove-background",
+      content: [
+        ["h2", "When a local background remover helps"],
+        ["p", "A transparent PNG is useful for product listings, marketplace images, logos, signatures, icons, school projects, thumbnails, and documents where the original white or solid background looks messy."],
+        ["h2", "What this browser tool does"],
+        ["p", "It samples the background color and removes similar pixels locally. That keeps the image on your device and avoids a server upload for ordinary use."],
+        ["h2", "Know the limit"],
+        ["p", "This is a color-based remover, not full AI segmentation. Complex people, hair, shadows, glass, and busy backgrounds may need a dedicated editor or manual cleanup."],
+      ],
+    },
+    {
       slug: "text-to-pdf-converter-no-signup",
       title: "Text to PDF converter without signup",
       description: "Paste plain text and download a clean one-page PDF without installing an editor.",
@@ -4091,6 +4156,7 @@
     "compress-image-to-kb",
     "resize-image",
     "convert-image",
+    "remove-background",
     "crop-image",
     "rotate-image",
     "watermark-image",
@@ -4943,6 +5009,7 @@
     if (tool.id === "compress-image-to-kb") return "Compress to KB";
     if (tool.id === "resize-image") return "Resize image";
     if (tool.id === "convert-image") return "Convert image";
+    if (tool.id === "remove-background") return "Download PNG";
     if (tool.id === "crop-image") return "Crop image";
     if (tool.id === "rotate-image") return "Rotate image";
     if (tool.id === "watermark-image") return "Watermark image";
@@ -5783,7 +5850,7 @@ ${paragraphs.join("\n")}
       ["resume-builder", "ats-resume-checker", "cover-letter", "resignation-letter"],
       ["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"],
       ["name-tracing", "chore-chart", "reward-chart", "flashcards"],
-      ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
+      ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "compress-image", "resize-image", "convert-image", "remove-background", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
       ["certificate-generator", "sign-in-sheet", "todo-list", "flyer-maker", "coupon-maker"],
     ];
     const group = groups.find((items) => items.includes(currentId)) || toolOrder;
@@ -7253,6 +7320,27 @@ ${paragraphs.join("\n")}
     });
   }
 
+  function drawBackgroundRemover(ctx, paper, values) {
+    drawImageUtilityPreview(ctx, paper, values, {
+      toolId: "remove-background",
+      title: "Remove Background",
+      accent: "#0891b2",
+      empty: "Select an image to remove a simple background",
+      note: "Create a transparent PNG locally. Best for white, solid, and green-screen backgrounds.",
+      previewCanvas: (image) => renderBackgroundRemovedCanvas(image.image, values, { preview: true }),
+      statLines: (image) => {
+        const plan = backgroundRemovalPlan(image, values);
+        return [
+          `${image.width} x ${image.height} px original`,
+          `${plan.width} x ${plan.height} px transparent PNG`,
+          `${backgroundSampleLabel(values.sample)} sample`,
+          `${backgroundToleranceLabel(values.tolerance)} tolerance, ${backgroundSoftnessLabel(values.softness)} edge`,
+        ];
+      },
+      footer: "Background removed locally. Works best on solid backgrounds; complex images may need manual cleanup.",
+    });
+  }
+
   function drawImageCropper(ctx, paper, values) {
     drawImageUtilityPreview(ctx, paper, values, {
       toolId: "crop-image",
@@ -7503,6 +7591,13 @@ ${paragraphs.join("\n")}
     const canvas = renderImageToCanvas(image.image, image.width, image.height, "contain", background);
     const blob = canvasToImageBlob(canvas, values.format, values.quality);
     return { blob, filename: `${fileBaseName(image.name)}.${imageExtension(values.format)}` };
+  }
+
+  function exportBackgroundRemovedImage(values) {
+    const image = getSelectedImageOrThrow("remove-background");
+    const canvas = renderBackgroundRemovedCanvas(image.image, values);
+    const blob = canvasToImageBlob(canvas, "png", 1);
+    return { blob, filename: `${fileBaseName(image.name)}-transparent.png`, label: "Transparent PNG downloaded" };
   }
 
   function exportCroppedImage(values) {
@@ -7935,6 +8030,120 @@ ${paragraphs.join("\n")}
     const heightInput = Number(String(values.height || "").replace(/\D/g, "")) || 0;
     const height = heightInput ? clampNumber(heightInput, 1, 6000) : Math.max(1, Math.round(width * originalH / originalW));
     return { width, height };
+  }
+
+  function backgroundRemovalPlan(image, values) {
+    return imageTransformPlan(image, { maxWidth: values.maxWidth });
+  }
+
+  function renderBackgroundRemovedCanvas(image, values, options = {}) {
+    const source = {
+      image,
+      width: image.naturalWidth || image.width || 1,
+      height: image.naturalHeight || image.height || 1,
+    };
+    const plan = backgroundRemovalPlan(source, values);
+    const canvas = renderImageToCanvas(image, plan.width, plan.height, "contain", "transparent");
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const bg = backgroundSampleColor(imageData, canvas.width, canvas.height, values.sample);
+    const tolerance = clampNumber(Number(values.tolerance) || 52, 8, 180);
+    const softness = clampNumber(Number(values.softness) || 22, 1, 90);
+    const data = imageData.data;
+    for (let i = 0; i < data.length; i += 4) {
+      const alpha = data[i + 3];
+      if (!alpha) continue;
+      const distance = backgroundColorDistance(data[i], data[i + 1], data[i + 2], bg.r, bg.g, bg.b);
+      if (distance <= tolerance) {
+        data[i + 3] = 0;
+      } else if (distance <= tolerance + softness) {
+        const t = (distance - tolerance) / softness;
+        const smooth = t * t * (3 - 2 * t);
+        data[i + 3] = Math.round(alpha * smooth);
+      }
+    }
+    ctx.putImageData(imageData, 0, 0);
+    return options.preview ? transparentPreviewCanvas(canvas) : canvas;
+  }
+
+  function transparentPreviewCanvas(canvas) {
+    const preview = document.createElement("canvas");
+    preview.width = canvas.width;
+    preview.height = canvas.height;
+    const ctx = preview.getContext("2d");
+    drawTransparencyGrid(ctx, 0, 0, preview.width, preview.height, Math.max(12, Math.round(Math.min(preview.width, preview.height) / 22)));
+    ctx.drawImage(canvas, 0, 0);
+    return preview;
+  }
+
+  function backgroundSampleColor(imageData, width, height, sample) {
+    if (sample === "white") return { r: 255, g: 255, b: 255 };
+    if (sample === "black") return { r: 0, g: 0, b: 0 };
+    if (sample === "green") return { r: 0, g: 177, b: 64 };
+    if (sample === "blue") return { r: 0, g: 116, b: 217 };
+    const size = Math.max(3, Math.min(18, Math.round(Math.min(width, height) * 0.04)));
+    const rects = {
+      "top-left": [[0, 0]],
+      "top-right": [[width - size, 0]],
+      "bottom-left": [[0, height - size]],
+      "bottom-right": [[width - size, height - size]],
+      "auto-corners": [[0, 0], [width - size, 0], [0, height - size], [width - size, height - size]],
+    }[sample] || [[0, 0], [width - size, 0], [0, height - size], [width - size, height - size]];
+    let r = 0;
+    let g = 0;
+    let b = 0;
+    let total = 0;
+    const data = imageData.data;
+    rects.forEach(([startX, startY]) => {
+      const safeX = clampNumber(startX, 0, Math.max(0, width - size));
+      const safeY = clampNumber(startY, 0, Math.max(0, height - size));
+      for (let y = safeY; y < safeY + size && y < height; y += 1) {
+        for (let x = safeX; x < safeX + size && x < width; x += 1) {
+          const index = (y * width + x) * 4;
+          const alpha = data[index + 3] / 255;
+          if (alpha <= 0.02) continue;
+          r += data[index] * alpha;
+          g += data[index + 1] * alpha;
+          b += data[index + 2] * alpha;
+          total += alpha;
+        }
+      }
+    });
+    if (!total) return { r: 255, g: 255, b: 255 };
+    return { r: r / total, g: g / total, b: b / total };
+  }
+
+  function backgroundColorDistance(r1, g1, b1, r2, g2, b2) {
+    const redMean = (r1 + r2) / 2;
+    const red = r1 - r2;
+    const green = g1 - g2;
+    const blue = b1 - b2;
+    return Math.sqrt((2 + redMean / 256) * red * red + 4 * green * green + (2 + (255 - redMean) / 256) * blue * blue) / 2;
+  }
+
+  function backgroundSampleLabel(value) {
+    if (value === "top-left") return "top-left corner";
+    if (value === "top-right") return "top-right corner";
+    if (value === "bottom-left") return "bottom-left corner";
+    if (value === "bottom-right") return "bottom-right corner";
+    if (value === "white") return "white";
+    if (value === "black") return "black";
+    if (value === "green") return "green-screen";
+    if (value === "blue") return "blue-screen";
+    return "auto-corner";
+  }
+
+  function backgroundToleranceLabel(value) {
+    if (Number(value) <= 30) return "tight";
+    if (Number(value) >= 100) return "very strong";
+    if (Number(value) >= 75) return "strong";
+    return "balanced";
+  }
+
+  function backgroundSoftnessLabel(value) {
+    if (Number(value) <= 10) return "crisp";
+    if (Number(value) >= 35) return "soft";
+    return "smooth";
   }
 
   function cropSourceRect(image, values) {

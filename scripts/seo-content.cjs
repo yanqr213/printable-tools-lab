@@ -2,7 +2,7 @@ const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pa
 
 const SITE_SUMMARY = {
   name: "PrintableTools Lab",
-  description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   audience: "Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, household planners, cafe operators, booth exhibitors, rental hosts, and office admins.",
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
@@ -18,6 +18,7 @@ const HIGH_INTENT_TOOL_PATHS = [
   "tools/compress-image-to-kb",
   "tools/resize-image",
   "tools/convert-image",
+  "tools/remove-background",
   "tools/crop-image",
   "tools/rotate-image",
   "tools/watermark-image",
@@ -108,6 +109,11 @@ const TOOL_FINDER_ROWS = [
     need: "I need to convert JPG, PNG, or WebP",
     toolPath: "tools/convert-image",
     why: "Best for changing the image format without sending the file to an online converter server.",
+  },
+  {
+    need: "I need to remove a white or solid background from an image",
+    toolPath: "tools/remove-background",
+    why: "Best for product photos, logos, signature scans, icons, and green-screen images that need a transparent PNG.",
   },
   {
     need: "I need to crop an image for a profile, listing, or banner",
@@ -481,6 +487,21 @@ const landingPages = [
       ["Review the result", "After conversion, check that transparency, background color, and image clarity still match the destination requirement."],
     ],
     relatedTools: ["tools/compress-image", "tools/resize-image", "tools/multi-image-pdf"],
+  },
+  {
+    path: "remove-background-no-upload",
+    title: "Remove Background Without Uploading",
+    description: "Remove a white, solid, green-screen, or near-solid image background locally and download a transparent PNG.",
+    headline: "Remove background without uploading",
+    lead: "Choose an image, let the browser sample the background color, adjust tolerance, and download a transparent PNG without sending the file to a server.",
+    primaryTool: "tools/remove-background",
+    intent: "remove background, transparent PNG, white background remover, no upload",
+    sections: [
+      ["Why this is high intent", "Background removal searches often come from sellers, creators, students, and office users who need a cleaner product image, logo, signature scan, or graphic immediately."],
+      ["What this free version does", "The tool removes solid or near-solid backgrounds by color matching in the browser. It works well for white backgrounds, flat product shots, logos, icons, signatures, and green-screen style images."],
+      ["Important limit", "This is not a full AI person or hair segmentation tool. Busy backgrounds, shadows, glass, and complex edges may need a dedicated editor."],
+    ],
+    relatedTools: ["tools/compress-image", "tools/convert-image", "tools/signature-png"],
   },
   {
     path: "crop-image-no-upload",
@@ -1430,6 +1451,15 @@ const tools = [
     ],
   },
   {
+    path: "tools/remove-background",
+    title: "Remove Background Online",
+    description: "Remove a solid or near-solid image background locally and download a transparent PNG without uploading the file.",
+    body: [
+      "Select one JPG, PNG, or WebP image, choose a background sample, adjust tolerance, and download a transparent PNG.",
+      "Background-removal searches are broad and urgent for product photos, logos, signatures, icons, and thumbnails. This local version is honest about its scope: it is a color-based remover for simple backgrounds, not full AI segmentation.",
+    ],
+  },
+  {
     path: "tools/crop-image",
     title: "Crop Image Online",
     description: "Crop JPG, PNG, or WebP images locally for square avatars, wide banners, product photos, and profile uploads without uploading files.",
@@ -1736,6 +1766,7 @@ const guides = [
   ["guides/compress-image-to-100kb-without-uploading", "Compress image to 100KB without uploading", "Reduce a JPG, PNG, or WebP image toward a 100KB upload limit locally in the browser.", "Many forms, portals, job applications, exam sites, and profile pages reject images above a fixed KB size. A target-size compressor helps create a smaller copy without uploading the source image."],
   ["guides/resize-image-without-uploading", "Resize image without uploading", "Change image width, height, or preset size locally in the browser.", "Image resizing is useful for profile photos, thumbnails, marketplace listings, ID forms, and school portals that require exact dimensions."],
   ["guides/convert-image-format-without-uploading", "Convert image format without uploading", "Convert JPG, PNG, and WebP files locally when a website requires a different image format.", "A format converter solves a common mismatch: the image looks fine, but the receiving site accepts only JPG, PNG, or WebP."],
+  ["guides/remove-background-without-uploading", "Remove background without uploading", "Create a transparent PNG from a white, solid, or near-solid background image locally in your browser.", "A transparent PNG is useful for product listings, logos, signature scans, icons, school projects, thumbnails, and documents where the original white or solid background looks messy."],
   ["guides/merge-pdf-without-uploading", "Merge PDF without uploading", "Combine several PDF files into one PDF locally in your browser.", "People often need one combined PDF for applications, school packets, receipts, or client documents. A browser-side merge avoids sending private files to a converter server."],
   ["guides/split-pdf-without-uploading", "Split PDF without uploading", "Extract selected pages from a PDF without uploading the document.", "PDF splitting is useful when a larger packet contains only a few pages you need to send. Page ranges should be checked carefully before sharing."],
   ["guides/add-page-numbers-to-pdf", "Add page numbers to PDF", "Add simple visible page numbers to an existing PDF in the browser.", "Page numbers help reviewers refer to pages in packets, drafts, reports, and handouts. A local tool can add simple numbering without a full PDF editor."],
@@ -1823,6 +1854,8 @@ const keywordClusters = [
       ["Resize image without uploading", "resize-image-no-upload"],
       ["Convert image format", "tools/convert-image"],
       ["Convert image format without uploading", "convert-image-format-no-upload"],
+      ["Remove background", "tools/remove-background"],
+      ["Transparent PNG maker", "remove-background-no-upload"],
       ["Crop image", "tools/crop-image"],
       ["Crop image without uploading", "crop-image-no-upload"],
       ["Rotate image", "tools/rotate-image"],
@@ -1948,9 +1981,9 @@ const pages = [
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>64</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>65</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>93</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>94</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -2006,6 +2039,7 @@ const pages = [
           <li><a href="/tools/compress-image-to-kb/">Compress Image to KB</a></li>
           <li><a href="/tools/resize-image/">Resize Image Online</a></li>
           <li><a href="/tools/convert-image/">Convert Image Format</a></li>
+          <li><a href="/tools/remove-background/">Remove Background Online</a></li>
           <li><a href="/tools/crop-image/">Crop Image Online</a></li>
           <li><a href="/tools/rotate-image/">Rotate Image Online</a></li>
           <li><a href="/tools/watermark-image/">Watermark Image Online</a></li>
@@ -2149,6 +2183,7 @@ const GUIDE_HINTS_FOR_LINKS = {
   "compress-image-to-kb": ["compress image to KB", "100KB image"],
   "resize-image": ["resize image", "image resizer"],
   "convert-image": ["convert image", "JPG to PNG", "PNG to WebP"],
+  "remove-background": ["remove background", "transparent PNG", "white background"],
   "crop-image": ["crop image", "square crop", "profile photo"],
   "rotate-image": ["rotate image", "flip image", "sideways photo"],
   "watermark-image": ["watermark image", "text watermark", "sample photo"],
@@ -2283,7 +2318,7 @@ function freePdfToolsHtml() {
     {
       title: "No-upload conversion tools",
       text: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "remove-background", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -2348,7 +2383,7 @@ function pdfToolFinderHtml() {
         <td>${escapeHtml(row.why)}</td>
       </tr>`;
   }).join("\n");
-  const imageTools = ["compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "qr-code", "wifi-qr-code", "vcard-qr-code"];
+  const imageTools = ["compress-image", "compress-image-to-kb", "resize-image", "convert-image", "remove-background", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "qr-code", "wifi-qr-code", "vcard-qr-code"];
   const pdfEditTools = ["compress-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf"];
   const textDataTools = ["text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"];
   const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"];
@@ -2445,6 +2480,7 @@ function directorySubmissionHtml() {
     "compress-image-to-kb",
     "resize-image",
     "convert-image",
+    "remove-background",
     "crop-image",
     "rotate-image",
     "watermark-image",
@@ -2564,7 +2600,7 @@ function landingPageHtml(page) {
 }
 
 function softwareSchema(tool) {
-  const imageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/signature-png", "tools/passport-photo", "tools/pdf-to-images"]);
+  const imageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/remove-background", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/signature-png", "tools/passport-photo", "tools/pdf-to-images"]);
   const textToolPaths = new Set(["tools/pdf-to-text"]);
   const docxToolPaths = new Set(["tools/pdf-to-word"]);
   const compressedPdfToolPaths = new Set(["tools/compress-pdf"]);
@@ -2658,7 +2694,7 @@ function landingPageSchema(page, tool, related) {
 
 function toolDetails(tool) {
   const title = tool.title.replace(/\s+PDF$/, "");
-  const outputImageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/signature-png", "tools/passport-photo", "tools/pdf-to-images"]);
+  const outputImageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/remove-background", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/signature-png", "tools/passport-photo", "tools/pdf-to-images"]);
   const outputTextToolPaths = new Set(["tools/pdf-to-text"]);
   const outputDocxToolPaths = new Set(["tools/pdf-to-word"]);
   const exportsImage = outputImageToolPaths.has(tool.path);
@@ -3014,6 +3050,26 @@ function toolDetails(tool) {
         { q: "Can I convert WebP to JPG?", a: "Yes, when the browser can load the WebP file." },
         { q: "What happens to transparency in JPG?", a: "JPG does not support transparency, so choose a white or black background before export." },
         { q: "Are images uploaded?", a: "No. The format conversion runs in your browser." },
+      ],
+    },
+    "remove-background": {
+      steps: [
+        "Open the background remover and select one JPG, PNG, or WebP image.",
+        "Choose an automatic corner sample or a known background color.",
+        "Adjust tolerance and edge softness until the preview looks clean.",
+        "Download the transparent PNG and review it on the checkerboard preview before using it elsewhere.",
+      ],
+      privacy: "Selected image files are loaded into your browser and are not uploaded by the background remover.",
+      limit: "The free version removes simple solid or near-solid backgrounds from one image at a time and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Product or marketplace photo", text: "Remove a white or light product background when the object is clearly separated from the background color." },
+        { title: "Logo or icon cleanup", text: "Create a transparent PNG from a flat logo, icon, badge, or graphic with a solid background." },
+        { title: "Signature scan cleanup", text: "Turn a signature scan on white paper into a cleaner transparent PNG before placing it in a document." },
+      ],
+      faq: [
+        { q: "Is my image uploaded?", a: "No. The selected image is processed locally in your browser." },
+        { q: "Does it use AI?", a: "No. It uses local color matching to remove simple solid or near-solid backgrounds." },
+        { q: "Will it work on people or hair?", a: "Not reliably. Complex people, hair, shadows, glass, and busy backgrounds usually need a dedicated editor or manual cleanup." },
       ],
     },
     "crop-image": {
