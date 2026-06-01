@@ -9,6 +9,7 @@ const generatedAt = new Date();
 const generatedAtIso = generatedAt.toISOString();
 const lastmod = generatedAtIso.slice(0, 10);
 const campaignAssets = readCampaignAssets();
+const gistDiscovery = readGistDiscovery();
 
 function pageHtml(route) {
   const rendered = renderRoute(route);
@@ -186,6 +187,10 @@ const shareKitJson = {
     url: `${siteUrl(post.linkPath).replace(/\/$/, "")}?utm_source=${post.channel}&utm_medium=organic`,
   })),
   videoAssets: campaignAssets,
+  externalDiscovery: {
+    gist: gistDiscovery?.htmlUrl || "",
+    gistRaw: gistDiscovery?.rawUrl || "",
+  },
   rules: SHARE_KIT_RULES,
 };
 fs.writeFileSync(path.join(root, "share-kit.json"), `${JSON.stringify(shareKitJson, null, 2)}\n`);
@@ -215,6 +220,7 @@ const llms = [
   `- Machine-readable tool list: ${fileUrl("tools.json")}`,
   `- Discovery index: ${fileUrl("discovery.json")}`,
   `- Machine-readable share kit: ${fileUrl("share-kit.json")}`,
+  ...(gistDiscovery?.htmlUrl ? [`- Public Gist share kit: ${gistDiscovery.htmlUrl}`] : []),
   ...(campaignAssets.length ? ["", "## Short-Video Campaign Assets", "", ...campaignAssets.map((asset) => `- [${asset.title} MP4](${asset.downloadUrl}): ${asset.captionEn}`)] : []),
   "",
   "## Tools",
@@ -254,6 +260,8 @@ const discoveryIndex = {
     shareKitJson: fileUrl("share-kit.json"),
     distributionPack: fileUrl("DISTRIBUTION.md"),
     campaignVideos: campaignAssets,
+    publicGist: gistDiscovery?.htmlUrl || "",
+    publicGistRaw: gistDiscovery?.rawUrl || "",
   },
   landingPages: landingPages.map((page) => ({
     title: page.title,
@@ -443,6 +451,22 @@ function readCampaignAssets() {
     }));
   } catch {
     return [];
+  }
+}
+
+function readGistDiscovery() {
+  const filePath = path.join(root, "reports", "gist-discovery.json");
+  if (!fs.existsSync(filePath)) return null;
+  try {
+    const report = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    if (!report.htmlUrl) return null;
+    return {
+      htmlUrl: report.htmlUrl,
+      rawUrl: report.rawUrl || "",
+      gistId: report.gistId || "",
+    };
+  } catch {
+    return null;
   }
 }
 

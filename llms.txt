@@ -22,6 +22,7 @@ Monetization model: Free tools first, then responsible display advertising after
 - Machine-readable tool list: https://printable-tools-lab.pages.dev/tools.json
 - Discovery index: https://printable-tools-lab.pages.dev/discovery.json
 - Machine-readable share kit: https://printable-tools-lab.pages.dev/share-kit.json
+- Public Gist share kit: https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb
 
 ## Short-Video Campaign Assets
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T21:08:11.748Z",
+  "generatedAt": "2026-06-01T21:17:22.866Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 61,
     "indexableRoutes": 233,
     "sitemapLocCount": 233,
-    "generatedToolInventoryAt": "2026-06-01T21:05:13.726Z",
+    "generatedToolInventoryAt": "2026-06-01T21:15:29.798Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -51,7 +51,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 15654,
+        "bytes": 16061,
         "json": null
       },
       "/sitemap.xml": {
@@ -81,7 +81,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 31762,
+        "bytes": 31853,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for"
       },
@@ -101,7 +101,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T21:05:13.726Z",
+          "generatedAt": "2026-06-01T21:15:29.798Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -983,11 +983,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 32612,
+        "bytes": 32887,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T21:05:13.726Z",
+          "generatedAt": "2026-06-01T21:15:29.798Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1211,7 +1211,9 @@
                 ],
                 "sizeBytes": 177067
               }
-            ]
+            ],
+            "publicGist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
+            "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/f3b1392e06055adaa67488534f5116bc06a69fbe/PrintableTools-Lab-zero-cost-share-kit.md"
           },
           "landingPages": [
             {
@@ -1598,10 +1600,10 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 11074,
+        "bytes": 11366,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-01T21:05:13.726Z",
+          "generatedAt": "2026-06-01T21:15:29.798Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -1790,6 +1792,10 @@
               "sizeBytes": 177067
             }
           ],
+          "externalDiscovery": {
+            "gist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
+            "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/f3b1392e06055adaa67488534f5116bc06a69fbe/PrintableTools-Lab-zero-cost-share-kit.md"
+          },
           "rules": [
             "Post only where free tools or file utilities are relevant to the community.",
             "Do not ask for ad clicks, ad views, upvotes, or artificial engagement.",
@@ -2742,11 +2748,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         }
       ]
@@ -2755,7 +2761,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T21:07:38.848Z",
+          "lastSubmitted": "2026-06-01T21:16:20.869Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",

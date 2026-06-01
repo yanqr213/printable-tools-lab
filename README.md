@@ -231,6 +231,16 @@ npm.cmd run campaign:verify-release
 
 This writes `reports/campaign-kit/` with bilingual captions, short-video shot lists, community replies, UTM links, validation gates, vertical poster images, and silent 9:16 MP4 assets for high-intent upload-limit tools. The publish step uploads the MP4 files to the public GitHub discovery release and writes `reports/campaign-assets-release.json`.
 
+Publish an additional public Gist discovery page:
+
+```powershell
+$env:GITHUB_TOKEN="optional GitHub token with gist scope"
+npm.cmd run gist-discovery
+npm.cmd run verify:gist-discovery
+```
+
+This writes `reports/gist-discovery.json` with the public Gist URL and raw Markdown URL.
+
 Prepare or verify AdSense configuration:
 
 ```powershell

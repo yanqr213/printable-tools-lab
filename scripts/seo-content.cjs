@@ -64,6 +64,7 @@ const SHARE_KIT_RULES = [
 ];
 
 const CAMPAIGN_VIDEO_ASSETS = readCampaignVideoAssets();
+const GIST_DISCOVERY = readGistDiscovery();
 
 const HIGH_INTENT_TOOL_PATHS = [
   "tools/image-to-pdf",
@@ -2816,6 +2817,11 @@ function shareKitHtml() {
           ${videoAssets.map((asset) => `<article class="panel"><h3>${escapeHtml(asset.title)}</h3><p>${escapeHtml(asset.captionEn)}</p><p><a href="${escapeHtml(asset.downloadUrl)}">Download MP4</a></p><p><a href="${escapeHtml(asset.trackedUrl)}">Tracked landing page</a></p></article>`).join("\n")}
         </div>
       </section>` : ""}
+      ${GIST_DISCOVERY?.htmlUrl ? `<section class="shell section">
+        <h2>Public Gist mirror</h2>
+        <p>The same high-intent links, MP4 assets, copy angles, and safe posting rules are mirrored in a public GitHub Gist for one more zero-cost external discovery surface.</p>
+        <p><a class="button" href="${escapeHtml(GIST_DISCOVERY.htmlUrl)}">Open public Gist share kit</a></p>
+      </section>` : ""}
       <section class="shell section">
         <h2>Rules for safe distribution</h2>
         <ul>
@@ -2824,6 +2830,22 @@ function shareKitHtml() {
         <p><a class="button" href="/share-kit.json">Open machine-readable share-kit.json</a> <a class="button secondary" href="/DISTRIBUTION.md">Open distribution pack</a></p>
         ${jsonLdHtml(itemListSchema("PrintableTools Lab share kit priority links", featuredLinks.map((item) => ({ title: item.title, path: item.path }))))}
       </section>`;
+}
+
+function readGistDiscovery() {
+  const reportPath = path.join(__dirname, "..", "reports", "gist-discovery.json");
+  if (!fs.existsSync(reportPath)) return null;
+  try {
+    const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
+    if (!report.htmlUrl) return null;
+    return {
+      htmlUrl: report.htmlUrl,
+      rawUrl: report.rawUrl || "",
+      gistId: report.gistId || "",
+    };
+  } catch {
+    return null;
+  }
 }
 
 function readCampaignVideoAssets() {
@@ -3992,4 +4014,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY };

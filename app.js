@@ -4842,6 +4842,7 @@
       ["PDF to JPG Without Upload", "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-pdf-to-jpg-no-upload.mp4", "/pdf-to-jpg-no-upload/?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-to-jpg-no-upload"],
       ["Remove Background Without Upload", "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-background-removal.mp4", "/remove-background-no-upload/?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=background-removal"],
     ];
+    const gistUrl = "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb";
     setMeta("PrintableTools Lab Share Kit", "Copy-ready short-video hooks, community posts, directory blurbs, campaign links, and compliance rules for sharing PrintableTools Lab without paid ads.");
     setJsonLd({
       "@context": "https://schema.org",
@@ -4886,6 +4887,11 @@
         <div class="grid-2">
           ${videoAssets.map(([title, downloadUrl, trackedUrl]) => `<article class="panel"><h3>${escapeHtml(title)}</h3><p><a href="${downloadUrl}">Download MP4</a></p><p><a href="${trackedUrl}">Tracked landing page</a></p></article>`).join("")}
         </div>
+      </section>
+      <section class="shell section">
+        <h2>Public Gist mirror</h2>
+        <p>The same links, MP4 assets, copy angles, and safe posting rules are mirrored in a public GitHub Gist for one more zero-cost external discovery surface.</p>
+        <p><a class="button" href="${gistUrl}">Open public Gist share kit</a></p>
       </section>
       <section class="shell section">
         <h2>Rules for safe distribution</h2>
