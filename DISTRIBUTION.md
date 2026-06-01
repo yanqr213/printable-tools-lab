@@ -51,6 +51,12 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Compress Image Without Uploading: https://printable-tools-lab.pages.dev/compress-image-no-upload/
 - Resize Image Without Uploading: https://printable-tools-lab.pages.dev/resize-image-no-upload/
 - Convert Image Format Without Uploading: https://printable-tools-lab.pages.dev/convert-image-format-no-upload/
+- Compress JPG Without Uploading: https://printable-tools-lab.pages.dev/compress-jpg-no-upload/
+- Compress PNG Without Uploading: https://printable-tools-lab.pages.dev/compress-png-no-upload/
+- Resize Image to 1080x1080: https://printable-tools-lab.pages.dev/resize-image-1080x1080/
+- Resize Image to 512x512: https://printable-tools-lab.pages.dev/resize-image-512x512/
+- PNG to JPG Without Uploading: https://printable-tools-lab.pages.dev/png-to-jpg-no-upload/
+- WebP to JPG Without Uploading: https://printable-tools-lab.pages.dev/webp-to-jpg-no-upload/
 - Text to PDF Converter Without Signup: https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/
 - Merge PDF Without Uploading: https://printable-tools-lab.pages.dev/merge-pdf-no-upload/
 - Split PDF Without Uploading: https://printable-tools-lab.pages.dev/split-pdf-no-upload/

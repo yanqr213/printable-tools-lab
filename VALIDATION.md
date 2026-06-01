@@ -1,37 +1,38 @@
 # Validation Gates
 
-Last generated: 2026-06-01T06:22:32.571Z
+Last generated: 2026-06-01T06:34:50.169Z
 
 ## Current Automated Status
 
 - Product ready: yes.
 - Tools live in inventory: 47.
 - Guide pages live in inventory: 82.
-- High-intent landing pages: 29.
-- Indexable routes: 168.
+- High-intent landing pages: 35.
+- Indexable routes: 174.
 - Live downloads: 1.
 - Live generations: 0.
 - Search impressions: 0.
 - Search clicks: 0.
-- External discovery ready: yes.
+- External discovery ready: no.
 - Ads enabled: no.
 - AdSense apply-ready: no.
 
 ## Product Gate
 
-- 47 tools, 82 guides, 29 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
+- 47 tools, 82 guides, 35 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
 
 ## Search Console Gate
 
-- Sitemap data unavailable in this run.
+- Sitemap submitted: https://printable-tools-lab.pages.dev/sitemap.xml.
+- Sitemap pending: yes; warnings: 0; errors: 0.
 - GitHub Pages discovery sitemap submitted: https://yanqr213.github.io/printable-tools-lab/sitemap.xml.
 - GitHub Pages sitemap pending: yes; warnings: 0; errors: 0.
 - Main Search Console property verified: yes.
 - GitHub Pages discovery property verified: yes.
+- Sitemap status: pending=true, warnings=0, errors=0.
 - GitHub Pages discovery sitemap: pending=true, warnings=0, errors=0.
 - Search performance: 0 impressions, 0 clicks.
 - 2 inspected sample URL(s) are still unknown to Google.
-- sitemaps: fetch failed
 
 ## External Discovery Gate
 

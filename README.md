@@ -99,7 +99,7 @@ PrintableTools Lab is a no-signup utility site for practical browser files: comp
 - Daily free limit stored in `localStorage`.
 - Local validation events stored in `localStorage`.
 - Anonymous Cloudflare KV counters for live page views, PDF/file generations, downloads, limit hits, and AI idea applies.
-- 82 original guide pages plus keyword clusters for SEO and future AdSense review.
+- 82 original guide pages and 35 high-intent landing pages plus keyword clusters for SEO and future AdSense review.
 - Compliance pages: About, Privacy, Terms, AI & License Disclosure.
 - Static pre-rendered HTML for key routes, plus client-side enhancement.
 - `robots.txt`, canonical URLs, sitemap, and SoftwareApplication structured data for tool pages.
@@ -210,7 +210,7 @@ For step-by-step operations, see `OPERATIONS.md`.
 - New document conversion, business, local promotion, label, career, event, checklist, graph paper, packing list, calendar, and meal-planning tools were added because these queries have stronger immediate pain and broader repeat use than light classroom printables. Many competing tools monetize at account creation, download, ads, print orders, or conversion limits, so a complete free PDF export is a clearer acquisition hook.
 - Packing slip, work order, and inventory sheet tools were added because they map to commercial workflows where users are preparing orders, service visits, or stock counts and many alternatives push users into shipping, field-service, or spreadsheet software.
 - Merge PDF, Split PDF, PDF Page Numbers, Rotate PDF, Remove PDF Pages, Reorder PDF Pages, Watermark PDF, Stamp PDF, and Add Signature Text to PDF were added because existing-PDF edits are high-frequency utility searches where competitors often rely on upload flows, usage limits, account walls, or download friction. These tools keep the same no-upload browser-side promise and broaden the ad-supported audience beyond printable templates.
-- Compress Image, Resize Image, and Convert Image Format were added on the same site because image upload failures are a broader daily pain than printable worksheets: users hit file-size, dimension, or format limits on forms, marketplaces, school portals, and profile pages. The free local workflow creates a stronger ad-supported entry point without adding paid infrastructure.
+- Compress Image, Resize Image, and Convert Image Format were added on the same site because image upload failures are a broader daily pain than printable worksheets: users hit file-size, dimension, or format limits on forms, marketplaces, school portals, and profile pages. Dedicated landing pages now cover JPG compression, PNG compression, square resize sizes, PNG-to-JPG, and WebP-to-JPG searches without adding paid infrastructure.
 - New tools stay on the same site during validation so Search Console data, sitemap history, GitHub discovery links, and external directory references concentrate on one property.
 
 ## Validation gates

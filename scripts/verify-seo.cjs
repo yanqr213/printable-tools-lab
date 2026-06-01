@@ -156,7 +156,7 @@ else {
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("tools/compress-image"))) failures.push("discovery.json missing high-intent image compression route.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("submit-directory"))) failures.push("discovery.json missing directory submission pack.");
   if (discovery.feed !== siteUrl("feed.xml").replace(/\/$/, "")) failures.push("discovery.json missing RSS feed URL.");
-  if (!Array.isArray(discovery.landingPages) || discovery.landingPages.length < 29) failures.push("discovery.json missing high-intent landing pages.");
+  if (!Array.isArray(discovery.landingPages) || discovery.landingPages.length < 35) failures.push("discovery.json missing high-intent landing pages.");
   if (discovery.manifest !== siteUrl("site.webmanifest").replace(/\/$/, "")) failures.push("discovery.json missing manifest URL.");
   if (discovery.opensearch !== siteUrl("opensearch.xml").replace(/\/$/, "")) failures.push("discovery.json missing OpenSearch URL.");
 }
@@ -190,7 +190,7 @@ if (!fs.existsSync(docsToolsFile)) failures.push("Missing GitHub Pages discovery
 else {
   const data = JSON.parse(fs.readFileSync(docsToolsFile, "utf8"));
   if (!Array.isArray(data.tools) || data.tools.length < 8) failures.push("GitHub Pages discovery tools.json missing high-intent tools.");
-  if (!Array.isArray(data.landingPages) || data.landingPages.length < 29) failures.push("GitHub Pages discovery tools.json missing high-intent landing pages.");
+  if (!Array.isArray(data.landingPages) || data.landingPages.length < 35) failures.push("GitHub Pages discovery tools.json missing high-intent landing pages.");
   if (data.feed !== siteUrl("feed.xml").replace(/\/$/, "")) failures.push("GitHub Pages discovery tools.json missing feed URL.");
 }
 

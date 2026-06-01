@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T06:21:37.675Z",
+  "generatedAt": "2026-06-01T06:31:24.017Z",
   "positioning": "Free no-signup browser PDF and image tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -16,6 +16,12 @@
     "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
     "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
     "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
+    "https://printable-tools-lab.pages.dev/compress-jpg-no-upload/",
+    "https://printable-tools-lab.pages.dev/compress-png-no-upload/",
+    "https://printable-tools-lab.pages.dev/resize-image-1080x1080/",
+    "https://printable-tools-lab.pages.dev/resize-image-512x512/",
+    "https://printable-tools-lab.pages.dev/png-to-jpg-no-upload/",
+    "https://printable-tools-lab.pages.dev/webp-to-jpg-no-upload/",
     "https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/",
     "https://printable-tools-lab.pages.dev/merge-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/split-pdf-no-upload/",
@@ -106,6 +112,42 @@
       "title": "Convert Image Format Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
       "intent": "convert image format, JPG to PNG, PNG to WebP, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/convert-image/"
+    },
+    {
+      "title": "Compress JPG Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-jpg-no-upload/",
+      "intent": "compress JPG online, reduce JPG file size, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image/"
+    },
+    {
+      "title": "Compress PNG Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-png-no-upload/",
+      "intent": "compress PNG online, reduce PNG size, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image/"
+    },
+    {
+      "title": "Resize Image to 1080x1080",
+      "url": "https://printable-tools-lab.pages.dev/resize-image-1080x1080/",
+      "intent": "resize image to 1080x1080, square image resize, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/"
+    },
+    {
+      "title": "Resize Image to 512x512",
+      "url": "https://printable-tools-lab.pages.dev/resize-image-512x512/",
+      "intent": "resize image to 512x512, profile picture resizer, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/"
+    },
+    {
+      "title": "PNG to JPG Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/png-to-jpg-no-upload/",
+      "intent": "PNG to JPG converter, no upload, browser image conversion",
+      "tool": "https://printable-tools-lab.pages.dev/tools/convert-image/"
+    },
+    {
+      "title": "WebP to JPG Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/webp-to-jpg-no-upload/",
+      "intent": "WebP to JPG converter, no upload, browser image conversion",
       "tool": "https://printable-tools-lab.pages.dev/tools/convert-image/"
     },
     {

@@ -4,7 +4,7 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-06-01T06:21:37.748Z",
+  "generatedAt": "2026-06-01T06:31:24.096Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -35,6 +35,36 @@
       "title": "Convert Image Format Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
       "intent": "convert image format, JPG to PNG, PNG to WebP, no upload"
+    },
+    {
+      "title": "Compress JPG Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-jpg-no-upload/",
+      "intent": "compress JPG online, reduce JPG file size, no upload"
+    },
+    {
+      "title": "Compress PNG Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-png-no-upload/",
+      "intent": "compress PNG online, reduce PNG size, no upload"
+    },
+    {
+      "title": "Resize Image to 1080x1080",
+      "url": "https://printable-tools-lab.pages.dev/resize-image-1080x1080/",
+      "intent": "resize image to 1080x1080, square image resize, no upload"
+    },
+    {
+      "title": "Resize Image to 512x512",
+      "url": "https://printable-tools-lab.pages.dev/resize-image-512x512/",
+      "intent": "resize image to 512x512, profile picture resizer, no upload"
+    },
+    {
+      "title": "PNG to JPG Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/png-to-jpg-no-upload/",
+      "intent": "PNG to JPG converter, no upload, browser image conversion"
+    },
+    {
+      "title": "WebP to JPG Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/webp-to-jpg-no-upload/",
+      "intent": "WebP to JPG converter, no upload, browser image conversion"
     },
     {
       "title": "Text to PDF Converter Without Signup",

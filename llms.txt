@@ -79,6 +79,12 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Compress Image Without Uploading](https://printable-tools-lab.pages.dev/compress-image-no-upload/): compress image online, reduce image size, no upload
 - [Resize Image Without Uploading](https://printable-tools-lab.pages.dev/resize-image-no-upload/): resize image online, change image dimensions, no upload
 - [Convert Image Format Without Uploading](https://printable-tools-lab.pages.dev/convert-image-format-no-upload/): convert image format, JPG to PNG, PNG to WebP, no upload
+- [Compress JPG Without Uploading](https://printable-tools-lab.pages.dev/compress-jpg-no-upload/): compress JPG online, reduce JPG file size, no upload
+- [Compress PNG Without Uploading](https://printable-tools-lab.pages.dev/compress-png-no-upload/): compress PNG online, reduce PNG size, no upload
+- [Resize Image to 1080x1080](https://printable-tools-lab.pages.dev/resize-image-1080x1080/): resize image to 1080x1080, square image resize, no upload
+- [Resize Image to 512x512](https://printable-tools-lab.pages.dev/resize-image-512x512/): resize image to 512x512, profile picture resizer, no upload
+- [PNG to JPG Without Uploading](https://printable-tools-lab.pages.dev/png-to-jpg-no-upload/): PNG to JPG converter, no upload, browser image conversion
+- [WebP to JPG Without Uploading](https://printable-tools-lab.pages.dev/webp-to-jpg-no-upload/): WebP to JPG converter, no upload, browser image conversion
 - [Text to PDF Converter Without Signup](https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/): plain text to PDF with no account
 - [Merge PDF Without Uploading](https://printable-tools-lab.pages.dev/merge-pdf-no-upload/): combine PDF files, no upload, no account
 - [Split PDF Without Uploading](https://printable-tools-lab.pages.dev/split-pdf-no-upload/): extract PDF pages, no upload, no account

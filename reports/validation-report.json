@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-01T06:22:32.571Z",
+  "generatedAt": "2026-06-01T06:34:50.169Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 47,
     "guideCount": 82,
-    "landingPageCount": 29,
-    "indexableRoutes": 168,
-    "sitemapLocCount": 168,
-    "generatedToolInventoryAt": "2026-06-01T06:21:37.675Z",
+    "landingPageCount": 35,
+    "indexableRoutes": 174,
+    "sitemapLocCount": 174,
+    "generatedToolInventoryAt": "2026-06-01T06:31:24.017Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -34,7 +34,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 18021,
+        "bytes": 18040,
         "json": null
       },
       "/tools/": {
@@ -71,7 +71,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 20754,
+        "bytes": 20789,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, and local image tools for compressing images, resizing images, converting image formats, merging PDFs,"
       },
@@ -91,7 +91,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, and local image tools for compressing images, resizing images, converting image formats, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T06:04:50.596Z",
+          "generatedAt": "2026-06-01T06:21:37.675Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -798,7 +798,7 @@
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T06:04:50.596Z",
+          "generatedAt": "2026-06-01T06:21:37.675Z",
           "positioning": "Free no-signup browser PDF and image tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1838,12 +1838,23 @@
         }
       ]
     },
-    "sitemaps": null,
+    "sitemaps": {
+      "sitemap": [
+        {
+          "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
+          "lastSubmitted": "2026-06-01T06:23:55.591Z",
+          "isPending": true,
+          "isSitemapsIndex": false,
+          "warnings": "0",
+          "errors": "0"
+        }
+      ]
+    },
     "githubPagesSitemaps": {
       "sitemap": [
         {
           "path": "https://yanqr213.github.io/printable-tools-lab/sitemap.xml",
-          "lastSubmitted": "2026-06-01T06:09:54.579Z",
+          "lastSubmitted": "2026-06-01T06:23:55.773Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -1883,9 +1894,7 @@
         "indexingState": "INDEXING_STATE_UNSPECIFIED"
       }
     ],
-    "errors": [
-      "sitemaps: fetch failed"
-    ]
+    "errors": []
   },
   "discovery": {
     "github": {
@@ -1939,7 +1948,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": true
+    "externalDiscoveryReady": false
   },
   "gates": {
     "productReady": true,
@@ -1947,13 +1956,13 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": true,
+    "externalDiscoveryReady": false,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "47 tools, 82 guides, 29 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "47 tools, 82 guides, 35 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Real AdSense publisher ID is not configured, so ads remain disabled.",
@@ -1962,10 +1971,10 @@
       "searchConsole": [
         "Main Search Console property verified: yes.",
         "GitHub Pages discovery property verified: yes.",
+        "Sitemap status: pending=true, warnings=0, errors=0.",
         "GitHub Pages discovery sitemap: pending=true, warnings=0, errors=0.",
         "Search performance: 0 impressions, 0 clicks.",
-        "2 inspected sample URL(s) are still unknown to Google.",
-        "sitemaps: fetch failed"
+        "2 inspected sample URL(s) are still unknown to Google."
       ],
       "externalDiscovery": [
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
