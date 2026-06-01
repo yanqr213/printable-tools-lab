@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T03:32:32.437Z",
+  "generatedAt": "2026-06-01T03:52:04.592Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 38,
@@ -34,21 +34,21 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 14661,
+        "bytes": 15331,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 23019,
+        "bytes": 24302,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 16309,
+        "bytes": 17357,
         "json": null
       },
       "/robots.txt": {
@@ -71,27 +71,27 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 16888,
+        "bytes": 17634,
         "json": null,
-        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, work orders, packing sl"
+        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, adding page numbers, image conversion, text conversion, invoices, "
       },
       "/feed.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 25120,
+        "bytes": 27092,
         "json": null
       },
       "/tools.json": {
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 31083,
+        "bytes": 31907,
         "json": {
           "name": "PrintableTools Lab",
-          "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+          "description": "Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T02:22:34.749Z",
+          "generatedAt": "2026-06-01T03:27:42.502Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -254,6 +254,24 @@
               "url": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
               "description": "Turn several JPG, PNG, or WebP images into one multi-page PDF in your browser without uploading files.",
               "category": "Everyday utility PDFs"
+            },
+            {
+              "title": "Merge PDF Tool",
+              "url": "https://printable-tools-lab.pages.dev/tools/merge-pdf/",
+              "description": "Combine several PDF files into one PDF in your browser without uploading documents.",
+              "category": "Education and family printables"
+            },
+            {
+              "title": "Split PDF Tool",
+              "url": "https://printable-tools-lab.pages.dev/tools/split-pdf/",
+              "description": "Extract selected pages from a PDF in your browser without uploading the document.",
+              "category": "Education and family printables"
+            },
+            {
+              "title": "Add Page Numbers to PDF",
+              "url": "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/",
+              "description": "Add simple page numbers to an existing PDF locally in your browser.",
+              "category": "Education and family printables"
             },
             {
               "title": "Text to PDF Converter",
@@ -601,6 +619,21 @@
               "description": "Combine several JPG, PNG, or WebP images into one multi-page PDF in the browser."
             },
             {
+              "title": "Merge PDF without uploading",
+              "url": "https://printable-tools-lab.pages.dev/guides/merge-pdf-without-uploading/",
+              "description": "Combine several PDF files into one PDF locally in your browser."
+            },
+            {
+              "title": "Split PDF without uploading",
+              "url": "https://printable-tools-lab.pages.dev/guides/split-pdf-without-uploading/",
+              "description": "Extract selected pages from a PDF without uploading the document."
+            },
+            {
+              "title": "Add page numbers to PDF",
+              "url": "https://printable-tools-lab.pages.dev/guides/add-page-numbers-to-pdf/",
+              "description": "Add simple visible page numbers to an existing PDF in the browser."
+            },
+            {
               "title": "Text to PDF converter without signup",
               "url": "https://printable-tools-lab.pages.dev/guides/text-to-pdf-converter-no-signup/",
               "description": "Paste plain text and download a clean one-page PDF without installing an editor."
@@ -662,11 +695,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 9101,
+        "bytes": 10139,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T02:22:34.749Z",
+          "generatedAt": "2026-06-01T03:27:42.502Z",
           "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -679,6 +712,9 @@
             "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/",
+            "https://printable-tools-lab.pages.dev/merge-pdf-no-upload/",
+            "https://printable-tools-lab.pages.dev/split-pdf-no-upload/",
+            "https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/",
             "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
             "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
             "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
@@ -694,6 +730,9 @@
             "https://printable-tools-lab.pages.dev/free-inventory-sheet-generator/",
             "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
             "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
+            "https://printable-tools-lab.pages.dev/tools/merge-pdf/",
+            "https://printable-tools-lab.pages.dev/tools/split-pdf/",
+            "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/",
             "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
             "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
             "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
@@ -736,6 +775,24 @@
               "url": "https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/",
               "intent": "plain text to PDF with no account",
               "tool": "https://printable-tools-lab.pages.dev/tools/text-to-pdf/"
+            },
+            {
+              "title": "Merge PDF Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/merge-pdf-no-upload/",
+              "intent": "combine PDF files, no upload, no account",
+              "tool": "https://printable-tools-lab.pages.dev/tools/merge-pdf/"
+            },
+            {
+              "title": "Split PDF Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/split-pdf-no-upload/",
+              "intent": "extract PDF pages, no upload, no account",
+              "tool": "https://printable-tools-lab.pages.dev/tools/split-pdf/"
+            },
+            {
+              "title": "Add Page Numbers to PDF",
+              "url": "https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/",
+              "intent": "add page numbers to PDF, no upload, no account",
+              "tool": "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/"
             },
             {
               "title": "Free Resume Builder Without Signup",
@@ -833,7 +890,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/manifest+json; charset=utf-8",
-        "bytes": 1491,
+        "bytes": 1555,
         "json": null
       },
       "/opensearch.xml": {
@@ -847,12 +904,12 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 5167,
+        "bytes": 5438,
         "json": {
           "ok": true,
           "today": "2026-06-01",
           "totals": {
-            "page_view": 7,
+            "page_view": 8,
             "generate_pdf": 0,
             "download_pdf": 1,
             "limit_hit": 0,
@@ -860,7 +917,7 @@
             "ai_ideas_apply": 0
           },
           "todayTotals": {
-            "page_view": 4,
+            "page_view": 5,
             "generate_pdf": 0,
             "download_pdf": 0,
             "limit_hit": 0,
@@ -1009,6 +1066,27 @@
               "ai_ideas_apply": 0
             },
             {
+              "tool": "merge-pdf",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "split-pdf",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "pdf-page-numbers",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
               "tool": "text-to-pdf",
               "generate_pdf": 0,
               "download_pdf": 0,
@@ -1117,11 +1195,11 @@
           "sources": [
             {
               "source": "direct",
-              "page_view": 0,
+              "page_view": 2,
               "generate_pdf": 0,
               "download_pdf": 0,
               "today": {
-                "page_view": 0,
+                "page_view": 1,
                 "generate_pdf": 0,
                 "download_pdf": 0
               }
@@ -1265,7 +1343,7 @@
     "metrics": {
       "today": "2026-06-01",
       "totals": {
-        "page_view": 7,
+        "page_view": 8,
         "generate_pdf": 0,
         "download_pdf": 1,
         "limit_hit": 0,
@@ -1273,7 +1351,7 @@
         "ai_ideas_apply": 0
       },
       "todayTotals": {
-        "page_view": 4,
+        "page_view": 5,
         "generate_pdf": 0,
         "download_pdf": 0,
         "limit_hit": 0,
@@ -1358,7 +1436,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T02:26:34.365Z",
+          "lastSubmitted": "2026-06-01T03:48:19.068Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -1370,7 +1448,7 @@
       "sitemap": [
         {
           "path": "https://yanqr213.github.io/printable-tools-lab/sitemap.xml",
-          "lastSubmitted": "2026-06-01T02:02:25.330Z",
+          "lastSubmitted": "2026-06-01T03:49:53.372Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -1451,8 +1529,8 @@
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 18,
-      "landingPagesLinked": 17,
+      "sitemapUrlCount": 21,
+      "landingPagesLinked": 20,
       "error": ""
     },
     "indexNow": {
@@ -1464,7 +1542,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": false
+    "externalDiscoveryReady": true
   },
   "gates": {
     "productReady": true,
@@ -1472,7 +1550,7 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": false,
+    "externalDiscoveryReady": true,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
@@ -1495,8 +1573,8 @@
       "externalDiscovery": [
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
-        "GitHub Pages discovery directory is live with 17 landing page link(s).",
-        "GitHub Pages discovery sitemap has 18 URL(s).",
+        "GitHub Pages discovery directory is live with 20 landing page link(s).",
+        "GitHub Pages discovery sitemap has 21 URL(s).",
         "IndexNow key file is reachable from the site root."
       ]
     }
