@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T12:58:50.980Z",
+  "generatedAt": "2026-06-01T14:10:21.247Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 0,
   "pendingCount": 4,
@@ -21,15 +21,15 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 117572,
-          "matched": true
+          "bytes": 117581,
+          "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 117572,
-          "matched": true
+          "bytes": 117581,
+          "matched": false
         }
       ]
     },

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T14:03:12.206Z",
+  "generatedAt": "2026-06-01T14:11:06.539Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 48,
     "indexableRoutes": 207,
     "sitemapLocCount": 207,
-    "generatedToolInventoryAt": "2026-06-01T13:54:26.784Z",
+    "generatedToolInventoryAt": "2026-06-01T14:10:01.289Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -2220,7 +2220,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T14:02:20.728Z",
+          "lastSubmitted": "2026-06-01T14:10:06.633Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -2240,7 +2240,7 @@
       "sitemap": [
         {
           "path": "https://yanqr213.github.io/printable-tools-lab/sitemap.xml",
-          "lastSubmitted": "2026-06-01T14:02:21.800Z",
+          "lastSubmitted": "2026-06-01T14:10:07.669Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -2289,9 +2289,7 @@
       "homepage": "https://printable-tools-lab.pages.dev/",
       "description": "Free no-signup browser PDF, image, QR, and text-data tools for compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
       "topics": [
-        "browser-tools",
         "csv-to-pdf",
-        "document-tools",
         "free-tools",
         "image-compression",
         "image-compressor",
@@ -2306,8 +2304,10 @@
         "no-signup",
         "pdf-generator",
         "pdf-to-jpg",
+        "pdf-to-text",
         "pdf-tools",
         "qr-code",
+        "signature-png",
         "text-to-pdf"
       ],
       "discoveryRelease": {
