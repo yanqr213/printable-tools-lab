@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T14:44:01.751Z",
+  "generatedAt": "2026-06-01T15:39:03.708Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -13,6 +13,7 @@
     "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
+    "https://printable-tools-lab.pages.dev/compress-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/",
     "https://printable-tools-lab.pages.dev/extract-text-from-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/signature-png-generator/",
@@ -61,6 +62,7 @@
     "https://printable-tools-lab.pages.dev/free-inventory-sheet-generator/",
     "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
     "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
+    "https://printable-tools-lab.pages.dev/tools/compress-pdf/",
     "https://printable-tools-lab.pages.dev/tools/pdf-to-images/",
     "https://printable-tools-lab.pages.dev/tools/pdf-to-text/",
     "https://printable-tools-lab.pages.dev/tools/compress-image/",
@@ -123,6 +125,12 @@
       "url": "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
       "intent": "combine images into one PDF without upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/"
+    },
+    {
+      "title": "Compress PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-pdf-no-upload/",
+      "intent": "compress PDF, reduce PDF size, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/"
     },
     {
       "title": "PDF to JPG Without Uploading",

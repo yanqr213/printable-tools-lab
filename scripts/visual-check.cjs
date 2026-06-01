@@ -1,5 +1,6 @@
 const path = require("path");
 const { chromium } = require("playwright-core");
+const { PDFDocument, StandardFonts, rgb } = require("pdf-lib");
 
 const root = path.resolve(__dirname, "..");
 const serverPath = path.join(root, "scripts", "server.cjs");
@@ -35,8 +36,17 @@ function samplePng() {
     "/tools/passport-photo/",
   ]);
 
-  for (const route of ["/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/passport-photo/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/text-to-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
+  const pdfSample = await samplePdf("Visual scan", 2);
+  for (const route of ["/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/compress-pdf/", "/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/passport-photo/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/text-to-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
+    if (route === "/tools/compress-pdf/") {
+      await page.setInputFiles("input[type=file]", { name: "scan.pdf", mimeType: "application/pdf", buffer: pdfSample });
+      await page.fill("#pageRange", "1");
+      await page.waitForTimeout(500);
+      const text = await page.locator("main").innerText();
+      if (!text.includes("image-based PDF")) throw new Error("Compress PDF preview is missing tradeoff copy.");
+      continue;
+    }
     if (imageRoutes.has(route) && route !== "/tools/signature-png/") {
       await page.setInputFiles("input[type=file]", {
         name: "photo.png",
@@ -85,3 +95,14 @@ function samplePng() {
   console.error(error);
   process.exit(1);
 });
+
+async function samplePdf(label, pages = 1) {
+  const doc = await PDFDocument.create();
+  const font = await doc.embedFont(StandardFonts.Helvetica);
+  for (let i = 0; i < pages; i += 1) {
+    const page = doc.addPage([612, 792]);
+    page.drawText(`${label} ${i + 1}`, { x: 72, y: 700, size: 22, font, color: rgb(0.08, 0.18, 0.22) });
+    page.drawRectangle({ x: 72, y: 520, width: 360, height: 120, color: rgb(0.86, 0.94, 0.96) });
+  }
+  return Buffer.from(await doc.save());
+}

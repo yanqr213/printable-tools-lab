@@ -330,50 +330,51 @@ Create one image or short post per item. Show the printable use case and never p
 40. Image to PDF converter that does not upload files.
 41. JPG to PDF for receipts, scans, and screenshots.
 42. Multiple images to PDF without uploading files.
-43. Merge PDF without uploading documents.
-44. Split PDF without uploading documents.
-45. Add page numbers to PDF locally.
-46. Rotate PDF pages without uploading.
-47. Remove pages from a PDF without uploading.
-48. Reorder PDF pages without uploading.
-49. Watermark PDF without uploading.
-50. Stamp PDF as paid, approved, or draft.
-51. Add typed signature text to a PDF.
-52. Compress an image without uploading it.
-53. Resize an image for a profile, listing, or form.
-54. Convert JPG, PNG, or WebP format in the browser.
-55. Printable sign-in sheet for events and classes.
-56. Attendance sheet PDF with readable rows.
-57. Printable graph paper with quarter-inch grid.
-58. Travel packing list with grouped checkboxes.
-59. Text to PDF converter for plain notes and letters.
-60. Markdown to PDF converter for README notes and outlines.
-61. CSV to PDF table for inventory rows, rosters, and price sheets.
-62. JSON to PDF formatter for reviewed API samples and config notes.
-63. Signature PNG generator with transparent export.
-64. Passport photo maker for 2x2, 35x45, and 50x70 local sizing.
-65. Free receipt generator for service payments and deposits.
-66. Weekly timesheet PDF for freelance hours.
-67. Certificate generator for classrooms and events.
-68. Printable to-do list for errands, study, and event prep.
-69. Free printable business card sheet for local services.
-70. Business card PDF before ordering professional prints.
-71. Address label sheet for small mailing batches.
-72. Badge labels for events, workshops, and classrooms.
-73. Barcode label PDF for SKU stickers and inventory bins.
-74. SKU labels for handmade products and market tables.
-75. Price tag generator for yard sales and pop-up shops.
-76. Shelf label PDF for small retail displays.
-77. Flyer maker PDF for a local service or class.
-78. Yard sale flyer with clear time and location.
-79. Printable coupon maker for local offers.
-80. Discount coupon PDF with code and expiration note.
-81. Free QR code generator without signup.
-82. WiFi QR code sign for guest networks.
-83. Contact QR code generator for vCard details.
-84. Compress image to 100KB or another strict upload limit.
-85. Convert PDF pages to JPG without uploading.
-86. Extract selectable text from PDF without uploading.
+43. Compress PDF without uploading for scanned or image-heavy files.
+44. Merge PDF without uploading documents.
+45. Split PDF without uploading documents.
+46. Add page numbers to PDF locally.
+47. Rotate PDF pages without uploading.
+48. Remove pages from a PDF without uploading.
+49. Reorder PDF pages without uploading.
+50. Watermark PDF without uploading.
+51. Stamp PDF as paid, approved, or draft.
+52. Add typed signature text to a PDF.
+53. Compress an image without uploading it.
+54. Resize an image for a profile, listing, or form.
+55. Convert JPG, PNG, or WebP format in the browser.
+56. Printable sign-in sheet for events and classes.
+57. Attendance sheet PDF with readable rows.
+58. Printable graph paper with quarter-inch grid.
+59. Travel packing list with grouped checkboxes.
+60. Text to PDF converter for plain notes and letters.
+61. Markdown to PDF converter for README notes and outlines.
+62. CSV to PDF table for inventory rows, rosters, and price sheets.
+63. JSON to PDF formatter for reviewed API samples and config notes.
+64. Signature PNG generator with transparent export.
+65. Passport photo maker for 2x2, 35x45, and 50x70 local sizing.
+66. Free receipt generator for service payments and deposits.
+67. Weekly timesheet PDF for freelance hours.
+68. Certificate generator for classrooms and events.
+69. Printable to-do list for errands, study, and event prep.
+70. Free printable business card sheet for local services.
+71. Business card PDF before ordering professional prints.
+72. Address label sheet for small mailing batches.
+73. Badge labels for events, workshops, and classrooms.
+74. Barcode label PDF for SKU stickers and inventory bins.
+75. SKU labels for handmade products and market tables.
+76. Price tag generator for yard sales and pop-up shops.
+77. Shelf label PDF for small retail displays.
+78. Flyer maker PDF for a local service or class.
+79. Yard sale flyer with clear time and location.
+80. Printable coupon maker for local offers.
+81. Discount coupon PDF with code and expiration note.
+82. Free QR code generator without signup.
+83. WiFi QR code sign for guest networks.
+84. Contact QR code generator for vCard details.
+85. Compress image to 100KB or another strict upload limit.
+86. Convert PDF pages to JPG without uploading.
+87. Extract selectable text from PDF without uploading.
 
 ## Weekly Operating Loop
 
@@ -416,6 +417,7 @@ Current Search Console checkpoint:
 - `2026-06-01`: expanded to 59 tools, 88 guides, and 47 high-intent landing pages by adding local PDF-to-text extraction and a no-upload landing page. This targets work, research, student, admin, and copy-paste intent while keeping the product honest about extracting embedded text only, not OCR.
 - `2026-06-01`: expanded to 60 tools, 89 guides, and 48 high-intent landing pages by adding a local Signature PNG generator with transparent export. This targets document, proposal, form, and PDF annotation workflows while explicitly avoiding claims of identity verification or regulated e-signature status.
 - `2026-06-01`: expanded to 61 tools, 90 guides, and 49 high-intent landing pages by adding a local Passport Photo Maker. This targets urgent passport, visa, ID, and upload-photo searches while keeping the product limited to sizing and print layout rather than official acceptance or biometric checks.
+- `2026-06-01`: expanded to 62 tools, 91 guides, and 50 high-intent landing pages by adding a local Compress PDF tool. This targets urgent upload-limit searches after email, school, job, portal, or government-form file-size rejections while clearly positioning the output as an image-based PDF that may flatten selectable text and links.
 - `2026-06-01`: AdSense Management API was enabled on the Google Cloud project through Service Usage API. A service-account probe to `adsense.googleapis.com/v2/accounts` returned no AdSense accounts, so the service account is not currently an AdSense account user. The official AdSense ad-unit creation API is also a restricted method, so publisher/ad-slot creation cannot be completed silently from the current service-account credentials.
 - `2026-06-01`: GitHub Pages discovery directory was verified as its own Search Console URL-prefix property and its sitemap was submitted through the Search Console API. This creates a second crawlable discovery surface that still points back to the same main site.
 - `2026-06-01`: added `npm.cmd run operate` as the unattended operating loop. It rebuilds, verifies, submits sitemaps, checks directories, probes Cloudflare/AdSense readiness, and smoke-tests every tool while recording unavoidable account-level blockers.

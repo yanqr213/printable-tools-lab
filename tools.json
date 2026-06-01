@@ -1,8 +1,8 @@
 {
   "name": "PrintableTools Lab",
-  "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T14:44:01.751Z",
+  "generatedAt": "2026-06-01T15:39:03.708Z",
   "tools": [
     {
       "title": "Name Tracing Worksheet Generator",
@@ -164,6 +164,12 @@
       "title": "Multiple Images to PDF Converter",
       "url": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
       "description": "Turn several JPG, PNG, or WebP images into one multi-page PDF in your browser without uploading files.",
+      "category": "Everyday file utilities"
+    },
+    {
+      "title": "Compress PDF Online",
+      "url": "https://printable-tools-lab.pages.dev/tools/compress-pdf/",
+      "description": "Compress a PDF locally by rendering pages into a smaller image-based PDF without uploading the document.",
       "category": "Everyday file utilities"
     },
     {
@@ -666,6 +672,11 @@
       "title": "Multiple images to PDF without uploading",
       "url": "https://printable-tools-lab.pages.dev/guides/multiple-images-to-pdf-without-uploading/",
       "description": "Combine several JPG, PNG, or WebP images into one multi-page PDF in the browser."
+    },
+    {
+      "title": "Compress PDF without uploading",
+      "url": "https://printable-tools-lab.pages.dev/guides/compress-pdf-without-uploading/",
+      "description": "Reduce a PDF file size locally by rebuilding selected pages as a smaller image-based PDF."
     },
     {
       "title": "PDF to JPG without uploading",

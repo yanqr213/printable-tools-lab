@@ -4,7 +4,7 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-06-01T14:44:01.835Z",
+  "generatedAt": "2026-06-01T15:39:03.791Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -20,6 +20,11 @@
       "title": "Multiple Images to PDF Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
       "intent": "combine images into one PDF without upload"
+    },
+    {
+      "title": "Compress PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-pdf-no-upload/",
+      "intent": "compress PDF, reduce PDF size, no upload"
     },
     {
       "title": "PDF to JPG Without Uploading",
@@ -262,6 +267,11 @@
       "title": "Multiple Images to PDF Converter",
       "description": "Turn several JPG, PNG, or WebP images into one multi-page PDF in your browser without uploading files.",
       "url": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/"
+    },
+    {
+      "title": "Compress PDF Online",
+      "description": "Compress a PDF locally by rendering pages into a smaller image-based PDF without uploading the document.",
+      "url": "https://printable-tools-lab.pages.dev/tools/compress-pdf/"
     },
     {
       "title": "PDF to JPG Converter",

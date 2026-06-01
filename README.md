@@ -1,16 +1,17 @@
 # PrintableTools Lab
 
-Zero-cost validation build for a free browser PDF, image, QR, passport photo, and signature utility site.
+Zero-cost validation build for a free browser PDF compression, image, QR, passport photo, and signature utility site.
 
 Live site: https://printable-tools-lab.pages.dev/
 
-PrintableTools Lab is a no-signup utility site for practical browser files: make passport-style photos, compress images, resize images, convert JPG/PNG/WebP formats, create transparent signature PNGs, create static QR codes, WiFi QR signs, contact QR codes, convert PDF pages to JPG/PNG, extract PDF text, merge PDF, split PDF, rotate PDF pages, remove PDF pages, reorder PDF pages, watermark PDFs, stamp PDFs, add typed signature blocks, add page numbers, image-to-PDF conversion, multi-image PDFs, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, monthly calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
+PrintableTools Lab is a no-signup utility site for practical browser files: compress PDFs, make passport-style photos, compress images, resize images, convert JPG/PNG/WebP formats, create transparent signature PNGs, create static QR codes, WiFi QR signs, contact QR codes, convert PDF pages to JPG/PNG, extract PDF text, merge PDF, split PDF, rotate PDF pages, remove PDF pages, reorder PDF pages, watermark PDFs, stamp PDFs, add typed signature blocks, add page numbers, image-to-PDF conversion, multi-image PDFs, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, monthly calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
 
 ## Free PDF tool directory
 
 - [Free PDF, image, and QR tools without signup](https://printable-tools-lab.pages.dev/free-pdf-tools/)
 - [PDF, image, and QR tool finder](https://printable-tools-lab.pages.dev/pdf-tool-finder/)
 - [GitHub Pages discovery directory](https://yanqr213.github.io/printable-tools-lab/)
+- [Compress PDF Online](https://printable-tools-lab.pages.dev/tools/compress-pdf/)
 - [Compress Image Online](https://printable-tools-lab.pages.dev/tools/compress-image/)
 - [Resize Image Online](https://printable-tools-lab.pages.dev/tools/resize-image/)
 - [Convert Image Format](https://printable-tools-lab.pages.dev/tools/convert-image/)
@@ -56,7 +57,8 @@ PrintableTools Lab is a no-signup utility site for practical browser files: make
 ## What is included
 
 - Static website with optional Cloudflare Pages Function for the AI idea helper.
-- Sixty-one browser-side generators, PDF utilities, image utilities, QR utilities, signature utilities, passport photo utilities, and text-data converters:
+- Sixty-two browser-side generators, PDF utilities, image utilities, QR utilities, signature utilities, passport photo utilities, and text-data converters:
+  - Compress PDF Online
   - Compress Image Online
   - Compress Image to KB
   - Resize Image Online
@@ -116,7 +118,7 @@ PrintableTools Lab is a no-signup utility site for practical browser files: make
   - Monthly Calendar Generator
   - Meal Planner Generator
 - Canvas-to-PDF export, including a multi-page export path for multiple-image PDFs.
-- Browser-side PDF operations for merge, split, page numbering, rotation, page removal, page reordering, watermarks, stamps, and typed signature blocks via the MIT-licensed `pdf-lib` library.
+- Browser-side PDF operations for compression, merge, split, page numbering, rotation, page removal, page reordering, watermarks, stamps, and typed signature blocks via the MIT-licensed `pdf-lib` library.
 - Browser-side PDF-to-image rendering and selectable text extraction via Apache-2.0 `pdfjs-dist`, with multi-page ZIP export via MIT-licensed `fflate`.
 - Browser-side transparent signature PNG generation with a local drawing pad and typed fallback.
 - Browser-side passport photo sizing for US 2x2, UK/EU/Australia 35x45 mm, and Canada 50x70 mm exports, including a 4x6 print sheet option.
@@ -124,7 +126,7 @@ PrintableTools Lab is a no-signup utility site for practical browser files: make
 - Daily free limit stored in `localStorage`.
 - Local validation events stored in `localStorage`.
 - Anonymous Cloudflare KV counters for live page views, PDF/file generations, downloads, limit hits, and AI idea applies.
-- 90 original guide pages and 49 high-intent landing pages plus keyword clusters for SEO and future display-ad review.
+- 91 original guide pages and 50 high-intent landing pages plus keyword clusters for SEO and future display-ad review.
 - Compliance pages: About, Privacy, Terms, AI & License Disclosure.
 - Static pre-rendered HTML for key routes, plus client-side enhancement.
 - `robots.txt`, canonical URLs, sitemap, and SoftwareApplication structured data for tool pages.
@@ -259,7 +261,7 @@ For step-by-step operations, see `OPERATIONS.md`.
 ## Launch checklist
 
 1. Deploy the full folder contents after running `npm.cmd run build:routes`.
-2. Open `/`, `/tools/image-to-pdf/`, `/tools/multi-image-pdf/`, `/tools/pdf-to-images/`, `/tools/pdf-to-text/`, `/tools/merge-pdf/`, `/tools/split-pdf/`, `/tools/pdf-page-numbers/`, `/tools/rotate-pdf/`, `/tools/remove-pdf-pages/`, `/tools/reorder-pdf-pages/`, `/tools/watermark-pdf/`, `/tools/stamp-pdf/`, `/tools/sign-pdf/`, `/tools/text-to-pdf/`, `/tools/markdown-to-pdf/`, `/tools/csv-to-pdf/`, `/tools/json-to-pdf/`, `/tools/passport-photo/`, `/tools/invoice-generator/`, `/tools/estimate-generator/`, `/tools/purchase-order/`, `/tools/bill-of-sale/`, `/tools/rent-receipt/`, `/tools/receipt-generator/`, `/tools/timesheet-generator/`, `/tools/packing-slip/`, `/tools/work-order/`, `/tools/inventory-sheet/`, `/tools/business-card/`, `/tools/address-labels/`, `/tools/barcode-labels/`, `/tools/price-tag/`, `/tools/flyer-maker/`, `/tools/coupon-maker/`, `/tools/resume-builder/`, `/tools/cover-letter/`, `/tools/resignation-letter/`, `/tools/certificate-generator/`, `/tools/monthly-calendar/`, `/tools/meal-planner/`, `/tools/sign-in-sheet/`, `/tools/graph-paper/`, `/tools/packing-list/`, `/tools/todo-list/`, `/guides/`, `/privacy/`, and `/dashboard/`.
+2. Open `/`, `/tools/image-to-pdf/`, `/tools/multi-image-pdf/`, `/tools/compress-pdf/`, `/tools/pdf-to-images/`, `/tools/pdf-to-text/`, `/tools/merge-pdf/`, `/tools/split-pdf/`, `/tools/pdf-page-numbers/`, `/tools/rotate-pdf/`, `/tools/remove-pdf-pages/`, `/tools/reorder-pdf-pages/`, `/tools/watermark-pdf/`, `/tools/stamp-pdf/`, `/tools/sign-pdf/`, `/tools/text-to-pdf/`, `/tools/markdown-to-pdf/`, `/tools/csv-to-pdf/`, `/tools/json-to-pdf/`, `/tools/passport-photo/`, `/tools/invoice-generator/`, `/tools/estimate-generator/`, `/tools/purchase-order/`, `/tools/bill-of-sale/`, `/tools/rent-receipt/`, `/tools/receipt-generator/`, `/tools/timesheet-generator/`, `/tools/packing-slip/`, `/tools/work-order/`, `/tools/inventory-sheet/`, `/tools/business-card/`, `/tools/address-labels/`, `/tools/barcode-labels/`, `/tools/price-tag/`, `/tools/flyer-maker/`, `/tools/coupon-maker/`, `/tools/resume-builder/`, `/tools/cover-letter/`, `/tools/resignation-letter/`, `/tools/certificate-generator/`, `/tools/monthly-calendar/`, `/tools/meal-planner/`, `/tools/sign-in-sheet/`, `/tools/graph-paper/`, `/tools/packing-list/`, `/tools/todo-list/`, `/guides/`, `/privacy/`, and `/dashboard/`.
 3. Generate and download one PDF from each tool.
 4. Confirm the dashboard shows page views, generations, and downloads.
 5. Submit the public URL to Google Search Console.
@@ -278,6 +280,7 @@ For step-by-step operations, see `OPERATIONS.md`.
 - Compress Image, Resize Image, and Convert Image Format were added on the same site because image upload failures are a broader daily pain than printable worksheets: users hit file-size, dimension, or format limits on forms, marketplaces, school portals, and profile pages. Dedicated landing pages now cover JPG compression, PNG compression, square resize sizes, PNG-to-JPG, and WebP-to-JPG searches without adding paid infrastructure.
 - Compress Image to KB was added because strict upload limits such as 100KB, 200KB, and 500KB are more urgent than generic compression. The tool keeps images local in the browser and targets a requested file size for forms, profiles, school portals, visa-style uploads, and marketplace listings.
 - PDF to JPG/PNG was added because users often need individual PDF pages as images for forms, previews, slides, thumbnails, marketplace uploads, or messaging apps. The tool keeps files local, limits free rendering to eight pages to protect browsers, and adds a focused no-upload landing page for the search intent.
+- Compress PDF was added because users often arrive after upload forms, email clients, school portals, or government forms reject a file as too large. The tool keeps files local and rebuilds selected pages as an image-based PDF while clearly warning that selectable text and links may be flattened.
 - PDF to Text was added because extracting selectable text from PDFs has broad work, student, research, admin, and copy-paste intent. The tool keeps files local and explicitly does not promise OCR for scanned image-only PDFs.
 - Signature PNG was added because visual signature-image searches connect to documents, proposals, forms, and PDF annotation workflows. The tool exports a transparent PNG locally and clearly avoids claiming identity verification or regulated e-signature status.
 - Passport Photo Maker was added because passport, visa, and ID photo searches are urgent and often monetized through paid exports or uploads of private face photos. The tool only handles local sizing, cropping, and 4x6 print layout; it does not claim official acceptance or biometric validation.
@@ -286,8 +289,8 @@ For step-by-step operations, see `OPERATIONS.md`.
 
 ## Validation gates
 
-- Day 7: 61 tools export stable PDFs, image files, text files, passport photos, signature PNGs, or QR PDFs on desktop and mobile.
-- Day 14: 90 guide pages live; submit sitemap/site to Google Search Console.
+- Day 7: 62 tools export stable PDFs, image files, text files, passport photos, signature PNGs, or QR PDFs on desktop and mobile.
+- Day 14: 91 guide pages live; submit sitemap/site to Google Search Console.
 - Day 30: continue if any of these are true:
   - 100 file downloads.
   - 300 tool generations.

@@ -608,6 +608,27 @@
         { id: "layout", label: "Text layout", type: "select", options: [["page-breaks", "Page headings"], ["plain", "Plain text"]] },
       ],
     },
+    "compress-pdf": {
+      id: "compress-pdf",
+      icon: "ZIP",
+      title: "Compress PDF Online",
+      shortTitle: "Compress PDF",
+      description: "Compress a PDF locally by rendering pages into a smaller image-based PDF without uploading the document.",
+      keywords: ["compress PDF", "reduce PDF size", "PDF compressor", "no upload"],
+      ai: false,
+      pdfTool: "compress",
+      outputKind: "file",
+      defaultValues: {
+        pdfs: "",
+        mode: "balanced",
+        pageRange: "all",
+      },
+      fields: [
+        { id: "pdfs", label: "PDF file", type: "file", accept: "application/pdf", multiple: false, help: "Select one PDF. It stays in your browser and is not uploaded." },
+        { id: "mode", label: "Compression mode", type: "select", options: [["small", "Small file"], ["balanced", "Balanced"], ["readable", "More readable"]] },
+        { id: "pageRange", label: "Pages to compress", type: "text", maxLength: 80, help: "Use all, 1, or ranges such as 1,3-5. Free compression exports up to 12 pages." },
+      ],
+    },
     "compress-image": {
       id: "compress-image",
       icon: "CMP",
@@ -1708,6 +1729,8 @@
         ["JPG to PDF without uploading", "/jpg-to-pdf-no-upload/"],
         ["Multiple images to PDF", "/tools/multi-image-pdf/"],
         ["Multiple images to PDF without uploading", "/multiple-images-to-pdf-no-upload/"],
+        ["Compress PDF", "/tools/compress-pdf/"],
+        ["Compress PDF without uploading", "/compress-pdf-no-upload/"],
         ["PDF to JPG converter", "/tools/pdf-to-images/"],
         ["PDF to JPG without uploading", "/pdf-to-jpg-no-upload/"],
         ["PDF to text converter", "/tools/pdf-to-text/"],
@@ -1822,7 +1845,7 @@
     {
       title: "No-upload conversion tools",
       description: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1886,6 +1909,21 @@
         ["Practical limits", "Very large images can make large PDFs. Resize or crop photos first if the receiving website has strict upload limits."],
       ],
       related: ["image-to-pdf", "text-to-pdf", "receipt-generator"],
+    },
+    {
+      slug: "compress-pdf-no-upload",
+      title: "Compress PDF Without Uploading",
+      headline: "Compress PDF without uploading",
+      description: "Compress a PDF locally in your browser by creating a smaller image-based PDF copy.",
+      lead: "Choose a PDF, pick a compression mode, and download a smaller PDF copy without sending the file to a server. This works best for scanned forms, image-heavy PDFs, and quick document uploads where file size matters more than selectable text.",
+      tool: "compress-pdf",
+      intent: "compress PDF, reduce PDF size, no upload",
+      sections: [
+        ["Why this is high intent", "Compress PDF searches often happen after a form, email, school portal, job application, or government upload rejects a file as too large. Many converters require uploads, queues, accounts, or paid exports."],
+        ["Local compression tradeoff", "The browser renders selected pages into images and rebuilds them into a smaller PDF. That keeps the file local, but selectable text and links may become flattened."],
+        ["Best fit", "Use it for scanned PDFs, photo-heavy documents, receipts, and one-off upload limits. For contracts, forms, or accessible documents with selectable text, keep the original file too."],
+      ],
+      related: ["pdf-to-images", "compress-image-to-kb", "merge-pdf"],
     },
     {
       slug: "pdf-to-jpg-no-upload",
@@ -3931,6 +3969,7 @@
     "meal-planner",
     "image-to-pdf",
     "multi-image-pdf",
+    "compress-pdf",
     "pdf-to-images",
     "pdf-to-text",
     "compress-image",
@@ -4043,15 +4082,15 @@
       <section class="shell hero">
         <div>
           <h1>Make useful PDF, image, and QR files in under a minute.</h1>
-            <p>Free browser-based generators for passport photos, image compression, image resizing, image format conversion, QR codes, WiFi QR signs, contact QR codes, PDF edits, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
+            <p>Free browser-based generators for PDF compression, passport photos, image compression, image resizing, image format conversion, QR codes, WiFi QR signs, contact QR codes, PDF edits, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
             <a class="button secondary" href="/tools/qr-code/">Create a QR code</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>61</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>62</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>90</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>91</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -4864,6 +4903,7 @@
     if (tool.pdfTool === "split") return "Extract pages";
     if (tool.pdfTool === "to-images") return "Convert to images";
     if (tool.pdfTool === "to-text") return "Extract text";
+    if (tool.pdfTool === "compress") return "Compress PDF";
     if (tool.pdfTool === "page-numbers") return "Add page numbers";
     if (tool.pdfTool === "rotate") return "Rotate pages";
     if (tool.pdfTool === "remove-pages") return "Remove pages";
@@ -4937,6 +4977,11 @@
       const selected = parsePageRangeOrAll(values.pageRange || "all", files[0].pageCount);
       note = `The export will extract selectable text from ${selected.length} of ${files[0].pageCount} page${files[0].pageCount === 1 ? "" : "s"} into a TXT file. Scanned image-only PDFs need OCR.`;
     }
+    if (tool.pdfTool === "compress") {
+      const selected = limitedPdfCompressPages(values.pageRange || "all", files[0].pageCount);
+      const profile = pdfCompressProfile(values.mode || "balanced");
+      note = `The export will render ${selected.length} of ${files[0].pageCount} page${files[0].pageCount === 1 ? "" : "s"} into a ${profile.label.toLowerCase()} image-based PDF. Selectable text and links may be flattened.`;
+    }
     if (tool.pdfTool === "page-numbers") note = `The export will add visible page numbers to ${files[0].pageCount} page${files[0].pageCount === 1 ? "" : "s"}.`;
     if (tool.pdfTool === "rotate") {
       const selected = parsePageRangeOrAll(values.pageRange || "all", files[0].pageCount);
@@ -4977,6 +5022,7 @@
     if (tool.pdfTool === "split") return exportSplitPdf(files[0], values);
     if (tool.pdfTool === "to-images") return exportPdfAsImages(files[0], values);
     if (tool.pdfTool === "to-text") return exportPdfText(files[0], values);
+    if (tool.pdfTool === "compress") return exportCompressedPdf(files[0], values);
     if (tool.pdfTool === "page-numbers") return exportNumberedPdf(files[0], values);
     if (tool.pdfTool === "rotate") return exportRotatedPdf(files[0], values);
     if (tool.pdfTool === "remove-pages") return exportRemovedPagesPdf(files[0], values);
@@ -5062,6 +5108,41 @@
     const output = parts.join(values.layout === "plain" ? "\n\n" : "\n\n").trim();
     if (!output) throw new Error("No selectable text was found. This PDF may be scanned or image-only and may need OCR.");
     return new Blob([output + "\n"], { type: "text/plain;charset=utf-8" });
+  }
+
+  async function exportCompressedPdf(file, values) {
+    const pdfLib = getPdfLib();
+    const pdfjsLib = getPdfJsLib();
+    const profile = pdfCompressProfile(values.mode || "balanced");
+    const selectedPages = limitedPdfCompressPages(values.pageRange || "all", file.pageCount);
+    if (!selectedPages.length) throw new Error("Enter all or at least one valid page number to compress.");
+    const document = await pdfjsLib.getDocument({ data: file.bytes.slice().buffer }).promise;
+    const output = await pdfLib.PDFDocument.create();
+    let renderedCount = 0;
+    try {
+      for (const pageNumber of selectedPages) {
+        const page = await document.getPage(pageNumber);
+        const pageSize = page.getViewport({ scale: 1 });
+        const viewport = page.getViewport({ scale: profile.scale });
+        const canvas = window.document.createElement("canvas");
+        canvas.width = Math.ceil(viewport.width);
+        canvas.height = Math.ceil(viewport.height);
+        const ctx = canvas.getContext("2d", { alpha: false });
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        await page.render({ canvasContext: ctx, viewport }).promise;
+        const imageBytes = binaryStringToUint8(base64ToBinary(canvas.toDataURL("image/jpeg", profile.quality).split(",")[1]));
+        const image = await output.embedJpg(imageBytes);
+        const outputPage = output.addPage([pageSize.width, pageSize.height]);
+        outputPage.drawImage(image, { x: 0, y: 0, width: pageSize.width, height: pageSize.height });
+        renderedCount += 1;
+        page.cleanup();
+      }
+    } finally {
+      if (document.destroy) await document.destroy();
+    }
+    if (!renderedCount) throw new Error("Could not render pages for compression.");
+    return pdfBytesToBlob(await output.save());
   }
 
   function pdfTextItemsToLines(items) {
@@ -5220,6 +5301,17 @@
   function limitedPdfImagePages(value, pageCount) {
     const pages = parsePageRangeOrAll(value || "all", pageCount);
     return pages.slice(0, 8);
+  }
+
+  function limitedPdfCompressPages(value, pageCount) {
+    const pages = parsePageRangeOrAll(value || "all", pageCount);
+    return pages.slice(0, 12);
+  }
+
+  function pdfCompressProfile(value) {
+    if (value === "small") return { label: "Small file", scale: 0.85, quality: 0.58 };
+    if (value === "readable") return { label: "More readable", scale: 1.35, quality: 0.82 };
+    return { label: "Balanced", scale: 1.05, quality: 0.68 };
   }
 
   function parsePageOrder(value, pageCount) {
@@ -5397,6 +5489,7 @@
       return `${base}-page-images${pages.length === 1 ? `.${pdfImageExtension(values.format || "jpeg")}` : ".zip"}`;
     }
     if (tool.pdfTool === "to-text") return `${base}-text.txt`;
+    if (tool.pdfTool === "compress") return `${base}-compressed.pdf`;
     if (tool.pdfTool === "page-numbers") return `${base}-page-numbers.pdf`;
     if (tool.pdfTool === "rotate") return `${base}-rotated.pdf`;
     if (tool.pdfTool === "remove-pages") return `${base}-pages-removed.pdf`;
@@ -5479,7 +5572,7 @@
       ["resume-builder", "cover-letter", "resignation-letter"],
       ["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"],
       ["name-tracing", "chore-chart", "reward-chart", "flashcards"],
-      ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
+      ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
       ["certificate-generator", "sign-in-sheet", "todo-list", "flyer-maker", "coupon-maker"],
     ];
     const group = groups.find((items) => items.includes(currentId)) || toolOrder;
@@ -9164,8 +9257,9 @@
     return canvasesToPdf([canvas]);
   }
 
-  function canvasesToPdf(canvases) {
+  function canvasesToPdf(canvases, options = {}) {
     const pages = Array.isArray(canvases) && canvases.length ? canvases : [];
+    const quality = Math.max(0.35, Math.min(0.96, Number(options.quality) || 0.92));
     const objects = [];
     objects.push("<< /Type /Catalog /Pages 2 0 R >>");
     const pageObjectIds = pages.map((_, index) => 3 + index * 3);
@@ -9174,7 +9268,7 @@
       const pageObjectId = pageObjectIds[index];
       const imageObjectId = pageObjectId + 1;
       const contentObjectId = pageObjectId + 2;
-      const dataUrl = canvas.toDataURL("image/jpeg", 0.92);
+      const dataUrl = canvas.toDataURL("image/jpeg", quality);
       const imageBytes = base64ToBinary(dataUrl.split(",")[1]);
       const widthPt = canvas.width * 0.48;
       const heightPt = canvas.height * 0.48;

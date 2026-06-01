@@ -76,6 +76,7 @@ const manifest = {
   shortcuts: [
     { name: "Free file tools", short_name: "File tools", url: "/free-pdf-tools/" },
     { name: "File tool finder", short_name: "Finder", url: "/pdf-tool-finder/" },
+    { name: "Compress PDF", short_name: "PDF ZIP", url: "/tools/compress-pdf/" },
     { name: "Compress image", short_name: "Compress", url: "/tools/compress-image/" },
     { name: "Image to KB", short_name: "Image KB", url: "/tools/compress-image-to-kb/" },
     { name: "Resize image", short_name: "Resize", url: "/tools/resize-image/" },
@@ -307,6 +308,7 @@ const distribution = [
   `- PDF, image, and QR tool finder: ${siteUrl("pdf-tool-finder")}`,
   `- Directory submission pack: ${siteUrl("submit-directory")}`,
   `- Compress image without upload page: ${siteUrl("compress-image-no-upload")}`,
+  `- Compress PDF without upload page: ${siteUrl("compress-pdf-no-upload")}`,
   `- Compress image to 100KB page: ${siteUrl("compress-image-to-100kb")}`,
   `- Resize image without upload page: ${siteUrl("resize-image-no-upload")}`,
   `- Convert image format without upload page: ${siteUrl("convert-image-format-no-upload")}`,
@@ -343,13 +345,13 @@ const distribution = [
   "## Community-safe angles",
   "",
   "- For freelancers: free invoice, estimate, purchase order, receipt, bill of sale, work order, packing slip, inventory sheet, and timesheet PDFs without account creation.",
-  "- For high-intent search visitors: no-signup and no-upload landing pages for passport photos, image compression, image resizing, image cropping, image rotation, image watermarking, QR codes, WiFi QR signs, contact QR codes, image format conversion, PDF-to-JPG, PDF-to-text, PDF merge, PDF split, PDF rotation, PDF page removal, PDF page reordering, PDF watermarking, PDF stamping, typed PDF signatures, PDF page numbers, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, barcodes, price tags, flyers, coupons, timesheets, resumes, certificates, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, JPG-to-PDF, and multi-image PDF.",
+  "- For high-intent search visitors: no-signup and no-upload landing pages for PDF compression, passport photos, image compression, image resizing, image cropping, image rotation, image watermarking, QR codes, WiFi QR signs, contact QR codes, image format conversion, PDF-to-JPG, PDF-to-text, PDF merge, PDF split, PDF rotation, PDF page removal, PDF page reordering, PDF watermarking, PDF stamping, typed PDF signatures, PDF page numbers, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, barcodes, price tags, flyers, coupons, timesheets, resumes, certificates, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, JPG-to-PDF, and multi-image PDF.",
   "- For small businesses and local sellers: printable business cards, address labels, barcode labels, price tags, flyers, coupons, packing slips, and inventory sheets without design-account or spreadsheet friction.",
   "- For job seekers: free resume, cover letter, and resignation letter PDFs without a hidden export fee.",
   "- For parents and teachers: printable name tracing, chore charts, reward charts, flashcards, weekly planners, and habit trackers.",
   "- For teachers and organizers: free certificate, sign-in sheet, and event checklist PDFs.",
   "- For household planning: monthly calendars and meal planners with grocery lists.",
-  "- For everyday utility needs: crop passport photos, compress images, resize images, crop images, rotate images, watermark images, create QR codes, create WiFi QR signs, create contact QR codes, convert image formats, convert PDF pages to JPG or PNG, extract PDF text, merge PDF, split PDF, rotate pages, remove pages, reorder pages, watermark PDFs, stamp PDFs, add typed signature blocks, add page numbers, image-to-PDF conversion, multi-image PDF export, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, sign-in sheets, graph paper, to-do lists, and packing lists.",
+  "- For everyday utility needs: compress PDFs, crop passport photos, compress images, resize images, crop images, rotate images, watermark images, create QR codes, create WiFi QR signs, create contact QR codes, convert image formats, convert PDF pages to JPG or PNG, extract PDF text, merge PDF, split PDF, rotate pages, remove pages, reorder pages, watermark PDFs, stamp PDFs, add typed signature blocks, add page numbers, image-to-PDF conversion, multi-image PDF export, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, sign-in sheets, graph paper, to-do lists, and packing lists.",
   "",
   "## Places to consider manually",
   "",
@@ -384,7 +386,7 @@ function categoryForTool(toolPath) {
   if (["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt", "receipt-generator", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"].includes(slug)) return "Business paperwork";
   if (["resume-builder", "cover-letter", "resignation-letter"].includes(slug)) return "Career documents";
   if (["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"].includes(slug)) return "Planning";
-  if (["image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf", "sign-in-sheet", "graph-paper", "packing-list", "todo-list"].includes(slug)) return "Everyday file utilities";
+  if (["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf", "sign-in-sheet", "graph-paper", "packing-list", "todo-list"].includes(slug)) return "Everyday file utilities";
   if (["certificate-generator"].includes(slug)) return "Events and awards";
   return "Education and family printables";
 }

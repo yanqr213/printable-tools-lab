@@ -2,7 +2,7 @@ const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pa
 
 const SITE_SUMMARY = {
   name: "PrintableTools Lab",
-  description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   audience: "Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, household planners, cafe operators, booth exhibitors, rental hosts, and office admins.",
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
@@ -10,6 +10,7 @@ const SITE_SUMMARY = {
 const HIGH_INTENT_TOOL_PATHS = [
   "tools/image-to-pdf",
   "tools/multi-image-pdf",
+  "tools/compress-pdf",
   "tools/pdf-to-images",
   "tools/pdf-to-text",
   "tools/compress-image",
@@ -65,6 +66,11 @@ const TOOL_FINDER_ROWS = [
     need: "I need one PDF with several image pages",
     toolPath: "tools/multi-image-pdf",
     why: "Best when each image should become its own PDF page, such as receipts, scans, or phone photos.",
+  },
+  {
+    need: "I need to make a PDF file smaller",
+    toolPath: "tools/compress-pdf",
+    why: "Best for scanned or image-heavy PDFs when a form, email, or portal rejects a large file.",
   },
   {
     need: "I need to turn PDF pages into JPG or PNG images",
@@ -328,6 +334,21 @@ const landingPages = [
       ["Practical limits", "Very large images can make large PDFs. Resize or crop photos first if the receiving website has strict upload limits."],
     ],
     relatedTools: ["tools/image-to-pdf", "tools/text-to-pdf", "tools/receipt-generator"],
+  },
+  {
+    path: "compress-pdf-no-upload",
+    title: "Compress PDF Without Uploading",
+    headline: "Compress PDF without uploading",
+    description: "Compress a PDF locally in your browser by creating a smaller image-based PDF copy.",
+    lead: "Choose a PDF, pick a compression mode, and download a smaller PDF copy without sending the file to a server. This works best for scanned forms, image-heavy PDFs, and quick document uploads where file size matters more than selectable text.",
+    primaryTool: "tools/compress-pdf",
+    intent: "compress PDF, reduce PDF size, no upload",
+    sections: [
+      ["Why this is high intent", "Compress PDF searches often happen after a form, email, school portal, job application, or government upload rejects a file as too large. Many converters require uploads, queues, accounts, or paid exports."],
+      ["Local compression tradeoff", "The browser renders selected pages into images and rebuilds them into a smaller PDF. That keeps the file local, but selectable text and links may become flattened."],
+      ["Best fit", "Use it for scanned PDFs, photo-heavy documents, receipts, and one-off upload limits. For contracts, forms, or accessible documents with selectable text, keep the original file too."],
+    ],
+    relatedTools: ["tools/pdf-to-images", "tools/compress-image-to-kb", "tools/merge-pdf"],
   },
   {
     path: "pdf-to-jpg-no-upload",
@@ -1268,6 +1289,15 @@ const tools = [
     ],
   },
   {
+    path: "tools/compress-pdf",
+    title: "Compress PDF Online",
+    description: "Compress a PDF locally by rendering pages into a smaller image-based PDF without uploading the document.",
+    body: [
+      "Select one PDF, choose a compression mode, and download a smaller image-based PDF copy processed in the browser.",
+      "PDF compression is a high-intent file utility search because people usually arrive after a form, email, or upload portal rejects a large PDF. This local version is honest about the tradeoff: it is best for scanned or image-heavy PDFs and may flatten selectable text.",
+    ],
+  },
+  {
     path: "tools/pdf-to-images",
     title: "PDF to JPG Converter",
     description: "Convert PDF pages to JPG or PNG images locally in your browser without uploading the document.",
@@ -1635,6 +1665,7 @@ const guides = [
   ["guides/free-image-to-pdf-converter", "Free image to PDF converter", "Convert a JPG, PNG, or WebP image into a one-page PDF without uploading files.", "Image-to-PDF searches are urgent: people often need to submit a document, receipt, form, or photo as a PDF. This converter keeps the file in the browser instead of uploading it to a server."],
   ["guides/jpg-to-pdf-without-uploading", "JPG to PDF without uploading", "Make a PDF from a JPG file in the browser when you do not want to send the image to a conversion server.", "Photos of receipts, IDs, forms, and school documents can contain private information. A local converter is a safer first choice because the image is drawn into a PDF on your device."],
   ["guides/multiple-images-to-pdf-without-uploading", "Multiple images to PDF without uploading", "Combine several JPG, PNG, or WebP images into one multi-page PDF in the browser.", "Multi-image PDF conversion is useful for receipts, homework pages, forms, screenshots, and photo scans that need to be submitted together. A browser-side workflow avoids sending those files to a conversion server."],
+  ["guides/compress-pdf-without-uploading", "Compress PDF without uploading", "Reduce a PDF file size locally by rebuilding selected pages as a smaller image-based PDF.", "PDF compression has strong urgent intent because users often arrive after an upload form rejects a file. The local image-based workflow is best for scanned or photo-heavy PDFs and may flatten selectable text."],
   ["guides/pdf-to-jpg-without-uploading", "PDF to JPG without uploading", "Convert PDF pages to JPG or PNG images locally in your browser.", "PDF-to-JPG searches often happen when a form or portal accepts images but rejects PDFs. Browser-side rendering keeps the source document local while producing ordinary image files."],
   ["guides/extract-text-from-pdf-without-uploading", "Extract text from PDF without uploading", "Turn selectable PDF text into a downloadable TXT file locally in your browser.", "PDF-to-text searches often happen when someone needs notes, quotes, admin details, or searchable text from a document. Scanned image-only PDFs need OCR, so this browser tool is intentionally clear about extracting embedded text only."],
   ["guides/signature-png-generator", "Signature PNG generator", "Draw or type a signature and download a transparent PNG locally without signup or upload.", "Signature PNG searches often come from document, proposal, and form workflows. A local visual-image tool can be useful, but it should not claim identity verification or regulated e-signature status."],
@@ -1714,6 +1745,8 @@ const keywordClusters = [
       ["JPG to PDF without uploading", "jpg-to-pdf-no-upload"],
       ["Multiple images to PDF", "tools/multi-image-pdf"],
       ["Multiple images to PDF without uploading", "multiple-images-to-pdf-no-upload"],
+      ["Compress PDF", "tools/compress-pdf"],
+      ["Compress PDF without uploading", "compress-pdf-no-upload"],
       ["PDF to JPG converter", "tools/pdf-to-images"],
       ["PDF to JPG without uploading", "pdf-to-jpg-no-upload"],
       ["PDF to text converter", "tools/pdf-to-text"],
@@ -1842,15 +1875,15 @@ const pages = [
       <section class="shell hero">
         <div>
           <h1>Make useful PDF, image, and QR files in under a minute.</h1>
-          <p>Free browser-based generators for passport photos, image compression, resizing, cropping, rotation, watermarking, transparent signature PNGs, QR codes, WiFi QR signs, contact QR codes, PDF-to-JPG images, PDF-to-text extraction, image format conversion, no-upload PDF edits, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
+          <p>Free browser-based generators for passport photos, PDF compression, image compression, resizing, cropping, rotation, watermarking, transparent signature PNGs, QR codes, WiFi QR signs, contact QR codes, PDF-to-JPG images, PDF-to-text extraction, image format conversion, no-upload PDF edits, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>61</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>62</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>90</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>91</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -2039,6 +2072,7 @@ const GUIDE_HINTS_FOR_LINKS = {
   "meal-planner": ["meal planner", "meal plan", "grocery"],
   "image-to-pdf": ["image to PDF", "JPG to PDF"],
   "multi-image-pdf": ["multiple images", "image to PDF"],
+  "compress-pdf": ["compress PDF", "reduce PDF size", "PDF compressor"],
   "pdf-to-images": ["PDF to JPG", "PDF to PNG"],
   "pdf-to-text": ["PDF to text", "extract text"],
   "compress-image": ["compress image", "image compressor", "reduce image"],
@@ -2179,7 +2213,7 @@ function freePdfToolsHtml() {
     {
       title: "No-upload conversion tools",
       text: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -2245,7 +2279,7 @@ function pdfToolFinderHtml() {
       </tr>`;
   }).join("\n");
   const imageTools = ["compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "qr-code", "wifi-qr-code", "vcard-qr-code"];
-  const pdfEditTools = ["merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf"];
+  const pdfEditTools = ["compress-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf"];
   const textDataTools = ["text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"];
   const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"];
   const personalTools = ["resume-builder", "cover-letter", "resignation-letter", "certificate-generator", "todo-list", "packing-list", "monthly-calendar", "meal-planner", "sign-in-sheet", "graph-paper"];
@@ -2333,6 +2367,7 @@ function directorySubmissionHtml() {
   const primaryTools = [
     "image-to-pdf",
     "multi-image-pdf",
+    "compress-pdf",
     "pdf-to-images",
     "pdf-to-text",
     "compress-image",
@@ -2459,9 +2494,11 @@ function landingPageHtml(page) {
 function softwareSchema(tool) {
   const imageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/signature-png", "tools/passport-photo", "tools/pdf-to-images"]);
   const textToolPaths = new Set(["tools/pdf-to-text"]);
+  const compressedPdfToolPaths = new Set(["tools/compress-pdf"]);
   const qrToolPaths = new Set(["tools/qr-code", "tools/wifi-qr-code", "tools/vcard-qr-code"]);
   const isImageTool = imageToolPaths.has(tool.path);
   const isTextTool = textToolPaths.has(tool.path);
+  const isCompressedPdfTool = compressedPdfToolPaths.has(tool.path);
   const isQrTool = qrToolPaths.has(tool.path);
   return {
     "@context": "https://schema.org",
@@ -2477,10 +2514,10 @@ function softwareSchema(tool) {
       priceCurrency: "USD",
     },
     featureList: [
-      tool.path === "tools/passport-photo" ? "Browser-based passport photo sizing" : isQrTool ? "Browser-based static QR code generation" : isImageTool ? "Browser-based image processing" : isTextTool ? "Browser-based PDF text extraction" : "Browser-based PDF generation",
+      isCompressedPdfTool ? "Browser-based PDF compression" : tool.path === "tools/passport-photo" ? "Browser-based passport photo sizing" : isQrTool ? "Browser-based static QR code generation" : isImageTool ? "Browser-based image processing" : isTextTool ? "Browser-based PDF text extraction" : "Browser-based PDF generation",
       "No account required",
-      tool.path === "tools/passport-photo" ? "No-upload passport photo crop" : isQrTool ? "Printable QR code PDF" : isImageTool ? "No-upload image conversion" : isTextTool ? "No-upload PDF text extraction" : "US Letter and A4 support",
-      tool.path === "tools/passport-photo" ? "Local JPG, PNG, or print sheet export" : isImageTool ? "Local image file export" : isTextTool ? "Local TXT file export" : "One-page printable export",
+      isCompressedPdfTool ? "No-upload image-based PDF rebuild" : tool.path === "tools/passport-photo" ? "No-upload passport photo crop" : isQrTool ? "Printable QR code PDF" : isImageTool ? "No-upload image conversion" : isTextTool ? "No-upload PDF text extraction" : "US Letter and A4 support",
+      isCompressedPdfTool ? "Smaller PDF copy for scanned or image-heavy files" : tool.path === "tools/passport-photo" ? "Local JPG, PNG, or print sheet export" : isImageTool ? "Local image file export" : isTextTool ? "Local TXT file export" : "One-page printable export",
     ],
   };
 }
@@ -3013,6 +3050,26 @@ function toolDetails(tool) {
         { q: "Are the images uploaded?", a: "No. The selected images are drawn into PDF pages in your browser." },
         { q: "How many images can I add?", a: "The free tool accepts up to eight images for one multi-page PDF." },
         { q: "Does each image get its own page?", a: "Yes. The export creates a multi-page PDF with one image per page." },
+      ],
+    },
+    "compress-pdf": {
+      steps: [
+        "Open the PDF compressor and select one PDF file.",
+        "Choose Small file, Balanced, or More readable depending on the destination limit.",
+        "Keep all pages or enter a page range such as 1,3-5.",
+        "Download the compressed PDF and compare it with the original before uploading or sharing.",
+      ],
+      privacy: "The selected PDF is rendered and rebuilt in your browser and is not uploaded by the compressor.",
+      limit: "The free version compresses up to twelve selected pages into an image-based PDF and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Upload size limit", text: "Create a smaller PDF when a school, job, government, or support portal rejects the original file." },
+        { title: "Scanned paperwork", text: "Compress photo-heavy scans, receipts, forms, and document packets that do not need selectable text." },
+        { title: "Private local conversion", text: "Avoid uploading sensitive PDFs to a converter service when a browser-side copy is enough." },
+      ],
+      faq: [
+        { q: "Is the PDF uploaded?", a: "No. The PDF is rendered locally in your browser for ordinary compression." },
+        { q: "Will text stay selectable?", a: "Usually no. This compressor rebuilds pages as images, so selectable text and links may be flattened." },
+        { q: "What kind of PDFs work best?", a: "Scanned, photo-heavy, receipt, or image-based PDFs usually fit this method better than contracts or accessible text PDFs." },
       ],
     },
     "pdf-to-images": {

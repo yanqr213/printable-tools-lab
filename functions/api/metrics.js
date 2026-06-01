@@ -21,6 +21,7 @@ const TOOLS = [
   "meal-planner",
   "image-to-pdf",
   "multi-image-pdf",
+  "compress-pdf",
   "pdf-to-images",
   "pdf-to-text",
   "compress-image",

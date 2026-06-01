@@ -27,13 +27,13 @@ const topics = [
   "invoice-generator",
   "label-generator",
   "image-to-pdf",
+  "compress-pdf",
   "pdf-to-jpg",
   "pdf-to-text",
   "signature-png",
   "passport-photo",
   "text-to-pdf",
   "markdown-to-pdf",
-  "csv-to-pdf",
   "no-signup",
   "free-tools",
 ];
@@ -48,7 +48,7 @@ async function main() {
     method: "PATCH",
     body: {
       homepage: siteUrl(""),
-      description: "Free no-signup browser PDF, image, QR, and text-data tools for passport photos, compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
+      description: "Free no-signup browser PDF, image, QR, and text-data tools for PDF compression, passport photos, image compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
     },
   });
   await github(`/repos/${repo}/topics`, {
@@ -145,7 +145,7 @@ function releaseBody() {
     "- Passport photo sizing, image compression, resizing, cropping, rotation, watermarking, and JPG/PNG/WebP conversion run locally in the browser without uploading files.",
     "- Static QR, WiFi QR, and contact QR generation runs in the browser without a signup wall.",
     "- Small business tools cover invoices, receipts, timesheets, business cards, labels, barcode labels, price tags, flyers, and coupons.",
-    "- PDF tools cover merge, split, rotate, remove pages, reorder pages, watermarks, stamps, signatures, page numbers, image-to-PDF, and text-to-PDF workflows.",
+    "- PDF tools cover compression, merge, split, rotate, remove pages, reorder pages, watermarks, stamps, signatures, page numbers, image-to-PDF, and text-to-PDF workflows.",
     "- Ads are disabled until policy review and real search visibility are ready.",
   ].join("\n");
 }
