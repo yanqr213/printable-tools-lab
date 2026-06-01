@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T08:25:03.816Z",
+  "generatedAt": "2026-06-01T08:27:50.849Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -36,21 +36,21 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 19587,
+        "bytes": 20654,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 30678,
+        "bytes": 32334,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 21985,
+        "bytes": 22672,
         "json": null
       },
       "/robots.txt": {
@@ -73,27 +73,27 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 22812,
+        "bytes": 24041,
         "json": null,
-        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, and local image tools for compressing images, resizing images, converting image formats, cropping imag"
+        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, and static QR code tools for compressing images, resizing images, converting image "
       },
       "/feed.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 40615,
+        "bytes": 43470,
         "json": null
       },
       "/tools.json": {
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 37966,
+        "bytes": 38972,
         "json": {
           "name": "PrintableTools Lab",
-          "description": "Free browser-based PDF generators, no-upload PDF tools, and local image tools for compressing images, resizing images, converting image formats, cropping images, rotating images, watermarking images, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+          "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, and static QR code tools for compressing images, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T07:17:18.030Z",
+          "generatedAt": "2026-06-01T08:24:07.890Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -291,6 +291,24 @@
               "title": "Watermark Image Online",
               "url": "https://printable-tools-lab.pages.dev/tools/watermark-image/",
               "description": "Add a text watermark to JPG, PNG, or WebP images locally for drafts, samples, marketplace photos, and social posts without uploading files.",
+              "category": "Everyday file utilities"
+            },
+            {
+              "title": "Free QR Code Generator",
+              "url": "https://printable-tools-lab.pages.dev/tools/qr-code/",
+              "description": "Create a static QR code PDF for a link, menu, event page, sign, flyer, or short text without signup.",
+              "category": "Everyday file utilities"
+            },
+            {
+              "title": "WiFi QR Code Generator",
+              "url": "https://printable-tools-lab.pages.dev/tools/wifi-qr-code/",
+              "description": "Create a printable WiFi QR code for guests, offices, rentals, classrooms, cafes, events, and waiting rooms.",
+              "category": "Everyday file utilities"
+            },
+            {
+              "title": "Contact QR Code Generator",
+              "url": "https://printable-tools-lab.pages.dev/tools/vcard-qr-code/",
+              "description": "Create a printable contact QR code with vCard details for a business card, booth sign, event badge, or service flyer.",
               "category": "Everyday file utilities"
             },
             {
@@ -814,12 +832,12 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 17364,
+        "bytes": 18650,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T07:17:18.030Z",
-          "positioning": "Free no-signup browser PDF and image tools with local generation, original guides, and responsible ad placement after approval.",
+          "generatedAt": "2026-06-01T08:24:07.890Z",
+          "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
           "opensearch": "https://printable-tools-lab.pages.dev/opensearch.xml",
@@ -836,6 +854,9 @@
             "https://printable-tools-lab.pages.dev/crop-image-no-upload/",
             "https://printable-tools-lab.pages.dev/rotate-image-no-upload/",
             "https://printable-tools-lab.pages.dev/watermark-image-no-upload/",
+            "https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/",
+            "https://printable-tools-lab.pages.dev/wifi-qr-code-generator/",
+            "https://printable-tools-lab.pages.dev/contact-qr-code-generator/",
             "https://printable-tools-lab.pages.dev/compress-jpg-no-upload/",
             "https://printable-tools-lab.pages.dev/compress-png-no-upload/",
             "https://printable-tools-lab.pages.dev/resize-image-1080x1080/",
@@ -873,6 +894,9 @@
             "https://printable-tools-lab.pages.dev/tools/crop-image/",
             "https://printable-tools-lab.pages.dev/tools/rotate-image/",
             "https://printable-tools-lab.pages.dev/tools/watermark-image/",
+            "https://printable-tools-lab.pages.dev/tools/qr-code/",
+            "https://printable-tools-lab.pages.dev/tools/wifi-qr-code/",
+            "https://printable-tools-lab.pages.dev/tools/vcard-qr-code/",
             "https://printable-tools-lab.pages.dev/tools/merge-pdf/",
             "https://printable-tools-lab.pages.dev/tools/split-pdf/",
             "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/",
@@ -954,6 +978,24 @@
               "url": "https://printable-tools-lab.pages.dev/watermark-image-no-upload/",
               "intent": "watermark image online, add text watermark, no upload",
               "tool": "https://printable-tools-lab.pages.dev/tools/watermark-image/"
+            },
+            {
+              "title": "Free QR Code Generator Without Signup",
+              "url": "https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/",
+              "intent": "QR code generator, no signup, printable static QR",
+              "tool": "https://printable-tools-lab.pages.dev/tools/qr-code/"
+            },
+            {
+              "title": "WiFi QR Code Generator",
+              "url": "https://printable-tools-lab.pages.dev/wifi-qr-code-generator/",
+              "intent": "WiFi QR code generator, guest WiFi sign, printable QR",
+              "tool": "https://printable-tools-lab.pages.dev/tools/wifi-qr-code/"
+            },
+            {
+              "title": "Contact QR Code Generator",
+              "url": "https://printable-tools-lab.pages.dev/contact-qr-code-generator/",
+              "intent": "contact QR code, vCard QR generator, printable business contact",
+              "tool": "https://printable-tools-lab.pages.dev/tools/vcard-qr-code/"
             },
             {
               "title": "Compress JPG Without Uploading",
@@ -1147,21 +1189,21 @@
         "ok": true,
         "status": 200,
         "contentType": "application/manifest+json; charset=utf-8",
-        "bytes": 2139,
+        "bytes": 2431,
         "json": null
       },
       "/opensearch.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/opensearchdescription+xml; charset=utf-8",
-        "bytes": 539,
+        "bytes": 544,
         "json": null
       },
       "/api/metrics": {
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 9347,
+        "bytes": 9724,
         "json": {
           "ok": true,
           "today": "2026-06-01",
@@ -1413,6 +1455,33 @@
             },
             {
               "tool": "watermark-image",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "qr-code",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "wifi-qr-code",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "vcard-qr-code",
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
@@ -1942,11 +2011,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         }
       ]
@@ -1955,7 +2024,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T07:27:06.562Z",
+          "lastSubmitted": "2026-06-01T08:26:30.683Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -1967,7 +2036,7 @@
       "sitemap": [
         {
           "path": "https://yanqr213.github.io/printable-tools-lab/sitemap.xml",
-          "lastSubmitted": "2026-06-01T07:27:06.765Z",
+          "lastSubmitted": "2026-06-01T08:26:30.475Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -2020,10 +2089,10 @@
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
-      "pageOk": false,
+      "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 39,
-      "landingPagesLinked": 38,
+      "sitemapUrlCount": 42,
+      "landingPagesLinked": 41,
       "error": ""
     },
     "indexNow": {
@@ -2066,8 +2135,8 @@
       ],
       "externalDiscovery": [
         "GitHub discovery metadata unavailable: GitHub API 403.",
-        "GitHub Pages discovery directory unavailable: page check failed.",
-        "GitHub Pages discovery sitemap has 39 URL(s).",
+        "GitHub Pages discovery directory is live with 41 landing page link(s).",
+        "GitHub Pages discovery sitemap has 42 URL(s).",
         "IndexNow key file is reachable from the site root."
       ]
     }

@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-01T08:25:03.816Z
+Last generated: 2026-06-01T08:27:50.849Z
 
 ## Current Automated Status
 
@@ -38,8 +38,8 @@ Last generated: 2026-06-01T08:25:03.816Z
 ## External Discovery Gate
 
 - GitHub discovery metadata unavailable: GitHub API 403.
-- GitHub Pages discovery directory unavailable: page check failed.
-- GitHub Pages discovery sitemap has 39 URL(s).
+- GitHub Pages discovery directory is live with 41 landing page link(s).
+- GitHub Pages discovery sitemap has 42 URL(s).
 - IndexNow key file is reachable from the site root.
 
 ## Monetization Gate
