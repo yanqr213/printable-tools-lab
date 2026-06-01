@@ -29,13 +29,13 @@ const topics = [
   "label-generator",
   "image-to-pdf",
   "pdf-to-jpg",
+  "pdf-to-text",
   "text-to-pdf",
   "markdown-to-pdf",
   "csv-to-pdf",
   "json-to-pdf",
   "no-signup",
   "free-tools",
-  "browser-tools",
 ];
 
 main().catch((error) => {

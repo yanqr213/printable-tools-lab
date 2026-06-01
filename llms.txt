@@ -1,6 +1,6 @@
 # PrintableTools Lab
 
-Free browser-based PDF generators, no-upload PDF tools, local image tools, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
+Free browser-based PDF generators, no-upload PDF tools, local image tools, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
 
 Audience: Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, household planners, cafe operators, booth exhibitors, rental hosts, and office admins.
 
@@ -51,6 +51,7 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Image to PDF Converter](https://printable-tools-lab.pages.dev/tools/image-to-pdf/): Convert JPG, PNG, or WebP images into a clean one-page PDF in your browser without uploading files.
 - [Multiple Images to PDF Converter](https://printable-tools-lab.pages.dev/tools/multi-image-pdf/): Turn several JPG, PNG, or WebP images into one multi-page PDF in your browser without uploading files.
 - [PDF to JPG Converter](https://printable-tools-lab.pages.dev/tools/pdf-to-images/): Convert PDF pages to JPG or PNG images locally in your browser without uploading the document.
+- [PDF to Text Converter](https://printable-tools-lab.pages.dev/tools/pdf-to-text/): Extract selectable text from PDF pages locally in your browser without uploading the document.
 - [Compress Image Online](https://printable-tools-lab.pages.dev/tools/compress-image/): Compress JPG, PNG, or WebP images locally in your browser without uploading files.
 - [Compress Image to KB](https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/): Compress an image toward a target KB size locally for upload limits, forms, profiles, and portals.
 - [Resize Image Online](https://printable-tools-lab.pages.dev/tools/resize-image/): Resize a JPG, PNG, or WebP image locally by width, height, or common social sizes without uploading it.
@@ -88,6 +89,7 @@ Monetization model: Free tools first, then responsible display advertising after
 - [JPG to PDF Without Uploading](https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/): private image conversion, no upload, fast PDF
 - [Multiple Images to PDF Without Uploading](https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/): combine images into one PDF without upload
 - [PDF to JPG Without Uploading](https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/): PDF to JPG, PDF to PNG, no upload converter
+- [Extract Text From PDF Without Uploading](https://printable-tools-lab.pages.dev/extract-text-from-pdf-no-upload/): PDF to text, extract text from PDF, no upload
 - [Compress Image Without Uploading](https://printable-tools-lab.pages.dev/compress-image-no-upload/): compress image online, reduce image size, no upload
 - [Compress Image to 100KB Without Uploading](https://printable-tools-lab.pages.dev/compress-image-to-100kb/): compress image to 100KB, reduce image size, no upload
 - [Resize Image Without Uploading](https://printable-tools-lab.pages.dev/resize-image-no-upload/): resize image online, change image dimensions, no upload

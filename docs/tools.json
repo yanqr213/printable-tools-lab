@@ -4,7 +4,7 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-06-01T12:58:33.102Z",
+  "generatedAt": "2026-06-01T13:18:46.773Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -25,6 +25,11 @@
       "title": "PDF to JPG Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/",
       "intent": "PDF to JPG, PDF to PNG, no upload converter"
+    },
+    {
+      "title": "Extract Text From PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/extract-text-from-pdf-no-upload/",
+      "intent": "PDF to text, extract text from PDF, no upload"
     },
     {
       "title": "Compress Image Without Uploading",
@@ -252,6 +257,11 @@
       "title": "PDF to JPG Converter",
       "description": "Convert PDF pages to JPG or PNG images locally in your browser without uploading the document.",
       "url": "https://printable-tools-lab.pages.dev/tools/pdf-to-images/"
+    },
+    {
+      "title": "PDF to Text Converter",
+      "description": "Extract selectable text from PDF pages locally in your browser without uploading the document.",
+      "url": "https://printable-tools-lab.pages.dev/tools/pdf-to-text/"
     },
     {
       "title": "Compress Image Online",

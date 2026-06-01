@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PDF to Text Converter - PrintableTools Lab</title>
+    <meta name="description" content="Extract selectable text from PDF pages locally in your browser without uploading the document.">
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="PDF to Text Converter">
+    <meta property="og:description" content="Extract selectable text from PDF pages locally in your browser without uploading the document.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://printable-tools-lab.pages.dev/assets/images/social-card.webp">
+    <meta name="theme-color" content="#176b87">
+    <link rel="canonical" href="https://printable-tools-lab.pages.dev/tools/pdf-to-text/">
+    <link rel="icon" href="/assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/images/app-icon-192.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="search" type="application/opensearchdescription+xml" title="PrintableTools Lab" href="/opensearch.xml">
+    <link rel="alternate" type="application/rss+xml" title="PrintableTools Lab feed" href="/feed.xml">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/site-config.js"></script>
+    <script src="/assets/vendor/fflate.min.js"></script>
+    <script type="module">
+      import * as pdfjsLib from "/assets/vendor/pdf.min.mjs";
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "/assets/vendor/pdf.worker.min.mjs";
+      window.pdfjsLib = pdfjsLib;
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"><img src="/assets/images/app-icon-192.png" alt=""></span>
+        <span>
+          <strong>PrintableTools Lab</strong>
+          <small>Free PDF and image tools</small>
+        </span>
+      </a>
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a href="/tools/name-tracing/">Name tracing</a>
+        <a href="/tools/chore-chart/">Chore chart</a>
+        <a href="/tools/invoice-generator/">Invoice</a>
+        <a href="/tools/resume-builder/">Resume</a>
+        <a href="/tools/reward-chart/">Reward chart</a>
+        <a href="/tools/flashcards/">Flashcards</a>
+        <a href="/tools/">All tools</a>
+        <a href="/guides/">Guides</a>
+        <a href="/dashboard/">Data</a>
+      </nav>
+    </header>
+
+    <main id="app" tabindex="-1">
+
+      <section class="shell tool-header">
+        <a href="/tools/">All tools</a>
+        <h1>PDF to Text Converter</h1>
+        <p class="lead">Extract selectable text from PDF pages locally in your browser without uploading the document.</p>
+      </section>
+      <section class="shell section">
+        <p>Select one PDF, choose all pages or a page range, and download extracted selectable text as a TXT file.</p>
+<p>PDF-to-text conversion is a broad utility search for notes, quotes, reports, invoices, forms, and admin review. This tool is local-first and clearly avoids promising OCR for scanned PDFs.</p>
+        <p><a class="button" href="/tools/pdf-to-text/">Open generator</a></p>
+      </section>
+      <section class="shell section">
+        <h2>How to use this free PDF tool</h2>
+        <ol>
+          <li>Open the PDF to Text Converter and review the example text already in the form.</li>
+<li>Replace the sample fields with your own short, accurate wording.</li>
+<li>Choose US Letter or A4 before generating if the tool offers paper size options.</li>
+<li>Preview the result, then download the TXT file and review it before printing, uploading, or sharing.</li>
+        </ol>
+      </section>
+      <section class="shell section">
+        <h2>Good use cases</h2>
+        <div class="grid-3">
+          <article class="panel"><h3>Research notes</h3><p>Extract selectable text from a report, guide, article, or handout for local review.</p></article>
+<article class="panel"><h3>Admin cleanup</h3><p>Turn invoice, receipt, or form text into a lightweight TXT file for checking details.</p></article>
+<article class="panel"><h3>Private document review</h3><p>Keep the PDF local when extracting copy from documents that should not be uploaded to a converter.</p></article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Privacy and limits</h2>
+        <p>The selected PDF is parsed for text in your browser and is not uploaded by the extractor.</p>
+        <p>The free version extracts text from one PDF at a time and uses the same daily generation limit as the other tools.</p>
+      </section>
+      <section class="shell section">
+        <h2>Frequently asked questions</h2>
+        <div class="faq-list">
+          <details><summary>Does it upload my PDF?</summary><p>No. The PDF is read locally in the browser for ordinary text extraction.</p></details>
+<details><summary>Does it OCR scanned PDFs?</summary><p>No. It extracts selectable embedded text only. Image-only scans need OCR.</p></details>
+<details><summary>What file do I download?</summary><p>The export is a plain TXT file with page headings unless you choose plain text layout.</p></details>
+        </div>
+        <p><a class="tag" href="/guides/extract-text-from-pdf-without-uploading/">Extract text from PDF without uploading</a></p>
+        <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF to Text Converter - PrintableTools Lab","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","url":"https://printable-tools-lab.pages.dev/tools/pdf-to-text/","description":"Extract selectable text from PDF pages locally in your browser without uploading the document.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Browser-based PDF text extraction","No account required","No-upload PDF text extraction","Local TXT file export"]}</script>
+        <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it upload my PDF?","acceptedAnswer":{"@type":"Answer","text":"No. The PDF is read locally in the browser for ordinary text extraction."}},{"@type":"Question","name":"Does it OCR scanned PDFs?","acceptedAnswer":{"@type":"Answer","text":"No. It extracts selectable embedded text only. Image-only scans need OCR."}},{"@type":"Question","name":"What file do I download?","acceptedAnswer":{"@type":"Answer","text":"The export is a plain TXT file with page headings unless you choose plain text layout."}}]}</script>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>PrintableTools Lab</strong>
+        <p>Browser-based PDF and image tools for families, classrooms, and small teams.</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <a href="/about/">About</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="/license/">AI & license disclosure</a>
+      </nav>
+    </footer>
+
+    <script src="/assets/vendor/pdf-lib.min.js"></script>
+    <script src="/assets/vendor/qrcode-generator.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -22,6 +22,7 @@ const TOOLS = [
   "image-to-pdf",
   "multi-image-pdf",
   "pdf-to-images",
+  "pdf-to-text",
   "compress-image",
   "compress-image-to-kb",
   "resize-image",

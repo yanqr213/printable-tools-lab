@@ -587,6 +587,27 @@
         { id: "scale", label: "Render quality", type: "select", options: [["1", "Fast"], ["1.5", "Balanced"], ["2", "Sharp"]] },
       ],
     },
+    "pdf-to-text": {
+      id: "pdf-to-text",
+      icon: "TXT",
+      title: "PDF to Text Converter",
+      shortTitle: "PDF to Text",
+      description: "Extract selectable text from PDF pages locally in your browser without uploading the document.",
+      keywords: ["PDF to text", "extract text from PDF", "PDF text extractor", "no upload"],
+      ai: false,
+      pdfTool: "to-text",
+      outputKind: "file",
+      defaultValues: {
+        pdfs: "",
+        pageRange: "all",
+        layout: "page-breaks",
+      },
+      fields: [
+        { id: "pdfs", label: "PDF file", type: "file", accept: "application/pdf", multiple: false, help: "Select one PDF. The text extractor runs locally in your browser." },
+        { id: "pageRange", label: "Pages to extract", type: "text", maxLength: 80, help: "Use all, 1, or ranges such as 1,3-5. Scanned image-only PDFs need OCR, which this free tool does not perform." },
+        { id: "layout", label: "Text layout", type: "select", options: [["page-breaks", "Page headings"], ["plain", "Plain text"]] },
+      ],
+    },
     "compress-image": {
       id: "compress-image",
       icon: "CMP",
@@ -1625,6 +1646,8 @@
         ["Multiple images to PDF without uploading", "/multiple-images-to-pdf-no-upload/"],
         ["PDF to JPG converter", "/tools/pdf-to-images/"],
         ["PDF to JPG without uploading", "/pdf-to-jpg-no-upload/"],
+        ["PDF to text converter", "/tools/pdf-to-text/"],
+        ["Extract text from PDF without uploading", "/extract-text-from-pdf-no-upload/"],
         ["Compress image", "/tools/compress-image/"],
         ["Compress image without uploading", "/compress-image-no-upload/"],
         ["Compress image to KB", "/tools/compress-image-to-kb/"],
@@ -1731,7 +1754,7 @@
     {
       title: "No-upload conversion tools",
       description: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "pdf-to-images", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1810,6 +1833,21 @@
         ["Practical limits", "The free version converts up to eight selected pages at a time. Multiple pages download as a ZIP so the browser can keep the process simple and private."],
       ],
       related: ["image-to-pdf", "compress-image-to-kb", "resize-image"],
+    },
+    {
+      slug: "extract-text-from-pdf-no-upload",
+      title: "Extract Text From PDF Without Uploading",
+      headline: "Extract text from PDF without uploading",
+      description: "Copy selectable PDF text into a downloadable TXT file locally in your browser.",
+      lead: "Choose a PDF, select all pages or a page range, and download a plain TXT file extracted in the browser. It is useful for notes, quotes, research, admin review, and quick copy-paste cleanup.",
+      tool: "pdf-to-text",
+      intent: "PDF to text, extract text from PDF, no upload",
+      sections: [
+        ["What it extracts", "The tool extracts embedded selectable text from PDF pages. It does not perform OCR on scanned images, photos, or flattened page pictures."],
+        ["Local processing", "The PDF is read with pdf.js in the browser. Ordinary extraction does not send the document to PrintableTools Lab."],
+        ["Why this is useful", "PDF-to-text searches often happen when a user needs searchable notes, quotes, plain text, or a lightweight copy of a PDF without opening a heavy editor."],
+      ],
+      related: ["pdf-to-images", "split-pdf", "text-to-pdf"],
     },
     {
       slug: "compress-image-no-upload",
@@ -2460,6 +2498,11 @@
       need: "Convert PDF pages into JPG or PNG images",
       tool: "pdf-to-images",
       why: "Best when a website, message, listing, or form needs image files instead of a PDF.",
+    },
+    {
+      need: "Extract selectable text from a PDF",
+      tool: "pdf-to-text",
+      why: "Best when you need a local TXT copy of embedded PDF text for notes, review, or cleanup.",
     },
     {
       need: "Make an image file smaller",
@@ -3421,6 +3464,20 @@
       ],
     },
     {
+      slug: "extract-text-from-pdf-without-uploading",
+      title: "Extract text from PDF without uploading",
+      description: "Turn selectable PDF text into a downloadable TXT file locally in your browser.",
+      tool: "pdf-to-text",
+      content: [
+        ["h2", "When PDF-to-text helps"],
+        ["p", "PDF-to-text is useful when you need quotes, notes, invoice details, report sections, or admin copy in plain text without uploading the source document."],
+        ["h2", "Scans need OCR"],
+        ["p", "This browser tool extracts text that already exists inside the PDF. If the PDF is a photo or scan, you may need an OCR workflow before text can be copied."],
+        ["h2", "Review the output"],
+        ["p", "PDF text order can vary by layout. Review the downloaded TXT file before using it in a form, email, research note, or record."],
+      ],
+    },
+    {
       slug: "compress-image-without-uploading",
       title: "Compress image without uploading",
       description: "Reduce JPG, PNG, or WebP file size in the browser before uploading elsewhere.",
@@ -3758,6 +3815,7 @@
     "image-to-pdf",
     "multi-image-pdf",
     "pdf-to-images",
+    "pdf-to-text",
     "compress-image",
     "compress-image-to-kb",
     "resize-image",
@@ -3871,9 +3929,9 @@
             <a class="button secondary" href="/tools/qr-code/">Create a QR code</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>58</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>59</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>87</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>88</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -4111,6 +4169,7 @@
       "image-to-pdf",
       "multi-image-pdf",
       "pdf-to-images",
+      "pdf-to-text",
       "compress-image",
       "resize-image",
       "convert-image",
@@ -4328,6 +4387,7 @@
   }
 
   function setToolJsonLd(tool) {
+    const isPdfTextTool = tool.id === "pdf-to-text";
     setJsonLd({
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
@@ -4342,10 +4402,10 @@
         priceCurrency: "USD",
       },
       featureList: [
-        tool.outputKind === "image" ? "Browser-based image processing" : "Browser-based PDF generation",
+        tool.outputKind === "image" ? "Browser-based image processing" : isPdfTextTool ? "Browser-based PDF text extraction" : "Browser-based PDF generation",
         "No account required",
-        tool.outputKind === "image" ? "No-upload image conversion" : tool.pdfTool ? "No-upload PDF file processing" : "US Letter and A4 support",
-        tool.outputKind === "image" ? "Local image file export" : tool.pdfTool ? "Local PDF export" : "Clean one-page printable export",
+        tool.outputKind === "image" ? "No-upload image conversion" : isPdfTextTool ? "No-upload PDF text extraction" : tool.pdfTool ? "No-upload PDF file processing" : "US Letter and A4 support",
+        tool.outputKind === "image" ? "Local image file export" : isPdfTextTool ? "Local TXT file export" : tool.pdfTool ? "Local PDF export" : "Clean one-page printable export",
       ],
     });
   }
@@ -4643,8 +4703,9 @@
         incrementDailyCount();
         const remaining = SITE.dailyLimit - getDailyCount();
         limitCounter.textContent = `${remaining} free left today`;
-        showDownloadComplete(tool, downloadComplete, remaining, tool.pdfTool === "to-images" ? "Images downloaded" : "PDF downloaded");
-        const eventKind = tool.pdfTool === "to-images" ? "file" : "pdf";
+        const fileOutput = tool.pdfTool === "to-images" || tool.pdfTool === "to-text";
+        showDownloadComplete(tool, downloadComplete, remaining, tool.pdfTool === "to-images" ? "Images downloaded" : tool.pdfTool === "to-text" ? "Text downloaded" : "PDF downloaded");
+        const eventKind = fileOutput ? "file" : "pdf";
         track(`generate_${eventKind}`, { tool: tool.id });
         track(`download_${eventKind}`, { tool: tool.id });
       } catch (error) {
@@ -4659,6 +4720,7 @@
     if (tool.pdfTool === "merge") return "Merge PDF";
     if (tool.pdfTool === "split") return "Extract pages";
     if (tool.pdfTool === "to-images") return "Convert to images";
+    if (tool.pdfTool === "to-text") return "Extract text";
     if (tool.pdfTool === "page-numbers") return "Add page numbers";
     if (tool.pdfTool === "rotate") return "Rotate pages";
     if (tool.pdfTool === "remove-pages") return "Remove pages";
@@ -4728,6 +4790,10 @@
       const selected = limitedPdfImagePages(values.pageRange || "all", files[0].pageCount);
       note = `The export will render ${selected.length} page${selected.length === 1 ? "" : "s"} as ${pdfImageFormatLabel(values.format || "jpeg")} image${selected.length === 1 ? "" : "s"}. Multiple pages download as a ZIP.`;
     }
+    if (tool.pdfTool === "to-text") {
+      const selected = parsePageRangeOrAll(values.pageRange || "all", files[0].pageCount);
+      note = `The export will extract selectable text from ${selected.length} of ${files[0].pageCount} page${files[0].pageCount === 1 ? "" : "s"} into a TXT file. Scanned image-only PDFs need OCR.`;
+    }
     if (tool.pdfTool === "page-numbers") note = `The export will add visible page numbers to ${files[0].pageCount} page${files[0].pageCount === 1 ? "" : "s"}.`;
     if (tool.pdfTool === "rotate") {
       const selected = parsePageRangeOrAll(values.pageRange || "all", files[0].pageCount);
@@ -4767,6 +4833,7 @@
     if (tool.pdfTool === "merge") return exportMergedPdf(files);
     if (tool.pdfTool === "split") return exportSplitPdf(files[0], values);
     if (tool.pdfTool === "to-images") return exportPdfAsImages(files[0], values);
+    if (tool.pdfTool === "to-text") return exportPdfText(files[0], values);
     if (tool.pdfTool === "page-numbers") return exportNumberedPdf(files[0], values);
     if (tool.pdfTool === "rotate") return exportRotatedPdf(files[0], values);
     if (tool.pdfTool === "remove-pages") return exportRemovedPagesPdf(files[0], values);
@@ -4829,6 +4896,49 @@
     if (document.destroy) await document.destroy();
     if (outputs.length === 1) return outputs[0].blob;
     return await zipImageOutputs(outputs);
+  }
+
+  async function exportPdfText(file, values) {
+    const pdfjsLib = getPdfJsLib();
+    const selectedPages = parsePageRangeOrAll(values.pageRange || "all", file.pageCount);
+    if (!selectedPages.length) throw new Error("Enter all or at least one valid page number to extract.");
+    const document = await pdfjsLib.getDocument({ data: file.bytes.slice().buffer }).promise;
+    const parts = [];
+    for (const pageNumber of selectedPages) {
+      const page = await document.getPage(pageNumber);
+      const textContent = await page.getTextContent();
+      const text = pdfTextItemsToLines(textContent.items || []);
+      if (values.layout !== "plain") {
+        parts.push(`--- Page ${pageNumber} ---\n${text}`);
+      } else {
+        parts.push(text);
+      }
+      page.cleanup();
+    }
+    if (document.destroy) await document.destroy();
+    const output = parts.join(values.layout === "plain" ? "\n\n" : "\n\n").trim();
+    if (!output) throw new Error("No selectable text was found. This PDF may be scanned or image-only and may need OCR.");
+    return new Blob([output + "\n"], { type: "text/plain;charset=utf-8" });
+  }
+
+  function pdfTextItemsToLines(items) {
+    const lines = [];
+    let currentY = null;
+    let currentLine = [];
+    items.forEach((item) => {
+      const text = String(item.str || "").replace(/\s+/g, " ").trim();
+      if (!text) return;
+      const y = item.transform && Number.isFinite(item.transform[5]) ? Math.round(item.transform[5]) : null;
+      if (currentY === null) currentY = y;
+      if (y !== null && currentY !== null && Math.abs(y - currentY) > 4) {
+        if (currentLine.length) lines.push(currentLine.join(" ").replace(/\s+/g, " ").trim());
+        currentLine = [];
+        currentY = y;
+      }
+      currentLine.push(text);
+    });
+    if (currentLine.length) lines.push(currentLine.join(" ").replace(/\s+/g, " ").trim());
+    return lines.join("\n");
   }
 
   async function exportNumberedPdf(file, values) {
@@ -5143,6 +5253,7 @@
       const pages = files[0] ? limitedPdfImagePages(values.pageRange || "all", files[0].pageCount) : [];
       return `${base}-page-images${pages.length === 1 ? `.${pdfImageExtension(values.format || "jpeg")}` : ".zip"}`;
     }
+    if (tool.pdfTool === "to-text") return `${base}-text.txt`;
     if (tool.pdfTool === "page-numbers") return `${base}-page-numbers.pdf`;
     if (tool.pdfTool === "rotate") return `${base}-rotated.pdf`;
     if (tool.pdfTool === "remove-pages") return `${base}-pages-removed.pdf`;
