@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T04:55:49.647Z",
+  "generatedAt": "2026-06-01T05:03:11.371Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 44,
@@ -34,21 +34,21 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 15971,
+        "bytes": 16997,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 25761,
+        "bytes": 27157,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 18462,
+        "bytes": 19529,
         "json": null
       },
       "/robots.txt": {
@@ -71,27 +71,27 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 18640,
+        "bytes": 19650,
         "json": null,
-        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, adding page numb"
+        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDF"
       },
       "/feed.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 29702,
+        "bytes": 32280,
         "json": null
       },
       "/tools.json": {
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 33533,
+        "bytes": 35194,
         "json": {
           "name": "PrintableTools Lab",
-          "description": "Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+          "description": "Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T04:13:17.152Z",
+          "generatedAt": "2026-06-01T04:47:28.151Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -289,6 +289,24 @@
               "title": "Reorder PDF Pages",
               "url": "https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/",
               "description": "Rearrange PDF pages by typing a new page order, all locally in your browser.",
+              "category": "Everyday utility PDFs"
+            },
+            {
+              "title": "Add Watermark to PDF",
+              "url": "https://printable-tools-lab.pages.dev/tools/watermark-pdf/",
+              "description": "Add a light text watermark to all pages or selected PDF pages locally in your browser.",
+              "category": "Everyday utility PDFs"
+            },
+            {
+              "title": "Stamp PDF Pages",
+              "url": "https://printable-tools-lab.pages.dev/tools/stamp-pdf/",
+              "description": "Add a simple APPROVED, PAID, DRAFT, or custom text stamp to PDF pages without uploading the file.",
+              "category": "Everyday utility PDFs"
+            },
+            {
+              "title": "Add Signature Text to PDF",
+              "url": "https://printable-tools-lab.pages.dev/tools/sign-pdf/",
+              "description": "Place a typed signature block on a selected PDF page locally in your browser.",
               "category": "Everyday utility PDFs"
             },
             {
@@ -667,6 +685,21 @@
               "description": "Organize PDF pages by entering a new page order in the browser."
             },
             {
+              "title": "Watermark PDF without uploading",
+              "url": "https://printable-tools-lab.pages.dev/guides/watermark-pdf-without-uploading/",
+              "description": "Add a light text watermark to PDF pages locally in your browser."
+            },
+            {
+              "title": "Stamp PDF without uploading",
+              "url": "https://printable-tools-lab.pages.dev/guides/stamp-pdf-without-uploading/",
+              "description": "Add a simple PAID, APPROVED, DRAFT, or custom stamp to a PDF locally."
+            },
+            {
+              "title": "Add signature text to PDF without uploading",
+              "url": "https://printable-tools-lab.pages.dev/guides/add-signature-text-to-pdf-without-uploading/",
+              "description": "Place a typed signature block on a selected PDF page locally in your browser."
+            },
+            {
               "title": "Text to PDF converter without signup",
               "url": "https://printable-tools-lab.pages.dev/guides/text-to-pdf-converter-no-signup/",
               "description": "Paste plain text and download a clean one-page PDF without installing an editor."
@@ -728,11 +761,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 11419,
+        "bytes": 12644,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T04:13:17.152Z",
+          "generatedAt": "2026-06-01T04:47:28.151Z",
           "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -751,6 +784,9 @@
             "https://printable-tools-lab.pages.dev/rotate-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/remove-pages-from-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/reorder-pdf-pages-no-upload/",
+            "https://printable-tools-lab.pages.dev/watermark-pdf-no-upload/",
+            "https://printable-tools-lab.pages.dev/stamp-pdf-no-upload/",
+            "https://printable-tools-lab.pages.dev/sign-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
             "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
             "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
@@ -772,6 +808,9 @@
             "https://printable-tools-lab.pages.dev/tools/rotate-pdf/",
             "https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/",
             "https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/",
+            "https://printable-tools-lab.pages.dev/tools/watermark-pdf/",
+            "https://printable-tools-lab.pages.dev/tools/stamp-pdf/",
+            "https://printable-tools-lab.pages.dev/tools/sign-pdf/",
             "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
             "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
             "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
@@ -850,6 +889,24 @@
               "url": "https://printable-tools-lab.pages.dev/reorder-pdf-pages-no-upload/",
               "intent": "reorder PDF pages, organize PDF, no upload",
               "tool": "https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/"
+            },
+            {
+              "title": "Add Watermark to PDF Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/watermark-pdf-no-upload/",
+              "intent": "watermark PDF, no upload, free browser tool",
+              "tool": "https://printable-tools-lab.pages.dev/tools/watermark-pdf/"
+            },
+            {
+              "title": "Stamp PDF Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/stamp-pdf-no-upload/",
+              "intent": "stamp PDF, paid stamp, approved stamp, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/stamp-pdf/"
+            },
+            {
+              "title": "Add Signature Text to PDF Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/sign-pdf-no-upload/",
+              "intent": "sign PDF, typed signature, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/sign-pdf/"
             },
             {
               "title": "Free Resume Builder Without Signup",
@@ -947,7 +1004,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/manifest+json; charset=utf-8",
-        "bytes": 1605,
+        "bytes": 1664,
         "json": null
       },
       "/opensearch.xml": {
@@ -961,7 +1018,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 5718,
+        "bytes": 5985,
         "json": {
           "ok": true,
           "today": "2026-06-01",
@@ -1159,6 +1216,27 @@
             },
             {
               "tool": "reorder-pdf-pages",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "watermark-pdf",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "stamp-pdf",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "sign-pdf",
               "generate_pdf": 0,
               "download_pdf": 0,
               "limit_hit": 0,
@@ -1501,11 +1579,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         }
       ]
@@ -1514,7 +1592,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T04:26:47.396Z",
+          "lastSubmitted": "2026-06-01T05:01:54.262Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -1526,7 +1604,7 @@
       "sitemap": [
         {
           "path": "https://yanqr213.github.io/printable-tools-lab/sitemap.xml",
-          "lastSubmitted": "2026-06-01T04:26:46.819Z",
+          "lastSubmitted": "2026-06-01T05:02:39.263Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -1607,8 +1685,8 @@
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 24,
-      "landingPagesLinked": 23,
+      "sitemapUrlCount": 27,
+      "landingPagesLinked": 26,
       "error": ""
     },
     "indexNow": {
@@ -1620,7 +1698,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": false
+    "externalDiscoveryReady": true
   },
   "gates": {
     "productReady": true,
@@ -1628,7 +1706,7 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": false,
+    "externalDiscoveryReady": true,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
@@ -1651,8 +1729,8 @@
       "externalDiscovery": [
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
-        "GitHub Pages discovery directory is live with 23 landing page link(s).",
-        "GitHub Pages discovery sitemap has 24 URL(s).",
+        "GitHub Pages discovery directory is live with 26 landing page link(s).",
+        "GitHub Pages discovery sitemap has 27 URL(s).",
         "IndexNow key file is reachable from the site root."
       ]
     }
