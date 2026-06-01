@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T00:50:26.111Z",
+  "generatedAt": "2026-06-01T01:02:14.400Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 32,
@@ -91,7 +91,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T00:03:23.764Z",
+          "generatedAt": "2026-06-01T00:49:40.931Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -618,7 +618,7 @@
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T00:03:23.764Z",
+          "generatedAt": "2026-06-01T00:49:40.931Z",
           "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1107,7 +1107,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T00:47:46.194Z",
+          "lastSubmitted": "2026-06-01T00:58:58.211Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",

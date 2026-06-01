@@ -139,6 +139,7 @@ ${discoveryRoutes.map((route) => `  <url><loc>${route.url}</loc><lastmod>${lastm
 `);
 
 fs.writeFileSync(path.join(docsDir, ".nojekyll"), "");
+copyGoogleVerificationFiles();
 
 console.log(`Generated GitHub Pages discovery site in ${path.relative(root, docsDir)}.`);
 
@@ -148,6 +149,14 @@ function escapeHtml(value) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+function copyGoogleVerificationFiles() {
+  const verificationFiles = fs.readdirSync(root)
+    .filter((fileName) => /^google[a-zA-Z0-9_-]+(?:\.html)?$/.test(fileName));
+  for (const fileName of verificationFiles) {
+    fs.copyFileSync(path.join(root, fileName), path.join(docsDir, fileName));
+  }
 }
 
 function landingDiscoveryHtml(page, primaryTool, relatedTools) {
