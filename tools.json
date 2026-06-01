@@ -1,8 +1,8 @@
 {
   "name": "PrintableTools Lab",
-  "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T17:05:57.791Z",
+  "generatedAt": "2026-06-01T17:40:18.407Z",
   "tools": [
     {
       "title": "Name Tracing Worksheet Generator",
@@ -254,6 +254,12 @@
       "title": "Watermark Image Online",
       "url": "https://printable-tools-lab.pages.dev/tools/watermark-image/",
       "description": "Add a text watermark to JPG, PNG, or WebP images locally for drafts, samples, marketplace photos, and social posts without uploading files.",
+      "category": "Everyday file utilities"
+    },
+    {
+      "title": "Add Text to Image Online",
+      "url": "https://printable-tools-lab.pages.dev/tools/add-text-image/",
+      "description": "Add a headline, caption, price, label, or meme-style text to an image locally without uploading the file.",
       "category": "Everyday file utilities"
     },
     {
@@ -750,6 +756,11 @@
       "title": "Remove background without uploading",
       "url": "https://printable-tools-lab.pages.dev/guides/remove-background-without-uploading/",
       "description": "Create a transparent PNG from a white, solid, or near-solid background image locally in your browser."
+    },
+    {
+      "title": "Add text to image without uploading",
+      "url": "https://printable-tools-lab.pages.dev/guides/add-text-to-image-without-uploading/",
+      "description": "Put a headline, caption, label, or price on a photo locally in your browser."
     },
     {
       "title": "Merge PDF without uploading",

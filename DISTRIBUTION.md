@@ -4,11 +4,11 @@ Use these snippets for low-friction external discovery. Do not spam communities;
 
 ## One-line pitch
 
-PrintableTools Lab is a free no-signup PDF, image, and QR utility site for compressing images, resizing images, converting image formats, removing simple image backgrounds, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, adding page numbers, image-to-PDF conversion, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, estimates, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, and flashcards.
+PrintableTools Lab is a free no-signup PDF, image, and QR utility site for compressing images, resizing images, converting image formats, removing simple image backgrounds, adding text to photos, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG, extracting PDF text, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, adding page numbers, image-to-PDF conversion, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, estimates, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, and flashcards.
 
 ## Short launch post
 
-I built PrintableTools Lab, a free browser-based PDF, image, and QR tool site. It can compress images, resize images, remove simple white or solid backgrounds as transparent PNGs, crop images, rotate images, watermark images, convert JPG/PNG/WebP formats, create static QR codes, WiFi QR signs, contact QR codes, convert PDF pages to JPG or PNG, extract selectable PDF text to TXT, merge PDFs, split PDFs, rotate pages, remove pages, reorder pages, add PDF page numbers, convert images to PDF, create multi-image PDFs, turn text, Markdown, CSV, and JSON into PDF, and create practical documents like invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, calendars, sign-in sheets, graph paper, packing lists, worksheets, and charts. No account and no surprise download fee. Feedback on which tools are most useful would help shape the next batch.
+I built PrintableTools Lab, a free browser-based PDF, image, and QR tool site. It can compress images, resize images, remove simple white or solid backgrounds as transparent PNGs, add text to photos, crop images, rotate images, watermark images, convert JPG/PNG/WebP formats, create static QR codes, WiFi QR signs, contact QR codes, convert PDF pages to JPG or PNG, extract selectable PDF text to TXT, merge PDFs, split PDFs, rotate pages, remove pages, reorder pages, add PDF page numbers, convert images to PDF, create multi-image PDFs, turn text, Markdown, CSV, and JSON into PDF, and create practical documents like invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, calendars, sign-in sheets, graph paper, packing lists, worksheets, and charts. No account and no surprise download fee. Feedback on which tools are most useful would help shape the next batch.
 
 ## Directory submission fields
 
@@ -16,7 +16,7 @@ I built PrintableTools Lab, a free browser-based PDF, image, and QR tool site. I
 - URL: https://printable-tools-lab.pages.dev/
 - Category: Productivity, PDF Tools, Document Tools, Education, Small Business Tools, Job Search Tools
 - Tagline: Free no-signup PDF, image, and QR tools
-- Description: Create practical PDFs, image files, text files, and static QR codes in the browser, including image compression, image resizing, transparent PNG background removal for simple image backgrounds, image cropping, image rotation, image watermarking, JPG/PNG/WebP format conversion, QR codes, WiFi QR signs, contact QR codes, PDF-to-text extraction, PDF merge, PDF split, page rotation, page removal, page reordering, page numbering, image-to-PDF, multi-image PDFs, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, certificates, calendars, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, flashcards, and habit trackers.
+- Description: Create practical PDFs, image files, text files, and static QR codes in the browser, including image compression, image resizing, transparent PNG background removal for simple image backgrounds, text-on-image overlays, image cropping, image rotation, image watermarking, JPG/PNG/WebP format conversion, QR codes, WiFi QR signs, contact QR codes, PDF-to-text extraction, PDF merge, PDF split, page rotation, page removal, page reordering, page numbering, image-to-PDF, multi-image PDFs, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, certificates, calendars, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, flashcards, and habit trackers.
 - Pricing: Free
 
 ## Tracked campaign links
@@ -38,6 +38,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Resize image without upload page: https://printable-tools-lab.pages.dev/resize-image-no-upload/
 - Convert image format without upload page: https://printable-tools-lab.pages.dev/convert-image-format-no-upload/
 - Remove background without upload page: https://printable-tools-lab.pages.dev/remove-background-no-upload/
+- Add text to image without upload page: https://printable-tools-lab.pages.dev/add-text-to-image-no-upload/
 - Crop image without upload page: https://printable-tools-lab.pages.dev/crop-image-no-upload/
 - Rotate image without upload page: https://printable-tools-lab.pages.dev/rotate-image-no-upload/
 - Watermark image without upload page: https://printable-tools-lab.pages.dev/watermark-image-no-upload/
@@ -75,6 +76,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Crop Image Without Uploading: https://printable-tools-lab.pages.dev/crop-image-no-upload/
 - Rotate Image Without Uploading: https://printable-tools-lab.pages.dev/rotate-image-no-upload/
 - Watermark Image Without Uploading: https://printable-tools-lab.pages.dev/watermark-image-no-upload/
+- Add Text to Image Without Uploading: https://printable-tools-lab.pages.dev/add-text-to-image-no-upload/
 - Free QR Code Generator Without Signup: https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/
 - WiFi QR Code Generator: https://printable-tools-lab.pages.dev/wifi-qr-code-generator/
 - Contact QR Code Generator: https://printable-tools-lab.pages.dev/contact-qr-code-generator/
@@ -125,6 +127,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Crop Image Online: https://printable-tools-lab.pages.dev/tools/crop-image/
 - Rotate Image Online: https://printable-tools-lab.pages.dev/tools/rotate-image/
 - Watermark Image Online: https://printable-tools-lab.pages.dev/tools/watermark-image/
+- Add Text to Image Online: https://printable-tools-lab.pages.dev/tools/add-text-image/
 - Signature PNG Generator: https://printable-tools-lab.pages.dev/tools/signature-png/
 - Passport Photo Maker: https://printable-tools-lab.pages.dev/tools/passport-photo/
 - Free QR Code Generator: https://printable-tools-lab.pages.dev/tools/qr-code/

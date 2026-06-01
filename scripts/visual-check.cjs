@@ -33,12 +33,13 @@ function samplePng() {
     "/tools/crop-image/",
     "/tools/rotate-image/",
     "/tools/watermark-image/",
+    "/tools/add-text-image/",
     "/tools/signature-png/",
     "/tools/passport-photo/",
   ]);
 
   const pdfSample = await samplePdf("Visual scan", 2);
-  for (const route of ["/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/ats-resume-checker/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/compress-pdf/", "/tools/pdf-to-word/", "/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/remove-background/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/signature-png/", "/tools/passport-photo/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/text-to-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
+  for (const route of ["/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/ats-resume-checker/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/compress-pdf/", "/tools/pdf-to-word/", "/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/remove-background/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/add-text-image/", "/tools/signature-png/", "/tools/passport-photo/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/text-to-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
     if (route === "/tools/compress-pdf/") {
       await page.setInputFiles("input[type=file]", { name: "scan.pdf", mimeType: "application/pdf", buffer: pdfSample });
@@ -67,6 +68,12 @@ function samplePng() {
         await page.selectOption("#tolerance", "108");
       }
       if (route === "/tools/watermark-image/") await page.fill("#watermarkText", "SAMPLE");
+      if (route === "/tools/add-text-image/") {
+        await page.fill("#overlayText", "SALE TODAY");
+        await page.fill("#subText", "Local export");
+        await page.selectOption("#layout", "bottom-banner");
+        await page.selectOption("#boxStyle", "solid");
+      }
       await page.waitForTimeout(500);
     }
     if (route === "/tools/signature-png/") {
@@ -95,7 +102,7 @@ function samplePng() {
     });
     if (sample[3] === 0) throw new Error(`Canvas appears transparent on ${route}`);
     const text = await page.locator("main").innerText();
-    const imageRoute = /\/tools\/(compress-image|compress-image-to-kb|resize-image|convert-image|remove-background|crop-image|rotate-image|watermark-image|signature-png|passport-photo)\//.test(route);
+    const imageRoute = /\/tools\/(compress-image|compress-image-to-kb|resize-image|convert-image|remove-background|crop-image|rotate-image|watermark-image|add-text-image|signature-png|passport-photo)\//.test(route);
     if (!imageRoute && !text.includes("Generate PDF")) throw new Error(`Core action missing on ${route}`);
     if (imageRoute && !text.includes("Image preview")) throw new Error(`Image action area missing on ${route}`);
     const noAiRoute = route.includes("image-to-pdf") || route.includes("multi-image-pdf") || route.includes("ats-resume-checker") || /\/tools\/(qr-code|wifi-qr-code|vcard-qr-code)\//.test(route);

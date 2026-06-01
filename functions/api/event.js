@@ -62,6 +62,7 @@ const ALLOWED_TOOLS = new Set([
   "crop-image",
   "rotate-image",
   "watermark-image",
+  "add-text-image",
   "signature-png",
   "passport-photo",
   "qr-code",

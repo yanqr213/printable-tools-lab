@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T17:05:57.791Z",
+  "generatedAt": "2026-06-01T17:40:18.407Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -26,6 +26,7 @@
     "https://printable-tools-lab.pages.dev/crop-image-no-upload/",
     "https://printable-tools-lab.pages.dev/rotate-image-no-upload/",
     "https://printable-tools-lab.pages.dev/watermark-image-no-upload/",
+    "https://printable-tools-lab.pages.dev/add-text-to-image-no-upload/",
     "https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/wifi-qr-code-generator/",
     "https://printable-tools-lab.pages.dev/contact-qr-code-generator/",
@@ -77,6 +78,7 @@
     "https://printable-tools-lab.pages.dev/tools/crop-image/",
     "https://printable-tools-lab.pages.dev/tools/rotate-image/",
     "https://printable-tools-lab.pages.dev/tools/watermark-image/",
+    "https://printable-tools-lab.pages.dev/tools/add-text-image/",
     "https://printable-tools-lab.pages.dev/tools/signature-png/",
     "https://printable-tools-lab.pages.dev/tools/passport-photo/",
     "https://printable-tools-lab.pages.dev/tools/qr-code/",
@@ -209,6 +211,12 @@
       "url": "https://printable-tools-lab.pages.dev/watermark-image-no-upload/",
       "intent": "watermark image online, add text watermark, no upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/watermark-image/"
+    },
+    {
+      "title": "Add Text to Image Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/add-text-to-image-no-upload/",
+      "intent": "add text to image, text on photo, caption image, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/add-text-image/"
     },
     {
       "title": "Free QR Code Generator Without Signup",

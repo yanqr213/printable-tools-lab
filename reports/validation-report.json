@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-01T17:20:24.806Z",
+  "generatedAt": "2026-06-01T17:43:58.630Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
     "customDomainConfigured": false,
-    "toolCount": 65,
-    "guideCount": 94,
-    "landingPageCount": 53,
-    "indexableRoutes": 222,
-    "sitemapLocCount": 222,
-    "generatedToolInventoryAt": "2026-06-01T17:05:57.791Z",
+    "toolCount": 66,
+    "guideCount": 95,
+    "landingPageCount": 54,
+    "indexableRoutes": 225,
+    "sitemapLocCount": 225,
+    "generatedToolInventoryAt": "2026-06-01T17:40:18.407Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -2474,7 +2474,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": true
+    "externalDiscoveryReady": false
   },
   "gates": {
     "productReady": true,
@@ -2482,13 +2482,13 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": true,
+    "externalDiscoveryReady": false,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "65 tools, 94 guides, 53 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "66 tools, 95 guides, 54 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",

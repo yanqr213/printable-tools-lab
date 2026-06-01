@@ -20,7 +20,7 @@ const topics = [
   "pdf-tools",
   "image-tools",
   "image-compressor",
-  "image-compression",
+  "text-on-image",
   "image-resizer",
   "image-converter",
   "background-remover",
@@ -48,7 +48,7 @@ async function main() {
     method: "PATCH",
     body: {
       homepage: siteUrl(""),
-      description: "Free no-signup browser PDF, image, QR, and text-data tools for PDF-to-Word, ATS resume checks, PDF compression, background removal, passport photos, image compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
+      description: "Free no-signup browser PDF, image, QR, and text-data tools for PDF-to-Word, ATS resume checks, PDF compression, background removal, text-on-image overlays, passport photos, image compression, resizing, QR codes, PDF edits, Markdown/CSV/JSON exports, paperwork, labels, resumes, and printables.",
     },
   });
   await github(`/repos/${repo}/topics`, {
@@ -143,7 +143,7 @@ function releaseBody() {
     "- No account required.",
     "- No surprise download fee.",
     "- ATS resume checks run locally on pasted text and export a practical PDF report without upload.",
-    "- Passport photo sizing, image compression, resizing, simple background removal, cropping, rotation, watermarking, and JPG/PNG/WebP conversion run locally in the browser without uploading files.",
+    "- Passport photo sizing, image compression, resizing, simple background removal, text overlays, cropping, rotation, watermarking, and JPG/PNG/WebP conversion run locally in the browser without uploading files.",
     "- Static QR, WiFi QR, and contact QR generation runs in the browser without a signup wall.",
     "- Small business tools cover invoices, receipts, timesheets, business cards, labels, barcode labels, price tags, flyers, and coupons.",
     "- PDF tools cover PDF-to-Word, compression, merge, split, rotate, remove pages, reorder pages, watermarks, stamps, signatures, page numbers, image-to-PDF, and text-to-PDF workflows.",

@@ -910,6 +910,43 @@
       draw: drawImageWatermarker,
       exportFile: exportWatermarkedImage,
     },
+    "add-text-image": {
+      id: "add-text-image",
+      icon: "TXT+",
+      title: "Add Text to Image Online",
+      shortTitle: "Text on image",
+      description: "Add a headline, caption, price, label, or meme-style text to an image locally without uploading the file.",
+      keywords: ["add text to image", "text on photo", "caption image", "no upload"],
+      ai: false,
+      acceptsImages: true,
+      maxImages: 1,
+      outputKind: "image",
+      defaultValues: {
+        title: "Add Text to Image",
+        images: "",
+        overlayText: "Summer Sale",
+        subText: "Free local export",
+        layout: "bottom-banner",
+        fontSize: "large",
+        textColor: "white",
+        boxStyle: "dark",
+        format: "jpeg",
+        quality: "0.88",
+      },
+      fields: [
+        { id: "images", label: "Image", type: "file", accept: "image/png,image/jpeg,image/webp", multiple: false, help: "Select one image. It stays in your browser and is not uploaded." },
+        { id: "overlayText", label: "Main text", type: "text", maxLength: 72, help: "Use a short title, price, label, or caption." },
+        { id: "subText", label: "Small text", type: "text", maxLength: 90, help: "Optional second line." },
+        { id: "layout", label: "Text placement", type: "select", options: [["bottom-banner", "Bottom banner"], ["top-banner", "Top banner"], ["center-card", "Center card"], ["meme", "Meme top and bottom"], ["bottom-left", "Bottom left label"]] },
+        { id: "fontSize", label: "Text size", type: "select", options: [["medium", "Medium"], ["large", "Large"], ["xlarge", "Extra large"]] },
+        { id: "textColor", label: "Text color", type: "select", options: [["white", "White"], ["black", "Black"], ["yellow", "Yellow"], ["red", "Red"], ["blue", "Blue"]] },
+        { id: "boxStyle", label: "Background", type: "select", options: [["dark", "Dark translucent"], ["light", "Light translucent"], ["solid", "Solid accent"], ["none", "No box"]] },
+        { id: "format", label: "Output format", type: "select", options: [["jpeg", "JPG"], ["png", "PNG"], ["webp", "WebP"]] },
+        { id: "quality", label: "Quality", type: "select", options: [["0.72", "Small"], ["0.88", "Balanced"], ["0.94", "High"]] },
+      ],
+      draw: drawTextOnImagePreview,
+      exportFile: exportTextOnImage,
+    },
     "signature-png": {
       id: "signature-png",
       icon: "SIG",
@@ -1827,6 +1864,8 @@
         ["Rotate image without uploading", "/rotate-image-no-upload/"],
         ["Watermark image", "/tools/watermark-image/"],
         ["Watermark image without uploading", "/watermark-image-no-upload/"],
+        ["Add text to image", "/tools/add-text-image/"],
+        ["Add text to photo", "/add-text-to-image-no-upload/"],
         ["Signature PNG generator", "/tools/signature-png/"],
         ["Transparent signature PNG", "/signature-png-generator/"],
         ["Passport photo maker", "/tools/passport-photo/"],
@@ -1926,7 +1965,7 @@
     {
       title: "No-upload conversion tools",
       description: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "remove-background", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "remove-background", "crop-image", "rotate-image", "watermark-image", "add-text-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -2170,6 +2209,21 @@
         ["Practical limits", "A text watermark is a visual deterrent, not copyright enforcement. Keep original files and use proper licensing or platform tools when the image is commercially important."],
       ],
       related: ["compress-image", "resize-image", "crop-image"],
+    },
+    {
+      slug: "add-text-to-image-no-upload",
+      title: "Add Text to Image Without Uploading",
+      headline: "Add text to image without uploading",
+      description: "Add a title, caption, price, label, or meme-style text to a photo locally in your browser.",
+      lead: "Choose an image, add short text, pick a placement, and download a new JPG, PNG, or WebP without sending the image to a server.",
+      tool: "add-text-image",
+      intent: "add text to image, text on photo, caption image, no upload",
+      sections: [
+        ["Why users need it", "People add text to images for listings, covers, thumbnails, class materials, social posts, memes, announcements, and quick visual notes. Many design tools are heavier than this one-step job."],
+        ["Local workflow", "The image is drawn into a canvas in the browser, the text overlay is rendered locally, and the exported file is downloaded as a new image."],
+        ["Practical limits", "This is a quick overlay tool, not a full design suite. Keep the message short and check that text remains readable on small screens."],
+      ],
+      related: ["resize-image", "watermark-image", "crop-image"],
     },
     {
       slug: "signature-png-generator",
@@ -2795,6 +2849,11 @@
       need: "Remove a white or solid background from an image",
       tool: "remove-background",
       why: "Best for product photos, logos, signature scans, icons, and green-screen images that need a transparent PNG.",
+    },
+    {
+      need: "Add a headline, price, caption, or meme text to an image",
+      tool: "add-text-image",
+      why: "Best for thumbnails, product labels, announcements, class visuals, and quick social images.",
     },
     {
       need: "Paste text and download a simple PDF",
@@ -3861,6 +3920,20 @@
       ],
     },
     {
+      slug: "add-text-to-image-without-uploading",
+      title: "Add text to image without uploading",
+      description: "Put a headline, caption, label, or price on a photo locally in your browser.",
+      tool: "add-text-image",
+      content: [
+        ["h2", "Fast text overlays for images"],
+        ["p", "A simple text-on-image tool helps when a photo needs a title, price, note, class label, sale message, thumbnail headline, or meme-style caption before it is posted or shared."],
+        ["h2", "Why local export matters"],
+        ["p", "The selected image is processed in the browser. That is useful for ordinary product photos, class visuals, internal screenshots, and personal images that do not need to be uploaded to a design service."],
+        ["h2", "Keep text readable"],
+        ["p", "Use short wording, strong contrast, and a placement that does not cover faces, product details, or important document text."],
+      ],
+    },
+    {
       slug: "text-to-pdf-converter-no-signup",
       title: "Text to PDF converter without signup",
       description: "Paste plain text and download a clean one-page PDF without installing an editor.",
@@ -4108,9 +4181,9 @@
       body: [
         ["p", "Use this page to coordinate the first distribution push. The goal is not to look busy; it is to create enough real traffic for Search Console, AdSense readiness, and download validation."],
         ["h2", "Primary links"],
-        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Tools index: https://printable-tools-lab.pages.dev/tools/", "Compress image: https://printable-tools-lab.pages.dev/tools/compress-image/", "Resize image: https://printable-tools-lab.pages.dev/tools/resize-image/", "Convert image: https://printable-tools-lab.pages.dev/tools/convert-image/", "Crop image: https://printable-tools-lab.pages.dev/tools/crop-image/", "Rotate image: https://printable-tools-lab.pages.dev/tools/rotate-image/", "Watermark image: https://printable-tools-lab.pages.dev/tools/watermark-image/", "QR code generator: https://printable-tools-lab.pages.dev/tools/qr-code/", "WiFi QR code generator: https://printable-tools-lab.pages.dev/tools/wifi-qr-code/", "Contact QR code generator: https://printable-tools-lab.pages.dev/tools/vcard-qr-code/", "Image to PDF: https://printable-tools-lab.pages.dev/tools/image-to-pdf/", "Multiple images to PDF: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/", "Merge PDF: https://printable-tools-lab.pages.dev/tools/merge-pdf/", "Split PDF: https://printable-tools-lab.pages.dev/tools/split-pdf/", "PDF page numbers: https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/", "Rotate PDF: https://printable-tools-lab.pages.dev/tools/rotate-pdf/", "Remove PDF pages: https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/", "Reorder PDF pages: https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/", "Watermark PDF: https://printable-tools-lab.pages.dev/tools/watermark-pdf/", "Stamp PDF: https://printable-tools-lab.pages.dev/tools/stamp-pdf/", "Sign PDF: https://printable-tools-lab.pages.dev/tools/sign-pdf/", "Text to PDF: https://printable-tools-lab.pages.dev/tools/text-to-pdf/", "Invoice generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/", "Business card generator: https://printable-tools-lab.pages.dev/tools/business-card/", "Barcode label generator: https://printable-tools-lab.pages.dev/tools/barcode-labels/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
+        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Tools index: https://printable-tools-lab.pages.dev/tools/", "Compress image: https://printable-tools-lab.pages.dev/tools/compress-image/", "Resize image: https://printable-tools-lab.pages.dev/tools/resize-image/", "Convert image: https://printable-tools-lab.pages.dev/tools/convert-image/", "Remove background: https://printable-tools-lab.pages.dev/tools/remove-background/", "Add text to image: https://printable-tools-lab.pages.dev/tools/add-text-image/", "Crop image: https://printable-tools-lab.pages.dev/tools/crop-image/", "Rotate image: https://printable-tools-lab.pages.dev/tools/rotate-image/", "Watermark image: https://printable-tools-lab.pages.dev/tools/watermark-image/", "QR code generator: https://printable-tools-lab.pages.dev/tools/qr-code/", "WiFi QR code generator: https://printable-tools-lab.pages.dev/tools/wifi-qr-code/", "Contact QR code generator: https://printable-tools-lab.pages.dev/tools/vcard-qr-code/", "Image to PDF: https://printable-tools-lab.pages.dev/tools/image-to-pdf/", "Multiple images to PDF: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/", "Merge PDF: https://printable-tools-lab.pages.dev/tools/merge-pdf/", "Split PDF: https://printable-tools-lab.pages.dev/tools/split-pdf/", "PDF page numbers: https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/", "Rotate PDF: https://printable-tools-lab.pages.dev/tools/rotate-pdf/", "Remove PDF pages: https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/", "Reorder PDF pages: https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/", "Watermark PDF: https://printable-tools-lab.pages.dev/tools/watermark-pdf/", "Stamp PDF: https://printable-tools-lab.pages.dev/tools/stamp-pdf/", "Sign PDF: https://printable-tools-lab.pages.dev/tools/sign-pdf/", "Text to PDF: https://printable-tools-lab.pages.dev/tools/text-to-pdf/", "Invoice generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/", "Business card generator: https://printable-tools-lab.pages.dev/tools/business-card/", "Barcode label generator: https://printable-tools-lab.pages.dev/tools/barcode-labels/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
         ["h2", "First distribution copy"],
-        ["p", "Free browser PDF, image, and QR tools: compress images, resize images, convert image formats, create QR codes, WiFi QR signs, contact QR codes, merge PDFs, split PDFs, rotate pages, remove pages, reorder pages, watermark PDFs, stamp PDFs, add typed signature blocks, add PDF page numbers, convert images to PDF, combine multiple images, turn text into PDF, create invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, sign-in sheets, graph paper, calendars, worksheets, and checklists. No account required."],
+        ["p", "Free browser PDF, image, and QR tools: compress images, resize images, convert image formats, remove simple image backgrounds, add text to photos, create QR codes, WiFi QR signs, contact QR codes, merge PDFs, split PDFs, rotate pages, remove pages, reorder pages, watermark PDFs, stamp PDFs, add typed signature blocks, add PDF page numbers, convert images to PDF, combine multiple images, turn text into PDF, create invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, sign-in sheets, graph paper, calendars, worksheets, and checklists. No account required."],
         ["p", "Try the free image to PDF converter: select a JPG, PNG, or WebP file and generate a one-page PDF locally without uploading the image."],
         ["p", "Need a quick invoice, receipt, timesheet, sign-in sheet, or packing checklist? PrintableTools Lab creates practical PDFs in the browser."],
         ["h2", "Do not do this"],
@@ -4160,6 +4233,7 @@
     "crop-image",
     "rotate-image",
     "watermark-image",
+    "add-text-image",
     "signature-png",
     "passport-photo",
     "qr-code",
@@ -5013,6 +5087,7 @@
     if (tool.id === "crop-image") return "Crop image";
     if (tool.id === "rotate-image") return "Rotate image";
     if (tool.id === "watermark-image") return "Watermark image";
+    if (tool.id === "add-text-image") return "Add text";
     if (tool.id === "signature-png") return "Download PNG";
     if (tool.id === "passport-photo") return "Download photo";
     return "Download image";
@@ -5850,7 +5925,7 @@ ${paragraphs.join("\n")}
       ["resume-builder", "ats-resume-checker", "cover-letter", "resignation-letter"],
       ["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"],
       ["name-tracing", "chore-chart", "reward-chart", "flashcards"],
-      ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "compress-image", "resize-image", "convert-image", "remove-background", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
+      ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "compress-image", "resize-image", "convert-image", "remove-background", "crop-image", "rotate-image", "watermark-image", "add-text-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
       ["certificate-generator", "sign-in-sheet", "todo-list", "flyer-maker", "coupon-maker"],
     ];
     const group = groups.find((items) => items.includes(currentId)) || toolOrder;
@@ -7398,6 +7473,24 @@ ${paragraphs.join("\n")}
     });
   }
 
+  function drawTextOnImagePreview(ctx, paper, values) {
+    drawImageUtilityPreview(ctx, paper, values, {
+      toolId: "add-text-image",
+      title: "Add Text to Image",
+      accent: "#c026d3",
+      empty: "Select an image to add text",
+      note: "Add a title, price, label, caption, or meme-style text locally.",
+      previewCanvas: (image) => renderTextOnImageCanvas(image.image, values),
+      statLines: (image) => [
+        `${image.width} x ${image.height} px original`,
+        `${textImageLayoutLabel(values.layout)} layout`,
+        `${textImageFontSizeLabel(values.fontSize)} text, ${textImageColorLabel(values.textColor)}`,
+        `Export as ${imageFormatLabel(values.format)}`,
+      ],
+      footer: "Text overlay added locally with PrintableTools Lab. No image upload required.",
+    });
+  }
+
   function drawPassportPhotoPreview(ctx, paper, values) {
     const margin = 72;
     const images = imageToolState.get("passport-photo") || [];
@@ -7619,6 +7712,13 @@ ${paragraphs.join("\n")}
     const canvas = renderWatermarkedImageCanvas(image.image, values);
     const blob = canvasToImageBlob(canvas, values.format, values.quality);
     return { blob, filename: `${fileBaseName(image.name)}-watermarked.${imageExtension(values.format)}` };
+  }
+
+  function exportTextOnImage(values) {
+    const image = getSelectedImageOrThrow("add-text-image");
+    const canvas = renderTextOnImageCanvas(image.image, values);
+    const blob = canvasToImageBlob(canvas, values.format, values.quality);
+    return { blob, filename: `${fileBaseName(image.name)}-text.${imageExtension(values.format)}`, label: "Text image downloaded" };
   }
 
   function exportSignaturePng(values) {
@@ -8233,6 +8333,110 @@ ${paragraphs.join("\n")}
     return canvas;
   }
 
+  function renderTextOnImageCanvas(image, values) {
+    const imageW = image.naturalWidth || image.width || 1;
+    const imageH = image.naturalHeight || image.height || 1;
+    const canvas = document.createElement("canvas");
+    canvas.width = imageW;
+    canvas.height = imageH;
+    const ctx = canvas.getContext("2d");
+    if (values.format === "jpeg") {
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, imageW, imageH);
+    }
+    ctx.drawImage(image, 0, 0, imageW, imageH);
+    drawTextOnImageOverlay(ctx, canvas, values);
+    return canvas;
+  }
+
+  function drawTextOnImageOverlay(ctx, canvas, values) {
+    const main = sanitizePrintable(values.overlayText || "Your Text").trim().slice(0, 72) || "Your Text";
+    const sub = sanitizePrintable(values.subText || "").trim().slice(0, 90);
+    const base = Math.min(canvas.width, canvas.height);
+    const mainSize = textImageFontPixels(values.fontSize, base);
+    const subSize = Math.max(16, Math.round(mainSize * 0.42));
+    const margin = Math.max(20, Math.round(base * 0.06));
+    const gap = Math.max(8, Math.round(mainSize * 0.22));
+    const layout = values.layout || "bottom-banner";
+    ctx.save();
+    ctx.textBaseline = "middle";
+    ctx.lineJoin = "round";
+    const textColor = textImageColor(values.textColor);
+    const box = textImageOverlayBox(ctx, canvas, values, main, sub, mainSize, subSize, margin, gap);
+    if (values.boxStyle !== "none") drawTextImageBox(ctx, box, values);
+    if (layout === "meme") {
+      drawMemeText(ctx, main, canvas.width / 2, margin + mainSize * 0.6, canvas.width - margin * 2, mainSize, textColor);
+      if (sub) drawMemeText(ctx, sub, canvas.width / 2, canvas.height - margin - mainSize * 0.28, canvas.width - margin * 2, Math.max(subSize, mainSize * 0.72), textColor);
+      ctx.restore();
+      return;
+    }
+    const align = layout === "bottom-left" ? "left" : "center";
+    const x = align === "left" ? box.x + Math.max(16, margin * 0.45) : box.x + box.width / 2;
+    let y = box.y + box.height / 2 - (sub ? subSize * 0.52 : 0);
+    drawFittedOverlayText(ctx, main, x, y, box.width - margin, mainSize, textColor, align);
+    if (sub) {
+      y += mainSize * 0.62 + gap;
+      drawFittedOverlayText(ctx, sub, x, y, box.width - margin, subSize, textColor, align, "700");
+    }
+    ctx.restore();
+  }
+
+  function textImageOverlayBox(ctx, canvas, values, main, sub, mainSize, subSize, margin, gap) {
+    const layout = values.layout || "bottom-banner";
+    const fullW = canvas.width - margin * 2;
+    if (layout === "meme") return { x: margin, y: margin, width: fullW, height: canvas.height - margin * 2, radius: 0 };
+    const subHeight = sub ? subSize + gap : 0;
+    const boxH = Math.min(canvas.height - margin * 2, Math.max(mainSize * 1.85, mainSize + subHeight + margin * 0.95));
+    if (layout === "top-banner") return { x: margin, y: margin, width: fullW, height: boxH, radius: 8 };
+    if (layout === "center-card") {
+      const maxText = Math.max(ctx.measureText(main).width, sub ? ctx.measureText(sub).width : 0);
+      const width = Math.min(fullW, Math.max(canvas.width * 0.52, maxText + margin * 1.4));
+      return { x: (canvas.width - width) / 2, y: (canvas.height - boxH) / 2, width, height: boxH, radius: 8 };
+    }
+    if (layout === "bottom-left") {
+      const maxText = Math.max(ctx.measureText(main).width, sub ? ctx.measureText(sub).width : 0);
+      const width = Math.min(fullW, Math.max(canvas.width * 0.42, maxText + margin * 1.2));
+      return { x: margin, y: canvas.height - margin - boxH, width, height: boxH, radius: 8 };
+    }
+    return { x: margin, y: canvas.height - margin - boxH, width: fullW, height: boxH, radius: 8 };
+  }
+
+  function drawTextImageBox(ctx, box, values) {
+    ctx.save();
+    if (values.boxStyle === "light") ctx.fillStyle = "rgba(255,255,255,0.78)";
+    else if (values.boxStyle === "solid") ctx.fillStyle = "rgba(192,38,211,0.88)";
+    else ctx.fillStyle = "rgba(12,22,27,0.68)";
+    roundRect(ctx, box.x, box.y, box.width, box.height, box.radius || 8, true, false);
+    ctx.restore();
+  }
+
+  function drawFittedOverlayText(ctx, text, x, y, width, size, color, align, weight = "900") {
+    const family = "Arial, Helvetica, sans-serif";
+    let fontSize = size;
+    ctx.textAlign = align;
+    ctx.fillStyle = color;
+    ctx.strokeStyle = overlayStrokeColor(color);
+    ctx.lineWidth = Math.max(2, Math.round(size / 13));
+    do {
+      ctx.font = `${weight} ${fontSize}px ${family}`;
+      if (ctx.measureText(text).width <= width || fontSize <= 16) break;
+      fontSize -= 2;
+    } while (fontSize > 16);
+    ctx.strokeText(text, x, y);
+    ctx.fillText(text, x, y);
+  }
+
+  function drawMemeText(ctx, text, x, y, width, size, color) {
+    ctx.save();
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = color;
+    ctx.strokeStyle = "#050608";
+    ctx.lineWidth = Math.max(4, Math.round(size / 9));
+    drawFittedOverlayText(ctx, String(text).toUpperCase(), x, y, width, size, color, "center", "900");
+    ctx.restore();
+  }
+
   function drawImageWatermarkText(ctx, canvas, values) {
     const text = sanitizePrintable(values.watermarkText || "SAMPLE").trim().slice(0, 50) || "SAMPLE";
     const base = Math.min(canvas.width, canvas.height);
@@ -8384,6 +8588,46 @@ ${paragraphs.join("\n")}
     if (placement === "center") return "Center";
     if (placement === "diagonal-tile") return "Diagonal tiled";
     return "Bottom right";
+  }
+
+  function textImageFontPixels(value, base) {
+    if (value === "xlarge") return Math.max(32, Math.round(base * 0.12));
+    if (value === "medium") return Math.max(24, Math.round(base * 0.072));
+    return Math.max(28, Math.round(base * 0.092));
+  }
+
+  function textImageLayoutLabel(value) {
+    if (value === "top-banner") return "Top banner";
+    if (value === "center-card") return "Center card";
+    if (value === "meme") return "Meme";
+    if (value === "bottom-left") return "Bottom-left label";
+    return "Bottom banner";
+  }
+
+  function textImageFontSizeLabel(value) {
+    if (value === "xlarge") return "extra-large";
+    if (value === "medium") return "medium";
+    return "large";
+  }
+
+  function textImageColor(value) {
+    if (value === "black") return "#050608";
+    if (value === "yellow") return "#fde047";
+    if (value === "red") return "#ef4444";
+    if (value === "blue") return "#38bdf8";
+    return "#ffffff";
+  }
+
+  function textImageColorLabel(value) {
+    if (value === "black") return "black";
+    if (value === "yellow") return "yellow";
+    if (value === "red") return "red";
+    if (value === "blue") return "blue";
+    return "white";
+  }
+
+  function overlayStrokeColor(color) {
+    return color === "#050608" ? "rgba(255,255,255,0.72)" : "rgba(5,6,8,0.76)";
   }
 
   function fileBaseName(name) {

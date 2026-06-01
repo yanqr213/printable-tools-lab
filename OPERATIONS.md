@@ -378,6 +378,7 @@ Create one image or short post per item. Show the printable use case and never p
 88. Extract selectable text from PDF without uploading.
 89. PDF to Word DOCX conversion for selectable text without uploading.
 90. Remove background from white, solid, or near-solid images into transparent PNGs without uploading.
+91. Add text to image or photo without uploading for captions, labels, prices, and quick thumbnail headlines.
 
 ## Weekly Operating Loop
 
@@ -424,6 +425,7 @@ Current Search Console checkpoint:
 - `2026-06-01`: expanded to 63 tools, 92 guides, and 51 high-intent landing pages by adding a local ATS Resume Checker. This targets job seekers right before application submission, keeps resume text in the browser, and avoids risky promises about ATS parsing, interviews, or hiring outcomes.
 - `2026-06-02`: expanded to 64 tools, 93 guides, and 52 high-intent landing pages by adding a local PDF to Word Converter. This targets urgent editable-DOCX searches while keeping the source PDF in the browser and explicitly limiting the promise to selectable text, not OCR or pixel-perfect layout recovery.
 - `2026-06-02`: expanded to 65 tools, 94 guides, and 53 high-intent landing pages by adding a local Remove Background tool. This targets broad transparent-PNG, white-background, product-photo, logo, icon, and signature-scan searches while keeping the tool honest as color-based background removal rather than AI portrait or hair segmentation.
+- `2026-06-02`: expanded to 66 tools, 95 guides, and 54 high-intent landing pages by adding a local Add Text to Image tool. This targets broad creator, seller, teacher, student, class-visual, thumbnail, caption, price-label, and social-image searches while staying browser-only and avoiding a full design-account workflow.
 - `2026-06-02`: zero-cost domain strategy checkpoint: keep the Cloudflare Pages `pages.dev` subdomain for validation because it has no cash cost and can remain crawlable, but treat a normal custom domain as an ad-review and trust upgrade after usage/search data appears. Platform-internal alternatives such as Douyin/WeChat mini games remove domain cost but add app-store review, platform traffic, and ad-eligibility uncertainty, so they are a parallel experiment rather than the current main path.
 - `2026-06-01`: AdSense Management API was enabled on the Google Cloud project through Service Usage API. A service-account probe to `adsense.googleapis.com/v2/accounts` returned no AdSense accounts, so the service account is not currently an AdSense account user. The official AdSense ad-unit creation API is also a restricted method, so publisher/ad-slot creation cannot be completed silently from the current service-account credentials.
 - `2026-06-01`: GitHub Pages discovery directory was verified as its own Search Console URL-prefix property and its sitemap was submitted through the Search Console API. This creates a second crawlable discovery surface that still points back to the same main site.

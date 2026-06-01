@@ -2,7 +2,7 @@ const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pa
 
 const SITE_SUMMARY = {
   name: "PrintableTools Lab",
-  description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   audience: "Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, household planners, cafe operators, booth exhibitors, rental hosts, and office admins.",
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
@@ -22,6 +22,7 @@ const HIGH_INTENT_TOOL_PATHS = [
   "tools/crop-image",
   "tools/rotate-image",
   "tools/watermark-image",
+  "tools/add-text-image",
   "tools/signature-png",
   "tools/passport-photo",
   "tools/qr-code",
@@ -129,6 +130,11 @@ const TOOL_FINDER_ROWS = [
     need: "I need to add a text watermark to an image",
     toolPath: "tools/watermark-image",
     why: "Best for samples, drafts, proofs, social posts, and marketplace photos that need a visible label.",
+  },
+  {
+    need: "I need to add a headline, price, caption, or meme text to an image",
+    toolPath: "tools/add-text-image",
+    why: "Best for thumbnails, product labels, announcements, class visuals, and quick social images.",
   },
   {
     need: "I need a transparent signature PNG",
@@ -547,6 +553,21 @@ const landingPages = [
       ["Practical limits", "A text watermark is a visual deterrent, not copyright enforcement. Keep original files and use proper licensing or platform tools when the image is commercially important."],
     ],
     relatedTools: ["tools/compress-image", "tools/resize-image", "tools/crop-image"],
+  },
+  {
+    path: "add-text-to-image-no-upload",
+    title: "Add Text to Image Without Uploading",
+    description: "Add a title, caption, price, label, or meme-style text to a photo locally in your browser.",
+    headline: "Add text to image without uploading",
+    lead: "Choose an image, add short text, pick a placement, and download a new JPG, PNG, or WebP without sending the image to a server.",
+    primaryTool: "tools/add-text-image",
+    intent: "add text to image, text on photo, caption image, no upload",
+    sections: [
+      ["Why users need it", "People add text to images for listings, covers, thumbnails, class materials, social posts, memes, announcements, and quick visual notes. Many design tools are heavier than this one-step job."],
+      ["Local workflow", "The image is drawn into a canvas in the browser, the text overlay is rendered locally, and the exported file is downloaded as a new image."],
+      ["Practical limits", "This is a quick overlay tool, not a full design suite. Keep the message short and check that text remains readable on small screens."],
+    ],
+    relatedTools: ["tools/resize-image", "tools/watermark-image", "tools/crop-image"],
   },
   {
     path: "free-qr-code-generator-no-signup",
@@ -1487,6 +1508,15 @@ const tools = [
     ],
   },
   {
+    path: "tools/add-text-image",
+    title: "Add Text to Image Online",
+    description: "Add a headline, caption, price, label, or meme-style text to an image locally without uploading the file.",
+    body: [
+      "Select one image, type a main line and optional small line, choose a placement, and export a JPG, PNG, or WebP copy.",
+      "Text-on-image searches are broad across sellers, creators, teachers, students, and social users who need a quick caption, thumbnail, label, or announcement image without a full design app.",
+    ],
+  },
+  {
     path: "tools/qr-code",
     title: "Free QR Code Generator",
     description: "Create a static QR code PDF for a link, menu, event page, sign, flyer, or short text without signup.",
@@ -1767,6 +1797,7 @@ const guides = [
   ["guides/resize-image-without-uploading", "Resize image without uploading", "Change image width, height, or preset size locally in the browser.", "Image resizing is useful for profile photos, thumbnails, marketplace listings, ID forms, and school portals that require exact dimensions."],
   ["guides/convert-image-format-without-uploading", "Convert image format without uploading", "Convert JPG, PNG, and WebP files locally when a website requires a different image format.", "A format converter solves a common mismatch: the image looks fine, but the receiving site accepts only JPG, PNG, or WebP."],
   ["guides/remove-background-without-uploading", "Remove background without uploading", "Create a transparent PNG from a white, solid, or near-solid background image locally in your browser.", "A transparent PNG is useful for product listings, logos, signature scans, icons, school projects, thumbnails, and documents where the original white or solid background looks messy."],
+  ["guides/add-text-to-image-without-uploading", "Add text to image without uploading", "Put a headline, caption, label, or price on a photo locally in your browser.", "A simple text-on-image tool helps when a photo needs a title, price, note, class label, sale message, thumbnail headline, or meme-style caption before it is posted or shared."],
   ["guides/merge-pdf-without-uploading", "Merge PDF without uploading", "Combine several PDF files into one PDF locally in your browser.", "People often need one combined PDF for applications, school packets, receipts, or client documents. A browser-side merge avoids sending private files to a converter server."],
   ["guides/split-pdf-without-uploading", "Split PDF without uploading", "Extract selected pages from a PDF without uploading the document.", "PDF splitting is useful when a larger packet contains only a few pages you need to send. Page ranges should be checked carefully before sharing."],
   ["guides/add-page-numbers-to-pdf", "Add page numbers to PDF", "Add simple visible page numbers to an existing PDF in the browser.", "Page numbers help reviewers refer to pages in packets, drafts, reports, and handouts. A local tool can add simple numbering without a full PDF editor."],
@@ -1862,6 +1893,8 @@ const keywordClusters = [
       ["Rotate image without uploading", "rotate-image-no-upload"],
       ["Watermark image", "tools/watermark-image"],
       ["Watermark image without uploading", "watermark-image-no-upload"],
+      ["Add text to image", "tools/add-text-image"],
+      ["Add text to photo", "add-text-to-image-no-upload"],
       ["Signature PNG generator", "tools/signature-png"],
       ["Transparent signature PNG", "signature-png-generator"],
       ["Passport photo maker", "tools/passport-photo"],
@@ -1970,20 +2003,20 @@ const pages = [
   {
     path: "",
     title: "Free Printable PDF, Image, and QR Tools",
-    description: "Create passport photos, image compression, resizing, cropping, rotation, watermarking, transparent signature PNGs, static QR codes, WiFi QR signs, contact QR codes, PDF-to-JPG images, PDF-to-text files, image-to-PDF conversions, text, Markdown, CSV, and JSON PDF exports, invoices, receipts, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free browser exports.",
+    description: "Create passport photos, image compression, resizing, cropping, rotation, watermarking, text-on-image overlays, transparent signature PNGs, static QR codes, WiFi QR signs, contact QR codes, PDF-to-JPG images, PDF-to-text files, image-to-PDF conversions, text, Markdown, CSV, and JSON PDF exports, invoices, receipts, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free browser exports.",
     html: `
       <section class="shell hero">
         <div>
           <h1>Make useful PDF, image, and QR files in under a minute.</h1>
-          <p>Free browser-based generators for passport photos, ATS resume checks, PDF compression, image compression, resizing, cropping, rotation, watermarking, transparent signature PNGs, QR codes, WiFi QR signs, contact QR codes, PDF-to-JPG images, PDF-to-text extraction, image format conversion, no-upload PDF edits, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
+          <p>Free browser-based generators for passport photos, ATS resume checks, PDF compression, image compression, resizing, cropping, rotation, watermarking, text-on-image overlays, transparent signature PNGs, QR codes, WiFi QR signs, contact QR codes, PDF-to-JPG images, PDF-to-text extraction, image format conversion, no-upload PDF edits, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>65</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>66</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>94</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>95</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -2043,6 +2076,7 @@ const pages = [
           <li><a href="/tools/crop-image/">Crop Image Online</a></li>
           <li><a href="/tools/rotate-image/">Rotate Image Online</a></li>
           <li><a href="/tools/watermark-image/">Watermark Image Online</a></li>
+          <li><a href="/tools/add-text-image/">Add Text to Image Online</a></li>
           <li><a href="/tools/qr-code/">Free QR Code Generator</a></li>
           <li><a href="/tools/wifi-qr-code/">WiFi QR Code Generator</a></li>
           <li><a href="/tools/vcard-qr-code/">Contact QR Code Generator</a></li>
@@ -2187,6 +2221,7 @@ const GUIDE_HINTS_FOR_LINKS = {
   "crop-image": ["crop image", "square crop", "profile photo"],
   "rotate-image": ["rotate image", "flip image", "sideways photo"],
   "watermark-image": ["watermark image", "text watermark", "sample photo"],
+  "add-text-image": ["add text to image", "text on photo", "caption image"],
   "signature-png": ["signature PNG", "transparent signature", "draw signature"],
   "passport-photo": ["passport photo", "2x2 photo", "35x45 photo"],
   "qr-code": ["QR code", "static QR", "no signup"],
@@ -2318,7 +2353,7 @@ function freePdfToolsHtml() {
     {
       title: "No-upload conversion tools",
       text: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "remove-background", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "remove-background", "crop-image", "rotate-image", "watermark-image", "add-text-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -2383,7 +2418,7 @@ function pdfToolFinderHtml() {
         <td>${escapeHtml(row.why)}</td>
       </tr>`;
   }).join("\n");
-  const imageTools = ["compress-image", "compress-image-to-kb", "resize-image", "convert-image", "remove-background", "crop-image", "rotate-image", "watermark-image", "signature-png", "passport-photo", "image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "qr-code", "wifi-qr-code", "vcard-qr-code"];
+  const imageTools = ["compress-image", "compress-image-to-kb", "resize-image", "convert-image", "remove-background", "crop-image", "rotate-image", "watermark-image", "add-text-image", "signature-png", "passport-photo", "image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "qr-code", "wifi-qr-code", "vcard-qr-code"];
   const pdfEditTools = ["compress-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf"];
   const textDataTools = ["text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"];
   const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"];
@@ -2484,6 +2519,7 @@ function directorySubmissionHtml() {
     "crop-image",
     "rotate-image",
     "watermark-image",
+    "add-text-image",
     "signature-png",
     "passport-photo",
     "qr-code",
@@ -2600,7 +2636,7 @@ function landingPageHtml(page) {
 }
 
 function softwareSchema(tool) {
-  const imageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/remove-background", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/signature-png", "tools/passport-photo", "tools/pdf-to-images"]);
+  const imageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/remove-background", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/add-text-image", "tools/signature-png", "tools/passport-photo", "tools/pdf-to-images"]);
   const textToolPaths = new Set(["tools/pdf-to-text"]);
   const docxToolPaths = new Set(["tools/pdf-to-word"]);
   const compressedPdfToolPaths = new Set(["tools/compress-pdf"]);
@@ -2694,7 +2730,7 @@ function landingPageSchema(page, tool, related) {
 
 function toolDetails(tool) {
   const title = tool.title.replace(/\s+PDF$/, "");
-  const outputImageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/remove-background", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/signature-png", "tools/passport-photo", "tools/pdf-to-images"]);
+  const outputImageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/remove-background", "tools/crop-image", "tools/rotate-image", "tools/watermark-image", "tools/add-text-image", "tools/signature-png", "tools/passport-photo", "tools/pdf-to-images"]);
   const outputTextToolPaths = new Set(["tools/pdf-to-text"]);
   const outputDocxToolPaths = new Set(["tools/pdf-to-word"]);
   const exportsImage = outputImageToolPaths.has(tool.path);
@@ -3130,6 +3166,26 @@ function toolDetails(tool) {
         { q: "Does a watermark protect copyright?", a: "It is only a visual mark. Keep original files and use proper platform or licensing tools when needed." },
         { q: "Can I tile the watermark?", a: "Yes. Choose the diagonal tile placement for repeated text across the image." },
         { q: "Are images uploaded?", a: "No. The watermark is applied in your browser." },
+      ],
+    },
+    "add-text-image": {
+      steps: [
+        "Open the add text to image tool and select one JPG, PNG, or WebP file.",
+        "Enter a short main line and optional small line.",
+        "Choose a placement, text color, background style, output format, and quality.",
+        "Download the new image and check that the text is readable before posting or sharing.",
+      ],
+      privacy: "Selected image files are loaded into your browser and are not uploaded by the text overlay tool.",
+      limit: "The free version adds text to one image at a time and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Product label", text: "Add a price, sale message, size note, or quick feature label to a listing image." },
+        { title: "Thumbnail or cover", text: "Add a short headline to a cover image, classroom visual, or social preview." },
+        { title: "Meme or caption", text: "Create a simple top-and-bottom caption without opening a full design editor." },
+      ],
+      faq: [
+        { q: "Is my image uploaded?", a: "No. The selected image and text overlay are processed in your browser." },
+        { q: "Can I make meme-style text?", a: "Yes. Choose the meme layout for top and bottom high-contrast text." },
+        { q: "Is this a full design editor?", a: "No. It is a focused quick overlay tool for short, readable text on one image." },
       ],
     },
     "qr-code": {

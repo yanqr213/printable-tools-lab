@@ -9,7 +9,7 @@ const root = path.resolve(__dirname, "..");
 const reportDir = path.join(root, "reports");
 const reportPath = path.join(reportDir, "operate-report.json");
 const npmCommand = "npm";
-const googleCredentials = process.env.GOOGLE_APPLICATION_CREDENTIALS || "E:\\下载\\canvas-sum-498016-g5-11e9a0be90a2.json";
+const googleCredentials = process.env.GOOGLE_APPLICATION_CREDENTIALS || "";
 
 const report = {
   generatedAt: new Date().toISOString(),
