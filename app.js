@@ -666,11 +666,13 @@
       defaultValues: {
         pdfs: "",
         mode: "balanced",
+        targetSize: "none",
         pageRange: "all",
       },
       fields: [
         { id: "pdfs", label: "PDF file", type: "file", accept: "application/pdf", multiple: false, help: "Select one PDF. It stays in your browser and is not uploaded." },
         { id: "mode", label: "Compression mode", type: "select", options: [["small", "Small file"], ["balanced", "Balanced"], ["readable", "More readable"]] },
+        { id: "targetSize", label: "Target size", type: "select", options: [["none", "No exact target"], ["500kb", "Try under 500 KB"], ["1mb", "Try under 1 MB"], ["2mb", "Try under 2 MB"], ["5mb", "Try under 5 MB"]] },
         { id: "pageRange", label: "Pages to compress", type: "text", maxLength: 80, help: "Use all, 1, or ranges such as 1,3-5. Free compression exports up to 12 pages." },
       ],
     },
@@ -1842,6 +1844,10 @@
         ["Multiple images to PDF without uploading", "/multiple-images-to-pdf-no-upload/"],
         ["Compress PDF", "/tools/compress-pdf/"],
         ["Compress PDF without uploading", "/compress-pdf-no-upload/"],
+        ["Compress PDF to 500KB", "/compress-pdf-to-500kb/"],
+        ["Compress PDF to 1MB", "/compress-pdf-to-1mb/"],
+        ["Compress PDF to 2MB", "/compress-pdf-to-2mb/"],
+        ["Compress PDF to 5MB", "/compress-pdf-to-5mb/"],
         ["PDF to JPG converter", "/tools/pdf-to-images/"],
         ["PDF to JPG without uploading", "/pdf-to-jpg-no-upload/"],
         ["PDF to text converter", "/tools/pdf-to-text/"],
@@ -2047,6 +2053,70 @@
         ["Best fit", "Use it for scanned PDFs, photo-heavy documents, receipts, and one-off upload limits. For contracts, forms, or accessible documents with selectable text, keep the original file too."],
       ],
       related: ["pdf-to-images", "compress-image-to-kb", "merge-pdf"],
+    },
+    {
+      slug: "compress-pdf-to-500kb",
+      title: "Compress PDF to 500KB Without Uploading",
+      headline: "Compress PDF to 500KB without uploading",
+      description: "Try to compress a scanned or image-heavy PDF toward a 500KB upload limit locally in your browser.",
+      lead: "Choose a PDF, use the 500KB target, and download a smaller image-based PDF copy without sending the document to a server. This is for strict upload forms that reject PDFs above 500KB.",
+      tool: "compress-pdf",
+      toolQuery: "targetSize=500kb",
+      intent: "compress PDF to 500KB, reduce PDF size, no upload",
+      sections: [
+        ["Why this is high intent", "A 500KB PDF limit usually appears after a user has already tried to submit a form, school file, job document, exam upload, or government document and been blocked."],
+        ["Local target-size workflow", "The browser renders selected pages into smaller JPEG-backed PDF pages and tries stronger compression passes when a target size is selected."],
+        ["Honest limit", "A 500KB target can be too small for long or text-heavy PDFs. The tool tries to get close, but the result may flatten selectable text and can lose detail."],
+      ],
+      related: ["compress-pdf", "pdf-to-images", "compress-image-to-kb"],
+    },
+    {
+      slug: "compress-pdf-to-1mb",
+      title: "Compress PDF to 1MB Without Uploading",
+      headline: "Compress PDF to 1MB without uploading",
+      description: "Try to reduce a PDF toward a 1MB upload limit locally for forms, portals, email attachments, and applications.",
+      lead: "Choose a PDF, use the 1MB target, and download a smaller image-based PDF copy from your browser. It is designed for the common moment when an upload page says the PDF must be under 1MB.",
+      tool: "compress-pdf",
+      toolQuery: "targetSize=1mb",
+      intent: "compress PDF to 1MB, reduce PDF size, no upload",
+      sections: [
+        ["Why users search this", "Specific 1MB searches are usually urgent. The user already has the right file but a portal, email, job application, or school form rejects the size."],
+        ["Local target-size workflow", "The PDF stays in the browser. The tool renders selected pages into an image-based PDF and tries more aggressive compression when needed."],
+        ["Best fit", "This works best for scanned PDFs, receipts, photo-heavy documents, and quick uploads. Keep the original if selectable text, links, or accessibility matter."],
+      ],
+      related: ["compress-pdf", "pdf-to-images", "resize-image"],
+    },
+    {
+      slug: "compress-pdf-to-2mb",
+      title: "Compress PDF to 2MB Without Uploading",
+      headline: "Compress PDF to 2MB without uploading",
+      description: "Try to compress a PDF toward a 2MB file-size limit locally without uploading the document.",
+      lead: "Choose a PDF, use the 2MB target, and download a smaller PDF copy in the browser. This target is common for document portals that allow some detail but still reject large scans.",
+      tool: "compress-pdf",
+      toolQuery: "targetSize=2mb",
+      intent: "compress PDF to 2MB, reduce PDF size, no upload",
+      sections: [
+        ["Why this page exists", "A 2MB limit is common for job, school, support, bank, insurance, and admin portals. Users need a working file immediately, not a heavy editor or account wall."],
+        ["Local target-size workflow", "The selected PDF is rendered and rebuilt locally. No ordinary compression step uploads the document to PrintableTools Lab."],
+        ["Quality tradeoff", "2MB is friendlier than 500KB or 1MB, but complex PDFs can still flatten text and links. Review the output before submitting."],
+      ],
+      related: ["compress-pdf", "pdf-to-images", "merge-pdf"],
+    },
+    {
+      slug: "compress-pdf-to-5mb",
+      title: "Compress PDF to 5MB Without Uploading",
+      headline: "Compress PDF to 5MB without uploading",
+      description: "Try to reduce a PDF toward a 5MB upload limit locally for email, portals, support tickets, and applications.",
+      lead: "Choose a PDF, use the 5MB target, and download a smaller local copy. This is useful when the destination allows a moderate size and readability matters more than maximum compression.",
+      tool: "compress-pdf",
+      toolQuery: "targetSize=5mb",
+      intent: "compress PDF to 5MB, reduce PDF size, no upload",
+      sections: [
+        ["Better quality target", "A 5MB target is often enough for multi-page scans, document photos, and support attachments while preserving more detail than tiny file-size limits."],
+        ["Local target-size workflow", "The browser rebuilds selected pages into a smaller image-based PDF and keeps the source file local during ordinary use."],
+        ["Practical limit", "This tool is best for image-heavy PDFs. Text-first PDFs may be better handled by keeping the original or exporting selected pages."],
+      ],
+      related: ["compress-pdf", "pdf-to-images", "split-pdf"],
     },
     {
       slug: "pdf-to-jpg-no-upload",
@@ -5302,7 +5372,9 @@
     if (tool.pdfTool === "compress") {
       const selected = limitedPdfCompressPages(values.pageRange || "all", files[0].pageCount);
       const profile = pdfCompressProfile(values.mode || "balanced");
-      note = `The export will render ${selected.length} of ${files[0].pageCount} page${files[0].pageCount === 1 ? "" : "s"} into a ${profile.label.toLowerCase()} image-based PDF. Selectable text and links may be flattened.`;
+      const targetBytes = pdfTargetBytes(values.targetSize);
+      const targetText = targetBytes ? ` and try to stay under ${pdfTargetLabel(values.targetSize)}` : "";
+      note = `The export will render ${selected.length} of ${files[0].pageCount} page${files[0].pageCount === 1 ? "" : "s"} into a ${profile.label.toLowerCase()} image-based PDF${targetText}. Selectable text and links may be flattened.`;
     }
     if (tool.pdfTool === "page-numbers") note = `The export will add visible page numbers to ${files[0].pageCount} page${files[0].pageCount === 1 ? "" : "s"}.`;
     if (tool.pdfTool === "rotate") {
@@ -5518,36 +5590,52 @@ ${paragraphs.join("\n")}
   async function exportCompressedPdf(file, values) {
     const pdfLib = getPdfLib();
     const pdfjsLib = getPdfJsLib();
-    const profile = pdfCompressProfile(values.mode || "balanced");
+    const profiles = pdfCompressionAttempts(values.mode || "balanced", values.targetSize || "none");
+    const targetBytes = pdfTargetBytes(values.targetSize || "none");
     const selectedPages = limitedPdfCompressPages(values.pageRange || "all", file.pageCount);
     if (!selectedPages.length) throw new Error("Enter all or at least one valid page number to compress.");
     const document = await pdfjsLib.getDocument({ data: file.bytes.slice().buffer }).promise;
-    const output = await pdfLib.PDFDocument.create();
-    let renderedCount = 0;
+    let bestBytes = null;
+    let bestSize = Infinity;
+    let bestMetTarget = false;
     try {
-      for (const pageNumber of selectedPages) {
-        const page = await document.getPage(pageNumber);
-        const pageSize = page.getViewport({ scale: 1 });
-        const viewport = page.getViewport({ scale: profile.scale });
-        const canvas = window.document.createElement("canvas");
-        canvas.width = Math.ceil(viewport.width);
-        canvas.height = Math.ceil(viewport.height);
-        const ctx = canvas.getContext("2d", { alpha: false });
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        await page.render({ canvasContext: ctx, viewport }).promise;
-        const imageBytes = binaryStringToUint8(base64ToBinary(canvas.toDataURL("image/jpeg", profile.quality).split(",")[1]));
-        const image = await output.embedJpg(imageBytes);
-        const outputPage = output.addPage([pageSize.width, pageSize.height]);
-        outputPage.drawImage(image, { x: 0, y: 0, width: pageSize.width, height: pageSize.height });
-        renderedCount += 1;
-        page.cleanup();
+      for (const profile of profiles) {
+        const output = await pdfLib.PDFDocument.create();
+        let renderedCount = 0;
+        for (const pageNumber of selectedPages) {
+          const page = await document.getPage(pageNumber);
+          const pageSize = page.getViewport({ scale: 1 });
+          const viewport = page.getViewport({ scale: profile.scale });
+          const canvas = window.document.createElement("canvas");
+          canvas.width = Math.ceil(viewport.width);
+          canvas.height = Math.ceil(viewport.height);
+          const ctx = canvas.getContext("2d", { alpha: false });
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          await page.render({ canvasContext: ctx, viewport }).promise;
+          const imageBytes = binaryStringToUint8(base64ToBinary(canvas.toDataURL("image/jpeg", profile.quality).split(",")[1]));
+          const image = await output.embedJpg(imageBytes);
+          const outputPage = output.addPage([pageSize.width, pageSize.height]);
+          outputPage.drawImage(image, { x: 0, y: 0, width: pageSize.width, height: pageSize.height });
+          renderedCount += 1;
+          page.cleanup();
+        }
+        if (!renderedCount) continue;
+        const bytes = await output.save();
+        const size = bytes.byteLength || bytes.length || 0;
+        const metTarget = targetBytes > 0 && size <= targetBytes;
+        if (!bestBytes || betterCompressedPdfCandidate(size, metTarget, bestSize, bestMetTarget, targetBytes)) {
+          bestBytes = bytes;
+          bestSize = size;
+          bestMetTarget = metTarget;
+        }
+        if (metTarget) break;
       }
     } finally {
       if (document.destroy) await document.destroy();
     }
-    if (!renderedCount) throw new Error("Could not render pages for compression.");
-    return pdfBytesToBlob(await output.save());
+    if (!bestBytes) throw new Error("Could not render pages for compression.");
+    return pdfBytesToBlob(bestBytes);
   }
 
   function pdfTextItemsToLines(items) {
@@ -5722,6 +5810,39 @@ ${paragraphs.join("\n")}
     if (value === "small") return { label: "Small file", scale: 0.85, quality: 0.58 };
     if (value === "readable") return { label: "More readable", scale: 1.35, quality: 0.82 };
     return { label: "Balanced", scale: 1.05, quality: 0.68 };
+  }
+
+  function pdfCompressionAttempts(mode, targetSize) {
+    const base = pdfCompressProfile(mode);
+    const aggressive = [
+      base,
+      { label: "Smaller target pass", scale: 0.78, quality: 0.5 },
+      { label: "Smallest target pass", scale: 0.62, quality: 0.42 },
+    ];
+    return pdfTargetBytes(targetSize) ? aggressive : [base];
+  }
+
+  function betterCompressedPdfCandidate(size, metTarget, bestSize, bestMetTarget, targetBytes) {
+    if (!targetBytes) return size < bestSize;
+    if (metTarget && !bestMetTarget) return true;
+    if (metTarget && bestMetTarget) return size > bestSize;
+    return size < bestSize;
+  }
+
+  function pdfTargetBytes(value) {
+    if (value === "500kb") return 500 * 1024;
+    if (value === "1mb") return 1024 * 1024;
+    if (value === "2mb") return 2 * 1024 * 1024;
+    if (value === "5mb") return 5 * 1024 * 1024;
+    return 0;
+  }
+
+  function pdfTargetLabel(value) {
+    if (value === "500kb") return "500 KB";
+    if (value === "1mb") return "1 MB";
+    if (value === "2mb") return "2 MB";
+    if (value === "5mb") return "5 MB";
+    return "the selected target";
   }
 
   function parsePageOrder(value, pageCount) {
@@ -6150,6 +6271,14 @@ ${paragraphs.join("\n")}
       else if (targetKb && /^\d{1,4}$/.test(targetKb)) {
         values.targetKb = "custom";
         values.customKb = targetKb;
+      }
+    }
+    if (tool.id === "compress-pdf") {
+      const params = new URLSearchParams(window.location.search || "");
+      const targetSize = String(params.get("targetSize") || "").toLowerCase();
+      if (["500kb", "1mb", "2mb", "5mb"].includes(targetSize)) {
+        values.targetSize = targetSize;
+        values.mode = targetSize === "5mb" ? "balanced" : "small";
       }
     }
     return values;

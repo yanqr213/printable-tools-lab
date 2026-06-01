@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-01T19:47:30.329Z",
+  "generatedAt": "2026-06-01T20:01:21.498Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
     "customDomainConfigured": false,
     "toolCount": 66,
     "guideCount": 95,
-    "landingPageCount": 57,
-    "indexableRoutes": 228,
-    "sitemapLocCount": 228,
-    "generatedToolInventoryAt": "2026-06-01T19:33:05.386Z",
+    "landingPageCount": 61,
+    "indexableRoutes": 232,
+    "sitemapLocCount": 232,
+    "generatedToolInventoryAt": "2026-06-01T19:57:27.509Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -2514,7 +2514,7 @@
       "landingPagesLinked": 57,
       "toolPagesLinked": 50,
       "toolPagesInSitemap": 50,
-      "expectedUrlCount": 108,
+      "expectedUrlCount": 112,
       "error": ""
     },
     "indexNow": {
@@ -2526,7 +2526,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": true
+    "externalDiscoveryReady": false
   },
   "gates": {
     "productReady": true,
@@ -2534,13 +2534,13 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": true,
+    "externalDiscoveryReady": false,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "66 tools, 95 guides, 57 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "66 tools, 95 guides, 61 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
@@ -2559,7 +2559,7 @@
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 57 landing page link(s) and 50 tool mirror link(s).",
-        "GitHub Pages discovery sitemap has 108 URL(s), including 50 tool mirror URL(s); expected at least 108.",
+        "GitHub Pages discovery sitemap has 108 URL(s), including 50 tool mirror URL(s); expected at least 112.",
         "IndexNow key file is reachable from the site root."
       ]
     }

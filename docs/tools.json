@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-01T19:33:05.476Z",
+  "generatedAt": "2026-06-01T19:57:27.598Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -30,6 +30,30 @@
       "url": "https://printable-tools-lab.pages.dev/compress-pdf-no-upload/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-pdf-no-upload/",
       "intent": "compress PDF, reduce PDF size, no upload"
+    },
+    {
+      "title": "Compress PDF to 500KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-pdf-to-500kb/",
+      "intent": "compress PDF to 500KB, reduce PDF size, no upload"
+    },
+    {
+      "title": "Compress PDF to 1MB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-pdf-to-1mb/",
+      "intent": "compress PDF to 1MB, reduce PDF size, no upload"
+    },
+    {
+      "title": "Compress PDF to 2MB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-2mb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-pdf-to-2mb/",
+      "intent": "compress PDF to 2MB, reduce PDF size, no upload"
+    },
+    {
+      "title": "Compress PDF to 5MB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-5mb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-pdf-to-5mb/",
+      "intent": "compress PDF to 5MB, reduce PDF size, no upload"
     },
     {
       "title": "PDF to JPG Without Uploading",

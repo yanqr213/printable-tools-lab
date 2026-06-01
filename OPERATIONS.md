@@ -200,7 +200,7 @@ No-domain routes are real, but they do not remove monetization risk; they move t
 
 Current decision:
 
-1. Keep the free tool site as the main zero-cash product because it already works, has 228 indexable routes, and can collect search/direct/referral data without app-store review.
+1. Keep the free tool site as the main zero-cash product because it already works, has 232 indexable routes, and can collect search/direct/referral data without app-store review.
 2. Use GitHub Pages and JS.ORG as the zero-cash domain/discovery experiment. GitHub Pages is live; JS.ORG is pending maintainer review.
 3. Use Bilibili/Douyin short videos as distribution only after the product has a few visual demo clips. Do not expect immediate platform revenue because creator incentive programs require eligibility and content performance.
 4. Treat Douyin/ByteDance mini games as a pivot candidate, not the first monetization route. The platform provides official ad components for eligible traffic owners, but forced ad watching, blocking core flows with ads, or misleading ad placement is compliance risk.
@@ -290,6 +290,10 @@ Practical order if a paid product is added later:
 - watermark PDF without uploading
 - stamp PDF without uploading
 - add signature text to PDF
+- compress PDF to 500KB
+- compress PDF to 1MB
+- compress PDF to 2MB
+- compress PDF to 5MB
 - compress image without uploading
 - compress image to 50KB
 - compress image to 100KB
@@ -447,7 +451,8 @@ Current Search Console checkpoint:
 - `2026-06-02`: zero-cost domain strategy checkpoint: keep the Cloudflare Pages `pages.dev` subdomain for validation because it has no cash cost and can remain crawlable, but treat a normal custom domain as an ad-review and trust upgrade after usage/search data appears. Platform-internal alternatives such as Douyin/WeChat mini games remove domain cost but add app-store review, platform traffic, and ad-eligibility uncertainty, so they are a parallel experiment rather than the current main path.
 - `2026-06-02`: opened JS.ORG pull request `https://github.com/js-org/js.org/pull/11512` for `printable-tools-lab.js.org` pointing to the Cloudflare Pages site. The first automatic validation failed because the PR description did not use the JS.ORG template; the description was updated with checked terms, live content URL, and a JavaScript-ecosystem explanation. The latest JS.ORG checks now pass and the request is awaiting maintainer review. This is a zero-cash-cost domain experiment and does not replace the real custom-domain requirement for serious ad review.
 - `2026-06-02`: expanded to 66 tools, 95 guides, and 57 high-intent landing pages by adding 50KB, 200KB, and 500KB image-compression landing pages that deep-link into the same no-upload image-to-KB tool with prefilled target sizes. This targets urgent upload-limit searches while avoiding new infrastructure, checkout, or account friction.
-- `2026-06-02`: expanded the GitHub Pages discovery surface from one directory plus 54 landing mirrors to one directory, 57 landing mirrors, and 50 high-intent tool mirrors. This keeps the zero-cost discovery path alive while the main `pages.dev` site has no custom domain, and gives Search Console a broader second sitemap to crawl.
+- `2026-06-02`: expanded to 66 tools, 95 guides, and 61 high-intent landing pages by adding 500KB, 1MB, 2MB, and 5MB PDF compression landing pages that deep-link into the same no-upload PDF compressor with prefilled target sizes. The tool now performs stronger compression attempts when a target is selected and keeps claims honest by saying it tries toward the target rather than guarantees exact output.
+- `2026-06-02`: expanded the GitHub Pages discovery surface from one directory plus 54 landing mirrors to one directory, 61 landing mirrors, and 50 high-intent tool mirrors. This keeps the zero-cost discovery path alive while the main `pages.dev` site has no custom domain, and gives Search Console a broader second sitemap to crawl.
 - `2026-06-01`: AdSense Management API was enabled on the Google Cloud project through Service Usage API. A service-account probe to `adsense.googleapis.com/v2/accounts` returned no AdSense accounts, so the service account is not currently an AdSense account user. The official AdSense ad-unit creation API is also a restricted method, so publisher/ad-slot creation cannot be completed silently from the current service-account credentials.
 - `2026-06-01`: GitHub Pages discovery directory was verified as its own Search Console URL-prefix property and its sitemap was submitted through the Search Console API. This creates a second crawlable discovery surface that still points back to the same main site.
 - `2026-06-01`: added `npm.cmd run operate` as the unattended operating loop. It rebuilds, verifies, submits sitemaps, checks directories, probes Cloudflare/AdSense readiness, and smoke-tests every tool while recording unavoidable account-level blockers.

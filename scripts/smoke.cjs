@@ -31,6 +31,10 @@ function delay(ms) {
     "/jpg-to-pdf-no-upload/",
     "/multiple-images-to-pdf-no-upload/",
     "/compress-pdf-no-upload/",
+    "/compress-pdf-to-500kb/",
+    "/compress-pdf-to-1mb/",
+    "/compress-pdf-to-2mb/",
+    "/compress-pdf-to-5mb/",
     "/pdf-to-jpg-no-upload/",
     "/extract-text-from-pdf-no-upload/",
     "/pdf-to-word-no-upload/",
@@ -254,6 +258,16 @@ function delay(ms) {
     await page.goto(`${base}${landingHref}`, { waitUntil: "networkidle" });
     const selectedTarget = await page.locator("#targetKb").inputValue();
     if (selectedTarget !== targetKb) throw new Error(`Target-KB tool did not preselect ${targetKb}KB, got ${selectedTarget}`);
+  }
+
+  for (const [targetSize, pageSlug] of [["500kb", "compress-pdf-to-500kb"], ["1mb", "compress-pdf-to-1mb"], ["2mb", "compress-pdf-to-2mb"], ["5mb", "compress-pdf-to-5mb"]]) {
+    await page.goto(`${base}/${pageSlug}/`, { waitUntil: "networkidle" });
+    const landingHref = `/tools/compress-pdf/?targetSize=${targetSize}`;
+    const landingLinkCount = await page.locator(`main a[href="${landingHref}"]`).count();
+    if (!landingLinkCount) throw new Error(`Target-size PDF landing page is missing prefilled tool link ${landingHref}`);
+    await page.goto(`${base}${landingHref}`, { waitUntil: "networkidle" });
+    const selectedTarget = await page.locator("#targetSize").inputValue();
+    if (selectedTarget !== targetSize) throw new Error(`PDF target-size tool did not preselect ${targetSize}, got ${selectedTarget}`);
   }
 
   await page.goto(`${base}/submit-directory/`, { waitUntil: "networkidle" });

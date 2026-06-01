@@ -137,7 +137,7 @@ PrintableTools Lab is a no-signup utility site for practical browser files: chec
 - Daily free limit stored in `localStorage`.
 - Local validation events stored in `localStorage`.
 - Anonymous Cloudflare KV counters for live page views, PDF/file generations, downloads, limit hits, and AI idea applies.
-- 95 original guide pages and 57 high-intent landing pages plus keyword clusters for SEO and future display-ad review.
+- 95 original guide pages and 61 high-intent landing pages plus keyword clusters for SEO and future display-ad review.
 - Compliance pages: About, Privacy, Terms, AI & License Disclosure.
 - Static pre-rendered HTML for key routes, plus client-side enhancement.
 - `robots.txt`, canonical URLs, sitemap, and SoftwareApplication structured data for tool pages.
