@@ -1,0 +1,237 @@
+{
+  "generatedAt": "2026-06-01T20:43:24.306Z",
+  "site": "https://printable-tools-lab.pages.dev/",
+  "campaign": "zero_cost_push",
+  "purpose": "Get real visits, downloads, and search discovery before paid ads or paid features.",
+  "manualAccountsNeeded": [
+    "Bilibili",
+    "Douyin",
+    "TikTok or YouTube Shorts",
+    "one relevant community account if allowed"
+  ],
+  "rules": [
+    "Post only where free tools or file utilities are relevant to the community.",
+    "Do not ask for ad clicks, ad views, upvotes, or artificial engagement.",
+    "Do not claim guaranteed compression results; say the tool tries toward a target and users should review the output.",
+    "Do not post private documents, IDs, payment details, or user files in examples.",
+    "Use UTM source labels so the live metrics can separate directory, community, video, and social tests."
+  ],
+  "campaigns": [
+    {
+      "id": "pdf-under-1mb",
+      "title": "Compress PDF to 1MB",
+      "pathName": "compress-pdf-to-1mb",
+      "pain": "Portal says your PDF must be under 1MB?",
+      "target": "Job, school, email, and application portal uploads",
+      "proof": "Best for scanned or image-heavy PDFs. Users still need to review the output.",
+      "demoSteps": [
+        "Open the 1MB PDF compressor",
+        "Choose a PDF locally in the browser",
+        "Download a smaller copy",
+        "Try a lower quality setting if needed"
+      ],
+      "captionEn": "PDF upload blocked by a 1MB limit? This free no-upload tool tries to compress scans and image-heavy PDFs in your browser.",
+      "captionZh": "表格要求 PDF 小于 1MB？这个免费工具在浏览器里压缩，不用上传文件，适合扫描件和图片型 PDF，下载前记得检查效果。",
+      "hashtags": [
+        "#PDFTools",
+        "#FileUpload",
+        "#NoSignup",
+        "#JobSearch",
+        "#StudentTools"
+      ],
+      "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-under-1mb",
+      "displayUrl": "printable-tools-lab.pages.dev/compress-pdf-to-1mb",
+      "source": "short-video",
+      "posterHtml": "posters/pdf-under-1mb.html",
+      "posterPng": "posters/pdf-under-1mb.png",
+      "videoOutline": [
+        "0-2s: Show the pain: Portal says your PDF must be under 1MB?",
+        "2-5s: Show the file-size or format rejection as generic sample text.",
+        "5-11s: Open the 1MB PDF compressor -> Choose a PDF locally in the browser -> Download a smaller copy.",
+        "11-16s: Show the downloaded result and remind users to review it.",
+        "16-20s: CTA: Compress PDF to 1MB."
+      ],
+      "communityReply": "If your issue is specifically \"Portal says your PDF must be under 1MB\", this free browser tool may help: https://printable-tools-lab.pages.dev/compress-pdf-to-1mb?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-under-1mb Best for scanned or image-heavy PDFs. Users still need to review the output. No signup is needed. Do not upload private IDs or payment documents in public examples."
+    },
+    {
+      "id": "pdf-under-500kb",
+      "title": "Compress PDF to 500KB",
+      "pathName": "compress-pdf-to-500kb",
+      "pain": "Government-style form rejects PDFs over 500KB?",
+      "target": "Strict file-size portals and form uploads",
+      "proof": "A 500KB target may require visible quality loss. Keep the wording honest.",
+      "demoSteps": [
+        "Open the 500KB landing page",
+        "Select a scanned PDF",
+        "Use stronger compression",
+        "Compare before submitting"
+      ],
+      "captionEn": "When a form asks for a tiny 500KB PDF, use a no-upload compressor and check the result before submitting.",
+      "captionZh": "遇到 500KB 的 PDF 上传限制，可以先用这个无上传压缩工具试一下。压得越小画质可能越差，提交前一定检查。",
+      "hashtags": [
+        "#PDFCompressor",
+        "#UploadLimit",
+        "#NoUpload",
+        "#FormHelp",
+        "#FreeTools"
+      ],
+      "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-under-500kb",
+      "displayUrl": "printable-tools-lab.pages.dev/compress-pdf-to-500kb",
+      "source": "community",
+      "posterHtml": "posters/pdf-under-500kb.html",
+      "posterPng": "posters/pdf-under-500kb.png",
+      "videoOutline": [
+        "0-2s: Show the pain: Government-style form rejects PDFs over 500KB?",
+        "2-5s: Show the file-size or format rejection as generic sample text.",
+        "5-11s: Open the 500KB landing page -> Select a scanned PDF -> Use stronger compression.",
+        "11-16s: Show the downloaded result and remind users to review it.",
+        "16-20s: CTA: Compress PDF to 500KB."
+      ],
+      "communityReply": "If your issue is specifically \"Government-style form rejects PDFs over 500KB\", this free browser tool may help: https://printable-tools-lab.pages.dev/compress-pdf-to-500kb?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-under-500kb A 500KB target may require visible quality loss. Keep the wording honest. No signup is needed. Do not upload private IDs or payment documents in public examples."
+    },
+    {
+      "id": "image-under-100kb",
+      "title": "Compress Image to 100KB",
+      "pathName": "compress-image-to-100kb",
+      "pain": "Profile photo rejected because it is over 100KB?",
+      "target": "Job forms, school portals, profile photos, and exam uploads",
+      "proof": "The original image stays local. JPG and WebP often compress best.",
+      "demoSteps": [
+        "Open the 100KB image compressor",
+        "Pick a photo",
+        "Adjust quality if needed",
+        "Download a smaller file"
+      ],
+      "captionEn": "Photo upload too large? Compress an image toward 100KB locally in the browser, without creating an account.",
+      "captionZh": "照片超过 100KB 被表单拒绝？这个工具可以在浏览器本地压缩，不需要注册账号，也不用上传原图。",
+      "hashtags": [
+        "#ImageCompressor",
+        "#100KB",
+        "#ProfilePhoto",
+        "#NoSignup",
+        "#BrowserTools"
+      ],
+      "trackedUrl": "https://printable-tools-lab.pages.dev/compress-image-to-100kb?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=image-under-100kb",
+      "displayUrl": "printable-tools-lab.pages.dev/compress-image-to-100kb",
+      "source": "short-video",
+      "posterHtml": "posters/image-under-100kb.html",
+      "posterPng": "posters/image-under-100kb.png",
+      "videoOutline": [
+        "0-2s: Show the pain: Profile photo rejected because it is over 100KB?",
+        "2-5s: Show the file-size or format rejection as generic sample text.",
+        "5-11s: Open the 100KB image compressor -> Pick a photo -> Adjust quality if needed.",
+        "11-16s: Show the downloaded result and remind users to review it.",
+        "16-20s: CTA: Compress Image to 100KB."
+      ],
+      "communityReply": "If your issue is specifically \"Profile photo rejected because it is over 100KB\", this free browser tool may help: https://printable-tools-lab.pages.dev/compress-image-to-100kb?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=image-under-100kb The original image stays local. JPG and WebP often compress best. No signup is needed. Do not upload private IDs or payment documents in public examples."
+    },
+    {
+      "id": "image-under-50kb",
+      "title": "Compress Image to 50KB",
+      "pathName": "compress-image-to-50kb",
+      "pain": "Tiny photo limit: 50KB or less?",
+      "target": "Strict ID, exam, and lightweight profile-image uploads",
+      "proof": "A 50KB target can require resizing and stronger compression.",
+      "demoSteps": [
+        "Open the 50KB image compressor",
+        "Select an image",
+        "Let the tool try smaller quality",
+        "Check the final preview"
+      ],
+      "captionEn": "Need a very small 50KB image? Try browser-local compression and review the preview before uploading it anywhere.",
+      "captionZh": "如果系统要求图片小于 50KB，可以先用这个本地压缩工具试一下。50KB 很小，预览确认后再提交。",
+      "hashtags": [
+        "#50KB",
+        "#ImageTools",
+        "#UploadFix",
+        "#NoUpload",
+        "#FreeUtility"
+      ],
+      "trackedUrl": "https://printable-tools-lab.pages.dev/compress-image-to-50kb?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=image-under-50kb",
+      "displayUrl": "printable-tools-lab.pages.dev/compress-image-to-50kb",
+      "source": "community",
+      "posterHtml": "posters/image-under-50kb.html",
+      "posterPng": "posters/image-under-50kb.png",
+      "videoOutline": [
+        "0-2s: Show the pain: Tiny photo limit: 50KB or less?",
+        "2-5s: Show the file-size or format rejection as generic sample text.",
+        "5-11s: Open the 50KB image compressor -> Select an image -> Let the tool try smaller quality.",
+        "11-16s: Show the downloaded result and remind users to review it.",
+        "16-20s: CTA: Compress Image to 50KB."
+      ],
+      "communityReply": "If your issue is specifically \"Tiny photo limit: 50KB or less\", this free browser tool may help: https://printable-tools-lab.pages.dev/compress-image-to-50kb?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=image-under-50kb A 50KB target can require resizing and stronger compression. No signup is needed. Do not upload private IDs or payment documents in public examples."
+    },
+    {
+      "id": "pdf-to-jpg-no-upload",
+      "title": "PDF to JPG Without Upload",
+      "pathName": "pdf-to-jpg-no-upload",
+      "pain": "The form accepts images but rejects your PDF?",
+      "target": "PDF-to-image conversion for forms, previews, and thumbnails",
+      "proof": "Useful when a page needs an image file instead of a PDF.",
+      "demoSteps": [
+        "Open the PDF-to-JPG tool",
+        "Choose a PDF locally",
+        "Convert pages to images",
+        "Download the page images"
+      ],
+      "captionEn": "If a form rejects PDF but accepts JPG, convert PDF pages to images locally in the browser.",
+      "captionZh": "有些表单不要 PDF、只收 JPG。这个工具可以在浏览器里把 PDF 页面转成图片，不用上传文件。",
+      "hashtags": [
+        "#PDFToJPG",
+        "#NoUpload",
+        "#FileConverter",
+        "#FormHelp",
+        "#FreeTools"
+      ],
+      "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-to-jpg-no-upload",
+      "displayUrl": "printable-tools-lab.pages.dev/pdf-to-jpg-no-upload",
+      "source": "short-video",
+      "posterHtml": "posters/pdf-to-jpg-no-upload.html",
+      "posterPng": "posters/pdf-to-jpg-no-upload.png",
+      "videoOutline": [
+        "0-2s: Show the pain: The form accepts images but rejects your PDF?",
+        "2-5s: Show the file-size or format rejection as generic sample text.",
+        "5-11s: Open the PDF-to-JPG tool -> Choose a PDF locally -> Convert pages to images.",
+        "11-16s: Show the downloaded result and remind users to review it.",
+        "16-20s: CTA: PDF to JPG Without Upload."
+      ],
+      "communityReply": "If your issue is specifically \"The form accepts images but rejects your PDF\", this free browser tool may help: https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-to-jpg-no-upload Useful when a page needs an image file instead of a PDF. No signup is needed. Do not upload private IDs or payment documents in public examples."
+    },
+    {
+      "id": "background-removal",
+      "title": "Remove Background Without Upload",
+      "pathName": "remove-background-no-upload",
+      "pain": "Need a transparent PNG for a product, logo, or signature scan?",
+      "target": "Simple white, solid, and near-solid image backgrounds",
+      "proof": "Not an AI portrait cutout. It is best for simple backgrounds.",
+      "demoSteps": [
+        "Open the background remover",
+        "Choose a simple-background image",
+        "Tune tolerance",
+        "Export a transparent PNG"
+      ],
+      "captionEn": "For simple white or solid backgrounds, remove the background locally and export a transparent PNG.",
+      "captionZh": "白底商品图、Logo 或签名扫描件，可以试试这个本地去背景工具。它适合简单背景，不是人像精修工具。",
+      "hashtags": [
+        "#TransparentPNG",
+        "#BackgroundRemover",
+        "#ProductPhoto",
+        "#NoUpload",
+        "#DesignTools"
+      ],
+      "trackedUrl": "https://printable-tools-lab.pages.dev/remove-background-no-upload?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=background-removal",
+      "displayUrl": "printable-tools-lab.pages.dev/remove-background-no-upload",
+      "source": "community",
+      "posterHtml": "posters/background-removal.html",
+      "posterPng": "posters/background-removal.png",
+      "videoOutline": [
+        "0-2s: Show the pain: Need a transparent PNG for a product, logo, or signature scan?",
+        "2-5s: Show the file-size or format rejection as generic sample text.",
+        "5-11s: Open the background remover -> Choose a simple-background image -> Tune tolerance.",
+        "11-16s: Show the downloaded result and remind users to review it.",
+        "16-20s: CTA: Remove Background Without Upload."
+      ],
+      "communityReply": "If your issue is specifically \"Need a transparent PNG for a product, logo, or signature scan\", this free browser tool may help: https://printable-tools-lab.pages.dev/remove-background-no-upload?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=background-removal Not an AI portrait cutout. It is best for simple backgrounds. No signup is needed. Do not upload private IDs or payment documents in public examples."
+    }
+  ]
+}

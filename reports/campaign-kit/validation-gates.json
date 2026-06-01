@@ -1,0 +1,75 @@
+{
+  "generatedAt": "2026-06-01T20:43:24.306Z",
+  "campaign": "zero_cost_push",
+  "gates": [
+    {
+      "checkpoint": "24 hours after first post",
+      "continueIf": [
+        "At least 1 tracked UTM visit",
+        "or at least 1 tool generation/download"
+      ],
+      "actionIfMissed": "Change hook wording and publish the image-under-100kb campaign."
+    },
+    {
+      "checkpoint": "72 hours",
+      "continueIf": [
+        "At least 10 tracked UTM visits",
+        "or at least 3 tool generations/downloads",
+        "or one useful external comment remains live"
+      ],
+      "actionIfMissed": "Stop posting generic tool-pack messages; only post exact upload-limit fixes."
+    },
+    {
+      "checkpoint": "7 days",
+      "continueIf": [
+        "30 tracked UTM visits",
+        "or 10 tool generations/downloads",
+        "or Search Console impressions start moving"
+      ],
+      "actionIfMissed": "Do not add more tools. Rework titles, covers, and external examples."
+    }
+  ],
+  "inspectWith": [
+    "npm.cmd run validate:ops",
+    "reports/validation-report.json",
+    "reports/campaign-kit/posting-calendar.csv"
+  ],
+  "campaigns": [
+    {
+      "id": "pdf-under-1mb",
+      "title": "Compress PDF to 1MB",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-under-1mb",
+      "poster": "posters/pdf-under-1mb.png"
+    },
+    {
+      "id": "pdf-under-500kb",
+      "title": "Compress PDF to 500KB",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-under-500kb",
+      "poster": "posters/pdf-under-500kb.png"
+    },
+    {
+      "id": "image-under-100kb",
+      "title": "Compress Image to 100KB",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/compress-image-to-100kb?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=image-under-100kb",
+      "poster": "posters/image-under-100kb.png"
+    },
+    {
+      "id": "image-under-50kb",
+      "title": "Compress Image to 50KB",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/compress-image-to-50kb?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=image-under-50kb",
+      "poster": "posters/image-under-50kb.png"
+    },
+    {
+      "id": "pdf-to-jpg-no-upload",
+      "title": "PDF to JPG Without Upload",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-to-jpg-no-upload",
+      "poster": "posters/pdf-to-jpg-no-upload.png"
+    },
+    {
+      "id": "background-removal",
+      "title": "Remove Background Without Upload",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/remove-background-no-upload?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=background-removal",
+      "poster": "posters/background-removal.png"
+    }
+  ]
+}

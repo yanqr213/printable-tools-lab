@@ -18,6 +18,8 @@
     "search-console": "node scripts/search-console.cjs",
     "github-discovery": "node scripts/github-discovery.cjs",
     "share-kit-push": "node scripts/share-kit-push.cjs",
+    "campaign:generate": "node scripts/generate-campaign-kit.cjs",
+    "campaign:verify": "node scripts/verify-campaign-kit.cjs",
     "monitor:directories": "node scripts/directory-monitor.cjs",
     "indexnow": "node scripts/indexnow.cjs",
     "operate": "node scripts/operate.cjs",
