@@ -20,6 +20,8 @@
     "share-kit-push": "node scripts/share-kit-push.cjs",
     "campaign:generate": "node scripts/generate-campaign-kit.cjs",
     "campaign:verify": "node scripts/verify-campaign-kit.cjs",
+    "campaign:videos": "node scripts/generate-campaign-videos.cjs",
+    "campaign:verify-videos": "node scripts/verify-campaign-videos.cjs",
     "monitor:directories": "node scripts/directory-monitor.cjs",
     "indexnow": "node scripts/indexnow.cjs",
     "operate": "node scripts/operate.cjs",

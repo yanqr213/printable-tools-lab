@@ -222,9 +222,11 @@ Generate the zero-cost short-video and community distribution kit:
 ```powershell
 npm.cmd run campaign:generate
 npm.cmd run campaign:verify
+npm.cmd run campaign:videos
+npm.cmd run campaign:verify-videos
 ```
 
-This writes `reports/campaign-kit/` with bilingual captions, short-video shot lists, community replies, UTM links, validation gates, and vertical poster images for high-intent upload-limit tools.
+This writes `reports/campaign-kit/` with bilingual captions, short-video shot lists, community replies, UTM links, validation gates, vertical poster images, and silent 9:16 MP4 assets for high-intent upload-limit tools.
 
 Prepare or verify AdSense configuration:
 
