@@ -17,6 +17,9 @@ const ZERO_DOMAIN_GAME_EXPERIMENT = {
   packagePath: "upload-limit-panic/reports/upload-limit-panic-html5.tar.gz",
   zipUrl: "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-html5.zip",
   demoVideoUrl: "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-demo.mp4",
+  iconUrl: "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-icon-512.png",
+  coverUrl: "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-cover-16x9.png",
+  socialCardUrl: "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-social-card.png",
   submissionNotesUrl: "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission.md",
   summary: "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them.",
 };
@@ -2855,6 +2858,9 @@ function shareKitHtml() {
         <ul>
           <li><a href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.zipUrl)}">Download HTML5 ZIP package</a></li>
           <li><a href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.demoVideoUrl)}">Download 8-second demo MP4</a></li>
+          <li><a href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.coverUrl)}">Download 16:9 platform cover</a></li>
+          <li><a href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.iconUrl)}">Download 512x512 platform icon</a></li>
+          <li><a href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.socialCardUrl)}">Download social preview card</a></li>
           <li><a href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.submissionNotesUrl)}">Open platform submission notes</a></li>
         </ul>
       </section>

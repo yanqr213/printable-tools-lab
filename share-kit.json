@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Share Kit",
-  "generatedAt": "2026-06-01T22:35:13.885Z",
+  "generatedAt": "2026-06-01T23:14:15.923Z",
   "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
   "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
   "featuredLinks": [
@@ -206,6 +206,9 @@
     "packagePath": "upload-limit-panic/reports/upload-limit-panic-html5.tar.gz",
     "zipUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-html5.zip",
     "demoVideoUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-demo.mp4",
+    "iconUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-icon-512.png",
+    "coverUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-cover-16x9.png",
+    "socialCardUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-social-card.png",
     "submissionNotesUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission.md",
     "summary": "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them."
   },
