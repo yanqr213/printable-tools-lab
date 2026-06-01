@@ -44,6 +44,9 @@ function delay(ms) {
     "/free-packing-slip-generator-printable/",
     "/free-work-order-generator-pdf/",
     "/free-inventory-sheet-generator/",
+    "/watermark-pdf-no-upload/",
+    "/stamp-pdf-no-upload/",
+    "/sign-pdf-no-upload/",
     "/tools/name-tracing/",
     "/tools/chore-chart/",
     "/tools/reward-chart/",
@@ -77,6 +80,9 @@ function delay(ms) {
     "/tools/rotate-pdf/",
     "/tools/remove-pdf-pages/",
     "/tools/reorder-pdf-pages/",
+    "/tools/watermark-pdf/",
+    "/tools/stamp-pdf/",
+    "/tools/sign-pdf/",
     "/tools/text-to-pdf/",
     "/tools/sign-in-sheet/",
     "/tools/graph-paper/",
@@ -116,6 +122,9 @@ function delay(ms) {
     "/guides/rotate-pdf-pages-without-uploading/",
     "/guides/remove-pages-from-pdf-without-uploading/",
     "/guides/reorder-pdf-pages-without-uploading/",
+    "/guides/watermark-pdf-without-uploading/",
+    "/guides/stamp-pdf-without-uploading/",
+    "/guides/add-signature-text-to-pdf-without-uploading/",
     "/guides/text-to-pdf-converter-no-signup/",
     "/guides/free-sign-in-sheet-generator/",
     "/guides/free-printable-graph-paper-generator/",
@@ -154,7 +163,7 @@ function delay(ms) {
   for (const phrase of ["No-upload conversion tools", "Free business PDF tools", "All free PDF generators"]) {
     if (!freePdfText.includes(phrase)) throw new Error(`Free PDF tools page is missing ${phrase}`);
   }
-  for (const href of ["/tools/multi-image-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/text-to-pdf/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/barcode-labels/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
+  for (const href of ["/tools/multi-image-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/text-to-pdf/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/barcode-labels/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
     const linkCount = await page.locator(`main a[href="${href}"]`).count();
     if (!linkCount) throw new Error(`Free PDF tools page is missing link ${href}`);
   }
@@ -164,7 +173,7 @@ function delay(ms) {
   for (const phrase of ["Which free PDF tool should I use?", "Invoice vs receipt", "One image vs many images"]) {
     if (!finderText.includes(phrase)) throw new Error(`PDF tool finder page is missing ${phrase}`);
   }
-  for (const href of ["/tools/image-to-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/price-tag/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
+  for (const href of ["/tools/image-to-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/price-tag/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
     const linkCount = await page.locator(`main a[href="${href}"]`).count();
     if (!linkCount) throw new Error(`PDF tool finder page is missing link ${href}`);
   }
@@ -179,7 +188,7 @@ function delay(ms) {
   const secondPagePdf = await samplePdf("Second document");
   const twoPagePdf = await samplePdf("Split source", 2);
 
-  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/text-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
+  for (const route of ["/tools/name-tracing/", "/tools/chore-chart/", "/tools/reward-chart/", "/tools/flashcards/", "/tools/weekly-planner/", "/tools/habit-tracker/", "/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/text-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
     await page.evaluate(() => localStorage.removeItem("ptl_daily"));
     if (route === "/tools/image-to-pdf/") {
@@ -264,6 +273,32 @@ function delay(ms) {
       const previewText = await page.locator("#pdfFilePreview").innerText();
       if (!previewText.includes("reorder.pdf") || !previewText.includes("2-page PDF in the typed order")) throw new Error(`Reorder PDF preview is incomplete: ${previewText}`);
     }
+    if (route === "/tools/watermark-pdf/") {
+      await page.setInputFiles("input[type=file]", { name: "watermark.pdf", mimeType: "application/pdf", buffer: twoPagePdf });
+      await page.fill("#watermarkText", "SAMPLE");
+      await page.fill("#pageRange", "1");
+      await page.waitForTimeout(750);
+      const previewText = await page.locator("#pdfFilePreview").innerText();
+      if (!previewText.includes("watermark.pdf") || !previewText.includes("\"SAMPLE\"") || !previewText.includes("1 of 2 pages")) throw new Error(`Watermark PDF preview is incomplete: ${previewText}`);
+    }
+    if (route === "/tools/stamp-pdf/") {
+      await page.setInputFiles("input[type=file]", { name: "stamp.pdf", mimeType: "application/pdf", buffer: twoPagePdf });
+      await page.fill("#stampText", "PAID");
+      await page.fill("#pageRange", "2");
+      await page.selectOption("#style", "paid");
+      await page.waitForTimeout(750);
+      const previewText = await page.locator("#pdfFilePreview").innerText();
+      if (!previewText.includes("stamp.pdf") || !previewText.includes("\"PAID\"") || !previewText.includes("1 of 2 pages")) throw new Error(`Stamp PDF preview is incomplete: ${previewText}`);
+    }
+    if (route === "/tools/sign-pdf/") {
+      await page.setInputFiles("input[type=file]", { name: "sign.pdf", mimeType: "application/pdf", buffer: twoPagePdf });
+      await page.fill("#signatureName", "Alex Rivera");
+      await page.fill("#signatureDate", "Jun 1, 2026");
+      await page.fill("#pageNumber", "2");
+      await page.waitForTimeout(750);
+      const previewText = await page.locator("#pdfFilePreview").innerText();
+      if (!previewText.includes("sign.pdf") || !previewText.includes("signature block on page 2 of 2")) throw new Error(`Sign PDF preview is incomplete: ${previewText}`);
+    }
     const button = page.getByRole("button", { name: "Generate PDF" });
     const pdfUtilityButtonNames = {
       "/tools/merge-pdf/": "Merge PDF",
@@ -272,12 +307,21 @@ function delay(ms) {
       "/tools/rotate-pdf/": "Rotate pages",
       "/tools/remove-pdf-pages/": "Remove pages",
       "/tools/reorder-pdf-pages/": "Reorder pages",
+      "/tools/watermark-pdf/": "Add watermark",
+      "/tools/stamp-pdf/": "Stamp PDF",
+      "/tools/sign-pdf/": "Add signature",
     };
     const submitButton = pdfUtilityButtonNames[route] ? page.getByRole("button", { name: pdfUtilityButtonNames[route] }) : button;
-    const [download] = await Promise.all([
-      page.waitForEvent("download"),
-      submitButton.click(),
-    ]);
+    let download;
+    try {
+      [download] = await Promise.all([
+        page.waitForEvent("download"),
+        submitButton.click(),
+      ]);
+    } catch (error) {
+      const noticeText = await page.locator("#limitNotice").innerText().catch(() => "");
+      throw new Error(`Download did not start on ${route}. Notice: ${noticeText || "none"}. ${error.message}`);
+    }
     const name = download.suggestedFilename();
     if (!name.endsWith(".pdf")) throw new Error(`Expected PDF download on ${route}, got ${name}`);
     if (route === "/tools/multi-image-pdf/") {
@@ -310,6 +354,18 @@ function delay(ms) {
     if (route === "/tools/reorder-pdf-pages/") {
       const exported = await PDFDocument.load(fs.readFileSync(await download.path()));
       if (exported.getPageCount() !== 2) throw new Error("Reordered PDF should contain two pages.");
+    }
+    if (route === "/tools/watermark-pdf/") {
+      const exported = await PDFDocument.load(fs.readFileSync(await download.path()));
+      if (exported.getPageCount() !== 2) throw new Error("Watermarked PDF should preserve page count.");
+    }
+    if (route === "/tools/stamp-pdf/") {
+      const exported = await PDFDocument.load(fs.readFileSync(await download.path()));
+      if (exported.getPageCount() !== 2) throw new Error("Stamped PDF should preserve page count.");
+    }
+    if (route === "/tools/sign-pdf/") {
+      const exported = await PDFDocument.load(fs.readFileSync(await download.path()));
+      if (exported.getPageCount() !== 2) throw new Error("Signed PDF should preserve page count.");
     }
   }
 

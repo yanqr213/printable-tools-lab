@@ -6,7 +6,7 @@ This file keeps the project pointed at the current model: free ad-supported prin
 
 ### Free acquisition layer
 
-- Thirty-eight free browser PDF generators and no-upload PDF utilities.
+- Forty-four free browser PDF generators and no-upload PDF utilities.
 - Daily free limit stored locally.
 - Clean one-page PDF exports with no account wall and no ad-click requirement.
 - Original guide pages for search traffic and AdSense review.
@@ -227,6 +227,9 @@ Practical order if a paid product is added later:
 - classroom chart generator
 - batch printable generator for teachers
 - free printable worksheet generator
+- watermark PDF without uploading
+- stamp PDF without uploading
+- add signature text to PDF
 
 ## First Distribution Posts
 
@@ -277,27 +280,33 @@ Create one image or short post per item. Show the printable use case and never p
 43. Merge PDF without uploading documents.
 44. Split PDF without uploading documents.
 45. Add page numbers to PDF locally.
-46. Printable sign-in sheet for events and classes.
-47. Attendance sheet PDF with readable rows.
-48. Printable graph paper with quarter-inch grid.
-49. Travel packing list with grouped checkboxes.
-50. Text to PDF converter for plain notes and letters.
-51. Free receipt generator for service payments and deposits.
-52. Weekly timesheet PDF for freelance hours.
-53. Certificate generator for classrooms and events.
-54. Printable to-do list for errands, study, and event prep.
-55. Free printable business card sheet for local services.
-56. Business card PDF before ordering professional prints.
-57. Address label sheet for small mailing batches.
-58. Badge labels for events, workshops, and classrooms.
-59. Barcode label PDF for SKU stickers and inventory bins.
-60. SKU labels for handmade products and market tables.
-61. Price tag generator for yard sales and pop-up shops.
-62. Shelf label PDF for small retail displays.
-63. Flyer maker PDF for a local service or class.
-64. Yard sale flyer with clear time and location.
-65. Printable coupon maker for local offers.
-66. Discount coupon PDF with code and expiration note.
+46. Rotate PDF pages without uploading.
+47. Remove pages from a PDF without uploading.
+48. Reorder PDF pages without uploading.
+49. Watermark PDF without uploading.
+50. Stamp PDF as paid, approved, or draft.
+51. Add typed signature text to a PDF.
+52. Printable sign-in sheet for events and classes.
+53. Attendance sheet PDF with readable rows.
+54. Printable graph paper with quarter-inch grid.
+55. Travel packing list with grouped checkboxes.
+56. Text to PDF converter for plain notes and letters.
+57. Free receipt generator for service payments and deposits.
+58. Weekly timesheet PDF for freelance hours.
+59. Certificate generator for classrooms and events.
+60. Printable to-do list for errands, study, and event prep.
+61. Free printable business card sheet for local services.
+62. Business card PDF before ordering professional prints.
+63. Address label sheet for small mailing batches.
+64. Badge labels for events, workshops, and classrooms.
+65. Barcode label PDF for SKU stickers and inventory bins.
+66. SKU labels for handmade products and market tables.
+67. Price tag generator for yard sales and pop-up shops.
+68. Shelf label PDF for small retail displays.
+69. Flyer maker PDF for a local service or class.
+70. Yard sale flyer with clear time and location.
+71. Printable coupon maker for local offers.
+72. Discount coupon PDF with code and expiration note.
 
 ## Weekly Operating Loop
 
@@ -328,6 +337,7 @@ Current Search Console checkpoint:
 - `2026-06-01`: expanded to 35 tools, 70 guides, and 17 high-intent landing pages by adding packing slip, work order, and inventory sheet workflows for sellers, contractors, and stock-count use cases.
 - `2026-06-01`: expanded the same site to 38 tools, 73 guides, and 20 high-intent landing pages by adding no-upload Merge PDF, Split PDF, and PDF Page Numbers utilities. These broaden the ad-supported audience into high-frequency existing-PDF tasks while keeping files in the browser.
 - `2026-06-01`: expanded the same PDF utility cluster to 41 tools, 76 guides, and 23 high-intent landing pages by adding no-upload Rotate PDF, Remove PDF Pages, and Reorder PDF Pages. This keeps one domain focused on the existing-PDF editing searches where users often face upload gates, account walls, or download friction.
+- `2026-06-01`: expanded the same PDF utility cluster to 44 tools, 79 guides, and 26 high-intent landing pages by adding Watermark PDF, Stamp PDF, and Add Signature Text to PDF. These are existing-document tasks with urgent search intent, while the implementation remains local, free, and careful not to claim legal e-signature status.
 - `2026-06-01`: AdSense Management API was enabled on the Google Cloud project through Service Usage API. A service-account probe to `adsense.googleapis.com/v2/accounts` returned no AdSense accounts, so the service account is not currently an AdSense account user. The official AdSense ad-unit creation API is also a restricted method, so publisher/ad-slot creation cannot be completed silently from the current service-account credentials.
 - `2026-06-01`: GitHub Pages discovery directory was verified as its own Search Console URL-prefix property and its sitemap was submitted through the Search Console API. This creates a second crawlable discovery surface that still points back to the same main site.
 - Action: keep site stable, improve useful content/navigation, thicken tool pages, and avoid repeated low-value resubmission loops.

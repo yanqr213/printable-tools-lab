@@ -2,7 +2,7 @@ const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pa
 
 const SITE_SUMMARY = {
   name: "PrintableTools Lab",
-  description: "Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  description: "Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   audience: "Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, and household planners.",
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
@@ -16,6 +16,9 @@ const HIGH_INTENT_TOOL_PATHS = [
   "tools/rotate-pdf",
   "tools/remove-pdf-pages",
   "tools/reorder-pdf-pages",
+  "tools/watermark-pdf",
+  "tools/stamp-pdf",
+  "tools/sign-pdf",
   "tools/text-to-pdf",
   "tools/invoice-generator",
   "tools/receipt-generator",
@@ -80,6 +83,21 @@ const TOOL_FINDER_ROWS = [
     need: "I need to reorder PDF pages",
     toolPath: "tools/reorder-pdf-pages",
     why: "Best for organizing scanned packets or drafts where pages were captured out of sequence.",
+  },
+  {
+    need: "I need to add a watermark to a PDF",
+    toolPath: "tools/watermark-pdf",
+    why: "Best for marking drafts, samples, review copies, and private files locally before sending.",
+  },
+  {
+    need: "I need to stamp a PDF as paid, approved, or draft",
+    toolPath: "tools/stamp-pdf",
+    why: "Best for simple status stamps on receipts, invoices, work orders, review files, and internal paperwork.",
+  },
+  {
+    need: "I need to add a typed signature line to a PDF",
+    toolPath: "tools/sign-pdf",
+    why: "Best for lightweight signature blocks when a typed signature is acceptable for the document.",
   },
   {
     need: "I need to bill a client or record a service payment",
@@ -313,6 +331,51 @@ const landingPages = [
       ["Keep it simple", "This first version uses typed page numbers instead of a drag interface so it stays fast, mobile-friendly, and free to run without a server."],
     ],
     relatedTools: ["tools/merge-pdf", "tools/remove-pdf-pages", "tools/pdf-page-numbers"],
+  },
+  {
+    path: "watermark-pdf-no-upload",
+    title: "Add Watermark to PDF Without Uploading",
+    description: "Add a text watermark to PDF pages locally in your browser without uploading the file.",
+    headline: "Add watermark to PDF without uploading",
+    lead: "Select a PDF, type the watermark text, choose all pages or selected pages, and download a marked copy. This is useful for drafts, samples, review files, and internal paperwork that should stay local.",
+    primaryTool: "tools/watermark-pdf",
+    intent: "watermark PDF, no upload, free browser tool",
+    sections: [
+      ["Mark drafts and samples", "A watermark helps show that a PDF is a draft, sample, confidential copy, or review version without changing the original file."],
+      ["Local-first workflow", "The PDF is read and edited in the browser for ordinary watermarking, which avoids sending private documents to a converter server."],
+      ["Use a light mark", "A useful watermark is visible but does not hide the actual document. Review the downloaded PDF before sharing it."],
+    ],
+    relatedTools: ["tools/stamp-pdf", "tools/sign-pdf", "tools/pdf-page-numbers"],
+  },
+  {
+    path: "stamp-pdf-no-upload",
+    title: "Stamp PDF Without Uploading",
+    description: "Add a PAID, APPROVED, DRAFT, or custom text stamp to PDF pages locally in your browser.",
+    headline: "Stamp PDF without uploading",
+    lead: "Add a simple status stamp to a PDF copy without creating an account or uploading the source file. Use it for paid receipts, approved drafts, review packets, or internal document routing.",
+    primaryTool: "tools/stamp-pdf",
+    intent: "stamp PDF, paid stamp, approved stamp, no upload",
+    sections: [
+      ["Status stamps for real paperwork", "A visible stamp can make a receipt, invoice, work order, or draft easier to scan when it moves between people."],
+      ["Choose the pages", "Stamp every page or enter a short range such as 1,3-5 when only the cover or key pages need a status mark."],
+      ["Review before relying on it", "A stamp is a visual annotation, not proof of payment or legal approval by itself. Keep the underlying records too."],
+    ],
+    relatedTools: ["tools/watermark-pdf", "tools/receipt-generator", "tools/work-order"],
+  },
+  {
+    path: "sign-pdf-no-upload",
+    title: "Add Signature Text to PDF Without Uploading",
+    description: "Place a typed signature block on a selected PDF page locally in your browser.",
+    headline: "Add signature text to PDF without uploading",
+    lead: "Add a typed signature name and optional date to a selected PDF page. This is a lightweight browser tool for documents where a typed signature block is acceptable.",
+    primaryTool: "tools/sign-pdf",
+    intent: "sign PDF, typed signature, no upload",
+    sections: [
+      ["Typed signature block", "The tool adds a signature line, typed name, and optional date to a selected page. It does not claim to be an e-signature platform."],
+      ["Local processing", "The PDF is read and annotated in the browser for ordinary use, so the source file does not need to be uploaded to PrintableTools Lab."],
+      ["Check acceptance rules", "Some documents require a specific e-sign provider, handwritten signature, witness, or identity check. Use this only where a typed signature is acceptable."],
+    ],
+    relatedTools: ["tools/stamp-pdf", "tools/watermark-pdf", "tools/pdf-page-numbers"],
   },
   {
     path: "free-resume-builder-no-signup",
@@ -812,6 +875,33 @@ const tools = [
     ],
   },
   {
+    path: "tools/watermark-pdf",
+    title: "Add Watermark to PDF",
+    description: "Add a light text watermark to all pages or selected PDF pages locally in your browser.",
+    body: [
+      "Select one PDF, type watermark text, choose placement and opacity, then export a marked copy without uploading the source file.",
+      "PDF watermark searches have practical intent because people often need to label drafts, samples, internal files, or confidential copies before sharing.",
+    ],
+  },
+  {
+    path: "tools/stamp-pdf",
+    title: "Stamp PDF Pages",
+    description: "Add a simple APPROVED, PAID, DRAFT, or custom text stamp to PDF pages without uploading the file.",
+    body: [
+      "Select one PDF, choose a stamp style and position, then export a copy with a visible status stamp.",
+      "PDF stamp searches connect to receipts, invoices, work orders, review packets, and admin workflows where a simple status label saves time.",
+    ],
+  },
+  {
+    path: "tools/sign-pdf",
+    title: "Add Signature Text to PDF",
+    description: "Place a typed signature block on a selected PDF page locally in your browser.",
+    body: [
+      "Select one PDF, enter a typed signature name and optional date, choose the page and position, then export a signed copy.",
+      "Typed signature searches are high-intent, but this tool stays clear about limits: it adds a visual signature block and does not replace regulated e-signature services.",
+    ],
+  },
+  {
     path: "tools/text-to-pdf",
     title: "Text to PDF Converter",
     description: "Paste plain text and download a clean one-page PDF without an account or file upload.",
@@ -951,6 +1041,9 @@ const guides = [
   ["guides/rotate-pdf-pages-without-uploading", "Rotate PDF pages without uploading", "Fix sideways or upside-down PDF pages locally in your browser.", "PDF rotation is useful for scanned forms, phone-generated PDFs, receipts, and packets where only a few pages face the wrong direction."],
   ["guides/remove-pages-from-pdf-without-uploading", "Remove pages from PDF without uploading", "Delete selected PDF pages locally without sending the source file to a converter.", "Removing pages helps trim blank pages, duplicate scans, cover sheets, or private pages before sharing a PDF."],
   ["guides/reorder-pdf-pages-without-uploading", "Reorder PDF pages without uploading", "Organize PDF pages by entering a new page order in the browser.", "Reordering pages is useful when forms, application packets, classroom files, or client drafts were scanned out of sequence."],
+  ["guides/watermark-pdf-without-uploading", "Watermark PDF without uploading", "Add a light text watermark to PDF pages locally in your browser.", "Watermarks are useful for drafts, samples, internal review copies, and documents that should be marked before sharing. A local workflow avoids sending the source file to a converter server."],
+  ["guides/stamp-pdf-without-uploading", "Stamp PDF without uploading", "Add a simple PAID, APPROVED, DRAFT, or custom stamp to a PDF locally.", "PDF stamps help people scan the status of receipts, invoices, work orders, and review packets. Use them as visual labels, not as the only proof of payment or approval."],
+  ["guides/add-signature-text-to-pdf-without-uploading", "Add signature text to PDF without uploading", "Place a typed signature block on a selected PDF page locally in your browser.", "A typed signature block is useful only when the receiving person or organization accepts it. Some documents require a specific e-sign provider, identity check, witness, or handwritten signature."],
   ["guides/text-to-pdf-converter-no-signup", "Text to PDF converter without signup", "Paste plain text and download a clean one-page PDF without installing an editor.", "Text-to-PDF searches are practical and time-sensitive. People often need to turn notes, instructions, or a plain letter into a PDF without creating an account or uploading the text to a file service."],
   ["guides/free-sign-in-sheet-generator", "Free sign-in sheet generator", "Create a printable sign-in sheet PDF for events, classes, workshops, meetings, or visitor logs.", "For small events, a printed sign-in sheet is often enough. It gives the organizer names, attendance, signatures, and contact details without needing a registration app."],
   ["guides/attendance-sheet-pdf-template", "Attendance sheet PDF template", "Use a simple printable attendance sheet for classes, clubs, workshops, and small meetings.", "A useful attendance sheet leaves enough writing space. Fewer rows per page can be better than a cramped page nobody can read later."],
@@ -1019,6 +1112,12 @@ const keywordClusters = [
       ["Remove pages from PDF without uploading", "remove-pages-from-pdf-no-upload"],
       ["Reorder PDF pages", "tools/reorder-pdf-pages"],
       ["Reorder PDF pages without uploading", "reorder-pdf-pages-no-upload"],
+      ["Watermark PDF", "tools/watermark-pdf"],
+      ["Watermark PDF without uploading", "watermark-pdf-no-upload"],
+      ["Stamp PDF", "tools/stamp-pdf"],
+      ["Stamp PDF without uploading", "stamp-pdf-no-upload"],
+      ["Add signature text to PDF", "tools/sign-pdf"],
+      ["Sign PDF without uploading", "sign-pdf-no-upload"],
       ["Text to PDF converter", "tools/text-to-pdf"],
       ["Text to PDF converter without signup", "text-to-pdf-no-signup"],
       ["Sign-in sheet generator", "tools/sign-in-sheet"],
@@ -1092,15 +1191,15 @@ const pages = [
       <section class="shell hero">
         <div>
           <h1>Make useful printable PDFs in under a minute.</h1>
-          <p>Free browser-based generators for image conversion, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
+          <p>Free browser-based generators for image conversion, no-upload PDF edits, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free PDF tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>38</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>44</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>73</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>79</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -1152,6 +1251,12 @@ const pages = [
           <li><a href="/tools/merge-pdf/">Merge PDF Tool</a></li>
           <li><a href="/tools/split-pdf/">Split PDF Tool</a></li>
           <li><a href="/tools/pdf-page-numbers/">Add Page Numbers to PDF</a></li>
+          <li><a href="/tools/rotate-pdf/">Rotate PDF Pages</a></li>
+          <li><a href="/tools/remove-pdf-pages/">Remove Pages from PDF</a></li>
+          <li><a href="/tools/reorder-pdf-pages/">Reorder PDF Pages</a></li>
+          <li><a href="/tools/watermark-pdf/">Add Watermark to PDF</a></li>
+          <li><a href="/tools/stamp-pdf/">Stamp PDF Pages</a></li>
+          <li><a href="/tools/sign-pdf/">Add Signature Text to PDF</a></li>
           <li><a href="/tools/text-to-pdf/">Text to PDF Converter</a></li>
           <li><a href="/tools/sign-in-sheet/">Sign-in Sheet Generator</a></li>
           <li><a href="/tools/graph-paper/">Graph Paper Generator</a></li>
@@ -1268,6 +1373,15 @@ const GUIDE_HINTS_FOR_LINKS = {
   "meal-planner": ["meal planner", "meal plan", "grocery"],
   "image-to-pdf": ["image to PDF", "JPG to PDF"],
   "multi-image-pdf": ["multiple images", "image to PDF"],
+  "merge-pdf": ["merge PDF"],
+  "split-pdf": ["split PDF"],
+  "pdf-page-numbers": ["page numbers"],
+  "rotate-pdf": ["rotate PDF"],
+  "remove-pdf-pages": ["remove pages"],
+  "reorder-pdf-pages": ["reorder PDF"],
+  "watermark-pdf": ["watermark"],
+  "stamp-pdf": ["stamp PDF"],
+  "sign-pdf": ["signature", "sign PDF"],
   "text-to-pdf": ["text to PDF"],
   "sign-in-sheet": ["sign-in", "attendance sheet"],
   "graph-paper": ["graph paper", "quarter inch"],
@@ -1381,7 +1495,7 @@ function freePdfToolsHtml() {
     {
       title: "No-upload conversion tools",
       text: "Use these when a photo, scan, existing PDF, or plain text note needs to become the right PDF quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "text-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1446,6 +1560,7 @@ function pdfToolFinderHtml() {
         <td>${escapeHtml(row.why)}</td>
       </tr>`;
   }).join("\n");
+  const pdfEditTools = ["merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf"];
   const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"];
   const personalTools = ["resume-builder", "cover-letter", "resignation-letter", "certificate-generator", "todo-list", "packing-list", "monthly-calendar", "meal-planner", "sign-in-sheet", "graph-paper"];
   return `
@@ -1473,6 +1588,15 @@ function pdfToolFinderHtml() {
             <p>Use the one-page image converter when layout matters on a single sheet. Use multiple images to PDF when each image should become its own page.</p>
             <p><a class="button" href="/tools/image-to-pdf/">One image PDF</a> <a class="button secondary" href="/tools/multi-image-pdf/">Multi-page PDF</a></p>
           </article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>No-upload PDF edit tools</h2>
+        <div class="cluster-links">
+          ${pdfEditTools.map((slug) => {
+            const tool = tools.find((item) => item.path === `tools/${slug}`);
+            return tool ? `<a href="/${tool.path}/">${escapeHtml(tool.title)}</a>` : "";
+          }).join("")}
         </div>
       </section>
       <section class="shell section">
@@ -1505,6 +1629,11 @@ function directorySubmissionHtml() {
   const primaryTools = [
     "image-to-pdf",
     "multi-image-pdf",
+    "merge-pdf",
+    "split-pdf",
+    "watermark-pdf",
+    "stamp-pdf",
+    "sign-pdf",
     "text-to-pdf",
     "invoice-generator",
     "receipt-generator",
@@ -2036,6 +2165,48 @@ function toolDetails(tool) {
         { q: "Can I omit pages?", a: "Yes. The export follows the page numbers you enter, so omitted pages are left out." },
         { q: "Can I repeat a page?", a: "Yes. Repeating a page number creates another copy of that page in the exported PDF." },
         { q: "Does it upload the PDF?", a: "No. The reorder process runs in your browser for ordinary use." },
+      ],
+    },
+    "watermark-pdf": {
+      privacy: "The source PDF is read and watermarked in your browser without uploading the file to PrintableTools Lab.",
+      limit: "The free version adds a text watermark to one PDF and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Draft copy", text: "Mark a document as draft before sending it for review." },
+        { title: "Sample file", text: "Add a light sample or internal-use mark to pages before sharing." },
+        { title: "Confidential packet", text: "Place a visible reminder on selected pages that should be handled carefully." },
+      ],
+      faq: [
+        { q: "Can I watermark only some pages?", a: "Yes. Enter all, a single page, or ranges such as 1,3-5." },
+        { q: "Does it upload the PDF?", a: "No. The watermark is applied in your browser for ordinary use." },
+        { q: "Will the watermark block my text?", a: "Choose a light opacity and review the downloaded PDF before sharing." },
+      ],
+    },
+    "stamp-pdf": {
+      privacy: "The source PDF is read and stamped in your browser without uploading the file to PrintableTools Lab.",
+      limit: "The free version adds a simple status stamp to one PDF and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Paid receipt", text: "Add a visible PAID mark to a receipt or invoice copy for internal routing." },
+        { title: "Approved draft", text: "Mark a review file or work order with a simple approval label." },
+        { title: "Document status", text: "Use DRAFT or URGENT stamps to make admin packets easier to scan." },
+      ],
+      faq: [
+        { q: "Is the stamp legal proof?", a: "No. It is a visual annotation. Keep the actual approval, payment, or audit record too." },
+        { q: "Can I choose the stamp text?", a: "Yes. Use a short custom label such as PAID, APPROVED, DRAFT, or REVIEW." },
+        { q: "Are files uploaded?", a: "No. The stamp is applied in your browser for ordinary use." },
+      ],
+    },
+    "sign-pdf": {
+      privacy: "The source PDF is read and annotated in your browser without uploading the file to PrintableTools Lab.",
+      limit: "The free version adds one typed signature block to one selected page and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Typed signature block", text: "Add a name and optional date when a typed signature is acceptable." },
+        { title: "Simple approval copy", text: "Place a clear signature line on a document you need to keep or send." },
+        { title: "Local annotation", text: "Avoid uploading the source PDF when a lightweight typed signature block is enough." },
+      ],
+      faq: [
+        { q: "Is this an e-signature platform?", a: "No. It adds a visual typed signature block and does not verify identity or manage signing workflows." },
+        { q: "When should I not use it?", a: "Do not use it when a document requires a regulated e-sign provider, witness, notarization, or handwritten signature." },
+        { q: "Does it upload the PDF?", a: "No. The annotation runs in your browser for ordinary use." },
       ],
     },
     "text-to-pdf": {

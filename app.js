@@ -669,6 +669,80 @@
         { id: "pageOrder", label: "New page order", type: "text", maxLength: 140, help: "Enter page numbers in the order you want, such as 3,1,2. You can omit pages to create a shorter PDF." },
       ],
     },
+    "watermark-pdf": {
+      id: "watermark-pdf",
+      icon: "WM",
+      title: "Add Watermark to PDF",
+      shortTitle: "Watermark PDF",
+      description: "Add a light text watermark to all pages or selected PDF pages locally in your browser.",
+      keywords: ["watermark PDF", "add watermark", "no upload", "PDF editor"],
+      ai: false,
+      pdfTool: "watermark",
+      defaultValues: {
+        pdfs: "",
+        watermarkText: "CONFIDENTIAL",
+        pageRange: "all",
+        placement: "diagonal",
+        opacity: "0.16",
+        size: "large",
+      },
+      fields: [
+        { id: "pdfs", label: "PDF file", type: "file", accept: "application/pdf", multiple: false, help: "Select one PDF. It stays in your browser and is not uploaded." },
+        { id: "watermarkText", label: "Watermark text", type: "text", maxLength: 48 },
+        { id: "pageRange", label: "Pages to watermark", type: "text", maxLength: 80, help: "Use all, a page number, or ranges such as 1,3-5." },
+        { id: "placement", label: "Placement", type: "select", options: [["diagonal", "Large diagonal"], ["center", "Centered"], ["footer", "Footer note"]] },
+        { id: "opacity", label: "Opacity", type: "select", options: [["0.10", "Very light"], ["0.16", "Light"], ["0.24", "Medium"]] },
+        { id: "size", label: "Text size", type: "select", options: [["medium", "Medium"], ["large", "Large"], ["xlarge", "Extra large"]] },
+      ],
+    },
+    "stamp-pdf": {
+      id: "stamp-pdf",
+      icon: "STAMP",
+      title: "Stamp PDF Pages",
+      shortTitle: "Stamp PDF",
+      description: "Add a simple APPROVED, PAID, DRAFT, or custom text stamp to PDF pages without uploading the file.",
+      keywords: ["stamp PDF", "PDF stamp", "paid stamp", "approved stamp"],
+      ai: false,
+      pdfTool: "stamp",
+      defaultValues: {
+        pdfs: "",
+        stampText: "APPROVED",
+        pageRange: "all",
+        position: "top-right",
+        style: "approved",
+      },
+      fields: [
+        { id: "pdfs", label: "PDF file", type: "file", accept: "application/pdf", multiple: false, help: "Select one PDF. It stays in your browser and is not uploaded." },
+        { id: "stampText", label: "Stamp text", type: "text", maxLength: 32 },
+        { id: "pageRange", label: "Pages to stamp", type: "text", maxLength: 80, help: "Use all, a page number, or ranges such as 1,3-5." },
+        { id: "position", label: "Position", type: "select", options: [["top-right", "Top right"], ["center", "Center"], ["bottom-right", "Bottom right"]] },
+        { id: "style", label: "Style", type: "select", options: [["approved", "Approved green"], ["paid", "Paid blue"], ["draft", "Draft gray"], ["urgent", "Urgent red"]] },
+      ],
+    },
+    "sign-pdf": {
+      id: "sign-pdf",
+      icon: "SIGN",
+      title: "Add Signature Text to PDF",
+      shortTitle: "Sign PDF",
+      description: "Place a typed signature block on a selected PDF page locally in your browser.",
+      keywords: ["sign PDF", "add signature to PDF", "typed signature", "no upload"],
+      ai: false,
+      pdfTool: "signature",
+      defaultValues: {
+        pdfs: "",
+        signatureName: "Your Name",
+        signatureDate: "",
+        pageNumber: "1",
+        position: "bottom-right",
+      },
+      fields: [
+        { id: "pdfs", label: "PDF file", type: "file", accept: "application/pdf", multiple: false, help: "Select one PDF. It stays in your browser and is not uploaded." },
+        { id: "signatureName", label: "Signature name", type: "text", maxLength: 60 },
+        { id: "signatureDate", label: "Date line", type: "text", maxLength: 40, help: "Optional, for example Jun 1, 2026." },
+        { id: "pageNumber", label: "Page number", type: "text", maxLength: 4, help: "Choose the page where the signature block should appear." },
+        { id: "position", label: "Position", type: "select", options: [["bottom-right", "Bottom right"], ["bottom-left", "Bottom left"], ["bottom-center", "Bottom center"]] },
+      ],
+    },
     "text-to-pdf": {
       id: "text-to-pdf",
       icon: "TXT",
@@ -1172,6 +1246,18 @@
         ["Merge PDF without uploading", "/merge-pdf-no-upload/"],
         ["Split PDF without uploading", "/split-pdf-no-upload/"],
         ["Add page numbers to PDF", "/add-page-numbers-to-pdf/"],
+        ["Rotate PDF pages", "/tools/rotate-pdf/"],
+        ["Rotate PDF pages without uploading", "/rotate-pdf-no-upload/"],
+        ["Remove PDF pages", "/tools/remove-pdf-pages/"],
+        ["Remove pages from PDF without uploading", "/remove-pages-from-pdf-no-upload/"],
+        ["Reorder PDF pages", "/tools/reorder-pdf-pages/"],
+        ["Reorder PDF pages without uploading", "/reorder-pdf-pages-no-upload/"],
+        ["Watermark PDF", "/tools/watermark-pdf/"],
+        ["Watermark PDF without uploading", "/watermark-pdf-no-upload/"],
+        ["Stamp PDF", "/tools/stamp-pdf/"],
+        ["Stamp PDF without uploading", "/stamp-pdf-no-upload/"],
+        ["Add signature text to PDF", "/tools/sign-pdf/"],
+        ["Sign PDF without uploading", "/sign-pdf-no-upload/"],
         ["Text to PDF converter", "/tools/text-to-pdf/"],
         ["Text to PDF converter without signup", "/text-to-pdf-no-signup/"],
         ["Sign-in sheet generator", "/tools/sign-in-sheet/"],
@@ -1231,7 +1317,7 @@
     {
       title: "No-upload conversion tools",
       description: "Use these when a photo, scan, existing PDF, or plain text note needs to become the right PDF quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "text-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1400,6 +1486,51 @@
         ["Keep it simple", "This first version uses typed page numbers instead of a drag interface so it stays fast, mobile-friendly, and free to run without a server."],
       ],
       related: ["merge-pdf", "remove-pdf-pages", "pdf-page-numbers"],
+    },
+    {
+      slug: "watermark-pdf-no-upload",
+      title: "Add Watermark to PDF Without Uploading",
+      headline: "Add watermark to PDF without uploading",
+      description: "Add a text watermark to PDF pages locally in your browser without uploading the file.",
+      lead: "Select a PDF, type the watermark text, choose all pages or selected pages, and download a marked copy. This is useful for drafts, samples, review files, and internal paperwork that should stay local.",
+      tool: "watermark-pdf",
+      intent: "watermark PDF, no upload, free browser tool",
+      sections: [
+        ["Mark drafts and samples", "A watermark helps show that a PDF is a draft, sample, confidential copy, or review version without changing the original file."],
+        ["Local-first workflow", "The PDF is read and edited in the browser for ordinary watermarking, which avoids sending private documents to a converter server."],
+        ["Use a light mark", "A useful watermark is visible but does not hide the actual document. Review the downloaded PDF before sharing it."],
+      ],
+      related: ["stamp-pdf", "sign-pdf", "pdf-page-numbers"],
+    },
+    {
+      slug: "stamp-pdf-no-upload",
+      title: "Stamp PDF Without Uploading",
+      headline: "Stamp PDF without uploading",
+      description: "Add a PAID, APPROVED, DRAFT, or custom text stamp to PDF pages locally in your browser.",
+      lead: "Add a simple status stamp to a PDF copy without creating an account or uploading the source file. Use it for paid receipts, approved drafts, review packets, or internal document routing.",
+      tool: "stamp-pdf",
+      intent: "stamp PDF, paid stamp, approved stamp, no upload",
+      sections: [
+        ["Status stamps for real paperwork", "A visible stamp can make a receipt, invoice, work order, or draft easier to scan when it moves between people."],
+        ["Choose the pages", "Stamp every page or enter a short range such as 1,3-5 when only the cover or key pages need a status mark."],
+        ["Review before relying on it", "A stamp is a visual annotation, not proof of payment or legal approval by itself. Keep the underlying records too."],
+      ],
+      related: ["watermark-pdf", "receipt-generator", "work-order"],
+    },
+    {
+      slug: "sign-pdf-no-upload",
+      title: "Add Signature Text to PDF Without Uploading",
+      headline: "Add signature text to PDF without uploading",
+      description: "Place a typed signature block on a selected PDF page locally in your browser.",
+      lead: "Add a typed signature name and optional date to a selected PDF page. This is a lightweight browser tool for documents where a typed signature block is acceptable.",
+      tool: "sign-pdf",
+      intent: "sign PDF, typed signature, no upload",
+      sections: [
+        ["Typed signature block", "The tool adds a signature line, typed name, and optional date to a selected page. It does not claim to be an e-signature platform."],
+        ["Local processing", "The PDF is read and annotated in the browser for ordinary use, so the source file does not need to be uploaded to PrintableTools Lab."],
+        ["Check acceptance rules", "Some documents require a specific e-sign provider, handwritten signature, witness, or identity check. Use this only where a typed signature is acceptable."],
+      ],
+      related: ["stamp-pdf", "watermark-pdf", "pdf-page-numbers"],
     },
     {
       slug: "free-resume-builder-no-signup",
@@ -1645,6 +1776,21 @@
       need: "Put PDF pages in a new order",
       tool: "reorder-pdf-pages",
       why: "Best for scanned packets or drafts where pages were captured out of sequence.",
+    },
+    {
+      need: "Add a watermark to a PDF",
+      tool: "watermark-pdf",
+      why: "Best for marking drafts, samples, review copies, and private files locally before sending.",
+    },
+    {
+      need: "Stamp a PDF as paid, approved, or draft",
+      tool: "stamp-pdf",
+      why: "Best for simple status stamps on receipts, invoices, work orders, and review files.",
+    },
+    {
+      need: "Add a typed signature line to a PDF",
+      tool: "sign-pdf",
+      why: "Best for lightweight signature blocks when a typed signature is acceptable for the document.",
     },
     {
       need: "Bill a client or record work before payment",
@@ -2733,9 +2879,9 @@
       body: [
         ["p", "Use this page to coordinate the first distribution push. The goal is not to look busy; it is to create enough real traffic for Search Console, AdSense readiness, and download validation."],
         ["h2", "Primary links"],
-        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Tools index: https://printable-tools-lab.pages.dev/tools/", "Image to PDF: https://printable-tools-lab.pages.dev/tools/image-to-pdf/", "Multiple images to PDF: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/", "Merge PDF: https://printable-tools-lab.pages.dev/tools/merge-pdf/", "Split PDF: https://printable-tools-lab.pages.dev/tools/split-pdf/", "PDF page numbers: https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/", "Rotate PDF: https://printable-tools-lab.pages.dev/tools/rotate-pdf/", "Remove PDF pages: https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/", "Reorder PDF pages: https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/", "Text to PDF: https://printable-tools-lab.pages.dev/tools/text-to-pdf/", "Invoice generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/", "Business card generator: https://printable-tools-lab.pages.dev/tools/business-card/", "Barcode label generator: https://printable-tools-lab.pages.dev/tools/barcode-labels/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
+        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Tools index: https://printable-tools-lab.pages.dev/tools/", "Image to PDF: https://printable-tools-lab.pages.dev/tools/image-to-pdf/", "Multiple images to PDF: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/", "Merge PDF: https://printable-tools-lab.pages.dev/tools/merge-pdf/", "Split PDF: https://printable-tools-lab.pages.dev/tools/split-pdf/", "PDF page numbers: https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/", "Rotate PDF: https://printable-tools-lab.pages.dev/tools/rotate-pdf/", "Remove PDF pages: https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/", "Reorder PDF pages: https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/", "Watermark PDF: https://printable-tools-lab.pages.dev/tools/watermark-pdf/", "Stamp PDF: https://printable-tools-lab.pages.dev/tools/stamp-pdf/", "Sign PDF: https://printable-tools-lab.pages.dev/tools/sign-pdf/", "Text to PDF: https://printable-tools-lab.pages.dev/tools/text-to-pdf/", "Invoice generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/", "Business card generator: https://printable-tools-lab.pages.dev/tools/business-card/", "Barcode label generator: https://printable-tools-lab.pages.dev/tools/barcode-labels/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
         ["h2", "First distribution copy"],
-        ["p", "Free browser PDF tools: merge PDFs, split PDFs, rotate pages, remove pages, reorder pages, add PDF page numbers, convert images to PDF, combine multiple images, turn text into PDF, create invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, sign-in sheets, graph paper, calendars, worksheets, and checklists. No account required."],
+        ["p", "Free browser PDF tools: merge PDFs, split PDFs, rotate pages, remove pages, reorder pages, watermark PDFs, stamp PDFs, add typed signature blocks, add PDF page numbers, convert images to PDF, combine multiple images, turn text into PDF, create invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, sign-in sheets, graph paper, calendars, worksheets, and checklists. No account required."],
         ["p", "Try the free image to PDF converter: select a JPG, PNG, or WebP file and generate a one-page PDF locally without uploading the image."],
         ["p", "Need a quick invoice, receipt, timesheet, sign-in sheet, or packing checklist? PrintableTools Lab creates practical PDFs in the browser."],
         ["h2", "Do not do this"],
@@ -2778,6 +2924,9 @@
     "rotate-pdf",
     "remove-pdf-pages",
     "reorder-pdf-pages",
+    "watermark-pdf",
+    "stamp-pdf",
+    "sign-pdf",
     "text-to-pdf",
     "sign-in-sheet",
     "graph-paper",
@@ -3524,6 +3673,9 @@
     if (tool.pdfTool === "rotate") return "Rotate pages";
     if (tool.pdfTool === "remove-pages") return "Remove pages";
     if (tool.pdfTool === "reorder") return "Reorder pages";
+    if (tool.pdfTool === "watermark") return "Add watermark";
+    if (tool.pdfTool === "stamp") return "Stamp PDF";
+    if (tool.pdfTool === "signature") return "Add signature";
     return "Generate PDF";
   }
 
@@ -3595,6 +3747,18 @@
       const order = parsePageOrder(values.pageOrder || "", files[0].pageCount);
       note = `The export will create a ${order.length}-page PDF in the typed order.`;
     }
+    if (tool.pdfTool === "watermark") {
+      const selected = parsePageRangeOrAll(values.pageRange || "all", files[0].pageCount);
+      note = `The export will place "${sanitizePrintable(values.watermarkText || "Watermark")}" on ${selected.length} of ${files[0].pageCount} page${files[0].pageCount === 1 ? "" : "s"}.`;
+    }
+    if (tool.pdfTool === "stamp") {
+      const selected = parsePageRangeOrAll(values.pageRange || "all", files[0].pageCount);
+      note = `The export will stamp "${sanitizePrintable(values.stampText || "STAMP")}" on ${selected.length} of ${files[0].pageCount} page${files[0].pageCount === 1 ? "" : "s"}.`;
+    }
+    if (tool.pdfTool === "signature") {
+      const pageNumber = clampPageNumber(values.pageNumber || "1", files[0].pageCount);
+      note = `The export will place a typed signature block on page ${pageNumber} of ${files[0].pageCount}. Review whether typed signatures are accepted for your use case.`;
+    }
     return `
       <table class="event-table">
         <thead><tr><th>#</th><th>File</th><th>Pages</th><th>Size</th></tr></thead>
@@ -3612,6 +3776,9 @@
     if (tool.pdfTool === "rotate") return exportRotatedPdf(files[0], values);
     if (tool.pdfTool === "remove-pages") return exportRemovedPagesPdf(files[0], values);
     if (tool.pdfTool === "reorder") return exportReorderedPdf(files[0], values);
+    if (tool.pdfTool === "watermark") return exportWatermarkedPdf(files[0], values);
+    if (tool.pdfTool === "stamp") return exportStampedPdf(files[0], values);
+    if (tool.pdfTool === "signature") return exportSignaturePdf(files[0], values);
     throw new Error("Unsupported PDF operation.");
   }
 
@@ -3706,6 +3873,46 @@
     return pdfBytesToBlob(await output.save());
   }
 
+  async function exportWatermarkedPdf(file, values) {
+    const pdfLib = getPdfLib();
+    const doc = await pdfLib.PDFDocument.load(file.bytes, { ignoreEncryption: true });
+    const pages = doc.getPages();
+    const selected = new Set(parsePageRangeOrAll(values.pageRange || "all", pages.length));
+    if (!selected.size) throw new Error("Enter all or at least one valid page number for the watermark.");
+    const font = await doc.embedFont(pdfLib.StandardFonts.HelveticaBold);
+    const text = sanitizePdfText(values.watermarkText || "WATERMARK", 48);
+    const opacity = normalizeOpacity(values.opacity || "0.16");
+    pages.forEach((page, index) => {
+      if (selected.has(index + 1)) drawWatermarkOnPage(pdfLib, page, font, text, values, opacity);
+    });
+    return pdfBytesToBlob(await doc.save());
+  }
+
+  async function exportStampedPdf(file, values) {
+    const pdfLib = getPdfLib();
+    const doc = await pdfLib.PDFDocument.load(file.bytes, { ignoreEncryption: true });
+    const pages = doc.getPages();
+    const selected = new Set(parsePageRangeOrAll(values.pageRange || "all", pages.length));
+    if (!selected.size) throw new Error("Enter all or at least one valid page number for the stamp.");
+    const font = await doc.embedFont(pdfLib.StandardFonts.HelveticaBold);
+    const text = sanitizePdfText(values.stampText || "STAMP", 32).toUpperCase();
+    pages.forEach((page, index) => {
+      if (selected.has(index + 1)) drawStampOnPage(pdfLib, page, font, text, values);
+    });
+    return pdfBytesToBlob(await doc.save());
+  }
+
+  async function exportSignaturePdf(file, values) {
+    const pdfLib = getPdfLib();
+    const doc = await pdfLib.PDFDocument.load(file.bytes, { ignoreEncryption: true });
+    const pages = doc.getPages();
+    const pageNumber = clampPageNumber(values.pageNumber || "1", pages.length);
+    const font = await doc.embedFont(pdfLib.StandardFonts.Helvetica);
+    const scriptFont = await doc.embedFont(pdfLib.StandardFonts.TimesRomanItalic);
+    drawSignatureOnPage(pdfLib, pages[pageNumber - 1], font, scriptFont, values);
+    return pdfBytesToBlob(await doc.save());
+  }
+
   function parsePageRange(value, pageCount) {
     const pages = new Set();
     String(value || "")
@@ -3746,6 +3953,145 @@
     return [90, 180, 270].includes(degrees) ? degrees : 90;
   }
 
+  function normalizeOpacity(value) {
+    const opacity = Number.parseFloat(value);
+    if (!Number.isFinite(opacity)) return 0.16;
+    return Math.max(0.06, Math.min(0.35, opacity));
+  }
+
+  function clampPageNumber(value, pageCount) {
+    const number = Number.parseInt(value, 10);
+    if (!Number.isFinite(number)) return 1;
+    return Math.max(1, Math.min(pageCount, number));
+  }
+
+  function sanitizePdfText(value, maxLength) {
+    return sanitizePrintable(value || "")
+      .replace(/[^\x20-\x7E]/g, "")
+      .trim()
+      .slice(0, maxLength)
+      || "PDF";
+  }
+
+  function drawWatermarkOnPage(pdfLib, page, font, text, values, opacity) {
+    const { width, height } = page.getSize();
+    const sizeMap = { medium: 42, large: 64, xlarge: 86 };
+    const size = sizeMap[values.size] || 64;
+    const textWidth = font.widthOfTextAtSize(text, size);
+    const color = pdfLib.rgb(0.25, 0.33, 0.36);
+    const placement = values.placement || "diagonal";
+    if (placement === "footer") {
+      const footerSize = Math.min(18, size);
+      const footerWidth = font.widthOfTextAtSize(text, footerSize);
+      page.drawText(text, {
+        x: (width - footerWidth) / 2,
+        y: 24,
+        size: footerSize,
+        font,
+        color,
+        opacity: Math.max(0.18, opacity),
+      });
+      return;
+    }
+    page.drawText(text, {
+      x: Math.max(28, (width - textWidth) / 2),
+      y: placement === "center" ? Math.max(40, (height - size) / 2) : Math.max(50, height * 0.35),
+      size,
+      font,
+      color,
+      opacity,
+      rotate: placement === "diagonal" ? pdfLib.degrees(-32) : undefined,
+    });
+  }
+
+  function drawStampOnPage(pdfLib, page, font, text, values) {
+    const { width, height } = page.getSize();
+    const palette = stampPalette(pdfLib, values.style || "approved");
+    const size = 24;
+    const padX = 18;
+    const boxW = Math.min(width - 48, Math.max(140, font.widthOfTextAtSize(text, size) + padX * 2));
+    const boxH = 54;
+    const position = values.position || "top-right";
+    let x = width - boxW - 36;
+    let y = height - boxH - 36;
+    if (position === "center") {
+      x = (width - boxW) / 2;
+      y = (height - boxH) / 2;
+    }
+    if (position === "bottom-right") {
+      x = width - boxW - 36;
+      y = 36;
+    }
+    page.drawRectangle({
+      x,
+      y,
+      width: boxW,
+      height: boxH,
+      borderColor: palette.border,
+      borderWidth: 2.5,
+      color: palette.fill,
+      opacity: 0.18,
+      borderOpacity: 0.9,
+    });
+    page.drawText(text, {
+      x: x + (boxW - font.widthOfTextAtSize(text, size)) / 2,
+      y: y + 17,
+      size,
+      font,
+      color: palette.text,
+    });
+  }
+
+  function drawSignatureOnPage(pdfLib, page, font, scriptFont, values) {
+    const { width } = page.getSize();
+    const name = sanitizePdfText(values.signatureName || "Signed", 60);
+    const date = sanitizePdfText(values.signatureDate || "", 40);
+    const blockW = Math.min(260, width - 72);
+    const position = values.position || "bottom-right";
+    let x = width - blockW - 48;
+    if (position === "bottom-left") x = 48;
+    if (position === "bottom-center") x = (width - blockW) / 2;
+    const y = 74;
+    page.drawLine({
+      start: { x, y: y + 30 },
+      end: { x: x + blockW, y: y + 30 },
+      thickness: 1.2,
+      color: pdfLib.rgb(0.1, 0.19, 0.23),
+      opacity: 0.65,
+    });
+    page.drawText(name, {
+      x: x + 8,
+      y: y + 38,
+      size: 20,
+      font: scriptFont,
+      color: pdfLib.rgb(0.08, 0.16, 0.2),
+    });
+    page.drawText("Typed signature", {
+      x,
+      y: y + 12,
+      size: 9,
+      font,
+      color: pdfLib.rgb(0.36, 0.44, 0.47),
+    });
+    if (date) {
+      const label = `Date: ${date}`;
+      page.drawText(label, {
+        x: x + blockW - font.widthOfTextAtSize(label, 9),
+        y: y + 12,
+        size: 9,
+        font,
+        color: pdfLib.rgb(0.36, 0.44, 0.47),
+      });
+    }
+  }
+
+  function stampPalette(pdfLib, style) {
+    if (style === "paid") return { fill: pdfLib.rgb(0.88, 0.95, 1), border: pdfLib.rgb(0.08, 0.42, 0.55), text: pdfLib.rgb(0.06, 0.32, 0.44) };
+    if (style === "draft") return { fill: pdfLib.rgb(0.93, 0.94, 0.94), border: pdfLib.rgb(0.36, 0.42, 0.44), text: pdfLib.rgb(0.25, 0.3, 0.32) };
+    if (style === "urgent") return { fill: pdfLib.rgb(1, 0.92, 0.9), border: pdfLib.rgb(0.75, 0.18, 0.13), text: pdfLib.rgb(0.62, 0.12, 0.09) };
+    return { fill: pdfLib.rgb(0.9, 0.97, 0.92), border: pdfLib.rgb(0.24, 0.54, 0.31), text: pdfLib.rgb(0.17, 0.42, 0.23) };
+  }
+
   function pdfUtilityFilename(tool, files) {
     const base = slugify((files[0] && files[0].name.replace(/\.pdf$/i, "")) || tool.shortTitle || tool.id);
     if (tool.pdfTool === "merge") return "merged-pdf.pdf";
@@ -3754,6 +4100,9 @@
     if (tool.pdfTool === "rotate") return `${base}-rotated.pdf`;
     if (tool.pdfTool === "remove-pages") return `${base}-pages-removed.pdf`;
     if (tool.pdfTool === "reorder") return `${base}-reordered.pdf`;
+    if (tool.pdfTool === "watermark") return `${base}-watermarked.pdf`;
+    if (tool.pdfTool === "stamp") return `${base}-stamped.pdf`;
+    if (tool.pdfTool === "signature") return `${base}-signed.pdf`;
     return `${base}.pdf`;
   }
 
@@ -3797,7 +4146,7 @@
       ["resume-builder", "cover-letter", "resignation-letter"],
       ["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"],
       ["name-tracing", "chore-chart", "reward-chart", "flashcards"],
-      ["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
+      ["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
       ["certificate-generator", "sign-in-sheet", "todo-list", "flyer-maker", "coupon-maker"],
     ];
     const group = groups.find((items) => items.includes(currentId)) || toolOrder;

@@ -4,7 +4,7 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-06-01T04:13:17.224Z",
+  "generatedAt": "2026-06-01T04:47:28.225Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -55,6 +55,21 @@
       "title": "Reorder PDF Pages Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/reorder-pdf-pages-no-upload/",
       "intent": "reorder PDF pages, organize PDF, no upload"
+    },
+    {
+      "title": "Add Watermark to PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/watermark-pdf-no-upload/",
+      "intent": "watermark PDF, no upload, free browser tool"
+    },
+    {
+      "title": "Stamp PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/stamp-pdf-no-upload/",
+      "intent": "stamp PDF, paid stamp, approved stamp, no upload"
+    },
+    {
+      "title": "Add Signature Text to PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/sign-pdf-no-upload/",
+      "intent": "sign PDF, typed signature, no upload"
     },
     {
       "title": "Free Resume Builder Without Signup",
@@ -162,6 +177,21 @@
       "title": "Reorder PDF Pages",
       "description": "Rearrange PDF pages by typing a new page order, all locally in your browser.",
       "url": "https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/"
+    },
+    {
+      "title": "Add Watermark to PDF",
+      "description": "Add a light text watermark to all pages or selected PDF pages locally in your browser.",
+      "url": "https://printable-tools-lab.pages.dev/tools/watermark-pdf/"
+    },
+    {
+      "title": "Stamp PDF Pages",
+      "description": "Add a simple APPROVED, PAID, DRAFT, or custom text stamp to PDF pages without uploading the file.",
+      "url": "https://printable-tools-lab.pages.dev/tools/stamp-pdf/"
+    },
+    {
+      "title": "Add Signature Text to PDF",
+      "description": "Place a typed signature block on a selected PDF page locally in your browser.",
+      "url": "https://printable-tools-lab.pages.dev/tools/sign-pdf/"
     },
     {
       "title": "Text to PDF Converter",

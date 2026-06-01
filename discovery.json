@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T04:13:17.152Z",
+  "generatedAt": "2026-06-01T04:47:28.151Z",
   "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -20,6 +20,9 @@
     "https://printable-tools-lab.pages.dev/rotate-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/remove-pages-from-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/reorder-pdf-pages-no-upload/",
+    "https://printable-tools-lab.pages.dev/watermark-pdf-no-upload/",
+    "https://printable-tools-lab.pages.dev/stamp-pdf-no-upload/",
+    "https://printable-tools-lab.pages.dev/sign-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
     "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
@@ -41,6 +44,9 @@
     "https://printable-tools-lab.pages.dev/tools/rotate-pdf/",
     "https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/",
     "https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/",
+    "https://printable-tools-lab.pages.dev/tools/watermark-pdf/",
+    "https://printable-tools-lab.pages.dev/tools/stamp-pdf/",
+    "https://printable-tools-lab.pages.dev/tools/sign-pdf/",
     "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
     "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
     "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
@@ -119,6 +125,24 @@
       "url": "https://printable-tools-lab.pages.dev/reorder-pdf-pages-no-upload/",
       "intent": "reorder PDF pages, organize PDF, no upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/"
+    },
+    {
+      "title": "Add Watermark to PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/watermark-pdf-no-upload/",
+      "intent": "watermark PDF, no upload, free browser tool",
+      "tool": "https://printable-tools-lab.pages.dev/tools/watermark-pdf/"
+    },
+    {
+      "title": "Stamp PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/stamp-pdf-no-upload/",
+      "intent": "stamp PDF, paid stamp, approved stamp, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/stamp-pdf/"
+    },
+    {
+      "title": "Add Signature Text to PDF Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/sign-pdf-no-upload/",
+      "intent": "sign PDF, typed signature, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/sign-pdf/"
     },
     {
       "title": "Free Resume Builder Without Signup",

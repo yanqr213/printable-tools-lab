@@ -287,6 +287,9 @@ const distribution = [
   `- Rotate PDF without upload page: ${siteUrl("rotate-pdf-no-upload")}`,
   `- Remove PDF pages without upload page: ${siteUrl("remove-pages-from-pdf-no-upload")}`,
   `- Reorder PDF pages without upload page: ${siteUrl("reorder-pdf-pages-no-upload")}`,
+  `- Watermark PDF without upload page: ${siteUrl("watermark-pdf-no-upload")}`,
+  `- Stamp PDF without upload page: ${siteUrl("stamp-pdf-no-upload")}`,
+  `- Sign PDF without upload page: ${siteUrl("sign-pdf-no-upload")}`,
   `- No-signup invoice page: ${siteUrl("free-invoice-generator-no-signup")}`,
   `- JPG to PDF without upload page: ${siteUrl("jpg-to-pdf-no-upload")}`,
   `- No-signup resume page: ${siteUrl("free-resume-builder-no-signup")}`,
@@ -301,13 +304,13 @@ const distribution = [
   "## Community-safe angles",
   "",
   "- For freelancers: free invoice, estimate, purchase order, receipt, bill of sale, work order, packing slip, inventory sheet, and timesheet PDFs without account creation.",
-  "- For high-intent search visitors: no-signup and no-upload landing pages for PDF merge, PDF split, PDF rotation, PDF page removal, PDF page reordering, PDF page numbers, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, barcodes, price tags, flyers, coupons, timesheets, resumes, certificates, text-to-PDF, JPG-to-PDF, and multi-image PDF.",
+  "- For high-intent search visitors: no-signup and no-upload landing pages for PDF merge, PDF split, PDF rotation, PDF page removal, PDF page reordering, PDF watermarking, PDF stamping, typed PDF signatures, PDF page numbers, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, barcodes, price tags, flyers, coupons, timesheets, resumes, certificates, text-to-PDF, JPG-to-PDF, and multi-image PDF.",
   "- For small businesses and local sellers: printable business cards, address labels, barcode labels, price tags, flyers, coupons, packing slips, and inventory sheets without design-account or spreadsheet friction.",
   "- For job seekers: free resume, cover letter, and resignation letter PDFs without a hidden export fee.",
   "- For parents and teachers: printable name tracing, chore charts, reward charts, flashcards, weekly planners, and habit trackers.",
   "- For teachers and organizers: free certificate, sign-in sheet, and event checklist PDFs.",
   "- For household planning: monthly calendars and meal planners with grocery lists.",
-  "- For everyday utility needs: merge PDF, split PDF, rotate pages, remove pages, reorder pages, add page numbers, image-to-PDF conversion, multi-image PDF export, text-to-PDF, sign-in sheets, graph paper, to-do lists, and packing lists.",
+  "- For everyday utility needs: merge PDF, split PDF, rotate pages, remove pages, reorder pages, watermark PDFs, stamp PDFs, add typed signature blocks, add page numbers, image-to-PDF conversion, multi-image PDF export, text-to-PDF, sign-in sheets, graph paper, to-do lists, and packing lists.",
   "",
   "## Places to consider manually",
   "",
@@ -342,7 +345,7 @@ function categoryForTool(toolPath) {
   if (["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt", "receipt-generator", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"].includes(slug)) return "Business paperwork";
   if (["resume-builder", "cover-letter", "resignation-letter"].includes(slug)) return "Career documents";
   if (["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"].includes(slug)) return "Planning";
-  if (["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "text-to-pdf", "sign-in-sheet", "graph-paper", "packing-list", "todo-list"].includes(slug)) return "Everyday utility PDFs";
+  if (["image-to-pdf", "multi-image-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "sign-in-sheet", "graph-paper", "packing-list", "todo-list"].includes(slug)) return "Everyday utility PDFs";
   if (["certificate-generator"].includes(slug)) return "Events and awards";
   return "Education and family printables";
 }
