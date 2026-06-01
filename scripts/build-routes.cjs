@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -125,6 +125,9 @@ if (fs.existsSync(headersPath)) {
   if (!headers.includes("/feed.xml")) {
     fs.appendFileSync(headersPath, "\n/feed.xml\n  Content-Type: application/rss+xml; charset=utf-8\n");
   }
+  if (!headers.includes("/share-kit.json")) {
+    fs.appendFileSync(headersPath, "\n/share-kit.json\n  Content-Type: application/json; charset=utf-8\n");
+  }
   if (!headers.includes("/assets/vendor/fflate.min.js")) {
     fs.appendFileSync(headersPath, "\n/assets/vendor/fflate.min.js\n  Content-Type: application/javascript; charset=utf-8\n");
   }
@@ -166,6 +169,25 @@ const toolsJson = {
 };
 fs.writeFileSync(path.join(root, "tools.json"), `${JSON.stringify(toolsJson, null, 2)}\n`);
 
+const shareKitJson = {
+  name: "PrintableTools Lab Share Kit",
+  generatedAt: generatedAtIso,
+  canonical: siteUrl("share-kit"),
+  purpose: "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
+  featuredLinks: SHARE_KIT_FEATURED_LINKS.map(([title, pathName, reason]) => ({
+    title,
+    url: `${siteUrl(pathName).replace(/\/$/, "")}?utm_source=share-kit&utm_medium=organic`,
+    canonicalUrl: siteUrl(pathName),
+    reason,
+  })),
+  posts: SHARE_KIT_POSTS.map((post) => ({
+    ...post,
+    url: `${siteUrl(post.linkPath).replace(/\/$/, "")}?utm_source=${post.channel}&utm_medium=organic`,
+  })),
+  rules: SHARE_KIT_RULES,
+};
+fs.writeFileSync(path.join(root, "share-kit.json"), `${JSON.stringify(shareKitJson, null, 2)}\n`);
+
 const llms = [
   `# ${SITE_SUMMARY.name}`,
   "",
@@ -182,6 +204,7 @@ const llms = [
   `- Free PDF, image, and QR tools directory: ${siteUrl("free-pdf-tools")}`,
   `- PDF, image, and QR tool finder: ${siteUrl("pdf-tool-finder")}`,
   `- Directory submission pack: ${siteUrl("submit-directory")}`,
+  `- Share kit: ${siteUrl("share-kit")}`,
   `- Guides index: ${siteUrl("guides")}`,
   `- Sitemap: ${fileUrl("sitemap.xml")}`,
   `- RSS feed: ${fileUrl("feed.xml")}`,
@@ -189,6 +212,7 @@ const llms = [
   `- OpenSearch description: ${fileUrl("opensearch.xml")}`,
   `- Machine-readable tool list: ${fileUrl("tools.json")}`,
   `- Discovery index: ${fileUrl("discovery.json")}`,
+  `- Machine-readable share kit: ${fileUrl("share-kit.json")}`,
   "",
   "## Tools",
   "",
@@ -220,7 +244,13 @@ const discoveryIndex = {
   feed: fileUrl("feed.xml"),
   manifest: fileUrl("site.webmanifest"),
   opensearch: fileUrl("opensearch.xml"),
-  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  shareKit: fileUrl("share-kit.json"),
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  distributionAssets: {
+    shareKit: siteUrl("share-kit"),
+    shareKitJson: fileUrl("share-kit.json"),
+    distributionPack: fileUrl("DISTRIBUTION.md"),
+  },
   landingPages: landingPages.map((page) => ({
     title: page.title,
     url: siteUrl(page.path),
@@ -244,6 +274,7 @@ fs.writeFileSync(path.join(root, "discovery.json"), `${JSON.stringify(discoveryI
 const feedItems = [
   routeToFeedItem(routes.find((route) => route.path === "free-pdf-tools")),
   routeToFeedItem(routes.find((route) => route.path === "pdf-tool-finder")),
+  routeToFeedItem(routes.find((route) => route.path === "share-kit")),
   routeToFeedItem(routes.find((route) => route.path === "tools")),
   ...HIGH_INTENT_LANDING_PATHS
     .map((pagePath) => routes.find((route) => route.path === pagePath))
@@ -311,6 +342,8 @@ const distribution = [
   `- Free PDF, image, and QR tools directory: ${siteUrl("free-pdf-tools")}`,
   `- PDF, image, and QR tool finder: ${siteUrl("pdf-tool-finder")}`,
   `- Directory submission pack: ${siteUrl("submit-directory")}`,
+  `- Share kit page: ${siteUrl("share-kit")}`,
+  `- Machine-readable share kit: ${fileUrl("share-kit.json")}`,
   `- Compress image without upload page: ${siteUrl("compress-image-no-upload")}`,
   `- Compress PDF without upload page: ${siteUrl("compress-pdf-no-upload")}`,
   `- Compress image to 100KB page: ${siteUrl("compress-image-to-100kb")}`,

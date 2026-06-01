@@ -1,0 +1,101 @@
+{
+  "name": "PrintableTools Lab Share Kit",
+  "generatedAt": "2026-06-01T20:13:25.534Z",
+  "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
+  "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
+  "featuredLinks": [
+    {
+      "title": "Compress PDF to 1MB",
+      "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb?utm_source=share-kit&utm_medium=organic",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb/",
+      "reason": "Urgent upload-limit search for job, school, email, and portal PDFs."
+    },
+    {
+      "title": "Compress PDF to 500KB",
+      "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb?utm_source=share-kit&utm_medium=organic",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/",
+      "reason": "Strict form and government-style upload limit intent."
+    },
+    {
+      "title": "Compress image to 100KB",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-100kb?utm_source=share-kit&utm_medium=organic",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
+      "reason": "Common profile, exam, job, and form image-size limit."
+    },
+    {
+      "title": "Compress image to 50KB",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-50kb?utm_source=share-kit&utm_medium=organic",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-image-to-50kb/",
+      "reason": "Severe image upload limit for small photos and documents."
+    },
+    {
+      "title": "PDF to JPG without upload",
+      "url": "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload?utm_source=share-kit&utm_medium=organic",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/",
+      "reason": "Works when a form accepts image files but rejects PDF."
+    },
+    {
+      "title": "Remove background without upload",
+      "url": "https://printable-tools-lab.pages.dev/remove-background-no-upload?utm_source=share-kit&utm_medium=organic",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/remove-background-no-upload/",
+      "reason": "Simple transparent PNG workflow for product photos, logos, and signatures."
+    },
+    {
+      "title": "Free QR code generator",
+      "url": "https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup?utm_source=share-kit&utm_medium=organic",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/",
+      "reason": "Fast static QR code for signs, menus, flyers, and labels."
+    },
+    {
+      "title": "Free invoice generator",
+      "url": "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup?utm_source=share-kit&utm_medium=organic",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
+      "reason": "Small-business PDF document with no signup and no hidden export fee."
+    }
+  ],
+  "posts": [
+    {
+      "channel": "short-video",
+      "title": "Upload limit fix: PDF under 1MB",
+      "hook": "Portal says your PDF must be under 1MB?",
+      "body": "Open the no-upload PDF compressor, choose the 1MB target, select your PDF, and download a smaller copy from the browser. It works best for scans and image-heavy PDFs.",
+      "cta": "Try the free 1MB PDF compressor",
+      "linkPath": "compress-pdf-to-1mb",
+      "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb?utm_source=short-video&utm_medium=organic"
+    },
+    {
+      "channel": "short-video",
+      "title": "Image under 100KB",
+      "hook": "Job form rejecting your photo because it is over 100KB?",
+      "body": "Use the local image-to-KB compressor, pick 100KB, and download a smaller JPG or WebP without uploading the original photo.",
+      "cta": "Compress an image to 100KB",
+      "linkPath": "compress-image-to-100kb",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-100kb?utm_source=short-video&utm_medium=organic"
+    },
+    {
+      "channel": "community",
+      "title": "No-upload file utility pack",
+      "hook": "I made a free no-signup file utility site for common upload blockers.",
+      "body": "It handles PDF compression targets, image-to-KB targets, PDF-to-JPG, image resizing, QR codes, invoices, labels, and small business PDFs in the browser. Downloads are free during validation and not gated behind ad clicks.",
+      "cta": "Useful feedback is which tool solved a real blocked-upload moment.",
+      "linkPath": "free-pdf-tools",
+      "url": "https://printable-tools-lab.pages.dev/free-pdf-tools?utm_source=community&utm_medium=organic"
+    },
+    {
+      "channel": "directory",
+      "title": "Directory listing blurb",
+      "hook": "Free browser PDF, image, and QR tools without signup.",
+      "body": "PrintableTools Lab helps users create and edit practical files locally: compress PDFs to target sizes, compress images to KB limits, convert PDF pages to JPG, resize and convert images, make static QR codes, and generate invoices, receipts, labels, business cards, and other everyday PDFs.",
+      "cta": "List as a free productivity and file utility tool.",
+      "linkPath": "submit-directory",
+      "url": "https://printable-tools-lab.pages.dev/submit-directory?utm_source=directory&utm_medium=organic"
+    }
+  ],
+  "rules": [
+    "Post only where free tools or file utilities are relevant to the community.",
+    "Do not ask for ad clicks, ad views, upvotes, or artificial engagement.",
+    "Do not claim guaranteed compression results; say the tool tries toward a target and users should review the output.",
+    "Do not post private documents, IDs, payment details, or user files in examples.",
+    "Use UTM source labels so the live metrics can separate directory, community, video, and social tests."
+  ]
+}

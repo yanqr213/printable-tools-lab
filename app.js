@@ -4297,6 +4297,22 @@
         ["p", "The project validates demand through downloads, Search Console data, and anonymous usage counters before enabling responsible advertising or paid features."],
       ],
     },
+    "share-kit": {
+      title: "PrintableTools Lab Share Kit",
+      description: "Copy-ready short-video hooks, community posts, directory blurbs, campaign links, and compliance rules for sharing PrintableTools Lab without paid ads.",
+      body: [
+        ["p", "Use this share kit for zero-budget distribution. It is meant for useful posts, directory listings, short demos, and community replies where a free file utility directly solves the topic."],
+        ["h2", "Priority links"],
+        ["ul", ["Compress PDF to 1MB: https://printable-tools-lab.pages.dev/compress-pdf-to-1mb/?utm_source=share-kit&utm_medium=organic", "Compress PDF to 500KB: https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/?utm_source=share-kit&utm_medium=organic", "Compress image to 100KB: https://printable-tools-lab.pages.dev/compress-image-to-100kb/?utm_source=share-kit&utm_medium=organic", "PDF to JPG without upload: https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/?utm_source=share-kit&utm_medium=organic", "Free QR code generator: https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/?utm_source=share-kit&utm_medium=organic"]],
+        ["h2", "Copy-ready short posts"],
+        ["p", "Portal says your PDF must be under 1MB? Use the free no-upload PDF compressor, choose the 1MB target, select your PDF, and download a smaller copy from the browser."],
+        ["p", "Job form rejecting your photo because it is over 100KB? Use the local image-to-KB compressor, pick 100KB, and download a smaller JPG or WebP without uploading the original photo."],
+        ["p", "I made a free no-signup file utility site for common upload blockers: PDF compression targets, image-to-KB targets, PDF-to-JPG, image resizing, QR codes, invoices, labels, and small business PDFs."],
+        ["h2", "Rules"],
+        ["ul", ["Post only where free tools or file utilities are relevant.", "Do not ask for ad clicks, ad views, upvotes, or artificial engagement.", "Do not claim guaranteed compression results; say the tool tries toward a target.", "Do not post private documents, IDs, payment details, or user files in examples.", "Use UTM source labels so the live metrics can separate directory, community, video, and social tests."]],
+        ["p", "Machine-readable version: https://printable-tools-lab.pages.dev/share-kit.json"],
+      ],
+    },
     "launch-kit": {
       title: "Launch Kit",
       description: "Distribution copy, links, and validation steps for launching PrintableTools Lab.",
@@ -4410,6 +4426,7 @@
     if (parts[0] === "free-pdf-tools") return renderFreePdfTools();
     if (parts[0] === "pdf-tool-finder") return renderPdfToolFinder();
     if (parts[0] === "submit-directory") return renderDirectorySubmissionPack();
+    if (parts[0] === "share-kit") return renderShareKit();
     if (landingPagesBySlug[parts[0]]) return renderLandingPage(parts[0]);
     if (parts[0] === "dashboard") return renderDashboard();
     if (pages[parts[0]]) return renderStaticPage(parts[0]);
@@ -4789,6 +4806,76 @@
           <article class="panel"><h3>Icon</h3><p><a href="/assets/images/app-icon-512.png">512px PNG app icon</a></p></article>
           <article class="panel"><h3>Screenshot</h3><p><a href="/assets/images/free-pdf-tools-screenshot.png">Free file tools page screenshot</a></p></article>
         </div>
+      </section>
+    `;
+  }
+
+  function renderShareKit() {
+    const featuredLinks = [
+      ["Compress PDF to 1MB", "/compress-pdf-to-1mb/?utm_source=share-kit&utm_medium=organic", "Urgent upload-limit search for job, school, email, and portal PDFs."],
+      ["Compress PDF to 500KB", "/compress-pdf-to-500kb/?utm_source=share-kit&utm_medium=organic", "Strict form and government-style upload limit intent."],
+      ["Compress image to 100KB", "/compress-image-to-100kb/?utm_source=share-kit&utm_medium=organic", "Common profile, exam, job, and form image-size limit."],
+      ["Compress image to 50KB", "/compress-image-to-50kb/?utm_source=share-kit&utm_medium=organic", "Severe image upload limit for small photos and documents."],
+      ["PDF to JPG without upload", "/pdf-to-jpg-no-upload/?utm_source=share-kit&utm_medium=organic", "Works when a form accepts image files but rejects PDF."],
+      ["Remove background without upload", "/remove-background-no-upload/?utm_source=share-kit&utm_medium=organic", "Simple transparent PNG workflow for product photos, logos, and signatures."],
+      ["Free QR code generator", "/free-qr-code-generator-no-signup/?utm_source=share-kit&utm_medium=organic", "Fast static QR code for signs, menus, flyers, and labels."],
+      ["Free invoice generator", "/free-invoice-generator-no-signup/?utm_source=share-kit&utm_medium=organic", "Small-business PDF document with no signup and no hidden export fee."],
+    ];
+    const posts = [
+      ["Upload limit fix: PDF under 1MB", "Portal says your PDF must be under 1MB?", "Open the no-upload PDF compressor, choose the 1MB target, select your PDF, and download a smaller copy from the browser. It works best for scans and image-heavy PDFs.", "/compress-pdf-to-1mb/?utm_source=short-video&utm_medium=organic", "Try the free 1MB PDF compressor"],
+      ["Image under 100KB", "Job form rejecting your photo because it is over 100KB?", "Use the local image-to-KB compressor, pick 100KB, and download a smaller JPG or WebP without uploading the original photo.", "/compress-image-to-100kb/?utm_source=short-video&utm_medium=organic", "Compress an image to 100KB"],
+      ["No-upload file utility pack", "I made a free no-signup file utility site for common upload blockers.", "It handles PDF compression targets, image-to-KB targets, PDF-to-JPG, image resizing, QR codes, invoices, labels, and small business PDFs in the browser. Downloads are free during validation and not gated behind ad clicks.", "/free-pdf-tools/?utm_source=community&utm_medium=organic", "Open the free file tools"],
+      ["Directory listing blurb", "Free browser PDF, image, and QR tools without signup.", "PrintableTools Lab helps users create and edit practical files locally: compress PDFs to target sizes, compress images to KB limits, convert PDF pages to JPG, resize and convert images, make static QR codes, and generate everyday PDFs.", "/submit-directory/?utm_source=directory&utm_medium=organic", "Open the directory pack"],
+    ];
+    const rules = [
+      "Post only where free tools or file utilities are relevant to the community.",
+      "Do not ask for ad clicks, ad views, upvotes, or artificial engagement.",
+      "Do not claim guaranteed compression results; say the tool tries toward a target and users should review the output.",
+      "Do not post private documents, IDs, payment details, or user files in examples.",
+      "Use UTM source labels so the live metrics can separate directory, community, video, and social tests.",
+    ];
+    setMeta("PrintableTools Lab Share Kit", "Copy-ready short-video hooks, community posts, directory blurbs, campaign links, and compliance rules for sharing PrintableTools Lab without paid ads.");
+    setJsonLd({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "PrintableTools Lab share kit priority links",
+      itemListElement: featuredLinks.map(([title, href], index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: title,
+        url: absoluteUrl(href.split("?")[0]),
+      })),
+    });
+    app.innerHTML = `
+      <section class="shell page-title section">
+        <a href="/submit-directory/">Directory pack</a>
+        <h1>PrintableTools Lab share kit</h1>
+        <p>Copy-ready zero-budget distribution assets for sharing the free PDF, image, and QR tools through directories, useful community replies, short videos, and launch updates.</p>
+      </section>
+      <section class="shell section">
+        <h2>Priority links</h2>
+        <p>These links point to high-intent pages where visitors usually have an immediate blocked upload, document, or file-format problem.</p>
+        <table class="event-table">
+          <thead><tr><th>Angle</th><th>Tracked URL</th><th>Why this can earn attention</th></tr></thead>
+          <tbody>${featuredLinks.map(([title, href, reason]) => `<tr><td>${escapeHtml(title)}</td><td><a href="${href}">${escapeHtml(absoluteUrl(href))}</a></td><td>${escapeHtml(reason)}</td></tr>`).join("")}</tbody>
+        </table>
+      </section>
+      <section class="shell section">
+        <h2>Copy-ready posts</h2>
+        <div class="grid-2">
+          ${posts.map(([title, hook, body, href, cta]) => `<article class="panel"><h3>${escapeHtml(title)}</h3><p><strong>${escapeHtml(hook)}</strong></p><p>${escapeHtml(body)}</p><p><a href="${href}">${escapeHtml(cta)}</a></p></article>`).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Short video scripts</h2>
+        <div class="grid-2">
+          ${posts.slice(0, 2).map(([title, hook, body, , cta]) => `<article class="panel"><h3>${escapeHtml(title)}</h3><ol><li>${escapeHtml(hook)}</li><li>Show the source file being rejected or too large.</li><li>${escapeHtml(body)}</li><li>${escapeHtml(cta)}.</li></ol></article>`).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Rules for safe distribution</h2>
+        <ul>${rules.map((rule) => `<li>${escapeHtml(rule)}</li>`).join("")}</ul>
+        <p><a class="button" href="/share-kit.json">Open machine-readable share-kit.json</a> <a class="button secondary" href="/DISTRIBUTION.md">Open distribution pack</a></p>
       </section>
     `;
   }

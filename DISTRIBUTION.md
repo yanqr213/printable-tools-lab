@@ -32,6 +32,8 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Free PDF, image, and QR tools directory: https://printable-tools-lab.pages.dev/free-pdf-tools/
 - PDF, image, and QR tool finder: https://printable-tools-lab.pages.dev/pdf-tool-finder/
 - Directory submission pack: https://printable-tools-lab.pages.dev/submit-directory/
+- Share kit page: https://printable-tools-lab.pages.dev/share-kit/
+- Machine-readable share kit: https://printable-tools-lab.pages.dev/share-kit.json
 - Compress image without upload page: https://printable-tools-lab.pages.dev/compress-image-no-upload/
 - Compress PDF without upload page: https://printable-tools-lab.pages.dev/compress-pdf-no-upload/
 - Compress image to 100KB page: https://printable-tools-lab.pages.dev/compress-image-to-100kb/

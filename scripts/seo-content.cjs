@@ -7,6 +7,60 @@ const SITE_SUMMARY = {
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
 
+const SHARE_KIT_FEATURED_LINKS = [
+  ["Compress PDF to 1MB", "compress-pdf-to-1mb", "Urgent upload-limit search for job, school, email, and portal PDFs."],
+  ["Compress PDF to 500KB", "compress-pdf-to-500kb", "Strict form and government-style upload limit intent."],
+  ["Compress image to 100KB", "compress-image-to-100kb", "Common profile, exam, job, and form image-size limit."],
+  ["Compress image to 50KB", "compress-image-to-50kb", "Severe image upload limit for small photos and documents."],
+  ["PDF to JPG without upload", "pdf-to-jpg-no-upload", "Works when a form accepts image files but rejects PDF."],
+  ["Remove background without upload", "remove-background-no-upload", "Simple transparent PNG workflow for product photos, logos, and signatures."],
+  ["Free QR code generator", "free-qr-code-generator-no-signup", "Fast static QR code for signs, menus, flyers, and labels."],
+  ["Free invoice generator", "free-invoice-generator-no-signup", "Small-business PDF document with no signup and no hidden export fee."],
+];
+
+const SHARE_KIT_POSTS = [
+  {
+    channel: "short-video",
+    title: "Upload limit fix: PDF under 1MB",
+    hook: "Portal says your PDF must be under 1MB?",
+    body: "Open the no-upload PDF compressor, choose the 1MB target, select your PDF, and download a smaller copy from the browser. It works best for scans and image-heavy PDFs.",
+    cta: "Try the free 1MB PDF compressor",
+    linkPath: "compress-pdf-to-1mb",
+  },
+  {
+    channel: "short-video",
+    title: "Image under 100KB",
+    hook: "Job form rejecting your photo because it is over 100KB?",
+    body: "Use the local image-to-KB compressor, pick 100KB, and download a smaller JPG or WebP without uploading the original photo.",
+    cta: "Compress an image to 100KB",
+    linkPath: "compress-image-to-100kb",
+  },
+  {
+    channel: "community",
+    title: "No-upload file utility pack",
+    hook: "I made a free no-signup file utility site for common upload blockers.",
+    body: "It handles PDF compression targets, image-to-KB targets, PDF-to-JPG, image resizing, QR codes, invoices, labels, and small business PDFs in the browser. Downloads are free during validation and not gated behind ad clicks.",
+    cta: "Useful feedback is which tool solved a real blocked-upload moment.",
+    linkPath: "free-pdf-tools",
+  },
+  {
+    channel: "directory",
+    title: "Directory listing blurb",
+    hook: "Free browser PDF, image, and QR tools without signup.",
+    body: "PrintableTools Lab helps users create and edit practical files locally: compress PDFs to target sizes, compress images to KB limits, convert PDF pages to JPG, resize and convert images, make static QR codes, and generate invoices, receipts, labels, business cards, and other everyday PDFs.",
+    cta: "List as a free productivity and file utility tool.",
+    linkPath: "submit-directory",
+  },
+];
+
+const SHARE_KIT_RULES = [
+  "Post only where free tools or file utilities are relevant to the community.",
+  "Do not ask for ad clicks, ad views, upvotes, or artificial engagement.",
+  "Do not claim guaranteed compression results; say the tool tries toward a target and users should review the output.",
+  "Do not post private documents, IDs, payment details, or user files in examples.",
+  "Use UTM source labels so the live metrics can separate directory, community, video, and social tests.",
+];
+
 const HIGH_INTENT_TOOL_PATHS = [
   "tools/image-to-pdf",
   "tools/multi-image-pdf",
@@ -2239,6 +2293,12 @@ const pages = [
     description: "Copy-ready directory submission details, screenshots, core links, and compliance notes for listing PrintableTools Lab as a free no-signup PDF, image, and QR tool site.",
     html: directorySubmissionHtml(),
   },
+  {
+    path: "share-kit",
+    title: "PrintableTools Lab Share Kit",
+    description: "Copy-ready short-video hooks, community posts, directory blurbs, campaign links, and compliance rules for sharing PrintableTools Lab without paid ads.",
+    html: shareKitHtml(),
+  },
   ...landingPages.map((page) => ({
     path: page.path,
     title: page.title,
@@ -2711,6 +2771,63 @@ function directorySubmissionHtml() {
         </div>
         ${jsonLdHtml(itemListSchema("PrintableTools Lab representative free PDF, image, and QR tools", primaryTools))}
       </section>`;
+}
+
+function shareKitHtml() {
+  const featuredLinks = shareKitFeaturedLinks();
+  const posts = shareKitPosts();
+  return `
+      <section class="shell page-title section">
+        <a href="/submit-directory/">Directory pack</a>
+        <h1>PrintableTools Lab share kit</h1>
+        <p>Copy-ready zero-budget distribution assets for sharing the free PDF, image, and QR tools through directories, useful community replies, short videos, and launch updates.</p>
+      </section>
+      <section class="shell section">
+        <h2>Priority links</h2>
+        <p>These links point to high-intent pages where visitors usually have an immediate blocked upload, document, or file-format problem.</p>
+        <table class="event-table">
+          <thead><tr><th>Angle</th><th>Tracked URL</th><th>Why this can earn attention</th></tr></thead>
+          <tbody>
+            ${featuredLinks.map((item) => `<tr><td>${escapeHtml(item.title)}</td><td><a href="${escapeHtml(item.url)}">${escapeHtml(item.url)}</a></td><td>${escapeHtml(item.reason)}</td></tr>`).join("\n")}
+          </tbody>
+        </table>
+      </section>
+      <section class="shell section">
+        <h2>Copy-ready posts</h2>
+        <div class="grid-2">
+          ${posts.map((post) => `<article class="panel"><h3>${escapeHtml(post.title)}</h3><p><strong>${escapeHtml(post.hook)}</strong></p><p>${escapeHtml(post.body)}</p><p><a href="${escapeHtml(post.url)}">${escapeHtml(post.cta)}</a></p></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Short video scripts</h2>
+        <div class="grid-2">
+          ${posts.filter((post) => post.channel === "short-video").map((post) => `<article class="panel"><h3>${escapeHtml(post.title)}</h3><ol><li>${escapeHtml(post.hook)}</li><li>Show the source file being rejected or too large.</li><li>${escapeHtml(post.body)}</li><li>${escapeHtml(post.cta)}.</li></ol></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Rules for safe distribution</h2>
+        <ul>
+          ${SHARE_KIT_RULES.map((rule) => `<li>${escapeHtml(rule)}</li>`).join("\n")}
+        </ul>
+        <p><a class="button" href="/share-kit.json">Open machine-readable share-kit.json</a> <a class="button secondary" href="/DISTRIBUTION.md">Open distribution pack</a></p>
+        ${jsonLdHtml(itemListSchema("PrintableTools Lab share kit priority links", featuredLinks.map((item) => ({ title: item.title, path: item.path }))))}
+      </section>`;
+}
+
+function shareKitFeaturedLinks() {
+  return SHARE_KIT_FEATURED_LINKS.map(([title, pathName, reason]) => ({
+    title,
+    path: pathName,
+    url: `${siteUrl(pathName).replace(/\/$/, "")}?utm_source=share-kit&utm_medium=organic`,
+    reason,
+  }));
+}
+
+function shareKitPosts() {
+  return SHARE_KIT_POSTS.map((post) => ({
+    ...post,
+    url: `${siteUrl(post.linkPath).replace(/\/$/, "")}?utm_source=${post.channel}&utm_medium=organic`,
+  }));
 }
 
 function landingPageHtml(page) {
@@ -3842,4 +3959,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES };

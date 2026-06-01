@@ -27,6 +27,7 @@ function delay(ms) {
     "/tools/",
     "/free-pdf-tools/",
     "/pdf-tool-finder/",
+    "/share-kit/",
     "/free-invoice-generator-no-signup/",
     "/jpg-to-pdf-no-upload/",
     "/multiple-images-to-pdf-no-upload/",
@@ -275,6 +276,16 @@ function delay(ms) {
   for (const phrase of ["Copy-ready listing details", "Primary links for reviewers", "Representative tools"]) {
     if (!submissionPackText.includes(phrase)) throw new Error(`Directory submission pack is missing ${phrase}`);
   }
+
+  await page.goto(`${base}/share-kit/`, { waitUntil: "networkidle" });
+  const shareKitText = await page.locator("main").innerText();
+  for (const phrase of ["PrintableTools Lab share kit", "Priority links", "Copy-ready posts", "Rules for safe distribution"]) {
+    if (!shareKitText.includes(phrase)) throw new Error(`Share kit is missing ${phrase}`);
+  }
+  const shareKitResponse = await page.goto(`${base}/share-kit.json`, { waitUntil: "networkidle" });
+  if (!shareKitResponse || !shareKitResponse.ok()) throw new Error("share-kit.json route failed");
+  const shareKitJson = await page.evaluate(() => JSON.parse(document.body.innerText));
+  if (!Array.isArray(shareKitJson.featuredLinks) || shareKitJson.featuredLinks.length < 8) throw new Error("share-kit.json missing featured links");
 
   const onePagePdf = await samplePdf("First document");
   const secondPagePdf = await samplePdf("Second document");

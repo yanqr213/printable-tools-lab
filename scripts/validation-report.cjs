@@ -42,6 +42,7 @@ function readLocalState() {
   const manifest = readJson("site.webmanifest", {});
   const opensearch = readText("opensearch.xml");
   const discoveryJson = readJson("discovery.json", {});
+  const shareKit = readJson("share-kit.json", {});
   const adsTxt = readText("ads.txt").trim();
   const config = readText("site-config.js");
   const indexableRoutes = routes.filter((route) => route.index !== false).length;
@@ -62,6 +63,7 @@ function readLocalState() {
       feed: Boolean(feed.includes("<rss version=\"2.0\"") && feed.includes(siteUrl("free-pdf-tools"))),
       toolsJson: Array.isArray(toolsJson.tools),
       discoveryJson: discoveryJson.feed === siteUrl("feed.xml").replace(/\/$/, ""),
+      shareKitJson: Array.isArray(shareKit.featuredLinks) && Array.isArray(shareKit.posts),
       distributionPack: fs.existsSync(path.join(root, "DISTRIBUTION.md")),
       webManifest: manifest.name === "PrintableTools Lab" && Array.isArray(manifest.shortcuts),
       opensearch: opensearch.includes("<OpenSearchDescription") && opensearch.includes("PrintableTools Lab"),
@@ -77,7 +79,7 @@ function readLocalState() {
 }
 
 async function readLiveState() {
-  const paths = ["/", "/tools/", "/sitemap.xml", "/robots.txt", "/ads.txt", "/llms.txt", "/feed.xml", "/tools.json", "/discovery.json", "/site.webmanifest", "/opensearch.xml", "/api/metrics"];
+  const paths = ["/", "/tools/", "/share-kit/", "/sitemap.xml", "/robots.txt", "/ads.txt", "/llms.txt", "/feed.xml", "/tools.json", "/discovery.json", "/share-kit.json", "/site.webmanifest", "/opensearch.xml", "/api/metrics"];
   const checks = {};
   for (const pathname of paths) {
     checks[pathname] = await liveCheck(pathname);
@@ -351,7 +353,7 @@ function evaluateGates(local, live, searchConsole, discovery) {
   const productReady = local.toolCount >= 66
     && local.guideCount >= 95
     && local.landingPageCount >= 61
-    && local.indexableRoutes >= 232
+    && local.indexableRoutes >= 233
     && local.sitemapLocCount >= local.indexableRoutes
     && Object.values(local.discoveryAssets).every(Boolean)
     && live.checks["/"]?.ok
@@ -387,7 +389,7 @@ function missingProductReasons(local, live) {
   if (local.toolCount < 66) reasons.push(`Only ${local.toolCount} tools found; target is 66 or more.`);
   if (local.guideCount < 95) reasons.push(`Only ${local.guideCount} guides found; target is 95 or more.`);
   if (local.landingPageCount < 61) reasons.push(`Only ${local.landingPageCount} high-intent landing pages found; target is 61 or more.`);
-  if (local.indexableRoutes < 232) reasons.push(`Only ${local.indexableRoutes} indexable routes found; target is 232 or more.`);
+  if (local.indexableRoutes < 233) reasons.push(`Only ${local.indexableRoutes} indexable routes found; target is 233 or more.`);
   if (local.sitemapLocCount < local.indexableRoutes) reasons.push("Sitemap has fewer URLs than the indexable route list.");
   for (const [name, ok] of Object.entries(local.discoveryAssets)) {
     if (!ok) reasons.push(`Missing discovery asset: ${name}.`);

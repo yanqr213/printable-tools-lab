@@ -56,6 +56,8 @@ else {
   if (!llms.includes(siteUrl("opensearch.xml").replace(/\/$/, ""))) failures.push("llms.txt missing OpenSearch URL.");
   if (!llms.includes(siteUrl("feed.xml").replace(/\/$/, ""))) failures.push("llms.txt missing RSS feed URL.");
   if (!llms.includes(siteUrl("tools.json").replace(/\/$/, ""))) failures.push("llms.txt missing tools.json URL.");
+  if (!llms.includes(siteUrl("share-kit"))) failures.push("llms.txt missing share kit URL.");
+  if (!llms.includes(siteUrl("share-kit.json").replace(/\/$/, ""))) failures.push("llms.txt missing share-kit.json URL.");
 }
 
 const feedFile = path.join(root, "feed.xml");
@@ -64,6 +66,7 @@ else {
   const feed = fs.readFileSync(feedFile, "utf8");
   if (!feed.includes("<rss version=\"2.0\"")) failures.push("feed.xml missing RSS root.");
   if (!feed.includes(siteUrl("free-pdf-tools"))) failures.push("feed.xml missing free PDF tools directory.");
+  if (!feed.includes(siteUrl("share-kit"))) failures.push("feed.xml missing share kit URL.");
   if (!feed.includes(siteUrl("free-invoice-generator-no-signup"))) failures.push("feed.xml missing high-intent no-signup invoice URL.");
   if (!feed.includes(siteUrl("tools/image-to-pdf"))) failures.push("feed.xml missing high-intent image-to-PDF URL.");
   if (!feed.includes("<lastBuildDate>")) failures.push("feed.xml missing lastBuildDate.");
@@ -185,11 +188,33 @@ else {
   if (!sitemap.includes(`<loc>${siteUrl("submit-directory")}</loc>`)) failures.push("Sitemap missing directory submission pack.");
 }
 
+const shareKitFile = path.join(root, "share-kit", "index.html");
+if (!fs.existsSync(shareKitFile)) failures.push("Missing share kit page.");
+else {
+  const html = fs.readFileSync(shareKitFile, "utf8");
+  if (!html.includes("PrintableTools Lab share kit")) failures.push("Share kit missing heading.");
+  if (!html.includes("Priority links")) failures.push("Share kit missing priority links.");
+  if (!html.includes("/share-kit.json")) failures.push("Share kit missing JSON link.");
+  if (!html.includes("Compress PDF to 1MB")) failures.push("Share kit missing PDF compression angle.");
+  if (!sitemap.includes(`<loc>${siteUrl("share-kit")}</loc>`)) failures.push("Sitemap missing share kit.");
+}
+
+const shareKitJsonFile = path.join(root, "share-kit.json");
+if (!fs.existsSync(shareKitJsonFile)) failures.push("Missing share-kit.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(shareKitJsonFile, "utf8"));
+  if (!Array.isArray(data.featuredLinks) || data.featuredLinks.length < 8) failures.push("share-kit.json missing featured links.");
+  if (!Array.isArray(data.posts) || data.posts.length < 4) failures.push("share-kit.json missing posts.");
+  if (!Array.isArray(data.rules) || data.rules.length < 5) failures.push("share-kit.json missing distribution rules.");
+  if (!data.featuredLinks.some((item) => item.url && item.url.includes("utm_source=share-kit"))) failures.push("share-kit.json missing tracked share-kit URLs.");
+}
+
 const distributionFile = path.join(root, "DISTRIBUTION.md");
 if (!fs.existsSync(distributionFile)) failures.push("Missing DISTRIBUTION.md.");
 else {
   const distribution = fs.readFileSync(distributionFile, "utf8");
   if (!distribution.includes("Directory submission fields")) failures.push("DISTRIBUTION.md missing directory fields.");
+  if (!distribution.includes("Machine-readable share kit")) failures.push("DISTRIBUTION.md missing share kit link.");
 }
 
 const discoveryFile = path.join(root, "discovery.json");
@@ -214,6 +239,8 @@ else {
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("tools/csv-to-pdf"))) failures.push("discovery.json missing high-intent CSV-to-PDF route.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("tools/json-to-pdf"))) failures.push("discovery.json missing high-intent JSON-to-PDF route.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("submit-directory"))) failures.push("discovery.json missing directory submission pack.");
+  if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("share-kit"))) failures.push("discovery.json missing share kit page.");
+  if (discovery.shareKit !== siteUrl("share-kit.json").replace(/\/$/, "")) failures.push("discovery.json missing share-kit.json URL.");
   if (discovery.feed !== siteUrl("feed.xml").replace(/\/$/, "")) failures.push("discovery.json missing RSS feed URL.");
   if (!Array.isArray(discovery.landingPages) || discovery.landingPages.length < 61) failures.push("discovery.json missing high-intent landing pages.");
   if (discovery.manifest !== siteUrl("site.webmanifest").replace(/\/$/, "")) failures.push("discovery.json missing manifest URL.");

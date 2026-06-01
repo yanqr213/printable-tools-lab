@@ -13,6 +13,7 @@ Monetization model: Free tools first, then responsible display advertising after
 - Free PDF, image, and QR tools directory: https://printable-tools-lab.pages.dev/free-pdf-tools/
 - PDF, image, and QR tool finder: https://printable-tools-lab.pages.dev/pdf-tool-finder/
 - Directory submission pack: https://printable-tools-lab.pages.dev/submit-directory/
+- Share kit: https://printable-tools-lab.pages.dev/share-kit/
 - Guides index: https://printable-tools-lab.pages.dev/guides/
 - Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml
 - RSS feed: https://printable-tools-lab.pages.dev/feed.xml
@@ -20,6 +21,7 @@ Monetization model: Free tools first, then responsible display advertising after
 - OpenSearch description: https://printable-tools-lab.pages.dev/opensearch.xml
 - Machine-readable tool list: https://printable-tools-lab.pages.dev/tools.json
 - Discovery index: https://printable-tools-lab.pages.dev/discovery.json
+- Machine-readable share kit: https://printable-tools-lab.pages.dev/share-kit.json
 
 ## Tools
 

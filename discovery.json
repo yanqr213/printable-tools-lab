@@ -1,15 +1,17 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T19:57:27.509Z",
+  "generatedAt": "2026-06-01T20:13:25.534Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
   "opensearch": "https://printable-tools-lab.pages.dev/opensearch.xml",
+  "shareKit": "https://printable-tools-lab.pages.dev/share-kit.json",
   "highIntentEntryPoints": [
     "https://printable-tools-lab.pages.dev/free-pdf-tools/",
     "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
     "https://printable-tools-lab.pages.dev/submit-directory/",
+    "https://printable-tools-lab.pages.dev/share-kit/",
     "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
@@ -122,6 +124,11 @@
     "https://printable-tools-lab.pages.dev/tools/todo-list/",
     "https://printable-tools-lab.pages.dev/tools/graph-paper/"
   ],
+  "distributionAssets": {
+    "shareKit": "https://printable-tools-lab.pages.dev/share-kit/",
+    "shareKitJson": "https://printable-tools-lab.pages.dev/share-kit.json",
+    "distributionPack": "https://printable-tools-lab.pages.dev/DISTRIBUTION.md"
+  },
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",

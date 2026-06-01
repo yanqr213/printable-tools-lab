@@ -59,3 +59,6 @@
 
 /assets/vendor/pdfjs.LICENSE.md
   Content-Type: text/markdown; charset=utf-8
+
+/share-kit.json
+  Content-Type: application/json; charset=utf-8

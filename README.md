@@ -142,6 +142,7 @@ PrintableTools Lab is a no-signup utility site for practical browser files: chec
 - Static pre-rendered HTML for key routes, plus client-side enhancement.
 - `robots.txt`, canonical URLs, sitemap, and SoftwareApplication structured data for tool pages.
 - `llms.txt`, `tools.json`, `discovery.json`, and `DISTRIBUTION.md` for AI/tool discovery and low-friction launch submissions.
+- `share-kit.json` and `/share-kit/` for zero-budget distribution links, short-video hooks, community posts, and safe posting rules.
 - Operations checklist, keyword list, and distribution post ideas.
 - Noindex roadmap page for future decisions after the free ad-supported version is validated.
 - Generated brand visuals: app icon, favicon, social card, and homepage product hero image.
