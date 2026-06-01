@@ -39,6 +39,14 @@ const directories = [
     submittedAt: "2026-06-01",
     reviewWindow: "3-5 business days",
   },
+  {
+    name: "JS.ORG free subdomain",
+    url: "https://github.com/js-org/js.org/pull/11512",
+    searchUrl: "https://github.com/js-org/js.org/pull/11512",
+    expected: ["Add printable-tools-lab.js.org", "printable-tools-lab.pages.dev"],
+    submittedAt: "2026-06-02",
+    reviewWindow: "maintainer review",
+  },
 ];
 
 main().catch((error) => {
@@ -73,7 +81,7 @@ async function checkDirectory(directory) {
     if (result.ok && hasExpectedText(result.text, directory.expected)) {
       return {
         ...directory,
-        status: "listed",
+        status: directory.name.includes("JS.ORG") ? jsOrgStatus(result.text) : "listed",
         evidenceUrl: url,
         checked,
       };
@@ -128,6 +136,13 @@ async function fetchText(url) {
 function hasExpectedText(text, expected) {
   const haystack = String(text).toLowerCase();
   return expected.some((needle) => haystack.includes(String(needle).toLowerCase()));
+}
+
+function jsOrgStatus(text) {
+  const haystack = String(text).toLowerCase();
+  if (haystack.includes("merged")) return "listed";
+  if (haystack.includes("closed")) return "error";
+  return "pending";
 }
 
 function printReport(report) {

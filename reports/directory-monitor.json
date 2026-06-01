@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-01T14:10:21.247Z",
+  "generatedAt": "2026-06-01T17:57:02.792Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 0,
-  "pendingCount": 4,
+  "pendingCount": 5,
   "errorCount": 0,
   "results": [
     {
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 117581,
+          "bytes": 117561,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 117581,
+          "bytes": 117561,
           "matched": false
         }
       ]
@@ -49,14 +49,14 @@
           "url": "https://listai.cc/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 318638,
+          "bytes": 318639,
           "matched": false
         },
         {
           "url": "https://listai.cc/",
           "ok": true,
           "status": 200,
-          "bytes": 318638,
+          "bytes": 318639,
           "matched": false
         }
       ]
@@ -114,6 +114,35 @@
           "status": 200,
           "bytes": 274000,
           "matched": false
+        }
+      ]
+    },
+    {
+      "name": "JS.ORG free subdomain",
+      "url": "https://github.com/js-org/js.org/pull/11512",
+      "searchUrl": "https://github.com/js-org/js.org/pull/11512",
+      "expected": [
+        "Add printable-tools-lab.js.org",
+        "printable-tools-lab.pages.dev"
+      ],
+      "submittedAt": "2026-06-02",
+      "reviewWindow": "maintainer review",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://github.com/js-org/js.org/pull/11512",
+          "ok": true,
+          "status": 200,
+          "bytes": 268438,
+          "matched": true
+        },
+        {
+          "url": "https://github.com/js-org/js.org/pull/11512",
+          "ok": true,
+          "status": 200,
+          "bytes": 268442,
+          "matched": true
         }
       ]
     }
