@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T21:58:30.391Z",
+  "generatedAt": "2026-06-01T22:20:16.840Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 61,
     "indexableRoutes": 233,
     "sitemapLocCount": 233,
-    "generatedToolInventoryAt": "2026-06-01T21:55:59.360Z",
+    "generatedToolInventoryAt": "2026-06-01T22:19:05.292Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -51,7 +51,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 17481,
+        "bytes": 17965,
         "json": null
       },
       "/sitemap.xml": {
@@ -101,7 +101,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T21:55:59.360Z",
+          "generatedAt": "2026-06-01T22:19:05.292Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -987,7 +987,7 @@
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T21:55:59.360Z",
+          "generatedAt": "2026-06-01T22:19:05.292Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1603,10 +1603,10 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 12539,
+        "bytes": 12881,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-01T21:55:59.360Z",
+          "generatedAt": "2026-06-01T22:19:05.292Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -1809,6 +1809,9 @@
             "url": "https://upload-limit-panic.pages.dev/",
             "repo": "https://github.com/yanqr213/upload-limit-panic",
             "packagePath": "upload-limit-panic/reports/upload-limit-panic-html5.tar.gz",
+            "zipUrl": "https://github.com/yanqr213/upload-limit-panic/raw/main/reports/upload-limit-panic-html5.zip",
+            "demoVideoUrl": "https://github.com/yanqr213/upload-limit-panic/raw/main/reports/upload-limit-panic-demo.mp4",
+            "submissionNotesUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission.md",
             "summary": "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them."
           },
           "externalDiscovery": {
@@ -1848,7 +1851,7 @@
           "ok": true,
           "today": "2026-06-01",
           "totals": {
-            "page_view": 47,
+            "page_view": 48,
             "generate_pdf": 0,
             "download_pdf": 1,
             "generate_file": 0,
@@ -1858,7 +1861,7 @@
             "ai_ideas_apply": 0
           },
           "todayTotals": {
-            "page_view": 44,
+            "page_view": 45,
             "generate_pdf": 0,
             "download_pdf": 0,
             "generate_file": 0,
@@ -2466,13 +2469,13 @@
           "sources": [
             {
               "source": "direct",
-              "page_view": 29,
+              "page_view": 30,
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
               "today": {
-                "page_view": 28,
+                "page_view": 29,
                 "generate_pdf": 0,
                 "download_pdf": 0,
                 "generate_file": 0,
@@ -2666,7 +2669,7 @@
     "metrics": {
       "today": "2026-06-01",
       "totals": {
-        "page_view": 47,
+        "page_view": 48,
         "generate_pdf": 0,
         "download_pdf": 1,
         "generate_file": 0,
@@ -2676,7 +2679,7 @@
         "ai_ideas_apply": 0
       },
       "todayTotals": {
-        "page_view": 44,
+        "page_view": 45,
         "generate_pdf": 0,
         "download_pdf": 0,
         "generate_file": 0,

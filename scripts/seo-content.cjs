@@ -14,6 +14,9 @@ const ZERO_DOMAIN_GAME_EXPERIMENT = {
   url: "https://upload-limit-panic.pages.dev/",
   repo: "https://github.com/yanqr213/upload-limit-panic",
   packagePath: "upload-limit-panic/reports/upload-limit-panic-html5.tar.gz",
+  zipUrl: "https://github.com/yanqr213/upload-limit-panic/raw/main/reports/upload-limit-panic-html5.zip",
+  demoVideoUrl: "https://github.com/yanqr213/upload-limit-panic/raw/main/reports/upload-limit-panic-demo.mp4",
+  submissionNotesUrl: "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission.md",
   summary: "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them.",
 };
 
@@ -2848,6 +2851,11 @@ function shareKitHtml() {
         <h2>Zero-domain game experiment</h2>
         <p>${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.summary)}</p>
         <p><a class="button" href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.url)}">Play Upload Limit Panic</a> <a class="button secondary" href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.repo)}">Open game repository</a></p>
+        <ul>
+          <li><a href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.zipUrl)}">Download HTML5 ZIP package</a></li>
+          <li><a href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.demoVideoUrl)}">Download 8-second demo MP4</a></li>
+          <li><a href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.submissionNotesUrl)}">Open platform submission notes</a></li>
+        </ul>
       </section>
       <section class="shell section">
         <h2>Rules for safe distribution</h2>

@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Share Kit",
-  "generatedAt": "2026-06-01T21:55:59.360Z",
+  "generatedAt": "2026-06-01T22:19:05.292Z",
   "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
   "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
   "featuredLinks": [
@@ -203,6 +203,9 @@
     "url": "https://upload-limit-panic.pages.dev/",
     "repo": "https://github.com/yanqr213/upload-limit-panic",
     "packagePath": "upload-limit-panic/reports/upload-limit-panic-html5.tar.gz",
+    "zipUrl": "https://github.com/yanqr213/upload-limit-panic/raw/main/reports/upload-limit-panic-html5.zip",
+    "demoVideoUrl": "https://github.com/yanqr213/upload-limit-panic/raw/main/reports/upload-limit-panic-demo.mp4",
+    "submissionNotesUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission.md",
     "summary": "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them."
   },
   "externalDiscovery": {
