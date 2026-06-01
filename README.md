@@ -224,9 +224,12 @@ npm.cmd run campaign:generate
 npm.cmd run campaign:verify
 npm.cmd run campaign:videos
 npm.cmd run campaign:verify-videos
+$env:GITHUB_TOKEN="optional GitHub token for release asset upload"
+npm.cmd run campaign:publish-assets
+npm.cmd run campaign:verify-release
 ```
 
-This writes `reports/campaign-kit/` with bilingual captions, short-video shot lists, community replies, UTM links, validation gates, vertical poster images, and silent 9:16 MP4 assets for high-intent upload-limit tools.
+This writes `reports/campaign-kit/` with bilingual captions, short-video shot lists, community replies, UTM links, validation gates, vertical poster images, and silent 9:16 MP4 assets for high-intent upload-limit tools. The publish step uploads the MP4 files to the public GitHub discovery release and writes `reports/campaign-assets-release.json`.
 
 Prepare or verify AdSense configuration:
 

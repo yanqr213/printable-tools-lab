@@ -22,6 +22,8 @@
     "campaign:verify": "node scripts/verify-campaign-kit.cjs",
     "campaign:videos": "node scripts/generate-campaign-videos.cjs",
     "campaign:verify-videos": "node scripts/verify-campaign-videos.cjs",
+    "campaign:publish-assets": "node scripts/publish-campaign-assets.cjs",
+    "campaign:verify-release": "node scripts/verify-campaign-release.cjs",
     "monitor:directories": "node scripts/directory-monitor.cjs",
     "indexnow": "node scripts/indexnow.cjs",
     "operate": "node scripts/operate.cjs",
