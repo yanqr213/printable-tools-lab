@@ -18,6 +18,7 @@
     "github-discovery": "node scripts/github-discovery.cjs",
     "monitor:directories": "node scripts/directory-monitor.cjs",
     "indexnow": "node scripts/indexnow.cjs",
+    "operate": "node scripts/operate.cjs",
     "validate:ops": "node scripts/validation-report.cjs",
     "smoke": "node scripts/smoke.cjs"
   },

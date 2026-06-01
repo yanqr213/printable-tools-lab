@@ -38,3 +38,9 @@
 
 /assets/vendor/pdf-lib.LICENSE.md
   Content-Type: text/markdown; charset=utf-8
+
+/assets/vendor/qrcode-generator.js
+  Content-Type: application/javascript; charset=utf-8
+
+/assets/vendor/qrcode-generator.LICENSE.md
+  Content-Type: text/markdown; charset=utf-8

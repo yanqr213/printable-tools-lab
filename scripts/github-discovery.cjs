@@ -111,8 +111,9 @@ async function github(path, options = {}) {
 }
 
 function githubHeaders() {
+  const authScheme = token.startsWith("ghp_") || token.startsWith("github_pat_") ? "token" : "Bearer";
   return {
-    Authorization: `Bearer ${token}`,
+    Authorization: `${authScheme} ${token}`,
     Accept: "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",
     "User-Agent": "PrintableToolsLab-Discovery",

@@ -1,0 +1,107 @@
+{
+  "generatedAt": "2026-06-01T08:50:28.125Z",
+  "site": "https://printable-tools-lab.pages.dev/",
+  "steps": [
+    {
+      "name": "build routes",
+      "status": "passed",
+      "durationMs": 331,
+      "output": "> printable-tools-lab@0.1.0 build:routes\n> node scripts/build-routes.cjs\n\nGenerated GitHub Pages discovery site in docs.\nGenerated 188 static route entries, sitemap.xml, robots.txt, feed.xml, tools.json, discovery.json, llms.txt, and DISTRIBUTION.md."
+    },
+    {
+      "name": "verify seo",
+      "status": "passed",
+      "durationMs": 232,
+      "output": "> printable-tools-lab@0.1.0 verify:seo\n> node scripts/verify-seo.cjs\n\nSEO verification passed for 186 indexable routes."
+    },
+    {
+      "name": "verify adsense config",
+      "status": "passed",
+      "durationMs": 210,
+      "output": "> printable-tools-lab@0.1.0 verify:adsense\n> node scripts/verify-adsense.cjs\n\nAdSense verification passed. Ads enabled: no."
+    },
+    {
+      "name": "test event contracts",
+      "status": "passed",
+      "durationMs": 231,
+      "output": "> printable-tools-lab@0.1.0 test:events\n> node scripts/test-events.cjs\n\nEvent metrics test passed."
+    },
+    {
+      "name": "secret scan",
+      "status": "passed",
+      "output": "No committed secrets matched the operating scan."
+    },
+    {
+      "name": "refresh GitHub discovery",
+      "status": "skipped",
+      "output": "GITHUB_TOKEN/GH_TOKEN not set."
+    },
+    {
+      "name": "submit main sitemap",
+      "status": "passed",
+      "durationMs": 1077,
+      "output": "> printable-tools-lab@0.1.0 search-console\n> node scripts/search-console.cjs submit-sitemap\n\nSubmitted sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"
+    },
+    {
+      "name": "submit GitHub Pages discovery sitemap",
+      "status": "passed",
+      "durationMs": 1278,
+      "output": "> printable-tools-lab@0.1.0 search-console\n> node scripts/search-console.cjs submit-sitemap\n\nSubmitted sitemap: https://yanqr213.github.io/printable-tools-lab/sitemap.xml"
+    },
+    {
+      "name": "notify IndexNow",
+      "status": "passed",
+      "durationMs": 8770,
+      "output": "> printable-tools-lab@0.1.0 indexnow\n> node scripts/indexnow.cjs"
+    },
+    {
+      "name": "monitor directory listings",
+      "status": "passed",
+      "durationMs": 4462,
+      "output": "> printable-tools-lab@0.1.0 monitor:directories\n> node scripts/directory-monitor.cjs\n\nDirectory monitor: 0 listed, 4 pending, 0 error\n- Zearches: pending\n- ListAi.cc: pending\n- NoSignupTools: pending\n- FreeNoSignup: pending\nReport written to reports\\directory-monitor.json"
+    },
+    {
+      "name": "validate operating gates",
+      "status": "passed",
+      "durationMs": 61161,
+      "output": "> printable-tools-lab@0.1.0 validate:ops\n> node scripts/validation-report.cjs\n\nValidation report written to reports\\validation-report.json and VALIDATION.md\nProduct ready: yes | Tools: 53 | Guides: 82 | Landing pages: 41\nDownloads: 1 | Generations: 0 | Search visible: no | External discovery: no | AdSense apply-ready: no"
+    },
+    {
+      "name": "smoke test browser flows",
+      "status": "passed",
+      "durationMs": 123100,
+      "output": "> printable-tools-lab@0.1.0 smoke\n> node scripts/smoke.cjs\n\nPrintableTools Lab running at http://localhost:4181/\nSmoke checks passed. Downloads observed: 53"
+    },
+    {
+      "name": "visual regression check",
+      "status": "skipped",
+      "output": "Set OPERATE_FULL=1 to include visual browser screenshots in the operating loop."
+    }
+  ],
+  "probes": {
+    "cloudflare": {
+      "available": false,
+      "accountId": "",
+      "zones": [],
+      "pagesProjectFound": false,
+      "pagesDomains": [],
+      "blocker": "CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID are required for automatic custom-domain checks."
+    },
+    "adsense": {
+      "available": true,
+      "accountCount": 0,
+      "accounts": [],
+      "blocker": "The service account can call AdSense API, but no AdSense accounts are visible to it; publisher ID/ad slot creation still needs the AdSense account UI or a user OAuth grant."
+    }
+  },
+  "blockers": [
+    "CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID are required for automatic custom-domain checks.",
+    "The service account can call AdSense API, but no AdSense accounts are visible to it; publisher ID/ad slot creation still needs the AdSense account UI or a user OAuth grant."
+  ],
+  "nextActions": [
+    "CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID are required for automatic custom-domain checks.",
+    "The service account can call AdSense API, but no AdSense accounts are visible to it; publisher ID/ad slot creation still needs the AdSense account UI or a user OAuth grant.",
+    "Keep live ads disabled until a real publisher ID, policy-compliant review state, and non-intrusive placements are available.",
+    "Keep using Search Console plus live download/generation metrics as the decision gate before adding paid features."
+  ]
+}

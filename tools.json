@@ -2,7 +2,7 @@
   "name": "PrintableTools Lab",
   "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, and static QR code tools for compressing images, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T08:24:07.890Z",
+  "generatedAt": "2026-06-01T08:56:22.787Z",
   "tools": [
     {
       "title": "Name Tracing Worksheet Generator",

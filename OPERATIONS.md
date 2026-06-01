@@ -141,6 +141,18 @@ npm.cmd run validate:ops
 
 `validate:ops` writes `VALIDATION.md` and `reports/validation-report.json`. It checks local route inventory, live endpoints, `/api/metrics`, Search Console data when credentials are available, and the AdSense readiness gate. Treat this as the operating source of truth before changing direction.
 
+Unattended operating loop:
+
+```powershell
+$env:GOOGLE_APPLICATION_CREDENTIALS="E:\path\to\service-account.json"
+$env:GITHUB_TOKEN="optional token for GitHub metadata"
+$env:CLOUDFLARE_API_TOKEN="optional token for Cloudflare domain probes"
+$env:CLOUDFLARE_ACCOUNT_ID="optional Cloudflare account id"
+npm.cmd run operate
+```
+
+`operate` runs the product checks, sitemap submissions, IndexNow notification, directory monitoring, Cloudflare custom-domain probe, AdSense API probe, validation report, and browser smoke test. It records missing credentials and external-account limitations in `reports/operate-report.json` instead of masking them.
+
 ### AdSense account
 
 Do not add live ad code until public pages work and Search Console can crawl the site.
@@ -177,6 +189,8 @@ Primary order:
 3. Media.net or other contextual networks only after there is measurable search traffic and enough original content to make approval plausible.
 
 Avoid pop-under, push-notification, forced-view, download-gate, adult, gambling, crypto, or misleading ad networks. They may create early clicks, but they raise account, domain, and user-trust risk.
+
+Do not add rewarded-ad gating for this site. Requiring users to watch or click ads to download practical files creates policy and trust risk. Use normal display placements around explanatory content and download-complete contexts only after an approved mainstream network is ready.
 
 ### Payment account
 
@@ -384,6 +398,7 @@ Current Search Console checkpoint:
 - `2026-06-01`: expanded to 53 tools and 41 high-intent landing pages by adding local static QR Code, WiFi QR Code, and Contact/vCard QR Code generators. This broadens the same free utility site into urgent QR searches where many competitors push account walls, dynamic-code upsells, or paid exports.
 - `2026-06-01`: AdSense Management API was enabled on the Google Cloud project through Service Usage API. A service-account probe to `adsense.googleapis.com/v2/accounts` returned no AdSense accounts, so the service account is not currently an AdSense account user. The official AdSense ad-unit creation API is also a restricted method, so publisher/ad-slot creation cannot be completed silently from the current service-account credentials.
 - `2026-06-01`: GitHub Pages discovery directory was verified as its own Search Console URL-prefix property and its sitemap was submitted through the Search Console API. This creates a second crawlable discovery surface that still points back to the same main site.
+- `2026-06-01`: added `npm.cmd run operate` as the unattended operating loop. It rebuilds, verifies, submits sitemaps, checks directories, probes Cloudflare/AdSense readiness, and smoke-tests every tool while recording unavoidable account-level blockers.
 - Action: keep site stable, improve useful content/navigation, thicken tool pages, and avoid repeated low-value resubmission loops.
 
 ## External Discovery Queue

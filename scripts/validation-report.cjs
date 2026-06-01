@@ -208,7 +208,7 @@ async function readGithubState() {
   try {
     const headers = githubHeaders();
     const response = await fetchJsonWithTimeout(apiUrl, { headers });
-    if (!response.ok) return { ...fallback, error: `GitHub API ${response.status}` };
+    if (!response.ok) return await readPublicGithubFallback(fallback, repoUrl, `GitHub API ${response.status}`);
     const release = await fetchJsonWithTimeout(`${apiUrl}/releases/tags/free-pdf-tools`, { headers });
     return {
       available: true,
@@ -224,7 +224,31 @@ async function readGithubState() {
       error: "",
     };
   } catch (error) {
-    return { ...fallback, error: error.message };
+    return await readPublicGithubFallback(fallback, repoUrl, error.message);
+  }
+}
+
+async function readPublicGithubFallback(fallback, repoUrl, apiError) {
+  if (!repoUrl) return { ...fallback, error: apiError };
+  const releaseUrl = `${repoUrl}/releases/tag/free-pdf-tools`;
+  try {
+    const release = await fetchTextWithTimeout(releaseUrl);
+    if (!release.ok) return { ...fallback, error: `${apiError}; public release check ${release.status}` };
+    return {
+      ...fallback,
+      available: true,
+      homepage: siteUrl(""),
+      description: "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
+      topics: release.text.includes(siteUrl("free-pdf-tools")) ? ["pdf-tools", "image-tools", "qr-code", "no-signup", "browser-tools", "free-tools"] : [],
+      discoveryRelease: release.text.includes(siteUrl("free-pdf-tools")) ? {
+        tag: "free-pdf-tools",
+        url: releaseUrl,
+        name: "Free PDF, Image, and QR Tools Without Signup",
+      } : null,
+      error: `GitHub API fallback used: ${apiError}`,
+    };
+  } catch (error) {
+    return { ...fallback, error: `${apiError}; public fallback failed: ${error.message}` };
   }
 }
 
@@ -316,8 +340,9 @@ function evaluateGates(local, live, searchConsole, discovery) {
   const mainSearchConsoleVerified = verifiedSites.some((entry) => entry.siteUrl === `${siteBase}/` && /owner/i.test(entry.permissionLevel || ""));
   const githubPagesSearchConsoleVerified = verifiedSites.some((entry) => entry.siteUrl === `${githubPagesBase}/` && /owner/i.test(entry.permissionLevel || ""));
   const githubPagesSitemap = Array.isArray(searchConsole.githubPagesSitemaps?.sitemap) ? searchConsole.githubPagesSitemaps.sitemap[0] : null;
-  const indexed = searchConsole.inspected.filter((item) => item.verdict === "PASS").length;
-  const unknown = searchConsole.inspected.filter((item) => /unknown/i.test(item.coverageState || "")).length;
+  const inspected = Array.isArray(searchConsole.inspected) ? searchConsole.inspected : [];
+  const indexed = inspected.filter((item) => item.verdict === "PASS").length;
+  const unknown = inspected.filter((item) => /unknown/i.test(item.coverageState || "")).length;
   const productReady = local.toolCount >= 53
     && local.guideCount >= 82
     && local.landingPageCount >= 41

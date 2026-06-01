@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T08:27:50.849Z",
+  "generatedAt": "2026-06-01T08:56:41.012Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 41,
     "indexableRoutes": 186,
     "sitemapLocCount": 186,
-    "generatedToolInventoryAt": "2026-06-01T08:24:07.890Z",
+    "generatedToolInventoryAt": "2026-06-01T08:56:22.787Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -2007,85 +2007,29 @@
     }
   },
   "searchConsole": {
-    "available": true,
-    "sites": {
-      "siteEntry": [
-        {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
-          "permissionLevel": "siteOwner"
-        },
-        {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
-          "permissionLevel": "siteOwner"
-        }
-      ]
-    },
-    "sitemaps": {
-      "sitemap": [
-        {
-          "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T08:26:30.683Z",
-          "isPending": true,
-          "isSitemapsIndex": false,
-          "warnings": "0",
-          "errors": "0"
-        }
-      ]
-    },
-    "githubPagesSitemaps": {
-      "sitemap": [
-        {
-          "path": "https://yanqr213.github.io/printable-tools-lab/sitemap.xml",
-          "lastSubmitted": "2026-06-01T08:26:30.475Z",
-          "isPending": true,
-          "isSitemapsIndex": false,
-          "warnings": "0",
-          "errors": "0"
-        }
-      ]
-    },
-    "performance": {
-      "siteUrl": "https://printable-tools-lab.pages.dev/",
-      "startDate": "2026-05-04",
-      "endDate": "2026-05-31",
-      "rowCount": 0,
-      "totals": {
-        "clicks": 0,
-        "impressions": 0
-      },
-      "rows": []
-    },
-    "inspected": [
-      {
-        "url": "https://printable-tools-lab.pages.dev/",
-        "verdict": "NEUTRAL",
-        "coverageState": "Crawled - currently not indexed",
-        "indexingState": "INDEXING_ALLOWED",
-        "lastCrawlTime": "2026-05-31T16:42:59Z"
-      },
-      {
-        "url": "https://printable-tools-lab.pages.dev/tools/",
-        "verdict": "NEUTRAL",
-        "coverageState": "URL is unknown to Google",
-        "indexingState": "INDEXING_STATE_UNSPECIFIED"
-      },
-      {
-        "url": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
-        "verdict": "NEUTRAL",
-        "coverageState": "URL is unknown to Google",
-        "indexingState": "INDEXING_STATE_UNSPECIFIED"
-      }
-    ],
-    "errors": []
+    "available": false,
+    "reason": "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
   },
   "discovery": {
     "github": {
-      "available": false,
+      "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
-      "homepage": "",
-      "description": "",
-      "topics": [],
-      "error": "GitHub API 403"
+      "homepage": "https://printable-tools-lab.pages.dev/",
+      "description": "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
+      "topics": [
+        "pdf-tools",
+        "image-tools",
+        "qr-code",
+        "no-signup",
+        "browser-tools",
+        "free-tools"
+      ],
+      "error": "GitHub API fallback used: GitHub API 403",
+      "discoveryRelease": {
+        "tag": "free-pdf-tools",
+        "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
+        "name": "Free PDF, Image, and QR Tools Without Signup"
+      }
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
@@ -2104,7 +2048,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": false
+    "externalDiscoveryReady": true
   },
   "gates": {
     "productReady": true,
@@ -2112,7 +2056,7 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": false,
+    "externalDiscoveryReady": true,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
@@ -2123,18 +2067,15 @@
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
         "Real AdSense publisher ID is not configured, so ads remain disabled.",
+        "Search Console API data was unavailable during this run.",
         "Search Console has no impressions/indexed sample yet, so applying now is premature."
       ],
       "searchConsole": [
-        "Main Search Console property verified: yes.",
-        "GitHub Pages discovery property verified: yes.",
-        "Sitemap status: pending=true, warnings=0, errors=0.",
-        "GitHub Pages discovery sitemap: pending=true, warnings=0, errors=0.",
-        "Search performance: 0 impressions, 0 clicks.",
-        "2 inspected sample URL(s) are still unknown to Google."
+        "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
       ],
       "externalDiscovery": [
-        "GitHub discovery metadata unavailable: GitHub API 403.",
+        "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 41 landing page link(s).",
         "GitHub Pages discovery sitemap has 42 URL(s).",
         "IndexNow key file is reachable from the site root."
@@ -2143,7 +2084,6 @@
   },
   "nextActions": [
     "Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.",
-    "Create or refresh the GitHub discovery release with high-intent tool links.",
     "Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.",
     "When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.",
     "Keep the current free product live and track downloads/generations until the 30-day gate has enough signal."

@@ -164,6 +164,18 @@ npm.cmd run validate:ops
 
 The report updates `VALIDATION.md` and `reports/validation-report.json` with product readiness, live counters, Search Console status, AdSense readiness, and the next operating actions.
 
+Run the full unattended operating loop:
+
+```powershell
+$env:GOOGLE_APPLICATION_CREDENTIALS="E:\path\to\service-account.json"
+$env:GITHUB_TOKEN="optional GitHub token for repo metadata refresh"
+$env:CLOUDFLARE_API_TOKEN="optional Cloudflare token for domain probes"
+$env:CLOUDFLARE_ACCOUNT_ID="optional Cloudflare account id"
+npm.cmd run operate
+```
+
+`operate` builds routes, verifies SEO, verifies ad safety, submits sitemaps, notifies IndexNow, monitors directory listings, probes Cloudflare and AdSense readiness, runs validation gates, and smoke-tests all tools. It writes `reports/operate-report.json`. Missing external credentials are recorded as blockers instead of pretending the step succeeded.
+
 Prepare or verify AdSense configuration:
 
 ```powershell
@@ -259,6 +271,8 @@ This build intentionally does not include live ads. Add AdSense or a mainstream 
 - The site has real navigation and useful content.
 - Ads are not disguised as download buttons.
 - No page asks or rewards users for ad clicks.
+
+Current automation boundary: the service account can call Google APIs for Search Console and sitemap work, but it cannot see an AdSense account in its current permission state. AdSense publisher ID, site review, and ad slot creation still require the AdSense account UI or a user OAuth grant with an account that AdSense recognizes.
 
 ## Data export
 

@@ -2,8 +2,8 @@ const fs = require("fs");
 const crypto = require("crypto");
 const { routes, siteUrl } = require("./seo-content.cjs");
 
-const SITE_URL = process.env.SEARCH_CONSOLE_SITE_URL || "https://printable-tools-lab.pages.dev/";
-const SITEMAP_URL = process.env.SITEMAP_URL || "https://printable-tools-lab.pages.dev/sitemap.xml";
+const SITE_URL = withTrailingSlash(process.env.SEARCH_CONSOLE_SITE_URL || "https://printable-tools-lab.pages.dev/");
+const SITEMAP_URL = normalizeSitemapUrl(process.env.SITEMAP_URL || "https://printable-tools-lab.pages.dev/sitemap.xml");
 const KEY_FILE = process.env.GOOGLE_APPLICATION_CREDENTIALS || process.argv[3];
 const COMMAND = process.argv[2] || "status";
 const SCOPE = "https://www.googleapis.com/auth/webmasters";
@@ -182,6 +182,14 @@ function summarizeSearchRows(rows) {
     acc.impressions += row.impressions || 0;
     return acc;
   }, { clicks: 0, impressions: 0 });
+}
+
+function withTrailingSlash(value) {
+  return String(value || "").replace(/\/+$/, "") + "/";
+}
+
+function normalizeSitemapUrl(value) {
+  return String(value || "").replace(/\/+$/, "");
 }
 
 main().catch((error) => {
