@@ -646,6 +646,97 @@
       draw: drawImageConverter,
       exportFile: exportConvertedImage,
     },
+    "crop-image": {
+      id: "crop-image",
+      icon: "CRP",
+      title: "Crop Image Online",
+      shortTitle: "Crop image",
+      description: "Crop JPG, PNG, or WebP images locally for square avatars, wide banners, product photos, and profile uploads without uploading files.",
+      keywords: ["crop image", "square crop", "profile photo crop", "no upload"],
+      ai: false,
+      acceptsImages: true,
+      maxImages: 1,
+      outputKind: "image",
+      defaultValues: {
+        title: "Image Cropper",
+        images: "",
+        preset: "square",
+        anchor: "center",
+        format: "jpeg",
+        quality: "0.86",
+      },
+      fields: [
+        { id: "images", label: "Image", type: "file", accept: "image/png,image/jpeg,image/webp", multiple: false, help: "Select one image. It stays in your browser and is not uploaded." },
+        { id: "preset", label: "Crop shape", type: "select", options: [["square", "Square 1:1"], ["wide-16-9", "Wide 16:9"], ["portrait-4-5", "Portrait 4:5"], ["banner-3-1", "Banner 3:1"], ["original", "Keep original ratio"]] },
+        { id: "anchor", label: "Keep focus", type: "select", options: [["center", "Center"], ["top", "Top"], ["bottom", "Bottom"], ["left", "Left"], ["right", "Right"]] },
+        { id: "format", label: "Output format", type: "select", options: [["jpeg", "JPG"], ["webp", "WebP"], ["png", "PNG"]] },
+        { id: "quality", label: "Quality", type: "select", options: [["0.72", "Small"], ["0.86", "Balanced"], ["0.94", "High"]] },
+      ],
+      draw: drawImageCropper,
+      exportFile: exportCroppedImage,
+    },
+    "rotate-image": {
+      id: "rotate-image",
+      icon: "ROT",
+      title: "Rotate Image Online",
+      shortTitle: "Rotate image",
+      description: "Rotate or flip a JPG, PNG, or WebP image locally in your browser without uploading the file.",
+      keywords: ["rotate image", "flip image", "fix sideways photo", "no upload"],
+      ai: false,
+      acceptsImages: true,
+      maxImages: 1,
+      outputKind: "image",
+      defaultValues: {
+        title: "Image Rotator",
+        images: "",
+        rotation: "90",
+        flip: "none",
+        format: "jpeg",
+        quality: "0.86",
+      },
+      fields: [
+        { id: "images", label: "Image", type: "file", accept: "image/png,image/jpeg,image/webp", multiple: false, help: "Select one image. It stays in your browser and is not uploaded." },
+        { id: "rotation", label: "Rotation", type: "select", options: [["90", "Rotate 90 degrees"], ["180", "Rotate 180 degrees"], ["270", "Rotate 270 degrees"]] },
+        { id: "flip", label: "Flip", type: "select", options: [["none", "No flip"], ["horizontal", "Flip horizontal"], ["vertical", "Flip vertical"]] },
+        { id: "format", label: "Output format", type: "select", options: [["jpeg", "JPG"], ["webp", "WebP"], ["png", "PNG"]] },
+        { id: "quality", label: "Quality", type: "select", options: [["0.72", "Small"], ["0.86", "Balanced"], ["0.94", "High"]] },
+      ],
+      draw: drawImageRotator,
+      exportFile: exportRotatedImage,
+    },
+    "watermark-image": {
+      id: "watermark-image",
+      icon: "WMK",
+      title: "Watermark Image Online",
+      shortTitle: "Watermark image",
+      description: "Add a text watermark to JPG, PNG, or WebP images locally for drafts, samples, marketplace photos, and social posts without uploading files.",
+      keywords: ["watermark image", "add watermark to photo", "text watermark", "no upload"],
+      ai: false,
+      acceptsImages: true,
+      maxImages: 1,
+      outputKind: "image",
+      defaultValues: {
+        title: "Image Watermark",
+        images: "",
+        watermarkText: "SAMPLE",
+        placement: "bottom-right",
+        size: "medium",
+        opacity: "0.28",
+        format: "jpeg",
+        quality: "0.86",
+      },
+      fields: [
+        { id: "images", label: "Image", type: "file", accept: "image/png,image/jpeg,image/webp", multiple: false, help: "Select one image. It stays in your browser and is not uploaded." },
+        { id: "watermarkText", label: "Watermark text", type: "text", maxLength: 50 },
+        { id: "placement", label: "Placement", type: "select", options: [["bottom-right", "Bottom right"], ["bottom-left", "Bottom left"], ["top-right", "Top right"], ["top-left", "Top left"], ["center", "Center"], ["diagonal-tile", "Diagonal tile"]] },
+        { id: "size", label: "Text size", type: "select", options: [["small", "Small"], ["medium", "Medium"], ["large", "Large"]] },
+        { id: "opacity", label: "Opacity", type: "select", options: [["0.18", "Light"], ["0.28", "Balanced"], ["0.42", "Strong"]] },
+        { id: "format", label: "Output format", type: "select", options: [["jpeg", "JPG"], ["webp", "WebP"], ["png", "PNG"]] },
+        { id: "quality", label: "Quality", type: "select", options: [["0.72", "Small"], ["0.86", "Balanced"], ["0.94", "High"]] },
+      ],
+      draw: drawImageWatermarker,
+      exportFile: exportWatermarkedImage,
+    },
     "merge-pdf": {
       id: "merge-pdf",
       icon: "MRG",
@@ -1336,6 +1427,12 @@
         ["Resize image without uploading", "/resize-image-no-upload/"],
         ["Convert image format", "/tools/convert-image/"],
         ["Convert image format without uploading", "/convert-image-format-no-upload/"],
+        ["Crop image", "/tools/crop-image/"],
+        ["Crop image without uploading", "/crop-image-no-upload/"],
+        ["Rotate image", "/tools/rotate-image/"],
+        ["Rotate image without uploading", "/rotate-image-no-upload/"],
+        ["Watermark image", "/tools/watermark-image/"],
+        ["Watermark image without uploading", "/watermark-image-no-upload/"],
         ["Compress JPG", "/compress-jpg-no-upload/"],
         ["Compress PNG", "/compress-png-no-upload/"],
         ["Resize image to 1080x1080", "/resize-image-1080x1080/"],
@@ -1416,7 +1513,7 @@
     {
       title: "No-upload conversion tools",
       description: "Use these when a photo, scan, existing PDF, or plain text note needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1525,6 +1622,51 @@
         ["Review the result", "After conversion, check that transparency, background color, and image clarity still match the destination requirement."],
       ],
       related: ["compress-image", "resize-image", "multi-image-pdf"],
+    },
+    {
+      slug: "crop-image-no-upload",
+      title: "Crop Image Without Uploading",
+      headline: "Crop image without uploading",
+      description: "Crop JPG, PNG, or WebP images locally in your browser for square avatars, product photos, banners, and upload forms.",
+      lead: "Choose an image, pick a crop shape, keep the important area in frame, and download a cropped copy without sending the file to a server.",
+      tool: "crop-image",
+      intent: "crop image online, square crop, no upload",
+      sections: [
+        ["Why users need it", "Cropping is a common step before a profile photo, marketplace listing, ID-style upload, social post, or banner will look right."],
+        ["Local crop workflow", "The image is loaded in the browser, cropped to the selected aspect ratio, and exported as a new image file without requiring an account."],
+        ["Before uploading elsewhere", "Check that faces, product edges, text, logos, and important document details are still visible after the crop."],
+      ],
+      related: ["resize-image", "compress-image", "watermark-image"],
+    },
+    {
+      slug: "rotate-image-no-upload",
+      title: "Rotate Image Without Uploading",
+      headline: "Rotate image without uploading",
+      description: "Rotate or flip JPG, PNG, and WebP images locally in the browser when a photo, scan, or screenshot is sideways.",
+      lead: "Fix a sideways image, rotate a scan, or flip a photo locally before using it in a form, profile, document, or listing.",
+      tool: "rotate-image",
+      intent: "rotate image online, flip image, no upload",
+      sections: [
+        ["Common use case", "Phone photos and quick scans often come out sideways. A small local rotation tool solves that before the image is attached to another workflow."],
+        ["What it changes", "The tool creates a new rotated or flipped copy. It does not edit the original image file on your device."],
+        ["Review the result", "Open the downloaded image and confirm orientation, text readability, and any mirrored content before sending it elsewhere."],
+      ],
+      related: ["crop-image", "resize-image", "image-to-pdf"],
+    },
+    {
+      slug: "watermark-image-no-upload",
+      title: "Watermark Image Without Uploading",
+      headline: "Watermark image without uploading",
+      description: "Add a simple text watermark to JPG, PNG, or WebP images locally for samples, drafts, marketplace photos, and social posts.",
+      lead: "Add a visible text watermark in the browser and download a new copy without uploading the source image.",
+      tool: "watermark-image",
+      intent: "watermark image online, add text watermark, no upload",
+      sections: [
+        ["Why it can convert", "People often need to share a sample, proof, preview, or product image while keeping a visible ownership or draft mark on the file."],
+        ["Ad-safe free workflow", "The watermark export stays free and does not ask visitors to click or watch an ad before downloading. That keeps the path safer for future display advertising."],
+        ["Practical limits", "A text watermark is a visual deterrent, not copyright enforcement. Keep original files and use proper licensing or platform tools when the image is commercially important."],
+      ],
+      related: ["compress-image", "resize-image", "crop-image"],
     },
     {
       slug: "compress-jpg-no-upload",
@@ -3166,7 +3308,7 @@
       body: [
         ["p", "Use this page to coordinate the first distribution push. The goal is not to look busy; it is to create enough real traffic for Search Console, AdSense readiness, and download validation."],
         ["h2", "Primary links"],
-        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Tools index: https://printable-tools-lab.pages.dev/tools/", "Compress image: https://printable-tools-lab.pages.dev/tools/compress-image/", "Resize image: https://printable-tools-lab.pages.dev/tools/resize-image/", "Convert image: https://printable-tools-lab.pages.dev/tools/convert-image/", "Image to PDF: https://printable-tools-lab.pages.dev/tools/image-to-pdf/", "Multiple images to PDF: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/", "Merge PDF: https://printable-tools-lab.pages.dev/tools/merge-pdf/", "Split PDF: https://printable-tools-lab.pages.dev/tools/split-pdf/", "PDF page numbers: https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/", "Rotate PDF: https://printable-tools-lab.pages.dev/tools/rotate-pdf/", "Remove PDF pages: https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/", "Reorder PDF pages: https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/", "Watermark PDF: https://printable-tools-lab.pages.dev/tools/watermark-pdf/", "Stamp PDF: https://printable-tools-lab.pages.dev/tools/stamp-pdf/", "Sign PDF: https://printable-tools-lab.pages.dev/tools/sign-pdf/", "Text to PDF: https://printable-tools-lab.pages.dev/tools/text-to-pdf/", "Invoice generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/", "Business card generator: https://printable-tools-lab.pages.dev/tools/business-card/", "Barcode label generator: https://printable-tools-lab.pages.dev/tools/barcode-labels/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
+        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Tools index: https://printable-tools-lab.pages.dev/tools/", "Compress image: https://printable-tools-lab.pages.dev/tools/compress-image/", "Resize image: https://printable-tools-lab.pages.dev/tools/resize-image/", "Convert image: https://printable-tools-lab.pages.dev/tools/convert-image/", "Crop image: https://printable-tools-lab.pages.dev/tools/crop-image/", "Rotate image: https://printable-tools-lab.pages.dev/tools/rotate-image/", "Watermark image: https://printable-tools-lab.pages.dev/tools/watermark-image/", "Image to PDF: https://printable-tools-lab.pages.dev/tools/image-to-pdf/", "Multiple images to PDF: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/", "Merge PDF: https://printable-tools-lab.pages.dev/tools/merge-pdf/", "Split PDF: https://printable-tools-lab.pages.dev/tools/split-pdf/", "PDF page numbers: https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/", "Rotate PDF: https://printable-tools-lab.pages.dev/tools/rotate-pdf/", "Remove PDF pages: https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/", "Reorder PDF pages: https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/", "Watermark PDF: https://printable-tools-lab.pages.dev/tools/watermark-pdf/", "Stamp PDF: https://printable-tools-lab.pages.dev/tools/stamp-pdf/", "Sign PDF: https://printable-tools-lab.pages.dev/tools/sign-pdf/", "Text to PDF: https://printable-tools-lab.pages.dev/tools/text-to-pdf/", "Invoice generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/", "Business card generator: https://printable-tools-lab.pages.dev/tools/business-card/", "Barcode label generator: https://printable-tools-lab.pages.dev/tools/barcode-labels/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
         ["h2", "First distribution copy"],
         ["p", "Free browser PDF and image tools: compress images, resize images, convert image formats, merge PDFs, split PDFs, rotate pages, remove pages, reorder pages, watermark PDFs, stamp PDFs, add typed signature blocks, add PDF page numbers, convert images to PDF, combine multiple images, turn text into PDF, create invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, sign-in sheets, graph paper, calendars, worksheets, and checklists. No account required."],
         ["p", "Try the free image to PDF converter: select a JPG, PNG, or WebP file and generate a one-page PDF locally without uploading the image."],
@@ -3208,6 +3350,9 @@
     "compress-image",
     "resize-image",
     "convert-image",
+    "crop-image",
+    "rotate-image",
+    "watermark-image",
     "merge-pdf",
     "split-pdf",
     "pdf-page-numbers",
@@ -3308,7 +3453,7 @@
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>47</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>50</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
             <div class="proof-tile"><strong>82</strong><span>SEO-ready guides</span></div>
           </div>
@@ -4019,6 +4164,9 @@
     if (tool.id === "compress-image") return "Compress image";
     if (tool.id === "resize-image") return "Resize image";
     if (tool.id === "convert-image") return "Convert image";
+    if (tool.id === "crop-image") return "Crop image";
+    if (tool.id === "rotate-image") return "Rotate image";
+    if (tool.id === "watermark-image") return "Watermark image";
     return "Download image";
   }
 
@@ -4369,10 +4517,21 @@
     return [90, 180, 270].includes(degrees) ? degrees : 90;
   }
 
+  function normalizeImageRotation(value) {
+    const degrees = Number.parseInt(value, 10);
+    return [90, 180, 270].includes(degrees) ? degrees : 90;
+  }
+
   function normalizeOpacity(value) {
     const opacity = Number.parseFloat(value);
     if (!Number.isFinite(opacity)) return 0.16;
     return Math.max(0.06, Math.min(0.35, opacity));
+  }
+
+  function normalizeWatermarkOpacity(value) {
+    const opacity = Number.parseFloat(value);
+    if (!Number.isFinite(opacity)) return 0.28;
+    return Math.max(0.12, Math.min(0.55, opacity));
   }
 
   function clampPageNumber(value, pageCount) {
@@ -4562,7 +4721,7 @@
       ["resume-builder", "cover-letter", "resignation-letter"],
       ["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"],
       ["name-tracing", "chore-chart", "reward-chart", "flashcards"],
-      ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
+      ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
       ["certificate-generator", "sign-in-sheet", "todo-list", "flyer-maker", "coupon-maker"],
     ];
     const group = groups.find((items) => items.includes(currentId)) || toolOrder;
@@ -5610,6 +5769,63 @@
     });
   }
 
+  function drawImageCropper(ctx, paper, values) {
+    drawImageUtilityPreview(ctx, paper, values, {
+      toolId: "crop-image",
+      title: "Crop Image",
+      accent: "#7c3aed",
+      empty: "Select an image to crop",
+      note: "Crop avatars, product photos, banners, and upload-ready images locally.",
+      previewCanvas: (image) => renderCroppedImageCanvas(image.image, values),
+      statLines: (image) => {
+        const source = cropSourceRect(image, values);
+        return [
+          `${image.width} x ${image.height} px original`,
+          `${Math.round(source.width)} x ${Math.round(source.height)} px crop`,
+          `${cropPresetLabel(values.preset)} with ${cropAnchorLabel(values.anchor)} focus`,
+        ];
+      },
+      footer: "Image cropped locally with PrintableTools Lab. No image upload required.",
+    });
+  }
+
+  function drawImageRotator(ctx, paper, values) {
+    drawImageUtilityPreview(ctx, paper, values, {
+      toolId: "rotate-image",
+      title: "Rotate Image",
+      accent: "#0f766e",
+      empty: "Select an image to rotate",
+      note: "Fix sideways photos, screenshots, and scans without sending files to a server.",
+      previewCanvas: (image) => renderRotatedImageCanvas(image.image, values),
+      statLines: (image) => {
+        const rotation = normalizeImageRotation(values.rotation);
+        return [
+          `${image.width} x ${image.height} px original`,
+          `${rotation === 180 ? image.width : image.height} x ${rotation === 180 ? image.height : image.width} px export`,
+          `${rotation} degree rotation${values.flip && values.flip !== "none" ? ` plus ${values.flip} flip` : ""}`,
+        ];
+      },
+      footer: "Image rotated locally with PrintableTools Lab. No image upload required.",
+    });
+  }
+
+  function drawImageWatermarker(ctx, paper, values) {
+    drawImageUtilityPreview(ctx, paper, values, {
+      toolId: "watermark-image",
+      title: "Watermark Image",
+      accent: "#b45309",
+      empty: "Select an image to watermark",
+      note: "Add a visible text mark for samples, drafts, proofs, or product photos.",
+      previewCanvas: (image) => renderWatermarkedImageCanvas(image.image, values),
+      statLines: (image) => [
+        `${image.width} x ${image.height} px original`,
+        `${watermarkPlacementLabel(values.placement)} placement`,
+        `${Math.round(normalizeWatermarkOpacity(values.opacity) * 100)}% opacity text watermark`,
+      ],
+      footer: "Image watermarked locally with PrintableTools Lab. No image upload required.",
+    });
+  }
+
   function drawImageUtilityPreview(ctx, paper, values, config) {
     const margin = 72;
     const images = imageToolState.get(config.toolId) || [];
@@ -5625,7 +5841,8 @@
     }
     const item = images[0];
     const previewBox = { x: margin, y: 220, width: paper.width - margin * 2, height: paper.height - 500 };
-    drawImageInBox(ctx, item.image, previewBox, false);
+    const previewSource = typeof config.previewCanvas === "function" ? config.previewCanvas(item) : item.image;
+    drawImageInBox(ctx, previewSource, previewBox, false);
     const statY = paper.height - 238;
     drawTextFit(ctx, item.name || "Selected image", margin, statY, paper.width - margin * 2, 24, { align: "left", weight: "900", color: "#17313b" });
     const lines = config.statLines(item).slice(0, 4);
@@ -5663,6 +5880,27 @@
     return { blob, filename: `${fileBaseName(image.name)}.${imageExtension(values.format)}` };
   }
 
+  function exportCroppedImage(values) {
+    const image = getSelectedImageOrThrow("crop-image");
+    const canvas = renderCroppedImageCanvas(image.image, values);
+    const blob = canvasToImageBlob(canvas, values.format, values.quality);
+    return { blob, filename: `${fileBaseName(image.name)}-cropped.${imageExtension(values.format)}` };
+  }
+
+  function exportRotatedImage(values) {
+    const image = getSelectedImageOrThrow("rotate-image");
+    const canvas = renderRotatedImageCanvas(image.image, values);
+    const blob = canvasToImageBlob(canvas, values.format, values.quality);
+    return { blob, filename: `${fileBaseName(image.name)}-rotated.${imageExtension(values.format)}` };
+  }
+
+  function exportWatermarkedImage(values) {
+    const image = getSelectedImageOrThrow("watermark-image");
+    const canvas = renderWatermarkedImageCanvas(image.image, values);
+    const blob = canvasToImageBlob(canvas, values.format, values.quality);
+    return { blob, filename: `${fileBaseName(image.name)}-watermarked.${imageExtension(values.format)}` };
+  }
+
   function getSelectedImageOrThrow(toolId) {
     const images = imageToolState.get(toolId) || [];
     if (!images.length) throw new Error("Select an image before downloading.");
@@ -5692,6 +5930,157 @@
     const heightInput = Number(String(values.height || "").replace(/\D/g, "")) || 0;
     const height = heightInput ? clampNumber(heightInput, 1, 6000) : Math.max(1, Math.round(width * originalH / originalW));
     return { width, height };
+  }
+
+  function cropSourceRect(image, values) {
+    const imageW = Math.max(1, Number(image.width || image.naturalWidth || image.image?.width || 1));
+    const imageH = Math.max(1, Number(image.height || image.naturalHeight || image.image?.height || 1));
+    const ratio = cropAspectRatio(values.preset, imageW / imageH);
+    let width = imageW;
+    let height = imageW / ratio;
+    if (height > imageH) {
+      height = imageH;
+      width = imageH * ratio;
+    }
+    let x = (imageW - width) / 2;
+    let y = (imageH - height) / 2;
+    if (values.anchor === "top") y = 0;
+    if (values.anchor === "bottom") y = imageH - height;
+    if (values.anchor === "left") x = 0;
+    if (values.anchor === "right") x = imageW - width;
+    return {
+      x: Math.max(0, Math.round(x)),
+      y: Math.max(0, Math.round(y)),
+      width: Math.max(1, Math.round(width)),
+      height: Math.max(1, Math.round(height)),
+    };
+  }
+
+  function cropAspectRatio(preset, fallback) {
+    if (preset === "wide-16-9") return 16 / 9;
+    if (preset === "portrait-4-5") return 4 / 5;
+    if (preset === "banner-3-1") return 3;
+    if (preset === "original") return fallback || 1;
+    return 1;
+  }
+
+  function renderCroppedImageCanvas(image, values) {
+    const source = cropSourceRect(image, values);
+    const canvas = document.createElement("canvas");
+    canvas.width = source.width;
+    canvas.height = source.height;
+    const ctx = canvas.getContext("2d");
+    const background = values.format === "jpeg" ? "#ffffff" : "transparent";
+    if (background !== "transparent") {
+      ctx.fillStyle = background;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    ctx.drawImage(image, source.x, source.y, source.width, source.height, 0, 0, source.width, source.height);
+    return canvas;
+  }
+
+  function renderRotatedImageCanvas(image, values) {
+    const imageW = image.naturalWidth || image.width || 1;
+    const imageH = image.naturalHeight || image.height || 1;
+    const rotation = normalizeImageRotation(values.rotation);
+    const swap = rotation === 90 || rotation === 270;
+    const canvas = document.createElement("canvas");
+    canvas.width = swap ? imageH : imageW;
+    canvas.height = swap ? imageW : imageH;
+    const ctx = canvas.getContext("2d");
+    if (values.format === "jpeg") {
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    ctx.save();
+    ctx.translate(canvas.width / 2, canvas.height / 2);
+    ctx.rotate(rotation * Math.PI / 180);
+    const flipX = values.flip === "horizontal" ? -1 : 1;
+    const flipY = values.flip === "vertical" ? -1 : 1;
+    ctx.scale(flipX, flipY);
+    ctx.drawImage(image, -imageW / 2, -imageH / 2, imageW, imageH);
+    ctx.restore();
+    return canvas;
+  }
+
+  function renderWatermarkedImageCanvas(image, values) {
+    const imageW = image.naturalWidth || image.width || 1;
+    const imageH = image.naturalHeight || image.height || 1;
+    const canvas = document.createElement("canvas");
+    canvas.width = imageW;
+    canvas.height = imageH;
+    const ctx = canvas.getContext("2d");
+    if (values.format === "jpeg") {
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, imageW, imageH);
+    }
+    ctx.drawImage(image, 0, 0, imageW, imageH);
+    drawImageWatermarkText(ctx, canvas, values);
+    return canvas;
+  }
+
+  function drawImageWatermarkText(ctx, canvas, values) {
+    const text = sanitizePrintable(values.watermarkText || "SAMPLE").trim().slice(0, 50) || "SAMPLE";
+    const base = Math.min(canvas.width, canvas.height);
+    const sizeMap = { small: 0.055, medium: 0.075, large: 0.105 };
+    const fontSize = Math.max(18, Math.round(base * (sizeMap[values.size] || sizeMap.medium)));
+    const opacity = normalizeWatermarkOpacity(values.opacity);
+    ctx.save();
+    ctx.font = `900 ${fontSize}px Arial, sans-serif`;
+    ctx.textBaseline = "middle";
+    ctx.lineJoin = "round";
+    const margin = Math.max(18, Math.round(fontSize * 0.9));
+    if (values.placement === "diagonal-tile") {
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.rotate(-Math.PI / 5);
+      ctx.textAlign = "center";
+      const stepX = Math.max(fontSize * 6, ctx.measureText(text).width + fontSize * 2);
+      const stepY = fontSize * 3.2;
+      for (let y = -canvas.height; y <= canvas.height; y += stepY) {
+        for (let x = -canvas.width; x <= canvas.width; x += stepX) {
+          strokeAndFillWatermark(ctx, text, x, y, opacity);
+        }
+      }
+      ctx.restore();
+      return;
+    }
+    const metrics = ctx.measureText(text);
+    let x = canvas.width - margin;
+    let y = canvas.height - margin;
+    ctx.textAlign = "right";
+    if (values.placement === "bottom-left") {
+      x = margin;
+      y = canvas.height - margin;
+      ctx.textAlign = "left";
+    } else if (values.placement === "top-right") {
+      x = canvas.width - margin;
+      y = margin + fontSize / 2;
+    } else if (values.placement === "top-left") {
+      x = margin;
+      y = margin + fontSize / 2;
+      ctx.textAlign = "left";
+    } else if (values.placement === "center") {
+      x = canvas.width / 2;
+      y = canvas.height / 2;
+      ctx.textAlign = "center";
+    }
+    if (ctx.textAlign === "right") x = Math.max(margin + metrics.width, x);
+    strokeAndFillWatermark(ctx, text, x, y, opacity);
+    ctx.restore();
+  }
+
+  function strokeAndFillWatermark(ctx, text, x, y, opacity) {
+    ctx.lineWidth = Math.max(2, Math.round(Number.parseInt(ctx.font, 10) / 12));
+    ctx.save();
+    ctx.globalAlpha = Math.min(0.92, opacity + 0.32);
+    ctx.strokeStyle = "#ffffff";
+    ctx.strokeText(text, x, y);
+    ctx.restore();
+    ctx.save();
+    ctx.globalAlpha = Math.min(0.95, opacity + 0.2);
+    ctx.fillStyle = "#0c161b";
+    ctx.fillText(text, x, y);
+    ctx.restore();
   }
 
   function renderImageToCanvas(image, width, height, fitMode, background) {
@@ -5756,6 +6145,31 @@
 
   function imageFormatLabel(format) {
     return format === "jpeg" ? "JPG" : format === "webp" ? "WebP" : "PNG";
+  }
+
+  function cropPresetLabel(preset) {
+    if (preset === "wide-16-9") return "Wide 16:9 crop";
+    if (preset === "portrait-4-5") return "Portrait 4:5 crop";
+    if (preset === "banner-3-1") return "Banner 3:1 crop";
+    if (preset === "original") return "Original ratio crop";
+    return "Square 1:1 crop";
+  }
+
+  function cropAnchorLabel(anchor) {
+    if (anchor === "top") return "top";
+    if (anchor === "bottom") return "bottom";
+    if (anchor === "left") return "left";
+    if (anchor === "right") return "right";
+    return "center";
+  }
+
+  function watermarkPlacementLabel(placement) {
+    if (placement === "bottom-left") return "Bottom left";
+    if (placement === "top-right") return "Top right";
+    if (placement === "top-left") return "Top left";
+    if (placement === "center") return "Center";
+    if (placement === "diagonal-tile") return "Diagonal tiled";
+    return "Bottom right";
   }
 
   function fileBaseName(name) {

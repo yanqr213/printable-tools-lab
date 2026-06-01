@@ -1,25 +1,26 @@
 # Validation Gates
 
-Last generated: 2026-06-01T06:37:45.813Z
+Last generated: 2026-06-01T07:25:25.523Z
 
 ## Current Automated Status
 
 - Product ready: yes.
-- Tools live in inventory: 47.
+- Tools live in inventory: 50.
 - Guide pages live in inventory: 82.
-- High-intent landing pages: 35.
-- Indexable routes: 174.
+- High-intent landing pages: 38.
+- Indexable routes: 180.
+- Custom domain configured: no.
 - Live downloads: 1.
 - Live generations: 0.
 - Search impressions: 0.
 - Search clicks: 0.
-- External discovery ready: yes.
+- External discovery ready: no.
 - Ads enabled: no.
 - AdSense apply-ready: no.
 
 ## Product Gate
 
-- 47 tools, 82 guides, 35 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
+- 50 tools, 82 guides, 38 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
 
 ## Search Console Gate
 
@@ -36,7 +37,7 @@ Last generated: 2026-06-01T06:37:45.813Z
 
 ## External Discovery Gate
 
-- GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.
+- GitHub repo has 19 topic(s) and homepage https://printable-tools-lab.pages.dev/.
 - GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.
 - GitHub Pages discovery directory is live with 35 landing page link(s).
 - GitHub Pages discovery sitemap has 36 URL(s).
@@ -44,6 +45,7 @@ Last generated: 2026-06-01T06:37:45.813Z
 
 ## Monetization Gate
 
+- Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.
 - Real AdSense publisher ID is not configured, so ads remain disabled.
 - Search Console has no impressions/indexed sample yet, so applying now is premature.
 
@@ -56,7 +58,7 @@ Last generated: 2026-06-01T06:37:45.813Z
 ## Next Actions
 
 - Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.
-- Fix IndexNow key verification or keep it documented as a non-Google fallback.
+- Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.
 - When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.
 - Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.
 

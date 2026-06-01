@@ -1,6 +1,6 @@
 # PrintableTools Lab
 
-Free browser-based PDF generators, no-upload PDF tools, and local image tools for compressing images, resizing images, converting image formats, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
+Free browser-based PDF generators, no-upload PDF tools, and local image tools for compressing images, resizing images, converting image formats, cropping images, rotating images, watermarking images, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
 
 Audience: Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, and household planners.
 
@@ -53,6 +53,9 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Compress Image Online](https://printable-tools-lab.pages.dev/tools/compress-image/): Compress JPG, PNG, or WebP images locally in your browser without uploading files.
 - [Resize Image Online](https://printable-tools-lab.pages.dev/tools/resize-image/): Resize a JPG, PNG, or WebP image locally by width, height, or common social sizes without uploading it.
 - [Convert Image Format](https://printable-tools-lab.pages.dev/tools/convert-image/): Convert JPG, PNG, and WebP images locally in your browser without uploading the file.
+- [Crop Image Online](https://printable-tools-lab.pages.dev/tools/crop-image/): Crop JPG, PNG, or WebP images locally for square avatars, wide banners, product photos, and profile uploads without uploading files.
+- [Rotate Image Online](https://printable-tools-lab.pages.dev/tools/rotate-image/): Rotate or flip a JPG, PNG, or WebP image locally in your browser without uploading the file.
+- [Watermark Image Online](https://printable-tools-lab.pages.dev/tools/watermark-image/): Add a text watermark to JPG, PNG, or WebP images locally for drafts, samples, marketplace photos, and social posts without uploading files.
 - [Merge PDF Tool](https://printable-tools-lab.pages.dev/tools/merge-pdf/): Combine several PDF files into one PDF in your browser without uploading documents.
 - [Split PDF Tool](https://printable-tools-lab.pages.dev/tools/split-pdf/): Extract selected pages from a PDF in your browser without uploading the document.
 - [Add Page Numbers to PDF](https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/): Add simple page numbers to an existing PDF locally in your browser.
@@ -79,6 +82,9 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Compress Image Without Uploading](https://printable-tools-lab.pages.dev/compress-image-no-upload/): compress image online, reduce image size, no upload
 - [Resize Image Without Uploading](https://printable-tools-lab.pages.dev/resize-image-no-upload/): resize image online, change image dimensions, no upload
 - [Convert Image Format Without Uploading](https://printable-tools-lab.pages.dev/convert-image-format-no-upload/): convert image format, JPG to PNG, PNG to WebP, no upload
+- [Crop Image Without Uploading](https://printable-tools-lab.pages.dev/crop-image-no-upload/): crop image online, square crop, no upload
+- [Rotate Image Without Uploading](https://printable-tools-lab.pages.dev/rotate-image-no-upload/): rotate image online, flip image, no upload
+- [Watermark Image Without Uploading](https://printable-tools-lab.pages.dev/watermark-image-no-upload/): watermark image online, add text watermark, no upload
 - [Compress JPG Without Uploading](https://printable-tools-lab.pages.dev/compress-jpg-no-upload/): compress JPG online, reduce JPG file size, no upload
 - [Compress PNG Without Uploading](https://printable-tools-lab.pages.dev/compress-png-no-upload/): compress PNG online, reduce PNG size, no upload
 - [Resize Image to 1080x1080](https://printable-tools-lab.pages.dev/resize-image-1080x1080/): resize image to 1080x1080, square image resize, no upload

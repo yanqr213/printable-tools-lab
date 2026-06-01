@@ -6,12 +6,13 @@ This file keeps the project pointed at the current model: free ad-supported brow
 
 ### Free acquisition layer
 
-- Forty-seven free browser PDF generators, no-upload PDF utilities, and local image utilities.
+- Fifty free browser PDF generators, no-upload PDF utilities, and local image utilities.
 - Daily free limit stored locally.
 - Clean one-page PDF or image exports with no account wall and no ad-click requirement.
-- Original guide pages for search traffic and AdSense review.
+- Original guide pages for search traffic and display-ad review.
 - High-intent landing pages for no-signup, no-upload PDF, and no-upload image searches.
-- Ads only after AdSense approval, never blocking downloads or disguised as controls.
+- Ads only after approval by a mainstream ad network, never blocking downloads or disguised as controls.
+- Move from `pages.dev` to a custom domain before serious ad review; keep `pages.dev` only as the free validation and fallback host.
 
 ### Deferred paid layer
 
@@ -28,6 +29,17 @@ Use one Google account for Search Console, Analytics, and AdSense.
 3. Verify ownership with the HTML file method.
 4. Submit `https://printable-tools-lab.pages.dev/sitemap.xml`.
 5. Wait for indexing data before applying for AdSense.
+
+### Custom domain
+
+Use a real domain before applying broadly to ad networks. The current `pages.dev` URL is fine for zero-cost validation, but a custom domain is better for trust, Search Console history, brand recall, and ad-network review.
+
+1. Buy a short `.com` domain or another mainstream TLD.
+2. Add it to Cloudflare DNS.
+3. Attach it to the existing Cloudflare Pages project.
+4. Set `PUBLIC_SITE_URL` to the custom domain and rerun `npm.cmd run build:routes`.
+5. Verify the custom domain in Search Console and submit its sitemap.
+6. Keep redirects/canonicals consistent before applying for ads.
 
 ### Google APIs
 
@@ -147,6 +159,16 @@ Notes:
 - `verify:adsense` fails if ads are enabled without a valid `ca-pub-...`, if `ads.txt` does not match, or if ad placement labels are missing.
 - If AdSense only asks for review code/auto ads first, configure only `--publisher`; fixed ad slot IDs can be added later.
 - Keep `enableAds: false` until the real publisher ID is available. Do not deploy fake publisher IDs.
+
+### Ad network fallback
+
+Primary order:
+
+1. Custom domain plus AdSense, because it has the broadest demand and the lowest integration complexity once approved.
+2. Microsoft pubCenter if AdSense review stalls or rejects the site; it is a mainstream display-ad path for websites and can be tested without changing the free product.
+3. Media.net or other contextual networks only after there is measurable search traffic and enough original content to make approval plausible.
+
+Avoid pop-under, push-notification, forced-view, download-gate, adult, gambling, crypto, or misleading ad networks. They may create early clicks, but they raise account, domain, and user-trust risk.
 
 ### Payment account
 
@@ -346,6 +368,8 @@ Current Search Console checkpoint:
 - `2026-06-01`: expanded the same PDF utility cluster to 44 tools, 79 guides, and 26 high-intent landing pages by adding Watermark PDF, Stamp PDF, and Add Signature Text to PDF. These are existing-document tasks with urgent search intent, while the implementation remains local, free, and careful not to claim legal e-signature status.
 - `2026-06-01`: expanded the same site to 47 tools, 82 guides, and 29 high-intent landing pages by adding local no-upload image compression, image resizing, and JPG/PNG/WebP format conversion. This keeps the same domain and Search Console property while testing broader high-frequency form-upload, marketplace, profile-photo, and school-portal pain.
 - `2026-06-01`: added 6 image-specific long-tail landing pages for compress JPG, compress PNG, resize to 1080x1080, resize to 512x512, PNG-to-JPG, and WebP-to-JPG. These use existing tools but target more explicit upload-failure and format-mismatch searches.
+- `2026-06-01`: expanded to 50 tools and 38 high-intent landing pages by adding local Crop Image, Rotate Image, and Watermark Image workflows. This keeps the product in the broad file-utility lane while targeting profile-photo, marketplace-photo, scan-orientation, and sample/proof-image intent.
+- `2026-06-01`: advertising strategy updated: keep AdSense as the first mainstream network, add Microsoft pubCenter as a fallback after a custom domain, and avoid high-risk forced-view or download-gated ad networks. A custom domain is now treated as an ad-review prerequisite.
 - `2026-06-01`: AdSense Management API was enabled on the Google Cloud project through Service Usage API. A service-account probe to `adsense.googleapis.com/v2/accounts` returned no AdSense accounts, so the service account is not currently an AdSense account user. The official AdSense ad-unit creation API is also a restricted method, so publisher/ad-slot creation cannot be completed silently from the current service-account credentials.
 - `2026-06-01`: GitHub Pages discovery directory was verified as its own Search Console URL-prefix property and its sitemap was submitted through the Search Console API. This creates a second crawlable discovery surface that still points back to the same main site.
 - Action: keep site stable, improve useful content/navigation, thicken tool pages, and avoid repeated low-value resubmission loops.

@@ -4,7 +4,7 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-06-01T06:31:24.096Z",
+  "generatedAt": "2026-06-01T07:17:18.108Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -35,6 +35,21 @@
       "title": "Convert Image Format Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
       "intent": "convert image format, JPG to PNG, PNG to WebP, no upload"
+    },
+    {
+      "title": "Crop Image Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/crop-image-no-upload/",
+      "intent": "crop image online, square crop, no upload"
+    },
+    {
+      "title": "Rotate Image Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/rotate-image-no-upload/",
+      "intent": "rotate image online, flip image, no upload"
+    },
+    {
+      "title": "Watermark Image Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/watermark-image-no-upload/",
+      "intent": "watermark image online, add text watermark, no upload"
     },
     {
       "title": "Compress JPG Without Uploading",
@@ -207,6 +222,21 @@
       "title": "Convert Image Format",
       "description": "Convert JPG, PNG, and WebP images locally in your browser without uploading the file.",
       "url": "https://printable-tools-lab.pages.dev/tools/convert-image/"
+    },
+    {
+      "title": "Crop Image Online",
+      "description": "Crop JPG, PNG, or WebP images locally for square avatars, wide banners, product photos, and profile uploads without uploading files.",
+      "url": "https://printable-tools-lab.pages.dev/tools/crop-image/"
+    },
+    {
+      "title": "Rotate Image Online",
+      "description": "Rotate or flip a JPG, PNG, or WebP image locally in your browser without uploading the file.",
+      "url": "https://printable-tools-lab.pages.dev/tools/rotate-image/"
+    },
+    {
+      "title": "Watermark Image Online",
+      "description": "Add a text watermark to JPG, PNG, or WebP images locally for drafts, samples, marketplace photos, and social posts without uploading files.",
+      "url": "https://printable-tools-lab.pages.dev/tools/watermark-image/"
     },
     {
       "title": "Merge PDF Tool",

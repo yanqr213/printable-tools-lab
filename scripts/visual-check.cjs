@@ -12,13 +12,37 @@ function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function samplePng() {
+  return Buffer.from(
+    "iVBORw0KGgoAAAANSUhEUgAAAPAAAACMCAYAAABCtSQoAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAXjSURBVHhe7dOhtVAJEARRsiAONFFgNwEEgjAIgCDXrQQJvsw/A/+w/YoS18zYrjf/ff/2I8kzveEhyXMUcPJgBZw8WAEnD1bAyYMVcPJgBZw82IsBv333Psn/hD1SASfD2CMVcDKMPVIBJ8PYI50D5j/J67n2VsDJkGtvBZwMufZWwMmQa28FnAy59lbAyZBrbwWcDLn2VsDJkGtvrx7w209f8hv+/fzhr/LP149/FfZC194KeAwHbseB27EXuvZWwGM4cDsO3I690LW3Ah7Dgdtx4Hbsha69FfAYDtyOA7djL3TtrYDHcOB2HLgde6FrbwU8hgO348Dt2AtdeyvgMRy4HQdux17o2lsBj+HA7ThwO/ZC194KeAwHbseB27EXuvZWwGM4cDsO3I690LW3Ah7Dgdtx4Hbsha69FfAYDtyOA7djL3TtrYDHcOB2HLgde6FrbwU8hgO348Dt2AtdeyvgMRy4HQdux17o2lsBj+HA7ThwO/ZC194KeAwHbseB27EXuvZWwGM4cDsO3I690LW3Ah7Dgdtx4Hbsha69FfAYDtyOA7djL3TtrYDHcOB2HLgde6FrbwU8hgO348Dt2AtdeyvgMRy4HQdux17o2lsBj+HA7ThwO/ZC194KeAwHbseB27EXuvZWwGM4cDsO3I690LW3Ah7Dgdtx4Hbsha69FfAYDtyOA7djL3TtrYDHcOB2HLgde6FrbwU8hgO348Dt2AtdeyvgMRy4HQdux17o2lsBj+HA7ThwO/ZC194KeAwHbseB27EXuvZWwGM4cDsO3I690LW3Ah7Dgdtx4Hbsha69FfAYDtyOA7djL3TtrYDHcOB2HLgde6FrbwU8hgO348Dt2AtdeyvgMRy4HQdux17o2lsBj+HA7ThwO/ZC194KeAwHbseB27EXuvZWwGM4cDsO3I690LW3Ah7Dgdtx4Hbsha69FfAYDtyOA7djL3TtrYDHcOB2HLgde6FrbwU8hgO348Dt2AtdeyvgMRy4HQdux17o2lsBj+HA7ThwO/ZC194KeAwHbseB27EXuvZWwGM4cDsO3I690LW3Ah7Dgdtx4Hbsha69vXrASX7dtbcCToZceyvgZMi1twJOhlx7K+BkyLW3Ak6GXHsr4GTItbcCToZcezsHnOTPYY9UwMkw9kgFnAxjj1TAyTD2SC8GnGRXAScPVsDJgxVw8mAFnDxYAScPVsDJgxVw8mA/AWzF0TriPjnQAAAAAElFTkSuQmCC",
+    "base64",
+  );
+}
+
 (async () => {
   await delay(350);
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 1366, height: 900 } });
+  const imageRoutes = new Set([
+    "/tools/compress-image/",
+    "/tools/resize-image/",
+    "/tools/convert-image/",
+    "/tools/crop-image/",
+    "/tools/rotate-image/",
+    "/tools/watermark-image/",
+  ]);
 
-  for (const route of ["/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/text-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
+  for (const route of ["/tools/invoice-generator/", "/tools/estimate-generator/", "/tools/purchase-order/", "/tools/bill-of-sale/", "/tools/rent-receipt/", "/tools/business-card/", "/tools/address-labels/", "/tools/price-tag/", "/tools/flyer-maker/", "/tools/barcode-labels/", "/tools/coupon-maker/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/", "/tools/resume-builder/", "/tools/cover-letter/", "/tools/resignation-letter/", "/tools/monthly-calendar/", "/tools/meal-planner/", "/tools/image-to-pdf/", "/tools/multi-image-pdf/", "/tools/compress-image/", "/tools/resize-image/", "/tools/convert-image/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/text-to-pdf/", "/tools/sign-in-sheet/", "/tools/graph-paper/", "/tools/packing-list/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/certificate-generator/", "/tools/todo-list/"]) {
     await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
+    if (imageRoutes.has(route)) {
+      await page.setInputFiles("input[type=file]", {
+        name: "photo.png",
+        mimeType: "image/png",
+        buffer: samplePng(),
+      });
+      if (route === "/tools/watermark-image/") await page.fill("#watermarkText", "SAMPLE");
+      await page.waitForTimeout(500);
+    }
     const canvas = page.locator("canvas.preview-canvas");
     await canvas.waitFor();
     const box = await canvas.boundingBox();
@@ -31,8 +55,10 @@ function delay(ms) {
     });
     if (sample[3] === 0) throw new Error(`Canvas appears transparent on ${route}`);
     const text = await page.locator("main").innerText();
-    if (!text.includes("Generate PDF")) throw new Error(`Core action missing on ${route}`);
-    if (!route.includes("image-to-pdf") && !route.includes("multi-image-pdf") && !route.includes("graph-paper") && !route.includes("address-labels") && !route.includes("barcode-labels") && !text.includes("AI ideas")) throw new Error(`AI action missing on ${route}`);
+    const imageRoute = /\/tools\/(compress-image|resize-image|convert-image|crop-image|rotate-image|watermark-image)\//.test(route);
+    if (!imageRoute && !text.includes("Generate PDF")) throw new Error(`Core action missing on ${route}`);
+    if (imageRoute && !text.includes("Image preview")) throw new Error(`Image action area missing on ${route}`);
+    if (!route.includes("image-to-pdf") && !route.includes("multi-image-pdf") && !imageRoute && !route.includes("graph-paper") && !route.includes("address-labels") && !route.includes("barcode-labels") && !text.includes("AI ideas")) throw new Error(`AI action missing on ${route}`);
   }
 
   await page.setViewportSize({ width: 390, height: 844 });

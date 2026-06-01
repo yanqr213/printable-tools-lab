@@ -4,11 +4,11 @@ Use these snippets for low-friction external discovery. Do not spam communities;
 
 ## One-line pitch
 
-PrintableTools Lab is a free no-signup PDF and image utility site for compressing images, resizing images, converting image formats, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, adding page numbers, image-to-PDF conversion, text-to-PDF, invoices, estimates, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, and flashcards.
+PrintableTools Lab is a free no-signup PDF and image utility site for compressing images, resizing images, converting image formats, cropping images, rotating images, watermarking images, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, adding page numbers, image-to-PDF conversion, text-to-PDF, invoices, estimates, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, certificates, calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, and flashcards.
 
 ## Short launch post
 
-I built PrintableTools Lab, a free browser-based PDF and image tool site. It can compress images, resize images, convert JPG/PNG/WebP formats, merge PDFs, split PDFs, rotate pages, remove pages, reorder pages, add PDF page numbers, convert images to PDF, create multi-image PDFs, turn text into PDF, and create practical documents like invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, calendars, sign-in sheets, graph paper, packing lists, worksheets, and charts. No account and no surprise download fee. Feedback on which tools are most useful would help shape the next batch.
+I built PrintableTools Lab, a free browser-based PDF and image tool site. It can compress images, resize images, crop images, rotate images, watermark images, convert JPG/PNG/WebP formats, merge PDFs, split PDFs, rotate pages, remove pages, reorder pages, add PDF page numbers, convert images to PDF, create multi-image PDFs, turn text into PDF, and create practical documents like invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, calendars, sign-in sheets, graph paper, packing lists, worksheets, and charts. No account and no surprise download fee. Feedback on which tools are most useful would help shape the next batch.
 
 ## Directory submission fields
 
@@ -16,7 +16,7 @@ I built PrintableTools Lab, a free browser-based PDF and image tool site. It can
 - URL: https://printable-tools-lab.pages.dev/
 - Category: Productivity, PDF Tools, Document Tools, Education, Small Business Tools, Job Search Tools
 - Tagline: Free no-signup PDF and image tools
-- Description: Create practical PDFs and image files in the browser, including image compression, image resizing, JPG/PNG/WebP format conversion, PDF merge, PDF split, page rotation, page removal, page reordering, page numbering, image-to-PDF, multi-image PDFs, text-to-PDF documents, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, certificates, calendars, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, flashcards, and habit trackers.
+- Description: Create practical PDFs and image files in the browser, including image compression, image resizing, image cropping, image rotation, image watermarking, JPG/PNG/WebP format conversion, PDF merge, PDF split, page rotation, page removal, page reordering, page numbering, image-to-PDF, multi-image PDFs, text-to-PDF documents, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, certificates, calendars, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, charts, flashcards, and habit trackers.
 - Pricing: Free
 
 ## Tracked campaign links
@@ -35,6 +35,9 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Compress image without upload page: https://printable-tools-lab.pages.dev/compress-image-no-upload/
 - Resize image without upload page: https://printable-tools-lab.pages.dev/resize-image-no-upload/
 - Convert image format without upload page: https://printable-tools-lab.pages.dev/convert-image-format-no-upload/
+- Crop image without upload page: https://printable-tools-lab.pages.dev/crop-image-no-upload/
+- Rotate image without upload page: https://printable-tools-lab.pages.dev/rotate-image-no-upload/
+- Watermark image without upload page: https://printable-tools-lab.pages.dev/watermark-image-no-upload/
 - Merge PDF without upload page: https://printable-tools-lab.pages.dev/merge-pdf-no-upload/
 - Split PDF without upload page: https://printable-tools-lab.pages.dev/split-pdf-no-upload/
 - Add page numbers to PDF page: https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/
@@ -51,6 +54,9 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Compress Image Without Uploading: https://printable-tools-lab.pages.dev/compress-image-no-upload/
 - Resize Image Without Uploading: https://printable-tools-lab.pages.dev/resize-image-no-upload/
 - Convert Image Format Without Uploading: https://printable-tools-lab.pages.dev/convert-image-format-no-upload/
+- Crop Image Without Uploading: https://printable-tools-lab.pages.dev/crop-image-no-upload/
+- Rotate Image Without Uploading: https://printable-tools-lab.pages.dev/rotate-image-no-upload/
+- Watermark Image Without Uploading: https://printable-tools-lab.pages.dev/watermark-image-no-upload/
 - Compress JPG Without Uploading: https://printable-tools-lab.pages.dev/compress-jpg-no-upload/
 - Compress PNG Without Uploading: https://printable-tools-lab.pages.dev/compress-png-no-upload/
 - Resize Image to 1080x1080: https://printable-tools-lab.pages.dev/resize-image-1080x1080/
@@ -84,6 +90,9 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Compress Image Online: https://printable-tools-lab.pages.dev/tools/compress-image/
 - Resize Image Online: https://printable-tools-lab.pages.dev/tools/resize-image/
 - Convert Image Format: https://printable-tools-lab.pages.dev/tools/convert-image/
+- Crop Image Online: https://printable-tools-lab.pages.dev/tools/crop-image/
+- Rotate Image Online: https://printable-tools-lab.pages.dev/tools/rotate-image/
+- Watermark Image Online: https://printable-tools-lab.pages.dev/tools/watermark-image/
 - Merge PDF Tool: https://printable-tools-lab.pages.dev/tools/merge-pdf/
 - Split PDF Tool: https://printable-tools-lab.pages.dev/tools/split-pdf/
 - Add Page Numbers to PDF: https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/
@@ -114,13 +123,13 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 ## Community-safe angles
 
 - For freelancers: free invoice, estimate, purchase order, receipt, bill of sale, work order, packing slip, inventory sheet, and timesheet PDFs without account creation.
-- For high-intent search visitors: no-signup and no-upload landing pages for image compression, image resizing, image format conversion, PDF merge, PDF split, PDF rotation, PDF page removal, PDF page reordering, PDF watermarking, PDF stamping, typed PDF signatures, PDF page numbers, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, barcodes, price tags, flyers, coupons, timesheets, resumes, certificates, text-to-PDF, JPG-to-PDF, and multi-image PDF.
+- For high-intent search visitors: no-signup and no-upload landing pages for image compression, image resizing, image cropping, image rotation, image watermarking, image format conversion, PDF merge, PDF split, PDF rotation, PDF page removal, PDF page reordering, PDF watermarking, PDF stamping, typed PDF signatures, PDF page numbers, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, barcodes, price tags, flyers, coupons, timesheets, resumes, certificates, text-to-PDF, JPG-to-PDF, and multi-image PDF.
 - For small businesses and local sellers: printable business cards, address labels, barcode labels, price tags, flyers, coupons, packing slips, and inventory sheets without design-account or spreadsheet friction.
 - For job seekers: free resume, cover letter, and resignation letter PDFs without a hidden export fee.
 - For parents and teachers: printable name tracing, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
 - For teachers and organizers: free certificate, sign-in sheet, and event checklist PDFs.
 - For household planning: monthly calendars and meal planners with grocery lists.
-- For everyday utility needs: compress images, resize images, convert image formats, merge PDF, split PDF, rotate pages, remove pages, reorder pages, watermark PDFs, stamp PDFs, add typed signature blocks, add page numbers, image-to-PDF conversion, multi-image PDF export, text-to-PDF, sign-in sheets, graph paper, to-do lists, and packing lists.
+- For everyday utility needs: compress images, resize images, crop images, rotate images, watermark images, convert image formats, merge PDF, split PDF, rotate pages, remove pages, reorder pages, watermark PDFs, stamp PDFs, add typed signature blocks, add page numbers, image-to-PDF conversion, multi-image PDF export, text-to-PDF, sign-in sheets, graph paper, to-do lists, and packing lists.
 
 ## Places to consider manually
 

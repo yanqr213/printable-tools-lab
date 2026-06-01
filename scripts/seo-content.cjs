@@ -2,7 +2,7 @@ const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pa
 
 const SITE_SUMMARY = {
   name: "PrintableTools Lab",
-  description: "Free browser-based PDF generators, no-upload PDF tools, and local image tools for compressing images, resizing images, converting image formats, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  description: "Free browser-based PDF generators, no-upload PDF tools, and local image tools for compressing images, resizing images, converting image formats, cropping images, rotating images, watermarking images, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   audience: "Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, and household planners.",
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
@@ -13,6 +13,9 @@ const HIGH_INTENT_TOOL_PATHS = [
   "tools/compress-image",
   "tools/resize-image",
   "tools/convert-image",
+  "tools/crop-image",
+  "tools/rotate-image",
+  "tools/watermark-image",
   "tools/merge-pdf",
   "tools/split-pdf",
   "tools/pdf-page-numbers",
@@ -66,6 +69,21 @@ const TOOL_FINDER_ROWS = [
     need: "I need to convert JPG, PNG, or WebP",
     toolPath: "tools/convert-image",
     why: "Best for changing the image format without sending the file to an online converter server.",
+  },
+  {
+    need: "I need to crop an image for a profile, listing, or banner",
+    toolPath: "tools/crop-image",
+    why: "Best for square avatars, wide banners, portrait crops, and product photos that need better framing.",
+  },
+  {
+    need: "I need to rotate or flip a sideways image",
+    toolPath: "tools/rotate-image",
+    why: "Best for fixing phone photos, scans, screenshots, and mirrored images locally before upload.",
+  },
+  {
+    need: "I need to add a text watermark to an image",
+    toolPath: "tools/watermark-image",
+    why: "Best for samples, drafts, proofs, social posts, and marketplace photos that need a visible label.",
   },
   {
     need: "I have plain text and need a simple PDF",
@@ -289,6 +307,51 @@ const landingPages = [
       ["Review the result", "After conversion, check that transparency, background color, and image clarity still match the destination requirement."],
     ],
     relatedTools: ["tools/compress-image", "tools/resize-image", "tools/multi-image-pdf"],
+  },
+  {
+    path: "crop-image-no-upload",
+    title: "Crop Image Without Uploading",
+    description: "Crop JPG, PNG, or WebP images locally in your browser for square avatars, product photos, banners, and upload forms.",
+    headline: "Crop image without uploading",
+    lead: "Choose an image, pick a crop shape, keep the important area in frame, and download a cropped copy without sending the file to a server.",
+    primaryTool: "tools/crop-image",
+    intent: "crop image online, square crop, no upload",
+    sections: [
+      ["Why users need it", "Cropping is a common step before a profile photo, marketplace listing, ID-style upload, social post, or banner will look right."],
+      ["Local crop workflow", "The image is loaded in the browser, cropped to the selected aspect ratio, and exported as a new image file without requiring an account."],
+      ["Before uploading elsewhere", "Check that faces, product edges, text, logos, and important document details are still visible after the crop."],
+    ],
+    relatedTools: ["tools/resize-image", "tools/compress-image", "tools/watermark-image"],
+  },
+  {
+    path: "rotate-image-no-upload",
+    title: "Rotate Image Without Uploading",
+    description: "Rotate or flip JPG, PNG, and WebP images locally in the browser when a photo, scan, or screenshot is sideways.",
+    headline: "Rotate image without uploading",
+    lead: "Fix a sideways image, rotate a scan, or flip a photo locally before using it in a form, profile, document, or listing.",
+    primaryTool: "tools/rotate-image",
+    intent: "rotate image online, flip image, no upload",
+    sections: [
+      ["Common use case", "Phone photos and quick scans often come out sideways. A small local rotation tool solves that before the image is attached to another workflow."],
+      ["What it changes", "The tool creates a new rotated or flipped copy. It does not edit the original image file on your device."],
+      ["Review the result", "Open the downloaded image and confirm orientation, text readability, and any mirrored content before sending it elsewhere."],
+    ],
+    relatedTools: ["tools/crop-image", "tools/resize-image", "tools/image-to-pdf"],
+  },
+  {
+    path: "watermark-image-no-upload",
+    title: "Watermark Image Without Uploading",
+    description: "Add a simple text watermark to JPG, PNG, or WebP images locally for samples, drafts, marketplace photos, and social posts.",
+    headline: "Watermark image without uploading",
+    lead: "Add a visible text watermark in the browser and download a new copy without uploading the source image.",
+    primaryTool: "tools/watermark-image",
+    intent: "watermark image online, add text watermark, no upload",
+    sections: [
+      ["Why it can convert", "People often need to share a sample, proof, preview, or product image while keeping a visible ownership or draft mark on the file."],
+      ["Ad-safe free workflow", "The watermark export stays free and does not ask visitors to click or watch an ad before downloading. That keeps the path safer for future display advertising."],
+      ["Practical limits", "A text watermark is a visual deterrent, not copyright enforcement. Keep original files and use proper licensing or platform tools when the image is commercially important."],
+    ],
+    relatedTools: ["tools/compress-image", "tools/resize-image", "tools/crop-image"],
   },
   {
     path: "compress-jpg-no-upload",
@@ -1001,6 +1064,33 @@ const tools = [
     ],
   },
   {
+    path: "tools/crop-image",
+    title: "Crop Image Online",
+    description: "Crop JPG, PNG, or WebP images locally for square avatars, wide banners, product photos, and profile uploads without uploading files.",
+    body: [
+      "Select one image, choose a crop shape and focus area, then export a cropped JPG, PNG, or WebP copy.",
+      "Image cropping is a broad utility need for profile photos, seller listings, ID-style uploads, social posts, and banner images.",
+    ],
+  },
+  {
+    path: "tools/rotate-image",
+    title: "Rotate Image Online",
+    description: "Rotate or flip a JPG, PNG, or WebP image locally in your browser without uploading the file.",
+    body: [
+      "Select one image, rotate it 90, 180, or 270 degrees, optionally flip it, and download a corrected copy.",
+      "Rotation is a frequent helper task after phone scans, sideways photos, screenshots, and images captured in the wrong orientation.",
+    ],
+  },
+  {
+    path: "tools/watermark-image",
+    title: "Watermark Image Online",
+    description: "Add a text watermark to JPG, PNG, or WebP images locally for drafts, samples, marketplace photos, and social posts without uploading files.",
+    body: [
+      "Select one image, add text, choose a placement and opacity, then export a watermarked copy in a common image format.",
+      "Watermarking attracts practical intent from creators, sellers, and small teams who need a free proof or sample image quickly.",
+    ],
+  },
+  {
     path: "tools/merge-pdf",
     title: "Merge PDF Tool",
     description: "Combine several PDF files into one PDF in your browser without uploading documents.",
@@ -1292,6 +1382,12 @@ const keywordClusters = [
       ["Resize image without uploading", "resize-image-no-upload"],
       ["Convert image format", "tools/convert-image"],
       ["Convert image format without uploading", "convert-image-format-no-upload"],
+      ["Crop image", "tools/crop-image"],
+      ["Crop image without uploading", "crop-image-no-upload"],
+      ["Rotate image", "tools/rotate-image"],
+      ["Rotate image without uploading", "rotate-image-no-upload"],
+      ["Watermark image", "tools/watermark-image"],
+      ["Watermark image without uploading", "watermark-image-no-upload"],
       ["Compress JPG", "compress-jpg-no-upload"],
       ["Compress PNG", "compress-png-no-upload"],
       ["Resize image to 1080x1080", "resize-image-1080x1080"],
@@ -1381,18 +1477,18 @@ const pages = [
   {
     path: "",
     title: "Free Printable PDF and Image Tools",
-    description: "Create image compression, image resizing, format conversion, image-to-PDF conversions, invoices, receipts, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free browser exports.",
+    description: "Create image compression, resizing, cropping, rotation, watermarking, image-to-PDF conversions, invoices, receipts, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free browser exports.",
     html: `
       <section class="shell hero">
         <div>
           <h1>Make useful PDF and image files in under a minute.</h1>
-          <p>Free browser-based generators for image compression, image resizing, image format conversion, no-upload PDF edits, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
+          <p>Free browser-based generators for image compression, resizing, cropping, rotation, watermarking, image format conversion, no-upload PDF edits, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>47</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>50</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
             <div class="proof-tile"><strong>82</strong><span>SEO-ready guides</span></div>
           </div>
@@ -1446,6 +1542,9 @@ const pages = [
           <li><a href="/tools/compress-image/">Compress Image Online</a></li>
           <li><a href="/tools/resize-image/">Resize Image Online</a></li>
           <li><a href="/tools/convert-image/">Convert Image Format</a></li>
+          <li><a href="/tools/crop-image/">Crop Image Online</a></li>
+          <li><a href="/tools/rotate-image/">Rotate Image Online</a></li>
+          <li><a href="/tools/watermark-image/">Watermark Image Online</a></li>
         <li><a href="/tools/merge-pdf/">Merge PDF Tool</a></li>
           <li><a href="/tools/split-pdf/">Split PDF Tool</a></li>
           <li><a href="/tools/pdf-page-numbers/">Add Page Numbers to PDF</a></li>
@@ -1574,6 +1673,9 @@ const GUIDE_HINTS_FOR_LINKS = {
   "compress-image": ["compress image", "image compressor", "reduce image"],
   "resize-image": ["resize image", "image resizer"],
   "convert-image": ["convert image", "JPG to PNG", "PNG to WebP"],
+  "crop-image": ["crop image", "square crop", "profile photo"],
+  "rotate-image": ["rotate image", "flip image", "sideways photo"],
+  "watermark-image": ["watermark image", "text watermark", "sample photo"],
   "merge-pdf": ["merge PDF"],
   "split-pdf": ["split PDF"],
   "pdf-page-numbers": ["page numbers"],
@@ -1697,7 +1799,7 @@ function freePdfToolsHtml() {
     {
       title: "No-upload conversion tools",
       text: "Use these when a photo, scan, existing PDF, or plain text note needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1762,7 +1864,7 @@ function pdfToolFinderHtml() {
         <td>${escapeHtml(row.why)}</td>
       </tr>`;
   }).join("\n");
-  const imageTools = ["compress-image", "resize-image", "convert-image", "image-to-pdf", "multi-image-pdf"];
+  const imageTools = ["compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "image-to-pdf", "multi-image-pdf"];
   const pdfEditTools = ["merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf"];
   const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"];
   const personalTools = ["resume-builder", "cover-letter", "resignation-letter", "certificate-generator", "todo-list", "packing-list", "monthly-calendar", "meal-planner", "sign-in-sheet", "graph-paper"];
@@ -1844,6 +1946,9 @@ function directorySubmissionHtml() {
     "compress-image",
     "resize-image",
     "convert-image",
+    "crop-image",
+    "rotate-image",
+    "watermark-image",
     "merge-pdf",
     "split-pdf",
     "watermark-pdf",
@@ -1864,7 +1969,7 @@ function directorySubmissionHtml() {
     ["Category", "Files, Productivity, PDF Tools, Document Tools, Small Business Tools"],
     ["Pricing", "Free"],
     ["Tagline", "Free no-signup browser PDF and image tools"],
-    ["Short description", "Create practical PDFs and image files in the browser, including image compression, image resizing, image format conversion, image-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, resumes, certificates, and printable tools."],
+    ["Short description", "Create practical PDFs and image files in the browser, including image compression, resizing, cropping, rotation, watermarking, image-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, resumes, certificates, and printable tools."],
   ];
   return `
       <section class="shell page-title section">
@@ -1951,7 +2056,8 @@ function landingPageHtml(page) {
 }
 
 function softwareSchema(tool) {
-  const isImageTool = tool.path === "tools/compress-image" || tool.path === "tools/resize-image" || tool.path === "tools/convert-image";
+  const imageToolPaths = new Set(["tools/compress-image", "tools/resize-image", "tools/convert-image", "tools/crop-image", "tools/rotate-image", "tools/watermark-image"]);
+  const isImageTool = imageToolPaths.has(tool.path);
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -2343,6 +2449,66 @@ function toolDetails(tool) {
         { q: "Can I convert WebP to JPG?", a: "Yes, when the browser can load the WebP file." },
         { q: "What happens to transparency in JPG?", a: "JPG does not support transparency, so choose a white or black background before export." },
         { q: "Are images uploaded?", a: "No. The format conversion runs in your browser." },
+      ],
+    },
+    "crop-image": {
+      steps: [
+        "Open the image cropper and select one JPG, PNG, or WebP image.",
+        "Choose a crop shape such as square, wide, portrait, or banner.",
+        "Pick the focus area so the important part stays in frame.",
+        "Download the cropped copy and check it before uploading elsewhere.",
+      ],
+      privacy: "Selected image files are loaded into your browser and are not uploaded by the cropper.",
+      limit: "The free version crops one image at a time and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Profile photo", text: "Create a square avatar or profile image while keeping the face centered." },
+        { title: "Marketplace listing", text: "Crop product photos so the item fills the frame before resizing or compressing." },
+        { title: "Banner image", text: "Create a wide crop for thumbnails, listings, headers, and simple social graphics." },
+      ],
+      faq: [
+        { q: "Does this upload my image?", a: "No. The crop is calculated and exported in your browser." },
+        { q: "Can I crop to a square?", a: "Yes. Use the square preset for avatars, product photos, and profile images." },
+        { q: "Does it change the original file?", a: "No. It downloads a new cropped copy." },
+      ],
+    },
+    "rotate-image": {
+      steps: [
+        "Open the image rotator and select one image file.",
+        "Choose 90, 180, or 270 degree rotation.",
+        "Optionally flip the image horizontally or vertically.",
+        "Download the corrected image and confirm text and orientation look right.",
+      ],
+      privacy: "Selected image files are loaded into your browser and are not uploaded by the rotator.",
+      limit: "The free version rotates one image at a time and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Sideways photo", text: "Fix a phone image that opened in the wrong orientation." },
+        { title: "Scanned document photo", text: "Rotate a form or receipt image before turning it into a PDF." },
+        { title: "Mirrored image", text: "Flip an image when a scan, selfie, or screenshot needs correction." },
+      ],
+      faq: [
+        { q: "Can I flip an image too?", a: "Yes. Choose horizontal or vertical flip before export." },
+        { q: "Are images uploaded?", a: "No. The rotation runs in your browser." },
+        { q: "Will it edit the original file?", a: "No. It downloads a new rotated copy." },
+      ],
+    },
+    "watermark-image": {
+      steps: [
+        "Open the image watermark tool and select one image.",
+        "Enter short text such as SAMPLE, DRAFT, your name, or a project label.",
+        "Choose placement, size, opacity, and output format.",
+        "Download the watermarked copy and review readability before sharing.",
+      ],
+      privacy: "Selected image files are loaded into your browser and are not uploaded by the watermark tool.",
+      limit: "The free version watermarks one image at a time and uses the same daily generation limit as the other tools.",
+      useCases: [
+        { title: "Sample image", text: "Mark a preview or proof before sending it to a client or collaborator." },
+        { title: "Marketplace photo", text: "Add a simple visible label to product photos before posting or sharing." },
+        { title: "Draft social image", text: "Create a clearly marked draft image for review without opening a design app." },
+      ],
+      faq: [
+        { q: "Does a watermark protect copyright?", a: "It is only a visual mark. Keep original files and use proper platform or licensing tools when needed." },
+        { q: "Can I tile the watermark?", a: "Yes. Choose the diagonal tile placement for repeated text across the image." },
+        { q: "Are images uploaded?", a: "No. The watermark is applied in your browser." },
       ],
     },
     "multi-image-pdf": {

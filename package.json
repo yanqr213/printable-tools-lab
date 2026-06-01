@@ -8,6 +8,7 @@
     "build:github-pages": "node scripts/build-github-pages.cjs",
     "verify:seo": "node scripts/verify-seo.cjs",
     "configure:adsense": "node scripts/configure-adsense.cjs",
+    "configure:domain": "node scripts/configure-domain.cjs",
     "verify:adsense": "node scripts/verify-adsense.cjs",
     "test:ai": "node scripts/test-ai-ideas.cjs",
     "test:events": "node scripts/test-events.cjs",

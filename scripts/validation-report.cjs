@@ -46,6 +46,8 @@ function readLocalState() {
   const config = readText("site-config.js");
   const indexableRoutes = routes.filter((route) => route.index !== false).length;
   return {
+    siteUrl: siteBase,
+    customDomainConfigured: !/\.pages\.dev$/i.test(new URL(siteBase).hostname),
     toolCount: Array.isArray(toolsJson.tools) ? toolsJson.tools.length : 0,
     guideCount: Array.isArray(toolsJson.guides) ? toolsJson.guides.length : 0,
     landingPageCount: landingPages.length,
@@ -316,10 +318,10 @@ function evaluateGates(local, live, searchConsole, discovery) {
   const githubPagesSitemap = Array.isArray(searchConsole.githubPagesSitemaps?.sitemap) ? searchConsole.githubPagesSitemaps.sitemap[0] : null;
   const indexed = searchConsole.inspected.filter((item) => item.verdict === "PASS").length;
   const unknown = searchConsole.inspected.filter((item) => /unknown/i.test(item.coverageState || "")).length;
-  const productReady = local.toolCount >= 47
+  const productReady = local.toolCount >= 50
     && local.guideCount >= 82
-    && local.landingPageCount >= 35
-    && local.indexableRoutes >= 174
+    && local.landingPageCount >= 38
+    && local.indexableRoutes >= 180
     && local.sitemapLocCount >= local.indexableRoutes
     && Object.values(local.discoveryAssets).every(Boolean)
     && live.checks["/"]?.ok
@@ -327,6 +329,7 @@ function evaluateGates(local, live, searchConsole, discovery) {
     && live.checks["/api/metrics"]?.ok;
   const searchVisible = (performanceTotals.impressions || 0) > 0 || indexed > 0;
   const adsenseApplyReady = productReady
+    && local.customDomainConfigured
     && local.ads.publisherConfigured
     && searchVisible
     && !local.ads.enabled;
@@ -342,7 +345,7 @@ function evaluateGates(local, live, searchConsole, discovery) {
     review90Day: searchVisible && ((totals.download_pdf || 0) + (totals.download_file || 0)) > 0 && !local.ads.enabled,
     reasons: {
       productReady: productReady ? [`${local.toolCount} tools, ${local.guideCount} guides, ${local.landingPageCount} high-intent landing pages, sitemap, discovery assets, and live metrics are present.`] : missingProductReasons(local, live),
-      adsenseApplyReady: adsenseApplyReady ? ["Product is ready, Search Console has visibility, and a real publisher ID is configured."] : missingAdsenseReasons(local, searchConsole, searchVisible),
+      adsenseApplyReady: adsenseApplyReady ? ["Product is ready, a custom domain is configured, Search Console has visibility, and a real publisher ID is configured."] : missingAdsenseReasons(local, searchConsole, searchVisible),
       searchConsole: summarizeSearchConsoleReasons(searchConsole, sitemap, githubPagesSitemap, unknown, { mainSearchConsoleVerified, githubPagesSearchConsoleVerified }),
       externalDiscovery: summarizeDiscoveryReasons(discovery),
     },
@@ -351,10 +354,10 @@ function evaluateGates(local, live, searchConsole, discovery) {
 
 function missingProductReasons(local, live) {
   const reasons = [];
-  if (local.toolCount < 47) reasons.push(`Only ${local.toolCount} tools found; target is 47 or more.`);
+  if (local.toolCount < 50) reasons.push(`Only ${local.toolCount} tools found; target is 50 or more.`);
   if (local.guideCount < 82) reasons.push(`Only ${local.guideCount} guides found; target is 82 or more.`);
-  if (local.landingPageCount < 35) reasons.push(`Only ${local.landingPageCount} high-intent landing pages found; target is 35 or more.`);
-  if (local.indexableRoutes < 174) reasons.push(`Only ${local.indexableRoutes} indexable routes found; target is 174 or more.`);
+  if (local.landingPageCount < 38) reasons.push(`Only ${local.landingPageCount} high-intent landing pages found; target is 38 or more.`);
+  if (local.indexableRoutes < 180) reasons.push(`Only ${local.indexableRoutes} indexable routes found; target is 180 or more.`);
   if (local.sitemapLocCount < local.indexableRoutes) reasons.push("Sitemap has fewer URLs than the indexable route list.");
   for (const [name, ok] of Object.entries(local.discoveryAssets)) {
     if (!ok) reasons.push(`Missing discovery asset: ${name}.`);
@@ -367,6 +370,7 @@ function missingProductReasons(local, live) {
 
 function missingAdsenseReasons(local, searchConsole, searchVisible) {
   const reasons = [];
+  if (!local.customDomainConfigured) reasons.push("Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.");
   if (!local.ads.publisherConfigured) reasons.push("Real AdSense publisher ID is not configured, so ads remain disabled.");
   if (local.ads.enabled) reasons.push("Ads are already enabled; use verify:adsense and monitor placement quality.");
   if (!searchConsole.available) reasons.push("Search Console API data was unavailable during this run.");
@@ -418,7 +422,8 @@ function buildNextActions(gates, local, live, searchConsole, discovery) {
   if (!gates.productReady) actions.push("Fix product readiness failures before adding more tools.");
   if (!gates.searchVisible) actions.push("Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.");
   if (!discovery.github.discoveryRelease?.url) actions.push("Create or refresh the GitHub discovery release with high-intent tool links.");
-  if (!discovery.indexNow.singleUrlAccepted) actions.push("Fix IndexNow key verification or keep it documented as a non-Google fallback.");
+  if (!discovery.indexNow.keyFileReachable) actions.push("Fix IndexNow key verification or keep it documented as a non-Google fallback.");
+  if (!local.customDomainConfigured) actions.push("Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.");
   if (!local.ads.publisherConfigured) actions.push("When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.");
   if (local.ads.publisherConfigured && !local.ads.enabled && gates.searchVisible) actions.push("Apply/continue AdSense review, then enable ads only after approval and placement verification.");
   if (downloads < 100 && generations < 300) actions.push("Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.");
@@ -446,6 +451,7 @@ function renderValidationMarkdown(report) {
     `- Guide pages live in inventory: ${report.local.guideCount}.`,
     `- High-intent landing pages: ${report.local.landingPageCount}.`,
     `- Indexable routes: ${report.local.indexableRoutes}.`,
+    `- Custom domain configured: ${yesNo(report.local.customDomainConfigured)}.`,
     `- Live downloads: ${downloads}.`,
     `- Live generations: ${generations}.`,
     `- Search impressions: ${perf?.totals?.impressions || 0}.`,

@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T06:31:24.017Z",
+  "generatedAt": "2026-06-01T07:17:18.030Z",
   "positioning": "Free no-signup browser PDF and image tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -16,6 +16,9 @@
     "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
     "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
     "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
+    "https://printable-tools-lab.pages.dev/crop-image-no-upload/",
+    "https://printable-tools-lab.pages.dev/rotate-image-no-upload/",
+    "https://printable-tools-lab.pages.dev/watermark-image-no-upload/",
     "https://printable-tools-lab.pages.dev/compress-jpg-no-upload/",
     "https://printable-tools-lab.pages.dev/compress-png-no-upload/",
     "https://printable-tools-lab.pages.dev/resize-image-1080x1080/",
@@ -50,6 +53,9 @@
     "https://printable-tools-lab.pages.dev/tools/compress-image/",
     "https://printable-tools-lab.pages.dev/tools/resize-image/",
     "https://printable-tools-lab.pages.dev/tools/convert-image/",
+    "https://printable-tools-lab.pages.dev/tools/crop-image/",
+    "https://printable-tools-lab.pages.dev/tools/rotate-image/",
+    "https://printable-tools-lab.pages.dev/tools/watermark-image/",
     "https://printable-tools-lab.pages.dev/tools/merge-pdf/",
     "https://printable-tools-lab.pages.dev/tools/split-pdf/",
     "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/",
@@ -113,6 +119,24 @@
       "url": "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
       "intent": "convert image format, JPG to PNG, PNG to WebP, no upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/convert-image/"
+    },
+    {
+      "title": "Crop Image Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/crop-image-no-upload/",
+      "intent": "crop image online, square crop, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/crop-image/"
+    },
+    {
+      "title": "Rotate Image Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/rotate-image-no-upload/",
+      "intent": "rotate image online, flip image, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/rotate-image/"
+    },
+    {
+      "title": "Watermark Image Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/watermark-image-no-upload/",
+      "intent": "watermark image online, add text watermark, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/watermark-image/"
     },
     {
       "title": "Compress JPG Without Uploading",
