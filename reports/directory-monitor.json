@@ -1,0 +1,121 @@
+{
+  "generatedAt": "2026-06-01T02:46:48.981Z",
+  "site": "https://printable-tools-lab.pages.dev/",
+  "listedCount": 0,
+  "pendingCount": 4,
+  "errorCount": 0,
+  "results": [
+    {
+      "name": "Zearches",
+      "url": "https://zearches.com/",
+      "searchUrl": "https://zearches.com/?s=PrintableTools+Lab",
+      "expected": [
+        "printable-tools-lab.pages.dev"
+      ],
+      "submittedAt": "2026-06-01",
+      "reviewWindow": "unknown",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://zearches.com/?s=PrintableTools+Lab",
+          "ok": true,
+          "status": 200,
+          "bytes": 117633,
+          "matched": true
+        },
+        {
+          "url": "https://zearches.com/",
+          "ok": true,
+          "status": 200,
+          "bytes": 117633,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "ListAi.cc",
+      "url": "https://listai.cc/",
+      "searchUrl": "https://listai.cc/?s=PrintableTools+Lab",
+      "expected": [
+        "printable-tools-lab.pages.dev"
+      ],
+      "submittedAt": "2026-06-01",
+      "reviewWindow": "24-48 hours",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://listai.cc/?s=PrintableTools+Lab",
+          "ok": true,
+          "status": 200,
+          "bytes": 318649,
+          "matched": false
+        },
+        {
+          "url": "https://listai.cc/",
+          "ok": true,
+          "status": 200,
+          "bytes": 318649,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools",
+      "url": "https://nosignuptools.com/",
+      "searchUrl": "https://nosignuptools.com/?q=PrintableTools+Lab",
+      "expected": [
+        "printable-tools-lab.pages.dev"
+      ],
+      "submittedAt": "2026-06-01",
+      "reviewWindow": "24-48 hours",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=PrintableTools+Lab",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "FreeNoSignup",
+      "url": "https://freenosignup.com/",
+      "searchUrl": "https://freenosignup.com/?s=PrintableTools+Lab",
+      "expected": [
+        "printable-tools-lab.pages.dev"
+      ],
+      "submittedAt": "2026-06-01",
+      "reviewWindow": "3-5 business days",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://freenosignup.com/?s=PrintableTools+Lab",
+          "ok": true,
+          "status": 200,
+          "bytes": 274060,
+          "matched": false
+        },
+        {
+          "url": "https://freenosignup.com/",
+          "ok": true,
+          "status": 200,
+          "bytes": 274000,
+          "matched": false
+        }
+      ]
+    }
+  ]
+}

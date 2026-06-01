@@ -340,7 +340,7 @@ Current directory queue:
 - Zearches: completed one free homepage submission to `Resources, Tools & Directories`; result was `status=ok`.
 - ListAi.cc: submitted `PrintableTools Lab` through the free no-account form under `Productivity`; the page returned `Submission Received` and says approved tools are published within 24-48 hours. Do not resubmit unless the listing is rejected or material product positioning changes.
 - NoSignupTools: submitted `PrintableTools Lab` on `2026-06-01` under `Files` with app icon and product screenshot; icon upload, screenshot upload, and `/api/submit` all returned `200`. Awaiting human review, typically 24-48 hours.
-- FreeNoSignup: submitted `PrintableTools Lab` on `2026-06-01` through the embedded Google Form. The form confirmation displayed `Your response has been recorded` (`您的回复已记录`). Awaiting manual review, typically 3-5 business days.
+- FreeNoSignup: submitted `PrintableTools Lab` on `2026-06-01` through the embedded Google Form. The form displayed the confirmation `Your response has been recorded`. Awaiting manual review, typically 3-5 business days.
 - DeepLaunch: candidate for a free tool listing. The public submit page says free submissions are reviewed within 48 hours, but the actual flow redirects to sign-in after image upload, so it requires an authenticated Google/GitHub session.
 - BootstrapArena: candidate for a normal free startup listing. The public page exposes a `Normal Free` option, but browser validation did not reveal a no-login form.
 - Product Hunt: defer until indexing or a visible usage milestone; it is a launch surface, not an indexing shortcut.
@@ -368,6 +368,12 @@ Inspect sample URLs:
 
 ```powershell
 npm.cmd run search-console -- inspect
+```
+
+Monitor directory approvals:
+
+```powershell
+npm.cmd run monitor:directories
 ```
 
 Notify participating engines through IndexNow:
