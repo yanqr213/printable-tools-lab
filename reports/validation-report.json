@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T20:17:25.714Z",
+  "generatedAt": "2026-06-01T20:18:59.367Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -51,14 +51,14 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 25752,
+        "bytes": 12103,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 28143,
+        "bytes": 28245,
         "json": null
       },
       "/robots.txt": {
@@ -81,7 +81,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 30098,
+        "bytes": 30243,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for"
       },
@@ -89,7 +89,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 58643,
+        "bytes": 59110,
         "json": null
       },
       "/tools.json": {
@@ -101,7 +101,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T19:57:27.509Z",
+          "generatedAt": "2026-06-01T20:13:25.534Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -983,19 +983,21 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 26865,
+        "bytes": 27246,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T19:57:27.509Z",
+          "generatedAt": "2026-06-01T20:13:25.534Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
           "opensearch": "https://printable-tools-lab.pages.dev/opensearch.xml",
+          "shareKit": "https://printable-tools-lab.pages.dev/share-kit.json",
           "highIntentEntryPoints": [
             "https://printable-tools-lab.pages.dev/free-pdf-tools/",
             "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
             "https://printable-tools-lab.pages.dev/submit-directory/",
+            "https://printable-tools-lab.pages.dev/share-kit/",
             "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
             "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
@@ -1108,6 +1110,11 @@
             "https://printable-tools-lab.pages.dev/tools/todo-list/",
             "https://printable-tools-lab.pages.dev/tools/graph-paper/"
           ],
+          "distributionAssets": {
+            "shareKit": "https://printable-tools-lab.pages.dev/share-kit/",
+            "shareKitJson": "https://printable-tools-lab.pages.dev/share-kit.json",
+            "distributionPack": "https://printable-tools-lab.pages.dev/DISTRIBUTION.md"
+          },
           "landingPages": [
             {
               "title": "Free Invoice Generator Without Signup",
@@ -1492,9 +1499,109 @@
       "/share-kit.json": {
         "ok": true,
         "status": 200,
-        "contentType": "text/html; charset=utf-8",
-        "bytes": 25752,
-        "json": null
+        "contentType": "application/json; charset=utf-8",
+        "bytes": 5907,
+        "json": {
+          "name": "PrintableTools Lab Share Kit",
+          "generatedAt": "2026-06-01T20:13:25.534Z",
+          "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
+          "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
+          "featuredLinks": [
+            {
+              "title": "Compress PDF to 1MB",
+              "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb?utm_source=share-kit&utm_medium=organic",
+              "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb/",
+              "reason": "Urgent upload-limit search for job, school, email, and portal PDFs."
+            },
+            {
+              "title": "Compress PDF to 500KB",
+              "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb?utm_source=share-kit&utm_medium=organic",
+              "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/",
+              "reason": "Strict form and government-style upload limit intent."
+            },
+            {
+              "title": "Compress image to 100KB",
+              "url": "https://printable-tools-lab.pages.dev/compress-image-to-100kb?utm_source=share-kit&utm_medium=organic",
+              "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
+              "reason": "Common profile, exam, job, and form image-size limit."
+            },
+            {
+              "title": "Compress image to 50KB",
+              "url": "https://printable-tools-lab.pages.dev/compress-image-to-50kb?utm_source=share-kit&utm_medium=organic",
+              "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-image-to-50kb/",
+              "reason": "Severe image upload limit for small photos and documents."
+            },
+            {
+              "title": "PDF to JPG without upload",
+              "url": "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload?utm_source=share-kit&utm_medium=organic",
+              "canonicalUrl": "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/",
+              "reason": "Works when a form accepts image files but rejects PDF."
+            },
+            {
+              "title": "Remove background without upload",
+              "url": "https://printable-tools-lab.pages.dev/remove-background-no-upload?utm_source=share-kit&utm_medium=organic",
+              "canonicalUrl": "https://printable-tools-lab.pages.dev/remove-background-no-upload/",
+              "reason": "Simple transparent PNG workflow for product photos, logos, and signatures."
+            },
+            {
+              "title": "Free QR code generator",
+              "url": "https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup?utm_source=share-kit&utm_medium=organic",
+              "canonicalUrl": "https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/",
+              "reason": "Fast static QR code for signs, menus, flyers, and labels."
+            },
+            {
+              "title": "Free invoice generator",
+              "url": "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup?utm_source=share-kit&utm_medium=organic",
+              "canonicalUrl": "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
+              "reason": "Small-business PDF document with no signup and no hidden export fee."
+            }
+          ],
+          "posts": [
+            {
+              "channel": "short-video",
+              "title": "Upload limit fix: PDF under 1MB",
+              "hook": "Portal says your PDF must be under 1MB?",
+              "body": "Open the no-upload PDF compressor, choose the 1MB target, select your PDF, and download a smaller copy from the browser. It works best for scans and image-heavy PDFs.",
+              "cta": "Try the free 1MB PDF compressor",
+              "linkPath": "compress-pdf-to-1mb",
+              "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb?utm_source=short-video&utm_medium=organic"
+            },
+            {
+              "channel": "short-video",
+              "title": "Image under 100KB",
+              "hook": "Job form rejecting your photo because it is over 100KB?",
+              "body": "Use the local image-to-KB compressor, pick 100KB, and download a smaller JPG or WebP without uploading the original photo.",
+              "cta": "Compress an image to 100KB",
+              "linkPath": "compress-image-to-100kb",
+              "url": "https://printable-tools-lab.pages.dev/compress-image-to-100kb?utm_source=short-video&utm_medium=organic"
+            },
+            {
+              "channel": "community",
+              "title": "No-upload file utility pack",
+              "hook": "I made a free no-signup file utility site for common upload blockers.",
+              "body": "It handles PDF compression targets, image-to-KB targets, PDF-to-JPG, image resizing, QR codes, invoices, labels, and small business PDFs in the browser. Downloads are free during validation and not gated behind ad clicks.",
+              "cta": "Useful feedback is which tool solved a real blocked-upload moment.",
+              "linkPath": "free-pdf-tools",
+              "url": "https://printable-tools-lab.pages.dev/free-pdf-tools?utm_source=community&utm_medium=organic"
+            },
+            {
+              "channel": "directory",
+              "title": "Directory listing blurb",
+              "hook": "Free browser PDF, image, and QR tools without signup.",
+              "body": "PrintableTools Lab helps users create and edit practical files locally: compress PDFs to target sizes, compress images to KB limits, convert PDF pages to JPG, resize and convert images, make static QR codes, and generate invoices, receipts, labels, business cards, and other everyday PDFs.",
+              "cta": "List as a free productivity and file utility tool.",
+              "linkPath": "submit-directory",
+              "url": "https://printable-tools-lab.pages.dev/submit-directory?utm_source=directory&utm_medium=organic"
+            }
+          ],
+          "rules": [
+            "Post only where free tools or file utilities are relevant to the community.",
+            "Do not ask for ad clicks, ad views, upvotes, or artificial engagement.",
+            "Do not claim guaranteed compression results; say the tool tries toward a target and users should review the output.",
+            "Do not post private documents, IDs, payment details, or user files in examples.",
+            "Use UTM source labels so the live metrics can separate directory, community, video, and social tests."
+          ]
+        }
       },
       "/site.webmanifest": {
         "ok": true,
@@ -2439,11 +2546,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         }
       ]
@@ -2452,7 +2559,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T20:02:26.611Z",
+          "lastSubmitted": "2026-06-01T20:18:11.014Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
