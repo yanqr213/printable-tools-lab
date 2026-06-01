@@ -2,7 +2,7 @@ const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pa
 
 const SITE_SUMMARY = {
   name: "PrintableTools Lab",
-  description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, static QR code tools, and text-data converters for compressing images, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, static QR code tools, and text-data converters for compressing images, compressing images to target KB sizes, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   audience: "Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, household planners, cafe operators, booth exhibitors, rental hosts, and office admins.",
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
@@ -11,6 +11,7 @@ const HIGH_INTENT_TOOL_PATHS = [
   "tools/image-to-pdf",
   "tools/multi-image-pdf",
   "tools/compress-image",
+  "tools/compress-image-to-kb",
   "tools/resize-image",
   "tools/convert-image",
   "tools/crop-image",
@@ -65,6 +66,11 @@ const TOOL_FINDER_ROWS = [
     need: "I need to make an image file smaller",
     toolPath: "tools/compress-image",
     why: "Best for reducing a JPG, PNG, or WebP file before uploading it to a form, email, marketplace, or profile.",
+  },
+  {
+    need: "I need to compress an image to 100KB, 200KB, or another upload limit",
+    toolPath: "tools/compress-image-to-kb",
+    why: "Best when a form, portal, exam site, or job application has a strict KB file-size limit.",
   },
   {
     need: "I need to resize an image to exact dimensions",
@@ -313,6 +319,21 @@ const landingPages = [
       ["Best fit", "Use it for profile pictures, marketplace listings, support tickets, form uploads, email attachments, screenshots, and document photos."],
     ],
     relatedTools: ["tools/resize-image", "tools/convert-image", "tools/image-to-pdf"],
+  },
+  {
+    path: "compress-image-to-100kb",
+    title: "Compress Image to 100KB Without Uploading",
+    description: "Compress a JPG, PNG, or WebP image toward 100KB locally for forms, portals, profiles, and upload limits.",
+    headline: "Compress image to 100KB without uploading",
+    lead: "Choose an image, select the 100KB target, and download a smaller JPG or WebP copy from your browser. This is for the common moment when a form, exam portal, job application, or profile page rejects a file as too large.",
+    primaryTool: "tools/compress-image-to-kb",
+    intent: "compress image to 100KB, reduce image size, no upload",
+    sections: [
+      ["Why this is high intent", "A user searching for a specific KB target usually has a blocked upload and wants a smaller file immediately, not a design app or account signup."],
+      ["Local target-size workflow", "The tool tries several quality and width combinations in the browser and picks the smallest acceptable result it can produce for the selected target."],
+      ["Quality tradeoff", "Very small targets can blur text, faces, IDs, or product details. Always open the downloaded image before submitting it elsewhere."],
+    ],
+    relatedTools: ["tools/compress-image-to-kb", "tools/compress-image", "tools/resize-image"],
   },
   {
     path: "resize-image-no-upload",
@@ -1172,6 +1193,15 @@ const tools = [
     ],
   },
   {
+    path: "tools/compress-image-to-kb",
+    title: "Compress Image to KB",
+    description: "Compress an image toward a target KB size locally for upload limits, forms, profiles, and portals.",
+    body: [
+      "Choose a JPG, PNG, or WebP image, pick a target such as 50KB, 100KB, 200KB, or 500KB, and download a smaller JPG or WebP copy.",
+      "Target-KB searches are strong ad-supported utility intent because users usually arrive after a portal, exam site, job application, or profile upload rejects their file.",
+    ],
+  },
+  {
     path: "tools/resize-image",
     title: "Resize Image Online",
     description: "Resize a JPG, PNG, or WebP image locally by width, height, or common social sizes without uploading it.",
@@ -1486,6 +1516,7 @@ const guides = [
   ["guides/jpg-to-pdf-without-uploading", "JPG to PDF without uploading", "Make a PDF from a JPG file in the browser when you do not want to send the image to a conversion server.", "Photos of receipts, IDs, forms, and school documents can contain private information. A local converter is a safer first choice because the image is drawn into a PDF on your device."],
   ["guides/multiple-images-to-pdf-without-uploading", "Multiple images to PDF without uploading", "Combine several JPG, PNG, or WebP images into one multi-page PDF in the browser.", "Multi-image PDF conversion is useful for receipts, homework pages, forms, screenshots, and photo scans that need to be submitted together. A browser-side workflow avoids sending those files to a conversion server."],
   ["guides/compress-image-without-uploading", "Compress image without uploading", "Reduce JPG, PNG, or WebP file size in the browser before uploading elsewhere.", "Image compression searches often happen after a form rejects a file as too large. A no-upload workflow lets the user make a smaller copy locally before trying again."],
+  ["guides/compress-image-to-100kb-without-uploading", "Compress image to 100KB without uploading", "Reduce a JPG, PNG, or WebP image toward a 100KB upload limit locally in the browser.", "Many forms, portals, job applications, exam sites, and profile pages reject images above a fixed KB size. A target-size compressor helps create a smaller copy without uploading the source image."],
   ["guides/resize-image-without-uploading", "Resize image without uploading", "Change image width, height, or preset size locally in the browser.", "Image resizing is useful for profile photos, thumbnails, marketplace listings, ID forms, and school portals that require exact dimensions."],
   ["guides/convert-image-format-without-uploading", "Convert image format without uploading", "Convert JPG, PNG, and WebP files locally when a website requires a different image format.", "A format converter solves a common mismatch: the image looks fine, but the receiving site accepts only JPG, PNG, or WebP."],
   ["guides/merge-pdf-without-uploading", "Merge PDF without uploading", "Combine several PDF files into one PDF locally in your browser.", "People often need one combined PDF for applications, school packets, receipts, or client documents. A browser-side merge avoids sending private files to a converter server."],
@@ -1561,6 +1592,8 @@ const keywordClusters = [
       ["Multiple images to PDF without uploading", "multiple-images-to-pdf-no-upload"],
       ["Compress image", "tools/compress-image"],
       ["Compress image without uploading", "compress-image-no-upload"],
+      ["Compress image to KB", "tools/compress-image-to-kb"],
+      ["Compress image to 100KB", "compress-image-to-100kb"],
       ["Resize image", "tools/resize-image"],
       ["Resize image without uploading", "resize-image-no-upload"],
       ["Convert image format", "tools/convert-image"],
@@ -1733,8 +1766,9 @@ const pages = [
           <li><a href="/tools/monthly-calendar/">Monthly Calendar Generator</a></li>
           <li><a href="/tools/meal-planner/">Meal Planner Generator</a></li>
           <li><a href="/tools/image-to-pdf/">Image to PDF Converter</a></li>
-        <li><a href="/tools/multi-image-pdf/">Multiple Images to PDF Converter</a></li>
+          <li><a href="/tools/multi-image-pdf/">Multiple Images to PDF Converter</a></li>
           <li><a href="/tools/compress-image/">Compress Image Online</a></li>
+          <li><a href="/tools/compress-image-to-kb/">Compress Image to KB</a></li>
           <li><a href="/tools/resize-image/">Resize Image Online</a></li>
           <li><a href="/tools/convert-image/">Convert Image Format</a></li>
           <li><a href="/tools/crop-image/">Crop Image Online</a></li>
@@ -1872,6 +1906,7 @@ const GUIDE_HINTS_FOR_LINKS = {
   "image-to-pdf": ["image to PDF", "JPG to PDF"],
   "multi-image-pdf": ["multiple images", "image to PDF"],
   "compress-image": ["compress image", "image compressor", "reduce image"],
+  "compress-image-to-kb": ["compress image to KB", "100KB image"],
   "resize-image": ["resize image", "image resizer"],
   "convert-image": ["convert image", "JPG to PNG", "PNG to WebP"],
   "crop-image": ["crop image", "square crop", "profile photo"],
@@ -2006,7 +2041,7 @@ function freePdfToolsHtml() {
     {
       title: "No-upload conversion tools",
       text: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -2071,7 +2106,7 @@ function pdfToolFinderHtml() {
         <td>${escapeHtml(row.why)}</td>
       </tr>`;
   }).join("\n");
-  const imageTools = ["compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "image-to-pdf", "multi-image-pdf", "qr-code", "wifi-qr-code", "vcard-qr-code"];
+  const imageTools = ["compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "image-to-pdf", "multi-image-pdf", "qr-code", "wifi-qr-code", "vcard-qr-code"];
   const pdfEditTools = ["merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf"];
   const textDataTools = ["text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"];
   const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"];
@@ -2161,6 +2196,7 @@ function directorySubmissionHtml() {
     "image-to-pdf",
     "multi-image-pdf",
     "compress-image",
+    "compress-image-to-kb",
     "resize-image",
     "convert-image",
     "crop-image",
@@ -2279,7 +2315,7 @@ function landingPageHtml(page) {
 }
 
 function softwareSchema(tool) {
-  const imageToolPaths = new Set(["tools/compress-image", "tools/resize-image", "tools/convert-image", "tools/crop-image", "tools/rotate-image", "tools/watermark-image"]);
+  const imageToolPaths = new Set(["tools/compress-image", "tools/compress-image-to-kb", "tools/resize-image", "tools/convert-image", "tools/crop-image", "tools/rotate-image", "tools/watermark-image"]);
   const qrToolPaths = new Set(["tools/qr-code", "tools/wifi-qr-code", "tools/vcard-qr-code"]);
   const isImageTool = imageToolPaths.has(tool.path);
   const isQrTool = qrToolPaths.has(tool.path);
@@ -2634,6 +2670,26 @@ function toolDetails(tool) {
         { q: "Are images uploaded?", a: "No. The selected image is processed locally in your browser." },
         { q: "Which format should I choose?", a: "JPG is usually best for photos, WebP is often smaller for web use, and PNG is useful for sharp graphics." },
         { q: "Will it always be smaller?", a: "Usually, but PNG output can be larger than JPG or WebP depending on the image content." },
+      ],
+    },
+    "compress-image-to-kb": {
+      steps: [
+        "Open the image to KB compressor and select one JPG, PNG, or WebP image.",
+        "Choose a target such as 50KB, 100KB, 200KB, 500KB, or a custom KB value.",
+        "Review the preview, estimated file size, and whether the target was met.",
+        "Download the smaller image and open it before submitting it to the destination portal.",
+      ],
+      privacy: "Selected image files are loaded into your browser and are not uploaded by the target-size compressor.",
+      limit: "The free version processes one image at a time. Extremely small KB targets may require lower quality or smaller dimensions and may not be visually acceptable.",
+      useCases: [
+        { title: "100KB upload limit", text: "Make a smaller image when a form, profile, exam portal, or application rejects files over 100KB." },
+        { title: "Job application", text: "Reduce a headshot, ID-style photo, or document image before uploading to a job portal." },
+        { title: "School or exam portal", text: "Create a smaller copy for strict online forms without sending the original image to another site." },
+      ],
+      faq: [
+        { q: "Can it always hit 100KB?", a: "Not always. The tool tries several quality and size combinations and shows the closest result if the target would make the image too small or blurry." },
+        { q: "Are images uploaded?", a: "No. Target-size compression runs locally in your browser." },
+        { q: "Which format should I use?", a: "JPG is a safe default for photos. WebP can be smaller when the destination site accepts it." },
       ],
     },
     "resize-image": {

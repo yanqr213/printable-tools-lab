@@ -173,6 +173,7 @@ async function probeCloudflare() {
     zones: [],
     pagesProjectFound: false,
     pagesDomains: [],
+    registrarCandidate: null,
     blocker: "",
   };
   if (!state.available) {
@@ -189,6 +190,20 @@ async function probeCloudflare() {
     state.pagesDomains = Array.isArray(domains.result)
       ? domains.result.map((domain) => ({ name: domain.name, status: domain.status || "" }))
       : [];
+    const checked = await cloudflare(`/accounts/${encodeURIComponent(accountId)}/registrar/domain-check`, token, {
+      method: "POST",
+      body: JSON.stringify({ domains: ["printabletoolslab.com"] }),
+    });
+    const candidate = Array.isArray(checked.result?.domains) ? checked.result.domains[0] : null;
+    if (candidate) {
+      state.registrarCandidate = {
+        name: candidate.name || "printabletoolslab.com",
+        registrable: Boolean(candidate.registrable),
+        tier: candidate.tier || "",
+        pricing: candidate.pricing || null,
+        reason: candidate.reason || "",
+      };
+    }
     if (!state.zones.length) {
       state.blocker = "Cloudflare account has no DNS zone/domain, so a real custom domain cannot be attached automatically yet.";
       report.blockers.push(state.blocker);
@@ -237,11 +252,13 @@ async function probeAdsense() {
   return state;
 }
 
-async function cloudflare(pathname, token) {
+async function cloudflare(pathname, token, options = {}) {
   const response = await fetch(`https://api.cloudflare.com/client/v4${pathname}`, {
+    ...options,
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
+      ...(options.headers || {}),
     },
   });
   const payload = await response.json().catch(() => ({}));

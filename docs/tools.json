@@ -4,7 +4,7 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-06-01T11:19:58.366Z",
+  "generatedAt": "2026-06-01T12:05:26.338Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -25,6 +25,11 @@
       "title": "Compress Image Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
       "intent": "compress image online, reduce image size, no upload"
+    },
+    {
+      "title": "Compress Image to 100KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
+      "intent": "compress image to 100KB, reduce image size, no upload"
     },
     {
       "title": "Resize Image Without Uploading",
@@ -242,6 +247,11 @@
       "title": "Compress Image Online",
       "description": "Compress JPG, PNG, or WebP images locally in your browser without uploading files.",
       "url": "https://printable-tools-lab.pages.dev/tools/compress-image/"
+    },
+    {
+      "title": "Compress Image to KB",
+      "description": "Compress an image toward a target KB size locally for upload limits, forms, profiles, and portals.",
+      "url": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/"
     },
     {
       "title": "Resize Image Online",

@@ -42,12 +42,14 @@ Use one Google account for Search Console, Analytics, and AdSense.
 
 Use a real domain before applying broadly to ad networks. The current `pages.dev` URL is fine for zero-cost validation, but a custom domain is better for trust, Search Console history, brand recall, and ad-network review.
 
-1. Buy a short `.com` domain or another mainstream TLD.
-2. Add it to Cloudflare DNS.
-3. Attach it to the existing Cloudflare Pages project manually, or run `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` with `npm.cmd run configure:domain -- --domain your-domain.com` to request the Pages custom-domain binding automatically.
-4. Set `PUBLIC_SITE_URL` to the custom domain or run `npm.cmd run configure:domain -- --domain your-domain.com`, then rerun `npm.cmd run build:routes`.
-5. Verify the custom domain in Search Console and submit its sitemap.
-6. Keep redirects/canonicals consistent before applying for ads.
+1. Preferred domain: `printabletoolslab.com`.
+2. The Cloudflare Registrar API can check availability and pricing. Run `npm.cmd run register:domain` to write `reports/domain-report.json`.
+3. Register only a standard, non-premium domain under the configured price cap. Run `npm.cmd run register:domain -- --register` after the Cloudflare account has a default registrant contact and valid payment method.
+4. Add it to Cloudflare DNS if the registration flow does not create the zone automatically.
+5. Attach it to the existing Cloudflare Pages project manually, or run `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` with `npm.cmd run configure:domain -- --domain your-domain.com` to request the Pages custom-domain binding automatically.
+6. Set `PUBLIC_SITE_URL` to the custom domain or run `npm.cmd run configure:domain -- --domain your-domain.com`, then rerun `npm.cmd run build:routes`.
+7. Verify the custom domain in Search Console and submit its sitemap.
+8. Keep redirects/canonicals consistent before applying for ads.
 
 ### Google APIs
 
@@ -363,6 +365,7 @@ Create one image or short post per item. Show the printable use case and never p
 79. Free QR code generator without signup.
 80. WiFi QR code sign for guest networks.
 81. Contact QR code generator for vCard details.
+82. Compress image to 100KB or another strict upload limit.
 
 ## Weekly Operating Loop
 
@@ -400,6 +403,7 @@ Current Search Console checkpoint:
 - `2026-06-01`: advertising strategy updated: keep AdSense as the first mainstream network, add Microsoft pubCenter as a fallback after a custom domain, and avoid high-risk forced-view or download-gated ad networks. A custom domain is now treated as an ad-review prerequisite.
 - `2026-06-01`: expanded to 53 tools and 41 high-intent landing pages by adding local static QR Code, WiFi QR Code, and Contact/vCard QR Code generators. This broadens the same free utility site into urgent QR searches where many competitors push account walls, dynamic-code upsells, or paid exports.
 - `2026-06-01`: expanded to 56 tools, 85 guides, and 44 high-intent landing pages by adding local Markdown-to-PDF, CSV-to-PDF, and JSON-to-PDF converters. This keeps the same no-upload free utility positioning while testing broader work, student, admin, and developer file-conversion searches that can earn ad impressions without sales calls.
+- `2026-06-01`: expanded to 57 tools, 86 guides, and 45 high-intent landing pages by adding a local Compress Image to KB workflow and a 100KB-focused landing page. This targets urgent upload-limit searches where competitors often force uploads, accounts, or paid download friction.
 - `2026-06-01`: AdSense Management API was enabled on the Google Cloud project through Service Usage API. A service-account probe to `adsense.googleapis.com/v2/accounts` returned no AdSense accounts, so the service account is not currently an AdSense account user. The official AdSense ad-unit creation API is also a restricted method, so publisher/ad-slot creation cannot be completed silently from the current service-account credentials.
 - `2026-06-01`: GitHub Pages discovery directory was verified as its own Search Console URL-prefix property and its sitemap was submitted through the Search Console API. This creates a second crawlable discovery surface that still points back to the same main site.
 - `2026-06-01`: added `npm.cmd run operate` as the unattended operating loop. It rebuilds, verifies, submits sitemaps, checks directories, probes Cloudflare/AdSense readiness, and smoke-tests every tool while recording unavoidable account-level blockers.

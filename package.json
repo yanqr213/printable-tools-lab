@@ -9,6 +9,7 @@
     "verify:seo": "node scripts/verify-seo.cjs",
     "configure:adsense": "node scripts/configure-adsense.cjs",
     "configure:domain": "node scripts/configure-domain.cjs",
+    "register:domain": "node scripts/register-domain.cjs",
     "verify:adsense": "node scripts/verify-adsense.cjs",
     "test:ai": "node scripts/test-ai-ideas.cjs",
     "test:events": "node scripts/test-events.cjs",

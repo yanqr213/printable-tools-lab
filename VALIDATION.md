@@ -1,26 +1,26 @@
 # Validation Gates
 
-Last generated: 2026-06-01T11:29:45.854Z
+Last generated: 2026-06-01T11:51:11.538Z
 
 ## Current Automated Status
 
 - Product ready: yes.
-- Tools live in inventory: 56.
-- Guide pages live in inventory: 85.
-- High-intent landing pages: 44.
-- Indexable routes: 195.
+- Tools live in inventory: 57.
+- Guide pages live in inventory: 86.
+- High-intent landing pages: 45.
+- Indexable routes: 198.
 - Custom domain configured: no.
 - Live downloads: 1.
 - Live generations: 0.
 - Search impressions: 0.
 - Search clicks: 0.
-- External discovery ready: yes.
+- External discovery ready: no.
 - Ads enabled: no.
 - AdSense apply-ready: no.
 
 ## Product Gate
 
-- 56 tools, 85 guides, 44 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
+- 57 tools, 86 guides, 45 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
 
 ## Search Console Gate
 
@@ -37,7 +37,7 @@ Last generated: 2026-06-01T11:29:45.854Z
 
 ## External Discovery Gate
 
-- GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.
+- GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.
 - GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.
 - GitHub Pages discovery directory is live with 44 landing page link(s).
 - GitHub Pages discovery sitemap has 45 URL(s).

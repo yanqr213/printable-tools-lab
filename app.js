@@ -589,6 +589,35 @@
       draw: drawImageCompressor,
       exportFile: exportCompressedImage,
     },
+    "compress-image-to-kb": {
+      id: "compress-image-to-kb",
+      icon: "KB",
+      title: "Compress Image to KB",
+      shortTitle: "Image to KB",
+      description: "Compress an image toward a target KB size locally for upload limits, forms, profiles, and portals.",
+      keywords: ["compress image to KB", "reduce image size to 100KB", "image size reducer", "no upload"],
+      ai: false,
+      acceptsImages: true,
+      maxImages: 1,
+      outputKind: "image",
+      defaultValues: {
+        title: "Image to KB",
+        images: "",
+        targetKb: "200",
+        customKb: "",
+        maxWidth: "1600",
+        format: "jpeg",
+      },
+      fields: [
+        { id: "images", label: "Image", type: "file", accept: "image/png,image/jpeg,image/webp", multiple: false, help: "Select one image. It stays in your browser and is not uploaded." },
+        { id: "targetKb", label: "Target file size", type: "select", options: [["50", "Under 50 KB"], ["100", "Under 100 KB"], ["200", "Under 200 KB"], ["500", "Under 500 KB"], ["custom", "Custom KB"]] },
+        { id: "customKb", label: "Custom KB", type: "text", maxLength: 4, help: "Used when Target file size is Custom. Very small targets can make images blurry." },
+        { id: "maxWidth", label: "Maximum width", type: "select", options: [["640", "640 px"], ["800", "800 px"], ["1200", "1200 px"], ["1600", "1600 px"], ["original", "Keep original width"]] },
+        { id: "format", label: "Output format", type: "select", options: [["jpeg", "JPG"], ["webp", "WebP"]] },
+      ],
+      draw: drawImageToKb,
+      exportFile: exportImageToKb,
+    },
     "resize-image": {
       id: "resize-image",
       icon: "RSZ",
@@ -1571,6 +1600,8 @@
         ["Multiple images to PDF without uploading", "/multiple-images-to-pdf-no-upload/"],
         ["Compress image", "/tools/compress-image/"],
         ["Compress image without uploading", "/compress-image-no-upload/"],
+        ["Compress image to KB", "/tools/compress-image-to-kb/"],
+        ["Compress image to 100KB", "/compress-image-to-100kb/"],
         ["Resize image", "/tools/resize-image/"],
         ["Resize image without uploading", "/resize-image-no-upload/"],
         ["Convert image format", "/tools/convert-image/"],
@@ -1673,7 +1704,7 @@
     {
       title: "No-upload conversion tools",
       description: "Use these when a photo, scan, QR code, existing PDF, plain text, Markdown, CSV, or JSON snippet needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
+      links: ["image-to-pdf", "multi-image-pdf", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1752,6 +1783,21 @@
         ["Best fit", "Use it for profile pictures, marketplace photos, form uploads, support tickets, email attachments, screenshots, and document photos."],
       ],
       related: ["resize-image", "convert-image", "image-to-pdf"],
+    },
+    {
+      slug: "compress-image-to-100kb",
+      title: "Compress Image to 100KB Without Uploading",
+      headline: "Compress image to 100KB without uploading",
+      description: "Compress a JPG, PNG, or WebP image toward 100KB locally for forms, portals, profiles, and upload limits.",
+      lead: "Choose an image, select the 100KB target, and download a smaller JPG or WebP copy from your browser. This is for the common moment when a form, exam portal, job application, or profile page rejects a file as too large.",
+      tool: "compress-image-to-kb",
+      intent: "compress image to 100KB, reduce image size, no upload",
+      sections: [
+        ["Why this is high intent", "A user searching for a specific KB target usually has a blocked upload and wants a smaller file immediately, not a design app or account signup."],
+        ["Local target-size workflow", "The tool tries several quality and width combinations in the browser and picks the smallest acceptable result it can produce for the selected target."],
+        ["Quality tradeoff", "Very small targets can blur text, faces, IDs, or product details. Always open the downloaded image before submitting it elsewhere."],
+      ],
+      related: ["compress-image-to-kb", "compress-image", "resize-image"],
     },
     {
       slug: "resize-image-no-upload",
@@ -2372,6 +2418,11 @@
       need: "Make an image file smaller",
       tool: "compress-image",
       why: "Best for reducing a JPG, PNG, or WebP before uploading it to a form, email, marketplace, or profile.",
+    },
+    {
+      need: "Compress an image to 100KB, 200KB, or another upload limit",
+      tool: "compress-image-to-kb",
+      why: "Best when a portal, form, exam site, or job application has a strict KB file-size limit.",
     },
     {
       need: "Resize an image to exact dimensions",
@@ -3323,6 +3374,18 @@
       ],
     },
     {
+      slug: "compress-image-to-100kb-without-uploading",
+      title: "Compress image to 100KB without uploading",
+      description: "Reduce a JPG, PNG, or WebP image toward a 100KB upload limit locally in the browser.",
+      tool: "compress-image-to-kb",
+      content: [
+        ["h2", "For strict upload limits"],
+        ["p", "Many forms, portals, job applications, exam sites, and profile pages reject images above a fixed KB size. A target-size compressor helps create a smaller copy without uploading the source image."],
+        ["h2", "Check quality before submitting"],
+        ["p", "The smaller the target, the more quality can drop. Open the downloaded file and confirm faces, text, IDs, or product details are still readable."],
+      ],
+    },
+    {
       slug: "resize-image-without-uploading",
       title: "Resize image without uploading",
       description: "Change image width, height, or preset size locally in the browser.",
@@ -3634,6 +3697,7 @@
     "image-to-pdf",
     "multi-image-pdf",
     "compress-image",
+    "compress-image-to-kb",
     "resize-image",
     "convert-image",
     "crop-image",
@@ -4457,6 +4521,7 @@
 
   function imageToolActionLabel(tool) {
     if (tool.id === "compress-image") return "Compress image";
+    if (tool.id === "compress-image-to-kb") return "Compress to KB";
     if (tool.id === "resize-image") return "Resize image";
     if (tool.id === "convert-image") return "Convert image";
     if (tool.id === "crop-image") return "Crop image";
@@ -6233,6 +6298,30 @@
     });
   }
 
+  function drawImageToKb(ctx, paper, values) {
+    drawImageUtilityPreview(ctx, paper, values, {
+      toolId: "compress-image-to-kb",
+      title: "Compress Image to KB",
+      accent: "#2563eb",
+      empty: "Select an image to compress to a KB target",
+      note: "Reduce an image toward a specific upload limit without sending it to a server.",
+      previewCanvas: (image) => {
+        const result = compressImageToTarget(image, values);
+        return result.canvas;
+      },
+      statLines: (image) => {
+        const result = compressImageToTarget(image, values);
+        return [
+          `${image.width} x ${image.height} px original`,
+          `${result.width} x ${result.height} px export`,
+          `${formatBytes(result.size)} estimated file size`,
+          `${result.metTarget ? "Target met" : "Closest local result"}: ${targetKbLabel(values)}`,
+        ];
+      },
+      footer: "Image compressed locally toward a KB target. Review quality before uploading elsewhere.",
+    });
+  }
+
   function drawImageResizer(ctx, paper, values) {
     drawImageUtilityPreview(ctx, paper, values, {
       toolId: "resize-image",
@@ -6363,6 +6452,13 @@
     return { blob, filename: `${fileBaseName(image.name)}-compressed.${imageExtension(values.format)}` };
   }
 
+  function exportImageToKb(values) {
+    const image = getSelectedImageOrThrow("compress-image-to-kb");
+    const result = compressImageToTarget(image, values);
+    const blob = dataUrlToBlob(result.dataUrl);
+    return { blob, filename: `${fileBaseName(image.name)}-${targetKbValue(values)}kb.${imageExtension(values.format)}` };
+  }
+
   function exportResizedImage(values) {
     const image = getSelectedImageOrThrow("resize-image");
     const plan = resizePlan(image, values);
@@ -6404,6 +6500,50 @@
     const images = imageToolState.get(toolId) || [];
     if (!images.length) throw new Error("Select an image before downloading.");
     return images[0];
+  }
+
+  function compressImageToTarget(image, values) {
+    const targetBytes = targetKbValue(values) * 1024;
+    const format = values.format === "webp" ? "webp" : "jpeg";
+    const mime = imageMimeType(format);
+    const originalW = Math.max(1, Number(image.width || image.image?.naturalWidth || image.image?.width || 1));
+    const originalH = Math.max(1, Number(image.height || image.image?.naturalHeight || image.image?.height || 1));
+    const maxWidth = values.maxWidth === "original" ? originalW : clampNumber(Number(values.maxWidth || originalW), 240, 6000);
+    const baseScale = Math.min(1, maxWidth / originalW);
+    const widthScales = [1, 0.92, 0.82, 0.72, 0.62, 0.52, 0.42, 0.34].map((scale) => scale * baseScale);
+    const qualities = [0.9, 0.82, 0.74, 0.66, 0.58, 0.5, 0.42, 0.34, 0.26];
+    let best = null;
+    for (const widthScale of widthScales) {
+      const width = Math.max(64, Math.round(originalW * widthScale));
+      const height = Math.max(64, Math.round(originalH * widthScale));
+      const canvas = renderImageToCanvas(image.image, width, height, "contain", "#ffffff");
+      for (const quality of qualities) {
+        const dataUrl = canvas.toDataURL(mime, quality);
+        const size = dataUrlByteSize(dataUrl);
+        const candidate = { canvas, dataUrl, size, width, height, quality, metTarget: size <= targetBytes };
+        if (candidate.metTarget) {
+          if (!best || !best.metTarget || candidate.size > best.size) best = candidate;
+        } else if (!best || (!best.metTarget && candidate.size < best.size)) {
+          best = candidate;
+        }
+      }
+      if (best?.metTarget) break;
+    }
+    return best;
+  }
+
+  function targetKbValue(values) {
+    if (values.targetKb === "custom") return clampNumber(Number(String(values.customKb || "").replace(/\D/g, "")) || 200, 10, 5000);
+    return clampNumber(Number(values.targetKb || 200), 10, 5000);
+  }
+
+  function targetKbLabel(values) {
+    return `${targetKbValue(values)} KB`;
+  }
+
+  function dataUrlByteSize(dataUrl) {
+    const base64 = String(dataUrl || "").split(",")[1] || "";
+    return Math.floor(base64.length * 3 / 4);
   }
 
   function imageTransformPlan(image, options) {

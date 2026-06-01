@@ -1,0 +1,88 @@
+{
+  "generatedAt": "2026-06-01T12:03:58.106Z",
+  "preferredDomain": "printabletoolslab.com",
+  "maxRegistrationUsd": 15,
+  "registerRequested": true,
+  "attachRequested": true,
+  "selectedDomain": "printabletoolslab.com",
+  "candidates": [
+    {
+      "name": "printabletoolslab.com",
+      "registrable": true,
+      "tier": "standard",
+      "pricing": {
+        "currency": "USD",
+        "registration_cost": "10.46",
+        "renewal_cost": "10.46"
+      }
+    },
+    {
+      "name": "printabletools-lab.com",
+      "registrable": true,
+      "tier": "standard",
+      "pricing": {
+        "currency": "USD",
+        "registration_cost": "10.46",
+        "renewal_cost": "10.46"
+      }
+    },
+    {
+      "name": "freefiletoolslab.com",
+      "registrable": true,
+      "tier": "standard",
+      "pricing": {
+        "currency": "USD",
+        "registration_cost": "10.46",
+        "renewal_cost": "10.46"
+      }
+    },
+    {
+      "name": "browserfiletools.com",
+      "registrable": true,
+      "tier": "standard",
+      "pricing": {
+        "currency": "USD",
+        "registration_cost": "10.46",
+        "renewal_cost": "10.46"
+      }
+    },
+    {
+      "name": "browserfilelab.com",
+      "registrable": true,
+      "tier": "standard",
+      "pricing": {
+        "currency": "USD",
+        "registration_cost": "10.46",
+        "renewal_cost": "10.46"
+      }
+    },
+    {
+      "name": "freepdfimagetools.com",
+      "registrable": true,
+      "tier": "standard",
+      "pricing": {
+        "currency": "USD",
+        "registration_cost": "10.46",
+        "renewal_cost": "10.46"
+      }
+    },
+    {
+      "name": "pdfimage.tools",
+      "registrable": true,
+      "tier": "standard",
+      "pricing": {
+        "currency": "USD",
+        "registration_cost": "28.20",
+        "renewal_cost": "28.20"
+      }
+    }
+  ],
+  "registrationAttempt": {
+    "status": "failed",
+    "domain": "printabletoolslab.com",
+    "error": "No registrant contact provided and no default address book entry found for this account."
+  },
+  "attachAttempt": null,
+  "blocker": "Domain registration failed for printabletoolslab.com: No registrant contact provided and no default address book entry found for this account.",
+  "nextAction": "Add a default registrant contact and valid payment method in Cloudflare Registrar, then rerun this script with --register."
+}

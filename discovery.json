@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T11:19:58.283Z",
+  "generatedAt": "2026-06-01T12:05:26.257Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -14,6 +14,7 @@
     "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
+    "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
     "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
     "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
     "https://printable-tools-lab.pages.dev/crop-image-no-upload/",
@@ -57,6 +58,7 @@
     "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
     "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
     "https://printable-tools-lab.pages.dev/tools/compress-image/",
+    "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/",
     "https://printable-tools-lab.pages.dev/tools/resize-image/",
     "https://printable-tools-lab.pages.dev/tools/convert-image/",
     "https://printable-tools-lab.pages.dev/tools/crop-image/",
@@ -119,6 +121,12 @@
       "url": "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
       "intent": "compress image online, reduce image size, no upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/compress-image/"
+    },
+    {
+      "title": "Compress Image to 100KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
+      "intent": "compress image to 100KB, reduce image size, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/"
     },
     {
       "title": "Resize Image Without Uploading",

@@ -33,6 +33,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - PDF, image, and QR tool finder: https://printable-tools-lab.pages.dev/pdf-tool-finder/
 - Directory submission pack: https://printable-tools-lab.pages.dev/submit-directory/
 - Compress image without upload page: https://printable-tools-lab.pages.dev/compress-image-no-upload/
+- Compress image to 100KB page: https://printable-tools-lab.pages.dev/compress-image-to-100kb/
 - Resize image without upload page: https://printable-tools-lab.pages.dev/resize-image-no-upload/
 - Convert image format without upload page: https://printable-tools-lab.pages.dev/convert-image-format-no-upload/
 - Crop image without upload page: https://printable-tools-lab.pages.dev/crop-image-no-upload/
@@ -55,6 +56,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - No-signup resume page: https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/
 - Multiple Images to PDF Without Uploading: https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/
 - Compress Image Without Uploading: https://printable-tools-lab.pages.dev/compress-image-no-upload/
+- Compress Image to 100KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-100kb/
 - Resize Image Without Uploading: https://printable-tools-lab.pages.dev/resize-image-no-upload/
 - Convert Image Format Without Uploading: https://printable-tools-lab.pages.dev/convert-image-format-no-upload/
 - Crop Image Without Uploading: https://printable-tools-lab.pages.dev/crop-image-no-upload/
@@ -97,6 +99,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Image to PDF Converter: https://printable-tools-lab.pages.dev/tools/image-to-pdf/
 - Multiple Images to PDF Converter: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/
 - Compress Image Online: https://printable-tools-lab.pages.dev/tools/compress-image/
+- Compress Image to KB: https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/
 - Resize Image Online: https://printable-tools-lab.pages.dev/tools/resize-image/
 - Convert Image Format: https://printable-tools-lab.pages.dev/tools/convert-image/
 - Crop Image Online: https://printable-tools-lab.pages.dev/tools/crop-image/
