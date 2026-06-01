@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T00:07:46.906Z",
+  "generatedAt": "2026-06-01T00:11:39.824Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 32,
@@ -34,21 +34,21 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 11846,
+        "bytes": 13733,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 18220,
+        "bytes": 21383,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 11700,
+        "bytes": 14703,
         "json": null
       },
       "/robots.txt": {
@@ -71,27 +71,27 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 13359,
+        "bytes": 15632,
         "json": null,
-        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, co"
+        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, labels, business cards,"
       },
       "/feed.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 16152,
+        "bytes": 21852,
         "json": null
       },
       "/tools.json": {
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 22529,
+        "bytes": 27799,
         "json": {
           "name": "PrintableTools Lab",
-          "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+          "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-05-31T23:01:18.254Z",
+          "generatedAt": "2026-06-01T00:03:23.764Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -157,6 +157,42 @@
               "title": "Rent Receipt Generator",
               "url": "https://printable-tools-lab.pages.dev/tools/rent-receipt/",
               "description": "Make a free printable rent receipt PDF for a tenant payment, room rental, cash payment record, or landlord file.",
+              "category": "Business paperwork"
+            },
+            {
+              "title": "Business Card Generator",
+              "url": "https://printable-tools-lab.pages.dev/tools/business-card/",
+              "description": "Create a printable business card PDF sheet for a small business, side project, local service, or event contact card.",
+              "category": "Business paperwork"
+            },
+            {
+              "title": "Address Label Generator",
+              "url": "https://printable-tools-lab.pages.dev/tools/address-labels/",
+              "description": "Make a printable sheet of return address labels, mailing labels, classroom labels, or event badge labels.",
+              "category": "Business paperwork"
+            },
+            {
+              "title": "Price Tag Generator",
+              "url": "https://printable-tools-lab.pages.dev/tools/price-tag/",
+              "description": "Create printable price tags or shelf labels for yard sales, craft fairs, pop-up shops, and small retail displays.",
+              "category": "Business paperwork"
+            },
+            {
+              "title": "Flyer Maker PDF",
+              "url": "https://printable-tools-lab.pages.dev/tools/flyer-maker/",
+              "description": "Make a one-page printable flyer PDF for a local service, yard sale, class, community event, or small business offer.",
+              "category": "Business paperwork"
+            },
+            {
+              "title": "Barcode Label Generator",
+              "url": "https://printable-tools-lab.pages.dev/tools/barcode-labels/",
+              "description": "Generate printable Code 39 barcode labels for inventory bins, event check-in, SKU stickers, and internal tracking.",
+              "category": "Business paperwork"
+            },
+            {
+              "title": "Coupon Maker PDF",
+              "url": "https://printable-tools-lab.pages.dev/tools/coupon-maker/",
+              "description": "Create printable coupon cards for a local service, class, pop-up event, small shop, or limited-time offer.",
               "category": "Business paperwork"
             },
             {
@@ -392,6 +428,66 @@
               "description": "Create a simple receipt PDF when rent is paid by cash, bank transfer, check, or another payment method."
             },
             {
+              "title": "Free printable business card generator",
+              "url": "https://printable-tools-lab.pages.dev/guides/free-business-card-generator-printable/",
+              "description": "Create printable business cards for a service, side business, class, event, or pop-up table."
+            },
+            {
+              "title": "Business card PDF for local services",
+              "url": "https://printable-tools-lab.pages.dev/guides/business-card-pdf-for-local-services/",
+              "description": "Make a practical contact card for notaries, tutors, cleaners, repair services, coaches, and small local businesses."
+            },
+            {
+              "title": "Free printable address label generator",
+              "url": "https://printable-tools-lab.pages.dev/guides/free-address-label-generator-printable/",
+              "description": "Create return address labels, mailing labels, classroom labels, bin labels, or badge labels as a PDF sheet."
+            },
+            {
+              "title": "Mailing label PDF template",
+              "url": "https://printable-tools-lab.pages.dev/guides/mailing-label-pdf-template/",
+              "description": "Use a printable mailing label sheet for small batches of envelopes, packages, folders, and event materials."
+            },
+            {
+              "title": "Free printable barcode label generator",
+              "url": "https://printable-tools-lab.pages.dev/guides/free-barcode-label-generator-printable/",
+              "description": "Generate Code 39 barcode labels for SKU stickers, inventory bins, event check-in, and internal tracking."
+            },
+            {
+              "title": "SKU label PDF template",
+              "url": "https://printable-tools-lab.pages.dev/guides/sku-label-pdf-template/",
+              "description": "Create a simple SKU label PDF for handmade products, market tables, storage bins, or internal inventory."
+            },
+            {
+              "title": "Free printable price tag generator",
+              "url": "https://printable-tools-lab.pages.dev/guides/free-price-tag-generator-printable/",
+              "description": "Make price tags and shelf labels for yard sales, craft fairs, pop-up shops, and small retail tables."
+            },
+            {
+              "title": "Yard sale price tags PDF",
+              "url": "https://printable-tools-lab.pages.dev/guides/yard-sale-price-tags-pdf/",
+              "description": "Create quick printable price tags for garage sales, estate sales, moving sales, and community markets."
+            },
+            {
+              "title": "Free flyer maker PDF without signup",
+              "url": "https://printable-tools-lab.pages.dev/guides/free-flyer-maker-pdf-no-signup/",
+              "description": "Make a one-page flyer PDF for a local service, yard sale, class, club, or community event."
+            },
+            {
+              "title": "Local service flyer PDF template",
+              "url": "https://printable-tools-lab.pages.dev/guides/local-service-flyer-pdf-template/",
+              "description": "Create a simple printable flyer for cleaning, tutoring, repair, notary, coaching, or neighborhood services."
+            },
+            {
+              "title": "Free printable coupon maker",
+              "url": "https://printable-tools-lab.pages.dev/guides/free-coupon-maker-printable/",
+              "description": "Create printable coupon cards for local services, pop-up shops, classes, events, and small offers."
+            },
+            {
+              "title": "Discount coupon PDF template",
+              "url": "https://printable-tools-lab.pages.dev/guides/discount-coupon-pdf-template/",
+              "description": "Make a coupon PDF sheet with offer text, coupon code, expiration note, and fine print."
+            },
+            {
               "title": "Free resume builder PDF",
               "url": "https://printable-tools-lab.pages.dev/guides/free-resume-builder-pdf/",
               "description": "Build a clean resume PDF without an account, paywall, or complicated design tool."
@@ -518,11 +614,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 4853,
+        "bytes": 7539,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-05-31T23:01:18.254Z",
+          "generatedAt": "2026-06-01T00:03:23.764Z",
           "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -538,12 +634,24 @@
             "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
             "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
             "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
+            "https://printable-tools-lab.pages.dev/free-business-card-generator-printable/",
+            "https://printable-tools-lab.pages.dev/free-address-label-generator-printable/",
+            "https://printable-tools-lab.pages.dev/free-barcode-label-generator-printable/",
+            "https://printable-tools-lab.pages.dev/free-price-tag-generator-printable/",
+            "https://printable-tools-lab.pages.dev/free-flyer-maker-pdf-no-signup/",
+            "https://printable-tools-lab.pages.dev/free-coupon-maker-printable/",
             "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
             "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
             "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
             "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
             "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
             "https://printable-tools-lab.pages.dev/tools/timesheet-generator/",
+            "https://printable-tools-lab.pages.dev/tools/business-card/",
+            "https://printable-tools-lab.pages.dev/tools/address-labels/",
+            "https://printable-tools-lab.pages.dev/tools/barcode-labels/",
+            "https://printable-tools-lab.pages.dev/tools/price-tag/",
+            "https://printable-tools-lab.pages.dev/tools/flyer-maker/",
+            "https://printable-tools-lab.pages.dev/tools/coupon-maker/",
             "https://printable-tools-lab.pages.dev/tools/resume-builder/",
             "https://printable-tools-lab.pages.dev/tools/certificate-generator/",
             "https://printable-tools-lab.pages.dev/tools/todo-list/",
@@ -597,6 +705,42 @@
               "url": "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
               "intent": "certificate PDF download without account",
               "tool": "https://printable-tools-lab.pages.dev/tools/certificate-generator/"
+            },
+            {
+              "title": "Free Printable Business Card Generator",
+              "url": "https://printable-tools-lab.pages.dev/free-business-card-generator-printable/",
+              "intent": "printable business cards now, no account, no design software",
+              "tool": "https://printable-tools-lab.pages.dev/tools/business-card/"
+            },
+            {
+              "title": "Free Printable Address Label Generator",
+              "url": "https://printable-tools-lab.pages.dev/free-address-label-generator-printable/",
+              "intent": "mailing label PDF, return address labels, no signup",
+              "tool": "https://printable-tools-lab.pages.dev/tools/address-labels/"
+            },
+            {
+              "title": "Free Printable Barcode Label Generator",
+              "url": "https://printable-tools-lab.pages.dev/free-barcode-label-generator-printable/",
+              "intent": "barcode label PDF, SKU labels, inventory stickers",
+              "tool": "https://printable-tools-lab.pages.dev/tools/barcode-labels/"
+            },
+            {
+              "title": "Free Printable Price Tag Generator",
+              "url": "https://printable-tools-lab.pages.dev/free-price-tag-generator-printable/",
+              "intent": "price tag PDF, shelf labels, yard sale tags",
+              "tool": "https://printable-tools-lab.pages.dev/tools/price-tag/"
+            },
+            {
+              "title": "Free Flyer Maker PDF Without Signup",
+              "url": "https://printable-tools-lab.pages.dev/free-flyer-maker-pdf-no-signup/",
+              "intent": "flyer PDF now, no signup, local event flyer",
+              "tool": "https://printable-tools-lab.pages.dev/tools/flyer-maker/"
+            },
+            {
+              "title": "Free Printable Coupon Maker",
+              "url": "https://printable-tools-lab.pages.dev/free-coupon-maker-printable/",
+              "intent": "printable coupon cards, discount coupon PDF, no signup",
+              "tool": "https://printable-tools-lab.pages.dev/tools/coupon-maker/"
             }
           ],
           "constraints": [
@@ -616,7 +760,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/manifest+json; charset=utf-8",
-        "bytes": 1376,
+        "bytes": 1445,
         "json": null
       },
       "/opensearch.xml": {
@@ -630,7 +774,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 2668,
+        "bytes": 3215,
         "json": {
           "ok": true,
           "today": "2026-06-01",
@@ -674,6 +818,48 @@
             },
             {
               "tool": "bill-of-sale",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "business-card",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "address-labels",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "price-tag",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "flyer-maker",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "barcode-labels",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "coupon-maker",
               "generate_pdf": 0,
               "download_pdf": 0,
               "limit_hit": 0,
@@ -885,28 +1071,28 @@
           "ai_ideas_apply": 0
         },
         {
-          "tool": "resume-builder",
+          "tool": "business-card",
           "generate_pdf": 0,
           "download_pdf": 0,
           "limit_hit": 0,
           "ai_ideas_apply": 0
         },
         {
-          "tool": "cover-letter",
+          "tool": "address-labels",
           "generate_pdf": 0,
           "download_pdf": 0,
           "limit_hit": 0,
           "ai_ideas_apply": 0
         },
         {
-          "tool": "resignation-letter",
+          "tool": "price-tag",
           "generate_pdf": 0,
           "download_pdf": 0,
           "limit_hit": 0,
           "ai_ideas_apply": 0
         },
         {
-          "tool": "monthly-calendar",
+          "tool": "flyer-maker",
           "generate_pdf": 0,
           "download_pdf": 0,
           "limit_hit": 0,
@@ -921,7 +1107,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-05-31T23:04:20.044Z",
+          "lastSubmitted": "2026-06-01T00:10:17.875Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -1002,8 +1188,8 @@
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 9,
-      "landingPagesLinked": 8,
+      "sitemapUrlCount": 15,
+      "landingPagesLinked": 14,
       "error": ""
     },
     "indexNow": {
@@ -1015,7 +1201,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": false
+    "externalDiscoveryReady": true
   },
   "gates": {
     "productReady": true,
@@ -1023,7 +1209,7 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": false,
+    "externalDiscoveryReady": true,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
@@ -1043,8 +1229,8 @@
       "externalDiscovery": [
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
-        "GitHub Pages discovery directory is live with 8 landing page link(s).",
-        "GitHub Pages discovery sitemap has 9 URL(s).",
+        "GitHub Pages discovery directory is live with 14 landing page link(s).",
+        "GitHub Pages discovery sitemap has 15 URL(s).",
         "IndexNow key file is reachable from the site root."
       ]
     }
