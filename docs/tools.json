@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-01T18:14:45.552Z",
+  "generatedAt": "2026-06-01T19:33:05.476Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -66,6 +66,24 @@
       "url": "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-image-to-100kb/",
       "intent": "compress image to 100KB, reduce image size, no upload"
+    },
+    {
+      "title": "Compress Image to 50KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-50kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-image-to-50kb/",
+      "intent": "compress image to 50KB, reduce photo size, no upload"
+    },
+    {
+      "title": "Compress Image to 200KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-200kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-image-to-200kb/",
+      "intent": "compress image to 200KB, image size reducer, no upload"
+    },
+    {
+      "title": "Compress Image to 500KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-500kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-image-to-500kb/",
+      "intent": "compress image to 500KB, reduce image file size, no upload"
     },
     {
       "title": "Resize Image Without Uploading",

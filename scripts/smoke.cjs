@@ -49,7 +49,10 @@ function delay(ms) {
     "/contact-qr-code-generator/",
     "/compress-jpg-no-upload/",
     "/compress-png-no-upload/",
+    "/compress-image-to-50kb/",
     "/compress-image-to-100kb/",
+    "/compress-image-to-200kb/",
+    "/compress-image-to-500kb/",
     "/resize-image-1080x1080/",
     "/resize-image-512x512/",
     "/png-to-jpg-no-upload/",
@@ -241,6 +244,16 @@ function delay(ms) {
   for (const href of ["/tools/compress-pdf/", "/tools/compress-image/", "/tools/compress-image-to-kb/", "/tools/resize-image/", "/tools/convert-image/", "/tools/remove-background/", "/tools/crop-image/", "/tools/rotate-image/", "/tools/watermark-image/", "/tools/add-text-image/", "/tools/signature-png/", "/tools/passport-photo/", "/tools/qr-code/", "/tools/wifi-qr-code/", "/tools/vcard-qr-code/", "/tools/image-to-pdf/", "/tools/pdf-to-images/", "/tools/pdf-to-text/", "/tools/pdf-to-word/", "/tools/merge-pdf/", "/tools/split-pdf/", "/tools/pdf-page-numbers/", "/tools/rotate-pdf/", "/tools/remove-pdf-pages/", "/tools/reorder-pdf-pages/", "/tools/watermark-pdf/", "/tools/stamp-pdf/", "/tools/sign-pdf/", "/tools/markdown-to-pdf/", "/tools/csv-to-pdf/", "/tools/json-to-pdf/", "/tools/receipt-generator/", "/tools/timesheet-generator/", "/tools/business-card/", "/tools/price-tag/", "/tools/packing-slip/", "/tools/work-order/", "/tools/inventory-sheet/"]) {
     const linkCount = await page.locator(`main a[href="${href}"]`).count();
     if (!linkCount) throw new Error(`PDF tool finder page is missing link ${href}`);
+  }
+
+  for (const targetKb of ["50", "100", "200", "500"]) {
+    await page.goto(`${base}/compress-image-to-${targetKb}kb/`, { waitUntil: "networkidle" });
+    const landingHref = `/tools/compress-image-to-kb/?targetKb=${targetKb}`;
+    const landingLinkCount = await page.locator(`main a[href="${landingHref}"]`).count();
+    if (!landingLinkCount) throw new Error(`Target-KB landing page is missing prefilled tool link ${landingHref}`);
+    await page.goto(`${base}${landingHref}`, { waitUntil: "networkidle" });
+    const selectedTarget = await page.locator("#targetKb").inputValue();
+    if (selectedTarget !== targetKb) throw new Error(`Target-KB tool did not preselect ${targetKb}KB, got ${selectedTarget}`);
   }
 
   await page.goto(`${base}/submit-directory/`, { waitUntil: "networkidle" });

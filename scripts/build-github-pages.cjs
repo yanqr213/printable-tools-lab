@@ -109,9 +109,9 @@ fs.writeFileSync(path.join(docsDir, "index.html"), html);
 for (const page of landingPages) {
   const pageDir = path.join(docsDir, page.path);
   fs.mkdirSync(pageDir, { recursive: true });
-  const primaryTool = tools.find((tool) => tool.path === page.primaryTool);
+  const primaryTool = tools.find((tool) => tool.path === cleanToolPath(page.primaryTool));
   const relatedTools = page.relatedTools
-    .map((toolPath) => tools.find((tool) => tool.path === toolPath))
+    .map((toolPath) => tools.find((tool) => tool.path === cleanToolPath(toolPath)))
     .filter(Boolean);
   fs.writeFileSync(path.join(pageDir, "index.html"), landingDiscoveryHtml(page, primaryTool, relatedTools));
 }
@@ -119,7 +119,7 @@ for (const tool of highIntentTools) {
   const toolDir = path.join(docsDir, ...tool.path.split("/"));
   fs.mkdirSync(toolDir, { recursive: true });
   const relatedLandingPages = landingPages
-    .filter((page) => page.primaryTool === tool.path || page.relatedTools.includes(tool.path))
+    .filter((page) => cleanToolPath(page.primaryTool) === tool.path || page.relatedTools.some((toolPath) => cleanToolPath(toolPath) === tool.path))
     .slice(0, 6);
   fs.writeFileSync(path.join(toolDir, "index.html"), toolDiscoveryHtml(tool, relatedLandingPages));
 }
@@ -177,6 +177,15 @@ function pagesUrl(routePath = "") {
   return cleanPath ? `${pagesBase}${cleanPath}/` : pagesBase;
 }
 
+function cleanToolPath(toolPath) {
+  return String(toolPath).split("?")[0];
+}
+
+function liveToolUrl(toolPath) {
+  const [pathname, query] = String(toolPath).split("?");
+  return `${siteUrl(pathname)}${query ? `?${query}` : ""}`;
+}
+
 function copyGoogleVerificationFiles() {
   const verificationFiles = fs.readdirSync(root)
     .filter((fileName) => /^google[a-zA-Z0-9_-]+(?:\.html)?$/.test(fileName));
@@ -219,7 +228,7 @@ function landingDiscoveryHtml(page, primaryTool, relatedTools) {
       <article class="card">
         <h3>${escapeHtml(primaryTool.title)}</h3>
         <p>${escapeHtml(primaryTool.description)}</p>
-        <a href="${siteUrl(primaryTool.path)}">Open ${escapeHtml(primaryTool.title)}</a>
+        <a href="${liveToolUrl(page.primaryTool)}">Open ${escapeHtml(primaryTool.title)}</a>
       </article>
       <h2>Intent match</h2>
       <p>${escapeHtml(page.intent)}. The live page is designed to route this search intent to a practical browser tool without account creation or an ad-click gate.</p>

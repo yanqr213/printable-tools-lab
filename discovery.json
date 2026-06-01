@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T18:14:45.463Z",
+  "generatedAt": "2026-06-01T19:33:05.386Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -20,6 +20,9 @@
     "https://printable-tools-lab.pages.dev/passport-photo-maker/",
     "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
     "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
+    "https://printable-tools-lab.pages.dev/compress-image-to-50kb/",
+    "https://printable-tools-lab.pages.dev/compress-image-to-200kb/",
+    "https://printable-tools-lab.pages.dev/compress-image-to-500kb/",
     "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
     "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
     "https://printable-tools-lab.pages.dev/remove-background-no-upload/",
@@ -174,7 +177,25 @@
       "title": "Compress Image to 100KB Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
       "intent": "compress image to 100KB, reduce image size, no upload",
-      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/"
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=100"
+    },
+    {
+      "title": "Compress Image to 50KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-50kb/",
+      "intent": "compress image to 50KB, reduce photo size, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=50"
+    },
+    {
+      "title": "Compress Image to 200KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-200kb/",
+      "intent": "compress image to 200KB, image size reducer, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=200"
+    },
+    {
+      "title": "Compress Image to 500KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-500kb/",
+      "intent": "compress image to 500KB, reduce image file size, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=500"
     },
     {
       "title": "Resize Image Without Uploading",

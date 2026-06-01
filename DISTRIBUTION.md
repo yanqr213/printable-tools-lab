@@ -70,6 +70,9 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Passport Photo Maker: https://printable-tools-lab.pages.dev/passport-photo-maker/
 - Compress Image Without Uploading: https://printable-tools-lab.pages.dev/compress-image-no-upload/
 - Compress Image to 100KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-100kb/
+- Compress Image to 50KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-50kb/
+- Compress Image to 200KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-200kb/
+- Compress Image to 500KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-500kb/
 - Resize Image Without Uploading: https://printable-tools-lab.pages.dev/resize-image-no-upload/
 - Convert Image Format Without Uploading: https://printable-tools-lab.pages.dev/convert-image-format-no-upload/
 - Remove Background Without Uploading: https://printable-tools-lab.pages.dev/remove-background-no-upload/

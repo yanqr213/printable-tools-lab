@@ -225,7 +225,7 @@ const discoveryIndex = {
     title: page.title,
     url: siteUrl(page.path),
     intent: page.intent,
-    tool: siteUrl(page.primaryTool),
+    tool: liveToolUrl(page.primaryTool),
   })),
   constraints: [
     "No account required.",
@@ -400,6 +400,11 @@ function categoryForTool(toolPath) {
 
 function fileUrl(fileName) {
   return siteUrl(fileName).replace(/\/$/, "");
+}
+
+function liveToolUrl(toolPath) {
+  const [pathname, query] = String(toolPath).split("?");
+  return `${siteUrl(pathname)}${query ? `?${query}` : ""}`;
 }
 
 function routeToFeedItem(route) {

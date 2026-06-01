@@ -102,6 +102,9 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Passport Photo Maker](https://printable-tools-lab.pages.dev/passport-photo-maker/): passport photo maker, 2x2 photo, 35x45 photo, no upload
 - [Compress Image Without Uploading](https://printable-tools-lab.pages.dev/compress-image-no-upload/): compress image online, reduce image size, no upload
 - [Compress Image to 100KB Without Uploading](https://printable-tools-lab.pages.dev/compress-image-to-100kb/): compress image to 100KB, reduce image size, no upload
+- [Compress Image to 50KB Without Uploading](https://printable-tools-lab.pages.dev/compress-image-to-50kb/): compress image to 50KB, reduce photo size, no upload
+- [Compress Image to 200KB Without Uploading](https://printable-tools-lab.pages.dev/compress-image-to-200kb/): compress image to 200KB, image size reducer, no upload
+- [Compress Image to 500KB Without Uploading](https://printable-tools-lab.pages.dev/compress-image-to-500kb/): compress image to 500KB, reduce image file size, no upload
 - [Resize Image Without Uploading](https://printable-tools-lab.pages.dev/resize-image-no-upload/): resize image online, change image dimensions, no upload
 - [Convert Image Format Without Uploading](https://printable-tools-lab.pages.dev/convert-image-format-no-upload/): convert image format, JPG to PNG, PNG to WebP, no upload
 - [Remove Background Without Uploading](https://printable-tools-lab.pages.dev/remove-background-no-upload/): remove background, transparent PNG, white background remover, no upload

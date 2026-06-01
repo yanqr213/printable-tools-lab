@@ -129,6 +129,19 @@ else {
   if (!data.tools.some((tool) => tool.url === siteUrl("tools/compress-image-to-kb"))) failures.push("tools.json missing image-to-KB URL.");
 }
 
+for (const pagePath of ["compress-image-to-50kb", "compress-image-to-100kb", "compress-image-to-200kb", "compress-image-to-500kb"]) {
+  const file = path.join(root, pagePath, "index.html");
+  if (!fs.existsSync(file)) {
+    failures.push(`Missing target-KB image landing page: ${pagePath}`);
+    continue;
+  }
+  const html = fs.readFileSync(file, "utf8");
+  const target = pagePath.match(/(\d+)kb/)?.[1] || "";
+  if (!html.includes(`Compress image to ${target}KB without uploading`)) failures.push(`Target-KB landing page missing headline: ${pagePath}`);
+  if (!html.includes(`/tools/compress-image-to-kb/?targetKb=${target}`)) failures.push(`Target-KB landing page missing prefilled tool link: ${pagePath}`);
+  if (!sitemap.includes(`<loc>${siteUrl(pagePath)}</loc>`)) failures.push(`Sitemap missing target-KB landing page: ${pagePath}`);
+}
+
 const freePdfToolsFile = path.join(root, "free-pdf-tools", "index.html");
 if (!fs.existsSync(freePdfToolsFile)) failures.push("Missing free PDF tools directory page.");
 else {
@@ -190,7 +203,7 @@ else {
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("tools/json-to-pdf"))) failures.push("discovery.json missing high-intent JSON-to-PDF route.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("submit-directory"))) failures.push("discovery.json missing directory submission pack.");
   if (discovery.feed !== siteUrl("feed.xml").replace(/\/$/, "")) failures.push("discovery.json missing RSS feed URL.");
-  if (!Array.isArray(discovery.landingPages) || discovery.landingPages.length < 54) failures.push("discovery.json missing high-intent landing pages.");
+  if (!Array.isArray(discovery.landingPages) || discovery.landingPages.length < 57) failures.push("discovery.json missing high-intent landing pages.");
   if (discovery.manifest !== siteUrl("site.webmanifest").replace(/\/$/, "")) failures.push("discovery.json missing manifest URL.");
   if (discovery.opensearch !== siteUrl("opensearch.xml").replace(/\/$/, "")) failures.push("discovery.json missing OpenSearch URL.");
 }
@@ -203,7 +216,7 @@ for (const page of landingPages) {
   }
   const html = fs.readFileSync(file, "utf8");
   if (!html.includes(page.headline)) failures.push(`Landing page missing headline: ${page.path}`);
-  if (!html.includes(`/${page.primaryTool}/`)) failures.push(`Landing page missing primary tool link: ${page.path}`);
+  if (!html.includes(`/${cleanToolPath(page.primaryTool)}/`)) failures.push(`Landing page missing primary tool link: ${page.path}`);
   if (!html.includes('"@type":"CollectionPage"')) failures.push(`Landing page missing CollectionPage schema: ${page.path}`);
   if (!sitemap.includes(`<loc>${siteUrl(page.path)}</loc>`)) failures.push(`Sitemap missing landing page: ${page.path}`);
 }
@@ -255,7 +268,7 @@ for (const page of landingPages) {
   const html = fs.readFileSync(file, "utf8");
   if (!html.includes(page.headline)) failures.push(`GitHub Pages landing page missing headline: ${page.path}`);
   if (!html.includes(siteUrl(page.path))) failures.push(`GitHub Pages landing page missing live landing URL: ${page.path}`);
-  if (!html.includes(siteUrl(page.primaryTool))) failures.push(`GitHub Pages landing page missing primary tool URL: ${page.path}`);
+  if (!html.includes(liveToolUrl(page.primaryTool))) failures.push(`GitHub Pages landing page missing primary tool URL: ${page.path}`);
 }
 
 for (const toolPath of HIGH_INTENT_TOOL_PATHS) {
@@ -299,4 +312,13 @@ function escapeAttr(value) {
 function countMatches(value, pattern) {
   const match = String(value).match(pattern);
   return match ? match.length : 0;
+}
+
+function cleanToolPath(toolPath) {
+  return String(toolPath).split("?")[0];
+}
+
+function liveToolUrl(toolPath) {
+  const [pathname, query] = String(toolPath).split("?");
+  return `${siteUrl(pathname)}${query ? `?${query}` : ""}`;
 }

@@ -1851,7 +1851,10 @@
         ["Compress image", "/tools/compress-image/"],
         ["Compress image without uploading", "/compress-image-no-upload/"],
         ["Compress image to KB", "/tools/compress-image-to-kb/"],
+        ["Compress image to 50KB", "/compress-image-to-50kb/"],
         ["Compress image to 100KB", "/compress-image-to-100kb/"],
+        ["Compress image to 200KB", "/compress-image-to-200kb/"],
+        ["Compress image to 500KB", "/compress-image-to-500kb/"],
         ["Resize image", "/tools/resize-image/"],
         ["Resize image without uploading", "/resize-image-no-upload/"],
         ["Convert image format", "/tools/convert-image/"],
@@ -2112,11 +2115,60 @@
       description: "Compress a JPG, PNG, or WebP image toward 100KB locally for forms, portals, profiles, and upload limits.",
       lead: "Choose an image, select the 100KB target, and download a smaller JPG or WebP copy from your browser. This is for the common moment when a form, exam portal, job application, or profile page rejects a file as too large.",
       tool: "compress-image-to-kb",
+      toolQuery: "targetKb=100",
       intent: "compress image to 100KB, reduce image size, no upload",
       sections: [
         ["Why this is high intent", "A user searching for a specific KB target usually has a blocked upload and wants a smaller file immediately, not a design app or account signup."],
         ["Local target-size workflow", "The tool tries several quality and width combinations in the browser and picks the smallest acceptable result it can produce for the selected target."],
         ["Quality tradeoff", "Very small targets can blur text, faces, IDs, or product details. Always open the downloaded image before submitting it elsewhere."],
+      ],
+      related: ["compress-image-to-kb", "compress-image", "resize-image"],
+    },
+    {
+      slug: "compress-image-to-50kb",
+      title: "Compress Image to 50KB Without Uploading",
+      headline: "Compress image to 50KB without uploading",
+      description: "Compress a JPG, PNG, or WebP image toward 50KB locally for strict upload limits, small profile photos, and form portals.",
+      lead: "Choose an image, use the 50KB target, and download the smallest usable JPG or WebP copy your browser can create. This page is for strict upload limits where a profile, exam, school, visa-style, or admin form rejects anything larger.",
+      tool: "compress-image-to-kb",
+      toolQuery: "targetKb=50",
+      intent: "compress image to 50KB, reduce photo size, no upload",
+      sections: [
+        ["Why this is urgent", "A 50KB image limit usually appears after a user has already tried to upload a photo and been blocked. That makes the search intent immediate and practical."],
+        ["Local target-size workflow", "The compressor runs in the browser, tries smaller dimensions and compression levels, and downloads a new file without uploading the source image."],
+        ["Quality tradeoff", "50KB can be severe for faces, IDs, product details, or screenshots. Review the downloaded file before submitting it to a portal."],
+      ],
+      related: ["compress-image-to-kb", "compress-image", "resize-image"],
+    },
+    {
+      slug: "compress-image-to-200kb",
+      title: "Compress Image to 200KB Without Uploading",
+      headline: "Compress image to 200KB without uploading",
+      description: "Compress a JPG, PNG, or WebP image toward 200KB locally for job, school, profile, and marketplace upload limits.",
+      lead: "Choose an image, use the 200KB target, and download a smaller JPG or WebP copy from your browser. This target is common when an upload form allows more clarity than 50KB or 100KB but still blocks large phone photos.",
+      tool: "compress-image-to-kb",
+      toolQuery: "targetKb=200",
+      intent: "compress image to 200KB, image size reducer, no upload",
+      sections: [
+        ["Why this page exists", "Specific KB searches often come from blocked uploads, not casual browsing. A 200KB target is useful for profile photos, marketplace images, job portals, school forms, and support screenshots."],
+        ["Local target-size workflow", "The tool attempts several quality and width combinations locally, then exports the closest matching image it can produce."],
+        ["Before uploading elsewhere", "Open the result and confirm important details still look clear enough for the destination site."],
+      ],
+      related: ["compress-image-to-kb", "compress-image", "resize-image"],
+    },
+    {
+      slug: "compress-image-to-500kb",
+      title: "Compress Image to 500KB Without Uploading",
+      headline: "Compress image to 500KB without uploading",
+      description: "Compress a JPG, PNG, or WebP image toward 500KB locally while preserving more clarity for forms, listings, and email attachments.",
+      lead: "Choose an image, use the 500KB target, and download a smaller copy without sending the file to a server. This target is useful when the receiving site allows a moderate file size and readability matters.",
+      tool: "compress-image-to-kb",
+      toolQuery: "targetKb=500",
+      intent: "compress image to 500KB, reduce image file size, no upload",
+      sections: [
+        ["Better quality target", "500KB is often a friendlier limit for product images, document photos, support screenshots, and email attachments because it can preserve more detail than tiny KB targets."],
+        ["Local target-size workflow", "The browser re-encodes the image and tries size reductions locally before exporting a new JPG or WebP file."],
+        ["Review the output", "Even at 500KB, compression can change sharpness or color. Open the file before sending, printing, or submitting it."],
       ],
       related: ["compress-image-to-kb", "compress-image", "resize-image"],
     },
@@ -4696,7 +4748,7 @@
         <a href="/free-pdf-tools/">Free file tools</a>
         <h1>${escapeHtml(page.headline)}</h1>
         <p>${escapeHtml(page.lead)}</p>
-        <p><a class="button" href="/tools/${tool.id}/">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> <a class="button secondary" href="/pdf-tool-finder/">Compare tools</a></p>
+        <p><a class="button" href="${toolUrl(page)}">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> <a class="button secondary" href="/pdf-tool-finder/">Compare tools</a></p>
       </section>
       <section class="shell section">
         <h2>Why this matches the search</h2>
@@ -4716,6 +4768,10 @@
         <div class="grid-3">${related.map(toolCard).join("")}</div>
       </section>
     `;
+  }
+
+  function toolUrl(page) {
+    return `/tools/${page.tool}/${page.toolQuery ? `?${page.toolQuery}` : ""}`;
   }
 
   function guideCard(guide) {
@@ -4921,6 +4977,7 @@
 
   function renderPdfUtilityTool(tool) {
     const count = getDailyCount();
+    const initialValues = initialToolValues(tool);
     app.innerHTML = `
       <section class="shell tool-header">
         <a href="/tools/">Back to all tools</a>
@@ -4934,7 +4991,7 @@
             <span class="counter" id="limitCounter">${SITE.dailyLimit - count} free left today</span>
           </div>
           <form id="generatorForm" class="form-grid">
-            ${tool.fields.map((field) => renderField(field, tool.defaultValues[field.id])).join("")}
+            ${tool.fields.map((field) => renderField(field, initialValues[field.id])).join("")}
             <div class="actions">
               <button class="button" type="submit">${escapeHtml(pdfToolActionLabel(tool))}</button>
               <button class="button secondary" type="button" id="refreshPreview">Refresh file preview</button>
@@ -4970,6 +5027,7 @@
 
   function renderImageUtilityTool(tool) {
     const count = getDailyCount();
+    const initialValues = initialToolValues(tool);
     app.innerHTML = `
       <section class="shell tool-header">
         <a href="/tools/">Back to all tools</a>
@@ -4983,7 +5041,7 @@
             <span class="counter" id="limitCounter">${SITE.dailyLimit - count} free left today</span>
           </div>
           <form id="generatorForm" class="form-grid">
-            ${tool.fields.map((field) => renderField(field, tool.defaultValues[field.id])).join("")}
+            ${tool.fields.map((field) => renderField(field, initialValues[field.id])).join("")}
             <div class="actions">
               <button class="button" type="submit">${escapeHtml(imageToolActionLabel(tool))}</button>
               <button class="button secondary" type="button" id="refreshPreview">Refresh preview</button>
@@ -6079,6 +6137,20 @@ ${paragraphs.join("\n")}
     for (const [key, value] of data.entries()) {
       if (value instanceof File) continue;
       values[key] = value;
+    }
+    return values;
+  }
+
+  function initialToolValues(tool) {
+    const values = { ...tool.defaultValues };
+    if (tool.id === "compress-image-to-kb") {
+      const params = new URLSearchParams(window.location.search || "");
+      const targetKb = params.get("targetKb");
+      if (["50", "100", "200", "500"].includes(targetKb)) values.targetKb = targetKb;
+      else if (targetKb && /^\d{1,4}$/.test(targetKb)) {
+        values.targetKb = "custom";
+        values.customKb = targetKb;
+      }
     }
     return values;
   }

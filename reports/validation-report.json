@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-01T18:31:49.078Z",
+  "generatedAt": "2026-06-01T19:38:14.812Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
     "customDomainConfigured": false,
     "toolCount": 66,
     "guideCount": 95,
-    "landingPageCount": 54,
-    "indexableRoutes": 225,
-    "sitemapLocCount": 225,
-    "generatedToolInventoryAt": "2026-06-01T18:14:45.463Z",
+    "landingPageCount": 57,
+    "indexableRoutes": 228,
+    "sitemapLocCount": 228,
+    "generatedToolInventoryAt": "2026-06-01T19:33:05.386Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -2375,11 +2375,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         }
       ]
@@ -2493,7 +2493,7 @@
       "landingPagesLinked": 54,
       "toolPagesLinked": 50,
       "toolPagesInSitemap": 50,
-      "expectedUrlCount": 105,
+      "expectedUrlCount": 108,
       "error": ""
     },
     "indexNow": {
@@ -2505,7 +2505,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": true
+    "externalDiscoveryReady": false
   },
   "gates": {
     "productReady": true,
@@ -2513,13 +2513,13 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": true,
+    "externalDiscoveryReady": false,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "66 tools, 95 guides, 54 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "66 tools, 95 guides, 57 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
@@ -2538,7 +2538,7 @@
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 54 landing page link(s) and 50 tool mirror link(s).",
-        "GitHub Pages discovery sitemap has 105 URL(s), including 50 tool mirror URL(s); expected at least 105.",
+        "GitHub Pages discovery sitemap has 105 URL(s), including 50 tool mirror URL(s); expected at least 108.",
         "IndexNow key file is reachable from the site root."
       ]
     }
