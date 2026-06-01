@@ -15,7 +15,7 @@ const highIntentTools = HIGH_INTENT_TOOL_PATHS
   .map((toolPath) => tools.find((tool) => tool.path === toolPath))
   .filter(Boolean);
 const discoveryRoutes = [
-  { path: "", title: "Free PDF Tools Directory", description: "A compact external discovery directory for PrintableTools Lab free no-signup PDF generators.", url: pagesBase },
+  { path: "", title: "Free PDF Tools Directory", description: "A compact external discovery directory for PrintableTools Lab free no-signup PDF generators for small business, local promotion, image conversion, career documents, and everyday printables.", url: pagesBase },
   ...landingPages.map((page) => ({
     path: page.path,
     title: page.title,
@@ -31,7 +31,7 @@ const html = `<!doctype html>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Free PDF Tools Directory - PrintableTools Lab</title>
-    <meta name="description" content="A compact directory for PrintableTools Lab free no-signup PDF generators: image to PDF, text to PDF, invoices, receipts, timesheets, resumes, certificates, checklists, and graph paper.">
+    <meta name="description" content="A compact directory for PrintableTools Lab free no-signup PDF generators: invoices, receipts, timesheets, business cards, labels, barcodes, flyers, coupons, image to PDF, resumes, certificates, checklists, and graph paper.">
     <meta name="robots" content="index,follow">
     <link rel="canonical" href="${pagesBase}">
     <style>
@@ -55,7 +55,7 @@ const html = `<!doctype html>
   <body>
     <main>
       <h1>Free PDF tools without signup</h1>
-      <p>This GitHub Pages directory points to the live PrintableTools Lab app, a free browser-based PDF tool site for everyday documents. Use it when you need a quick PDF and do not want an account or a surprise download fee.</p>
+      <p>This GitHub Pages directory points to the live PrintableTools Lab app, a free browser-based PDF tool site for small business paperwork, local promotion, image conversion, career documents, and everyday printables. Use it when you need a quick PDF and do not want an account or a surprise download fee.</p>
       <p><a class="button" href="${siteUrl("free-pdf-tools")}">Open the full free PDF tools directory</a></p>
 
       <h2>Start with a common PDF job</h2>

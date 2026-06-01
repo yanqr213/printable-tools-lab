@@ -21,21 +21,21 @@ const topics = [
   "document-tools",
   "productivity-tools",
   "invoice-generator",
+  "business-card",
+  "barcode-generator",
+  "label-generator",
+  "flyer-maker",
+  "coupon-generator",
   "resume-builder",
   "image-to-pdf",
   "text-to-pdf",
   "receipt-generator",
   "timesheet",
   "certificate-generator",
-  "checklist",
-  "education-tools",
   "no-signup",
-  "cloudflare-pages",
-  "adsense-ready",
   "free-tools",
   "pdf-tools",
   "small-business-tools",
-  "job-search-tools",
 ];
 
 main().catch((error) => {
@@ -48,7 +48,7 @@ async function main() {
     method: "PATCH",
     body: {
       homepage: siteUrl(""),
-      description: "Free no-signup browser PDF tools for image conversion, text-to-PDF, invoices, receipts, timesheets, resumes, certificates, graph paper, and checklists.",
+      description: "Free no-signup browser PDF tools for small business paperwork, labels, flyers, coupons, image-to-PDF, resumes, certificates, and everyday printables.",
     },
   });
   await github(`/repos/${repo}/topics`, {
@@ -140,6 +140,7 @@ function releaseBody() {
     "",
     "- No account required.",
     "- No surprise download fee.",
+    "- Small business tools cover invoices, receipts, timesheets, business cards, labels, barcode labels, price tags, flyers, and coupons.",
     "- Image conversion runs in the browser without uploading files.",
     "- Ads are disabled until policy review and real search visibility are ready.",
   ].join("\n");

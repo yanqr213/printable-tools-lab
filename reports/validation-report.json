@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T00:11:39.824Z",
+  "generatedAt": "2026-06-01T00:50:26.111Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 32,
@@ -7,7 +7,7 @@
     "landingPageCount": 14,
     "indexableRoutes": 119,
     "sitemapLocCount": 119,
-    "generatedToolInventoryAt": "2026-06-01T00:03:23.764Z",
+    "generatedToolInventoryAt": "2026-06-01T00:49:40.931Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -1107,7 +1107,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T00:10:17.875Z",
+          "lastSubmitted": "2026-06-01T00:47:46.194Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -1154,18 +1154,18 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Free no-signup browser PDF tools for image conversion, text-to-PDF, invoices, receipts, timesheets, resumes, certificates, graph paper, and checklists.",
+      "description": "Free no-signup browser PDF tools for small business paperwork, labels, flyers, coupons, image-to-PDF, resumes, certificates, and everyday printables.",
       "topics": [
-        "adsense-ready",
+        "barcode-generator",
+        "business-card",
         "certificate-generator",
-        "checklist",
-        "cloudflare-pages",
+        "coupon-generator",
         "document-tools",
-        "education-tools",
+        "flyer-maker",
         "free-tools",
         "image-to-pdf",
         "invoice-generator",
-        "job-search-tools",
+        "label-generator",
         "no-signup",
         "pdf-generator",
         "pdf-tools",

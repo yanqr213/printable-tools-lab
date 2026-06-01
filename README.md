@@ -177,6 +177,7 @@ For step-by-step operations, see `OPERATIONS.md`.
 - Live ads are not included in the MVP. Placeholder ad zones mark future placements without risking early AdSense policy problems.
 - The AI idea helper is server-side only. Configure `AI_BASE_URL`, `AI_API_KEY`, and `AI_MODEL` as Cloudflare Pages secrets/environment variables before using it in production.
 - New document conversion, business, local promotion, label, career, event, checklist, graph paper, packing list, calendar, and meal-planning tools were added because these queries have stronger immediate pain and broader repeat use than light classroom printables. Many competing tools monetize at account creation, download, ads, print orders, or conversion limits, so a complete free PDF export is a clearer acquisition hook.
+- New tools stay on the same site during validation so Search Console data, sitemap history, GitHub discovery links, and external directory references concentrate on one property.
 
 ## Validation gates
 

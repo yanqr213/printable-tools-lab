@@ -6,7 +6,7 @@ This file keeps the project pointed at the current model: free ad-supported prin
 
 ### Free acquisition layer
 
-- Twenty-six free browser PDF generators.
+- Thirty-two free browser PDF generators.
 - Daily free limit stored locally.
 - Clean one-page PDF exports with no account wall and no ad-click requirement.
 - Original guide pages for search traffic and AdSense review.
@@ -326,12 +326,20 @@ Current Search Console checkpoint:
 
 ## External Discovery Queue
 
-Manual posts should be useful, honest, and placed only where self-promotion is allowed.
+Manual posts should be useful, honest, and placed only where self-promotion is allowed. Keep the current same-site strategy until Search Console shows which category wins; splitting into separate sites now would dilute the few discovery signals already attached to this property.
 
-1. Add GitHub repository topics: `pdf-generator`, `printable`, `invoice-generator`, `resume-builder`, `cover-letter`, `education-tools`, `cloudflare-pages`, `adsense-ready`.
-2. Use `DISTRIBUTION.md` for one product-directory submission.
+1. Keep GitHub repository topics aligned with small-business, local-promotion, PDF, career, and education tools.
+2. Use `DISTRIBUTION.md` for one product-directory submission at a time.
 3. Share a specific tool in a relevant community only when it directly answers a request.
 4. Record every external URL here with the post date and observed referral/downloads.
+
+Current directory queue:
+
+- Zearches: completed one free homepage submission to `Resources, Tools & Directories`; result was `status=ok`.
+- DeepLaunch: candidate for a free tool listing. The public submit page says free submissions are reviewed within 48 hours, but the actual flow redirects to sign-in after image upload, so it requires an authenticated Google/GitHub session.
+- BootstrapArena: candidate for a normal free startup listing. The public page exposes a `Normal Free` option, but browser validation did not reveal a no-login form.
+- Product Hunt: defer until indexing or a visible usage milestone; it is a launch surface, not an indexing shortcut.
+- Startup Fame and Dev Hunt: checked and skipped for now because direct submit routes resolve to login/profile/404 flows without a no-login form.
 
 Completed:
 
@@ -340,6 +348,7 @@ Completed:
 - `2026-06-01`: GitHub discovery release created at `https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools` with high-intent tool links.
 - `2026-06-01`: GitHub Pages discovery directory added at `https://yanqr213.github.io/printable-tools-lab/` as a free external entry point linking to high-intent tools.
 - `2026-06-01`: RSS feed exposed at `https://printable-tools-lab.pages.dev/feed.xml` and linked from `llms.txt`, `discovery.json`, GitHub release notes, and the GitHub Pages discovery directory.
+- `2026-06-01`: Zearches free directory submission completed for `https://printable-tools-lab.pages.dev/` in the resources/tools directory.
 
 Submit Google sitemap:
 

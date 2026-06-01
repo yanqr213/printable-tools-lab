@@ -69,6 +69,9 @@ I built PrintableTools Lab, a free browser-based PDF tool site. It creates pract
 
 - Indie Hackers product update or milestone post
 - Product Hunt upcoming/manual launch after indexing starts
+- DeepLaunch free listing after signing in; their public submit page says free submissions are reviewed within 48 hours
+- BootstrapArena normal free startup listing after sign-in flow is available
+- Zearches free URL directory for one homepage submission only
 - Reddit communities only when rules allow self-promotion and the tool directly solves a request
 - Startup/tool directories with free submissions
 - GitHub repository topics and README link
@@ -80,3 +83,4 @@ I built PrintableTools Lab, a free browser-based PDF tool site. It creates pract
 - Never claim that image conversion removes the need to review sensitive documents before sharing.
 - Keep the post framed as a free utility and ask for feedback.
 - Record the posted URL and date in OPERATIONS.md.
+- Do not repeat-submit the same homepage to the same directory.
