@@ -23,6 +23,7 @@ I built PrintableTools Lab, a free browser-based PDF tool site. It creates pract
 
 - Free PDF tools directory: https://printable-tools-lab.pages.dev/free-pdf-tools/
 - PDF tool finder: https://printable-tools-lab.pages.dev/pdf-tool-finder/
+- Directory submission pack: https://printable-tools-lab.pages.dev/submit-directory/
 - No-signup invoice page: https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/
 - JPG to PDF without upload page: https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/
 - No-signup resume page: https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/

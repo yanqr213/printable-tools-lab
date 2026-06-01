@@ -983,6 +983,12 @@ const pages = [
     description: "Find the right free PDF generator for images, text, invoices, receipts, labels, barcodes, flyers, coupons, timesheets, resumes, certificates, checklists, graph paper, and event sheets.",
     html: pdfToolFinderHtml(),
   },
+  {
+    path: "submit-directory",
+    title: "PrintableTools Lab Directory Submission Pack",
+    description: "Copy-ready directory submission details, screenshots, core links, and compliance notes for listing PrintableTools Lab as a free no-signup PDF tool site.",
+    html: directorySubmissionHtml(),
+  },
   ...landingPages.map((page) => ({
     path: page.path,
     title: page.title,
@@ -1294,6 +1300,77 @@ function pdfToolFinderHtml() {
         <p>The tools are designed for fast one-page PDFs and simple records. They do not replace legal, tax, accounting, or employment advice. Review every document before sending or printing it.</p>
         <p>Ads are disabled during validation and should never be used as a condition for downloading a PDF.</p>
         ${jsonLdHtml(itemListSchema("PDF tool finder", TOOL_FINDER_ROWS.map((row) => tools.find((tool) => tool.path === row.toolPath)).filter(Boolean)))}
+      </section>`;
+}
+
+function directorySubmissionHtml() {
+  const primaryTools = [
+    "image-to-pdf",
+    "multi-image-pdf",
+    "text-to-pdf",
+    "invoice-generator",
+    "receipt-generator",
+    "packing-slip",
+    "work-order",
+    "inventory-sheet",
+    "resume-builder",
+    "certificate-generator",
+  ].map((slug) => tools.find((item) => item.path === `tools/${slug}`)).filter(Boolean);
+  const directoryFields = [
+    ["Product name", "PrintableTools Lab"],
+    ["URL", siteUrl("")],
+    ["Category", "Files, Productivity, PDF Tools, Document Tools, Small Business Tools"],
+    ["Pricing", "Free"],
+    ["Tagline", "Free no-signup browser PDF generators"],
+    ["Short description", "Create practical PDFs in the browser, including image-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, resumes, certificates, and printable tools."],
+  ];
+  return `
+      <section class="shell page-title section">
+        <a href="/free-pdf-tools/">Free PDF tools</a>
+        <h1>PrintableTools Lab directory submission pack</h1>
+        <p>This page gives directory editors, community moderators, and launch-listing reviewers the exact facts needed to evaluate PrintableTools Lab as a free no-signup PDF tool collection.</p>
+      </section>
+      <section class="shell section">
+        <h2>Copy-ready listing details</h2>
+        <table class="event-table">
+          <tbody>
+            ${directoryFields.map(([label, value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`).join("\n")}
+          </tbody>
+        </table>
+      </section>
+      <section class="shell section">
+        <h2>Review notes</h2>
+        <div class="grid-3">
+          <article class="panel"><h3>No signup</h3><p>Core PDF generators open directly in the browser and do not require an account before export.</p></article>
+          <article class="panel"><h3>Free export</h3><p>The validation version keeps PDF downloads free and avoids surprise checkout screens.</p></article>
+          <article class="panel"><h3>Ad-safe</h3><p>Ads are disabled during validation and downloads are not gated behind ad clicks or ad views.</p></article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Primary links for reviewers</h2>
+        <div class="cluster-links">
+          <a href="/free-pdf-tools/">Free PDF tools directory</a>
+          <a href="/pdf-tool-finder/">PDF tool finder</a>
+          <a href="/tools/">All tools</a>
+          <a href="/tools.json">Machine-readable tools.json</a>
+          <a href="/feed.xml">RSS feed</a>
+          <a href="/llms.txt">llms.txt</a>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Representative tools</h2>
+        <div class="grid-2">
+          ${primaryTools.map((tool) => `<article class="tool-card"><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.description)}</p><a class="button" href="/${tool.path}/">Open generator</a></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Assets</h2>
+        <p>Use the icon and screenshot below for directory review. They are provided to make free-tool submissions easier to verify without inventing claims.</p>
+        <div class="grid-2">
+          <article class="panel"><h3>Icon</h3><p><a href="/assets/images/app-icon-512.png">512px PNG app icon</a></p></article>
+          <article class="panel"><h3>Screenshot</h3><p><a href="/assets/images/free-pdf-tools-screenshot.png">Free PDF tools page screenshot</a></p></article>
+        </div>
+        ${jsonLdHtml(itemListSchema("PrintableTools Lab representative free PDF tools", primaryTools))}
       </section>`;
 }
 

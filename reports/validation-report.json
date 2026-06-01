@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-01T02:16:05.154Z",
+  "generatedAt": "2026-06-01T02:23:26.877Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 35,
     "guideCount": 70,
     "landingPageCount": 17,
-    "indexableRoutes": 131,
-    "sitemapLocCount": 131,
-    "generatedToolInventoryAt": "2026-06-01T01:56:37.428Z",
+    "indexableRoutes": 132,
+    "sitemapLocCount": 132,
+    "generatedToolInventoryAt": "2026-06-01T02:22:34.749Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -1178,11 +1178,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         }
       ]

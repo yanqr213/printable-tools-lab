@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T01:56:37.428Z",
+  "generatedAt": "2026-06-01T02:22:34.749Z",
   "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -9,6 +9,7 @@
   "highIntentEntryPoints": [
     "https://printable-tools-lab.pages.dev/free-pdf-tools/",
     "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
+    "https://printable-tools-lab.pages.dev/submit-directory/",
     "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",

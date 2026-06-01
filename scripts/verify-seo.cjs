@@ -117,6 +117,18 @@ else {
   if (!html.includes('"@type":"ItemList"')) failures.push("PDF tool finder missing ItemList schema.");
 }
 
+const submissionPackFile = path.join(root, "submit-directory", "index.html");
+if (!fs.existsSync(submissionPackFile)) failures.push("Missing directory submission pack page.");
+else {
+  const html = fs.readFileSync(submissionPackFile, "utf8");
+  if (!html.includes("PrintableTools Lab directory submission pack")) failures.push("Directory submission pack missing heading.");
+  if (!html.includes("Free no-signup browser PDF generators")) failures.push("Directory submission pack missing tagline.");
+  if (!html.includes("/assets/images/app-icon-512.png")) failures.push("Directory submission pack missing icon asset link.");
+  if (!html.includes("/assets/images/free-pdf-tools-screenshot.png")) failures.push("Directory submission pack missing screenshot asset link.");
+  if (!html.includes(siteUrl("submit-directory"))) failures.push("Directory submission pack missing canonical.");
+  if (!sitemap.includes(`<loc>${siteUrl("submit-directory")}</loc>`)) failures.push("Sitemap missing directory submission pack.");
+}
+
 const distributionFile = path.join(root, "DISTRIBUTION.md");
 if (!fs.existsSync(distributionFile)) failures.push("Missing DISTRIBUTION.md.");
 else {
@@ -129,6 +141,7 @@ if (!fs.existsSync(discoveryFile)) failures.push("Missing discovery.json.");
 else {
   const discovery = JSON.parse(fs.readFileSync(discoveryFile, "utf8"));
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("tools/multi-image-pdf"))) failures.push("discovery.json missing high-intent multi-image route.");
+  if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("submit-directory"))) failures.push("discovery.json missing directory submission pack.");
   if (discovery.feed !== siteUrl("feed.xml").replace(/\/$/, "")) failures.push("discovery.json missing RSS feed URL.");
   if (!Array.isArray(discovery.landingPages) || discovery.landingPages.length < 17) failures.push("discovery.json missing high-intent landing pages.");
   if (discovery.manifest !== siteUrl("site.webmanifest").replace(/\/$/, "")) failures.push("discovery.json missing manifest URL.");
