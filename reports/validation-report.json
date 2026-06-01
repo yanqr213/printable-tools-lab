@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T06:12:05.741Z",
+  "generatedAt": "2026-06-01T06:22:32.571Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 47,
@@ -7,7 +7,7 @@
     "landingPageCount": 29,
     "indexableRoutes": 168,
     "sitemapLocCount": 168,
-    "generatedToolInventoryAt": "2026-06-01T06:04:50.596Z",
+    "generatedToolInventoryAt": "2026-06-01T06:21:37.675Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -1838,18 +1838,7 @@
         }
       ]
     },
-    "sitemaps": {
-      "sitemap": [
-        {
-          "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T06:09:54.574Z",
-          "isPending": true,
-          "isSitemapsIndex": false,
-          "warnings": "0",
-          "errors": "0"
-        }
-      ]
-    },
+    "sitemaps": null,
     "githubPagesSitemaps": {
       "sitemap": [
         {
@@ -1894,40 +1883,42 @@
         "indexingState": "INDEXING_STATE_UNSPECIFIED"
       }
     ],
-    "errors": []
+    "errors": [
+      "sitemaps: fetch failed"
+    ]
   },
   "discovery": {
     "github": {
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Free no-signup browser PDF tools for small business paperwork, labels, flyers, coupons, image-to-PDF, resumes, certificates, and everyday printables.",
+      "description": "Free no-signup browser PDF and image tools for compression, resizing, format conversion, PDF edits, paperwork, labels, resumes, and printables.",
       "topics": [
         "barcode-generator",
-        "business-card",
-        "certificate-generator",
-        "coupon-generator",
+        "browser-tools",
         "document-tools",
-        "flyer-maker",
         "free-tools",
+        "image-compression",
+        "image-converter",
+        "image-resizer",
         "image-to-pdf",
+        "image-tools",
         "invoice-generator",
         "label-generator",
         "no-signup",
         "pdf-generator",
         "pdf-tools",
-        "printable",
         "productivity-tools",
         "receipt-generator",
         "resume-builder",
         "small-business-tools",
         "text-to-pdf",
-        "timesheet"
+        "webp"
       ],
       "discoveryRelease": {
         "tag": "free-pdf-tools",
         "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
-        "name": "Free PDF Tools Without Signup"
+        "name": "Free PDF and Image Tools Without Signup"
       },
       "error": ""
     },
@@ -1971,10 +1962,10 @@
       "searchConsole": [
         "Main Search Console property verified: yes.",
         "GitHub Pages discovery property verified: yes.",
-        "Sitemap status: pending=true, warnings=0, errors=0.",
         "GitHub Pages discovery sitemap: pending=true, warnings=0, errors=0.",
         "Search performance: 0 impressions, 0 clicks.",
-        "2 inspected sample URL(s) are still unknown to Google."
+        "2 inspected sample URL(s) are still unknown to Google.",
+        "sitemaps: fetch failed"
       ],
       "externalDiscovery": [
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",

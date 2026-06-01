@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-01T06:12:05.741Z
+Last generated: 2026-06-01T06:22:32.571Z
 
 ## Current Automated Status
 
@@ -23,16 +23,15 @@ Last generated: 2026-06-01T06:12:05.741Z
 
 ## Search Console Gate
 
-- Sitemap submitted: https://printable-tools-lab.pages.dev/sitemap.xml.
-- Sitemap pending: yes; warnings: 0; errors: 0.
+- Sitemap data unavailable in this run.
 - GitHub Pages discovery sitemap submitted: https://yanqr213.github.io/printable-tools-lab/sitemap.xml.
 - GitHub Pages sitemap pending: yes; warnings: 0; errors: 0.
 - Main Search Console property verified: yes.
 - GitHub Pages discovery property verified: yes.
-- Sitemap status: pending=true, warnings=0, errors=0.
 - GitHub Pages discovery sitemap: pending=true, warnings=0, errors=0.
 - Search performance: 0 impressions, 0 clicks.
 - 2 inspected sample URL(s) are still unknown to Google.
+- sitemaps: fetch failed
 
 ## External Discovery Gate
 

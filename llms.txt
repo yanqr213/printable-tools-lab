@@ -10,8 +10,8 @@ Monetization model: Free tools first, then responsible display advertising after
 
 - Homepage: https://printable-tools-lab.pages.dev/
 - Tools index: https://printable-tools-lab.pages.dev/tools/
-- Free PDF tools directory: https://printable-tools-lab.pages.dev/free-pdf-tools/
-- PDF tool finder: https://printable-tools-lab.pages.dev/pdf-tool-finder/
+- Free PDF and image tools directory: https://printable-tools-lab.pages.dev/free-pdf-tools/
+- PDF and image tool finder: https://printable-tools-lab.pages.dev/pdf-tool-finder/
 - Directory submission pack: https://printable-tools-lab.pages.dev/submit-directory/
 - Guides index: https://printable-tools-lab.pages.dev/guides/
 - Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml
@@ -132,7 +132,7 @@ Monetization model: Free tools first, then responsible display advertising after
 
 ## Notes For Crawlers And Assistants
 
-- Ordinary PDF generation runs in the browser and does not require an account.
+- Ordinary PDF and image file generation runs in the browser and does not require an account.
 - Optional AI idea suggestions are server-side and limited to non-sensitive fields.
 - Ads are not used as a gate for downloading files.
 - Paid checkout is intentionally disabled until free usage and search demand are validated.

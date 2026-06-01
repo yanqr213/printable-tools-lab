@@ -1289,10 +1289,10 @@ const pages = [
     html: `
       <section class="shell hero">
         <div>
-          <h1>Make useful printable PDFs in under a minute.</h1>
+          <h1>Make useful PDF and image files in under a minute.</h1>
           <p>Free browser-based generators for image compression, image resizing, image format conversion, no-upload PDF edits, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
-            <a class="button" href="/free-pdf-tools/">Browse free PDF tools</a>
+            <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
@@ -1309,13 +1309,13 @@ const pages = [
         </div>
       </section>
       <section class="shell section">
-        <h2>Popular printable searches</h2>
+        <h2>Popular file and printable searches</h2>
         <div class="grid-2">
           ${keywordClusters.map(keywordClusterHtml).join("\n")}
         </div>
       </section>
       <section class="shell section">
-        <h2>Free printable tools</h2>
+        <h2>Free PDF and image tools</h2>
         <div class="cluster-links">
           ${landingPages.map((page) => `<a href="/${page.path}/">${escapeHtml(page.headline)}</a>`).join("")}
         </div>
@@ -1676,7 +1676,7 @@ function pdfToolFinderHtml() {
         <p>Start with the job, not the template name. This finder points you to the free browser PDF or image tool that best matches the file you need right now.</p>
       </section>
       <section class="shell section">
-        <h2>Quick PDF tool finder</h2>
+        <h2>Quick PDF and image tool finder</h2>
         <table class="event-table">
           <thead><tr><th>What you need</th><th>Use this tool</th><th>Why it fits</th></tr></thead>
           <tbody>${rows}</tbody>
@@ -1737,7 +1737,7 @@ function pdfToolFinderHtml() {
         <h2>Free tool limits</h2>
         <p>The tools are designed for fast one-page PDFs and simple records. They do not replace legal, tax, accounting, or employment advice. Review every document before sending or printing it.</p>
         <p>Ads are disabled during validation and should never be used as a condition for downloading a PDF or image file.</p>
-        ${jsonLdHtml(itemListSchema("PDF tool finder", TOOL_FINDER_ROWS.map((row) => tools.find((tool) => tool.path === row.toolPath)).filter(Boolean)))}
+        ${jsonLdHtml(itemListSchema("PDF and image tool finder", TOOL_FINDER_ROWS.map((row) => tools.find((tool) => tool.path === row.toolPath)).filter(Boolean)))}
       </section>`;
 }
 
@@ -1772,9 +1772,9 @@ function directorySubmissionHtml() {
   ];
   return `
       <section class="shell page-title section">
-        <a href="/free-pdf-tools/">Free PDF tools</a>
+        <a href="/free-pdf-tools/">Free PDF and image tools</a>
         <h1>PrintableTools Lab directory submission pack</h1>
-        <p>This page gives directory editors, community moderators, and launch-listing reviewers the exact facts needed to evaluate PrintableTools Lab as a free no-signup PDF tool collection.</p>
+        <p>This page gives directory editors, community moderators, and launch-listing reviewers the exact facts needed to evaluate PrintableTools Lab as a free no-signup PDF and image tool collection.</p>
       </section>
       <section class="shell section">
         <h2>Copy-ready listing details</h2>
@@ -1787,7 +1787,7 @@ function directorySubmissionHtml() {
       <section class="shell section">
         <h2>Review notes</h2>
         <div class="grid-3">
-          <article class="panel"><h3>No signup</h3><p>Core PDF generators open directly in the browser and do not require an account before export.</p></article>
+          <article class="panel"><h3>No signup</h3><p>Core PDF and image tools open directly in the browser and do not require an account before export.</p></article>
           <article class="panel"><h3>Free export</h3><p>The validation version keeps PDF and image downloads free and avoids surprise checkout screens.</p></article>
           <article class="panel"><h3>Ad-safe</h3><p>Ads are disabled during validation and downloads are not gated behind ad clicks or ad views.</p></article>
         </div>
@@ -1795,8 +1795,8 @@ function directorySubmissionHtml() {
       <section class="shell section">
         <h2>Primary links for reviewers</h2>
         <div class="cluster-links">
-          <a href="/free-pdf-tools/">Free PDF tools directory</a>
-          <a href="/pdf-tool-finder/">PDF tool finder</a>
+          <a href="/free-pdf-tools/">Free PDF and image tools directory</a>
+          <a href="/pdf-tool-finder/">PDF and image tool finder</a>
           <a href="/tools/">All tools</a>
           <a href="/tools.json">Machine-readable tools.json</a>
           <a href="/feed.xml">RSS feed</a>
@@ -1814,9 +1814,9 @@ function directorySubmissionHtml() {
         <p>Use the icon and screenshot below for directory review. They are provided to make free-tool submissions easier to verify without inventing claims.</p>
         <div class="grid-2">
           <article class="panel"><h3>Icon</h3><p><a href="/assets/images/app-icon-512.png">512px PNG app icon</a></p></article>
-          <article class="panel"><h3>Screenshot</h3><p><a href="/assets/images/free-pdf-tools-screenshot.png">Free PDF tools page screenshot</a></p></article>
+          <article class="panel"><h3>Screenshot</h3><p><a href="/assets/images/free-pdf-tools-screenshot.png">Free PDF and image tools page screenshot</a></p></article>
         </div>
-        ${jsonLdHtml(itemListSchema("PrintableTools Lab representative free PDF tools", primaryTools))}
+        ${jsonLdHtml(itemListSchema("PrintableTools Lab representative free PDF and image tools", primaryTools))}
       </section>`;
 }
 
@@ -1827,16 +1827,16 @@ function landingPageHtml(page) {
     .filter(Boolean);
   return `
       <section class="shell page-title section">
-        <a href="/free-pdf-tools/">Free PDF tools</a>
+        <a href="/free-pdf-tools/">Free PDF and image tools</a>
         <h1>${escapeHtml(page.headline)}</h1>
         <p>${escapeHtml(page.lead)}</p>
-        <p><a class="button" href="/${tool.path}/">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> <a class="button secondary" href="/pdf-tool-finder/">Compare PDF tools</a></p>
+        <p><a class="button" href="/${tool.path}/">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> <a class="button secondary" href="/pdf-tool-finder/">Compare tools</a></p>
       </section>
       <section class="shell section">
         <h2>Why this matches the search</h2>
         <div class="grid-3">
           <article class="panel"><h3>Intent</h3><p>${escapeHtml(page.intent)}</p></article>
-          <article class="panel"><h3>No signup</h3><p>The free workflow starts in the browser and does not require an account before PDF export.</p></article>
+          <article class="panel"><h3>No signup</h3><p>The free workflow starts in the browser and does not require an account before file export.</p></article>
           <article class="panel"><h3>Ad-safe</h3><p>Downloads are not gated behind ad clicks or ad views. Ads remain disabled until policy review and search visibility are ready.</p></article>
         </div>
       </section>
@@ -1846,7 +1846,7 @@ function landingPageHtml(page) {
         <p>${escapeHtml(text)}</p>
       </section>`).join("\n")}
       <section class="shell section">
-        <h2>Related free PDF tools</h2>
+        <h2>Related free tools</h2>
         <div class="grid-3">
           ${related.map((item) => `<article class="tool-card"><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p><a class="button" href="/${item.path}/">Open generator</a></article>`).join("\n")}
         </div>

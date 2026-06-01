@@ -29,8 +29,8 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 
 ## High-intent links
 
-- Free PDF tools directory: https://printable-tools-lab.pages.dev/free-pdf-tools/
-- PDF tool finder: https://printable-tools-lab.pages.dev/pdf-tool-finder/
+- Free PDF and image tools directory: https://printable-tools-lab.pages.dev/free-pdf-tools/
+- PDF and image tool finder: https://printable-tools-lab.pages.dev/pdf-tool-finder/
 - Directory submission pack: https://printable-tools-lab.pages.dev/submit-directory/
 - Compress image without upload page: https://printable-tools-lab.pages.dev/compress-image-no-upload/
 - Resize image without upload page: https://printable-tools-lab.pages.dev/resize-image-no-upload/

@@ -9,7 +9,7 @@ PrintableTools Lab is a no-signup utility site for practical browser files: comp
 ## Free PDF tool directory
 
 - [Free PDF and image tools without signup](https://printable-tools-lab.pages.dev/free-pdf-tools/)
-- [PDF tool finder](https://printable-tools-lab.pages.dev/pdf-tool-finder/)
+- [PDF and image tool finder](https://printable-tools-lab.pages.dev/pdf-tool-finder/)
 - [GitHub Pages discovery directory](https://yanqr213.github.io/printable-tools-lab/)
 - [Compress Image Online](https://printable-tools-lab.pages.dev/tools/compress-image/)
 - [Resize Image Online](https://printable-tools-lab.pages.dev/tools/resize-image/)
