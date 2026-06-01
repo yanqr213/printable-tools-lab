@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T01:52:37.162Z",
+  "generatedAt": "2026-06-01T02:03:07.093Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "toolCount": 35,
@@ -7,7 +7,7 @@
     "landingPageCount": 17,
     "indexableRoutes": 131,
     "sitemapLocCount": 131,
-    "generatedToolInventoryAt": "2026-06-01T01:51:04.197Z",
+    "generatedToolInventoryAt": "2026-06-01T01:56:37.428Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -34,21 +34,21 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 13733,
+        "bytes": 14661,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 21383,
+        "bytes": 23019,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 14703,
+        "bytes": 16200,
         "json": null
       },
       "/robots.txt": {
@@ -71,27 +71,27 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 15632,
+        "bytes": 16803,
         "json": null,
-        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, labels, business cards,"
+        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, work orders, packing sl"
       },
       "/feed.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 21852,
+        "bytes": 24752,
         "json": null
       },
       "/tools.json": {
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 27799,
+        "bytes": 30513,
         "json": {
           "name": "PrintableTools Lab",
-          "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+          "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T00:49:40.931Z",
+          "generatedAt": "2026-06-01T01:56:37.428Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -193,6 +193,24 @@
               "title": "Coupon Maker PDF",
               "url": "https://printable-tools-lab.pages.dev/tools/coupon-maker/",
               "description": "Create printable coupon cards for a local service, class, pop-up event, small shop, or limited-time offer.",
+              "category": "Business paperwork"
+            },
+            {
+              "title": "Packing Slip Generator",
+              "url": "https://printable-tools-lab.pages.dev/tools/packing-slip/",
+              "description": "Create a printable packing slip PDF for small orders, marketplace sales, local delivery, and handmade product shipments.",
+              "category": "Business paperwork"
+            },
+            {
+              "title": "Work Order Generator",
+              "url": "https://printable-tools-lab.pages.dev/tools/work-order/",
+              "description": "Make a work order PDF for repairs, field service, maintenance visits, cleaning jobs, and contractor tasks.",
+              "category": "Business paperwork"
+            },
+            {
+              "title": "Inventory Sheet Generator",
+              "url": "https://printable-tools-lab.pages.dev/tools/inventory-sheet/",
+              "description": "Create a printable inventory count sheet PDF for stock checks, craft fairs, storage bins, classroom supplies, and small retail shelves.",
               "category": "Business paperwork"
             },
             {
@@ -488,6 +506,36 @@
               "description": "Make a coupon PDF sheet with offer text, coupon code, expiration note, and fine print."
             },
             {
+              "title": "Free printable packing slip generator",
+              "url": "https://printable-tools-lab.pages.dev/guides/free-packing-slip-generator-printable/",
+              "description": "Create a packing slip PDF for small orders, handmade products, marketplace shipments, and local delivery."
+            },
+            {
+              "title": "Order packing slip PDF template",
+              "url": "https://printable-tools-lab.pages.dev/guides/order-packing-slip-pdf-template/",
+              "description": "Use a simple packing slip PDF as a package insert for small shops, pop-up pickups, and marketplace sales."
+            },
+            {
+              "title": "Free work order generator PDF",
+              "url": "https://printable-tools-lab.pages.dev/guides/free-work-order-generator-pdf/",
+              "description": "Create a work order PDF for repairs, maintenance visits, cleaning jobs, field service, and contractor tasks."
+            },
+            {
+              "title": "Service work order PDF template",
+              "url": "https://printable-tools-lab.pages.dev/guides/service-work-order-pdf-template/",
+              "description": "Make a printable work order for contractors, local services, maintenance teams, and repair visits."
+            },
+            {
+              "title": "Free inventory sheet generator",
+              "url": "https://printable-tools-lab.pages.dev/guides/free-inventory-sheet-generator/",
+              "description": "Create a printable inventory count sheet for stock checks, market tables, storage bins, and classroom supplies."
+            },
+            {
+              "title": "Stock count sheet PDF template",
+              "url": "https://printable-tools-lab.pages.dev/guides/stock-count-sheet-pdf-template/",
+              "description": "Use a printable stock count sheet for SKU checks, shelf reviews, craft fairs, event supplies, and restock notes."
+            },
+            {
               "title": "Free resume builder PDF",
               "url": "https://printable-tools-lab.pages.dev/guides/free-resume-builder-pdf/",
               "description": "Build a clean resume PDF without an account, paywall, or complicated design tool."
@@ -614,11 +662,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 7539,
+        "bytes": 8873,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T00:49:40.931Z",
+          "generatedAt": "2026-06-01T01:56:37.428Z",
           "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -640,6 +688,9 @@
             "https://printable-tools-lab.pages.dev/free-price-tag-generator-printable/",
             "https://printable-tools-lab.pages.dev/free-flyer-maker-pdf-no-signup/",
             "https://printable-tools-lab.pages.dev/free-coupon-maker-printable/",
+            "https://printable-tools-lab.pages.dev/free-packing-slip-generator-printable/",
+            "https://printable-tools-lab.pages.dev/free-work-order-generator-pdf/",
+            "https://printable-tools-lab.pages.dev/free-inventory-sheet-generator/",
             "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
             "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
             "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
@@ -652,6 +703,9 @@
             "https://printable-tools-lab.pages.dev/tools/price-tag/",
             "https://printable-tools-lab.pages.dev/tools/flyer-maker/",
             "https://printable-tools-lab.pages.dev/tools/coupon-maker/",
+            "https://printable-tools-lab.pages.dev/tools/packing-slip/",
+            "https://printable-tools-lab.pages.dev/tools/work-order/",
+            "https://printable-tools-lab.pages.dev/tools/inventory-sheet/",
             "https://printable-tools-lab.pages.dev/tools/resume-builder/",
             "https://printable-tools-lab.pages.dev/tools/certificate-generator/",
             "https://printable-tools-lab.pages.dev/tools/todo-list/",
@@ -741,6 +795,24 @@
               "url": "https://printable-tools-lab.pages.dev/free-coupon-maker-printable/",
               "intent": "printable coupon cards, discount coupon PDF, no signup",
               "tool": "https://printable-tools-lab.pages.dev/tools/coupon-maker/"
+            },
+            {
+              "title": "Free Printable Packing Slip Generator",
+              "url": "https://printable-tools-lab.pages.dev/free-packing-slip-generator-printable/",
+              "intent": "packing slip PDF, order packing sheet, no signup",
+              "tool": "https://printable-tools-lab.pages.dev/tools/packing-slip/"
+            },
+            {
+              "title": "Free Work Order Generator PDF",
+              "url": "https://printable-tools-lab.pages.dev/free-work-order-generator-pdf/",
+              "intent": "work order PDF, service order form, contractor job sheet",
+              "tool": "https://printable-tools-lab.pages.dev/tools/work-order/"
+            },
+            {
+              "title": "Free Inventory Sheet Generator",
+              "url": "https://printable-tools-lab.pages.dev/free-inventory-sheet-generator/",
+              "intent": "inventory count sheet PDF, stock count template, no signup",
+              "tool": "https://printable-tools-lab.pages.dev/tools/inventory-sheet/"
             }
           ],
           "constraints": [
@@ -760,7 +832,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/manifest+json; charset=utf-8",
-        "bytes": 1445,
+        "bytes": 1491,
         "json": null
       },
       "/opensearch.xml": {
@@ -1106,11 +1178,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         }
       ]
@@ -1119,7 +1191,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T00:58:58.211Z",
+          "lastSubmitted": "2026-06-01T02:01:19.182Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -1131,7 +1203,7 @@
       "sitemap": [
         {
           "path": "https://yanqr213.github.io/printable-tools-lab/sitemap.xml",
-          "lastSubmitted": "2026-06-01T01:10:36.156Z",
+          "lastSubmitted": "2026-06-01T02:02:25.330Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -1212,8 +1284,8 @@
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 15,
-      "landingPagesLinked": 14,
+      "sitemapUrlCount": 18,
+      "landingPagesLinked": 17,
       "error": ""
     },
     "indexNow": {
@@ -1225,7 +1297,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": false
+    "externalDiscoveryReady": true
   },
   "gates": {
     "productReady": true,
@@ -1233,7 +1305,7 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": false,
+    "externalDiscoveryReady": true,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
@@ -1256,8 +1328,8 @@
       "externalDiscovery": [
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
-        "GitHub Pages discovery directory is live with 14 landing page link(s).",
-        "GitHub Pages discovery sitemap has 15 URL(s).",
+        "GitHub Pages discovery directory is live with 17 landing page link(s).",
+        "GitHub Pages discovery sitemap has 18 URL(s).",
         "IndexNow key file is reachable from the site root."
       ]
     }
