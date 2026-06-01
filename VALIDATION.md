@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-01T07:25:25.523Z
+Last generated: 2026-06-01T07:28:14.187Z
 
 ## Current Automated Status
 
@@ -14,7 +14,7 @@ Last generated: 2026-06-01T07:25:25.523Z
 - Live generations: 0.
 - Search impressions: 0.
 - Search clicks: 0.
-- External discovery ready: no.
+- External discovery ready: yes.
 - Ads enabled: no.
 - AdSense apply-ready: no.
 
@@ -39,8 +39,8 @@ Last generated: 2026-06-01T07:25:25.523Z
 
 - GitHub repo has 19 topic(s) and homepage https://printable-tools-lab.pages.dev/.
 - GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.
-- GitHub Pages discovery directory is live with 35 landing page link(s).
-- GitHub Pages discovery sitemap has 36 URL(s).
+- GitHub Pages discovery directory is live with 38 landing page link(s).
+- GitHub Pages discovery sitemap has 39 URL(s).
 - IndexNow key file is reachable from the site root.
 
 ## Monetization Gate
