@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-01T03:52:04.592Z",
+  "generatedAt": "2026-06-01T04:26:36.245Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
-    "toolCount": 38,
-    "guideCount": 73,
-    "landingPageCount": 20,
-    "indexableRoutes": 141,
-    "sitemapLocCount": 141,
-    "generatedToolInventoryAt": "2026-06-01T03:27:42.502Z",
+    "toolCount": 41,
+    "guideCount": 76,
+    "landingPageCount": 23,
+    "indexableRoutes": 150,
+    "sitemapLocCount": 150,
+    "generatedToolInventoryAt": "2026-06-01T04:13:17.152Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -34,21 +34,21 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 15331,
+        "bytes": 15971,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 24302,
+        "bytes": 25761,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 17357,
+        "bytes": 18462,
         "json": null
       },
       "/robots.txt": {
@@ -71,27 +71,27 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 17634,
+        "bytes": 18640,
         "json": null,
-        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, adding page numbers, image conversion, text conversion, invoices, "
+        "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, adding page numb"
       },
       "/feed.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 27092,
+        "bytes": 29702,
         "json": null
       },
       "/tools.json": {
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 31907,
+        "bytes": 33533,
         "json": {
           "name": "PrintableTools Lab",
-          "description": "Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+          "description": "Free browser-based PDF generators and no-upload PDF tools for merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, adding page numbers, image conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T03:27:42.502Z",
+          "generatedAt": "2026-06-01T04:13:17.152Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -259,19 +259,37 @@
               "title": "Merge PDF Tool",
               "url": "https://printable-tools-lab.pages.dev/tools/merge-pdf/",
               "description": "Combine several PDF files into one PDF in your browser without uploading documents.",
-              "category": "Education and family printables"
+              "category": "Everyday utility PDFs"
             },
             {
               "title": "Split PDF Tool",
               "url": "https://printable-tools-lab.pages.dev/tools/split-pdf/",
               "description": "Extract selected pages from a PDF in your browser without uploading the document.",
-              "category": "Education and family printables"
+              "category": "Everyday utility PDFs"
             },
             {
               "title": "Add Page Numbers to PDF",
               "url": "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/",
               "description": "Add simple page numbers to an existing PDF locally in your browser.",
-              "category": "Education and family printables"
+              "category": "Everyday utility PDFs"
+            },
+            {
+              "title": "Rotate PDF Pages",
+              "url": "https://printable-tools-lab.pages.dev/tools/rotate-pdf/",
+              "description": "Rotate all PDF pages or selected pages locally in your browser without uploading the file.",
+              "category": "Everyday utility PDFs"
+            },
+            {
+              "title": "Remove Pages from PDF",
+              "url": "https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/",
+              "description": "Delete selected PDF pages locally in your browser without uploading the document.",
+              "category": "Everyday utility PDFs"
+            },
+            {
+              "title": "Reorder PDF Pages",
+              "url": "https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/",
+              "description": "Rearrange PDF pages by typing a new page order, all locally in your browser.",
+              "category": "Everyday utility PDFs"
             },
             {
               "title": "Text to PDF Converter",
@@ -634,6 +652,21 @@
               "description": "Add simple visible page numbers to an existing PDF in the browser."
             },
             {
+              "title": "Rotate PDF pages without uploading",
+              "url": "https://printable-tools-lab.pages.dev/guides/rotate-pdf-pages-without-uploading/",
+              "description": "Fix sideways or upside-down PDF pages locally in your browser."
+            },
+            {
+              "title": "Remove pages from PDF without uploading",
+              "url": "https://printable-tools-lab.pages.dev/guides/remove-pages-from-pdf-without-uploading/",
+              "description": "Delete selected PDF pages locally without sending the source file to a converter."
+            },
+            {
+              "title": "Reorder PDF pages without uploading",
+              "url": "https://printable-tools-lab.pages.dev/guides/reorder-pdf-pages-without-uploading/",
+              "description": "Organize PDF pages by entering a new page order in the browser."
+            },
+            {
               "title": "Text to PDF converter without signup",
               "url": "https://printable-tools-lab.pages.dev/guides/text-to-pdf-converter-no-signup/",
               "description": "Paste plain text and download a clean one-page PDF without installing an editor."
@@ -695,11 +728,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 10139,
+        "bytes": 11419,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T03:27:42.502Z",
+          "generatedAt": "2026-06-01T04:13:17.152Z",
           "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -715,6 +748,9 @@
             "https://printable-tools-lab.pages.dev/merge-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/split-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/",
+            "https://printable-tools-lab.pages.dev/rotate-pdf-no-upload/",
+            "https://printable-tools-lab.pages.dev/remove-pages-from-pdf-no-upload/",
+            "https://printable-tools-lab.pages.dev/reorder-pdf-pages-no-upload/",
             "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
             "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
             "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
@@ -733,6 +769,9 @@
             "https://printable-tools-lab.pages.dev/tools/merge-pdf/",
             "https://printable-tools-lab.pages.dev/tools/split-pdf/",
             "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/",
+            "https://printable-tools-lab.pages.dev/tools/rotate-pdf/",
+            "https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/",
+            "https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/",
             "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
             "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
             "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
@@ -793,6 +832,24 @@
               "url": "https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/",
               "intent": "add page numbers to PDF, no upload, no account",
               "tool": "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/"
+            },
+            {
+              "title": "Rotate PDF Pages Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/rotate-pdf-no-upload/",
+              "intent": "rotate PDF pages, no upload, no account",
+              "tool": "https://printable-tools-lab.pages.dev/tools/rotate-pdf/"
+            },
+            {
+              "title": "Remove Pages from PDF Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/remove-pages-from-pdf-no-upload/",
+              "intent": "delete PDF pages, no upload, no account",
+              "tool": "https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/"
+            },
+            {
+              "title": "Reorder PDF Pages Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/reorder-pdf-pages-no-upload/",
+              "intent": "reorder PDF pages, organize PDF, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/"
             },
             {
               "title": "Free Resume Builder Without Signup",
@@ -890,7 +947,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/manifest+json; charset=utf-8",
-        "bytes": 1555,
+        "bytes": 1605,
         "json": null
       },
       "/opensearch.xml": {
@@ -904,7 +961,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 5438,
+        "bytes": 5718,
         "json": {
           "ok": true,
           "today": "2026-06-01",
@@ -1081,6 +1138,27 @@
             },
             {
               "tool": "pdf-page-numbers",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "rotate-pdf",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "remove-pdf-pages",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "limit_hit": 0,
+              "ai_ideas_apply": 0
+            },
+            {
+              "tool": "reorder-pdf-pages",
               "generate_pdf": 0,
               "download_pdf": 0,
               "limit_hit": 0,
@@ -1423,11 +1501,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         }
       ]
@@ -1529,8 +1607,8 @@
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 21,
-      "landingPagesLinked": 20,
+      "sitemapUrlCount": 24,
+      "landingPagesLinked": 23,
       "error": ""
     },
     "indexNow": {
@@ -1556,7 +1634,7 @@
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "38 tools, 73 guides, 20 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "41 tools, 76 guides, 23 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Real AdSense publisher ID is not configured, so ads remain disabled.",
@@ -1573,8 +1651,8 @@
       "externalDiscovery": [
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
-        "GitHub Pages discovery directory is live with 20 landing page link(s).",
-        "GitHub Pages discovery sitemap has 21 URL(s).",
+        "GitHub Pages discovery directory is live with 23 landing page link(s).",
+        "GitHub Pages discovery sitemap has 24 URL(s).",
         "IndexNow key file is reachable from the site root."
       ]
     }
