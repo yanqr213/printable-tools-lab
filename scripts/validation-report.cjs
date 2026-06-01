@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { routes, siteUrl, landingPages } = require("./seo-content.cjs");
+const { routes, siteUrl, landingPages, HIGH_INTENT_TOOL_PATHS } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const siteBase = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pages.dev").replace(/\/+$/, "");
@@ -184,7 +184,7 @@ async function readDiscoveryState() {
   state.externalDiscoveryReady = Boolean(state.github.homepage)
     && state.github.topics.length >= 6
     && state.githubPages.pageOk
-    && state.githubPages.sitemapUrlCount >= landingPages.length + 1
+    && state.githubPages.sitemapUrlCount >= githubPagesExpectedUrlCount()
     && state.indexNow.keyFileReachable
     && Boolean(state.github.discoveryRelease?.url);
   return state;
@@ -298,15 +298,20 @@ async function readGithubPagesState() {
     sitemapOk: false,
     sitemapUrlCount: 0,
     landingPagesLinked: 0,
+    toolPagesLinked: 0,
+    toolPagesInSitemap: 0,
+    expectedUrlCount: githubPagesExpectedUrlCount(),
     error: "",
   };
   try {
     const page = await fetchTextWithTimeout(base);
     state.pageOk = page.ok && page.text.includes("Free PDF, image, and QR tools without signup");
     state.landingPagesLinked = landingPages.filter((landing) => page.text.includes(siteUrl(landing.path))).length;
+    state.toolPagesLinked = HIGH_INTENT_TOOL_PATHS.filter((toolPath) => page.text.includes(`${base}${toolPath}/`)).length;
     const sitemap = await fetchTextWithTimeout(`${base}sitemap.xml`);
     state.sitemapOk = sitemap.ok && sitemap.text.includes("<urlset");
     state.sitemapUrlCount = countMatches(sitemap.text, /<loc>/g);
+    state.toolPagesInSitemap = HIGH_INTENT_TOOL_PATHS.filter((toolPath) => sitemap.text.includes(`<loc>${base}${toolPath}/</loc>`)).length;
   } catch (error) {
     state.error = error.message;
   }
@@ -430,9 +435,9 @@ function summarizeDiscoveryReasons(discovery) {
   } else {
     reasons.push(`GitHub discovery metadata unavailable: ${discovery.github.error || "unknown error"}.`);
   }
-  if (discovery.githubPages.pageOk) reasons.push(`GitHub Pages discovery directory is live with ${discovery.githubPages.landingPagesLinked} landing page link(s).`);
+  if (discovery.githubPages.pageOk) reasons.push(`GitHub Pages discovery directory is live with ${discovery.githubPages.landingPagesLinked} landing page link(s) and ${discovery.githubPages.toolPagesLinked} tool mirror link(s).`);
   else reasons.push(`GitHub Pages discovery directory unavailable: ${discovery.githubPages.error || "page check failed"}.`);
-  if (discovery.githubPages.sitemapOk) reasons.push(`GitHub Pages discovery sitemap has ${discovery.githubPages.sitemapUrlCount} URL(s).`);
+  if (discovery.githubPages.sitemapOk) reasons.push(`GitHub Pages discovery sitemap has ${discovery.githubPages.sitemapUrlCount} URL(s), including ${discovery.githubPages.toolPagesInSitemap} tool mirror URL(s); expected at least ${discovery.githubPages.expectedUrlCount}.`);
   if (discovery.indexNow.keyFileReachable) reasons.push("IndexNow key file is reachable from the site root.");
   else reasons.push("IndexNow key file is not reachable or does not match the configured key.");
   if (discovery.indexNow.singleUrlAccepted) reasons.push("Bing IndexNow single-URL notification accepts the key.");
@@ -664,6 +669,10 @@ function parseAllJsonObjects(output) {
 
 function yesNo(value) {
   return value ? "yes" : "no";
+}
+
+function githubPagesExpectedUrlCount() {
+  return landingPages.length + HIGH_INTENT_TOOL_PATHS.length + 1;
 }
 
 main().catch((error) => {

@@ -248,7 +248,7 @@ npm.cmd run register:domain -- --register
 - `scripts/site-verification.cjs` can generate a Google verification file for the service account and claim site ownership through the Google Site Verification API.
 - `scripts/configure-adsense.cjs` can write `site-config.js` and `ads.txt` after a real AdSense publisher ID is available.
 - `scripts/register-domain.cjs` checks Cloudflare Registrar availability/pricing and can register the selected domain after the account has a default registrant contact and payment method.
-- `docs/` contains a compact GitHub Pages discovery directory that links back to the live high-intent tools.
+- `docs/` contains a compact GitHub Pages discovery directory plus high-intent tool mirror pages that link back to the live tools.
 
 ## Account setup checklist
 

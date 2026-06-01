@@ -4,276 +4,331 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-06-01T17:40:18.491Z",
+  "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
+  "generatedAt": "2026-06-01T18:14:45.552Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
       "url": "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/free-invoice-generator-no-signup/",
       "intent": "invoice PDF now, no account, no hidden export fee"
     },
     {
       "title": "JPG to PDF Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/jpg-to-pdf-no-upload/",
       "intent": "private image conversion, no upload, fast PDF"
     },
     {
       "title": "Multiple Images to PDF Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/multiple-images-to-pdf-no-upload/",
       "intent": "combine images into one PDF without upload"
     },
     {
       "title": "Compress PDF Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/compress-pdf-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-pdf-no-upload/",
       "intent": "compress PDF, reduce PDF size, no upload"
     },
     {
       "title": "PDF to JPG Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/pdf-to-jpg-no-upload/",
       "intent": "PDF to JPG, PDF to PNG, no upload converter"
     },
     {
       "title": "Extract Text From PDF Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/extract-text-from-pdf-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/extract-text-from-pdf-no-upload/",
       "intent": "PDF to text, extract text from PDF, no upload"
     },
     {
       "title": "Signature PNG Generator",
       "url": "https://printable-tools-lab.pages.dev/signature-png-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/signature-png-generator/",
       "intent": "signature PNG, transparent signature, draw signature online"
     },
     {
       "title": "Passport Photo Maker",
       "url": "https://printable-tools-lab.pages.dev/passport-photo-maker/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/passport-photo-maker/",
       "intent": "passport photo maker, 2x2 photo, 35x45 photo, no upload"
     },
     {
       "title": "Compress Image Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-image-no-upload/",
       "intent": "compress image online, reduce image size, no upload"
     },
     {
       "title": "Compress Image to 100KB Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-image-to-100kb/",
       "intent": "compress image to 100KB, reduce image size, no upload"
     },
     {
       "title": "Resize Image Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/resize-image-no-upload/",
       "intent": "resize image online, change image dimensions, no upload"
     },
     {
       "title": "Convert Image Format Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/convert-image-format-no-upload/",
       "intent": "convert image format, JPG to PNG, PNG to WebP, no upload"
     },
     {
       "title": "Remove Background Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/remove-background-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/remove-background-no-upload/",
       "intent": "remove background, transparent PNG, white background remover, no upload"
     },
     {
       "title": "Crop Image Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/crop-image-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/crop-image-no-upload/",
       "intent": "crop image online, square crop, no upload"
     },
     {
       "title": "Rotate Image Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/rotate-image-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/rotate-image-no-upload/",
       "intent": "rotate image online, flip image, no upload"
     },
     {
       "title": "Watermark Image Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/watermark-image-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/watermark-image-no-upload/",
       "intent": "watermark image online, add text watermark, no upload"
     },
     {
       "title": "Add Text to Image Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/add-text-to-image-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/add-text-to-image-no-upload/",
       "intent": "add text to image, text on photo, caption image, no upload"
     },
     {
       "title": "Free QR Code Generator Without Signup",
       "url": "https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/free-qr-code-generator-no-signup/",
       "intent": "QR code generator, no signup, printable static QR"
     },
     {
       "title": "WiFi QR Code Generator",
       "url": "https://printable-tools-lab.pages.dev/wifi-qr-code-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/wifi-qr-code-generator/",
       "intent": "WiFi QR code generator, guest WiFi sign, printable QR"
     },
     {
       "title": "Contact QR Code Generator",
       "url": "https://printable-tools-lab.pages.dev/contact-qr-code-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/contact-qr-code-generator/",
       "intent": "contact QR code, vCard QR generator, printable business contact"
     },
     {
       "title": "Compress JPG Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/compress-jpg-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-jpg-no-upload/",
       "intent": "compress JPG online, reduce JPG file size, no upload"
     },
     {
       "title": "Compress PNG Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/compress-png-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-png-no-upload/",
       "intent": "compress PNG online, reduce PNG size, no upload"
     },
     {
       "title": "Resize Image to 1080x1080",
       "url": "https://printable-tools-lab.pages.dev/resize-image-1080x1080/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/resize-image-1080x1080/",
       "intent": "resize image to 1080x1080, square image resize, no upload"
     },
     {
       "title": "Resize Image to 512x512",
       "url": "https://printable-tools-lab.pages.dev/resize-image-512x512/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/resize-image-512x512/",
       "intent": "resize image to 512x512, profile picture resizer, no upload"
     },
     {
       "title": "PNG to JPG Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/png-to-jpg-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/png-to-jpg-no-upload/",
       "intent": "PNG to JPG converter, no upload, browser image conversion"
     },
     {
       "title": "WebP to JPG Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/webp-to-jpg-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/webp-to-jpg-no-upload/",
       "intent": "WebP to JPG converter, no upload, browser image conversion"
     },
     {
       "title": "Text to PDF Converter Without Signup",
       "url": "https://printable-tools-lab.pages.dev/text-to-pdf-no-signup/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/text-to-pdf-no-signup/",
       "intent": "plain text to PDF with no account"
     },
     {
       "title": "Markdown to PDF Converter Without Signup",
       "url": "https://printable-tools-lab.pages.dev/markdown-to-pdf-no-signup/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/markdown-to-pdf-no-signup/",
       "intent": "Markdown to PDF, no account, no upload"
     },
     {
       "title": "CSV to PDF Table Converter Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/csv-to-pdf-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/csv-to-pdf-no-upload/",
       "intent": "CSV to PDF table, no upload, no account"
     },
     {
       "title": "JSON to PDF Formatter Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/json-to-pdf-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/json-to-pdf-no-upload/",
       "intent": "JSON to PDF formatter, no upload, no account"
     },
     {
       "title": "Merge PDF Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/merge-pdf-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/merge-pdf-no-upload/",
       "intent": "combine PDF files, no upload, no account"
     },
     {
       "title": "Split PDF Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/split-pdf-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/split-pdf-no-upload/",
       "intent": "extract PDF pages, no upload, no account"
     },
     {
       "title": "Add Page Numbers to PDF",
       "url": "https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/add-page-numbers-to-pdf/",
       "intent": "add page numbers to PDF, no upload, no account"
     },
     {
       "title": "Rotate PDF Pages Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/rotate-pdf-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/rotate-pdf-no-upload/",
       "intent": "rotate PDF pages, no upload, no account"
     },
     {
       "title": "Remove Pages from PDF Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/remove-pages-from-pdf-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/remove-pages-from-pdf-no-upload/",
       "intent": "delete PDF pages, no upload, no account"
     },
     {
       "title": "Reorder PDF Pages Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/reorder-pdf-pages-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/reorder-pdf-pages-no-upload/",
       "intent": "reorder PDF pages, organize PDF, no upload"
     },
     {
       "title": "Add Watermark to PDF Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/watermark-pdf-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/watermark-pdf-no-upload/",
       "intent": "watermark PDF, no upload, free browser tool"
     },
     {
       "title": "Stamp PDF Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/stamp-pdf-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/stamp-pdf-no-upload/",
       "intent": "stamp PDF, paid stamp, approved stamp, no upload"
     },
     {
       "title": "Add Signature Text to PDF Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/sign-pdf-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/sign-pdf-no-upload/",
       "intent": "sign PDF, typed signature, no upload"
     },
     {
       "title": "Free Resume Builder Without Signup",
       "url": "https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/free-resume-builder-no-signup/",
       "intent": "resume PDF download without account or paywall"
     },
     {
       "title": "Free ATS Resume Checker",
       "url": "https://printable-tools-lab.pages.dev/ats-resume-checker-free/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/ats-resume-checker-free/",
       "intent": "ATS resume checker, resume keyword match, job description match"
     },
     {
       "title": "PDF to Word Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/pdf-to-word-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/pdf-to-word-no-upload/",
       "intent": "PDF to Word, PDF to DOCX, no upload PDF converter"
     },
     {
       "title": "Free Receipt Generator Without Signup",
       "url": "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/free-receipt-generator-no-signup/",
       "intent": "receipt PDF now, no account, quick proof of payment"
     },
     {
       "title": "Weekly Timesheet PDF Without Signup",
       "url": "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/weekly-timesheet-pdf-no-signup/",
       "intent": "weekly timesheet PDF with fast export"
     },
     {
       "title": "Free Certificate Maker Without Signup",
       "url": "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/free-certificate-maker-no-signup/",
       "intent": "certificate PDF download without account"
     },
     {
       "title": "Free Printable Business Card Generator",
       "url": "https://printable-tools-lab.pages.dev/free-business-card-generator-printable/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/free-business-card-generator-printable/",
       "intent": "printable business cards now, no account, no design software"
     },
     {
       "title": "Free Printable Address Label Generator",
       "url": "https://printable-tools-lab.pages.dev/free-address-label-generator-printable/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/free-address-label-generator-printable/",
       "intent": "mailing label PDF, return address labels, no signup"
     },
     {
       "title": "Free Printable Barcode Label Generator",
       "url": "https://printable-tools-lab.pages.dev/free-barcode-label-generator-printable/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/free-barcode-label-generator-printable/",
       "intent": "barcode label PDF, SKU labels, inventory stickers"
     },
     {
       "title": "Free Printable Price Tag Generator",
       "url": "https://printable-tools-lab.pages.dev/free-price-tag-generator-printable/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/free-price-tag-generator-printable/",
       "intent": "price tag PDF, shelf labels, yard sale tags"
     },
     {
       "title": "Free Flyer Maker PDF Without Signup",
       "url": "https://printable-tools-lab.pages.dev/free-flyer-maker-pdf-no-signup/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/free-flyer-maker-pdf-no-signup/",
       "intent": "flyer PDF now, no signup, local event flyer"
     },
     {
       "title": "Free Printable Coupon Maker",
       "url": "https://printable-tools-lab.pages.dev/free-coupon-maker-printable/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/free-coupon-maker-printable/",
       "intent": "printable coupon cards, discount coupon PDF, no signup"
     },
     {
       "title": "Free Printable Packing Slip Generator",
       "url": "https://printable-tools-lab.pages.dev/free-packing-slip-generator-printable/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/free-packing-slip-generator-printable/",
       "intent": "packing slip PDF, order packing sheet, no signup"
     },
     {
       "title": "Free Work Order Generator PDF",
       "url": "https://printable-tools-lab.pages.dev/free-work-order-generator-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/free-work-order-generator-pdf/",
       "intent": "work order PDF, service order form, contractor job sheet"
     },
     {
       "title": "Free Inventory Sheet Generator",
       "url": "https://printable-tools-lab.pages.dev/free-inventory-sheet-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/free-inventory-sheet-generator/",
       "intent": "inventory count sheet PDF, stock count template, no signup"
     }
   ],
@@ -281,252 +336,302 @@
     {
       "title": "Image to PDF Converter",
       "description": "Convert JPG, PNG, or WebP images into a clean one-page PDF in your browser without uploading files.",
-      "url": "https://printable-tools-lab.pages.dev/tools/image-to-pdf/"
+      "url": "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/image-to-pdf/"
     },
     {
       "title": "Multiple Images to PDF Converter",
       "description": "Turn several JPG, PNG, or WebP images into one multi-page PDF in your browser without uploading files.",
-      "url": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/"
+      "url": "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/multi-image-pdf/"
     },
     {
       "title": "Compress PDF Online",
       "description": "Compress a PDF locally by rendering pages into a smaller image-based PDF without uploading the document.",
-      "url": "https://printable-tools-lab.pages.dev/tools/compress-pdf/"
+      "url": "https://printable-tools-lab.pages.dev/tools/compress-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/compress-pdf/"
     },
     {
       "title": "PDF to JPG Converter",
       "description": "Convert PDF pages to JPG or PNG images locally in your browser without uploading the document.",
-      "url": "https://printable-tools-lab.pages.dev/tools/pdf-to-images/"
+      "url": "https://printable-tools-lab.pages.dev/tools/pdf-to-images/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/pdf-to-images/"
     },
     {
       "title": "PDF to Text Converter",
       "description": "Extract selectable text from PDF pages locally in your browser without uploading the document.",
-      "url": "https://printable-tools-lab.pages.dev/tools/pdf-to-text/"
+      "url": "https://printable-tools-lab.pages.dev/tools/pdf-to-text/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/pdf-to-text/"
     },
     {
       "title": "PDF to Word Converter",
       "description": "Convert selectable PDF text into a simple DOCX document locally in your browser without uploading the PDF.",
-      "url": "https://printable-tools-lab.pages.dev/tools/pdf-to-word/"
+      "url": "https://printable-tools-lab.pages.dev/tools/pdf-to-word/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/pdf-to-word/"
     },
     {
       "title": "Compress Image Online",
       "description": "Compress JPG, PNG, or WebP images locally in your browser without uploading files.",
-      "url": "https://printable-tools-lab.pages.dev/tools/compress-image/"
+      "url": "https://printable-tools-lab.pages.dev/tools/compress-image/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/compress-image/"
     },
     {
       "title": "Compress Image to KB",
       "description": "Compress an image toward a target KB size locally for upload limits, forms, profiles, and portals.",
-      "url": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/"
+      "url": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/compress-image-to-kb/"
     },
     {
       "title": "Resize Image Online",
       "description": "Resize a JPG, PNG, or WebP image locally by width, height, or common social sizes without uploading it.",
-      "url": "https://printable-tools-lab.pages.dev/tools/resize-image/"
+      "url": "https://printable-tools-lab.pages.dev/tools/resize-image/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/resize-image/"
     },
     {
       "title": "Convert Image Format",
       "description": "Convert JPG, PNG, and WebP images locally in your browser without uploading the file.",
-      "url": "https://printable-tools-lab.pages.dev/tools/convert-image/"
+      "url": "https://printable-tools-lab.pages.dev/tools/convert-image/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/convert-image/"
     },
     {
       "title": "Remove Background Online",
       "description": "Remove a solid or near-solid image background locally and download a transparent PNG without uploading the file.",
-      "url": "https://printable-tools-lab.pages.dev/tools/remove-background/"
+      "url": "https://printable-tools-lab.pages.dev/tools/remove-background/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/remove-background/"
     },
     {
       "title": "Crop Image Online",
       "description": "Crop JPG, PNG, or WebP images locally for square avatars, wide banners, product photos, and profile uploads without uploading files.",
-      "url": "https://printable-tools-lab.pages.dev/tools/crop-image/"
+      "url": "https://printable-tools-lab.pages.dev/tools/crop-image/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/crop-image/"
     },
     {
       "title": "Rotate Image Online",
       "description": "Rotate or flip a JPG, PNG, or WebP image locally in your browser without uploading the file.",
-      "url": "https://printable-tools-lab.pages.dev/tools/rotate-image/"
+      "url": "https://printable-tools-lab.pages.dev/tools/rotate-image/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/rotate-image/"
     },
     {
       "title": "Watermark Image Online",
       "description": "Add a text watermark to JPG, PNG, or WebP images locally for drafts, samples, marketplace photos, and social posts without uploading files.",
-      "url": "https://printable-tools-lab.pages.dev/tools/watermark-image/"
+      "url": "https://printable-tools-lab.pages.dev/tools/watermark-image/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/watermark-image/"
     },
     {
       "title": "Add Text to Image Online",
       "description": "Add a headline, caption, price, label, or meme-style text to an image locally without uploading the file.",
-      "url": "https://printable-tools-lab.pages.dev/tools/add-text-image/"
+      "url": "https://printable-tools-lab.pages.dev/tools/add-text-image/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/add-text-image/"
     },
     {
       "title": "Signature PNG Generator",
       "description": "Draw or type a signature and download a transparent PNG locally in your browser without uploading anything.",
-      "url": "https://printable-tools-lab.pages.dev/tools/signature-png/"
+      "url": "https://printable-tools-lab.pages.dev/tools/signature-png/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/signature-png/"
     },
     {
       "title": "Passport Photo Maker",
       "description": "Crop a passport-style photo locally for US 2x2, UK 35x45, Canada 50x70, and Australia 35x45 sizes.",
-      "url": "https://printable-tools-lab.pages.dev/tools/passport-photo/"
+      "url": "https://printable-tools-lab.pages.dev/tools/passport-photo/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/passport-photo/"
     },
     {
       "title": "Free QR Code Generator",
       "description": "Create a static QR code PDF for a link, menu, event page, sign, flyer, or short text without signup.",
-      "url": "https://printable-tools-lab.pages.dev/tools/qr-code/"
+      "url": "https://printable-tools-lab.pages.dev/tools/qr-code/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/qr-code/"
     },
     {
       "title": "WiFi QR Code Generator",
       "description": "Create a printable WiFi QR code for guests, offices, rentals, classrooms, cafes, events, and waiting rooms.",
-      "url": "https://printable-tools-lab.pages.dev/tools/wifi-qr-code/"
+      "url": "https://printable-tools-lab.pages.dev/tools/wifi-qr-code/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/wifi-qr-code/"
     },
     {
       "title": "Contact QR Code Generator",
       "description": "Create a printable contact QR code with vCard details for a business card, booth sign, event badge, or service flyer.",
-      "url": "https://printable-tools-lab.pages.dev/tools/vcard-qr-code/"
+      "url": "https://printable-tools-lab.pages.dev/tools/vcard-qr-code/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/vcard-qr-code/"
     },
     {
       "title": "Merge PDF Tool",
       "description": "Combine several PDF files into one PDF in your browser without uploading documents.",
-      "url": "https://printable-tools-lab.pages.dev/tools/merge-pdf/"
+      "url": "https://printable-tools-lab.pages.dev/tools/merge-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/merge-pdf/"
     },
     {
       "title": "Split PDF Tool",
       "description": "Extract selected pages from a PDF in your browser without uploading the document.",
-      "url": "https://printable-tools-lab.pages.dev/tools/split-pdf/"
+      "url": "https://printable-tools-lab.pages.dev/tools/split-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/split-pdf/"
     },
     {
       "title": "Add Page Numbers to PDF",
       "description": "Add simple page numbers to an existing PDF locally in your browser.",
-      "url": "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/"
+      "url": "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/pdf-page-numbers/"
     },
     {
       "title": "Rotate PDF Pages",
       "description": "Rotate all PDF pages or selected pages locally in your browser without uploading the file.",
-      "url": "https://printable-tools-lab.pages.dev/tools/rotate-pdf/"
+      "url": "https://printable-tools-lab.pages.dev/tools/rotate-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/rotate-pdf/"
     },
     {
       "title": "Remove Pages from PDF",
       "description": "Delete selected PDF pages locally in your browser without uploading the document.",
-      "url": "https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/"
+      "url": "https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/remove-pdf-pages/"
     },
     {
       "title": "Reorder PDF Pages",
       "description": "Rearrange PDF pages by typing a new page order, all locally in your browser.",
-      "url": "https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/"
+      "url": "https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/reorder-pdf-pages/"
     },
     {
       "title": "Add Watermark to PDF",
       "description": "Add a light text watermark to all pages or selected PDF pages locally in your browser.",
-      "url": "https://printable-tools-lab.pages.dev/tools/watermark-pdf/"
+      "url": "https://printable-tools-lab.pages.dev/tools/watermark-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/watermark-pdf/"
     },
     {
       "title": "Stamp PDF Pages",
       "description": "Add a simple APPROVED, PAID, DRAFT, or custom text stamp to PDF pages without uploading the file.",
-      "url": "https://printable-tools-lab.pages.dev/tools/stamp-pdf/"
+      "url": "https://printable-tools-lab.pages.dev/tools/stamp-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/stamp-pdf/"
     },
     {
       "title": "Add Signature Text to PDF",
       "description": "Place a typed signature block on a selected PDF page locally in your browser.",
-      "url": "https://printable-tools-lab.pages.dev/tools/sign-pdf/"
+      "url": "https://printable-tools-lab.pages.dev/tools/sign-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/sign-pdf/"
     },
     {
       "title": "Text to PDF Converter",
       "description": "Paste plain text and download a clean one-page PDF without an account or file upload.",
-      "url": "https://printable-tools-lab.pages.dev/tools/text-to-pdf/"
+      "url": "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/text-to-pdf/"
     },
     {
       "title": "Markdown to PDF Converter",
       "description": "Paste Markdown and download a clean PDF preview without installing an editor or uploading a file.",
-      "url": "https://printable-tools-lab.pages.dev/tools/markdown-to-pdf/"
+      "url": "https://printable-tools-lab.pages.dev/tools/markdown-to-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/markdown-to-pdf/"
     },
     {
       "title": "CSV to PDF Table Converter",
       "description": "Paste CSV rows and export a readable PDF table locally in your browser.",
-      "url": "https://printable-tools-lab.pages.dev/tools/csv-to-pdf/"
+      "url": "https://printable-tools-lab.pages.dev/tools/csv-to-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/csv-to-pdf/"
     },
     {
       "title": "JSON to PDF Formatter",
       "description": "Paste JSON and download a readable formatted PDF locally without uploading data.",
-      "url": "https://printable-tools-lab.pages.dev/tools/json-to-pdf/"
+      "url": "https://printable-tools-lab.pages.dev/tools/json-to-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/json-to-pdf/"
     },
     {
       "title": "Invoice Generator",
       "description": "Create a clean free invoice PDF for freelance work, small business services, consulting, or one-off projects.",
-      "url": "https://printable-tools-lab.pages.dev/tools/invoice-generator/"
+      "url": "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/invoice-generator/"
     },
     {
       "title": "Receipt Generator",
       "description": "Create a simple printable receipt PDF for a sale, service payment, deposit, or reimbursement record.",
-      "url": "https://printable-tools-lab.pages.dev/tools/receipt-generator/"
+      "url": "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/receipt-generator/"
     },
     {
       "title": "Timesheet Generator",
       "description": "Make a printable weekly timesheet PDF for freelance hours, staff records, projects, or approvals.",
-      "url": "https://printable-tools-lab.pages.dev/tools/timesheet-generator/"
+      "url": "https://printable-tools-lab.pages.dev/tools/timesheet-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/timesheet-generator/"
     },
     {
       "title": "Business Card Generator",
       "description": "Create a printable business card PDF sheet for a small business, side project, local service, or event contact card.",
-      "url": "https://printable-tools-lab.pages.dev/tools/business-card/"
+      "url": "https://printable-tools-lab.pages.dev/tools/business-card/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/business-card/"
     },
     {
       "title": "Address Label Generator",
       "description": "Make a printable sheet of return address labels, mailing labels, classroom labels, or event badge labels.",
-      "url": "https://printable-tools-lab.pages.dev/tools/address-labels/"
+      "url": "https://printable-tools-lab.pages.dev/tools/address-labels/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/address-labels/"
     },
     {
       "title": "Barcode Label Generator",
       "description": "Generate printable Code 39 barcode labels for inventory bins, event check-in, SKU stickers, and internal tracking.",
-      "url": "https://printable-tools-lab.pages.dev/tools/barcode-labels/"
+      "url": "https://printable-tools-lab.pages.dev/tools/barcode-labels/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/barcode-labels/"
     },
     {
       "title": "Price Tag Generator",
       "description": "Create printable price tags or shelf labels for yard sales, craft fairs, pop-up shops, and small retail displays.",
-      "url": "https://printable-tools-lab.pages.dev/tools/price-tag/"
+      "url": "https://printable-tools-lab.pages.dev/tools/price-tag/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/price-tag/"
     },
     {
       "title": "Flyer Maker PDF",
       "description": "Make a one-page printable flyer PDF for a local service, yard sale, class, community event, or small business offer.",
-      "url": "https://printable-tools-lab.pages.dev/tools/flyer-maker/"
+      "url": "https://printable-tools-lab.pages.dev/tools/flyer-maker/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/flyer-maker/"
     },
     {
       "title": "Coupon Maker PDF",
       "description": "Create printable coupon cards for a local service, class, pop-up event, small shop, or limited-time offer.",
-      "url": "https://printable-tools-lab.pages.dev/tools/coupon-maker/"
+      "url": "https://printable-tools-lab.pages.dev/tools/coupon-maker/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/coupon-maker/"
     },
     {
       "title": "Packing Slip Generator",
       "description": "Create a printable packing slip PDF for small orders, marketplace sales, local delivery, and handmade product shipments.",
-      "url": "https://printable-tools-lab.pages.dev/tools/packing-slip/"
+      "url": "https://printable-tools-lab.pages.dev/tools/packing-slip/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/packing-slip/"
     },
     {
       "title": "Work Order Generator",
       "description": "Make a work order PDF for repairs, field service, maintenance visits, cleaning jobs, and contractor tasks.",
-      "url": "https://printable-tools-lab.pages.dev/tools/work-order/"
+      "url": "https://printable-tools-lab.pages.dev/tools/work-order/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/work-order/"
     },
     {
       "title": "Inventory Sheet Generator",
       "description": "Create a printable inventory count sheet PDF for stock checks, craft fairs, storage bins, classroom supplies, and small retail shelves.",
-      "url": "https://printable-tools-lab.pages.dev/tools/inventory-sheet/"
+      "url": "https://printable-tools-lab.pages.dev/tools/inventory-sheet/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/inventory-sheet/"
     },
     {
       "title": "Resume Builder PDF",
       "description": "Build a simple free resume PDF without an account, paywall, or surprise download fee.",
-      "url": "https://printable-tools-lab.pages.dev/tools/resume-builder/"
+      "url": "https://printable-tools-lab.pages.dev/tools/resume-builder/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/resume-builder/"
     },
     {
       "title": "ATS Resume Checker",
       "description": "Check pasted resume text against a job description and download a local ATS keyword and readability report PDF.",
-      "url": "https://printable-tools-lab.pages.dev/tools/ats-resume-checker/"
+      "url": "https://printable-tools-lab.pages.dev/tools/ats-resume-checker/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/ats-resume-checker/"
     },
     {
       "title": "Certificate Generator",
       "description": "Create a printable certificate PDF for completion, participation, classroom awards, or small events.",
-      "url": "https://printable-tools-lab.pages.dev/tools/certificate-generator/"
+      "url": "https://printable-tools-lab.pages.dev/tools/certificate-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/certificate-generator/"
     },
     {
       "title": "To Do List Generator",
       "description": "Build a printable checklist PDF for errands, work tasks, study sessions, home projects, or event prep.",
-      "url": "https://printable-tools-lab.pages.dev/tools/todo-list/"
+      "url": "https://printable-tools-lab.pages.dev/tools/todo-list/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/todo-list/"
     },
     {
       "title": "Graph Paper Generator",
       "description": "Generate printable graph paper PDF with quarter-inch, half-inch, or small grid spacing for math, notes, and design sketches.",
-      "url": "https://printable-tools-lab.pages.dev/tools/graph-paper/"
+      "url": "https://printable-tools-lab.pages.dev/tools/graph-paper/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/graph-paper/"
     }
   ]
 }

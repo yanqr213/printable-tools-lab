@@ -105,26 +105,34 @@ async function checkDirectory(directory) {
 }
 
 async function checkJsOrg(directory) {
+  const headers = githubHeaders();
   const [page, api, checks] = await Promise.all([
     fetchText(directory.url),
-    fetchJson("https://api.github.com/repos/js-org/js.org/pulls/11512"),
-    fetchJson("https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs"),
+    fetchJson("https://api.github.com/repos/js-org/js.org/pulls/11512", headers),
+    fetchJson("https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs", headers),
   ]);
+  const apiAvailable = Boolean(api.ok);
+  const checksAvailable = Boolean(checks.ok);
   const body = String(api.json?.body || "");
-  const templateOk = body.includes("- [x] There is reasonable content")
+  const pageHasExpectedText = page.matched || hasExpectedText(page.text || "", directory.expected);
+  const templateOk = apiAvailable ? body.includes("- [x] There is reasonable content")
     && body.includes("- [x] I have read and accepted")
     && body.includes("https://printable-tools-lab.pages.dev/")
-    && body.includes("relevant to JavaScript developers");
-  const latestChecks = latestCheckRuns(checks.json?.check_runs || []);
-  const checksOk = latestChecks.length > 0 && latestChecks.every((check) => check.conclusion === "success");
+    && body.includes("relevant to JavaScript developers") : null;
+  const latestChecks = checksAvailable ? latestCheckRuns(checks.json?.check_runs || []) : [];
+  const checksOk = checksAvailable ? latestChecks.length > 0 && latestChecks.every((check) => check.conclusion === "success") : null;
   let status = "pending";
   if (api.json?.merged || /merged/i.test(page.text || "")) status = "listed";
   else if (api.json?.state === "closed") status = "error";
-  else if (!templateOk || latestChecks.some((check) => check.conclusion === "failure")) status = "error";
+  else if (apiAvailable && templateOk === false) status = "error";
+  else if (checksAvailable && latestChecks.some((check) => check.conclusion === "failure")) status = "error";
+  else if (!page.ok || !pageHasExpectedText) status = "error";
   return {
     ...directory,
     status,
     evidenceUrl: directory.url,
+    apiAvailable,
+    checksAvailable,
     templateOk,
     checksOk,
     checks: latestChecks,
@@ -132,8 +140,8 @@ async function checkJsOrg(directory) {
     mergeable: api.json?.mergeable ?? null,
     checked: [
       slimCheck(page),
-      slimCheck(api, { matched: templateOk }),
-      slimCheck(checks, { matched: checksOk }),
+      slimCheck(api, { matched: templateOk === null ? false : templateOk }),
+      slimCheck(checks, { matched: checksOk === null ? false : checksOk }),
     ],
   };
 }
@@ -168,7 +176,7 @@ async function fetchText(url) {
   }
 }
 
-async function fetchJson(url) {
+async function fetchJson(url, extraHeaders = {}) {
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15000);
@@ -177,6 +185,7 @@ async function fetchJson(url) {
       headers: {
         Accept: "application/vnd.github+json",
         "User-Agent": "PrintableToolsLab-DirectoryMonitor",
+        ...extraHeaders,
       },
       signal: controller.signal,
     });
@@ -200,6 +209,11 @@ async function fetchJson(url) {
       error: error.message,
     };
   }
+}
+
+function githubHeaders() {
+  const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
+  return token ? { Authorization: `Bearer ${token}` } : {};
 }
 
 function hasExpectedText(text, expected) {

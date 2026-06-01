@@ -14,15 +14,23 @@ fs.mkdirSync(docsDir, { recursive: true });
 const highIntentTools = HIGH_INTENT_TOOL_PATHS
   .map((toolPath) => tools.find((tool) => tool.path === toolPath))
   .filter(Boolean);
+const highIntentToolDiscoveryRoutes = highIntentTools.map((tool) => ({
+  path: tool.path,
+  title: tool.title,
+  description: tool.description,
+  url: pagesUrl(tool.path),
+  mainUrl: siteUrl(tool.path),
+}));
 const discoveryRoutes = [
   { path: "", title: "Free PDF, Image, and QR Tools Directory", description: "A compact external discovery directory for PrintableTools Lab free no-signup PDF, image, and QR tools for small business, local promotion, image conversion, static QR codes, career documents, and everyday printables.", url: pagesBase },
   ...landingPages.map((page) => ({
     path: page.path,
     title: page.title,
     description: page.description,
-    url: `${pagesBase}${page.path}/`,
+    url: pagesUrl(page.path),
     mainUrl: siteUrl(page.path),
   })),
+  ...highIntentToolDiscoveryRoutes,
 ];
 
 const html = `<!doctype html>
@@ -64,6 +72,8 @@ const html = `<!doctype html>
         <article class="card">
           <h3>${escapeHtml(tool.title)}</h3>
           <p>${escapeHtml(tool.description)}</p>
+          <a href="${pagesUrl(tool.path)}">Open the discovery note</a>
+          <br>
           <a href="${siteUrl(tool.path)}">Open this free file tool</a>
         </article>`).join("\n")}
       </div>
@@ -84,7 +94,7 @@ const html = `<!doctype html>
         <article class="card">
           <h3>${escapeHtml(page.title)}</h3>
           <p>${escapeHtml(page.description)}</p>
-          <a href="${pagesBase}${page.path}/">Open the discovery note</a>
+          <a href="${pagesUrl(page.path)}">Open the discovery note</a>
         </article>`).join("\n")}
       </div>
 
@@ -105,6 +115,14 @@ for (const page of landingPages) {
     .filter(Boolean);
   fs.writeFileSync(path.join(pageDir, "index.html"), landingDiscoveryHtml(page, primaryTool, relatedTools));
 }
+for (const tool of highIntentTools) {
+  const toolDir = path.join(docsDir, ...tool.path.split("/"));
+  fs.mkdirSync(toolDir, { recursive: true });
+  const relatedLandingPages = landingPages
+    .filter((page) => page.primaryTool === tool.path || page.relatedTools.includes(tool.path))
+    .slice(0, 6);
+  fs.writeFileSync(path.join(toolDir, "index.html"), toolDiscoveryHtml(tool, relatedLandingPages));
+}
 
 fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
   name: SITE_SUMMARY.name,
@@ -112,16 +130,19 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
   directory: siteUrl("free-pdf-tools"),
   finder: siteUrl("pdf-tool-finder"),
   feed: siteUrl("feed.xml").replace(/\/$/, ""),
+  githubPagesDirectory: pagesUrl(""),
   generatedAt: generatedAtIso,
   landingPages: landingPages.map((page) => ({
     title: page.title,
     url: siteUrl(page.path),
+    discoveryUrl: pagesUrl(page.path),
     intent: page.intent,
   })),
   tools: highIntentTools.map((tool) => ({
     title: tool.title,
     description: tool.description,
     url: siteUrl(tool.path),
+    discoveryUrl: pagesUrl(tool.path),
   })),
 }, null, 2)}\n`);
 
@@ -149,6 +170,11 @@ function escapeHtml(value) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+function pagesUrl(routePath = "") {
+  const cleanPath = String(routePath).replace(/^\/+|\/+$/g, "");
+  return cleanPath ? `${pagesBase}${cleanPath}/` : pagesBase;
 }
 
 function copyGoogleVerificationFiles() {
@@ -201,6 +227,74 @@ function landingDiscoveryHtml(page, primaryTool, relatedTools) {
       <div class="grid">
         ${relatedTools.map((tool) => `<article class="card"><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.description)}</p><a href="${siteUrl(tool.path)}">Open this tool</a></article>`).join("\n")}
       </div>
+    </main>
+  </body>
+</html>
+`;
+}
+
+function toolDiscoveryHtml(tool, relatedLandingPages) {
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${escapeHtml(tool.title)} - Free Tool Discovery</title>
+    <meta name="description" content="${escapeHtml(tool.description)}">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="${pagesUrl(tool.path)}">
+    <style>
+      :root { color-scheme: light; --ink: #17313b; --muted: #5b6f78; --line: #dce8ec; --soft: #eef7f9; --teal: #176b87; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Arial, sans-serif; color: var(--ink); background: #f7fbfc; line-height: 1.55; }
+      main { width: min(920px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 56px; }
+      h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin: 0 0 14px; }
+      p { color: var(--muted); max-width: 780px; }
+      a { color: var(--teal); font-weight: 700; }
+      .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+      .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+      ul { padding-left: 20px; }
+      @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="${pagesUrl("")}">PrintableTools Lab discovery directory</a></p>
+      <h1>${escapeHtml(tool.title)}</h1>
+      <p>${escapeHtml(tool.description)}</p>
+      <p><a class="button" href="${siteUrl(tool.path)}">Open the live free tool</a></p>
+      <h2>Why this tool exists</h2>
+      <p>This mirror page is a zero-cost discovery entry for the live PrintableTools Lab tool. The live app focuses on practical browser-side generation, no account wall, and clear download flow so users can solve a file or printable job quickly.</p>
+      <h2>Best fit</h2>
+      <ul>
+        <li>Use it when you need a practical file now and do not want to create an account first.</li>
+        <li>Use browser-side PDF, image, QR, and printable workflows for ordinary one-off tasks.</li>
+        <li>Review every exported file before printing, submitting, or sending it to someone else.</li>
+      </ul>
+      <h2>Related high-intent pages</h2>
+      <div class="grid">
+        ${relatedLandingPages.length ? relatedLandingPages.map((page) => `
+        <article class="card">
+          <h3>${escapeHtml(page.title)}</h3>
+          <p>${escapeHtml(page.description)}</p>
+          <a href="${pagesUrl(page.path)}">Open discovery page</a>
+          <br>
+          <a href="${siteUrl(page.path)}">Open live page</a>
+        </article>`).join("\n") : `
+        <article class="card">
+          <h3>Free PDF, image, and QR tools</h3>
+          <p>Browse the full no-signup directory and choose the closest tool for your file task.</p>
+          <a href="${siteUrl("free-pdf-tools")}">Open the live directory</a>
+        </article>`}
+      </div>
+      <h2>Useful links</h2>
+      <ul>
+        <li><a href="${siteUrl("free-pdf-tools")}">Full free tool directory</a></li>
+        <li><a href="${siteUrl("pdf-tool-finder")}">Tool finder</a></li>
+        <li><a href="${siteUrl("privacy")}">Privacy policy</a></li>
+        <li><a href="${siteUrl("tools.json").replace(/\/$/, "")}">Machine-readable tools.json</a></li>
+      </ul>
     </main>
   </body>
 </html>

@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { routes, siteUrl, landingPages } = require("./seo-content.cjs");
+const { routes, siteUrl, landingPages, HIGH_INTENT_TOOL_PATHS, tools } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const failures = [];
@@ -216,6 +216,7 @@ else {
   if (!html.includes(siteUrl("free-pdf-tools"))) failures.push("GitHub Pages discovery page missing main directory link.");
   if (!html.includes(siteUrl("free-invoice-generator-no-signup"))) failures.push("GitHub Pages discovery page missing no-signup invoice landing link.");
   if (!html.includes(siteUrl("tools/image-to-pdf"))) failures.push("GitHub Pages discovery page missing image-to-PDF link.");
+  if (!html.includes("https://yanqr213.github.io/printable-tools-lab/tools/image-to-pdf/")) failures.push("GitHub Pages discovery page missing tool mirror link.");
   if (!html.includes("rel=\"canonical\" href=\"https://yanqr213.github.io/printable-tools-lab/\"")) failures.push("GitHub Pages discovery page missing canonical.");
 }
 
@@ -226,16 +227,22 @@ else {
   if (!Array.isArray(data.tools) || data.tools.length < 8) failures.push("GitHub Pages discovery tools.json missing high-intent tools.");
   if (!Array.isArray(data.landingPages) || data.landingPages.length < 50) failures.push("GitHub Pages discovery tools.json missing high-intent landing pages.");
   if (data.feed !== siteUrl("feed.xml").replace(/\/$/, "")) failures.push("GitHub Pages discovery tools.json missing feed URL.");
+  if (!data.githubPagesDirectory || data.githubPagesDirectory !== "https://yanqr213.github.io/printable-tools-lab/") failures.push("GitHub Pages discovery tools.json missing GitHub directory URL.");
+  if (!data.tools.some((tool) => tool.url === siteUrl("tools/image-to-pdf") && tool.discoveryUrl === "https://yanqr213.github.io/printable-tools-lab/tools/image-to-pdf/")) failures.push("GitHub Pages discovery tools.json missing tool discovery URL.");
 }
 
 const docsSitemapFile = path.join(root, "docs", "sitemap.xml");
 if (!fs.existsSync(docsSitemapFile)) failures.push("Missing GitHub Pages discovery sitemap.");
 else {
   const docsSitemap = fs.readFileSync(docsSitemapFile, "utf8");
-  if (countMatches(docsSitemap, /<loc>/g) < landingPages.length + 1) failures.push("GitHub Pages discovery sitemap missing landing pages.");
+  if (countMatches(docsSitemap, /<loc>/g) < landingPages.length + HIGH_INTENT_TOOL_PATHS.length + 1) failures.push("GitHub Pages discovery sitemap missing landing/tool pages.");
   for (const page of landingPages) {
     const githubUrl = `https://yanqr213.github.io/printable-tools-lab/${page.path}/`;
     if (!docsSitemap.includes(`<loc>${githubUrl}</loc>`)) failures.push(`GitHub Pages sitemap missing landing page: ${page.path}`);
+  }
+  for (const toolPath of HIGH_INTENT_TOOL_PATHS) {
+    const githubUrl = `https://yanqr213.github.io/printable-tools-lab/${toolPath}/`;
+    if (!docsSitemap.includes(`<loc>${githubUrl}</loc>`)) failures.push(`GitHub Pages sitemap missing tool discovery page: ${toolPath}`);
   }
 }
 
@@ -249,6 +256,19 @@ for (const page of landingPages) {
   if (!html.includes(page.headline)) failures.push(`GitHub Pages landing page missing headline: ${page.path}`);
   if (!html.includes(siteUrl(page.path))) failures.push(`GitHub Pages landing page missing live landing URL: ${page.path}`);
   if (!html.includes(siteUrl(page.primaryTool))) failures.push(`GitHub Pages landing page missing primary tool URL: ${page.path}`);
+}
+
+for (const toolPath of HIGH_INTENT_TOOL_PATHS) {
+  const tool = tools.find((item) => item.path === toolPath);
+  const file = path.join(root, "docs", ...toolPath.split("/"), "index.html");
+  if (!fs.existsSync(file)) {
+    failures.push(`Missing GitHub Pages tool discovery page: ${toolPath}`);
+    continue;
+  }
+  const html = fs.readFileSync(file, "utf8");
+  if (!tool || !html.includes(tool.title)) failures.push(`GitHub Pages tool page missing title: ${toolPath}`);
+  if (!html.includes(siteUrl(toolPath))) failures.push(`GitHub Pages tool page missing live tool URL: ${toolPath}`);
+  if (!html.includes(`rel="canonical" href="https://yanqr213.github.io/printable-tools-lab/${toolPath}/"`)) failures.push(`GitHub Pages tool page missing canonical: ${toolPath}`);
 }
 
 const verificationFile = path.join(root, "google1b771d6159b52de7.html");

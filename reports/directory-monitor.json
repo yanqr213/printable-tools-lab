@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T18:04:32.184Z",
+  "generatedAt": "2026-06-01T18:23:17.829Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 0,
   "pendingCount": 5,
@@ -129,6 +129,8 @@
       "reviewWindow": "maintainer review",
       "status": "pending",
       "evidenceUrl": "https://github.com/js-org/js.org/pull/11512",
+      "apiAvailable": true,
+      "checksAvailable": true,
       "templateOk": true,
       "checksOk": true,
       "checks": [
@@ -154,7 +156,7 @@
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 273269,
+          "bytes": 273265,
           "matched": true
         },
         {
