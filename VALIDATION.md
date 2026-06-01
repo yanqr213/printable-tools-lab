@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-01T17:57:17.184Z
+Last generated: 2026-06-01T18:02:32.988Z
 
 ## Current Automated Status
 
@@ -24,9 +24,16 @@ Last generated: 2026-06-01T17:57:17.184Z
 
 ## Search Console Gate
 
-- Sitemap data unavailable in this run.
-- GitHub Pages discovery sitemap data unavailable in this run.
-- GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing.
+- Sitemap submitted: https://printable-tools-lab.pages.dev/sitemap.xml.
+- Sitemap pending: yes; warnings: 0; errors: 0.
+- GitHub Pages discovery sitemap submitted: https://yanqr213.github.io/printable-tools-lab/sitemap.xml.
+- GitHub Pages sitemap pending: yes; warnings: 0; errors: 0.
+- Main Search Console property verified: yes.
+- GitHub Pages discovery property verified: yes.
+- Sitemap status: pending=true, warnings=0, errors=0.
+- GitHub Pages discovery sitemap: pending=true, warnings=0, errors=0.
+- Search performance: 0 impressions, 0 clicks.
+- 2 inspected sample URL(s) are still unknown to Google.
 
 ## External Discovery Gate
 
@@ -40,7 +47,6 @@ Last generated: 2026-06-01T17:57:17.184Z
 
 - Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.
 - Real AdSense publisher ID is not configured, so ads remain disabled.
-- Search Console API data was unavailable during this run.
 - Search Console has no impressions/indexed sample yet, so applying now is premature.
 
 ## Validation Gates

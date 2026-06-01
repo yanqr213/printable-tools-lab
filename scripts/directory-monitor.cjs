@@ -73,6 +73,7 @@ async function main() {
 }
 
 async function checkDirectory(directory) {
+  if (directory.name.includes("JS.ORG")) return checkJsOrg(directory);
   const targets = [directory.searchUrl, directory.url].filter(Boolean);
   const checked = [];
   for (const url of targets) {
@@ -81,7 +82,7 @@ async function checkDirectory(directory) {
     if (result.ok && hasExpectedText(result.text, directory.expected)) {
       return {
         ...directory,
-        status: directory.name.includes("JS.ORG") ? jsOrgStatus(result.text) : "listed",
+        status: "listed",
         evidenceUrl: url,
         checked,
       };
@@ -100,6 +101,35 @@ async function checkDirectory(directory) {
     status: "error",
     evidenceUrl: "",
     checked,
+  };
+}
+
+async function checkJsOrg(directory) {
+  const [page, api] = await Promise.all([
+    fetchText(directory.url),
+    fetchJson("https://api.github.com/repos/js-org/js.org/pulls/11512"),
+  ]);
+  const comments = await fetchJson("https://api.github.com/repos/js-org/js.org/issues/11512/comments");
+  const commentText = Array.isArray(comments.json)
+    ? comments.json.map((comment) => comment.body || "").join("\n")
+    : "";
+  const body = String(api.json?.body || "");
+  const templateOk = body.includes("- [x] There is reasonable content")
+    && body.includes("- [x] I have read and accepted")
+    && body.includes("https://printable-tools-lab.pages.dev/")
+    && body.includes("relevant to JavaScript developers");
+  let status = "pending";
+  if (api.json?.merged || /merged/i.test(page.text || "")) status = "listed";
+  else if (api.json?.state === "closed") status = "error";
+  else if (!templateOk && /validation failed/i.test(commentText)) status = "error";
+  return {
+    ...directory,
+    status,
+    evidenceUrl: directory.url,
+    templateOk,
+    prState: api.json?.state || "unknown",
+    mergeable: api.json?.mergeable ?? null,
+    checked: [page, api, { url: "https://api.github.com/repos/js-org/js.org/issues/11512/comments", ok: Boolean(comments.ok), status: comments.status, bytes: JSON.stringify(comments.json || "").length, matched: templateOk }],
   };
 }
 
@@ -133,16 +163,43 @@ async function fetchText(url) {
   }
 }
 
+async function fetchJson(url) {
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    const response = await fetch(url, {
+      cache: "no-store",
+      headers: {
+        Accept: "application/vnd.github+json",
+        "User-Agent": "PrintableToolsLab-DirectoryMonitor",
+      },
+      signal: controller.signal,
+    });
+    clearTimeout(timeout);
+    const json = await response.json().catch(() => null);
+    return {
+      url,
+      ok: response.ok,
+      status: response.status,
+      bytes: JSON.stringify(json || "").length,
+      matched: false,
+      json,
+    };
+  } catch (error) {
+    return {
+      url,
+      ok: false,
+      status: 0,
+      bytes: 0,
+      matched: false,
+      error: error.message,
+    };
+  }
+}
+
 function hasExpectedText(text, expected) {
   const haystack = String(text).toLowerCase();
   return expected.some((needle) => haystack.includes(String(needle).toLowerCase()));
-}
-
-function jsOrgStatus(text) {
-  const haystack = String(text).toLowerCase();
-  if (haystack.includes("merged")) return "listed";
-  if (haystack.includes("closed")) return "error";
-  return "pending";
 }
 
 function printReport(report) {
