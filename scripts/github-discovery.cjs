@@ -1,5 +1,5 @@
 const { execFileSync } = require("child_process");
-const { HIGH_INTENT_TOOL_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, siteUrl, tools, SITE_SUMMARY } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, ZERO_DOMAIN_GAME_EXPERIMENT, siteUrl, tools, SITE_SUMMARY } = require("./seo-content.cjs");
 
 const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || "";
 if (!token) {
@@ -133,6 +133,9 @@ function releaseBody() {
     `- [PDF, image, and QR tool finder](${siteUrl("pdf-tool-finder")})`,
     `- [Zero-budget share kit](${siteUrl("share-kit")})`,
     `- [Machine-readable share-kit.json](${siteUrl("share-kit.json").replace(/\/$/, "")})`,
+    ...externalDiscoveryLinks(),
+    `- [Upload Limit Panic zero-domain HTML5 game](${ZERO_DOMAIN_GAME_EXPERIMENT.url})`,
+    `- [Upload Limit Panic repository](${ZERO_DOMAIN_GAME_EXPERIMENT.repo})`,
     "- [GitHub Pages discovery directory](https://yanqr213.github.io/printable-tools-lab/)",
     `- [Directory submission pack](${siteUrl("submit-directory")})`,
     `- [RSS feed](${siteUrl("feed.xml").replace(/\/$/, "")})`,
@@ -162,6 +165,27 @@ function releaseBody() {
     "- PDF tools cover PDF-to-Word, compression, merge, split, rotate, remove pages, reorder pages, watermarks, stamps, signatures, page numbers, image-to-PDF, and text-to-PDF workflows.",
     "- Ads are disabled until policy review and real search visibility are ready.",
   ].join("\n");
+}
+
+function externalDiscoveryLinks() {
+  const links = [];
+  const gist = readReport("gist-discovery.json");
+  const issue = readReport("github-issue-discovery.json");
+  if (gist?.htmlUrl) links.push(`- [Public Gist share kit](${gist.htmlUrl})`);
+  if (issue?.issueUrl) links.push(`- [Public GitHub growth issue](${issue.issueUrl})`);
+  return links;
+}
+
+function readReport(fileName) {
+  const fs = require("fs");
+  const path = require("path");
+  const filePath = path.join(__dirname, "..", "reports", fileName);
+  if (!fs.existsSync(filePath)) return null;
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch {
+    return null;
+  }
 }
 
 function mergePreservedBlocks(nextBody, currentBody) {

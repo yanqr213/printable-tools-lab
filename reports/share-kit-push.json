@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T21:16:34.623Z",
+  "generatedAt": "2026-06-01T21:56:17.732Z",
   "shareKitUrl": "https://printable-tools-lab.pages.dev/share-kit/",
   "shareKitJsonUrl": "https://printable-tools-lab.pages.dev/share-kit.json",
   "featuredLinks": [
@@ -84,6 +84,14 @@
       "body": "PrintableTools Lab helps users create and edit practical files locally: compress PDFs to target sizes, compress images to KB limits, convert PDF pages to JPG, resize and convert images, make static QR codes, and generate invoices, receipts, labels, business cards, and other everyday PDFs.",
       "cta": "List as a free productivity and file utility tool.",
       "trackedUrl": "https://printable-tools-lab.pages.dev/submit-directory?utm_source=directory&utm_medium=organic"
+    },
+    {
+      "channel": "game-platform",
+      "title": "Zero-domain HTML5 game experiment",
+      "hook": "Upload Limit Panic turns upload limits into a 60-second sorting game.",
+      "body": "It is a free standalone HTML5 build for platform review: sort files into Compress, Convert, Send, or Trash before the queue bursts. The standalone version has no forced ads; rewarded hooks are optional for future platform SDK approval.",
+      "cta": "Play the Upload Limit Panic prototype",
+      "trackedUrl": "https://upload-limit-panic.pages.dev/?utm_source=game-platform&utm_medium=organic"
     }
   ],
   "rules": [
@@ -93,7 +101,33 @@
     "Do not post private documents, IDs, payment details, or user files in examples.",
     "Use UTM source labels so the live metrics can separate directory, community, video, and social tests."
   ],
+  "zeroDomainGameExperiment": {
+    "name": "Upload Limit Panic",
+    "url": "https://upload-limit-panic.pages.dev/",
+    "repo": "https://github.com/yanqr213/upload-limit-panic",
+    "packagePath": "upload-limit-panic/reports/upload-limit-panic-html5.tar.gz",
+    "summary": "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them."
+  },
+  "externalDiscovery": {
+    "gist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
+    "githubIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1",
+    "campaignRelease": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
+    "zeroDomainGame": "https://upload-limit-panic.pages.dev/",
+    "zeroDomainGameRepo": "https://github.com/yanqr213/upload-limit-panic"
+  },
   "actions": {
+    "gistDiscovery": {
+      "ok": true,
+      "status": 0,
+      "stdout": "Updated public Gist: https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb\nReport written to reports\\gist-discovery.json",
+      "stderr": ""
+    },
+    "githubIssueDiscovery": {
+      "ok": true,
+      "status": 0,
+      "stdout": "Updated GitHub issue: https://github.com/yanqr213/printable-tools-lab/issues/1\nReport written to reports\\github-issue-discovery.json",
+      "stderr": ""
+    },
     "githubDiscovery": {
       "ok": true,
       "status": 0,

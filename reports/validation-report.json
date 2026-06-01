@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T21:17:22.866Z",
+  "generatedAt": "2026-06-01T21:58:30.391Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 61,
     "indexableRoutes": 233,
     "sitemapLocCount": 233,
-    "generatedToolInventoryAt": "2026-06-01T21:15:29.798Z",
+    "generatedToolInventoryAt": "2026-06-01T21:55:59.360Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -51,7 +51,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 16061,
+        "bytes": 17481,
         "json": null
       },
       "/sitemap.xml": {
@@ -81,7 +81,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 31853,
+        "bytes": 32095,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for"
       },
@@ -101,7 +101,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T21:15:29.798Z",
+          "generatedAt": "2026-06-01T21:55:59.360Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -983,11 +983,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 32887,
+        "bytes": 33111,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-01T21:15:29.798Z",
+          "generatedAt": "2026-06-01T21:55:59.360Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1213,7 +1213,10 @@
               }
             ],
             "publicGist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-            "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/f3b1392e06055adaa67488534f5116bc06a69fbe/PrintableTools-Lab-zero-cost-share-kit.md"
+            "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/cc73170ba83d12aa0d02f731414c73e82b9eea52/PrintableTools-Lab-zero-cost-share-kit.md",
+            "publicGrowthIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1",
+            "zeroDomainGame": "https://upload-limit-panic.pages.dev/",
+            "zeroDomainGameRepo": "https://github.com/yanqr213/upload-limit-panic"
           },
           "landingPages": [
             {
@@ -1600,10 +1603,10 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 11366,
+        "bytes": 12539,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-01T21:15:29.798Z",
+          "generatedAt": "2026-06-01T21:55:59.360Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -1692,6 +1695,15 @@
               "cta": "List as a free productivity and file utility tool.",
               "linkPath": "submit-directory",
               "url": "https://printable-tools-lab.pages.dev/submit-directory?utm_source=directory&utm_medium=organic"
+            },
+            {
+              "channel": "game-platform",
+              "title": "Zero-domain HTML5 game experiment",
+              "hook": "Upload Limit Panic turns upload limits into a 60-second sorting game.",
+              "body": "It is a free standalone HTML5 build for platform review: sort files into Compress, Convert, Send, or Trash before the queue bursts. The standalone version has no forced ads; rewarded hooks are optional for future platform SDK approval.",
+              "cta": "Play the Upload Limit Panic prototype",
+              "absoluteUrl": "https://upload-limit-panic.pages.dev/",
+              "url": "https://upload-limit-panic.pages.dev/?utm_source=game-platform&utm_medium=organic"
             }
           ],
           "videoAssets": [
@@ -1792,9 +1804,17 @@
               "sizeBytes": 177067
             }
           ],
+          "zeroDomainGameExperiment": {
+            "name": "Upload Limit Panic",
+            "url": "https://upload-limit-panic.pages.dev/",
+            "repo": "https://github.com/yanqr213/upload-limit-panic",
+            "packagePath": "upload-limit-panic/reports/upload-limit-panic-html5.tar.gz",
+            "summary": "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them."
+          },
           "externalDiscovery": {
             "gist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-            "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/f3b1392e06055adaa67488534f5116bc06a69fbe/PrintableTools-Lab-zero-cost-share-kit.md"
+            "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/cc73170ba83d12aa0d02f731414c73e82b9eea52/PrintableTools-Lab-zero-cost-share-kit.md",
+            "githubIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1"
           },
           "rules": [
             "Post only where free tools or file utilities are relevant to the community.",
@@ -1823,12 +1843,12 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 11398,
+        "bytes": 11400,
         "json": {
           "ok": true,
           "today": "2026-06-01",
           "totals": {
-            "page_view": 25,
+            "page_view": 47,
             "generate_pdf": 0,
             "download_pdf": 1,
             "generate_file": 0,
@@ -1838,7 +1858,7 @@
             "ai_ideas_apply": 0
           },
           "todayTotals": {
-            "page_view": 23,
+            "page_view": 44,
             "generate_pdf": 0,
             "download_pdf": 0,
             "generate_file": 0,
@@ -2446,13 +2466,13 @@
           "sources": [
             {
               "source": "direct",
-              "page_view": 19,
+              "page_view": 29,
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
               "today": {
-                "page_view": 18,
+                "page_view": 28,
                 "generate_pdf": 0,
                 "download_pdf": 0,
                 "generate_file": 0,
@@ -2461,13 +2481,13 @@
             },
             {
               "source": "google",
-              "page_view": 0,
+              "page_view": 1,
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
               "today": {
-                "page_view": 0,
+                "page_view": 1,
                 "generate_pdf": 0,
                 "download_pdf": 0,
                 "generate_file": 0,
@@ -2476,13 +2496,13 @@
             },
             {
               "source": "bing",
-              "page_view": 0,
+              "page_view": 1,
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
               "today": {
-                "page_view": 0,
+                "page_view": 1,
                 "generate_pdf": 0,
                 "download_pdf": 0,
                 "generate_file": 0,
@@ -2596,13 +2616,13 @@
             },
             {
               "source": "community",
-              "page_view": 0,
+              "page_view": 3,
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
               "today": {
-                "page_view": 0,
+                "page_view": 3,
                 "generate_pdf": 0,
                 "download_pdf": 0,
                 "generate_file": 0,
@@ -2611,13 +2631,13 @@
             },
             {
               "source": "referral",
-              "page_view": 0,
+              "page_view": 11,
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
               "today": {
-                "page_view": 0,
+                "page_view": 11,
                 "generate_pdf": 0,
                 "download_pdf": 0,
                 "generate_file": 0,
@@ -2646,7 +2666,7 @@
     "metrics": {
       "today": "2026-06-01",
       "totals": {
-        "page_view": 25,
+        "page_view": 47,
         "generate_pdf": 0,
         "download_pdf": 1,
         "generate_file": 0,
@@ -2656,7 +2676,7 @@
         "ai_ideas_apply": 0
       },
       "todayTotals": {
-        "page_view": 23,
+        "page_view": 44,
         "generate_pdf": 0,
         "download_pdf": 0,
         "generate_file": 0,
@@ -2748,11 +2768,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         }
       ]
@@ -2761,7 +2781,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-01T21:16:20.869Z",
+          "lastSubmitted": "2026-06-01T21:21:47.106Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",

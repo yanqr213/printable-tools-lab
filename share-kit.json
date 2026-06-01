@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Share Kit",
-  "generatedAt": "2026-06-01T21:15:29.798Z",
+  "generatedAt": "2026-06-01T21:55:59.360Z",
   "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
   "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
   "featuredLinks": [
@@ -89,6 +89,15 @@
       "cta": "List as a free productivity and file utility tool.",
       "linkPath": "submit-directory",
       "url": "https://printable-tools-lab.pages.dev/submit-directory?utm_source=directory&utm_medium=organic"
+    },
+    {
+      "channel": "game-platform",
+      "title": "Zero-domain HTML5 game experiment",
+      "hook": "Upload Limit Panic turns upload limits into a 60-second sorting game.",
+      "body": "It is a free standalone HTML5 build for platform review: sort files into Compress, Convert, Send, or Trash before the queue bursts. The standalone version has no forced ads; rewarded hooks are optional for future platform SDK approval.",
+      "cta": "Play the Upload Limit Panic prototype",
+      "absoluteUrl": "https://upload-limit-panic.pages.dev/",
+      "url": "https://upload-limit-panic.pages.dev/?utm_source=game-platform&utm_medium=organic"
     }
   ],
   "videoAssets": [
@@ -189,9 +198,17 @@
       "sizeBytes": 177067
     }
   ],
+  "zeroDomainGameExperiment": {
+    "name": "Upload Limit Panic",
+    "url": "https://upload-limit-panic.pages.dev/",
+    "repo": "https://github.com/yanqr213/upload-limit-panic",
+    "packagePath": "upload-limit-panic/reports/upload-limit-panic-html5.tar.gz",
+    "summary": "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them."
+  },
   "externalDiscovery": {
     "gist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-    "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/f3b1392e06055adaa67488534f5116bc06a69fbe/PrintableTools-Lab-zero-cost-share-kit.md"
+    "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/cc73170ba83d12aa0d02f731414c73e82b9eea52/PrintableTools-Lab-zero-cost-share-kit.md",
+    "githubIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1"
   },
   "rules": [
     "Post only where free tools or file utilities are relevant to the community.",

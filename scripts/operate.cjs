@@ -36,9 +36,11 @@ async function main() {
   runSecretScan();
 
   if (process.env.GITHUB_TOKEN || process.env.GH_TOKEN) {
+    runStep("refresh Gist discovery", npmCommand, ["run", "gist-discovery"], { timeout: 120000, allowFail: true });
+    runStep("refresh GitHub issue discovery", npmCommand, ["run", "github-issue-discovery"], { timeout: 120000, allowFail: true });
     runStep("refresh GitHub discovery", npmCommand, ["run", "github-discovery"], { timeout: 120000, allowFail: true });
   } else {
-    skipStep("refresh GitHub discovery", "GITHUB_TOKEN/GH_TOKEN not set.");
+    skipStep("refresh GitHub discovery surfaces", "GITHUB_TOKEN/GH_TOKEN not set.");
   }
 
   const searchEnv = searchConsoleEnv();

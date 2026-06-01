@@ -9,6 +9,14 @@ const SITE_SUMMARY = {
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
 
+const ZERO_DOMAIN_GAME_EXPERIMENT = {
+  name: "Upload Limit Panic",
+  url: "https://upload-limit-panic.pages.dev/",
+  repo: "https://github.com/yanqr213/upload-limit-panic",
+  packagePath: "upload-limit-panic/reports/upload-limit-panic-html5.tar.gz",
+  summary: "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them.",
+};
+
 const SHARE_KIT_FEATURED_LINKS = [
   ["Compress PDF to 1MB", "compress-pdf-to-1mb", "Urgent upload-limit search for job, school, email, and portal PDFs."],
   ["Compress PDF to 500KB", "compress-pdf-to-500kb", "Strict form and government-style upload limit intent."],
@@ -53,6 +61,14 @@ const SHARE_KIT_POSTS = [
     cta: "List as a free productivity and file utility tool.",
     linkPath: "submit-directory",
   },
+  {
+    channel: "game-platform",
+    title: "Zero-domain HTML5 game experiment",
+    hook: "Upload Limit Panic turns upload limits into a 60-second sorting game.",
+    body: "It is a free standalone HTML5 build for platform review: sort files into Compress, Convert, Send, or Trash before the queue bursts. The standalone version has no forced ads; rewarded hooks are optional for future platform SDK approval.",
+    cta: "Play the Upload Limit Panic prototype",
+    absoluteUrl: ZERO_DOMAIN_GAME_EXPERIMENT.url,
+  },
 ];
 
 const SHARE_KIT_RULES = [
@@ -65,6 +81,7 @@ const SHARE_KIT_RULES = [
 
 const CAMPAIGN_VIDEO_ASSETS = readCampaignVideoAssets();
 const GIST_DISCOVERY = readGistDiscovery();
+const ISSUE_DISCOVERY = readIssueDiscovery();
 
 const HIGH_INTENT_TOOL_PATHS = [
   "tools/image-to-pdf",
@@ -2822,6 +2839,16 @@ function shareKitHtml() {
         <p>The same high-intent links, MP4 assets, copy angles, and safe posting rules are mirrored in a public GitHub Gist for one more zero-cost external discovery surface.</p>
         <p><a class="button" href="${escapeHtml(GIST_DISCOVERY.htmlUrl)}">Open public Gist share kit</a></p>
       </section>` : ""}
+      ${ISSUE_DISCOVERY?.issueUrl ? `<section class="shell section">
+        <h2>Public GitHub growth issue</h2>
+        <p>The open issue keeps the validation status, high-intent links, Gist mirror, release MP4 assets, and safety rules in one crawlable update thread.</p>
+        <p><a class="button" href="${escapeHtml(ISSUE_DISCOVERY.issueUrl)}">Open growth issue</a></p>
+      </section>` : ""}
+      <section class="shell section">
+        <h2>Zero-domain game experiment</h2>
+        <p>${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.summary)}</p>
+        <p><a class="button" href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.url)}">Play Upload Limit Panic</a> <a class="button secondary" href="${escapeHtml(ZERO_DOMAIN_GAME_EXPERIMENT.repo)}">Open game repository</a></p>
+      </section>
       <section class="shell section">
         <h2>Rules for safe distribution</h2>
         <ul>
@@ -2842,6 +2869,21 @@ function readGistDiscovery() {
       htmlUrl: report.htmlUrl,
       rawUrl: report.rawUrl || "",
       gistId: report.gistId || "",
+    };
+  } catch {
+    return null;
+  }
+}
+
+function readIssueDiscovery() {
+  const reportPath = path.join(__dirname, "..", "reports", "github-issue-discovery.json");
+  if (!fs.existsSync(reportPath)) return null;
+  try {
+    const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
+    if (!report.issueUrl) return null;
+    return {
+      issueUrl: report.issueUrl,
+      issueNumber: report.issueNumber || "",
     };
   } catch {
     return null;
@@ -2881,8 +2923,14 @@ function shareKitFeaturedLinks() {
 function shareKitPosts() {
   return SHARE_KIT_POSTS.map((post) => ({
     ...post,
-    url: `${siteUrl(post.linkPath).replace(/\/$/, "")}?utm_source=${post.channel}&utm_medium=organic`,
+    url: trackedSharePostUrl(post),
   }));
+}
+
+function trackedSharePostUrl(post) {
+  const base = post.absoluteUrl || siteUrl(post.linkPath).replace(/\/$/, "");
+  const separator = base.includes("?") ? "&" : "?";
+  return `${base}${separator}utm_source=${post.channel}&utm_medium=organic`;
 }
 
 function landingPageHtml(page) {
@@ -4014,4 +4062,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENT, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };

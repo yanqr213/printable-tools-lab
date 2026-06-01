@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -10,6 +10,7 @@ const generatedAtIso = generatedAt.toISOString();
 const lastmod = generatedAtIso.slice(0, 10);
 const campaignAssets = readCampaignAssets();
 const gistDiscovery = readGistDiscovery();
+const issueDiscovery = readIssueDiscovery();
 
 function pageHtml(route) {
   const rendered = renderRoute(route);
@@ -184,12 +185,14 @@ const shareKitJson = {
   })),
   posts: SHARE_KIT_POSTS.map((post) => ({
     ...post,
-    url: `${siteUrl(post.linkPath).replace(/\/$/, "")}?utm_source=${post.channel}&utm_medium=organic`,
+    url: trackedSharePostUrl(post),
   })),
   videoAssets: campaignAssets,
+  zeroDomainGameExperiment: ZERO_DOMAIN_GAME_EXPERIMENT,
   externalDiscovery: {
     gist: gistDiscovery?.htmlUrl || "",
     gistRaw: gistDiscovery?.rawUrl || "",
+    githubIssue: issueDiscovery?.issueUrl || "",
   },
   rules: SHARE_KIT_RULES,
 };
@@ -221,6 +224,9 @@ const llms = [
   `- Discovery index: ${fileUrl("discovery.json")}`,
   `- Machine-readable share kit: ${fileUrl("share-kit.json")}`,
   ...(gistDiscovery?.htmlUrl ? [`- Public Gist share kit: ${gistDiscovery.htmlUrl}`] : []),
+  ...(issueDiscovery?.issueUrl ? [`- Public GitHub growth issue: ${issueDiscovery.issueUrl}`] : []),
+  `- Zero-domain HTML5 game experiment: ${ZERO_DOMAIN_GAME_EXPERIMENT.url}`,
+  `- Upload Limit Panic repository: ${ZERO_DOMAIN_GAME_EXPERIMENT.repo}`,
   ...(campaignAssets.length ? ["", "## Short-Video Campaign Assets", "", ...campaignAssets.map((asset) => `- [${asset.title} MP4](${asset.downloadUrl}): ${asset.captionEn}`)] : []),
   "",
   "## Tools",
@@ -262,6 +268,9 @@ const discoveryIndex = {
     campaignVideos: campaignAssets,
     publicGist: gistDiscovery?.htmlUrl || "",
     publicGistRaw: gistDiscovery?.rawUrl || "",
+    publicGrowthIssue: issueDiscovery?.issueUrl || "",
+    zeroDomainGame: ZERO_DOMAIN_GAME_EXPERIMENT.url,
+    zeroDomainGameRepo: ZERO_DOMAIN_GAME_EXPERIMENT.repo,
   },
   landingPages: landingPages.map((page) => ({
     title: page.title,
@@ -470,6 +479,21 @@ function readGistDiscovery() {
   }
 }
 
+function readIssueDiscovery() {
+  const filePath = path.join(root, "reports", "github-issue-discovery.json");
+  if (!fs.existsSync(filePath)) return null;
+  try {
+    const report = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    if (!report.issueUrl) return null;
+    return {
+      issueUrl: report.issueUrl,
+      issueNumber: report.issueNumber || "",
+    };
+  } catch {
+    return null;
+  }
+}
+
 function categoryForTool(toolPath) {
   const slug = toolPath.replace(/^tools\//, "");
   if (["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt", "receipt-generator", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"].includes(slug)) return "Business paperwork";
@@ -482,6 +506,12 @@ function categoryForTool(toolPath) {
 
 function fileUrl(fileName) {
   return siteUrl(fileName).replace(/\/$/, "");
+}
+
+function trackedSharePostUrl(post) {
+  const base = post.absoluteUrl || siteUrl(post.linkPath).replace(/\/$/, "");
+  const separator = base.includes("?") ? "&" : "?";
+  return `${base}${separator}utm_source=${post.channel}&utm_medium=organic`;
 }
 
 function liveToolUrl(toolPath) {

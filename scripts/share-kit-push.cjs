@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
-const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, siteUrl } = require("./seo-content.cjs");
+const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, siteUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const reportDir = path.join(root, "reports");
@@ -10,6 +10,8 @@ const reportPath = path.join(reportDir, "share-kit-push.json");
 main();
 
 function main() {
+  const gistDiscovery = run("node", ["scripts/gist-discovery.cjs"], { requireToken: true });
+  const githubIssueDiscovery = run("node", ["scripts/github-issue-discovery.cjs"], { requireToken: true });
   const github = run("node", ["scripts/github-discovery.cjs"], { requireToken: true });
   const indexNowRaw = run("node", ["scripts/indexnow.cjs"], { allowFailure: true });
   const indexNowOutput = `${indexNowRaw.stdout}\n${indexNowRaw.stderr}`;
@@ -34,10 +36,14 @@ function main() {
       hook: post.hook,
       body: post.body,
       cta: post.cta,
-      trackedUrl: `${siteUrl(post.linkPath).replace(/\/$/, "")}?utm_source=${post.channel}&utm_medium=organic`,
+      trackedUrl: trackedSharePostUrl(post),
     })),
     rules: SHARE_KIT_RULES,
+    zeroDomainGameExperiment: ZERO_DOMAIN_GAME_EXPERIMENT,
+    externalDiscovery: readExternalDiscovery(),
     actions: {
+      gistDiscovery,
+      githubIssueDiscovery,
       githubDiscovery: github,
       indexNow,
     },
@@ -65,8 +71,38 @@ function main() {
   fs.mkdirSync(reportDir, { recursive: true });
   fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`);
   console.log(`Share kit push report written to ${path.relative(root, reportPath)}`);
+  console.log(`Gist discovery: ${gistDiscovery.ok ? "ok" : "not run/failed"}`);
+  console.log(`GitHub issue discovery: ${githubIssueDiscovery.ok ? "ok" : "not run/failed"}`);
   console.log(`GitHub discovery: ${github.ok ? "ok" : "not run/failed"}`);
   console.log(`IndexNow: ${indexNow.accepted ? "submitted" : "warning"}`);
+}
+
+function readExternalDiscovery() {
+  const gist = readJson(path.join(reportDir, "gist-discovery.json"));
+  const issue = readJson(path.join(reportDir, "github-issue-discovery.json"));
+  const release = readJson(path.join(reportDir, "campaign-assets-release.json"));
+  return {
+    gist: gist?.htmlUrl || "",
+    githubIssue: issue?.issueUrl || "",
+    campaignRelease: release?.releaseUrl || "",
+    zeroDomainGame: ZERO_DOMAIN_GAME_EXPERIMENT.url,
+    zeroDomainGameRepo: ZERO_DOMAIN_GAME_EXPERIMENT.repo,
+  };
+}
+
+function trackedSharePostUrl(post) {
+  const base = post.absoluteUrl || siteUrl(post.linkPath).replace(/\/$/, "");
+  const separator = base.includes("?") ? "&" : "?";
+  return `${base}${separator}utm_source=${post.channel}&utm_medium=organic`;
+}
+
+function readJson(filePath) {
+  if (!fs.existsSync(filePath)) return null;
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch {
+    return null;
+  }
 }
 
 function run(command, args, options = {}) {

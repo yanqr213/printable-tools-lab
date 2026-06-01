@@ -241,6 +241,16 @@ npm.cmd run verify:gist-discovery
 
 This writes `reports/gist-discovery.json` with the public Gist URL and raw Markdown URL.
 
+Publish or refresh a public GitHub issue growth log:
+
+```powershell
+$env:GITHUB_TOKEN="optional GitHub token with issue write access"
+npm.cmd run github-issue-discovery
+npm.cmd run verify:github-issue-discovery
+```
+
+This writes `reports/github-issue-discovery.json` and keeps a single public issue updated with high-intent links, MP4 assets, safety rules, and validation gates.
+
 Prepare or verify AdSense configuration:
 
 ```powershell

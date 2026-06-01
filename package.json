@@ -26,6 +26,8 @@
     "campaign:verify-release": "node scripts/verify-campaign-release.cjs",
     "gist-discovery": "node scripts/gist-discovery.cjs",
     "verify:gist-discovery": "node scripts/verify-gist-discovery.cjs",
+    "github-issue-discovery": "node scripts/github-issue-discovery.cjs",
+    "verify:github-issue-discovery": "node scripts/verify-github-issue-discovery.cjs",
     "monitor:directories": "node scripts/directory-monitor.cjs",
     "indexnow": "node scripts/indexnow.cjs",
     "operate": "node scripts/operate.cjs",

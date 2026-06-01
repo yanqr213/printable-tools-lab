@@ -4843,6 +4843,7 @@
       ["Remove Background Without Upload", "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-background-removal.mp4", "/remove-background-no-upload/?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=background-removal"],
     ];
     const gistUrl = "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb";
+    const growthIssueUrl = "https://github.com/yanqr213/printable-tools-lab/issues/1";
     setMeta("PrintableTools Lab Share Kit", "Copy-ready short-video hooks, community posts, directory blurbs, campaign links, and compliance rules for sharing PrintableTools Lab without paid ads.");
     setJsonLd({
       "@context": "https://schema.org",
@@ -4892,6 +4893,11 @@
         <h2>Public Gist mirror</h2>
         <p>The same links, MP4 assets, copy angles, and safe posting rules are mirrored in a public GitHub Gist for one more zero-cost external discovery surface.</p>
         <p><a class="button" href="${gistUrl}">Open public Gist share kit</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Public GitHub growth issue</h2>
+        <p>The open issue keeps the validation status, high-intent links, Gist mirror, release MP4 assets, and safety rules in one crawlable update thread.</p>
+        <p><a class="button" href="${growthIssueUrl}">Open growth issue</a></p>
       </section>
       <section class="shell section">
         <h2>Rules for safe distribution</h2>
