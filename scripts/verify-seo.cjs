@@ -91,8 +91,8 @@ const toolsJsonFile = path.join(root, "tools.json");
 if (!fs.existsSync(toolsJsonFile)) failures.push("Missing tools.json.");
 else {
   const data = JSON.parse(fs.readFileSync(toolsJsonFile, "utf8"));
-  if (!Array.isArray(data.tools) || data.tools.length < 32) failures.push("tools.json missing tools.");
-  if (!Array.isArray(data.guides) || data.guides.length < 64) failures.push("tools.json missing guides.");
+  if (!Array.isArray(data.tools) || data.tools.length < 35) failures.push("tools.json missing tools.");
+  if (!Array.isArray(data.guides) || data.guides.length < 70) failures.push("tools.json missing guides.");
   if (!data.tools.some((tool) => tool.url === siteUrl("tools/invoice-generator"))) failures.push("tools.json missing invoice URL.");
   if (!data.tools.some((tool) => tool.url === siteUrl("tools/image-to-pdf"))) failures.push("tools.json missing image-to-PDF URL.");
   if (!data.tools.some((tool) => tool.url === siteUrl("tools/multi-image-pdf"))) failures.push("tools.json missing multi-image PDF URL.");
@@ -130,7 +130,7 @@ else {
   const discovery = JSON.parse(fs.readFileSync(discoveryFile, "utf8"));
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("tools/multi-image-pdf"))) failures.push("discovery.json missing high-intent multi-image route.");
   if (discovery.feed !== siteUrl("feed.xml").replace(/\/$/, "")) failures.push("discovery.json missing RSS feed URL.");
-  if (!Array.isArray(discovery.landingPages) || discovery.landingPages.length < 14) failures.push("discovery.json missing high-intent landing pages.");
+  if (!Array.isArray(discovery.landingPages) || discovery.landingPages.length < 17) failures.push("discovery.json missing high-intent landing pages.");
   if (discovery.manifest !== siteUrl("site.webmanifest").replace(/\/$/, "")) failures.push("discovery.json missing manifest URL.");
   if (discovery.opensearch !== siteUrl("opensearch.xml").replace(/\/$/, "")) failures.push("discovery.json missing OpenSearch URL.");
 }
@@ -164,7 +164,7 @@ if (!fs.existsSync(docsToolsFile)) failures.push("Missing GitHub Pages discovery
 else {
   const data = JSON.parse(fs.readFileSync(docsToolsFile, "utf8"));
   if (!Array.isArray(data.tools) || data.tools.length < 8) failures.push("GitHub Pages discovery tools.json missing high-intent tools.");
-  if (!Array.isArray(data.landingPages) || data.landingPages.length < 14) failures.push("GitHub Pages discovery tools.json missing high-intent landing pages.");
+  if (!Array.isArray(data.landingPages) || data.landingPages.length < 17) failures.push("GitHub Pages discovery tools.json missing high-intent landing pages.");
   if (data.feed !== siteUrl("feed.xml").replace(/\/$/, "")) failures.push("GitHub Pages discovery tools.json missing feed URL.");
 }
 

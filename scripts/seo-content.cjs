@@ -2,7 +2,7 @@ const BASE_URL = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pa
 
 const SITE_SUMMARY = {
   name: "PrintableTools Lab",
-  description: "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  description: "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   audience: "Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, and household planners.",
   monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
 };
@@ -20,6 +20,9 @@ const HIGH_INTENT_TOOL_PATHS = [
   "tools/price-tag",
   "tools/flyer-maker",
   "tools/coupon-maker",
+  "tools/packing-slip",
+  "tools/work-order",
+  "tools/inventory-sheet",
   "tools/resume-builder",
   "tools/certificate-generator",
   "tools/todo-list",
@@ -81,6 +84,21 @@ const TOOL_FINDER_ROWS = [
     need: "I need price tags, coupons, or a local flyer",
     toolPath: "tools/price-tag",
     why: "Best for small sellers preparing a yard sale, pop-up table, market booth, or simple promotion.",
+  },
+  {
+    need: "I need a packing slip for a small order",
+    toolPath: "tools/packing-slip",
+    why: "Best for marketplace orders, handmade product shipments, local deliveries, and package inserts.",
+  },
+  {
+    need: "I need a work order for a service visit",
+    toolPath: "tools/work-order",
+    why: "Best for repair jobs, maintenance visits, cleaning work, contractor tasks, and client approval records.",
+  },
+  {
+    need: "I need an inventory count sheet",
+    toolPath: "tools/inventory-sheet",
+    why: "Best for stock counts, craft fairs, storage bins, classroom supplies, and small retail shelf checks.",
   },
   {
     need: "I need a job application PDF",
@@ -320,6 +338,51 @@ const landingPages = [
     ],
     relatedTools: ["tools/flyer-maker", "tools/price-tag", "tools/business-card"],
   },
+  {
+    path: "free-packing-slip-generator-printable",
+    title: "Free Printable Packing Slip Generator",
+    description: "Create a printable packing slip PDF for small orders, marketplace sales, handmade products, and local delivery without signing up.",
+    headline: "Free printable packing slip generator",
+    lead: "Make a simple packing slip PDF for a customer order, package insert, local delivery, or handmade product shipment. It is built for sellers who need one clear order sheet without full shipping software.",
+    primaryTool: "tools/packing-slip",
+    intent: "packing slip PDF, order packing sheet, no signup",
+    sections: [
+      ["Commercial intent", "Packing slip searches often come from sellers preparing real orders. That makes the page business-adjacent and stronger for ad-supported validation than decorative printables."],
+      ["What to include", "Sender, ship-to details, order number, ship date, item names, quantities, status, and a short packing note. Keep payment details off the slip unless they are truly needed."],
+      ["Best fit", "Use it for marketplace orders, handmade goods, local delivery, pop-up shop pickups, and small warehouse workflows before investing in shipping software."],
+    ],
+    relatedTools: ["tools/inventory-sheet", "tools/barcode-labels", "tools/address-labels"],
+  },
+  {
+    path: "free-work-order-generator-pdf",
+    title: "Free Work Order Generator PDF",
+    description: "Create a work order PDF for repair jobs, field service, maintenance visits, cleaning jobs, contractor tasks, and approval records.",
+    headline: "Free work order generator PDF",
+    lead: "Build a printable work order with provider details, client or site information, tasks, schedule, instructions, and approval notes. No account is required for the free PDF export.",
+    primaryTool: "tools/work-order",
+    intent: "work order PDF, service order form, contractor job sheet",
+    sections: [
+      ["Why users search", "Work order searches usually happen right before a service visit, repair task, or client approval. A fast PDF can satisfy that moment without forcing field-service software."],
+      ["What it includes", "Provider and client blocks, work order number, date, schedule or status, task rows, estimated total, instructions, and signature lines."],
+      ["Limits", "This is a practical job form, not a compliance system. Confirm safety requirements, approval rules, and local regulations before starting work."],
+    ],
+    relatedTools: ["tools/estimate-generator", "tools/invoice-generator", "tools/timesheet-generator"],
+  },
+  {
+    path: "free-inventory-sheet-generator",
+    title: "Free Inventory Sheet Generator",
+    description: "Create a printable inventory count sheet PDF for stock checks, craft fairs, market tables, storage bins, classrooms, and small retail shelves.",
+    headline: "Free inventory sheet generator",
+    lead: "Make a printable inventory count sheet for small stock checks, before-and-after event counts, shelf reviews, storage bins, or classroom supplies.",
+    primaryTool: "tools/inventory-sheet",
+    intent: "inventory count sheet PDF, stock count template, no signup",
+    sections: [
+      ["Repeat-use pain", "Inventory counts happen again and again for sellers, classrooms, events, and storage areas. A printable sheet can earn repeat visits if it is faster than opening a spreadsheet."],
+      ["What it includes", "Title, location, count date, SKU, item name, expected quantity, counted quantity, notes, and restock reminders."],
+      ["Best fit", "Use it for craft fairs, market tables, small retail shelves, supply closets, event materials, or simple stock checks before reordering."],
+    ],
+    relatedTools: ["tools/barcode-labels", "tools/price-tag", "tools/packing-slip"],
+  },
 ];
 
 const HIGH_INTENT_LANDING_PATHS = landingPages.map((page) => page.path);
@@ -476,6 +539,33 @@ const tools = [
     body: [
       "Add a business name, offer, coupon code, details, expiration note, and fine print to create a sheet of printable coupon cards.",
       "Coupon and promotion searches are linked to real selling activity, making this a stronger monetization test than purely decorative pages.",
+    ],
+  },
+  {
+    path: "tools/packing-slip",
+    title: "Packing Slip Generator",
+    description: "Create a printable packing slip PDF for small orders, marketplace sales, local delivery, and handmade product shipments.",
+    body: [
+      "Enter sender, recipient, order number, ship date, item rows, quantities, status, and a packing note to create a clear order insert.",
+      "Packing slip searches are tied to real selling and shipping work, which makes the tool a strong business-intent addition for ad-supported validation.",
+    ],
+  },
+  {
+    path: "tools/work-order",
+    title: "Work Order Generator",
+    description: "Make a work order PDF for repairs, field service, maintenance visits, cleaning jobs, and contractor tasks.",
+    body: [
+      "Add provider details, client or site details, schedule, tasks, rates, instructions, and approval notes to create a one-page job form.",
+      "Work order searches are urgent and practical because the user usually needs a service record before a visit, job, or repair starts.",
+    ],
+  },
+  {
+    path: "tools/inventory-sheet",
+    title: "Inventory Sheet Generator",
+    description: "Create a printable inventory count sheet PDF for stock checks, craft fairs, storage bins, classroom supplies, and small retail shelves.",
+    body: [
+      "Enter location, count date, SKU or item rows, expected quantities, counted quantities, and notes to create a printable stock count sheet.",
+      "Inventory sheets have repeat-use potential for sellers, classrooms, events, and storage workflows without requiring a spreadsheet login.",
     ],
   },
   {
@@ -655,8 +745,14 @@ const guides = [
   ["guides/free-flyer-maker-pdf-no-signup", "Free flyer maker PDF without signup", "Make a one-page flyer PDF for a local service, yard sale, class, club, or community event.", "Flyer searches are often urgent. A clear headline, date or offer, short details, and contact line matter more than heavy decoration."],
   ["guides/local-service-flyer-pdf-template", "Local service flyer PDF template", "Create a simple printable flyer for cleaning, tutoring, repair, notary, coaching, or neighborhood services.", "A local service flyer should state what you do, who it helps, how to contact you, and one clear next step."],
   ["guides/free-coupon-maker-printable", "Free printable coupon maker", "Create printable coupon cards for local services, pop-up shops, classes, events, and small offers.", "Coupon pages should make the offer and terms clear. Avoid misleading discounts or unclear expiration notes."],
-  ["guides/discount-coupon-pdf-template", "Discount coupon PDF template", "Make a coupon PDF sheet with offer text, coupon code, expiration note, and fine print.", "Coupons connect directly to local promotion and selling activity, so they are a stronger commercial validation category than generic decorative templates."],
-  ["guides/free-resume-builder-pdf", "Free resume builder PDF", "Build a clean resume PDF without an account, paywall, or complicated design tool.", "Many job seekers do not need a heavy design template. They need a readable document with a clear name, contact line, summary, experience, skills, and education."],
+      ["guides/discount-coupon-pdf-template", "Discount coupon PDF template", "Make a coupon PDF sheet with offer text, coupon code, expiration note, and fine print.", "Coupons connect directly to local promotion and selling activity, so they are a stronger commercial validation category than generic decorative templates."],
+      ["guides/free-packing-slip-generator-printable", "Free printable packing slip generator", "Create a packing slip PDF for small orders, handmade products, marketplace shipments, and local delivery.", "Packing slip pages have commercial intent because the user is often preparing a real customer order. Keep payment details off the slip unless the package workflow truly needs them."],
+      ["guides/order-packing-slip-pdf-template", "Order packing slip PDF template", "Use a simple packing slip PDF as a package insert for small shops, pop-up pickups, and marketplace sales.", "A packing slip should make it easy to confirm items, quantities, status, order number, and recipient before sealing the package."],
+      ["guides/free-work-order-generator-pdf", "Free work order generator PDF", "Create a work order PDF for repairs, maintenance visits, cleaning jobs, field service, and contractor tasks.", "Work order searches often happen right before a service visit. A useful form records scope, schedule, tasks, instructions, approval notes, and signatures."],
+      ["guides/service-work-order-pdf-template", "Service work order PDF template", "Make a printable work order for contractors, local services, maintenance teams, and repair visits.", "A work order is strongest when it separates approved work from extra work that needs client approval."],
+      ["guides/free-inventory-sheet-generator", "Free inventory sheet generator", "Create a printable inventory count sheet for stock checks, market tables, storage bins, and classroom supplies.", "Inventory counts repeat often, so a fast printable sheet can earn return visits when it is easier than opening a spreadsheet."],
+      ["guides/stock-count-sheet-pdf-template", "Stock count sheet PDF template", "Use a printable stock count sheet for SKU checks, shelf reviews, craft fairs, event supplies, and restock notes.", "A stock count sheet should include enough columns to compare expected and counted quantities without making the rows hard to write on."],
+      ["guides/free-resume-builder-pdf", "Free resume builder PDF", "Build a clean resume PDF without an account, paywall, or complicated design tool.", "Many job seekers do not need a heavy design template. They need a readable document with a clear name, contact line, summary, experience, skills, and education."],
   ["guides/ats-friendly-resume-pdf-guide", "ATS friendly resume PDF guide", "Format a simple resume PDF so it stays readable for recruiters and applicant tracking systems.", "Use clear section headings, normal text, and a single-column structure. Avoid putting important experience inside images, icons, or complex tables."],
   ["guides/free-cover-letter-generator-pdf", "Free cover letter generator PDF", "Create a one-page cover letter PDF for job applications without an account or download paywall.", "A job seeker often needs a cover letter right before submitting an application. A fast generator that exports a PDF without signup solves that moment better than a hidden download fee."],
   ["guides/cover-letter-no-signup", "Cover letter generator without signup", "Use a free cover letter PDF maker when you need a quick application document without creating an account.", "Many writing tools let users type a letter for free and then ask for payment at export. This generator keeps the first one-page PDF free so the value is visible immediately."],
@@ -738,12 +834,18 @@ const keywordClusters = [
   },
   {
     title: "Business paperwork",
-    description: "Clean PDF invoices, estimates, purchase orders, sale records, receipts, timesheets, cards, labels, and barcodes for people who need a document now.",
+    description: "Clean PDF invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, timesheets, cards, labels, and barcodes for people who need a document now.",
     links: [
       ["Invoice generator", "tools/invoice-generator"],
       ["Free invoice generator without signup", "free-invoice-generator-no-signup"],
       ["Estimate generator", "tools/estimate-generator"],
       ["Purchase order generator", "tools/purchase-order"],
+      ["Packing slip generator", "tools/packing-slip"],
+      ["Free packing slip generator", "free-packing-slip-generator-printable"],
+      ["Work order generator", "tools/work-order"],
+      ["Free work order generator PDF", "free-work-order-generator-pdf"],
+      ["Inventory sheet generator", "tools/inventory-sheet"],
+      ["Free inventory sheet generator", "free-inventory-sheet-generator"],
       ["Business card generator", "tools/business-card"],
       ["Free business card generator", "free-business-card-generator-printable"],
       ["Address label generator", "tools/address-labels"],
@@ -801,9 +903,9 @@ const pages = [
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>32</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>35</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>64</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>70</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -836,6 +938,9 @@ const pages = [
           <li><a href="/tools/purchase-order/">Purchase Order Generator</a></li>
           <li><a href="/tools/bill-of-sale/">Bill of Sale Generator</a></li>
           <li><a href="/tools/rent-receipt/">Rent Receipt Generator</a></li>
+          <li><a href="/tools/packing-slip/">Packing Slip Generator</a></li>
+          <li><a href="/tools/work-order/">Work Order Generator</a></li>
+          <li><a href="/tools/inventory-sheet/">Inventory Sheet Generator</a></li>
           <li><a href="/tools/business-card/">Business Card Generator</a></li>
           <li><a href="/tools/address-labels/">Address Label Generator</a></li>
           <li><a href="/tools/price-tag/">Price Tag Generator</a></li>
@@ -949,6 +1054,9 @@ const GUIDE_HINTS_FOR_LINKS = {
   "price-tag": ["price tag", "yard sale"],
   "flyer-maker": ["flyer"],
   "coupon-maker": ["coupon"],
+  "packing-slip": ["packing slip", "order packing"],
+  "work-order": ["work order", "service order"],
+  "inventory-sheet": ["inventory", "stock count"],
   "resume-builder": ["resume", "ATS"],
   "cover-letter": ["cover letter"],
   "resignation-letter": ["resignation", "two weeks"],
@@ -1074,7 +1182,7 @@ function freePdfToolsHtml() {
     {
       title: "Free business PDF tools",
       text: "Create simple paperwork and print assets for freelance jobs, local services, deposits, timesheets, private sales, rent payments, vendor orders, inventory labels, and quick promotions without opening a full design or accounting app.",
-      links: ["invoice-generator", "estimate-generator", "purchase-order", "receipt-generator", "timesheet-generator", "bill-of-sale", "rent-receipt", "business-card", "address-labels", "barcode-labels"],
+      links: ["invoice-generator", "estimate-generator", "purchase-order", "receipt-generator", "timesheet-generator", "bill-of-sale", "rent-receipt", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels"],
     },
     {
       title: "Free career PDF tools",
@@ -1134,7 +1242,7 @@ function pdfToolFinderHtml() {
         <td>${escapeHtml(row.why)}</td>
       </tr>`;
   }).join("\n");
-  const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"];
+  const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"];
   const personalTools = ["resume-builder", "cover-letter", "resignation-letter", "certificate-generator", "todo-list", "packing-list", "monthly-calendar", "meal-planner", "sign-in-sheet", "graph-paper"];
   return `
       <section class="shell page-title section">
@@ -1464,6 +1572,45 @@ function toolDetails(tool) {
         { q: "Can I add fine print?", a: "Yes. Use the fine print field for simple limits such as dates or one-per-customer terms." },
         { q: "Does it process payments?", a: "No. It only creates printable coupon cards." },
         { q: "Can I use it commercially?", a: "Use it only for offers and businesses you are authorized to promote." },
+      ],
+    },
+    "packing-slip": {
+      useCases: [
+        { title: "Marketplace order", text: "Print a package insert with order number, items, quantities, and packed status." },
+        { title: "Handmade shipment", text: "Use a clean slip for candles, soaps, art prints, clothing, or other small goods." },
+        { title: "Local pickup", text: "Create a pickup or local delivery checklist without full shipping software." },
+      ],
+      privacy: "Packing slips are generated locally. Avoid putting payment details or private customer notes on a package insert unless the workflow truly needs them.",
+      limit: "The free version creates one printable packing slip PDF with a limited number of rows.",
+      faq: [
+        { q: "Is this a shipping label?", a: "No. It is a packing slip for package contents, not postage or carrier labels." },
+        { q: "Can I use it for Etsy or marketplace orders?", a: "Yes, for a simple package insert after you copy the order details you need." },
+        { q: "Should prices be included?", a: "Usually no. Packing slips often focus on items and quantities, especially for gifts." },
+      ],
+    },
+    "work-order": {
+      useCases: [
+        { title: "Repair visit", text: "Record tasks, schedule, instructions, and approval notes before a repair starts." },
+        { title: "Field service", text: "Print one form for cleaning, maintenance, installation, or contractor work." },
+        { title: "Client approval", text: "Use signature lines to separate approved work from additional work." },
+      ],
+      privacy: "The work order is generated locally. Review safety requirements, scope, and approval terms before using it for real service work.",
+      faq: [
+        { q: "Is this a legal service contract?", a: "No. It is a practical work order form, not legal advice or a full contract." },
+        { q: "Can it include estimated charges?", a: "Yes. Enter task, quantity, and rate rows to show a simple estimated total." },
+        { q: "Does it replace field-service software?", a: "No. It is intended for small jobs and printable records." },
+      ],
+    },
+    "inventory-sheet": {
+      useCases: [
+        { title: "Stock count", text: "Compare expected and counted quantities for shelves, bins, or small inventory areas." },
+        { title: "Craft fair table", text: "Count items before opening and after closing a market table." },
+        { title: "Classroom supplies", text: "Track books, kits, materials, or storage bins without a spreadsheet." },
+      ],
+      faq: [
+        { q: "Is this inventory software?", a: "No. It creates a printable count sheet and does not store stock history." },
+        { q: "Can I use SKU rows?", a: "Yes. The default layout includes SKU, item, expected, counted, and note columns." },
+        { q: "Why print instead of using a spreadsheet?", a: "Stock counts often happen away from a desk, so a simple paper sheet can be faster." },
       ],
     },
     "resume-builder": {

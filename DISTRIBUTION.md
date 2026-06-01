@@ -37,6 +37,9 @@ I built PrintableTools Lab, a free browser-based PDF tool site. It creates pract
 - Free Printable Price Tag Generator: https://printable-tools-lab.pages.dev/free-price-tag-generator-printable/
 - Free Flyer Maker PDF Without Signup: https://printable-tools-lab.pages.dev/free-flyer-maker-pdf-no-signup/
 - Free Printable Coupon Maker: https://printable-tools-lab.pages.dev/free-coupon-maker-printable/
+- Free Printable Packing Slip Generator: https://printable-tools-lab.pages.dev/free-packing-slip-generator-printable/
+- Free Work Order Generator PDF: https://printable-tools-lab.pages.dev/free-work-order-generator-pdf/
+- Free Inventory Sheet Generator: https://printable-tools-lab.pages.dev/free-inventory-sheet-generator/
 - Image to PDF Converter: https://printable-tools-lab.pages.dev/tools/image-to-pdf/
 - Multiple Images to PDF Converter: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/
 - Text to PDF Converter: https://printable-tools-lab.pages.dev/tools/text-to-pdf/
@@ -49,6 +52,9 @@ I built PrintableTools Lab, a free browser-based PDF tool site. It creates pract
 - Price Tag Generator: https://printable-tools-lab.pages.dev/tools/price-tag/
 - Flyer Maker PDF: https://printable-tools-lab.pages.dev/tools/flyer-maker/
 - Coupon Maker PDF: https://printable-tools-lab.pages.dev/tools/coupon-maker/
+- Packing Slip Generator: https://printable-tools-lab.pages.dev/tools/packing-slip/
+- Work Order Generator: https://printable-tools-lab.pages.dev/tools/work-order/
+- Inventory Sheet Generator: https://printable-tools-lab.pages.dev/tools/inventory-sheet/
 - Resume Builder PDF: https://printable-tools-lab.pages.dev/tools/resume-builder/
 - Certificate Generator: https://printable-tools-lab.pages.dev/tools/certificate-generator/
 - To Do List Generator: https://printable-tools-lab.pages.dev/tools/todo-list/
@@ -56,9 +62,9 @@ I built PrintableTools Lab, a free browser-based PDF tool site. It creates pract
 
 ## Community-safe angles
 
-- For freelancers: free invoice, estimate, purchase order, receipt, bill of sale, and timesheet PDFs without account creation.
-- For high-intent search visitors: no-signup landing pages for invoices, receipts, labels, business cards, barcodes, price tags, flyers, coupons, timesheets, resumes, certificates, text-to-PDF, JPG-to-PDF, and multi-image PDF.
-- For small businesses and local sellers: printable business cards, address labels, barcode labels, price tags, flyers, and coupons without design-account friction.
+- For freelancers: free invoice, estimate, purchase order, receipt, bill of sale, work order, packing slip, inventory sheet, and timesheet PDFs without account creation.
+- For high-intent search visitors: no-signup landing pages for invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, barcodes, price tags, flyers, coupons, timesheets, resumes, certificates, text-to-PDF, JPG-to-PDF, and multi-image PDF.
+- For small businesses and local sellers: printable business cards, address labels, barcode labels, price tags, flyers, coupons, packing slips, and inventory sheets without design-account or spreadsheet friction.
 - For job seekers: free resume, cover letter, and resignation letter PDFs without a hidden export fee.
 - For parents and teachers: printable name tracing, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
 - For teachers and organizers: free certificate, sign-in sheet, and event checklist PDFs.

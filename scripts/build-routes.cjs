@@ -282,9 +282,9 @@ const distribution = [
   "",
   "## Community-safe angles",
   "",
-  "- For freelancers: free invoice, estimate, purchase order, receipt, bill of sale, and timesheet PDFs without account creation.",
-  "- For high-intent search visitors: no-signup landing pages for invoices, receipts, labels, business cards, barcodes, price tags, flyers, coupons, timesheets, resumes, certificates, text-to-PDF, JPG-to-PDF, and multi-image PDF.",
-  "- For small businesses and local sellers: printable business cards, address labels, barcode labels, price tags, flyers, and coupons without design-account friction.",
+  "- For freelancers: free invoice, estimate, purchase order, receipt, bill of sale, work order, packing slip, inventory sheet, and timesheet PDFs without account creation.",
+  "- For high-intent search visitors: no-signup landing pages for invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, barcodes, price tags, flyers, coupons, timesheets, resumes, certificates, text-to-PDF, JPG-to-PDF, and multi-image PDF.",
+  "- For small businesses and local sellers: printable business cards, address labels, barcode labels, price tags, flyers, coupons, packing slips, and inventory sheets without design-account or spreadsheet friction.",
   "- For job seekers: free resume, cover letter, and resignation letter PDFs without a hidden export fee.",
   "- For parents and teachers: printable name tracing, chore charts, reward charts, flashcards, weekly planners, and habit trackers.",
   "- For teachers and organizers: free certificate, sign-in sheet, and event checklist PDFs.",
@@ -298,6 +298,7 @@ const distribution = [
   "- DeepLaunch free listing after signing in; their public submit page says free submissions are reviewed within 48 hours",
   "- BootstrapArena normal free startup listing after sign-in flow is available",
   "- Zearches free URL directory for one homepage submission only",
+  "- ListAi.cc free no-account AI tool directory submission; submitted on 2026-06-01 and awaiting review",
   "- Reddit communities only when rules allow self-promotion and the tool directly solves a request",
   "- Startup/tool directories with free submissions",
   "- GitHub repository topics and README link",
@@ -320,7 +321,7 @@ console.log(`Generated ${routes.length - 1} static route entries, sitemap.xml, r
 
 function categoryForTool(toolPath) {
   const slug = toolPath.replace(/^tools\//, "");
-  if (["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt", "receipt-generator", "timesheet-generator", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"].includes(slug)) return "Business paperwork";
+  if (["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt", "receipt-generator", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"].includes(slug)) return "Business paperwork";
   if (["resume-builder", "cover-letter", "resignation-letter"].includes(slug)) return "Career documents";
   if (["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"].includes(slug)) return "Planning";
   if (["image-to-pdf", "multi-image-pdf", "text-to-pdf", "sign-in-sheet", "graph-paper", "packing-list", "todo-list"].includes(slug)) return "Everyday utility PDFs";

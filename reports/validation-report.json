@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-01T01:24:09.059Z",
+  "generatedAt": "2026-06-01T01:52:37.162Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
-    "toolCount": 32,
-    "guideCount": 64,
-    "landingPageCount": 14,
-    "indexableRoutes": 119,
-    "sitemapLocCount": 119,
-    "generatedToolInventoryAt": "2026-06-01T00:49:40.931Z",
+    "toolCount": 35,
+    "guideCount": 70,
+    "landingPageCount": 17,
+    "indexableRoutes": 131,
+    "sitemapLocCount": 131,
+    "generatedToolInventoryAt": "2026-06-01T01:51:04.197Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -1225,7 +1225,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": true
+    "externalDiscoveryReady": false
   },
   "gates": {
     "productReady": true,
@@ -1233,13 +1233,13 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": true,
+    "externalDiscoveryReady": false,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "32 tools, 64 guides, 14 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "35 tools, 70 guides, 17 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Real AdSense publisher ID is not configured, so ads remain disabled.",

@@ -4,7 +4,7 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-06-01T01:05:26.478Z",
+  "generatedAt": "2026-06-01T01:56:37.493Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -75,6 +75,21 @@
       "title": "Free Printable Coupon Maker",
       "url": "https://printable-tools-lab.pages.dev/free-coupon-maker-printable/",
       "intent": "printable coupon cards, discount coupon PDF, no signup"
+    },
+    {
+      "title": "Free Printable Packing Slip Generator",
+      "url": "https://printable-tools-lab.pages.dev/free-packing-slip-generator-printable/",
+      "intent": "packing slip PDF, order packing sheet, no signup"
+    },
+    {
+      "title": "Free Work Order Generator PDF",
+      "url": "https://printable-tools-lab.pages.dev/free-work-order-generator-pdf/",
+      "intent": "work order PDF, service order form, contractor job sheet"
+    },
+    {
+      "title": "Free Inventory Sheet Generator",
+      "url": "https://printable-tools-lab.pages.dev/free-inventory-sheet-generator/",
+      "intent": "inventory count sheet PDF, stock count template, no signup"
     }
   ],
   "tools": [
@@ -137,6 +152,21 @@
       "title": "Coupon Maker PDF",
       "description": "Create printable coupon cards for a local service, class, pop-up event, small shop, or limited-time offer.",
       "url": "https://printable-tools-lab.pages.dev/tools/coupon-maker/"
+    },
+    {
+      "title": "Packing Slip Generator",
+      "description": "Create a printable packing slip PDF for small orders, marketplace sales, local delivery, and handmade product shipments.",
+      "url": "https://printable-tools-lab.pages.dev/tools/packing-slip/"
+    },
+    {
+      "title": "Work Order Generator",
+      "description": "Make a work order PDF for repairs, field service, maintenance visits, cleaning jobs, and contractor tasks.",
+      "url": "https://printable-tools-lab.pages.dev/tools/work-order/"
+    },
+    {
+      "title": "Inventory Sheet Generator",
+      "description": "Create a printable inventory count sheet PDF for stock checks, craft fairs, storage bins, classroom supplies, and small retail shelves.",
+      "url": "https://printable-tools-lab.pages.dev/tools/inventory-sheet/"
     },
     {
       "title": "Resume Builder PDF",

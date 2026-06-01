@@ -1,6 +1,6 @@
 # PrintableTools Lab
 
-Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
+Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.
 
 Audience: Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, and household planners.
 
@@ -39,6 +39,9 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Flyer Maker PDF](https://printable-tools-lab.pages.dev/tools/flyer-maker/): Make a one-page printable flyer PDF for a local service, yard sale, class, community event, or small business offer.
 - [Barcode Label Generator](https://printable-tools-lab.pages.dev/tools/barcode-labels/): Generate printable Code 39 barcode labels for inventory bins, event check-in, SKU stickers, and internal tracking.
 - [Coupon Maker PDF](https://printable-tools-lab.pages.dev/tools/coupon-maker/): Create printable coupon cards for a local service, class, pop-up event, small shop, or limited-time offer.
+- [Packing Slip Generator](https://printable-tools-lab.pages.dev/tools/packing-slip/): Create a printable packing slip PDF for small orders, marketplace sales, local delivery, and handmade product shipments.
+- [Work Order Generator](https://printable-tools-lab.pages.dev/tools/work-order/): Make a work order PDF for repairs, field service, maintenance visits, cleaning jobs, and contractor tasks.
+- [Inventory Sheet Generator](https://printable-tools-lab.pages.dev/tools/inventory-sheet/): Create a printable inventory count sheet PDF for stock checks, craft fairs, storage bins, classroom supplies, and small retail shelves.
 - [Resume Builder PDF](https://printable-tools-lab.pages.dev/tools/resume-builder/): Build a simple free resume PDF without an account, paywall, or surprise download fee.
 - [Cover Letter Generator](https://printable-tools-lab.pages.dev/tools/cover-letter/): Create a free one-page cover letter PDF for job applications without an account or surprise download fee.
 - [Resignation Letter Generator](https://printable-tools-lab.pages.dev/tools/resignation-letter/): Make a simple resignation letter PDF with notice date, last day, appreciation, and handoff wording.
@@ -71,6 +74,9 @@ Monetization model: Free tools first, then responsible display advertising after
 - [Free Printable Price Tag Generator](https://printable-tools-lab.pages.dev/free-price-tag-generator-printable/): price tag PDF, shelf labels, yard sale tags
 - [Free Flyer Maker PDF Without Signup](https://printable-tools-lab.pages.dev/free-flyer-maker-pdf-no-signup/): flyer PDF now, no signup, local event flyer
 - [Free Printable Coupon Maker](https://printable-tools-lab.pages.dev/free-coupon-maker-printable/): printable coupon cards, discount coupon PDF, no signup
+- [Free Printable Packing Slip Generator](https://printable-tools-lab.pages.dev/free-packing-slip-generator-printable/): packing slip PDF, order packing sheet, no signup
+- [Free Work Order Generator PDF](https://printable-tools-lab.pages.dev/free-work-order-generator-pdf/): work order PDF, service order form, contractor job sheet
+- [Free Inventory Sheet Generator](https://printable-tools-lab.pages.dev/free-inventory-sheet-generator/): inventory count sheet PDF, stock count template, no signup
 
 ## Useful Guide Pages
 

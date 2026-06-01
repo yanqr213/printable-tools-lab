@@ -1,8 +1,8 @@
 {
   "name": "PrintableTools Lab",
-  "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  "description": "Free browser-based PDF generators for image conversion, text conversion, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, calendars, meal planners, worksheets, charts, flashcards, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T00:49:40.931Z",
+  "generatedAt": "2026-06-01T01:56:37.428Z",
   "tools": [
     {
       "title": "Name Tracing Worksheet Generator",
@@ -104,6 +104,24 @@
       "title": "Coupon Maker PDF",
       "url": "https://printable-tools-lab.pages.dev/tools/coupon-maker/",
       "description": "Create printable coupon cards for a local service, class, pop-up event, small shop, or limited-time offer.",
+      "category": "Business paperwork"
+    },
+    {
+      "title": "Packing Slip Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/packing-slip/",
+      "description": "Create a printable packing slip PDF for small orders, marketplace sales, local delivery, and handmade product shipments.",
+      "category": "Business paperwork"
+    },
+    {
+      "title": "Work Order Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/work-order/",
+      "description": "Make a work order PDF for repairs, field service, maintenance visits, cleaning jobs, and contractor tasks.",
+      "category": "Business paperwork"
+    },
+    {
+      "title": "Inventory Sheet Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/inventory-sheet/",
+      "description": "Create a printable inventory count sheet PDF for stock checks, craft fairs, storage bins, classroom supplies, and small retail shelves.",
       "category": "Business paperwork"
     },
     {
@@ -397,6 +415,36 @@
       "title": "Discount coupon PDF template",
       "url": "https://printable-tools-lab.pages.dev/guides/discount-coupon-pdf-template/",
       "description": "Make a coupon PDF sheet with offer text, coupon code, expiration note, and fine print."
+    },
+    {
+      "title": "Free printable packing slip generator",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-packing-slip-generator-printable/",
+      "description": "Create a packing slip PDF for small orders, handmade products, marketplace shipments, and local delivery."
+    },
+    {
+      "title": "Order packing slip PDF template",
+      "url": "https://printable-tools-lab.pages.dev/guides/order-packing-slip-pdf-template/",
+      "description": "Use a simple packing slip PDF as a package insert for small shops, pop-up pickups, and marketplace sales."
+    },
+    {
+      "title": "Free work order generator PDF",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-work-order-generator-pdf/",
+      "description": "Create a work order PDF for repairs, maintenance visits, cleaning jobs, field service, and contractor tasks."
+    },
+    {
+      "title": "Service work order PDF template",
+      "url": "https://printable-tools-lab.pages.dev/guides/service-work-order-pdf-template/",
+      "description": "Make a printable work order for contractors, local services, maintenance teams, and repair visits."
+    },
+    {
+      "title": "Free inventory sheet generator",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-inventory-sheet-generator/",
+      "description": "Create a printable inventory count sheet for stock checks, market tables, storage bins, and classroom supplies."
+    },
+    {
+      "title": "Stock count sheet PDF template",
+      "url": "https://printable-tools-lab.pages.dev/guides/stock-count-sheet-pdf-template/",
+      "description": "Use a printable stock count sheet for SKU checks, shelf reviews, craft fairs, event supplies, and restock notes."
     },
     {
       "title": "Free resume builder PDF",

@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T00:49:40.931Z",
+  "generatedAt": "2026-06-01T01:56:37.428Z",
   "positioning": "Free no-signup browser PDF tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -23,6 +23,9 @@
     "https://printable-tools-lab.pages.dev/free-price-tag-generator-printable/",
     "https://printable-tools-lab.pages.dev/free-flyer-maker-pdf-no-signup/",
     "https://printable-tools-lab.pages.dev/free-coupon-maker-printable/",
+    "https://printable-tools-lab.pages.dev/free-packing-slip-generator-printable/",
+    "https://printable-tools-lab.pages.dev/free-work-order-generator-pdf/",
+    "https://printable-tools-lab.pages.dev/free-inventory-sheet-generator/",
     "https://printable-tools-lab.pages.dev/tools/image-to-pdf/",
     "https://printable-tools-lab.pages.dev/tools/multi-image-pdf/",
     "https://printable-tools-lab.pages.dev/tools/text-to-pdf/",
@@ -35,6 +38,9 @@
     "https://printable-tools-lab.pages.dev/tools/price-tag/",
     "https://printable-tools-lab.pages.dev/tools/flyer-maker/",
     "https://printable-tools-lab.pages.dev/tools/coupon-maker/",
+    "https://printable-tools-lab.pages.dev/tools/packing-slip/",
+    "https://printable-tools-lab.pages.dev/tools/work-order/",
+    "https://printable-tools-lab.pages.dev/tools/inventory-sheet/",
     "https://printable-tools-lab.pages.dev/tools/resume-builder/",
     "https://printable-tools-lab.pages.dev/tools/certificate-generator/",
     "https://printable-tools-lab.pages.dev/tools/todo-list/",
@@ -124,6 +130,24 @@
       "url": "https://printable-tools-lab.pages.dev/free-coupon-maker-printable/",
       "intent": "printable coupon cards, discount coupon PDF, no signup",
       "tool": "https://printable-tools-lab.pages.dev/tools/coupon-maker/"
+    },
+    {
+      "title": "Free Printable Packing Slip Generator",
+      "url": "https://printable-tools-lab.pages.dev/free-packing-slip-generator-printable/",
+      "intent": "packing slip PDF, order packing sheet, no signup",
+      "tool": "https://printable-tools-lab.pages.dev/tools/packing-slip/"
+    },
+    {
+      "title": "Free Work Order Generator PDF",
+      "url": "https://printable-tools-lab.pages.dev/free-work-order-generator-pdf/",
+      "intent": "work order PDF, service order form, contractor job sheet",
+      "tool": "https://printable-tools-lab.pages.dev/tools/work-order/"
+    },
+    {
+      "title": "Free Inventory Sheet Generator",
+      "url": "https://printable-tools-lab.pages.dev/free-inventory-sheet-generator/",
+      "intent": "inventory count sheet PDF, stock count template, no signup",
+      "tool": "https://printable-tools-lab.pages.dev/tools/inventory-sheet/"
     }
   ],
   "constraints": [

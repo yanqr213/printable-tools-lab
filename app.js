@@ -44,6 +44,9 @@
     "flyer-maker": ["headline", "subhead", "details", "callToAction"],
     "barcode-labels": [],
     "coupon-maker": ["offer", "details", "finePrint"],
+    "packing-slip": ["items", "notes"],
+    "work-order": ["items", "instructions", "notes"],
+    "inventory-sheet": ["items", "notes"],
   };
 
   const tools = {
@@ -905,6 +908,93 @@
       ],
       draw: drawCoupon,
     },
+    "packing-slip": {
+      id: "packing-slip",
+      icon: "PKG",
+      title: "Packing Slip Generator",
+      shortTitle: "Packing slip",
+      description: "Create a printable packing slip PDF for small orders, marketplace sales, local delivery, and handmade product shipments.",
+      keywords: ["packing slip", "order packing", "shipping insert", "small business"],
+      defaultValues: {
+        business: "Northline Market\nhello@example.com",
+        recipient: "Customer Name\n123 Maple Street\nAustin, TX 78701",
+        orderNo: "ORDER-1042",
+        date: "2026-06-01",
+        items: "Beeswax candle | 2 | Packed\nLavender soap | 1 | Packed\nThank-you card | 1 | Inserted",
+        notes: "Thank you for your order. Please check the package contents on arrival.",
+        paper: "letter",
+      },
+      fields: [
+        { id: "business", label: "Business or sender", type: "textarea", maxLength: 140 },
+        { id: "recipient", label: "Ship to", type: "textarea", maxLength: 180 },
+        { id: "orderNo", label: "Order number", type: "text", maxLength: 40 },
+        { id: "date", label: "Ship date", type: "text", maxLength: 32 },
+        { id: "items", label: "Items", type: "textarea", maxLength: 520, help: "One item per line: Item | Qty | Status" },
+        { id: "notes", label: "Packing note", type: "textarea", maxLength: 180 },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawPackingSlip,
+    },
+    "work-order": {
+      id: "work-order",
+      icon: "WO",
+      title: "Work Order Generator",
+      shortTitle: "Work order",
+      description: "Make a work order PDF for repairs, field service, maintenance visits, cleaning jobs, and contractor tasks.",
+      keywords: ["work order", "service order", "maintenance", "contractor form"],
+      defaultValues: {
+        business: "Northline Services\nservice@example.com",
+        client: "Client Name\nclient@example.com",
+        orderNo: "WO-1007",
+        date: "2026-06-01",
+        due: "Scheduled: 2026-06-05 10:00 AM",
+        items: "Inspect kitchen sink | 1 | 0\nReplace faucet cartridge | 1 | 85\nCleanup and test | 1 | 25",
+        instructions: "Bring replacement cartridge and confirm water shutoff location before starting.",
+        notes: "Client approval required before additional parts or labor.",
+        currency: "USD",
+        paper: "letter",
+      },
+      fields: [
+        { id: "business", label: "Service provider", type: "textarea", maxLength: 140 },
+        { id: "client", label: "Client or site", type: "textarea", maxLength: 160 },
+        { id: "orderNo", label: "Work order number", type: "text", maxLength: 40 },
+        { id: "date", label: "Created date", type: "text", maxLength: 32 },
+        { id: "due", label: "Schedule or status", type: "text", maxLength: 70 },
+        { id: "items", label: "Tasks or charges", type: "textarea", maxLength: 520, help: "One task per line: Task | Qty | Rate" },
+        { id: "instructions", label: "Instructions", type: "textarea", maxLength: 240 },
+        { id: "notes", label: "Approval note", type: "textarea", maxLength: 180 },
+        { id: "currency", label: "Currency", type: "select", options: [["USD", "USD $"], ["EUR", "EUR"], ["GBP", "GBP"], ["CAD", "CAD $"], ["AUD", "AUD $"]] },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawWorkOrder,
+    },
+    "inventory-sheet": {
+      id: "inventory-sheet",
+      icon: "INV",
+      title: "Inventory Sheet Generator",
+      shortTitle: "Inventory",
+      description: "Create a printable inventory count sheet PDF for stock checks, craft fairs, storage bins, classroom supplies, and small retail shelves.",
+      keywords: ["inventory sheet", "stock count", "inventory checklist", "small business"],
+      defaultValues: {
+        title: "Inventory Count Sheet",
+        location: "Market table A",
+        date: "2026-06-01",
+        items: "SKU-1001 | Beeswax candle | 24 | 18 | Restock\nSKU-1002 | Lavender soap | 30 | 27 | OK\nSKU-1003 | Market tote | 12 | 9 | Reorder",
+        columns: "sku",
+        notes: "Count before opening and after closing. Review low-stock items first.",
+        paper: "letter",
+      },
+      fields: [
+        { id: "title", label: "Sheet title", type: "text", maxLength: 70 },
+        { id: "location", label: "Location or event", type: "text", maxLength: 80 },
+        { id: "date", label: "Count date", type: "text", maxLength: 32 },
+        { id: "items", label: "Inventory rows", type: "textarea", maxLength: 760, help: "One row per line: SKU | Item | Expected | Counted | Note" },
+        { id: "columns", label: "Layout", type: "select", options: [["sku", "SKU + expected count"], ["simple", "Simple item count"], ["restock", "Restock notes"]] },
+        { id: "notes", label: "Footer note", type: "textarea", maxLength: 180 },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawInventorySheet,
+    },
   };
 
   const keywordClusters = [
@@ -963,12 +1053,15 @@
     },
     {
       title: "Business paperwork",
-      description: "Clean PDF invoices, estimates, purchase orders, sale records, receipts, and timesheets for people who need a document now.",
+      description: "Clean PDF invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, and timesheets for people who need a document now.",
       links: [
         ["Invoice generator", "/tools/invoice-generator/"],
         ["Free invoice generator without signup", "/free-invoice-generator-no-signup/"],
         ["Estimate generator", "/tools/estimate-generator/"],
         ["Purchase order generator", "/tools/purchase-order/"],
+        ["Packing slip generator", "/tools/packing-slip/"],
+        ["Work order generator", "/tools/work-order/"],
+        ["Inventory sheet generator", "/tools/inventory-sheet/"],
         ["Business card generator", "/tools/business-card/"],
         ["Address label generator", "/tools/address-labels/"],
         ["Barcode label generator", "/tools/barcode-labels/"],
@@ -1013,8 +1106,8 @@
     },
     {
       title: "Free business PDF tools",
-      description: "Create simple paperwork for freelance jobs, small services, deposits, timesheets, private sales, rent payments, and vendor orders without opening a full accounting app.",
-      links: ["invoice-generator", "estimate-generator", "purchase-order", "receipt-generator", "timesheet-generator", "bill-of-sale", "rent-receipt", "business-card", "address-labels", "barcode-labels"],
+      description: "Create simple paperwork for freelance jobs, small services, deposits, work orders, packing slips, inventory counts, timesheets, private sales, rent payments, and vendor orders without opening a full accounting app.",
+      links: ["invoice-generator", "estimate-generator", "purchase-order", "receipt-generator", "timesheet-generator", "bill-of-sale", "rent-receipt", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels"],
     },
     {
       title: "Free career PDF tools",
@@ -1239,6 +1332,51 @@
       ],
       related: ["flyer-maker", "price-tag", "business-card"],
     },
+    {
+      slug: "free-packing-slip-generator-printable",
+      title: "Free Printable Packing Slip Generator",
+      headline: "Free printable packing slip generator",
+      description: "Create a printable packing slip PDF for small orders, marketplace sales, handmade products, and local delivery without signing up.",
+      lead: "Make a simple packing slip PDF for a customer order, package insert, local delivery, or handmade product shipment. It is built for sellers who need one clear order sheet without full shipping software.",
+      tool: "packing-slip",
+      intent: "packing slip PDF, order packing sheet, no signup",
+      sections: [
+        ["Commercial intent", "Packing slip searches often come from sellers preparing real orders. That makes the page business-adjacent and stronger for ad-supported validation than decorative printables."],
+        ["What to include", "Sender, ship-to details, order number, ship date, item names, quantities, status, and a short packing note. Keep payment details off the slip unless they are truly needed."],
+        ["Best fit", "Use it for marketplace orders, handmade goods, local delivery, pop-up shop pickups, and small warehouse workflows before investing in shipping software."],
+      ],
+      related: ["inventory-sheet", "barcode-labels", "address-labels"],
+    },
+    {
+      slug: "free-work-order-generator-pdf",
+      title: "Free Work Order Generator PDF",
+      headline: "Free work order generator PDF",
+      description: "Create a work order PDF for repair jobs, field service, maintenance visits, cleaning jobs, contractor tasks, and approval records.",
+      lead: "Build a printable work order with provider details, client or site information, tasks, schedule, instructions, and approval notes. No account is required for the free PDF export.",
+      tool: "work-order",
+      intent: "work order PDF, service order form, contractor job sheet",
+      sections: [
+        ["Why users search", "Work order searches usually happen right before a service visit, repair task, or client approval. A fast PDF can satisfy that moment without forcing field-service software."],
+        ["What it includes", "Provider and client blocks, work order number, date, schedule or status, task rows, estimated total, instructions, and signature lines."],
+        ["Limits", "This is a practical job form, not a compliance system. Confirm safety requirements, approval rules, and local regulations before starting work."],
+      ],
+      related: ["estimate-generator", "invoice-generator", "timesheet-generator"],
+    },
+    {
+      slug: "free-inventory-sheet-generator",
+      title: "Free Inventory Sheet Generator",
+      headline: "Free inventory sheet generator",
+      description: "Create a printable inventory count sheet PDF for stock checks, craft fairs, market tables, storage bins, classrooms, and small retail shelves.",
+      lead: "Make a printable inventory count sheet for small stock checks, before-and-after event counts, shelf reviews, storage bins, or classroom supplies.",
+      tool: "inventory-sheet",
+      intent: "inventory count sheet PDF, stock count template, no signup",
+      sections: [
+        ["Repeat-use pain", "Inventory counts happen again and again for sellers, classrooms, events, and storage areas. A printable sheet can earn repeat visits if it is faster than opening a spreadsheet."],
+        ["What it includes", "Title, location, count date, SKU, item name, expected quantity, counted quantity, notes, and restock reminders."],
+        ["Best fit", "Use it for craft fairs, market tables, small retail shelves, supply closets, event materials, or simple stock checks before reordering."],
+      ],
+      related: ["barcode-labels", "price-tag", "packing-slip"],
+    },
   ];
 
   const landingPagesBySlug = Object.fromEntries(landingPages.map((page) => [page.slug, page]));
@@ -1293,6 +1431,21 @@
       need: "Print price tags, coupons, or a local flyer",
       tool: "price-tag",
       why: "Start with price tags for selling tables, then use flyer or coupon tools for promotion.",
+    },
+    {
+      need: "Pack and ship a small customer order",
+      tool: "packing-slip",
+      why: "Best for marketplace sellers and small shops that need a printable order insert.",
+    },
+    {
+      need: "Create a service or repair job form",
+      tool: "work-order",
+      why: "Best for contractors, maintenance visits, field service, cleaning jobs, and repair tasks.",
+    },
+    {
+      need: "Count stock, bins, or market-table inventory",
+      tool: "inventory-sheet",
+      why: "Best for small stock counts before or after a sale, event, shelf check, or storage review.",
     },
     {
       need: "Make a job application PDF",
@@ -1880,6 +2033,84 @@
       ],
     },
     {
+      slug: "free-packing-slip-generator-printable",
+      title: "Free printable packing slip generator",
+      description: "Create a packing slip PDF for small orders, handmade products, marketplace shipments, and local delivery.",
+      tool: "packing-slip",
+      content: [
+        ["h2", "Packing slips are commercial paperwork"],
+        ["p", "Packing slip pages have commercial intent because the user is often preparing a real customer order. A useful slip helps the seller confirm what goes into the package before sealing it."],
+        ["h2", "What to include"],
+        ["ul", ["Business or sender details.", "Ship-to recipient details.", "Order number and ship date.", "Item names, quantities, and status.", "A short packing note or return reminder."]],
+        ["h2", "Keep payment details separate"],
+        ["p", "A packing slip should help with fulfillment. Keep payment details off the slip unless the package workflow truly needs them."],
+      ],
+    },
+    {
+      slug: "order-packing-slip-pdf-template",
+      title: "Order packing slip PDF template",
+      description: "Use a simple packing slip PDF as a package insert for small shops, pop-up pickups, and marketplace sales.",
+      tool: "packing-slip",
+      content: [
+        ["h2", "Check the package before sealing"],
+        ["p", "A packing slip should make it easy to confirm items, quantities, status, order number, and recipient before sealing the package."],
+        ["h2", "Best small-seller uses"],
+        ["ul", ["Handmade goods.", "Marketplace orders.", "Local delivery.", "Pop-up pickup bags.", "Small warehouse order checks."]],
+      ],
+    },
+    {
+      slug: "free-work-order-generator-pdf",
+      title: "Free work order generator PDF",
+      description: "Create a work order PDF for repairs, maintenance visits, cleaning jobs, field service, and contractor tasks.",
+      tool: "work-order",
+      content: [
+        ["h2", "Work orders support urgent service tasks"],
+        ["p", "Work order searches often happen right before a service visit. A useful form records scope, schedule, tasks, instructions, approval notes, and signatures."],
+        ["h2", "What to check"],
+        ["ul", ["Provider details.", "Client or site details.", "Work order number and date.", "Task rows and estimated total.", "Instructions, notes, and approval lines."]],
+        ["h2", "Use it as a practical record"],
+        ["p", "This generator creates a printable job form, not a compliance system. Confirm safety, licensing, and approval requirements for the work being performed."],
+      ],
+    },
+    {
+      slug: "service-work-order-pdf-template",
+      title: "Service work order PDF template",
+      description: "Make a printable work order for contractors, local services, maintenance teams, and repair visits.",
+      tool: "work-order",
+      content: [
+        ["h2", "Separate approved work from extra work"],
+        ["p", "A work order is strongest when it separates approved work from extra work that needs client approval."],
+        ["h2", "Good fit"],
+        ["p", "Use it for cleaning jobs, repair visits, maintenance tasks, contractor walkthroughs, and field service records where a simple printed page is enough."],
+      ],
+    },
+    {
+      slug: "free-inventory-sheet-generator",
+      title: "Free inventory sheet generator",
+      description: "Create a printable inventory count sheet for stock checks, market tables, storage bins, and classroom supplies.",
+      tool: "inventory-sheet",
+      content: [
+        ["h2", "Inventory counts repeat"],
+        ["p", "Inventory counts repeat often, so a fast printable sheet can earn return visits when it is easier than opening a spreadsheet."],
+        ["h2", "Useful columns"],
+        ["ul", ["SKU or item code.", "Item name.", "Expected quantity.", "Counted quantity.", "Restock note or item condition."]],
+        ["h2", "When a printable sheet is enough"],
+        ["p", "Use a printable sheet for small stock checks, market table setup, supply closets, classrooms, and before-and-after event counts."],
+      ],
+    },
+    {
+      slug: "stock-count-sheet-pdf-template",
+      title: "Stock count sheet PDF template",
+      description: "Use a printable stock count sheet for SKU checks, shelf reviews, craft fairs, event supplies, and restock notes.",
+      tool: "inventory-sheet",
+      content: [
+        ["h2", "Leave room to write"],
+        ["p", "A stock count sheet should include enough columns to compare expected and counted quantities without making the rows hard to write on."],
+        ["h2", "Best uses"],
+        ["ul", ["Craft fair inventory.", "Small retail shelves.", "Classroom supplies.", "Storage bins.", "Event materials and restock lists."]],
+      ],
+    },
+    {
       slug: "free-resume-builder-pdf",
       title: "Free resume builder PDF",
       description: "Build a clean resume PDF without an account, paywall, or complicated design tool.",
@@ -2280,6 +2511,9 @@
     "flyer-maker",
     "barcode-labels",
     "coupon-maker",
+    "packing-slip",
+    "work-order",
+    "inventory-sheet",
     "resume-builder",
     "cover-letter",
     "resignation-letter",
@@ -2365,20 +2599,20 @@
   }
 
   function renderHome() {
-    setMeta("Free Printable PDF Generators", "Create image-to-PDF conversions, invoices, receipts, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free printable PDF files.");
+    setMeta("Free Printable PDF Generators", "Create image-to-PDF conversions, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free printable PDF files.");
     app.innerHTML = `
       <section class="shell hero">
         <div>
           <h1>Make useful printable PDFs in under a minute.</h1>
-          <p>Free browser-based generators for image conversion, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
+          <p>Free browser-based generators for image conversion, text-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free PDF tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>32</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>35</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
-            <div class="proof-tile"><strong>64</strong><span>SEO-ready guides</span></div>
+            <div class="proof-tile"><strong>70</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
         <div class="hero-preview" aria-hidden="true">
@@ -2447,11 +2681,11 @@
   }
 
   function renderToolsIndex() {
-    setMeta("Free PDF Tools", "Browse free printable PDF tools for image conversion, text conversion, business paperwork, local promotion printables, labels, career documents, calendars, meal planning, certificates, checklists, worksheets, and classroom routines.");
+    setMeta("Free PDF Tools", "Browse free printable PDF tools for image conversion, text conversion, business paperwork, work orders, packing slips, inventory sheets, local promotion printables, labels, career documents, calendars, meal planning, certificates, checklists, worksheets, and classroom routines.");
     app.innerHTML = `
       <section class="shell page-title section">
         <h1>Free PDF tools</h1>
-        <p>Choose a browser-based generator for business paperwork, job applications, image conversion, text conversion, planning pages, classroom printables, event certificates, checklists, and family routines. Each tool creates a practical PDF without requiring an account.</p>
+        <p>Choose a browser-based generator for business paperwork, work orders, packing slips, inventory sheets, job applications, image conversion, text conversion, planning pages, classroom printables, event certificates, checklists, and family routines. Each tool creates a practical PDF without requiring an account.</p>
       </section>
       <section class="shell section">
         <div class="section-head">
@@ -2475,7 +2709,7 @@
   }
 
   function renderFreePdfTools() {
-    setMeta("Free PDF Tools Without Signup", "Start with free browser PDF tools for image conversion, text-to-PDF, invoices, receipts, timesheets, certificates, checklists, and printable pages.");
+    setMeta("Free PDF Tools Without Signup", "Start with free browser PDF tools for image conversion, text-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, timesheets, certificates, checklists, and printable pages.");
     setJsonLd({
       "@context": "https://schema.org",
       "@type": "CollectionPage",
@@ -2851,7 +3085,7 @@
 
   function getRelatedTools(currentId) {
     const groups = [
-      ["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt", "receipt-generator", "timesheet-generator", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"],
+      ["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt", "receipt-generator", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"],
       ["resume-builder", "cover-letter", "resignation-letter"],
       ["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"],
       ["name-tracing", "chore-chart", "reward-chart", "flashcards"],
@@ -4214,6 +4448,82 @@
     drawFooterNote(ctx, paper, "Printable coupons only. Use accurate offers and clear terms.");
   }
 
+  function drawPackingSlip(ctx, paper, values) {
+    const margin = 70;
+    const rows = parsePipeRows(values.items, ["Item", "Qty", "Status"]);
+    drawBusinessFrame(ctx, paper, "#176b87");
+    drawTextFit(ctx, "PACKING SLIP", margin, 108, 520, 56, { align: "left", weight: "900", color: "#17313b" });
+    ctx.font = "22px Arial";
+    ctx.fillStyle = "#5b6f78";
+    ctx.textAlign = "right";
+    ctx.fillText(sanitizePrintable(values.orderNo || "ORDER-1001"), paper.width - margin, 94);
+    ctx.fillText(`Ship date: ${sanitizePrintable(values.date || "")}`, paper.width - margin, 130);
+    drawBusinessBlock(ctx, "Sender", values.business, margin, 205, (paper.width - margin * 2 - 24) / 2);
+    drawBusinessBlock(ctx, "Ship to", values.recipient, paper.width / 2 + 12, 205, (paper.width - margin * 2 - 24) / 2);
+
+    const tableY = 430;
+    const tableW = paper.width - margin * 2;
+    const widths = [tableW * 0.58, tableW * 0.16, tableW * 0.26];
+    drawTableHeader(ctx, margin, tableY, tableW, ["Item", "Qty", "Status"], widths);
+    let y = tableY + 56;
+    rows.slice(0, 9).forEach((row) => {
+      drawSimpleTableRow(ctx, margin, y, widths, [row.values[0], row.values[1], row.values[2]]);
+      y += 58;
+    });
+    drawWrappedText(ctx, sanitizePrintable(values.notes || "Check package contents before shipping."), margin, paper.height - 210, paper.width - margin * 2, 28, "#5b6f78", "22px Arial", 4);
+    drawFooterNote(ctx, paper, "Packing slip only. Do not include private payment details unless needed.");
+  }
+
+  function drawWorkOrder(ctx, paper, values) {
+    drawBusinessDocument(ctx, paper, Object.assign({}, values, {
+      invoiceNo: values.orderNo,
+      notes: `${sanitizePrintable(values.instructions || "")}\n${sanitizePrintable(values.notes || "")}`.trim(),
+    }), {
+      title: "WORK ORDER",
+      accent: "#5a9367",
+      fromLabel: "Provider",
+      toLabel: "Client / site",
+      numberFallback: "WO-001",
+      metaLabel: "Created",
+      tableHeaders: ["Task", "Qty", "Rate", "Amount"],
+      totalLabel: "Estimated total",
+      footer: "Work order draft only. Confirm scope, approval, and safety requirements.",
+      defaultNote: "Client approval required before additional parts or labor.",
+      signatures: true,
+    });
+  }
+
+  function drawInventorySheet(ctx, paper, values) {
+    const margin = 64;
+    const rows = parsePipeRows(values.items, ["SKU", "Item", "Expected", "Counted", "Note"]);
+    drawBusinessFrame(ctx, paper, "#17313b");
+    drawTextFit(ctx, sanitizePrintable(values.title || "Inventory Count Sheet"), paper.width / 2, 88, paper.width - margin * 2, 44, { align: "center", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, `${sanitizePrintable(values.location || "Location")} · ${sanitizePrintable(values.date || "")}`, paper.width / 2, 134, paper.width - margin * 2, 23, { align: "center", weight: "700", color: "#5b6f78" });
+    const tableY = 198;
+    const tableW = paper.width - margin * 2;
+    const simple = values.columns === "simple";
+    const restock = values.columns === "restock";
+    const headers = simple ? ["Item", "Counted", "Note"] : restock ? ["SKU", "Item", "Counted", "Restock note"] : ["SKU", "Item", "Expected", "Counted", "Note"];
+    const widths = simple
+      ? [tableW * 0.5, tableW * 0.2, tableW * 0.3]
+      : restock
+        ? [tableW * 0.18, tableW * 0.38, tableW * 0.18, tableW * 0.26]
+        : [tableW * 0.16, tableW * 0.34, tableW * 0.16, tableW * 0.16, tableW * 0.18];
+    drawTableHeader(ctx, margin, tableY, tableW, headers, widths);
+    let y = tableY + 56;
+    rows.slice(0, 13).forEach((row) => {
+      const valuesForRow = simple
+        ? [row.values[1] || row.values[0], row.values[3] || "", row.values[4] || ""]
+        : restock
+          ? [row.values[0], row.values[1], row.values[3] || "", row.values[4] || ""]
+          : row.values.slice(0, 5);
+      drawSimpleTableRow(ctx, margin, y, widths, valuesForRow);
+      y += 56;
+    });
+    drawWrappedText(ctx, sanitizePrintable(values.notes || "Review low-stock items before reordering."), margin, paper.height - 105, paper.width - margin * 2, 24, "#5b6f78", "19px Arial", 2);
+    drawFooterNote(ctx, paper, "Printable inventory count sheet. Verify counts before ordering or reporting.");
+  }
+
   function parseChecklistSections(value) {
     const lines = splitList(value || "", "\n");
     const sections = lines.map((lineText) => {
@@ -4288,6 +4598,37 @@
       { title: "Documents", items: ["ID", "Tickets", "Reservation notes"] },
       { title: "Electronics", items: ["Phone charger", "Headphones"] },
     ];
+  }
+
+  function parsePipeRows(value, fallbackHeaders) {
+    const lines = splitList(value || "", "\n");
+    const rows = lines.map((lineText) => {
+      const values = lineText.split("|").map((part) => sanitizePrintable(part));
+      return { values };
+    });
+    if (rows.length) return rows;
+    return [
+      { values: (fallbackHeaders || ["Item", "Qty", "Note"]).map((header, index) => (index === 0 ? "Sample item" : index === 1 ? "1" : "")) },
+    ];
+  }
+
+  function drawSimpleTableRow(ctx, x, y, widths, values) {
+    const rowW = widths.reduce((sum, width) => sum + width, 0);
+    ctx.save();
+    ctx.strokeStyle = "rgba(23,49,59,0.2)";
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(x, y, rowW, 52);
+    let cursor = x;
+    widths.forEach((width, index) => {
+      if (index > 0) {
+        ctx.strokeStyle = "rgba(23,49,59,0.12)";
+        line(ctx, cursor, y, cursor, y + 52);
+      }
+      const value = values[index] || "";
+      drawTextFit(ctx, value || "-", cursor + 12, y + 28, width - 24, 18, { align: "left", weight: index === 0 ? "700" : "500", color: "#17313b" });
+      cursor += width;
+    });
+    ctx.restore();
   }
 
   function drawChecklistPanel(ctx, x, y, width, height, title, items) {
