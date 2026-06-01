@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-01T07:28:14.187Z",
+  "generatedAt": "2026-06-01T08:25:03.816Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
     "customDomainConfigured": false,
-    "toolCount": 50,
+    "toolCount": 53,
     "guideCount": 82,
-    "landingPageCount": 38,
-    "indexableRoutes": 180,
-    "sitemapLocCount": 180,
-    "generatedToolInventoryAt": "2026-06-01T07:17:18.030Z",
+    "landingPageCount": 41,
+    "indexableRoutes": 186,
+    "sitemapLocCount": 186,
+    "generatedToolInventoryAt": "2026-06-01T08:24:07.890Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -1942,11 +1942,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         }
       ]
@@ -2011,41 +2011,16 @@
   },
   "discovery": {
     "github": {
-      "available": true,
+      "available": false,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
-      "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Free no-signup browser PDF and image tools for compression, resizing, cropping, rotation, watermarking, PDF edits, paperwork, labels, resumes, and printables.",
-      "topics": [
-        "browser-tools",
-        "document-tools",
-        "free-tools",
-        "image-compression",
-        "image-converter",
-        "image-cropper",
-        "image-resizer",
-        "image-to-pdf",
-        "image-tools",
-        "invoice-generator",
-        "label-generator",
-        "no-signup",
-        "pdf-generator",
-        "pdf-tools",
-        "productivity-tools",
-        "small-business-tools",
-        "text-to-pdf",
-        "watermark",
-        "webp"
-      ],
-      "discoveryRelease": {
-        "tag": "free-pdf-tools",
-        "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
-        "name": "Free PDF and Image Tools Without Signup"
-      },
-      "error": ""
+      "homepage": "",
+      "description": "",
+      "topics": [],
+      "error": "GitHub API 403"
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
-      "pageOk": true,
+      "pageOk": false,
       "sitemapOk": true,
       "sitemapUrlCount": 39,
       "landingPagesLinked": 38,
@@ -2060,7 +2035,7 @@
       "singleUrlAccepted": false,
       "error": ""
     },
-    "externalDiscoveryReady": true
+    "externalDiscoveryReady": false
   },
   "gates": {
     "productReady": true,
@@ -2068,13 +2043,13 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": true,
+    "externalDiscoveryReady": false,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "50 tools, 82 guides, 38 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "53 tools, 82 guides, 41 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
@@ -2090,9 +2065,8 @@
         "2 inspected sample URL(s) are still unknown to Google."
       ],
       "externalDiscovery": [
-        "GitHub repo has 19 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
-        "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
-        "GitHub Pages discovery directory is live with 38 landing page link(s).",
+        "GitHub discovery metadata unavailable: GitHub API 403.",
+        "GitHub Pages discovery directory unavailable: page check failed.",
         "GitHub Pages discovery sitemap has 39 URL(s).",
         "IndexNow key file is reachable from the site root."
       ]
@@ -2100,6 +2074,7 @@
   },
   "nextActions": [
     "Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.",
+    "Create or refresh the GitHub discovery release with high-intent tool links.",
     "Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.",
     "When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.",
     "Keep the current free product live and track downloads/generations until the 30-day gate has enough signal."

@@ -1,26 +1,26 @@
 # Validation Gates
 
-Last generated: 2026-06-01T07:28:14.187Z
+Last generated: 2026-06-01T08:25:03.816Z
 
 ## Current Automated Status
 
 - Product ready: yes.
-- Tools live in inventory: 50.
+- Tools live in inventory: 53.
 - Guide pages live in inventory: 82.
-- High-intent landing pages: 38.
-- Indexable routes: 180.
+- High-intent landing pages: 41.
+- Indexable routes: 186.
 - Custom domain configured: no.
 - Live downloads: 1.
 - Live generations: 0.
 - Search impressions: 0.
 - Search clicks: 0.
-- External discovery ready: yes.
+- External discovery ready: no.
 - Ads enabled: no.
 - AdSense apply-ready: no.
 
 ## Product Gate
 
-- 50 tools, 82 guides, 38 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
+- 53 tools, 82 guides, 41 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
 
 ## Search Console Gate
 
@@ -37,9 +37,8 @@ Last generated: 2026-06-01T07:28:14.187Z
 
 ## External Discovery Gate
 
-- GitHub repo has 19 topic(s) and homepage https://printable-tools-lab.pages.dev/.
-- GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.
-- GitHub Pages discovery directory is live with 38 landing page link(s).
+- GitHub discovery metadata unavailable: GitHub API 403.
+- GitHub Pages discovery directory unavailable: page check failed.
 - GitHub Pages discovery sitemap has 39 URL(s).
 - IndexNow key file is reachable from the site root.
 
@@ -58,6 +57,7 @@ Last generated: 2026-06-01T07:28:14.187Z
 ## Next Actions
 
 - Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.
+- Create or refresh the GitHub discovery release with high-intent tool links.
 - Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.
 - When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.
 - Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.

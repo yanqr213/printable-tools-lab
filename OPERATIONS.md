@@ -1,22 +1,30 @@
 # PrintableTools Lab Operations
 
-This file keeps the project pointed at the current model: free ad-supported browser PDF and image tools first. Paid features are deferred until the free product has traffic and usage data.
+This file keeps the project pointed at the current model: free ad-supported browser PDF, image, and QR tools first. Paid features are deferred until the free product has traffic and usage data.
 
 ## Business Model
 
 ### Free acquisition layer
 
-- Fifty free browser PDF generators, no-upload PDF utilities, and local image utilities.
+- Fifty-three free browser PDF generators, no-upload PDF utilities, local image utilities, and static QR utilities.
 - Daily free limit stored locally.
 - Clean one-page PDF or image exports with no account wall and no ad-click requirement.
 - Original guide pages for search traffic and display-ad review.
-- High-intent landing pages for no-signup, no-upload PDF, and no-upload image searches.
+- High-intent landing pages for no-signup, no-upload PDF, no-upload image, and static QR searches.
 - Ads only after approval by a mainstream ad network, never blocking downloads or disguised as controls.
 - Move from `pages.dev` to a custom domain before serious ad review; keep `pages.dev` only as the free validation and fallback host.
 
 ### Deferred paid layer
 
 Do not add checkout yet. If free traffic proves demand later, use data to decide whether saved projects, batch generation, higher daily limits, richer templates, affiliate links, or another route is worth building.
+
+### Ad-network fallback policy
+
+- Primary: Google AdSense after custom domain, useful content, Search Console visibility, and clean placement review.
+- Backup: Microsoft pubCenter if AdSense stalls or rejects the site after a real domain and traffic exist. Treat availability as account/region-dependent and verify at the time of application.
+- Later-only options: Ezoic or Media.net after meaningful organic traffic, because they are less suitable for a zero-traffic validation site.
+- Avoid: pop-under, push notification, forced-view, download-gated, adult/gambling/crypto-heavy, or misleading ad networks. Do not risk the user's bank, Alipay, AdSense, or domain reputation for short-term revenue.
+- Never require visitors to watch, click, or interact with ads before using a tool or downloading a file.
 
 ## Account Setup Steps
 
@@ -36,8 +44,8 @@ Use a real domain before applying broadly to ad networks. The current `pages.dev
 
 1. Buy a short `.com` domain or another mainstream TLD.
 2. Add it to Cloudflare DNS.
-3. Attach it to the existing Cloudflare Pages project.
-4. Set `PUBLIC_SITE_URL` to the custom domain and rerun `npm.cmd run build:routes`.
+3. Attach it to the existing Cloudflare Pages project manually, or run `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` with `npm.cmd run configure:domain -- --domain your-domain.com` to request the Pages custom-domain binding automatically.
+4. Set `PUBLIC_SITE_URL` to the custom domain or run `npm.cmd run configure:domain -- --domain your-domain.com`, then rerun `npm.cmd run build:routes`.
 5. Verify the custom domain in Search Console and submit its sitemap.
 6. Keep redirects/canonicals consistent before applying for ads.
 
@@ -335,6 +343,9 @@ Create one image or short post per item. Show the printable use case and never p
 73. Yard sale flyer with clear time and location.
 74. Printable coupon maker for local offers.
 75. Discount coupon PDF with code and expiration note.
+76. Free QR code generator without signup.
+77. WiFi QR code sign for guest networks.
+78. Contact QR code generator for vCard details.
 
 ## Weekly Operating Loop
 
@@ -370,6 +381,7 @@ Current Search Console checkpoint:
 - `2026-06-01`: added 6 image-specific long-tail landing pages for compress JPG, compress PNG, resize to 1080x1080, resize to 512x512, PNG-to-JPG, and WebP-to-JPG. These use existing tools but target more explicit upload-failure and format-mismatch searches.
 - `2026-06-01`: expanded to 50 tools and 38 high-intent landing pages by adding local Crop Image, Rotate Image, and Watermark Image workflows. This keeps the product in the broad file-utility lane while targeting profile-photo, marketplace-photo, scan-orientation, and sample/proof-image intent.
 - `2026-06-01`: advertising strategy updated: keep AdSense as the first mainstream network, add Microsoft pubCenter as a fallback after a custom domain, and avoid high-risk forced-view or download-gated ad networks. A custom domain is now treated as an ad-review prerequisite.
+- `2026-06-01`: expanded to 53 tools and 41 high-intent landing pages by adding local static QR Code, WiFi QR Code, and Contact/vCard QR Code generators. This broadens the same free utility site into urgent QR searches where many competitors push account walls, dynamic-code upsells, or paid exports.
 - `2026-06-01`: AdSense Management API was enabled on the Google Cloud project through Service Usage API. A service-account probe to `adsense.googleapis.com/v2/accounts` returned no AdSense accounts, so the service account is not currently an AdSense account user. The official AdSense ad-unit creation API is also a restricted method, so publisher/ad-slot creation cannot be completed silently from the current service-account credentials.
 - `2026-06-01`: GitHub Pages discovery directory was verified as its own Search Console URL-prefix property and its sitemap was submitted through the Search Console API. This creates a second crawlable discovery surface that still points back to the same main site.
 - Action: keep site stable, improve useful content/navigation, thicken tool pages, and avoid repeated low-value resubmission loops.

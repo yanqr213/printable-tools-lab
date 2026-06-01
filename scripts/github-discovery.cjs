@@ -23,6 +23,9 @@ const topics = [
   "image-resizer",
   "image-converter",
   "image-cropper",
+  "qr-code",
+  "wifi-qr-code",
+  "vcard",
   "watermark",
   "webp",
   "document-tools",
@@ -47,7 +50,7 @@ async function main() {
     method: "PATCH",
     body: {
       homepage: siteUrl(""),
-      description: "Free no-signup browser PDF and image tools for compression, resizing, cropping, rotation, watermarking, PDF edits, paperwork, labels, resumes, and printables.",
+      description: "Free no-signup browser PDF, image, and QR tools for compression, resizing, cropping, rotation, watermarking, QR codes, WiFi QR signs, contact QR codes, PDF edits, paperwork, labels, resumes, and printables.",
     },
   });
   await github(`/repos/${repo}/topics`, {
@@ -62,7 +65,7 @@ async function main() {
     await github(`/repos/${repo}/releases/${release.id}`, {
       method: "PATCH",
       body: {
-        name: "Free PDF and Image Tools Without Signup",
+        name: "Free PDF, Image, and QR Tools Without Signup",
         body,
         prerelease: false,
         draft: false,
@@ -77,7 +80,7 @@ async function main() {
     body: {
       tag_name: releaseTag,
       target_commitish: "main",
-      name: "Free PDF and Image Tools Without Signup",
+      name: "Free PDF, Image, and QR Tools Without Signup",
       body,
       prerelease: false,
       draft: false,
@@ -127,8 +130,8 @@ function releaseBody() {
     "",
     "Start here:",
     "",
-    `- [Free PDF and image tools without signup](${siteUrl("free-pdf-tools")})`,
-    `- [PDF and image tool finder](${siteUrl("pdf-tool-finder")})`,
+    `- [Free PDF, image, and QR tools without signup](${siteUrl("free-pdf-tools")})`,
+    `- [PDF, image, and QR tool finder](${siteUrl("pdf-tool-finder")})`,
     "- [GitHub Pages discovery directory](https://yanqr213.github.io/printable-tools-lab/)",
     `- [Directory submission pack](${siteUrl("submit-directory")})`,
     `- [RSS feed](${siteUrl("feed.xml").replace(/\/$/, "")})`,
@@ -141,6 +144,7 @@ function releaseBody() {
     "- No account required.",
     "- No surprise download fee.",
     "- Image compression, resizing, cropping, rotation, watermarking, and JPG/PNG/WebP conversion run locally in the browser without uploading files.",
+    "- Static QR, WiFi QR, and contact QR generation runs in the browser without a signup wall.",
     "- Small business tools cover invoices, receipts, timesheets, business cards, labels, barcode labels, price tags, flyers, and coupons.",
     "- PDF tools cover merge, split, rotate, remove pages, reorder pages, watermarks, stamps, signatures, page numbers, image-to-PDF, and text-to-PDF workflows.",
     "- Ads are disabled until policy review and real search visibility are ready.",

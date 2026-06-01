@@ -4,7 +4,7 @@
   "directory": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
-  "generatedAt": "2026-06-01T07:17:18.108Z",
+  "generatedAt": "2026-06-01T08:24:07.975Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -50,6 +50,21 @@
       "title": "Watermark Image Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/watermark-image-no-upload/",
       "intent": "watermark image online, add text watermark, no upload"
+    },
+    {
+      "title": "Free QR Code Generator Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/",
+      "intent": "QR code generator, no signup, printable static QR"
+    },
+    {
+      "title": "WiFi QR Code Generator",
+      "url": "https://printable-tools-lab.pages.dev/wifi-qr-code-generator/",
+      "intent": "WiFi QR code generator, guest WiFi sign, printable QR"
+    },
+    {
+      "title": "Contact QR Code Generator",
+      "url": "https://printable-tools-lab.pages.dev/contact-qr-code-generator/",
+      "intent": "contact QR code, vCard QR generator, printable business contact"
     },
     {
       "title": "Compress JPG Without Uploading",
@@ -237,6 +252,21 @@
       "title": "Watermark Image Online",
       "description": "Add a text watermark to JPG, PNG, or WebP images locally for drafts, samples, marketplace photos, and social posts without uploading files.",
       "url": "https://printable-tools-lab.pages.dev/tools/watermark-image/"
+    },
+    {
+      "title": "Free QR Code Generator",
+      "description": "Create a static QR code PDF for a link, menu, event page, sign, flyer, or short text without signup.",
+      "url": "https://printable-tools-lab.pages.dev/tools/qr-code/"
+    },
+    {
+      "title": "WiFi QR Code Generator",
+      "description": "Create a printable WiFi QR code for guests, offices, rentals, classrooms, cafes, events, and waiting rooms.",
+      "url": "https://printable-tools-lab.pages.dev/tools/wifi-qr-code/"
+    },
+    {
+      "title": "Contact QR Code Generator",
+      "description": "Create a printable contact QR code with vCard details for a business card, booth sign, event badge, or service flyer.",
+      "url": "https://printable-tools-lab.pages.dev/tools/vcard-qr-code/"
     },
     {
       "title": "Merge PDF Tool",

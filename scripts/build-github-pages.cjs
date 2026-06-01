@@ -15,7 +15,7 @@ const highIntentTools = HIGH_INTENT_TOOL_PATHS
   .map((toolPath) => tools.find((tool) => tool.path === toolPath))
   .filter(Boolean);
 const discoveryRoutes = [
-  { path: "", title: "Free PDF and Image Tools Directory", description: "A compact external discovery directory for PrintableTools Lab free no-signup PDF and image tools for small business, local promotion, image conversion, career documents, and everyday printables.", url: pagesBase },
+  { path: "", title: "Free PDF, Image, and QR Tools Directory", description: "A compact external discovery directory for PrintableTools Lab free no-signup PDF, image, and QR tools for small business, local promotion, image conversion, static QR codes, career documents, and everyday printables.", url: pagesBase },
   ...landingPages.map((page) => ({
     path: page.path,
     title: page.title,
@@ -30,8 +30,8 @@ const html = `<!doctype html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Free PDF and Image Tools Directory - PrintableTools Lab</title>
-    <meta name="description" content="A compact directory for PrintableTools Lab free no-signup PDF and image tools: image compression, image resizing, format conversion, invoices, receipts, timesheets, business cards, labels, barcodes, flyers, coupons, image to PDF, resumes, certificates, checklists, and graph paper.">
+    <title>Free PDF, Image, and QR Tools Directory - PrintableTools Lab</title>
+    <meta name="description" content="A compact directory for PrintableTools Lab free no-signup PDF, image, and QR tools: image compression, image resizing, format conversion, QR codes, WiFi QR signs, contact QR codes, invoices, receipts, timesheets, business cards, labels, barcodes, flyers, coupons, image to PDF, resumes, certificates, checklists, and graph paper.">
     <meta name="robots" content="index,follow">
     <link rel="canonical" href="${pagesBase}">
     <style>
@@ -54,8 +54,8 @@ const html = `<!doctype html>
   </head>
   <body>
     <main>
-      <h1>Free PDF and image tools without signup</h1>
-      <p>This GitHub Pages directory points to the live PrintableTools Lab app, a free browser-based PDF and image tool site for small business paperwork, local promotion, image conversion, career documents, and everyday printables. Use it when you need a quick file and do not want an account or a surprise download fee.</p>
+      <h1>Free PDF, image, and QR tools without signup</h1>
+      <p>This GitHub Pages directory points to the live PrintableTools Lab app, a free browser-based PDF, image, and QR tool site for small business paperwork, local promotion, image conversion, static QR codes, career documents, and everyday printables. Use it when you need a quick file and do not want an account, forced ad view, or surprise download fee.</p>
       <p><a class="button" href="${siteUrl("free-pdf-tools")}">Open the full free tool directory</a></p>
 
       <h2>Start with a common file job</h2>
@@ -64,7 +64,7 @@ const html = `<!doctype html>
         <article class="card">
           <h3>${escapeHtml(tool.title)}</h3>
           <p>${escapeHtml(tool.description)}</p>
-          <a href="${siteUrl(tool.path)}">Open this free PDF tool</a>
+          <a href="${siteUrl(tool.path)}">Open this free file tool</a>
         </article>`).join("\n")}
       </div>
 
@@ -72,7 +72,7 @@ const html = `<!doctype html>
       <ul>
         <li><a href="${siteUrl("pdf-tool-finder")}">File tool finder</a> for choosing between tools such as compress vs resize, invoice vs receipt, or one image vs multi-image PDF.</li>
         <li><a href="${siteUrl("tools")}">All free generators</a> for browsing every tool.</li>
-        <li><a href="${siteUrl("guides")}">Printable guides</a> for original help pages around PDF, image, and printable workflows.</li>
+        <li><a href="${siteUrl("guides")}">Printable guides</a> for original help pages around PDF, image, QR, and printable workflows.</li>
         ${landingPages.map((page) => `<li><a href="${siteUrl(page.path)}">${escapeHtml(page.title)}</a> for ${escapeHtml(page.intent)}.</li>`).join("\n")}
         <li><a href="${siteUrl("feed.xml").replace(/\/$/, "")}">RSS feed</a> for monitoring newly published discovery pages and high-intent tools.</li>
         <li><a href="${siteUrl("tools.json").replace(/\/$/, "")}">Machine-readable tools.json</a> for tool directories and crawlers.</li>

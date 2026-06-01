@@ -22,6 +22,7 @@
     "smoke": "node scripts/smoke.cjs"
   },
   "dependencies": {
-    "pdf-lib": "1.17.1"
+    "pdf-lib": "1.17.1",
+    "qrcode-generator": "^2.0.4"
   }
 }

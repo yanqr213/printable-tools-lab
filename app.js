@@ -737,6 +737,88 @@
       draw: drawImageWatermarker,
       exportFile: exportWatermarkedImage,
     },
+    "qr-code": {
+      id: "qr-code",
+      icon: "QR",
+      title: "Free QR Code Generator",
+      shortTitle: "QR code",
+      description: "Create a static QR code PDF for a link, menu, event page, sign, flyer, or short text without signup.",
+      keywords: ["QR code", "static QR", "no signup", "printable"],
+      ai: false,
+      defaultValues: {
+        title: "Scan This QR Code",
+        content: "https://printable-tools-lab.pages.dev/",
+        caption: "Static QR code for a link or short text",
+        errorCorrection: "M",
+        paper: "letter",
+      },
+      fields: [
+        { id: "title", label: "Page title", type: "text", maxLength: 70 },
+        { id: "content", label: "Link or text", type: "textarea", maxLength: 700, help: "Use a full URL for best scanning results. Static QR codes cannot be edited after printing." },
+        { id: "caption", label: "Caption", type: "text", maxLength: 90 },
+        { id: "errorCorrection", label: "Error correction", type: "select", options: [["M", "Balanced"], ["Q", "Stronger"], ["H", "Highest"], ["L", "Smallest code"]] },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawQrCode,
+    },
+    "wifi-qr-code": {
+      id: "wifi-qr-code",
+      icon: "WiFi",
+      title: "WiFi QR Code Generator",
+      shortTitle: "WiFi QR",
+      description: "Create a printable WiFi QR code for guests, offices, rentals, classrooms, cafes, events, and waiting rooms.",
+      keywords: ["WiFi QR code", "guest WiFi", "printable sign", "no signup"],
+      ai: false,
+      defaultValues: {
+        title: "Guest WiFi",
+        networkName: "Guest Network",
+        password: "guest-password",
+        encryption: "WPA",
+        hidden: "false",
+        caption: "Scan to join the WiFi network",
+        paper: "letter",
+      },
+      fields: [
+        { id: "title", label: "Sign title", type: "text", maxLength: 70 },
+        { id: "networkName", label: "Network name", type: "text", maxLength: 80 },
+        { id: "password", label: "Password", type: "text", maxLength: 120, help: "Leave empty only if the network has no password." },
+        { id: "encryption", label: "Security", type: "select", options: [["WPA", "WPA/WPA2"], ["WEP", "WEP"], ["nopass", "No password"]] },
+        { id: "hidden", label: "Hidden network", type: "select", options: [["false", "No"], ["true", "Yes"]] },
+        { id: "caption", label: "Caption", type: "text", maxLength: 90 },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawWifiQrCode,
+    },
+    "vcard-qr-code": {
+      id: "vcard-qr-code",
+      icon: "VCF",
+      title: "Contact QR Code Generator",
+      shortTitle: "Contact QR",
+      description: "Create a printable contact QR code with vCard details for a business card, booth sign, event badge, or service flyer.",
+      keywords: ["vCard QR", "contact QR", "business card", "printable"],
+      ai: false,
+      defaultValues: {
+        title: "Save My Contact",
+        fullName: "Alex Morgan",
+        company: "Local Studio",
+        phone: "+1 555 0100",
+        email: "hello@example.com",
+        website: "https://example.com",
+        note: "Scan to save this contact.",
+        paper: "letter",
+      },
+      fields: [
+        { id: "title", label: "Page title", type: "text", maxLength: 70 },
+        { id: "fullName", label: "Full name", type: "text", maxLength: 80 },
+        { id: "company", label: "Company or role", type: "text", maxLength: 80 },
+        { id: "phone", label: "Phone", type: "text", maxLength: 40 },
+        { id: "email", label: "Email", type: "text", maxLength: 90 },
+        { id: "website", label: "Website", type: "text", maxLength: 120 },
+        { id: "note", label: "Caption", type: "text", maxLength: 90 },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawVcardQrCode,
+    },
     "merge-pdf": {
       id: "merge-pdf",
       icon: "MRG",
@@ -1415,7 +1497,7 @@
     },
     {
       title: "Everyday file utilities",
-      description: "High-intent image and PDF tools for compression, resizing, format conversion, existing PDF editing, text conversion, checklists, sign-in sheets, graph paper, and travel paperwork.",
+      description: "High-intent image, QR, and PDF tools for compression, resizing, format conversion, static QR codes, existing PDF editing, text conversion, checklists, sign-in sheets, graph paper, and travel paperwork.",
       links: [
         ["Image to PDF converter", "/tools/image-to-pdf/"],
         ["JPG to PDF without uploading", "/jpg-to-pdf-no-upload/"],
@@ -1433,6 +1515,12 @@
         ["Rotate image without uploading", "/rotate-image-no-upload/"],
         ["Watermark image", "/tools/watermark-image/"],
         ["Watermark image without uploading", "/watermark-image-no-upload/"],
+        ["Free QR code generator", "/tools/qr-code/"],
+        ["QR code generator without signup", "/free-qr-code-generator-no-signup/"],
+        ["WiFi QR code generator", "/tools/wifi-qr-code/"],
+        ["Printable WiFi QR code", "/wifi-qr-code-generator/"],
+        ["Contact QR code generator", "/tools/vcard-qr-code/"],
+        ["vCard contact QR code", "/contact-qr-code-generator/"],
         ["Compress JPG", "/compress-jpg-no-upload/"],
         ["Compress PNG", "/compress-png-no-upload/"],
         ["Resize image to 1080x1080", "/resize-image-1080x1080/"],
@@ -1512,8 +1600,8 @@
   const freePdfToolGroups = [
     {
       title: "No-upload conversion tools",
-      description: "Use these when a photo, scan, existing PDF, or plain text note needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
-      links: ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf"],
+      description: "Use these when a photo, scan, QR code, existing PDF, or plain text note needs to become the right file quickly. Files load in the browser instead of uploading to a converter server.",
+      links: ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf"],
     },
     {
       title: "Free business PDF tools",
@@ -1667,6 +1755,51 @@
         ["Practical limits", "A text watermark is a visual deterrent, not copyright enforcement. Keep original files and use proper licensing or platform tools when the image is commercially important."],
       ],
       related: ["compress-image", "resize-image", "crop-image"],
+    },
+    {
+      slug: "free-qr-code-generator-no-signup",
+      title: "Free QR Code Generator Without Signup",
+      headline: "Free QR code generator without signup",
+      description: "Create a static QR code PDF for a URL, menu, sign, flyer, event page, or short text without creating an account.",
+      lead: "Make a printable static QR code in the browser and download a clean PDF without registering. This is useful for signs, menus, flyers, handouts, event pages, packaging notes, and quick links.",
+      tool: "qr-code",
+      intent: "QR code generator, no signup, printable static QR",
+      sections: [
+        ["Why this page exists", "Many QR sites advertise a free code and then push account creation, dynamic tracking, or paid downloads. This validation version keeps static QR creation free and simple."],
+        ["Static vs dynamic", "A static QR code stores the final link or text directly in the code. It is privacy-friendly and durable, but it cannot be edited after printing."],
+        ["Before printing", "Scan the generated code with at least one phone, confirm the destination, and keep enough white space around the code for reliable scanning."],
+      ],
+      related: ["wifi-qr-code", "vcard-qr-code", "flyer-maker"],
+    },
+    {
+      slug: "wifi-qr-code-generator",
+      title: "WiFi QR Code Generator",
+      headline: "WiFi QR code generator",
+      description: "Create a printable WiFi QR code sign for guest networks, rentals, offices, cafes, classrooms, waiting rooms, and events.",
+      lead: "Turn a network name and password into a scannable WiFi QR sign. The PDF is generated locally so you can print a simple guest access page without building a full design.",
+      tool: "wifi-qr-code",
+      intent: "WiFi QR code generator, guest WiFi sign, printable QR",
+      sections: [
+        ["Why users need it", "Guests often mistype WiFi passwords. A QR code reduces friction in cafes, rentals, small offices, events, classrooms, and waiting rooms."],
+        ["Security note", "Anyone who can scan the printed code can access the encoded network details. Use a guest network and avoid printing private admin credentials."],
+        ["Best fit", "Use it for guest WiFi signs, short-term rental welcome sheets, front desk signs, booth check-in areas, and classroom visitor instructions."],
+      ],
+      related: ["qr-code", "vcard-qr-code", "sign-in-sheet"],
+    },
+    {
+      slug: "contact-qr-code-generator",
+      title: "Contact QR Code Generator",
+      headline: "Contact QR code generator",
+      description: "Create a printable vCard contact QR code for business cards, event badges, service flyers, booth signs, and local promotions.",
+      lead: "Enter contact details and download a QR code PDF that phones can scan to save a contact. It is a lightweight alternative to paid digital card services when you only need a printable contact code.",
+      tool: "vcard-qr-code",
+      intent: "contact QR code, vCard QR generator, printable business contact",
+      sections: [
+        ["Why this can attract demand", "Small sellers, freelancers, creators, and event exhibitors often need a quick way for visitors to save contact details from a flyer or table sign."],
+        ["What the QR stores", "The code uses a vCard-style contact payload with name, company, phone, email, website, and a short note when provided."],
+        ["Before sharing", "Scan the code on both iOS and Android if possible, review the saved contact fields, and avoid including sensitive private details on public printouts."],
+      ],
+      related: ["business-card", "qr-code", "flyer-maker"],
     },
     {
       slug: "compress-jpg-no-upload",
@@ -3271,7 +3404,7 @@
       description: "How PrintableTools Lab handles generated content, design assets, and licensing.",
       body: [
         ["p", "PrintableTools Lab uses code-driven templates and may use AI assistance during product design, wording, and template ideation. The generated PDFs are assembled in the browser from user input and template rules."],
-        ["p", "Existing PDF merge, split, and page-number operations use the MIT-licensed pdf-lib JavaScript library in the browser."],
+        ["p", "Existing PDF merge, split, and page-number operations use the MIT-licensed pdf-lib JavaScript library in the browser. Static QR tools use the MIT-licensed qrcode-generator JavaScript library."],
         ["p", "The default templates avoid third-party characters, trademarked brands, and protected artwork. Users should not enter copyrighted or trademarked content they do not have permission to use."],
         ["p", "If external fonts, icon sets, or datasets are added later, their license notes should be listed here before public launch."],
       ],
@@ -3282,18 +3415,18 @@
       body: [
         ["p", "The current product focus is the free ad-supported printable tool site. Paid features are intentionally deferred until the free tools show search traffic, downloads, and repeated usage."],
         ["h2", "Signals to watch"],
-        ["ul", ["Search Console impressions for generator keywords.", "PDF and image downloads by tool.", "Daily limit hits.", "Requests for classroom or batch workflows."]],
+        ["ul", ["Search Console impressions for generator keywords.", "PDF, image, and QR downloads by tool.", "Daily limit hits.", "Requests for classroom or batch workflows."]],
         ["h2", "Possible later work"],
         ["p", "If the data proves demand, the next layer can include saved projects, batch generation, higher daily limits, team workflows, and richer template controls. No checkout should be enabled before those features can be delivered."],
       ],
     },
     "free-pdf-tools": {
       title: "Free PDF Tools Without Signup",
-      description: "Start with free browser PDF and image tools for compression, resizing, format conversion, image-to-PDF, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, certificates, checklists, and printable pages.",
+      description: "Start with free browser PDF, image, and QR tools for compression, resizing, format conversion, QR codes, image-to-PDF, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, certificates, checklists, and printable pages.",
       body: [
         ["p", "Use this directory when you need a PDF or image file now and do not want an account, hidden export fee, or ad-click requirement."],
         ["h2", "No-upload conversion tools"],
-        ["ul", ["Image compressor, image resizer, and image format converter: make smaller or correctly sized JPG, PNG, and WebP files locally.", "Image to PDF Converter: turn JPG, PNG, or WebP images into a one-page PDF.", "Multiple Images to PDF Converter: combine up to eight images into one multi-page PDF.", "Merge, split, rotate, remove, reorder, and number PDF pages locally in the browser.", "Text to PDF Converter: paste plain text and download a clean one-page document."]],
+        ["ul", ["Image compressor, image resizer, and image format converter: make smaller or correctly sized JPG, PNG, and WebP files locally.", "QR, WiFi QR, and contact QR tools: create printable static codes without a signup wall.", "Image to PDF Converter: turn JPG, PNG, or WebP images into a one-page PDF.", "Multiple Images to PDF Converter: combine up to eight images into one multi-page PDF.", "Merge, split, rotate, remove, reorder, and number PDF pages locally in the browser.", "Text to PDF Converter: paste plain text and download a clean one-page document."]],
         ["h2", "Business and work PDFs"],
         ["ul", ["Invoice, estimate, purchase order, receipt, timesheet, bill of sale, and rent receipt PDFs are built for quick records, not full accounting software.", "Business card, address label, barcode label, price tag, flyer, and coupon PDFs are built for local-business print needs without design-account friction.", "Resume, cover letter, and resignation letter tools export without a surprise download fee."]],
         ["h2", "Printable planning PDFs"],
@@ -3308,9 +3441,9 @@
       body: [
         ["p", "Use this page to coordinate the first distribution push. The goal is not to look busy; it is to create enough real traffic for Search Console, AdSense readiness, and download validation."],
         ["h2", "Primary links"],
-        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Tools index: https://printable-tools-lab.pages.dev/tools/", "Compress image: https://printable-tools-lab.pages.dev/tools/compress-image/", "Resize image: https://printable-tools-lab.pages.dev/tools/resize-image/", "Convert image: https://printable-tools-lab.pages.dev/tools/convert-image/", "Crop image: https://printable-tools-lab.pages.dev/tools/crop-image/", "Rotate image: https://printable-tools-lab.pages.dev/tools/rotate-image/", "Watermark image: https://printable-tools-lab.pages.dev/tools/watermark-image/", "Image to PDF: https://printable-tools-lab.pages.dev/tools/image-to-pdf/", "Multiple images to PDF: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/", "Merge PDF: https://printable-tools-lab.pages.dev/tools/merge-pdf/", "Split PDF: https://printable-tools-lab.pages.dev/tools/split-pdf/", "PDF page numbers: https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/", "Rotate PDF: https://printable-tools-lab.pages.dev/tools/rotate-pdf/", "Remove PDF pages: https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/", "Reorder PDF pages: https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/", "Watermark PDF: https://printable-tools-lab.pages.dev/tools/watermark-pdf/", "Stamp PDF: https://printable-tools-lab.pages.dev/tools/stamp-pdf/", "Sign PDF: https://printable-tools-lab.pages.dev/tools/sign-pdf/", "Text to PDF: https://printable-tools-lab.pages.dev/tools/text-to-pdf/", "Invoice generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/", "Business card generator: https://printable-tools-lab.pages.dev/tools/business-card/", "Barcode label generator: https://printable-tools-lab.pages.dev/tools/barcode-labels/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
+        ["ul", ["Homepage: https://printable-tools-lab.pages.dev/", "Tools index: https://printable-tools-lab.pages.dev/tools/", "Compress image: https://printable-tools-lab.pages.dev/tools/compress-image/", "Resize image: https://printable-tools-lab.pages.dev/tools/resize-image/", "Convert image: https://printable-tools-lab.pages.dev/tools/convert-image/", "Crop image: https://printable-tools-lab.pages.dev/tools/crop-image/", "Rotate image: https://printable-tools-lab.pages.dev/tools/rotate-image/", "Watermark image: https://printable-tools-lab.pages.dev/tools/watermark-image/", "QR code generator: https://printable-tools-lab.pages.dev/tools/qr-code/", "WiFi QR code generator: https://printable-tools-lab.pages.dev/tools/wifi-qr-code/", "Contact QR code generator: https://printable-tools-lab.pages.dev/tools/vcard-qr-code/", "Image to PDF: https://printable-tools-lab.pages.dev/tools/image-to-pdf/", "Multiple images to PDF: https://printable-tools-lab.pages.dev/tools/multi-image-pdf/", "Merge PDF: https://printable-tools-lab.pages.dev/tools/merge-pdf/", "Split PDF: https://printable-tools-lab.pages.dev/tools/split-pdf/", "PDF page numbers: https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/", "Rotate PDF: https://printable-tools-lab.pages.dev/tools/rotate-pdf/", "Remove PDF pages: https://printable-tools-lab.pages.dev/tools/remove-pdf-pages/", "Reorder PDF pages: https://printable-tools-lab.pages.dev/tools/reorder-pdf-pages/", "Watermark PDF: https://printable-tools-lab.pages.dev/tools/watermark-pdf/", "Stamp PDF: https://printable-tools-lab.pages.dev/tools/stamp-pdf/", "Sign PDF: https://printable-tools-lab.pages.dev/tools/sign-pdf/", "Text to PDF: https://printable-tools-lab.pages.dev/tools/text-to-pdf/", "Invoice generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/", "Business card generator: https://printable-tools-lab.pages.dev/tools/business-card/", "Barcode label generator: https://printable-tools-lab.pages.dev/tools/barcode-labels/", "Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml"]],
         ["h2", "First distribution copy"],
-        ["p", "Free browser PDF and image tools: compress images, resize images, convert image formats, merge PDFs, split PDFs, rotate pages, remove pages, reorder pages, watermark PDFs, stamp PDFs, add typed signature blocks, add PDF page numbers, convert images to PDF, combine multiple images, turn text into PDF, create invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, sign-in sheets, graph paper, calendars, worksheets, and checklists. No account required."],
+        ["p", "Free browser PDF, image, and QR tools: compress images, resize images, convert image formats, create QR codes, WiFi QR signs, contact QR codes, merge PDFs, split PDFs, rotate pages, remove pages, reorder pages, watermark PDFs, stamp PDFs, add typed signature blocks, add PDF page numbers, convert images to PDF, combine multiple images, turn text into PDF, create invoices, receipts, labels, business cards, flyers, coupons, timesheets, resumes, certificates, sign-in sheets, graph paper, calendars, worksheets, and checklists. No account required."],
         ["p", "Try the free image to PDF converter: select a JPG, PNG, or WebP file and generate a one-page PDF locally without uploading the image."],
         ["p", "Need a quick invoice, receipt, timesheet, sign-in sheet, or packing checklist? PrintableTools Lab creates practical PDFs in the browser."],
         ["h2", "Do not do this"],
@@ -3353,6 +3486,9 @@
     "crop-image",
     "rotate-image",
     "watermark-image",
+    "qr-code",
+    "wifi-qr-code",
+    "vcard-qr-code",
     "merge-pdf",
     "split-pdf",
     "pdf-page-numbers",
@@ -3442,18 +3578,18 @@
   }
 
   function renderHome() {
-    setMeta("Free Printable PDF Generators", "Create image-to-PDF conversions, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free printable PDF files.");
+    setMeta("Free Printable PDF, Image, and QR Tools", "Create image-to-PDF conversions, static QR codes, WiFi QR signs, contact QR codes, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, resumes, worksheets, charts, and planners as free browser files.");
     app.innerHTML = `
       <section class="shell hero">
         <div>
-          <h1>Make useful printable PDFs in under a minute.</h1>
-            <p>Free browser-based generators for image compression, image resizing, image format conversion, PDF edits, text-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
+          <h1>Make useful PDF, image, and QR files in under a minute.</h1>
+            <p>Free browser-based generators for image compression, image resizing, image format conversion, QR codes, WiFi QR signs, contact QR codes, PDF edits, text-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, timesheets, resumes, certificates, worksheets, sign-in sheets, graph paper, checklists, and planners. No account, no surprise download fee.</p>
           <div class="hero-actions">
-            <a class="button" href="/free-pdf-tools/">Browse free PDF tools</a>
-            <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
+            <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
+            <a class="button secondary" href="/tools/qr-code/">Create a QR code</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
-            <div class="proof-tile"><strong>50</strong><span>high-frequency tools</span></div>
+            <div class="proof-tile"><strong>53</strong><span>high-frequency tools</span></div>
             <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
             <div class="proof-tile"><strong>82</strong><span>SEO-ready guides</span></div>
           </div>
@@ -3478,8 +3614,8 @@
       <section class="shell section">
         <div class="section-head">
           <div>
-            <h2>Free printable tools</h2>
-            <p>Each tool creates a one-page PDF in your browser. The free version now prioritizes clean exports, no account wall, and no ad-click requirement so visitors have a real reason to return.</p>
+            <h2>Free file and printable tools</h2>
+            <p>Each tool creates a useful PDF, image, or QR file in your browser. The free version prioritizes clean exports, no account wall, and no ad-click requirement so visitors have a real reason to return.</p>
           </div>
           <a class="button ghost" href="/dashboard/">View local data</a>
         </div>
@@ -3524,11 +3660,11 @@
   }
 
   function renderToolsIndex() {
-    setMeta("Free PDF and Image Tools", "Browse free browser PDF and image tools for compression, resizing, format conversion, PDF edits, text conversion, business paperwork, work orders, packing slips, inventory sheets, local promotion printables, labels, career documents, calendars, meal planning, certificates, checklists, worksheets, and classroom routines.");
+    setMeta("Free PDF, Image, and QR Tools", "Browse free browser PDF, image, and QR tools for compression, resizing, format conversion, QR codes, PDF edits, text conversion, business paperwork, work orders, packing slips, inventory sheets, local promotion printables, labels, career documents, calendars, meal planning, certificates, checklists, worksheets, and classroom routines.");
     app.innerHTML = `
       <section class="shell page-title section">
-        <h1>Free PDF and image tools</h1>
-        <p>Choose a browser-based generator for business paperwork, work orders, packing slips, inventory sheets, job applications, image compression, resizing, format conversion, PDF editing, text conversion, planning pages, classroom printables, event certificates, checklists, and family routines. Each tool creates a practical PDF or image file without requiring an account.</p>
+        <h1>Free PDF, image, and QR tools</h1>
+        <p>Choose a browser-based generator for business paperwork, work orders, packing slips, inventory sheets, job applications, image compression, resizing, format conversion, QR codes, PDF editing, text conversion, planning pages, classroom printables, event certificates, checklists, and family routines. Each tool creates a practical PDF, image, or QR file without requiring an account.</p>
       </section>
       <section class="shell section">
         <div class="section-head">
@@ -3543,7 +3679,7 @@
         <div class="section-head">
           <div>
             <h2>All generators</h2>
-            <p>All tools run in the browser and are designed for fast, practical exports. Image and PDF processing stays local where the tool says no upload.</p>
+            <p>All tools run in the browser and are designed for fast, practical exports. Image, PDF, and static QR processing stays local where the tool says no upload.</p>
           </div>
         </div>
         <div class="grid-3">${toolOrder.map((id) => toolCard(tools[id])).join("")}</div>
@@ -3552,13 +3688,13 @@
   }
 
   function renderFreePdfTools() {
-    setMeta("Free PDF and Image Tools Without Signup", "Start with free browser PDF and image tools for compression, resizing, format conversion, image-to-PDF, text-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, timesheets, certificates, checklists, and printable pages.");
+    setMeta("Free PDF, Image, and QR Tools Without Signup", "Start with free browser PDF, image, and QR tools for compression, resizing, format conversion, QR codes, image-to-PDF, text-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, timesheets, certificates, checklists, and printable pages.");
     setJsonLd({
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      name: "Free PDF and Image Tools Without Signup",
+      name: "Free PDF, Image, and QR Tools Without Signup",
       url: `${CONFIG.siteUrl.replace(/\/$/, "")}/free-pdf-tools/`,
-      description: "Free no-signup browser PDF and image tools for conversion, business paperwork, career documents, and printable planning pages.",
+      description: "Free no-signup browser PDF, image, and QR tools for conversion, business paperwork, career documents, and printable planning pages.",
       hasPart: toolOrder.map((id) => ({
         "@type": "SoftwareApplication",
         name: tools[id].title,
@@ -3570,8 +3706,8 @@
     });
     app.innerHTML = `
       <section class="shell page-title section">
-        <h1>Free PDF and image tools without signup</h1>
-        <p>Open a browser-based generator, edit the sample fields, and download a practical PDF or image file. No account, no surprise download fee, and no ad-click requirement.</p>
+        <h1>Free PDF, image, and QR tools without signup</h1>
+        <p>Open a browser-based generator, edit the sample fields, and download a practical PDF, image, or QR file. No account, no surprise download fee, and no ad-click requirement.</p>
       </section>
       <section class="shell section">
         <div class="section-head">
@@ -3622,23 +3758,23 @@
   }
 
   function renderPdfToolFinder() {
-    setMeta("Which Free PDF or Image Tool Should I Use?", "Find the right free PDF or image tool for compression, resizing, format conversion, images, text, invoices, receipts, timesheets, resumes, certificates, checklists, graph paper, and event sheets.");
+    setMeta("Which Free PDF, Image, or QR Tool Should I Use?", "Find the right free PDF, image, or QR tool for compression, resizing, format conversion, QR codes, images, text, invoices, receipts, timesheets, resumes, certificates, checklists, graph paper, and event sheets.");
     setJsonLd({
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      name: "Which Free PDF or Image Tool Should I Use?",
+      name: "Which Free PDF, Image, or QR Tool Should I Use?",
       url: `${CONFIG.siteUrl.replace(/\/$/, "")}/pdf-tool-finder/`,
-      description: "A practical finder for choosing the right free PDF or image generator by task.",
+      description: "A practical finder for choosing the right free PDF, image, or QR generator by task.",
     });
     app.innerHTML = `
       <section class="shell page-title section">
-        <h1>Which free PDF or image tool should I use?</h1>
-        <p>Start with the job, not the template name. This finder points you to the free browser PDF or image tool that best matches the file you need right now.</p>
+        <h1>Which free PDF, image, or QR tool should I use?</h1>
+        <p>Start with the job, not the template name. This finder points you to the free browser PDF, image, or QR tool that best matches the file you need right now.</p>
       </section>
       <section class="shell section">
         <div class="section-head">
           <div>
-            <h2>Quick file tool finder</h2>
+            <h2>Quick file and QR tool finder</h2>
             <p>Pick the row that sounds closest to your task.</p>
           </div>
         </div>
@@ -3695,6 +3831,9 @@
       "compress-image",
       "resize-image",
       "convert-image",
+      "qr-code",
+      "wifi-qr-code",
+      "vcard-qr-code",
       "text-to-pdf",
       "invoice-generator",
       "receipt-generator",
@@ -3707,16 +3846,16 @@
     const directoryFields = [
       ["Product name", "PrintableTools Lab"],
       ["URL", absoluteUrl("/")],
-      ["Category", "Files, Productivity, PDF Tools, Document Tools, Small Business Tools"],
+      ["Category", "Files, Productivity, PDF Tools, QR Tools, Document Tools, Small Business Tools"],
       ["Pricing", "Free"],
-      ["Tagline", "Free no-signup browser PDF and image tools"],
-      ["Short description", "Create practical PDFs and image files in the browser, including image compression, image resizing, image format conversion, image-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, resumes, certificates, and printable tools."],
+      ["Tagline", "Free no-signup browser PDF, image, and QR tools"],
+      ["Short description", "Create practical PDFs, image files, and static QR codes in the browser, including image compression, image resizing, image format conversion, QR codes, WiFi QR signs, contact QR codes, image-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, resumes, certificates, and printable tools."],
     ];
-    setMeta("PrintableTools Lab Directory Submission Pack", "Copy-ready directory submission details, screenshots, core links, and compliance notes for listing PrintableTools Lab as a free no-signup PDF and image tool site.");
+    setMeta("PrintableTools Lab Directory Submission Pack", "Copy-ready directory submission details, screenshots, core links, and compliance notes for listing PrintableTools Lab as a free no-signup PDF, image, and QR tool site.");
     setJsonLd({
       "@context": "https://schema.org",
       "@type": "ItemList",
-      name: "PrintableTools Lab representative free PDF tools",
+      name: "PrintableTools Lab representative free PDF, image, and QR tools",
       itemListElement: primaryToolIds.map((id, index) => ({
         "@type": "ListItem",
         position: index + 1,
@@ -3726,9 +3865,9 @@
     });
     app.innerHTML = `
       <section class="shell page-title section">
-        <a href="/free-pdf-tools/">Free PDF tools</a>
+        <a href="/free-pdf-tools/">Free file tools</a>
         <h1>PrintableTools Lab directory submission pack</h1>
-        <p>This page gives directory editors, community moderators, and launch-listing reviewers the exact facts needed to evaluate PrintableTools Lab as a free no-signup PDF and image tool collection.</p>
+        <p>This page gives directory editors, community moderators, and launch-listing reviewers the exact facts needed to evaluate PrintableTools Lab as a free no-signup PDF, image, and QR tool collection.</p>
       </section>
       <section class="shell section">
         <h2>Copy-ready listing details</h2>
@@ -3741,16 +3880,16 @@
       <section class="shell section">
         <h2>Review notes</h2>
         <div class="grid-3">
-          <article class="panel"><h3>No signup</h3><p>Core PDF generators open directly in the browser and do not require an account before export.</p></article>
-          <article class="panel"><h3>Free export</h3><p>The validation version keeps PDF and image downloads free and avoids surprise checkout screens.</p></article>
+          <article class="panel"><h3>No signup</h3><p>Core file tools open directly in the browser and do not require an account before export.</p></article>
+          <article class="panel"><h3>Free export</h3><p>The validation version keeps PDF, image, and QR downloads free and avoids surprise checkout screens.</p></article>
           <article class="panel"><h3>Ad-safe</h3><p>Ads are disabled during validation and downloads are not gated behind ad clicks or ad views.</p></article>
         </div>
       </section>
       <section class="shell section">
         <h2>Primary links for reviewers</h2>
         <div class="cluster-links">
-          <a href="/free-pdf-tools/">Free PDF tools directory</a>
-          <a href="/pdf-tool-finder/">PDF tool finder</a>
+          <a href="/free-pdf-tools/">Free file tools directory</a>
+          <a href="/pdf-tool-finder/">File tool finder</a>
           <a href="/tools/">All tools</a>
           <a href="/tools.json">Machine-readable tools.json</a>
           <a href="/feed.xml">RSS feed</a>
@@ -3768,7 +3907,7 @@
         <p>Use the icon and screenshot below for directory review. They are provided to make free-tool submissions easier to verify without inventing claims.</p>
         <div class="grid-2">
           <article class="panel"><h3>Icon</h3><p><a href="/assets/images/app-icon-512.png">512px PNG app icon</a></p></article>
-          <article class="panel"><h3>Screenshot</h3><p><a href="/assets/images/free-pdf-tools-screenshot.png">Free PDF tools page screenshot</a></p></article>
+          <article class="panel"><h3>Screenshot</h3><p><a href="/assets/images/free-pdf-tools-screenshot.png">Free file tools page screenshot</a></p></article>
         </div>
       </section>
     `;
@@ -3796,7 +3935,7 @@
     });
     app.innerHTML = `
       <section class="shell page-title section">
-        <a href="/free-pdf-tools/">Free PDF and image tools</a>
+        <a href="/free-pdf-tools/">Free file tools</a>
         <h1>${escapeHtml(page.headline)}</h1>
         <p>${escapeHtml(page.lead)}</p>
         <p><a class="button" href="/tools/${tool.id}/">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> <a class="button secondary" href="/pdf-tool-finder/">Compare tools</a></p>
@@ -4721,7 +4860,7 @@
       ["resume-builder", "cover-letter", "resignation-letter"],
       ["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"],
       ["name-tracing", "chore-chart", "reward-chart", "flashcards"],
-      ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
+      ["image-to-pdf", "multi-image-pdf", "compress-image", "resize-image", "convert-image", "crop-image", "rotate-image", "watermark-image", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "graph-paper", "todo-list", "packing-list", "sign-in-sheet"],
       ["certificate-generator", "sign-in-sheet", "todo-list", "flyer-maker", "coupon-maker"],
     ];
     const group = groups.find((items) => items.includes(currentId)) || toolOrder;
@@ -5688,6 +5827,210 @@
       drawTextFit(ctx, `Plus ${images.length - 4} more image${images.length - 4 === 1 ? "" : "s"} in the PDF export`, margin, paper.height - 104, paper.width - margin * 2, 21, { align: "left", weight: "700", color: "#176b87" });
     }
     drawFooterNote(ctx, paper, "Images converted locally with PrintableTools Lab. No image upload required.");
+  }
+
+  function drawQrCode(ctx, paper, values) {
+    const payload = qrTextPayload(values.content);
+    drawQrSheet(ctx, paper, {
+      title: values.title || "Scan This QR Code",
+      caption: values.caption || "Static QR code for a link or short text",
+      payload,
+      errorCorrection: values.errorCorrection || "M",
+      accent: "#176b87",
+      metaLines: [
+        "Static QR code",
+        payload.startsWith("http") ? displayUrl(payload) : "Short text QR payload",
+        "Test before printing",
+      ],
+      footer: "Static QR generated locally. The printed code cannot be edited later.",
+    });
+  }
+
+  function drawWifiQrCode(ctx, paper, values) {
+    const ssid = qrPlainText(values.networkName, 80) || "Guest Network";
+    const payload = wifiQrPayload(values);
+    drawQrSheet(ctx, paper, {
+      title: values.title || "Guest WiFi",
+      caption: values.caption || "Scan to join the WiFi network",
+      payload,
+      errorCorrection: "Q",
+      accent: "#5a9367",
+      metaLines: [
+        `Network: ${ssid}`,
+        values.encryption === "nopass" ? "No password network" : "Password encoded in QR",
+        values.hidden === "true" ? "Hidden network" : "Visible network",
+      ],
+      footer: "WiFi QR generated locally. Use a guest network for public signs.",
+    });
+  }
+
+  function drawVcardQrCode(ctx, paper, values) {
+    const payload = vcardQrPayload(values);
+    const name = qrPlainText(values.fullName, 80) || "Contact";
+    drawQrSheet(ctx, paper, {
+      title: values.title || "Save My Contact",
+      caption: values.note || "Scan to save this contact",
+      payload,
+      errorCorrection: "Q",
+      accent: "#b85c38",
+      metaLines: [
+        name,
+        qrPlainText(values.company, 80) || "Contact card",
+        [qrPlainText(values.email, 90), qrPlainText(values.phone, 40)].filter(Boolean).join(" | ") || "Review details before sharing",
+      ],
+      footer: "Contact QR generated locally. Scan and verify fields before printing.",
+    });
+  }
+
+  function drawQrSheet(ctx, paper, config) {
+    const margin = 76;
+    const title = sanitizePrintable(config.title || "QR Code");
+    const caption = sanitizePrintable(config.caption || "");
+    const payload = String(config.payload || "https://printable-tools-lab.pages.dev/").slice(0, 1200);
+    const matrix = buildQrMatrix(payload, config.errorCorrection || "M");
+    drawBusinessFrame(ctx, paper, config.accent || "#176b87");
+    drawTextFit(ctx, title, paper.width / 2, 104, paper.width - margin * 2, 48, { align: "center", weight: "900", color: "#17313b" });
+    if (caption) {
+      drawTextFit(ctx, caption, paper.width / 2, 154, paper.width - margin * 2, 23, { align: "center", weight: "500", color: "#5b6f78" });
+    }
+
+    const qrSize = Math.min(670, paper.width - margin * 2 - 120, paper.height - 620);
+    const qrX = (paper.width - qrSize) / 2;
+    const qrY = caption ? 218 : 196;
+    ctx.save();
+    ctx.shadowColor = "rgba(23,49,59,0.16)";
+    ctx.shadowBlur = 18;
+    ctx.shadowOffsetY = 8;
+    ctx.fillStyle = "#ffffff";
+    roundRect(ctx, qrX - 22, qrY - 22, qrSize + 44, qrSize + 44, 8, true, false);
+    ctx.restore();
+    ctx.strokeStyle = "rgba(23,49,59,0.18)";
+    ctx.lineWidth = 2;
+    roundRect(ctx, qrX - 22, qrY - 22, qrSize + 44, qrSize + 44, 8, false, true);
+
+    if (matrix.ok) {
+      drawQrMatrix(ctx, matrix, qrX, qrY, qrSize, "#17313b", "#ffffff");
+    } else {
+      drawDashedRect(ctx, qrX, qrY, qrSize, qrSize, "rgba(184,92,56,0.7)");
+      drawTextFit(ctx, "QR code could not be rendered", paper.width / 2, qrY + qrSize / 2 - 22, qrSize - 70, 30, { align: "center", weight: "900", color: "#b85c38" });
+      drawTextFit(ctx, matrix.error || "Shorten the content and try again.", paper.width / 2, qrY + qrSize / 2 + 24, qrSize - 90, 21, { align: "center", weight: "500", color: "#5b6f78" });
+    }
+
+    const metaTop = qrY + qrSize + 82;
+    const metaLines = (config.metaLines || []).map((lineText) => sanitizePrintable(lineText)).filter(Boolean).slice(0, 4);
+    ctx.fillStyle = "#edf7f6";
+    roundRect(ctx, margin, metaTop, paper.width - margin * 2, 168, 8, true, false);
+    ctx.strokeStyle = "rgba(23,49,59,0.18)";
+    ctx.lineWidth = 1.5;
+    roundRect(ctx, margin, metaTop, paper.width - margin * 2, 168, 8, false, true);
+    drawTextFit(ctx, "Print and scan check", margin + 26, metaTop + 35, paper.width - margin * 2 - 52, 23, { align: "left", weight: "900", color: "#17313b" });
+    metaLines.forEach((lineText, index) => {
+      drawTextFit(ctx, lineText, margin + 26, metaTop + 74 + index * 29, paper.width - margin * 2 - 52, 20, { align: "left", weight: "500", color: "#5b6f78" });
+    });
+    drawTextFit(ctx, "Leave white space around the code and avoid stretching it in print settings.", paper.width / 2, metaTop + 204, paper.width - margin * 2, 20, { align: "center", weight: "600", color: "#176b87" });
+    drawFooterNote(ctx, paper, config.footer || "QR generated locally with PrintableTools Lab. Scan before sharing.");
+  }
+
+  function buildQrMatrix(payload, errorCorrection) {
+    const level = ["L", "M", "Q", "H"].includes(errorCorrection) ? errorCorrection : "M";
+    if (typeof window.qrcode !== "function") {
+      return { ok: false, error: "QR engine is still loading. Refresh the preview." };
+    }
+    try {
+      const qr = window.qrcode(0, level);
+      qr.addData(String(payload || " "));
+      qr.make();
+      return {
+        ok: true,
+        count: qr.getModuleCount(),
+        isDark: (row, col) => qr.isDark(row, col),
+      };
+    } catch (error) {
+      return { ok: false, error: "The content is too long for a printable QR code." };
+    }
+  }
+
+  function drawQrMatrix(ctx, matrix, x, y, size, darkColor, lightColor) {
+    const quiet = 4;
+    const modules = matrix.count + quiet * 2;
+    const moduleSize = Math.max(1, Math.floor(size / modules));
+    const actual = moduleSize * modules;
+    const offsetX = x + (size - actual) / 2;
+    const offsetY = y + (size - actual) / 2;
+    ctx.save();
+    ctx.fillStyle = lightColor || "#ffffff";
+    ctx.fillRect(x, y, size, size);
+    ctx.fillStyle = darkColor || "#17313b";
+    for (let row = 0; row < matrix.count; row += 1) {
+      for (let col = 0; col < matrix.count; col += 1) {
+        if (matrix.isDark(row, col)) {
+          ctx.fillRect(offsetX + (col + quiet) * moduleSize, offsetY + (row + quiet) * moduleSize, moduleSize, moduleSize);
+        }
+      }
+    }
+    ctx.restore();
+  }
+
+  function qrTextPayload(value) {
+    return String(value || "https://printable-tools-lab.pages.dev/").trim().slice(0, 700) || "https://printable-tools-lab.pages.dev/";
+  }
+
+  function qrPlainText(value, maxLength) {
+    return String(value || "").replace(/[\r\n]+/g, " ").replace(/[<>]/g, "").trim().slice(0, maxLength || 120);
+  }
+
+  function displayUrl(value) {
+    const text = String(value || "").trim();
+    try {
+      const url = new URL(text);
+      return `${url.hostname}${url.pathname === "/" ? "" : url.pathname}`.slice(0, 84);
+    } catch (error) {
+      return text.slice(0, 84);
+    }
+  }
+
+  function wifiQrPayload(values) {
+    const type = values.encryption === "nopass" ? "nopass" : values.encryption === "WEP" ? "WEP" : "WPA";
+    const ssid = escapeWifiQr(values.networkName || "Guest Network");
+    const password = escapeWifiQr(values.password || "");
+    const hidden = values.hidden === "true" ? "true" : "false";
+    const passwordPart = type === "nopass" ? "" : `P:${password};`;
+    return `WIFI:T:${type};S:${ssid};${passwordPart}H:${hidden};;`;
+  }
+
+  function escapeWifiQr(value) {
+    return String(value || "").replace(/([\\;,:"])/g, "\\$1");
+  }
+
+  function vcardQrPayload(values) {
+    const name = escapeVcard(values.fullName || "Contact");
+    const company = escapeVcard(values.company || "");
+    const phone = escapeVcard(values.phone || "");
+    const email = escapeVcard(values.email || "");
+    const website = escapeVcard(values.website || "");
+    const note = escapeVcard(values.note || "");
+    return [
+      "BEGIN:VCARD",
+      "VERSION:3.0",
+      `FN:${name}`,
+      company ? `ORG:${company}` : "",
+      phone ? `TEL:${phone}` : "",
+      email ? `EMAIL:${email}` : "",
+      website ? `URL:${website}` : "",
+      note ? `NOTE:${note}` : "",
+      "END:VCARD",
+    ].filter(Boolean).join("\n");
+  }
+
+  function escapeVcard(value) {
+    return String(value || "")
+      .replace(/\\/g, "\\\\")
+      .replace(/\n/g, "\\n")
+      .replace(/,/g, "\\,")
+      .replace(/;/g, "\\;")
+      .replace(/[<>]/g, "")
+      .trim()
+      .slice(0, 180);
   }
 
   function exportMultiImagePdf(canvas, values) {

@@ -278,7 +278,7 @@ async function readGithubPagesState() {
   };
   try {
     const page = await fetchTextWithTimeout(base);
-    state.pageOk = page.ok && page.text.includes("Free PDF and image tools without signup");
+    state.pageOk = page.ok && page.text.includes("Free PDF, image, and QR tools without signup");
     state.landingPagesLinked = landingPages.filter((landing) => page.text.includes(siteUrl(landing.path))).length;
     const sitemap = await fetchTextWithTimeout(`${base}sitemap.xml`);
     state.sitemapOk = sitemap.ok && sitemap.text.includes("<urlset");
@@ -318,10 +318,10 @@ function evaluateGates(local, live, searchConsole, discovery) {
   const githubPagesSitemap = Array.isArray(searchConsole.githubPagesSitemaps?.sitemap) ? searchConsole.githubPagesSitemaps.sitemap[0] : null;
   const indexed = searchConsole.inspected.filter((item) => item.verdict === "PASS").length;
   const unknown = searchConsole.inspected.filter((item) => /unknown/i.test(item.coverageState || "")).length;
-  const productReady = local.toolCount >= 50
+  const productReady = local.toolCount >= 53
     && local.guideCount >= 82
-    && local.landingPageCount >= 38
-    && local.indexableRoutes >= 180
+    && local.landingPageCount >= 41
+    && local.indexableRoutes >= 186
     && local.sitemapLocCount >= local.indexableRoutes
     && Object.values(local.discoveryAssets).every(Boolean)
     && live.checks["/"]?.ok
@@ -354,10 +354,10 @@ function evaluateGates(local, live, searchConsole, discovery) {
 
 function missingProductReasons(local, live) {
   const reasons = [];
-  if (local.toolCount < 50) reasons.push(`Only ${local.toolCount} tools found; target is 50 or more.`);
+  if (local.toolCount < 53) reasons.push(`Only ${local.toolCount} tools found; target is 53 or more.`);
   if (local.guideCount < 82) reasons.push(`Only ${local.guideCount} guides found; target is 82 or more.`);
-  if (local.landingPageCount < 38) reasons.push(`Only ${local.landingPageCount} high-intent landing pages found; target is 38 or more.`);
-  if (local.indexableRoutes < 180) reasons.push(`Only ${local.indexableRoutes} indexable routes found; target is 180 or more.`);
+  if (local.landingPageCount < 41) reasons.push(`Only ${local.landingPageCount} high-intent landing pages found; target is 41 or more.`);
+  if (local.indexableRoutes < 186) reasons.push(`Only ${local.indexableRoutes} indexable routes found; target is 186 or more.`);
   if (local.sitemapLocCount < local.indexableRoutes) reasons.push("Sitemap has fewer URLs than the indexable route list.");
   for (const [name, ok] of Object.entries(local.discoveryAssets)) {
     if (!ok) reasons.push(`Missing discovery asset: ${name}.`);

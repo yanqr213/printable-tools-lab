@@ -1,19 +1,22 @@
 # PrintableTools Lab
 
-Zero-cost validation build for a free browser PDF and image utility site.
+Zero-cost validation build for a free browser PDF, image, and QR utility site.
 
 Live site: https://printable-tools-lab.pages.dev/
 
-PrintableTools Lab is a no-signup utility site for practical browser files: compress images, resize images, convert JPG/PNG/WebP formats, merge PDF, split PDF, rotate PDF pages, remove PDF pages, reorder PDF pages, watermark PDFs, stamp PDFs, add typed signature blocks, add page numbers, image-to-PDF conversion, multi-image PDFs, text-to-PDF, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, monthly calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
+PrintableTools Lab is a no-signup utility site for practical browser files: compress images, resize images, convert JPG/PNG/WebP formats, create static QR codes, WiFi QR signs, contact QR codes, merge PDF, split PDF, rotate PDF pages, remove PDF pages, reorder PDF pages, watermark PDFs, stamp PDFs, add typed signature blocks, add page numbers, image-to-PDF conversion, multi-image PDFs, text-to-PDF, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, monthly calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
 
 ## Free PDF tool directory
 
-- [Free PDF and image tools without signup](https://printable-tools-lab.pages.dev/free-pdf-tools/)
-- [PDF and image tool finder](https://printable-tools-lab.pages.dev/pdf-tool-finder/)
+- [Free PDF, image, and QR tools without signup](https://printable-tools-lab.pages.dev/free-pdf-tools/)
+- [PDF, image, and QR tool finder](https://printable-tools-lab.pages.dev/pdf-tool-finder/)
 - [GitHub Pages discovery directory](https://yanqr213.github.io/printable-tools-lab/)
 - [Compress Image Online](https://printable-tools-lab.pages.dev/tools/compress-image/)
 - [Resize Image Online](https://printable-tools-lab.pages.dev/tools/resize-image/)
 - [Convert Image Format](https://printable-tools-lab.pages.dev/tools/convert-image/)
+- [Free QR Code Generator](https://printable-tools-lab.pages.dev/tools/qr-code/)
+- [WiFi QR Code Generator](https://printable-tools-lab.pages.dev/tools/wifi-qr-code/)
+- [Contact QR Code Generator](https://printable-tools-lab.pages.dev/tools/vcard-qr-code/)
 - [Image to PDF Converter](https://printable-tools-lab.pages.dev/tools/image-to-pdf/)
 - [Multiple Images to PDF Converter](https://printable-tools-lab.pages.dev/tools/multi-image-pdf/)
 - [Merge PDF Tool](https://printable-tools-lab.pages.dev/tools/merge-pdf/)
@@ -46,10 +49,13 @@ PrintableTools Lab is a no-signup utility site for practical browser files: comp
 ## What is included
 
 - Static website with optional Cloudflare Pages Function for the AI idea helper.
-- Forty-seven browser-side generators, PDF utilities, and image utilities:
+- Fifty-three browser-side generators, PDF utilities, image utilities, and QR utilities:
   - Compress Image Online
   - Resize Image Online
   - Convert Image Format
+  - Free QR Code Generator
+  - WiFi QR Code Generator
+  - Contact QR Code Generator
   - Image to PDF Converter
   - Multiple Images to PDF Converter
   - Merge PDF Tool
@@ -96,10 +102,11 @@ PrintableTools Lab is a no-signup utility site for practical browser files: comp
   - Meal Planner Generator
 - Canvas-to-PDF export, including a multi-page export path for multiple-image PDFs.
 - Browser-side PDF operations for merge, split, page numbering, rotation, page removal, page reordering, watermarks, stamps, and typed signature blocks via the MIT-licensed `pdf-lib` library.
+- Browser-side static QR code generation via the MIT-licensed `qrcode-generator` library.
 - Daily free limit stored in `localStorage`.
 - Local validation events stored in `localStorage`.
 - Anonymous Cloudflare KV counters for live page views, PDF/file generations, downloads, limit hits, and AI idea applies.
-- 82 original guide pages and 38 high-intent landing pages plus keyword clusters for SEO and future display-ad review.
+- 82 original guide pages and 41 high-intent landing pages plus keyword clusters for SEO and future display-ad review.
 - Compliance pages: About, Privacy, Terms, AI & License Disclosure.
 - Static pre-rendered HTML for key routes, plus client-side enhancement.
 - `robots.txt`, canonical URLs, sitemap, and SoftwareApplication structured data for tool pages.
@@ -166,6 +173,15 @@ npm.cmd run configure:adsense -- --publisher ca-pub-0000000000000000 --tool-slot
 
 Keep ads disabled until the real AdSense publisher ID and policy review are ready.
 
+Prepare a custom domain after the domain exists in Cloudflare DNS:
+
+```powershell
+$env:CLOUDFLARE_API_TOKEN="..."
+$env:CLOUDFLARE_ACCOUNT_ID="..."
+npm.cmd run configure:domain -- --domain printabletoolslab.com
+npm.cmd run build:routes
+```
+
 ## Deployment artifacts
 
 - `_redirects` supports Cloudflare Pages rewrites.
@@ -190,6 +206,13 @@ Keep ads disabled until the real AdSense publisher ID and policy review are read
 5. After the custom domain is deployed and indexed, create/apply for AdSense.
 6. If AdSense stalls, test Microsoft pubCenter as the mainstream fallback; avoid forced-view or download-gated ad networks.
 7. Keep paid checkout disabled. The current monetization path is free usage first, then display ads after approval.
+
+Reference policy docs for this path:
+
+- Google AdSense eligibility: https://support.google.com/adsense/answer/9724
+- Google AdSense program policies: https://support.google.com/adsense/answer/48182
+- Google Search helpful content guidance: https://developers.google.com/search/docs/fundamentals/creating-helpful-content
+- Microsoft pubCenter website monetization overview: https://about.ads.microsoft.com/en/blog/post/october-2023/microsoft-pubcenter-empowers-small-and-medium-sized-businesses-to-earn-more-money
 
 For step-by-step operations, see `OPERATIONS.md`.
 
@@ -217,7 +240,7 @@ For step-by-step operations, see `OPERATIONS.md`.
 
 ## Validation gates
 
-- Day 7: 50 tools export stable PDFs or image files on desktop and mobile.
+- Day 7: 53 tools export stable PDFs, image files, or QR PDFs on desktop and mobile.
 - Day 14: 82 guide pages live; submit sitemap/site to Google Search Console.
 - Day 30: continue if any of these are true:
   - 100 file downloads.

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
   <ShortName>PrintableTools Lab</ShortName>
-  <Description>Search free no-signup browser PDF and image tools from PrintableTools Lab.</Description>
+  <Description>Search free no-signup browser PDF, image, and QR tools from PrintableTools Lab.</Description>
   <InputEncoding>UTF-8</InputEncoding>
   <Image height="32" width="32" type="image/png">https://printable-tools-lab.pages.dev/assets/images/favicon.png</Image>
   <Url type="text/html" template="https://printable-tools-lab.pages.dev/tools/?q={searchTerms}"/>

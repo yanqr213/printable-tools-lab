@@ -1,8 +1,8 @@
 {
   "name": "PrintableTools Lab",
-  "description": "Free browser-based PDF generators, no-upload PDF tools, and local image tools for compressing images, resizing images, converting image formats, cropping images, rotating images, watermarking images, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
+  "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, and static QR code tools for compressing images, resizing images, converting image formats, cropping images, rotating images, watermarking images, creating QR codes, creating WiFi QR codes, creating contact QR codes, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T07:17:18.030Z",
+  "generatedAt": "2026-06-01T08:24:07.890Z",
   "tools": [
     {
       "title": "Name Tracing Worksheet Generator",
@@ -200,6 +200,24 @@
       "title": "Watermark Image Online",
       "url": "https://printable-tools-lab.pages.dev/tools/watermark-image/",
       "description": "Add a text watermark to JPG, PNG, or WebP images locally for drafts, samples, marketplace photos, and social posts without uploading files.",
+      "category": "Everyday file utilities"
+    },
+    {
+      "title": "Free QR Code Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/qr-code/",
+      "description": "Create a static QR code PDF for a link, menu, event page, sign, flyer, or short text without signup.",
+      "category": "Everyday file utilities"
+    },
+    {
+      "title": "WiFi QR Code Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/wifi-qr-code/",
+      "description": "Create a printable WiFi QR code for guests, offices, rentals, classrooms, cafes, events, and waiting rooms.",
+      "category": "Everyday file utilities"
+    },
+    {
+      "title": "Contact QR Code Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/vcard-qr-code/",
+      "description": "Create a printable contact QR code with vCard details for a business card, booth sign, event badge, or service flyer.",
       "category": "Everyday file utilities"
     },
     {

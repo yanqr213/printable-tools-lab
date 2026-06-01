@@ -1,8 +1,8 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T07:17:18.030Z",
-  "positioning": "Free no-signup browser PDF and image tools with local generation, original guides, and responsible ad placement after approval.",
+  "generatedAt": "2026-06-01T08:24:07.890Z",
+  "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
   "opensearch": "https://printable-tools-lab.pages.dev/opensearch.xml",
@@ -19,6 +19,9 @@
     "https://printable-tools-lab.pages.dev/crop-image-no-upload/",
     "https://printable-tools-lab.pages.dev/rotate-image-no-upload/",
     "https://printable-tools-lab.pages.dev/watermark-image-no-upload/",
+    "https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/",
+    "https://printable-tools-lab.pages.dev/wifi-qr-code-generator/",
+    "https://printable-tools-lab.pages.dev/contact-qr-code-generator/",
     "https://printable-tools-lab.pages.dev/compress-jpg-no-upload/",
     "https://printable-tools-lab.pages.dev/compress-png-no-upload/",
     "https://printable-tools-lab.pages.dev/resize-image-1080x1080/",
@@ -56,6 +59,9 @@
     "https://printable-tools-lab.pages.dev/tools/crop-image/",
     "https://printable-tools-lab.pages.dev/tools/rotate-image/",
     "https://printable-tools-lab.pages.dev/tools/watermark-image/",
+    "https://printable-tools-lab.pages.dev/tools/qr-code/",
+    "https://printable-tools-lab.pages.dev/tools/wifi-qr-code/",
+    "https://printable-tools-lab.pages.dev/tools/vcard-qr-code/",
     "https://printable-tools-lab.pages.dev/tools/merge-pdf/",
     "https://printable-tools-lab.pages.dev/tools/split-pdf/",
     "https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/",
@@ -137,6 +143,24 @@
       "url": "https://printable-tools-lab.pages.dev/watermark-image-no-upload/",
       "intent": "watermark image online, add text watermark, no upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/watermark-image/"
+    },
+    {
+      "title": "Free QR Code Generator Without Signup",
+      "url": "https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/",
+      "intent": "QR code generator, no signup, printable static QR",
+      "tool": "https://printable-tools-lab.pages.dev/tools/qr-code/"
+    },
+    {
+      "title": "WiFi QR Code Generator",
+      "url": "https://printable-tools-lab.pages.dev/wifi-qr-code-generator/",
+      "intent": "WiFi QR code generator, guest WiFi sign, printable QR",
+      "tool": "https://printable-tools-lab.pages.dev/tools/wifi-qr-code/"
+    },
+    {
+      "title": "Contact QR Code Generator",
+      "url": "https://printable-tools-lab.pages.dev/contact-qr-code-generator/",
+      "intent": "contact QR code, vCard QR generator, printable business contact",
+      "tool": "https://printable-tools-lab.pages.dev/tools/vcard-qr-code/"
     },
     {
       "title": "Compress JPG Without Uploading",
