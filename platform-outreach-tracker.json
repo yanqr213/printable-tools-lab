@@ -1,6 +1,6 @@
 {
   "name": "HTML5 Platform Outreach Tracker",
-  "generatedAt": "2026-06-02T15:44:13.149Z",
+  "generatedAt": "2026-06-02T16:02:44.577Z",
   "canonical": "https://printable-tools-lab.pages.dev/platform-outreach-tracker/",
   "tracker": {
     "generatedFromProbe": "2026-06-02 platform-entry-probe",
@@ -103,6 +103,7 @@
       "socialCardUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-social-card.png",
       "submissionNotesUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission.md",
       "submissionCopyUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission-copy.md",
+      "reviewReadinessUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/review-readiness.md",
       "summary": "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them."
     },
     {
@@ -118,6 +119,7 @@
       "socialCardUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-social-card.png",
       "submissionNotesUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission.md",
       "submissionCopyUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
+      "reviewReadinessUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/review-readiness.md",
       "summary": "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them."
     }
   ],

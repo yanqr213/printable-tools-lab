@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zero-Cost Monetization Map - PrintableTools Lab</title>
+    <meta name="description" content="Decision map for zero-domain monetization routes, including hosted HTML5 game platforms, Douyin and Bilibili mini-game ports, free subdomain sites, ad safety gates, and account requirements.">
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="Zero-Cost Monetization Map">
+    <meta property="og:description" content="Decision map for zero-domain monetization routes, including hosted HTML5 game platforms, Douyin and Bilibili mini-game ports, free subdomain sites, ad safety gates, and account requirements.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://printable-tools-lab.pages.dev/assets/images/social-card.webp">
+    <meta name="theme-color" content="#176b87">
+    <link rel="canonical" href="https://printable-tools-lab.pages.dev/zero-cost-monetization-map/">
+    <link rel="icon" href="/assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/images/app-icon-192.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="search" type="application/opensearchdescription+xml" title="PrintableTools Lab" href="/opensearch.xml">
+    <link rel="alternate" type="application/rss+xml" title="PrintableTools Lab feed" href="/feed.xml">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/site-config.js"></script>
+    <script src="/assets/vendor/fflate.min.js"></script>
+    <script type="module">
+      import * as pdfjsLib from "/assets/vendor/pdf.min.mjs";
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "/assets/vendor/pdf.worker.min.mjs";
+      window.pdfjsLib = pdfjsLib;
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"><img src="/assets/images/app-icon-192.png" alt=""></span>
+        <span>
+          <strong>PrintableTools Lab</strong>
+          <small>Free PDF and image tools</small>
+        </span>
+      </a>
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a href="/tools/name-tracing/">Name tracing</a>
+        <a href="/tools/chore-chart/">Chore chart</a>
+        <a href="/tools/invoice-generator/">Invoice</a>
+        <a href="/tools/resume-builder/">Resume</a>
+        <a href="/tools/reward-chart/">Reward chart</a>
+        <a href="/tools/flashcards/">Flashcards</a>
+        <a href="/tools/">All tools</a>
+        <a href="/guides/">Guides</a>
+        <a href="/dashboard/">Data</a>
+      </nav>
+    </header>
+
+    <main id="app" tabindex="-1">
+
+      <section class="shell page-title section">
+        <a href="/platform-submit-queue/">Platform submit queue</a>
+        <h1>Zero-cost monetization map</h1>
+        <p>Without buying a domain, the fastest honest monetization path is hosted HTML5 game platforms with platform-managed ads. Free subdomain websites are useful for proof and utility traffic, but they are weaker for immediate ad approval and cannot legally force ad views. Domestic mini-game ports are worth preparing after the overseas ZIP path is submitted because they add account, packaging, and compliance gates.</p>
+        <p><a class="button" href="/zero-cost-monetization-map.json">Open machine-readable map</a> <a class="button secondary" href="/platform-submit-cockpit/">Open submit cockpit</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Route ranking</h2>
+        <div class="grid-2">
+          <article class="panel">
+            <h3>1. Hosted HTML5 game platforms</h3>
+            <p><strong>Status:</strong> active_mainline</p>
+            <p>Platforms host the game and own the ad surface, so we do not need a purchased domain or AdSense site approval first.</p>
+            <p><strong>Zero-domain:</strong> yes | <strong>Sales:</strong> not needed | <strong>Rewarded ads:</strong> possible</p>
+            <p><strong>First signal:</strong> Dashboard submitted/in-review status, platform reply, accepted game, then plays and ad revenue after eligibility.</p>
+            <p><strong>Next action:</strong> Submit Neon Lane Dash to CrazyGames and Yandex first, then Playgama/GamePix, using the review-readiness report as moderation evidence.</p>
+            <details><summary>Current assets and blockers</summary>
+              <p><strong>Assets:</strong> Neon Lane Dash ZIP, Upload Limit Panic ZIP, SDK adapters, mobile/desktop screenshots, review-readiness reports</p>
+              <p><strong>Blockers:</strong> Developer account login, CAPTCHA/legal forms, payout setup after approval, moderation wait</p>
+            </details>
+          </article>
+<article class="panel">
+            <h3>2. Douyin mini-game port</h3>
+            <p><strong>Status:</strong> prepare_after_mainline_submission</p>
+            <p>Douyin has huge domestic casual-game traffic and official mini-game ad monetization, including rewarded video. It can monetize through platform ads without direct sales.</p>
+            <p><strong>Zero-domain:</strong> yes | <strong>Sales:</strong> not needed | <strong>Rewarded ads:</strong> possible</p>
+            <p><strong>First signal:</strong> Mini-game app created, package uploaded, ad unit IDs available, review submitted.</p>
+            <p><strong>Next action:</strong> After overseas submissions are in review, create a Douyin mini-game developer app and port Neon Lane Dash controls/rewarded assist into the Douyin runtime.</p>
+            <details><summary>Current assets and blockers</summary>
+              <p><strong>Assets:</strong> Existing HTML5 game logic can be ported, Rewarded assist design already exists, Ad safety rules are documented in the current build</p>
+              <p><strong>Blockers:</strong> Douyin Open Platform developer account, real-name/entity and settlement setup, mini-game appId, ad unit IDs, ByteDance mini-game packaging/testing</p>
+            </details>
+          </article>
+<article class="panel">
+            <h3>3. Bilibili mini-game port</h3>
+            <p><strong>Status:</strong> backup_domestic_route</p>
+            <p>Bilibili mini-games can run through the platform with incentive video ads, but traffic and account gates are less direct than Douyin for this project.</p>
+            <p><strong>Zero-domain:</strong> yes | <strong>Sales:</strong> not needed | <strong>Rewarded ads:</strong> possible</p>
+            <p><strong>First signal:</strong> Bilibili mini-game account/app draft and package review status.</p>
+            <p><strong>Next action:</strong> Keep pure front-end gameplay, avoid server requests, then port only if Douyin or overseas platforms show demand.</p>
+            <details><summary>Current assets and blockers</summary>
+              <p><strong>Assets:</strong> Existing HTML5 game logic can be ported, No-server gameplay avoids ICP/domain complications</p>
+              <p><strong>Blockers:</strong> Bilibili mini-game account, appId, ad unit IDs, review metadata, server domain/ICP only if remote services are added</p>
+            </details>
+          </article>
+<article class="panel">
+            <h3>4. Free subdomain utility site with ads</h3>
+            <p><strong>Status:</strong> secondary_validation</p>
+            <p>Cloudflare Pages, GitHub Pages, Netlify, Vercel, and similar hosts provide free subdomains. They are good for content and utility validation, but display ads need review and cannot be used as an ad-view gate.</p>
+            <p><strong>Zero-domain:</strong> yes | <strong>Sales:</strong> not needed | <strong>Rewarded ads:</strong> not suitable</p>
+            <p><strong>First signal:</strong> Search impressions, downloads, and eventual ad-network approval, not instant revenue.</p>
+            <p><strong>Next action:</strong> Keep the tool site as a discovery/SEO asset while games pursue platform-managed ads.</p>
+            <details><summary>Current assets and blockers</summary>
+              <p><strong>Assets:</strong> PrintableTools Lab, Search Console verification, content pages, tool pages</p>
+              <p><strong>Blockers:</strong> AdSense/ad-network review, traffic ramp, free subdomain review uncertainty, no incentivized ad-click behavior</p>
+            </details>
+          </article>
+<article class="panel">
+            <h3>5. Low-quality short-video or repost channel</h3>
+            <p><strong>Status:</strong> rejected_for_risk</p>
+            <p>Automated low-quality or repost-style content can violate platform policies, burns account trust, and is not a clean path to stable verified revenue.</p>
+            <p><strong>Zero-domain:</strong> yes | <strong>Sales:</strong> not needed | <strong>Rewarded ads:</strong> not suitable</p>
+            <p><strong>First signal:</strong> Account views may appear, but monetization is fragile and enforcement risk is high.</p>
+            <p><strong>Next action:</strong> Do not use this as the core route; use short videos only as compliant promotion for accepted games or useful free tools.</p>
+            <details><summary>Current assets and blockers</summary>
+              <p><strong>Assets:</strong> None</p>
+              <p><strong>Blockers:</strong> platform enforcement, creator monetization thresholds, manual content operations, low trust</p>
+            </details>
+          </article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Free host options</h2>
+        <table class="event-table">
+          <thead><tr><th>Provider</th><th>Free host</th><th>Use now</th><th>Monetization fit</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Cloudflare Pages</td>
+              <td>pages.dev</td>
+              <td>Already in use for live previews and the utility site.</td>
+              <td>Good for validation and previews; not the fastest route for display-ad income.</td>
+            </tr>
+<tr>
+              <td>GitHub Pages</td>
+              <td>github.io</td>
+              <td>Useful as a mirror or proof page.</td>
+              <td>Can host static pages, but ad approval still depends on network review and content quality.</td>
+            </tr>
+<tr>
+              <td>Netlify</td>
+              <td>netlify.app</td>
+              <td>Possible mirror if Cloudflare has an outage or platform rejects pages.dev preview links.</td>
+              <td>Similar to other free static hosts; not a magic ad-approval shortcut.</td>
+            </tr>
+<tr>
+              <td>Vercel</td>
+              <td>vercel.app</td>
+              <td>Possible mirror for static or light serverless pages.</td>
+              <td>Good hosting, but ad review and traffic remain the hard parts.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="shell section">
+        <h2>Ad safety gates</h2>
+        <ul><li>Do not make users watch ads before basic gameplay; rewarded ads must be optional assists such as continue, hint, shield, or bonus.</li><li>Do not ask users to click ads or imply clicks support the project.</li><li>Do not hide core controls behind display ads on a website; AdSense-style display ads are not rewarded-ad gates.</li><li>Keep standalone builds ad-disabled until a platform accepts the game and provides approved ad context or ad unit IDs.</li><li>Payment and bank details should stay inside official platform payout dashboards, not emails or front-end code.</li></ul>
+      </section>
+      <section class="shell section">
+        <h2>Accounts needed</h2>
+        <ul><li>CrazyGames developer dashboard login for first overseas submission.</li><li>Yandex Games publisher account for second overseas submission.</li><li>Playgama developer portal and GamePix dashboard accounts for secondary distribution.</li><li>Douyin Open Platform mini-game account, appId, and ad unit IDs only if we start the domestic port.</li><li>Bilibili mini-game developer account, appId, and ad unit IDs only if we start the Bilibili port.</li></ul>
+      </section>
+      <section class="shell section">
+        <h2>Evidence and money gate</h2>
+        <ul><li>Douyin mini-game official revenue and ad docs describe platform ad monetization and rewarded video flows.</li><li>Bilibili mini-game official docs describe account/app setup and rewarded video ad components.</li><li>AdSense policy forbids encouraging ad clicks; website display ads are not a compliant use-gate.</li><li>Cloudflare Pages, GitHub Pages, Netlify, and Vercel provide free project subdomains, but they do not remove ad-network approval requirements.</li></ul>
+        <p><strong>Money gate:</strong> This route is still incomplete until a platform-hosted game is accepted, real play data appears, ads are enabled by the platform, and revenue or payout balance is visible.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>PrintableTools Lab</strong>
+        <p>Browser-based PDF and image tools for families, classrooms, and small teams.</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <a href="/about/">About</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="/license/">AI & license disclosure</a>
+      </nav>
+    </footer>
+
+    <script src="/assets/vendor/pdf-lib.min.js"></script>
+    <script src="/assets/vendor/qrcode-generator.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>

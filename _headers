@@ -71,3 +71,6 @@
 
 /platform-submit-cockpit.json
   Content-Type: application/json; charset=utf-8
+
+/zero-cost-monetization-map.json
+  Content-Type: application/json; charset=utf-8

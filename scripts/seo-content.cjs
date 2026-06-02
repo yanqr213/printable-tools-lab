@@ -22,6 +22,7 @@ const ZERO_DOMAIN_GAME_EXPERIMENT = {
   socialCardUrl: "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-social-card.png",
   submissionNotesUrl: "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission.md",
   submissionCopyUrl: "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission-copy.md",
+  reviewReadinessUrl: "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/review-readiness.md",
   summary: "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them.",
 };
 
@@ -40,6 +41,7 @@ const ZERO_DOMAIN_GAME_EXPERIMENTS = [
     socialCardUrl: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-social-card.png",
     submissionNotesUrl: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission.md",
     submissionCopyUrl: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
+    reviewReadinessUrl: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/review-readiness.md",
     summary: "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them.",
   },
 ];
@@ -209,6 +211,130 @@ const ZERO_DOMAIN_PLATFORM_STRATEGY = {
     "Poki documentation says SDK integration is mandatory after acceptance and that Poki prefers Web Exclusive deals.",
   ],
   moneyGate: "The goal is not complete until at least one platform accepts a game, real plays are visible in platform analytics, ad monetization is enabled, and revenue or payout balance is verified.",
+};
+
+const ZERO_COST_MONETIZATION_MAP = {
+  generatedFrom: "2026-06-02 platform research and current package state",
+  conclusion: "Without buying a domain, the fastest honest monetization path is hosted HTML5 game platforms with platform-managed ads. Free subdomain websites are useful for proof and utility traffic, but they are weaker for immediate ad approval and cannot legally force ad views. Domestic mini-game ports are worth preparing after the overseas ZIP path is submitted because they add account, packaging, and compliance gates.",
+  routes: [
+    {
+      route: "Hosted HTML5 game platforms",
+      priority: 1,
+      status: "active_mainline",
+      zeroDomain: true,
+      needsCustomDomain: false,
+      needsSales: false,
+      canShowRewardedAds: true,
+      expectedFirstSignal: "Dashboard submitted/in-review status, platform reply, accepted game, then plays and ad revenue after eligibility.",
+      why: "Platforms host the game and own the ad surface, so we do not need a purchased domain or AdSense site approval first.",
+      currentAssets: ["Neon Lane Dash ZIP", "Upload Limit Panic ZIP", "SDK adapters", "mobile/desktop screenshots", "review-readiness reports"],
+      blockers: ["Developer account login", "CAPTCHA/legal forms", "payout setup after approval", "moderation wait"],
+      nextAction: "Submit Neon Lane Dash to CrazyGames and Yandex first, then Playgama/GamePix, using the review-readiness report as moderation evidence.",
+    },
+    {
+      route: "Douyin mini-game port",
+      priority: 2,
+      status: "prepare_after_mainline_submission",
+      zeroDomain: true,
+      needsCustomDomain: false,
+      needsSales: false,
+      canShowRewardedAds: true,
+      expectedFirstSignal: "Mini-game app created, package uploaded, ad unit IDs available, review submitted.",
+      why: "Douyin has huge domestic casual-game traffic and official mini-game ad monetization, including rewarded video. It can monetize through platform ads without direct sales.",
+      currentAssets: ["Existing HTML5 game logic can be ported", "Rewarded assist design already exists", "Ad safety rules are documented in the current build"],
+      blockers: ["Douyin Open Platform developer account", "real-name/entity and settlement setup", "mini-game appId", "ad unit IDs", "ByteDance mini-game packaging/testing"],
+      nextAction: "After overseas submissions are in review, create a Douyin mini-game developer app and port Neon Lane Dash controls/rewarded assist into the Douyin runtime.",
+    },
+    {
+      route: "Bilibili mini-game port",
+      priority: 3,
+      status: "backup_domestic_route",
+      zeroDomain: true,
+      needsCustomDomain: false,
+      needsSales: false,
+      canShowRewardedAds: true,
+      expectedFirstSignal: "Bilibili mini-game account/app draft and package review status.",
+      why: "Bilibili mini-games can run through the platform with incentive video ads, but traffic and account gates are less direct than Douyin for this project.",
+      currentAssets: ["Existing HTML5 game logic can be ported", "No-server gameplay avoids ICP/domain complications"],
+      blockers: ["Bilibili mini-game account", "appId", "ad unit IDs", "review metadata", "server domain/ICP only if remote services are added"],
+      nextAction: "Keep pure front-end gameplay, avoid server requests, then port only if Douyin or overseas platforms show demand.",
+    },
+    {
+      route: "Free subdomain utility site with ads",
+      priority: 4,
+      status: "secondary_validation",
+      zeroDomain: true,
+      needsCustomDomain: false,
+      needsSales: false,
+      canShowRewardedAds: false,
+      expectedFirstSignal: "Search impressions, downloads, and eventual ad-network approval, not instant revenue.",
+      why: "Cloudflare Pages, GitHub Pages, Netlify, Vercel, and similar hosts provide free subdomains. They are good for content and utility validation, but display ads need review and cannot be used as an ad-view gate.",
+      currentAssets: ["PrintableTools Lab", "Search Console verification", "content pages", "tool pages"],
+      blockers: ["AdSense/ad-network review", "traffic ramp", "free subdomain review uncertainty", "no incentivized ad-click behavior"],
+      nextAction: "Keep the tool site as a discovery/SEO asset while games pursue platform-managed ads.",
+    },
+    {
+      route: "Low-quality short-video or repost channel",
+      priority: 5,
+      status: "rejected_for_risk",
+      zeroDomain: true,
+      needsCustomDomain: false,
+      needsSales: false,
+      canShowRewardedAds: false,
+      expectedFirstSignal: "Account views may appear, but monetization is fragile and enforcement risk is high.",
+      why: "Automated low-quality or repost-style content can violate platform policies, burns account trust, and is not a clean path to stable verified revenue.",
+      currentAssets: [],
+      blockers: ["platform enforcement", "creator monetization thresholds", "manual content operations", "low trust"],
+      nextAction: "Do not use this as the core route; use short videos only as compliant promotion for accepted games or useful free tools.",
+    },
+  ],
+  freeDomainOptions: [
+    {
+      provider: "Cloudflare Pages",
+      freeHost: "pages.dev",
+      useNow: "Already in use for live previews and the utility site.",
+      monetizationFit: "Good for validation and previews; not the fastest route for display-ad income.",
+    },
+    {
+      provider: "GitHub Pages",
+      freeHost: "github.io",
+      useNow: "Useful as a mirror or proof page.",
+      monetizationFit: "Can host static pages, but ad approval still depends on network review and content quality.",
+    },
+    {
+      provider: "Netlify",
+      freeHost: "netlify.app",
+      useNow: "Possible mirror if Cloudflare has an outage or platform rejects pages.dev preview links.",
+      monetizationFit: "Similar to other free static hosts; not a magic ad-approval shortcut.",
+    },
+    {
+      provider: "Vercel",
+      freeHost: "vercel.app",
+      useNow: "Possible mirror for static or light serverless pages.",
+      monetizationFit: "Good hosting, but ad review and traffic remain the hard parts.",
+    },
+  ],
+  adGateRules: [
+    "Do not make users watch ads before basic gameplay; rewarded ads must be optional assists such as continue, hint, shield, or bonus.",
+    "Do not ask users to click ads or imply clicks support the project.",
+    "Do not hide core controls behind display ads on a website; AdSense-style display ads are not rewarded-ad gates.",
+    "Keep standalone builds ad-disabled until a platform accepts the game and provides approved ad context or ad unit IDs.",
+    "Payment and bank details should stay inside official platform payout dashboards, not emails or front-end code.",
+  ],
+  accountsNeeded: [
+    "CrazyGames developer dashboard login for first overseas submission.",
+    "Yandex Games publisher account for second overseas submission.",
+    "Playgama developer portal and GamePix dashboard accounts for secondary distribution.",
+    "Douyin Open Platform mini-game account, appId, and ad unit IDs only if we start the domestic port.",
+    "Bilibili mini-game developer account, appId, and ad unit IDs only if we start the Bilibili port.",
+  ],
+  sources: [
+    "Douyin mini-game official revenue and ad docs describe platform ad monetization and rewarded video flows.",
+    "Bilibili mini-game official docs describe account/app setup and rewarded video ad components.",
+    "AdSense policy forbids encouraging ad clicks; website display ads are not a compliant use-gate.",
+    "Cloudflare Pages, GitHub Pages, Netlify, and Vercel provide free project subdomains, but they do not remove ad-network approval requirements.",
+  ],
+  moneyGate: "This route is still incomplete until a platform-hosted game is accepted, real play data appears, ads are enabled by the platform, and revenue or payout balance is visible.",
 };
 
 const PLATFORM_OUTREACH_TRACKER = {
@@ -2722,6 +2848,12 @@ const pages = [
     description: "Copy-ready public-contact outreach tracker, platform email drafts, form notes, and account gates for submitting the zero-domain HTML5 game package.",
     html: platformOutreachTrackerHtml(),
   },
+  {
+    path: "zero-cost-monetization-map",
+    title: "Zero-Cost Monetization Map",
+    description: "Decision map for zero-domain monetization routes, including hosted HTML5 game platforms, Douyin and Bilibili mini-game ports, free subdomain sites, ad safety gates, and account requirements.",
+    html: zeroCostMonetizationMapHtml(),
+  },
   ...landingPages.map((page) => ({
     path: page.path,
     title: page.title,
@@ -3259,6 +3391,7 @@ function shareKitHtml() {
               <li><a href="${escapeHtml(game.iconUrl)}">Download 512x512 platform icon</a></li>
               <li><a href="${escapeHtml(game.socialCardUrl)}">Download social preview card</a></li>
               <li><a href="${escapeHtml(game.submissionNotesUrl)}">Open platform submission notes</a></li>
+              <li><a href="${escapeHtml(game.reviewReadinessUrl)}">Open review-readiness report</a></li>
             </ul>
           </article>`).join("\n")}
         </div>
@@ -3326,6 +3459,7 @@ function platformSubmitQueueHtml() {
               <li><a href="${escapeHtml(game.iconUrl)}">512 icon</a></li>
               <li><a href="${escapeHtml(game.submissionNotesUrl)}">Submission notes</a></li>
               <li><a href="${escapeHtml(game.submissionCopyUrl || game.submissionNotesUrl)}">Copy-ready platform fields</a></li>
+              <li><a href="${escapeHtml(game.reviewReadinessUrl)}">Review-readiness report</a></li>
               <li><a href="${escapeHtml(game.repo)}">Repository</a></li>
             </ul>
           </article>`).join("\n")}
@@ -3450,6 +3584,60 @@ function platformOutreachTrackerHtml() {
             <pre class="code-block">${escapeHtml(channel.body)}</pre>
           </article>`).join("\n")}
         </div>
+      </section>`;
+}
+
+function zeroCostMonetizationMapHtml() {
+  return `
+      <section class="shell page-title section">
+        <a href="/platform-submit-queue/">Platform submit queue</a>
+        <h1>Zero-cost monetization map</h1>
+        <p>${escapeHtml(ZERO_COST_MONETIZATION_MAP.conclusion)}</p>
+        <p><a class="button" href="/zero-cost-monetization-map.json">Open machine-readable map</a> <a class="button secondary" href="/platform-submit-cockpit/">Open submit cockpit</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Route ranking</h2>
+        <div class="grid-2">
+          ${ZERO_COST_MONETIZATION_MAP.routes.map((route) => `<article class="panel">
+            <h3>${escapeHtml(route.priority)}. ${escapeHtml(route.route)}</h3>
+            <p><strong>Status:</strong> ${escapeHtml(route.status)}</p>
+            <p>${escapeHtml(route.why)}</p>
+            <p><strong>Zero-domain:</strong> ${route.zeroDomain ? "yes" : "no"} | <strong>Sales:</strong> ${route.needsSales ? "needed" : "not needed"} | <strong>Rewarded ads:</strong> ${route.canShowRewardedAds ? "possible" : "not suitable"}</p>
+            <p><strong>First signal:</strong> ${escapeHtml(route.expectedFirstSignal)}</p>
+            <p><strong>Next action:</strong> ${escapeHtml(route.nextAction)}</p>
+            <details><summary>Current assets and blockers</summary>
+              <p><strong>Assets:</strong> ${escapeHtml((route.currentAssets || []).join(", ") || "None")}</p>
+              <p><strong>Blockers:</strong> ${escapeHtml((route.blockers || []).join(", ") || "None")}</p>
+            </details>
+          </article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Free host options</h2>
+        <table class="event-table">
+          <thead><tr><th>Provider</th><th>Free host</th><th>Use now</th><th>Monetization fit</th></tr></thead>
+          <tbody>
+            ${ZERO_COST_MONETIZATION_MAP.freeDomainOptions.map((item) => `<tr>
+              <td>${escapeHtml(item.provider)}</td>
+              <td>${escapeHtml(item.freeHost)}</td>
+              <td>${escapeHtml(item.useNow)}</td>
+              <td>${escapeHtml(item.monetizationFit)}</td>
+            </tr>`).join("\n")}
+          </tbody>
+        </table>
+      </section>
+      <section class="shell section">
+        <h2>Ad safety gates</h2>
+        <ul>${ZERO_COST_MONETIZATION_MAP.adGateRules.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+      </section>
+      <section class="shell section">
+        <h2>Accounts needed</h2>
+        <ul>${ZERO_COST_MONETIZATION_MAP.accountsNeeded.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+      </section>
+      <section class="shell section">
+        <h2>Evidence and money gate</h2>
+        <ul>${ZERO_COST_MONETIZATION_MAP.sources.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        <p><strong>Money gate:</strong> ${escapeHtml(ZERO_COST_MONETIZATION_MAP.moneyGate)}</p>
       </section>`;
 }
 
@@ -4681,4 +4869,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };

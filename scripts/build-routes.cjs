@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -140,6 +140,9 @@ if (!headers.includes("/platform-outreach-tracker.json")) {
 if (!headers.includes("/platform-submit-cockpit.json")) {
   fs.appendFileSync(headersPath, "\n/platform-submit-cockpit.json\n  Content-Type: application/json; charset=utf-8\n");
 }
+if (!headers.includes("/zero-cost-monetization-map.json")) {
+  fs.appendFileSync(headersPath, "\n/zero-cost-monetization-map.json\n  Content-Type: application/json; charset=utf-8\n");
+}
   if (!headers.includes("/assets/vendor/fflate.min.js")) {
     fs.appendFileSync(headersPath, "\n/assets/vendor/fflate.min.js\n  Content-Type: application/javascript; charset=utf-8\n");
   }
@@ -242,6 +245,17 @@ const platformSubmitCockpitJson = {
 };
 fs.writeFileSync(path.join(root, "platform-submit-cockpit.json"), `${JSON.stringify(platformSubmitCockpitJson, null, 2)}\n`);
 
+const zeroCostMonetizationMapJson = {
+  name: "Zero-Cost Monetization Map",
+  generatedAt: generatedAtIso,
+  canonical: siteUrl("zero-cost-monetization-map"),
+  map: ZERO_COST_MONETIZATION_MAP,
+  games: ZERO_DOMAIN_GAME_EXPERIMENTS,
+  nextAction: "Keep overseas hosted HTML5 game platforms as the active mainline; prepare Douyin only after the current ZIP submissions enter review.",
+  completionGate: ZERO_COST_MONETIZATION_MAP.moneyGate,
+};
+fs.writeFileSync(path.join(root, "zero-cost-monetization-map.json"), `${JSON.stringify(zeroCostMonetizationMapJson, null, 2)}\n`);
+
 const llms = [
   `# ${SITE_SUMMARY.name}`,
   "",
@@ -262,6 +276,7 @@ const llms = [
   `- HTML5 platform submit queue: ${siteUrl("platform-submit-queue")}`,
   `- HTML5 platform submit cockpit: ${siteUrl("platform-submit-cockpit")}`,
   `- HTML5 platform outreach tracker: ${siteUrl("platform-outreach-tracker")}`,
+  `- Zero-cost monetization map: ${siteUrl("zero-cost-monetization-map")}`,
   `- Guides index: ${siteUrl("guides")}`,
   `- Sitemap: ${fileUrl("sitemap.xml")}`,
   `- RSS feed: ${fileUrl("feed.xml")}`,
@@ -273,6 +288,7 @@ const llms = [
   `- Machine-readable platform submit queue: ${fileUrl("platform-submit-queue.json")}`,
   `- Machine-readable platform submit cockpit: ${fileUrl("platform-submit-cockpit.json")}`,
   `- Machine-readable platform outreach tracker: ${fileUrl("platform-outreach-tracker.json")}`,
+  `- Machine-readable zero-cost monetization map: ${fileUrl("zero-cost-monetization-map.json")}`,
   ...(gistDiscovery?.htmlUrl ? [`- Public Gist share kit: ${gistDiscovery.htmlUrl}`] : []),
   ...(issueDiscovery?.issueUrl ? [`- Public GitHub growth issue: ${issueDiscovery.issueUrl}`] : []),
   "## Zero-Domain HTML5 Game Experiments",
@@ -314,7 +330,8 @@ const discoveryIndex = {
   platformSubmitQueue: fileUrl("platform-submit-queue.json"),
   platformSubmitCockpit: fileUrl("platform-submit-cockpit.json"),
   platformOutreachTracker: fileUrl("platform-outreach-tracker.json"),
-  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  zeroCostMonetizationMap: fileUrl("zero-cost-monetization-map.json"),
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   distributionAssets: {
     shareKit: siteUrl("share-kit"),
     shareKitJson: fileUrl("share-kit.json"),
@@ -324,6 +341,8 @@ const discoveryIndex = {
     platformSubmitCockpitJson: fileUrl("platform-submit-cockpit.json"),
     platformOutreachTracker: siteUrl("platform-outreach-tracker"),
     platformOutreachTrackerJson: fileUrl("platform-outreach-tracker.json"),
+    zeroCostMonetizationMap: siteUrl("zero-cost-monetization-map"),
+    zeroCostMonetizationMapJson: fileUrl("zero-cost-monetization-map.json"),
     distributionPack: fileUrl("DISTRIBUTION.md"),
     campaignVideos: campaignAssets,
     publicGist: gistDiscovery?.htmlUrl || "",
@@ -340,6 +359,7 @@ const discoveryIndex = {
       demoVideoUrl: game.demoVideoUrl,
       coverUrl: game.coverUrl,
       iconUrl: game.iconUrl,
+      reviewReadinessUrl: game.reviewReadinessUrl,
     })),
   },
   landingPages: landingPages.map((page) => ({
