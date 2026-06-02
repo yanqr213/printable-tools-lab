@@ -81,7 +81,7 @@ const html = `<!doctype html>
     <main>
       <h1>Free PDF, image, and QR tools without signup</h1>
       <p>This GitHub Pages directory points to the live PrintableTools Lab app, a free browser-based PDF, image, and QR tool site for small business paperwork, local promotion, image conversion, static QR codes, career documents, and everyday printables. Use it when you need a quick file and do not want an account, forced ad view, or surprise download fee.</p>
-      <p><a class="button" href="${siteUrl("free-pdf-tools")}">Open the full free tool directory</a></p>
+      <p><a class="button" href="${trackedSiteUrl("free-pdf-tools", "directory-home")}">Open the full free tool directory</a></p>
 
       <h2>Start with a common file job</h2>
       <div class="grid">
@@ -91,18 +91,18 @@ const html = `<!doctype html>
           <p>${escapeHtml(tool.description)}</p>
           <a href="${pagesUrl(tool.path)}">Open the discovery note</a>
           <br>
-          <a href="${siteUrl(tool.path)}">Open this free file tool</a>
+          <a href="${trackedSiteUrl(tool.path, `home-${tool.path}`)}">Open this free file tool</a>
         </article>`).join("\n")}
       </div>
 
       <h2>Useful starting points</h2>
       <ul>
-        <li><a href="${siteUrl("pdf-tool-finder")}">File tool finder</a> for choosing between tools such as compress vs resize, invoice vs receipt, or one image vs multi-image PDF.</li>
-        <li><a href="${siteUrl("upload-limit-fixer")}">Upload limit fixer</a> for choosing the right no-upload tool when a website rejects a file by size, format, or dimensions.</li>
-        <li><a href="${siteUrl("tools")}">All free generators</a> for browsing every tool.</li>
-        <li><a href="${siteUrl("guides")}">Printable guides</a> for original help pages around PDF, image, QR, and printable workflows.</li>
+        <li><a href="${trackedSiteUrl("pdf-tool-finder", "finder")}">File tool finder</a> for choosing between tools such as compress vs resize, invoice vs receipt, or one image vs multi-image PDF.</li>
+        <li><a href="${trackedSiteUrl("upload-limit-fixer", "upload-limit-fixer")}">Upload limit fixer</a> for choosing the right no-upload tool when a website rejects a file by size, format, or dimensions.</li>
+        <li><a href="${trackedSiteUrl("tools", "all-tools")}">All free generators</a> for browsing every tool.</li>
+        <li><a href="${trackedSiteUrl("guides", "guides")}">Printable guides</a> for original help pages around PDF, image, QR, and printable workflows.</li>
         <li><a href="${pagesUrl("html5-game-submission-pack")}">HTML5 game submission pack mirror</a> for clean portal ZIPs, GameSnacks packages, demo videos, and platform-review assets.</li>
-        ${landingPages.map((page) => `<li><a href="${siteUrl(page.path)}">${escapeHtml(page.title)}</a> for ${escapeHtml(page.intent)}.</li>`).join("\n")}
+        ${landingPages.map((page) => `<li><a href="${trackedSiteUrl(page.path, `home-${page.path}`)}">${escapeHtml(page.title)}</a> for ${escapeHtml(page.intent)}.</li>`).join("\n")}
         <li><a href="${siteUrl("feed.xml").replace(/\/$/, "")}">RSS feed</a> for monitoring newly published discovery pages and high-intent tools.</li>
         <li><a href="${siteUrl("tools.json").replace(/\/$/, "")}">Machine-readable tools.json</a> for tool directories and crawlers.</li>
       </ul>
@@ -222,6 +222,24 @@ function liveToolUrl(toolPath) {
   return `${siteUrl(pathname)}${query ? `?${query}` : ""}`;
 }
 
+function trackedSiteUrl(routePath = "", content = "") {
+  const url = new URL(siteUrl(routePath));
+  url.searchParams.set("utm_source", "github-pages");
+  url.searchParams.set("utm_medium", "organic");
+  url.searchParams.set("utm_campaign", "discovery_mirror");
+  if (content) url.searchParams.set("utm_content", slugify(content).slice(0, 64));
+  return url.toString();
+}
+
+function trackedLiveToolUrl(toolPath) {
+  const url = new URL(liveToolUrl(toolPath));
+  url.searchParams.set("utm_source", "github-pages");
+  url.searchParams.set("utm_medium", "organic");
+  url.searchParams.set("utm_campaign", "discovery_mirror");
+  url.searchParams.set("utm_content", slugify(String(toolPath).split("?")[0]).slice(0, 64));
+  return url.toString();
+}
+
 function gameDiscoveryPath(game) {
   return `html5-game-submission-pack/${slugify(game.name)}`;
 }
@@ -284,7 +302,7 @@ function gameSubmissionPackHtml() {
       <p><a href="${pagesBase}">PrintableTools Lab discovery directory</a></p>
       <h1>HTML5 game submission pack</h1>
       <p>This mirror lists the public game packages used for zero-domain platform-ad validation. It keeps live play links, clean portal ZIPs, SDK-adapter ZIPs, demo videos, review notes, and GameSnacks assets in one crawlable place.</p>
-      <p><a class="button" href="${siteUrl("portal-submission-pack")}">Open the live portal submission pack</a></p>
+      <p><a class="button" href="${trackedSiteUrl("portal-submission-pack", "game-submission-pack")}">Open the live portal submission pack</a></p>
       <div class="grid">
         ${gameCards}
       </div>
@@ -405,18 +423,18 @@ function landingDiscoveryHtml(page, primaryTool, relatedTools) {
       <p><a href="${pagesBase}">PrintableTools Lab discovery directory</a></p>
       <h1>${escapeHtml(page.headline)}</h1>
       <p>${escapeHtml(page.lead)}</p>
-      <p><a class="button" href="${siteUrl(page.path)}">Open the live no-signup page</a></p>
+      <p><a class="button" href="${trackedSiteUrl(page.path, `landing-${page.path}`)}">Open the live no-signup page</a></p>
       <h2>Primary tool</h2>
       <article class="card">
         <h3>${escapeHtml(primaryTool.title)}</h3>
         <p>${escapeHtml(primaryTool.description)}</p>
-        <a href="${liveToolUrl(page.primaryTool)}">Open ${escapeHtml(primaryTool.title)}</a>
+        <a href="${trackedLiveToolUrl(page.primaryTool)}">Open ${escapeHtml(primaryTool.title)}</a>
       </article>
       <h2>Intent match</h2>
       <p>${escapeHtml(page.intent)}. The live page is designed to route this search intent to a practical browser tool without account creation or an ad-click gate.</p>
       <h2>Related tools</h2>
       <div class="grid">
-        ${relatedTools.map((tool) => `<article class="card"><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.description)}</p><a href="${siteUrl(tool.path)}">Open this tool</a></article>`).join("\n")}
+        ${relatedTools.map((tool) => `<article class="card"><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.description)}</p><a href="${trackedSiteUrl(tool.path, `related-${tool.path}`)}">Open this tool</a></article>`).join("\n")}
       </div>
     </main>
   </body>
@@ -454,7 +472,7 @@ function toolDiscoveryHtml(tool, relatedLandingPages) {
       <p><a href="${pagesUrl("")}">PrintableTools Lab discovery directory</a></p>
       <h1>${escapeHtml(tool.title)}</h1>
       <p>${escapeHtml(tool.description)}</p>
-      <p><a class="button" href="${siteUrl(tool.path)}">Open the live free tool</a></p>
+      <p><a class="button" href="${trackedSiteUrl(tool.path, `tool-${tool.path}`)}">Open the live free tool</a></p>
       <h2>Why this tool exists</h2>
       <p>This mirror page is a zero-cost discovery entry for the live PrintableTools Lab tool. The live app focuses on practical browser-side generation, no account wall, and clear download flow so users can solve a file or printable job quickly.</p>
       <h2>Best fit</h2>
@@ -471,19 +489,19 @@ function toolDiscoveryHtml(tool, relatedLandingPages) {
           <p>${escapeHtml(page.description)}</p>
           <a href="${pagesUrl(page.path)}">Open discovery page</a>
           <br>
-          <a href="${siteUrl(page.path)}">Open live page</a>
+          <a href="${trackedSiteUrl(page.path, `tool-related-${page.path}`)}">Open live page</a>
         </article>`).join("\n") : `
         <article class="card">
           <h3>Free PDF, image, and QR tools</h3>
           <p>Browse the full no-signup directory and choose the closest tool for your file task.</p>
-          <a href="${siteUrl("free-pdf-tools")}">Open the live directory</a>
+          <a href="${trackedSiteUrl("free-pdf-tools", "tool-fallback-directory")}">Open the live directory</a>
         </article>`}
       </div>
       <h2>Useful links</h2>
       <ul>
-        <li><a href="${siteUrl("free-pdf-tools")}">Full free tool directory</a></li>
-        <li><a href="${siteUrl("pdf-tool-finder")}">Tool finder</a></li>
-        <li><a href="${siteUrl("privacy")}">Privacy policy</a></li>
+        <li><a href="${trackedSiteUrl("free-pdf-tools", "tool-footer-directory")}">Full free tool directory</a></li>
+        <li><a href="${trackedSiteUrl("pdf-tool-finder", "tool-footer-finder")}">Tool finder</a></li>
+        <li><a href="${trackedSiteUrl("privacy", "tool-footer-privacy")}">Privacy policy</a></li>
         <li><a href="${siteUrl("tools.json").replace(/\/$/, "")}">Machine-readable tools.json</a></li>
       </ul>
     </main>
