@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, ZERO_COST_MONETIZATION_MAP, siteUrl } = require("./seo-content.cjs");
+const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, siteUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || "";
@@ -73,6 +73,7 @@ function renderIssueBody() {
     `- Product: ${siteUrl("")}`,
     `- Share kit: ${siteUrl("share-kit")}`,
     `- HTML5 platform submit cockpit: ${siteUrl("platform-submit-cockpit")}`,
+    `- HTML5 portal submission pack: ${siteUrl("portal-submission-pack")}`,
     `- Zero-cost monetization map: ${siteUrl("zero-cost-monetization-map")}`,
     `- Public Gist mirror: ${gist?.htmlUrl || "not available"}`,
     `- Release MP4 assets: https://github.com/${repo}/releases/tag/free-pdf-tools`,
@@ -88,6 +89,8 @@ function renderIssueBody() {
     "",
     ...PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.submitted.map((item) => `- ${item}`),
     ...PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.readyBackup.map((item) => `- ${item}`),
+    `- Expanded backup portals: ${PORTAL_SUBMISSION_PACK.lowFrictionResearch.map((item) => item.platform).join(", ")}`,
+    `- Manual-consent rule: ${PORTAL_SUBMISSION_PACK.candidatePolicy[1]}`,
     ...PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.payoutGates.map((item) => `- ${item}`),
     `- Completion gate: ${ZERO_COST_MONETIZATION_MAP.moneyGate}`,
     "",

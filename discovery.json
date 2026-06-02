@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-02T18:54:08.780Z",
+  "generatedAt": "2026-06-02T19:14:13.544Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -10,6 +10,7 @@
   "platformSubmitQueue": "https://printable-tools-lab.pages.dev/platform-submit-queue.json",
   "platformSubmitCockpit": "https://printable-tools-lab.pages.dev/platform-submit-cockpit.json",
   "platformOutreachTracker": "https://printable-tools-lab.pages.dev/platform-outreach-tracker.json",
+  "portalSubmissionPack": "https://printable-tools-lab.pages.dev/portal-submission-pack.json",
   "zeroCostMonetizationMap": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map.json",
   "highIntentEntryPoints": [
     "https://printable-tools-lab.pages.dev/free-pdf-tools/",
@@ -19,6 +20,7 @@
     "https://printable-tools-lab.pages.dev/platform-submit-queue/",
     "https://printable-tools-lab.pages.dev/platform-submit-cockpit/",
     "https://printable-tools-lab.pages.dev/platform-outreach-tracker/",
+    "https://printable-tools-lab.pages.dev/portal-submission-pack/",
     "https://printable-tools-lab.pages.dev/zero-cost-monetization-map/",
     "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
@@ -141,6 +143,8 @@
     "platformSubmitCockpitJson": "https://printable-tools-lab.pages.dev/platform-submit-cockpit.json",
     "platformOutreachTracker": "https://printable-tools-lab.pages.dev/platform-outreach-tracker/",
     "platformOutreachTrackerJson": "https://printable-tools-lab.pages.dev/platform-outreach-tracker.json",
+    "portalSubmissionPack": "https://printable-tools-lab.pages.dev/portal-submission-pack/",
+    "portalSubmissionPackJson": "https://printable-tools-lab.pages.dev/portal-submission-pack.json",
     "zeroCostMonetizationMap": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map/",
     "zeroCostMonetizationMapJson": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map.json",
     "distributionPack": "https://printable-tools-lab.pages.dev/DISTRIBUTION.md",
@@ -243,7 +247,7 @@
       }
     ],
     "publicGist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-    "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/ce0e7f368523cd64eda4088fcb383ac13b617d5e/PrintableTools-Lab-zero-cost-share-kit.md",
+    "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/a195920d9428fd4808ea6ca576980d55c617542d/PrintableTools-Lab-zero-cost-share-kit.md",
     "publicGrowthIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1",
     "zeroDomainGame": "https://upload-limit-panic.pages.dev/",
     "zeroDomainGameRepo": "https://github.com/yanqr213/upload-limit-panic",

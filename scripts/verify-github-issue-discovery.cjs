@@ -35,7 +35,7 @@ async function verifyIssuePage(url) {
       failures.push(`Issue page returned ${response.status}.`);
       return;
     }
-    for (const needle of ["Growth log", "ptl-pdf-under-1mb.mp4", "utm_source=github-issue", "Public Gist mirror"]) {
+    for (const needle of ["Growth log", "ptl-pdf-under-1mb.mp4", "utm_source=github-issue", "Public Gist mirror", "portal-submission-pack", "Expanded backup portals"]) {
       if (!text.includes(needle)) failures.push(`Issue page missing ${needle}.`);
     }
   } catch (error) {

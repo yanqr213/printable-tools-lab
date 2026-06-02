@@ -19,8 +19,8 @@ async function main() {
     if (!report.rawUrl || !report.rawUrl.includes("gist.githubusercontent.com/")) failures.push("Gist report missing rawUrl.");
     if (report.public !== true) failures.push("Gist must be public.");
     if (report.videoAssetCount < 6) failures.push("Gist report should include 6 video assets.");
-    await verifyUrl(report.htmlUrl, "PrintableTools Lab zero-cost share kit", "ptl-pdf-under-1mb.mp4");
-    await verifyUrl(report.rawUrl, "Compress PDF to 1MB", "utm_source=gist");
+    await verifyUrl(report.htmlUrl, "PrintableTools Lab zero-cost share kit", "ptl-pdf-under-1mb.mp4", "portal-submission-pack");
+    await verifyUrl(report.rawUrl, "Compress PDF to 1MB", "utm_source=gist", "Expanded backup portals");
   }
 
   if (failures.length) {

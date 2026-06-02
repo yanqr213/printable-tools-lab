@@ -61,7 +61,7 @@
         <p>Use hosted HTML5 game platforms first instead of buying a custom domain. Platform distribution and platform-managed ads are the zero-upfront-cost path.</p>
         <div class="panel">
           <h3>Latest operational status</h3>
-          <ul><li>CrazyGames: Neon Lane Dash was submitted on 2026-06-02 with build ID 57a4b821-a761-4541-b2dc-69ced592d4d5; the next live status check needs the developer dashboard session restored after the automation browser reset.</li><li>Playgama: Neon Lane Dash is still Waiting for review in the My Games dashboard, and the payouts page shows no earnings until the first game is published and players interact.</li><li>CrazyGames payout gate: Billing is handled through Tipalti; payment setup requires owner-only mobile 2-step verification, address, payment method, and tax forms after acceptance or payout eligibility.</li><li>GamePix: logged-in dashboard reached the create-game form, but the description field explicitly asks for non-AI original copy, so owner-written 100-500 character English text is required before upload.</li><li>Upload Limit Panic: backup game is now upgraded, deployed, and release-refreshed with Playgama ad QA gating, SDK storage, and bridge config support.</li></ul>
+          <ul><li>CrazyGames: Neon Lane Dash was submitted on 2026-06-02 with build ID 57a4b821-a761-4541-b2dc-69ced592d4d5; the next live status check needs the developer dashboard session restored after the automation browser reset.</li><li>Playgama: Neon Lane Dash is still Waiting for review in the My Games dashboard, and the payouts page shows no earnings until the first game is published and players interact.</li><li>CrazyGames payout gate: Billing is handled through Tipalti; payment setup requires owner-only mobile 2-step verification, address, payment method, and tax forms after acceptance or payout eligibility.</li><li>GamePix: logged-in dashboard reached the create-game form, but the description field explicitly asks for non-AI original copy, so owner-written 100-500 character English text is required before upload.</li><li>Upload Limit Panic: backup game is now upgraded, deployed, and release-refreshed with Playgama ad QA gating, SDK storage, and bridge config support.</li><li>2026-06-03 platform expansion: GameSnacks, InstGame, GameTwiz, BizziBeeArcade, BlurryGames, GameMonetize, and PLRun were added as researched candidates, with PLRun parked because its developer portal returned 410.</li></ul>
         </div>
         <div class="grid-3">
           <article class="panel">
@@ -70,11 +70,11 @@
           </article>
           <article class="panel">
             <h3>Immediate route</h3>
-            <ul><li>Restore the CrazyGames developer dashboard session only when a live review-state check is needed; do not re-upload unless moderation asks for a change.</li><li>Submit Neon Lane Dash to Yandex Games second because the build now includes Yandex SDK v2 lifecycle and gated ad hooks.</li><li>Monitor Neon Lane Dash on Playgama because it is already submitted and under review; unblock GamePix only with owner-written non-AI description copy.</li><li>Submit the clean portal ZIP to Kongregate/Newgrounds-style portals when a platform rejects third-party ad SDKs, external links, or remote telemetry.</li><li>Keep Upload Limit Panic ready as a second submission package, but avoid submitting multiple games to the same reviewing account until Neon receives a first moderation signal.</li><li>Use Lagged and GameFlare as lower-friction secondary tests if the first submissions are delayed by account or moderation gates.</li><li>Create itch.io mirrors only for public browser-play proof and feedback; do not treat itch as the primary ad route.</li></ul>
+            <ul><li>Restore the CrazyGames developer dashboard session only when a live review-state check is needed; do not re-upload unless moderation asks for a change.</li><li>Submit Neon Lane Dash to Yandex Games second because the build now includes Yandex SDK v2 lifecycle and gated ad hooks.</li><li>Monitor Neon Lane Dash on Playgama because it is already submitted and under review; unblock GamePix only with owner-written non-AI description copy.</li><li>Submit the clean portal ZIP to Kongregate/Newgrounds-style portals when a platform rejects third-party ad SDKs, external links, or remote telemetry.</li><li>Keep Upload Limit Panic ready as a second submission package, but avoid submitting multiple games to the same reviewing account until Neon receives a first moderation signal.</li><li>Use Lagged and GameFlare as lower-friction secondary tests if the first submissions are delayed by account or moderation gates.</li><li>Use the public portal submission pack as a single source for clean ZIP links, playable demos, release notes, and manual-consent backup candidates.</li><li>Create itch.io mirrors only for public browser-play proof and feedback; do not treat itch as the primary ad route.</li></ul>
           </article>
           <article class="panel">
             <h3>Parked routes</h3>
-            <ul><li>GameDistribution remains a later distributor test after CrazyGames, Yandex, Playgama, GamePix, and clean-portal submissions because dashboard gameId, legal consent, and manual submission are still required even though the SDK adapter is now present.</li><li>Poki remains a later high-upside quality target because web exclusivity may conflict with broad nonexclusive distribution.</li><li>Douyin mini-game is a later port because it needs extra account-side setup, domestic platform packaging, and local compliance review.</li><li>Bilibili mini-game/video routes are lower priority because they require more creator operation and have a weaker no-sales advertising loop for this project.</li><li>AdSense on a free subdomain remains a utility-site validation path, but it is not the fastest zero-domain first-revenue path.</li></ul>
+            <ul><li>GameSnacks is a high-quality later route because it requires a dedicated GameSnacks SDK adapter, game.json, rights/compliance review, and licensing agreement.</li><li>GameDistribution remains a later distributor test after CrazyGames, Yandex, Playgama, GamePix, and clean-portal submissions because dashboard gameId, legal consent, and manual submission are still required even though the SDK adapter is now present.</li><li>Poki remains a later high-upside quality target because web exclusivity may conflict with broad nonexclusive distribution.</li><li>InstGame, GameTwiz, BizziBeeArcade, BlurryGames, and PLRun are manual-consent backup portals because smaller forms can request developer identity, email, rights confirmation, revenue split agreement, or payout follow-up.</li><li>GameMonetize is a watchlist route only because public claims vary and reputation/terms should be rechecked before any SDK integration or upload.</li><li>Douyin mini-game is a later port because it needs extra account-side setup, domestic platform packaging, and local compliance review.</li><li>Bilibili mini-game/video routes are lower priority because they require more creator operation and have a weaker no-sales advertising loop for this project.</li><li>AdSense on a free subdomain remains a utility-site validation path, but it is not the fastest zero-domain first-revenue path.</li></ul>
           </article>
         </div>
       </section>
@@ -168,6 +168,62 @@
             <p><strong>Current gate:</strong> Poki is not the immediate route. Official docs say Poki prefers Web Exclusive deals and requires mandatory requirements plus SDK after acceptance.</p>
             <p><a class="button" href="https://developers.poki.com/">Open Poki</a></p>
             <p><a href="https://sdk.poki.com/deals.html">Open official docs</a></p>
+          </article>
+<article class="panel">
+            <h3>12. GameSnacks</h3>
+            <p>High-quality Google-owned HTML5 distribution route with real ad revenue infrastructure, but it is stricter than small portals and requires SDK/package compliance before submission.</p>
+            <p><strong>Account:</strong> GameSnacks developer access, GameSnacks SDK integration, game.json package, licensing agreement, and AdSense-linked earnings later.</p>
+            <p><strong>Current gate:</strong> Later quality route. Current builds need a dedicated GameSnacks adapter, game.json package, and requirements review before any submission claim.</p>
+            <p><a class="button" href="https://developers.google.com/gamesnacks">Open GameSnacks</a></p>
+            <p><a href="https://developers.google.com/gamesnacks/developer/requirements">Open official docs</a></p>
+          </article>
+<article class="panel">
+            <h3>13. InstGame</h3>
+            <p>Low-friction portal candidate: public FAQ says developers can upload HTML5/WebGL/packaged builds, basic distribution does not require SDK integration, and approval is typically 24-48 hours.</p>
+            <p><strong>Account:</strong> Free developer account and upload/review flow.</p>
+            <p><strong>Current gate:</strong> Research-confirmed candidate only. Do not auto-create an account or submit contact/payout data without owner approval.</p>
+            <p><a class="button" href="https://instgame.com/">Open InstGame</a></p>
+            <p><a href="https://instgame.com/about">Open official docs</a></p>
+          </article>
+<article class="panel">
+            <h3>14. PLRun</h3>
+            <p>Parked low-friction candidate. The current site is live and links to a developer portal, but the developer page returned 410 in the latest probe, so it should not receive an automatic submission.</p>
+            <p><strong>Account:</strong> Contact form or developer portal if it returns to service; payout details only after acceptance.</p>
+            <p><strong>Current gate:</strong> Developer portal returned 410 on 2026-06-03 while homepage/contact stayed live. Park until the portal is reachable or a human reply confirms the upload route.</p>
+            <p><a class="button" href="https://plrun.com/contact/">Open PLRun</a></p>
+            <p><a href="https://plrun.com/">Open official docs</a></p>
+          </article>
+<article class="panel">
+            <h3>15. GameTwiz</h3>
+            <p>Low-friction candidate: public developer portal states HTML5 games can be reviewed in 24-48 hours, file size should be under 50MB, and approved games use revenue share.</p>
+            <p><strong>Account:</strong> Developer application form and monthly payout setup after approval.</p>
+            <p><strong>Current gate:</strong> Manual form gate. Do not submit until owner approves sending name/email and agreement confirmations.</p>
+            <p><a class="button" href="https://www.gametwiz.com/developers">Open GameTwiz</a></p>
+            <p><a href="https://www.gametwiz.com/developers">Open official docs</a></p>
+          </article>
+<article class="panel">
+            <h3>16. BizziBeeArcade</h3>
+            <p>Low-friction form candidate: public page says HTML5/WebGL games can be submitted for review, the platform handles hosting/ads/marketing, and developers keep 75% of ad revenue.</p>
+            <p><strong>Account:</strong> Submission form with developer name, email, rights confirmation, and revenue split agreement.</p>
+            <p><strong>Current gate:</strong> Manual owner-consent gate because the form asks for identity/contact and agreement confirmation.</p>
+            <p><a class="button" href="https://www.bizzibeearcade.com/submit-game.html">Open BizziBeeArcade</a></p>
+            <p><a href="https://www.bizzibeearcade.com/submit-game.html">Open official docs</a></p>
+          </article>
+<article class="panel">
+            <h3>17. BlurryGames</h3>
+            <p>Niche family-safe portal candidate: developer page states 50/50 ad revenue split, rewarded/display ads, dashboard stats, PayPal or bank transfer payout after $100, and strict child-safety rules.</p>
+            <p><strong>Account:</strong> Developer submission/contact, SDK/compliance review, and PayPal or bank transfer only after accepted earnings.</p>
+            <p><strong>Current gate:</strong> Manual review route. The child-safety bar is stricter than our current broad-arcade package, so submit only after a compliance pass.</p>
+            <p><a class="button" href="https://www.blurrygames.com/developers/">Open BlurryGames</a></p>
+            <p><a href="https://www.blurrygames.com/developers/">Open official docs</a></p>
+          </article>
+<article class="panel">
+            <h3>18. GameMonetize</h3>
+            <p>Broad HTML5 distribution candidate with public developer pages and ad-revenue claims, but public information is inconsistent across .com/.co pages and community discussion raises trust/commercial caution.</p>
+            <p><strong>Account:</strong> Developer account, SDK/API integration, and payment setup if accepted.</p>
+            <p><strong>Current gate:</strong> Watchlist only, not an automatic submission target. Use after mature-platform and safer low-friction candidates are exhausted.</p>
+            <p><a class="button" href="https://gamemonetize.co/developers">Open GameMonetize</a></p>
+            <p><a href="https://gamemonetize.com/blog?category=monetize">Open official docs</a></p>
           </article>
         </div>
       </section>
@@ -281,6 +337,48 @@
               <td>Developer application, Accepted game entry, Poki SDK, Mandatory requirements, Possibly web-exclusive deal terms</td>
               <td>Poki SDK and ad break implementation should be separate and only after acceptance; do not risk existing nonexclusive platform submissions.</td>
             </tr>
+<tr>
+              <td>GameSnacks</td>
+              <td>Neon Lane Dash</td>
+              <td>Game bundle, game.json metadata, Marketing assets, GameSnacks SDK, Ad interface opportunities, Rights clearance, English content, Licensing agreement</td>
+              <td>GameSnacks ads must happen through the GameSnacks SDK at natural breaks or optional rewarded moments; no other ads, payments, sponsorships, or external promotion inside the game.</td>
+            </tr>
+<tr>
+              <td>InstGame</td>
+              <td>Neon Lane Dash, Upload Limit Panic</td>
+              <td>Developer account, HTML5/WebGL/package upload, Title, Description, Screenshots, Quality review, Payout details after earnings</td>
+              <td>Use the clean portal ZIP unless InstGame asks for a platform-specific SDK; do not include standalone ad calls or external promotion.</td>
+            </tr>
+<tr>
+              <td>PLRun</td>
+              <td>Neon Lane Dash, Upload Limit Panic</td>
+              <td>Contact form, Playable link, Clean ZIP link if requested, Title, Description, Assets, Developer email, Manual review</td>
+              <td>Use only the clean portal ZIP if PLRun reopens a developer upload route; do not include standalone ad calls or payout details in the first contact.</td>
+            </tr>
+<tr>
+              <td>GameTwiz</td>
+              <td>Neon Lane Dash, Upload Limit Panic</td>
+              <td>Self-contained HTML5 package, No external dependencies/API calls, Title, Description, Assets, Developer application, Original/licensed content confirmation</td>
+              <td>Use the clean portal ZIP because GameTwiz asks for self-contained packages and no external dependencies or API calls.</td>
+            </tr>
+<tr>
+              <td>BizziBeeArcade</td>
+              <td>Neon Lane Dash, Upload Limit Panic</td>
+              <td>Developer name, Email, Game title, Genre, Platform support, Description, Game URL/demo link, Rights confirmation, Revenue split agreement</td>
+              <td>Submit only the playable demo and clean portal package. Keep payout details out of the initial form and only use official dashboard/payment flow if accepted.</td>
+            </tr>
+<tr>
+              <td>BlurryGames</td>
+              <td>Neon Lane Dash</td>
+              <td>HTML5/WebGL package, File size compliance, No external ads/tracking, Family-safe content, SDK review, Contact/submission details</td>
+              <td>Only use this if the game is clearly family-safe and stripped of external ads/tracking; their SDK should handle rewarded/display ads.</td>
+            </tr>
+<tr>
+              <td>GameMonetize</td>
+              <td>Neon Lane Dash</td>
+              <td>Developer signup, SDK/API integration, HTML5 game, Assets, Payment method after acceptance, Terms review</td>
+              <td>Do not integrate or upload until terms, payout identity, SDK behavior, and reputation risk are reviewed against safer candidates.</td>
+            </tr>
           </tbody>
         </table>
       </section>
@@ -294,9 +392,9 @@
           <li>If both are rejected for quality, improve controls and visual feedback before building a third game.</li>
         </ul>
         <p><strong>Money gate:</strong> The goal is not complete until at least one platform accepts a game, real plays are visible in platform analytics, ad monetization is enabled, and revenue or payout balance is verified.</p>
-        <p><strong>Account checklist:</strong> CrazyGames developer account login to submit the ZIP and later complete payout details. Yandex Games publisher account login to create the game card, upload the archive, and later complete payment details. itch.io creator account only if we want a free browser mirror. Douyin/Bilibili accounts only after the HTML5 platform route gives a signal worth porting. Playgama developer portal account and GamePix Dashboard account are the next-best low-cost accounts after CrazyGames/Yandex; both can use the current release ZIPs. Lagged, GameFlare, and GameDistribution accounts or contact submissions are useful if primary platform moderation stalls. Kongregate and Newgrounds accounts can use the clean portal ZIP when third-party SDKs or external links are not allowed.</p>
+        <p><strong>Account checklist:</strong> CrazyGames developer account login to submit the ZIP and later complete payout details. Yandex Games publisher account login to create the game card, upload the archive, and later complete payment details. itch.io creator account only if we want a free browser mirror. Douyin/Bilibili accounts only after the HTML5 platform route gives a signal worth porting. Playgama developer portal account and GamePix Dashboard account are the next-best low-cost accounts after CrazyGames/Yandex; both can use the current release ZIPs. Lagged, GameFlare, and GameDistribution accounts or contact submissions are useful if primary platform moderation stalls. Kongregate and Newgrounds accounts can use the clean portal ZIP when third-party SDKs or external links are not allowed. GameSnacks, InstGame, GameTwiz, BizziBeeArcade, BlurryGames, PLRun, and GameMonetize require separate account/contact consent before any identity, rights, revenue split, or payout information is submitted.</p>
         <ul>
-          <li>CrazyGames Basic Launch disables ads and revenue share at first, and ads must be requested only through the CrazyGames SDK.</li><li>CrazyGames quality guidance emphasizes quick onboarding, clear goals, responsive controls, and visually consistent game presentation.</li><li>Yandex upload docs require SDK connection, a developer account in the Console, a separate draft per game, and moderation submission.</li><li>Yandex monetization docs describe internal advertising, interstitial blocks, rewarded blocks, sticky banners, payments, and statistics.</li><li>Playgama describes no upfront costs, HTML5 ZIP upload, Bridge SDK integration, partner distribution, ad/IAP monetization, revenue share, and withdrawal methods.</li><li>GamePix describes account creation, lightweight SDK integration, HTML5 hosting, QA, partner distribution, and a 45% developer revenue share.</li><li>Playgama Plain JS docs require Bridge initialization, game_ready messaging, pause/audio state handling, interstitials at natural pauses, and rewarded-state confirmation before granting a reward.</li><li>GamePix public SDK exposes gameLoading, gameLoaded, ping, pause, and resume callbacks; the current builds integrate those lifecycle hooks without guessing undocumented ad calls.</li><li>GameDistribution SDK docs require GD_OPTIONS with dashboard gameId, pause/resume handling, user-input ad calls, and SDK_REWARDED_WATCH_COMPLETE before granting rewarded benefits.</li><li>Lagged advertises developer game submissions and 50% revenue share with Google AdSense.</li><li>GameFlare says it accepts HTML5 games, can review playable early-access games, offers free hosting, and pays monthly after a 50 EUR minimum.</li><li>Kongregate submission guidance accepts browser-playable game uploads and is conservative about third-party ads or sponsorships inside uploaded games.</li><li>Newgrounds is a clean HTML5 community-hosted route; use it for no-domain discovery and feedback rather than treating it as guaranteed revenue.</li><li>Poki documentation says SDK integration is mandatory after acceptance and that Poki prefers Web Exclusive deals.</li>
+          <li>CrazyGames Basic Launch disables ads and revenue share at first, and ads must be requested only through the CrazyGames SDK.</li><li>CrazyGames quality guidance emphasizes quick onboarding, clear goals, responsive controls, and visually consistent game presentation.</li><li>Yandex upload docs require SDK connection, a developer account in the Console, a separate draft per game, and moderation submission.</li><li>Yandex monetization docs describe internal advertising, interstitial blocks, rewarded blocks, sticky banners, payments, and statistics.</li><li>Playgama describes no upfront costs, HTML5 ZIP upload, Bridge SDK integration, partner distribution, ad/IAP monetization, revenue share, and withdrawal methods.</li><li>GamePix describes account creation, lightweight SDK integration, HTML5 hosting, QA, partner distribution, and a 45% developer revenue share.</li><li>Playgama Plain JS docs require Bridge initialization, game_ready messaging, pause/audio state handling, interstitials at natural pauses, and rewarded-state confirmation before granting a reward.</li><li>GamePix public SDK exposes gameLoading, gameLoaded, ping, pause, and resume callbacks; the current builds integrate those lifecycle hooks without guessing undocumented ad calls.</li><li>GameDistribution SDK docs require GD_OPTIONS with dashboard gameId, pause/resume handling, user-input ad calls, and SDK_REWARDED_WATCH_COMPLETE before granting rewarded benefits.</li><li>Lagged advertises developer game submissions and 50% revenue share with Google AdSense.</li><li>GameFlare says it accepts HTML5 games, can review playable early-access games, offers free hosting, and pays monthly after a 50 EUR minimum.</li><li>Kongregate submission guidance accepts browser-playable game uploads and is conservative about third-party ads or sponsorships inside uploaded games.</li><li>Newgrounds is a clean HTML5 community-hosted route; use it for no-domain discovery and feedback rather than treating it as guaranteed revenue.</li><li>Poki documentation says SDK integration is mandatory after acceptance and that Poki prefers Web Exclusive deals.</li><li>GameSnacks requirements require a compliant package, game.json, SDK integration, marketing assets, rights clearance, and ad opportunities managed through the GameSnacks SDK.</li><li>InstGame public pages describe free developer publishing, 24-48 hour approval, zero upfront fees, no lock-in, and 70-80% developer revenue share.</li><li>GameTwiz developer portal describes HTML5 self-contained packages, 24-48 hour quality review, 70% revenue share, monthly payments, and a $50 minimum payout.</li><li>BizziBeeArcade&#39;s submit page asks for developer identity/contact, game metadata, demo link, rights confirmation, and revenue split agreement while advertising a 75% developer ad-revenue share.</li><li>BlurryGames developer page describes HTML5/WebGL publishing, 50/50 ad revenue split, rewarded/display ads, child-safety compliance, and PayPal or bank transfer after $100.</li><li>GameMonetize public pages describe HTML5 distribution and 45% revenue share, but it remains a watchlist candidate because public claims and trust signals need extra review.</li><li>PLRun homepage/contact is live, but the current developer portal returned 410 on 2026-06-03, so it is parked until the upload route is restored.</li>
         </ul>
       </section>
     </main>

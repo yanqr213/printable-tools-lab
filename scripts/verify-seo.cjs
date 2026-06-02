@@ -64,6 +64,8 @@ else {
   if (!llms.includes(siteUrl("platform-submit-cockpit.json").replace(/\/$/, ""))) failures.push("llms.txt missing platform submit cockpit JSON URL.");
   if (!llms.includes(siteUrl("platform-outreach-tracker"))) failures.push("llms.txt missing platform outreach tracker URL.");
   if (!llms.includes(siteUrl("platform-outreach-tracker.json").replace(/\/$/, ""))) failures.push("llms.txt missing platform outreach tracker JSON URL.");
+  if (!llms.includes(siteUrl("portal-submission-pack"))) failures.push("llms.txt missing portal submission pack URL.");
+  if (!llms.includes(siteUrl("portal-submission-pack.json").replace(/\/$/, ""))) failures.push("llms.txt missing portal submission pack JSON URL.");
   if (!llms.includes(siteUrl("zero-cost-monetization-map"))) failures.push("llms.txt missing zero-cost monetization map URL.");
   if (!llms.includes(siteUrl("zero-cost-monetization-map.json").replace(/\/$/, ""))) failures.push("llms.txt missing zero-cost monetization map JSON URL.");
   if (!llms.includes("https://upload-limit-panic.pages.dev/")) failures.push("llms.txt missing zero-domain game experiment URL.");
@@ -250,7 +252,7 @@ else {
   if (!html.includes("HTML5 platform submit queue")) failures.push("Platform submit queue missing heading.");
   if (!html.includes("CrazyGames")) failures.push("Platform submit queue missing CrazyGames.");
   if (!html.includes("Yandex Games")) failures.push("Platform submit queue missing Yandex Games.");
-  for (const platform of ["Playgama", "GamePix", "Lagged", "GameFlare", "Kongregate", "Newgrounds", "GameDistribution", "Poki"]) {
+  for (const platform of ["Playgama", "GamePix", "Lagged", "GameFlare", "Kongregate", "Newgrounds", "GameDistribution", "Poki", "GameSnacks", "InstGame", "GameTwiz", "BizziBeeArcade", "BlurryGames", "GameMonetize", "PLRun"]) {
     if (!html.includes(platform)) failures.push(`Platform submit queue missing ${platform}.`);
   }
   if (!html.includes("Neon Lane Dash")) failures.push("Platform submit queue missing Neon Lane Dash.");
@@ -274,9 +276,9 @@ else {
   if (!data.strategy || !Array.isArray(data.strategy.immediateRoute)) failures.push("platform-submit-queue.json missing zero-domain strategy.");
   if (!data.strategy || !String(data.strategy.moneyGate || "").includes("revenue")) failures.push("platform-submit-queue.json missing revenue money gate.");
   if (!Array.isArray(data.strategy.officialEvidence) || data.strategy.officialEvidence.length < 3) failures.push("platform-submit-queue.json missing official evidence notes.");
-  if (!Array.isArray(data.queue) || data.queue.length < 11) failures.push("platform-submit-queue.json missing expanded platform queue.");
+  if (!Array.isArray(data.queue) || data.queue.length < 18) failures.push("platform-submit-queue.json missing expanded platform queue.");
   if (!data.queue.some((item) => item.platform === "Yandex Games" && String(item.submissionUrl).includes("games.yandex.com/console"))) failures.push("platform-submit-queue.json missing corrected Yandex Console URL.");
-  for (const platform of ["Playgama", "GamePix", "Lagged", "GameFlare", "Kongregate", "Newgrounds", "GameDistribution", "Poki"]) {
+  for (const platform of ["Playgama", "GamePix", "Lagged", "GameFlare", "Kongregate", "Newgrounds", "GameDistribution", "Poki", "GameSnacks", "InstGame", "GameTwiz", "BizziBeeArcade", "BlurryGames", "GameMonetize", "PLRun"]) {
     if (!data.queue.some((item) => item.platform === platform)) failures.push(`platform-submit-queue.json missing ${platform}.`);
   }
   if (!Array.isArray(data.games) || data.games.length < 2) failures.push("platform-submit-queue.json missing game assets.");
@@ -346,6 +348,37 @@ else {
   if (!String(data.completionGate || "").includes("verified revenue")) failures.push("platform-outreach-tracker.json missing revenue completion gate.");
 }
 
+const portalSubmissionPackFile = path.join(root, "portal-submission-pack", "index.html");
+if (!fs.existsSync(portalSubmissionPackFile)) failures.push("Missing portal submission pack page.");
+else {
+  const html = fs.readFileSync(portalSubmissionPackFile, "utf8");
+  if (!html.includes("HTML5 game portal submission pack")) failures.push("Portal submission pack missing heading.");
+  if (!html.includes("Candidate portal research")) failures.push("Portal submission pack missing candidate research.");
+  if (!html.includes("Manual gates and money gate")) failures.push("Portal submission pack missing manual gates.");
+  for (const platform of ["GameSnacks", "InstGame", "GameTwiz", "BizziBeeArcade", "BlurryGames", "GameMonetize", "PLRun"]) {
+    if (!html.includes(platform)) failures.push(`Portal submission pack missing ${platform}.`);
+  }
+  if (!html.includes("portal-clean.zip")) failures.push("Portal submission pack missing clean portal ZIP links.");
+  if (!html.includes("review-readiness")) failures.push("Portal submission pack missing review-readiness links.");
+  if (!html.includes("/portal-submission-pack.json")) failures.push("Portal submission pack missing machine-readable JSON link.");
+  if (!sitemap.includes(`<loc>${siteUrl("portal-submission-pack")}</loc>`)) failures.push("Sitemap missing portal submission pack.");
+}
+
+const portalSubmissionPackJsonFile = path.join(root, "portal-submission-pack.json");
+if (!fs.existsSync(portalSubmissionPackJsonFile)) failures.push("Missing portal-submission-pack.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(portalSubmissionPackJsonFile, "utf8"));
+  const pack = data.pack || {};
+  if (!Array.isArray(pack.lowFrictionResearch) || pack.lowFrictionResearch.length < 7) failures.push("portal-submission-pack.json missing researched candidates.");
+  for (const platform of ["GameSnacks", "InstGame", "GameTwiz", "BizziBeeArcade", "BlurryGames", "GameMonetize", "PLRun"]) {
+    if (!pack.lowFrictionResearch?.some((item) => item.platform === platform)) failures.push(`portal-submission-pack.json missing ${platform}.`);
+  }
+  if (!Array.isArray(data.games) || data.games.length < 2) failures.push("portal-submission-pack.json missing playable games.");
+  if (!data.games.every((item) => String(item.cleanZipUrl || "").includes("portal-clean.zip"))) failures.push("portal-submission-pack.json missing clean ZIP assets.");
+  if (!Array.isArray(pack.candidatePolicy) || !pack.candidatePolicy.some((item) => String(item).includes("bank"))) failures.push("portal-submission-pack.json missing private-data safety policy.");
+  if (!String(data.completionGate || "").includes("visible revenue")) failures.push("portal-submission-pack.json missing visible revenue completion gate.");
+}
+
 const zeroCostMapFile = path.join(root, "zero-cost-monetization-map", "index.html");
 if (!fs.existsSync(zeroCostMapFile)) failures.push("Missing zero-cost monetization map page.");
 else {
@@ -411,11 +444,13 @@ else {
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("platform-submit-queue"))) failures.push("discovery.json missing platform submit queue page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("platform-submit-cockpit"))) failures.push("discovery.json missing platform submit cockpit page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("platform-outreach-tracker"))) failures.push("discovery.json missing platform outreach tracker page.");
+  if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("portal-submission-pack"))) failures.push("discovery.json missing portal submission pack page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("zero-cost-monetization-map"))) failures.push("discovery.json missing zero-cost monetization map page.");
   if (discovery.shareKit !== siteUrl("share-kit.json").replace(/\/$/, "")) failures.push("discovery.json missing share-kit.json URL.");
   if (discovery.platformSubmitQueue !== siteUrl("platform-submit-queue.json").replace(/\/$/, "")) failures.push("discovery.json missing platform-submit-queue.json URL.");
   if (discovery.platformSubmitCockpit !== siteUrl("platform-submit-cockpit.json").replace(/\/$/, "")) failures.push("discovery.json missing platform-submit-cockpit.json URL.");
   if (discovery.platformOutreachTracker !== siteUrl("platform-outreach-tracker.json").replace(/\/$/, "")) failures.push("discovery.json missing platform-outreach-tracker.json URL.");
+  if (discovery.portalSubmissionPack !== siteUrl("portal-submission-pack.json").replace(/\/$/, "")) failures.push("discovery.json missing portal-submission-pack.json URL.");
   if (discovery.zeroCostMonetizationMap !== siteUrl("zero-cost-monetization-map.json").replace(/\/$/, "")) failures.push("discovery.json missing zero-cost-monetization-map.json URL.");
   if (!discovery.distributionAssets || !Array.isArray(discovery.distributionAssets.campaignVideos) || discovery.distributionAssets.campaignVideos.length < 6) failures.push("discovery.json missing campaign video assets.");
   if (!discovery.distributionAssets || !String(discovery.distributionAssets.publicGist || "").includes("gist.github.com/yanqr213")) failures.push("discovery.json missing public Gist URL.");
@@ -423,6 +458,7 @@ else {
   if (!discovery.distributionAssets || discovery.distributionAssets.platformSubmitQueue !== siteUrl("platform-submit-queue")) failures.push("discovery.json missing platform submit queue URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.platformSubmitCockpit !== siteUrl("platform-submit-cockpit")) failures.push("discovery.json missing platform submit cockpit URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.platformOutreachTracker !== siteUrl("platform-outreach-tracker")) failures.push("discovery.json missing platform outreach tracker URL.");
+  if (!discovery.distributionAssets || discovery.distributionAssets.portalSubmissionPack !== siteUrl("portal-submission-pack")) failures.push("discovery.json missing portal submission pack URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.zeroCostMonetizationMap !== siteUrl("zero-cost-monetization-map")) failures.push("discovery.json missing zero-cost monetization map URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.zeroDomainGame !== "https://upload-limit-panic.pages.dev/") failures.push("discovery.json missing zero-domain game URL.");
   if (!discovery.distributionAssets || !Array.isArray(discovery.distributionAssets.zeroDomainGames) || discovery.distributionAssets.zeroDomainGames.length < 2) failures.push("discovery.json missing zero-domain game list.");

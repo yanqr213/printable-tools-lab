@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -140,6 +140,9 @@ if (!headers.includes("/platform-outreach-tracker.json")) {
 if (!headers.includes("/platform-submit-cockpit.json")) {
   fs.appendFileSync(headersPath, "\n/platform-submit-cockpit.json\n  Content-Type: application/json; charset=utf-8\n");
 }
+if (!headers.includes("/portal-submission-pack.json")) {
+  fs.appendFileSync(headersPath, "\n/portal-submission-pack.json\n  Content-Type: application/json; charset=utf-8\n");
+}
 if (!headers.includes("/zero-cost-monetization-map.json")) {
   fs.appendFileSync(headersPath, "\n/zero-cost-monetization-map.json\n  Content-Type: application/json; charset=utf-8\n");
 }
@@ -245,6 +248,18 @@ const platformSubmitCockpitJson = {
 };
 fs.writeFileSync(path.join(root, "platform-submit-cockpit.json"), `${JSON.stringify(platformSubmitCockpitJson, null, 2)}\n`);
 
+const portalSubmissionPackJson = {
+  name: "HTML5 Game Portal Submission Pack",
+  generatedAt: generatedAtIso,
+  canonical: siteUrl("portal-submission-pack"),
+  pack: PORTAL_SUBMISSION_PACK,
+  games: ZERO_DOMAIN_GAME_EXPERIMENTS,
+  platformQueue: PLATFORM_SUBMIT_QUEUE,
+  nextAction: "Keep submitted CrazyGames/Playgama routes monitored, then use the public submission pack to approach manual-consent backup portals without exposing payout or private identity details automatically.",
+  completionGate: PORTAL_SUBMISSION_PACK.completionGate,
+};
+fs.writeFileSync(path.join(root, "portal-submission-pack.json"), `${JSON.stringify(portalSubmissionPackJson, null, 2)}\n`);
+
 const zeroCostMonetizationMapJson = {
   name: "Zero-Cost Monetization Map",
   generatedAt: generatedAtIso,
@@ -276,6 +291,7 @@ const llms = [
   `- HTML5 platform submit queue: ${siteUrl("platform-submit-queue")}`,
   `- HTML5 platform submit cockpit: ${siteUrl("platform-submit-cockpit")}`,
   `- HTML5 platform outreach tracker: ${siteUrl("platform-outreach-tracker")}`,
+  `- HTML5 game portal submission pack: ${siteUrl("portal-submission-pack")}`,
   `- Zero-cost monetization map: ${siteUrl("zero-cost-monetization-map")}`,
   `- Guides index: ${siteUrl("guides")}`,
   `- Sitemap: ${fileUrl("sitemap.xml")}`,
@@ -288,6 +304,7 @@ const llms = [
   `- Machine-readable platform submit queue: ${fileUrl("platform-submit-queue.json")}`,
   `- Machine-readable platform submit cockpit: ${fileUrl("platform-submit-cockpit.json")}`,
   `- Machine-readable platform outreach tracker: ${fileUrl("platform-outreach-tracker.json")}`,
+  `- Machine-readable portal submission pack: ${fileUrl("portal-submission-pack.json")}`,
   `- Machine-readable zero-cost monetization map: ${fileUrl("zero-cost-monetization-map.json")}`,
   ...(gistDiscovery?.htmlUrl ? [`- Public Gist share kit: ${gistDiscovery.htmlUrl}`] : []),
   ...(issueDiscovery?.issueUrl ? [`- Public GitHub growth issue: ${issueDiscovery.issueUrl}`] : []),
@@ -330,8 +347,9 @@ const discoveryIndex = {
   platformSubmitQueue: fileUrl("platform-submit-queue.json"),
   platformSubmitCockpit: fileUrl("platform-submit-cockpit.json"),
   platformOutreachTracker: fileUrl("platform-outreach-tracker.json"),
+  portalSubmissionPack: fileUrl("portal-submission-pack.json"),
   zeroCostMonetizationMap: fileUrl("zero-cost-monetization-map.json"),
-  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   distributionAssets: {
     shareKit: siteUrl("share-kit"),
     shareKitJson: fileUrl("share-kit.json"),
@@ -341,6 +359,8 @@ const discoveryIndex = {
     platformSubmitCockpitJson: fileUrl("platform-submit-cockpit.json"),
     platformOutreachTracker: siteUrl("platform-outreach-tracker"),
     platformOutreachTrackerJson: fileUrl("platform-outreach-tracker.json"),
+    portalSubmissionPack: siteUrl("portal-submission-pack"),
+    portalSubmissionPackJson: fileUrl("portal-submission-pack.json"),
     zeroCostMonetizationMap: siteUrl("zero-cost-monetization-map"),
     zeroCostMonetizationMapJson: fileUrl("zero-cost-monetization-map.json"),
     distributionPack: fileUrl("DISTRIBUTION.md"),

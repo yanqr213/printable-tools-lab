@@ -194,7 +194,201 @@ const PLATFORM_SUBMIT_QUEUE = [
     adPolicyNote: "Poki SDK and ad break implementation should be separate and only after acceptance; do not risk existing nonexclusive platform submissions.",
     currentGate: "Poki is not the immediate route. Official docs say Poki prefers Web Exclusive deals and requires mandatory requirements plus SDK after acceptance.",
   },
+  {
+    platform: "GameSnacks",
+    priority: 12,
+    accountRequired: "GameSnacks developer access, GameSnacks SDK integration, game.json package, licensing agreement, and AdSense-linked earnings later.",
+    rationale: "High-quality Google-owned HTML5 distribution route with real ad revenue infrastructure, but it is stricter than small portals and requires SDK/package compliance before submission.",
+    submitGames: ["Neon Lane Dash"],
+    submissionUrl: "https://developers.google.com/gamesnacks",
+    portalUrl: "https://developers.google.com/gamesnacks",
+    docsUrl: "https://developers.google.com/gamesnacks/developer/requirements",
+    requiredFields: ["Game bundle", "game.json metadata", "Marketing assets", "GameSnacks SDK", "Ad interface opportunities", "Rights clearance", "English content", "Licensing agreement"],
+    adPolicyNote: "GameSnacks ads must happen through the GameSnacks SDK at natural breaks or optional rewarded moments; no other ads, payments, sponsorships, or external promotion inside the game.",
+    currentGate: "Later quality route. Current builds need a dedicated GameSnacks adapter, game.json package, and requirements review before any submission claim.",
+  },
+  {
+    platform: "InstGame",
+    priority: 13,
+    accountRequired: "Free developer account and upload/review flow.",
+    rationale: "Low-friction portal candidate: public FAQ says developers can upload HTML5/WebGL/packaged builds, basic distribution does not require SDK integration, and approval is typically 24-48 hours.",
+    submitGames: ["Neon Lane Dash", "Upload Limit Panic"],
+    submissionUrl: "https://instgame.com/",
+    portalUrl: "https://instgame.com/",
+    docsUrl: "https://instgame.com/about",
+    requiredFields: ["Developer account", "HTML5/WebGL/package upload", "Title", "Description", "Screenshots", "Quality review", "Payout details after earnings"],
+    adPolicyNote: "Use the clean portal ZIP unless InstGame asks for a platform-specific SDK; do not include standalone ad calls or external promotion.",
+    currentGate: "Research-confirmed candidate only. Do not auto-create an account or submit contact/payout data without owner approval.",
+  },
+  {
+    platform: "PLRun",
+    priority: 14,
+    accountRequired: "Contact form or developer portal if it returns to service; payout details only after acceptance.",
+    rationale: "Parked low-friction candidate. The current site is live and links to a developer portal, but the developer page returned 410 in the latest probe, so it should not receive an automatic submission.",
+    submitGames: ["Neon Lane Dash", "Upload Limit Panic"],
+    submissionUrl: "https://plrun.com/contact/",
+    portalUrl: "https://plrun.com/",
+    docsUrl: "https://plrun.com/",
+    requiredFields: ["Contact form", "Playable link", "Clean ZIP link if requested", "Title", "Description", "Assets", "Developer email", "Manual review"],
+    adPolicyNote: "Use only the clean portal ZIP if PLRun reopens a developer upload route; do not include standalone ad calls or payout details in the first contact.",
+    currentGate: "Developer portal returned 410 on 2026-06-03 while homepage/contact stayed live. Park until the portal is reachable or a human reply confirms the upload route.",
+  },
+  {
+    platform: "GameTwiz",
+    priority: 15,
+    accountRequired: "Developer application form and monthly payout setup after approval.",
+    rationale: "Low-friction candidate: public developer portal states HTML5 games can be reviewed in 24-48 hours, file size should be under 50MB, and approved games use revenue share.",
+    submitGames: ["Neon Lane Dash", "Upload Limit Panic"],
+    submissionUrl: "https://www.gametwiz.com/developers",
+    portalUrl: "https://www.gametwiz.com/developers",
+    docsUrl: "https://www.gametwiz.com/developers",
+    requiredFields: ["Self-contained HTML5 package", "No external dependencies/API calls", "Title", "Description", "Assets", "Developer application", "Original/licensed content confirmation"],
+    adPolicyNote: "Use the clean portal ZIP because GameTwiz asks for self-contained packages and no external dependencies or API calls.",
+    currentGate: "Manual form gate. Do not submit until owner approves sending name/email and agreement confirmations.",
+  },
+  {
+    platform: "BizziBeeArcade",
+    priority: 16,
+    accountRequired: "Submission form with developer name, email, rights confirmation, and revenue split agreement.",
+    rationale: "Low-friction form candidate: public page says HTML5/WebGL games can be submitted for review, the platform handles hosting/ads/marketing, and developers keep 75% of ad revenue.",
+    submitGames: ["Neon Lane Dash", "Upload Limit Panic"],
+    submissionUrl: "https://www.bizzibeearcade.com/submit-game.html",
+    portalUrl: "https://www.bizzibeearcade.com/",
+    docsUrl: "https://www.bizzibeearcade.com/submit-game.html",
+    requiredFields: ["Developer name", "Email", "Game title", "Genre", "Platform support", "Description", "Game URL/demo link", "Rights confirmation", "Revenue split agreement"],
+    adPolicyNote: "Submit only the playable demo and clean portal package. Keep payout details out of the initial form and only use official dashboard/payment flow if accepted.",
+    currentGate: "Manual owner-consent gate because the form asks for identity/contact and agreement confirmation.",
+  },
+  {
+    platform: "BlurryGames",
+    priority: 17,
+    accountRequired: "Developer submission/contact, SDK/compliance review, and PayPal or bank transfer only after accepted earnings.",
+    rationale: "Niche family-safe portal candidate: developer page states 50/50 ad revenue split, rewarded/display ads, dashboard stats, PayPal or bank transfer payout after $100, and strict child-safety rules.",
+    submitGames: ["Neon Lane Dash"],
+    submissionUrl: "https://www.blurrygames.com/developers/",
+    portalUrl: "https://www.blurrygames.com/developers/",
+    docsUrl: "https://www.blurrygames.com/developers/",
+    requiredFields: ["HTML5/WebGL package", "File size compliance", "No external ads/tracking", "Family-safe content", "SDK review", "Contact/submission details"],
+    adPolicyNote: "Only use this if the game is clearly family-safe and stripped of external ads/tracking; their SDK should handle rewarded/display ads.",
+    currentGate: "Manual review route. The child-safety bar is stricter than our current broad-arcade package, so submit only after a compliance pass.",
+  },
+  {
+    platform: "GameMonetize",
+    priority: 18,
+    accountRequired: "Developer account, SDK/API integration, and payment setup if accepted.",
+    rationale: "Broad HTML5 distribution candidate with public developer pages and ad-revenue claims, but public information is inconsistent across .com/.co pages and community discussion raises trust/commercial caution.",
+    submitGames: ["Neon Lane Dash"],
+    submissionUrl: "https://gamemonetize.co/developers",
+    portalUrl: "https://gamemonetize.com/",
+    docsUrl: "https://gamemonetize.com/blog?category=monetize",
+    requiredFields: ["Developer signup", "SDK/API integration", "HTML5 game", "Assets", "Payment method after acceptance", "Terms review"],
+    adPolicyNote: "Do not integrate or upload until terms, payout identity, SDK behavior, and reputation risk are reviewed against safer candidates.",
+    currentGate: "Watchlist only, not an automatic submission target. Use after mature-platform and safer low-friction candidates are exhausted.",
+  },
 ];
+
+const PORTAL_SUBMISSION_PACK = {
+  generatedFrom: "2026-06-03 expanded HTML5 portal research",
+  purpose: "Public, copy-ready submission pack for zero-cost HTML5 game distribution. It exposes playable builds, release ZIPs, clean portal packages, demo assets, current submission status, and the safety rules for ad-funded portals.",
+  leadGame: "Neon Lane Dash",
+  backupGame: "Upload Limit Panic",
+  currentDecision: "Keep CrazyGames and Playgama as the active submitted/monitoring route, prepare Yandex/GameSnacks only when account and SDK gates are ready, and use InstGame, PLRun, GameTwiz, BizziBeeArcade, and BlurryGames as manual-consent backup portals instead of sending private details automatically.",
+  candidatePolicy: [
+    "Prefer official dashboards and established ad platforms before smaller form-only portals.",
+    "Small portal forms often request developer name, email, rights confirmation, or revenue-split agreement; those fields need owner consent.",
+    "Send only public game links, GitHub release links, ZIPs, icons, covers, demo videos, and review notes.",
+    "Keep bank, card, tax, Alipay, phone, API keys, and platform credentials inside official dashboards only.",
+    "If a portal forbids external ads, tracking, or links, submit the clean portal ZIP instead of SDK-adapter ZIPs.",
+    "Do not claim guaranteed revenue, guaranteed approval, or artificial traffic.",
+  ],
+  lowFrictionResearch: [
+    {
+      platform: "Lagged",
+      sourceUrl: "https://lagged.dev/",
+      submissionSignal: "Developer dashboard for submitting games to Lagged.com.",
+      monetizationSignal: "Public developer page advertises 50% revenue share with Google AdSense and SDK support for interstitials and reward ads.",
+      fit: "Good next account route if CrazyGames/Playgama review stalls.",
+      risk: "Requires developer account and AdSense-related setup; do not force ad views or clicks.",
+      action: "Prepare Neon Lane Dash clean package and SDK notes, then submit only through the official dashboard.",
+    },
+    {
+      platform: "GameSnacks",
+      sourceUrl: "https://developers.google.com/gamesnacks/developer/requirements",
+      submissionSignal: "Google's H5 platform requires a bundle with game files, marketing assets, game.json, and SDK integration.",
+      monetizationSignal: "GameSnacks monetizes games and shares revenue under its developer licensing agreement, with ads placed through the GameSnacks SDK.",
+      fit: "High-quality later route if we can make a stricter GameSnacks package.",
+      risk: "Not low-effort; requires SDK, packaging, rights, ad-opportunity, and content compliance.",
+      action: "Add a GameSnacks adapter only after the current platform reviews produce a quality signal.",
+    },
+    {
+      platform: "InstGame",
+      sourceUrl: "https://instgame.com/about",
+      submissionSignal: "Developer page describes free account, upload, metadata, screenshots, and 24-48 hour review.",
+      monetizationSignal: "Public page states zero upfront publishing fees and 70-80% revenue share to developers.",
+      fit: "Strong low-friction backup if owner approves account/contact use.",
+      risk: "Smaller portal; payout and traffic claims should be verified inside dashboard before relying on it.",
+      action: "Queue a manual submission using the clean portal ZIP and public release assets.",
+    },
+    {
+      platform: "PLRun",
+      sourceUrl: "https://plrun.com/contact/",
+      submissionSignal: "Homepage and contact page are live, but the current developer portal route returned 410 in the latest probe.",
+      monetizationSignal: "Not relied on in this pass because the developer portal was unavailable.",
+      fit: "Parked contact-only backup, not an immediate upload route.",
+      risk: "Unreachable developer portal means no automatic submission and no payout expectation.",
+      action: "Use only the contact page after a manual decision, and send public demo/release links only.",
+    },
+    {
+      platform: "GameTwiz",
+      sourceUrl: "https://www.gametwiz.com/developers",
+      submissionSignal: "Developer portal asks for HTML5 self-contained game packages under 50MB and 24-48 hour quality review.",
+      monetizationSignal: "Portal advertises a revenue sharing program, 70% revenue share, monthly payments, and $50 minimum payout.",
+      fit: "Potential fast-review backup for clean packages.",
+      risk: "Manual form and identity/contact consent; no external dependencies/API calls allowed.",
+      action: "Submit only the clean portal ZIP after owner approves contact and rights-confirmation fields.",
+    },
+    {
+      platform: "BizziBeeArcade",
+      sourceUrl: "https://www.bizzibeearcade.com/submit-game.html",
+      submissionSignal: "Submission form asks for developer name/email, game metadata, demo link, and rights confirmation.",
+      monetizationSignal: "Page advertises 75% developer share of ad revenue, with the platform handling hosting, ads, and marketing.",
+      fit: "Useful backup only if a simple form submission is acceptable.",
+      risk: "Small form-based portal with agreement checkbox; do not submit without owner consent.",
+      action: "Keep as manual owner-consent route; never send bank or Alipay details by form.",
+    },
+    {
+      platform: "BlurryGames",
+      sourceUrl: "https://www.blurrygames.com/developers/",
+      submissionSignal: "Developer page accepts HTML5/WebGL/Unity-WebGL games and describes strict technical/child-safety requirements.",
+      monetizationSignal: "Page says ad revenue is split 50/50, paid monthly via PayPal or bank transfer after $100.",
+      fit: "Family-safe portal candidate after content/compliance review.",
+      risk: "Stricter child-safety/COPPA/GDPR-K posture; current game must be reviewed before submission.",
+      action: "Run a family-safe compliance pass before any outreach.",
+    },
+    {
+      platform: "GameMonetize",
+      sourceUrl: "https://gamemonetize.co/developers",
+      submissionSignal: "Developer page describes SDK integration and HTML5 distribution.",
+      monetizationSignal: "Public pages mention revenue share and PayPal/bank transfer timing, but percentages vary across public pages.",
+      fit: "Watchlist only because it may distribute broadly but has trust/reputation uncertainty.",
+      risk: "Inconsistent public claims and community caution; avoid until safer portals are exhausted.",
+      action: "Do not integrate, upload, or provide payment identity until terms and reputation are rechecked.",
+    },
+  ],
+  notIncludedYet: [
+    "Gamevoi was not added because a current official upload/developer page could not be reliably verified in this research pass.",
+    "PLRun is present only as a parked contact route because its developer portal returned 410 during the latest probe.",
+    "Generic 'free game portal' mirrors are ignored unless they show official developer terms, contact identity, and payout route.",
+  ],
+  submissionRules: [
+    "Lead with Neon Lane Dash because it has broader reflex-arcade appeal than Upload Limit Panic.",
+    "Use Upload Limit Panic as a second differentiated backup after the first platform gives a moderation signal.",
+    "If the target portal forbids external calls, use the clean portal ZIP links and clean-package reports.",
+    "Mention that ads are platform-gated and standalone builds do not force or fake ad impressions.",
+    "Never paste AI-generated copy into a field that explicitly asks for non-AI or owner-written content.",
+  ],
+  completionGate: "Progress is real only when a platform accepts or publishes a game; goal completion still requires real plays, enabled compliant ads, and visible revenue or payout balance.",
+};
 
 const ZERO_DOMAIN_PLATFORM_STRATEGY = {
   currentDecision: "Use hosted HTML5 game platforms first instead of buying a custom domain. Platform distribution and platform-managed ads are the zero-upfront-cost path.",
@@ -204,6 +398,7 @@ const ZERO_DOMAIN_PLATFORM_STRATEGY = {
     "CrazyGames payout gate: Billing is handled through Tipalti; payment setup requires owner-only mobile 2-step verification, address, payment method, and tax forms after acceptance or payout eligibility.",
     "GamePix: logged-in dashboard reached the create-game form, but the description field explicitly asks for non-AI original copy, so owner-written 100-500 character English text is required before upload.",
     "Upload Limit Panic: backup game is now upgraded, deployed, and release-refreshed with Playgama ad QA gating, SDK storage, and bridge config support.",
+    "2026-06-03 platform expansion: GameSnacks, InstGame, GameTwiz, BizziBeeArcade, BlurryGames, GameMonetize, and PLRun were added as researched candidates, with PLRun parked because its developer portal returned 410.",
   ],
   whyNoDomainCanStillWork: [
     "CrazyGames and Yandex Games host approved HTML5 games inside their own catalogs, so discovery and ad serving do not require a custom domain.",
@@ -217,11 +412,15 @@ const ZERO_DOMAIN_PLATFORM_STRATEGY = {
     "Submit the clean portal ZIP to Kongregate/Newgrounds-style portals when a platform rejects third-party ad SDKs, external links, or remote telemetry.",
     "Keep Upload Limit Panic ready as a second submission package, but avoid submitting multiple games to the same reviewing account until Neon receives a first moderation signal.",
     "Use Lagged and GameFlare as lower-friction secondary tests if the first submissions are delayed by account or moderation gates.",
+    "Use the public portal submission pack as a single source for clean ZIP links, playable demos, release notes, and manual-consent backup candidates.",
     "Create itch.io mirrors only for public browser-play proof and feedback; do not treat itch as the primary ad route.",
   ],
   parkedRoutes: [
+    "GameSnacks is a high-quality later route because it requires a dedicated GameSnacks SDK adapter, game.json, rights/compliance review, and licensing agreement.",
     "GameDistribution remains a later distributor test after CrazyGames, Yandex, Playgama, GamePix, and clean-portal submissions because dashboard gameId, legal consent, and manual submission are still required even though the SDK adapter is now present.",
     "Poki remains a later high-upside quality target because web exclusivity may conflict with broad nonexclusive distribution.",
+    "InstGame, GameTwiz, BizziBeeArcade, BlurryGames, and PLRun are manual-consent backup portals because smaller forms can request developer identity, email, rights confirmation, revenue split agreement, or payout follow-up.",
+    "GameMonetize is a watchlist route only because public claims vary and reputation/terms should be rechecked before any SDK integration or upload.",
     "Douyin mini-game is a later port because it needs extra account-side setup, domestic platform packaging, and local compliance review.",
     "Bilibili mini-game/video routes are lower priority because they require more creator operation and have a weaker no-sales advertising loop for this project.",
     "AdSense on a free subdomain remains a utility-site validation path, but it is not the fastest zero-domain first-revenue path.",
@@ -234,6 +433,7 @@ const ZERO_DOMAIN_PLATFORM_STRATEGY = {
     "Playgama developer portal account and GamePix Dashboard account are the next-best low-cost accounts after CrazyGames/Yandex; both can use the current release ZIPs.",
     "Lagged, GameFlare, and GameDistribution accounts or contact submissions are useful if primary platform moderation stalls.",
     "Kongregate and Newgrounds accounts can use the clean portal ZIP when third-party SDKs or external links are not allowed.",
+    "GameSnacks, InstGame, GameTwiz, BizziBeeArcade, BlurryGames, PLRun, and GameMonetize require separate account/contact consent before any identity, rights, revenue split, or payout information is submitted.",
   ],
   officialEvidence: [
     "CrazyGames Basic Launch disables ads and revenue share at first, and ads must be requested only through the CrazyGames SDK.",
@@ -250,6 +450,13 @@ const ZERO_DOMAIN_PLATFORM_STRATEGY = {
     "Kongregate submission guidance accepts browser-playable game uploads and is conservative about third-party ads or sponsorships inside uploaded games.",
     "Newgrounds is a clean HTML5 community-hosted route; use it for no-domain discovery and feedback rather than treating it as guaranteed revenue.",
     "Poki documentation says SDK integration is mandatory after acceptance and that Poki prefers Web Exclusive deals.",
+    "GameSnacks requirements require a compliant package, game.json, SDK integration, marketing assets, rights clearance, and ad opportunities managed through the GameSnacks SDK.",
+    "InstGame public pages describe free developer publishing, 24-48 hour approval, zero upfront fees, no lock-in, and 70-80% developer revenue share.",
+    "GameTwiz developer portal describes HTML5 self-contained packages, 24-48 hour quality review, 70% revenue share, monthly payments, and a $50 minimum payout.",
+    "BizziBeeArcade's submit page asks for developer identity/contact, game metadata, demo link, rights confirmation, and revenue split agreement while advertising a 75% developer ad-revenue share.",
+    "BlurryGames developer page describes HTML5/WebGL publishing, 50/50 ad revenue split, rewarded/display ads, child-safety compliance, and PayPal or bank transfer after $100.",
+    "GameMonetize public pages describe HTML5 distribution and 45% revenue share, but it remains a watchlist candidate because public claims and trust signals need extra review.",
+    "PLRun homepage/contact is live, but the current developer portal returned 410 on 2026-06-03, so it is parked until the upload route is restored.",
   ],
   moneyGate: "The goal is not complete until at least one platform accepts a game, real plays are visible in platform analytics, ad monetization is enabled, and revenue or payout balance is verified.",
 };
@@ -2922,6 +3129,12 @@ const pages = [
     html: platformOutreachTrackerHtml(),
   },
   {
+    path: "portal-submission-pack",
+    title: "HTML5 Game Portal Submission Pack",
+    description: "Public submission pack for zero-cost HTML5 game distribution, including playable builds, clean ZIP packages, release assets, official platform research, ad-safety rules, and manual-consent gates.",
+    html: portalSubmissionPackHtml(),
+  },
+  {
     path: "zero-cost-monetization-map",
     title: "Zero-Cost Monetization Map",
     description: "Decision map for zero-domain monetization routes, including hosted HTML5 game platforms, Douyin and Bilibili mini-game ports, free subdomain sites, ad safety gates, and account requirements.",
@@ -3684,6 +3897,85 @@ function platformOutreachTrackerHtml() {
             <pre class="code-block">${escapeHtml(channel.body)}</pre>
           </article>`).join("\n")}
         </div>
+      </section>`;
+}
+
+function portalSubmissionPackHtml() {
+  const leadGame = ZERO_DOMAIN_GAME_EXPERIMENTS.find((game) => game.name === PORTAL_SUBMISSION_PACK.leadGame) || ZERO_DOMAIN_GAME_EXPERIMENTS[0];
+  return `
+      <section class="shell page-title section">
+        <a href="/platform-submit-cockpit/">Platform submit cockpit</a>
+        <h1>HTML5 game portal submission pack</h1>
+        <p>${escapeHtml(PORTAL_SUBMISSION_PACK.purpose)}</p>
+        <p><strong>Lead:</strong> ${escapeHtml(PORTAL_SUBMISSION_PACK.leadGame)} | <strong>Backup:</strong> ${escapeHtml(PORTAL_SUBMISSION_PACK.backupGame)}</p>
+        <p><a class="button" href="/portal-submission-pack.json">Open machine-readable pack</a> <a class="button secondary" href="${escapeHtml(leadGame?.cleanZipUrl || ZERO_DOMAIN_GAME_EXPERIMENT.cleanZipUrl)}">Download lead clean ZIP</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Current decision</h2>
+        <p>${escapeHtml(PORTAL_SUBMISSION_PACK.currentDecision)}</p>
+        <div class="grid-2">
+          <article class="panel">
+            <h3>Candidate policy</h3>
+            <ul>${PORTAL_SUBMISSION_PACK.candidatePolicy.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          </article>
+          <article class="panel">
+            <h3>Submission rules</h3>
+            <ul>${PORTAL_SUBMISSION_PACK.submissionRules.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          </article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Playable packages</h2>
+        <div class="grid-2">
+          ${ZERO_DOMAIN_GAME_EXPERIMENTS.map((game) => `<article class="panel">
+            <h3>${escapeHtml(game.name)}</h3>
+            <p>${escapeHtml(game.summary)}</p>
+            <ul>
+              <li><a href="${escapeHtml(game.url)}">Play live build</a></li>
+              <li><a href="${escapeHtml(game.cleanZipUrl)}">Download clean portal ZIP</a></li>
+              <li><a href="${escapeHtml(game.zipUrl)}">Download SDK-adapter ZIP</a></li>
+              <li><a href="${escapeHtml(game.demoVideoUrl)}">Demo MP4</a></li>
+              <li><a href="${escapeHtml(game.coverUrl)}">Cover image</a></li>
+              <li><a href="${escapeHtml(game.iconUrl)}">Icon image</a></li>
+              <li><a href="${escapeHtml(game.submissionCopyUrl)}">Submission copy pack</a></li>
+              <li><a href="${escapeHtml(game.reviewReadinessUrl)}">Review-readiness report</a></li>
+              <li><a href="${escapeHtml(game.cleanPackageReportUrl)}">Clean-package report</a></li>
+            </ul>
+          </article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Candidate portal research</h2>
+        <div class="grid-2">
+          ${PORTAL_SUBMISSION_PACK.lowFrictionResearch.map((candidate) => `<article class="panel">
+            <h3>${escapeHtml(candidate.platform)}</h3>
+            <p><strong>Submission signal:</strong> ${escapeHtml(candidate.submissionSignal)}</p>
+            <p><strong>Monetization signal:</strong> ${escapeHtml(candidate.monetizationSignal)}</p>
+            <p><strong>Fit:</strong> ${escapeHtml(candidate.fit)}</p>
+            <p><strong>Risk:</strong> ${escapeHtml(candidate.risk)}</p>
+            <p><strong>Action:</strong> ${escapeHtml(candidate.action)}</p>
+            <p><a class="button secondary" href="${escapeHtml(candidate.sourceUrl)}">Open source page</a></p>
+          </article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Submission queue snapshot</h2>
+        <table class="event-table">
+          <thead><tr><th>Priority</th><th>Platform</th><th>Gate</th><th>Submission entry</th></tr></thead>
+          <tbody>
+            ${PLATFORM_SUBMIT_QUEUE.map((item) => `<tr>
+              <td>${escapeHtml(item.priority)}</td>
+              <td>${escapeHtml(item.platform)}</td>
+              <td>${escapeHtml(item.currentGate || item.accountRequired)}</td>
+              <td><a href="${escapeHtml(item.submissionUrl)}">${escapeHtml(item.submissionUrl)}</a></td>
+            </tr>`).join("\n")}
+          </tbody>
+        </table>
+      </section>
+      <section class="shell section">
+        <h2>Manual gates and money gate</h2>
+        <ul>${PORTAL_SUBMISSION_PACK.notIncludedYet.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        <p><strong>Completion gate:</strong> ${escapeHtml(PORTAL_SUBMISSION_PACK.completionGate)}</p>
       </section>`;
 }
 
@@ -4969,4 +5261,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };

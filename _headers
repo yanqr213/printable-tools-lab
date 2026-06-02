@@ -74,3 +74,6 @@
 
 /zero-cost-monetization-map.json
   Content-Type: application/json; charset=utf-8
+
+/portal-submission-pack.json
+  Content-Type: application/json; charset=utf-8

@@ -1,5 +1,5 @@
 const { execFileSync } = require("child_process");
-const { HIGH_INTENT_TOOL_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, ZERO_COST_MONETIZATION_MAP, siteUrl, tools, SITE_SUMMARY } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, siteUrl, tools, SITE_SUMMARY } = require("./seo-content.cjs");
 
 const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || "";
 if (!token) {
@@ -135,6 +135,7 @@ function releaseBody() {
     `- [Machine-readable share-kit.json](${siteUrl("share-kit.json").replace(/\/$/, "")})`,
     ...externalDiscoveryLinks(),
     `- [HTML5 platform submit cockpit](${siteUrl("platform-submit-cockpit")})`,
+    `- [HTML5 portal submission pack](${siteUrl("portal-submission-pack")})`,
     `- [Zero-cost monetization map](${siteUrl("zero-cost-monetization-map")})`,
     ...ZERO_DOMAIN_GAME_EXPERIMENTS.flatMap((game) => [
       `- [${game.name} playable build](${game.url})`,
@@ -161,6 +162,8 @@ function releaseBody() {
     `- Last platform status update: ${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.lastUpdated}`,
     ...PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.submitted.map((item) => `- ${item}`),
     ...PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.readyBackup.map((item) => `- ${item}`),
+    `- Expanded backup portals: ${PORTAL_SUBMISSION_PACK.lowFrictionResearch.map((item) => item.platform).join(", ")}`,
+    `- Manual-consent rule: ${PORTAL_SUBMISSION_PACK.candidatePolicy[1]}`,
     `- Completion gate: ${ZERO_COST_MONETIZATION_MAP.moneyGate}`,
     "",
     "High-intent tool pages:",
