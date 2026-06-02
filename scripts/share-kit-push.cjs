@@ -15,10 +15,13 @@ function main() {
   const github = run("node", ["scripts/github-discovery.cjs"], { requireToken: true });
   const indexNowRaw = run("node", ["scripts/indexnow.cjs"], { allowFailure: true });
   const indexNowOutput = `${indexNowRaw.stdout}\n${indexNowRaw.stderr}`;
+  const indexNowAccepted = /IndexNow (accepted \d+ URL\(s\)|submitted|fallback submitted)/i.test(indexNowOutput);
+  const indexNowPartialWarning = /IndexNow did not accept pages\.dev|UserForbiddedToAccessSite/i.test(indexNowOutput);
   const indexNow = {
     ...indexNowRaw,
-    accepted: /IndexNow (submitted|fallback submitted)/i.test(indexNowOutput),
-    warning: /IndexNow key file is not reachable|fallback did not accept|failed/i.test(indexNowOutput),
+    accepted: indexNowAccepted,
+    partialWarning: indexNowPartialWarning,
+    warning: !indexNowAccepted && /IndexNow key file is not reachable|fallback did not accept|failed|did not accept/i.test(indexNowOutput),
   };
   const report = {
     generatedAt: new Date().toISOString(),
