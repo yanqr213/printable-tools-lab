@@ -208,6 +208,10 @@ npm.cmd run operate
 
 `operate` builds routes, verifies SEO, verifies ad safety, submits sitemaps, notifies IndexNow, monitors directory listings, probes Cloudflare and AdSense readiness, runs validation gates, and smoke-tests all tools. It writes `reports/operate-report.json`. Missing external credentials are recorded as blockers instead of pretending the step succeeded.
 
+## License
+
+PrintableTools Lab source code is released under the MIT License. Third-party browser libraries keep their own licenses in `assets/vendor/`.
+
 Refresh the public zero-budget share kit and GitHub discovery release:
 
 ```powershell
