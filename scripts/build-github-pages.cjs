@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, siteUrl, tools, landingPages } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENTS, siteUrl, tools, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
@@ -21,6 +21,22 @@ const highIntentToolDiscoveryRoutes = highIntentTools.map((tool) => ({
   url: pagesUrl(tool.path),
   mainUrl: siteUrl(tool.path),
 }));
+const gameDiscoveryRoutes = [
+  {
+    path: "html5-game-submission-pack",
+    title: "HTML5 Game Submission Pack",
+    description: "Zero-cost discovery mirror for free HTML5 game packages, clean portal ZIPs, demo videos, and platform ad review assets.",
+    url: pagesUrl("html5-game-submission-pack"),
+    mainUrl: siteUrl("portal-submission-pack"),
+  },
+  ...ZERO_DOMAIN_GAME_EXPERIMENTS.map((game) => ({
+    path: gameDiscoveryPath(game),
+    title: `${game.name} HTML5 game package`,
+    description: game.summary,
+    url: pagesUrl(gameDiscoveryPath(game)),
+    mainUrl: game.url,
+  })),
+];
 const discoveryRoutes = [
   { path: "", title: "Free PDF, Image, and QR Tools Directory", description: "A compact external discovery directory for PrintableTools Lab free no-signup PDF, image, and QR tools for small business, local promotion, image conversion, static QR codes, career documents, and everyday printables.", url: pagesBase },
   ...landingPages.map((page) => ({
@@ -31,6 +47,7 @@ const discoveryRoutes = [
     mainUrl: siteUrl(page.path),
   })),
   ...highIntentToolDiscoveryRoutes,
+  ...gameDiscoveryRoutes,
 ];
 
 const html = `<!doctype html>
@@ -83,6 +100,7 @@ const html = `<!doctype html>
         <li><a href="${siteUrl("pdf-tool-finder")}">File tool finder</a> for choosing between tools such as compress vs resize, invoice vs receipt, or one image vs multi-image PDF.</li>
         <li><a href="${siteUrl("tools")}">All free generators</a> for browsing every tool.</li>
         <li><a href="${siteUrl("guides")}">Printable guides</a> for original help pages around PDF, image, QR, and printable workflows.</li>
+        <li><a href="${pagesUrl("html5-game-submission-pack")}">HTML5 game submission pack mirror</a> for clean portal ZIPs, GameSnacks packages, demo videos, and platform-review assets.</li>
         ${landingPages.map((page) => `<li><a href="${siteUrl(page.path)}">${escapeHtml(page.title)}</a> for ${escapeHtml(page.intent)}.</li>`).join("\n")}
         <li><a href="${siteUrl("feed.xml").replace(/\/$/, "")}">RSS feed</a> for monitoring newly published discovery pages and high-intent tools.</li>
         <li><a href="${siteUrl("tools.json").replace(/\/$/, "")}">Machine-readable tools.json</a> for tool directories and crawlers.</li>
@@ -123,6 +141,7 @@ for (const tool of highIntentTools) {
     .slice(0, 6);
   fs.writeFileSync(path.join(toolDir, "index.html"), toolDiscoveryHtml(tool, relatedLandingPages));
 }
+writeGameDiscoveryPages();
 
 fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
   name: SITE_SUMMARY.name,
@@ -144,6 +163,21 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
     url: siteUrl(tool.path),
     discoveryUrl: pagesUrl(tool.path),
   })),
+  gameSubmissionPack: {
+    title: "HTML5 Game Submission Pack",
+    url: siteUrl("portal-submission-pack"),
+    discoveryUrl: pagesUrl("html5-game-submission-pack"),
+    games: ZERO_DOMAIN_GAME_EXPERIMENTS.map((game) => ({
+      name: game.name,
+      url: game.url,
+      discoveryUrl: pagesUrl(gameDiscoveryPath(game)),
+      zipUrl: game.zipUrl,
+      cleanZipUrl: game.cleanZipUrl,
+      gameSnacksZipUrl: game.gameSnacksZipUrl || "",
+      demoVideoUrl: game.demoVideoUrl,
+      reviewReadinessUrl: game.reviewReadinessUrl,
+    })),
+  },
 }, null, 2)}\n`);
 
 fs.writeFileSync(path.join(docsDir, "robots.txt"), [
@@ -185,6 +219,142 @@ function cleanToolPath(toolPath) {
 function liveToolUrl(toolPath) {
   const [pathname, query] = String(toolPath).split("?");
   return `${siteUrl(pathname)}${query ? `?${query}` : ""}`;
+}
+
+function gameDiscoveryPath(game) {
+  return `html5-game-submission-pack/${slugify(game.name)}`;
+}
+
+function slugify(value) {
+  return String(value).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+function writeGameDiscoveryPages() {
+  const packDir = path.join(docsDir, "html5-game-submission-pack");
+  fs.mkdirSync(packDir, { recursive: true });
+  fs.writeFileSync(path.join(packDir, "index.html"), gameSubmissionPackHtml());
+  for (const game of ZERO_DOMAIN_GAME_EXPERIMENTS) {
+    const gameDir = path.join(docsDir, gameDiscoveryPath(game));
+    fs.mkdirSync(gameDir, { recursive: true });
+    fs.writeFileSync(path.join(gameDir, "index.html"), gameDiscoveryHtml(game));
+  }
+}
+
+function gameSubmissionPackHtml() {
+  const gameCards = ZERO_DOMAIN_GAME_EXPERIMENTS.map((game) => `<article class="card">
+          <h2>${escapeHtml(game.name)}</h2>
+          <p>${escapeHtml(game.summary)}</p>
+          <ul>
+            <li><a href="${escapeHtml(game.url)}">Play live build</a></li>
+            <li><a href="${pagesUrl(gameDiscoveryPath(game))}">Open game mirror page</a></li>
+            <li><a href="${escapeHtml(game.cleanZipUrl)}">Clean portal ZIP</a></li>
+            <li><a href="${escapeHtml(game.zipUrl)}">SDK-adapter ZIP</a></li>
+            ${optionalListItem(game.gameSnacksZipUrl, "GameSnacks ZIP")}
+            <li><a href="${escapeHtml(game.demoVideoUrl)}">Demo MP4</a></li>
+            <li><a href="${escapeHtml(game.reviewReadinessUrl)}">Review-readiness report</a></li>
+          </ul>
+        </article>`).join("\n");
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HTML5 Game Submission Pack - PrintableTools Lab Directory</title>
+    <meta name="description" content="A zero-cost discovery mirror for free HTML5 game packages, clean portal ZIPs, GameSnacks packages, demo videos, and platform review assets.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="${pagesUrl("html5-game-submission-pack")}">
+    <style>
+      :root { color-scheme: light; --ink: #17313b; --muted: #5b6f78; --line: #dce8ec; --teal: #176b87; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Arial, sans-serif; color: var(--ink); background: #f7fbfc; line-height: 1.55; }
+      main { width: min(980px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 56px; }
+      h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin: 0 0 14px; }
+      p { color: var(--muted); max-width: 780px; }
+      a { color: var(--teal); font-weight: 700; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+      .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+      .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      ul { padding-left: 20px; }
+      @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="${pagesBase}">PrintableTools Lab discovery directory</a></p>
+      <h1>HTML5 game submission pack</h1>
+      <p>This mirror lists the public game packages used for zero-domain platform-ad validation. It keeps live play links, clean portal ZIPs, SDK-adapter ZIPs, demo videos, review notes, and GameSnacks assets in one crawlable place.</p>
+      <p><a class="button" href="${siteUrl("portal-submission-pack")}">Open the live portal submission pack</a></p>
+      <div class="grid">
+        ${gameCards}
+      </div>
+      <h2>Safety rules</h2>
+      <ul>
+        <li>Standalone builds do not force ads or ask users to click advertisements.</li>
+        <li>Clean portal ZIPs remove third-party ad SDKs, external links, sponsorship CTAs, and remote tracking.</li>
+        <li>Payment, tax, bank, card, and Alipay-linked settlement details stay inside official platform dashboards only after acceptance or payout eligibility.</li>
+      </ul>
+    </main>
+  </body>
+</html>
+`;
+}
+
+function gameDiscoveryHtml(game) {
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${escapeHtml(game.name)} HTML5 Game Package - PrintableTools Lab Directory</title>
+    <meta name="description" content="${escapeHtml(game.summary)}">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="${pagesUrl(gameDiscoveryPath(game))}">
+    <style>
+      :root { color-scheme: light; --ink: #17313b; --muted: #5b6f78; --line: #dce8ec; --teal: #176b87; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Arial, sans-serif; color: var(--ink); background: #f7fbfc; line-height: 1.55; }
+      main { width: min(920px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 56px; }
+      h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin: 0 0 14px; }
+      p { color: var(--muted); max-width: 780px; }
+      a { color: var(--teal); font-weight: 700; }
+      .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; margin: 16px 0; }
+      ul { padding-left: 20px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="${pagesUrl("html5-game-submission-pack")}">HTML5 game submission pack</a></p>
+      <h1>${escapeHtml(game.name)} HTML5 game package</h1>
+      <p>${escapeHtml(game.summary)}</p>
+      <p><a class="button" href="${escapeHtml(game.url)}">Play the live build</a></p>
+      <section class="card">
+        <h2>Submission assets</h2>
+        <ul>
+          <li><a href="${escapeHtml(game.releaseUrl)}">GitHub release pack</a></li>
+          <li><a href="${escapeHtml(game.zipUrl)}">HTML5 SDK-adapter ZIP</a></li>
+          <li><a href="${escapeHtml(game.cleanZipUrl)}">Clean portal ZIP</a></li>
+          ${optionalListItem(game.gameSnacksZipUrl, "GameSnacks ZIP")}
+          ${optionalListItem(game.gameSnacksVerificationUrl, "GameSnacks verification report")}
+          <li><a href="${escapeHtml(game.demoVideoUrl)}">Gameplay demo MP4</a></li>
+          <li><a href="${escapeHtml(game.iconUrl)}">512x512 icon</a></li>
+          <li><a href="${escapeHtml(game.coverUrl)}">16:9 cover image</a></li>
+          <li><a href="${escapeHtml(game.submissionCopyUrl)}">Submission copy pack</a></li>
+          <li><a href="${escapeHtml(game.reviewReadinessUrl)}">Review-readiness report</a></li>
+        </ul>
+      </section>
+      <section class="card">
+        <h2>Monetization route</h2>
+        <p>The package is designed for platform-managed advertising after review. It does not include a fake payout flow, fake ad clicks, or private payment details.</p>
+      </section>
+    </main>
+  </body>
+</html>
+`;
+}
+
+function optionalListItem(url, label) {
+  return url ? `<li><a href="${escapeHtml(url)}">${escapeHtml(label)}</a></li>` : "<!-- optional asset unavailable -->";
 }
 
 function copyGoogleVerificationFiles() {

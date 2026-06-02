@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-02T20:04:10.312Z",
+  "generatedAt": "2026-06-02T20:15:53.499Z",
   "landingPages": [
     {
       "title": "Free Invoice Generator Without Signup",
@@ -675,5 +675,32 @@
       "url": "https://printable-tools-lab.pages.dev/tools/graph-paper/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/graph-paper/"
     }
-  ]
+  ],
+  "gameSubmissionPack": {
+    "title": "HTML5 Game Submission Pack",
+    "url": "https://printable-tools-lab.pages.dev/portal-submission-pack/",
+    "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/html5-game-submission-pack/",
+    "games": [
+      {
+        "name": "Upload Limit Panic",
+        "url": "https://upload-limit-panic.pages.dev/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/html5-game-submission-pack/upload-limit-panic/",
+        "zipUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-html5.zip",
+        "cleanZipUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-portal-clean.zip",
+        "gameSnacksZipUrl": "",
+        "demoVideoUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-demo.mp4",
+        "reviewReadinessUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/review-readiness.md"
+      },
+      {
+        "name": "Neon Lane Dash",
+        "url": "https://neon-lane-dash.pages.dev/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/html5-game-submission-pack/neon-lane-dash/",
+        "zipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+        "cleanZipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-portal-clean.zip",
+        "gameSnacksZipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-gamesnacks.zip",
+        "demoVideoUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-demo.mp4",
+        "reviewReadinessUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/review-readiness.md"
+      }
+    ]
+  }
 }

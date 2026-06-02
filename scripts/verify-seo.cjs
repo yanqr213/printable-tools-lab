@@ -507,6 +507,30 @@ else {
   if (data.feed !== siteUrl("feed.xml").replace(/\/$/, "")) failures.push("GitHub Pages discovery tools.json missing feed URL.");
   if (!data.githubPagesDirectory || data.githubPagesDirectory !== "https://yanqr213.github.io/printable-tools-lab/") failures.push("GitHub Pages discovery tools.json missing GitHub directory URL.");
   if (!data.tools.some((tool) => tool.url === siteUrl("tools/image-to-pdf") && tool.discoveryUrl === "https://yanqr213.github.io/printable-tools-lab/tools/image-to-pdf/")) failures.push("GitHub Pages discovery tools.json missing tool discovery URL.");
+  if (!data.gameSubmissionPack || data.gameSubmissionPack.discoveryUrl !== "https://yanqr213.github.io/printable-tools-lab/html5-game-submission-pack/") failures.push("GitHub Pages discovery tools.json missing HTML5 game submission pack.");
+  if (!data.gameSubmissionPack?.games?.some((game) => game.name === "Neon Lane Dash" && String(game.gameSnacksZipUrl || "").includes("neon-lane-dash-gamesnacks.zip"))) failures.push("GitHub Pages discovery tools.json missing Neon GameSnacks package.");
+}
+
+const docsGamePackFile = path.join(root, "docs", "html5-game-submission-pack", "index.html");
+if (!fs.existsSync(docsGamePackFile)) failures.push("Missing GitHub Pages HTML5 game submission pack page.");
+else {
+  const html = fs.readFileSync(docsGamePackFile, "utf8");
+  if (!html.includes("HTML5 game submission pack")) failures.push("GitHub Pages game pack page missing heading.");
+  if (!html.includes("neon-lane-dash-gamesnacks.zip")) failures.push("GitHub Pages game pack page missing GameSnacks ZIP link.");
+  if (!html.includes("upload-limit-panic-portal-clean.zip")) failures.push("GitHub Pages game pack page missing backup clean ZIP link.");
+  if (!sitemapIncludes(path.join(root, "docs", "sitemap.xml"), "https://yanqr213.github.io/printable-tools-lab/html5-game-submission-pack/")) failures.push("GitHub Pages sitemap missing game submission pack page.");
+}
+
+for (const [slug, name] of [["neon-lane-dash", "Neon Lane Dash"], ["upload-limit-panic", "Upload Limit Panic"]]) {
+  const file = path.join(root, "docs", "html5-game-submission-pack", slug, "index.html");
+  if (!fs.existsSync(file)) {
+    failures.push(`Missing GitHub Pages game mirror page: ${slug}`);
+    continue;
+  }
+  const html = fs.readFileSync(file, "utf8");
+  if (!html.includes(name)) failures.push(`GitHub Pages game mirror page missing game name: ${slug}`);
+  if (!html.includes("Review-readiness report")) failures.push(`GitHub Pages game mirror page missing review report: ${slug}`);
+  if (!sitemapIncludes(path.join(root, "docs", "sitemap.xml"), `https://yanqr213.github.io/printable-tools-lab/html5-game-submission-pack/${slug}/`)) failures.push(`GitHub Pages sitemap missing game mirror page: ${slug}`);
 }
 
 const docsSitemapFile = path.join(root, "docs", "sitemap.xml");
@@ -586,4 +610,9 @@ function cleanToolPath(toolPath) {
 function liveToolUrl(toolPath) {
   const [pathname, query] = String(toolPath).split("?");
   return `${siteUrl(pathname)}${query ? `?${query}` : ""}`;
+}
+
+function sitemapIncludes(filePath, url) {
+  if (!fs.existsSync(filePath)) return false;
+  return fs.readFileSync(filePath, "utf8").includes(`<loc>${url}</loc>`);
 }
