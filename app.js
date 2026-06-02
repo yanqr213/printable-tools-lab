@@ -24,10 +24,17 @@
     "bing",
     "github",
     "github-pages",
+    "github-issue",
+    "gist",
     "zearches",
     "listai",
     "nosignuptools",
     "freenosignup",
+    "nologin",
+    "nosubscription",
+    "share-kit",
+    "short-video",
+    "game-platform",
     "directory",
     "community",
     "referral",
@@ -4311,7 +4318,7 @@
         ["p", "PrintableTools Lab is designed to generate PDFs in your browser. The first version does not require an account and keeps ordinary PDF generation on your device."],
         ["p", "If you choose the optional AI idea helper, the current tool type and short form text are sent to the site's AI service only to return printable suggestions. Do not enter sensitive personal information."],
         ["p", "The site stores a small amount of local data in your browser to remember daily generation counts and anonymous local event totals such as page views, generate clicks, downloads, and limit notices."],
-        ["p", "The site's anonymous event counter may also store a normalized source label such as direct, google, github, directory, or referral. It does not store full referrer URLs in that counter."],
+        ["p", "The site's anonymous event counter may also store a normalized source label such as direct, google, github, gist, directory, share-kit, or referral. It does not store full referrer URLs in that counter."],
         ["p", "If analytics, advertising, or payment tools are added later, this policy should be updated before launch to describe those providers, cookies, and opt-out choices."],
       ],
     },
@@ -4875,6 +4882,9 @@
 
   function renderShareKit() {
     const featuredLinks = [
+      ["Upload limit fixer", "/upload-limit-fixer/?utm_source=share-kit&utm_medium=organic", "Task-first entry for users blocked by file size, format, or photo dimension limits."],
+      ["Compress image to 20KB", "/compress-image-to-20kb/?utm_source=share-kit&utm_medium=organic", "Strict exam, profile, and application photo size limit intent."],
+      ["Fix passport photo size", "/passport-photo-size-fixer/?utm_source=share-kit&utm_medium=organic", "Urgent ID-style photo crop, resize, and file-size workflow."],
       ["Compress PDF to 1MB", "/compress-pdf-to-1mb/?utm_source=share-kit&utm_medium=organic", "Urgent upload-limit search for job, school, email, and portal PDFs."],
       ["Compress PDF to 500KB", "/compress-pdf-to-500kb/?utm_source=share-kit&utm_medium=organic", "Strict form and government-style upload limit intent."],
       ["Compress image to 100KB", "/compress-image-to-100kb/?utm_source=share-kit&utm_medium=organic", "Common profile, exam, job, and form image-size limit."],
@@ -4885,6 +4895,9 @@
       ["Free invoice generator", "/free-invoice-generator-no-signup/?utm_source=share-kit&utm_medium=organic", "Small-business PDF document with no signup and no hidden export fee."],
     ];
     const posts = [
+      ["Fix a blocked upload", "File upload rejected for size, format, or photo dimensions?", "Start with the upload limit fixer. It points to the no-upload PDF compressor, image-to-KB compressor, image resizer, passport photo cropper, PDF-to-JPG converter, and image-to-PDF tools.", "/upload-limit-fixer/?utm_source=short-video&utm_medium=organic", "Fix an upload limit"],
+      ["Exam photo under 20KB", "Application photo must be under 20KB?", "Use the no-upload image-to-KB compressor with the 20KB target, then review the downloaded JPG before submitting it to the exam, school, or application portal.", "/compress-image-to-20kb/?utm_source=short-video&utm_medium=organic", "Compress an image to 20KB"],
+      ["Fix an ID photo size", "Photo rejected for dimensions or file size?", "Start with the passport photo size fixer. It points to the local crop, resize, and image-to-KB tools so the file can match a portal's photo rules without uploading the original.", "/passport-photo-size-fixer/?utm_source=short-video&utm_medium=organic", "Fix a passport-style photo"],
       ["Upload limit fix: PDF under 1MB", "Portal says your PDF must be under 1MB?", "Open the no-upload PDF compressor, choose the 1MB target, select your PDF, and download a smaller copy from the browser. It works best for scans and image-heavy PDFs.", "/compress-pdf-to-1mb/?utm_source=short-video&utm_medium=organic", "Try the free 1MB PDF compressor"],
       ["Image under 100KB", "Job form rejecting your photo because it is over 100KB?", "Use the local image-to-KB compressor, pick 100KB, and download a smaller JPG or WebP without uploading the original photo.", "/compress-image-to-100kb/?utm_source=short-video&utm_medium=organic", "Compress an image to 100KB"],
       ["No-upload file utility pack", "I made a free no-signup file utility site for common upload blockers.", "It handles PDF compression targets, image-to-KB targets, PDF-to-JPG, image resizing, QR codes, invoices, labels, and small business PDFs in the browser. Downloads are free during validation and not gated behind ad clicks.", "/free-pdf-tools/?utm_source=community&utm_medium=organic", "Open the free file tools"],
@@ -10675,6 +10688,12 @@ ${paragraphs.join("\n")}
       .slice(0, 48);
     if (!source) return "";
     if (source === "free-no-signup") return "freenosignup";
+    if (source === "no-login") return "nologin";
+    if (source === "no-subscription") return "nosubscription";
+    if (source === "github-issues") return "github-issue";
+    if (source === "sharekit") return "share-kit";
+    if (source === "short_video") return "short-video";
+    if (source === "game_platform") return "game-platform";
     if (TRAFFIC_SOURCES.has(source)) return source;
     return "referral";
   }
@@ -10688,11 +10707,14 @@ ${paragraphs.join("\n")}
       if (host.includes("google.")) return "google";
       if (host.includes("bing.")) return "bing";
       if (host.includes("github.io")) return "github-pages";
+      if (host.includes("gist.github.com")) return "gist";
       if (host.includes("github.com")) return "github";
       if (host.includes("zearches.com")) return "zearches";
       if (host.includes("listai.cc")) return "listai";
       if (host.includes("nosignuptools.com")) return "nosignuptools";
       if (host.includes("freenosignup.com")) return "freenosignup";
+      if (host.includes("nologin.tools")) return "nologin";
+      if (host.includes("nosubscription.org")) return "nosubscription";
       return "referral";
     } catch (error) {
       return "unknown";

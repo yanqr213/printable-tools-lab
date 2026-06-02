@@ -24,7 +24,13 @@ I built PrintableTools Lab, a free browser-based PDF, image, and QR tool site. I
 Use these only for posts or listings that allow URL parameters. Directory fields can still use the clean homepage URL when a reviewer prefers canonical links.
 
 - Directory campaign: https://printable-tools-lab.pages.dev?utm_source=directory
+- NoLogin.tools tracked upload-limit URL: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nologin&utm_medium=directory&utm_campaign=zero_cost_push
+- NoSubscription.org tracked upload-limit URL: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nosubscription&utm_medium=directory&utm_campaign=zero_cost_push
+- Share kit campaign: https://printable-tools-lab.pages.dev/share-kit?utm_source=share-kit&utm_medium=organic
+- Short-video campaign: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push
 - GitHub campaign: https://printable-tools-lab.pages.dev?utm_source=github
+- GitHub issue campaign: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=github-issue&utm_medium=organic&utm_campaign=zero_cost_push
+- Public Gist campaign: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=gist&utm_medium=organic&utm_campaign=zero_cost_push
 - Community campaign: https://printable-tools-lab.pages.dev?utm_source=community
 
 ## High-intent links

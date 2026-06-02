@@ -17,10 +17,17 @@ const ALLOWED_SOURCES = new Set([
   "bing",
   "github",
   "github-pages",
+  "github-issue",
+  "gist",
   "zearches",
   "listai",
   "nosignuptools",
   "freenosignup",
+  "nologin",
+  "nosubscription",
+  "share-kit",
+  "short-video",
+  "game-platform",
   "directory",
   "community",
   "referral",
@@ -142,8 +149,20 @@ function cleanKey(value, maxLength) {
 
 function cleanSource(value) {
   const source = cleanKey(value || "direct", 48);
-  if (!source) return "direct";
-  return ALLOWED_SOURCES.has(source) ? source : "referral";
+  const canonical = canonicalSource(source);
+  if (!canonical) return "direct";
+  return ALLOWED_SOURCES.has(canonical) ? canonical : "referral";
+}
+
+function canonicalSource(source) {
+  if (source === "free-no-signup") return "freenosignup";
+  if (source === "no-login") return "nologin";
+  if (source === "no-subscription") return "nosubscription";
+  if (source === "github-issues") return "github-issue";
+  if (source === "sharekit") return "share-kit";
+  if (source === "short_video") return "short-video";
+  if (source === "game_platform") return "game-platform";
+  return source;
 }
 
 function cleanTool(value) {

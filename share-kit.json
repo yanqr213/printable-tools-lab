@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Share Kit",
-  "generatedAt": "2026-06-02T20:53:59.568Z",
+  "generatedAt": "2026-06-02T22:09:47.625Z",
   "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
   "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
   "featuredLinks": [
@@ -313,7 +313,7 @@
   ],
   "externalDiscovery": {
     "gist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-    "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/93f23c1aa75369187334442b4729a68e1e221968/PrintableTools-Lab-zero-cost-share-kit.md",
+    "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/eb874c63e907b69755fe316b60f2a6f28936a5f1/PrintableTools-Lab-zero-cost-share-kit.md",
     "githubIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1"
   },
   "rules": [

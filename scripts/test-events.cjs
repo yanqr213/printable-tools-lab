@@ -49,6 +49,22 @@ async function main() {
   const google = fileMetrics.sources.find((row) => row.source === "google");
   assert(google.download_file === 1, "Metrics should count per-source file downloads");
 
+  const directoryEventResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "page_view", tool: "site", path: "/upload-limit-fixer/", source: "no-subscription" }),
+    }),
+    env,
+  });
+  assert(directoryEventResponse.status === 200, "Event collector should accept canonical directory aliases");
+  const directoryMetrics = await (await metricsSource.onRequestGet({ env })).json();
+  const noSubscription = directoryMetrics.sources.find((row) => row.source === "nosubscription");
+  assert(noSubscription.page_view === 1, "Metrics should count NoSubscription directory aliases");
+  for (const source of ["nologin", "share-kit", "short-video", "github-issue", "gist"]) {
+    assert(directoryMetrics.sources.some((row) => row.source === source), `Metrics should include ${source} source row`);
+  }
+
   const rejectResponse = await eventSource.onRequestPost({
     request: new Request("https://example.test/api/event", {
       method: "POST",
