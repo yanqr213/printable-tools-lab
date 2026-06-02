@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-02T20:45:37.877Z",
+  "generatedAt": "2026-06-02T21:01:40.052Z",
   "shareKitUrl": "https://printable-tools-lab.pages.dev/share-kit/",
   "shareKitJsonUrl": "https://printable-tools-lab.pages.dev/share-kit.json",
   "featuredLinks": [
@@ -8,6 +8,18 @@
       "canonicalUrl": "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
       "trackedUrl": "https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=share-kit&utm_medium=organic",
       "reason": "Task-first entry for users blocked by file size, format, or photo dimension limits."
+    },
+    {
+      "title": "Compress image to 20KB",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-image-to-20kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/compress-image-to-20kb?utm_source=share-kit&utm_medium=organic",
+      "reason": "Strict exam, profile, and application photo size limit intent."
+    },
+    {
+      "title": "Fix passport photo size",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/passport-photo-size-fixer/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/passport-photo-size-fixer?utm_source=share-kit&utm_medium=organic",
+      "reason": "Urgent ID-style photo crop, resize, and file-size workflow."
     },
     {
       "title": "Compress PDF to 1MB",
@@ -66,6 +78,22 @@
       "body": "Start with the upload limit fixer. It points to the no-upload PDF compressor, image-to-KB compressor, image resizer, passport photo cropper, PDF-to-JPG converter, and image-to-PDF tools.",
       "cta": "Fix an upload limit",
       "trackedUrl": "https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=short-video&utm_medium=organic"
+    },
+    {
+      "channel": "short-video",
+      "title": "Exam photo under 20KB",
+      "hook": "Application photo must be under 20KB?",
+      "body": "Use the no-upload image-to-KB compressor with the 20KB target, then review the downloaded JPG before submitting it to the exam, school, or application portal.",
+      "cta": "Compress an image to 20KB",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/compress-image-to-20kb?utm_source=short-video&utm_medium=organic"
+    },
+    {
+      "channel": "short-video",
+      "title": "Fix an ID photo size",
+      "hook": "Photo rejected for dimensions or file size?",
+      "body": "Start with the passport photo size fixer. It points to the local crop, resize, and image-to-KB tools so the file can match a portal's photo rules without uploading the original.",
+      "cta": "Fix a passport-style photo",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/passport-photo-size-fixer?utm_source=short-video&utm_medium=organic"
     },
     {
       "channel": "short-video",
@@ -170,7 +198,7 @@
     "indexNow": {
       "ok": true,
       "status": 0,
-      "stdout": "IndexNow accepted 116 URL(s) for github-pages.",
+      "stdout": "IndexNow accepted 120 URL(s) for github-pages.",
       "stderr": "IndexNow did not accept pages.dev: 403 {\"errorCode\":\"UserForbiddedToAccessSite\",\"message\":\"User is unauthorized to access the site. Please verify the site using the key and try again\",\"details\":null}",
       "accepted": true,
       "partialWarning": true,
