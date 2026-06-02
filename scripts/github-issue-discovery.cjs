@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_RULES, siteUrl } = require("./seo-content.cjs");
+const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, ZERO_COST_MONETIZATION_MAP, siteUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || "";
@@ -72,11 +72,36 @@ function renderIssueBody() {
     "",
     `- Product: ${siteUrl("")}`,
     `- Share kit: ${siteUrl("share-kit")}`,
+    `- HTML5 platform submit cockpit: ${siteUrl("platform-submit-cockpit")}`,
+    `- Zero-cost monetization map: ${siteUrl("zero-cost-monetization-map")}`,
     `- Public Gist mirror: ${gist?.htmlUrl || "not available"}`,
     `- Release MP4 assets: https://github.com/${repo}/releases/tag/free-pdf-tools`,
+    `- Platform-ad lead game: ${PLATFORM_SUBMIT_COCKPIT.leadGame}`,
+    `- Platform-ad backup game: ${PLATFORM_SUBMIT_COCKPIT.backupGame}`,
+    `- Platform status updated: ${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.lastUpdated}`,
     `- Search visible: ${searchVisible}`,
     `- Recorded downloads: ${downloads}`,
     "- Monetization: ads remain disabled until real search visibility and ad-network readiness exist.",
+    "- HTML5 game monetization: platform-managed ads are gated until platform review, live plays, and ad eligibility exist.",
+    "",
+    "## Platform-ad game route",
+    "",
+    ...PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.submitted.map((item) => `- ${item}`),
+    ...PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.readyBackup.map((item) => `- ${item}`),
+    ...PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.payoutGates.map((item) => `- ${item}`),
+    `- Completion gate: ${ZERO_COST_MONETIZATION_MAP.moneyGate}`,
+    "",
+    "## Playable HTML5 builds",
+    "",
+    ...ZERO_DOMAIN_GAME_EXPERIMENTS.flatMap((game) => [
+      `### ${game.name}`,
+      `- Play: ${game.url}`,
+      `- Release package: ${game.releaseUrl}`,
+      `- HTML5 ZIP: ${game.zipUrl}`,
+      `- Demo video: ${game.demoVideoUrl}`,
+      `- Review readiness: ${game.reviewReadinessUrl}`,
+      "",
+    ]),
     "",
     "## High-intent entry points",
     "",

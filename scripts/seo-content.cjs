@@ -479,7 +479,7 @@ const PLATFORM_SUBMIT_COCKPIT = {
   leadGame: "Neon Lane Dash",
   backupGame: "Upload Limit Panic",
   latestOperationalStatus: {
-    lastUpdated: "2026-06-02T18:16:59.701Z",
+    lastUpdated: "2026-06-02T18:53:51.005Z",
     submitted: [
       "CrazyGames: Neon Lane Dash was submitted on 2026-06-02 with build ID 57a4b821-a761-4541-b2dc-69ced592d4d5. The next live status check needs the developer dashboard session restored after the automation browser reset.",
       "Playgama: Neon Lane Dash is still Waiting for review in the My Games dashboard after passing SDK init, storage restore, and interstitial ad certification.",
@@ -492,8 +492,9 @@ const PLATFORM_SUBMIT_COCKPIT = {
       "Yandex Games: publisher console remains parked behind the login/postregistration flow, so no draft should be claimed until that session is usable.",
     ],
     statusCheckGates: [
-      "CrazyGames: a new Edge automation session redirected to the login page, so the previously confirmed submitted build should be treated as the last verified CrazyGames state until dashboard access is restored.",
+      "CrazyGames: Edge automation session check on 2026-06-02T18:27Z redirected to the login page, so the previously confirmed submitted build should be treated as the last verified CrazyGames state until dashboard access is restored.",
       "Playgama: My Games snapshot on 2026-06-02T17:34:37Z showed Neon Lane Dash as Waiting for review.",
+      "Playgama: Edge automation session check on 2026-06-02T18:27Z redirected to the login page, so the next live review-state check also needs the developer dashboard session restored.",
     ],
     payoutGates: [
       "CrazyGames: Billing says payments are handled through Tipalti. Manage Payment Details requires owner-only 2-step verification with a mobile number, then Address, Payment Method, Tax Forms, and Done.",

@@ -1,5 +1,5 @@
 const { execFileSync } = require("child_process");
-const { HIGH_INTENT_TOOL_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, ZERO_DOMAIN_GAME_EXPERIMENT, siteUrl, tools, SITE_SUMMARY } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, ZERO_COST_MONETIZATION_MAP, siteUrl, tools, SITE_SUMMARY } = require("./seo-content.cjs");
 
 const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || "";
 if (!token) {
@@ -134,8 +134,12 @@ function releaseBody() {
     `- [Zero-budget share kit](${siteUrl("share-kit")})`,
     `- [Machine-readable share-kit.json](${siteUrl("share-kit.json").replace(/\/$/, "")})`,
     ...externalDiscoveryLinks(),
-    `- [Upload Limit Panic zero-domain HTML5 game](${ZERO_DOMAIN_GAME_EXPERIMENT.url})`,
-    `- [Upload Limit Panic repository](${ZERO_DOMAIN_GAME_EXPERIMENT.repo})`,
+    `- [HTML5 platform submit cockpit](${siteUrl("platform-submit-cockpit")})`,
+    `- [Zero-cost monetization map](${siteUrl("zero-cost-monetization-map")})`,
+    ...ZERO_DOMAIN_GAME_EXPERIMENTS.flatMap((game) => [
+      `- [${game.name} playable build](${game.url})`,
+      `- [${game.name} release package](${game.releaseUrl})`,
+    ]),
     "- [GitHub Pages discovery directory](https://yanqr213.github.io/printable-tools-lab/)",
     `- [Directory submission pack](${siteUrl("submit-directory")})`,
     `- [RSS feed](${siteUrl("feed.xml").replace(/\/$/, "")})`,
@@ -149,6 +153,15 @@ function releaseBody() {
     "Share-kit copy angles:",
     "",
     ...SHARE_KIT_POSTS.map((post) => `- ${post.title}: ${post.hook}`),
+    "",
+    "Platform-ad game route:",
+    "",
+    `- Lead game: ${PLATFORM_SUBMIT_COCKPIT.leadGame}`,
+    `- Backup game: ${PLATFORM_SUBMIT_COCKPIT.backupGame}`,
+    `- Last platform status update: ${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.lastUpdated}`,
+    ...PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.submitted.map((item) => `- ${item}`),
+    ...PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.readyBackup.map((item) => `- ${item}`),
+    `- Completion gate: ${ZERO_COST_MONETIZATION_MAP.moneyGate}`,
     "",
     "High-intent tool pages:",
     "",

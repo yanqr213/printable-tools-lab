@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, siteUrl } = require("./seo-content.cjs");
+const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, siteUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || "";
@@ -76,7 +76,7 @@ function renderGistBody(videos) {
   }));
   const posts = SHARE_KIT_POSTS.map((post) => ({
     ...post,
-    url: `${siteUrl(post.linkPath).replace(/\/$/, "")}?utm_source=gist&utm_medium=organic&utm_campaign=zero_cost_push`,
+    url: trackedPostUrl(post),
   }));
   return [
     `# ${marker}`,
@@ -87,8 +87,34 @@ function renderGistBody(videos) {
     "",
     `- Main share kit: ${siteUrl("share-kit")}`,
     `- Machine-readable share-kit JSON: ${siteUrl("share-kit.json").replace(/\/$/, "")}`,
+    `- HTML5 platform submit cockpit: ${siteUrl("platform-submit-cockpit")}`,
+    `- Zero-cost monetization map: ${siteUrl("zero-cost-monetization-map")}`,
     `- Free file tools directory: ${siteUrl("free-pdf-tools")}`,
     `- Tool finder: ${siteUrl("pdf-tool-finder")}`,
+    "",
+    "## Current Platform-Ad Game Route",
+    "",
+    `- Lead game: ${PLATFORM_SUBMIT_COCKPIT.leadGame}`,
+    `- Backup game: ${PLATFORM_SUBMIT_COCKPIT.backupGame}`,
+    `- Latest status timestamp: ${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.lastUpdated}`,
+    ...PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.submitted.map((item) => `- ${item}`),
+    ...PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.readyBackup.map((item) => `- ${item}`),
+    "",
+    "## Playable HTML5 Builds",
+    "",
+    ...ZERO_DOMAIN_GAME_EXPERIMENTS.flatMap((game) => [
+      `### ${game.name}`,
+      "",
+      `- Play: ${game.url}`,
+      `- Repository: ${game.repo}`,
+      `- Release package: ${game.releaseUrl}`,
+      `- HTML5 ZIP: ${game.zipUrl}`,
+      `- Demo video: ${game.demoVideoUrl}`,
+      `- Submission notes: ${game.submissionNotesUrl}`,
+      `- Review readiness: ${game.reviewReadinessUrl}`,
+      `- Summary: ${game.summary}`,
+      "",
+    ]),
     "",
     "## High-Intent Links",
     "",
@@ -130,6 +156,13 @@ function renderGistBody(videos) {
     "- 7 days: continue if 30 tracked visits, 10 tool events, or Search Console impressions start moving.",
     "",
   ].join("\n");
+}
+
+function trackedPostUrl(post) {
+  const base = post.absoluteUrl || siteUrl(post.linkPath);
+  const normalized = String(base || siteUrl("")).replace(/\/$/, "");
+  const separator = normalized.includes("?") ? "&" : "?";
+  return `${normalized}${separator}utm_source=gist&utm_medium=organic&utm_campaign=zero_cost_push`;
 }
 
 function readCampaignVideos() {
