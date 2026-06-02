@@ -208,6 +208,93 @@ const ZERO_DOMAIN_PLATFORM_STRATEGY = {
   moneyGate: "The goal is not complete until at least one platform accepts a game, real plays are visible in platform analytics, ad monetization is enabled, and revenue or payout balance is verified.",
 };
 
+const PLATFORM_OUTREACH_TRACKER = {
+  generatedFromProbe: "2026-06-02 platform-entry-probe",
+  purpose: "Public-contact and low-login outreach tracker for moving HTML5 games toward platform review before full payout setup is available.",
+  leadGame: "Neon Lane Dash",
+  backupGame: "Upload Limit Panic",
+  rules: [
+    "Send only live preview, GitHub release, ZIP link, screenshots, and demo video; do not send private keys or account tokens.",
+    "Do not promise exclusivity unless the platform explicitly negotiates it and other submissions are paused.",
+    "Do not ask for ad clicks, ad views, fake engagement, or artificial traffic.",
+    "Keep payment details for platform dashboards only; do not email bank or Alipay account data.",
+  ],
+  channels: [
+    {
+      platform: "Playgama",
+      priority: 1,
+      method: "public email plus developer portal signup",
+      contact: "developer.success@playgama.com",
+      submissionUrl: "https://developer.playgama.com/auth?utm_source=landing",
+      evidence: "Probe found public mailto on Playgama developers page and Join Playgama link to developer portal.",
+      status: "ready_to_email",
+      nextAction: "Email Neon Lane Dash preview and ask whether the current ZIP can be reviewed before Bridge integration.",
+      subject: "HTML5 game submission: Neon Lane Dash",
+      body: outreachBody("Playgama"),
+    },
+    {
+      platform: "GameDistribution",
+      priority: 2,
+      method: "public partnership email plus partnership form",
+      contact: "partnership@azerion.com",
+      submissionUrl: "https://gamedistribution.com/developers/partnership/",
+      evidence: "Probe found public partnership email and forms on GameDistribution partnership page.",
+      status: "ready_to_email",
+      nextAction: "Email Neon Lane Dash as a nonexclusive HTML5 review package and ask which SDK wrapper is required.",
+      subject: "HTML5 game partnership review: Neon Lane Dash",
+      body: outreachBody("GameDistribution"),
+    },
+    {
+      platform: "GamePix",
+      priority: 3,
+      method: "developer page form/dashboard",
+      contact: "No public email found in probe",
+      submissionUrl: "https://partners.gamepix.com/developers",
+      evidence: "Probe found a developer page with contact/form and SDK/revenue-share information.",
+      status: "form_or_signup_required",
+      nextAction: "Use form/dashboard with the same Neon Lane Dash field pack; ask if SDK integration can happen after initial QA.",
+      subject: "HTML5 game submission: Neon Lane Dash",
+      body: outreachBody("GamePix"),
+    },
+    {
+      platform: "Lagged",
+      priority: 4,
+      method: "developer signup",
+      contact: "No public email found in probe",
+      submissionUrl: "https://lagged.dev/signup",
+      evidence: "Probe found login and Join Now links on Lagged developer dashboard.",
+      status: "signup_required",
+      nextAction: "Create developer account, then submit Neon Lane Dash ZIP and screenshots.",
+      subject: "HTML5 game submission: Neon Lane Dash",
+      body: outreachBody("Lagged"),
+    },
+    {
+      platform: "GameFlare",
+      priority: 5,
+      method: "protected developer page/contact after browser challenge",
+      contact: "Protected by Cloudflare challenge in probe",
+      submissionUrl: "https://distribution.gameflare.com/developers/",
+      evidence: "Probe reached a protected page; prior official FAQ indicates review by link/game files and revenue share.",
+      status: "manual_browser_required",
+      nextAction: "Open the protected page manually or with an authenticated browser, then submit playable link and ZIP.",
+      subject: "HTML5 game review: Neon Lane Dash",
+      body: outreachBody("GameFlare"),
+    },
+    {
+      platform: "Poki",
+      priority: 6,
+      method: "developer application",
+      contact: "No public email found in probe",
+      submissionUrl: "https://app.poki.dev/signin/",
+      evidence: "Probe found Poki developer guide and sign-in link; docs indicate stricter partnership requirements.",
+      status: "later_quality_target",
+      nextAction: "Delay until Neon Lane Dash has platform traction or a higher-production build.",
+      subject: "HTML5 game pitch: Neon Lane Dash",
+      body: outreachBody("Poki"),
+    },
+  ],
+};
+
 const SHARE_KIT_FEATURED_LINKS = [
   ["Compress PDF to 1MB", "compress-pdf-to-1mb", "Urgent upload-limit search for job, school, email, and portal PDFs."],
   ["Compress PDF to 500KB", "compress-pdf-to-500kb", "Strict form and government-style upload limit intent."],
@@ -2526,6 +2613,12 @@ const pages = [
     description: "Submission order, account checklist, game assets, SDK notes, and compliance rules for the zero-domain HTML5 game monetization route.",
     html: platformSubmitQueueHtml(),
   },
+  {
+    path: "platform-outreach-tracker",
+    title: "HTML5 Platform Outreach Tracker",
+    description: "Copy-ready public-contact outreach tracker, platform email drafts, form notes, and account gates for submitting the zero-domain HTML5 game package.",
+    html: platformOutreachTrackerHtml(),
+  },
   ...landingPages.map((page) => ({
     path: page.path,
     title: page.title,
@@ -3164,6 +3257,69 @@ function platformSubmitQueueHtml() {
           ${ZERO_DOMAIN_PLATFORM_STRATEGY.officialEvidence.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
         </ul>
       </section>`;
+}
+
+function platformOutreachTrackerHtml() {
+  return `
+      <section class="shell page-title section">
+        <a href="/platform-submit-queue/">Platform submit queue</a>
+        <h1>HTML5 platform outreach tracker</h1>
+        <p>This tracker keeps public-contact submissions moving even when developer dashboards require login, verification, or payout setup.</p>
+        <p><a class="button" href="/platform-outreach-tracker.json">Open machine-readable tracker</a> <a class="button secondary" href="/platform-submit-queue/">Open submit queue</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Operating rules</h2>
+        <ul>${PLATFORM_OUTREACH_TRACKER.rules.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+      </section>
+      <section class="shell section">
+        <h2>Public-contact channels</h2>
+        <div class="grid-2">
+          ${PLATFORM_OUTREACH_TRACKER.channels.map((channel) => `<article class="panel">
+            <h3>${escapeHtml(channel.priority)}. ${escapeHtml(channel.platform)}</h3>
+            <p><strong>Status:</strong> ${escapeHtml(channel.status)}</p>
+            <p><strong>Method:</strong> ${escapeHtml(channel.method)}</p>
+            <p><strong>Contact:</strong> ${escapeHtml(channel.contact)}</p>
+            <p><strong>Next:</strong> ${escapeHtml(channel.nextAction)}</p>
+            <p><a class="button" href="${escapeHtml(channel.submissionUrl)}">Open submission entry</a></p>
+            <p>${escapeHtml(channel.evidence)}</p>
+          </article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Copy-ready outreach</h2>
+        <div class="grid-2">
+          ${PLATFORM_OUTREACH_TRACKER.channels.map((channel) => `<article class="panel">
+            <h3>${escapeHtml(channel.platform)}</h3>
+            <p><strong>Subject:</strong> ${escapeHtml(channel.subject)}</p>
+            <pre class="code-block">${escapeHtml(channel.body)}</pre>
+          </article>`).join("\n")}
+        </div>
+      </section>`;
+}
+
+function outreachBody(platform) {
+  return [
+    `Hi ${platform} team,`,
+    "",
+    "I would like to submit Neon Lane Dash for HTML5 platform review.",
+    "",
+    "Neon Lane Dash is a short three-lane reflex arcade game for browser players. It has keyboard and touch controls, short replayable runs, local best score tracking, no login, no in-app purchases, and an ad-safe standalone review build.",
+    "",
+    "Live preview: https://neon-lane-dash.pages.dev/",
+    "HTML5 ZIP: https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+    "Release pack: https://github.com/yanqr213/neon-lane-dash/releases/tag/platform-submission-v1",
+    "Demo video: https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-demo.mp4",
+    "Icon: https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-icon-512.png",
+    "Cover: https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-cover-16x9.png",
+    "Submission fields: https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
+    "",
+    "The current build is standalone and does not force ads. CrazyGames and Yandex lifecycle/ad adapters are gated for platform contexts, and any additional SDK integration can be added as a platform-specific adapter after review.",
+    "",
+    "Could you confirm whether this package can enter review, and whether you need a specific SDK wrapper or metadata format before upload?",
+    "",
+    "Thanks,",
+    "PrintableTools Lab",
+  ].join("\n");
 }
 
 function readGistDiscovery() {
@@ -4369,4 +4525,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
