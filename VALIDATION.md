@@ -1,14 +1,14 @@
 # Validation Gates
 
-Last generated: 2026-06-02T20:20:58.916Z
+Last generated: 2026-06-02T20:39:36.016Z
 
 ## Current Automated Status
 
 - Product ready: yes.
 - Tools live in inventory: 66.
 - Guide pages live in inventory: 95.
-- High-intent landing pages: 61.
-- Indexable routes: 238.
+- High-intent landing pages: 62.
+- Indexable routes: 239.
 - Custom domain configured: no.
 - Live downloads: 1.
 - Live generations: 0.
@@ -20,7 +20,7 @@ Last generated: 2026-06-02T20:20:58.916Z
 
 ## Product Gate
 
-- 66 tools, 95 guides, 61 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
+- 66 tools, 95 guides, 62 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
 
 ## Search Console Gate
 
@@ -39,10 +39,10 @@ Last generated: 2026-06-02T20:20:58.916Z
 
 - GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.
 - GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.
-- GitHub Pages discovery directory is live with 61 landing page link(s), 50 tool mirror link(s), and 1 game submission link(s).
-- GitHub Pages discovery sitemap has 115 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 115.
+- GitHub Pages discovery directory is live with 62 landing page link(s), 50 tool mirror link(s), and 1 game submission link(s).
+- GitHub Pages discovery sitemap has 116 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 116.
 - IndexNow key file is reachable from the site root.
-- IndexNow latest report accepted 115 URL(s) for github-pages.
+- IndexNow latest report accepted 116 URL(s) for github-pages.
 
 ## Monetization Gate
 

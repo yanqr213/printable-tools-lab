@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-02T20:20:58.916Z",
+  "generatedAt": "2026-06-02T20:39:36.016Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
     "customDomainConfigured": false,
     "toolCount": 66,
     "guideCount": 95,
-    "landingPageCount": 61,
-    "indexableRoutes": 238,
-    "sitemapLocCount": 238,
-    "generatedToolInventoryAt": "2026-06-02T20:04:10.230Z",
+    "landingPageCount": 62,
+    "indexableRoutes": 239,
+    "sitemapLocCount": 239,
+    "generatedToolInventoryAt": "2026-06-02T20:32:42.012Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -37,28 +37,28 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 25752,
+        "bytes": 25878,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 39588,
+        "bytes": 39641,
         "json": null
       },
       "/share-kit/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 22020,
+        "bytes": 23405,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 28827,
+        "bytes": 28938,
         "json": null
       },
       "/robots.txt": {
@@ -81,7 +81,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 33435,
+        "bytes": 33685,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for"
       },
@@ -89,7 +89,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 59110,
+        "bytes": 59575,
         "json": null
       },
       "/tools.json": {
@@ -101,7 +101,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-02T19:47:18.496Z",
+          "generatedAt": "2026-06-02T20:32:42.012Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -983,11 +983,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 37454,
+        "bytes": 37826,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-02T19:47:18.496Z",
+          "generatedAt": "2026-06-02T20:32:42.012Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1008,6 +1008,7 @@
             "https://printable-tools-lab.pages.dev/platform-outreach-tracker/",
             "https://printable-tools-lab.pages.dev/portal-submission-pack/",
             "https://printable-tools-lab.pages.dev/zero-cost-monetization-map/",
+            "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
             "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
             "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
@@ -1267,6 +1268,12 @@
             ]
           },
           "landingPages": [
+            {
+              "title": "Free Upload Limit Fixer",
+              "url": "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
+              "intent": "file upload limit fixer, reduce file size, convert file format, resize photo",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/"
+            },
             {
               "title": "Free Invoice Generator Without Signup",
               "url": "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
@@ -1651,13 +1658,19 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 19016,
+        "bytes": 19919,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-02T19:47:18.496Z",
+          "generatedAt": "2026-06-02T20:32:42.012Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
+            {
+              "title": "Upload limit fixer",
+              "url": "https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=share-kit&utm_medium=organic",
+              "canonicalUrl": "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
+              "reason": "Task-first entry for users blocked by file size, format, or photo dimension limits."
+            },
             {
               "title": "Compress PDF to 1MB",
               "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb?utm_source=share-kit&utm_medium=organic",
@@ -1708,6 +1721,15 @@
             }
           ],
           "posts": [
+            {
+              "channel": "short-video",
+              "title": "Fix a blocked upload",
+              "hook": "File upload rejected for size, format, or photo dimensions?",
+              "body": "Start with the upload limit fixer. It points to the no-upload PDF compressor, image-to-KB compressor, image resizer, passport photo cropper, PDF-to-JPG converter, and image-to-PDF tools.",
+              "cta": "Fix an upload limit",
+              "linkPath": "upload-limit-fixer",
+              "url": "https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=short-video&utm_medium=organic"
+            },
             {
               "channel": "short-video",
               "title": "Upload limit fix: PDF under 1MB",
@@ -1938,7 +1960,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/manifest+json; charset=utf-8",
-        "bytes": 4075,
+        "bytes": 4194,
         "json": null
       },
       "/opensearch.xml": {
@@ -2890,7 +2912,7 @@
       "sitemap": [
         {
           "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-02T19:56:28.660Z",
+          "lastSubmitted": "2026-06-02T20:38:45.258Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -2910,7 +2932,7 @@
       "sitemap": [
         {
           "path": "https://yanqr213.github.io/printable-tools-lab/sitemap.xml",
-          "lastSubmitted": "2026-06-02T20:20:19.352Z",
+          "lastSubmitted": "2026-06-02T20:38:45.468Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -2991,13 +3013,13 @@
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 115,
-      "landingPagesLinked": 61,
+      "sitemapUrlCount": 116,
+      "landingPagesLinked": 62,
       "toolPagesLinked": 50,
       "toolPagesInSitemap": 50,
       "gamePagesLinked": 1,
       "gamePagesInSitemap": 3,
-      "expectedUrlCount": 115,
+      "expectedUrlCount": 116,
       "error": ""
     },
     "indexNow": {
@@ -3008,7 +3030,7 @@
       "keyFileReachable": true,
       "singleUrlAccepted": false,
       "latestReport": {
-        "generatedAt": "2026-06-02T20:20:06.807Z",
+        "generatedAt": "2026-06-02T20:38:50.511Z",
         "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
         "results": [
           {
@@ -3018,7 +3040,7 @@
             "keyReachable": true,
             "keyStatus": 200,
             "keyMessage": "ok",
-            "urlCount": 238,
+            "urlCount": 239,
             "submittedUrls": 0,
             "accepted": false,
             "status": 403,
@@ -3033,8 +3055,8 @@
             "keyReachable": true,
             "keyStatus": 200,
             "keyMessage": "ok",
-            "urlCount": 115,
-            "submittedUrls": 115,
+            "urlCount": 116,
+            "submittedUrls": 116,
             "accepted": true,
             "status": 200,
             "message": "",
@@ -3049,7 +3071,7 @@
       "acceptedTargets": [
         "github-pages"
       ],
-      "acceptedUrlCount": 115,
+      "acceptedUrlCount": 116,
       "error": ""
     },
     "externalDiscoveryReady": true
@@ -3066,7 +3088,7 @@
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "66 tools, 95 guides, 61 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "66 tools, 95 guides, 62 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
@@ -3084,10 +3106,10 @@
       "externalDiscovery": [
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
-        "GitHub Pages discovery directory is live with 61 landing page link(s), 50 tool mirror link(s), and 1 game submission link(s).",
-        "GitHub Pages discovery sitemap has 115 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 115.",
+        "GitHub Pages discovery directory is live with 62 landing page link(s), 50 tool mirror link(s), and 1 game submission link(s).",
+        "GitHub Pages discovery sitemap has 116 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 116.",
         "IndexNow key file is reachable from the site root.",
-        "IndexNow latest report accepted 115 URL(s) for github-pages."
+        "IndexNow latest report accepted 116 URL(s) for github-pages."
       ]
     }
   },
