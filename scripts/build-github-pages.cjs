@@ -151,6 +151,7 @@ for (const tool of highIntentTools) {
   fs.writeFileSync(path.join(toolDir, "index.html"), toolDiscoveryHtml(tool, relatedLandingPages));
 }
 writeDigitalProductDiscoveryPages();
+copyDigitalProductPublicAssets();
 writeGameDiscoveryPages();
 
 fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
@@ -285,8 +286,27 @@ function writeDigitalProductDiscoveryPages() {
   }
 }
 
+function copyDigitalProductPublicAssets() {
+  for (const product of DIGITAL_PRODUCTS) {
+    copyPublicFile(product.publicSamplePath);
+    copyPublicFile(product.packageReportPath);
+  }
+}
+
+function copyPublicFile(relativePath) {
+  const cleanPath = String(relativePath || "").replace(/^\/+/, "");
+  if (!cleanPath) return;
+  const sourcePath = path.join(root, cleanPath);
+  if (!fs.existsSync(sourcePath)) return;
+  const targetPath = path.join(docsDir, cleanPath);
+  fs.mkdirSync(path.dirname(targetPath), { recursive: true });
+  fs.copyFileSync(sourcePath, targetPath);
+}
+
 function digitalProductHtml(product) {
   const checkoutConfigured = Boolean(product.checkoutUrl);
+  const sampleUrl = pagesAssetUrl(product.publicSamplePath);
+  const packageReportUrl = pagesAssetUrl(product.packageReportPath);
   return `<!doctype html>
 <html lang="en">
   <head>
@@ -317,7 +337,7 @@ function digitalProductHtml(product) {
       <p><a href="${pagesBase}">PrintableTools Lab discovery directory</a></p>
       <h1>${escapeHtml(product.headline)}</h1>
       <p>${escapeHtml(product.description)}</p>
-      <p><a class="button" href="${trackedSiteUrl(product.slug, "product-mirror")}">Open live product page</a> <a href="${siteUrl(product.publicSamplePath).replace(/\/$/, "")}">Download sample ZIP</a></p>
+      <p><a class="button" href="${trackedSiteUrl(product.slug, "product-mirror")}">Open live product page</a> <a href="${sampleUrl}">Download sample ZIP</a> <a href="${packageReportUrl}">View package report</a></p>
       <h2>Checkout state</h2>
       <p>${checkoutConfigured ? "Checkout is configured on the main product page through an external payment provider." : "Checkout is not connected yet. The product page and delivery ZIP are ready, but a real Gumroad, Payhip, Ko-fi, or Stripe Payment Link must be added before paid promotion."}</p>
       <h2>Included assets</h2>
@@ -504,11 +524,18 @@ function productFeedEntry(product) {
     currency: product.currency,
     checkoutConfigured: Boolean(product.checkoutUrl),
     sampleUrl: siteUrl(product.publicSamplePath).replace(/\/$/, ""),
+    discoverySampleUrl: pagesAssetUrl(product.publicSamplePath),
     packageReportUrl: siteUrl(product.packageReportPath).replace(/\/$/, ""),
+    discoveryPackageReportUrl: pagesAssetUrl(product.packageReportPath),
     privatePackagePath: product.privatePackagePath,
     contents: product.contents,
     successGate: product.successGate,
   };
+}
+
+function pagesAssetUrl(relativePath) {
+  const cleanPath = String(relativePath || "").replace(/^\/+/, "");
+  return `${pagesBase}${cleanPath}`;
 }
 
 function productSchema(product) {

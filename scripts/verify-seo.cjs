@@ -594,6 +594,7 @@ else {
   if (!data.gameSubmissionPack || data.gameSubmissionPack.discoveryUrl !== "https://yanqr213.github.io/printable-tools-lab/html5-game-submission-pack/") failures.push("GitHub Pages discovery tools.json missing HTML5 game submission pack.");
   if (!data.gameSubmissionPack?.games?.some((game) => game.name === "Neon Lane Dash" && String(game.gameSnacksZipUrl || "").includes("neon-lane-dash-gamesnacks.zip"))) failures.push("GitHub Pages discovery tools.json missing Neon GameSnacks package.");
   if (!data.digitalProducts?.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id && String(product.sampleUrl || "").includes("local-seller-starter-kit-sample.zip"))) failures.push("GitHub Pages discovery tools.json missing digital product.");
+  if (!data.digitalProducts?.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id && String(product.discoverySampleUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/assets/digital-products/"))) failures.push("GitHub Pages discovery tools.json missing local sample ZIP URL.");
 }
 
 const docsProductsFile = path.join(root, "docs", "products.json");
@@ -601,6 +602,8 @@ if (!fs.existsSync(docsProductsFile)) failures.push("Missing GitHub Pages produc
 else {
   const data = JSON.parse(fs.readFileSync(docsProductsFile, "utf8"));
   if (!Array.isArray(data.products) || !data.products.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id)) failures.push("GitHub Pages products.json missing seller kit.");
+  if (!data.products?.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id && String(product.discoverySampleUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/assets/digital-products/"))) failures.push("GitHub Pages products.json missing local sample ZIP URL.");
+  if (!data.products?.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id && String(product.discoveryPackageReportUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/reports/"))) failures.push("GitHub Pages products.json missing local package report URL.");
   if (!String(data.moneyGate || "").includes("paid order")) failures.push("GitHub Pages products.json missing paid-order money gate.");
 }
 
@@ -610,8 +613,22 @@ else {
   const html = fs.readFileSync(docsProductFile, "utf8");
   if (!html.includes("Local Seller Starter Kit")) failures.push("GitHub Pages seller kit mirror missing title.");
   if (!html.includes("Download sample ZIP")) failures.push("GitHub Pages seller kit mirror missing sample link.");
+  if (!html.includes("https://yanqr213.github.io/printable-tools-lab/assets/digital-products/local-seller-starter-kit-sample.zip")) failures.push("GitHub Pages seller kit mirror should use local sample ZIP URL.");
+  if (!html.includes("https://yanqr213.github.io/printable-tools-lab/reports/local-seller-starter-kit-package.json")) failures.push("GitHub Pages seller kit mirror should link local package report.");
   if (!html.includes('"@type":"Product"')) failures.push("GitHub Pages seller kit mirror missing Product schema.");
   if (!sitemapIncludes(path.join(root, "docs", "sitemap.xml"), `https://yanqr213.github.io/printable-tools-lab/${LOCAL_SELLER_STARTER_KIT.slug}/`)) failures.push("GitHub Pages sitemap missing seller kit mirror page.");
+}
+
+const docsSellerKitSampleFile = path.join(root, "docs", LOCAL_SELLER_STARTER_KIT.publicSamplePath);
+if (!fs.existsSync(docsSellerKitSampleFile)) failures.push("Missing GitHub Pages seller kit sample ZIP copy.");
+else if (fs.statSync(docsSellerKitSampleFile).size < 500) failures.push("GitHub Pages seller kit sample ZIP copy is too small.");
+
+const docsSellerKitReportFile = path.join(root, "docs", LOCAL_SELLER_STARTER_KIT.packageReportPath);
+if (!fs.existsSync(docsSellerKitReportFile)) failures.push("Missing GitHub Pages seller kit package report copy.");
+else {
+  const report = JSON.parse(fs.readFileSync(docsSellerKitReportFile, "utf8"));
+  if (!report.publicSample || report.publicSample.fileCount < 4) failures.push("GitHub Pages seller kit package report copy missing public sample count.");
+  if (!String(report.moneyGate || "").includes("paid order")) failures.push("GitHub Pages seller kit package report copy missing paid-order gate.");
 }
 
 const docsGamesFile = path.join(root, "docs", "games.json");

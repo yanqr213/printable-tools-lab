@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Digital Products",
-  "generatedAt": "2026-06-02T23:01:45.359Z",
+  "generatedAt": "2026-06-02T23:09:10.170Z",
   "directory": "https://yanqr213.github.io/printable-tools-lab/",
   "products": [
     {
@@ -13,7 +13,9 @@
       "currency": "USD",
       "checkoutConfigured": false,
       "sampleUrl": "https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-sample.zip",
+      "discoverySampleUrl": "https://yanqr213.github.io/printable-tools-lab/assets/digital-products/local-seller-starter-kit-sample.zip",
       "packageReportUrl": "https://printable-tools-lab.pages.dev/reports/local-seller-starter-kit-package.json",
+      "discoveryPackageReportUrl": "https://yanqr213.github.io/printable-tools-lab/reports/local-seller-starter-kit-package.json",
       "privatePackagePath": "paid-deliverables/local-seller-starter-kit.zip",
       "contents": [
         "30-day local promo calendar CSV",
