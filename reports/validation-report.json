@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-02T22:39:20.798Z",
+  "generatedAt": "2026-06-02T23:14:10.262Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -7,9 +7,9 @@
     "toolCount": 66,
     "guideCount": 95,
     "landingPageCount": 66,
-    "indexableRoutes": 243,
-    "sitemapLocCount": 243,
-    "generatedToolInventoryAt": "2026-06-02T22:33:04.592Z",
+    "indexableRoutes": 244,
+    "sitemapLocCount": 244,
+    "generatedToolInventoryAt": "2026-06-02T23:09:10.087Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -2957,11 +2957,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         }
       ]
@@ -2990,7 +2990,7 @@
       "sitemap": [
         {
           "path": "https://yanqr213.github.io/printable-tools-lab/sitemap.xml",
-          "lastSubmitted": "2026-06-02T22:37:04.137Z",
+          "lastSubmitted": "2026-06-02T23:13:08.072Z",
           "isPending": true,
           "isSitemapsIndex": false,
           "warnings": "0",
@@ -3071,13 +3071,13 @@
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 120,
+      "sitemapUrlCount": 121,
       "landingPagesLinked": 66,
       "toolPagesLinked": 50,
       "toolPagesInSitemap": 50,
       "gamePagesLinked": 1,
       "gamePagesInSitemap": 3,
-      "expectedUrlCount": 120,
+      "expectedUrlCount": 121,
       "error": ""
     },
     "indexNow": {
@@ -3088,7 +3088,7 @@
       "keyFileReachable": true,
       "singleUrlAccepted": false,
       "latestReport": {
-        "generatedAt": "2026-06-02T22:37:13.965Z",
+        "generatedAt": "2026-06-02T23:10:47.220Z",
         "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
         "results": [
           {
@@ -3098,7 +3098,7 @@
             "keyReachable": true,
             "keyStatus": 200,
             "keyMessage": "ok",
-            "urlCount": 243,
+            "urlCount": 244,
             "submittedUrls": 0,
             "accepted": false,
             "status": 403,
@@ -3113,8 +3113,8 @@
             "keyReachable": true,
             "keyStatus": 200,
             "keyMessage": "ok",
-            "urlCount": 120,
-            "submittedUrls": 120,
+            "urlCount": 121,
+            "submittedUrls": 121,
             "accepted": true,
             "status": 200,
             "message": "",
@@ -3129,7 +3129,7 @@
       "acceptedTargets": [
         "github-pages"
       ],
-      "acceptedUrlCount": 120,
+      "acceptedUrlCount": 121,
       "error": ""
     },
     "externalDiscoveryReady": true
@@ -3165,9 +3165,9 @@
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 66 landing page link(s), 50 tool mirror link(s), and 1 game submission link(s).",
-        "GitHub Pages discovery sitemap has 120 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 120.",
+        "GitHub Pages discovery sitemap has 121 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 121.",
         "IndexNow key file is reachable from the site root.",
-        "IndexNow latest report accepted 120 URL(s) for github-pages."
+        "IndexNow latest report accepted 121 URL(s) for github-pages."
       ]
     }
   },
