@@ -5,8 +5,14 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-02T20:15:53.499Z",
+  "generatedAt": "2026-06-02T20:30:02.516Z",
   "landingPages": [
+    {
+      "title": "Free Upload Limit Fixer",
+      "url": "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/upload-limit-fixer/",
+      "intent": "file upload limit fixer, reduce file size, convert file format, resize photo"
+    },
     {
       "title": "Free Invoice Generator Without Signup",
       "url": "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",

@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-06-01T21:10:31.053Z",
+  "generatedAt": "2026-06-02T20:30:16.091Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 0,
-  "pendingCount": 5,
-  "errorCount": 0,
+  "pendingCount": 4,
+  "errorCount": 1,
   "results": [
     {
       "name": "Zearches",
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 117561,
+          "bytes": 117582,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 117561,
+          "bytes": 117582,
           "matched": false
         }
       ]
@@ -127,7 +127,7 @@
       ],
       "submittedAt": "2026-06-02",
       "reviewWindow": "maintainer review",
-      "status": "pending",
+      "status": "error",
       "evidenceUrl": "https://github.com/js-org/js.org/pull/11512",
       "apiAvailable": true,
       "checksAvailable": true,
@@ -138,39 +138,39 @@
           "name": "PR description",
           "status": "completed",
           "conclusion": "success",
-          "startedAt": "2026-06-01T18:00:13Z",
-          "url": "https://github.com/js-org/js.org/actions/runs/26772470824/job/78915257265"
+          "startedAt": "2026-06-01T22:34:58Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353230"
         },
         {
           "name": "cnames_active.js",
           "status": "completed",
           "conclusion": "success",
-          "startedAt": "2026-06-01T18:00:12Z",
-          "url": "https://github.com/js-org/js.org/actions/runs/26772470824/job/78915257181"
+          "startedAt": "2026-06-01T22:34:57Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353223"
         }
       ],
-      "prState": "open",
+      "prState": "closed",
       "mergeable": true,
       "checked": [
         {
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 273301,
+          "bytes": 298383,
           "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/pulls/11512",
           "ok": true,
           "status": 200,
-          "bytes": 15970,
+          "bytes": 16307,
           "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs",
           "ok": true,
           "status": 200,
-          "bytes": 12092,
+          "bytes": 18122,
           "matched": true
         }
       ]

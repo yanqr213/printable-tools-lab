@@ -64,6 +64,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - JPG to PDF without upload page: https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/
 - No-signup resume page: https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/
 - Free ATS resume checker page: https://printable-tools-lab.pages.dev/ats-resume-checker-free/
+- Free Upload Limit Fixer: https://printable-tools-lab.pages.dev/upload-limit-fixer/
 - Multiple Images to PDF Without Uploading: https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/
 - Compress PDF Without Uploading: https://printable-tools-lab.pages.dev/compress-pdf-no-upload/
 - Compress PDF to 500KB Without Uploading: https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/

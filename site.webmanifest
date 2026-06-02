@@ -37,6 +37,11 @@
       "url": "/pdf-tool-finder/"
     },
     {
+      "name": "Upload limit fixer",
+      "short_name": "Upload fix",
+      "url": "/upload-limit-fixer/"
+    },
+    {
       "name": "ATS Resume Checker",
       "short_name": "ATS Check",
       "url": "/tools/ats-resume-checker/"

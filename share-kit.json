@@ -1,9 +1,15 @@
 {
   "name": "PrintableTools Lab Share Kit",
-  "generatedAt": "2026-06-02T20:04:10.230Z",
+  "generatedAt": "2026-06-02T20:30:02.430Z",
   "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
   "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
   "featuredLinks": [
+    {
+      "title": "Upload limit fixer",
+      "url": "https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=share-kit&utm_medium=organic",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
+      "reason": "Task-first entry for users blocked by file size, format, or photo dimension limits."
+    },
     {
       "title": "Compress PDF to 1MB",
       "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb?utm_source=share-kit&utm_medium=organic",
@@ -54,6 +60,15 @@
     }
   ],
   "posts": [
+    {
+      "channel": "short-video",
+      "title": "Fix a blocked upload",
+      "hook": "File upload rejected for size, format, or photo dimensions?",
+      "body": "Start with the upload limit fixer. It points to the no-upload PDF compressor, image-to-KB compressor, image resizer, passport photo cropper, PDF-to-JPG converter, and image-to-PDF tools.",
+      "cta": "Fix an upload limit",
+      "linkPath": "upload-limit-fixer",
+      "url": "https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=short-video&utm_medium=organic"
+    },
     {
       "channel": "short-video",
       "title": "Upload limit fix: PDF under 1MB",

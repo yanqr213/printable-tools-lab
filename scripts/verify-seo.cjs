@@ -78,6 +78,7 @@ else {
   const feed = fs.readFileSync(feedFile, "utf8");
   if (!feed.includes("<rss version=\"2.0\"")) failures.push("feed.xml missing RSS root.");
   if (!feed.includes(siteUrl("free-pdf-tools"))) failures.push("feed.xml missing free PDF tools directory.");
+  if (!feed.includes(siteUrl("upload-limit-fixer"))) failures.push("feed.xml missing upload limit fixer URL.");
   if (!feed.includes(siteUrl("share-kit"))) failures.push("feed.xml missing share kit URL.");
   if (!feed.includes(siteUrl("free-invoice-generator-no-signup"))) failures.push("feed.xml missing high-intent no-signup invoice URL.");
   if (!feed.includes(siteUrl("tools/image-to-pdf"))) failures.push("feed.xml missing high-intent image-to-PDF URL.");
@@ -91,6 +92,7 @@ else {
   if (manifest.name !== "PrintableTools Lab") failures.push("site.webmanifest missing app name.");
   if (manifest.start_url !== "/free-pdf-tools/") failures.push("site.webmanifest should start at the free PDF tools page.");
   if (!Array.isArray(manifest.shortcuts) || !manifest.shortcuts.some((item) => item.url === "/pdf-tool-finder/")) failures.push("site.webmanifest missing PDF tool finder shortcut.");
+  if (!Array.isArray(manifest.shortcuts) || !manifest.shortcuts.some((item) => item.url === "/upload-limit-fixer/")) failures.push("site.webmanifest missing upload limit fixer shortcut.");
 }
 
 const opensearchFile = path.join(root, "opensearch.xml");
@@ -449,6 +451,7 @@ else {
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("platform-outreach-tracker"))) failures.push("discovery.json missing platform outreach tracker page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("portal-submission-pack"))) failures.push("discovery.json missing portal submission pack page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("zero-cost-monetization-map"))) failures.push("discovery.json missing zero-cost monetization map page.");
+  if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("upload-limit-fixer"))) failures.push("discovery.json missing upload limit fixer page.");
   if (discovery.shareKit !== siteUrl("share-kit.json").replace(/\/$/, "")) failures.push("discovery.json missing share-kit.json URL.");
   if (discovery.platformSubmitQueue !== siteUrl("platform-submit-queue.json").replace(/\/$/, "")) failures.push("discovery.json missing platform-submit-queue.json URL.");
   if (discovery.platformSubmitCockpit !== siteUrl("platform-submit-cockpit.json").replace(/\/$/, "")) failures.push("discovery.json missing platform-submit-cockpit.json URL.");
@@ -492,6 +495,7 @@ else {
   const html = fs.readFileSync(docsIndexFile, "utf8");
   if (!html.includes("Free PDF, image, and QR tools without signup")) failures.push("GitHub Pages discovery page missing heading.");
   if (!html.includes(siteUrl("free-pdf-tools"))) failures.push("GitHub Pages discovery page missing main directory link.");
+  if (!html.includes(siteUrl("upload-limit-fixer"))) failures.push("GitHub Pages discovery page missing upload limit fixer link.");
   if (!html.includes(siteUrl("free-invoice-generator-no-signup"))) failures.push("GitHub Pages discovery page missing no-signup invoice landing link.");
   if (!html.includes(siteUrl("tools/image-to-pdf"))) failures.push("GitHub Pages discovery page missing image-to-PDF link.");
   if (!html.includes("https://yanqr213.github.io/printable-tools-lab/tools/image-to-pdf/")) failures.push("GitHub Pages discovery page missing tool mirror link.");

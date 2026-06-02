@@ -818,6 +818,7 @@ const PLATFORM_SUBMIT_COCKPIT = {
 };
 
 const SHARE_KIT_FEATURED_LINKS = [
+  ["Upload limit fixer", "upload-limit-fixer", "Task-first entry for users blocked by file size, format, or photo dimension limits."],
   ["Compress PDF to 1MB", "compress-pdf-to-1mb", "Urgent upload-limit search for job, school, email, and portal PDFs."],
   ["Compress PDF to 500KB", "compress-pdf-to-500kb", "Strict form and government-style upload limit intent."],
   ["Compress image to 100KB", "compress-image-to-100kb", "Common profile, exam, job, and form image-size limit."],
@@ -829,6 +830,14 @@ const SHARE_KIT_FEATURED_LINKS = [
 ];
 
 const SHARE_KIT_POSTS = [
+  {
+    channel: "short-video",
+    title: "Fix a blocked upload",
+    hook: "File upload rejected for size, format, or photo dimensions?",
+    body: "Start with the upload limit fixer. It points to the no-upload PDF compressor, image-to-KB compressor, image resizer, passport photo cropper, PDF-to-JPG converter, and image-to-PDF tools.",
+    cta: "Fix an upload limit",
+    linkPath: "upload-limit-fixer",
+  },
   {
     channel: "short-video",
     title: "Upload limit fix: PDF under 1MB",
@@ -959,6 +968,12 @@ const TOOL_FINDER_ROWS = [
     need: "I need to make a PDF file smaller",
     toolPath: "tools/compress-pdf",
     why: "Best for scanned or image-heavy PDFs when a form, email, or portal rejects a large file.",
+  },
+  {
+    need: "A website rejected my file because of size, format, or dimensions",
+    toolPath: "tools/compress-image-to-kb",
+    why: "Start with the upload limit fixer for the full decision path, then use PDF compression, image-to-KB, resizing, passport photo crop, PDF-to-JPG, or image-to-PDF as needed.",
+    landingPath: "upload-limit-fixer",
   },
   {
     need: "I need to turn PDF pages into JPG or PNG images",
@@ -1198,6 +1213,21 @@ const TOOL_FINDER_ROWS = [
 ];
 
 const landingPages = [
+  {
+    path: "upload-limit-fixer",
+    title: "Free Upload Limit Fixer",
+    description: "Find the right free no-upload tool when a form rejects your PDF, image, photo, or document because of file size, format, or dimensions.",
+    headline: "Fix a file upload limit without signup",
+    lead: "Start here when a job application, school portal, marketplace, visa-style form, email, or admin website rejects a file because it is too large, the wrong format, or the wrong image dimensions.",
+    primaryTool: "tools/compress-image-to-kb",
+    intent: "file upload limit fixer, reduce file size, convert file format, resize photo",
+    sections: [
+      ["Start from the error message", "If the site says PDF must be under 1MB or 500KB, use the PDF compressor. If it says image must be under 100KB or 200KB, use the image-to-KB compressor. If it asks for JPG, PNG, PDF, or a specific pixel size, choose the matching converter or resizer."],
+      ["Keep the file local", "The linked PDF and image tools run in the browser for ordinary use. That is useful when the blocked upload is a resume, ID-style photo, school form, receipt, support screenshot, or private document."],
+      ["Review before submitting", "Small file-size targets can blur text, flatten PDF text, or reduce photo detail. Always open the downloaded result before uploading it to the destination website."],
+    ],
+    relatedTools: ["tools/compress-pdf?targetSize=1mb", "tools/compress-pdf?targetSize=500kb", "tools/resize-image", "tools/passport-photo", "tools/pdf-to-images", "tools/image-to-pdf"],
+  },
   {
     path: "free-invoice-generator-no-signup",
     title: "Free Invoice Generator Without Signup",
@@ -2854,6 +2884,7 @@ const keywordClusters = [
     title: "Everyday file utilities",
     description: "High-intent image, QR, and PDF tools for compression, resizing, format conversion, static QR codes, existing PDF edits, text conversion, labels, checklists, sign-in sheets, graph paper, and travel paperwork.",
     links: [
+      ["Upload limit fixer", "upload-limit-fixer"],
       ["Image to PDF converter", "tools/image-to-pdf"],
       ["JPG to PDF without uploading", "jpg-to-pdf-no-upload"],
       ["Multiple images to PDF", "tools/multi-image-pdf"],
@@ -3443,10 +3474,12 @@ function pdfToolFinderHtml() {
   const rows = TOOL_FINDER_ROWS.map((row) => {
     const tool = tools.find((item) => item.path === row.toolPath);
     if (!tool) return "";
+    const href = row.landingPath ? `/${row.landingPath}/` : `/${tool.path}/`;
+    const label = row.landingPath ? landingPages.find((page) => page.path === row.landingPath)?.headline || tool.title : tool.title;
     return `
       <tr>
         <td>${escapeHtml(row.need)}</td>
-        <td><a href="/${tool.path}/">${escapeHtml(tool.title)}</a></td>
+        <td><a href="${href}">${escapeHtml(label)}</a></td>
         <td>${escapeHtml(row.why)}</td>
       </tr>`;
   }).join("\n");

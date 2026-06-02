@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-02T20:04:10.230Z",
+  "generatedAt": "2026-06-02T20:30:02.430Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -22,6 +22,7 @@
     "https://printable-tools-lab.pages.dev/platform-outreach-tracker/",
     "https://printable-tools-lab.pages.dev/portal-submission-pack/",
     "https://printable-tools-lab.pages.dev/zero-cost-monetization-map/",
+    "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
     "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
@@ -281,6 +282,12 @@
     ]
   },
   "landingPages": [
+    {
+      "title": "Free Upload Limit Fixer",
+      "url": "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
+      "intent": "file upload limit fixer, reduce file size, convert file format, resize photo",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/"
+    },
     {
       "title": "Free Invoice Generator Without Signup",
       "url": "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",

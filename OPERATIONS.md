@@ -201,7 +201,7 @@ No-domain routes are real, but they do not remove monetization risk; they move t
 Current decision:
 
 1. Keep the free tool site as the main zero-cash product because it already works, has 233 indexable routes, and can collect search/direct/referral data without app-store review.
-2. Use GitHub Pages and JS.ORG as the zero-cash domain/discovery experiment. GitHub Pages is live; JS.ORG is pending maintainer review.
+2. Use GitHub Pages as the zero-cash discovery experiment. JS.ORG was rejected, so it is no longer a dependable free-domain path.
 3. Use Bilibili/Douyin short videos as distribution only after the product has a few visual demo clips. Do not expect immediate platform revenue because creator incentive programs require eligibility and content performance.
 4. Treat Douyin/ByteDance mini games as a pivot candidate, not the first monetization route. The platform provides official ad components for eligible traffic owners, but forced ad watching, blocking core flows with ads, or misleading ad placement is compliance risk.
 5. Treat overseas HTML5 portals such as CrazyGames as a later game-specific experiment. Basic Launch can publish a game faster, but ads are disabled during that phase and revenue depends on performance plus a later full-launch review.
@@ -449,7 +449,7 @@ Current Search Console checkpoint:
 - `2026-06-02`: expanded to 65 tools, 94 guides, and 53 high-intent landing pages by adding a local Remove Background tool. This targets broad transparent-PNG, white-background, product-photo, logo, icon, and signature-scan searches while keeping the tool honest as color-based background removal rather than AI portrait or hair segmentation.
 - `2026-06-02`: expanded to 66 tools, 95 guides, and 54 high-intent landing pages by adding a local Add Text to Image tool. This targets broad creator, seller, teacher, student, class-visual, thumbnail, caption, price-label, and social-image searches while staying browser-only and avoiding a full design-account workflow.
 - `2026-06-02`: zero-cost domain strategy checkpoint: keep the Cloudflare Pages `pages.dev` subdomain for validation because it has no cash cost and can remain crawlable, but treat a normal custom domain as an ad-review and trust upgrade after usage/search data appears. Platform-internal alternatives such as Douyin/WeChat mini games remove domain cost but add app-store review, platform traffic, and ad-eligibility uncertainty, so they are a parallel experiment rather than the current main path.
-- `2026-06-02`: opened JS.ORG pull request `https://github.com/js-org/js.org/pull/11512` for `printable-tools-lab.js.org` pointing to the Cloudflare Pages site. The first automatic validation failed because the PR description did not use the JS.ORG template; the description was updated with checked terms, live content URL, and a JavaScript-ecosystem explanation. The latest JS.ORG checks now pass and the request is awaiting maintainer review. This is a zero-cash-cost domain experiment and does not replace the real custom-domain requirement for serious ad review.
+- `2026-06-02`: opened JS.ORG pull request `https://github.com/js-org/js.org/pull/11512` for `printable-tools-lab.js.org`; the request later closed with `unrelated / unqualified`, so free JS.ORG domain discovery is treated as failed.
 - `2026-06-02`: expanded to 66 tools, 95 guides, and 57 high-intent landing pages by adding 50KB, 200KB, and 500KB image-compression landing pages that deep-link into the same no-upload image-to-KB tool with prefilled target sizes. This targets urgent upload-limit searches while avoiding new infrastructure, checkout, or account friction.
 - `2026-06-02`: expanded to 66 tools, 95 guides, and 61 high-intent landing pages by adding 500KB, 1MB, 2MB, and 5MB PDF compression landing pages that deep-link into the same no-upload PDF compressor with prefilled target sizes. The tool now performs stronger compression attempts when a target is selected and keeps claims honest by saying it tries toward the target rather than guarantees exact output.
 - `2026-06-02`: expanded the GitHub Pages discovery surface from one directory plus 54 landing mirrors to one directory, 61 landing mirrors, and 50 high-intent tool mirrors. This keeps the zero-cost discovery path alive while the main `pages.dev` site has no custom domain, and gives Search Console a broader second sitemap to crawl.
@@ -480,7 +480,7 @@ Current directory queue:
 - ListAi.cc: submitted `PrintableTools Lab` through the free no-account form under `Productivity`; the page returned `Submission Received` and says approved tools are published within 24-48 hours. Do not resubmit unless the listing is rejected or material product positioning changes.
 - NoSignupTools: submitted `PrintableTools Lab` on `2026-06-01` under `Files` with app icon and product screenshot; icon upload, screenshot upload, and `/api/submit` all returned `200`. Awaiting human review, typically 24-48 hours.
 - FreeNoSignup: submitted `PrintableTools Lab` on `2026-06-01` through the embedded Google Form. The form displayed the confirmation `Your response has been recorded`. Awaiting manual review, typically 3-5 business days.
-- JS.ORG free subdomain: opened PR `https://github.com/js-org/js.org/pull/11512` on `2026-06-02` for `printable-tools-lab.js.org`; PR body is template-compliant, automated checks pass, mergeable, and awaiting maintainer review.
+- JS.ORG free subdomain: PR `https://github.com/js-org/js.org/pull/11512` was closed on `2026-06-02` with the `unrelated / unqualified` label. Treat the free JS.ORG domain route as failed and do not rely on it for ad-network readiness.
 - DeepLaunch: candidate for a free tool listing. The public submit page says free submissions are reviewed within 48 hours, but the actual flow redirects to sign-in after image upload, so it requires an authenticated Google/GitHub session.
 - BootstrapArena: candidate for a normal free startup listing. The public page exposes a `Normal Free` option, but browser validation did not reveal a no-login form.
 - Product Hunt: defer until indexing or a visible usage milestone; it is a launch surface, not an indexing shortcut.
@@ -497,6 +497,7 @@ Completed:
 - `2026-06-01`: ListAi.cc free submission completed for `https://printable-tools-lab.pages.dev/`; awaiting 24-48 hour human review.
 - `2026-06-01`: NoSignupTools free directory submission completed for `https://printable-tools-lab.pages.dev/`; awaiting 24-48 hour human review.
 - `2026-06-01`: FreeNoSignup submission completed for `https://printable-tools-lab.pages.dev/`; awaiting 3-5 business day human review.
+- `2026-06-02`: JS.ORG free subdomain request for `printable-tools-lab.js.org` was rejected as unrelated/unqualified, confirming that a free JS.ORG domain should not be treated as a dependable custom-domain substitute for AdSense or search trust.
 
 Submit Google sitemap:
 
@@ -536,7 +537,7 @@ IndexNow note:
 No-domain does not mean no distribution, but it changes the monetization clock:
 
 - Keep `pages.dev` live because it has zero cash cost and is already verified in Search Console.
-- Keep the JS.ORG request as a free custom-URL experiment, but do not treat it as equivalent to an owned commercial domain because the service is voluntary and does not grant property rights over the subdomain.
+- Treat the rejected JS.ORG request as evidence that free subdomain programs are not dependable substitutes for an owned commercial domain.
 - Avoid moving the main product to low-quality short-video or mini-game spam. Bilibili and YouTube platform ad revenue requires creator eligibility and review first. Douyin mini games support ad APIs, but still require app/game review, ad-placement compliance, and platform traffic. CrazyGames disables ads during Basic Launch, so low-quality games are not an instant revenue shortcut.
 - Use short video as distribution for the existing tools first: one useful demo per high-intent pain point, tracked with UTM links, without asking for ad clicks or fake engagement.
 - If zero-cost domain approval stalls and Search Console remains flat for 60 days, run a separate HTML5 game experiment only after building a complete game loop that can pass platform review.

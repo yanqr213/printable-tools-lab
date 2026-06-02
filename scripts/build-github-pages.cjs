@@ -98,6 +98,7 @@ const html = `<!doctype html>
       <h2>Useful starting points</h2>
       <ul>
         <li><a href="${siteUrl("pdf-tool-finder")}">File tool finder</a> for choosing between tools such as compress vs resize, invoice vs receipt, or one image vs multi-image PDF.</li>
+        <li><a href="${siteUrl("upload-limit-fixer")}">Upload limit fixer</a> for choosing the right no-upload tool when a website rejects a file by size, format, or dimensions.</li>
         <li><a href="${siteUrl("tools")}">All free generators</a> for browsing every tool.</li>
         <li><a href="${siteUrl("guides")}">Printable guides</a> for original help pages around PDF, image, QR, and printable workflows.</li>
         <li><a href="${pagesUrl("html5-game-submission-pack")}">HTML5 game submission pack mirror</a> for clean portal ZIPs, GameSnacks packages, demo videos, and platform-review assets.</li>

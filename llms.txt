@@ -12,6 +12,7 @@ Monetization model: Free tools first, then responsible display advertising after
 - Tools index: https://printable-tools-lab.pages.dev/tools/
 - Free PDF, image, and QR tools directory: https://printable-tools-lab.pages.dev/free-pdf-tools/
 - PDF, image, and QR tool finder: https://printable-tools-lab.pages.dev/pdf-tool-finder/
+- Upload limit fixer page: https://printable-tools-lab.pages.dev/upload-limit-fixer/
 - Directory submission pack: https://printable-tools-lab.pages.dev/submit-directory/
 - Share kit: https://printable-tools-lab.pages.dev/share-kit/
 - HTML5 platform submit queue: https://printable-tools-lab.pages.dev/platform-submit-queue/
@@ -119,6 +120,7 @@ Monetization model: Free tools first, then responsible display advertising after
 
 ## High-Intent Landing Pages
 
+- [Free Upload Limit Fixer](https://printable-tools-lab.pages.dev/upload-limit-fixer/): file upload limit fixer, reduce file size, convert file format, resize photo
 - [Free Invoice Generator Without Signup](https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/): invoice PDF now, no account, no hidden export fee
 - [JPG to PDF Without Uploading](https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/): private image conversion, no upload, fast PDF
 - [Multiple Images to PDF Without Uploading](https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/): combine images into one PDF without upload

@@ -79,6 +79,7 @@ const manifest = {
   shortcuts: [
     { name: "Free file tools", short_name: "File tools", url: "/free-pdf-tools/" },
     { name: "File tool finder", short_name: "Finder", url: "/pdf-tool-finder/" },
+    { name: "Upload limit fixer", short_name: "Upload fix", url: "/upload-limit-fixer/" },
     { name: "ATS Resume Checker", short_name: "ATS Check", url: "/tools/ats-resume-checker/" },
     { name: "Compress PDF", short_name: "PDF ZIP", url: "/tools/compress-pdf/" },
     { name: "Compress image", short_name: "Compress", url: "/tools/compress-image/" },
@@ -286,6 +287,7 @@ const llms = [
   `- Tools index: ${siteUrl("tools")}`,
   `- Free PDF, image, and QR tools directory: ${siteUrl("free-pdf-tools")}`,
   `- PDF, image, and QR tool finder: ${siteUrl("pdf-tool-finder")}`,
+  `- Upload limit fixer page: ${siteUrl("upload-limit-fixer")}`,
   `- Directory submission pack: ${siteUrl("submit-directory")}`,
   `- Share kit: ${siteUrl("share-kit")}`,
   `- HTML5 platform submit queue: ${siteUrl("platform-submit-queue")}`,
