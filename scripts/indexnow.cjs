@@ -1,10 +1,12 @@
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
-const { routes, siteUrl } = require("./seo-content.cjs");
+const { routes, siteUrl, landingPages, HIGH_INTENT_TOOL_PATHS } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
+const reports = path.join(root, "reports");
 const keyFile = path.join(root, "indexnow-key.txt");
+const githubPagesBase = (process.env.GITHUB_PAGES_DISCOVERY_URL || "https://yanqr213.github.io/printable-tools-lab").replace(/\/+$/, "");
 let key = process.env.INDEXNOW_KEY || "";
 
 if (!key && fs.existsSync(keyFile)) key = fs.readFileSync(keyFile, "utf8").trim();
@@ -19,81 +21,122 @@ if (!fs.existsSync(keyFilePath) || fs.readFileSync(keyFilePath, "utf8").trim() !
   fs.writeFileSync(keyFilePath, `${key}\n`);
 }
 
-const keyLocation = `${siteUrl("").replace(/\/+$/, "")}/${keyFileName}`;
-const urls = routes
+const mainUrls = routes
   .filter((route) => route.index !== false)
   .map((route) => siteUrl(route.path));
-const priorityUrls = [
+const priorityMainUrls = [
   siteUrl(""),
   siteUrl("tools"),
   siteUrl("free-pdf-tools"),
   siteUrl("share-kit"),
   siteUrl("compress-pdf-to-500kb"),
   siteUrl("compress-pdf-to-1mb"),
-  siteUrl("compress-pdf-to-2mb"),
-  siteUrl("compress-pdf-to-5mb"),
-  siteUrl("compress-image-to-50kb"),
   siteUrl("compress-image-to-100kb"),
-  siteUrl("compress-image-to-200kb"),
-  siteUrl("compress-image-to-500kb"),
   siteUrl("tools/image-to-pdf"),
-  siteUrl("tools/multi-image-pdf"),
   siteUrl("tools/compress-image"),
-  siteUrl("tools/resize-image"),
-  siteUrl("tools/convert-image"),
-  siteUrl("tools/crop-image"),
-  siteUrl("tools/rotate-image"),
-  siteUrl("tools/watermark-image"),
   siteUrl("tools/qr-code"),
-  siteUrl("tools/wifi-qr-code"),
-  siteUrl("tools/vcard-qr-code"),
-  siteUrl("tools/text-to-pdf"),
-  siteUrl("tools/invoice-generator"),
-  siteUrl("tools/receipt-generator"),
-  siteUrl("tools/timesheet-generator"),
-  siteUrl("tools/resume-builder"),
-  siteUrl("tools/certificate-generator"),
-  siteUrl("tools/todo-list"),
-  siteUrl("tools/graph-paper"),
-].filter((url, index, list) => list.indexOf(url) === index);
+].filter(unique);
+const githubPagesUrls = [
+  `${githubPagesBase}/`,
+  ...landingPages.map((page) => `${githubPagesBase}/${page.path}/`),
+  ...HIGH_INTENT_TOOL_PATHS.map((toolPath) => `${githubPagesBase}/${toolPath}/`),
+].filter(unique);
+
+main().catch((error) => {
+  console.error(error.stack || error.message);
+  process.exit(1);
+});
 
 async function main() {
-  const keyCheck = await checkKeyLocation();
+  const targets = [
+    {
+      label: "pages.dev",
+      host: new URL(siteUrl("")).host,
+      keyLocation: `${siteUrl("").replace(/\/+$/, "")}/${keyFileName}`,
+      urls: mainUrls,
+      priorityUrls: priorityMainUrls,
+    },
+    {
+      label: "github-pages",
+      host: new URL(githubPagesBase).host,
+      keyLocation: `${githubPagesBase}/${keyFileName}`,
+      urls: githubPagesUrls,
+      priorityUrls: githubPagesUrls.slice(0, 30),
+    },
+  ];
+
+  const results = [];
+  for (const target of targets) {
+    results.push(await submitTarget(target));
+  }
+
+  const report = {
+    generatedAt: new Date().toISOString(),
+    keyFile: keyFileName,
+    results,
+    acceptedTargets: results.filter((result) => result.accepted).map((result) => result.label),
+  };
+  fs.mkdirSync(reports, { recursive: true });
+  fs.writeFileSync(path.join(reports, "indexnow-report.json"), `${JSON.stringify(report, null, 2)}\n`);
+
+  for (const result of results) {
+    if (result.accepted) {
+      console.log(`IndexNow accepted ${result.submittedUrls} URL(s) for ${result.label}.`);
+    } else {
+      console.warn(`IndexNow did not accept ${result.label}: ${result.status || 0} ${result.message}`);
+    }
+  }
+  if (!report.acceptedTargets.length) {
+    console.warn("IndexNow accepted no targets. Google Search Console sitemap submission remains the primary discovery channel.");
+  }
+}
+
+async function submitTarget(target) {
+  const keyCheck = await checkKeyLocation(target.keyLocation);
+  const result = {
+    label: target.label,
+    host: target.host,
+    keyLocation: target.keyLocation,
+    keyReachable: keyCheck.ok,
+    keyStatus: keyCheck.status,
+    keyMessage: keyCheck.message,
+    urlCount: target.urls.length,
+    submittedUrls: 0,
+    accepted: false,
+    status: 0,
+    message: "",
+    fallbackAccepted: 0,
+    fallbackFailed: 0,
+  };
   if (!keyCheck.ok) {
-    console.warn(`IndexNow key file is not reachable: ${keyCheck.status} ${keyCheck.message}`);
-    console.warn(`Key URL checked: ${keyLocation}`);
-    console.warn("This does not block Google indexing; Search Console sitemap submission is the primary indexing path.");
-    return;
+    result.message = `key file not reachable or mismatched: ${keyCheck.message}`;
+    return result;
   }
 
   const payload = {
-    host: new URL(siteUrl("")).host,
+    host: target.host,
     key,
-    keyLocation,
-    urlList: urls,
+    keyLocation: target.keyLocation,
+    urlList: target.urls,
   };
-  const response = await fetch("https://api.indexnow.org/indexnow", {
-    method: "POST",
-    headers: { "Content-Type": "application/json; charset=utf-8" },
-    body: JSON.stringify(payload),
-  });
-  const text = await response.text();
-  if (!response.ok && response.status !== 202) {
-    console.warn(`IndexNow batch POST failed with ${response.status}: ${text}`);
-    console.warn("Tip: IndexNow can return 403 for pages.dev subdomains even when the key file is reachable. This is a non-Google discovery channel.");
-    const fallback = await submitPriorityUrls();
-    if (fallback.accepted) {
-      console.log(`IndexNow fallback submitted ${fallback.accepted} priority URLs.`);
-      if (fallback.failed) console.warn(`IndexNow fallback had ${fallback.failed} failed URL(s).`);
-      return;
-    }
-    console.warn("IndexNow fallback did not accept any URLs. This does not block Google indexing; Search Console sitemap submission is the primary indexing path.");
-    return;
+  const response = await postIndexNow(payload);
+  result.status = response.status;
+  result.message = response.text;
+  if (response.ok) {
+    result.accepted = true;
+    result.submittedUrls = target.urls.length;
+    return result;
   }
-  console.log(`IndexNow submitted ${urls.length} URLs with status ${response.status}.`);
+
+  const fallback = await submitPriorityUrls(target.priorityUrls, target.keyLocation);
+  result.fallbackAccepted = fallback.accepted;
+  result.fallbackFailed = fallback.failed;
+  result.accepted = fallback.accepted > 0;
+  result.submittedUrls = fallback.accepted;
+  return result;
 }
 
-async function checkKeyLocation() {
+async function checkKeyLocation(keyLocation) {
   try {
     const response = await fetch(keyLocation, { cache: "no-store" });
     const text = await response.text();
@@ -107,18 +150,29 @@ async function checkKeyLocation() {
   }
 }
 
-async function submitPriorityUrls() {
+async function postIndexNow(payload) {
+  try {
+    const response = await fetch("https://api.indexnow.org/indexnow", {
+      method: "POST",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: JSON.stringify(payload),
+    });
+    const text = await response.text();
+    return { ok: response.ok || response.status === 202, status: response.status, text: text.slice(0, 500) };
+  } catch (error) {
+    return { ok: false, status: 0, text: error.message };
+  }
+}
+
+async function submitPriorityUrls(urls, keyLocation) {
   let accepted = 0;
   let failed = 0;
-  for (const url of priorityUrls) {
-    const endpoint = `https://www.bing.com/indexnow?url=${encodeURIComponent(url)}&key=${encodeURIComponent(key)}`;
+  for (const url of urls) {
+    const endpoint = `https://www.bing.com/indexnow?url=${encodeURIComponent(url)}&key=${encodeURIComponent(key)}&keyLocation=${encodeURIComponent(keyLocation)}`;
     try {
       const response = await fetch(endpoint, { method: "GET" });
       if (response.ok || response.status === 202) accepted += 1;
-      else {
-        failed += 1;
-        console.warn(`IndexNow fallback failed ${response.status} for ${url}: ${(await response.text()).slice(0, 180)}`);
-      }
+      else failed += 1;
     } catch {
       failed += 1;
     }
@@ -126,7 +180,6 @@ async function submitPriorityUrls() {
   return { accepted, failed };
 }
 
-main().catch((error) => {
-  console.error(error.message);
-  process.exit(1);
-});
+function unique(value, index, list) {
+  return list.indexOf(value) === index;
+}

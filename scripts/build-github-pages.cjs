@@ -161,6 +161,7 @@ ${discoveryRoutes.map((route) => `  <url><loc>${route.url}</loc><lastmod>${lastm
 
 fs.writeFileSync(path.join(docsDir, ".nojekyll"), "");
 copyGoogleVerificationFiles();
+copyIndexNowKeyFile();
 
 console.log(`Generated GitHub Pages discovery site in ${path.relative(root, docsDir)}.`);
 
@@ -192,6 +193,16 @@ function copyGoogleVerificationFiles() {
   for (const fileName of verificationFiles) {
     fs.copyFileSync(path.join(root, fileName), path.join(docsDir, fileName));
   }
+}
+
+function copyIndexNowKeyFile() {
+  const key = fs.existsSync(path.join(root, "indexnow-key.txt"))
+    ? fs.readFileSync(path.join(root, "indexnow-key.txt"), "utf8").trim()
+    : "";
+  if (!/^[a-z0-9]{16,64}$/i.test(key)) return;
+  const keyFileName = `${key}.txt`;
+  const keyFilePath = path.join(root, keyFileName);
+  if (fs.existsSync(keyFilePath)) fs.copyFileSync(keyFilePath, path.join(docsDir, keyFileName));
 }
 
 function landingDiscoveryHtml(page, primaryTool, relatedTools) {
