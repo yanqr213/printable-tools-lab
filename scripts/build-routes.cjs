@@ -218,7 +218,7 @@ const platformSubmitQueueJson = {
   strategy: ZERO_DOMAIN_PLATFORM_STRATEGY,
   queue: PLATFORM_SUBMIT_QUEUE,
   games: ZERO_DOMAIN_GAME_EXPERIMENTS,
-  nextAction: "Monitor CrazyGames and Playgama review, then resume GamePix after owner-written non-AI description copy is available. Submit Upload Limit Panic only after Neon Lane Dash gets a review signal.",
+  nextAction: "Monitor CrazyGames and Playgama review, keep Upload Limit Panic ready as the second package, and resume GamePix after owner-written non-AI description copy is available.",
   completionGate: "At least one platform submission accepted/live and platform analytics show real plays; ad revenue requires platform ad eligibility and payout setup.",
 };
 fs.writeFileSync(path.join(root, "platform-submit-queue.json"), `${JSON.stringify(platformSubmitQueueJson, null, 2)}\n`);
@@ -240,7 +240,7 @@ const platformSubmitCockpitJson = {
   canonical: siteUrl("platform-submit-cockpit"),
   cockpit: PLATFORM_SUBMIT_COCKPIT,
   games: ZERO_DOMAIN_GAME_EXPERIMENTS,
-  nextAction: "Monitor CrazyGames and Playgama review queues, unblock GamePix with owner-written description copy, and keep Yandex parked until publisher login/setup is usable.",
+  nextAction: "Monitor CrazyGames and Playgama review queues, keep Upload Limit Panic as the ready backup package, unblock GamePix with owner-written description copy, and keep Yandex parked until publisher login/setup is usable.",
   completionGate: "Dashboard submitted/in-review status is progress; the full money goal still requires accepted game, real plays, enabled ads, and verified revenue.",
 };
 fs.writeFileSync(path.join(root, "platform-submit-cockpit.json"), `${JSON.stringify(platformSubmitCockpitJson, null, 2)}\n`);

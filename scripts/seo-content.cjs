@@ -202,6 +202,7 @@ const ZERO_DOMAIN_PLATFORM_STRATEGY = {
     "CrazyGames: Neon Lane Dash has been submitted and is awaiting review. Build ID 57a4b821-a761-4541-b2dc-69ced592d4d5.",
     "Playgama: Neon Lane Dash has been submitted and is under review after passing SDK/storage/interstitial certification.",
     "GamePix: logged-in dashboard reached the create-game form, but the description field explicitly asks for non-AI original copy, so owner-written 100-500 character English text is required before upload.",
+    "Upload Limit Panic: backup game is now upgraded, deployed, and release-refreshed with Playgama ad QA gating, SDK storage, and bridge config support.",
   ],
   whyNoDomainCanStillWork: [
     "CrazyGames and Yandex Games host approved HTML5 games inside their own catalogs, so discovery and ad serving do not require a custom domain.",
@@ -213,7 +214,7 @@ const ZERO_DOMAIN_PLATFORM_STRATEGY = {
     "Submit Neon Lane Dash to Yandex Games second because the build now includes Yandex SDK v2 lifecycle and gated ad hooks.",
     "Monitor Neon Lane Dash on Playgama because it is already submitted and under review; unblock GamePix only with owner-written non-AI description copy.",
     "Submit the clean portal ZIP to Kongregate/Newgrounds-style portals when a platform rejects third-party ad SDKs, external links, or remote telemetry.",
-    "Submit Upload Limit Panic after Neon is live or in review, using it as a differentiated puzzle/sorting title.",
+    "Keep Upload Limit Panic ready as a second submission package, but avoid submitting multiple games to the same reviewing account until Neon receives a first moderation signal.",
     "Use Lagged and GameFlare as lower-friction secondary tests if the first submissions are delayed by account or moderation gates.",
     "Create itch.io mirrors only for public browser-play proof and feedback; do not treat itch as the primary ad route.",
   ],
@@ -268,7 +269,7 @@ const ZERO_COST_MONETIZATION_MAP = {
       why: "Platforms host the game and own the ad surface, so we do not need a purchased domain or AdSense site approval first.",
       currentAssets: ["Neon Lane Dash ZIP", "Upload Limit Panic ZIP", "SDK adapters", "mobile/desktop screenshots", "review-readiness reports"],
       blockers: ["Yandex publisher login", "GamePix non-AI description copy", "CAPTCHA/legal forms", "payout setup after approval", "moderation wait"],
-      nextAction: "Monitor CrazyGames and Playgama review queues, unblock GamePix with owner-written copy, and keep Upload Limit Panic queued until Neon gets a review signal.",
+      nextAction: "Monitor CrazyGames and Playgama review queues, unblock GamePix with owner-written copy, and keep Upload Limit Panic as the ready backup package until Neon gets a review signal.",
     },
     {
       route: "Douyin mini-game port",
@@ -480,6 +481,9 @@ const PLATFORM_SUBMIT_COCKPIT = {
       "CrazyGames: Neon Lane Dash is awaiting review. Build ID 57a4b821-a761-4541-b2dc-69ced592d4d5.",
       "Playgama: Neon Lane Dash is under moderation after the dashboard certification flow passed SDK init, storage restore, and interstitial ad checks.",
     ],
+    readyBackup: [
+      "Upload Limit Panic: deployed at https://upload-limit-panic.pages.dev/ and release ZIP refreshed to 53632 bytes with Playgama bridge config, storage sync, and SDK-context ad QA gating.",
+    ],
     blocked: [
       "GamePix: dashboard account is available, but the create-game form explicitly requires a unique non-AI description. Owner-written 100-500 character English copy is required before submission.",
     ],
@@ -570,7 +574,7 @@ const PLATFORM_SUBMIT_COCKPIT = {
       riskControl: "No fake gameId is hardcoded; gdsdk.showAd is gated behind GameDistribution context and ads=1.",
     },
   ],
-  morningExpectation: "The realistic overnight win has been reached: CrazyGames and Playgama are submitted/in review. Verified ad revenue still requires acceptance, real plays, enabled ads, and a visible payout balance.",
+  morningExpectation: "The realistic overnight win has been reached: CrazyGames and Playgama are submitted/in review, and Upload Limit Panic is now a validated backup package. Verified ad revenue still requires acceptance, real plays, enabled ads, and a visible payout balance.",
 };
 
 const SHARE_KIT_FEATURED_LINKS = [
@@ -3590,6 +3594,8 @@ function platformSubmitCockpitHtml() {
           <p><strong>Last updated:</strong> ${escapeHtml(PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.lastUpdated)}</p>
           <p><strong>Submitted:</strong></p>
           <ul>${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.submitted.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          <p><strong>Ready backup:</strong></p>
+          <ul>${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.readyBackup.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
           <p><strong>Blocked:</strong></p>
           <ul>${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.blocked.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
           <p>${escapeHtml(PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.notRevenueYet)}</p>

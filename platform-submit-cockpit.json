@@ -1,6 +1,6 @@
 {
   "name": "HTML5 Platform Submit Cockpit",
-  "generatedAt": "2026-06-02T17:44:08.776Z",
+  "generatedAt": "2026-06-02T18:07:32.517Z",
   "canonical": "https://printable-tools-lab.pages.dev/platform-submit-cockpit/",
   "cockpit": {
     "generatedFrom": "2026-06-02 release assets and official platform requirements",
@@ -12,6 +12,9 @@
       "submitted": [
         "CrazyGames: Neon Lane Dash is awaiting review. Build ID 57a4b821-a761-4541-b2dc-69ced592d4d5.",
         "Playgama: Neon Lane Dash is under moderation after the dashboard certification flow passed SDK init, storage restore, and interstitial ad checks."
+      ],
+      "readyBackup": [
+        "Upload Limit Panic: deployed at https://upload-limit-panic.pages.dev/ and release ZIP refreshed to 53632 bytes with Playgama bridge config, storage sync, and SDK-context ad QA gating."
       ],
       "blocked": [
         "GamePix: dashboard account is available, but the create-game form explicitly requires a unique non-AI description. Owner-written 100-500 character English copy is required before submission."
@@ -137,7 +140,7 @@
         "riskControl": "No fake gameId is hardcoded; gdsdk.showAd is gated behind GameDistribution context and ads=1."
       }
     ],
-    "morningExpectation": "The realistic overnight win has been reached: CrazyGames and Playgama are submitted/in review. Verified ad revenue still requires acceptance, real plays, enabled ads, and a visible payout balance."
+    "morningExpectation": "The realistic overnight win has been reached: CrazyGames and Playgama are submitted/in review, and Upload Limit Panic is now a validated backup package. Verified ad revenue still requires acceptance, real plays, enabled ads, and a visible payout balance."
   },
   "games": [
     {
@@ -177,6 +180,6 @@
       "summary": "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them."
     }
   ],
-  "nextAction": "Monitor CrazyGames and Playgama review queues, unblock GamePix with owner-written description copy, and keep Yandex parked until publisher login/setup is usable.",
+  "nextAction": "Monitor CrazyGames and Playgama review queues, keep Upload Limit Panic as the ready backup package, unblock GamePix with owner-written description copy, and keep Yandex parked until publisher login/setup is usable.",
   "completionGate": "Dashboard submitted/in-review status is progress; the full money goal still requires accepted game, real plays, enabled ads, and verified revenue."
 }
