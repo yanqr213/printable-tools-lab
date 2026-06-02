@@ -1,6 +1,6 @@
 {
   "name": "HTML5 Platform Submit Queue",
-  "generatedAt": "2026-06-02T00:44:33.501Z",
+  "generatedAt": "2026-06-02T00:53:29.421Z",
   "canonical": "https://printable-tools-lab.pages.dev/platform-submit-queue/",
   "strategy": {
     "currentDecision": "Use hosted HTML5 game platforms first instead of buying a custom domain. Platform distribution and platform-managed ads are the zero-upfront-cost path.",
@@ -12,11 +12,14 @@
     "immediateRoute": [
       "Submit Neon Lane Dash to CrazyGames first because its three-lane reflex loop has broader casual appeal.",
       "Submit Neon Lane Dash to Yandex Games second because the build now includes Yandex SDK v2 lifecycle and gated ad hooks.",
+      "Submit Neon Lane Dash to Playgama and GamePix after direct-platform submissions because both handle distribution and monetization without requiring a custom domain.",
       "Submit Upload Limit Panic after Neon is live or in review, using it as a differentiated puzzle/sorting title.",
+      "Use Lagged and GameFlare as lower-friction secondary tests if the first submissions are delayed by account or moderation gates.",
       "Create itch.io mirrors only for public browser-play proof and feedback; do not treat itch as the primary ad route."
     ],
     "parkedRoutes": [
-      "GameDistribution remains a later distributor test after at least one first-party platform submission is live.",
+      "GameDistribution remains a later distributor test after CrazyGames, Yandex, Playgama, and GamePix because it likely needs a separate SDK adapter.",
+      "Poki remains a later high-upside quality target because web exclusivity may conflict with broad nonexclusive distribution.",
       "Douyin mini-game is a later port because it needs extra account-side setup, domestic platform packaging, and local compliance review.",
       "Bilibili mini-game/video routes are lower priority because they require more creator operation and have a weaker no-sales advertising loop for this project.",
       "AdSense on a free subdomain remains a utility-site validation path, but it is not the fastest zero-domain first-revenue path."
@@ -25,13 +28,20 @@
       "CrazyGames developer account login to submit the ZIP and later complete payout details.",
       "Yandex Games publisher account login to create the game card, upload the archive, and later complete payment details.",
       "itch.io creator account only if we want a free browser mirror.",
-      "Douyin/Bilibili accounts only after the HTML5 platform route gives a signal worth porting."
+      "Douyin/Bilibili accounts only after the HTML5 platform route gives a signal worth porting.",
+      "Playgama developer portal account and GamePix Dashboard account are the next-best low-cost accounts after CrazyGames/Yandex.",
+      "Lagged, GameFlare, and GameDistribution accounts or contact submissions are useful if primary platform moderation stalls."
     ],
     "officialEvidence": [
       "CrazyGames Basic Launch disables ads and revenue share at first, and ads must be requested only through the CrazyGames SDK.",
       "CrazyGames quality guidance emphasizes quick onboarding, clear goals, responsive controls, and visually consistent game presentation.",
       "Yandex upload docs require SDK connection, a developer account in the Console, a separate draft per game, and moderation submission.",
-      "Yandex monetization docs describe internal advertising, interstitial blocks, rewarded blocks, sticky banners, payments, and statistics."
+      "Yandex monetization docs describe internal advertising, interstitial blocks, rewarded blocks, sticky banners, payments, and statistics.",
+      "Playgama describes no upfront costs, HTML5 ZIP upload, Bridge SDK integration, partner distribution, ad/IAP monetization, revenue share, and withdrawal methods.",
+      "GamePix describes account creation, lightweight SDK integration, HTML5 hosting, QA, partner distribution, and a 45% developer revenue share.",
+      "Lagged advertises developer game submissions and 50% revenue share with Google AdSense.",
+      "GameFlare says it accepts HTML5 games, can review playable early-access games, offers free hosting, and pays monthly after a 50 EUR minimum.",
+      "Poki documentation says SDK integration is mandatory after acceptance and that Poki prefers Web Exclusive deals."
     ],
     "moneyGate": "The goal is not complete until at least one platform accepts a game, real plays are visible in platform analytics, ad monetization is enabled, and revenue or payout balance is verified."
   },
@@ -109,6 +119,144 @@
       ],
       "adPolicyNote": "Use as a free browser-play page and keep payment disabled during validation.",
       "currentGate": "Creator login is required. Browser probe on 2026-06-02 reached itch.io/login and Cloudflare protection."
+    },
+    {
+      "platform": "Playgama",
+      "priority": 4,
+      "accountRequired": "Playgama developer portal account; payout details later after approval and earnings.",
+      "rationale": "Strong secondary fit because it is built for HTML5 distribution, partner-platform publishing, ads/IAP monetization, and no upfront cost revenue share.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ],
+      "submissionUrl": "https://developer.playgama.com/",
+      "portalUrl": "https://playgama.com/developers",
+      "docsUrl": "https://wiki.playgama.com/playgama",
+      "requiredFields": [
+        "Developer account",
+        "HTML5 ZIP upload",
+        "Playgama Bridge SDK or integration notes",
+        "Title",
+        "Description",
+        "Icon/cover",
+        "Ad/IAP monetization preference"
+      ],
+      "adPolicyNote": "Do not enable extra ad calls in the standalone build; integrate Playgama Bridge only after the portal requests it.",
+      "currentGate": "Developer signup is required. Official developer page describes ZIP upload, Playgama Bridge, no upfront costs, revenue share, and withdrawals via PayPal, Wise, crypto, or bank transfer."
+    },
+    {
+      "platform": "GamePix",
+      "priority": 5,
+      "accountRequired": "GamePix Dashboard developer account.",
+      "rationale": "Good secondary fit because GamePix hosts HTML5 games, distributes to partner sites, and advertises a clear developer revenue share.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ],
+      "submissionUrl": "https://partners.gamepix.com/developers",
+      "portalUrl": "https://partners.gamepix.com/developers",
+      "docsUrl": "https://partners.gamepix.com/developers",
+      "requiredFields": [
+        "GamePix account",
+        "Lightweight SDK integration if required",
+        "HTML5 game upload",
+        "Title",
+        "Description",
+        "Assets",
+        "Category/tags"
+      ],
+      "adPolicyNote": "Treat GamePix SDK as a platform-specific adapter step after account access; keep current review ZIP ad-safe.",
+      "currentGate": "Dashboard registration is required. Official page describes creating an account, submitting games, lightweight SDK integration, hosting, QA, partner distribution, and 45% revenue share."
+    },
+    {
+      "platform": "Lagged",
+      "priority": 6,
+      "accountRequired": "Lagged developer dashboard account and likely AdSense-related payment setup after approval.",
+      "rationale": "Simple revenue-share platform candidate for HTML5 games. Useful as a broader-distribution test after the first two direct platform submissions.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ],
+      "submissionUrl": "https://lagged.dev/",
+      "portalUrl": "https://lagged.dev/",
+      "docsUrl": "https://lagged.dev/",
+      "requiredFields": [
+        "Developer account",
+        "Game ZIP or game URL",
+        "Title",
+        "Description",
+        "Assets",
+        "Controls",
+        "Category"
+      ],
+      "adPolicyNote": "Lagged advertises revenue share with Google AdSense; do not add ad inducement copy or forced ad walls.",
+      "currentGate": "Developer dashboard signup is required. Official page advertises submitting games to Lagged.com and earning 50% revenue share with Google AdSense."
+    },
+    {
+      "platform": "GameFlare",
+      "priority": 7,
+      "accountRequired": "Contact/submission with GameFlare Distribution; payout details later if accepted.",
+      "rationale": "Low-friction HTML5 candidate because early-access playable games can be reviewed, hosting is free, and screenshots are optional.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ],
+      "submissionUrl": "https://distribution.gameflare.com/developers/",
+      "portalUrl": "https://distribution.gameflare.com/developers/",
+      "docsUrl": "https://distribution.gameflare.com/developers/",
+      "requiredFields": [
+        "Game files or game link",
+        "Playable HTML5 build",
+        "Optional screenshots",
+        "Quality review",
+        "Payment details after acceptance"
+      ],
+      "adPolicyNote": "GameFlare monetizes with its ads; keep standalone review packages ad-safe and disclose platform SDK hooks are gated.",
+      "currentGate": "GameFlare asks developers to send a link/game files for suitability review. Official FAQ says payout is monthly with 50 EUR minimum via PayPal or TransferWise, and revenue share is 85% on GameFlare sites or 50% on publisher sites."
+    },
+    {
+      "platform": "GameDistribution",
+      "priority": 8,
+      "accountRequired": "GameDistribution developer account and SDK/platform terms acceptance.",
+      "rationale": "Broad distribution network candidate, but less direct than CrazyGames/Yandex/Playgama and may require SDK-specific packaging.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ],
+      "submissionUrl": "https://gamedistribution.com/developers/",
+      "portalUrl": "https://gamedistribution.com/developers/",
+      "docsUrl": "https://github.com/GameDistribution/GD-HTML5",
+      "requiredFields": [
+        "Developer signup",
+        "Revenue share agreement",
+        "HTML5 build",
+        "GameDistribution SDK if requested",
+        "Assets",
+        "Description"
+      ],
+      "adPolicyNote": "If pursued, add a separate GameDistribution SDK adapter; do not mix its ad calls into the generic standalone build.",
+      "currentGate": "Developer signup and revenue-share partnership are required. Official developer page describes revenue share, and its public SDK repo covers HTML5 ad integration."
+    },
+    {
+      "platform": "Poki",
+      "priority": 9,
+      "accountRequired": "Poki for Developers application/acceptance; partnership terms may be negotiated and web exclusivity can apply.",
+      "rationale": "High-upside but high-curation platform. Treat as a later quality bar, not the first zero-cost submission.",
+      "submitGames": [
+        "Neon Lane Dash"
+      ],
+      "submissionUrl": "https://developers.poki.com/",
+      "portalUrl": "https://developers.poki.com/",
+      "docsUrl": "https://sdk.poki.com/deals.html",
+      "requiredFields": [
+        "Developer application",
+        "Accepted game entry",
+        "Poki SDK",
+        "Mandatory requirements",
+        "Possibly web-exclusive deal terms"
+      ],
+      "adPolicyNote": "Poki SDK and ad break implementation should be separate and only after acceptance; do not risk existing nonexclusive platform submissions.",
+      "currentGate": "Poki is not the immediate route. Official docs say Poki prefers Web Exclusive deals and requires mandatory requirements plus SDK after acceptance."
     }
   ],
   "games": [

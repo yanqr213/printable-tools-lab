@@ -244,6 +244,9 @@ else {
   if (!html.includes("HTML5 platform submit queue")) failures.push("Platform submit queue missing heading.");
   if (!html.includes("CrazyGames")) failures.push("Platform submit queue missing CrazyGames.");
   if (!html.includes("Yandex Games")) failures.push("Platform submit queue missing Yandex Games.");
+  for (const platform of ["Playgama", "GamePix", "Lagged", "GameFlare", "GameDistribution", "Poki"]) {
+    if (!html.includes(platform)) failures.push(`Platform submit queue missing ${platform}.`);
+  }
   if (!html.includes("Neon Lane Dash")) failures.push("Platform submit queue missing Neon Lane Dash.");
   if (!html.includes("Upload Limit Panic")) failures.push("Platform submit queue missing Upload Limit Panic.");
   if (!html.includes("platform-submission-copy.md")) failures.push("Platform submit queue missing copy-ready field pack links.");
@@ -262,8 +265,11 @@ else {
   if (!data.strategy || !Array.isArray(data.strategy.immediateRoute)) failures.push("platform-submit-queue.json missing zero-domain strategy.");
   if (!data.strategy || !String(data.strategy.moneyGate || "").includes("revenue")) failures.push("platform-submit-queue.json missing revenue money gate.");
   if (!Array.isArray(data.strategy.officialEvidence) || data.strategy.officialEvidence.length < 3) failures.push("platform-submit-queue.json missing official evidence notes.");
-  if (!Array.isArray(data.queue) || data.queue.length < 3) failures.push("platform-submit-queue.json missing platform queue.");
+  if (!Array.isArray(data.queue) || data.queue.length < 9) failures.push("platform-submit-queue.json missing expanded platform queue.");
   if (!data.queue.some((item) => item.platform === "Yandex Games" && String(item.submissionUrl).includes("games.yandex.com/console"))) failures.push("platform-submit-queue.json missing corrected Yandex Console URL.");
+  for (const platform of ["Playgama", "GamePix", "Lagged", "GameFlare", "GameDistribution", "Poki"]) {
+    if (!data.queue.some((item) => item.platform === platform)) failures.push(`platform-submit-queue.json missing ${platform}.`);
+  }
   if (!Array.isArray(data.games) || data.games.length < 2) failures.push("platform-submit-queue.json missing game assets.");
   if (!data.queue.some((item) => item.platform === "CrazyGames")) failures.push("platform-submit-queue.json missing CrazyGames.");
   if (!data.queue.some((item) => item.platform === "Yandex Games")) failures.push("platform-submit-queue.json missing Yandex Games.");
