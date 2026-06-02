@@ -199,8 +199,9 @@ const PLATFORM_SUBMIT_QUEUE = [
 const ZERO_DOMAIN_PLATFORM_STRATEGY = {
   currentDecision: "Use hosted HTML5 game platforms first instead of buying a custom domain. Platform distribution and platform-managed ads are the zero-upfront-cost path.",
   latestOperationalStatus: [
-    "CrazyGames: Neon Lane Dash has been submitted and is awaiting review. Build ID 57a4b821-a761-4541-b2dc-69ced592d4d5.",
-    "Playgama: Neon Lane Dash has been submitted and is under review after passing SDK/storage/interstitial certification.",
+    "CrazyGames: Neon Lane Dash was submitted on 2026-06-02 with build ID 57a4b821-a761-4541-b2dc-69ced592d4d5; the next live status check needs the developer dashboard session restored after the automation browser reset.",
+    "Playgama: Neon Lane Dash is still Waiting for review in the My Games dashboard, and the payouts page shows no earnings until the first game is published and players interact.",
+    "CrazyGames payout gate: Billing is handled through Tipalti; payment setup requires owner-only mobile 2-step verification, address, payment method, and tax forms after acceptance or payout eligibility.",
     "GamePix: logged-in dashboard reached the create-game form, but the description field explicitly asks for non-AI original copy, so owner-written 100-500 character English text is required before upload.",
     "Upload Limit Panic: backup game is now upgraded, deployed, and release-refreshed with Playgama ad QA gating, SDK storage, and bridge config support.",
   ],
@@ -210,7 +211,7 @@ const ZERO_DOMAIN_PLATFORM_STRATEGY = {
     "A custom domain can improve the utility-tool site later, but it is not required to test the first game-platform revenue path.",
   ],
   immediateRoute: [
-    "Monitor Neon Lane Dash on CrazyGames first because it is already submitted and awaiting review.",
+    "Restore the CrazyGames developer dashboard session only when a live review-state check is needed; do not re-upload unless moderation asks for a change.",
     "Submit Neon Lane Dash to Yandex Games second because the build now includes Yandex SDK v2 lifecycle and gated ad hooks.",
     "Monitor Neon Lane Dash on Playgama because it is already submitted and under review; unblock GamePix only with owner-written non-AI description copy.",
     "Submit the clean portal ZIP to Kongregate/Newgrounds-style portals when a platform rejects third-party ad SDKs, external links, or remote telemetry.",
@@ -268,8 +269,8 @@ const ZERO_COST_MONETIZATION_MAP = {
       expectedFirstSignal: "Dashboard submitted/in-review status, platform reply, accepted game, then plays and ad revenue after eligibility.",
       why: "Platforms host the game and own the ad surface, so we do not need a purchased domain or AdSense site approval first.",
       currentAssets: ["Neon Lane Dash ZIP", "Upload Limit Panic ZIP", "SDK adapters", "mobile/desktop screenshots", "review-readiness reports"],
-      blockers: ["Yandex publisher login", "GamePix non-AI description copy", "CAPTCHA/legal forms", "payout setup after approval", "moderation wait"],
-      nextAction: "Monitor CrazyGames and Playgama review queues, unblock GamePix with owner-written copy, and keep Upload Limit Panic as the ready backup package until Neon gets a review signal.",
+      blockers: ["CrazyGames dashboard session restore for live status checks", "Yandex publisher login", "GamePix non-AI description copy", "CAPTCHA/legal forms", "payout setup after approval", "moderation wait"],
+      nextAction: "Monitor Playgama review, restore CrazyGames dashboard access for live status checks, and keep Upload Limit Panic as the ready backup package until Neon gets a review signal.",
     },
     {
       route: "Douyin mini-game port",
@@ -385,6 +386,8 @@ const PLATFORM_OUTREACH_TRACKER = {
   backupGame: "Upload Limit Panic",
   latestOperationalStatus: [
     "Playgama outreach is no longer needed for Neon Lane Dash because the dashboard submission is under review.",
+    "Playgama payouts currently show no earnings because the first game is not live yet; earnings appear only after publishing and player interaction.",
+    "CrazyGames payout setup is a later Tipalti owner-only flow requiring mobile 2-step verification, address, payment method, and tax forms.",
     "GamePix dashboard is logged in but blocked by a platform instruction requiring non-AI original description copy.",
     "Payment data remains dashboard-only and should not be sent over email.",
   ],
@@ -476,16 +479,26 @@ const PLATFORM_SUBMIT_COCKPIT = {
   leadGame: "Neon Lane Dash",
   backupGame: "Upload Limit Panic",
   latestOperationalStatus: {
-    lastUpdated: "2026-06-02T17:39:36.403Z",
+    lastUpdated: "2026-06-02T18:16:59.701Z",
     submitted: [
-      "CrazyGames: Neon Lane Dash is awaiting review. Build ID 57a4b821-a761-4541-b2dc-69ced592d4d5.",
-      "Playgama: Neon Lane Dash is under moderation after the dashboard certification flow passed SDK init, storage restore, and interstitial ad checks.",
+      "CrazyGames: Neon Lane Dash was submitted on 2026-06-02 with build ID 57a4b821-a761-4541-b2dc-69ced592d4d5. The next live status check needs the developer dashboard session restored after the automation browser reset.",
+      "Playgama: Neon Lane Dash is still Waiting for review in the My Games dashboard after passing SDK init, storage restore, and interstitial ad certification.",
     ],
     readyBackup: [
       "Upload Limit Panic: deployed at https://upload-limit-panic.pages.dev/ and release ZIP refreshed to 53632 bytes with Playgama bridge config, storage sync, and SDK-context ad QA gating.",
     ],
     blocked: [
       "GamePix: dashboard account is available, but the create-game form explicitly requires a unique non-AI description. Owner-written 100-500 character English copy is required before submission.",
+      "Yandex Games: publisher console remains parked behind the login/postregistration flow, so no draft should be claimed until that session is usable.",
+    ],
+    statusCheckGates: [
+      "CrazyGames: a new Edge automation session redirected to the login page, so the previously confirmed submitted build should be treated as the last verified CrazyGames state until dashboard access is restored.",
+      "Playgama: My Games snapshot on 2026-06-02T17:34:37Z showed Neon Lane Dash as Waiting for review.",
+    ],
+    payoutGates: [
+      "CrazyGames: Billing says payments are handled through Tipalti. Manage Payment Details requires owner-only 2-step verification with a mobile number, then Address, Payment Method, Tax Forms, and Done.",
+      "Playgama: Payouts page on 2026-06-02T18:10:40Z says there is nothing to earn from yet; earnings appear after the first game is published and players interact.",
+      "All payment, tax, bank, card, and Alipay-linked settlement details must stay inside official platform payout dashboards and should not be emailed, committed, or placed in site code.",
     ],
     notRevenueYet: "No platform revenue should be expected until a submitted game is accepted, real plays appear in platform analytics, ads are enabled, and a payout balance is visible.",
   },
@@ -508,14 +521,14 @@ const PLATFORM_SUBMIT_COCKPIT = {
       rank: 1,
       currentStatus: "submitted_awaiting_review",
       automationLevel: "monitor_review",
-      nextAction: "Monitor the CrazyGames review status and prepare payout details only after acceptance or ad eligibility. Do not re-upload unless moderation requests a change.",
+      nextAction: "Restore the CrazyGames dashboard session for the next live status check, then monitor review status and prepare payout details only after acceptance or ad eligibility.",
       whyNow: "Best first moderation signal for a short reflex HTML5 game; the build already has CrazyGames SDK loading/gameplay hooks and hidden external links in platform context.",
       manualRequirements: ["CrazyGames developer login", "Game card creation", "ZIP upload", "Icon/cover selection", "Review submission", "Payout profile later after acceptance/ad eligibility"],
       useGame: "Neon Lane Dash",
       uploadZip: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
       copyPack: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
       successSignal: "Already submitted on 2026-06-02; dashboard shows awaiting review. Next signal is accepted, rejected, live, or change request.",
-      riskControl: "A billing warning is present but did not block submission. Do not enable standalone ads; CrazyGames Basic Launch can validate quality before revenue share.",
+      riskControl: "Tipalti payout setup requires owner-only mobile 2-step verification and later address/payment/tax forms. Do not enter private payout data outside the official dashboard and do not enable standalone ads.",
     },
     {
       platform: "Yandex Games",
@@ -536,14 +549,14 @@ const PLATFORM_SUBMIT_COCKPIT = {
       rank: 3,
       currentStatus: "submitted_under_review",
       automationLevel: "monitor_review",
-      nextAction: "Monitor Playgama moderation. The game passed dashboard certification, including SDK init, storage save/restore, and a natural-break interstitial ad check.",
+      nextAction: "Monitor Playgama moderation and payouts. The game is still Waiting for review; payouts show no earnings until the first game is published and players interact.",
       whyNow: "No upfront-cost HTML5 distribution route; current builds include Playgama Bridge, game_ready messaging, pause/audio listeners, interstitial placement, and rewarded-state confirmation.",
       manualRequirements: ["Developer portal signup if not using first-contact email", "ZIP upload", "Bridge config review if requested", "Payout setup after approval/earnings"],
       useGame: "Neon Lane Dash",
       uploadZip: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
       copyPack: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
       successSignal: "Already submitted through the Playgama dashboard on 2026-06-02. Next signal is accepted, rejected, live, or QA change request.",
-      riskControl: "Playgama ads are enabled only in Playgama context and only at natural breaks; self-hosted builds remain adless unless an explicit ad-test flag is present.",
+      riskControl: "Playgama ads are enabled only in Playgama context and only at natural breaks; payout expectations stay at zero until the game is live and real plays generate platform-side data.",
     },
     {
       platform: "GamePix",
@@ -574,7 +587,7 @@ const PLATFORM_SUBMIT_COCKPIT = {
       riskControl: "No fake gameId is hardcoded; gdsdk.showAd is gated behind GameDistribution context and ads=1.",
     },
   ],
-  morningExpectation: "The realistic overnight win has been reached: CrazyGames and Playgama are submitted/in review, and Upload Limit Panic is now a validated backup package. Verified ad revenue still requires acceptance, real plays, enabled ads, and a visible payout balance.",
+  morningExpectation: "The realistic overnight state is review-waiting, not instant cash: Neon Lane Dash is submitted on the active platform route, Playgama still shows Waiting for review, CrazyGames payout setup is a later Tipalti owner-only gate, and Upload Limit Panic remains a validated backup package.",
 };
 
 const SHARE_KIT_FEATURED_LINKS = [
@@ -3598,6 +3611,10 @@ function platformSubmitCockpitHtml() {
           <ul>${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.readyBackup.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
           <p><strong>Blocked:</strong></p>
           <ul>${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.blocked.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          <p><strong>Status check gates:</strong></p>
+          <ul>${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.statusCheckGates.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          <p><strong>Payout gates:</strong></p>
+          <ul>${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.payoutGates.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
           <p>${escapeHtml(PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.notRevenueYet)}</p>
         </div>
       </section>

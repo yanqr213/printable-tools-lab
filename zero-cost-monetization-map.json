@@ -1,6 +1,6 @@
 {
   "name": "Zero-Cost Monetization Map",
-  "generatedAt": "2026-06-02T18:07:32.517Z",
+  "generatedAt": "2026-06-02T18:20:20.220Z",
   "canonical": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map/",
   "map": {
     "generatedFrom": "2026-06-02 platform research and current package state",
@@ -24,13 +24,14 @@
           "review-readiness reports"
         ],
         "blockers": [
+          "CrazyGames dashboard session restore for live status checks",
           "Yandex publisher login",
           "GamePix non-AI description copy",
           "CAPTCHA/legal forms",
           "payout setup after approval",
           "moderation wait"
         ],
-        "nextAction": "Monitor CrazyGames and Playgama review queues, unblock GamePix with owner-written copy, and keep Upload Limit Panic as the ready backup package until Neon gets a review signal."
+        "nextAction": "Monitor Playgama review, restore CrazyGames dashboard access for live status checks, and keep Upload Limit Panic as the ready backup package until Neon gets a review signal."
       },
       {
         "route": "Douyin mini-game port",

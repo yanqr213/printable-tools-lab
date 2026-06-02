@@ -1,6 +1,6 @@
 {
   "name": "HTML5 Platform Outreach Tracker",
-  "generatedAt": "2026-06-02T18:07:32.517Z",
+  "generatedAt": "2026-06-02T18:20:20.220Z",
   "canonical": "https://printable-tools-lab.pages.dev/platform-outreach-tracker/",
   "tracker": {
     "generatedFromProbe": "2026-06-02 platform-entry-probe",
@@ -10,6 +10,8 @@
     "backupGame": "Upload Limit Panic",
     "latestOperationalStatus": [
       "Playgama outreach is no longer needed for Neon Lane Dash because the dashboard submission is under review.",
+      "Playgama payouts currently show no earnings because the first game is not live yet; earnings appear only after publishing and player interaction.",
+      "CrazyGames payout setup is a later Tipalti owner-only flow requiring mobile 2-step verification, address, payment method, and tax forms.",
       "GamePix dashboard is logged in but blocked by a platform instruction requiring non-AI original description copy.",
       "Payment data remains dashboard-only and should not be sent over email."
     ],
@@ -132,6 +134,6 @@
       "summary": "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them."
     }
   ],
-  "nextAction": "Monitor Playgama dashboard, keep GameDistribution as a later outreach option, and unblock GamePix only with owner-written non-AI description copy.",
+  "nextAction": "Monitor Playgama dashboard, keep CrazyGames payout setup inside official Tipalti only after eligibility, keep GameDistribution as a later outreach option, and unblock GamePix only with owner-written non-AI description copy.",
   "completionGate": "At least one outreach channel confirms review or requests upload metadata; actual goal completion still requires accepted game, real plays, and verified revenue."
 }

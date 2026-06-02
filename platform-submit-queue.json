@@ -1,12 +1,13 @@
 {
   "name": "HTML5 Platform Submit Queue",
-  "generatedAt": "2026-06-02T18:07:32.517Z",
+  "generatedAt": "2026-06-02T18:20:20.220Z",
   "canonical": "https://printable-tools-lab.pages.dev/platform-submit-queue/",
   "strategy": {
     "currentDecision": "Use hosted HTML5 game platforms first instead of buying a custom domain. Platform distribution and platform-managed ads are the zero-upfront-cost path.",
     "latestOperationalStatus": [
-      "CrazyGames: Neon Lane Dash has been submitted and is awaiting review. Build ID 57a4b821-a761-4541-b2dc-69ced592d4d5.",
-      "Playgama: Neon Lane Dash has been submitted and is under review after passing SDK/storage/interstitial certification.",
+      "CrazyGames: Neon Lane Dash was submitted on 2026-06-02 with build ID 57a4b821-a761-4541-b2dc-69ced592d4d5; the next live status check needs the developer dashboard session restored after the automation browser reset.",
+      "Playgama: Neon Lane Dash is still Waiting for review in the My Games dashboard, and the payouts page shows no earnings until the first game is published and players interact.",
+      "CrazyGames payout gate: Billing is handled through Tipalti; payment setup requires owner-only mobile 2-step verification, address, payment method, and tax forms after acceptance or payout eligibility.",
       "GamePix: logged-in dashboard reached the create-game form, but the description field explicitly asks for non-AI original copy, so owner-written 100-500 character English text is required before upload.",
       "Upload Limit Panic: backup game is now upgraded, deployed, and release-refreshed with Playgama ad QA gating, SDK storage, and bridge config support."
     ],
@@ -16,7 +17,7 @@
       "A custom domain can improve the utility-tool site later, but it is not required to test the first game-platform revenue path."
     ],
     "immediateRoute": [
-      "Monitor Neon Lane Dash on CrazyGames first because it is already submitted and awaiting review.",
+      "Restore the CrazyGames developer dashboard session only when a live review-state check is needed; do not re-upload unless moderation asks for a change.",
       "Submit Neon Lane Dash to Yandex Games second because the build now includes Yandex SDK v2 lifecycle and gated ad hooks.",
       "Monitor Neon Lane Dash on Playgama because it is already submitted and under review; unblock GamePix only with owner-written non-AI description copy.",
       "Submit the clean portal ZIP to Kongregate/Newgrounds-style portals when a platform rejects third-party ad SDKs, external links, or remote telemetry.",
@@ -358,6 +359,6 @@
       "summary": "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them."
     }
   ],
-  "nextAction": "Monitor CrazyGames and Playgama review, keep Upload Limit Panic ready as the second package, and resume GamePix after owner-written non-AI description copy is available.",
+  "nextAction": "Monitor Playgama review, restore CrazyGames dashboard access for the next live status check, keep Upload Limit Panic ready as the second package, and resume GamePix only after owner-written non-AI description copy is available.",
   "completionGate": "At least one platform submission accepted/live and platform analytics show real plays; ad revenue requires platform ad eligibility and payout setup."
 }

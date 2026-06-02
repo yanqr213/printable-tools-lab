@@ -71,18 +71,22 @@
           </article>
           <article class="panel">
             <h3>Morning expectation</h3>
-            <p>The realistic overnight win has been reached: CrazyGames and Playgama are submitted/in review, and Upload Limit Panic is now a validated backup package. Verified ad revenue still requires acceptance, real plays, enabled ads, and a visible payout balance.</p>
+            <p>The realistic overnight state is review-waiting, not instant cash: Neon Lane Dash is submitted on the active platform route, Playgama still shows Waiting for review, CrazyGames payout setup is a later Tipalti owner-only gate, and Upload Limit Panic remains a validated backup package.</p>
           </article>
         </div>
         <div class="panel">
           <h3>Latest operational status</h3>
-          <p><strong>Last updated:</strong> 2026-06-02T17:39:36.403Z</p>
+          <p><strong>Last updated:</strong> 2026-06-02T18:16:59.701Z</p>
           <p><strong>Submitted:</strong></p>
-          <ul><li>CrazyGames: Neon Lane Dash is awaiting review. Build ID 57a4b821-a761-4541-b2dc-69ced592d4d5.</li><li>Playgama: Neon Lane Dash is under moderation after the dashboard certification flow passed SDK init, storage restore, and interstitial ad checks.</li></ul>
+          <ul><li>CrazyGames: Neon Lane Dash was submitted on 2026-06-02 with build ID 57a4b821-a761-4541-b2dc-69ced592d4d5. The next live status check needs the developer dashboard session restored after the automation browser reset.</li><li>Playgama: Neon Lane Dash is still Waiting for review in the My Games dashboard after passing SDK init, storage restore, and interstitial ad certification.</li></ul>
           <p><strong>Ready backup:</strong></p>
           <ul><li>Upload Limit Panic: deployed at https://upload-limit-panic.pages.dev/ and release ZIP refreshed to 53632 bytes with Playgama bridge config, storage sync, and SDK-context ad QA gating.</li></ul>
           <p><strong>Blocked:</strong></p>
-          <ul><li>GamePix: dashboard account is available, but the create-game form explicitly requires a unique non-AI description. Owner-written 100-500 character English copy is required before submission.</li></ul>
+          <ul><li>GamePix: dashboard account is available, but the create-game form explicitly requires a unique non-AI description. Owner-written 100-500 character English copy is required before submission.</li><li>Yandex Games: publisher console remains parked behind the login/postregistration flow, so no draft should be claimed until that session is usable.</li></ul>
+          <p><strong>Status check gates:</strong></p>
+          <ul><li>CrazyGames: a new Edge automation session redirected to the login page, so the previously confirmed submitted build should be treated as the last verified CrazyGames state until dashboard access is restored.</li><li>Playgama: My Games snapshot on 2026-06-02T17:34:37Z showed Neon Lane Dash as Waiting for review.</li></ul>
+          <p><strong>Payout gates:</strong></p>
+          <ul><li>CrazyGames: Billing says payments are handled through Tipalti. Manage Payment Details requires owner-only 2-step verification with a mobile number, then Address, Payment Method, Tax Forms, and Done.</li><li>Playgama: Payouts page on 2026-06-02T18:10:40Z says there is nothing to earn from yet; earnings appear after the first game is published and players interact.</li><li>All payment, tax, bank, card, and Alipay-linked settlement details must stay inside official platform payout dashboards and should not be emailed, committed, or placed in site code.</li></ul>
           <p>No platform revenue should be expected until a submitted game is accepted, real plays appear in platform analytics, ads are enabled, and a payout balance is visible.</p>
         </div>
       </section>
@@ -105,12 +109,12 @@
           <article class="panel">
             <h3>1. CrazyGames</h3>
             <p><strong>Status:</strong> submitted_awaiting_review / monitor_review</p>
-            <p><strong>Next action:</strong> Monitor the CrazyGames review status and prepare payout details only after acceptance or ad eligibility. Do not re-upload unless moderation requests a change.</p>
+            <p><strong>Next action:</strong> Restore the CrazyGames dashboard session for the next live status check, then monitor review status and prepare payout details only after acceptance or ad eligibility.</p>
             <p><strong>Why now:</strong> Best first moderation signal for a short reflex HTML5 game; the build already has CrazyGames SDK loading/gameplay hooks and hidden external links in platform context.</p>
             <p><strong>Use game:</strong> Neon Lane Dash</p>
             <p><a class="button" href="https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip">Download ZIP</a> <a class="button secondary" href="https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md">Open copy pack</a></p>
             <p><strong>Success signal:</strong> Already submitted on 2026-06-02; dashboard shows awaiting review. Next signal is accepted, rejected, live, or change request.</p>
-            <p><strong>Risk control:</strong> A billing warning is present but did not block submission. Do not enable standalone ads; CrazyGames Basic Launch can validate quality before revenue share.</p>
+            <p><strong>Risk control:</strong> Tipalti payout setup requires owner-only mobile 2-step verification and later address/payment/tax forms. Do not enter private payout data outside the official dashboard and do not enable standalone ads.</p>
             <details><summary>Manual requirements</summary><ul><li>CrazyGames developer login</li><li>Game card creation</li><li>ZIP upload</li><li>Icon/cover selection</li><li>Review submission</li><li>Payout profile later after acceptance/ad eligibility</li></ul></details>
           </article>
 <article class="panel">
@@ -127,12 +131,12 @@
 <article class="panel">
             <h3>3. Playgama</h3>
             <p><strong>Status:</strong> submitted_under_review / monitor_review</p>
-            <p><strong>Next action:</strong> Monitor Playgama moderation. The game passed dashboard certification, including SDK init, storage save/restore, and a natural-break interstitial ad check.</p>
+            <p><strong>Next action:</strong> Monitor Playgama moderation and payouts. The game is still Waiting for review; payouts show no earnings until the first game is published and players interact.</p>
             <p><strong>Why now:</strong> No upfront-cost HTML5 distribution route; current builds include Playgama Bridge, game_ready messaging, pause/audio listeners, interstitial placement, and rewarded-state confirmation.</p>
             <p><strong>Use game:</strong> Neon Lane Dash</p>
             <p><a class="button" href="https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip">Download ZIP</a> <a class="button secondary" href="https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md">Open copy pack</a></p>
             <p><strong>Success signal:</strong> Already submitted through the Playgama dashboard on 2026-06-02. Next signal is accepted, rejected, live, or QA change request.</p>
-            <p><strong>Risk control:</strong> Playgama ads are enabled only in Playgama context and only at natural breaks; self-hosted builds remain adless unless an explicit ad-test flag is present.</p>
+            <p><strong>Risk control:</strong> Playgama ads are enabled only in Playgama context and only at natural breaks; payout expectations stay at zero until the game is live and real plays generate platform-side data.</p>
             <details><summary>Manual requirements</summary><ul><li>Developer portal signup if not using first-contact email</li><li>ZIP upload</li><li>Bridge config review if requested</li><li>Payout setup after approval/earnings</li></ul></details>
           </article>
 <article class="panel">
