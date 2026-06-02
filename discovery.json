@@ -1,17 +1,19 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-01T23:43:49.488Z",
+  "generatedAt": "2026-06-02T00:03:06.502Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
   "opensearch": "https://printable-tools-lab.pages.dev/opensearch.xml",
   "shareKit": "https://printable-tools-lab.pages.dev/share-kit.json",
+  "platformSubmitQueue": "https://printable-tools-lab.pages.dev/platform-submit-queue.json",
   "highIntentEntryPoints": [
     "https://printable-tools-lab.pages.dev/free-pdf-tools/",
     "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
     "https://printable-tools-lab.pages.dev/submit-directory/",
     "https://printable-tools-lab.pages.dev/share-kit/",
+    "https://printable-tools-lab.pages.dev/platform-submit-queue/",
     "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
@@ -127,6 +129,8 @@
   "distributionAssets": {
     "shareKit": "https://printable-tools-lab.pages.dev/share-kit/",
     "shareKitJson": "https://printable-tools-lab.pages.dev/share-kit.json",
+    "platformSubmitQueue": "https://printable-tools-lab.pages.dev/platform-submit-queue/",
+    "platformSubmitQueueJson": "https://printable-tools-lab.pages.dev/platform-submit-queue.json",
     "distributionPack": "https://printable-tools-lab.pages.dev/DISTRIBUTION.md",
     "campaignVideos": [
       {

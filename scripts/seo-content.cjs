@@ -42,6 +42,39 @@ const ZERO_DOMAIN_GAME_EXPERIMENTS = [
   },
 ];
 
+const PLATFORM_SUBMIT_QUEUE = [
+  {
+    platform: "CrazyGames",
+    priority: 1,
+    accountRequired: "CrazyGames developer account with payout profile later, after acceptance and ad eligibility.",
+    rationale: "Best current fit for short HTML5 arcade games and later platform-managed ads. Basic Launch can validate review quality before revenue.",
+    submitGames: ["Neon Lane Dash", "Upload Limit Panic"],
+    submissionUrl: "https://developer.crazygames.com/",
+    requiredFields: ["Game ZIP or dist upload", "Title", "Short description", "Controls", "Genre/tags", "Icon", "Cover image", "Screenshots or video", "SDK/ad safety note"],
+    adPolicyNote: "Standalone builds do not request ads. SDK hooks are present and ad calls remain gated until platform approval.",
+  },
+  {
+    platform: "Yandex Games",
+    priority: 2,
+    accountRequired: "Yandex Games publisher account and payout setup when eligible.",
+    rationale: "Second zero-domain HTML5 platform target. Builds now include Yandex SDK v2 hooks for LoadingAPI.ready, GameplayAPI start/stop, and gated ads.",
+    submitGames: ["Neon Lane Dash", "Upload Limit Panic"],
+    submissionUrl: "https://yandex.com/dev/games/",
+    requiredFields: ["HTML5 archive", "Game Ready SDK integration", "Title", "Description", "Icon", "Cover image", "Age rating", "Controls", "Ad integration note"],
+    adPolicyNote: "No external links in Yandex context; ads are not called unless platform context is ready and ads=1 is present.",
+  },
+  {
+    platform: "itch.io",
+    priority: 3,
+    accountRequired: "itch.io creator account.",
+    rationale: "Fast public mirror and feedback surface. Useful for plays and screenshots, but not the main ad-revenue path.",
+    submitGames: ["Neon Lane Dash", "Upload Limit Panic"],
+    submissionUrl: "https://itch.io/game/new",
+    requiredFields: ["HTML ZIP with index.html at root", "Cover image", "Short description", "Controls", "No payments"],
+    adPolicyNote: "Use as a free browser-play page and keep payment disabled during validation.",
+  },
+];
+
 const SHARE_KIT_FEATURED_LINKS = [
   ["Compress PDF to 1MB", "compress-pdf-to-1mb", "Urgent upload-limit search for job, school, email, and portal PDFs."],
   ["Compress PDF to 500KB", "compress-pdf-to-500kb", "Strict form and government-style upload limit intent."],
@@ -2354,6 +2387,12 @@ const pages = [
     description: "Copy-ready short-video hooks, community posts, directory blurbs, campaign links, and compliance rules for sharing PrintableTools Lab without paid ads.",
     html: shareKitHtml(),
   },
+  {
+    path: "platform-submit-queue",
+    title: "HTML5 Platform Submit Queue",
+    description: "Submission order, account checklist, game assets, SDK notes, and compliance rules for the zero-domain HTML5 game monetization route.",
+    html: platformSubmitQueueHtml(),
+  },
   ...landingPages.map((page) => ({
     path: page.path,
     title: page.title,
@@ -2902,6 +2941,69 @@ function shareKitHtml() {
         </ul>
         <p><a class="button" href="/share-kit.json">Open machine-readable share-kit.json</a> <a class="button secondary" href="/DISTRIBUTION.md">Open distribution pack</a></p>
         ${jsonLdHtml(itemListSchema("PrintableTools Lab share kit priority links", featuredLinks.map((item) => ({ title: item.title, path: item.path }))))}
+      </section>`;
+}
+
+function platformSubmitQueueHtml() {
+  return `
+      <section class="shell page-title section">
+        <a href="/share-kit/">Share kit</a>
+        <h1>HTML5 platform submit queue</h1>
+        <p>This queue keeps the zero-domain game submission path operational: which platform to submit first, which game to upload, which assets to use, and which ad-safety notes to include.</p>
+        <p><a class="button" href="/platform-submit-queue.json">Open machine-readable queue</a> <a class="button secondary" href="/share-kit/">Open share kit assets</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Recommended submission order</h2>
+        <div class="grid-3">
+          ${PLATFORM_SUBMIT_QUEUE.map((item) => `<article class="panel">
+            <h3>${escapeHtml(item.priority)}. ${escapeHtml(item.platform)}</h3>
+            <p>${escapeHtml(item.rationale)}</p>
+            <p><strong>Account:</strong> ${escapeHtml(item.accountRequired)}</p>
+            <p><a class="button" href="${escapeHtml(item.submissionUrl)}">Open ${escapeHtml(item.platform)}</a></p>
+          </article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Game packages ready for upload</h2>
+        <div class="grid-2">
+          ${ZERO_DOMAIN_GAME_EXPERIMENTS.map((game) => `<article class="panel">
+            <h3>${escapeHtml(game.name)}</h3>
+            <p>${escapeHtml(game.summary)}</p>
+            <ul>
+              <li><a href="${escapeHtml(game.url)}">Live game</a></li>
+              <li><a href="${escapeHtml(game.zipUrl)}">HTML5 ZIP</a></li>
+              <li><a href="${escapeHtml(game.demoVideoUrl)}">Demo MP4</a></li>
+              <li><a href="${escapeHtml(game.coverUrl)}">16:9 cover</a></li>
+              <li><a href="${escapeHtml(game.iconUrl)}">512 icon</a></li>
+              <li><a href="${escapeHtml(game.submissionNotesUrl)}">Submission notes</a></li>
+              <li><a href="${escapeHtml(game.repo)}">Repository</a></li>
+            </ul>
+          </article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Submission fields checklist</h2>
+        <table class="event-table">
+          <thead><tr><th>Platform</th><th>Games</th><th>Required fields</th><th>Ad safety note</th></tr></thead>
+          <tbody>
+            ${PLATFORM_SUBMIT_QUEUE.map((item) => `<tr>
+              <td>${escapeHtml(item.platform)}</td>
+              <td>${escapeHtml(item.submitGames.join(", "))}</td>
+              <td>${escapeHtml(item.requiredFields.join(", "))}</td>
+              <td>${escapeHtml(item.adPolicyNote)}</td>
+            </tr>`).join("\n")}
+          </tbody>
+        </table>
+      </section>
+      <section class="shell section">
+        <h2>Gate rules</h2>
+        <ul>
+          <li>Do not enable ads in standalone builds.</li>
+          <li>Do not ask users to click ads or watch ads for external rewards.</li>
+          <li>Submit Neon Lane Dash first because its lane-reflex loop is broader than the file-sorting theme.</li>
+          <li>Submit Upload Limit Panic second as a differentiated puzzle/sorting title.</li>
+          <li>If both are rejected for quality, improve controls and visual feedback before building a third game.</li>
+        </ul>
       </section>`;
 }
 
@@ -4108,4 +4210,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };

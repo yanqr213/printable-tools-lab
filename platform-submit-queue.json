@@ -1,0 +1,104 @@
+{
+  "name": "HTML5 Platform Submit Queue",
+  "generatedAt": "2026-06-02T00:03:06.502Z",
+  "canonical": "https://printable-tools-lab.pages.dev/platform-submit-queue/",
+  "queue": [
+    {
+      "platform": "CrazyGames",
+      "priority": 1,
+      "accountRequired": "CrazyGames developer account with payout profile later, after acceptance and ad eligibility.",
+      "rationale": "Best current fit for short HTML5 arcade games and later platform-managed ads. Basic Launch can validate review quality before revenue.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ],
+      "submissionUrl": "https://developer.crazygames.com/",
+      "requiredFields": [
+        "Game ZIP or dist upload",
+        "Title",
+        "Short description",
+        "Controls",
+        "Genre/tags",
+        "Icon",
+        "Cover image",
+        "Screenshots or video",
+        "SDK/ad safety note"
+      ],
+      "adPolicyNote": "Standalone builds do not request ads. SDK hooks are present and ad calls remain gated until platform approval."
+    },
+    {
+      "platform": "Yandex Games",
+      "priority": 2,
+      "accountRequired": "Yandex Games publisher account and payout setup when eligible.",
+      "rationale": "Second zero-domain HTML5 platform target. Builds now include Yandex SDK v2 hooks for LoadingAPI.ready, GameplayAPI start/stop, and gated ads.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ],
+      "submissionUrl": "https://yandex.com/dev/games/",
+      "requiredFields": [
+        "HTML5 archive",
+        "Game Ready SDK integration",
+        "Title",
+        "Description",
+        "Icon",
+        "Cover image",
+        "Age rating",
+        "Controls",
+        "Ad integration note"
+      ],
+      "adPolicyNote": "No external links in Yandex context; ads are not called unless platform context is ready and ads=1 is present."
+    },
+    {
+      "platform": "itch.io",
+      "priority": 3,
+      "accountRequired": "itch.io creator account.",
+      "rationale": "Fast public mirror and feedback surface. Useful for plays and screenshots, but not the main ad-revenue path.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ],
+      "submissionUrl": "https://itch.io/game/new",
+      "requiredFields": [
+        "HTML ZIP with index.html at root",
+        "Cover image",
+        "Short description",
+        "Controls",
+        "No payments"
+      ],
+      "adPolicyNote": "Use as a free browser-play page and keep payment disabled during validation."
+    }
+  ],
+  "games": [
+    {
+      "name": "Upload Limit Panic",
+      "url": "https://upload-limit-panic.pages.dev/",
+      "repo": "https://github.com/yanqr213/upload-limit-panic",
+      "releaseUrl": "https://github.com/yanqr213/upload-limit-panic/releases/tag/platform-submission-v1",
+      "packagePath": "upload-limit-panic/reports/upload-limit-panic-html5.tar.gz",
+      "zipUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-html5.zip",
+      "demoVideoUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-demo.mp4",
+      "iconUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-icon-512.png",
+      "coverUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-cover-16x9.png",
+      "socialCardUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-social-card.png",
+      "submissionNotesUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission.md",
+      "summary": "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them."
+    },
+    {
+      "name": "Neon Lane Dash",
+      "url": "https://neon-lane-dash.pages.dev/",
+      "repo": "https://github.com/yanqr213/neon-lane-dash",
+      "releaseUrl": "https://github.com/yanqr213/neon-lane-dash/releases/tag/platform-submission-v1",
+      "packagePath": "neon-lane-dash/reports/neon-lane-dash-html5.tar.gz",
+      "zipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+      "demoVideoUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-demo.mp4",
+      "iconUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-icon-512.png",
+      "coverUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-cover-16x9.png",
+      "socialCardUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-social-card.png",
+      "submissionNotesUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission.md",
+      "summary": "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them."
+    }
+  ],
+  "nextAction": "Submit Neon Lane Dash to CrazyGames, then Yandex Games. Submit Upload Limit Panic after the first review is live or pending.",
+  "completionGate": "At least one platform submission accepted/live and platform analytics show real plays; ad revenue requires platform ad eligibility and payout setup."
+}

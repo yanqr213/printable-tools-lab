@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -131,6 +131,9 @@ if (fs.existsSync(headersPath)) {
   if (!headers.includes("/share-kit.json")) {
     fs.appendFileSync(headersPath, "\n/share-kit.json\n  Content-Type: application/json; charset=utf-8\n");
   }
+  if (!headers.includes("/platform-submit-queue.json")) {
+    fs.appendFileSync(headersPath, "\n/platform-submit-queue.json\n  Content-Type: application/json; charset=utf-8\n");
+  }
   if (!headers.includes("/assets/vendor/fflate.min.js")) {
     fs.appendFileSync(headersPath, "\n/assets/vendor/fflate.min.js\n  Content-Type: application/javascript; charset=utf-8\n");
   }
@@ -199,6 +202,17 @@ const shareKitJson = {
 };
 fs.writeFileSync(path.join(root, "share-kit.json"), `${JSON.stringify(shareKitJson, null, 2)}\n`);
 
+const platformSubmitQueueJson = {
+  name: "HTML5 Platform Submit Queue",
+  generatedAt: generatedAtIso,
+  canonical: siteUrl("platform-submit-queue"),
+  queue: PLATFORM_SUBMIT_QUEUE,
+  games: ZERO_DOMAIN_GAME_EXPERIMENTS,
+  nextAction: "Submit Neon Lane Dash to CrazyGames, then Yandex Games. Submit Upload Limit Panic after the first review is live or pending.",
+  completionGate: "At least one platform submission accepted/live and platform analytics show real plays; ad revenue requires platform ad eligibility and payout setup.",
+};
+fs.writeFileSync(path.join(root, "platform-submit-queue.json"), `${JSON.stringify(platformSubmitQueueJson, null, 2)}\n`);
+
 const llms = [
   `# ${SITE_SUMMARY.name}`,
   "",
@@ -216,6 +230,7 @@ const llms = [
   `- PDF, image, and QR tool finder: ${siteUrl("pdf-tool-finder")}`,
   `- Directory submission pack: ${siteUrl("submit-directory")}`,
   `- Share kit: ${siteUrl("share-kit")}`,
+  `- HTML5 platform submit queue: ${siteUrl("platform-submit-queue")}`,
   `- Guides index: ${siteUrl("guides")}`,
   `- Sitemap: ${fileUrl("sitemap.xml")}`,
   `- RSS feed: ${fileUrl("feed.xml")}`,
@@ -224,6 +239,7 @@ const llms = [
   `- Machine-readable tool list: ${fileUrl("tools.json")}`,
   `- Discovery index: ${fileUrl("discovery.json")}`,
   `- Machine-readable share kit: ${fileUrl("share-kit.json")}`,
+  `- Machine-readable platform submit queue: ${fileUrl("platform-submit-queue.json")}`,
   ...(gistDiscovery?.htmlUrl ? [`- Public Gist share kit: ${gistDiscovery.htmlUrl}`] : []),
   ...(issueDiscovery?.issueUrl ? [`- Public GitHub growth issue: ${issueDiscovery.issueUrl}`] : []),
   "## Zero-Domain HTML5 Game Experiments",
@@ -262,10 +278,13 @@ const discoveryIndex = {
   manifest: fileUrl("site.webmanifest"),
   opensearch: fileUrl("opensearch.xml"),
   shareKit: fileUrl("share-kit.json"),
-  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  platformSubmitQueue: fileUrl("platform-submit-queue.json"),
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl("platform-submit-queue"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   distributionAssets: {
     shareKit: siteUrl("share-kit"),
     shareKitJson: fileUrl("share-kit.json"),
+    platformSubmitQueue: siteUrl("platform-submit-queue"),
+    platformSubmitQueueJson: fileUrl("platform-submit-queue.json"),
     distributionPack: fileUrl("DISTRIBUTION.md"),
     campaignVideos: campaignAssets,
     publicGist: gistDiscovery?.htmlUrl || "",

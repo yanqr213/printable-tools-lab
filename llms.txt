@@ -14,6 +14,7 @@ Monetization model: Free tools first, then responsible display advertising after
 - PDF, image, and QR tool finder: https://printable-tools-lab.pages.dev/pdf-tool-finder/
 - Directory submission pack: https://printable-tools-lab.pages.dev/submit-directory/
 - Share kit: https://printable-tools-lab.pages.dev/share-kit/
+- HTML5 platform submit queue: https://printable-tools-lab.pages.dev/platform-submit-queue/
 - Guides index: https://printable-tools-lab.pages.dev/guides/
 - Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml
 - RSS feed: https://printable-tools-lab.pages.dev/feed.xml
@@ -22,6 +23,7 @@ Monetization model: Free tools first, then responsible display advertising after
 - Machine-readable tool list: https://printable-tools-lab.pages.dev/tools.json
 - Discovery index: https://printable-tools-lab.pages.dev/discovery.json
 - Machine-readable share kit: https://printable-tools-lab.pages.dev/share-kit.json
+- Machine-readable platform submit queue: https://printable-tools-lab.pages.dev/platform-submit-queue.json
 - Public Gist share kit: https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb
 - Public GitHub growth issue: https://github.com/yanqr213/printable-tools-lab/issues/1
 ## Zero-Domain HTML5 Game Experiments
