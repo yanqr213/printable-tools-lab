@@ -4195,9 +4195,9 @@ function landingPageHtml(page) {
   const primaryToolPath = cleanToolPath(page.primaryTool);
   const tool = tools.find((item) => item.path === primaryToolPath);
   const primaryToolHref = toolHref(page.primaryTool);
-  const related = page.relatedTools
+  const related = uniqueBy(page.relatedTools
     .map((toolPath) => tools.find((item) => item.path === cleanToolPath(toolPath)))
-    .filter(Boolean);
+    .filter(Boolean), (item) => item.path);
   return `
       <section class="shell page-title section">
         <a href="/free-pdf-tools/">Free file tools</a>
@@ -4217,7 +4217,7 @@ function landingPageHtml(page) {
       <section class="shell section">
         <h2>${escapeHtml(heading)}</h2>
         <p>${escapeHtml(text)}</p>
-      </section>`).join("\n")}
+      </section>`.trim()).join("\n")}
       <section class="shell section">
         <h2>Related free tools</h2>
         <div class="grid-3">
@@ -5305,6 +5305,16 @@ function relatedGuideLinks(toolPath) {
   const slug = toolPath.replace(/^tools\//, "");
   const hints = GUIDE_HINTS_FOR_LINKS[slug] || [];
   return guides.filter((guide) => hints.some((hint) => guide.title.toLowerCase().includes(hint.toLowerCase()))).slice(0, 3);
+}
+
+function uniqueBy(items, keyFn) {
+  const seen = new Set();
+  return items.filter((item) => {
+    const key = keyFn(item);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
 function escapeHtml(value) {
