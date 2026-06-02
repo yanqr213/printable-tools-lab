@@ -40,6 +40,14 @@ const directories = [
     reviewWindow: "3-5 business days",
   },
   {
+    name: "NoLogin.tools",
+    url: "https://nologin.tools/tool/printable-tools-lab-pages-dev",
+    searchUrl: "https://nologin.tools/?q=PrintableTools+Lab",
+    expected: [siteHost, "PrintableTools Lab"],
+    submittedAt: "2026-06-03",
+    reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev",
+  },
+  {
     name: "JS.ORG free subdomain",
     url: "https://github.com/js-org/js.org/pull/11512",
     searchUrl: "https://github.com/js-org/js.org/pull/11512",

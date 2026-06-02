@@ -480,6 +480,7 @@ Current directory queue:
 - ListAi.cc: submitted `PrintableTools Lab` through the free no-account form under `Productivity`; the page returned `Submission Received` and says approved tools are published within 24-48 hours. Do not resubmit unless the listing is rejected or material product positioning changes.
 - NoSignupTools: submitted `PrintableTools Lab` on `2026-06-01` under `Files` with app icon and product screenshot; icon upload, screenshot upload, and `/api/submit` all returned `200`. Awaiting human review, typically 24-48 hours.
 - FreeNoSignup: submitted `PrintableTools Lab` on `2026-06-01` through the embedded Google Form. The form displayed the confirmation `Your response has been recorded`. Awaiting manual review, typically 3-5 business days.
+- NoLogin.tools: submitted `PrintableTools Lab` on `2026-06-03` through `https://nologin.tools/api/submit`. API returned `201` with slug `printable-tools-lab-pages-dev`. Public tool URL `https://nologin.tools/tool/printable-tools-lab-pages-dev` still returned `404` immediately after submission, so treat it as pending human review rather than listed.
 - JS.ORG free subdomain: PR `https://github.com/js-org/js.org/pull/11512` was closed on `2026-06-02` with the `unrelated / unqualified` label. Treat the free JS.ORG domain route as failed and do not rely on it for ad-network readiness.
 - DeepLaunch: candidate for a free tool listing. The public submit page says free submissions are reviewed within 48 hours, but the actual flow redirects to sign-in after image upload, so it requires an authenticated Google/GitHub session.
 - BootstrapArena: candidate for a normal free startup listing. The public page exposes a `Normal Free` option, but browser validation did not reveal a no-login form.
@@ -498,6 +499,7 @@ Completed:
 - `2026-06-01`: NoSignupTools free directory submission completed for `https://printable-tools-lab.pages.dev/`; awaiting 24-48 hour human review.
 - `2026-06-01`: FreeNoSignup submission completed for `https://printable-tools-lab.pages.dev/`; awaiting 3-5 business day human review.
 - `2026-06-02`: JS.ORG free subdomain request for `printable-tools-lab.js.org` was rejected as unrelated/unqualified, confirming that a free JS.ORG domain should not be treated as a dependable custom-domain substitute for AdSense or search trust.
+- `2026-06-03`: NoLogin.tools accepted a no-login directory submission for `https://printable-tools-lab.pages.dev/` via API with slug `printable-tools-lab-pages-dev`; public listing was not live immediately and is now monitored as pending.
 
 Submit Google sitemap:
 

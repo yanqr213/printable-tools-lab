@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-02T20:39:54.298Z",
+  "generatedAt": "2026-06-02T21:09:56.788Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 0,
-  "pendingCount": 4,
+  "pendingCount": 5,
   "errorCount": 1,
   "results": [
     {
@@ -56,7 +56,7 @@
           "url": "https://listai.cc/",
           "ok": true,
           "status": 200,
-          "bytes": 318639,
+          "bytes": 318711,
           "matched": false
         }
       ]
@@ -118,6 +118,35 @@
       ]
     },
     {
+      "name": "NoLogin.tools",
+      "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev",
+      "searchUrl": "https://nologin.tools/?q=PrintableTools+Lab",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "PrintableTools Lab"
+      ],
+      "submittedAt": "2026-06-03",
+      "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nologin.tools/?q=PrintableTools+Lab",
+          "ok": true,
+          "status": 200,
+          "bytes": 188305,
+          "matched": false
+        },
+        {
+          "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev",
+          "ok": false,
+          "status": 404,
+          "bytes": 10724,
+          "matched": false
+        }
+      ]
+    },
+    {
       "name": "JS.ORG free subdomain",
       "url": "https://github.com/js-org/js.org/pull/11512",
       "searchUrl": "https://github.com/js-org/js.org/pull/11512",
@@ -156,7 +185,7 @@
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 298382,
+          "bytes": 298383,
           "matched": true
         },
         {
