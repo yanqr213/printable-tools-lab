@@ -246,6 +246,9 @@ else {
   if (!html.includes("Yandex Games")) failures.push("Platform submit queue missing Yandex Games.");
   if (!html.includes("Neon Lane Dash")) failures.push("Platform submit queue missing Neon Lane Dash.");
   if (!html.includes("Upload Limit Panic")) failures.push("Platform submit queue missing Upload Limit Panic.");
+  if (!html.includes("platform-submission-copy.md")) failures.push("Platform submit queue missing copy-ready field pack links.");
+  if (!html.includes("Zero-domain decision")) failures.push("Platform submit queue missing zero-domain decision section.");
+  if (!html.includes("Money gate")) failures.push("Platform submit queue missing money gate.");
   if (!html.includes("/platform-submit-queue.json")) failures.push("Platform submit queue missing machine-readable JSON link.");
   if (!sitemap.includes(`<loc>${siteUrl("platform-submit-queue")}</loc>`)) failures.push("Sitemap missing platform submit queue.");
 }
@@ -254,12 +257,15 @@ const platformSubmitQueueJsonFile = path.join(root, "platform-submit-queue.json"
 if (!fs.existsSync(platformSubmitQueueJsonFile)) failures.push("Missing platform-submit-queue.json.");
 else {
   const data = JSON.parse(fs.readFileSync(platformSubmitQueueJsonFile, "utf8"));
+  if (!data.strategy || !Array.isArray(data.strategy.immediateRoute)) failures.push("platform-submit-queue.json missing zero-domain strategy.");
+  if (!data.strategy || !String(data.strategy.moneyGate || "").includes("revenue")) failures.push("platform-submit-queue.json missing revenue money gate.");
   if (!Array.isArray(data.queue) || data.queue.length < 3) failures.push("platform-submit-queue.json missing platform queue.");
   if (!Array.isArray(data.games) || data.games.length < 2) failures.push("platform-submit-queue.json missing game assets.");
   if (!data.queue.some((item) => item.platform === "CrazyGames")) failures.push("platform-submit-queue.json missing CrazyGames.");
   if (!data.queue.some((item) => item.platform === "Yandex Games")) failures.push("platform-submit-queue.json missing Yandex Games.");
   if (!data.games.some((item) => item.name === "Neon Lane Dash")) failures.push("platform-submit-queue.json missing Neon Lane Dash.");
   if (!data.games.some((item) => item.name === "Upload Limit Panic")) failures.push("platform-submit-queue.json missing Upload Limit Panic.");
+  if (!data.games.every((item) => String(item.submissionCopyUrl || "").includes("platform-submission-copy.md"))) failures.push("platform-submit-queue.json missing submission copy URLs.");
 }
 
 const distributionFile = path.join(root, "DISTRIBUTION.md");

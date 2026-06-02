@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -206,6 +206,7 @@ const platformSubmitQueueJson = {
   name: "HTML5 Platform Submit Queue",
   generatedAt: generatedAtIso,
   canonical: siteUrl("platform-submit-queue"),
+  strategy: ZERO_DOMAIN_PLATFORM_STRATEGY,
   queue: PLATFORM_SUBMIT_QUEUE,
   games: ZERO_DOMAIN_GAME_EXPERIMENTS,
   nextAction: "Submit Neon Lane Dash to CrazyGames, then Yandex Games. Submit Upload Limit Panic after the first review is live or pending.",

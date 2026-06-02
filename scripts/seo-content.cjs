@@ -21,6 +21,7 @@ const ZERO_DOMAIN_GAME_EXPERIMENT = {
   coverUrl: "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-cover-16x9.png",
   socialCardUrl: "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-social-card.png",
   submissionNotesUrl: "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission.md",
+  submissionCopyUrl: "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission-copy.md",
   summary: "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them.",
 };
 
@@ -38,6 +39,7 @@ const ZERO_DOMAIN_GAME_EXPERIMENTS = [
     coverUrl: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-cover-16x9.png",
     socialCardUrl: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-social-card.png",
     submissionNotesUrl: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission.md",
+    submissionCopyUrl: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
     summary: "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them.",
   },
 ];
@@ -74,6 +76,34 @@ const PLATFORM_SUBMIT_QUEUE = [
     adPolicyNote: "Use as a free browser-play page and keep payment disabled during validation.",
   },
 ];
+
+const ZERO_DOMAIN_PLATFORM_STRATEGY = {
+  currentDecision: "Use hosted HTML5 game platforms first instead of buying a custom domain. Platform distribution and platform-managed ads are the zero-upfront-cost path.",
+  whyNoDomainCanStillWork: [
+    "CrazyGames and Yandex Games host approved HTML5 games inside their own catalogs, so discovery and ad serving do not require a custom domain.",
+    "The games already have static live previews on Cloudflare Pages, but the monetization surface is the platform embed after approval.",
+    "A custom domain can improve the utility-tool site later, but it is not required to test the first game-platform revenue path.",
+  ],
+  immediateRoute: [
+    "Submit Neon Lane Dash to CrazyGames first because its three-lane reflex loop has broader casual appeal.",
+    "Submit Neon Lane Dash to Yandex Games second because the build now includes Yandex SDK v2 lifecycle and gated ad hooks.",
+    "Submit Upload Limit Panic after Neon is live or in review, using it as a differentiated puzzle/sorting title.",
+    "Create itch.io mirrors only for public browser-play proof and feedback; do not treat itch as the primary ad route.",
+  ],
+  parkedRoutes: [
+    "GameDistribution remains a later distributor test after at least one first-party platform submission is live.",
+    "Douyin mini-game is a later port because it needs extra account-side setup, domestic platform packaging, and local compliance review.",
+    "Bilibili mini-game/video routes are lower priority because they require more creator operation and have a weaker no-sales advertising loop for this project.",
+    "AdSense on a free subdomain remains a utility-site validation path, but it is not the fastest zero-domain first-revenue path.",
+  ],
+  accountsNeeded: [
+    "CrazyGames developer account login to submit the ZIP and later complete payout details.",
+    "Yandex Games publisher account login to create the game card, upload the archive, and later complete payment details.",
+    "itch.io creator account only if we want a free browser mirror.",
+    "Douyin/Bilibili accounts only after the HTML5 platform route gives a signal worth porting.",
+  ],
+  moneyGate: "The goal is not complete until at least one platform accepts a game, real plays are visible in platform analytics, ad monetization is enabled, and revenue or payout balance is verified.",
+};
 
 const SHARE_KIT_FEATURED_LINKS = [
   ["Compress PDF to 1MB", "compress-pdf-to-1mb", "Urgent upload-limit search for job, school, email, and portal PDFs."],
@@ -2953,6 +2983,24 @@ function platformSubmitQueueHtml() {
         <p><a class="button" href="/platform-submit-queue.json">Open machine-readable queue</a> <a class="button secondary" href="/share-kit/">Open share kit assets</a></p>
       </section>
       <section class="shell section">
+        <h2>Zero-domain decision</h2>
+        <p>${escapeHtml(ZERO_DOMAIN_PLATFORM_STRATEGY.currentDecision)}</p>
+        <div class="grid-3">
+          <article class="panel">
+            <h3>Why this can work without a domain</h3>
+            <ul>${ZERO_DOMAIN_PLATFORM_STRATEGY.whyNoDomainCanStillWork.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          </article>
+          <article class="panel">
+            <h3>Immediate route</h3>
+            <ul>${ZERO_DOMAIN_PLATFORM_STRATEGY.immediateRoute.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          </article>
+          <article class="panel">
+            <h3>Parked routes</h3>
+            <ul>${ZERO_DOMAIN_PLATFORM_STRATEGY.parkedRoutes.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          </article>
+        </div>
+      </section>
+      <section class="shell section">
         <h2>Recommended submission order</h2>
         <div class="grid-3">
           ${PLATFORM_SUBMIT_QUEUE.map((item) => `<article class="panel">
@@ -2976,6 +3024,7 @@ function platformSubmitQueueHtml() {
               <li><a href="${escapeHtml(game.coverUrl)}">16:9 cover</a></li>
               <li><a href="${escapeHtml(game.iconUrl)}">512 icon</a></li>
               <li><a href="${escapeHtml(game.submissionNotesUrl)}">Submission notes</a></li>
+              <li><a href="${escapeHtml(game.submissionCopyUrl || game.submissionNotesUrl)}">Copy-ready platform fields</a></li>
               <li><a href="${escapeHtml(game.repo)}">Repository</a></li>
             </ul>
           </article>`).join("\n")}
@@ -3004,6 +3053,8 @@ function platformSubmitQueueHtml() {
           <li>Submit Upload Limit Panic second as a differentiated puzzle/sorting title.</li>
           <li>If both are rejected for quality, improve controls and visual feedback before building a third game.</li>
         </ul>
+        <p><strong>Money gate:</strong> ${escapeHtml(ZERO_DOMAIN_PLATFORM_STRATEGY.moneyGate)}</p>
+        <p><strong>Account checklist:</strong> ${escapeHtml(ZERO_DOMAIN_PLATFORM_STRATEGY.accountsNeeded.join(" "))}</p>
       </section>`;
 }
 
@@ -4210,4 +4261,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };

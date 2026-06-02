@@ -1,7 +1,34 @@
 {
   "name": "HTML5 Platform Submit Queue",
-  "generatedAt": "2026-06-02T00:03:06.502Z",
+  "generatedAt": "2026-06-02T00:19:28.549Z",
   "canonical": "https://printable-tools-lab.pages.dev/platform-submit-queue/",
+  "strategy": {
+    "currentDecision": "Use hosted HTML5 game platforms first instead of buying a custom domain. Platform distribution and platform-managed ads are the zero-upfront-cost path.",
+    "whyNoDomainCanStillWork": [
+      "CrazyGames and Yandex Games host approved HTML5 games inside their own catalogs, so discovery and ad serving do not require a custom domain.",
+      "The games already have static live previews on Cloudflare Pages, but the monetization surface is the platform embed after approval.",
+      "A custom domain can improve the utility-tool site later, but it is not required to test the first game-platform revenue path."
+    ],
+    "immediateRoute": [
+      "Submit Neon Lane Dash to CrazyGames first because its three-lane reflex loop has broader casual appeal.",
+      "Submit Neon Lane Dash to Yandex Games second because the build now includes Yandex SDK v2 lifecycle and gated ad hooks.",
+      "Submit Upload Limit Panic after Neon is live or in review, using it as a differentiated puzzle/sorting title.",
+      "Create itch.io mirrors only for public browser-play proof and feedback; do not treat itch as the primary ad route."
+    ],
+    "parkedRoutes": [
+      "GameDistribution remains a later distributor test after at least one first-party platform submission is live.",
+      "Douyin mini-game is a later port because it needs extra account-side setup, domestic platform packaging, and local compliance review.",
+      "Bilibili mini-game/video routes are lower priority because they require more creator operation and have a weaker no-sales advertising loop for this project.",
+      "AdSense on a free subdomain remains a utility-site validation path, but it is not the fastest zero-domain first-revenue path."
+    ],
+    "accountsNeeded": [
+      "CrazyGames developer account login to submit the ZIP and later complete payout details.",
+      "Yandex Games publisher account login to create the game card, upload the archive, and later complete payment details.",
+      "itch.io creator account only if we want a free browser mirror.",
+      "Douyin/Bilibili accounts only after the HTML5 platform route gives a signal worth porting."
+    ],
+    "moneyGate": "The goal is not complete until at least one platform accepts a game, real plays are visible in platform analytics, ad monetization is enabled, and revenue or payout balance is verified."
+  },
   "queue": [
     {
       "platform": "CrazyGames",
@@ -82,6 +109,7 @@
       "coverUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-cover-16x9.png",
       "socialCardUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-social-card.png",
       "submissionNotesUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission.md",
+      "submissionCopyUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission-copy.md",
       "summary": "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them."
     },
     {
@@ -96,6 +124,7 @@
       "coverUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-cover-16x9.png",
       "socialCardUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-social-card.png",
       "submissionNotesUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission.md",
+      "submissionCopyUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
       "summary": "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them."
     }
   ],
