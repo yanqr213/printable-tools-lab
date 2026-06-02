@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-02T19:46:05.848Z",
+  "generatedAt": "2026-06-02T19:59:48.068Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 61,
     "indexableRoutes": 238,
     "sitemapLocCount": 238,
-    "generatedToolInventoryAt": "2026-06-02T19:44:16.751Z",
+    "generatedToolInventoryAt": "2026-06-02T19:48:47.711Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -51,7 +51,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 21999,
+        "bytes": 22020,
         "json": null
       },
       "/sitemap.xml": {
@@ -101,7 +101,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-02T19:14:13.544Z",
+          "generatedAt": "2026-06-02T19:47:18.496Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -987,7 +987,7 @@
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-02T19:14:13.544Z",
+          "generatedAt": "2026-06-02T19:47:18.496Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1233,7 +1233,7 @@
               }
             ],
             "publicGist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-            "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/a195920d9428fd4808ea6ca576980d55c617542d/PrintableTools-Lab-zero-cost-share-kit.md",
+            "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/718a9e30c1e0ec3db513024743a879a2b94e7373/PrintableTools-Lab-zero-cost-share-kit.md",
             "publicGrowthIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1",
             "zeroDomainGame": "https://upload-limit-panic.pages.dev/",
             "zeroDomainGameRepo": "https://github.com/yanqr213/upload-limit-panic",
@@ -1651,10 +1651,10 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 18554,
+        "bytes": 19016,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-02T19:14:13.544Z",
+          "generatedAt": "2026-06-02T19:47:18.496Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -1907,6 +1907,9 @@
               "zipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
               "cleanZipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-portal-clean.zip",
               "cleanPackageReportUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/clean-portal-package.json",
+              "gameSnacksZipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-gamesnacks.zip",
+              "gameSnacksPackageReportUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/gamesnacks-package.json",
+              "gameSnacksVerificationUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/gamesnacks-verification.json",
               "demoVideoUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-demo.mp4",
               "iconUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-icon-512.png",
               "coverUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-cover-16x9.png",
@@ -1914,12 +1917,12 @@
               "submissionNotesUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission.md",
               "submissionCopyUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
               "reviewReadinessUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/review-readiness.md",
-              "summary": "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them."
+              "summary": "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, GameDistribution, and GameSnacks adapters/packages are present; ad calls remain gated until platform review allows them."
             }
           ],
           "externalDiscovery": {
             "gist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-            "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/a195920d9428fd4808ea6ca576980d55c617542d/PrintableTools-Lab-zero-cost-share-kit.md",
+            "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/718a9e30c1e0ec3db513024743a879a2b94e7373/PrintableTools-Lab-zero-cost-share-kit.md",
             "githubIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1"
           },
           "rules": [
@@ -2870,8 +2873,84 @@
     }
   },
   "searchConsole": {
-    "available": false,
-    "reason": "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
+    "available": true,
+    "sites": {
+      "siteEntry": [
+        {
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "permissionLevel": "siteOwner"
+        },
+        {
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "permissionLevel": "siteOwner"
+        }
+      ]
+    },
+    "sitemaps": {
+      "sitemap": [
+        {
+          "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
+          "lastSubmitted": "2026-06-02T19:56:28.660Z",
+          "isPending": true,
+          "isSitemapsIndex": false,
+          "warnings": "0",
+          "errors": "0"
+        },
+        {
+          "path": "https://printable-tools-lab.pages.dev/sitemap.xml/",
+          "lastSubmitted": "2026-06-01T08:44:49.432Z",
+          "isPending": true,
+          "isSitemapsIndex": false,
+          "warnings": "0",
+          "errors": "0"
+        }
+      ]
+    },
+    "githubPagesSitemaps": {
+      "sitemap": [
+        {
+          "path": "https://yanqr213.github.io/printable-tools-lab/sitemap.xml",
+          "lastSubmitted": "2026-06-02T19:59:03.971Z",
+          "isPending": true,
+          "isSitemapsIndex": false,
+          "warnings": "0",
+          "errors": "0"
+        }
+      ]
+    },
+    "performance": {
+      "siteUrl": "https://printable-tools-lab.pages.dev/",
+      "startDate": "2026-05-05",
+      "endDate": "2026-06-01",
+      "rowCount": 0,
+      "totals": {
+        "clicks": 0,
+        "impressions": 0
+      },
+      "rows": []
+    },
+    "inspected": [
+      {
+        "url": "https://printable-tools-lab.pages.dev/",
+        "verdict": "NEUTRAL",
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawlTime": "2026-05-31T16:42:59Z"
+      },
+      {
+        "url": "https://printable-tools-lab.pages.dev/tools/",
+        "verdict": "NEUTRAL",
+        "coverageState": "URL is unknown to Google",
+        "indexingState": "INDEXING_STATE_UNSPECIFIED"
+      },
+      {
+        "url": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
+        "verdict": "NEUTRAL",
+        "coverageState": "URL is unknown to Google",
+        "indexingState": "INDEXING_STATE_UNSPECIFIED"
+      }
+    ],
+    "errors": []
   },
   "discovery": {
     "github": {
@@ -2947,11 +3026,15 @@
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
         "Real AdSense publisher ID is not configured, so ads remain disabled.",
-        "Search Console API data was unavailable during this run.",
         "Search Console has no impressions/indexed sample yet, so applying now is premature."
       ],
       "searchConsole": [
-        "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
+        "Main Search Console property verified: yes.",
+        "GitHub Pages discovery property verified: yes.",
+        "Sitemap status: pending=true, warnings=0, errors=0.",
+        "GitHub Pages discovery sitemap: pending=true, warnings=0, errors=0.",
+        "Search performance: 0 impressions, 0 clicks.",
+        "2 inspected sample URL(s) are still unknown to Google."
       ],
       "externalDiscovery": [
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
