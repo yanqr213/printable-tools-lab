@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HTML5 Platform Submit Cockpit - PrintableTools Lab</title>
+    <meta name="description" content="Practical cockpit for submitting zero-domain HTML5 games to ad-funded platforms, including manual gates, ZIP links, copy packs, and success signals.">
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="HTML5 Platform Submit Cockpit">
+    <meta property="og:description" content="Practical cockpit for submitting zero-domain HTML5 games to ad-funded platforms, including manual gates, ZIP links, copy packs, and success signals.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://printable-tools-lab.pages.dev/assets/images/social-card.webp">
+    <meta name="theme-color" content="#176b87">
+    <link rel="canonical" href="https://printable-tools-lab.pages.dev/platform-submit-cockpit/">
+    <link rel="icon" href="/assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/images/app-icon-192.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="search" type="application/opensearchdescription+xml" title="PrintableTools Lab" href="/opensearch.xml">
+    <link rel="alternate" type="application/rss+xml" title="PrintableTools Lab feed" href="/feed.xml">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/site-config.js"></script>
+    <script src="/assets/vendor/fflate.min.js"></script>
+    <script type="module">
+      import * as pdfjsLib from "/assets/vendor/pdf.min.mjs";
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "/assets/vendor/pdf.worker.min.mjs";
+      window.pdfjsLib = pdfjsLib;
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"><img src="/assets/images/app-icon-192.png" alt=""></span>
+        <span>
+          <strong>PrintableTools Lab</strong>
+          <small>Free PDF and image tools</small>
+        </span>
+      </a>
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a href="/tools/name-tracing/">Name tracing</a>
+        <a href="/tools/chore-chart/">Chore chart</a>
+        <a href="/tools/invoice-generator/">Invoice</a>
+        <a href="/tools/resume-builder/">Resume</a>
+        <a href="/tools/reward-chart/">Reward chart</a>
+        <a href="/tools/flashcards/">Flashcards</a>
+        <a href="/tools/">All tools</a>
+        <a href="/guides/">Guides</a>
+        <a href="/dashboard/">Data</a>
+      </nav>
+    </header>
+
+    <main id="app" tabindex="-1">
+
+      <section class="shell page-title section">
+        <a href="/platform-submit-queue/">Platform submit queue</a>
+        <h1>HTML5 platform submit cockpit</h1>
+        <p>This cockpit turns the zero-domain game route into the next concrete actions: which dashboard to open, which ZIP to upload, what still cannot be automated, and what counts as a real progress signal.</p>
+        <p><a class="button" href="/platform-submit-cockpit.json">Open machine-readable cockpit</a> <a class="button secondary" href="/platform-outreach-tracker/">Open outreach tracker</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Operating truth</h2>
+        <div class="grid-3">
+          <article class="panel">
+            <h3>Objective</h3>
+            <p>Move from zero-domain prototypes to accepted platform games with platform-managed advertising.</p>
+            <p><strong>Lead game:</strong> Neon Lane Dash</p>
+            <p><strong>Backup:</strong> Upload Limit Panic</p>
+          </article>
+          <article class="panel">
+            <h3>Manual gates</h3>
+            <ul><li>Dashboard signup, email verification, identity checks, payout profile, legal checkboxes, and CAPTCHA must be completed by the account owner.</li><li>No platform should receive bank, Alipay, API token, or private credential details by email.</li><li>No flow should request fake plays, fake ad views, or incentivized ad clicks.</li></ul>
+          </article>
+          <article class="panel">
+            <h3>Morning expectation</h3>
+            <p>It is unrealistic to expect verified ad revenue overnight before any platform accepts a game. The fastest honest morning win is submitted/in-review status or a platform reply requesting upload metadata.</p>
+          </article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Ready assets</h2>
+        <table class="event-table">
+          <tbody>
+            <tr><th>neonLaneDashZip</th><td><a href="https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip">https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip</a></td></tr>
+<tr><th>uploadLimitPanicZip</th><td><a href="https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-html5.zip">https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-html5.zip</a></td></tr>
+<tr><th>neonLaneDashCopy</th><td><a href="https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md">https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md</a></td></tr>
+<tr><th>uploadLimitPanicCopy</th><td><a href="https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission-copy.md">https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission-copy.md</a></td></tr>
+<tr><th>neonLaneDashRelease</th><td><a href="https://github.com/yanqr213/neon-lane-dash/releases/tag/platform-submission-v1">https://github.com/yanqr213/neon-lane-dash/releases/tag/platform-submission-v1</a></td></tr>
+<tr><th>uploadLimitPanicRelease</th><td><a href="https://github.com/yanqr213/upload-limit-panic/releases/tag/platform-submission-v1">https://github.com/yanqr213/upload-limit-panic/releases/tag/platform-submission-v1</a></td></tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="shell section">
+        <h2>Next submissions</h2>
+        <div class="grid-2">
+          <article class="panel">
+            <h3>1. CrazyGames</h3>
+            <p><strong>Status:</strong> ready_for_dashboard_upload / manual_login_required</p>
+            <p><strong>Next action:</strong> Log in to CrazyGames developer dashboard, create a game, upload Neon Lane Dash ZIP, paste the CrazyGames fields from the copy pack, and submit for Basic Launch review.</p>
+            <p><strong>Why now:</strong> Best first moderation signal for a short reflex HTML5 game; the build already has CrazyGames SDK loading/gameplay hooks and hidden external links in platform context.</p>
+            <p><strong>Use game:</strong> Neon Lane Dash</p>
+            <p><a class="button" href="https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip">Download ZIP</a> <a class="button secondary" href="https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md">Open copy pack</a></p>
+            <p><strong>Success signal:</strong> Dashboard status changes to submitted, in review, accepted, or live.</p>
+            <p><strong>Risk control:</strong> Do not enable standalone ads; CrazyGames Basic Launch can validate quality before revenue share.</p>
+            <details><summary>Manual requirements</summary><ul><li>CrazyGames developer login</li><li>Game card creation</li><li>ZIP upload</li><li>Icon/cover selection</li><li>Review submission</li><li>Payout profile later after acceptance/ad eligibility</li></ul></details>
+          </article>
+<article class="panel">
+            <h3>2. Yandex Games</h3>
+            <p><strong>Status:</strong> ready_for_dashboard_upload / manual_login_required</p>
+            <p><strong>Next action:</strong> Create a Yandex Games app draft, upload Neon Lane Dash ZIP first, then Upload Limit Panic if the first draft is accepted or in review.</p>
+            <p><strong>Why now:</strong> Second zero-domain catalog with platform ads; current builds include Yandex SDK v2 LoadingAPI, GameplayAPI, and gated ad calls.</p>
+            <p><strong>Use game:</strong> Neon Lane Dash first; Upload Limit Panic second</p>
+            <p><a class="button" href="https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip">Download ZIP</a> <a class="button secondary" href="https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md">Open copy pack</a></p>
+            <p><strong>Success signal:</strong> Game draft submitted to moderation or accepted in the Yandex Games console.</p>
+            <p><strong>Risk control:</strong> No external CTA is visible in Yandex context; ad calls require platform readiness and ads=1.</p>
+            <details><summary>Manual requirements</summary><ul><li>Yandex publisher account</li><li>App draft</li><li>Age/content metadata</li><li>ZIP upload</li><li>Moderation submission</li><li>Payout setup when eligible</li></ul></details>
+          </article>
+<article class="panel">
+            <h3>3. Playgama</h3>
+            <p><strong>Status:</strong> ready_for_email_or_dashboard / email_or_manual_dashboard</p>
+            <p><strong>Next action:</strong> Send the public email with Neon Lane Dash release links, or create the developer portal account and upload the ZIP directly.</p>
+            <p><strong>Why now:</strong> No upfront-cost HTML5 distribution route; current builds include Playgama Bridge, game_ready messaging, pause/audio listeners, interstitial placement, and rewarded-state confirmation.</p>
+            <p><strong>Use game:</strong> Neon Lane Dash</p>
+            <p><a class="button" href="https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip">Download ZIP</a> <a class="button secondary" href="https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md">Open copy pack</a></p>
+            <p><strong>Success signal:</strong> Playgama replies with review instructions or dashboard upload accepts the package.</p>
+            <p><strong>Risk control:</strong> Do not call start-of-game interstitial through Playgama; only natural replay/practice breaks are wired.</p>
+            <details><summary>Manual requirements</summary><ul><li>Developer portal signup if not using first-contact email</li><li>ZIP upload</li><li>Bridge config review if requested</li><li>Payout setup after approval/earnings</li></ul></details>
+          </article>
+<article class="panel">
+            <h3>4. GamePix</h3>
+            <p><strong>Status:</strong> ready_for_dashboard_after_signup / manual_signup_required</p>
+            <p><strong>Next action:</strong> Open GamePix Join Us, create the dashboard account, upload Neon Lane Dash ZIP, then use the copy pack fields.</p>
+            <p><strong>Why now:</strong> GamePix advertises hosting, QA, partner distribution, and 45% developer revenue share; current builds include GamePix loading/pause/resume/ping lifecycle hooks.</p>
+            <p><strong>Use game:</strong> Neon Lane Dash</p>
+            <p><a class="button" href="https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip">Download ZIP</a> <a class="button secondary" href="https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md">Open copy pack</a></p>
+            <p><strong>Success signal:</strong> Dashboard accepts the game entry or requests QA changes.</p>
+            <p><strong>Risk control:</strong> Only documented GamePix lifecycle hooks are integrated; no guessed ad method is called.</p>
+            <details><summary>Manual requirements</summary><ul><li>GamePix dashboard account</li><li>ZIP upload</li><li>Metadata</li><li>Assets</li><li>QA/review</li><li>Payment details after acceptance</li></ul></details>
+          </article>
+<article class="panel">
+            <h3>5. GameDistribution</h3>
+            <p><strong>Status:</strong> sdk_ready_but_manual_legal_gate / manual_form_required</p>
+            <p><strong>Next action:</strong> Use the partnership email first, then complete the web form manually because it has reCAPTCHA and legal checkboxes. Add dashboard gameId later if provided.</p>
+            <p><strong>Why now:</strong> SDK adapter is now present, but the platform requires dashboard gameId and legal consent before full activation.</p>
+            <p><strong>Use game:</strong> Neon Lane Dash</p>
+            <p><a class="button" href="https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip">Download ZIP</a> <a class="button secondary" href="https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md">Open copy pack</a></p>
+            <p><strong>Success signal:</strong> Partnership reply, dashboard gameId issued, or SDK activation view passes.</p>
+            <p><strong>Risk control:</strong> No fake gameId is hardcoded; gdsdk.showAd is gated behind GameDistribution context and ads=1.</p>
+            <details><summary>Manual requirements</summary><ul><li>Developer signup</li><li>Legal terms consent</li><li>reCAPTCHA</li><li>Dashboard gameId</li><li>Revenue-share setup</li><li>SDK activation iframe check</li></ul></details>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>PrintableTools Lab</strong>
+        <p>Browser-based PDF and image tools for families, classrooms, and small teams.</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <a href="/about/">About</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="/license/">AI & license disclosure</a>
+      </nav>
+    </footer>
+
+    <script src="/assets/vendor/pdf-lib.min.js"></script>
+    <script src="/assets/vendor/qrcode-generator.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>

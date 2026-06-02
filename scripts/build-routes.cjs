@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -134,9 +134,12 @@ if (fs.existsSync(headersPath)) {
   if (!headers.includes("/platform-submit-queue.json")) {
     fs.appendFileSync(headersPath, "\n/platform-submit-queue.json\n  Content-Type: application/json; charset=utf-8\n");
   }
-  if (!headers.includes("/platform-outreach-tracker.json")) {
-    fs.appendFileSync(headersPath, "\n/platform-outreach-tracker.json\n  Content-Type: application/json; charset=utf-8\n");
-  }
+if (!headers.includes("/platform-outreach-tracker.json")) {
+  fs.appendFileSync(headersPath, "\n/platform-outreach-tracker.json\n  Content-Type: application/json; charset=utf-8\n");
+}
+if (!headers.includes("/platform-submit-cockpit.json")) {
+  fs.appendFileSync(headersPath, "\n/platform-submit-cockpit.json\n  Content-Type: application/json; charset=utf-8\n");
+}
   if (!headers.includes("/assets/vendor/fflate.min.js")) {
     fs.appendFileSync(headersPath, "\n/assets/vendor/fflate.min.js\n  Content-Type: application/javascript; charset=utf-8\n");
   }
@@ -228,6 +231,17 @@ const platformOutreachTrackerJson = {
 };
 fs.writeFileSync(path.join(root, "platform-outreach-tracker.json"), `${JSON.stringify(platformOutreachTrackerJson, null, 2)}\n`);
 
+const platformSubmitCockpitJson = {
+  name: "HTML5 Platform Submit Cockpit",
+  generatedAt: generatedAtIso,
+  canonical: siteUrl("platform-submit-cockpit"),
+  cockpit: PLATFORM_SUBMIT_COCKPIT,
+  games: ZERO_DOMAIN_GAME_EXPERIMENTS,
+  nextAction: "Complete CrazyGames and Yandex dashboard submissions first; use Playgama email/dashboard as the fastest non-domain secondary path.",
+  completionGate: "Dashboard submitted/in-review status is progress; the full money goal still requires accepted game, real plays, enabled ads, and verified revenue.",
+};
+fs.writeFileSync(path.join(root, "platform-submit-cockpit.json"), `${JSON.stringify(platformSubmitCockpitJson, null, 2)}\n`);
+
 const llms = [
   `# ${SITE_SUMMARY.name}`,
   "",
@@ -246,6 +260,7 @@ const llms = [
   `- Directory submission pack: ${siteUrl("submit-directory")}`,
   `- Share kit: ${siteUrl("share-kit")}`,
   `- HTML5 platform submit queue: ${siteUrl("platform-submit-queue")}`,
+  `- HTML5 platform submit cockpit: ${siteUrl("platform-submit-cockpit")}`,
   `- HTML5 platform outreach tracker: ${siteUrl("platform-outreach-tracker")}`,
   `- Guides index: ${siteUrl("guides")}`,
   `- Sitemap: ${fileUrl("sitemap.xml")}`,
@@ -256,6 +271,7 @@ const llms = [
   `- Discovery index: ${fileUrl("discovery.json")}`,
   `- Machine-readable share kit: ${fileUrl("share-kit.json")}`,
   `- Machine-readable platform submit queue: ${fileUrl("platform-submit-queue.json")}`,
+  `- Machine-readable platform submit cockpit: ${fileUrl("platform-submit-cockpit.json")}`,
   `- Machine-readable platform outreach tracker: ${fileUrl("platform-outreach-tracker.json")}`,
   ...(gistDiscovery?.htmlUrl ? [`- Public Gist share kit: ${gistDiscovery.htmlUrl}`] : []),
   ...(issueDiscovery?.issueUrl ? [`- Public GitHub growth issue: ${issueDiscovery.issueUrl}`] : []),
@@ -296,13 +312,16 @@ const discoveryIndex = {
   opensearch: fileUrl("opensearch.xml"),
   shareKit: fileUrl("share-kit.json"),
   platformSubmitQueue: fileUrl("platform-submit-queue.json"),
+  platformSubmitCockpit: fileUrl("platform-submit-cockpit.json"),
   platformOutreachTracker: fileUrl("platform-outreach-tracker.json"),
-  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl("platform-submit-queue"), siteUrl("platform-outreach-tracker"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   distributionAssets: {
     shareKit: siteUrl("share-kit"),
     shareKitJson: fileUrl("share-kit.json"),
     platformSubmitQueue: siteUrl("platform-submit-queue"),
     platformSubmitQueueJson: fileUrl("platform-submit-queue.json"),
+    platformSubmitCockpit: siteUrl("platform-submit-cockpit"),
+    platformSubmitCockpitJson: fileUrl("platform-submit-cockpit.json"),
     platformOutreachTracker: siteUrl("platform-outreach-tracker"),
     platformOutreachTrackerJson: fileUrl("platform-outreach-tracker.json"),
     distributionPack: fileUrl("DISTRIBUTION.md"),

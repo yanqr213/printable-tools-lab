@@ -68,3 +68,6 @@
 
 /platform-outreach-tracker.json
   Content-Type: application/json; charset=utf-8
+
+/platform-submit-cockpit.json
+  Content-Type: application/json; charset=utf-8

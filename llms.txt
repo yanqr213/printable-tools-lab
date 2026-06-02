@@ -15,6 +15,7 @@ Monetization model: Free tools first, then responsible display advertising after
 - Directory submission pack: https://printable-tools-lab.pages.dev/submit-directory/
 - Share kit: https://printable-tools-lab.pages.dev/share-kit/
 - HTML5 platform submit queue: https://printable-tools-lab.pages.dev/platform-submit-queue/
+- HTML5 platform submit cockpit: https://printable-tools-lab.pages.dev/platform-submit-cockpit/
 - HTML5 platform outreach tracker: https://printable-tools-lab.pages.dev/platform-outreach-tracker/
 - Guides index: https://printable-tools-lab.pages.dev/guides/
 - Sitemap: https://printable-tools-lab.pages.dev/sitemap.xml
@@ -25,6 +26,7 @@ Monetization model: Free tools first, then responsible display advertising after
 - Discovery index: https://printable-tools-lab.pages.dev/discovery.json
 - Machine-readable share kit: https://printable-tools-lab.pages.dev/share-kit.json
 - Machine-readable platform submit queue: https://printable-tools-lab.pages.dev/platform-submit-queue.json
+- Machine-readable platform submit cockpit: https://printable-tools-lab.pages.dev/platform-submit-cockpit.json
 - Machine-readable platform outreach tracker: https://printable-tools-lab.pages.dev/platform-outreach-tracker.json
 - Public Gist share kit: https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb
 - Public GitHub growth issue: https://github.com/yanqr213/printable-tools-lab/issues/1

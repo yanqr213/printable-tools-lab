@@ -299,6 +299,99 @@ const PLATFORM_OUTREACH_TRACKER = {
   ],
 };
 
+const PLATFORM_SUBMIT_COCKPIT = {
+  generatedFrom: "2026-06-02 release assets and official platform requirements",
+  objective: "Move from zero-domain prototypes to accepted platform games with platform-managed advertising.",
+  leadGame: "Neon Lane Dash",
+  backupGame: "Upload Limit Panic",
+  notAutomatable: [
+    "Dashboard signup, email verification, identity checks, payout profile, legal checkboxes, and CAPTCHA must be completed by the account owner.",
+    "No platform should receive bank, Alipay, API token, or private credential details by email.",
+    "No flow should request fake plays, fake ad views, or incentivized ad clicks.",
+  ],
+  readyAssets: {
+    neonLaneDashZip: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+    uploadLimitPanicZip: "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-html5.zip",
+    neonLaneDashCopy: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
+    uploadLimitPanicCopy: "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission-copy.md",
+    neonLaneDashRelease: "https://github.com/yanqr213/neon-lane-dash/releases/tag/platform-submission-v1",
+    uploadLimitPanicRelease: "https://github.com/yanqr213/upload-limit-panic/releases/tag/platform-submission-v1",
+  },
+  checklist: [
+    {
+      platform: "CrazyGames",
+      rank: 1,
+      currentStatus: "ready_for_dashboard_upload",
+      automationLevel: "manual_login_required",
+      nextAction: "Log in to CrazyGames developer dashboard, create a game, upload Neon Lane Dash ZIP, paste the CrazyGames fields from the copy pack, and submit for Basic Launch review.",
+      whyNow: "Best first moderation signal for a short reflex HTML5 game; the build already has CrazyGames SDK loading/gameplay hooks and hidden external links in platform context.",
+      manualRequirements: ["CrazyGames developer login", "Game card creation", "ZIP upload", "Icon/cover selection", "Review submission", "Payout profile later after acceptance/ad eligibility"],
+      useGame: "Neon Lane Dash",
+      uploadZip: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+      copyPack: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
+      successSignal: "Dashboard status changes to submitted, in review, accepted, or live.",
+      riskControl: "Do not enable standalone ads; CrazyGames Basic Launch can validate quality before revenue share.",
+    },
+    {
+      platform: "Yandex Games",
+      rank: 2,
+      currentStatus: "ready_for_dashboard_upload",
+      automationLevel: "manual_login_required",
+      nextAction: "Create a Yandex Games app draft, upload Neon Lane Dash ZIP first, then Upload Limit Panic if the first draft is accepted or in review.",
+      whyNow: "Second zero-domain catalog with platform ads; current builds include Yandex SDK v2 LoadingAPI, GameplayAPI, and gated ad calls.",
+      manualRequirements: ["Yandex publisher account", "App draft", "Age/content metadata", "ZIP upload", "Moderation submission", "Payout setup when eligible"],
+      useGame: "Neon Lane Dash first; Upload Limit Panic second",
+      uploadZip: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+      copyPack: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
+      successSignal: "Game draft submitted to moderation or accepted in the Yandex Games console.",
+      riskControl: "No external CTA is visible in Yandex context; ad calls require platform readiness and ads=1.",
+    },
+    {
+      platform: "Playgama",
+      rank: 3,
+      currentStatus: "ready_for_email_or_dashboard",
+      automationLevel: "email_or_manual_dashboard",
+      nextAction: "Send the public email with Neon Lane Dash release links, or create the developer portal account and upload the ZIP directly.",
+      whyNow: "No upfront-cost HTML5 distribution route; current builds include Playgama Bridge, game_ready messaging, pause/audio listeners, interstitial placement, and rewarded-state confirmation.",
+      manualRequirements: ["Developer portal signup if not using first-contact email", "ZIP upload", "Bridge config review if requested", "Payout setup after approval/earnings"],
+      useGame: "Neon Lane Dash",
+      uploadZip: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+      copyPack: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
+      successSignal: "Playgama replies with review instructions or dashboard upload accepts the package.",
+      riskControl: "Do not call start-of-game interstitial through Playgama; only natural replay/practice breaks are wired.",
+    },
+    {
+      platform: "GamePix",
+      rank: 4,
+      currentStatus: "ready_for_dashboard_after_signup",
+      automationLevel: "manual_signup_required",
+      nextAction: "Open GamePix Join Us, create the dashboard account, upload Neon Lane Dash ZIP, then use the copy pack fields.",
+      whyNow: "GamePix advertises hosting, QA, partner distribution, and 45% developer revenue share; current builds include GamePix loading/pause/resume/ping lifecycle hooks.",
+      manualRequirements: ["GamePix dashboard account", "ZIP upload", "Metadata", "Assets", "QA/review", "Payment details after acceptance"],
+      useGame: "Neon Lane Dash",
+      uploadZip: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+      copyPack: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
+      successSignal: "Dashboard accepts the game entry or requests QA changes.",
+      riskControl: "Only documented GamePix lifecycle hooks are integrated; no guessed ad method is called.",
+    },
+    {
+      platform: "GameDistribution",
+      rank: 5,
+      currentStatus: "sdk_ready_but_manual_legal_gate",
+      automationLevel: "manual_form_required",
+      nextAction: "Use the partnership email first, then complete the web form manually because it has reCAPTCHA and legal checkboxes. Add dashboard gameId later if provided.",
+      whyNow: "SDK adapter is now present, but the platform requires dashboard gameId and legal consent before full activation.",
+      manualRequirements: ["Developer signup", "Legal terms consent", "reCAPTCHA", "Dashboard gameId", "Revenue-share setup", "SDK activation iframe check"],
+      useGame: "Neon Lane Dash",
+      uploadZip: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+      copyPack: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
+      successSignal: "Partnership reply, dashboard gameId issued, or SDK activation view passes.",
+      riskControl: "No fake gameId is hardcoded; gdsdk.showAd is gated behind GameDistribution context and ads=1.",
+    },
+  ],
+  morningExpectation: "It is unrealistic to expect verified ad revenue overnight before any platform accepts a game. The fastest honest morning win is submitted/in-review status or a platform reply requesting upload metadata.",
+};
+
 const SHARE_KIT_FEATURED_LINKS = [
   ["Compress PDF to 1MB", "compress-pdf-to-1mb", "Urgent upload-limit search for job, school, email, and portal PDFs."],
   ["Compress PDF to 500KB", "compress-pdf-to-500kb", "Strict form and government-style upload limit intent."],
@@ -2618,6 +2711,12 @@ const pages = [
     html: platformSubmitQueueHtml(),
   },
   {
+    path: "platform-submit-cockpit",
+    title: "HTML5 Platform Submit Cockpit",
+    description: "Practical cockpit for submitting zero-domain HTML5 games to ad-funded platforms, including manual gates, ZIP links, copy packs, and success signals.",
+    html: platformSubmitCockpitHtml(),
+  },
+  {
     path: "platform-outreach-tracker",
     title: "HTML5 Platform Outreach Tracker",
     description: "Copy-ready public-contact outreach tracker, platform email drafts, form notes, and account gates for submitting the zero-domain HTML5 game package.",
@@ -3180,7 +3279,7 @@ function platformSubmitQueueHtml() {
         <a href="/share-kit/">Share kit</a>
         <h1>HTML5 platform submit queue</h1>
         <p>This queue keeps the zero-domain game submission path operational: which platform to submit first, which game to upload, which assets to use, and which ad-safety notes to include.</p>
-        <p><a class="button" href="/platform-submit-queue.json">Open machine-readable queue</a> <a class="button secondary" href="/share-kit/">Open share kit assets</a></p>
+        <p><a class="button" href="/platform-submit-cockpit/">Open submit cockpit</a> <a class="button secondary" href="/platform-submit-queue.json">Open machine-readable queue</a></p>
       </section>
       <section class="shell section">
         <h2>Zero-domain decision</h2>
@@ -3260,6 +3359,59 @@ function platformSubmitQueueHtml() {
         <ul>
           ${ZERO_DOMAIN_PLATFORM_STRATEGY.officialEvidence.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
         </ul>
+      </section>`;
+}
+
+function platformSubmitCockpitHtml() {
+  return `
+      <section class="shell page-title section">
+        <a href="/platform-submit-queue/">Platform submit queue</a>
+        <h1>HTML5 platform submit cockpit</h1>
+        <p>This cockpit turns the zero-domain game route into the next concrete actions: which dashboard to open, which ZIP to upload, what still cannot be automated, and what counts as a real progress signal.</p>
+        <p><a class="button" href="/platform-submit-cockpit.json">Open machine-readable cockpit</a> <a class="button secondary" href="/platform-outreach-tracker/">Open outreach tracker</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Operating truth</h2>
+        <div class="grid-3">
+          <article class="panel">
+            <h3>Objective</h3>
+            <p>${escapeHtml(PLATFORM_SUBMIT_COCKPIT.objective)}</p>
+            <p><strong>Lead game:</strong> ${escapeHtml(PLATFORM_SUBMIT_COCKPIT.leadGame)}</p>
+            <p><strong>Backup:</strong> ${escapeHtml(PLATFORM_SUBMIT_COCKPIT.backupGame)}</p>
+          </article>
+          <article class="panel">
+            <h3>Manual gates</h3>
+            <ul>${PLATFORM_SUBMIT_COCKPIT.notAutomatable.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          </article>
+          <article class="panel">
+            <h3>Morning expectation</h3>
+            <p>${escapeHtml(PLATFORM_SUBMIT_COCKPIT.morningExpectation)}</p>
+          </article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Ready assets</h2>
+        <table class="event-table">
+          <tbody>
+            ${Object.entries(PLATFORM_SUBMIT_COCKPIT.readyAssets).map(([key, value]) => `<tr><th>${escapeHtml(key)}</th><td><a href="${escapeHtml(value)}">${escapeHtml(value)}</a></td></tr>`).join("\n")}
+          </tbody>
+        </table>
+      </section>
+      <section class="shell section">
+        <h2>Next submissions</h2>
+        <div class="grid-2">
+          ${PLATFORM_SUBMIT_COCKPIT.checklist.map((item) => `<article class="panel">
+            <h3>${escapeHtml(item.rank)}. ${escapeHtml(item.platform)}</h3>
+            <p><strong>Status:</strong> ${escapeHtml(item.currentStatus)} / ${escapeHtml(item.automationLevel)}</p>
+            <p><strong>Next action:</strong> ${escapeHtml(item.nextAction)}</p>
+            <p><strong>Why now:</strong> ${escapeHtml(item.whyNow)}</p>
+            <p><strong>Use game:</strong> ${escapeHtml(item.useGame)}</p>
+            <p><a class="button" href="${escapeHtml(item.uploadZip)}">Download ZIP</a> <a class="button secondary" href="${escapeHtml(item.copyPack)}">Open copy pack</a></p>
+            <p><strong>Success signal:</strong> ${escapeHtml(item.successSignal)}</p>
+            <p><strong>Risk control:</strong> ${escapeHtml(item.riskControl)}</p>
+            <details><summary>Manual requirements</summary><ul>${item.manualRequirements.map((need) => `<li>${escapeHtml(need)}</li>`).join("")}</ul></details>
+          </article>`).join("\n")}
+        </div>
       </section>`;
 }
 
@@ -4529,4 +4681,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };

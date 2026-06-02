@@ -1,0 +1,164 @@
+{
+  "name": "HTML5 Platform Submit Cockpit",
+  "generatedAt": "2026-06-02T15:44:13.149Z",
+  "canonical": "https://printable-tools-lab.pages.dev/platform-submit-cockpit/",
+  "cockpit": {
+    "generatedFrom": "2026-06-02 release assets and official platform requirements",
+    "objective": "Move from zero-domain prototypes to accepted platform games with platform-managed advertising.",
+    "leadGame": "Neon Lane Dash",
+    "backupGame": "Upload Limit Panic",
+    "notAutomatable": [
+      "Dashboard signup, email verification, identity checks, payout profile, legal checkboxes, and CAPTCHA must be completed by the account owner.",
+      "No platform should receive bank, Alipay, API token, or private credential details by email.",
+      "No flow should request fake plays, fake ad views, or incentivized ad clicks."
+    ],
+    "readyAssets": {
+      "neonLaneDashZip": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+      "uploadLimitPanicZip": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-html5.zip",
+      "neonLaneDashCopy": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
+      "uploadLimitPanicCopy": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission-copy.md",
+      "neonLaneDashRelease": "https://github.com/yanqr213/neon-lane-dash/releases/tag/platform-submission-v1",
+      "uploadLimitPanicRelease": "https://github.com/yanqr213/upload-limit-panic/releases/tag/platform-submission-v1"
+    },
+    "checklist": [
+      {
+        "platform": "CrazyGames",
+        "rank": 1,
+        "currentStatus": "ready_for_dashboard_upload",
+        "automationLevel": "manual_login_required",
+        "nextAction": "Log in to CrazyGames developer dashboard, create a game, upload Neon Lane Dash ZIP, paste the CrazyGames fields from the copy pack, and submit for Basic Launch review.",
+        "whyNow": "Best first moderation signal for a short reflex HTML5 game; the build already has CrazyGames SDK loading/gameplay hooks and hidden external links in platform context.",
+        "manualRequirements": [
+          "CrazyGames developer login",
+          "Game card creation",
+          "ZIP upload",
+          "Icon/cover selection",
+          "Review submission",
+          "Payout profile later after acceptance/ad eligibility"
+        ],
+        "useGame": "Neon Lane Dash",
+        "uploadZip": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+        "copyPack": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
+        "successSignal": "Dashboard status changes to submitted, in review, accepted, or live.",
+        "riskControl": "Do not enable standalone ads; CrazyGames Basic Launch can validate quality before revenue share."
+      },
+      {
+        "platform": "Yandex Games",
+        "rank": 2,
+        "currentStatus": "ready_for_dashboard_upload",
+        "automationLevel": "manual_login_required",
+        "nextAction": "Create a Yandex Games app draft, upload Neon Lane Dash ZIP first, then Upload Limit Panic if the first draft is accepted or in review.",
+        "whyNow": "Second zero-domain catalog with platform ads; current builds include Yandex SDK v2 LoadingAPI, GameplayAPI, and gated ad calls.",
+        "manualRequirements": [
+          "Yandex publisher account",
+          "App draft",
+          "Age/content metadata",
+          "ZIP upload",
+          "Moderation submission",
+          "Payout setup when eligible"
+        ],
+        "useGame": "Neon Lane Dash first; Upload Limit Panic second",
+        "uploadZip": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+        "copyPack": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
+        "successSignal": "Game draft submitted to moderation or accepted in the Yandex Games console.",
+        "riskControl": "No external CTA is visible in Yandex context; ad calls require platform readiness and ads=1."
+      },
+      {
+        "platform": "Playgama",
+        "rank": 3,
+        "currentStatus": "ready_for_email_or_dashboard",
+        "automationLevel": "email_or_manual_dashboard",
+        "nextAction": "Send the public email with Neon Lane Dash release links, or create the developer portal account and upload the ZIP directly.",
+        "whyNow": "No upfront-cost HTML5 distribution route; current builds include Playgama Bridge, game_ready messaging, pause/audio listeners, interstitial placement, and rewarded-state confirmation.",
+        "manualRequirements": [
+          "Developer portal signup if not using first-contact email",
+          "ZIP upload",
+          "Bridge config review if requested",
+          "Payout setup after approval/earnings"
+        ],
+        "useGame": "Neon Lane Dash",
+        "uploadZip": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+        "copyPack": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
+        "successSignal": "Playgama replies with review instructions or dashboard upload accepts the package.",
+        "riskControl": "Do not call start-of-game interstitial through Playgama; only natural replay/practice breaks are wired."
+      },
+      {
+        "platform": "GamePix",
+        "rank": 4,
+        "currentStatus": "ready_for_dashboard_after_signup",
+        "automationLevel": "manual_signup_required",
+        "nextAction": "Open GamePix Join Us, create the dashboard account, upload Neon Lane Dash ZIP, then use the copy pack fields.",
+        "whyNow": "GamePix advertises hosting, QA, partner distribution, and 45% developer revenue share; current builds include GamePix loading/pause/resume/ping lifecycle hooks.",
+        "manualRequirements": [
+          "GamePix dashboard account",
+          "ZIP upload",
+          "Metadata",
+          "Assets",
+          "QA/review",
+          "Payment details after acceptance"
+        ],
+        "useGame": "Neon Lane Dash",
+        "uploadZip": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+        "copyPack": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
+        "successSignal": "Dashboard accepts the game entry or requests QA changes.",
+        "riskControl": "Only documented GamePix lifecycle hooks are integrated; no guessed ad method is called."
+      },
+      {
+        "platform": "GameDistribution",
+        "rank": 5,
+        "currentStatus": "sdk_ready_but_manual_legal_gate",
+        "automationLevel": "manual_form_required",
+        "nextAction": "Use the partnership email first, then complete the web form manually because it has reCAPTCHA and legal checkboxes. Add dashboard gameId later if provided.",
+        "whyNow": "SDK adapter is now present, but the platform requires dashboard gameId and legal consent before full activation.",
+        "manualRequirements": [
+          "Developer signup",
+          "Legal terms consent",
+          "reCAPTCHA",
+          "Dashboard gameId",
+          "Revenue-share setup",
+          "SDK activation iframe check"
+        ],
+        "useGame": "Neon Lane Dash",
+        "uploadZip": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+        "copyPack": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
+        "successSignal": "Partnership reply, dashboard gameId issued, or SDK activation view passes.",
+        "riskControl": "No fake gameId is hardcoded; gdsdk.showAd is gated behind GameDistribution context and ads=1."
+      }
+    ],
+    "morningExpectation": "It is unrealistic to expect verified ad revenue overnight before any platform accepts a game. The fastest honest morning win is submitted/in-review status or a platform reply requesting upload metadata."
+  },
+  "games": [
+    {
+      "name": "Upload Limit Panic",
+      "url": "https://upload-limit-panic.pages.dev/",
+      "repo": "https://github.com/yanqr213/upload-limit-panic",
+      "releaseUrl": "https://github.com/yanqr213/upload-limit-panic/releases/tag/platform-submission-v1",
+      "packagePath": "upload-limit-panic/reports/upload-limit-panic-html5.tar.gz",
+      "zipUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-html5.zip",
+      "demoVideoUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-demo.mp4",
+      "iconUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-icon-512.png",
+      "coverUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-cover-16x9.png",
+      "socialCardUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-social-card.png",
+      "submissionNotesUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission.md",
+      "submissionCopyUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission-copy.md",
+      "summary": "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them."
+    },
+    {
+      "name": "Neon Lane Dash",
+      "url": "https://neon-lane-dash.pages.dev/",
+      "repo": "https://github.com/yanqr213/neon-lane-dash",
+      "releaseUrl": "https://github.com/yanqr213/neon-lane-dash/releases/tag/platform-submission-v1",
+      "packagePath": "neon-lane-dash/reports/neon-lane-dash-html5.tar.gz",
+      "zipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+      "demoVideoUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-demo.mp4",
+      "iconUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-icon-512.png",
+      "coverUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-cover-16x9.png",
+      "socialCardUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-social-card.png",
+      "submissionNotesUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission.md",
+      "submissionCopyUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
+      "summary": "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them."
+    }
+  ],
+  "nextAction": "Complete CrazyGames and Yandex dashboard submissions first; use Playgama email/dashboard as the fastest non-domain secondary path.",
+  "completionGate": "Dashboard submitted/in-review status is progress; the full money goal still requires accepted game, real plays, enabled ads, and verified revenue."
+}
