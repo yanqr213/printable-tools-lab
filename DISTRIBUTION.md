@@ -197,6 +197,9 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - BootstrapArena normal free startup listing after sign-in flow is available
 - Zearches free URL directory for one homepage submission only
 - ListAi.cc free no-account AI tool directory submission; submitted on 2026-06-01 and awaiting review
+- NoLogin.tools free no-login/privacy tool submission; submitted on 2026-06-03 and awaiting human review
+- NoSubscription.org free/open-source track; submitted on 2026-06-03 and awaiting slow review
+- FOSSHUNTER/open-source directories only when a normal public submit flow is available; do not bypass Cloudflare challenges or submit to directories that prohibit future ads/analytics
 - Reddit communities only when rules allow self-promotion and the tool directly solves a request
 - Startup/tool directories with free submissions
 - GitHub repository topics and README link

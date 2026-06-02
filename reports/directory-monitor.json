@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-02T21:09:56.788Z",
+  "generatedAt": "2026-06-02T21:52:06.085Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 0,
-  "pendingCount": 5,
+  "pendingCount": 6,
   "errorCount": 1,
   "results": [
     {
@@ -49,7 +49,7 @@
           "url": "https://listai.cc/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 318639,
+          "bytes": 318711,
           "matched": false
         },
         {
@@ -147,6 +147,35 @@
       ]
     },
     {
+      "name": "NoSubscription.org",
+      "url": "https://nosubscription.org/",
+      "searchUrl": "https://nosubscription.org/?s=PrintableTools+Lab",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "PrintableTools Lab"
+      ],
+      "submittedAt": "2026-06-03",
+      "reviewWindow": "free open-source submission accepted by Google Apps Script endpoint; slow review states 4-6 weeks",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosubscription.org/?s=PrintableTools+Lab",
+          "ok": true,
+          "status": 200,
+          "bytes": 43839,
+          "matched": false
+        },
+        {
+          "url": "https://nosubscription.org/",
+          "ok": true,
+          "status": 200,
+          "bytes": 43839,
+          "matched": false
+        }
+      ]
+    },
+    {
       "name": "JS.ORG free subdomain",
       "url": "https://github.com/js-org/js.org/pull/11512",
       "searchUrl": "https://github.com/js-org/js.org/pull/11512",
@@ -185,7 +214,7 @@
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 298383,
+          "bytes": 298377,
           "matched": true
         },
         {

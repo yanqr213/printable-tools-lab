@@ -48,6 +48,14 @@ const directories = [
     reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev",
   },
   {
+    name: "NoSubscription.org",
+    url: "https://nosubscription.org/",
+    searchUrl: "https://nosubscription.org/?s=PrintableTools+Lab",
+    expected: [siteHost, "PrintableTools Lab"],
+    submittedAt: "2026-06-03",
+    reviewWindow: "free open-source submission accepted by Google Apps Script endpoint; slow review states 4-6 weeks",
+  },
+  {
     name: "JS.ORG free subdomain",
     url: "https://github.com/js-org/js.org/pull/11512",
     searchUrl: "https://github.com/js-org/js.org/pull/11512",
@@ -85,9 +93,9 @@ async function checkDirectory(directory) {
   const targets = [directory.searchUrl, directory.url].filter(Boolean);
   const checked = [];
   for (const url of targets) {
-    const result = await fetchText(url);
-    checked.push(result);
-    if (result.ok && hasExpectedText(result.text, directory.expected)) {
+    const result = await fetchText(url, directory.expected);
+    checked.push(slimCheck(result));
+    if (result.ok && result.matched) {
       return {
         ...directory,
         status: "listed",
@@ -115,14 +123,14 @@ async function checkDirectory(directory) {
 async function checkJsOrg(directory) {
   const headers = githubHeaders();
   const [page, api, checks] = await Promise.all([
-    fetchText(directory.url),
+    fetchText(directory.url, directory.expected),
     fetchJson("https://api.github.com/repos/js-org/js.org/pulls/11512", headers),
     fetchJson("https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs", headers),
   ]);
   const apiAvailable = Boolean(api.ok);
   const checksAvailable = Boolean(checks.ok);
   const body = String(api.json?.body || "");
-  const pageHasExpectedText = page.matched || hasExpectedText(page.text || "", directory.expected);
+  const pageHasExpectedText = page.matched;
   const templateOk = apiAvailable ? body.includes("- [x] There is reasonable content")
     && body.includes("- [x] I have read and accepted")
     && body.includes("https://printable-tools-lab.pages.dev/")
@@ -130,8 +138,8 @@ async function checkJsOrg(directory) {
   const latestChecks = checksAvailable ? latestCheckRuns(checks.json?.check_runs || []) : [];
   const checksOk = checksAvailable ? latestChecks.length > 0 && latestChecks.every((check) => check.conclusion === "success") : null;
   let status = "pending";
-  if (api.json?.merged || /merged/i.test(page.text || "")) status = "listed";
-  else if (api.json?.state === "closed") status = "error";
+  if (apiAvailable && api.json?.merged) status = "listed";
+  else if (apiAvailable && api.json?.state === "closed") status = "error";
   else if (apiAvailable && templateOk === false) status = "error";
   else if (checksAvailable && latestChecks.some((check) => check.conclusion === "failure")) status = "error";
   else if (!page.ok || !pageHasExpectedText) status = "error";
@@ -154,7 +162,7 @@ async function checkJsOrg(directory) {
   };
 }
 
-async function fetchText(url) {
+async function fetchText(url, expected = [siteHost]) {
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15000);
@@ -170,7 +178,8 @@ async function fetchText(url) {
       ok: response.ok,
       status: response.status,
       bytes: Buffer.byteLength(text),
-      matched: hasExpectedText(text, [siteHost]),
+      matched: hasExpectedText(text, expected),
+      text,
     };
   } catch (error) {
     return {

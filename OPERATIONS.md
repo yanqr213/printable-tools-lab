@@ -463,6 +463,7 @@ Current Search Console checkpoint:
 - `2026-06-01`: AdSense Management API was enabled on the Google Cloud project through Service Usage API. A service-account probe to `adsense.googleapis.com/v2/accounts` returned no AdSense accounts, so the service account is not currently an AdSense account user. The official AdSense ad-unit creation API is also a restricted method, so publisher/ad-slot creation cannot be completed silently from the current service-account credentials.
 - `2026-06-01`: GitHub Pages discovery directory was verified as its own Search Console URL-prefix property and its sitemap was submitted through the Search Console API. This creates a second crawlable discovery surface that still points back to the same main site.
 - `2026-06-01`: added `npm.cmd run operate` as the unattended operating loop. It rebuilds, verifies, submits sitemaps, checks directories, probes Cloudflare/AdSense readiness, and smoke-tests every tool while recording unavoidable account-level blockers.
+- `2026-06-03`: submitted `PrintableTools Lab` to NoSubscription.org through its free open-source track. The submit endpoint returned `result=success`; the public submit page states slow review for the free/open-source plan, so this is a pending discovery link rather than immediate traffic.
 - Action: keep site stable, improve useful content/navigation, thicken tool pages, and avoid repeated low-value resubmission loops.
 
 ## External Discovery Queue
@@ -481,9 +482,12 @@ Current directory queue:
 - NoSignupTools: submitted `PrintableTools Lab` on `2026-06-01` under `Files` with app icon and product screenshot; icon upload, screenshot upload, and `/api/submit` all returned `200`. Awaiting human review, typically 24-48 hours.
 - FreeNoSignup: submitted `PrintableTools Lab` on `2026-06-01` through the embedded Google Form. The form displayed the confirmation `Your response has been recorded`. Awaiting manual review, typically 3-5 business days.
 - NoLogin.tools: submitted `PrintableTools Lab` on `2026-06-03` through `https://nologin.tools/api/submit`. API returned `201` with slug `printable-tools-lab-pages-dev`. Public tool URL `https://nologin.tools/tool/printable-tools-lab-pages-dev` still returned `404` immediately after submission, so treat it as pending human review rather than listed.
+- NoSubscription.org: submitted `PrintableTools Lab` on `2026-06-03` through the free/open-source track. The Google Apps Script endpoint returned `result=success`; monitor search/homepage for publication because free review is intentionally slow.
 - JS.ORG free subdomain: PR `https://github.com/js-org/js.org/pull/11512` was closed on `2026-06-02` with the `unrelated / unqualified` label. Treat the free JS.ORG domain route as failed and do not rely on it for ad-network readiness.
 - DeepLaunch: candidate for a free tool listing. The public submit page says free submissions are reviewed within 48 hours, but the actual flow redirects to sign-in after image upload, so it requires an authenticated Google/GitHub session.
 - BootstrapArena: candidate for a normal free startup listing. The public page exposes a `Normal Free` option, but browser validation did not reveal a no-login form.
+- FOSSHUNTER: skipped for unattended submission because the submit route is behind a Cloudflare managed challenge. Do not bypass challenge flows; revisit only with a normal interactive owner session.
+- NoSubscription-adjacent rule: skip directories whose rules require no ads or no analytics if the public monetization model is ad-supported display placements after approval.
 - Product Hunt: defer until indexing or a visible usage milestone; it is a launch surface, not an indexing shortcut.
 - Startup Fame and Dev Hunt: checked and skipped for now because direct submit routes resolve to login/profile/404 flows without a no-login form.
 
@@ -500,6 +504,7 @@ Completed:
 - `2026-06-01`: FreeNoSignup submission completed for `https://printable-tools-lab.pages.dev/`; awaiting 3-5 business day human review.
 - `2026-06-02`: JS.ORG free subdomain request for `printable-tools-lab.js.org` was rejected as unrelated/unqualified, confirming that a free JS.ORG domain should not be treated as a dependable custom-domain substitute for AdSense or search trust.
 - `2026-06-03`: NoLogin.tools accepted a no-login directory submission for `https://printable-tools-lab.pages.dev/` via API with slug `printable-tools-lab-pages-dev`; public listing was not live immediately and is now monitored as pending.
+- `2026-06-03`: NoSubscription.org accepted the free/open-source submission for `https://printable-tools-lab.pages.dev/` with a success response; public listing is not live yet and is now monitored as pending.
 
 Submit Google sitemap:
 
