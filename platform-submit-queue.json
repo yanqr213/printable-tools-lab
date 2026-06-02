@@ -1,6 +1,6 @@
 {
   "name": "HTML5 Platform Submit Queue",
-  "generatedAt": "2026-06-02T16:02:44.577Z",
+  "generatedAt": "2026-06-02T16:18:17.342Z",
   "canonical": "https://printable-tools-lab.pages.dev/platform-submit-queue/",
   "strategy": {
     "currentDecision": "Use hosted HTML5 game platforms first instead of buying a custom domain. Platform distribution and platform-managed ads are the zero-upfront-cost path.",
@@ -13,12 +13,13 @@
       "Submit Neon Lane Dash to CrazyGames first because its three-lane reflex loop has broader casual appeal.",
       "Submit Neon Lane Dash to Yandex Games second because the build now includes Yandex SDK v2 lifecycle and gated ad hooks.",
       "Submit Neon Lane Dash to Playgama and GamePix after direct-platform submissions because both handle distribution and monetization without requiring a custom domain, and the current ZIPs now include their required lifecycle hooks.",
+      "Submit the clean portal ZIP to Kongregate/Newgrounds-style portals when a platform rejects third-party ad SDKs, external links, or remote telemetry.",
       "Submit Upload Limit Panic after Neon is live or in review, using it as a differentiated puzzle/sorting title.",
       "Use Lagged and GameFlare as lower-friction secondary tests if the first submissions are delayed by account or moderation gates.",
       "Create itch.io mirrors only for public browser-play proof and feedback; do not treat itch as the primary ad route."
     ],
     "parkedRoutes": [
-      "GameDistribution remains a later distributor test after CrazyGames, Yandex, Playgama, and GamePix because dashboard gameId, legal consent, and manual submission are still required even though the SDK adapter is now present.",
+      "GameDistribution remains a later distributor test after CrazyGames, Yandex, Playgama, GamePix, and clean-portal submissions because dashboard gameId, legal consent, and manual submission are still required even though the SDK adapter is now present.",
       "Poki remains a later high-upside quality target because web exclusivity may conflict with broad nonexclusive distribution.",
       "Douyin mini-game is a later port because it needs extra account-side setup, domestic platform packaging, and local compliance review.",
       "Bilibili mini-game/video routes are lower priority because they require more creator operation and have a weaker no-sales advertising loop for this project.",
@@ -30,7 +31,8 @@
       "itch.io creator account only if we want a free browser mirror.",
       "Douyin/Bilibili accounts only after the HTML5 platform route gives a signal worth porting.",
       "Playgama developer portal account and GamePix Dashboard account are the next-best low-cost accounts after CrazyGames/Yandex; both can use the current release ZIPs.",
-      "Lagged, GameFlare, and GameDistribution accounts or contact submissions are useful if primary platform moderation stalls."
+      "Lagged, GameFlare, and GameDistribution accounts or contact submissions are useful if primary platform moderation stalls.",
+      "Kongregate and Newgrounds accounts can use the clean portal ZIP when third-party SDKs or external links are not allowed."
     ],
     "officialEvidence": [
       "CrazyGames Basic Launch disables ads and revenue share at first, and ads must be requested only through the CrazyGames SDK.",
@@ -44,6 +46,8 @@
       "GameDistribution SDK docs require GD_OPTIONS with dashboard gameId, pause/resume handling, user-input ad calls, and SDK_REWARDED_WATCH_COMPLETE before granting rewarded benefits.",
       "Lagged advertises developer game submissions and 50% revenue share with Google AdSense.",
       "GameFlare says it accepts HTML5 games, can review playable early-access games, offers free hosting, and pays monthly after a 50 EUR minimum.",
+      "Kongregate submission guidance accepts browser-playable game uploads and is conservative about third-party ads or sponsorships inside uploaded games.",
+      "Newgrounds is a clean HTML5 community-hosted route; use it for no-domain discovery and feedback rather than treating it as guaranteed revenue.",
       "Poki documentation says SDK integration is mandatory after acceptance and that Poki prefers Web Exclusive deals."
     ],
     "moneyGate": "The goal is not complete until at least one platform accepts a game, real plays are visible in platform analytics, ad monetization is enabled, and revenue or payout balance is verified."
@@ -218,8 +222,56 @@
       "currentGate": "GameFlare asks developers to send a link/game files for suitability review. Official FAQ says payout is monthly with 50 EUR minimum via PayPal or TransferWise, and revenue share is 85% on GameFlare sites or 50% on publisher sites."
     },
     {
-      "platform": "GameDistribution",
+      "platform": "Kongregate",
       "priority": 8,
+      "accountRequired": "Kongregate account and game upload form.",
+      "rationale": "Useful clean-package browser portal path because some Kongregate-style submissions reject third-party ads, sponsorships, external API integrations, and embedded links. Current release now includes a separate clean ZIP.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ],
+      "submissionUrl": "https://www.kongregate.com/games/new",
+      "portalUrl": "https://www.kongregate.com/games/new",
+      "docsUrl": "https://blog.kongregate.com/hc/en-us/articles/44395849259661-SUBMISSION-How-do-I-submit-a-game-to-Kongregate-It-s-Easy",
+      "requiredFields": [
+        "Clean HTML5 ZIP",
+        "Title",
+        "Description",
+        "Tags",
+        "Instructions",
+        "Icon/cover",
+        "Account login"
+      ],
+      "adPolicyNote": "Use the clean portal ZIP, which removes third-party ad SDKs, external links, sponsorship CTAs, and remote tracking. Let Kongregate/platform-managed monetization handle ads if accepted.",
+      "currentGate": "Account login/upload is required. Submit the clean portal ZIP instead of the SDK adapter ZIP."
+    },
+    {
+      "platform": "Newgrounds",
+      "priority": 9,
+      "accountRequired": "Newgrounds account and project submission.",
+      "rationale": "Clean feedback and community-discovery route for HTML5 games. It is not the fastest guaranteed revenue path, but it gives another zero-domain hosted play surface without direct sales.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ],
+      "submissionUrl": "https://www.newgrounds.com/projects/games",
+      "portalUrl": "https://www.newgrounds.com/projects/games",
+      "docsUrl": "https://www.newgrounds.com/wiki/creator-resources/flash-resources/html5",
+      "requiredFields": [
+        "Clean HTML5 ZIP",
+        "Title",
+        "Description",
+        "Controls",
+        "Ratings",
+        "Tags",
+        "Assets"
+      ],
+      "adPolicyNote": "Use the clean portal ZIP and keep monetization controlled by Newgrounds/platform settings after acceptance.",
+      "currentGate": "Account login/project creation is required. Use as a no-domain clean package route and feedback surface."
+    },
+    {
+      "platform": "GameDistribution",
+      "priority": 10,
       "accountRequired": "GameDistribution developer account and SDK/platform terms acceptance.",
       "rationale": "Broad distribution network candidate. Both current games now include GameDistribution GD_OPTIONS, pause/resume, rewarded-completion tracking, and gated showAd calls, but dashboard gameId and legal consent still require manual account action.",
       "submitGames": [
@@ -242,7 +294,7 @@
     },
     {
       "platform": "Poki",
-      "priority": 9,
+      "priority": 11,
       "accountRequired": "Poki for Developers application/acceptance; partnership terms may be negotiated and web exclusivity can apply.",
       "rationale": "High-upside but high-curation platform. Treat as a later quality bar, not the first zero-cost submission.",
       "submitGames": [
@@ -270,6 +322,8 @@
       "releaseUrl": "https://github.com/yanqr213/upload-limit-panic/releases/tag/platform-submission-v1",
       "packagePath": "upload-limit-panic/reports/upload-limit-panic-html5.tar.gz",
       "zipUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-html5.zip",
+      "cleanZipUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-portal-clean.zip",
+      "cleanPackageReportUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/clean-portal-package.json",
       "demoVideoUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-demo.mp4",
       "iconUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-icon-512.png",
       "coverUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-cover-16x9.png",
@@ -286,6 +340,8 @@
       "releaseUrl": "https://github.com/yanqr213/neon-lane-dash/releases/tag/platform-submission-v1",
       "packagePath": "neon-lane-dash/reports/neon-lane-dash-html5.tar.gz",
       "zipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+      "cleanZipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-portal-clean.zip",
+      "cleanPackageReportUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/clean-portal-package.json",
       "demoVideoUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-demo.mp4",
       "iconUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-icon-512.png",
       "coverUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-cover-16x9.png",

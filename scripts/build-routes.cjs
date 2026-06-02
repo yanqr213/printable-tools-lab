@@ -356,6 +356,8 @@ const discoveryIndex = {
       repo: game.repo,
       releaseUrl: game.releaseUrl,
       zipUrl: game.zipUrl,
+      cleanZipUrl: game.cleanZipUrl,
+      cleanPackageReportUrl: game.cleanPackageReportUrl,
       demoVideoUrl: game.demoVideoUrl,
       coverUrl: game.coverUrl,
       iconUrl: game.iconUrl,

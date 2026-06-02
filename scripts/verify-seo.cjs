@@ -250,13 +250,15 @@ else {
   if (!html.includes("HTML5 platform submit queue")) failures.push("Platform submit queue missing heading.");
   if (!html.includes("CrazyGames")) failures.push("Platform submit queue missing CrazyGames.");
   if (!html.includes("Yandex Games")) failures.push("Platform submit queue missing Yandex Games.");
-  for (const platform of ["Playgama", "GamePix", "Lagged", "GameFlare", "GameDistribution", "Poki"]) {
+  for (const platform of ["Playgama", "GamePix", "Lagged", "GameFlare", "Kongregate", "Newgrounds", "GameDistribution", "Poki"]) {
     if (!html.includes(platform)) failures.push(`Platform submit queue missing ${platform}.`);
   }
   if (!html.includes("Neon Lane Dash")) failures.push("Platform submit queue missing Neon Lane Dash.");
   if (!html.includes("Upload Limit Panic")) failures.push("Platform submit queue missing Upload Limit Panic.");
   if (!html.includes("platform-submission-copy.md")) failures.push("Platform submit queue missing copy-ready field pack links.");
   if (!html.includes("review-readiness")) failures.push("Platform submit queue missing review-readiness links.");
+  if (!html.includes("portal-clean.zip")) failures.push("Platform submit queue missing clean portal ZIP links.");
+  if (!html.includes("clean-portal-package.json")) failures.push("Platform submit queue missing clean portal package report links.");
   if (!html.includes("Zero-domain decision")) failures.push("Platform submit queue missing zero-domain decision section.");
   if (!html.includes("Money gate")) failures.push("Platform submit queue missing money gate.");
   if (!html.includes("Current gate")) failures.push("Platform submit queue missing current platform gate notes.");
@@ -272,9 +274,9 @@ else {
   if (!data.strategy || !Array.isArray(data.strategy.immediateRoute)) failures.push("platform-submit-queue.json missing zero-domain strategy.");
   if (!data.strategy || !String(data.strategy.moneyGate || "").includes("revenue")) failures.push("platform-submit-queue.json missing revenue money gate.");
   if (!Array.isArray(data.strategy.officialEvidence) || data.strategy.officialEvidence.length < 3) failures.push("platform-submit-queue.json missing official evidence notes.");
-  if (!Array.isArray(data.queue) || data.queue.length < 9) failures.push("platform-submit-queue.json missing expanded platform queue.");
+  if (!Array.isArray(data.queue) || data.queue.length < 11) failures.push("platform-submit-queue.json missing expanded platform queue.");
   if (!data.queue.some((item) => item.platform === "Yandex Games" && String(item.submissionUrl).includes("games.yandex.com/console"))) failures.push("platform-submit-queue.json missing corrected Yandex Console URL.");
-  for (const platform of ["Playgama", "GamePix", "Lagged", "GameFlare", "GameDistribution", "Poki"]) {
+  for (const platform of ["Playgama", "GamePix", "Lagged", "GameFlare", "Kongregate", "Newgrounds", "GameDistribution", "Poki"]) {
     if (!data.queue.some((item) => item.platform === platform)) failures.push(`platform-submit-queue.json missing ${platform}.`);
   }
   if (!Array.isArray(data.games) || data.games.length < 2) failures.push("platform-submit-queue.json missing game assets.");
@@ -284,6 +286,8 @@ else {
   if (!data.games.some((item) => item.name === "Upload Limit Panic")) failures.push("platform-submit-queue.json missing Upload Limit Panic.");
   if (!data.games.every((item) => String(item.submissionCopyUrl || "").includes("platform-submission-copy.md"))) failures.push("platform-submit-queue.json missing submission copy URLs.");
   if (!data.games.every((item) => String(item.reviewReadinessUrl || "").includes("review-readiness.md"))) failures.push("platform-submit-queue.json missing review-readiness URLs.");
+  if (!data.games.every((item) => String(item.cleanZipUrl || "").includes("portal-clean.zip"))) failures.push("platform-submit-queue.json missing clean portal ZIP URLs.");
+  if (!data.games.every((item) => String(item.cleanPackageReportUrl || "").includes("clean-portal-package.json"))) failures.push("platform-submit-queue.json missing clean portal package report URLs.");
 }
 
 const platformSubmitCockpitFile = path.join(root, "platform-submit-cockpit", "index.html");
@@ -420,6 +424,7 @@ else {
   if (!discovery.distributionAssets || discovery.distributionAssets.zeroCostMonetizationMap !== siteUrl("zero-cost-monetization-map")) failures.push("discovery.json missing zero-cost monetization map URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.zeroDomainGame !== "https://upload-limit-panic.pages.dev/") failures.push("discovery.json missing zero-domain game URL.");
   if (!discovery.distributionAssets || !Array.isArray(discovery.distributionAssets.zeroDomainGames) || discovery.distributionAssets.zeroDomainGames.length < 2) failures.push("discovery.json missing zero-domain game list.");
+  if (!discovery.distributionAssets || !discovery.distributionAssets.zeroDomainGames?.every((item) => String(item.cleanZipUrl || "").includes("portal-clean.zip"))) failures.push("discovery.json missing clean portal ZIP URLs.");
   if (!discovery.distributionAssets || !Array.isArray(discovery.distributionAssets.zeroDomainGames) || !discovery.distributionAssets.zeroDomainGames.some((item) => item.url === "https://neon-lane-dash.pages.dev/")) failures.push("discovery.json missing Neon Lane Dash URL.");
   if (discovery.feed !== siteUrl("feed.xml").replace(/\/$/, "")) failures.push("discovery.json missing RSS feed URL.");
   if (!Array.isArray(discovery.landingPages) || discovery.landingPages.length < 61) failures.push("discovery.json missing high-intent landing pages.");

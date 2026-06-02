@@ -1,6 +1,6 @@
 {
   "name": "Zero-Cost Monetization Map",
-  "generatedAt": "2026-06-02T16:02:44.577Z",
+  "generatedAt": "2026-06-02T16:18:17.342Z",
   "canonical": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map/",
   "map": {
     "generatedFrom": "2026-06-02 platform research and current package state",
@@ -178,6 +178,8 @@
       "releaseUrl": "https://github.com/yanqr213/upload-limit-panic/releases/tag/platform-submission-v1",
       "packagePath": "upload-limit-panic/reports/upload-limit-panic-html5.tar.gz",
       "zipUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-html5.zip",
+      "cleanZipUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-portal-clean.zip",
+      "cleanPackageReportUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/clean-portal-package.json",
       "demoVideoUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-demo.mp4",
       "iconUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-icon-512.png",
       "coverUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-cover-16x9.png",
@@ -194,6 +196,8 @@
       "releaseUrl": "https://github.com/yanqr213/neon-lane-dash/releases/tag/platform-submission-v1",
       "packagePath": "neon-lane-dash/reports/neon-lane-dash-html5.tar.gz",
       "zipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+      "cleanZipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-portal-clean.zip",
+      "cleanPackageReportUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/clean-portal-package.json",
       "demoVideoUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-demo.mp4",
       "iconUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-icon-512.png",
       "coverUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-cover-16x9.png",
