@@ -18,6 +18,7 @@ if (publisherInput && !disabled && !normalized) {
 const toolSlot = args["tool-slot"] || process.env.ADSENSE_TOOL_SLOT || existing.adsenseToolSlot || "";
 const contentSlot = args["content-slot"] || process.env.ADSENSE_CONTENT_SLOT || existing.adsenseContentSlot || "";
 const analyticsId = args.analytics || process.env.GOOGLE_ANALYTICS_ID || existing.googleAnalyticsId || "";
+const sellerKitCheckoutUrl = args["seller-kit-checkout"] || process.env.PUBLIC_SELLER_KIT_CHECKOUT_URL || existing.sellerKitCheckoutUrl || "";
 const contactEmail = args.contact || process.env.PUBLIC_CONTACT_EMAIL || existing.contactEmail || "";
 
 if (toolSlot && !/^\d{4,30}$/.test(toolSlot)) throw new Error("Invalid tool ad slot. Expected numeric AdSense ad slot ID.");
@@ -30,6 +31,7 @@ const next = {
   adsenseClientId: normalized ? normalized.clientId : "",
   adsenseToolSlot: normalized ? toolSlot : "",
   adsenseContentSlot: normalized ? contentSlot : "",
+  sellerKitCheckoutUrl,
   contactEmail,
   enableAds: Boolean(normalized),
   enableAnalytics: Boolean(analyticsId),
@@ -83,6 +85,7 @@ function readConfig() {
     adsenseClientId: readString(source, "adsenseClientId"),
     adsenseToolSlot: readString(source, "adsenseToolSlot"),
     adsenseContentSlot: readString(source, "adsenseContentSlot"),
+    sellerKitCheckoutUrl: readString(source, "sellerKitCheckoutUrl"),
     contactEmail: readString(source, "contactEmail"),
     enableAds: readBool(source, "enableAds"),
     enableAnalytics: readBool(source, "enableAnalytics"),
@@ -108,6 +111,7 @@ function writeConfig(config) {
     `  adsenseClientId: ${JSON.stringify(config.adsenseClientId)},`,
     `  adsenseToolSlot: ${JSON.stringify(config.adsenseToolSlot)},`,
     `  adsenseContentSlot: ${JSON.stringify(config.adsenseContentSlot)},`,
+    `  sellerKitCheckoutUrl: ${JSON.stringify(config.sellerKitCheckoutUrl || "")},`,
     `  contactEmail: ${JSON.stringify(config.contactEmail)},`,
     `  enableAds: ${config.enableAds ? "true" : "false"},`,
     `  enableAnalytics: ${config.enableAnalytics ? "true" : "false"}`,

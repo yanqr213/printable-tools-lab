@@ -9,6 +9,7 @@
     "build:github-pages": "node scripts/build-github-pages.cjs",
     "verify:seo": "node scripts/verify-seo.cjs",
     "configure:adsense": "node scripts/configure-adsense.cjs",
+    "configure:checkout": "node scripts/configure-checkout.cjs",
     "configure:domain": "node scripts/configure-domain.cjs",
     "register:domain": "node scripts/register-domain.cjs",
     "verify:adsense": "node scripts/verify-adsense.cjs",

@@ -1,7 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
+const { strToU8, zipSync } = require("fflate");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -11,6 +12,7 @@ const lastmod = generatedAtIso.slice(0, 10);
 const campaignAssets = readCampaignAssets();
 const gistDiscovery = readGistDiscovery();
 const issueDiscovery = readIssueDiscovery();
+const digitalProductPackages = buildDigitalProductPackages();
 
 function pageHtml(route) {
   const rendered = renderRoute(route);
@@ -147,6 +149,9 @@ if (!headers.includes("/portal-submission-pack.json")) {
 if (!headers.includes("/game-submission-feed.json")) {
   fs.appendFileSync(headersPath, "\n/game-submission-feed.json\n  Content-Type: application/json; charset=utf-8\n");
 }
+if (!headers.includes("/digital-products.json")) {
+  fs.appendFileSync(headersPath, "\n/digital-products.json\n  Content-Type: application/json; charset=utf-8\n");
+}
 if (!headers.includes("/zero-cost-monetization-map.json")) {
   fs.appendFileSync(headersPath, "\n/zero-cost-monetization-map.json\n  Content-Type: application/json; charset=utf-8\n");
 }
@@ -217,6 +222,21 @@ const shareKitJson = {
   rules: SHARE_KIT_RULES,
 };
 fs.writeFileSync(path.join(root, "share-kit.json"), `${JSON.stringify(shareKitJson, null, 2)}\n`);
+
+const digitalProductsJson = {
+  name: "PrintableTools Lab Digital Products",
+  generatedAt: generatedAtIso,
+  canonical: fileUrl("digital-products.json"),
+  products: DIGITAL_PRODUCTS.map(digitalProductEntry),
+  moneyGate: "Revenue is real only when a payment provider shows a paid order, payout balance, or settled payment. Public checkout links and sample downloads are not revenue.",
+  setup: [
+    "Create an external checkout product in Gumroad, Payhip, Ko-fi, or Stripe Payment Links.",
+    `Upload the full ZIP from ${LOCAL_SELLER_STARTER_KIT.privatePackagePath}; do not commit that full paid ZIP to git.`,
+    "Set PUBLIC_SELLER_KIT_CHECKOUT_URL or sellerKitCheckoutUrl in site-config.js to make the public page buyable.",
+    "Keep payout, tax, bank, card, phone, and account credentials inside the payment provider dashboard.",
+  ],
+};
+fs.writeFileSync(path.join(root, "digital-products.json"), `${JSON.stringify(digitalProductsJson, null, 2)}\n`);
 
 const platformSubmitQueueJson = {
   name: "HTML5 Platform Submit Queue",
@@ -325,6 +345,8 @@ const llms = [
   `- Upload limit fixer page: ${siteUrl("upload-limit-fixer")}`,
   `- Directory submission pack: ${siteUrl("submit-directory")}`,
   `- Share kit: ${siteUrl("share-kit")}`,
+  `- Digital product: ${siteUrl(LOCAL_SELLER_STARTER_KIT.slug)}`,
+  `- Machine-readable digital products: ${fileUrl("digital-products.json")}`,
   `- HTML5 platform submit queue: ${siteUrl("platform-submit-queue")}`,
   `- HTML5 platform submit cockpit: ${siteUrl("platform-submit-cockpit")}`,
   `- HTML5 platform outreach tracker: ${siteUrl("platform-outreach-tracker")}`,
@@ -369,7 +391,7 @@ const llms = [
   "- Ordinary PDF, image, and QR file generation runs in the browser and does not require an account.",
   "- Optional AI idea suggestions are server-side and limited to non-sensitive fields.",
   "- Ads are not used as a gate for downloading files.",
-  "- Paid checkout is intentionally disabled until free usage and search demand are validated.",
+  "- Paid digital-product checkout is external and must be connected with a real payment-provider URL before promotion.",
   "",
 ].join("\n");
 fs.writeFileSync(path.join(root, "llms.txt"), llms);
@@ -388,11 +410,17 @@ const discoveryIndex = {
   platformOutreachTracker: fileUrl("platform-outreach-tracker.json"),
   portalSubmissionPack: fileUrl("portal-submission-pack.json"),
   gameSubmissionFeed: fileUrl("game-submission-feed.json"),
+  digitalProducts: fileUrl("digital-products.json"),
   zeroCostMonetizationMap: fileUrl("zero-cost-monetization-map.json"),
-  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl(LOCAL_SELLER_STARTER_KIT.slug), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   distributionAssets: {
     shareKit: siteUrl("share-kit"),
     shareKitJson: fileUrl("share-kit.json"),
+    digitalProducts: siteUrl(LOCAL_SELLER_STARTER_KIT.slug),
+    digitalProductsJson: fileUrl("digital-products.json"),
+    localSellerStarterKitSample: fileUrl(LOCAL_SELLER_STARTER_KIT.publicSamplePath),
+    localSellerStarterKitPrivatePackage: LOCAL_SELLER_STARTER_KIT.privatePackagePath,
+    localSellerStarterKitReport: LOCAL_SELLER_STARTER_KIT.packageReportPath,
     platformSubmitQueue: siteUrl("platform-submit-queue"),
     platformSubmitQueueJson: fileUrl("platform-submit-queue.json"),
     platformSubmitCockpit: siteUrl("platform-submit-cockpit"),
@@ -434,7 +462,7 @@ const discoveryIndex = {
   constraints: [
     "No account required.",
     "No ad interaction gate.",
-    "No paid checkout in the validation version.",
+    "Paid digital-product checkout must use a real external payment link and must not expose payout credentials.",
     "No upload for image and PDF utility tools that are marked local-first.",
   ],
   validationGates: {
@@ -448,6 +476,7 @@ fs.writeFileSync(path.join(root, "discovery.json"), `${JSON.stringify(discoveryI
 const feedItems = [
   routeToFeedItem(routes.find((route) => route.path === "free-pdf-tools")),
   routeToFeedItem(routes.find((route) => route.path === "pdf-tool-finder")),
+  routeToFeedItem(routes.find((route) => route.path === LOCAL_SELLER_STARTER_KIT.slug)),
   routeToFeedItem(routes.find((route) => route.path === "share-kit")),
   routeToFeedItem(routes.find((route) => route.path === "tools")),
   ...HIGH_INTENT_LANDING_PATHS
@@ -654,6 +683,228 @@ function readIssueDiscovery() {
   } catch {
     return null;
   }
+}
+
+function buildDigitalProductPackages() {
+  return DIGITAL_PRODUCTS.map((product) => {
+    const fullFiles = localSellerKitFiles(product, false);
+    const sampleFiles = localSellerKitFiles(product, true);
+    const publicSamplePath = path.join(root, product.publicSamplePath);
+    const privatePackagePath = path.join(root, product.privatePackagePath);
+    fs.mkdirSync(path.dirname(publicSamplePath), { recursive: true });
+    fs.mkdirSync(path.dirname(privatePackagePath), { recursive: true });
+    fs.writeFileSync(publicSamplePath, zipFromTextFiles(sampleFiles));
+    fs.writeFileSync(privatePackagePath, zipFromTextFiles(fullFiles));
+    const report = {
+      product: product.name,
+      generatedAt: generatedAtIso,
+      priceUsd: product.priceUsd,
+      checkoutConfigured: Boolean(product.checkoutUrl),
+      publicSample: {
+        path: product.publicSamplePath,
+        url: fileUrl(product.publicSamplePath),
+        fileCount: Object.keys(sampleFiles).length,
+        sizeBytes: fs.statSync(publicSamplePath).size,
+        sha256: sha256File(publicSamplePath),
+      },
+      privatePackage: {
+        path: product.privatePackagePath,
+        gitIgnored: true,
+        fileCount: Object.keys(fullFiles).length,
+        sizeBytes: fs.statSync(privatePackagePath).size,
+        sha256: sha256File(privatePackagePath),
+      },
+      moneyGate: product.successGate,
+      riskControls: product.riskControls,
+    };
+    const reportPath = path.join(root, product.packageReportPath);
+    fs.mkdirSync(path.dirname(reportPath), { recursive: true });
+    fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`);
+    return report;
+  });
+}
+
+function localSellerKitFiles(product, sampleOnly) {
+  const prefix = sampleOnly ? "local-seller-starter-kit-sample" : "local-seller-starter-kit";
+  const files = {
+    [`${prefix}/README.md`]: [
+      `# ${product.name}${sampleOnly ? " Sample" : ""}`,
+      "",
+      product.shortDescription,
+      "",
+      "## How to use",
+      "",
+      "1. Open the CSV files in any spreadsheet app.",
+      "2. Edit the placeholder business, product, offer, and date fields.",
+      "3. Paste rows into the matching PrintableTools Lab generators for price tags, coupons, flyers, QR signs, packing slips, inventory sheets, and business cards.",
+      "4. Print a small batch, test it at the table or with one customer, then adjust wording before printing more.",
+      "",
+      sampleOnly ? "This sample shows the structure of the paid kit. The paid ZIP adds the full 30-day calendar, more rows, more copy variants, and the commercial-use license." : "The included license lets the buyer use these templates inside their own business or event workflow, but not resell the kit itself.",
+    ].join("\n"),
+    [`${prefix}/sample-price-tags.csv`]: [
+      "item,price,sku,note",
+      "Handmade soap,$6,SOAP-001,Market table tester",
+      "Custom keychain,$9,KEY-002,Ask about bundle pricing",
+      "Mini print,$12,ART-003,Two for $20",
+    ].join("\n"),
+    [`${prefix}/sample-coupon-offers.csv`]: [
+      "offer,code,expiration,fine_print",
+      "10% off your first local order,WELCOME10,End of this month,Valid for one purchase from this seller",
+      "Buy 2 small items get $3 off,TABLE3,Market day only,Not combinable with other offers",
+      "Free local pickup bonus,PICKUP,This week,Available within the listed pickup area",
+    ].join("\n"),
+    [`${prefix}/flyer-and-qr-sign-copy.md`]: [
+      "# Flyer and QR sign copy",
+      "",
+      "## Table sign",
+      "",
+      "Scan for today's menu, prices, custom order form, or booking page.",
+      "",
+      "## Local service flyer",
+      "",
+      "Need a quick fix before the weekend? Message us for available times, simple pricing, and local pickup or appointment details.",
+      "",
+      "## Product photo note",
+      "",
+      "Use the free QR, flyer, coupon, and price-tag tools to turn this copy into printable PDFs.",
+    ].join("\n"),
+  };
+  if (!sampleOnly) {
+    Object.assign(files, {
+      [`${prefix}/30-day-local-promo-calendar.csv`]: [
+        "day,channel,action,copy_prompt,success_signal",
+        "1,market table,print QR sign,Point visitors to order form,One scan or one question",
+        "2,Instagram,post product photo,Show best-seller and pickup window,One profile visit",
+        "3,local group,reply helpfully,Answer a relevant recommendation request,One useful reply",
+        "4,email/text,send coupon,Offer first-order discount to warm leads,One response",
+        "5,market table,test price tags,Use clear price and bundle note,One customer notices bundle",
+        "6,packing,add insert,Add reorder QR or thank-you line,One repeat inquiry",
+        "7,review,measure,Count orders questions scans and clicks,Keep only working copy",
+        "8,flyer,print mini batch,Place where posting is allowed,One scan",
+        "9,short video,show process,Before/after or packing order,One save or question",
+        "10,local partner,ask swap,Leave small cards with a nearby business,One accepted placement",
+        "11,market table,offer bundle,Two-item bundle with visible savings,One bundle sold",
+        "12,listing,refresh title,Lead with use case and pickup area,One listing view increase",
+        "13,customer follow-up,send reorder note,Thank buyer and offer reorder window,One reply",
+        "14,review,measure,Compare best source and best offer,Repeat winner next week",
+        "15,event,seasonal angle,Match upcoming holiday or local event,One share",
+        "16,photo,retake best item,Simple background and clear label,One click",
+        "17,coupon,test expiry,Market-day-only coupon,One redemption",
+        "18,QR sign,test CTA,Scan for custom colors or sizes,One scan",
+        "19,community,helpful comment,Share setup tip without spamming,One positive response",
+        "20,packing,insert QR,Add care or reorder link,One scan",
+        "21,review,measure,Drop weak channel,One clear next action",
+        "22,flyer,small batch,Print only 10 and test,One inquiry",
+        "23,market table,price anchor,Show popular under-$10 item,One add-on",
+        "24,listing,FAQ update,Answer top buyer objection,One fewer repeated question",
+        "25,email/text,limited batch,Announce small restock,One preorder",
+        "26,partner,local bundle,Pair service and product,One partner reply",
+        "27,short video,pack order,Show packaging and pickup,One message",
+        "28,review,measure,Pick next month's winner,One repeatable channel",
+        "29,cleanup,archive assets,Save winning copy and tag rows,Ready next month",
+        "30,relaunch,repeat winner,Use best offer and channel again,One sale or qualified lead",
+      ].join("\n"),
+      [`${prefix}/packing-slip-batch.csv`]: [
+        "order_id,customer,item,quantity,note",
+        "1001,Sample Customer,Handmade soap,2,Thank you for buying local",
+        "1002,Sample Customer,Mini print,1,Keep flat and dry",
+        "1003,Sample Customer,Custom keychain,3,Custom colors confirmed",
+        "1004,Sample Customer,Gift bundle,1,Include coupon insert",
+      ].join("\n"),
+      [`${prefix}/inventory-starter.csv`]: [
+        "sku,item,starting_qty,sold,remaining,reorder_point",
+        "SOAP-001,Handmade soap,24,0,24,6",
+        "KEY-002,Custom keychain,18,0,18,5",
+        "ART-003,Mini print,30,0,30,8",
+        "BND-004,Gift bundle,10,0,10,3",
+      ].join("\n"),
+      [`${prefix}/market-day-checklist.md`]: [
+        "# Market-day checklist",
+        "",
+        "## Before",
+        "- Print price tags, QR sign, coupon sheet, and packing slips.",
+        "- Pack tape, pen, receipt copy, backup QR sign, and small bills if needed.",
+        "- Test the QR code on a phone that is not logged into your own account.",
+        "",
+        "## During",
+        "- Count questions about price, custom options, pickup, and bundles.",
+        "- Put the easiest offer at eye level.",
+        "- Write down exact customer phrases for later listing copy.",
+        "",
+        "## After",
+        "- Count sold items and update inventory.",
+        "- Keep only offers that got questions, scans, or sales.",
+        "- Send follow-up messages only to people who asked for them.",
+      ].join("\n"),
+      [`${prefix}/checkout-listing-copy.md`]: [
+        "# Product listing copy",
+        "",
+        "## Title",
+        "Local Seller Starter Kit: editable market table, coupon, price tag, packing, and promo templates",
+        "",
+        "## Short description",
+        product.shortDescription,
+        "",
+        "## What is included",
+        ...product.contents.map((item) => `- ${item}`),
+        "",
+        "## Delivery",
+        "Instant ZIP download after payment through the checkout provider.",
+        "",
+        "## License",
+        "Use inside your own business, table, shop, class, or event. Do not resell or redistribute the kit itself.",
+      ].join("\n"),
+      [`${prefix}/LICENSE.txt`]: [
+        `${product.name} Commercial-Use License`,
+        "",
+        "The buyer may edit, print, and use these templates inside their own business, market table, local service, class, workshop, or event workflow.",
+        "The buyer may not resell, redistribute, sublicense, publish, or repackage the kit files as a competing template product.",
+        "No legal, tax, accounting, employment, or financial advice is included.",
+      ].join("\n"),
+      [`${prefix}/print-preview.html`]: [
+        "<!doctype html>",
+        "<html lang=\"en\"><head><meta charset=\"utf-8\"><title>Local Seller Starter Kit Preview</title>",
+        "<style>body{font-family:Arial,sans-serif;margin:32px;color:#17313b}section{border:1px solid #d9e4e8;padding:18px;margin:0 0 16px}.tag{display:inline-block;border:1px solid #17313b;padding:10px 16px;margin:6px}</style></head><body>",
+        "<h1>Local Seller Starter Kit Preview</h1>",
+        "<section><h2>Price tags</h2><span class=\"tag\">Handmade soap - $6</span><span class=\"tag\">Mini print - $12</span><span class=\"tag\">Bundle - $20</span></section>",
+        "<section><h2>QR sign copy</h2><p>Scan for custom orders, pickup details, and today's market-only offer.</p></section>",
+        "<section><h2>Coupon copy</h2><p>Use code WELCOME10 for 10% off your first local order.</p></section>",
+        "</body></html>",
+      ].join("\n"),
+    });
+  }
+  return files;
+}
+
+function zipFromTextFiles(files) {
+  return Buffer.from(zipSync(Object.fromEntries(Object.entries(files).map(([name, content]) => [name, strToU8(`${content}\n`)])), { level: 9 }));
+}
+
+function sha256File(filePath) {
+  return require("crypto").createHash("sha256").update(fs.readFileSync(filePath)).digest("hex");
+}
+
+function digitalProductEntry(product) {
+  const report = digitalProductPackages.find((item) => item.product === product.name);
+  return {
+    id: product.id,
+    name: product.name,
+    description: product.shortDescription,
+    url: siteUrl(product.slug),
+    priceUsd: product.priceUsd,
+    currency: product.currency,
+    checkoutConfigured: Boolean(product.checkoutUrl),
+    checkoutUrl: product.checkoutUrl,
+    sampleUrl: fileUrl(product.publicSamplePath),
+    packageReportUrl: fileUrl(product.packageReportPath),
+    privatePackagePath: product.privatePackagePath,
+    privatePackageReady: Boolean(report?.privatePackage?.sizeBytes),
+    privatePackageSha256: report?.privatePackage?.sha256 || "",
+    contents: product.contents,
+    freeTools: product.freeTools.map((toolPath) => siteUrl(toolPath)),
+    riskControls: product.riskControls,
+    successGate: product.successGate,
+  };
 }
 
 function categoryForTool(toolPath) {

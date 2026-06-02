@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-02T22:33:04.592Z",
+  "generatedAt": "2026-06-02T23:01:45.274Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -12,12 +12,14 @@
   "platformOutreachTracker": "https://printable-tools-lab.pages.dev/platform-outreach-tracker.json",
   "portalSubmissionPack": "https://printable-tools-lab.pages.dev/portal-submission-pack.json",
   "gameSubmissionFeed": "https://printable-tools-lab.pages.dev/game-submission-feed.json",
+  "digitalProducts": "https://printable-tools-lab.pages.dev/digital-products.json",
   "zeroCostMonetizationMap": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map.json",
   "highIntentEntryPoints": [
     "https://printable-tools-lab.pages.dev/free-pdf-tools/",
     "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
     "https://printable-tools-lab.pages.dev/submit-directory/",
     "https://printable-tools-lab.pages.dev/share-kit/",
+    "https://printable-tools-lab.pages.dev/local-seller-starter-kit/",
     "https://printable-tools-lab.pages.dev/platform-submit-queue/",
     "https://printable-tools-lab.pages.dev/platform-submit-cockpit/",
     "https://printable-tools-lab.pages.dev/platform-outreach-tracker/",
@@ -143,6 +145,11 @@
   "distributionAssets": {
     "shareKit": "https://printable-tools-lab.pages.dev/share-kit/",
     "shareKitJson": "https://printable-tools-lab.pages.dev/share-kit.json",
+    "digitalProducts": "https://printable-tools-lab.pages.dev/local-seller-starter-kit/",
+    "digitalProductsJson": "https://printable-tools-lab.pages.dev/digital-products.json",
+    "localSellerStarterKitSample": "https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-sample.zip",
+    "localSellerStarterKitPrivatePackage": "paid-deliverables/local-seller-starter-kit.zip",
+    "localSellerStarterKitReport": "reports/local-seller-starter-kit-package.json",
     "platformSubmitQueue": "https://printable-tools-lab.pages.dev/platform-submit-queue/",
     "platformSubmitQueueJson": "https://printable-tools-lab.pages.dev/platform-submit-queue.json",
     "platformSubmitCockpit": "https://printable-tools-lab.pages.dev/platform-submit-cockpit/",
@@ -688,7 +695,7 @@
   "constraints": [
     "No account required.",
     "No ad interaction gate.",
-    "No paid checkout in the validation version.",
+    "Paid digital-product checkout must use a real external payment link and must not expose payout credentials.",
     "No upload for image and PDF utility tools that are marked local-first."
   ],
   "validationGates": {

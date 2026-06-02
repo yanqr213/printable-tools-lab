@@ -4,7 +4,7 @@ Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF c
 
 Audience: Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, household planners, cafe operators, booth exhibitors, rental hosts, and office admins.
 
-Monetization model: Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.
+Monetization model: Free tools stay live for search demand. A low-price Local Seller Starter Kit digital product is checkout-ready and can become buyable by setting PUBLIC_SELLER_KIT_CHECKOUT_URL or PUBLIC_CHECKOUT_URL to a real payment link.
 
 ## Primary URLs
 
@@ -15,6 +15,8 @@ Monetization model: Free tools first, then responsible display advertising after
 - Upload limit fixer page: https://printable-tools-lab.pages.dev/upload-limit-fixer/
 - Directory submission pack: https://printable-tools-lab.pages.dev/submit-directory/
 - Share kit: https://printable-tools-lab.pages.dev/share-kit/
+- Digital product: https://printable-tools-lab.pages.dev/local-seller-starter-kit/
+- Machine-readable digital products: https://printable-tools-lab.pages.dev/digital-products.json
 - HTML5 platform submit queue: https://printable-tools-lab.pages.dev/platform-submit-queue/
 - HTML5 platform submit cockpit: https://printable-tools-lab.pages.dev/platform-submit-cockpit/
 - HTML5 platform outreach tracker: https://printable-tools-lab.pages.dev/platform-outreach-tracker/
@@ -221,4 +223,4 @@ Monetization model: Free tools first, then responsible display advertising after
 - Ordinary PDF, image, and QR file generation runs in the browser and does not require an account.
 - Optional AI idea suggestions are server-side and limited to non-sensitive fields.
 - Ads are not used as a gate for downloading files.
-- Paid checkout is intentionally disabled until free usage and search demand are validated.
+- Paid digital-product checkout is external and must be connected with a real payment-provider URL before promotion.

@@ -5,6 +5,7 @@ window.PTL_CONFIG = {
   adsenseClientId: "",
   adsenseToolSlot: "",
   adsenseContentSlot: "",
+  sellerKitCheckoutUrl: "",
   contactEmail: "",
   enableAds: false,
   enableAnalytics: false

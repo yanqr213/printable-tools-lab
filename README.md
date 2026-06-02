@@ -306,7 +306,15 @@ npm.cmd run register:domain -- --register
 4. Add a custom domain before serious ad-network review; use `pages.dev` as validation/fallback only.
 5. After the custom domain is deployed and indexed, create/apply for AdSense.
 6. If AdSense stalls, test Microsoft pubCenter as the mainstream fallback; avoid forced-view or download-gated ad networks.
-7. Keep paid checkout disabled. The current monetization path is free usage first, then display ads after approval.
+7. Keep free tools ungated. Direct checkout is allowed only for the Local Seller Starter Kit after a real external payment link is configured; display ads still wait for approval and search visibility.
+
+Configure the seller-kit payment link after creating a real checkout product:
+
+```powershell
+npm.cmd run configure:checkout -- --url https://your-payment-provider.example/product
+npm.cmd run build:routes
+npm.cmd run verify:seo
+```
 
 Reference policy docs for this path:
 

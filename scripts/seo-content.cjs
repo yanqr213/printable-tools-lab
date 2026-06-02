@@ -6,8 +6,70 @@ const SITE_SUMMARY = {
   name: "PrintableTools Lab",
   description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   audience: "Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, household planners, cafe operators, booth exhibitors, rental hosts, and office admins.",
-  monetization: "Free tools first, then responsible display advertising after the site has useful public content and Search Console visibility. Paid checkout is deferred.",
+  monetization: "Free tools stay live for search demand. A low-price Local Seller Starter Kit digital product is checkout-ready and can become buyable by setting PUBLIC_SELLER_KIT_CHECKOUT_URL or PUBLIC_CHECKOUT_URL to a real payment link.",
 };
+
+const LOCAL_SELLER_STARTER_KIT = {
+  id: "local-seller-starter-kit",
+  slug: "local-seller-starter-kit",
+  name: "Local Seller Starter Kit",
+  headline: "Local Seller Starter Kit for market tables, services, and small orders",
+  shortDescription: "A checkout-ready digital pack of editable local-selling templates: price tags, coupon copy, packing slips, QR sign wording, inventory starters, promo posts, and market-day checklists.",
+  description: "Sell a simple digital operations kit to people who already use invoice, receipt, price tag, flyer, coupon, business card, packing slip, and inventory tools. The product is intentionally small, practical, and low-risk: buyers get editable files they can use for their own local business or event table.",
+  priceUsd: 9,
+  currency: "USD",
+  checkoutUrl: configuredCheckoutUrl(),
+  publicSamplePath: "assets/digital-products/local-seller-starter-kit-sample.zip",
+  privatePackagePath: "paid-deliverables/local-seller-starter-kit.zip",
+  packageReportPath: "reports/local-seller-starter-kit-package.json",
+  audience: [
+    "craft fair and market table sellers",
+    "local service providers",
+    "small online sellers who need packing and promo templates",
+    "pop-up class, workshop, or neighborhood event organizers",
+  ],
+  contents: [
+    "30-day local promo calendar CSV",
+    "price tag and SKU starter CSV",
+    "coupon offer and fine-print examples",
+    "packing slip batch CSV",
+    "inventory starter sheet",
+    "flyer and QR sign copy bank",
+    "market-day checklist",
+    "product listing copy for Gumroad, Payhip, Ko-fi, or Stripe Payment Links",
+    "simple commercial-use license for the buyer's own business",
+  ],
+  freeTools: [
+    "tools/invoice-generator",
+    "tools/receipt-generator",
+    "tools/price-tag",
+    "tools/flyer-maker",
+    "tools/coupon-maker",
+    "tools/packing-slip",
+    "tools/business-card",
+    "tools/inventory-sheet",
+    "tools/qr-code",
+  ],
+  riskControls: [
+    "No private payout, tax, bank, card, or platform credential is stored in the repository.",
+    "The full paid ZIP is generated locally under paid-deliverables and is ignored by git.",
+    "The public site exposes a sample ZIP and checkout status, not fake purchase or fake revenue claims.",
+    "Buyers are licensed to use the templates for their own business, not to resell the kit itself.",
+  ],
+  successGate: "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this kit.",
+};
+
+const DIGITAL_PRODUCTS = [LOCAL_SELLER_STARTER_KIT];
+
+function configuredCheckoutUrl() {
+  const envUrl = (process.env.PUBLIC_SELLER_KIT_CHECKOUT_URL || process.env.PUBLIC_CHECKOUT_URL || "").trim();
+  if (envUrl) return envUrl;
+  const configPath = path.join(__dirname, "..", "site-config.js");
+  if (!fs.existsSync(configPath)) return "";
+  const source = fs.readFileSync(configPath, "utf8");
+  const match = source.match(/sellerKitCheckoutUrl:\s*"([^"]*)"/);
+  return match ? match[1].trim() : "";
+}
 
 const ZERO_DOMAIN_GAME_EXPERIMENT = {
   name: "Upload Limit Panic",
@@ -3117,6 +3179,7 @@ const pages = [
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
+            <a class="button ghost" href="/local-seller-starter-kit/">Seller starter kit</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
             <div class="proof-tile"><strong>66</strong><span>high-frequency tools</span></div>
@@ -3135,6 +3198,20 @@ const pages = [
         <h2>Popular file and printable searches</h2>
         <div class="grid-2">
           ${keywordClusters.map(keywordClusterHtml).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Small seller monetization test</h2>
+        <div class="grid-2">
+          <article class="panel">
+            <h3>Local Seller Starter Kit</h3>
+            <p>A low-price editable template kit for market tables, local services, coupons, price tags, packing slips, QR signs, and inventory starters. The free generators remain available; the kit is the direct-payment product test.</p>
+            <p><a class="button" href="/local-seller-starter-kit/">Open the seller kit</a> <a class="button secondary" href="/assets/digital-products/local-seller-starter-kit-sample.zip">Download sample ZIP</a></p>
+          </article>
+          <article class="panel">
+            <h3>Revenue gate</h3>
+            <p>Progress is counted as revenue only after a real payment provider shows a paid order, payout balance, or settled payment. Sample downloads and checkout setup do not count as income.</p>
+          </article>
         </div>
       </section>
       <section class="shell section">
@@ -3239,6 +3316,12 @@ const pages = [
     html: shareKitHtml(),
   },
   {
+    path: LOCAL_SELLER_STARTER_KIT.slug,
+    title: LOCAL_SELLER_STARTER_KIT.name,
+    description: LOCAL_SELLER_STARTER_KIT.shortDescription,
+    html: localSellerStarterKitHtml(),
+  },
+  {
     path: "platform-submit-queue",
     title: "HTML5 Platform Submit Queue",
     description: "Submission order, account checklist, game assets, SDK notes, and compliance rules for the zero-domain HTML5 game monetization route.",
@@ -3303,20 +3386,20 @@ const pages = [
     path: "terms",
     title: "Terms of Use",
     description: "Terms of use for PrintableTools Lab.",
-    html: `<article class="article-shell article"><h1>Terms of Use</h1><p>The free printable generators are provided as-is for personal, classroom, and small-group use.</p><p>Do not use the tools to create unlawful, harmful, infringing, or misleading materials.</p></article>`,
+    html: `<article class="article-shell article"><h1>Terms of Use</h1><p>The free printable generators are provided as-is for personal, classroom, small-business, and small-group use.</p><p>Do not use the tools or digital product files to create unlawful, harmful, infringing, or misleading materials.</p><p>Purchased digital kits may be used inside the buyer's own business or event workflow, but the kit files themselves may not be resold, repackaged, or listed as a competing template product.</p></article>`,
   },
   {
     path: "license",
     title: "AI & License Disclosure",
     description: "How PrintableTools Lab handles generated content, design assets, and licensing.",
-    html: `<article class="article-shell article"><h1>AI & License Disclosure</h1><p>PrintableTools Lab uses code-driven templates and may use AI assistance during product design, wording, and template ideation.</p><p>Existing PDF merge, split, and page-number operations use the MIT-licensed pdf-lib JavaScript library in the browser. PDF-to-image rendering uses the Apache-2.0 pdf.js library, ZIP downloads use the MIT-licensed fflate library, and static QR tools use the MIT-licensed qrcode-generator JavaScript library.</p><p>The default templates avoid third-party characters, trademarked brands, and protected artwork.</p></article>`,
+    html: `<article class="article-shell article"><h1>AI & License Disclosure</h1><p>PrintableTools Lab uses code-driven templates and may use AI assistance during product design, wording, and template ideation.</p><p>Existing PDF merge, split, and page-number operations use the MIT-licensed pdf-lib JavaScript library in the browser. PDF-to-image rendering uses the Apache-2.0 pdf.js library, ZIP downloads use the MIT-licensed fflate library, and static QR tools use the MIT-licensed qrcode-generator JavaScript library.</p><p>The Local Seller Starter Kit uses original plain-text, CSV, Markdown, and HTML templates produced for this project. The default templates avoid third-party characters, trademarked brands, and protected artwork.</p></article>`,
   },
   {
     path: "roadmap",
     title: "PrintableTools Lab Roadmap",
     description: "A noindex roadmap for future PrintableTools Lab product decisions after the free version is validated.",
     index: false,
-    html: `<article class="article-shell article"><h1>PrintableTools Lab Roadmap</h1><p>The current product focus is the free ad-supported printable tool site.</p><p>Paid features are intentionally deferred until the free tools show search traffic, downloads, and repeated usage.</p></article>`,
+    html: `<article class="article-shell article"><h1>PrintableTools Lab Roadmap</h1><p>The current product focus is a free printable tool site plus one small digital product that can take payment through an external checkout link.</p><p>Display advertising is still deferred until search visibility and policy readiness improve. Paid template kits can be tested earlier because they do not require ad-network approval and do not gate the free generators.</p></article>`,
   },
   {
     path: "launch-kit",
@@ -3822,6 +3905,99 @@ function shareKitHtml() {
         <p><a class="button" href="/share-kit.json">Open machine-readable share-kit.json</a> <a class="button secondary" href="/DISTRIBUTION.md">Open distribution pack</a></p>
         ${jsonLdHtml(itemListSchema("PrintableTools Lab share kit priority links", featuredLinks.map((item) => ({ title: item.title, path: item.path }))))}
       </section>`;
+}
+
+function localSellerStarterKitHtml() {
+  const product = LOCAL_SELLER_STARTER_KIT;
+  const checkoutConfigured = Boolean(product.checkoutUrl);
+  return `
+      <section class="shell page-title section product-hero">
+        <a href="/free-pdf-tools/">Free tools</a>
+        <h1>${escapeHtml(product.headline)}</h1>
+        <p>${escapeHtml(product.description)}</p>
+        <div class="hero-actions">
+          <a class="button" data-seller-kit-checkout href="${escapeHtml(checkoutConfigured ? product.checkoutUrl : "#checkout-setup")}">${checkoutConfigured ? `Buy for $${product.priceUsd}` : "Checkout link pending"}</a>
+          <a class="button secondary" href="/${escapeHtml(product.publicSamplePath)}">Download sample ZIP</a>
+          <a class="button ghost" href="/tools/price-tag/">Try the free price tag tool</a>
+        </div>
+        <p class="notice" data-seller-kit-status>${checkoutConfigured ? "Checkout is configured through the external payment provider linked above." : "Checkout is not connected yet. Add a Gumroad, Payhip, Ko-fi, or Stripe Payment Link as PUBLIC_SELLER_KIT_CHECKOUT_URL or sellerKitCheckoutUrl in site-config.js before announcing paid availability."}</p>
+        <div class="hero-proof" aria-label="Digital product readiness">
+          <div class="proof-tile"><strong>$${product.priceUsd}</strong><span>starter price</span></div>
+          <div class="proof-tile"><strong>${product.contents.length}</strong><span>editable assets</span></div>
+          <div class="proof-tile"><strong>0</strong><span>private payout data stored</span></div>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>What the buyer gets</h2>
+        <div class="grid-3">
+          ${product.contents.map((item) => `<article class="panel"><h3>${escapeHtml(item)}</h3><p>Plain editable CSV, Markdown, HTML, or text content designed for fast customization and printing.</p></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Use it with the free generators</h2>
+        <div class="grid-3">
+          ${product.freeTools.map((toolPath) => {
+            const tool = tools.find((item) => item.path === toolPath);
+            return tool ? `<article class="tool-card"><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.description)}</p><a class="button" href="/${tool.path}/">Open generator</a></article>` : "";
+          }).join("\n")}
+        </div>
+      </section>
+      <section class="shell section" id="checkout-setup">
+        <h2>Checkout setup</h2>
+        <p>This page is ready for a real payment link, but it does not fake a checkout. Create a product in Gumroad, Payhip, Ko-fi, or Stripe Payment Links, upload the full ZIP from <code>${escapeHtml(product.privatePackagePath)}</code>, then set the public checkout URL in <code>PUBLIC_SELLER_KIT_CHECKOUT_URL</code> or <code>site-config.js</code>.</p>
+        <pre class="code-block">${escapeHtml(checkoutCopy(product))}</pre>
+      </section>
+      <section class="shell section">
+        <h2>Risk controls</h2>
+        <ul>${product.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        <p><strong>Money gate:</strong> ${escapeHtml(product.successGate)}</p>
+        ${jsonLdHtml(productSchema(product))}
+      </section>
+      <script>
+        (function () {
+          var config = window.PTL_CONFIG || {};
+          var checkoutUrl = config.sellerKitCheckoutUrl || config.checkoutUrl || "";
+          var button = document.querySelector("[data-seller-kit-checkout]");
+          var status = document.querySelector("[data-seller-kit-status]");
+          if (!checkoutUrl || !button) return;
+          button.href = checkoutUrl;
+          button.textContent = "Buy for $${product.priceUsd}";
+          if (status) status.textContent = "Checkout is configured through the external payment provider linked above.";
+        }());
+      </script>`;
+}
+
+function checkoutCopy(product) {
+  return [
+    `Product name: ${product.name}`,
+    `Price: $${product.priceUsd} ${product.currency}`,
+    `Short description: ${product.shortDescription}`,
+    `Upload file: ${product.privatePackagePath}`,
+    `Sample file: ${siteUrl(product.publicSamplePath).replace(/\/$/, "")}`,
+    "Delivery note: Buyer receives editable CSV, Markdown, HTML, and text templates for their own local-selling workflow.",
+  ].join("\n");
+}
+
+function productSchema(product) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.shortDescription,
+    url: siteUrl(product.slug),
+    isRelatedTo: product.freeTools.map((toolPath) => ({
+      "@type": "SoftwareApplication",
+      name: tools.find((tool) => tool.path === toolPath)?.title || toolPath,
+      url: siteUrl(toolPath),
+    })),
+    offers: {
+      "@type": "Offer",
+      price: String(product.priceUsd),
+      priceCurrency: product.currency,
+      availability: product.checkoutUrl ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
+      url: product.checkoutUrl || siteUrl(product.slug),
+    },
+  };
 }
 
 function platformSubmitQueueHtml() {
@@ -5408,4 +5584,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };

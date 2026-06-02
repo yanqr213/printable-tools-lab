@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, ZERO_DOMAIN_GAME_EXPERIMENTS, siteUrl, tools, landingPages } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, ZERO_DOMAIN_GAME_EXPERIMENTS, siteUrl, tools, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
@@ -47,6 +47,13 @@ const discoveryRoutes = [
     mainUrl: siteUrl(page.path),
   })),
   ...highIntentToolDiscoveryRoutes,
+  ...DIGITAL_PRODUCTS.map((product) => ({
+    path: product.slug,
+    title: product.name,
+    description: product.shortDescription,
+    url: pagesUrl(product.slug),
+    mainUrl: siteUrl(product.slug),
+  })),
   ...gameDiscoveryRoutes,
 ];
 
@@ -101,6 +108,7 @@ const html = `<!doctype html>
         <li><a href="${trackedSiteUrl("upload-limit-fixer", "upload-limit-fixer")}">Upload limit fixer</a> for choosing the right no-upload tool when a website rejects a file by size, format, or dimensions.</li>
         <li><a href="${trackedSiteUrl("tools", "all-tools")}">All free generators</a> for browsing every tool.</li>
         <li><a href="${trackedSiteUrl("guides", "guides")}">Printable guides</a> for original help pages around PDF, image, QR, and printable workflows.</li>
+        <li><a href="${pagesUrl(LOCAL_SELLER_STARTER_KIT.slug)}">Local Seller Starter Kit mirror</a> for the sample ZIP, checkout setup notes, and paid-kit delivery checklist.</li>
         <li><a href="${pagesUrl("html5-game-submission-pack")}">HTML5 game submission pack mirror</a> for clean portal ZIPs, GameSnacks packages, demo videos, and platform-review assets.</li>
         ${landingPages.map((page) => `<li><a href="${trackedSiteUrl(page.path, `home-${page.path}`)}">${escapeHtml(page.title)}</a> for ${escapeHtml(page.intent)}.</li>`).join("\n")}
         <li><a href="${siteUrl("feed.xml").replace(/\/$/, "")}">RSS feed</a> for monitoring newly published discovery pages and high-intent tools.</li>
@@ -142,6 +150,7 @@ for (const tool of highIntentTools) {
     .slice(0, 6);
   fs.writeFileSync(path.join(toolDir, "index.html"), toolDiscoveryHtml(tool, relatedLandingPages));
 }
+writeDigitalProductDiscoveryPages();
 writeGameDiscoveryPages();
 
 fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
@@ -179,6 +188,15 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
       reviewReadinessUrl: game.reviewReadinessUrl,
     })),
   },
+  digitalProducts: DIGITAL_PRODUCTS.map(productFeedEntry),
+}, null, 2)}\n`);
+
+fs.writeFileSync(path.join(docsDir, "products.json"), `${JSON.stringify({
+  name: "PrintableTools Lab Digital Products",
+  generatedAt: generatedAtIso,
+  directory: pagesUrl(""),
+  products: DIGITAL_PRODUCTS.map(productFeedEntry),
+  moneyGate: "Revenue is real only when a payment provider shows a paid order, payout balance, or settled payment.",
 }, null, 2)}\n`);
 
 fs.writeFileSync(path.join(docsDir, "games.json"), `${JSON.stringify({
@@ -257,6 +275,63 @@ function trackedLiveToolUrl(toolPath) {
 
 function gameDiscoveryPath(game) {
   return `html5-game-submission-pack/${slugify(game.name)}`;
+}
+
+function writeDigitalProductDiscoveryPages() {
+  for (const product of DIGITAL_PRODUCTS) {
+    const productDir = path.join(docsDir, product.slug);
+    fs.mkdirSync(productDir, { recursive: true });
+    fs.writeFileSync(path.join(productDir, "index.html"), digitalProductHtml(product));
+  }
+}
+
+function digitalProductHtml(product) {
+  const checkoutConfigured = Boolean(product.checkoutUrl);
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${escapeHtml(product.name)} - PrintableTools Lab Directory</title>
+    <meta name="description" content="${escapeHtml(product.shortDescription)}">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="${pagesUrl(product.slug)}">
+    <style>
+      :root { color-scheme: light; --ink: #17313b; --muted: #5b6f78; --line: #dce8ec; --teal: #176b87; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Arial, sans-serif; color: var(--ink); background: #f7fbfc; line-height: 1.55; }
+      main { width: min(920px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 56px; }
+      h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin: 0 0 14px; }
+      p { color: var(--muted); max-width: 780px; }
+      a { color: var(--teal); font-weight: 700; }
+      .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+      .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+      code { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 2px 5px; }
+      ul { padding-left: 20px; }
+      @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="${pagesBase}">PrintableTools Lab discovery directory</a></p>
+      <h1>${escapeHtml(product.headline)}</h1>
+      <p>${escapeHtml(product.description)}</p>
+      <p><a class="button" href="${trackedSiteUrl(product.slug, "product-mirror")}">Open live product page</a> <a href="${siteUrl(product.publicSamplePath).replace(/\/$/, "")}">Download sample ZIP</a></p>
+      <h2>Checkout state</h2>
+      <p>${checkoutConfigured ? "Checkout is configured on the main product page through an external payment provider." : "Checkout is not connected yet. The product page and delivery ZIP are ready, but a real Gumroad, Payhip, Ko-fi, or Stripe Payment Link must be added before paid promotion."}</p>
+      <h2>Included assets</h2>
+      <div class="grid">
+        ${product.contents.map((item) => `<article class="card"><h3>${escapeHtml(item)}</h3><p>Editable local-selling template content for the paid ZIP.</p></article>`).join("\n")}
+      </div>
+      <h2>Risk controls</h2>
+      <ul>${product.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+      <p><strong>Money gate:</strong> ${escapeHtml(product.successGate)}</p>
+      ${jsonLdHtml(productSchema(product))}
+    </main>
+  </body>
+</html>
+`;
 }
 
 function slugify(value) {
@@ -415,6 +490,41 @@ function gameFeedEntry(game) {
     submissionCopyUrl: game.submissionCopyUrl,
     reviewReadinessUrl: game.reviewReadinessUrl,
     safeForPublicSubmission: true,
+  };
+}
+
+function productFeedEntry(product) {
+  return {
+    id: product.id,
+    name: product.name,
+    description: product.shortDescription,
+    url: siteUrl(product.slug),
+    discoveryUrl: pagesUrl(product.slug),
+    priceUsd: product.priceUsd,
+    currency: product.currency,
+    checkoutConfigured: Boolean(product.checkoutUrl),
+    sampleUrl: siteUrl(product.publicSamplePath).replace(/\/$/, ""),
+    packageReportUrl: siteUrl(product.packageReportPath).replace(/\/$/, ""),
+    privatePackagePath: product.privatePackagePath,
+    contents: product.contents,
+    successGate: product.successGate,
+  };
+}
+
+function productSchema(product) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.shortDescription,
+    url: siteUrl(product.slug),
+    offers: {
+      "@type": "Offer",
+      price: String(product.priceUsd),
+      priceCurrency: product.currency,
+      availability: product.checkoutUrl ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
+      url: product.checkoutUrl || siteUrl(product.slug),
+    },
   };
 }
 

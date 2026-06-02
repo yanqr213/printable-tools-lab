@@ -1,0 +1,33 @@
+{
+  "name": "PrintableTools Lab Digital Products",
+  "generatedAt": "2026-06-02T23:01:45.359Z",
+  "directory": "https://yanqr213.github.io/printable-tools-lab/",
+  "products": [
+    {
+      "id": "local-seller-starter-kit",
+      "name": "Local Seller Starter Kit",
+      "description": "A checkout-ready digital pack of editable local-selling templates: price tags, coupon copy, packing slips, QR sign wording, inventory starters, promo posts, and market-day checklists.",
+      "url": "https://printable-tools-lab.pages.dev/local-seller-starter-kit/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/local-seller-starter-kit/",
+      "priceUsd": 9,
+      "currency": "USD",
+      "checkoutConfigured": false,
+      "sampleUrl": "https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-sample.zip",
+      "packageReportUrl": "https://printable-tools-lab.pages.dev/reports/local-seller-starter-kit-package.json",
+      "privatePackagePath": "paid-deliverables/local-seller-starter-kit.zip",
+      "contents": [
+        "30-day local promo calendar CSV",
+        "price tag and SKU starter CSV",
+        "coupon offer and fine-print examples",
+        "packing slip batch CSV",
+        "inventory starter sheet",
+        "flyer and QR sign copy bank",
+        "market-day checklist",
+        "product listing copy for Gumroad, Payhip, Ko-fi, or Stripe Payment Links",
+        "simple commercial-use license for the buyer's own business"
+      ],
+      "successGate": "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this kit."
+    }
+  ],
+  "moneyGate": "Revenue is real only when a payment provider shows a paid order, payout balance, or settled payment."
+}

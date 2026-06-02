@@ -131,7 +131,7 @@ function renderIssueBody() {
     "- 72 hours: at least 10 tracked visits, 3 tool events, or one relevant external reply remains live.",
     "- 7 days: at least 30 tracked visits, 10 tool events, or Search Console impressions start moving.",
     "",
-    "This is not a paid feature roadmap. Paid checkout is deferred; the current monetization route is useful free tools followed by compliant display ads after traffic and policy readiness.",
+    "Direct checkout is limited to the Local Seller Starter Kit through a real external payment link. Free tools stay ungated, and display ads still wait for traffic plus policy readiness.",
     "",
   ].join("\n");
 }

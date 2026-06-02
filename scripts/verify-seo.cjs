@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { routes, siteUrl, landingPages, HIGH_INTENT_TOOL_PATHS, tools } = require("./seo-content.cjs");
+const { routes, siteUrl, landingPages, LOCAL_SELLER_STARTER_KIT, HIGH_INTENT_TOOL_PATHS, tools } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const failures = [];
@@ -58,6 +58,8 @@ else {
   if (!llms.includes(siteUrl("tools.json").replace(/\/$/, ""))) failures.push("llms.txt missing tools.json URL.");
   if (!llms.includes(siteUrl("share-kit"))) failures.push("llms.txt missing share kit URL.");
   if (!llms.includes(siteUrl("share-kit.json").replace(/\/$/, ""))) failures.push("llms.txt missing share-kit.json URL.");
+  if (!llms.includes(siteUrl(LOCAL_SELLER_STARTER_KIT.slug))) failures.push("llms.txt missing digital product URL.");
+  if (!llms.includes(siteUrl("digital-products.json").replace(/\/$/, ""))) failures.push("llms.txt missing digital products JSON URL.");
   if (!llms.includes(siteUrl("platform-submit-queue"))) failures.push("llms.txt missing platform submit queue URL.");
   if (!llms.includes(siteUrl("platform-submit-queue.json").replace(/\/$/, ""))) failures.push("llms.txt missing platform submit queue JSON URL.");
   if (!llms.includes(siteUrl("platform-submit-cockpit"))) failures.push("llms.txt missing platform submit cockpit URL.");
@@ -94,6 +96,13 @@ else {
   if (manifest.start_url !== "/free-pdf-tools/") failures.push("site.webmanifest should start at the free PDF tools page.");
   if (!Array.isArray(manifest.shortcuts) || !manifest.shortcuts.some((item) => item.url === "/pdf-tool-finder/")) failures.push("site.webmanifest missing PDF tool finder shortcut.");
   if (!Array.isArray(manifest.shortcuts) || !manifest.shortcuts.some((item) => item.url === "/upload-limit-fixer/")) failures.push("site.webmanifest missing upload limit fixer shortcut.");
+}
+
+const siteConfigFile = path.join(root, "site-config.js");
+if (!fs.existsSync(siteConfigFile)) failures.push("Missing site-config.js.");
+else {
+  const siteConfig = fs.readFileSync(siteConfigFile, "utf8");
+  if (!siteConfig.includes("sellerKitCheckoutUrl")) failures.push("site-config.js missing sellerKitCheckoutUrl.");
 }
 
 const opensearchFile = path.join(root, "opensearch.xml");
@@ -396,6 +405,44 @@ else {
   if (!Array.isArray(data.safetyRules) || !data.safetyRules.some((rule) => String(rule).includes("bank"))) failures.push("game-submission-feed.json missing private-data safety rule.");
 }
 
+const digitalProductFile = path.join(root, LOCAL_SELLER_STARTER_KIT.slug, "index.html");
+if (!fs.existsSync(digitalProductFile)) failures.push("Missing Local Seller Starter Kit product page.");
+else {
+  const html = fs.readFileSync(digitalProductFile, "utf8");
+  if (!html.includes("Local Seller Starter Kit")) failures.push("Digital product page missing product name.");
+  if (!html.includes("Download sample ZIP")) failures.push("Digital product page missing sample ZIP CTA.");
+  if (!html.includes("Checkout link pending")) failures.push("Digital product page missing honest checkout-pending state.");
+  if (!html.includes('"@type":"Product"')) failures.push("Digital product page missing Product schema.");
+  if (!html.includes("paid-deliverables/local-seller-starter-kit.zip")) failures.push("Digital product page missing private package setup note.");
+  if (!sitemap.includes(`<loc>${siteUrl(LOCAL_SELLER_STARTER_KIT.slug)}</loc>`)) failures.push("Sitemap missing digital product page.");
+}
+
+const digitalProductsJsonFile = path.join(root, "digital-products.json");
+if (!fs.existsSync(digitalProductsJsonFile)) failures.push("Missing digital-products.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(digitalProductsJsonFile, "utf8"));
+  if (!Array.isArray(data.products) || data.products.length < 1) failures.push("digital-products.json missing product list.");
+  const sellerKit = data.products.find((item) => item.id === LOCAL_SELLER_STARTER_KIT.id);
+  if (!sellerKit) failures.push("digital-products.json missing Local Seller Starter Kit.");
+  if (sellerKit && sellerKit.priceUsd !== 9) failures.push("digital-products.json has unexpected seller kit price.");
+  if (sellerKit && !String(sellerKit.sampleUrl || "").includes("local-seller-starter-kit-sample.zip")) failures.push("digital-products.json missing sample ZIP URL.");
+  if (sellerKit && !sellerKit.privatePackageReady) failures.push("digital-products.json missing private package readiness.");
+  if (!String(data.moneyGate || "").includes("paid order")) failures.push("digital-products.json missing paid-order money gate.");
+}
+
+const sellerKitPackageReportFile = path.join(root, LOCAL_SELLER_STARTER_KIT.packageReportPath);
+if (!fs.existsSync(sellerKitPackageReportFile)) failures.push("Missing Local Seller Starter Kit package report.");
+else {
+  const report = JSON.parse(fs.readFileSync(sellerKitPackageReportFile, "utf8"));
+  if (!report.publicSample || report.publicSample.fileCount < 4) failures.push("Seller kit package report missing public sample file count.");
+  if (!report.privatePackage || report.privatePackage.fileCount < 10) failures.push("Seller kit package report missing full private package file count.");
+  if (!String(report.privatePackage?.sha256 || "").match(/^[0-9a-f]{64}$/)) failures.push("Seller kit private package missing sha256.");
+}
+
+const sellerKitSampleFile = path.join(root, LOCAL_SELLER_STARTER_KIT.publicSamplePath);
+if (!fs.existsSync(sellerKitSampleFile)) failures.push("Missing public seller kit sample ZIP.");
+else if (fs.statSync(sellerKitSampleFile).size < 500) failures.push("Public seller kit sample ZIP is too small.");
+
 const zeroCostMapFile = path.join(root, "zero-cost-monetization-map", "index.html");
 if (!fs.existsSync(zeroCostMapFile)) failures.push("Missing zero-cost monetization map page.");
 else {
@@ -458,6 +505,7 @@ else {
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("tools/json-to-pdf"))) failures.push("discovery.json missing high-intent JSON-to-PDF route.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("submit-directory"))) failures.push("discovery.json missing directory submission pack.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("share-kit"))) failures.push("discovery.json missing share kit page.");
+  if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl(LOCAL_SELLER_STARTER_KIT.slug))) failures.push("discovery.json missing digital product page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("platform-submit-queue"))) failures.push("discovery.json missing platform submit queue page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("platform-submit-cockpit"))) failures.push("discovery.json missing platform submit cockpit page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("platform-outreach-tracker"))) failures.push("discovery.json missing platform outreach tracker page.");
@@ -469,6 +517,7 @@ else {
   if (discovery.platformSubmitCockpit !== siteUrl("platform-submit-cockpit.json").replace(/\/$/, "")) failures.push("discovery.json missing platform-submit-cockpit.json URL.");
   if (discovery.platformOutreachTracker !== siteUrl("platform-outreach-tracker.json").replace(/\/$/, "")) failures.push("discovery.json missing platform-outreach-tracker.json URL.");
   if (discovery.portalSubmissionPack !== siteUrl("portal-submission-pack.json").replace(/\/$/, "")) failures.push("discovery.json missing portal-submission-pack.json URL.");
+  if (discovery.digitalProducts !== siteUrl("digital-products.json").replace(/\/$/, "")) failures.push("discovery.json missing digital-products.json URL.");
   if (discovery.zeroCostMonetizationMap !== siteUrl("zero-cost-monetization-map.json").replace(/\/$/, "")) failures.push("discovery.json missing zero-cost-monetization-map.json URL.");
   if (!discovery.distributionAssets || !Array.isArray(discovery.distributionAssets.campaignVideos) || discovery.distributionAssets.campaignVideos.length < 6) failures.push("discovery.json missing campaign video assets.");
   if (!discovery.distributionAssets || !String(discovery.distributionAssets.publicGist || "").includes("gist.github.com/yanqr213")) failures.push("discovery.json missing public Gist URL.");
@@ -477,6 +526,8 @@ else {
   if (!discovery.distributionAssets || discovery.distributionAssets.platformSubmitCockpit !== siteUrl("platform-submit-cockpit")) failures.push("discovery.json missing platform submit cockpit URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.platformOutreachTracker !== siteUrl("platform-outreach-tracker")) failures.push("discovery.json missing platform outreach tracker URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.portalSubmissionPack !== siteUrl("portal-submission-pack")) failures.push("discovery.json missing portal submission pack URL.");
+  if (!discovery.distributionAssets || discovery.distributionAssets.digitalProducts !== siteUrl(LOCAL_SELLER_STARTER_KIT.slug)) failures.push("discovery.json missing digital products page URL.");
+  if (!discovery.distributionAssets || !String(discovery.distributionAssets.localSellerStarterKitSample || "").includes("local-seller-starter-kit-sample.zip")) failures.push("discovery.json missing seller kit sample ZIP.");
   if (!discovery.distributionAssets || discovery.distributionAssets.zeroCostMonetizationMap !== siteUrl("zero-cost-monetization-map")) failures.push("discovery.json missing zero-cost monetization map URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.zeroDomainGame !== "https://upload-limit-panic.pages.dev/") failures.push("discovery.json missing zero-domain game URL.");
   if (!discovery.distributionAssets || !Array.isArray(discovery.distributionAssets.zeroDomainGames) || discovery.distributionAssets.zeroDomainGames.length < 2) failures.push("discovery.json missing zero-domain game list.");
@@ -542,6 +593,25 @@ else {
   if (!data.tools.some((tool) => tool.url === siteUrl("tools/image-to-pdf") && tool.discoveryUrl === "https://yanqr213.github.io/printable-tools-lab/tools/image-to-pdf/")) failures.push("GitHub Pages discovery tools.json missing tool discovery URL.");
   if (!data.gameSubmissionPack || data.gameSubmissionPack.discoveryUrl !== "https://yanqr213.github.io/printable-tools-lab/html5-game-submission-pack/") failures.push("GitHub Pages discovery tools.json missing HTML5 game submission pack.");
   if (!data.gameSubmissionPack?.games?.some((game) => game.name === "Neon Lane Dash" && String(game.gameSnacksZipUrl || "").includes("neon-lane-dash-gamesnacks.zip"))) failures.push("GitHub Pages discovery tools.json missing Neon GameSnacks package.");
+  if (!data.digitalProducts?.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id && String(product.sampleUrl || "").includes("local-seller-starter-kit-sample.zip"))) failures.push("GitHub Pages discovery tools.json missing digital product.");
+}
+
+const docsProductsFile = path.join(root, "docs", "products.json");
+if (!fs.existsSync(docsProductsFile)) failures.push("Missing GitHub Pages products.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(docsProductsFile, "utf8"));
+  if (!Array.isArray(data.products) || !data.products.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id)) failures.push("GitHub Pages products.json missing seller kit.");
+  if (!String(data.moneyGate || "").includes("paid order")) failures.push("GitHub Pages products.json missing paid-order money gate.");
+}
+
+const docsProductFile = path.join(root, "docs", LOCAL_SELLER_STARTER_KIT.slug, "index.html");
+if (!fs.existsSync(docsProductFile)) failures.push("Missing GitHub Pages seller kit mirror page.");
+else {
+  const html = fs.readFileSync(docsProductFile, "utf8");
+  if (!html.includes("Local Seller Starter Kit")) failures.push("GitHub Pages seller kit mirror missing title.");
+  if (!html.includes("Download sample ZIP")) failures.push("GitHub Pages seller kit mirror missing sample link.");
+  if (!html.includes('"@type":"Product"')) failures.push("GitHub Pages seller kit mirror missing Product schema.");
+  if (!sitemapIncludes(path.join(root, "docs", "sitemap.xml"), `https://yanqr213.github.io/printable-tools-lab/${LOCAL_SELLER_STARTER_KIT.slug}/`)) failures.push("GitHub Pages sitemap missing seller kit mirror page.");
 }
 
 const docsGamesFile = path.join(root, "docs", "games.json");

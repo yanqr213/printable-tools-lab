@@ -1,6 +1,6 @@
 # PrintableTools Lab Operations
 
-This file keeps the project pointed at the current model: free ad-supported browser PDF, image, QR, and signature tools first. Paid features are deferred until the free product has traffic and usage data.
+This file keeps the project pointed at the current model: free browser PDF, image, QR, and signature tools for acquisition, plus one low-price digital product for direct-payment validation. Display ads still wait for policy readiness and search visibility.
 
 ## Business Model
 
@@ -14,9 +14,15 @@ This file keeps the project pointed at the current model: free ad-supported brow
 - Ads only after approval by a mainstream ad network, never blocking downloads or disguised as controls.
 - Move from `pages.dev` to a custom domain before serious ad review; keep `pages.dev` only as the free validation and fallback host.
 
-### Deferred paid layer
+### Direct-payment digital product layer
 
-Do not add checkout yet. If free traffic proves demand later, use data to decide whether saved projects, batch generation, higher daily limits, richer templates, affiliate links, or another route is worth building.
+- Current product: Local Seller Starter Kit at `/local-seller-starter-kit/`.
+- Public sample: `/assets/digital-products/local-seller-starter-kit-sample.zip`.
+- Full delivery ZIP is generated at `paid-deliverables/local-seller-starter-kit.zip` and must stay out of git.
+- Checkout is allowed only through a real external provider such as Gumroad, Payhip, Ko-fi, Stripe Payment Links, or another provider that the owner can legally onboard with.
+- Configure the checkout link with `npm.cmd run configure:checkout -- --url https://...`, then run `npm.cmd run build:routes` and verification.
+- Do not fake a checkout, fake a paid order, use personal QR-code collection, or expose payout, tax, bank, card, phone, or platform credentials in the repo.
+- Revenue is proven only when the payment provider shows a paid order, payout balance, or settled payment.
 
 ### Ad-network fallback policy
 
@@ -210,9 +216,7 @@ If the 60-day site gate still shows no impressions and no downloads, build one e
 
 ### Payment account
 
-For the current strategy, payment is intentionally disabled.
-
-Use ads first. Add checkout only after a paid feature can deliver real service access and refund handling is ready.
+For the current strategy, payment can be enabled for the Local Seller Starter Kit only after a real external checkout product is created and the full ZIP is uploaded there.
 
 Compliance priority:
 
@@ -224,10 +228,10 @@ Compliance priority:
 
 If Alipay payout is required, use only a China-friendly checkout page or service platform that officially supports Alipay collection for the account holder. Most overseas creator and SaaS platforms settle to a bank account, card processor balance, or PayPal rather than directly into an Alipay balance.
 
-Practical order if a paid product is added later:
+Practical order for the current paid product:
 
 1. Merchant-of-record provider for tax/VAT handling if the owner can pass onboarding.
-2. Stripe/PayPal-style checkout if the owner has a supported bank account and can satisfy KYC.
+2. Gumroad, Payhip, Ko-fi, Stripe Payment Links, or PayPal-style checkout if the owner has a supported account and can satisfy KYC.
 3. China-friendly platform with official Alipay settlement only if it fits the product and account identity.
 
 ## First Launch Keywords
