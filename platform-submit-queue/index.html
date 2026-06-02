@@ -66,11 +66,11 @@
           </article>
           <article class="panel">
             <h3>Immediate route</h3>
-            <ul><li>Submit Neon Lane Dash to CrazyGames first because its three-lane reflex loop has broader casual appeal.</li><li>Submit Neon Lane Dash to Yandex Games second because the build now includes Yandex SDK v2 lifecycle and gated ad hooks.</li><li>Submit Neon Lane Dash to Playgama and GamePix after direct-platform submissions because both handle distribution and monetization without requiring a custom domain.</li><li>Submit Upload Limit Panic after Neon is live or in review, using it as a differentiated puzzle/sorting title.</li><li>Use Lagged and GameFlare as lower-friction secondary tests if the first submissions are delayed by account or moderation gates.</li><li>Create itch.io mirrors only for public browser-play proof and feedback; do not treat itch as the primary ad route.</li></ul>
+            <ul><li>Submit Neon Lane Dash to CrazyGames first because its three-lane reflex loop has broader casual appeal.</li><li>Submit Neon Lane Dash to Yandex Games second because the build now includes Yandex SDK v2 lifecycle and gated ad hooks.</li><li>Submit Neon Lane Dash to Playgama and GamePix after direct-platform submissions because both handle distribution and monetization without requiring a custom domain, and the current ZIPs now include their required lifecycle hooks.</li><li>Submit Upload Limit Panic after Neon is live or in review, using it as a differentiated puzzle/sorting title.</li><li>Use Lagged and GameFlare as lower-friction secondary tests if the first submissions are delayed by account or moderation gates.</li><li>Create itch.io mirrors only for public browser-play proof and feedback; do not treat itch as the primary ad route.</li></ul>
           </article>
           <article class="panel">
             <h3>Parked routes</h3>
-            <ul><li>GameDistribution remains a later distributor test after CrazyGames, Yandex, Playgama, and GamePix because it likely needs a separate SDK adapter.</li><li>Poki remains a later high-upside quality target because web exclusivity may conflict with broad nonexclusive distribution.</li><li>Douyin mini-game is a later port because it needs extra account-side setup, domestic platform packaging, and local compliance review.</li><li>Bilibili mini-game/video routes are lower priority because they require more creator operation and have a weaker no-sales advertising loop for this project.</li><li>AdSense on a free subdomain remains a utility-site validation path, but it is not the fastest zero-domain first-revenue path.</li></ul>
+            <ul><li>GameDistribution remains a later distributor test after CrazyGames, Yandex, Playgama, and GamePix because dashboard gameId, legal consent, and manual submission are still required even though the SDK adapter is now present.</li><li>Poki remains a later high-upside quality target because web exclusivity may conflict with broad nonexclusive distribution.</li><li>Douyin mini-game is a later port because it needs extra account-side setup, domestic platform packaging, and local compliance review.</li><li>Bilibili mini-game/video routes are lower priority because they require more creator operation and have a weaker no-sales advertising loop for this project.</li><li>AdSense on a free subdomain remains a utility-site validation path, but it is not the fastest zero-domain first-revenue path.</li></ul>
           </article>
         </div>
       </section>
@@ -103,17 +103,17 @@
           </article>
 <article class="panel">
             <h3>4. Playgama</h3>
-            <p>Strong secondary fit because it is built for HTML5 distribution, partner-platform publishing, ads/IAP monetization, and no upfront cost revenue share.</p>
+            <p>Strong secondary fit because it is built for HTML5 distribution, partner-platform publishing, ads/IAP monetization, and no upfront cost revenue share. Both current games now include Playgama Bridge lifecycle and gated ad hooks.</p>
             <p><strong>Account:</strong> Playgama developer portal account; payout details later after approval and earnings.</p>
-            <p><strong>Current gate:</strong> Developer signup is required. Official developer page describes ZIP upload, Playgama Bridge, no upfront costs, revenue share, and withdrawals via PayPal, Wise, crypto, or bank transfer.</p>
+            <p><strong>Current gate:</strong> Developer signup is required. Official developer page describes ZIP upload, Playgama Bridge, no upfront costs, revenue share, and withdrawals via PayPal, Wise, crypto, or bank transfer. Current ZIPs are ready for dashboard upload.</p>
             <p><a class="button" href="https://developer.playgama.com/">Open Playgama</a></p>
             <p><a href="https://wiki.playgama.com/playgama">Open official docs</a></p>
           </article>
 <article class="panel">
             <h3>5. GamePix</h3>
-            <p>Good secondary fit because GamePix hosts HTML5 games, distributes to partner sites, and advertises a clear developer revenue share.</p>
+            <p>Good secondary fit because GamePix hosts HTML5 games, distributes to partner sites, and advertises a clear developer revenue share. Both current games now include GamePix lifecycle/ping hooks without guessing undocumented ad APIs.</p>
             <p><strong>Account:</strong> GamePix Dashboard developer account.</p>
-            <p><strong>Current gate:</strong> Dashboard registration is required. Official page describes creating an account, submitting games, lightweight SDK integration, hosting, QA, partner distribution, and 45% revenue share.</p>
+            <p><strong>Current gate:</strong> Dashboard registration is required. Official page describes creating an account, submitting games, lightweight SDK integration, hosting, QA, partner distribution, and 45% revenue share. Current ZIPs are ready for dashboard upload.</p>
             <p><a class="button" href="https://partners.gamepix.com/developers">Open GamePix</a></p>
             <p><a href="https://partners.gamepix.com/developers">Open official docs</a></p>
           </article>
@@ -135,9 +135,9 @@
           </article>
 <article class="panel">
             <h3>8. GameDistribution</h3>
-            <p>Broad distribution network candidate, but less direct than CrazyGames/Yandex/Playgama and may require SDK-specific packaging.</p>
+            <p>Broad distribution network candidate. Both current games now include GameDistribution GD_OPTIONS, pause/resume, rewarded-completion tracking, and gated showAd calls, but dashboard gameId and legal consent still require manual account action.</p>
             <p><strong>Account:</strong> GameDistribution developer account and SDK/platform terms acceptance.</p>
-            <p><strong>Current gate:</strong> Developer signup and revenue-share partnership are required. Official developer page describes revenue share, and its public SDK repo covers HTML5 ad integration.</p>
+            <p><strong>Current gate:</strong> Developer signup, revenue-share partnership, dashboard gameId, and legal consent are required. Public form probe found reCAPTCHA/legal checkboxes, so automated submission is not appropriate.</p>
             <p><a class="button" href="https://gamedistribution.com/developers/">Open GameDistribution</a></p>
             <p><a href="https://github.com/GameDistribution/GD-HTML5">Open official docs</a></p>
           </article>
@@ -156,7 +156,7 @@
         <div class="grid-2">
           <article class="panel">
             <h3>Upload Limit Panic</h3>
-            <p>A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them.</p>
+            <p>A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them.</p>
             <ul>
               <li><a href="https://upload-limit-panic.pages.dev/">Live game</a></li>
               <li><a href="https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-html5.zip">HTML5 ZIP</a></li>
@@ -170,7 +170,7 @@
           </article>
 <article class="panel">
             <h3>Neon Lane Dash</h3>
-            <p>A free HTML5 three-lane reflex game for the zero-domain platform-ad route. Rewarded ad hooks are optional and disabled until platform review allows them.</p>
+            <p>A free HTML5 three-lane reflex game for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them.</p>
             <ul>
               <li><a href="https://neon-lane-dash.pages.dev/">Live game</a></li>
               <li><a href="https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip">HTML5 ZIP</a></li>
@@ -211,13 +211,13 @@
               <td>Playgama</td>
               <td>Neon Lane Dash, Upload Limit Panic</td>
               <td>Developer account, HTML5 ZIP upload, Playgama Bridge SDK or integration notes, Title, Description, Icon/cover, Ad/IAP monetization preference</td>
-              <td>Do not enable extra ad calls in the standalone build; integrate Playgama Bridge only after the portal requests it.</td>
+              <td>Playgama Bridge is integrated behind platform-context checks. The builds send game_ready and gameplay lifecycle messages, listen for pause/audio state changes, and only grant rewarded benefits after rewarded-state confirmation.</td>
             </tr>
 <tr>
               <td>GamePix</td>
               <td>Neon Lane Dash, Upload Limit Panic</td>
               <td>GamePix account, Lightweight SDK integration if required, HTML5 game upload, Title, Description, Assets, Category/tags</td>
-              <td>Treat GamePix SDK as a platform-specific adapter step after account access; keep current review ZIP ad-safe.</td>
+              <td>GamePix SDK lifecycle hooks are integrated only in GamePix context. The builds wire gameLoading, gameLoaded, pause/resume, and run-end ping while leaving ads to GamePix-managed review/monetization.</td>
             </tr>
 <tr>
               <td>Lagged</td>
@@ -235,7 +235,7 @@
               <td>GameDistribution</td>
               <td>Neon Lane Dash, Upload Limit Panic</td>
               <td>Developer signup, Revenue share agreement, HTML5 build, GameDistribution SDK if requested, Assets, Description</td>
-              <td>If pursued, add a separate GameDistribution SDK adapter; do not mix its ad calls into the generic standalone build.</td>
+              <td>GameDistribution SDK is integrated only in GameDistribution context or when a gd_game_id is supplied. The build does not hardcode a fake gameId and does not request ads unless ads=1 is present.</td>
             </tr>
 <tr>
               <td>Poki</td>
@@ -256,9 +256,9 @@
           <li>If both are rejected for quality, improve controls and visual feedback before building a third game.</li>
         </ul>
         <p><strong>Money gate:</strong> The goal is not complete until at least one platform accepts a game, real plays are visible in platform analytics, ad monetization is enabled, and revenue or payout balance is verified.</p>
-        <p><strong>Account checklist:</strong> CrazyGames developer account login to submit the ZIP and later complete payout details. Yandex Games publisher account login to create the game card, upload the archive, and later complete payment details. itch.io creator account only if we want a free browser mirror. Douyin/Bilibili accounts only after the HTML5 platform route gives a signal worth porting. Playgama developer portal account and GamePix Dashboard account are the next-best low-cost accounts after CrazyGames/Yandex. Lagged, GameFlare, and GameDistribution accounts or contact submissions are useful if primary platform moderation stalls.</p>
+        <p><strong>Account checklist:</strong> CrazyGames developer account login to submit the ZIP and later complete payout details. Yandex Games publisher account login to create the game card, upload the archive, and later complete payment details. itch.io creator account only if we want a free browser mirror. Douyin/Bilibili accounts only after the HTML5 platform route gives a signal worth porting. Playgama developer portal account and GamePix Dashboard account are the next-best low-cost accounts after CrazyGames/Yandex; both can use the current release ZIPs. Lagged, GameFlare, and GameDistribution accounts or contact submissions are useful if primary platform moderation stalls.</p>
         <ul>
-          <li>CrazyGames Basic Launch disables ads and revenue share at first, and ads must be requested only through the CrazyGames SDK.</li><li>CrazyGames quality guidance emphasizes quick onboarding, clear goals, responsive controls, and visually consistent game presentation.</li><li>Yandex upload docs require SDK connection, a developer account in the Console, a separate draft per game, and moderation submission.</li><li>Yandex monetization docs describe internal advertising, interstitial blocks, rewarded blocks, sticky banners, payments, and statistics.</li><li>Playgama describes no upfront costs, HTML5 ZIP upload, Bridge SDK integration, partner distribution, ad/IAP monetization, revenue share, and withdrawal methods.</li><li>GamePix describes account creation, lightweight SDK integration, HTML5 hosting, QA, partner distribution, and a 45% developer revenue share.</li><li>Lagged advertises developer game submissions and 50% revenue share with Google AdSense.</li><li>GameFlare says it accepts HTML5 games, can review playable early-access games, offers free hosting, and pays monthly after a 50 EUR minimum.</li><li>Poki documentation says SDK integration is mandatory after acceptance and that Poki prefers Web Exclusive deals.</li>
+          <li>CrazyGames Basic Launch disables ads and revenue share at first, and ads must be requested only through the CrazyGames SDK.</li><li>CrazyGames quality guidance emphasizes quick onboarding, clear goals, responsive controls, and visually consistent game presentation.</li><li>Yandex upload docs require SDK connection, a developer account in the Console, a separate draft per game, and moderation submission.</li><li>Yandex monetization docs describe internal advertising, interstitial blocks, rewarded blocks, sticky banners, payments, and statistics.</li><li>Playgama describes no upfront costs, HTML5 ZIP upload, Bridge SDK integration, partner distribution, ad/IAP monetization, revenue share, and withdrawal methods.</li><li>GamePix describes account creation, lightweight SDK integration, HTML5 hosting, QA, partner distribution, and a 45% developer revenue share.</li><li>Playgama Plain JS docs require Bridge initialization, game_ready messaging, pause/audio state handling, interstitials at natural pauses, and rewarded-state confirmation before granting a reward.</li><li>GamePix public SDK exposes gameLoading, gameLoaded, ping, pause, and resume callbacks; the current builds integrate those lifecycle hooks without guessing undocumented ad calls.</li><li>GameDistribution SDK docs require GD_OPTIONS with dashboard gameId, pause/resume handling, user-input ad calls, and SDK_REWARDED_WATCH_COMPLETE before granting rewarded benefits.</li><li>Lagged advertises developer game submissions and 50% revenue share with Google AdSense.</li><li>GameFlare says it accepts HTML5 games, can review playable early-access games, offers free hosting, and pays monthly after a 50 EUR minimum.</li><li>Poki documentation says SDK integration is mandatory after acceptance and that Poki prefers Web Exclusive deals.</li>
         </ul>
       </section>
     </main>
