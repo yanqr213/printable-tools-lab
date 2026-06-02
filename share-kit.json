@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Share Kit",
-  "generatedAt": "2026-06-02T20:32:42.012Z",
+  "generatedAt": "2026-06-02T20:53:59.568Z",
   "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
   "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
   "featuredLinks": [
@@ -9,6 +9,18 @@
       "url": "https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=share-kit&utm_medium=organic",
       "canonicalUrl": "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
       "reason": "Task-first entry for users blocked by file size, format, or photo dimension limits."
+    },
+    {
+      "title": "Compress image to 20KB",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-20kb?utm_source=share-kit&utm_medium=organic",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-image-to-20kb/",
+      "reason": "Strict exam, profile, and application photo size limit intent."
+    },
+    {
+      "title": "Fix passport photo size",
+      "url": "https://printable-tools-lab.pages.dev/passport-photo-size-fixer?utm_source=share-kit&utm_medium=organic",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/passport-photo-size-fixer/",
+      "reason": "Urgent ID-style photo crop, resize, and file-size workflow."
     },
     {
       "title": "Compress PDF to 1MB",
@@ -68,6 +80,24 @@
       "cta": "Fix an upload limit",
       "linkPath": "upload-limit-fixer",
       "url": "https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=short-video&utm_medium=organic"
+    },
+    {
+      "channel": "short-video",
+      "title": "Exam photo under 20KB",
+      "hook": "Application photo must be under 20KB?",
+      "body": "Use the no-upload image-to-KB compressor with the 20KB target, then review the downloaded JPG before submitting it to the exam, school, or application portal.",
+      "cta": "Compress an image to 20KB",
+      "linkPath": "compress-image-to-20kb",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-20kb?utm_source=short-video&utm_medium=organic"
+    },
+    {
+      "channel": "short-video",
+      "title": "Fix an ID photo size",
+      "hook": "Photo rejected for dimensions or file size?",
+      "body": "Start with the passport photo size fixer. It points to the local crop, resize, and image-to-KB tools so the file can match a portal's photo rules without uploading the original.",
+      "cta": "Fix a passport-style photo",
+      "linkPath": "passport-photo-size-fixer",
+      "url": "https://printable-tools-lab.pages.dev/passport-photo-size-fixer?utm_source=short-video&utm_medium=organic"
     },
     {
       "channel": "short-video",
@@ -283,7 +313,7 @@
   ],
   "externalDiscovery": {
     "gist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-    "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/718a9e30c1e0ec3db513024743a879a2b94e7373/PrintableTools-Lab-zero-cost-share-kit.md",
+    "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/93f23c1aa75369187334442b4729a68e1e221968/PrintableTools-Lab-zero-cost-share-kit.md",
     "githubIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1"
   },
   "rules": [

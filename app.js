@@ -2179,6 +2179,22 @@
       related: ["resize-image", "convert-image", "image-to-pdf"],
     },
     {
+      slug: "compress-image-to-20kb",
+      title: "Compress Image to 20KB Without Uploading",
+      headline: "Compress image to 20KB without uploading",
+      description: "Compress a JPG, PNG, or WebP image toward 20KB locally for strict exam, profile, school, and application upload limits.",
+      lead: "Choose an image, use the 20KB target, and download a smaller JPG or WebP copy from your browser. This page is for very strict portals that reject profile, exam, school, ID-style, or application photos above 20KB.",
+      tool: "compress-image-to-kb",
+      toolQuery: "targetKb=20",
+      intent: "compress image to 20KB, reduce photo size, exam photo upload, no upload",
+      sections: [
+        ["Why this is urgent", "A 20KB image limit usually means the user already tried to submit a photo and got blocked by a portal rule. That is high-intent utility traffic, not casual browsing."],
+        ["Local target-size workflow", "The image-to-KB compressor runs in the browser, tries smaller dimensions and compression levels, then downloads the closest usable file it can make."],
+        ["Quality tradeoff", "20KB is extremely small for faces, IDs, and document text. Use a simple crop, avoid busy backgrounds, and open the result before submitting it anywhere official."],
+      ],
+      related: ["compress-image-to-kb", "resize-image", "passport-photo"],
+    },
+    {
       slug: "compress-image-to-100kb",
       title: "Compress Image to 100KB Without Uploading",
       headline: "Compress image to 100KB without uploading",
@@ -2241,6 +2257,53 @@
         ["Review the output", "Even at 500KB, compression can change sharpness or color. Open the file before sending, printing, or submitting it."],
       ],
       related: ["compress-image-to-kb", "compress-image", "resize-image"],
+    },
+    {
+      slug: "passport-photo-compress-to-100kb",
+      title: "Passport Photo Compress to 100KB",
+      headline: "Compress a passport photo to 100KB",
+      description: "Compress a passport-style or ID-style photo toward 100KB locally before uploading it to a form, portal, or application.",
+      lead: "Use this when a visa-style form, exam portal, job application, school system, or profile page accepts the photo but rejects the file size. The linked image-to-KB tool opens with the 100KB target ready.",
+      tool: "compress-image-to-kb",
+      toolQuery: "targetKb=100",
+      intent: "passport photo compress to 100KB, ID photo size reducer, no upload",
+      sections: [
+        ["Start with the file-size error", "If the portal says the photo must be under 100KB, compress the image first. If it also gives exact dimensions, resize or crop the photo before compressing."],
+        ["Local privacy positioning", "The photo is processed in the browser during ordinary use. That matters because face photos and ID-style images are more sensitive than casual screenshots."],
+        ["Review the face details", "Compression can soften eyes, hair, document edges, and background color. Open the result before submitting, and compare it with the destination's current photo rules."],
+      ],
+      related: ["passport-photo", "resize-image", "compress-image-to-kb"],
+    },
+    {
+      slug: "passport-photo-size-fixer",
+      title: "Passport Photo Size Fixer",
+      headline: "Fix passport photo size and file limit",
+      description: "Fix passport-style photo dimensions and file size locally with crop, resize, and image-to-KB tools for form uploads.",
+      lead: "Start here when a portal rejects a passport-style, ID-style, exam, school, visa, or profile photo because the dimensions, format, or file size are wrong.",
+      tool: "passport-photo",
+      intent: "passport photo size fixer, ID photo dimensions, compress passport photo, no upload",
+      sections: [
+        ["Match the error message", "Use the passport photo cropper when the issue is physical size or passport-style layout. Use the resizer when the portal gives exact pixels. Use image-to-KB when the final file is still too large."],
+        ["Common blocked-upload path", "A practical sequence is crop the face photo, resize to the required pixels if listed, then compress toward 20KB, 50KB, 100KB, or another portal limit."],
+        ["Official rules still matter", "This page helps with crop, dimensions, format, and file size. It does not verify lighting, background, expression, age, pose, or acceptance by any authority."],
+      ],
+      related: ["resize-image", "compress-image-to-kb", "crop-image"],
+    },
+    {
+      slug: "resize-photo-413x531",
+      title: "Resize Photo to 413x531",
+      headline: "Resize photo to 413 x 531 pixels",
+      description: "Resize a JPG, PNG, or WebP photo to 413 x 531 pixels locally for strict profile, exam, and application upload forms.",
+      lead: "Choose a photo and open the resizer with 413 x 531 pixels prefilled. Use it when a form or portal gives this exact dimension requirement and rejects ordinary phone photos.",
+      tool: "resize-image",
+      toolQuery: "width=413&height=531&fit=cover",
+      intent: "resize photo to 413x531, exam photo size, application photo dimensions, no upload",
+      sections: [
+        ["Why exact dimensions matter", "Some upload forms validate pixel width and height before accepting a photo. Exact-dimension searches usually happen after a user has already been blocked."],
+        ["Fill and crop workflow", "The prefilled resizer uses a cover-style crop so the output can become exactly 413 x 531 pixels. Move to the crop or passport photo tools first if the face placement needs more control."],
+        ["Then check file size", "After resizing, the image may still exceed a KB limit. If the portal also says under 20KB, 50KB, or 100KB, run the resized output through the image-to-KB compressor."],
+      ],
+      related: ["resize-image", "passport-photo", "compress-image-to-kb"],
     },
     {
       slug: "resize-image-no-upload",
@@ -6386,6 +6449,21 @@ ${paragraphs.join("\n")}
         values.targetKb = "custom";
         values.customKb = targetKb;
       }
+    }
+    if (tool.id === "resize-image") {
+      const params = new URLSearchParams(window.location.search || "");
+      const width = params.get("width");
+      const height = params.get("height");
+      const fit = params.get("fit");
+      if (width && /^\d{2,5}$/.test(width)) {
+        values.preset = "custom";
+        values.width = width;
+      }
+      if (height && /^\d{2,5}$/.test(height)) {
+        values.preset = "custom";
+        values.height = height;
+      }
+      if (["contain", "cover"].includes(fit)) values.fit = fit;
     }
     if (tool.id === "compress-pdf") {
       const params = new URLSearchParams(window.location.search || "");

@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-02T20:32:42.012Z",
+  "generatedAt": "2026-06-02T20:53:59.568Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -36,10 +36,14 @@
     "https://printable-tools-lab.pages.dev/signature-png-generator/",
     "https://printable-tools-lab.pages.dev/passport-photo-maker/",
     "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
+    "https://printable-tools-lab.pages.dev/compress-image-to-20kb/",
     "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
     "https://printable-tools-lab.pages.dev/compress-image-to-50kb/",
     "https://printable-tools-lab.pages.dev/compress-image-to-200kb/",
     "https://printable-tools-lab.pages.dev/compress-image-to-500kb/",
+    "https://printable-tools-lab.pages.dev/passport-photo-compress-to-100kb/",
+    "https://printable-tools-lab.pages.dev/passport-photo-size-fixer/",
+    "https://printable-tools-lab.pages.dev/resize-photo-413x531/",
     "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
     "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
     "https://printable-tools-lab.pages.dev/remove-background-no-upload/",
@@ -248,7 +252,7 @@
       }
     ],
     "publicGist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-    "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/718a9e30c1e0ec3db513024743a879a2b94e7373/PrintableTools-Lab-zero-cost-share-kit.md",
+    "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/93f23c1aa75369187334442b4729a68e1e221968/PrintableTools-Lab-zero-cost-share-kit.md",
     "publicGrowthIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1",
     "zeroDomainGame": "https://upload-limit-panic.pages.dev/",
     "zeroDomainGameRepo": "https://github.com/yanqr213/upload-limit-panic",
@@ -367,6 +371,12 @@
       "tool": "https://printable-tools-lab.pages.dev/tools/compress-image/"
     },
     {
+      "title": "Compress Image to 20KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-20kb/",
+      "intent": "compress image to 20KB, reduce photo size, exam photo upload, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=20"
+    },
+    {
       "title": "Compress Image to 100KB Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
       "intent": "compress image to 100KB, reduce image size, no upload",
@@ -389,6 +399,24 @@
       "url": "https://printable-tools-lab.pages.dev/compress-image-to-500kb/",
       "intent": "compress image to 500KB, reduce image file size, no upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=500"
+    },
+    {
+      "title": "Passport Photo Compress to 100KB",
+      "url": "https://printable-tools-lab.pages.dev/passport-photo-compress-to-100kb/",
+      "intent": "passport photo compress to 100KB, ID photo size reducer, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=100"
+    },
+    {
+      "title": "Passport Photo Size Fixer",
+      "url": "https://printable-tools-lab.pages.dev/passport-photo-size-fixer/",
+      "intent": "passport photo size fixer, ID photo dimensions, compress passport photo, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/passport-photo/"
+    },
+    {
+      "title": "Resize Photo to 413x531",
+      "url": "https://printable-tools-lab.pages.dev/resize-photo-413x531/",
+      "intent": "resize photo to 413x531, exam photo size, application photo dimensions, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=413&height=531&fit=cover"
     },
     {
       "title": "Resize Image Without Uploading",

@@ -146,7 +146,7 @@ else {
   if (!data.tools.some((tool) => tool.url === siteUrl("tools/compress-image-to-kb"))) failures.push("tools.json missing image-to-KB URL.");
 }
 
-for (const pagePath of ["compress-image-to-50kb", "compress-image-to-100kb", "compress-image-to-200kb", "compress-image-to-500kb"]) {
+for (const pagePath of ["compress-image-to-20kb", "compress-image-to-50kb", "compress-image-to-100kb", "compress-image-to-200kb", "compress-image-to-500kb"]) {
   const file = path.join(root, pagePath, "index.html");
   if (!fs.existsSync(file)) {
     failures.push(`Missing target-KB image landing page: ${pagePath}`);
@@ -487,6 +487,22 @@ for (const page of landingPages) {
   if (!html.includes(`/${cleanToolPath(page.primaryTool)}/`)) failures.push(`Landing page missing primary tool link: ${page.path}`);
   if (!html.includes('"@type":"CollectionPage"')) failures.push(`Landing page missing CollectionPage schema: ${page.path}`);
   if (!sitemap.includes(`<loc>${siteUrl(page.path)}</loc>`)) failures.push(`Sitemap missing landing page: ${page.path}`);
+}
+
+for (const [pagePath, headline, toolFragment] of [
+  ["passport-photo-compress-to-100kb", "Compress a passport photo to 100KB", "/tools/compress-image-to-kb/?targetKb=100"],
+  ["passport-photo-size-fixer", "Fix passport photo size and file limit", "/tools/passport-photo/"],
+  ["resize-photo-413x531", "Resize photo to 413 x 531 pixels", "/tools/resize-image/?width=413&height=531&fit=cover"],
+]) {
+  const file = path.join(root, pagePath, "index.html");
+  if (!fs.existsSync(file)) {
+    failures.push(`Missing photo upload landing page: ${pagePath}`);
+    continue;
+  }
+  const html = fs.readFileSync(file, "utf8");
+  if (!html.includes(headline)) failures.push(`Photo upload landing page missing headline: ${pagePath}`);
+  if (!html.includes(toolFragment)) failures.push(`Photo upload landing page missing prefilled tool link: ${pagePath}`);
+  if (!sitemap.includes(`<loc>${siteUrl(pagePath)}</loc>`)) failures.push(`Sitemap missing photo upload landing page: ${pagePath}`);
 }
 
 const docsIndexFile = path.join(root, "docs", "index.html");
