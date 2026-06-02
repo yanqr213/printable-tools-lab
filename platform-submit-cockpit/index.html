@@ -71,8 +71,17 @@
           </article>
           <article class="panel">
             <h3>Morning expectation</h3>
-            <p>It is unrealistic to expect verified ad revenue overnight before any platform accepts a game. The fastest honest morning win is submitted/in-review status or a platform reply requesting upload metadata.</p>
+            <p>The realistic overnight win has been reached: CrazyGames and Playgama are submitted/in review. Verified ad revenue still requires acceptance, real plays, enabled ads, and a visible payout balance.</p>
           </article>
+        </div>
+        <div class="panel">
+          <h3>Latest operational status</h3>
+          <p><strong>Last updated:</strong> 2026-06-02T17:39:36.403Z</p>
+          <p><strong>Submitted:</strong></p>
+          <ul><li>CrazyGames: Neon Lane Dash is awaiting review. Build ID 57a4b821-a761-4541-b2dc-69ced592d4d5.</li><li>Playgama: Neon Lane Dash is under moderation after the dashboard certification flow passed SDK init, storage restore, and interstitial ad checks.</li></ul>
+          <p><strong>Blocked:</strong></p>
+          <ul><li>GamePix: dashboard account is available, but the create-game form explicitly requires a unique non-AI description. Owner-written 100-500 character English copy is required before submission.</li></ul>
+          <p>No platform revenue should be expected until a submitted game is accepted, real plays appear in platform analytics, ads are enabled, and a payout balance is visible.</p>
         </div>
       </section>
       <section class="shell section">
@@ -93,13 +102,13 @@
         <div class="grid-2">
           <article class="panel">
             <h3>1. CrazyGames</h3>
-            <p><strong>Status:</strong> ready_for_dashboard_upload / manual_login_required</p>
-            <p><strong>Next action:</strong> Log in to CrazyGames developer dashboard, create a game, upload Neon Lane Dash ZIP, paste the CrazyGames fields from the copy pack, and submit for Basic Launch review.</p>
+            <p><strong>Status:</strong> submitted_awaiting_review / monitor_review</p>
+            <p><strong>Next action:</strong> Monitor the CrazyGames review status and prepare payout details only after acceptance or ad eligibility. Do not re-upload unless moderation requests a change.</p>
             <p><strong>Why now:</strong> Best first moderation signal for a short reflex HTML5 game; the build already has CrazyGames SDK loading/gameplay hooks and hidden external links in platform context.</p>
             <p><strong>Use game:</strong> Neon Lane Dash</p>
             <p><a class="button" href="https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip">Download ZIP</a> <a class="button secondary" href="https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md">Open copy pack</a></p>
-            <p><strong>Success signal:</strong> Dashboard status changes to submitted, in review, accepted, or live.</p>
-            <p><strong>Risk control:</strong> Do not enable standalone ads; CrazyGames Basic Launch can validate quality before revenue share.</p>
+            <p><strong>Success signal:</strong> Already submitted on 2026-06-02; dashboard shows awaiting review. Next signal is accepted, rejected, live, or change request.</p>
+            <p><strong>Risk control:</strong> A billing warning is present but did not block submission. Do not enable standalone ads; CrazyGames Basic Launch can validate quality before revenue share.</p>
             <details><summary>Manual requirements</summary><ul><li>CrazyGames developer login</li><li>Game card creation</li><li>ZIP upload</li><li>Icon/cover selection</li><li>Review submission</li><li>Payout profile later after acceptance/ad eligibility</li></ul></details>
           </article>
 <article class="panel">
@@ -115,25 +124,25 @@
           </article>
 <article class="panel">
             <h3>3. Playgama</h3>
-            <p><strong>Status:</strong> ready_for_email_or_dashboard / email_or_manual_dashboard</p>
-            <p><strong>Next action:</strong> Send the public email with Neon Lane Dash release links, or create the developer portal account and upload the ZIP directly.</p>
+            <p><strong>Status:</strong> submitted_under_review / monitor_review</p>
+            <p><strong>Next action:</strong> Monitor Playgama moderation. The game passed dashboard certification, including SDK init, storage save/restore, and a natural-break interstitial ad check.</p>
             <p><strong>Why now:</strong> No upfront-cost HTML5 distribution route; current builds include Playgama Bridge, game_ready messaging, pause/audio listeners, interstitial placement, and rewarded-state confirmation.</p>
             <p><strong>Use game:</strong> Neon Lane Dash</p>
             <p><a class="button" href="https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip">Download ZIP</a> <a class="button secondary" href="https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md">Open copy pack</a></p>
-            <p><strong>Success signal:</strong> Playgama replies with review instructions or dashboard upload accepts the package.</p>
-            <p><strong>Risk control:</strong> Do not call start-of-game interstitial through Playgama; only natural replay/practice breaks are wired.</p>
+            <p><strong>Success signal:</strong> Already submitted through the Playgama dashboard on 2026-06-02. Next signal is accepted, rejected, live, or QA change request.</p>
+            <p><strong>Risk control:</strong> Playgama ads are enabled only in Playgama context and only at natural breaks; self-hosted builds remain adless unless an explicit ad-test flag is present.</p>
             <details><summary>Manual requirements</summary><ul><li>Developer portal signup if not using first-contact email</li><li>ZIP upload</li><li>Bridge config review if requested</li><li>Payout setup after approval/earnings</li></ul></details>
           </article>
 <article class="panel">
             <h3>4. GamePix</h3>
-            <p><strong>Status:</strong> ready_for_dashboard_after_signup / manual_signup_required</p>
-            <p><strong>Next action:</strong> Open GamePix Join Us, create the dashboard account, upload Neon Lane Dash ZIP, then use the copy pack fields.</p>
+            <p><strong>Status:</strong> blocked_non_ai_description_required / owner_micro_copy_required</p>
+            <p><strong>Next action:</strong> Write a unique 100-500 character English description personally in the GamePix dashboard, then resume the upload with the Neon Lane Dash ZIP and assets.</p>
             <p><strong>Why now:</strong> GamePix advertises hosting, QA, partner distribution, and 45% developer revenue share; current builds include GamePix loading/pause/resume/ping lifecycle hooks.</p>
             <p><strong>Use game:</strong> Neon Lane Dash</p>
             <p><a class="button" href="https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip">Download ZIP</a> <a class="button secondary" href="https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md">Open copy pack</a></p>
-            <p><strong>Success signal:</strong> Dashboard accepts the game entry or requests QA changes.</p>
-            <p><strong>Risk control:</strong> Only documented GamePix lifecycle hooks are integrated; no guessed ad method is called.</p>
-            <details><summary>Manual requirements</summary><ul><li>GamePix dashboard account</li><li>ZIP upload</li><li>Metadata</li><li>Assets</li><li>QA/review</li><li>Payment details after acceptance</li></ul></details>
+            <p><strong>Success signal:</strong> Dashboard accepts the create-game step and advances to asset/package upload or QA.</p>
+            <p><strong>Risk control:</strong> Do not paste AI-written marketing text into the GamePix description field; only documented GamePix lifecycle hooks are integrated and no guessed ad method is called.</p>
+            <details><summary>Manual requirements</summary><ul><li>GamePix dashboard account</li><li>Owner-written non-AI game description</li><li>ZIP upload</li><li>Metadata</li><li>Assets</li><li>QA/review</li><li>Payment details after acceptance</li></ul></details>
           </article>
 <article class="panel">
             <h3>5. GameDistribution</h3>

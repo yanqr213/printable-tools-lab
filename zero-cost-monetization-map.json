@@ -1,6 +1,6 @@
 {
   "name": "Zero-Cost Monetization Map",
-  "generatedAt": "2026-06-02T16:18:17.342Z",
+  "generatedAt": "2026-06-02T17:44:08.776Z",
   "canonical": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map/",
   "map": {
     "generatedFrom": "2026-06-02 platform research and current package state",
@@ -24,12 +24,13 @@
           "review-readiness reports"
         ],
         "blockers": [
-          "Developer account login",
+          "Yandex publisher login",
+          "GamePix non-AI description copy",
           "CAPTCHA/legal forms",
           "payout setup after approval",
           "moderation wait"
         ],
-        "nextAction": "Submit Neon Lane Dash to CrazyGames and Yandex first, then Playgama/GamePix, using the review-readiness report as moderation evidence."
+        "nextAction": "Monitor CrazyGames and Playgama review queues, unblock GamePix with owner-written copy, and keep Upload Limit Panic queued until Neon gets a review signal."
       },
       {
         "route": "Douyin mini-game port",

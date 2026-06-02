@@ -298,7 +298,8 @@ else {
   if (!html.includes("Manual gates")) failures.push("Platform submit cockpit missing manual gates section.");
   if (!html.includes("Morning expectation")) failures.push("Platform submit cockpit missing realistic expectation section.");
   if (!html.includes("Download ZIP")) failures.push("Platform submit cockpit missing ZIP links.");
-  if (!html.includes("ready_for_dashboard_upload")) failures.push("Platform submit cockpit missing dashboard-ready status.");
+  if (!html.includes("submitted_awaiting_review")) failures.push("Platform submit cockpit missing CrazyGames submitted status.");
+  if (!html.includes("blocked_non_ai_description_required")) failures.push("Platform submit cockpit missing GamePix non-AI description gate.");
   if (!html.includes("GameDistribution")) failures.push("Platform submit cockpit missing GameDistribution row.");
   if (!html.includes("/platform-submit-cockpit.json")) failures.push("Platform submit cockpit missing machine-readable JSON link.");
   if (!sitemap.includes(`<loc>${siteUrl("platform-submit-cockpit")}</loc>`)) failures.push("Sitemap missing platform submit cockpit.");
@@ -310,7 +311,8 @@ else {
   const data = JSON.parse(fs.readFileSync(platformSubmitCockpitJsonFile, "utf8"));
   const cockpit = data.cockpit || {};
   if (!Array.isArray(cockpit.checklist) || cockpit.checklist.length < 5) failures.push("platform-submit-cockpit.json missing platform checklist.");
-  if (!cockpit.checklist?.some((item) => item.platform === "CrazyGames" && item.currentStatus === "ready_for_dashboard_upload")) failures.push("platform-submit-cockpit.json missing CrazyGames ready state.");
+  if (!cockpit.checklist?.some((item) => item.platform === "CrazyGames" && item.currentStatus === "submitted_awaiting_review")) failures.push("platform-submit-cockpit.json missing CrazyGames submitted state.");
+  if (!cockpit.checklist?.some((item) => item.platform === "GamePix" && item.currentStatus === "blocked_non_ai_description_required")) failures.push("platform-submit-cockpit.json missing GamePix non-AI description gate.");
   if (!cockpit.checklist?.some((item) => item.platform === "GameDistribution" && String(item.currentStatus || "").includes("manual_legal_gate"))) failures.push("platform-submit-cockpit.json missing GameDistribution legal gate.");
   if (!cockpit.readyAssets || !String(cockpit.readyAssets.neonLaneDashZip || "").includes("neon-lane-dash-html5.zip")) failures.push("platform-submit-cockpit.json missing Neon ZIP.");
   if (!String(data.completionGate || "").includes("verified revenue")) failures.push("platform-submit-cockpit.json missing verified revenue completion gate.");
@@ -324,7 +326,7 @@ else {
   if (!html.includes("developer.success@playgama.com")) failures.push("Platform outreach tracker missing Playgama email.");
   if (!html.includes("partnership@azerion.com")) failures.push("Platform outreach tracker missing GameDistribution email.");
   if (!html.includes("reCAPTCHA")) failures.push("Platform outreach tracker missing GameDistribution form blocker note.");
-  if (!html.includes("join_or_login_required")) failures.push("Platform outreach tracker missing GamePix login-required status.");
+  if (!html.includes("blocked_non_ai_description_required")) failures.push("Platform outreach tracker missing GamePix non-AI description status.");
   if (!html.includes("Copy-ready outreach")) failures.push("Platform outreach tracker missing copy-ready outreach section.");
   if (!html.includes("/platform-outreach-tracker.json")) failures.push("Platform outreach tracker missing machine-readable JSON link.");
   if (!sitemap.includes(`<loc>${siteUrl("platform-outreach-tracker")}</loc>`)) failures.push("Sitemap missing platform outreach tracker.");
@@ -339,7 +341,7 @@ else {
   if (!tracker.channels?.some((item) => item.contact === "developer.success@playgama.com")) failures.push("platform-outreach-tracker.json missing Playgama public email.");
   if (!tracker.channels?.some((item) => item.contact === "partnership@azerion.com")) failures.push("platform-outreach-tracker.json missing GameDistribution public email.");
   if (!tracker.channels?.some((item) => item.platform === "GameDistribution" && String(item.evidence || "").includes("reCAPTCHA"))) failures.push("platform-outreach-tracker.json missing GameDistribution reCAPTCHA note.");
-  if (!tracker.channels?.some((item) => item.platform === "GamePix" && item.status === "join_or_login_required")) failures.push("platform-outreach-tracker.json missing GamePix join/login status.");
+  if (!tracker.channels?.some((item) => item.platform === "GamePix" && item.status === "blocked_non_ai_description_required")) failures.push("platform-outreach-tracker.json missing GamePix non-AI description status.");
   if (!tracker.channels?.every((item) => item.subject && item.body && item.submissionUrl)) failures.push("platform-outreach-tracker.json missing copy-ready outreach fields.");
   if (!String(data.completionGate || "").includes("verified revenue")) failures.push("platform-outreach-tracker.json missing revenue completion gate.");
 }

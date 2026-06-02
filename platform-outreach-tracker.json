@@ -1,6 +1,6 @@
 {
   "name": "HTML5 Platform Outreach Tracker",
-  "generatedAt": "2026-06-02T16:18:17.342Z",
+  "generatedAt": "2026-06-02T17:44:08.776Z",
   "canonical": "https://printable-tools-lab.pages.dev/platform-outreach-tracker/",
   "tracker": {
     "generatedFromProbe": "2026-06-02 platform-entry-probe",
@@ -8,6 +8,11 @@
     "purpose": "Public-contact and low-login outreach tracker for moving HTML5 games toward platform review before full payout setup is available.",
     "leadGame": "Neon Lane Dash",
     "backupGame": "Upload Limit Panic",
+    "latestOperationalStatus": [
+      "Playgama outreach is no longer needed for Neon Lane Dash because the dashboard submission is under review.",
+      "GamePix dashboard is logged in but blocked by a platform instruction requiring non-AI original description copy.",
+      "Payment data remains dashboard-only and should not be sent over email."
+    ],
     "rules": [
       "Send only live preview, GitHub release, ZIP link, screenshots, and demo video; do not send private keys or account tokens.",
       "Do not promise exclusivity unless the platform explicitly negotiates it and other submissions are paused.",
@@ -21,9 +26,9 @@
         "method": "public email plus developer portal signup",
         "contact": "developer.success@playgama.com",
         "submissionUrl": "https://developer.playgama.com/auth?utm_source=landing",
-        "evidence": "Probe found public mailto on Playgama developers page and Join Playgama link to developer portal. Form probe found no public form, so email is the fastest non-login first contact.",
-        "status": "ready_to_email",
-        "nextAction": "Email Neon Lane Dash preview and ask whether the current ZIP can be reviewed before Bridge integration.",
+        "evidence": "Dashboard submission completed on 2026-06-02 after certification passed SDK init, storage save/restore, and interstitial ad checks.",
+        "status": "submitted_under_review",
+        "nextAction": "No email needed for Neon Lane Dash now. Monitor Playgama dashboard moderation and respond only if QA requests changes.",
         "subject": "HTML5 game submission: Neon Lane Dash",
         "body": "Hi Playgama team,\n\nI would like to submit Neon Lane Dash for HTML5 platform review.\n\nNeon Lane Dash is a short three-lane reflex arcade game for browser players. It has keyboard and touch controls, short replayable runs, local best score tracking, no login, no in-app purchases, and an ad-safe standalone review build.\n\nLive preview: https://neon-lane-dash.pages.dev/\nHTML5 ZIP: https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip\nRelease pack: https://github.com/yanqr213/neon-lane-dash/releases/tag/platform-submission-v1\nDemo video: https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-demo.mp4\nIcon: https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-icon-512.png\nCover: https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-cover-16x9.png\nSubmission fields: https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md\n\nThe current build is standalone and does not force ads. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are gated for platform contexts; ad calls also require an explicit review flag. The build handles platform pause/resume events, lifecycle messages, and rewarded-completion checks before granting optional assist rewards.\n\nCould you confirm whether this package can enter review, and whether you need a specific SDK wrapper or metadata format before upload?\n\nThanks,\nPrintableTools Lab"
       },
@@ -45,9 +50,9 @@
         "method": "developer page form/dashboard",
         "contact": "No public email found in probe",
         "submissionUrl": "https://partners.gamepix.com/developers",
-        "evidence": "Probe found GamePix developer page with Join Us and LOGIN controls. Form probe found only login/join controls, not a public game-submission form.",
-        "status": "join_or_login_required",
-        "nextAction": "Open Join Us manually, create dashboard account, then use the Neon Lane Dash field pack; ask if SDK integration can happen after initial QA.",
+        "evidence": "Dashboard is accessible and create-game modal is available. The description field explicitly warns not to use AI-generated text, so automated copy insertion was stopped for account-safety reasons.",
+        "status": "blocked_non_ai_description_required",
+        "nextAction": "Owner writes a unique 100-500 character English description in the dashboard, then upload the Neon Lane Dash ZIP and assets.",
         "subject": "HTML5 game submission: Neon Lane Dash",
         "body": "Hi GamePix team,\n\nI would like to submit Neon Lane Dash for HTML5 platform review.\n\nNeon Lane Dash is a short three-lane reflex arcade game for browser players. It has keyboard and touch controls, short replayable runs, local best score tracking, no login, no in-app purchases, and an ad-safe standalone review build.\n\nLive preview: https://neon-lane-dash.pages.dev/\nHTML5 ZIP: https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip\nRelease pack: https://github.com/yanqr213/neon-lane-dash/releases/tag/platform-submission-v1\nDemo video: https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-demo.mp4\nIcon: https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-icon-512.png\nCover: https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-cover-16x9.png\nSubmission fields: https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md\n\nThe current build is standalone and does not force ads. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are gated for platform contexts; ad calls also require an explicit review flag. The build handles platform pause/resume events, lifecycle messages, and rewarded-completion checks before granting optional assist rewards.\n\nCould you confirm whether this package can enter review, and whether you need a specific SDK wrapper or metadata format before upload?\n\nThanks,\nPrintableTools Lab"
       },
@@ -127,6 +132,6 @@
       "summary": "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them."
     }
   ],
-  "nextAction": "Send Neon Lane Dash to Playgama public email first, then GameDistribution public partnership email, then GamePix form/dashboard.",
+  "nextAction": "Monitor Playgama dashboard, keep GameDistribution as a later outreach option, and unblock GamePix only with owner-written non-AI description copy.",
   "completionGate": "At least one outreach channel confirms review or requests upload metadata; actual goal completion still requires accepted game, real plays, and verified revenue."
 }

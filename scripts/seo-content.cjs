@@ -62,7 +62,7 @@ const PLATFORM_SUBMIT_QUEUE = [
     docsUrl: "https://docs.crazygames.com/",
     requiredFields: ["Game ZIP or dist upload", "Title", "Short description", "Controls", "Genre/tags", "Icon", "Cover image", "Screenshots or video", "SDK/ad safety note"],
     adPolicyNote: "Standalone builds do not request ads. SDK hooks are present and ad calls remain gated until platform approval.",
-    currentGate: "Registration/login is required before an upload form is available. Browser probe on 2026-06-02 found Submit my game -> /register.",
+    currentGate: "Submitted on 2026-06-02 and awaiting review. Build ID 57a4b821-a761-4541-b2dc-69ced592d4d5. Billing details are a later payout gate and did not block submission.",
   },
   {
     platform: "Yandex Games",
@@ -101,7 +101,7 @@ const PLATFORM_SUBMIT_QUEUE = [
     docsUrl: "https://wiki.playgama.com/playgama",
     requiredFields: ["Developer account", "HTML5 ZIP upload", "Playgama Bridge SDK or integration notes", "Title", "Description", "Icon/cover", "Ad/IAP monetization preference"],
     adPolicyNote: "Playgama Bridge is integrated behind platform-context checks. The builds send game_ready and gameplay lifecycle messages, listen for pause/audio state changes, and only grant rewarded benefits after rewarded-state confirmation.",
-    currentGate: "Developer signup is required. Official developer page describes ZIP upload, Playgama Bridge, no upfront costs, revenue share, and withdrawals via PayPal, Wise, crypto, or bank transfer. Current ZIPs are ready for dashboard upload.",
+    currentGate: "Submitted on 2026-06-02 and under review after dashboard certification passed SDK init, storage save/restore, and an interstitial ad test. Payout details remain a later earnings gate.",
   },
   {
     platform: "GamePix",
@@ -114,7 +114,7 @@ const PLATFORM_SUBMIT_QUEUE = [
     docsUrl: "https://partners.gamepix.com/developers",
     requiredFields: ["GamePix account", "Lightweight SDK integration if required", "HTML5 game upload", "Title", "Description", "Assets", "Category/tags"],
     adPolicyNote: "GamePix SDK lifecycle hooks are integrated only in GamePix context. The builds wire gameLoading, gameLoaded, pause/resume, and run-end ping while leaving ads to GamePix-managed review/monetization.",
-    currentGate: "Dashboard registration is required. Official page describes creating an account, submitting games, lightweight SDK integration, hosting, QA, partner distribution, and 45% revenue share. Current ZIPs are ready for dashboard upload.",
+    currentGate: "Dashboard account is available, but create-game submission is blocked by GamePix's explicit non-AI description requirement. Owner-written 100-500 character English copy is required before continuing.",
   },
   {
     platform: "Lagged",
@@ -198,15 +198,20 @@ const PLATFORM_SUBMIT_QUEUE = [
 
 const ZERO_DOMAIN_PLATFORM_STRATEGY = {
   currentDecision: "Use hosted HTML5 game platforms first instead of buying a custom domain. Platform distribution and platform-managed ads are the zero-upfront-cost path.",
+  latestOperationalStatus: [
+    "CrazyGames: Neon Lane Dash has been submitted and is awaiting review. Build ID 57a4b821-a761-4541-b2dc-69ced592d4d5.",
+    "Playgama: Neon Lane Dash has been submitted and is under review after passing SDK/storage/interstitial certification.",
+    "GamePix: logged-in dashboard reached the create-game form, but the description field explicitly asks for non-AI original copy, so owner-written 100-500 character English text is required before upload.",
+  ],
   whyNoDomainCanStillWork: [
     "CrazyGames and Yandex Games host approved HTML5 games inside their own catalogs, so discovery and ad serving do not require a custom domain.",
     "The games already have static live previews on Cloudflare Pages, but the monetization surface is the platform embed after approval.",
     "A custom domain can improve the utility-tool site later, but it is not required to test the first game-platform revenue path.",
   ],
   immediateRoute: [
-    "Submit Neon Lane Dash to CrazyGames first because its three-lane reflex loop has broader casual appeal.",
+    "Monitor Neon Lane Dash on CrazyGames first because it is already submitted and awaiting review.",
     "Submit Neon Lane Dash to Yandex Games second because the build now includes Yandex SDK v2 lifecycle and gated ad hooks.",
-    "Submit Neon Lane Dash to Playgama and GamePix after direct-platform submissions because both handle distribution and monetization without requiring a custom domain, and the current ZIPs now include their required lifecycle hooks.",
+    "Monitor Neon Lane Dash on Playgama because it is already submitted and under review; unblock GamePix only with owner-written non-AI description copy.",
     "Submit the clean portal ZIP to Kongregate/Newgrounds-style portals when a platform rejects third-party ad SDKs, external links, or remote telemetry.",
     "Submit Upload Limit Panic after Neon is live or in review, using it as a differentiated puzzle/sorting title.",
     "Use Lagged and GameFlare as lower-friction secondary tests if the first submissions are delayed by account or moderation gates.",
@@ -262,8 +267,8 @@ const ZERO_COST_MONETIZATION_MAP = {
       expectedFirstSignal: "Dashboard submitted/in-review status, platform reply, accepted game, then plays and ad revenue after eligibility.",
       why: "Platforms host the game and own the ad surface, so we do not need a purchased domain or AdSense site approval first.",
       currentAssets: ["Neon Lane Dash ZIP", "Upload Limit Panic ZIP", "SDK adapters", "mobile/desktop screenshots", "review-readiness reports"],
-      blockers: ["Developer account login", "CAPTCHA/legal forms", "payout setup after approval", "moderation wait"],
-      nextAction: "Submit Neon Lane Dash to CrazyGames and Yandex first, then Playgama/GamePix, using the review-readiness report as moderation evidence.",
+      blockers: ["Yandex publisher login", "GamePix non-AI description copy", "CAPTCHA/legal forms", "payout setup after approval", "moderation wait"],
+      nextAction: "Monitor CrazyGames and Playgama review queues, unblock GamePix with owner-written copy, and keep Upload Limit Panic queued until Neon gets a review signal.",
     },
     {
       route: "Douyin mini-game port",
@@ -377,6 +382,11 @@ const PLATFORM_OUTREACH_TRACKER = {
   purpose: "Public-contact and low-login outreach tracker for moving HTML5 games toward platform review before full payout setup is available.",
   leadGame: "Neon Lane Dash",
   backupGame: "Upload Limit Panic",
+  latestOperationalStatus: [
+    "Playgama outreach is no longer needed for Neon Lane Dash because the dashboard submission is under review.",
+    "GamePix dashboard is logged in but blocked by a platform instruction requiring non-AI original description copy.",
+    "Payment data remains dashboard-only and should not be sent over email.",
+  ],
   rules: [
     "Send only live preview, GitHub release, ZIP link, screenshots, and demo video; do not send private keys or account tokens.",
     "Do not promise exclusivity unless the platform explicitly negotiates it and other submissions are paused.",
@@ -390,9 +400,9 @@ const PLATFORM_OUTREACH_TRACKER = {
       method: "public email plus developer portal signup",
       contact: "developer.success@playgama.com",
       submissionUrl: "https://developer.playgama.com/auth?utm_source=landing",
-      evidence: "Probe found public mailto on Playgama developers page and Join Playgama link to developer portal. Form probe found no public form, so email is the fastest non-login first contact.",
-      status: "ready_to_email",
-      nextAction: "Email Neon Lane Dash preview and ask whether the current ZIP can be reviewed before Bridge integration.",
+      evidence: "Dashboard submission completed on 2026-06-02 after certification passed SDK init, storage save/restore, and interstitial ad checks.",
+      status: "submitted_under_review",
+      nextAction: "No email needed for Neon Lane Dash now. Monitor Playgama dashboard moderation and respond only if QA requests changes.",
       subject: "HTML5 game submission: Neon Lane Dash",
       body: outreachBody("Playgama"),
     },
@@ -414,9 +424,9 @@ const PLATFORM_OUTREACH_TRACKER = {
       method: "developer page form/dashboard",
       contact: "No public email found in probe",
       submissionUrl: "https://partners.gamepix.com/developers",
-      evidence: "Probe found GamePix developer page with Join Us and LOGIN controls. Form probe found only login/join controls, not a public game-submission form.",
-      status: "join_or_login_required",
-      nextAction: "Open Join Us manually, create dashboard account, then use the Neon Lane Dash field pack; ask if SDK integration can happen after initial QA.",
+      evidence: "Dashboard is accessible and create-game modal is available. The description field explicitly warns not to use AI-generated text, so automated copy insertion was stopped for account-safety reasons.",
+      status: "blocked_non_ai_description_required",
+      nextAction: "Owner writes a unique 100-500 character English description in the dashboard, then upload the Neon Lane Dash ZIP and assets.",
       subject: "HTML5 game submission: Neon Lane Dash",
       body: outreachBody("GamePix"),
     },
@@ -464,6 +474,17 @@ const PLATFORM_SUBMIT_COCKPIT = {
   objective: "Move from zero-domain prototypes to accepted platform games with platform-managed advertising.",
   leadGame: "Neon Lane Dash",
   backupGame: "Upload Limit Panic",
+  latestOperationalStatus: {
+    lastUpdated: "2026-06-02T17:39:36.403Z",
+    submitted: [
+      "CrazyGames: Neon Lane Dash is awaiting review. Build ID 57a4b821-a761-4541-b2dc-69ced592d4d5.",
+      "Playgama: Neon Lane Dash is under moderation after the dashboard certification flow passed SDK init, storage restore, and interstitial ad checks.",
+    ],
+    blocked: [
+      "GamePix: dashboard account is available, but the create-game form explicitly requires a unique non-AI description. Owner-written 100-500 character English copy is required before submission.",
+    ],
+    notRevenueYet: "No platform revenue should be expected until a submitted game is accepted, real plays appear in platform analytics, ads are enabled, and a payout balance is visible.",
+  },
   notAutomatable: [
     "Dashboard signup, email verification, identity checks, payout profile, legal checkboxes, and CAPTCHA must be completed by the account owner.",
     "No platform should receive bank, Alipay, API token, or private credential details by email.",
@@ -481,16 +502,16 @@ const PLATFORM_SUBMIT_COCKPIT = {
     {
       platform: "CrazyGames",
       rank: 1,
-      currentStatus: "ready_for_dashboard_upload",
-      automationLevel: "manual_login_required",
-      nextAction: "Log in to CrazyGames developer dashboard, create a game, upload Neon Lane Dash ZIP, paste the CrazyGames fields from the copy pack, and submit for Basic Launch review.",
+      currentStatus: "submitted_awaiting_review",
+      automationLevel: "monitor_review",
+      nextAction: "Monitor the CrazyGames review status and prepare payout details only after acceptance or ad eligibility. Do not re-upload unless moderation requests a change.",
       whyNow: "Best first moderation signal for a short reflex HTML5 game; the build already has CrazyGames SDK loading/gameplay hooks and hidden external links in platform context.",
       manualRequirements: ["CrazyGames developer login", "Game card creation", "ZIP upload", "Icon/cover selection", "Review submission", "Payout profile later after acceptance/ad eligibility"],
       useGame: "Neon Lane Dash",
       uploadZip: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
       copyPack: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
-      successSignal: "Dashboard status changes to submitted, in review, accepted, or live.",
-      riskControl: "Do not enable standalone ads; CrazyGames Basic Launch can validate quality before revenue share.",
+      successSignal: "Already submitted on 2026-06-02; dashboard shows awaiting review. Next signal is accepted, rejected, live, or change request.",
+      riskControl: "A billing warning is present but did not block submission. Do not enable standalone ads; CrazyGames Basic Launch can validate quality before revenue share.",
     },
     {
       platform: "Yandex Games",
@@ -509,30 +530,30 @@ const PLATFORM_SUBMIT_COCKPIT = {
     {
       platform: "Playgama",
       rank: 3,
-      currentStatus: "ready_for_email_or_dashboard",
-      automationLevel: "email_or_manual_dashboard",
-      nextAction: "Send the public email with Neon Lane Dash release links, or create the developer portal account and upload the ZIP directly.",
+      currentStatus: "submitted_under_review",
+      automationLevel: "monitor_review",
+      nextAction: "Monitor Playgama moderation. The game passed dashboard certification, including SDK init, storage save/restore, and a natural-break interstitial ad check.",
       whyNow: "No upfront-cost HTML5 distribution route; current builds include Playgama Bridge, game_ready messaging, pause/audio listeners, interstitial placement, and rewarded-state confirmation.",
       manualRequirements: ["Developer portal signup if not using first-contact email", "ZIP upload", "Bridge config review if requested", "Payout setup after approval/earnings"],
       useGame: "Neon Lane Dash",
       uploadZip: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
       copyPack: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
-      successSignal: "Playgama replies with review instructions or dashboard upload accepts the package.",
-      riskControl: "Do not call start-of-game interstitial through Playgama; only natural replay/practice breaks are wired.",
+      successSignal: "Already submitted through the Playgama dashboard on 2026-06-02. Next signal is accepted, rejected, live, or QA change request.",
+      riskControl: "Playgama ads are enabled only in Playgama context and only at natural breaks; self-hosted builds remain adless unless an explicit ad-test flag is present.",
     },
     {
       platform: "GamePix",
       rank: 4,
-      currentStatus: "ready_for_dashboard_after_signup",
-      automationLevel: "manual_signup_required",
-      nextAction: "Open GamePix Join Us, create the dashboard account, upload Neon Lane Dash ZIP, then use the copy pack fields.",
+      currentStatus: "blocked_non_ai_description_required",
+      automationLevel: "owner_micro_copy_required",
+      nextAction: "Write a unique 100-500 character English description personally in the GamePix dashboard, then resume the upload with the Neon Lane Dash ZIP and assets.",
       whyNow: "GamePix advertises hosting, QA, partner distribution, and 45% developer revenue share; current builds include GamePix loading/pause/resume/ping lifecycle hooks.",
-      manualRequirements: ["GamePix dashboard account", "ZIP upload", "Metadata", "Assets", "QA/review", "Payment details after acceptance"],
+      manualRequirements: ["GamePix dashboard account", "Owner-written non-AI game description", "ZIP upload", "Metadata", "Assets", "QA/review", "Payment details after acceptance"],
       useGame: "Neon Lane Dash",
       uploadZip: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
       copyPack: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
-      successSignal: "Dashboard accepts the game entry or requests QA changes.",
-      riskControl: "Only documented GamePix lifecycle hooks are integrated; no guessed ad method is called.",
+      successSignal: "Dashboard accepts the create-game step and advances to asset/package upload or QA.",
+      riskControl: "Do not paste AI-written marketing text into the GamePix description field; only documented GamePix lifecycle hooks are integrated and no guessed ad method is called.",
     },
     {
       platform: "GameDistribution",
@@ -549,7 +570,7 @@ const PLATFORM_SUBMIT_COCKPIT = {
       riskControl: "No fake gameId is hardcoded; gdsdk.showAd is gated behind GameDistribution context and ads=1.",
     },
   ],
-  morningExpectation: "It is unrealistic to expect verified ad revenue overnight before any platform accepts a game. The fastest honest morning win is submitted/in-review status or a platform reply requesting upload metadata.",
+  morningExpectation: "The realistic overnight win has been reached: CrazyGames and Playgama are submitted/in review. Verified ad revenue still requires acceptance, real plays, enabled ads, and a visible payout balance.",
 };
 
 const SHARE_KIT_FEATURED_LINKS = [
@@ -3453,6 +3474,10 @@ function platformSubmitQueueHtml() {
       <section class="shell section">
         <h2>Zero-domain decision</h2>
         <p>${escapeHtml(ZERO_DOMAIN_PLATFORM_STRATEGY.currentDecision)}</p>
+        <div class="panel">
+          <h3>Latest operational status</h3>
+          <ul>${ZERO_DOMAIN_PLATFORM_STRATEGY.latestOperationalStatus.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        </div>
         <div class="grid-3">
           <article class="panel">
             <h3>Why this can work without a domain</h3>
@@ -3560,6 +3585,15 @@ function platformSubmitCockpitHtml() {
             <p>${escapeHtml(PLATFORM_SUBMIT_COCKPIT.morningExpectation)}</p>
           </article>
         </div>
+        <div class="panel">
+          <h3>Latest operational status</h3>
+          <p><strong>Last updated:</strong> ${escapeHtml(PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.lastUpdated)}</p>
+          <p><strong>Submitted:</strong></p>
+          <ul>${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.submitted.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          <p><strong>Blocked:</strong></p>
+          <ul>${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.blocked.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          <p>${escapeHtml(PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.notRevenueYet)}</p>
+        </div>
       </section>
       <section class="shell section">
         <h2>Ready assets</h2>
@@ -3597,6 +3631,10 @@ function platformOutreachTrackerHtml() {
       </section>
       <section class="shell section">
         <h2>Operating rules</h2>
+        <div class="panel">
+          <h3>Latest operational status</h3>
+          <ul>${PLATFORM_OUTREACH_TRACKER.latestOperationalStatus.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        </div>
         <ul>${PLATFORM_OUTREACH_TRACKER.rules.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
       </section>
       <section class="shell section">

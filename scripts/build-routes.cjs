@@ -218,7 +218,7 @@ const platformSubmitQueueJson = {
   strategy: ZERO_DOMAIN_PLATFORM_STRATEGY,
   queue: PLATFORM_SUBMIT_QUEUE,
   games: ZERO_DOMAIN_GAME_EXPERIMENTS,
-  nextAction: "Submit Neon Lane Dash to CrazyGames, then Yandex Games. Submit Upload Limit Panic after the first review is live or pending.",
+  nextAction: "Monitor CrazyGames and Playgama review, then resume GamePix after owner-written non-AI description copy is available. Submit Upload Limit Panic only after Neon Lane Dash gets a review signal.",
   completionGate: "At least one platform submission accepted/live and platform analytics show real plays; ad revenue requires platform ad eligibility and payout setup.",
 };
 fs.writeFileSync(path.join(root, "platform-submit-queue.json"), `${JSON.stringify(platformSubmitQueueJson, null, 2)}\n`);
@@ -229,7 +229,7 @@ const platformOutreachTrackerJson = {
   canonical: siteUrl("platform-outreach-tracker"),
   tracker: PLATFORM_OUTREACH_TRACKER,
   games: ZERO_DOMAIN_GAME_EXPERIMENTS,
-  nextAction: "Send Neon Lane Dash to Playgama public email first, then GameDistribution public partnership email, then GamePix form/dashboard.",
+  nextAction: "Monitor Playgama dashboard, keep GameDistribution as a later outreach option, and unblock GamePix only with owner-written non-AI description copy.",
   completionGate: "At least one outreach channel confirms review or requests upload metadata; actual goal completion still requires accepted game, real plays, and verified revenue.",
 };
 fs.writeFileSync(path.join(root, "platform-outreach-tracker.json"), `${JSON.stringify(platformOutreachTrackerJson, null, 2)}\n`);
@@ -240,7 +240,7 @@ const platformSubmitCockpitJson = {
   canonical: siteUrl("platform-submit-cockpit"),
   cockpit: PLATFORM_SUBMIT_COCKPIT,
   games: ZERO_DOMAIN_GAME_EXPERIMENTS,
-  nextAction: "Complete CrazyGames and Yandex dashboard submissions first; use Playgama email/dashboard as the fastest non-domain secondary path.",
+  nextAction: "Monitor CrazyGames and Playgama review queues, unblock GamePix with owner-written description copy, and keep Yandex parked until publisher login/setup is usable.",
   completionGate: "Dashboard submitted/in-review status is progress; the full money goal still requires accepted game, real plays, enabled ads, and verified revenue.",
 };
 fs.writeFileSync(path.join(root, "platform-submit-cockpit.json"), `${JSON.stringify(platformSubmitCockpitJson, null, 2)}\n`);

@@ -59,6 +59,10 @@
       <section class="shell section">
         <h2>Zero-domain decision</h2>
         <p>Use hosted HTML5 game platforms first instead of buying a custom domain. Platform distribution and platform-managed ads are the zero-upfront-cost path.</p>
+        <div class="panel">
+          <h3>Latest operational status</h3>
+          <ul><li>CrazyGames: Neon Lane Dash has been submitted and is awaiting review. Build ID 57a4b821-a761-4541-b2dc-69ced592d4d5.</li><li>Playgama: Neon Lane Dash has been submitted and is under review after passing SDK/storage/interstitial certification.</li><li>GamePix: logged-in dashboard reached the create-game form, but the description field explicitly asks for non-AI original copy, so owner-written 100-500 character English text is required before upload.</li></ul>
+        </div>
         <div class="grid-3">
           <article class="panel">
             <h3>Why this can work without a domain</h3>
@@ -66,7 +70,7 @@
           </article>
           <article class="panel">
             <h3>Immediate route</h3>
-            <ul><li>Submit Neon Lane Dash to CrazyGames first because its three-lane reflex loop has broader casual appeal.</li><li>Submit Neon Lane Dash to Yandex Games second because the build now includes Yandex SDK v2 lifecycle and gated ad hooks.</li><li>Submit Neon Lane Dash to Playgama and GamePix after direct-platform submissions because both handle distribution and monetization without requiring a custom domain, and the current ZIPs now include their required lifecycle hooks.</li><li>Submit the clean portal ZIP to Kongregate/Newgrounds-style portals when a platform rejects third-party ad SDKs, external links, or remote telemetry.</li><li>Submit Upload Limit Panic after Neon is live or in review, using it as a differentiated puzzle/sorting title.</li><li>Use Lagged and GameFlare as lower-friction secondary tests if the first submissions are delayed by account or moderation gates.</li><li>Create itch.io mirrors only for public browser-play proof and feedback; do not treat itch as the primary ad route.</li></ul>
+            <ul><li>Monitor Neon Lane Dash on CrazyGames first because it is already submitted and awaiting review.</li><li>Submit Neon Lane Dash to Yandex Games second because the build now includes Yandex SDK v2 lifecycle and gated ad hooks.</li><li>Monitor Neon Lane Dash on Playgama because it is already submitted and under review; unblock GamePix only with owner-written non-AI description copy.</li><li>Submit the clean portal ZIP to Kongregate/Newgrounds-style portals when a platform rejects third-party ad SDKs, external links, or remote telemetry.</li><li>Submit Upload Limit Panic after Neon is live or in review, using it as a differentiated puzzle/sorting title.</li><li>Use Lagged and GameFlare as lower-friction secondary tests if the first submissions are delayed by account or moderation gates.</li><li>Create itch.io mirrors only for public browser-play proof and feedback; do not treat itch as the primary ad route.</li></ul>
           </article>
           <article class="panel">
             <h3>Parked routes</h3>
@@ -81,7 +85,7 @@
             <h3>1. CrazyGames</h3>
             <p>Best current fit for short HTML5 arcade games and later platform-managed ads. Basic Launch can validate review quality before revenue.</p>
             <p><strong>Account:</strong> CrazyGames developer account with payout profile later, after acceptance and ad eligibility.</p>
-            <p><strong>Current gate:</strong> Registration/login is required before an upload form is available. Browser probe on 2026-06-02 found Submit my game -&gt; /register.</p>
+            <p><strong>Current gate:</strong> Submitted on 2026-06-02 and awaiting review. Build ID 57a4b821-a761-4541-b2dc-69ced592d4d5. Billing details are a later payout gate and did not block submission.</p>
             <p><a class="button" href="https://developer.crazygames.com/register">Open CrazyGames</a></p>
             <p><a href="https://docs.crazygames.com/">Open official docs</a></p>
           </article>
@@ -105,7 +109,7 @@
             <h3>4. Playgama</h3>
             <p>Strong secondary fit because it is built for HTML5 distribution, partner-platform publishing, ads/IAP monetization, and no upfront cost revenue share. Both current games now include Playgama Bridge lifecycle and gated ad hooks.</p>
             <p><strong>Account:</strong> Playgama developer portal account; payout details later after approval and earnings.</p>
-            <p><strong>Current gate:</strong> Developer signup is required. Official developer page describes ZIP upload, Playgama Bridge, no upfront costs, revenue share, and withdrawals via PayPal, Wise, crypto, or bank transfer. Current ZIPs are ready for dashboard upload.</p>
+            <p><strong>Current gate:</strong> Submitted on 2026-06-02 and under review after dashboard certification passed SDK init, storage save/restore, and an interstitial ad test. Payout details remain a later earnings gate.</p>
             <p><a class="button" href="https://developer.playgama.com/">Open Playgama</a></p>
             <p><a href="https://wiki.playgama.com/playgama">Open official docs</a></p>
           </article>
@@ -113,7 +117,7 @@
             <h3>5. GamePix</h3>
             <p>Good secondary fit because GamePix hosts HTML5 games, distributes to partner sites, and advertises a clear developer revenue share. Both current games now include GamePix lifecycle/ping hooks without guessing undocumented ad APIs.</p>
             <p><strong>Account:</strong> GamePix Dashboard developer account.</p>
-            <p><strong>Current gate:</strong> Dashboard registration is required. Official page describes creating an account, submitting games, lightweight SDK integration, hosting, QA, partner distribution, and 45% revenue share. Current ZIPs are ready for dashboard upload.</p>
+            <p><strong>Current gate:</strong> Dashboard account is available, but create-game submission is blocked by GamePix&#39;s explicit non-AI description requirement. Owner-written 100-500 character English copy is required before continuing.</p>
             <p><a class="button" href="https://partners.gamepix.com/developers">Open GamePix</a></p>
             <p><a href="https://partners.gamepix.com/developers">Open official docs</a></p>
           </article>
