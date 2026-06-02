@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { routes, siteUrl, landingPages, HIGH_INTENT_TOOL_PATHS } = require("./seo-content.cjs");
+const { routes, siteUrl, landingPages, HIGH_INTENT_TOOL_PATHS, ZERO_DOMAIN_GAME_EXPERIMENTS } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const siteBase = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pages.dev").replace(/\/+$/, "");
@@ -309,6 +309,8 @@ async function readGithubPagesState() {
     landingPagesLinked: 0,
     toolPagesLinked: 0,
     toolPagesInSitemap: 0,
+    gamePagesLinked: 0,
+    gamePagesInSitemap: 0,
     expectedUrlCount: githubPagesExpectedUrlCount(),
     error: "",
   };
@@ -317,10 +319,12 @@ async function readGithubPagesState() {
     state.pageOk = page.ok && page.text.includes("Free PDF, image, and QR tools without signup");
     state.landingPagesLinked = landingPages.filter((landing) => page.text.includes(siteUrl(landing.path))).length;
     state.toolPagesLinked = HIGH_INTENT_TOOL_PATHS.filter((toolPath) => page.text.includes(`${base}${toolPath}/`)).length;
+    state.gamePagesLinked = gameDiscoveryPaths().filter((gamePath) => page.text.includes(`${base}${gamePath}/`)).length;
     const sitemap = await fetchTextWithTimeout(`${base}sitemap.xml`);
     state.sitemapOk = sitemap.ok && sitemap.text.includes("<urlset");
     state.sitemapUrlCount = countMatches(sitemap.text, /<loc>/g);
     state.toolPagesInSitemap = HIGH_INTENT_TOOL_PATHS.filter((toolPath) => sitemap.text.includes(`<loc>${base}${toolPath}/</loc>`)).length;
+    state.gamePagesInSitemap = gameDiscoveryPaths().filter((gamePath) => sitemap.text.includes(`<loc>${base}${gamePath}/</loc>`)).length;
   } catch (error) {
     state.error = error.message;
   }
@@ -444,9 +448,9 @@ function summarizeDiscoveryReasons(discovery) {
   } else {
     reasons.push(`GitHub discovery metadata unavailable: ${discovery.github.error || "unknown error"}.`);
   }
-  if (discovery.githubPages.pageOk) reasons.push(`GitHub Pages discovery directory is live with ${discovery.githubPages.landingPagesLinked} landing page link(s) and ${discovery.githubPages.toolPagesLinked} tool mirror link(s).`);
+  if (discovery.githubPages.pageOk) reasons.push(`GitHub Pages discovery directory is live with ${discovery.githubPages.landingPagesLinked} landing page link(s), ${discovery.githubPages.toolPagesLinked} tool mirror link(s), and ${discovery.githubPages.gamePagesLinked} game submission link(s).`);
   else reasons.push(`GitHub Pages discovery directory unavailable: ${discovery.githubPages.error || "page check failed"}.`);
-  if (discovery.githubPages.sitemapOk) reasons.push(`GitHub Pages discovery sitemap has ${discovery.githubPages.sitemapUrlCount} URL(s), including ${discovery.githubPages.toolPagesInSitemap} tool mirror URL(s); expected at least ${discovery.githubPages.expectedUrlCount}.`);
+  if (discovery.githubPages.sitemapOk) reasons.push(`GitHub Pages discovery sitemap has ${discovery.githubPages.sitemapUrlCount} URL(s), including ${discovery.githubPages.toolPagesInSitemap} tool mirror URL(s) and ${discovery.githubPages.gamePagesInSitemap} game submission URL(s); expected at least ${discovery.githubPages.expectedUrlCount}.`);
   if (discovery.indexNow.keyFileReachable) reasons.push("IndexNow key file is reachable from the site root.");
   else reasons.push("IndexNow key file is not reachable or does not match the configured key.");
   if (discovery.indexNow.singleUrlAccepted) reasons.push("Bing IndexNow single-URL notification accepts the key.");
@@ -682,7 +686,22 @@ function yesNo(value) {
 }
 
 function githubPagesExpectedUrlCount() {
-  return landingPages.length + HIGH_INTENT_TOOL_PATHS.length + 1;
+  const sitemapCount = countMatches(readText("docs/sitemap.xml"), /<loc>/g);
+  return sitemapCount || landingPages.length + HIGH_INTENT_TOOL_PATHS.length + gameDiscoveryPaths().length + 1;
+}
+
+function gameDiscoveryPaths() {
+  return [
+    "html5-game-submission-pack",
+    ...ZERO_DOMAIN_GAME_EXPERIMENTS.map((game) => `html5-game-submission-pack/${slugify(game.name)}`),
+  ];
+}
+
+function slugify(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
 
 main().catch((error) => {

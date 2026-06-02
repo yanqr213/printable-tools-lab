@@ -41,6 +41,7 @@ const githubPagesUrls = [
   ...landingPages.map((page) => `${githubPagesBase}/${page.path}/`),
   ...HIGH_INTENT_TOOL_PATHS.map((toolPath) => `${githubPagesBase}/${toolPath}/`),
 ].filter(unique);
+const githubPagesSitemapUrls = readGithubPagesSitemapUrls();
 
 main().catch((error) => {
   console.error(error.stack || error.message);
@@ -60,8 +61,8 @@ async function main() {
       label: "github-pages",
       host: new URL(githubPagesBase).host,
       keyLocation: `${githubPagesBase}/${keyFileName}`,
-      urls: githubPagesUrls,
-      priorityUrls: githubPagesUrls.slice(0, 30),
+      urls: githubPagesSitemapUrls.length ? githubPagesSitemapUrls : githubPagesUrls,
+      priorityUrls: (githubPagesSitemapUrls.length ? githubPagesSitemapUrls : githubPagesUrls).slice(0, 30),
     },
   ];
 
@@ -182,4 +183,15 @@ async function submitPriorityUrls(urls, keyLocation) {
 
 function unique(value, index, list) {
   return list.indexOf(value) === index;
+}
+
+function readGithubPagesSitemapUrls() {
+  const sitemapFile = path.join(root, "docs", "sitemap.xml");
+  if (!fs.existsSync(sitemapFile)) return [];
+  const sitemap = fs.readFileSync(sitemapFile, "utf8");
+  const base = `${githubPagesBase}/`;
+  return [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
+    .map((match) => match[1].trim())
+    .filter((url) => url.startsWith(base))
+    .filter(unique);
 }
