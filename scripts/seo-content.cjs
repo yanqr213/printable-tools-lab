@@ -51,9 +51,12 @@ const PLATFORM_SUBMIT_QUEUE = [
     accountRequired: "CrazyGames developer account with payout profile later, after acceptance and ad eligibility.",
     rationale: "Best current fit for short HTML5 arcade games and later platform-managed ads. Basic Launch can validate review quality before revenue.",
     submitGames: ["Neon Lane Dash", "Upload Limit Panic"],
-    submissionUrl: "https://developer.crazygames.com/",
+    submissionUrl: "https://developer.crazygames.com/register",
+    portalUrl: "https://developer.crazygames.com/",
+    docsUrl: "https://docs.crazygames.com/",
     requiredFields: ["Game ZIP or dist upload", "Title", "Short description", "Controls", "Genre/tags", "Icon", "Cover image", "Screenshots or video", "SDK/ad safety note"],
     adPolicyNote: "Standalone builds do not request ads. SDK hooks are present and ad calls remain gated until platform approval.",
+    currentGate: "Registration/login is required before an upload form is available. Browser probe on 2026-06-02 found Submit my game -> /register.",
   },
   {
     platform: "Yandex Games",
@@ -61,9 +64,12 @@ const PLATFORM_SUBMIT_QUEUE = [
     accountRequired: "Yandex Games publisher account and payout setup when eligible.",
     rationale: "Second zero-domain HTML5 platform target. Builds now include Yandex SDK v2 hooks for LoadingAPI.ready, GameplayAPI start/stop, and gated ads.",
     submitGames: ["Neon Lane Dash", "Upload Limit Panic"],
-    submissionUrl: "https://yandex.com/dev/games/",
+    submissionUrl: "https://games.yandex.com/console",
+    portalUrl: "https://games.yandex.com/console",
+    docsUrl: "https://yandex.com/dev/games/doc/en/console/add-new-game",
     requiredFields: ["HTML5 archive", "Game Ready SDK integration", "Title", "Description", "Icon", "Cover image", "Age rating", "Controls", "Ad integration note"],
     adPolicyNote: "No external links in Yandex context; ads are not called unless platform context is ready and ads=1 is present.",
+    currentGate: "Yandex Console login and developer account are required. The old /dev/games/ landing URL returned 404 in the probe; official docs point to the Games Console and Add app draft flow.",
   },
   {
     platform: "itch.io",
@@ -72,8 +78,11 @@ const PLATFORM_SUBMIT_QUEUE = [
     rationale: "Fast public mirror and feedback surface. Useful for plays and screenshots, but not the main ad-revenue path.",
     submitGames: ["Neon Lane Dash", "Upload Limit Panic"],
     submissionUrl: "https://itch.io/game/new",
+    portalUrl: "https://itch.io/dashboard",
+    docsUrl: "https://itch.io/docs/creators/html5",
     requiredFields: ["HTML ZIP with index.html at root", "Cover image", "Short description", "Controls", "No payments"],
     adPolicyNote: "Use as a free browser-play page and keep payment disabled during validation.",
+    currentGate: "Creator login is required. Browser probe on 2026-06-02 reached itch.io/login and Cloudflare protection.",
   },
 ];
 
@@ -101,6 +110,12 @@ const ZERO_DOMAIN_PLATFORM_STRATEGY = {
     "Yandex Games publisher account login to create the game card, upload the archive, and later complete payment details.",
     "itch.io creator account only if we want a free browser mirror.",
     "Douyin/Bilibili accounts only after the HTML5 platform route gives a signal worth porting.",
+  ],
+  officialEvidence: [
+    "CrazyGames Basic Launch disables ads and revenue share at first, and ads must be requested only through the CrazyGames SDK.",
+    "CrazyGames quality guidance emphasizes quick onboarding, clear goals, responsive controls, and visually consistent game presentation.",
+    "Yandex upload docs require SDK connection, a developer account in the Console, a separate draft per game, and moderation submission.",
+    "Yandex monetization docs describe internal advertising, interstitial blocks, rewarded blocks, sticky banners, payments, and statistics.",
   ],
   moneyGate: "The goal is not complete until at least one platform accepts a game, real plays are visible in platform analytics, ad monetization is enabled, and revenue or payout balance is verified.",
 };
@@ -3007,7 +3022,9 @@ function platformSubmitQueueHtml() {
             <h3>${escapeHtml(item.priority)}. ${escapeHtml(item.platform)}</h3>
             <p>${escapeHtml(item.rationale)}</p>
             <p><strong>Account:</strong> ${escapeHtml(item.accountRequired)}</p>
+            <p><strong>Current gate:</strong> ${escapeHtml(item.currentGate || "Account login may be required before upload.")}</p>
             <p><a class="button" href="${escapeHtml(item.submissionUrl)}">Open ${escapeHtml(item.platform)}</a></p>
+            ${item.docsUrl ? `<p><a href="${escapeHtml(item.docsUrl)}">Open official docs</a></p>` : ""}
           </article>`).join("\n")}
         </div>
       </section>
@@ -3055,6 +3072,9 @@ function platformSubmitQueueHtml() {
         </ul>
         <p><strong>Money gate:</strong> ${escapeHtml(ZERO_DOMAIN_PLATFORM_STRATEGY.moneyGate)}</p>
         <p><strong>Account checklist:</strong> ${escapeHtml(ZERO_DOMAIN_PLATFORM_STRATEGY.accountsNeeded.join(" "))}</p>
+        <ul>
+          ${ZERO_DOMAIN_PLATFORM_STRATEGY.officialEvidence.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ul>
       </section>`;
 }
 

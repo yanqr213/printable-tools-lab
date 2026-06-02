@@ -1,6 +1,6 @@
 {
   "name": "HTML5 Platform Submit Queue",
-  "generatedAt": "2026-06-02T00:19:28.549Z",
+  "generatedAt": "2026-06-02T00:44:33.501Z",
   "canonical": "https://printable-tools-lab.pages.dev/platform-submit-queue/",
   "strategy": {
     "currentDecision": "Use hosted HTML5 game platforms first instead of buying a custom domain. Platform distribution and platform-managed ads are the zero-upfront-cost path.",
@@ -27,6 +27,12 @@
       "itch.io creator account only if we want a free browser mirror.",
       "Douyin/Bilibili accounts only after the HTML5 platform route gives a signal worth porting."
     ],
+    "officialEvidence": [
+      "CrazyGames Basic Launch disables ads and revenue share at first, and ads must be requested only through the CrazyGames SDK.",
+      "CrazyGames quality guidance emphasizes quick onboarding, clear goals, responsive controls, and visually consistent game presentation.",
+      "Yandex upload docs require SDK connection, a developer account in the Console, a separate draft per game, and moderation submission.",
+      "Yandex monetization docs describe internal advertising, interstitial blocks, rewarded blocks, sticky banners, payments, and statistics."
+    ],
     "moneyGate": "The goal is not complete until at least one platform accepts a game, real plays are visible in platform analytics, ad monetization is enabled, and revenue or payout balance is verified."
   },
   "queue": [
@@ -39,7 +45,9 @@
         "Neon Lane Dash",
         "Upload Limit Panic"
       ],
-      "submissionUrl": "https://developer.crazygames.com/",
+      "submissionUrl": "https://developer.crazygames.com/register",
+      "portalUrl": "https://developer.crazygames.com/",
+      "docsUrl": "https://docs.crazygames.com/",
       "requiredFields": [
         "Game ZIP or dist upload",
         "Title",
@@ -51,7 +59,8 @@
         "Screenshots or video",
         "SDK/ad safety note"
       ],
-      "adPolicyNote": "Standalone builds do not request ads. SDK hooks are present and ad calls remain gated until platform approval."
+      "adPolicyNote": "Standalone builds do not request ads. SDK hooks are present and ad calls remain gated until platform approval.",
+      "currentGate": "Registration/login is required before an upload form is available. Browser probe on 2026-06-02 found Submit my game -> /register."
     },
     {
       "platform": "Yandex Games",
@@ -62,7 +71,9 @@
         "Neon Lane Dash",
         "Upload Limit Panic"
       ],
-      "submissionUrl": "https://yandex.com/dev/games/",
+      "submissionUrl": "https://games.yandex.com/console",
+      "portalUrl": "https://games.yandex.com/console",
+      "docsUrl": "https://yandex.com/dev/games/doc/en/console/add-new-game",
       "requiredFields": [
         "HTML5 archive",
         "Game Ready SDK integration",
@@ -74,7 +85,8 @@
         "Controls",
         "Ad integration note"
       ],
-      "adPolicyNote": "No external links in Yandex context; ads are not called unless platform context is ready and ads=1 is present."
+      "adPolicyNote": "No external links in Yandex context; ads are not called unless platform context is ready and ads=1 is present.",
+      "currentGate": "Yandex Console login and developer account are required. The old /dev/games/ landing URL returned 404 in the probe; official docs point to the Games Console and Add app draft flow."
     },
     {
       "platform": "itch.io",
@@ -86,6 +98,8 @@
         "Upload Limit Panic"
       ],
       "submissionUrl": "https://itch.io/game/new",
+      "portalUrl": "https://itch.io/dashboard",
+      "docsUrl": "https://itch.io/docs/creators/html5",
       "requiredFields": [
         "HTML ZIP with index.html at root",
         "Cover image",
@@ -93,7 +107,8 @@
         "Controls",
         "No payments"
       ],
-      "adPolicyNote": "Use as a free browser-play page and keep payment disabled during validation."
+      "adPolicyNote": "Use as a free browser-play page and keep payment disabled during validation.",
+      "currentGate": "Creator login is required. Browser probe on 2026-06-02 reached itch.io/login and Cloudflare protection."
     }
   ],
   "games": [

@@ -81,19 +81,25 @@
             <h3>1. CrazyGames</h3>
             <p>Best current fit for short HTML5 arcade games and later platform-managed ads. Basic Launch can validate review quality before revenue.</p>
             <p><strong>Account:</strong> CrazyGames developer account with payout profile later, after acceptance and ad eligibility.</p>
-            <p><a class="button" href="https://developer.crazygames.com/">Open CrazyGames</a></p>
+            <p><strong>Current gate:</strong> Registration/login is required before an upload form is available. Browser probe on 2026-06-02 found Submit my game -&gt; /register.</p>
+            <p><a class="button" href="https://developer.crazygames.com/register">Open CrazyGames</a></p>
+            <p><a href="https://docs.crazygames.com/">Open official docs</a></p>
           </article>
 <article class="panel">
             <h3>2. Yandex Games</h3>
             <p>Second zero-domain HTML5 platform target. Builds now include Yandex SDK v2 hooks for LoadingAPI.ready, GameplayAPI start/stop, and gated ads.</p>
             <p><strong>Account:</strong> Yandex Games publisher account and payout setup when eligible.</p>
-            <p><a class="button" href="https://yandex.com/dev/games/">Open Yandex Games</a></p>
+            <p><strong>Current gate:</strong> Yandex Console login and developer account are required. The old /dev/games/ landing URL returned 404 in the probe; official docs point to the Games Console and Add app draft flow.</p>
+            <p><a class="button" href="https://games.yandex.com/console">Open Yandex Games</a></p>
+            <p><a href="https://yandex.com/dev/games/doc/en/console/add-new-game">Open official docs</a></p>
           </article>
 <article class="panel">
             <h3>3. itch.io</h3>
             <p>Fast public mirror and feedback surface. Useful for plays and screenshots, but not the main ad-revenue path.</p>
             <p><strong>Account:</strong> itch.io creator account.</p>
+            <p><strong>Current gate:</strong> Creator login is required. Browser probe on 2026-06-02 reached itch.io/login and Cloudflare protection.</p>
             <p><a class="button" href="https://itch.io/game/new">Open itch.io</a></p>
+            <p><a href="https://itch.io/docs/creators/html5">Open official docs</a></p>
           </article>
         </div>
       </section>
@@ -167,6 +173,9 @@
         </ul>
         <p><strong>Money gate:</strong> The goal is not complete until at least one platform accepts a game, real plays are visible in platform analytics, ad monetization is enabled, and revenue or payout balance is verified.</p>
         <p><strong>Account checklist:</strong> CrazyGames developer account login to submit the ZIP and later complete payout details. Yandex Games publisher account login to create the game card, upload the archive, and later complete payment details. itch.io creator account only if we want a free browser mirror. Douyin/Bilibili accounts only after the HTML5 platform route gives a signal worth porting.</p>
+        <ul>
+          <li>CrazyGames Basic Launch disables ads and revenue share at first, and ads must be requested only through the CrazyGames SDK.</li><li>CrazyGames quality guidance emphasizes quick onboarding, clear goals, responsive controls, and visually consistent game presentation.</li><li>Yandex upload docs require SDK connection, a developer account in the Console, a separate draft per game, and moderation submission.</li><li>Yandex monetization docs describe internal advertising, interstitial blocks, rewarded blocks, sticky banners, payments, and statistics.</li>
+        </ul>
       </section>
     </main>
 
