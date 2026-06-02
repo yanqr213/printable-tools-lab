@@ -1,6 +1,6 @@
 {
   "name": "Zero-Cost Monetization Map",
-  "generatedAt": "2026-06-02T19:14:13.544Z",
+  "generatedAt": "2026-06-02T19:48:47.711Z",
   "canonical": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map/",
   "map": {
     "generatedFrom": "2026-06-02 platform research and current package state",
@@ -200,6 +200,9 @@
       "zipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
       "cleanZipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-portal-clean.zip",
       "cleanPackageReportUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/clean-portal-package.json",
+      "gameSnacksZipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-gamesnacks.zip",
+      "gameSnacksPackageReportUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/gamesnacks-package.json",
+      "gameSnacksVerificationUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/gamesnacks-verification.json",
       "demoVideoUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-demo.mp4",
       "iconUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-icon-512.png",
       "coverUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-cover-16x9.png",
@@ -207,7 +210,7 @@
       "submissionNotesUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission.md",
       "submissionCopyUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
       "reviewReadinessUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/review-readiness.md",
-      "summary": "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them."
+      "summary": "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, GameDistribution, and GameSnacks adapters/packages are present; ad calls remain gated until platform review allows them."
     }
   ],
   "nextAction": "Keep overseas hosted HTML5 game platforms as the active mainline; prepare Douyin only after the current ZIP submissions enter review.",

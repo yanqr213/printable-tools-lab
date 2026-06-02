@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-02T19:14:22.160Z",
+  "generatedAt": "2026-06-02T19:46:05.848Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 61,
     "indexableRoutes": 238,
     "sitemapLocCount": 238,
-    "generatedToolInventoryAt": "2026-06-02T19:12:52.467Z",
+    "generatedToolInventoryAt": "2026-06-02T19:44:16.751Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -58,7 +58,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 28712,
+        "bytes": 28827,
         "json": null
       },
       "/robots.txt": {
@@ -81,7 +81,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 33227,
+        "bytes": 33435,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for"
       },
@@ -101,7 +101,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-02T18:54:08.780Z",
+          "generatedAt": "2026-06-02T19:14:13.544Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -983,11 +983,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 37096,
+        "bytes": 37454,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-02T18:54:08.780Z",
+          "generatedAt": "2026-06-02T19:14:13.544Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -996,6 +996,7 @@
           "platformSubmitQueue": "https://printable-tools-lab.pages.dev/platform-submit-queue.json",
           "platformSubmitCockpit": "https://printable-tools-lab.pages.dev/platform-submit-cockpit.json",
           "platformOutreachTracker": "https://printable-tools-lab.pages.dev/platform-outreach-tracker.json",
+          "portalSubmissionPack": "https://printable-tools-lab.pages.dev/portal-submission-pack.json",
           "zeroCostMonetizationMap": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map.json",
           "highIntentEntryPoints": [
             "https://printable-tools-lab.pages.dev/free-pdf-tools/",
@@ -1005,6 +1006,7 @@
             "https://printable-tools-lab.pages.dev/platform-submit-queue/",
             "https://printable-tools-lab.pages.dev/platform-submit-cockpit/",
             "https://printable-tools-lab.pages.dev/platform-outreach-tracker/",
+            "https://printable-tools-lab.pages.dev/portal-submission-pack/",
             "https://printable-tools-lab.pages.dev/zero-cost-monetization-map/",
             "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
             "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
@@ -1127,6 +1129,8 @@
             "platformSubmitCockpitJson": "https://printable-tools-lab.pages.dev/platform-submit-cockpit.json",
             "platformOutreachTracker": "https://printable-tools-lab.pages.dev/platform-outreach-tracker/",
             "platformOutreachTrackerJson": "https://printable-tools-lab.pages.dev/platform-outreach-tracker.json",
+            "portalSubmissionPack": "https://printable-tools-lab.pages.dev/portal-submission-pack/",
+            "portalSubmissionPackJson": "https://printable-tools-lab.pages.dev/portal-submission-pack.json",
             "zeroCostMonetizationMap": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map/",
             "zeroCostMonetizationMapJson": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map.json",
             "distributionPack": "https://printable-tools-lab.pages.dev/DISTRIBUTION.md",
@@ -1229,7 +1233,7 @@
               }
             ],
             "publicGist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-            "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/ce0e7f368523cd64eda4088fcb383ac13b617d5e/PrintableTools-Lab-zero-cost-share-kit.md",
+            "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/a195920d9428fd4808ea6ca576980d55c617542d/PrintableTools-Lab-zero-cost-share-kit.md",
             "publicGrowthIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1",
             "zeroDomainGame": "https://upload-limit-panic.pages.dev/",
             "zeroDomainGameRepo": "https://github.com/yanqr213/upload-limit-panic",
@@ -1650,7 +1654,7 @@
         "bytes": 18554,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-02T18:54:08.780Z",
+          "generatedAt": "2026-06-02T19:14:13.544Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -1915,7 +1919,7 @@
           ],
           "externalDiscovery": {
             "gist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-            "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/ce0e7f368523cd64eda4088fcb383ac13b617d5e/PrintableTools-Lab-zero-cost-share-kit.md",
+            "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/a195920d9428fd4808ea6ca576980d55c617542d/PrintableTools-Lab-zero-cost-share-kit.md",
             "githubIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1"
           },
           "rules": [

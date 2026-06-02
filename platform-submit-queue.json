@@ -1,6 +1,6 @@
 {
   "name": "HTML5 Platform Submit Queue",
-  "generatedAt": "2026-06-02T19:14:13.544Z",
+  "generatedAt": "2026-06-02T19:48:47.711Z",
   "canonical": "https://printable-tools-lab.pages.dev/platform-submit-queue/",
   "strategy": {
     "currentDecision": "Use hosted HTML5 game platforms first instead of buying a custom domain. Platform distribution and platform-managed ads are the zero-upfront-cost path.",
@@ -355,7 +355,7 @@
         "Licensing agreement"
       ],
       "adPolicyNote": "GameSnacks ads must happen through the GameSnacks SDK at natural breaks or optional rewarded moments; no other ads, payments, sponsorships, or external promotion inside the game.",
-      "currentGate": "Later quality route. Current builds need a dedicated GameSnacks adapter, game.json package, and requirements review before any submission claim."
+      "currentGate": "Dedicated Neon Lane Dash GameSnacks package is now ready as of 2026-06-03: release ZIP includes game.json, GameSnacks-only SDK adapter, no browser storage, no external requests, and verified marketing assets. Submission still requires GameSnacks developer access/licensing by the owner."
     },
     {
       "platform": "InstGame",
@@ -529,6 +529,9 @@
       "zipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
       "cleanZipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-portal-clean.zip",
       "cleanPackageReportUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/clean-portal-package.json",
+      "gameSnacksZipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-gamesnacks.zip",
+      "gameSnacksPackageReportUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/gamesnacks-package.json",
+      "gameSnacksVerificationUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/gamesnacks-verification.json",
       "demoVideoUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-demo.mp4",
       "iconUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-icon-512.png",
       "coverUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-cover-16x9.png",
@@ -536,7 +539,7 @@
       "submissionNotesUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission.md",
       "submissionCopyUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
       "reviewReadinessUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/review-readiness.md",
-      "summary": "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them."
+      "summary": "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, GameDistribution, and GameSnacks adapters/packages are present; ad calls remain gated until platform review allows them."
     }
   ],
   "nextAction": "Monitor Playgama review, restore CrazyGames dashboard access for the next live status check, keep Upload Limit Panic ready as the second package, and resume GamePix only after owner-written non-AI description copy is available.",

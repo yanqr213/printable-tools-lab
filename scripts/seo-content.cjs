@@ -39,6 +39,9 @@ const ZERO_DOMAIN_GAME_EXPERIMENTS = [
     zipUrl: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
     cleanZipUrl: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-portal-clean.zip",
     cleanPackageReportUrl: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/clean-portal-package.json",
+    gameSnacksZipUrl: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-gamesnacks.zip",
+    gameSnacksPackageReportUrl: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/gamesnacks-package.json",
+    gameSnacksVerificationUrl: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/gamesnacks-verification.json",
     demoVideoUrl: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-demo.mp4",
     iconUrl: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-icon-512.png",
     coverUrl: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-cover-16x9.png",
@@ -46,7 +49,7 @@ const ZERO_DOMAIN_GAME_EXPERIMENTS = [
     submissionNotesUrl: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission.md",
     submissionCopyUrl: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
     reviewReadinessUrl: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/review-readiness.md",
-    summary: "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them.",
+    summary: "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, GameDistribution, and GameSnacks adapters/packages are present; ad calls remain gated until platform review allows them.",
   },
 ];
 
@@ -205,7 +208,7 @@ const PLATFORM_SUBMIT_QUEUE = [
     docsUrl: "https://developers.google.com/gamesnacks/developer/requirements",
     requiredFields: ["Game bundle", "game.json metadata", "Marketing assets", "GameSnacks SDK", "Ad interface opportunities", "Rights clearance", "English content", "Licensing agreement"],
     adPolicyNote: "GameSnacks ads must happen through the GameSnacks SDK at natural breaks or optional rewarded moments; no other ads, payments, sponsorships, or external promotion inside the game.",
-    currentGate: "Later quality route. Current builds need a dedicated GameSnacks adapter, game.json package, and requirements review before any submission claim.",
+    currentGate: "Dedicated Neon Lane Dash GameSnacks package is now ready as of 2026-06-03: release ZIP includes game.json, GameSnacks-only SDK adapter, no browser storage, no external requests, and verified marketing assets. Submission still requires GameSnacks developer access/licensing by the owner.",
   },
   {
     platform: "InstGame",
@@ -292,7 +295,7 @@ const PORTAL_SUBMISSION_PACK = {
   purpose: "Public, copy-ready submission pack for zero-cost HTML5 game distribution. It exposes playable builds, release ZIPs, clean portal packages, demo assets, current submission status, and the safety rules for ad-funded portals.",
   leadGame: "Neon Lane Dash",
   backupGame: "Upload Limit Panic",
-  currentDecision: "Keep CrazyGames and Playgama as the active submitted/monitoring route, prepare Yandex/GameSnacks only when account and SDK gates are ready, and use InstGame, PLRun, GameTwiz, BizziBeeArcade, and BlurryGames as manual-consent backup portals instead of sending private details automatically.",
+  currentDecision: "Keep CrazyGames and Playgama as the active submitted/monitoring route, keep Neon Lane Dash GameSnacks-ready for the stricter Google-owned H5 route, and use InstGame, PLRun, GameTwiz, BizziBeeArcade, and BlurryGames as manual-consent backup portals instead of sending private details automatically.",
   candidatePolicy: [
     "Prefer official dashboards and established ad platforms before smaller form-only portals.",
     "Small portal forms often request developer name, email, rights confirmation, or revenue-split agreement; those fields need owner consent.",
@@ -316,9 +319,9 @@ const PORTAL_SUBMISSION_PACK = {
       sourceUrl: "https://developers.google.com/gamesnacks/developer/requirements",
       submissionSignal: "Google's H5 platform requires a bundle with game files, marketing assets, game.json, and SDK integration.",
       monetizationSignal: "GameSnacks monetizes games and shares revenue under its developer licensing agreement, with ads placed through the GameSnacks SDK.",
-      fit: "High-quality later route if we can make a stricter GameSnacks package.",
-      risk: "Not low-effort; requires SDK, packaging, rights, ad-opportunity, and content compliance.",
-      action: "Add a GameSnacks adapter only after the current platform reviews produce a quality signal.",
+      fit: "High-quality route now technically packaged for Neon Lane Dash.",
+      risk: "Still requires developer access, licensing agreement, rights/content approval, and platform acceptance before ads can earn.",
+      action: "Use the dedicated Neon Lane Dash GameSnacks ZIP and verification report when owner-access GameSnacks submission is available.",
     },
     {
       platform: "InstGame",
@@ -717,6 +720,8 @@ const PLATFORM_SUBMIT_COCKPIT = {
   ],
   readyAssets: {
     neonLaneDashZip: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+    neonLaneDashGameSnacksZip: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-gamesnacks.zip",
+    neonLaneDashGameSnacksVerification: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/gamesnacks-verification.json",
     uploadLimitPanicZip: "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-html5.zip",
     neonLaneDashCopy: "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
     uploadLimitPanicCopy: "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission-copy.md",
@@ -724,6 +729,20 @@ const PLATFORM_SUBMIT_COCKPIT = {
     uploadLimitPanicRelease: "https://github.com/yanqr213/upload-limit-panic/releases/tag/platform-submission-v1",
   },
   checklist: [
+    {
+      platform: "GameSnacks",
+      rank: 0,
+      currentStatus: "package_ready_developer_access_required",
+      automationLevel: "owner_access_required",
+      nextAction: "Use the Neon Lane Dash GameSnacks ZIP only inside an official GameSnacks developer/licensing flow; do not email private payout, tax, bank, or Alipay-linked details.",
+      whyNow: "This is the highest-quality ad infrastructure route after the current platform submissions: the package now has game.json, GameSnacks-only SDK adapter, storage/audio/score/ad lifecycle hooks, and verified marketing assets.",
+      manualRequirements: ["GameSnacks developer access or application", "Licensing agreement", "Rights/content confirmation", "Package upload", "Ad opportunity review", "AdSense-linked earnings later if accepted"],
+      useGame: "Neon Lane Dash",
+      uploadZip: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-gamesnacks.zip",
+      copyPack: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/gamesnacks-verification.json",
+      successSignal: "GameSnacks developer/licensing flow accepts the package for review, or returns QA changes to fix.",
+      riskControl: "The dedicated package strips external links, remote tracking, other platform SDK loaders, localStorage/sessionStorage/IndexedDB/cookies, and uses GameSnacks SDK ads/storage only.",
+    },
     {
       platform: "CrazyGames",
       rank: 1,
@@ -3908,7 +3927,7 @@ function portalSubmissionPackHtml() {
         <h1>HTML5 game portal submission pack</h1>
         <p>${escapeHtml(PORTAL_SUBMISSION_PACK.purpose)}</p>
         <p><strong>Lead:</strong> ${escapeHtml(PORTAL_SUBMISSION_PACK.leadGame)} | <strong>Backup:</strong> ${escapeHtml(PORTAL_SUBMISSION_PACK.backupGame)}</p>
-        <p><a class="button" href="/portal-submission-pack.json">Open machine-readable pack</a> <a class="button secondary" href="${escapeHtml(leadGame?.cleanZipUrl || ZERO_DOMAIN_GAME_EXPERIMENT.cleanZipUrl)}">Download lead clean ZIP</a></p>
+        <p><a class="button" href="/portal-submission-pack.json">Open machine-readable pack</a> <a class="button secondary" href="${escapeHtml(leadGame?.cleanZipUrl || ZERO_DOMAIN_GAME_EXPERIMENT.cleanZipUrl)}">Download lead clean ZIP</a>${leadGame?.gameSnacksZipUrl ? ` <a class="button secondary" href="${escapeHtml(leadGame.gameSnacksZipUrl)}">Download GameSnacks ZIP</a>` : ""}</p>
       </section>
       <section class="shell section">
         <h2>Current decision</h2>
@@ -3934,6 +3953,9 @@ function portalSubmissionPackHtml() {
               <li><a href="${escapeHtml(game.url)}">Play live build</a></li>
               <li><a href="${escapeHtml(game.cleanZipUrl)}">Download clean portal ZIP</a></li>
               <li><a href="${escapeHtml(game.zipUrl)}">Download SDK-adapter ZIP</a></li>
+              ${optionalListItem(game.gameSnacksZipUrl, "Download GameSnacks ZIP")}
+              ${optionalListItem(game.gameSnacksPackageReportUrl, "GameSnacks package report")}
+              ${optionalListItem(game.gameSnacksVerificationUrl, "GameSnacks verification report")}
               <li><a href="${escapeHtml(game.demoVideoUrl)}">Demo MP4</a></li>
               <li><a href="${escapeHtml(game.coverUrl)}">Cover image</a></li>
               <li><a href="${escapeHtml(game.iconUrl)}">Icon image</a></li>
@@ -3977,6 +3999,10 @@ function portalSubmissionPackHtml() {
         <ul>${PORTAL_SUBMISSION_PACK.notIncludedYet.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
         <p><strong>Completion gate:</strong> ${escapeHtml(PORTAL_SUBMISSION_PACK.completionGate)}</p>
       </section>`;
+}
+
+function optionalListItem(url, label) {
+  return url ? `<li><a href="${escapeHtml(url)}">${escapeHtml(label)}</a></li>` : "<!-- optional asset unavailable -->";
 }
 
 function zeroCostMonetizationMapHtml() {
