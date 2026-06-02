@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-06-02T20:05:43.439Z",
+  "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
+  "results": [
+    {
+      "label": "pages.dev",
+      "host": "printable-tools-lab.pages.dev",
+      "keyLocation": "https://printable-tools-lab.pages.dev/fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
+      "keyReachable": true,
+      "keyStatus": 200,
+      "keyMessage": "ok",
+      "urlCount": 238,
+      "submittedUrls": 0,
+      "accepted": false,
+      "status": 403,
+      "message": "{\"errorCode\":\"UserForbiddedToAccessSite\",\"message\":\"User is unauthorized to access the site. Please verify the site using the key and try again\",\"details\":null}",
+      "fallbackAccepted": 0,
+      "fallbackFailed": 10
+    },
+    {
+      "label": "github-pages",
+      "host": "yanqr213.github.io",
+      "keyLocation": "https://yanqr213.github.io/printable-tools-lab/fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
+      "keyReachable": true,
+      "keyStatus": 200,
+      "keyMessage": "ok",
+      "urlCount": 112,
+      "submittedUrls": 112,
+      "accepted": true,
+      "status": 202,
+      "message": "",
+      "fallbackAccepted": 0,
+      "fallbackFailed": 0
+    }
+  ],
+  "acceptedTargets": [
+    "github-pages"
+  ]
+}

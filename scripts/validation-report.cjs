@@ -188,6 +188,7 @@ async function readDiscoveryState() {
     && state.githubPages.pageOk
     && state.githubPages.sitemapUrlCount >= githubPagesExpectedUrlCount()
     && state.indexNow.keyFileReachable
+    && (state.indexNow.singleUrlAccepted || state.indexNow.acceptedUrlCount > 0)
     && Boolean(state.github.discoveryRelease?.url);
   return state;
 }
@@ -267,6 +268,7 @@ function githubHeaders() {
 
 async function readIndexNowState() {
   const key = readText("indexnow-key.txt").trim();
+  const latestReport = readJson("reports/indexnow-report.json", null);
   const keyFile = key ? `${key}.txt` : "";
   const keyFileExists = keyFile ? fs.existsSync(path.join(root, keyFile)) : false;
   const keyLocation = keyFile ? `${siteBase}/${keyFile}` : "";
@@ -277,6 +279,11 @@ async function readIndexNowState() {
     keyLocation,
     keyFileReachable: false,
     singleUrlAccepted: false,
+    latestReport,
+    acceptedTargets: Array.isArray(latestReport?.acceptedTargets) ? latestReport.acceptedTargets : [],
+    acceptedUrlCount: Array.isArray(latestReport?.results)
+      ? latestReport.results.reduce((sum, result) => sum + (result.accepted ? Number(result.submittedUrls || 0) : 0), 0)
+      : 0,
     error: "",
   };
   if (!key || !keyFileExists) return state;
@@ -443,6 +450,7 @@ function summarizeDiscoveryReasons(discovery) {
   if (discovery.indexNow.keyFileReachable) reasons.push("IndexNow key file is reachable from the site root.");
   else reasons.push("IndexNow key file is not reachable or does not match the configured key.");
   if (discovery.indexNow.singleUrlAccepted) reasons.push("Bing IndexNow single-URL notification accepts the key.");
+  if (discovery.indexNow.acceptedUrlCount > 0) reasons.push(`IndexNow latest report accepted ${discovery.indexNow.acceptedUrlCount} URL(s) for ${discovery.indexNow.acceptedTargets.join(", ")}.`);
   return reasons;
 }
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-02T19:59:48.068Z",
+  "generatedAt": "2026-06-02T20:07:54.766Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 61,
     "indexableRoutes": 238,
     "sitemapLocCount": 238,
-    "generatedToolInventoryAt": "2026-06-02T19:48:47.711Z",
+    "generatedToolInventoryAt": "2026-06-02T20:04:10.230Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -2877,11 +2877,11 @@
     "sites": {
       "siteEntry": [
         {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
+          "siteUrl": "https://printable-tools-lab.pages.dev/",
           "permissionLevel": "siteOwner"
         },
         {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
+          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
           "permissionLevel": "siteOwner"
         }
       ]
@@ -3005,6 +3005,49 @@
       "keyLocation": "https://printable-tools-lab.pages.dev/fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
       "keyFileReachable": true,
       "singleUrlAccepted": false,
+      "latestReport": {
+        "generatedAt": "2026-06-02T20:05:43.439Z",
+        "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
+        "results": [
+          {
+            "label": "pages.dev",
+            "host": "printable-tools-lab.pages.dev",
+            "keyLocation": "https://printable-tools-lab.pages.dev/fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
+            "keyReachable": true,
+            "keyStatus": 200,
+            "keyMessage": "ok",
+            "urlCount": 238,
+            "submittedUrls": 0,
+            "accepted": false,
+            "status": 403,
+            "message": "{\"errorCode\":\"UserForbiddedToAccessSite\",\"message\":\"User is unauthorized to access the site. Please verify the site using the key and try again\",\"details\":null}",
+            "fallbackAccepted": 0,
+            "fallbackFailed": 10
+          },
+          {
+            "label": "github-pages",
+            "host": "yanqr213.github.io",
+            "keyLocation": "https://yanqr213.github.io/printable-tools-lab/fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
+            "keyReachable": true,
+            "keyStatus": 200,
+            "keyMessage": "ok",
+            "urlCount": 112,
+            "submittedUrls": 112,
+            "accepted": true,
+            "status": 202,
+            "message": "",
+            "fallbackAccepted": 0,
+            "fallbackFailed": 0
+          }
+        ],
+        "acceptedTargets": [
+          "github-pages"
+        ]
+      },
+      "acceptedTargets": [
+        "github-pages"
+      ],
+      "acceptedUrlCount": 112,
       "error": ""
     },
     "externalDiscoveryReady": true
@@ -3041,7 +3084,8 @@
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 61 landing page link(s) and 50 tool mirror link(s).",
         "GitHub Pages discovery sitemap has 112 URL(s), including 50 tool mirror URL(s); expected at least 112.",
-        "IndexNow key file is reachable from the site root."
+        "IndexNow key file is reachable from the site root.",
+        "IndexNow latest report accepted 112 URL(s) for github-pages."
       ]
     }
   },

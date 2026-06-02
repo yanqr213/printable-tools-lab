@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-02T19:59:48.068Z
+Last generated: 2026-06-02T20:07:54.766Z
 
 ## Current Automated Status
 
@@ -42,6 +42,7 @@ Last generated: 2026-06-02T19:59:48.068Z
 - GitHub Pages discovery directory is live with 61 landing page link(s) and 50 tool mirror link(s).
 - GitHub Pages discovery sitemap has 112 URL(s), including 50 tool mirror URL(s); expected at least 112.
 - IndexNow key file is reachable from the site root.
+- IndexNow latest report accepted 112 URL(s) for github-pages.
 
 ## Monetization Gate
 
