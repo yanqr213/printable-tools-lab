@@ -181,6 +181,21 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
   },
 }, null, 2)}\n`);
 
+fs.writeFileSync(path.join(docsDir, "games.json"), `${JSON.stringify({
+  name: "HTML5 Game Submission Feed",
+  generatedAt: generatedAtIso,
+  directory: pagesUrl("html5-game-submission-pack"),
+  mainSubmissionPack: siteUrl("portal-submission-pack"),
+  purpose: "Public machine-readable feed for HTML5 game portals and reviewers. It lists playable builds, clean ZIPs, SDK packages, demo videos, review reports, and ad-safety notes without private account or payout data.",
+  games: ZERO_DOMAIN_GAME_EXPERIMENTS.map(gameFeedEntry),
+  safetyRules: [
+    "Standalone builds do not force ads.",
+    "Clean portal ZIPs remove third-party ad SDKs, external links, sponsorship CTAs, and remote tracking.",
+    "Platform ad calls are gated to approved platform contexts and natural breaks.",
+    "Payment, tax, bank, card, and Alipay-linked settlement details are not included in this public feed.",
+  ],
+}, null, 2)}\n`);
+
 fs.writeFileSync(path.join(docsDir, "robots.txt"), [
   "User-agent: *",
   "Allow: /",
@@ -312,6 +327,7 @@ function gameSubmissionPackHtml() {
         <li>Clean portal ZIPs remove third-party ad SDKs, external links, sponsorship CTAs, and remote tracking.</li>
         <li>Payment, tax, bank, card, and Alipay-linked settlement details stay inside official platform dashboards only after acceptance or payout eligibility.</li>
       </ul>
+      ${jsonLdHtml(itemListSchema("HTML5 game submission packages", ZERO_DOMAIN_GAME_EXPERIMENTS.map((game) => ({ title: game.name, url: pagesUrl(gameDiscoveryPath(game)) }))))}
     </main>
   </body>
 </html>
@@ -366,6 +382,7 @@ function gameDiscoveryHtml(game) {
         <h2>Monetization route</h2>
         <p>The package is designed for platform-managed advertising after review. It does not include a fake payout flow, fake ad clicks, or private payment details.</p>
       </section>
+      ${jsonLdHtml(videoGameSchema(game))}
     </main>
   </body>
 </html>
@@ -374,6 +391,86 @@ function gameDiscoveryHtml(game) {
 
 function optionalListItem(url, label) {
   return url ? `<li><a href="${escapeHtml(url)}">${escapeHtml(label)}</a></li>` : "<!-- optional asset unavailable -->";
+}
+
+function gameFeedEntry(game) {
+  return {
+    name: game.name,
+    summary: game.summary,
+    playUrl: game.url,
+    discoveryUrl: pagesUrl(gameDiscoveryPath(game)),
+    repositoryUrl: game.repo,
+    releaseUrl: game.releaseUrl,
+    html5ZipUrl: game.zipUrl,
+    cleanPortalZipUrl: game.cleanZipUrl,
+    cleanPackageReportUrl: game.cleanPackageReportUrl,
+    gameSnacksZipUrl: game.gameSnacksZipUrl || "",
+    gameSnacksPackageReportUrl: game.gameSnacksPackageReportUrl || "",
+    gameSnacksVerificationUrl: game.gameSnacksVerificationUrl || "",
+    demoVideoUrl: game.demoVideoUrl,
+    iconUrl: game.iconUrl,
+    coverUrl: game.coverUrl,
+    socialCardUrl: game.socialCardUrl,
+    submissionNotesUrl: game.submissionNotesUrl,
+    submissionCopyUrl: game.submissionCopyUrl,
+    reviewReadinessUrl: game.reviewReadinessUrl,
+    safeForPublicSubmission: true,
+  };
+}
+
+function videoGameSchema(game) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    name: game.name,
+    description: game.summary,
+    url: game.url,
+    image: [game.coverUrl, game.iconUrl, game.socialCardUrl].filter(Boolean),
+    applicationCategory: "Game",
+    gamePlatform: ["HTML5", "Web browser"],
+    playMode: "SinglePlayer",
+    isAccessibleForFree: true,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+    associatedMedia: game.demoVideoUrl ? {
+      "@type": "VideoObject",
+      name: `${game.name} gameplay demo`,
+      contentUrl: game.demoVideoUrl,
+      thumbnailUrl: game.coverUrl,
+    } : undefined,
+  };
+}
+
+function itemListSchema(name, items) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.title,
+      url: item.url,
+    })),
+  };
+}
+
+function jsonLdHtml(data) {
+  return `<script type="application/ld+json">${JSON.stringify(removeUndefined(data))}</script>`;
+}
+
+function removeUndefined(value) {
+  if (Array.isArray(value)) return value.map(removeUndefined);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.entries(value)
+      .filter(([, entry]) => entry !== undefined && entry !== "")
+      .map(([key, entry]) => [key, removeUndefined(entry)]));
+  }
+  return value;
 }
 
 function copyGoogleVerificationFiles() {

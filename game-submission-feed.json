@@ -1,0 +1,289 @@
+{
+  "name": "HTML5 Game Submission Feed",
+  "generatedAt": "2026-06-02T22:33:04.592Z",
+  "canonical": "https://printable-tools-lab.pages.dev/game-submission-feed.json",
+  "purpose": "Machine-readable public feed for HTML5 game portals and reviewers. It lists playable builds, clean ZIPs, SDK packages, review assets, ad-safety notes, and manual-consent gates without private account or payout data.",
+  "leadGame": "Neon Lane Dash",
+  "backupGame": "Upload Limit Panic",
+  "moneyGate": "Progress is real only when a platform accepts or publishes a game; goal completion still requires real plays, enabled compliant ads, and visible revenue or payout balance.",
+  "safetyRules": [
+    "Prefer official dashboards and established ad platforms before smaller form-only portals.",
+    "Small portal forms often request developer name, email, rights confirmation, or revenue-split agreement; those fields need owner consent.",
+    "Send only public game links, GitHub release links, ZIPs, icons, covers, demo videos, and review notes.",
+    "Keep bank, card, tax, Alipay, phone, API keys, and platform credentials inside official dashboards only.",
+    "If a portal forbids external ads, tracking, or links, submit the clean portal ZIP instead of SDK-adapter ZIPs.",
+    "Do not claim guaranteed revenue, guaranteed approval, or artificial traffic.",
+    "Lead with Neon Lane Dash because it has broader reflex-arcade appeal than Upload Limit Panic.",
+    "Use Upload Limit Panic as a second differentiated backup after the first platform gives a moderation signal.",
+    "If the target portal forbids external calls, use the clean portal ZIP links and clean-package reports.",
+    "Mention that ads are platform-gated and standalone builds do not force or fake ad impressions.",
+    "Never paste AI-generated copy into a field that explicitly asks for non-AI or owner-written content."
+  ],
+  "games": [
+    {
+      "name": "Upload Limit Panic",
+      "summary": "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them.",
+      "playUrl": "https://upload-limit-panic.pages.dev/",
+      "repositoryUrl": "https://github.com/yanqr213/upload-limit-panic",
+      "releaseUrl": "https://github.com/yanqr213/upload-limit-panic/releases/tag/platform-submission-v1",
+      "html5ZipUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-html5.zip",
+      "cleanPortalZipUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-portal-clean.zip",
+      "cleanPackageReportUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/clean-portal-package.json",
+      "gameSnacksZipUrl": "",
+      "gameSnacksPackageReportUrl": "",
+      "gameSnacksVerificationUrl": "",
+      "demoVideoUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-demo.mp4",
+      "iconUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-icon-512.png",
+      "coverUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-cover-16x9.png",
+      "socialCardUrl": "https://github.com/yanqr213/upload-limit-panic/releases/download/platform-submission-v1/upload-limit-panic-social-card.png",
+      "submissionNotesUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission.md",
+      "submissionCopyUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/platform-submission-copy.md",
+      "reviewReadinessUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/review-readiness.md",
+      "safeForPublicSubmission": true,
+      "monetizationNote": "Standalone builds do not force ads. Platform ad calls are gated to approved platform contexts and natural breaks."
+    },
+    {
+      "name": "Neon Lane Dash",
+      "summary": "A free HTML5 three-lane reflex game for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, GameDistribution, and GameSnacks adapters/packages are present; ad calls remain gated until platform review allows them.",
+      "playUrl": "https://neon-lane-dash.pages.dev/",
+      "repositoryUrl": "https://github.com/yanqr213/neon-lane-dash",
+      "releaseUrl": "https://github.com/yanqr213/neon-lane-dash/releases/tag/platform-submission-v1",
+      "html5ZipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
+      "cleanPortalZipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-portal-clean.zip",
+      "cleanPackageReportUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/clean-portal-package.json",
+      "gameSnacksZipUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-gamesnacks.zip",
+      "gameSnacksPackageReportUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/gamesnacks-package.json",
+      "gameSnacksVerificationUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/gamesnacks-verification.json",
+      "demoVideoUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-demo.mp4",
+      "iconUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-icon-512.png",
+      "coverUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-cover-16x9.png",
+      "socialCardUrl": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-social-card.png",
+      "submissionNotesUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission.md",
+      "submissionCopyUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/platform-submission-copy.md",
+      "reviewReadinessUrl": "https://github.com/yanqr213/neon-lane-dash/blob/main/reports/review-readiness.md",
+      "safeForPublicSubmission": true,
+      "monetizationNote": "Standalone builds do not force ads. Platform ad calls are gated to approved platform contexts and natural breaks."
+    }
+  ],
+  "platformQueue": [
+    {
+      "platform": "CrazyGames",
+      "priority": 1,
+      "submissionUrl": "https://developer.crazygames.com/register",
+      "docsUrl": "https://docs.crazygames.com/",
+      "currentGate": "Submitted on 2026-06-02 and awaiting review. Build ID 57a4b821-a761-4541-b2dc-69ced592d4d5. Billing details are a later payout gate and did not block submission.",
+      "adPolicyNote": "Standalone builds do not request ads. SDK hooks are present and ad calls remain gated until platform approval.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ]
+    },
+    {
+      "platform": "Yandex Games",
+      "priority": 2,
+      "submissionUrl": "https://games.yandex.com/console",
+      "docsUrl": "https://yandex.com/dev/games/doc/en/console/add-new-game",
+      "currentGate": "Yandex Console login and developer account are required. The old /dev/games/ landing URL returned 404 in the probe; official docs point to the Games Console and Add app draft flow.",
+      "adPolicyNote": "No external links in Yandex context; ads are not called unless platform context is ready and ads=1 is present.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ]
+    },
+    {
+      "platform": "itch.io",
+      "priority": 3,
+      "submissionUrl": "https://itch.io/game/new",
+      "docsUrl": "https://itch.io/docs/creators/html5",
+      "currentGate": "Creator login is required. Browser probe on 2026-06-02 reached itch.io/login and Cloudflare protection.",
+      "adPolicyNote": "Use as a free browser-play page and keep payment disabled during validation.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ]
+    },
+    {
+      "platform": "Playgama",
+      "priority": 4,
+      "submissionUrl": "https://developer.playgama.com/",
+      "docsUrl": "https://wiki.playgama.com/playgama",
+      "currentGate": "Submitted on 2026-06-02 and under review after dashboard certification passed SDK init, storage save/restore, and an interstitial ad test. Payout details remain a later earnings gate.",
+      "adPolicyNote": "Playgama Bridge is integrated behind platform-context checks. The builds send game_ready and gameplay lifecycle messages, listen for pause/audio state changes, and only grant rewarded benefits after rewarded-state confirmation.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ]
+    },
+    {
+      "platform": "GamePix",
+      "priority": 5,
+      "submissionUrl": "https://partners.gamepix.com/developers",
+      "docsUrl": "https://partners.gamepix.com/developers",
+      "currentGate": "Dashboard account is available, but create-game submission is blocked by GamePix's explicit non-AI description requirement. Owner-written 100-500 character English copy is required before continuing.",
+      "adPolicyNote": "GamePix SDK lifecycle hooks are integrated only in GamePix context. The builds wire gameLoading, gameLoaded, pause/resume, and run-end ping while leaving ads to GamePix-managed review/monetization.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ]
+    },
+    {
+      "platform": "Lagged",
+      "priority": 6,
+      "submissionUrl": "https://lagged.dev/",
+      "docsUrl": "https://lagged.dev/",
+      "currentGate": "Developer dashboard signup is required. Official page advertises submitting games to Lagged.com and earning 50% revenue share with Google AdSense.",
+      "adPolicyNote": "Lagged advertises revenue share with Google AdSense; do not add ad inducement copy or forced ad walls.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ]
+    },
+    {
+      "platform": "GameFlare",
+      "priority": 7,
+      "submissionUrl": "https://distribution.gameflare.com/developers/",
+      "docsUrl": "https://distribution.gameflare.com/developers/",
+      "currentGate": "GameFlare asks developers to send a link/game files for suitability review. Official FAQ says payout is monthly with 50 EUR minimum via PayPal or TransferWise, and revenue share is 85% on GameFlare sites or 50% on publisher sites.",
+      "adPolicyNote": "GameFlare monetizes with its ads; keep standalone review packages ad-safe and disclose platform SDK hooks are gated.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ]
+    },
+    {
+      "platform": "Kongregate",
+      "priority": 8,
+      "submissionUrl": "https://www.kongregate.com/games/new",
+      "docsUrl": "https://blog.kongregate.com/hc/en-us/articles/44395849259661-SUBMISSION-How-do-I-submit-a-game-to-Kongregate-It-s-Easy",
+      "currentGate": "Account login/upload is required. Submit the clean portal ZIP instead of the SDK adapter ZIP.",
+      "adPolicyNote": "Use the clean portal ZIP, which removes third-party ad SDKs, external links, sponsorship CTAs, and remote tracking. Let Kongregate/platform-managed monetization handle ads if accepted.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ]
+    },
+    {
+      "platform": "Newgrounds",
+      "priority": 9,
+      "submissionUrl": "https://www.newgrounds.com/projects/games",
+      "docsUrl": "https://www.newgrounds.com/wiki/creator-resources/flash-resources/html5",
+      "currentGate": "Account login/project creation is required. Use as a no-domain clean package route and feedback surface.",
+      "adPolicyNote": "Use the clean portal ZIP and keep monetization controlled by Newgrounds/platform settings after acceptance.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ]
+    },
+    {
+      "platform": "GameDistribution",
+      "priority": 10,
+      "submissionUrl": "https://gamedistribution.com/developers/",
+      "docsUrl": "https://github.com/GameDistribution/GD-HTML5",
+      "currentGate": "Developer signup, revenue-share partnership, dashboard gameId, and legal consent are required. Public form probe found reCAPTCHA/legal checkboxes, so automated submission is not appropriate.",
+      "adPolicyNote": "GameDistribution SDK is integrated only in GameDistribution context or when a gd_game_id is supplied. The build does not hardcode a fake gameId and does not request ads unless ads=1 is present.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ]
+    },
+    {
+      "platform": "Poki",
+      "priority": 11,
+      "submissionUrl": "https://developers.poki.com/",
+      "docsUrl": "https://sdk.poki.com/deals.html",
+      "currentGate": "Poki is not the immediate route. Official docs say Poki prefers Web Exclusive deals and requires mandatory requirements plus SDK after acceptance.",
+      "adPolicyNote": "Poki SDK and ad break implementation should be separate and only after acceptance; do not risk existing nonexclusive platform submissions.",
+      "submitGames": [
+        "Neon Lane Dash"
+      ]
+    },
+    {
+      "platform": "GameSnacks",
+      "priority": 12,
+      "submissionUrl": "https://developers.google.com/gamesnacks",
+      "docsUrl": "https://developers.google.com/gamesnacks/developer/requirements",
+      "currentGate": "Dedicated Neon Lane Dash GameSnacks package is now ready as of 2026-06-03: release ZIP includes game.json, GameSnacks-only SDK adapter, no browser storage, no external requests, and verified marketing assets. Submission still requires GameSnacks developer access/licensing by the owner.",
+      "adPolicyNote": "GameSnacks ads must happen through the GameSnacks SDK at natural breaks or optional rewarded moments; no other ads, payments, sponsorships, or external promotion inside the game.",
+      "submitGames": [
+        "Neon Lane Dash"
+      ]
+    },
+    {
+      "platform": "InstGame",
+      "priority": 13,
+      "submissionUrl": "https://instgame.com/",
+      "docsUrl": "https://instgame.com/about",
+      "currentGate": "Research-confirmed candidate only. Do not auto-create an account or submit contact/payout data without owner approval.",
+      "adPolicyNote": "Use the clean portal ZIP unless InstGame asks for a platform-specific SDK; do not include standalone ad calls or external promotion.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ]
+    },
+    {
+      "platform": "PLRun",
+      "priority": 14,
+      "submissionUrl": "https://plrun.com/contact/",
+      "docsUrl": "https://plrun.com/",
+      "currentGate": "Developer portal returned 410 on 2026-06-03 while homepage/contact stayed live. Park until the portal is reachable or a human reply confirms the upload route.",
+      "adPolicyNote": "Use only the clean portal ZIP if PLRun reopens a developer upload route; do not include standalone ad calls or payout details in the first contact.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ]
+    },
+    {
+      "platform": "GameTwiz",
+      "priority": 15,
+      "submissionUrl": "https://www.gametwiz.com/developers",
+      "docsUrl": "https://www.gametwiz.com/developers",
+      "currentGate": "Manual form gate. Do not submit until owner approves sending name/email and agreement confirmations.",
+      "adPolicyNote": "Use the clean portal ZIP because GameTwiz asks for self-contained packages and no external dependencies or API calls.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ]
+    },
+    {
+      "platform": "BizziBeeArcade",
+      "priority": 16,
+      "submissionUrl": "https://www.bizzibeearcade.com/submit-game.html",
+      "docsUrl": "https://www.bizzibeearcade.com/submit-game.html",
+      "currentGate": "Manual owner-consent gate because the form asks for identity/contact and agreement confirmation.",
+      "adPolicyNote": "Submit only the playable demo and clean portal package. Keep payout details out of the initial form and only use official dashboard/payment flow if accepted.",
+      "submitGames": [
+        "Neon Lane Dash",
+        "Upload Limit Panic"
+      ]
+    },
+    {
+      "platform": "BlurryGames",
+      "priority": 17,
+      "submissionUrl": "https://www.blurrygames.com/developers/",
+      "docsUrl": "https://www.blurrygames.com/developers/",
+      "currentGate": "Manual review route. The child-safety bar is stricter than our current broad-arcade package, so submit only after a compliance pass.",
+      "adPolicyNote": "Only use this if the game is clearly family-safe and stripped of external ads/tracking; their SDK should handle rewarded/display ads.",
+      "submitGames": [
+        "Neon Lane Dash"
+      ]
+    },
+    {
+      "platform": "GameMonetize",
+      "priority": 18,
+      "submissionUrl": "https://gamemonetize.co/developers",
+      "docsUrl": "https://gamemonetize.com/blog?category=monetize",
+      "currentGate": "Watchlist only, not an automatic submission target. Use after mature-platform and safer low-friction candidates are exhausted.",
+      "adPolicyNote": "Do not integrate or upload until terms, payout identity, SDK behavior, and reputation risk are reviewed against safer candidates.",
+      "submitGames": [
+        "Neon Lane Dash"
+      ]
+    }
+  ],
+  "publicPages": {
+    "portalSubmissionPack": "https://printable-tools-lab.pages.dev/portal-submission-pack/",
+    "platformSubmitQueue": "https://printable-tools-lab.pages.dev/platform-submit-queue/",
+    "platformSubmitCockpit": "https://printable-tools-lab.pages.dev/platform-submit-cockpit/",
+    "zeroCostMonetizationMap": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map/",
+    "githubPagesGamePack": "https://yanqr213.github.io/printable-tools-lab/html5-game-submission-pack/"
+  }
+}

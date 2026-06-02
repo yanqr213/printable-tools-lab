@@ -144,6 +144,9 @@ if (!headers.includes("/platform-submit-cockpit.json")) {
 if (!headers.includes("/portal-submission-pack.json")) {
   fs.appendFileSync(headersPath, "\n/portal-submission-pack.json\n  Content-Type: application/json; charset=utf-8\n");
 }
+if (!headers.includes("/game-submission-feed.json")) {
+  fs.appendFileSync(headersPath, "\n/game-submission-feed.json\n  Content-Type: application/json; charset=utf-8\n");
+}
 if (!headers.includes("/zero-cost-monetization-map.json")) {
   fs.appendFileSync(headersPath, "\n/zero-cost-monetization-map.json\n  Content-Type: application/json; charset=utf-8\n");
 }
@@ -261,6 +264,38 @@ const portalSubmissionPackJson = {
 };
 fs.writeFileSync(path.join(root, "portal-submission-pack.json"), `${JSON.stringify(portalSubmissionPackJson, null, 2)}\n`);
 
+const gameSubmissionFeedJson = {
+  name: "HTML5 Game Submission Feed",
+  generatedAt: generatedAtIso,
+  canonical: fileUrl("game-submission-feed.json"),
+  purpose: "Machine-readable public feed for HTML5 game portals and reviewers. It lists playable builds, clean ZIPs, SDK packages, review assets, ad-safety notes, and manual-consent gates without private account or payout data.",
+  leadGame: PORTAL_SUBMISSION_PACK.leadGame,
+  backupGame: PORTAL_SUBMISSION_PACK.backupGame,
+  moneyGate: PORTAL_SUBMISSION_PACK.completionGate,
+  safetyRules: [
+    ...PORTAL_SUBMISSION_PACK.candidatePolicy,
+    ...PORTAL_SUBMISSION_PACK.submissionRules,
+  ],
+  games: ZERO_DOMAIN_GAME_EXPERIMENTS.map(gameSubmissionFeedEntry),
+  platformQueue: PLATFORM_SUBMIT_QUEUE.map((item) => ({
+    platform: item.platform,
+    priority: item.priority,
+    submissionUrl: item.submissionUrl,
+    docsUrl: item.docsUrl || "",
+    currentGate: item.currentGate || "",
+    adPolicyNote: item.adPolicyNote || "",
+    submitGames: item.submitGames,
+  })),
+  publicPages: {
+    portalSubmissionPack: siteUrl("portal-submission-pack"),
+    platformSubmitQueue: siteUrl("platform-submit-queue"),
+    platformSubmitCockpit: siteUrl("platform-submit-cockpit"),
+    zeroCostMonetizationMap: siteUrl("zero-cost-monetization-map"),
+    githubPagesGamePack: "https://yanqr213.github.io/printable-tools-lab/html5-game-submission-pack/",
+  },
+};
+fs.writeFileSync(path.join(root, "game-submission-feed.json"), `${JSON.stringify(gameSubmissionFeedJson, null, 2)}\n`);
+
 const zeroCostMonetizationMapJson = {
   name: "Zero-Cost Monetization Map",
   generatedAt: generatedAtIso,
@@ -294,6 +329,7 @@ const llms = [
   `- HTML5 platform submit cockpit: ${siteUrl("platform-submit-cockpit")}`,
   `- HTML5 platform outreach tracker: ${siteUrl("platform-outreach-tracker")}`,
   `- HTML5 game portal submission pack: ${siteUrl("portal-submission-pack")}`,
+  `- HTML5 game submission feed: ${fileUrl("game-submission-feed.json")}`,
   `- Zero-cost monetization map: ${siteUrl("zero-cost-monetization-map")}`,
   `- Guides index: ${siteUrl("guides")}`,
   `- Sitemap: ${fileUrl("sitemap.xml")}`,
@@ -307,6 +343,7 @@ const llms = [
   `- Machine-readable platform submit cockpit: ${fileUrl("platform-submit-cockpit.json")}`,
   `- Machine-readable platform outreach tracker: ${fileUrl("platform-outreach-tracker.json")}`,
   `- Machine-readable portal submission pack: ${fileUrl("portal-submission-pack.json")}`,
+  `- Machine-readable game submission feed: ${fileUrl("game-submission-feed.json")}`,
   `- Machine-readable zero-cost monetization map: ${fileUrl("zero-cost-monetization-map.json")}`,
   ...(gistDiscovery?.htmlUrl ? [`- Public Gist share kit: ${gistDiscovery.htmlUrl}`] : []),
   ...(issueDiscovery?.issueUrl ? [`- Public GitHub growth issue: ${issueDiscovery.issueUrl}`] : []),
@@ -350,6 +387,7 @@ const discoveryIndex = {
   platformSubmitCockpit: fileUrl("platform-submit-cockpit.json"),
   platformOutreachTracker: fileUrl("platform-outreach-tracker.json"),
   portalSubmissionPack: fileUrl("portal-submission-pack.json"),
+  gameSubmissionFeed: fileUrl("game-submission-feed.json"),
   zeroCostMonetizationMap: fileUrl("zero-cost-monetization-map.json"),
   highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   distributionAssets: {
@@ -363,6 +401,7 @@ const discoveryIndex = {
     platformOutreachTrackerJson: fileUrl("platform-outreach-tracker.json"),
     portalSubmissionPack: siteUrl("portal-submission-pack"),
     portalSubmissionPackJson: fileUrl("portal-submission-pack.json"),
+    gameSubmissionFeedJson: fileUrl("game-submission-feed.json"),
     zeroCostMonetizationMap: siteUrl("zero-cost-monetization-map"),
     zeroCostMonetizationMapJson: fileUrl("zero-cost-monetization-map.json"),
     distributionPack: fileUrl("DISTRIBUTION.md"),
@@ -635,6 +674,31 @@ function trackedSharePostUrl(post) {
   const base = post.absoluteUrl || siteUrl(post.linkPath).replace(/\/$/, "");
   const separator = base.includes("?") ? "&" : "?";
   return `${base}${separator}utm_source=${post.channel}&utm_medium=organic`;
+}
+
+function gameSubmissionFeedEntry(game) {
+  return {
+    name: game.name,
+    summary: game.summary,
+    playUrl: game.url,
+    repositoryUrl: game.repo,
+    releaseUrl: game.releaseUrl,
+    html5ZipUrl: game.zipUrl,
+    cleanPortalZipUrl: game.cleanZipUrl,
+    cleanPackageReportUrl: game.cleanPackageReportUrl,
+    gameSnacksZipUrl: game.gameSnacksZipUrl || "",
+    gameSnacksPackageReportUrl: game.gameSnacksPackageReportUrl || "",
+    gameSnacksVerificationUrl: game.gameSnacksVerificationUrl || "",
+    demoVideoUrl: game.demoVideoUrl,
+    iconUrl: game.iconUrl,
+    coverUrl: game.coverUrl,
+    socialCardUrl: game.socialCardUrl,
+    submissionNotesUrl: game.submissionNotesUrl,
+    submissionCopyUrl: game.submissionCopyUrl,
+    reviewReadinessUrl: game.reviewReadinessUrl,
+    safeForPublicSubmission: true,
+    monetizationNote: "Standalone builds do not force ads. Platform ad calls are gated to approved platform contexts and natural breaks.",
+  };
 }
 
 function liveToolUrl(toolPath) {

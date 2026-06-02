@@ -66,6 +66,7 @@ else {
   if (!llms.includes(siteUrl("platform-outreach-tracker.json").replace(/\/$/, ""))) failures.push("llms.txt missing platform outreach tracker JSON URL.");
   if (!llms.includes(siteUrl("portal-submission-pack"))) failures.push("llms.txt missing portal submission pack URL.");
   if (!llms.includes(siteUrl("portal-submission-pack.json").replace(/\/$/, ""))) failures.push("llms.txt missing portal submission pack JSON URL.");
+  if (!llms.includes(siteUrl("game-submission-feed.json").replace(/\/$/, ""))) failures.push("llms.txt missing game submission feed JSON URL.");
   if (!llms.includes(siteUrl("zero-cost-monetization-map"))) failures.push("llms.txt missing zero-cost monetization map URL.");
   if (!llms.includes(siteUrl("zero-cost-monetization-map.json").replace(/\/$/, ""))) failures.push("llms.txt missing zero-cost monetization map JSON URL.");
   if (!llms.includes("https://upload-limit-panic.pages.dev/")) failures.push("llms.txt missing zero-domain game experiment URL.");
@@ -384,6 +385,17 @@ else {
   if (!String(data.completionGate || "").includes("visible revenue")) failures.push("portal-submission-pack.json missing visible revenue completion gate.");
 }
 
+const gameSubmissionFeedFile = path.join(root, "game-submission-feed.json");
+if (!fs.existsSync(gameSubmissionFeedFile)) failures.push("Missing game-submission-feed.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(gameSubmissionFeedFile, "utf8"));
+  if (!Array.isArray(data.games) || data.games.length < 2) failures.push("game-submission-feed.json missing public game list.");
+  if (!data.games.some((game) => game.name === "Neon Lane Dash" && String(game.gameSnacksZipUrl || "").includes("neon-lane-dash-gamesnacks.zip"))) failures.push("game-submission-feed.json missing Neon GameSnacks ZIP.");
+  if (!data.games.every((game) => String(game.cleanPortalZipUrl || "").includes("portal-clean.zip"))) failures.push("game-submission-feed.json missing clean portal ZIPs.");
+  if (!String(data.moneyGate || "").includes("visible revenue")) failures.push("game-submission-feed.json missing visible revenue money gate.");
+  if (!Array.isArray(data.safetyRules) || !data.safetyRules.some((rule) => String(rule).includes("bank"))) failures.push("game-submission-feed.json missing private-data safety rule.");
+}
+
 const zeroCostMapFile = path.join(root, "zero-cost-monetization-map", "index.html");
 if (!fs.existsSync(zeroCostMapFile)) failures.push("Missing zero-cost monetization map page.");
 else {
@@ -532,6 +544,16 @@ else {
   if (!data.gameSubmissionPack?.games?.some((game) => game.name === "Neon Lane Dash" && String(game.gameSnacksZipUrl || "").includes("neon-lane-dash-gamesnacks.zip"))) failures.push("GitHub Pages discovery tools.json missing Neon GameSnacks package.");
 }
 
+const docsGamesFile = path.join(root, "docs", "games.json");
+if (!fs.existsSync(docsGamesFile)) failures.push("Missing GitHub Pages games.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(docsGamesFile, "utf8"));
+  if (!Array.isArray(data.games) || data.games.length < 2) failures.push("GitHub Pages games.json missing games.");
+  if (!data.games.some((game) => game.name === "Neon Lane Dash" && String(game.gameSnacksVerificationUrl || "").includes("gamesnacks-verification.json"))) failures.push("GitHub Pages games.json missing Neon GameSnacks verification.");
+  if (!data.games.every((game) => String(game.cleanPortalZipUrl || "").includes("portal-clean.zip"))) failures.push("GitHub Pages games.json missing clean portal ZIPs.");
+  if (!Array.isArray(data.safetyRules) || !data.safetyRules.some((rule) => String(rule).includes("Standalone builds do not force ads"))) failures.push("GitHub Pages games.json missing ad-safety rule.");
+}
+
 const docsGamePackFile = path.join(root, "docs", "html5-game-submission-pack", "index.html");
 if (!fs.existsSync(docsGamePackFile)) failures.push("Missing GitHub Pages HTML5 game submission pack page.");
 else {
@@ -551,6 +573,7 @@ for (const [slug, name] of [["neon-lane-dash", "Neon Lane Dash"], ["upload-limit
   const html = fs.readFileSync(file, "utf8");
   if (!html.includes(name)) failures.push(`GitHub Pages game mirror page missing game name: ${slug}`);
   if (!html.includes("Review-readiness report")) failures.push(`GitHub Pages game mirror page missing review report: ${slug}`);
+  if (!html.includes('"@type":"VideoGame"')) failures.push(`GitHub Pages game mirror page missing VideoGame schema: ${slug}`);
   if (!sitemapIncludes(path.join(root, "docs", "sitemap.xml"), `https://yanqr213.github.io/printable-tools-lab/html5-game-submission-pack/${slug}/`)) failures.push(`GitHub Pages sitemap missing game mirror page: ${slug}`);
 }
 

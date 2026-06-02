@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-02T22:23:46.811Z",
+  "generatedAt": "2026-06-02T22:33:04.592Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -11,6 +11,7 @@
   "platformSubmitCockpit": "https://printable-tools-lab.pages.dev/platform-submit-cockpit.json",
   "platformOutreachTracker": "https://printable-tools-lab.pages.dev/platform-outreach-tracker.json",
   "portalSubmissionPack": "https://printable-tools-lab.pages.dev/portal-submission-pack.json",
+  "gameSubmissionFeed": "https://printable-tools-lab.pages.dev/game-submission-feed.json",
   "zeroCostMonetizationMap": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map.json",
   "highIntentEntryPoints": [
     "https://printable-tools-lab.pages.dev/free-pdf-tools/",
@@ -150,6 +151,7 @@
     "platformOutreachTrackerJson": "https://printable-tools-lab.pages.dev/platform-outreach-tracker.json",
     "portalSubmissionPack": "https://printable-tools-lab.pages.dev/portal-submission-pack/",
     "portalSubmissionPackJson": "https://printable-tools-lab.pages.dev/portal-submission-pack.json",
+    "gameSubmissionFeedJson": "https://printable-tools-lab.pages.dev/game-submission-feed.json",
     "zeroCostMonetizationMap": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map/",
     "zeroCostMonetizationMapJson": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map.json",
     "distributionPack": "https://printable-tools-lab.pages.dev/DISTRIBUTION.md",
