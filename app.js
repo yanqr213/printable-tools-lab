@@ -5258,17 +5258,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
         <h2>Use the finished pack with these free tools</h2>
         <div class="grid-3">${relatedTools.map((id) => toolCard(tools[id])).join("")}</div>
       </section>
-      <section class="shell section" id="service-request">
-        <h2>Service request copy</h2>
-        <p>Copy this into GitHub, email, a contact form, or a payment-provider message. Treat it as intent only until a real external payment is recorded.</p>
-        <textarea class="code-block request-copy-output" data-service-request-output readonly>${escapeHtml(customLocalPrintPackRequestCopy())}</textarea>
-        <div class="hero-actions">
-          <button class="button secondary" type="button" data-service-request-copy data-track-tool="custom-local-print-pack">Copy service request</button>
-          <a class="button" href="${escapeHtml(serviceRequestUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Open prefilled GitHub request</a>
-          ${serviceEmailUrl ? `<a class="button ghost" href="${escapeHtml(serviceEmailUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Open email draft</a>` : ""}
-        </div>
-        <p class="notice" data-service-request-status>Ready to copy into email, a contact form, or a public-safe request.</p>
-      </section>
+      ${customLocalPrintPackRequestBuilderHtml(serviceRequestUrl, serviceEmailUrl)}
       <section class="shell section">
         <h2>Risk controls</h2>
         <ul>
@@ -5299,6 +5289,84 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       "",
       "No payment is collected by this request. Please reply with a real external checkout link and details checklist only if the service is available.",
     ].join("\n");
+  }
+
+  function customLocalPrintPackRequestBuilderHtml(serviceRequestUrl, serviceEmailUrl) {
+    return `
+      <section class="shell section" id="service-request">
+        <h2>Build a service request</h2>
+        <p>Fill the public-safe fields once, then copy the generated request or open it as a prefilled GitHub issue. Treat it as intent only until a real external payment is recorded.</p>
+        <div class="grid-2" data-service-request-builder data-service-request-title="Service request: Custom Local Print Pack Setup">
+          <form class="panel form-grid" data-service-request-form>
+            <div class="field">
+              <label for="service-business">Business, booth, event, or service name</label>
+              <input id="service-business" name="business" autocomplete="organization" placeholder="Sunny Table Bakes">
+            </div>
+            <div class="field">
+              <label for="service-sells">What do you sell or promote?</label>
+              <textarea id="service-sells" name="sells" placeholder="Cookies, market boxes, and weekend pickup orders"></textarea>
+            </div>
+            <div class="field">
+              <label for="service-items">Up to 12 items or services with prices</label>
+              <textarea id="service-items" name="items" placeholder="Chocolate chip cookie bag - $6&#10;Brownie box - $10&#10;Market bundle - 2 for $15"></textarea>
+            </div>
+            <div class="field">
+              <label for="service-contact">QR sign link or public-safe contact method</label>
+              <input id="service-contact" name="contact" inputmode="url" placeholder="Public shop link, booking page, or contact page">
+            </div>
+            <div class="field">
+              <label for="service-style">Preferred style</label>
+              <select id="service-style" name="style">
+                <option>clean</option>
+                <option>cute</option>
+                <option>bold</option>
+                <option>minimal</option>
+                <option>local</option>
+                <option>premium</option>
+                <option>practical</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="service-date">Need-by date</label>
+              <input id="service-date" name="date" placeholder="June 22 market">
+            </div>
+            <div class="field">
+              <label for="service-checkout">Preferred checkout provider</label>
+              <select id="service-checkout" name="checkout">
+                <option>No preference</option>
+                <option>Gumroad</option>
+                <option>Payhip</option>
+                <option>Ko-fi</option>
+                <option>Stripe</option>
+                <option>Invoice provider</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="service-preference">Best public-safe contact method</label>
+              <input id="service-preference" name="preference" placeholder="Reply in GitHub issue, public email, or public website contact page">
+            </div>
+            <div class="field">
+              <label for="service-region">Country or region (optional)</label>
+              <input id="service-region" name="region" placeholder="Optional">
+            </div>
+            <div class="field">
+              <label for="service-notes">Notes</label>
+              <textarea id="service-notes" name="notes" placeholder="Avoid private customer details, tax IDs, account logins, payment data, and private addresses."></textarea>
+            </div>
+          </form>
+          <article class="panel form-grid">
+            <h3>Generated request</h3>
+            <p class="notice">No payment is collected here. Do not include card, bank, payout, tax, identity, password, private address, customer-list, or platform credential details.</p>
+            <textarea class="code-block request-copy-output" data-service-request-output readonly>${escapeHtml(customLocalPrintPackRequestCopy())}</textarea>
+            <div class="hero-actions">
+              <button class="button secondary" type="button" data-service-request-copy data-track-tool="custom-local-print-pack">Copy generated service request</button>
+              <a class="button" href="${escapeHtml(serviceRequestUrl)}" data-service-request-open data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Open generated GitHub request</a>
+              ${serviceEmailUrl ? `<a class="button ghost" href="${escapeHtml(serviceEmailUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Open email draft</a>` : ""}
+            </div>
+            <p class="notice" data-service-request-status>Ready to copy into email, a contact form, or a public-safe request.</p>
+          </article>
+        </div>
+      </section>`;
   }
 
   function customLocalPrintPackRequestUrl() {
@@ -11530,6 +11598,49 @@ ${paragraphs.join("\n")}
   }
 
   function initServiceRequestCopies(root = document) {
+    root.querySelectorAll("[data-service-request-builder]").forEach((builder) => {
+      if (builder.dataset.serviceBuilderReady === "true") return;
+      builder.dataset.serviceBuilderReady = "true";
+      const output = builder.querySelector("[data-service-request-output]");
+      const openLink = builder.querySelector("[data-service-request-open]");
+      const issueTitle = builder.dataset.serviceRequestTitle || "Service request: Custom Local Print Pack Setup";
+      const read = (name) => {
+        const field = builder.querySelector(`[name="${name}"]`);
+        return field ? String(field.value || "").trim() : "";
+      };
+      const line = (label, value) => `${label}${/[?:]$/.test(label) ? " " : ": "}${value || ""}`;
+      const update = () => {
+        const body = [
+          "I want to request the Custom Local Print Pack Setup for $29 USD.",
+          "",
+          line("Business, booth, event, or service name", read("business")),
+          line("What do you sell or promote?", read("sells")),
+          line("Up to 12 items/services with prices", read("items")),
+          line("Link or contact method for QR sign wording", read("contact")),
+          line("Preferred style: clean / cute / bold / minimal / local / premium / practical", read("style")),
+          line("Need-by date", read("date")),
+          line("Preferred checkout provider: Gumroad / Payhip / Ko-fi / Stripe / Invoice provider / No preference", read("checkout")),
+          line("Best public-safe contact method", read("preference")),
+          line("Country or region (optional)", read("region")),
+          line("Notes", read("notes")),
+          "",
+          "No payment is collected by this request. Please reply with a real external checkout link and details checklist only if the service is available. Do not include card, bank, payout, tax, identity, credential, password, private address, customer-list, or private account details.",
+        ].join("\n");
+        if (output) output.value = body;
+        if (openLink) {
+          const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+          url.searchParams.set("title", issueTitle);
+          url.searchParams.set("body", body);
+          openLink.href = url.toString();
+        }
+      };
+      builder.querySelectorAll("input, select, textarea").forEach((field) => {
+        if (field.hasAttribute("readonly")) return;
+        field.addEventListener("input", update);
+        field.addEventListener("change", update);
+      });
+      update();
+    });
     root.querySelectorAll("[data-service-request-copy]").forEach((copyButton) => {
       if (copyButton.dataset.serviceCopyReady === "true") return;
       copyButton.dataset.serviceCopyReady = "true";
@@ -11537,6 +11648,12 @@ ${paragraphs.join("\n")}
       const output = section.querySelector("[data-service-request-output]");
       const status = section.querySelector("[data-service-request-status]");
       copyButton.addEventListener("click", async () => {
+        const builder = copyButton.closest("[data-service-request-builder]");
+        if (builder) {
+          builder.querySelectorAll("input, select, textarea").forEach((field) => {
+            if (!field.hasAttribute("readonly")) field.dispatchEvent(new Event("input", { bubbles: true }));
+          });
+        }
         const text = output ? output.value || output.textContent || "" : "";
         try {
           if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);

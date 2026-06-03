@@ -521,6 +521,88 @@ function marketTableAuditRequestBuilderHtml(audit = MARKET_TABLE_PRINT_AUDIT) {
       </section>`;
 }
 
+function serviceRequestBuilderHtml(service = CUSTOM_LOCAL_PRINT_PACK_SERVICE) {
+  const requestUrl = serviceRequestUrl(service);
+  const emailUrl = serviceRequestEmailUrl(service);
+  const requestCopyActions = [
+    `<button class="button secondary" type="button" data-service-request-copy data-track-tool="${escapeHtml(service.id)}">Copy generated service request</button>`,
+    `<a class="button" data-service-request-open data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestUrl)}">Open generated GitHub request</a>`,
+    emailUrl ? `<a class="button ghost" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(emailUrl)}">Open email draft</a>` : "",
+  ].filter(Boolean).join("\n              ");
+  return `<section class="shell section" id="service-request">
+        <h2>Build a service request</h2>
+        <p>Fill the public-safe fields once, then copy the generated request or open it as a prefilled GitHub issue. Treat it as intent only until a real external payment is recorded.</p>
+        <div class="grid-2" data-service-request-builder data-service-request-title="Service request: ${escapeHtml(service.name)}">
+          <form class="panel form-grid" data-service-request-form>
+            <div class="field">
+              <label for="service-business">Business, booth, event, or service name</label>
+              <input id="service-business" name="business" autocomplete="organization" placeholder="Sunny Table Bakes">
+            </div>
+            <div class="field">
+              <label for="service-sells">What do you sell or promote?</label>
+              <textarea id="service-sells" name="sells" placeholder="Cookies, market boxes, and weekend pickup orders"></textarea>
+            </div>
+            <div class="field">
+              <label for="service-items">Up to 12 items or services with prices</label>
+              <textarea id="service-items" name="items" placeholder="Chocolate chip cookie bag - $6&#10;Brownie box - $10&#10;Market bundle - 2 for $15"></textarea>
+            </div>
+            <div class="field">
+              <label for="service-contact">QR sign link or public-safe contact method</label>
+              <input id="service-contact" name="contact" inputmode="url" placeholder="Public shop link, booking page, or contact page">
+            </div>
+            <div class="field">
+              <label for="service-style">Preferred style</label>
+              <select id="service-style" name="style">
+                <option>clean</option>
+                <option>cute</option>
+                <option>bold</option>
+                <option>minimal</option>
+                <option>local</option>
+                <option>premium</option>
+                <option>practical</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="service-date">Need-by date</label>
+              <input id="service-date" name="date" placeholder="June 22 market">
+            </div>
+            <div class="field">
+              <label for="service-checkout">Preferred checkout provider</label>
+              <select id="service-checkout" name="checkout">
+                <option>No preference</option>
+                <option>Gumroad</option>
+                <option>Payhip</option>
+                <option>Ko-fi</option>
+                <option>Stripe</option>
+                <option>Invoice provider</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="service-preference">Best public-safe contact method</label>
+              <input id="service-preference" name="preference" placeholder="Reply in GitHub issue, public email, or public website contact page">
+            </div>
+            <div class="field">
+              <label for="service-region">Country or region (optional)</label>
+              <input id="service-region" name="region" placeholder="Optional">
+            </div>
+            <div class="field">
+              <label for="service-notes">Notes</label>
+              <textarea id="service-notes" name="notes" placeholder="Avoid private customer details, tax IDs, account logins, payment data, and private addresses."></textarea>
+            </div>
+          </form>
+          <article class="panel form-grid">
+            <h3>Generated request</h3>
+            <p class="notice">No payment is collected here. Do not include card, bank, payout, tax, identity, password, private address, customer-list, or platform credential details.</p>
+            <textarea class="code-block request-copy-output" data-service-request-output readonly>${escapeHtml(serviceRequestCopy(service))}</textarea>
+            <div class="hero-actions">
+              ${requestCopyActions}
+            </div>
+            <p class="notice" data-service-request-status>Ready to copy into email, a contact form, or a public-safe request.</p>
+          </article>
+        </div>
+      </section>`;
+}
+
 function servicePaymentReplyCopy(service) {
   return [
     `Subject: ${service.name} - fit confirmed, payment link before work starts`,
@@ -4916,11 +4998,6 @@ function customLocalPrintPackServiceHtml() {
   const requestUrl = serviceRequestUrl(service);
   const emailUrl = serviceRequestEmailUrl(service);
   const pipeline = serviceOrderPipeline(service);
-  const requestCopyActions = [
-    `<button class="button secondary" type="button" data-service-request-copy data-track-tool="${escapeHtml(service.id)}">Copy service request</button>`,
-    `<a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestUrl)}">Open prefilled GitHub request</a>`,
-    emailUrl ? `<a class="button ghost" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(emailUrl)}">Open email draft</a>` : "",
-  ].filter(Boolean).join("\n          ");
   const orderAssets = [
     ["Structured request form", service.issueFormUrl],
     ["Payment-before-work reply", `/${service.publicPaymentReplyPath}`],
@@ -4987,15 +5064,7 @@ function customLocalPrintPackServiceHtml() {
           }).join("\n")}
         </div>
       </section>
-      <section class="shell section" id="service-request">
-        <h2>Service request copy</h2>
-        <p>Copy this into GitHub, email, a contact form, or a payment-provider message. Treat it as intent only until a real external payment is recorded.</p>
-        <textarea class="code-block request-copy-output" data-service-request-output readonly>${escapeHtml(serviceRequestCopy(service))}</textarea>
-        <div class="hero-actions">
-          ${requestCopyActions}
-        </div>
-        <p class="notice" data-service-request-status>Ready to copy into email, a contact form, or a public-safe request.</p>
-      </section>
+      ${serviceRequestBuilderHtml(service)}
       <section class="shell section">
         <h2>Risk controls</h2>
         <ul>${service.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>

@@ -304,6 +304,14 @@ function escapeHtml(value) {
     .replace(/"/g, "&quot;");
 }
 
+function escapeScript(value) {
+  return String(value)
+    .replace(/\\/g, "\\\\")
+    .replace(/"/g, '\\"')
+    .replace(/\n/g, "\\n")
+    .replace(/\r/g, "");
+}
+
 function pagesUrl(routePath = "") {
   const cleanPath = String(routePath).replace(/^\/+|\/+$/g, "");
   return cleanPath ? `${pagesBase}${cleanPath}/` : pagesBase;
@@ -722,8 +730,8 @@ function serviceHtml(service) {
   const requestEmailUrl = serviceRequestEmailUrl(service);
   const pipeline = serviceOrderPipeline(service);
   const requestCopyActions = [
-    `<button class="button secondary" type="button" data-service-request-copy data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}">Copy service request</button>`,
-    `<a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestUrl)}">Open prefilled GitHub request</a>`,
+    `<button class="button secondary" type="button" data-service-request-copy data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}">Copy generated service request</button>`,
+    `<a class="button" data-service-request-open data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestUrl)}">Open generated GitHub request</a>`,
     requestEmailUrl ? `<a data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestEmailUrl)}">Open email draft</a>` : "",
   ].filter(Boolean).join("\n        ");
   const orderAssets = [
@@ -770,6 +778,11 @@ function serviceHtml(service) {
       .button.secondary { background: #17313b; }
       .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
       .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+      .form-grid { display: grid; gap: 12px; }
+      .field { display: grid; gap: 6px; }
+      .field label { font-weight: 700; }
+      input, select, textarea { width: 100%; min-height: 40px; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); background: #fff; font: inherit; }
+      textarea { min-height: 92px; resize: vertical; }
       pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px; color: var(--ink); }
       .request-copy-output { width: 100%; min-height: 260px; resize: vertical; white-space: pre-wrap; overflow-wrap: anywhere; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px; color: var(--ink); font: inherit; }
       ul { padding-left: 20px; }
@@ -784,13 +797,31 @@ function serviceHtml(service) {
       <div class="actions">
         ${actionLinks}
       </div>
-      <h2>Checkout state</h2>
-      <p>Checkout is not connected on this mirror. Use the request link or service brief to capture buyer intent; money is counted only after a real external checkout is paid.</p>
-      <textarea class="request-copy-output" data-service-request-output readonly>${escapeHtml(serviceRequestCopy(service))}</textarea>
-      <div class="actions">
-        ${requestCopyActions}
+      <h2>Build a service request</h2>
+      <p>Fill the public-safe fields once, then copy the generated request or open it as a prefilled GitHub issue. Checkout is not connected on this mirror; money is counted only after a real external checkout is paid.</p>
+      <div class="grid" data-service-request-builder data-service-request-title="Service request: ${escapeHtml(service.name)}">
+        <form class="card form-grid" data-service-request-form>
+          <div class="field"><label for="service-business">Business, booth, event, or service name</label><input id="service-business" name="business" autocomplete="organization" placeholder="Sunny Table Bakes"></div>
+          <div class="field"><label for="service-sells">What do you sell or promote?</label><textarea id="service-sells" name="sells" placeholder="Cookies, market boxes, and weekend pickup orders"></textarea></div>
+          <div class="field"><label for="service-items">Up to 12 items or services with prices</label><textarea id="service-items" name="items" placeholder="Chocolate chip cookie bag - $6&#10;Brownie box - $10&#10;Market bundle - 2 for $15"></textarea></div>
+          <div class="field"><label for="service-contact">QR sign link or public-safe contact method</label><input id="service-contact" name="contact" inputmode="url" placeholder="Public shop link, booking page, or contact page"></div>
+          <div class="field"><label for="service-style">Preferred style</label><select id="service-style" name="style"><option>clean</option><option>cute</option><option>bold</option><option>minimal</option><option>local</option><option>premium</option><option>practical</option></select></div>
+          <div class="field"><label for="service-date">Need-by date</label><input id="service-date" name="date" placeholder="June 22 market"></div>
+          <div class="field"><label for="service-checkout">Preferred checkout provider</label><select id="service-checkout" name="checkout"><option>No preference</option><option>Gumroad</option><option>Payhip</option><option>Ko-fi</option><option>Stripe</option><option>Invoice provider</option></select></div>
+          <div class="field"><label for="service-preference">Best public-safe contact method</label><input id="service-preference" name="preference" placeholder="Reply in GitHub issue, public email, or public website contact page"></div>
+          <div class="field"><label for="service-region">Country or region (optional)</label><input id="service-region" name="region" placeholder="Optional"></div>
+          <div class="field"><label for="service-notes">Notes</label><textarea id="service-notes" name="notes" placeholder="Avoid private customer details, tax IDs, account logins, payment data, and private addresses."></textarea></div>
+        </form>
+        <article class="card form-grid">
+          <h3>Generated request</h3>
+          <p>No payment is collected here. Do not include card, bank, payout, tax, identity, password, private address, customer-list, or platform credential details.</p>
+          <textarea class="request-copy-output" data-service-request-output readonly>${escapeHtml(serviceRequestCopy(service))}</textarea>
+          <div class="actions">
+            ${requestCopyActions}
+          </div>
+          <p data-service-request-status>Ready to copy into email, a contact form, or a public-safe request.</p>
+        </article>
       </div>
-      <p data-service-request-status>Ready to copy into email, a contact form, or a public-safe request.</p>
       <p><a href="${trackedSiteUrl(service.slug, "service-backup")}">Open main site copy</a></p>
       <h2>Order pipeline assets</h2>
       <p>Confirm fit, send a real external checkout link, wait for paid_order_verified, then build and deliver the pack.</p>
@@ -809,11 +840,52 @@ function serviceHtml(service) {
     ${intentTrackerScriptHtml()}
     <script>
       (function () {
-        var copyButton = document.querySelector("[data-service-request-copy]");
-        var output = document.querySelector("[data-service-request-output]");
-        var status = document.querySelector("[data-service-request-status]");
+        var builder = document.querySelector("[data-service-request-builder]");
+        if (!builder) return;
+        var copyButton = builder.querySelector("[data-service-request-copy]");
+        var output = builder.querySelector("[data-service-request-output]");
+        var openLink = builder.querySelector("[data-service-request-open]");
+        var status = builder.querySelector("[data-service-request-status]");
+        var issueTitle = builder.getAttribute("data-service-request-title") || "Service request: Custom Local Print Pack Setup";
         if (!copyButton || !output) return;
+        function read(name) {
+          var field = builder.querySelector('[name="' + name + '"]');
+          return field ? String(field.value || "").trim() : "";
+        }
+        function line(label, value) {
+          return label + (/[?:]$/.test(label) ? " " : ": ") + (value || "");
+        }
+        function update() {
+          var body = [
+            "I want to request the ${escapeScript(service.name)} for $${service.priceUsd} ${escapeScript(service.currency)}.",
+            "",
+            line("Business, booth, event, or service name", read("business")),
+            line("What do you sell or promote?", read("sells")),
+            line("Up to 12 items/services with prices", read("items")),
+            line("Link or contact method for QR sign wording", read("contact")),
+            line("Preferred style: clean / cute / bold / minimal / local / premium / practical", read("style")),
+            line("Need-by date", read("date")),
+            line("Preferred checkout provider: Gumroad / Payhip / Ko-fi / Stripe / Invoice provider / No preference", read("checkout")),
+            line("Best public-safe contact method", read("preference")),
+            line("Country or region (optional)", read("region")),
+            line("Notes", read("notes")),
+            "",
+            "No payment is collected by this request. Please reply with a real external checkout link and details checklist only if the service is available. Do not include card, bank, payout, tax, identity, credential, password, private address, customer-list, or private account details."
+          ].join("\\n");
+          output.value = body;
+          if (openLink) {
+            var url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+            url.searchParams.set("title", issueTitle);
+            url.searchParams.set("body", body);
+            openLink.href = url.toString();
+          }
+        }
+        Array.prototype.slice.call(builder.querySelectorAll("input, select, textarea")).forEach(function (field) {
+          if (!field.hasAttribute("readonly")) field.addEventListener("input", update);
+          if (!field.hasAttribute("readonly")) field.addEventListener("change", update);
+        });
         copyButton.addEventListener("click", function () {
+          update();
           var text = output.value || output.textContent || "";
           function done() {
             if (status) status.textContent = "Service request copied. Send only public-safe details.";
@@ -834,6 +906,7 @@ function serviceHtml(service) {
             fail();
           }
         });
+        update();
       }());
     </script>
   </body>
