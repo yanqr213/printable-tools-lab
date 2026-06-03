@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-02T22:37:27.529Z",
+  "generatedAt": "2026-06-03T03:24:39.700Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 0,
-  "pendingCount": 6,
+  "listedCount": 1,
+  "pendingCount": 5,
   "errorCount": 1,
   "results": [
     {
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 117556,
+          "bytes": 117632,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 117556,
+          "bytes": 117632,
           "matched": false
         }
       ]
@@ -49,14 +49,14 @@
           "url": "https://listai.cc/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 318711,
+          "bytes": 318768,
           "matched": false
         },
         {
           "url": "https://listai.cc/",
           "ok": true,
           "status": 200,
-          "bytes": 318711,
+          "bytes": 318768,
           "matched": false
         }
       ]
@@ -127,8 +127,8 @@
       ],
       "submittedAt": "2026-06-03",
       "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev",
-      "status": "pending",
-      "evidenceUrl": "",
+      "status": "listed",
+      "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev",
       "checked": [
         {
           "url": "https://nologin.tools/?q=PrintableTools+Lab",
@@ -139,10 +139,10 @@
         },
         {
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev",
-          "ok": false,
-          "status": 404,
-          "bytes": 10724,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 45173,
+          "matched": true
         }
       ]
     },

@@ -1296,9 +1296,11 @@ const ZERO_DOMAIN_PLATFORM_STRATEGY = {
   latestOperationalStatus: [
     "CrazyGames: Neon Lane Dash was submitted on 2026-06-02 with build ID 57a4b821-a761-4541-b2dc-69ced592d4d5; the next live status check needs the developer dashboard session restored after the automation browser reset.",
     "Playgama: Neon Lane Dash is still Waiting for review in the My Games dashboard, and the payouts page shows no earnings until the first game is published and players interact.",
+    "Traffic check on 2026-06-03T03:29Z: the public metrics endpoint showed 265 cumulative page_view events, 7 page_view events today, 1 cumulative PDF download, 0 generation events, and 0 seller-intent events. This is early low-volume traffic, not revenue.",
+    "Game package interest on 2026-06-03T03:24Z: GitHub release assets showed Neon Lane Dash HTML5 ZIP 3 downloads, Neon Lane Dash GameSnacks ZIP 4 downloads, and Upload Limit Panic HTML5 ZIP 3 downloads. These are release-download signals, not platform plays.",
     "CrazyGames payout gate: Billing is handled through Tipalti; payment setup requires owner-only mobile 2-step verification, address, payment method, and tax forms after acceptance or payout eligibility.",
     "GamePix: logged-in dashboard reached the create-game form, but the description field explicitly asks for non-AI original copy, so owner-written 100-500 character English text is required before upload.",
-    "Upload Limit Panic: backup game is now upgraded, deployed, and release-refreshed with Playgama ad QA gating, SDK storage, and bridge config support.",
+    "Upload Limit Panic: backup game is upgraded, deployed, and release-refreshed with Playgama ad QA gating, SDK storage, and bridge config support. Keep it ready, but do not submit it to the same active reviewing account until Neon receives a first moderation signal unless a separate portal specifically asks for a second package.",
     "2026-06-03 platform expansion: GameSnacks, InstGame, GameTwiz, BizziBeeArcade, BlurryGames, GameMonetize, and PLRun were added as researched candidates, with PLRun parked because its developer portal returned 410.",
   ],
   whyNoDomainCanStillWork: [
@@ -1374,7 +1376,7 @@ const ZERO_COST_MONETIZATION_MAP = {
       needsCustomDomain: false,
       needsSales: false,
       canShowRewardedAds: true,
-      expectedFirstSignal: "Dashboard submitted/in-review status, platform reply, accepted game, then plays and ad revenue after eligibility.",
+      expectedFirstSignal: "Dashboard submitted/in-review status, platform reply, accepted game, then plays and ad revenue after eligibility. Current public site metrics show only early low-volume traffic, not platform play traffic.",
       why: "Platforms host the game and own the ad surface, so we do not need a purchased domain or AdSense site approval first.",
       currentAssets: ["Neon Lane Dash ZIP", "Upload Limit Panic ZIP", "SDK adapters", "mobile/desktop screenshots", "review-readiness reports"],
       blockers: ["CrazyGames dashboard session restore for live status checks", "Yandex publisher login", "GamePix non-AI description copy", "CAPTCHA/legal forms", "payout setup after approval", "moderation wait"],
@@ -1587,13 +1589,18 @@ const PLATFORM_SUBMIT_COCKPIT = {
   leadGame: "Neon Lane Dash",
   backupGame: "Upload Limit Panic",
   latestOperationalStatus: {
-    lastUpdated: "2026-06-02T18:53:51.005Z",
+    lastUpdated: "2026-06-03T03:29:35.635Z",
     submitted: [
       "CrazyGames: Neon Lane Dash was submitted on 2026-06-02 with build ID 57a4b821-a761-4541-b2dc-69ced592d4d5. The next live status check needs the developer dashboard session restored after the automation browser reset.",
       "Playgama: Neon Lane Dash is still Waiting for review in the My Games dashboard after passing SDK init, storage restore, and interstitial ad certification.",
     ],
     readyBackup: [
-      "Upload Limit Panic: deployed at https://upload-limit-panic.pages.dev/ and release ZIP refreshed to 53632 bytes with Playgama bridge config, storage sync, and SDK-context ad QA gating.",
+      "Upload Limit Panic: deployed at https://upload-limit-panic.pages.dev/ and release ZIP refreshed to 53632 bytes with Playgama bridge config, storage sync, and SDK-context ad QA gating. Keep it ready as backup; do not submit it to the same active reviewing account until Neon receives a first moderation signal unless a separate portal specifically asks for a second package.",
+    ],
+    trafficSignals: [
+      "PrintableTools Lab public /api/metrics check on 2026-06-03T03:29Z showed 265 cumulative page_view events, 7 page_view events today, 1 cumulative PDF download on invoice-generator, 0 generation events, and 0 seller-intent events.",
+      "GitHub release download counts on 2026-06-03T03:24Z showed Neon Lane Dash HTML5 ZIP 3 downloads, Neon Lane Dash GameSnacks ZIP 4 downloads, and Upload Limit Panic HTML5 ZIP 3 downloads. Treat these as package-interest signals, not platform plays or revenue.",
+      "Directory monitor on 2026-06-03T03:24Z found NoLogin.tools publicly listed at https://nologin.tools/tool/printable-tools-lab-pages-dev; Zearches, ListAi.cc, NoSignupTools, FreeNoSignup, and NoSubscription.org still showed pending/not matched.",
     ],
     blocked: [
       "GamePix: dashboard account is available, but the create-game form explicitly requires a unique non-AI description. Owner-written 100-500 character English copy is required before submission.",
@@ -1601,15 +1608,17 @@ const PLATFORM_SUBMIT_COCKPIT = {
     ],
     statusCheckGates: [
       "CrazyGames: Edge automation session check on 2026-06-02T18:27Z redirected to the login page, so the previously confirmed submitted build should be treated as the last verified CrazyGames state until dashboard access is restored.",
+      "CrazyGames: Browser check on 2026-06-03T03:25Z showed the public/logged-out developer portal, so no newer review feedback, acceptance, rejection, or payout signal was visible.",
       "Playgama: My Games snapshot on 2026-06-02T17:34:37Z showed Neon Lane Dash as Waiting for review.",
       "Playgama: Edge automation session check on 2026-06-02T18:27Z redirected to the login page, so the next live review-state check also needs the developer dashboard session restored.",
+      "Playgama: Browser check on 2026-06-03T03:25Z showed the login page, so no newer moderation, payout, or earnings signal was visible.",
     ],
     payoutGates: [
       "CrazyGames: Billing says payments are handled through Tipalti. Manage Payment Details requires owner-only 2-step verification with a mobile number, then Address, Payment Method, Tax Forms, and Done.",
       "Playgama: Payouts page on 2026-06-02T18:10:40Z says there is nothing to earn from yet; earnings appear after the first game is published and players interact.",
       "All payment, tax, bank, card, and Alipay-linked settlement details must stay inside official platform payout dashboards and should not be emailed, committed, or placed in site code.",
     ],
-    notRevenueYet: "No platform revenue should be expected until a submitted game is accepted, real plays appear in platform analytics, ads are enabled, and a payout balance is visible.",
+    notRevenueYet: "No platform revenue should be expected until a submitted game is accepted, real plays appear in platform analytics, ads are enabled, and a payout balance is visible. Current traffic and release-download signals are not revenue.",
   },
   notAutomatable: [
     "Dashboard signup, email verification, identity checks, payout profile, legal checkboxes, and CAPTCHA must be completed by the account owner.",
@@ -5234,6 +5243,7 @@ function platformSubmitCockpitHtml() {
           <ul>${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.submitted.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
           <p><strong>Ready backup:</strong></p>
           <ul>${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.readyBackup.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          ${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.trafficSignals ? `<p><strong>Traffic signals:</strong></p><ul>${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.trafficSignals.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : ""}
           <p><strong>Blocked:</strong></p>
           <ul>${PLATFORM_SUBMIT_COCKPIT.latestOperationalStatus.blocked.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
           <p><strong>Status check gates:</strong></p>

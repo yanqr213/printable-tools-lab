@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-03T03:20:58.382Z",
+  "generatedAt": "2026-06-03T03:34:18.522Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 66,
     "indexableRoutes": 247,
     "sitemapLocCount": 247,
-    "generatedToolInventoryAt": "2026-06-03T03:20:38.095Z",
+    "generatedToolInventoryAt": "2026-06-03T03:33:57.529Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -2962,35 +2962,21 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF size targets, image KB targets, PDF-to-Word, ATS checks, background removal, text overlays, QR codes, PDF edits, paperwork, labels, resumes, and printables.",
+      "description": "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
       "topics": [
-        "background-remover",
-        "compress-image-to-100kb",
-        "compress-pdf",
-        "compress-pdf-to-1mb",
-        "compress-pdf-to-500kb",
-        "free-tools",
-        "image-compressor",
-        "image-converter",
-        "image-resizer",
-        "image-to-pdf",
-        "image-tools",
-        "invoice-generator",
-        "no-signup",
-        "passport-photo",
-        "pdf-generator",
-        "pdf-to-jpg",
-        "pdf-to-word",
         "pdf-tools",
+        "image-tools",
         "qr-code",
-        "resume-checker"
+        "no-signup",
+        "browser-tools",
+        "free-tools"
       ],
+      "error": "GitHub API fallback used: GitHub API 403",
       "discoveryRelease": {
         "tag": "free-pdf-tools",
         "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
         "name": "Free PDF, Image, and QR Tools Without Signup"
-      },
-      "error": ""
+      }
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
@@ -3013,7 +2999,7 @@
       "keyFileReachable": true,
       "singleUrlAccepted": false,
       "latestReport": {
-        "generatedAt": "2026-06-03T02:59:57.639Z",
+        "generatedAt": "2026-06-03T03:24:03.925Z",
         "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
         "results": [
           {
@@ -3083,7 +3069,7 @@
         "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
       ],
       "externalDiscovery": [
-        "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 66 landing page link(s), 50 tool mirror link(s), and 1 game submission link(s).",
         "GitHub Pages discovery sitemap has 124 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 124.",

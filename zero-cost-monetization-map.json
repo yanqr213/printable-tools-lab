@@ -1,6 +1,6 @@
 {
   "name": "Zero-Cost Monetization Map",
-  "generatedAt": "2026-06-03T03:20:38.095Z",
+  "generatedAt": "2026-06-03T03:33:57.529Z",
   "canonical": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map/",
   "map": {
     "generatedFrom": "2026-06-02 platform research and current package state",
@@ -14,7 +14,7 @@
         "needsCustomDomain": false,
         "needsSales": false,
         "canShowRewardedAds": true,
-        "expectedFirstSignal": "Dashboard submitted/in-review status, platform reply, accepted game, then plays and ad revenue after eligibility.",
+        "expectedFirstSignal": "Dashboard submitted/in-review status, platform reply, accepted game, then plays and ad revenue after eligibility. Current public site metrics show only early low-volume traffic, not platform play traffic.",
         "why": "Platforms host the game and own the ad surface, so we do not need a purchased domain or AdSense site approval first.",
         "currentAssets": [
           "Neon Lane Dash ZIP",
