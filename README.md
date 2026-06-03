@@ -309,6 +309,7 @@ npm.cmd run register:domain -- --register
 7. Keep free tools ungated. Direct checkout is allowed only for the Local Seller Starter Kit after a real external payment link is configured; display ads still wait for approval and search visibility.
 
 Until that real checkout link exists, use the GitHub Pages seller-kit mirror as the public buyer-intent path. Its request link is not revenue; count money only from a paid provider order, payout balance, or settled payment.
+The mirror also publishes `assets/digital-products/local-seller-starter-kit-buy-request.txt` so non-GitHub buyers can copy a checkout request into email, a form, or a payment-provider message.
 
 Configure the seller-kit payment link after creating a real checkout product:
 
@@ -316,6 +317,14 @@ Configure the seller-kit payment link after creating a real checkout product:
 npm.cmd run configure:checkout -- --url https://your-payment-provider.example/product
 npm.cmd run build:routes
 npm.cmd run verify:seo
+```
+
+Deploy Cloudflare Pages only through the safe wrapper so ignored paid files and local secrets are not uploaded:
+
+```powershell
+$env:CLOUDFLARE_API_TOKEN="..."
+$env:CLOUDFLARE_ACCOUNT_ID="..."
+npm.cmd run deploy:cloudflare:safe
 ```
 
 Reference policy docs for this path:

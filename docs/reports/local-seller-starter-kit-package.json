@@ -1,6 +1,6 @@
 {
   "product": "Local Seller Starter Kit",
-  "generatedAt": "2026-06-02T23:35:34.874Z",
+  "generatedAt": "2026-06-03T00:19:18.050Z",
   "priceUsd": 9,
   "checkoutConfigured": false,
   "publicSample": {
@@ -8,14 +8,20 @@
     "url": "https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-sample.zip",
     "fileCount": 4,
     "sizeBytes": 1790,
-    "sha256": "45ae9c4287b0d7999a6e398e6c8902de0648fe49dde51e6239fd801d26249dca"
+    "sha256": "c919abe91bfc6b0fa9d009b38f8b7e8972e13bb139cd0a131c8a54650f77c720"
+  },
+  "publicRequestTemplate": {
+    "path": "assets/digital-products/local-seller-starter-kit-buy-request.txt",
+    "url": "https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-buy-request.txt",
+    "sizeBytes": 430,
+    "sha256": "a355ce501bbbc0a3922e2cd9c3cd55dc4e55160fe68bcad07e9843035f429d1f"
   },
   "privatePackage": {
     "path": "paid-deliverables/local-seller-starter-kit.zip",
     "gitIgnored": true,
     "fileCount": 13,
-    "sizeBytes": 7588,
-    "sha256": "52bf40af81071d7f82d16a41497c836eafe03da8ab68a6344d5a473d52707f23"
+    "sizeBytes": 7576,
+    "sha256": "bbcc597c833eb69bb9ee6702b9e39da9ca8561fa00f9808e0535d68a8b49d47d"
   },
   "moneyGate": "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this kit.",
   "riskControls": [

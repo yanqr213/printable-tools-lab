@@ -19,7 +19,9 @@ const LOCAL_SELLER_STARTER_KIT = {
   priceUsd: 9,
   currency: "USD",
   checkoutUrl: configuredCheckoutUrl(),
+  contactEmail: configuredContactEmail(),
   publicSamplePath: "assets/digital-products/local-seller-starter-kit-sample.zip",
+  publicRequestPath: "assets/digital-products/local-seller-starter-kit-buy-request.txt",
   privatePackagePath: "paid-deliverables/local-seller-starter-kit.zip",
   packageReportPath: "reports/local-seller-starter-kit-package.json",
   audience: [
@@ -72,6 +74,16 @@ function configuredCheckoutUrl() {
   return match ? match[1].trim() : "";
 }
 
+function configuredContactEmail() {
+  const envEmail = (process.env.PUBLIC_CONTACT_EMAIL || "").trim();
+  if (envEmail) return envEmail;
+  const configPath = path.join(__dirname, "..", "site-config.js");
+  if (!fs.existsSync(configPath)) return "";
+  const source = fs.readFileSync(configPath, "utf8");
+  const match = source.match(/contactEmail:\s*"([^"]*)"/);
+  return match ? match[1].trim() : "";
+}
+
 function productCheckoutRequestCopy(product, sampleUrl = siteUrl(product.publicSamplePath).replace(/\/$/, "")) {
   return [
     `I want to buy the ${product.name} for $${product.priceUsd} ${product.currency}.`,
@@ -82,8 +94,18 @@ function productCheckoutRequestCopy(product, sampleUrl = siteUrl(product.publicS
     "Country or region (optional):",
     "Notes:",
     "",
-    "No payment is collected in this GitHub issue. Please reply with a real external checkout link only after the payment product is ready.",
+    "No payment is collected by this request. Please reply with a real external checkout link only after the payment product is ready.",
   ].join("\n");
+}
+
+function productCheckoutEmailUrl(product, sampleUrl = siteUrl(product.publicSamplePath).replace(/\/$/, ""), contactEmail = product.contactEmail) {
+  const email = String(contactEmail || "").trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "";
+  const params = new URLSearchParams({
+    subject: `Checkout request: ${product.name}`,
+    body: productCheckoutRequestCopy(product, sampleUrl),
+  });
+  return `mailto:${email}?${params.toString()}`;
 }
 
 function productCheckoutRequestUrl(product, sampleUrl = siteUrl(product.publicSamplePath).replace(/\/$/, "")) {
@@ -3933,18 +3955,24 @@ function localSellerStarterKitHtml() {
   const product = LOCAL_SELLER_STARTER_KIT;
   const checkoutConfigured = Boolean(product.checkoutUrl);
   const checkoutRequestUrl = productCheckoutRequestUrl(product);
+  const checkoutEmailUrl = productCheckoutEmailUrl(product);
   const primaryCheckoutUrl = checkoutConfigured ? product.checkoutUrl : checkoutRequestUrl;
   const primaryCheckoutText = checkoutConfigured ? `Buy for $${product.priceUsd}` : "Request checkout link";
   const primaryCheckoutEvent = checkoutConfigured ? "seller_checkout_click" : "seller_checkout_intent";
+  const heroActions = [
+    `<a class="button" data-seller-kit-checkout data-track-event="${primaryCheckoutEvent}" data-track-tool="${escapeHtml(product.id)}" href="${escapeHtml(primaryCheckoutUrl)}">${primaryCheckoutText}</a>`,
+    `<a class="button secondary" data-track-event="seller_sample_download" data-track-tool="${escapeHtml(product.id)}" href="/${escapeHtml(product.publicSamplePath)}" download>Download sample ZIP</a>`,
+    `<a class="button ghost" href="/${escapeHtml(product.publicRequestPath)}" download>Download request template</a>`,
+    checkoutEmailUrl ? `<a class="button ghost" data-track-event="seller_checkout_intent" data-track-tool="${escapeHtml(product.id)}" href="${escapeHtml(checkoutEmailUrl)}">Email checkout request</a>` : "",
+    `<a class="button ghost" href="/tools/price-tag/">Try the free price tag tool</a>`,
+  ].filter(Boolean).join("\n          ");
   return `
       <section class="shell page-title section product-hero">
         <a href="/free-pdf-tools/">Free tools</a>
         <h1>${escapeHtml(product.headline)}</h1>
         <p>${escapeHtml(product.description)}</p>
         <div class="hero-actions">
-          <a class="button" data-seller-kit-checkout data-track-event="${primaryCheckoutEvent}" data-track-tool="${escapeHtml(product.id)}" href="${escapeHtml(primaryCheckoutUrl)}">${primaryCheckoutText}</a>
-          <a class="button secondary" data-track-event="seller_sample_download" data-track-tool="${escapeHtml(product.id)}" href="/${escapeHtml(product.publicSamplePath)}" download>Download sample ZIP</a>
-          <a class="button ghost" href="/tools/price-tag/">Try the free price tag tool</a>
+          ${heroActions}
         </div>
         <p class="notice" data-seller-kit-status>${checkoutConfigured ? "Checkout is configured through the external payment provider linked above." : "Checkout link pending: buyers can request a checkout link now, but no payment is collected here until a real Gumroad, Payhip, Ko-fi, or Stripe Payment Link is connected."}</p>
         <div class="hero-proof" aria-label="Digital product readiness">
@@ -4001,7 +4029,9 @@ function checkoutCopy(product) {
     `Short description: ${product.shortDescription}`,
     `Upload file: ${product.privatePackagePath}`,
     `Sample file: ${siteUrl(product.publicSamplePath).replace(/\/$/, "")}`,
+    `Buyer request template: ${siteUrl(product.publicRequestPath).replace(/\/$/, "")}`,
     `Buyer request link: ${productCheckoutRequestUrl(product)}`,
+    ...(productCheckoutEmailUrl(product) ? [`Email request link: ${productCheckoutEmailUrl(product)}`] : []),
     "Delivery note: Buyer receives editable CSV, Markdown, HTML, and text templates for their own local-selling workflow.",
   ].join("\n");
 }
@@ -5612,4 +5642,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, productCheckoutRequestUrl, productCheckoutRequestCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };

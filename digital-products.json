@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Digital Products",
-  "generatedAt": "2026-06-02T23:35:34.874Z",
+  "generatedAt": "2026-06-03T00:19:18.050Z",
   "canonical": "https://printable-tools-lab.pages.dev/digital-products.json",
   "products": [
     {
@@ -12,12 +12,14 @@
       "currency": "USD",
       "checkoutConfigured": false,
       "checkoutUrl": "",
-      "checkoutRequestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=Checkout+request%3A+Local+Seller+Starter+Kit&body=I+want+to+buy+the+Local+Seller+Starter+Kit+for+%249+USD.%0A%0ASample+checked%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fassets%2Fdigital-products%2Flocal-seller-starter-kit-sample.zip%0APreferred+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+other%0ABest+contact+method%3A%0ACountry+or+region+%28optional%29%3A%0ANotes%3A%0A%0ANo+payment+is+collected+in+this+GitHub+issue.+Please+reply+with+a+real+external+checkout+link+only+after+the+payment+product+is+ready.",
+      "checkoutRequestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=Checkout+request%3A+Local+Seller+Starter+Kit&body=I+want+to+buy+the+Local+Seller+Starter+Kit+for+%249+USD.%0A%0ASample+checked%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fassets%2Fdigital-products%2Flocal-seller-starter-kit-sample.zip%0APreferred+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+other%0ABest+contact+method%3A%0ACountry+or+region+%28optional%29%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+reply+with+a+real+external+checkout+link+only+after+the+payment+product+is+ready.",
+      "checkoutEmailUrl": "",
       "sampleUrl": "https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-sample.zip",
+      "requestTemplateUrl": "https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-buy-request.txt",
       "packageReportUrl": "https://printable-tools-lab.pages.dev/reports/local-seller-starter-kit-package.json",
       "privatePackagePath": "paid-deliverables/local-seller-starter-kit.zip",
       "privatePackageReady": true,
-      "privatePackageSha256": "52bf40af81071d7f82d16a41497c836eafe03da8ab68a6344d5a473d52707f23",
+      "privatePackageSha256": "bbcc597c833eb69bb9ee6702b9e39da9ca8561fa00f9808e0535d68a8b49d47d",
       "contents": [
         "30-day local promo calendar CSV",
         "price tag and SKU starter CSV",
@@ -55,7 +57,7 @@
     "Create an external checkout product in Gumroad, Payhip, Ko-fi, or Stripe Payment Links.",
     "Upload the full ZIP from paid-deliverables/local-seller-starter-kit.zip; do not commit that full paid ZIP to git.",
     "Set PUBLIC_SELLER_KIT_CHECKOUT_URL or sellerKitCheckoutUrl in site-config.js to make the public page buyable.",
-    "Until checkout is connected, route buyer intent to https://github.com/yanqr213/printable-tools-lab/issues/new?title=Checkout+request%3A+Local+Seller+Starter+Kit&body=I+want+to+buy+the+Local+Seller+Starter+Kit+for+%249+USD.%0A%0ASample+checked%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fassets%2Fdigital-products%2Flocal-seller-starter-kit-sample.zip%0APreferred+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+other%0ABest+contact+method%3A%0ACountry+or+region+%28optional%29%3A%0ANotes%3A%0A%0ANo+payment+is+collected+in+this+GitHub+issue.+Please+reply+with+a+real+external+checkout+link+only+after+the+payment+product+is+ready..",
+    "Until checkout is connected, route buyer intent to https://github.com/yanqr213/printable-tools-lab/issues/new?title=Checkout+request%3A+Local+Seller+Starter+Kit&body=I+want+to+buy+the+Local+Seller+Starter+Kit+for+%249+USD.%0A%0ASample+checked%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fassets%2Fdigital-products%2Flocal-seller-starter-kit-sample.zip%0APreferred+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+other%0ABest+contact+method%3A%0ACountry+or+region+%28optional%29%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+reply+with+a+real+external+checkout+link+only+after+the+payment+product+is+ready..",
     "Keep payout, tax, bank, card, phone, and account credentials inside the payment provider dashboard."
   ]
 }

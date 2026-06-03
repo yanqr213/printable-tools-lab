@@ -34,6 +34,7 @@
     "indexnow": "node scripts/indexnow.cjs",
     "operate": "node scripts/operate.cjs",
     "validate:ops": "node scripts/validation-report.cjs",
+    "deploy:cloudflare:safe": "node scripts/deploy-cloudflare-safe.cjs",
     "smoke": "node scripts/smoke.cjs"
   },
   "dependencies": {

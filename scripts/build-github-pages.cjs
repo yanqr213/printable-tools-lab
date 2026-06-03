@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, siteUrl, tools, landingPages } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, siteUrl, tools, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
@@ -289,6 +289,7 @@ function writeDigitalProductDiscoveryPages() {
 function copyDigitalProductPublicAssets() {
   for (const product of DIGITAL_PRODUCTS) {
     copyPublicFile(product.publicSamplePath);
+    copyPublicFile(product.publicRequestPath);
     copyPublicFile(product.packageReportPath);
   }
 }
@@ -306,11 +307,20 @@ function copyPublicFile(relativePath) {
 function digitalProductHtml(product) {
   const checkoutConfigured = Boolean(product.checkoutUrl);
   const sampleUrl = pagesAssetUrl(product.publicSamplePath);
+  const requestTemplateUrl = pagesAssetUrl(product.publicRequestPath);
   const packageReportUrl = pagesAssetUrl(product.packageReportPath);
   const checkoutRequestUrl = productCheckoutRequestUrl(product, sampleUrl);
+  const checkoutEmailUrl = productCheckoutEmailUrl(product, sampleUrl);
   const checkoutTargetUrl = checkoutConfigured ? product.checkoutUrl : checkoutRequestUrl;
   const checkoutLabel = checkoutConfigured ? `Buy for $${product.priceUsd}` : "Request checkout link";
   const checkoutCopy = productCheckoutRequestCopy(product, sampleUrl);
+  const actionLinks = [
+    `<a class="button" href="${sampleUrl}" download>Download sample ZIP</a>`,
+    `<a class="button secondary" href="${escapeHtml(checkoutTargetUrl)}">${escapeHtml(checkoutLabel)}</a>`,
+    `<a href="${requestTemplateUrl}" download>Download request template</a>`,
+    checkoutEmailUrl ? `<a href="${escapeHtml(checkoutEmailUrl)}">Email checkout request</a>` : "",
+    `<a href="${packageReportUrl}">View package report</a>`,
+  ].filter(Boolean).join("\n        ");
   return `<!doctype html>
 <html lang="en">
   <head>
@@ -345,9 +355,7 @@ function digitalProductHtml(product) {
       <h1>${escapeHtml(product.headline)}</h1>
       <p>${escapeHtml(product.description)}</p>
       <div class="actions">
-        <a class="button" href="${sampleUrl}" download>Download sample ZIP</a>
-        <a class="button secondary" href="${escapeHtml(checkoutTargetUrl)}">${escapeHtml(checkoutLabel)}</a>
-        <a href="${packageReportUrl}">View package report</a>
+        ${actionLinks}
       </div>
       <h2>Checkout state</h2>
       <p>${checkoutConfigured ? "Checkout is configured through an external payment provider. Revenue is still counted only from paid provider orders." : "Checkout is not connected yet. Use the request link to capture buyer intent without taking payment; a real Gumroad, Payhip, Ko-fi, or Stripe Payment Link is still required before paid promotion."}</p>
@@ -538,8 +546,11 @@ function productFeedEntry(product) {
     checkoutConfigured: Boolean(product.checkoutUrl),
     checkoutUrl: product.checkoutUrl || "",
     checkoutRequestUrl: productCheckoutRequestUrl(product, pagesAssetUrl(product.publicSamplePath)),
+    checkoutEmailUrl: productCheckoutEmailUrl(product, pagesAssetUrl(product.publicSamplePath)),
     sampleUrl: siteUrl(product.publicSamplePath).replace(/\/$/, ""),
     discoverySampleUrl: pagesAssetUrl(product.publicSamplePath),
+    requestTemplateUrl: siteUrl(product.publicRequestPath).replace(/\/$/, ""),
+    discoveryRequestTemplateUrl: pagesAssetUrl(product.publicRequestPath),
     packageReportUrl: siteUrl(product.packageReportPath).replace(/\/$/, ""),
     discoveryPackageReportUrl: pagesAssetUrl(product.packageReportPath),
     privatePackagePath: product.privatePackagePath,

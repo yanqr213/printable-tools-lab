@@ -220,6 +220,8 @@ For the current strategy, payment can be enabled for the Local Seller Starter Ki
 
 While the checkout link is pending, the buyer-facing fallback is the GitHub Pages mirror at `https://yanqr213.github.io/printable-tools-lab/local-seller-starter-kit/`. It hosts the sample ZIP locally and links to a prefilled checkout-request issue. Treat those requests as purchase intent only; revenue is still zero until a payment provider shows a paid order, payout balance, or settled payment.
 
+For buyers who do not use GitHub, the mirror also hosts `assets/digital-products/local-seller-starter-kit-buy-request.txt`. Copy that text into an email, contact form, payment-provider message, or manual checkout reply. It is still only purchase intent, not revenue.
+
 Compliance priority:
 
 1. Use a provider that supports the owner's country, identity, tax profile, and payout bank account.
@@ -237,6 +239,8 @@ Practical order for the current paid product:
 3. China-friendly platform with official Alipay settlement only if it fits the product and account identity.
 
 The generated paid ZIP includes `payment-provider-setup.md`, `checkout-listing-copy.md`, and `buyer-request-template.txt` so the checkout product can be published with copy/paste fields once a real provider account is available.
+
+For Cloudflare Pages, use `npm.cmd run deploy:cloudflare:safe` after setting `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. The script builds, verifies, copies only git-tracked files into a temporary deploy directory, scans for forbidden paths/content, and refuses to deploy `paid-deliverables`, `.env`, or secrets.
 
 ## First Launch Keywords
 

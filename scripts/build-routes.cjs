@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
 const { strToU8, zipSync } = require("fflate");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, productCheckoutRequestUrl, productCheckoutRequestCopy, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -691,10 +691,13 @@ function buildDigitalProductPackages() {
     const fullFiles = localSellerKitFiles(product, false);
     const sampleFiles = localSellerKitFiles(product, true);
     const publicSamplePath = path.join(root, product.publicSamplePath);
+    const publicRequestPath = path.join(root, product.publicRequestPath);
     const privatePackagePath = path.join(root, product.privatePackagePath);
     fs.mkdirSync(path.dirname(publicSamplePath), { recursive: true });
     fs.mkdirSync(path.dirname(privatePackagePath), { recursive: true });
     fs.writeFileSync(publicSamplePath, zipFromTextFiles(sampleFiles));
+    fs.mkdirSync(path.dirname(publicRequestPath), { recursive: true });
+    fs.writeFileSync(publicRequestPath, `${productCheckoutRequestCopy(product)}\n`);
     fs.writeFileSync(privatePackagePath, zipFromTextFiles(fullFiles));
     const report = {
       product: product.name,
@@ -707,6 +710,12 @@ function buildDigitalProductPackages() {
         fileCount: Object.keys(sampleFiles).length,
         sizeBytes: fs.statSync(publicSamplePath).size,
         sha256: sha256File(publicSamplePath),
+      },
+      publicRequestTemplate: {
+        path: product.publicRequestPath,
+        url: fileUrl(product.publicRequestPath),
+        sizeBytes: fs.statSync(publicRequestPath).size,
+        sha256: sha256File(publicRequestPath),
       },
       privatePackage: {
         path: product.privatePackagePath,
@@ -932,7 +941,9 @@ function digitalProductEntry(product) {
     checkoutConfigured: Boolean(product.checkoutUrl),
     checkoutUrl: product.checkoutUrl,
     checkoutRequestUrl: productCheckoutRequestUrl(product),
+    checkoutEmailUrl: productCheckoutEmailUrl(product),
     sampleUrl: fileUrl(product.publicSamplePath),
+    requestTemplateUrl: fileUrl(product.publicRequestPath),
     packageReportUrl: fileUrl(product.packageReportPath),
     privatePackagePath: product.privatePackagePath,
     privatePackageReady: Boolean(report?.privatePackage?.sizeBytes),

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-03T00:01:37.920Z",
+  "generatedAt": "2026-06-03T00:23:27.623Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 66,
     "indexableRoutes": 244,
     "sitemapLocCount": 244,
-    "generatedToolInventoryAt": "2026-06-02T23:35:34.874Z",
+    "generatedToolInventoryAt": "2026-06-03T00:19:18.050Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -2037,7 +2037,7 @@
           "ok": true,
           "today": "2026-06-03",
           "totals": {
-            "page_view": 258,
+            "page_view": 259,
             "generate_pdf": 0,
             "download_pdf": 1,
             "generate_file": 0,
@@ -2047,7 +2047,7 @@
             "ai_ideas_apply": 0
           },
           "todayTotals": {
-            "page_view": 0,
+            "page_view": 1,
             "generate_pdf": 0,
             "download_pdf": 0,
             "generate_file": 0,
@@ -2820,13 +2820,13 @@
             },
             {
               "source": "referral",
-              "page_view": 35,
+              "page_view": 36,
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
               "today": {
-                "page_view": 0,
+                "page_view": 1,
                 "generate_pdf": 0,
                 "download_pdf": 0,
                 "generate_file": 0,
@@ -2855,7 +2855,7 @@
     "metrics": {
       "today": "2026-06-03",
       "totals": {
-        "page_view": 258,
+        "page_view": 259,
         "generate_pdf": 0,
         "download_pdf": 1,
         "generate_file": 0,
@@ -2865,7 +2865,7 @@
         "ai_ideas_apply": 0
       },
       "todayTotals": {
-        "page_view": 0,
+        "page_view": 1,
         "generate_pdf": 0,
         "download_pdf": 0,
         "generate_file": 0,
@@ -2954,84 +2954,8 @@
     }
   },
   "searchConsole": {
-    "available": true,
-    "sites": {
-      "siteEntry": [
-        {
-          "siteUrl": "https://printable-tools-lab.pages.dev/",
-          "permissionLevel": "siteOwner"
-        },
-        {
-          "siteUrl": "https://yanqr213.github.io/printable-tools-lab/",
-          "permissionLevel": "siteOwner"
-        }
-      ]
-    },
-    "sitemaps": {
-      "sitemap": [
-        {
-          "path": "https://printable-tools-lab.pages.dev/sitemap.xml",
-          "lastSubmitted": "2026-06-02T21:01:14.216Z",
-          "isPending": true,
-          "isSitemapsIndex": false,
-          "warnings": "0",
-          "errors": "0"
-        },
-        {
-          "path": "https://printable-tools-lab.pages.dev/sitemap.xml/",
-          "lastSubmitted": "2026-06-01T08:44:49.432Z",
-          "isPending": true,
-          "isSitemapsIndex": false,
-          "warnings": "0",
-          "errors": "0"
-        }
-      ]
-    },
-    "githubPagesSitemaps": {
-      "sitemap": [
-        {
-          "path": "https://yanqr213.github.io/printable-tools-lab/sitemap.xml",
-          "lastSubmitted": "2026-06-02T23:13:08.072Z",
-          "isPending": true,
-          "isSitemapsIndex": false,
-          "warnings": "0",
-          "errors": "0"
-        }
-      ]
-    },
-    "performance": {
-      "siteUrl": "https://printable-tools-lab.pages.dev/",
-      "startDate": "2026-05-06",
-      "endDate": "2026-06-02",
-      "rowCount": 0,
-      "totals": {
-        "clicks": 0,
-        "impressions": 0
-      },
-      "rows": []
-    },
-    "inspected": [
-      {
-        "url": "https://printable-tools-lab.pages.dev/",
-        "verdict": "NEUTRAL",
-        "coverageState": "Crawled - currently not indexed",
-        "indexingState": "INDEXING_ALLOWED",
-        "lastCrawlTime": "2026-05-31T16:42:59Z"
-      },
-      {
-        "url": "https://printable-tools-lab.pages.dev/tools/",
-        "verdict": "NEUTRAL",
-        "coverageState": "URL is unknown to Google",
-        "indexingState": "INDEXING_STATE_UNSPECIFIED"
-      },
-      {
-        "url": "https://printable-tools-lab.pages.dev/free-pdf-tools/",
-        "verdict": "NEUTRAL",
-        "coverageState": "URL is unknown to Google",
-        "indexingState": "INDEXING_STATE_UNSPECIFIED"
-      }
-    ],
-    "errors": []
+    "available": false,
+    "reason": "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
   },
   "discovery": {
     "github": {
@@ -3089,7 +3013,7 @@
       "keyFileReachable": true,
       "singleUrlAccepted": false,
       "latestReport": {
-        "generatedAt": "2026-06-02T23:10:47.220Z",
+        "generatedAt": "2026-06-03T00:03:06.999Z",
         "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
         "results": [
           {
@@ -3152,15 +3076,11 @@
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
         "Real AdSense publisher ID is not configured, so ads remain disabled.",
+        "Search Console API data was unavailable during this run.",
         "Search Console has no impressions/indexed sample yet, so applying now is premature."
       ],
       "searchConsole": [
-        "Main Search Console property verified: yes.",
-        "GitHub Pages discovery property verified: yes.",
-        "Sitemap status: pending=true, warnings=0, errors=0.",
-        "GitHub Pages discovery sitemap: pending=true, warnings=0, errors=0.",
-        "Search performance: 0 impressions, 0 clicks.",
-        "2 inspected sample URL(s) are still unknown to Google."
+        "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
       ],
       "externalDiscovery": [
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",

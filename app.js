@@ -5007,8 +5007,10 @@
     const checkoutReady = Boolean(checkoutUrl);
     const productUrl = "/local-seller-starter-kit/";
     const sampleUrl = "/assets/digital-products/local-seller-starter-kit-sample.zip";
+    const requestTemplateUrl = "/assets/digital-products/local-seller-starter-kit-buy-request.txt";
     const sampleAbsoluteUrl = absoluteUrl(sampleUrl);
     const checkoutRequestUrl = sellerKitCheckoutRequestUrl(sampleAbsoluteUrl);
+    const checkoutEmailUrl = sellerKitCheckoutEmailUrl(sampleAbsoluteUrl);
     const primaryCheckoutUrl = checkoutReady ? checkoutUrl : checkoutRequestUrl;
     const primaryCheckoutText = checkoutReady ? "Buy for $9" : "Request checkout link";
     const primaryCheckoutEvent = checkoutReady ? "seller_checkout_click" : "seller_checkout_intent";
@@ -5048,6 +5050,8 @@
         <div class="hero-actions">
           <a class="button" href="${escapeHtml(primaryCheckoutUrl)}" data-track-event="${primaryCheckoutEvent}" data-track-tool="local-seller-starter-kit">${primaryCheckoutText}</a>
           <a class="button secondary" href="${sampleUrl}" download data-track-event="seller_sample_download" data-track-tool="local-seller-starter-kit">Download sample ZIP</a>
+          <a class="button ghost" href="${requestTemplateUrl}" download>Download request template</a>
+          ${checkoutEmailUrl ? `<a class="button ghost" href="${escapeHtml(checkoutEmailUrl)}" data-track-event="seller_checkout_intent" data-track-tool="local-seller-starter-kit">Email checkout request</a>` : ""}
           <a class="button ghost" href="/tools/price-tag/">Try the free price tag tool</a>
         </div>
         <p class="notice">${checkoutReady ? "Checkout is configured through the external payment provider linked above." : "Checkout link pending: buyers can request a checkout link now, but no payment is collected here until a real Gumroad, Payhip, Ko-fi, or Stripe Payment Link is connected."}</p>
@@ -5072,8 +5076,9 @@
 Price: $${price} USD
 Upload file: paid-deliverables/local-seller-starter-kit.zip
 Sample file: ${sampleAbsoluteUrl}
+Buyer request template: ${absoluteUrl(requestTemplateUrl)}
 Buyer request link: ${checkoutRequestUrl}
-Delivery: instant ZIP download after payment through the checkout provider</pre>
+${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: instant ZIP download after payment through the checkout provider</pre>
       </section>
       <section class="shell section">
         <h2>Risk controls</h2>
@@ -5100,6 +5105,25 @@ Delivery: instant ZIP download after payment through the checkout provider</pre>
       "Notes:",
       "",
       "No payment is collected in this GitHub issue. Please reply with a real external checkout link only after the payment product is ready.",
+    ].join("\n"));
+    return url.toString();
+  }
+
+  function sellerKitCheckoutEmailUrl(sampleUrl) {
+    const email = String(CONFIG.contactEmail || "").trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "";
+    const url = new URL(`mailto:${email}`);
+    url.searchParams.set("subject", "Checkout request: Local Seller Starter Kit");
+    url.searchParams.set("body", [
+      "I want to buy the Local Seller Starter Kit for $9 USD.",
+      "",
+      `Sample checked: ${sampleUrl}`,
+      "Preferred checkout provider: Gumroad / Payhip / Ko-fi / Stripe / other",
+      "Best contact method:",
+      "Country or region (optional):",
+      "Notes:",
+      "",
+      "No payment is collected in this email. Please reply with a real external checkout link only after the payment product is ready.",
     ].join("\n"));
     return url.toString();
   }
