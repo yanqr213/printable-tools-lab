@@ -21,6 +21,7 @@
       .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
       .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
       pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px; color: var(--ink); }
+      .request-copy-output { width: 100%; min-height: 260px; resize: vertical; white-space: pre-wrap; overflow-wrap: anywhere; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px; color: var(--ink); font: inherit; }
       ul { padding-left: 20px; }
       @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
     </style>
@@ -42,7 +43,7 @@
       </div>
       <h2>Checkout state</h2>
       <p>Checkout is not connected on this mirror. Use the request link or service brief to capture buyer intent; money is counted only after a real external checkout is paid.</p>
-      <pre>I want to request the Custom Local Print Pack Setup for $29 USD.
+      <textarea class="request-copy-output" data-service-request-output readonly>I want to request the Custom Local Print Pack Setup for $29 USD.
 
 Business, booth, event, or service name:
 What do you sell or promote?
@@ -55,7 +56,12 @@ Best contact method:
 Country or region (optional):
 Notes:
 
-No payment is collected by this request. Please reply with a real external checkout link and details checklist only if the service is available.</pre>
+No payment is collected by this request. Please reply with a real external checkout link and details checklist only if the service is available.</textarea>
+      <div class="actions">
+        <button class="button secondary" type="button" data-service-request-copy>Copy service request</button>
+        <a class="button" href="https://github.com/yanqr213/printable-tools-lab/issues/new?title=Service+request%3A+Custom+Local+Print+Pack+Setup&amp;body=I+want+to+request+the+Custom+Local+Print+Pack+Setup+for+%2429+USD.%0A%0ABusiness%2C+booth%2C+event%2C+or+service+name%3A%0AWhat+do+you+sell+or+promote%3F%0AUp+to+12+items%2Fservices+with+prices%3A%0ALink+or+contact+method+for+QR+sign+wording%3A%0APreferred+style%3A+clean+%2F+cute+%2F+bold+%2F+minimal+%2F+local+%2F+premium+%2F+practical%0ANeed-by+date%3A%0APreferred+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+other%0ABest+contact+method%3A%0ACountry+or+region+%28optional%29%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+reply+with+a+real+external+checkout+link+and+details+checklist+only+if+the+service+is+available.">Open prefilled GitHub request</a>
+      </div>
+      <p data-service-request-status>Ready to copy into email, a contact form, or a public-safe request.</p>
       <p><a href="https://printable-tools-lab.pages.dev/custom-local-print-pack/?utm_source=github-pages&utm_medium=organic&utm_campaign=discovery_mirror&utm_content=service-backup">Open main site copy</a></p>
       <h2>Order pipeline assets</h2>
       <p>Confirm fit, send a real external checkout link, wait for paid_order_verified, then build and deliver the pack.</p>
@@ -84,5 +90,34 @@ No payment is collected by this request. Please reply with a real external check
       <p><strong>Money gate:</strong> Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this service.</p>
       <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Custom Local Print Pack Setup","description":"A $29 done-for-you setup request for one simple printable seller pack: price tags, flyer copy, QR sign text, coupon wording, packing slip starter rows, and a one-page launch checklist.","url":"https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/","areaServed":"Online","provider":{"@type":"Organization","name":"PrintableTools Lab","url":"https://printable-tools-lab.pages.dev/"},"offers":{"@type":"Offer","price":"29","priceCurrency":"USD","availability":"https://schema.org/PreOrder","url":"https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/"}}</script>
     </main>
+    <script>
+      (function () {
+        var copyButton = document.querySelector("[data-service-request-copy]");
+        var output = document.querySelector("[data-service-request-output]");
+        var status = document.querySelector("[data-service-request-status]");
+        if (!copyButton || !output) return;
+        copyButton.addEventListener("click", function () {
+          var text = output.value || output.textContent || "";
+          function done() {
+            if (status) status.textContent = "Service request copied. Send only public-safe details.";
+          }
+          function fail() {
+            if (status) status.textContent = "Copy failed. Select the request text and copy it manually.";
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done).catch(fail);
+            return;
+          }
+          output.focus();
+          output.select();
+          try {
+            document.execCommand("copy");
+            done();
+          } catch (error) {
+            fail();
+          }
+        });
+      }());
+    </script>
   </body>
 </html>

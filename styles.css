@@ -521,6 +521,12 @@ main {
   resize: vertical;
 }
 
+.request-copy-output {
+  width: 100%;
+  min-height: 260px;
+  resize: vertical;
+}
+
 .signature-field {
   gap: 9px;
 }

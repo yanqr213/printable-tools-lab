@@ -119,7 +119,7 @@
       <section class="shell section" id="service-request">
         <h2>Service request copy</h2>
         <p>Copy this into GitHub, email, a contact form, or a payment-provider message. Treat it as intent only until a real external payment is recorded.</p>
-        <pre class="code-block">I want to request the Custom Local Print Pack Setup for $29 USD.
+        <textarea class="code-block request-copy-output" data-service-request-output readonly>I want to request the Custom Local Print Pack Setup for $29 USD.
 
 Business, booth, event, or service name:
 What do you sell or promote?
@@ -132,7 +132,12 @@ Best contact method:
 Country or region (optional):
 Notes:
 
-No payment is collected by this request. Please reply with a real external checkout link and details checklist only if the service is available.</pre>
+No payment is collected by this request. Please reply with a real external checkout link and details checklist only if the service is available.</textarea>
+        <div class="hero-actions">
+          <button class="button secondary" type="button" data-service-request-copy data-track-tool="custom-local-print-pack">Copy service request</button>
+          <a class="button" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="https://github.com/yanqr213/printable-tools-lab/issues/new?title=Service+request%3A+Custom+Local+Print+Pack+Setup&amp;body=I+want+to+request+the+Custom+Local+Print+Pack+Setup+for+%2429+USD.%0A%0ABusiness%2C+booth%2C+event%2C+or+service+name%3A%0AWhat+do+you+sell+or+promote%3F%0AUp+to+12+items%2Fservices+with+prices%3A%0ALink+or+contact+method+for+QR+sign+wording%3A%0APreferred+style%3A+clean+%2F+cute+%2F+bold+%2F+minimal+%2F+local+%2F+premium+%2F+practical%0ANeed-by+date%3A%0APreferred+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+other%0ABest+contact+method%3A%0ACountry+or+region+%28optional%29%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+reply+with+a+real+external+checkout+link+and+details+checklist+only+if+the+service+is+available.">Open prefilled GitHub request</a>
+        </div>
+        <p class="notice" data-service-request-status>Ready to copy into email, a contact form, or a public-safe request.</p>
       </section>
       <section class="shell section">
         <h2>Risk controls</h2>

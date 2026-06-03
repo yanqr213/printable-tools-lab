@@ -487,6 +487,9 @@ else {
   if (!html.includes("Custom Local Print Pack Setup")) failures.push("Service page missing service name.");
   if (!html.includes("Request service checkout")) failures.push("Service page missing service request CTA.");
   if (!html.includes("Open structured request form")) failures.push("Service page missing structured issue form CTA.");
+  if (!html.includes("Copy service request")) failures.push("Service page missing low-friction copy request CTA.");
+  if (!html.includes("data-service-request-copy")) failures.push("Service page missing service request copy hook.");
+  if (!html.includes("data-service-request-output")) failures.push("Service page missing service request copy output.");
   if (!html.includes("Download service brief")) failures.push("Service page missing service brief CTA.");
   if (!html.includes("custom-local-print-pack-request.txt")) failures.push("Service page missing public request brief URL.");
   if (!html.includes("custom-local-print-pack-payment-reply.txt")) failures.push("Service page missing payment reply asset URL.");
@@ -499,6 +502,7 @@ else {
   if (!html.includes("service:delivery")) failures.push("Service page missing private delivery command.");
   if (!html.includes("paid_order_verified")) failures.push("Service page missing paid order pipeline status.");
   if (!html.includes("service_request_intent")) failures.push("Service page missing service intent tracking.");
+  if (!html.includes("Open prefilled GitHub request")) failures.push("Service page missing prefilled request fallback.");
   if (!html.includes('"@type":"Service"')) failures.push("Service page missing Service schema.");
   if (!html.includes("Revenue is proven only after a real payment provider")) failures.push("Service page missing real revenue gate.");
   if (!sitemap.includes(`<loc>${siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}</loc>`)) failures.push("Sitemap missing custom local print pack service page.");
@@ -1011,6 +1015,9 @@ else {
   if (!html.includes("Custom Local Print Pack Setup")) failures.push("GitHub Pages service mirror missing title.");
   if (!html.includes("Request service checkout")) failures.push("GitHub Pages service mirror missing request CTA.");
   if (!html.includes("Open structured request form")) failures.push("GitHub Pages service mirror missing structured issue form CTA.");
+  if (!html.includes("Copy service request")) failures.push("GitHub Pages service mirror missing low-friction copy request CTA.");
+  if (!html.includes("data-service-request-copy")) failures.push("GitHub Pages service mirror missing service request copy hook.");
+  if (!html.includes("data-service-request-output")) failures.push("GitHub Pages service mirror missing service request copy output.");
   if (!html.includes("custom-local-print-pack-request.txt")) failures.push("GitHub Pages service mirror missing request brief URL.");
   if (!html.includes("custom-local-print-pack-payment-reply.txt")) failures.push("GitHub Pages service mirror missing payment reply URL.");
   if (!html.includes("custom-local-print-pack-fulfillment-checklist.txt")) failures.push("GitHub Pages service mirror missing fulfillment checklist URL.");

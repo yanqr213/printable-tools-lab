@@ -4540,6 +4540,7 @@
     window.scrollTo(0, 0);
     app.focus({ preventScroll: true });
     setTimeout(initAuditRequestBuilders, 0);
+    setTimeout(initServiceRequestCopies, 0);
     setTimeout(pushVisibleAds, 0);
   }
 
@@ -5260,7 +5261,13 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       <section class="shell section" id="service-request">
         <h2>Service request copy</h2>
         <p>Copy this into GitHub, email, a contact form, or a payment-provider message. Treat it as intent only until a real external payment is recorded.</p>
-        <pre class="code-block">${escapeHtml(customLocalPrintPackRequestCopy())}</pre>
+        <textarea class="code-block request-copy-output" data-service-request-output readonly>${escapeHtml(customLocalPrintPackRequestCopy())}</textarea>
+        <div class="hero-actions">
+          <button class="button secondary" type="button" data-service-request-copy data-track-tool="custom-local-print-pack">Copy service request</button>
+          <a class="button" href="${escapeHtml(serviceRequestUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Open prefilled GitHub request</a>
+          ${serviceEmailUrl ? `<a class="button ghost" href="${escapeHtml(serviceEmailUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Open email draft</a>` : ""}
+        </div>
+        <p class="notice" data-service-request-status>Ready to copy into email, a contact form, or a public-safe request.</p>
       </section>
       <section class="shell section">
         <h2>Risk controls</h2>
@@ -11512,13 +11519,38 @@ ${paragraphs.join("\n")}
               document.execCommand("copy");
             }
             if (status) status.textContent = "Request copied. Send only public-safe details.";
-            track("audit_request_copy", { tool: "market-table-print-audit" });
+            track("audit_request_intent", { tool: "market-table-print-audit" });
           } catch {
             if (status) status.textContent = "Copy failed. Select the generated request and copy it manually.";
           }
         });
       }
       update();
+    });
+  }
+
+  function initServiceRequestCopies(root = document) {
+    root.querySelectorAll("[data-service-request-copy]").forEach((copyButton) => {
+      if (copyButton.dataset.serviceCopyReady === "true") return;
+      copyButton.dataset.serviceCopyReady = "true";
+      const section = copyButton.closest("section") || root;
+      const output = section.querySelector("[data-service-request-output]");
+      const status = section.querySelector("[data-service-request-status]");
+      copyButton.addEventListener("click", async () => {
+        const text = output ? output.value || output.textContent || "" : "";
+        try {
+          if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);
+          else if (output && "select" in output) {
+            output.focus();
+            output.select();
+            document.execCommand("copy");
+          }
+          if (status) status.textContent = "Service request copied. Send only public-safe details.";
+          track("service_request_intent", { tool: copyButton.dataset.trackTool || "custom-local-print-pack" });
+        } catch {
+          if (status) status.textContent = "Copy failed. Select the request text and copy it manually.";
+        }
+      });
     });
   }
 

@@ -655,6 +655,11 @@ function serviceHtml(service) {
   const requestUrl = serviceRequestUrl(service);
   const requestEmailUrl = serviceRequestEmailUrl(service);
   const pipeline = serviceOrderPipeline(service);
+  const requestCopyActions = [
+    `<button class="button secondary" type="button" data-service-request-copy>Copy service request</button>`,
+    `<a class="button" href="${escapeHtml(requestUrl)}">Open prefilled GitHub request</a>`,
+    requestEmailUrl ? `<a href="${escapeHtml(requestEmailUrl)}">Open email draft</a>` : "",
+  ].filter(Boolean).join("\n        ");
   const orderAssets = [
     ["Structured request form", service.issueFormUrl],
     ["Payment-before-work reply", paymentReplyUrl],
@@ -700,6 +705,7 @@ function serviceHtml(service) {
       .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
       .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
       pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px; color: var(--ink); }
+      .request-copy-output { width: 100%; min-height: 260px; resize: vertical; white-space: pre-wrap; overflow-wrap: anywhere; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px; color: var(--ink); font: inherit; }
       ul { padding-left: 20px; }
       @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
     </style>
@@ -714,7 +720,11 @@ function serviceHtml(service) {
       </div>
       <h2>Checkout state</h2>
       <p>Checkout is not connected on this mirror. Use the request link or service brief to capture buyer intent; money is counted only after a real external checkout is paid.</p>
-      <pre>${escapeHtml(serviceRequestCopy(service))}</pre>
+      <textarea class="request-copy-output" data-service-request-output readonly>${escapeHtml(serviceRequestCopy(service))}</textarea>
+      <div class="actions">
+        ${requestCopyActions}
+      </div>
+      <p data-service-request-status>Ready to copy into email, a contact form, or a public-safe request.</p>
       <p><a href="${trackedSiteUrl(service.slug, "service-backup")}">Open main site copy</a></p>
       <h2>Order pipeline assets</h2>
       <p>Confirm fit, send a real external checkout link, wait for paid_order_verified, then build and deliver the pack.</p>
@@ -730,6 +740,35 @@ function serviceHtml(service) {
       <p><strong>Money gate:</strong> ${escapeHtml(service.successGate)}</p>
       ${jsonLdHtml(serviceSchema(service))}
     </main>
+    <script>
+      (function () {
+        var copyButton = document.querySelector("[data-service-request-copy]");
+        var output = document.querySelector("[data-service-request-output]");
+        var status = document.querySelector("[data-service-request-status]");
+        if (!copyButton || !output) return;
+        copyButton.addEventListener("click", function () {
+          var text = output.value || output.textContent || "";
+          function done() {
+            if (status) status.textContent = "Service request copied. Send only public-safe details.";
+          }
+          function fail() {
+            if (status) status.textContent = "Copy failed. Select the request text and copy it manually.";
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done).catch(fail);
+            return;
+          }
+          output.focus();
+          output.select();
+          try {
+            document.execCommand("copy");
+            done();
+          } catch (error) {
+            fail();
+          }
+        });
+      }());
+    </script>
   </body>
 </html>
 `;

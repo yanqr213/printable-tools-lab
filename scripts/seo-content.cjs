@@ -4916,6 +4916,11 @@ function customLocalPrintPackServiceHtml() {
   const requestUrl = serviceRequestUrl(service);
   const emailUrl = serviceRequestEmailUrl(service);
   const pipeline = serviceOrderPipeline(service);
+  const requestCopyActions = [
+    `<button class="button secondary" type="button" data-service-request-copy data-track-tool="${escapeHtml(service.id)}">Copy service request</button>`,
+    `<a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestUrl)}">Open prefilled GitHub request</a>`,
+    emailUrl ? `<a class="button ghost" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(emailUrl)}">Open email draft</a>` : "",
+  ].filter(Boolean).join("\n          ");
   const orderAssets = [
     ["Structured request form", service.issueFormUrl],
     ["Payment-before-work reply", `/${service.publicPaymentReplyPath}`],
@@ -4985,7 +4990,11 @@ function customLocalPrintPackServiceHtml() {
       <section class="shell section" id="service-request">
         <h2>Service request copy</h2>
         <p>Copy this into GitHub, email, a contact form, or a payment-provider message. Treat it as intent only until a real external payment is recorded.</p>
-        <pre class="code-block">${escapeHtml(serviceRequestCopy(service))}</pre>
+        <textarea class="code-block request-copy-output" data-service-request-output readonly>${escapeHtml(serviceRequestCopy(service))}</textarea>
+        <div class="hero-actions">
+          ${requestCopyActions}
+        </div>
+        <p class="notice" data-service-request-status>Ready to copy into email, a contact form, or a public-safe request.</p>
       </section>
       <section class="shell section">
         <h2>Risk controls</h2>

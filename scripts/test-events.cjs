@@ -119,6 +119,15 @@ async function main() {
     env,
   });
   assert(serviceIntentResponse.status === 200, "Event collector should accept service request intent events");
+  const serviceCopyIntentResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "service_request_intent", tool: "custom-local-print-pack", path: "/custom-local-print-pack/", source: "direct" }),
+    }),
+    env,
+  });
+  assert(serviceCopyIntentResponse.status === 200, "Event collector should accept copied service request intent events");
   const auditIntentResponse = await eventSource.onRequestPost({
     request: new Request("https://example.test/api/event", {
       method: "POST",
@@ -128,6 +137,15 @@ async function main() {
     env,
   });
   assert(auditIntentResponse.status === 200, "Event collector should accept audit request intent events");
+  const auditCopyIntentResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "audit_request_intent", tool: "market-table-print-audit", path: "/market-table-print-audit/", source: "direct" }),
+    }),
+    env,
+  });
+  assert(auditCopyIntentResponse.status === 200, "Event collector should accept copied audit request intent events");
   const sellerDownloadResponse = await eventSource.onRequestPost({
     request: new Request("https://example.test/api/event", {
       method: "POST",
@@ -143,16 +161,19 @@ async function main() {
   assert(sellerKit.seller_sample_download === 1, "Metrics should count seller sample downloads");
   const service = sellerMetrics.tools.find((row) => row.tool === "custom-local-print-pack");
   const audit = sellerMetrics.tools.find((row) => row.tool === "market-table-print-audit");
-  assert(service.service_request_intent === 1, "Metrics should count service request intent");
-  assert(audit.audit_request_intent === 1, "Metrics should count audit request intent");
+  assert(service.service_request_intent === 2, "Metrics should count service request and copy intent");
+  assert(audit.audit_request_intent === 2, "Metrics should count audit request and copy intent");
   assert(sellerMetrics.totals.seller_checkout_intent === 1, "Metrics should count total seller checkout intent");
-  assert(sellerMetrics.totals.service_request_intent === 1, "Metrics should count total service request intent");
-  assert(sellerMetrics.totals.audit_request_intent === 1, "Metrics should count total audit request intent");
+  assert(sellerMetrics.totals.service_request_intent === 2, "Metrics should count total service request intent");
+  assert(sellerMetrics.totals.audit_request_intent === 2, "Metrics should count total audit request intent");
   const githubPages = sellerMetrics.sources.find((row) => row.source === "github-pages");
   assert(githubPages.seller_checkout_intent === 1, "Metrics should count seller intent by source");
   assert(githubPages.audit_request_intent === 1, "Metrics should count audit intent by source");
   const community = sellerMetrics.sources.find((row) => row.source === "community");
   assert(community.service_request_intent === 1, "Metrics should count service intent by source");
+  const direct = sellerMetrics.sources.find((row) => row.source === "direct");
+  assert(direct.service_request_intent === 1, "Metrics should count copied service intent by source");
+  assert(direct.audit_request_intent === 1, "Metrics should count copied audit intent by source");
   console.log("Event metrics test passed.");
 }
 
