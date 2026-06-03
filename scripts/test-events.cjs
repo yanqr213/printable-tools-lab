@@ -65,6 +65,16 @@ async function main() {
     assert(directoryMetrics.sources.some((row) => row.source === source), `Metrics should include ${source} source row`);
   }
 
+  const githubPagesViewResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=UTF-8" },
+      body: JSON.stringify({ name: "page_view", tool: "site", path: "/custom-local-print-pack/", source: "github-pages" }),
+    }),
+    env,
+  });
+  assert(githubPagesViewResponse.status === 200, "Event collector should accept beacon-style GitHub Pages page views");
+
   const rejectResponse = await eventSource.onRequestPost({
     request: new Request("https://example.test/api/event", {
       method: "POST",
@@ -185,6 +195,7 @@ async function main() {
   assert(sellerMetrics.totals.service_request_intent === 3, "Metrics should count total service request intent");
   assert(sellerMetrics.totals.audit_request_intent === 3, "Metrics should count total audit request intent");
   const githubPages = sellerMetrics.sources.find((row) => row.source === "github-pages");
+  assert(githubPages.page_view === 1, "Metrics should count GitHub Pages page views by source");
   assert(githubPages.seller_checkout_intent === 1, "Metrics should count seller intent by source");
   assert(githubPages.service_request_intent === 1, "Metrics should count beacon service intent by source");
   assert(githubPages.audit_request_intent === 2, "Metrics should count audit intent by source");

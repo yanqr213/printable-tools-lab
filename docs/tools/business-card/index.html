@@ -104,7 +104,7 @@
         function pagePath() {
           return (window.location.pathname || "/").replace(/^\/printable-tools-lab/, "") || "/";
         }
-        function sendIntent(name, tool) {
+        function sendEvent(name, tool) {
           if (!name) return;
           var payload = JSON.stringify({
             name: name,
@@ -128,8 +128,9 @@
         document.addEventListener("click", function (event) {
           var target = event.target.closest ? event.target.closest("[data-track-event]") : null;
           if (!target) return;
-          sendIntent(target.getAttribute("data-track-event"), target.getAttribute("data-track-tool"));
+          sendEvent(target.getAttribute("data-track-event"), target.getAttribute("data-track-tool"));
         }, true);
+        sendEvent("page_view", "site");
       }());
     </script>
   </body>

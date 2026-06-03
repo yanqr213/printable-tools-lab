@@ -10,6 +10,7 @@ const GITHUB_PAGES_EVENT_ENDPOINT = "https://printable-tools-lab.pages.dev/api/e
 function requireGithubPagesIntentTracking(html, label, events = []) {
   if (!html.includes(GITHUB_PAGES_EVENT_ENDPOINT)) failures.push(`${label} missing GitHub Pages event endpoint.`);
   if (!html.includes('source: "github-pages"')) failures.push(`${label} missing github-pages source tracking.`);
+  if (!html.includes('sendEvent("page_view", "site")')) failures.push(`${label} missing GitHub Pages page_view tracking.`);
   for (const event of events) {
     if (!html.includes(`data-track-event="${event}"`)) failures.push(`${label} missing ${event} tracking hook.`);
   }
