@@ -262,7 +262,7 @@ fs.writeFileSync(path.join(docsDir, "service-sales-pack.json"), `${JSON.stringif
   moneyGate: CUSTOM_LOCAL_PRINT_PACK_SERVICE.successGate,
 }, null, 2)}\n`);
 
-fs.writeFileSync(path.join(docsDir, "games.json"), `${JSON.stringify({
+const githubPagesGameSubmissionFeed = {
   name: "HTML5 Game Submission Feed",
   generatedAt: generatedAtIso,
   directory: pagesUrl("html5-game-submission-pack"),
@@ -275,7 +275,10 @@ fs.writeFileSync(path.join(docsDir, "games.json"), `${JSON.stringify({
     "Platform ad calls are gated to approved platform contexts and natural breaks.",
     "Payment, tax, bank, card, and Alipay-linked settlement details are not included in this public feed.",
   ],
-}, null, 2)}\n`);
+};
+
+fs.writeFileSync(path.join(docsDir, "games.json"), `${JSON.stringify(githubPagesGameSubmissionFeed, null, 2)}\n`);
+fs.writeFileSync(path.join(docsDir, "game-submission-feed.json"), `${JSON.stringify(githubPagesGameSubmissionFeed, null, 2)}\n`);
 
 fs.writeFileSync(path.join(docsDir, "robots.txt"), [
   "User-agent: *",

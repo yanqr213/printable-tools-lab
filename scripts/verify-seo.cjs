@@ -1260,6 +1260,15 @@ else {
   if (!Array.isArray(data.safetyRules) || !data.safetyRules.some((rule) => String(rule).includes("Standalone builds do not force ads"))) failures.push("GitHub Pages games.json missing ad-safety rule.");
 }
 
+const docsGameSubmissionFeedFile = path.join(root, "docs", "game-submission-feed.json");
+if (!fs.existsSync(docsGameSubmissionFeedFile)) failures.push("Missing GitHub Pages game-submission-feed.json alias.");
+else {
+  const data = JSON.parse(fs.readFileSync(docsGameSubmissionFeedFile, "utf8"));
+  if (!Array.isArray(data.games) || data.games.length < 2) failures.push("GitHub Pages game-submission-feed.json alias missing games.");
+  if (!data.games.some((game) => game.name === "Neon Lane Dash" && String(game.gameSnacksVerificationUrl || "").includes("gamesnacks-verification.json"))) failures.push("GitHub Pages game-submission-feed.json alias missing Neon GameSnacks verification.");
+  if (!Array.isArray(data.safetyRules) || !data.safetyRules.some((rule) => String(rule).includes("Payment, tax, bank"))) failures.push("GitHub Pages game-submission-feed.json alias missing private-data rule.");
+}
+
 const docsGamePackFile = path.join(root, "docs", "html5-game-submission-pack", "index.html");
 if (!fs.existsSync(docsGamePackFile)) failures.push("Missing GitHub Pages HTML5 game submission pack page.");
 else {

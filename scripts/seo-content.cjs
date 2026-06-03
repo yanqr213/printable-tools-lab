@@ -1379,8 +1379,8 @@ const ZERO_DOMAIN_PLATFORM_STRATEGY = {
   latestOperationalStatus: [
     "CrazyGames: Neon Lane Dash was submitted on 2026-06-02 with build ID 57a4b821-a761-4541-b2dc-69ced592d4d5; the next live status check needs the developer dashboard session restored after the automation browser reset.",
     "Playgama: Neon Lane Dash is still Waiting for review in the My Games dashboard, and the payouts page shows no earnings until the first game is published and players interact.",
-    "Traffic check on 2026-06-03T03:29Z: the public metrics endpoint showed 265 cumulative page_view events, 7 page_view events today, 1 cumulative PDF download, 0 generation events, and 0 seller-intent events. This is early low-volume traffic, not revenue.",
-    "Game package interest on 2026-06-03T03:24Z: GitHub release assets showed Neon Lane Dash HTML5 ZIP 3 downloads, Neon Lane Dash GameSnacks ZIP 4 downloads, and Upload Limit Panic HTML5 ZIP 3 downloads. These are release-download signals, not platform plays.",
+    "Traffic check on 2026-06-03T05:23Z: the public metrics endpoint showed 274 cumulative page_view events, 16 page_view events today, 2 cumulative PDF downloads, 1 PDF download today, and no visible seller/service/audit intent events. This is early low-volume traffic, not revenue.",
+    "Game package interest on 2026-06-03T05:30Z: GitHub release assets showed Neon Lane Dash HTML5 ZIP 3 downloads, Neon Lane Dash GameSnacks ZIP 4 downloads, and Upload Limit Panic HTML5 ZIP 3 downloads. These are release-download signals, not platform plays.",
     "CrazyGames payout gate: Billing is handled through Tipalti; payment setup requires owner-only mobile 2-step verification, address, payment method, and tax forms after acceptance or payout eligibility.",
     "GamePix: logged-in dashboard reached the create-game form, but the description field explicitly asks for non-AI original copy, so owner-written 100-500 character English text is required before upload.",
     "Upload Limit Panic: backup game is upgraded, deployed, and release-refreshed with Playgama ad QA gating, SDK storage, and bridge config support. Keep it ready, but do not submit it to the same active reviewing account until Neon receives a first moderation signal unless a separate portal specifically asks for a second package.",
@@ -1672,7 +1672,7 @@ const PLATFORM_SUBMIT_COCKPIT = {
   leadGame: "Neon Lane Dash",
   backupGame: "Upload Limit Panic",
   latestOperationalStatus: {
-    lastUpdated: "2026-06-03T03:29:35.635Z",
+    lastUpdated: "2026-06-03T05:30:32.000Z",
     submitted: [
       "CrazyGames: Neon Lane Dash was submitted on 2026-06-02 with build ID 57a4b821-a761-4541-b2dc-69ced592d4d5. The next live status check needs the developer dashboard session restored after the automation browser reset.",
       "Playgama: Neon Lane Dash is still Waiting for review in the My Games dashboard after passing SDK init, storage restore, and interstitial ad certification.",
@@ -1681,8 +1681,8 @@ const PLATFORM_SUBMIT_COCKPIT = {
       "Upload Limit Panic: deployed at https://upload-limit-panic.pages.dev/ and release ZIP refreshed to 53632 bytes with Playgama bridge config, storage sync, and SDK-context ad QA gating. Keep it ready as backup; do not submit it to the same active reviewing account until Neon receives a first moderation signal unless a separate portal specifically asks for a second package.",
     ],
     trafficSignals: [
-      "PrintableTools Lab public /api/metrics check on 2026-06-03T03:29Z showed 265 cumulative page_view events, 7 page_view events today, 1 cumulative PDF download on invoice-generator, 0 generation events, and 0 seller-intent events.",
-      "GitHub release download counts on 2026-06-03T03:24Z showed Neon Lane Dash HTML5 ZIP 3 downloads, Neon Lane Dash GameSnacks ZIP 4 downloads, and Upload Limit Panic HTML5 ZIP 3 downloads. Treat these as package-interest signals, not platform plays or revenue.",
+      "PrintableTools Lab public /api/metrics check on 2026-06-03T05:23Z showed 274 cumulative page_view events, 16 page_view events today, 2 cumulative PDF downloads on invoice-generator, 1 PDF download today, 0 generation events, and no visible seller/service/audit intent events.",
+      "GitHub release download counts on 2026-06-03T05:30Z showed Neon Lane Dash HTML5 ZIP 3 downloads, Neon Lane Dash GameSnacks ZIP 4 downloads, and Upload Limit Panic HTML5 ZIP 3 downloads. Treat these as package-interest signals, not platform plays or revenue.",
       "Directory monitor on 2026-06-03T03:24Z found NoLogin.tools publicly listed at https://nologin.tools/tool/printable-tools-lab-pages-dev; Zearches, ListAi.cc, NoSignupTools, FreeNoSignup, and NoSubscription.org still showed pending/not matched.",
     ],
     blocked: [
@@ -1691,10 +1691,10 @@ const PLATFORM_SUBMIT_COCKPIT = {
     ],
     statusCheckGates: [
       "CrazyGames: Edge automation session check on 2026-06-02T18:27Z redirected to the login page, so the previously confirmed submitted build should be treated as the last verified CrazyGames state until dashboard access is restored.",
-      "CrazyGames: Browser check on 2026-06-03T03:25Z showed the public/logged-out developer portal, so no newer review feedback, acceptance, rejection, or payout signal was visible.",
+      "CrazyGames: Browser check on 2026-06-03T05:30Z showed the public/logged-out developer portal, so no newer review feedback, acceptance, rejection, or payout signal was visible.",
       "Playgama: My Games snapshot on 2026-06-02T17:34:37Z showed Neon Lane Dash as Waiting for review.",
       "Playgama: Edge automation session check on 2026-06-02T18:27Z redirected to the login page, so the next live review-state check also needs the developer dashboard session restored.",
-      "Playgama: Browser check on 2026-06-03T03:25Z showed the login page, so no newer moderation, payout, or earnings signal was visible.",
+      "Playgama: Browser check on 2026-06-03T05:30Z showed the login page, so no newer moderation, payout, or earnings signal was visible.",
     ],
     payoutGates: [
       "CrazyGames: Billing says payments are handled through Tipalti. Manage Payment Details requires owner-only 2-step verification with a mobile number, then Address, Payment Method, Tax Forms, and Done.",
