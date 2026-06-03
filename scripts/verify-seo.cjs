@@ -5,6 +5,15 @@ const { routes, siteUrl, landingPages, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PR
 
 const root = path.resolve(__dirname, "..");
 const failures = [];
+const GITHUB_PAGES_EVENT_ENDPOINT = "https://printable-tools-lab.pages.dev/api/event";
+
+function requireGithubPagesIntentTracking(html, label, events = []) {
+  if (!html.includes(GITHUB_PAGES_EVENT_ENDPOINT)) failures.push(`${label} missing GitHub Pages event endpoint.`);
+  if (!html.includes('source: "github-pages"')) failures.push(`${label} missing github-pages source tracking.`);
+  for (const event of events) {
+    if (!html.includes(`data-track-event="${event}"`)) failures.push(`${label} missing ${event} tracking hook.`);
+  }
+}
 
 for (const route of routes) {
   if (route.index === false) continue;
@@ -43,6 +52,7 @@ else {
   if (!html.includes(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)) failures.push("GitHub Pages directory missing custom print pack CTA.");
   if (!html.includes(`Copy the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request`)) failures.push("GitHub Pages directory missing low-friction paid service copy CTA.");
   if (!html.includes("No payment is collected on this mirror")) failures.push("GitHub Pages directory missing no-payment warning.");
+  requireGithubPagesIntentTracking(html, "GitHub Pages directory", ["audit_request_intent", "service_request_intent"]);
 }
 
 const docsLandingMirrorFile = path.join(root, "docs", "free-invoice-generator-no-signup", "index.html");
@@ -53,6 +63,7 @@ else {
   if (!html.includes(MARKET_TABLE_PRINT_AUDIT.slug)) failures.push("GitHub Pages landing mirror missing audit mirror CTA.");
   if (!html.includes(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)) failures.push("GitHub Pages landing mirror missing custom print pack CTA.");
   if (!html.includes(`Copy the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request`)) failures.push("GitHub Pages landing mirror missing low-friction paid service copy CTA.");
+  requireGithubPagesIntentTracking(html, "GitHub Pages landing mirror", ["audit_request_intent", "service_request_intent"]);
 }
 
 const docsToolMirrorFile = path.join(root, "docs", "tools", "invoice-generator", "index.html");
@@ -63,6 +74,7 @@ else {
   if (!html.includes(MARKET_TABLE_PRINT_AUDIT.slug)) failures.push("GitHub Pages tool mirror missing audit mirror CTA.");
   if (!html.includes(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)) failures.push("GitHub Pages tool mirror missing custom print pack CTA.");
   if (!html.includes(`Copy the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request`)) failures.push("GitHub Pages tool mirror missing low-friction paid service copy CTA.");
+  requireGithubPagesIntentTracking(html, "GitHub Pages tool mirror", ["audit_request_intent", "service_request_intent"]);
 }
 
 for (const toolPath of ["tools/invoice-generator", "tools/price-tag", "tools/flyer-maker", "tools/coupon-maker", "tools/packing-slip", "tools/business-card", "tools/qr-code"]) {
@@ -997,6 +1009,7 @@ else {
   if (!html.includes("https://yanqr213.github.io/printable-tools-lab/assets/digital-products/local-seller-starter-kit-sample.zip")) failures.push("GitHub Pages seller kit mirror should use local sample ZIP URL.");
   if (!html.includes("https://yanqr213.github.io/printable-tools-lab/reports/local-seller-starter-kit-package.json")) failures.push("GitHub Pages seller kit mirror should link local package report.");
   if (!html.includes('"@type":"Product"')) failures.push("GitHub Pages seller kit mirror missing Product schema.");
+  requireGithubPagesIntentTracking(html, "GitHub Pages seller kit mirror", ["seller_sample_download", "seller_checkout_intent"]);
   if (!sitemapIncludes(path.join(root, "docs", "sitemap.xml"), `https://yanqr213.github.io/printable-tools-lab/${LOCAL_SELLER_STARTER_KIT.slug}/`)) failures.push("GitHub Pages sitemap missing seller kit mirror page.");
 }
 
@@ -1062,6 +1075,7 @@ else {
   if (!html.includes("github.com/yanqr213/printable-tools-lab/issues/new")) failures.push("GitHub Pages service mirror missing GitHub request URL.");
   if (!html.includes("market-table-print-audit")) failures.push("GitHub Pages service mirror missing audit lead magnet link.");
   if (!html.includes('"@type":"Service"')) failures.push("GitHub Pages service mirror missing Service schema.");
+  requireGithubPagesIntentTracking(html, "GitHub Pages service mirror", ["service_request_intent", "audit_request_intent"]);
   if (!sitemapIncludes(path.join(root, "docs", "sitemap.xml"), `https://yanqr213.github.io/printable-tools-lab/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug}/`)) failures.push("GitHub Pages sitemap missing custom print pack service mirror page.");
 }
 
@@ -1142,6 +1156,7 @@ else {
   if (!html.includes("market-table-print-audit-checklist.json")) failures.push("GitHub Pages audit mirror missing checklist link.");
   if (!html.includes("custom-local-print-pack")) failures.push("GitHub Pages audit mirror missing upgrade service link.");
   if (!html.includes("not revenue")) failures.push("GitHub Pages audit mirror missing no-revenue gate.");
+  requireGithubPagesIntentTracking(html, "GitHub Pages audit mirror", ["audit_request_intent"]);
   if (!sitemapIncludes(path.join(root, "docs", "sitemap.xml"), `https://yanqr213.github.io/printable-tools-lab/${MARKET_TABLE_PRINT_AUDIT.slug}/`)) failures.push("GitHub Pages sitemap missing market table print audit mirror page.");
 }
 
@@ -1206,6 +1221,7 @@ else {
   if (!html.includes("custom-local-print-pack-delivery-input.example.json")) failures.push("GitHub Pages service sales pack missing delivery input example link.");
   if (!html.includes("service:delivery")) failures.push("GitHub Pages service sales pack missing private delivery command.");
   if (!html.includes("paid_order_verified")) failures.push("GitHub Pages service sales pack missing paid_order_verified status.");
+  requireGithubPagesIntentTracking(html, "GitHub Pages service sales pack", ["service_request_intent"]);
   if (!sitemapIncludes(path.join(root, "docs", "sitemap.xml"), `https://yanqr213.github.io/printable-tools-lab/${SERVICE_SALES_PACK.slug}/`)) failures.push("GitHub Pages sitemap missing service sales pack mirror page.");
 }
 

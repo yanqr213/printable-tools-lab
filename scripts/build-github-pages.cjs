@@ -116,8 +116,8 @@ const html = `<!doctype html>
         <h2>Local seller print help</h2>
         <p>If this file job is for a market table, pickup order, craft seller, local service, or event booth, start with the free print audit. The optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request can be copied from this mirror without logging into GitHub.</p>
         <p class="actions">
-          <a class="button" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Request a free print audit</a>
-          <a class="button secondary" href="${pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}">Copy the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request</a>
+          <a class="button" data-track-event="audit_request_intent" data-track-tool="${MARKET_TABLE_PRINT_AUDIT.id}" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Request a free print audit</a>
+          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="${CUSTOM_LOCAL_PRINT_PACK_SERVICE.id}" href="${pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}">Copy the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request</a>
         </p>
         <p>No payment is collected on this mirror. Revenue is counted only after an external payment provider shows a paid order, payout balance, or settled payment.</p>
       </section>
@@ -163,6 +163,7 @@ const html = `<!doctype html>
       <h2>Scope and limits</h2>
       <p>${escapeHtml(SITE_SUMMARY.monetization)} The tools are for practical PDFs and simple records; review documents before sending, printing, or relying on them.</p>
     </main>
+    ${intentTrackerScriptHtml()}
   </body>
 </html>
 `;
@@ -340,11 +341,48 @@ function sellerIntentCtaHtml() {
         <h2>Local seller print help</h2>
         <p>If this file job is for a market table, pickup order, craft seller, local service, or event booth, start with the free print audit. The optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request can be copied from this mirror without logging into GitHub.</p>
         <p class="actions">
-          <a class="button" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Request a free print audit</a>
-          <a class="button secondary" href="${pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}">Copy the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request</a>
+          <a class="button" data-track-event="audit_request_intent" data-track-tool="${MARKET_TABLE_PRINT_AUDIT.id}" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Request a free print audit</a>
+          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="${CUSTOM_LOCAL_PRINT_PACK_SERVICE.id}" href="${pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}">Copy the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request</a>
         </p>
         <p>No payment is collected on this mirror. Revenue is counted only after an external payment provider shows a paid order, payout balance, or settled payment.</p>
       </section>`;
+}
+
+function intentTrackerScriptHtml() {
+  return `<script>
+      (function () {
+        var endpoint = "https://printable-tools-lab.pages.dev/api/event";
+        function pagePath() {
+          return (window.location.pathname || "/").replace(/^\\/printable-tools-lab/, "") || "/";
+        }
+        function sendIntent(name, tool) {
+          if (!name) return;
+          var payload = JSON.stringify({
+            name: name,
+            tool: tool || "site",
+            path: pagePath(),
+            source: "github-pages"
+          });
+          try {
+            if (navigator.sendBeacon && navigator.sendBeacon(endpoint, payload)) return;
+          } catch (error) {}
+          try {
+            fetch(endpoint, {
+              method: "POST",
+              mode: "no-cors",
+              keepalive: true,
+              headers: { "Content-Type": "text/plain;charset=UTF-8" },
+              body: payload
+            });
+          } catch (error) {}
+        }
+        document.addEventListener("click", function (event) {
+          var target = event.target.closest ? event.target.closest("[data-track-event]") : null;
+          if (!target) return;
+          sendIntent(target.getAttribute("data-track-event"), target.getAttribute("data-track-tool"));
+        }, true);
+      }());
+    </script>`;
 }
 
 function gameDiscoveryPath(game) {
@@ -467,7 +505,7 @@ function serviceSalesPackHtml() {
       <p><a href="${pagesBase}">PrintableTools Lab discovery directory</a></p>
       <h1>${escapeHtml(pack.headline)}</h1>
       <p>${escapeHtml(pack.shortDescription)}</p>
-      <p><a class="button" href="${pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}">Open service mirror</a></p>
+      <p><a class="button" data-track-event="service_request_intent" data-track-tool="${CUSTOM_LOCAL_PRINT_PACK_SERVICE.id}" href="${pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}">Open service mirror</a></p>
       <h2>Tracked links</h2>
       <table><tbody>${trackedLinks}</tbody></table>
       <h2>Copy-ready outreach</h2>
@@ -485,6 +523,7 @@ function serviceSalesPackHtml() {
       <ul>${pack.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
       ${jsonLdHtml(itemListSchema(pack.name, pack.outreachScripts.map((script) => ({ title: script.title, url: pagesUrl(pack.slug) }))))}
     </main>
+    ${intentTrackerScriptHtml()}
   </body>
 </html>
 `;
@@ -540,7 +579,7 @@ function auditLeadMagnetHtml() {
       <p><a href="${pagesBase}">PrintableTools Lab discovery directory</a></p>
       <h1>${escapeHtml(audit.headline)}</h1>
       <p>${escapeHtml(audit.description)}</p>
-      <p><a class="button" href="${escapeHtml(requestUrl)}">Request free audit</a> <a href="${escapeHtml(audit.issueFormUrl)}">Open structured audit form</a></p>
+      <p><a class="button" data-track-event="audit_request_intent" data-track-tool="${audit.id}" href="${escapeHtml(requestUrl)}">Request free audit</a> <a data-track-event="audit_request_intent" data-track-tool="${audit.id}" href="${escapeHtml(audit.issueFormUrl)}">Open structured audit form</a></p>
       <h2>Audit assets</h2>
       <table><tbody>
         <tr><th>Request template</th><td><a href="${pagesAssetUrl(audit.publicRequestPath)}">${pagesAssetUrl(audit.publicRequestPath)}</a></td></tr>
@@ -572,8 +611,8 @@ function auditLeadMagnetHtml() {
           <p>No payment is collected here. Do not include card, bank, payout, tax, identity, password, private address, customer-list, or platform credential details.</p>
           <textarea class="audit-request-output" data-audit-request-output readonly>${escapeHtml(marketTableAuditRequestCopy(audit))}</textarea>
           <div class="actions">
-            <a class="button" data-audit-request-open href="${escapeHtml(requestUrl)}">Open prefilled GitHub request</a>
-            <button class="button" type="button" data-audit-request-copy>Copy request</button>
+            <a class="button" data-audit-request-open data-track-event="audit_request_intent" data-track-tool="${audit.id}" href="${escapeHtml(requestUrl)}">Open prefilled GitHub request</a>
+            <button class="button" type="button" data-audit-request-copy data-track-event="audit_request_intent" data-track-tool="${audit.id}">Copy request</button>
           </div>
           <p data-audit-request-status>Ready to copy or open as a public-safe request.</p>
         </article>
@@ -586,6 +625,7 @@ function auditLeadMagnetHtml() {
       <ul>${audit.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
       <p><strong>Money gate:</strong> ${escapeHtml(audit.moneyGate)}</p>
     </main>
+    ${intentTrackerScriptHtml()}
     <script>
       (function () {
         var builder = document.querySelector("[data-audit-request-builder]");
@@ -681,9 +721,9 @@ function serviceHtml(service) {
   const requestEmailUrl = serviceRequestEmailUrl(service);
   const pipeline = serviceOrderPipeline(service);
   const requestCopyActions = [
-    `<button class="button secondary" type="button" data-service-request-copy>Copy service request</button>`,
-    `<a class="button" href="${escapeHtml(requestUrl)}">Open prefilled GitHub request</a>`,
-    requestEmailUrl ? `<a href="${escapeHtml(requestEmailUrl)}">Open email draft</a>` : "",
+    `<button class="button secondary" type="button" data-service-request-copy data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}">Copy service request</button>`,
+    `<a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestUrl)}">Open prefilled GitHub request</a>`,
+    requestEmailUrl ? `<a data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestEmailUrl)}">Open email draft</a>` : "",
   ].filter(Boolean).join("\n        ");
   const orderAssets = [
     ["Structured request form", service.issueFormUrl],
@@ -697,11 +737,11 @@ function serviceHtml(service) {
     ["Sample delivery report", deliveryReportUrl],
   ].map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("\n");
   const actionLinks = [
-    `<a class="button" href="${escapeHtml(requestUrl)}">Request service checkout</a>`,
-    `<a class="button secondary" href="${escapeHtml(service.issueFormUrl)}">Open structured request form</a>`,
-    `<a class="button secondary" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Start with free audit</a>`,
+    `<a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestUrl)}">Request service checkout</a>`,
+    `<a class="button secondary" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(service.issueFormUrl)}">Open structured request form</a>`,
+    `<a class="button secondary" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(MARKET_TABLE_PRINT_AUDIT.id)}" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Start with free audit</a>`,
     `<a class="button secondary" href="${requestTemplateUrl}" download>Download service brief</a>`,
-    requestEmailUrl ? `<a href="${escapeHtml(requestEmailUrl)}">Email service request</a>` : "",
+    requestEmailUrl ? `<a data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestEmailUrl)}">Email service request</a>` : "",
     `<a href="${orderPipelineUrl}">Open order pipeline</a>`,
     `<a href="${outreachBatchUrl}">Open outreach batch</a>`,
     `<a href="${sampleDeliveryUrl}">Download sample delivery</a>`,
@@ -765,6 +805,7 @@ function serviceHtml(service) {
       <p><strong>Money gate:</strong> ${escapeHtml(service.successGate)}</p>
       ${jsonLdHtml(serviceSchema(service))}
     </main>
+    ${intentTrackerScriptHtml()}
     <script>
       (function () {
         var copyButton = document.querySelector("[data-service-request-copy]");
@@ -810,10 +851,10 @@ function digitalProductHtml(product) {
   const checkoutLabel = checkoutConfigured ? `Buy for $${product.priceUsd}` : "Request checkout link";
   const checkoutCopy = productCheckoutRequestCopy(product, sampleUrl);
   const actionLinks = [
-    `<a class="button" href="${sampleUrl}" download>Download sample ZIP</a>`,
-    `<a class="button secondary" href="${escapeHtml(checkoutTargetUrl)}">${escapeHtml(checkoutLabel)}</a>`,
+    `<a class="button" data-track-event="seller_sample_download" data-track-tool="${escapeHtml(product.id)}" href="${sampleUrl}" download>Download sample ZIP</a>`,
+    `<a class="button secondary" data-track-event="seller_checkout_intent" data-track-tool="${escapeHtml(product.id)}" href="${escapeHtml(checkoutTargetUrl)}">${escapeHtml(checkoutLabel)}</a>`,
     `<a href="${requestTemplateUrl}" download>Download request template</a>`,
-    checkoutEmailUrl ? `<a href="${escapeHtml(checkoutEmailUrl)}">Email checkout request</a>` : "",
+    checkoutEmailUrl ? `<a data-track-event="seller_checkout_intent" data-track-tool="${escapeHtml(product.id)}" href="${escapeHtml(checkoutEmailUrl)}">Email checkout request</a>` : "",
     `<a href="${packageReportUrl}">View package report</a>`,
   ].filter(Boolean).join("\n        ");
   return `<!doctype html>
@@ -865,6 +906,7 @@ function digitalProductHtml(product) {
       <p><strong>Money gate:</strong> ${escapeHtml(product.successGate)}</p>
       ${jsonLdHtml(productSchema(product))}
     </main>
+    ${intentTrackerScriptHtml()}
   </body>
 </html>
 `;
@@ -940,6 +982,7 @@ function gameSubmissionPackHtml() {
       </ul>
       ${jsonLdHtml(itemListSchema("HTML5 game submission packages", ZERO_DOMAIN_GAME_EXPERIMENTS.map((game) => ({ title: game.name, url: pagesUrl(gameDiscoveryPath(game)) }))))}
     </main>
+    ${intentTrackerScriptHtml()}
   </body>
 </html>
 `;
@@ -995,6 +1038,7 @@ function gameDiscoveryHtml(game) {
       </section>
       ${jsonLdHtml(videoGameSchema(game))}
     </main>
+    ${intentTrackerScriptHtml()}
   </body>
 </html>
 `;
@@ -1326,6 +1370,7 @@ function landingDiscoveryHtml(page, primaryTool, relatedTools) {
         ${relatedTools.map((tool) => `<article class="card"><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.description)}</p><a href="${trackedSiteUrl(tool.path, `related-${tool.path}`)}">Open this tool</a></article>`).join("\n")}
       </div>
     </main>
+    ${intentTrackerScriptHtml()}
   </body>
 </html>
 `;
@@ -1397,6 +1442,7 @@ function toolDiscoveryHtml(tool, relatedLandingPages) {
         <li><a href="${siteUrl("tools.json").replace(/\/$/, "")}">Machine-readable tools.json</a></li>
       </ul>
     </main>
+    ${intentTrackerScriptHtml()}
   </body>
 </html>
 `;

@@ -31,7 +31,7 @@
       <p><a href="https://yanqr213.github.io/printable-tools-lab/">PrintableTools Lab discovery directory</a></p>
       <h1>Copy-ready sales pack for the $29 Custom Local Print Pack service</h1>
       <p>A zero-budget outreach pack for promoting the $29 done-for-you local print pack setup to craft sellers, market tables, local services, tutors, cleaners, repair providers, and pop-up organizers.</p>
-      <p><a class="button" href="https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/">Open service mirror</a></p>
+      <p><a class="button" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/">Open service mirror</a></p>
       <h2>Tracked links</h2>
       <table><tbody><tr><th>GitHub Pages service link</th><td><a href="https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=direct-outreach&amp;utm_medium=manual&amp;utm_campaign=service_sales_pack">https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=direct-outreach&amp;utm_medium=manual&amp;utm_campaign=service_sales_pack</a></td></tr>
 <tr><th>Free audit lead magnet</th><td><a href="https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=direct-outreach&amp;utm_medium=manual&amp;utm_campaign=market_table_audit">https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=direct-outreach&amp;utm_medium=manual&amp;utm_campaign=market_table_audit</a></td></tr>
@@ -91,5 +91,39 @@
       <ul><li>Do not spam communities or scrape private contact lists.</li><li>Do not promise guaranteed sales, legal compliance, tax results, or ad performance.</li><li>Do not collect card, bank, payout, tax, or identity details in the repository or GitHub issues.</li><li>Do not begin paid custom work without a real external payment record.</li></ul>
       <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Custom Local Print Pack Sales Pack","itemListElement":[{"@type":"ListItem","position":1,"name":"Friendly DM to a market or craft seller","url":"https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack-sales-pack/"},{"@type":"ListItem","position":2,"name":"DM to a local service provider","url":"https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack-sales-pack/"},{"@type":"ListItem","position":3,"name":"Helpful community reply","url":"https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack-sales-pack/"},{"@type":"ListItem","position":4,"name":"Small service directory blurb","url":"https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack-sales-pack/"}]}</script>
     </main>
+    <script>
+      (function () {
+        var endpoint = "https://printable-tools-lab.pages.dev/api/event";
+        function pagePath() {
+          return (window.location.pathname || "/").replace(/^\/printable-tools-lab/, "") || "/";
+        }
+        function sendIntent(name, tool) {
+          if (!name) return;
+          var payload = JSON.stringify({
+            name: name,
+            tool: tool || "site",
+            path: pagePath(),
+            source: "github-pages"
+          });
+          try {
+            if (navigator.sendBeacon && navigator.sendBeacon(endpoint, payload)) return;
+          } catch (error) {}
+          try {
+            fetch(endpoint, {
+              method: "POST",
+              mode: "no-cors",
+              keepalive: true,
+              headers: { "Content-Type": "text/plain;charset=UTF-8" },
+              body: payload
+            });
+          } catch (error) {}
+        }
+        document.addEventListener("click", function (event) {
+          var target = event.target.closest ? event.target.closest("[data-track-event]") : null;
+          if (!target) return;
+          sendIntent(target.getAttribute("data-track-event"), target.getAttribute("data-track-tool"));
+        }, true);
+      }());
+    </script>
   </body>
 </html>

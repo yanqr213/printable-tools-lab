@@ -33,8 +33,8 @@
         <h2>Local seller print help</h2>
         <p>If this file job is for a market table, pickup order, craft seller, local service, or event booth, start with the free print audit. The optional $29 setup request can be copied from this mirror without logging into GitHub.</p>
         <p class="actions">
-          <a class="button" href="https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/">Request a free print audit</a>
-          <a class="button secondary" href="https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/">Copy the $29 setup request</a>
+          <a class="button" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/">Request a free print audit</a>
+          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/">Copy the $29 setup request</a>
         </p>
         <p>No payment is collected on this mirror. Revenue is counted only after an external payment provider shows a paid order, payout balance, or settled payment.</p>
       </section>
@@ -53,5 +53,39 @@
 <article class="card"><h3>Image to PDF Converter</h3><p>Convert JPG, PNG, or WebP images into a clean one-page PDF in your browser without uploading files.</p><a href="https://printable-tools-lab.pages.dev/tools/image-to-pdf/?utm_source=github-pages&utm_medium=organic&utm_campaign=discovery_mirror&utm_content=related-tools-image-to-pdf">Open this tool</a></article>
       </div>
     </main>
+    <script>
+      (function () {
+        var endpoint = "https://printable-tools-lab.pages.dev/api/event";
+        function pagePath() {
+          return (window.location.pathname || "/").replace(/^\/printable-tools-lab/, "") || "/";
+        }
+        function sendIntent(name, tool) {
+          if (!name) return;
+          var payload = JSON.stringify({
+            name: name,
+            tool: tool || "site",
+            path: pagePath(),
+            source: "github-pages"
+          });
+          try {
+            if (navigator.sendBeacon && navigator.sendBeacon(endpoint, payload)) return;
+          } catch (error) {}
+          try {
+            fetch(endpoint, {
+              method: "POST",
+              mode: "no-cors",
+              keepalive: true,
+              headers: { "Content-Type": "text/plain;charset=UTF-8" },
+              body: payload
+            });
+          } catch (error) {}
+        }
+        document.addEventListener("click", function (event) {
+          var target = event.target.closest ? event.target.closest("[data-track-event]") : null;
+          if (!target) return;
+          sendIntent(target.getAttribute("data-track-event"), target.getAttribute("data-track-tool"));
+        }, true);
+      }());
+    </script>
   </body>
 </html>
