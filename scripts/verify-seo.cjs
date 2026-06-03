@@ -473,6 +473,8 @@ else {
   if (!html.includes("custom-local-print-pack-payment-reply.txt")) failures.push("Service page missing payment reply asset URL.");
   if (!html.includes("custom-local-print-pack-fulfillment-checklist.txt")) failures.push("Service page missing fulfillment checklist URL.");
   if (!html.includes("custom-local-print-pack-order-pipeline.json")) failures.push("Service page missing order pipeline URL.");
+  if (!html.includes("custom-local-print-pack-outreach-queue.json")) failures.push("Service page missing outreach queue URL.");
+  if (!html.includes("custom-local-print-pack-outreach-batch.txt")) failures.push("Service page missing outreach batch URL.");
   if (!html.includes("paid_order_verified")) failures.push("Service page missing paid order pipeline status.");
   if (!html.includes("service_request_intent")) failures.push("Service page missing service intent tracking.");
   if (!html.includes('"@type":"Service"')) failures.push("Service page missing Service schema.");
@@ -493,6 +495,12 @@ else {
   if (service && !String(service.fulfillmentChecklistUrl || "").includes("custom-local-print-pack-fulfillment-checklist.txt")) failures.push("services.json missing fulfillment checklist URL.");
   if (service && !String(service.orderPipelineUrl || "").includes("custom-local-print-pack-order-pipeline.json")) failures.push("services.json missing order pipeline URL.");
   if (service && !service.orderPipeline?.some((status) => status.id === "paid_order_verified")) failures.push("services.json missing paid_order_verified pipeline status.");
+  if (service && !String(service.outreachQueueUrl || "").includes("custom-local-print-pack-outreach-queue.json")) failures.push("services.json missing outreach queue URL.");
+  if (service && !String(service.outreachBatchUrl || "").includes("custom-local-print-pack-outreach-batch.txt")) failures.push("services.json missing outreach batch URL.");
+  if (service && !Array.isArray(service.outreachQueue)) failures.push("services.json missing outreach queue entries.");
+  if (service && service.outreachQueue?.length < 10) failures.push("services.json outreach queue too small.");
+  if (service && !service.outreachQueue?.some((item) => item.status === "reply_only" && String(item.opener || "").includes("payment link before work starts"))) failures.push("services.json missing reply-only payment followup.");
+  if (service && !service.outreachQueue?.some((item) => String(item.stopRule || "").includes("Do not send more than one"))) failures.push("services.json missing cold outreach stop rule.");
   if (service && !String(service.requestUrl || "").includes("github.com/yanqr213/printable-tools-lab/issues/new")) failures.push("services.json missing service request URL.");
   if (!String(data.moneyGate || "").includes("paid order")) failures.push("services.json missing paid-order money gate.");
 }
@@ -544,6 +552,28 @@ else {
   if (!data.forbiddenFields?.some((field) => String(field).includes("card"))) failures.push("Service order pipeline missing forbidden sensitive fields.");
 }
 
+const serviceOutreachQueueFile = path.join(root, CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachQueuePath);
+if (!fs.existsSync(serviceOutreachQueueFile)) failures.push("Missing public service outreach queue JSON.");
+else {
+  const data = JSON.parse(fs.readFileSync(serviceOutreachQueueFile, "utf8"));
+  if (data.serviceId !== CUSTOM_LOCAL_PRINT_PACK_SERVICE.id) failures.push("Service outreach queue has unexpected service id.");
+  if (!String(data.dailyCap || "").includes("10 relevant")) failures.push("Service outreach queue missing daily cap.");
+  if (!data.forbiddenActions?.some((item) => String(item).includes("scrape private contact lists"))) failures.push("Service outreach queue missing no-scraping rule.");
+  if (!Array.isArray(data.batch) || data.batch.length < 10) failures.push("Service outreach queue missing 10-action batch.");
+  if (!data.batch?.some((item) => item.id === "warm-reply-followup-01" && item.status === "reply_only")) failures.push("Service outreach queue missing reply-only followup item.");
+  if (!data.batch?.every((item) => item.trackedUrl && item.stopRule && item.qualification)) failures.push("Service outreach queue entries missing tracked URL, stop rule, or qualification.");
+}
+
+const serviceOutreachBatchFile = path.join(root, CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachBatchPath);
+if (!fs.existsSync(serviceOutreachBatchFile)) failures.push("Missing public service outreach batch text.");
+else {
+  const text = fs.readFileSync(serviceOutreachBatchFile, "utf8");
+  if (!text.includes("Daily cap: no more than 10 relevant cold contacts")) failures.push("Service outreach batch missing daily cap.");
+  if (!text.includes("Do not scrape, spam, repeat-send")) failures.push("Service outreach batch missing anti-spam warning.");
+  if (!text.includes("warm-reply-followup-01")) failures.push("Service outreach batch missing warm reply followup.");
+  if (!text.includes("Revenue remains zero until an external provider proves a paid order")) failures.push("Service outreach batch missing revenue gate.");
+}
+
 const serviceSalesPackFile = path.join(root, SERVICE_SALES_PACK.slug, "index.html");
 if (!fs.existsSync(serviceSalesPackFile)) failures.push("Missing service sales pack page.");
 else {
@@ -556,6 +586,8 @@ else {
   if (!html.includes("Order pipeline assets")) failures.push("Service sales pack page missing order pipeline section.");
   if (!html.includes("custom-local-print-pack-service.yml")) failures.push("Service sales pack page missing structured issue form link.");
   if (!html.includes("custom-local-print-pack-payment-reply.txt")) failures.push("Service sales pack page missing payment reply asset.");
+  if (!html.includes("custom-local-print-pack-outreach-queue.json")) failures.push("Service sales pack page missing outreach queue asset.");
+  if (!html.includes("custom-local-print-pack-outreach-batch.txt")) failures.push("Service sales pack page missing outreach batch asset.");
   if (!html.includes("paid_order_verified")) failures.push("Service sales pack page missing paid order pipeline status.");
   if (!sitemap.includes(`<loc>${siteUrl(SERVICE_SALES_PACK.slug)}</loc>`)) failures.push("Sitemap missing service sales pack page.");
 }
@@ -573,6 +605,9 @@ else {
   if (!String(data.githubPagesFulfillmentChecklistUrl || "").includes("custom-local-print-pack-fulfillment-checklist.txt")) failures.push("service-sales-pack.json missing GitHub Pages fulfillment checklist URL.");
   if (!String(data.githubPagesOrderPipelineUrl || "").includes("custom-local-print-pack-order-pipeline.json")) failures.push("service-sales-pack.json missing GitHub Pages order pipeline URL.");
   if (!data.orderPipeline?.some((status) => status.id === "paid_order_verified")) failures.push("service-sales-pack.json missing paid_order_verified pipeline status.");
+  if (!String(data.githubPagesOutreachQueueUrl || "").includes("custom-local-print-pack-outreach-queue.json")) failures.push("service-sales-pack.json missing GitHub Pages outreach queue URL.");
+  if (!String(data.githubPagesOutreachBatchUrl || "").includes("custom-local-print-pack-outreach-batch.txt")) failures.push("service-sales-pack.json missing GitHub Pages outreach batch URL.");
+  if (!Array.isArray(data.outreachQueue) || data.outreachQueue.length < 10) failures.push("service-sales-pack.json missing outreach queue entries.");
   if (!String(data.moneyGate || "").includes("paid order")) failures.push("service-sales-pack.json missing paid-order money gate.");
 }
 
@@ -674,6 +709,8 @@ else {
   if (!discovery.distributionAssets || !String(discovery.distributionAssets.customLocalPrintPackPaymentReply || "").includes("custom-local-print-pack-payment-reply.txt")) failures.push("discovery.json missing custom print pack payment reply.");
   if (!discovery.distributionAssets || !String(discovery.distributionAssets.customLocalPrintPackFulfillmentChecklist || "").includes("custom-local-print-pack-fulfillment-checklist.txt")) failures.push("discovery.json missing custom print pack fulfillment checklist.");
   if (!discovery.distributionAssets || !String(discovery.distributionAssets.customLocalPrintPackOrderPipeline || "").includes("custom-local-print-pack-order-pipeline.json")) failures.push("discovery.json missing custom print pack order pipeline.");
+  if (!discovery.distributionAssets || !String(discovery.distributionAssets.customLocalPrintPackOutreachQueue || "").includes("custom-local-print-pack-outreach-queue.json")) failures.push("discovery.json missing custom print pack outreach queue.");
+  if (!discovery.distributionAssets || !String(discovery.distributionAssets.customLocalPrintPackOutreachBatch || "").includes("custom-local-print-pack-outreach-batch.txt")) failures.push("discovery.json missing custom print pack outreach batch.");
   if (!discovery.distributionAssets || !String(discovery.distributionAssets.localSellerStarterKitSample || "").includes("local-seller-starter-kit-sample.zip")) failures.push("discovery.json missing seller kit sample ZIP.");
   if (!discovery.distributionAssets || discovery.distributionAssets.zeroCostMonetizationMap !== siteUrl("zero-cost-monetization-map")) failures.push("discovery.json missing zero-cost monetization map URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.zeroDomainGame !== "https://upload-limit-panic.pages.dev/") failures.push("discovery.json missing zero-domain game URL.");
@@ -748,9 +785,13 @@ else {
   if (!data.paidServices?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryPaymentReplyTemplateUrl || "").includes("custom-local-print-pack-payment-reply.txt"))) failures.push("GitHub Pages discovery tools.json missing paid service payment reply URL.");
   if (!data.paidServices?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryFulfillmentChecklistUrl || "").includes("custom-local-print-pack-fulfillment-checklist.txt"))) failures.push("GitHub Pages discovery tools.json missing paid service fulfillment checklist URL.");
   if (!data.paidServices?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryOrderPipelineUrl || "").includes("custom-local-print-pack-order-pipeline.json"))) failures.push("GitHub Pages discovery tools.json missing paid service order pipeline URL.");
+  if (!data.paidServices?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryOutreachQueueUrl || "").includes("custom-local-print-pack-outreach-queue.json"))) failures.push("GitHub Pages discovery tools.json missing paid service outreach queue URL.");
+  if (!data.paidServices?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryOutreachBatchUrl || "").includes("custom-local-print-pack-outreach-batch.txt"))) failures.push("GitHub Pages discovery tools.json missing paid service outreach batch URL.");
   if (!data.serviceSalesPack || data.serviceSalesPack.id !== SERVICE_SALES_PACK.id) failures.push("GitHub Pages discovery tools.json missing service sales pack.");
   if (!data.serviceSalesPack?.trackedLinks?.some((item) => String(item.url || "").includes("service_sales_pack"))) failures.push("GitHub Pages discovery tools.json missing service sales pack tracking.");
   if (!String(data.serviceSalesPack?.githubPagesOrderPipelineUrl || "").includes("custom-local-print-pack-order-pipeline.json")) failures.push("GitHub Pages discovery tools.json missing service sales pack order pipeline URL.");
+  if (!String(data.serviceSalesPack?.githubPagesOutreachQueueUrl || "").includes("custom-local-print-pack-outreach-queue.json")) failures.push("GitHub Pages discovery tools.json missing service sales pack outreach queue URL.");
+  if (!Array.isArray(data.serviceSalesPack?.outreachQueue) || data.serviceSalesPack.outreachQueue.length < 10) failures.push("GitHub Pages discovery tools.json missing service sales pack outreach queue entries.");
 }
 
 const docsProductsFile = path.join(root, "docs", "products.json");
@@ -807,6 +848,9 @@ else {
   if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryFulfillmentChecklistUrl || "").includes("custom-local-print-pack-fulfillment-checklist.txt"))) failures.push("GitHub Pages services.json missing service fulfillment checklist URL.");
   if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryOrderPipelineUrl || "").includes("custom-local-print-pack-order-pipeline.json"))) failures.push("GitHub Pages services.json missing service order pipeline URL.");
   if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && service.orderPipeline?.some((status) => status.id === "paid_order_verified"))) failures.push("GitHub Pages services.json missing paid_order_verified pipeline status.");
+  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryOutreachQueueUrl || "").includes("custom-local-print-pack-outreach-queue.json"))) failures.push("GitHub Pages services.json missing service outreach queue URL.");
+  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryOutreachBatchUrl || "").includes("custom-local-print-pack-outreach-batch.txt"))) failures.push("GitHub Pages services.json missing service outreach batch URL.");
+  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && service.outreachQueue?.length >= 10)) failures.push("GitHub Pages services.json missing service outreach queue entries.");
   if (!String(data.moneyGate || "").includes("paid order")) failures.push("GitHub Pages services.json missing paid-order money gate.");
 }
 
@@ -821,6 +865,8 @@ else {
   if (!html.includes("custom-local-print-pack-payment-reply.txt")) failures.push("GitHub Pages service mirror missing payment reply URL.");
   if (!html.includes("custom-local-print-pack-fulfillment-checklist.txt")) failures.push("GitHub Pages service mirror missing fulfillment checklist URL.");
   if (!html.includes("custom-local-print-pack-order-pipeline.json")) failures.push("GitHub Pages service mirror missing order pipeline URL.");
+  if (!html.includes("custom-local-print-pack-outreach-queue.json")) failures.push("GitHub Pages service mirror missing outreach queue URL.");
+  if (!html.includes("custom-local-print-pack-outreach-batch.txt")) failures.push("GitHub Pages service mirror missing outreach batch URL.");
   if (!html.includes("paid_order_verified")) failures.push("GitHub Pages service mirror missing paid_order_verified status.");
   if (!html.includes("github.com/yanqr213/printable-tools-lab/issues/new")) failures.push("GitHub Pages service mirror missing GitHub request URL.");
   if (!html.includes('"@type":"Service"')) failures.push("GitHub Pages service mirror missing Service schema.");
@@ -855,6 +901,21 @@ else {
   if (!data.statuses?.some((status) => status.id === "paid_order_verified")) failures.push("GitHub Pages service order pipeline missing paid_order_verified status.");
 }
 
+const docsServiceOutreachQueueFile = path.join(root, "docs", CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachQueuePath);
+if (!fs.existsSync(docsServiceOutreachQueueFile)) failures.push("Missing GitHub Pages service outreach queue copy.");
+else {
+  const data = JSON.parse(fs.readFileSync(docsServiceOutreachQueueFile, "utf8"));
+  if (!Array.isArray(data.batch) || data.batch.length < 10) failures.push("GitHub Pages service outreach queue missing 10-action batch.");
+  if (!data.forbiddenActions?.some((item) => String(item).includes("scrape private contact lists"))) failures.push("GitHub Pages service outreach queue missing no-scraping rule.");
+}
+
+const docsServiceOutreachBatchFile = path.join(root, "docs", CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachBatchPath);
+if (!fs.existsSync(docsServiceOutreachBatchFile)) failures.push("Missing GitHub Pages service outreach batch copy.");
+else {
+  const text = fs.readFileSync(docsServiceOutreachBatchFile, "utf8");
+  if (!text.includes("Daily cap: no more than 10 relevant cold contacts")) failures.push("GitHub Pages service outreach batch missing daily cap.");
+}
+
 const docsServiceSalesPackJsonFile = path.join(root, "docs", "service-sales-pack.json");
 if (!fs.existsSync(docsServiceSalesPackJsonFile)) failures.push("Missing GitHub Pages service-sales-pack.json.");
 else {
@@ -868,6 +929,9 @@ else {
   if (!String(data.githubPagesFulfillmentChecklistUrl || "").includes("custom-local-print-pack-fulfillment-checklist.txt")) failures.push("GitHub Pages service-sales-pack.json missing fulfillment checklist URL.");
   if (!String(data.githubPagesOrderPipelineUrl || "").includes("custom-local-print-pack-order-pipeline.json")) failures.push("GitHub Pages service-sales-pack.json missing order pipeline URL.");
   if (!data.orderPipeline?.some((status) => status.id === "paid_order_verified")) failures.push("GitHub Pages service-sales-pack.json missing paid_order_verified status.");
+  if (!String(data.githubPagesOutreachQueueUrl || "").includes("custom-local-print-pack-outreach-queue.json")) failures.push("GitHub Pages service-sales-pack.json missing outreach queue URL.");
+  if (!String(data.githubPagesOutreachBatchUrl || "").includes("custom-local-print-pack-outreach-batch.txt")) failures.push("GitHub Pages service-sales-pack.json missing outreach batch URL.");
+  if (!Array.isArray(data.outreachQueue) || data.outreachQueue.length < 10) failures.push("GitHub Pages service-sales-pack.json missing outreach queue entries.");
 }
 
 const docsServiceSalesPackFile = path.join(root, "docs", SERVICE_SALES_PACK.slug, "index.html");
@@ -881,6 +945,8 @@ else {
   if (!html.includes("Order pipeline assets")) failures.push("GitHub Pages service sales pack missing order pipeline section.");
   if (!html.includes("custom-local-print-pack-service.yml")) failures.push("GitHub Pages service sales pack missing issue form link.");
   if (!html.includes("custom-local-print-pack-payment-reply.txt")) failures.push("GitHub Pages service sales pack missing payment reply link.");
+  if (!html.includes("custom-local-print-pack-outreach-queue.json")) failures.push("GitHub Pages service sales pack missing outreach queue link.");
+  if (!html.includes("custom-local-print-pack-outreach-batch.txt")) failures.push("GitHub Pages service sales pack missing outreach batch link.");
   if (!html.includes("paid_order_verified")) failures.push("GitHub Pages service sales pack missing paid_order_verified status.");
   if (!sitemapIncludes(path.join(root, "docs", "sitemap.xml"), `https://yanqr213.github.io/printable-tools-lab/${SERVICE_SALES_PACK.slug}/`)) failures.push("GitHub Pages sitemap missing service sales pack mirror page.");
 }

@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, SERVICE_SALES_PACK, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, serviceOrderPipeline, siteUrl, tools, landingPages } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, SERVICE_SALES_PACK, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, serviceOrderPipeline, serviceOutreachQueue, siteUrl, tools, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
@@ -345,6 +345,8 @@ function copyPaidServicePublicAssets() {
     copyPublicFile(service.publicPaymentReplyPath);
     copyPublicFile(service.publicFulfillmentChecklistPath);
     copyPublicFile(service.publicOrderPipelinePath);
+    copyPublicFile(service.publicOutreachQueuePath);
+    copyPublicFile(service.publicOutreachBatchPath);
   }
 }
 
@@ -376,6 +378,8 @@ function serviceSalesPackHtml() {
     ["Payment-before-work reply", pagesAssetUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicPaymentReplyPath)],
     ["Fulfillment checklist", pagesAssetUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicFulfillmentChecklistPath)],
     ["Order pipeline JSON", pagesAssetUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOrderPipelinePath)],
+    ["Manual outreach queue", pagesAssetUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachQueuePath)],
+    ["Copy/paste outreach batch", pagesAssetUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachBatchPath)],
   ].map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("\n");
   return `<!doctype html>
 <html lang="en">
@@ -435,6 +439,8 @@ function serviceHtml(service) {
   const paymentReplyUrl = pagesAssetUrl(service.publicPaymentReplyPath);
   const fulfillmentChecklistUrl = pagesAssetUrl(service.publicFulfillmentChecklistPath);
   const orderPipelineUrl = pagesAssetUrl(service.publicOrderPipelinePath);
+  const outreachQueueUrl = pagesAssetUrl(service.publicOutreachQueuePath);
+  const outreachBatchUrl = pagesAssetUrl(service.publicOutreachBatchPath);
   const requestUrl = serviceRequestUrl(service);
   const requestEmailUrl = serviceRequestEmailUrl(service);
   const pipeline = serviceOrderPipeline(service);
@@ -443,6 +449,8 @@ function serviceHtml(service) {
     ["Payment-before-work reply", paymentReplyUrl],
     ["Fulfillment checklist", fulfillmentChecklistUrl],
     ["Order pipeline JSON", orderPipelineUrl],
+    ["Manual outreach queue", outreachQueueUrl],
+    ["Copy/paste outreach batch", outreachBatchUrl],
   ].map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("\n");
   const actionLinks = [
     `<a class="button" href="${escapeHtml(requestUrl)}">Request service checkout</a>`,
@@ -450,6 +458,7 @@ function serviceHtml(service) {
     `<a class="button secondary" href="${requestTemplateUrl}" download>Download service brief</a>`,
     requestEmailUrl ? `<a href="${escapeHtml(requestEmailUrl)}">Email service request</a>` : "",
     `<a href="${orderPipelineUrl}">Open order pipeline</a>`,
+    `<a href="${outreachBatchUrl}">Open outreach batch</a>`,
     `<a href="${pagesUrl(LOCAL_SELLER_STARTER_KIT.slug)}">See the $${LOCAL_SELLER_STARTER_KIT.priceUsd} template kit</a>`,
   ].filter(Boolean).join("\n        ");
   return `<!doctype html>
@@ -785,6 +794,11 @@ function serviceFeedEntry(service) {
     orderPipelineUrl: siteUrl(service.publicOrderPipelinePath).replace(/\/$/, ""),
     discoveryOrderPipelineUrl: pagesAssetUrl(service.publicOrderPipelinePath),
     orderPipeline: serviceOrderPipeline(service).statuses,
+    outreachQueueUrl: siteUrl(service.publicOutreachQueuePath).replace(/\/$/, ""),
+    discoveryOutreachQueueUrl: pagesAssetUrl(service.publicOutreachQueuePath),
+    outreachBatchUrl: siteUrl(service.publicOutreachBatchPath).replace(/\/$/, ""),
+    discoveryOutreachBatchUrl: pagesAssetUrl(service.publicOutreachBatchPath),
+    outreachQueue: serviceOutreachQueue(service).batch,
     turnaround: service.turnaround,
     deliverables: service.deliverables,
     buyerInputs: service.buyerInputs,
@@ -814,6 +828,11 @@ function serviceSalesPackEntry() {
     orderPipelineUrl: SERVICE_SALES_PACK.orderPipelineUrl,
     githubPagesOrderPipelineUrl: SERVICE_SALES_PACK.githubPagesOrderPipelineUrl,
     orderPipeline: serviceOrderPipeline(CUSTOM_LOCAL_PRINT_PACK_SERVICE).statuses,
+    outreachQueueUrl: SERVICE_SALES_PACK.outreachQueueUrl,
+    githubPagesOutreachQueueUrl: SERVICE_SALES_PACK.githubPagesOutreachQueueUrl,
+    outreachBatchUrl: SERVICE_SALES_PACK.outreachBatchUrl,
+    githubPagesOutreachBatchUrl: SERVICE_SALES_PACK.githubPagesOutreachBatchUrl,
+    outreachQueue: serviceOutreachQueue(CUSTOM_LOCAL_PRINT_PACK_SERVICE).batch,
     audience: SERVICE_SALES_PACK.audience,
     trackedLinks: SERVICE_SALES_PACK.trackedLinks.map(([label, url]) => ({ label, url })),
     outreachScripts: SERVICE_SALES_PACK.outreachScripts,

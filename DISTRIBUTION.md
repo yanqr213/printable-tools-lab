@@ -44,6 +44,8 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Payment-before-work reply template: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt
 - Fulfillment checklist: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt
 - Order pipeline JSON: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json
+- Manual outreach queue: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json
+- Copy/paste outreach batch: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt
 - Sales pack page: https://printable-tools-lab.pages.dev/custom-local-print-pack-sales-pack/
 - Machine-readable sales pack: https://printable-tools-lab.pages.dev/service-sales-pack.json
 

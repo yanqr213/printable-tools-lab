@@ -235,6 +235,8 @@ Public service links:
 - Payment-before-work reply: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt`
 - Fulfillment checklist: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt`
 - Order pipeline JSON: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json`
+- Manual outreach queue: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json`
+- Copy/paste outreach batch: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt`
 
 Manual order SOP:
 
@@ -246,6 +248,14 @@ Manual order SOP:
 6. Start custom work only after the external provider shows `paid_order_verified`, a paid order, payout balance, or settled payment.
 7. Fulfill using the checklist, deliver editable text/CSV/copy blocks, and offer one lightweight typo or fit revision.
 8. Log only non-sensitive outcome evidence in this file: date, source, status, provider order state, amount, and public request URL if available.
+
+Manual outreach SOP:
+
+1. Use the outreach batch for the first 10 relevant public-safe actions only; do not scrape, bulk-send, or contact private personal profiles.
+2. Send cold messages only when the seller or service provider has an obvious printable-signage, price-list, flyer, QR sign, pickup-note, or market-table problem.
+3. Lead with the free generators or request brief before mentioning payment.
+4. Use the payment-before-work reply only after the person replies or asks to proceed.
+5. Record `sent`, `replied`, `intent_received`, `fit_confirmed`, `checkout_sent`, `paid_order_verified`, `delivered`, `revision_done`, or `closed` without storing private buyer or payment details.
 
 Service revenue is still zero until a payment provider proves a paid order. Requests, replies, issue creation, and downloads are useful validation but are not revenue.
 

@@ -66,6 +66,152 @@
       "moneyRule": "Final counted revenue must match the external provider record."
     }
   ],
+  "outreachQueueUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-outreach-queue.json",
+  "githubPagesOutreachQueueUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json",
+  "outreachBatchUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-outreach-batch.txt",
+  "githubPagesOutreachBatchUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt",
+  "outreachQueue": [
+    {
+      "id": "market-seller-public-profile-01",
+      "day": 1,
+      "channel": "public-social-dm",
+      "audience": "craft fair, pop-up, farmers market, and handmade sellers with public business profiles",
+      "findWhere": "Public Instagram, Facebook Page, TikTok, Etsy shop announcement, or market-vendor page where the seller publicly invites DMs or business inquiries.",
+      "qualification": "They visibly sell at tables, markets, pop-ups, or local pickup and have pricing/menu/signage that could use printable price tags, QR signs, coupons, or a flyer.",
+      "opener": "Hi, I noticed your local products would look good with a simple printable table pack. I made a $29 done-for-you setup where I prepare starter price tags, flyer copy, QR sign wording, coupon ideas, packing notes, and a one-page launch checklist from your item list. No payment is taken on the site; you can review the brief first and only pay through a real checkout link if it fits.",
+      "cta": "Want the request brief?",
+      "trackedUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=public-social-dm&utm_medium=manual&utm_campaign=service_sales_pack",
+      "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt?utm_source=public-social-dm&utm_medium=manual&utm_campaign=service_sales_pack",
+      "stopRule": "Do not send more than one initial message to the same seller unless they reply. Do not contact private personal profiles.",
+      "status": "ready_manual_send"
+    },
+    {
+      "id": "market-seller-public-profile-02",
+      "day": 1,
+      "channel": "public-social-dm",
+      "audience": "home bakers and cottage-food sellers with public order/menu posts",
+      "findWhere": "Public posts that already show menus, ordering windows, market tables, pickup boxes, or seasonal batches.",
+      "qualification": "They have a current public menu or price list and could benefit from clearer price tags, QR order sign, coupon card, or pickup note copy.",
+      "opener": "Hi, I saw your menu/order post and thought a simple printable table or pickup pack might help: price/menu rows, one small flyer, QR sign wording, coupon ideas, packing or pickup notes, and a launch checklist. I have a $29 done-for-you setup if you want the first pack assembled from your own item list. No payment is taken on the site; I send a real checkout link only after confirming fit.",
+      "cta": "Want the short request brief?",
+      "trackedUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=home-baker-dm&utm_medium=manual&utm_campaign=service_sales_pack",
+      "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt?utm_source=home-baker-dm&utm_medium=manual&utm_campaign=service_sales_pack",
+      "stopRule": "No health, allergy, licensing, or compliance advice. Do not imply the pack makes food claims compliant.",
+      "status": "ready_manual_send"
+    },
+    {
+      "id": "local-service-public-profile-01",
+      "day": 1,
+      "channel": "public-social-dm",
+      "audience": "tutors, cleaners, repair helpers, coaches, notaries, and appointment-based local services",
+      "findWhere": "Public business pages or posts with a booking/contact link and an obvious service offer.",
+      "qualification": "They use basic text posts or screenshots for offers and could use one flyer draft, QR sign wording, coupon/bundle ideas, and booking-note copy.",
+      "opener": "Hi, if you ever need quick printable promo pieces for your service, I have a small $29 setup offer: price/menu rows if needed, one flyer draft, QR sign wording, coupon or bundle ideas, pickup/booking notes, and a print checklist. It is meant for simple local services, not a full branding project.",
+      "cta": "I can send the service brief if useful.",
+      "trackedUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=local-service-dm&utm_medium=manual&utm_campaign=service_sales_pack",
+      "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt?utm_source=local-service-dm&utm_medium=manual&utm_campaign=service_sales_pack",
+      "stopRule": "Avoid regulated claims and do not contact emergency, medical, legal, tax, financial, or high-risk services.",
+      "status": "ready_manual_send"
+    },
+    {
+      "id": "market-organizer-directory-01",
+      "day": 2,
+      "channel": "directory-contact-form",
+      "audience": "market, craft fair, community event, and pop-up organizer websites",
+      "findWhere": "Public organizer pages with a vendor resources, contact, or community bulletin link.",
+      "qualification": "The organizer lists small vendors and may share useful tools/resources with vendors.",
+      "opener": "Hi, I made a small vendor print-pack service that may help new sellers prepare price tags, a QR/contact sign, flyer copy, coupon ideas, packing/pickup notes, and a launch checklist. It is a $29 done-for-you setup after fit is confirmed, and the free generators are available even if vendors do it themselves.",
+      "cta": "Would a short vendor-resource link be useful?",
+      "trackedUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=market-organizer&utm_medium=manual&utm_campaign=service_sales_pack",
+      "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt?utm_source=market-organizer&utm_medium=manual&utm_campaign=service_sales_pack",
+      "stopRule": "Use only public contact forms meant for vendor/resource inquiries. Do not repeatedly contact organizers.",
+      "status": "ready_manual_send"
+    },
+    {
+      "id": "community-help-reply-01",
+      "day": 2,
+      "channel": "helpful-community-reply",
+      "audience": "public posts where someone asks how to prepare a market table, flyer, QR sign, or local-service promo sheet",
+      "findWhere": "Relevant public communities, forums, or groups that allow helpful resource replies.",
+      "qualification": "A person is actively asking for printable setup help, price tags, QR signage, simple flyer copy, or market table prep.",
+      "opener": "For a quick market table setup, I would start with simple price tags, one clear flyer, a QR/contact sign, and one small offer card. I made free generators for those, plus a $29 done-for-you setup if someone wants the first pack assembled from their own item list.",
+      "cta": "Share the free generator first; mention the paid setup only if the person asks for help.",
+      "trackedUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=community-reply&utm_medium=organic&utm_campaign=service_sales_pack",
+      "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/tools/price-tag/?utm_source=community-reply&utm_medium=organic&utm_campaign=service_sales_pack",
+      "stopRule": "Lead with the free generator. Mention the paid setup only when custom help is relevant or requested.",
+      "status": "ready_manual_reply"
+    },
+    {
+      "id": "small-business-directory-01",
+      "day": 3,
+      "channel": "service-directory-listing",
+      "audience": "free or low-friction small-business service directories that allow digital service listings",
+      "findWhere": "Directory submission forms that accept local business printables, small-business services, or marketing support services.",
+      "qualification": "The directory allows service listings and does not require false address, phone, payout, or identity data.",
+      "opener": "Custom Local Print Pack Setup is a $29 done-for-you starter pack for local sellers and small service providers who need printable price tags, flyer copy, QR sign wording, coupon ideas, packing notes, and a launch checklist without learning design software.",
+      "cta": "Use the GitHub Pages service link as the public listing URL until the main Cloudflare deployment is refreshed.",
+      "trackedUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=service-directory&utm_medium=organic&utm_campaign=service_sales_pack",
+      "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt?utm_source=service-directory&utm_medium=organic&utm_campaign=service_sales_pack",
+      "stopRule": "Do not submit to directories requiring fake business registration, scraped reviews, paid placement disguised as free, or private payout information.",
+      "status": "ready_manual_submit"
+    },
+    {
+      "id": "etsy-shop-message-guarded-01",
+      "day": 3,
+      "channel": "marketplace-message-if-allowed",
+      "audience": "small shops that explicitly allow custom-service or business inquiry messages",
+      "findWhere": "Marketplace profiles only when the seller publicly invites custom/business inquiries and platform rules allow the message.",
+      "qualification": "The shop sells physical/local goods and appears to need printable insert, coupon, QR, or table assets.",
+      "opener": "Hi, I am not asking for anything private. If you ever need a quick printable starter pack for your shop table or local pickup flow, I have a $29 setup: price/menu rows, flyer copy, QR sign wording, coupon ideas, packing notes, and a print checklist from your item list. I can send the request brief if useful.",
+      "cta": "Would the brief help?",
+      "trackedUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=marketplace-message&utm_medium=manual&utm_campaign=service_sales_pack",
+      "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt?utm_source=marketplace-message&utm_medium=manual&utm_campaign=service_sales_pack",
+      "stopRule": "Skip if marketplace rules discourage external service pitches. Never pressure or bypass platform messaging rules.",
+      "status": "conditional_manual_send"
+    },
+    {
+      "id": "local-partner-public-email-01",
+      "day": 4,
+      "channel": "public-business-email",
+      "audience": "print shops, coworking spaces, maker spaces, and community bulletin owners with public resource emails",
+      "findWhere": "Public business websites that share vendor, maker, or small-business resources.",
+      "qualification": "They serve local sellers and may value a low-cost vendor prep resource.",
+      "opener": "Hi, I am building a small vendor prep resource: free printable generators plus a $29 done-for-you local print pack setup for sellers who want price tags, flyer copy, QR sign wording, coupon ideas, packing notes, and a launch checklist assembled from their item list. It may be useful for first-time market vendors.",
+      "cta": "Is there a resource page or bulletin where this would fit?",
+      "trackedUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=local-partner-email&utm_medium=manual&utm_campaign=service_sales_pack",
+      "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt?utm_source=local-partner-email&utm_medium=manual&utm_campaign=service_sales_pack",
+      "stopRule": "Use only public business/resource emails. No scraping private addresses or adding anyone to lists.",
+      "status": "ready_manual_send"
+    },
+    {
+      "id": "warm-reply-followup-01",
+      "day": 5,
+      "channel": "reply-followup-only",
+      "audience": "people who replied positively or asked for details",
+      "findWhere": "Only previous conversations where the recipient asked for the brief, price, delivery, or next step.",
+      "qualification": "They asked a question, requested the brief, or confirmed the pack might help.",
+      "opener": "Subject: Custom Local Print Pack Setup - fit confirmed, payment link before work starts\n\nThanks for sending the details. This looks like a good fit for the simple local print pack scope.\n\nScope I will prepare after payment:\n- price tag starter CSV for up to 12 items\n- one small flyer copy draft\n- QR sign wording for one link or contact method\n- three coupon or bundle offer ideas\n- packing slip or pickup note starter rows\n- one-page launch checklist for printing and first outreach\n\nPrice: $29 USD\nTarget delivery is 2 business days after real payment and complete buyer details.\n\nNext step:\n1. I will send one real external checkout link from Gumroad, Payhip, Ko-fi, Stripe, or an invoice provider.\n2. Please pay only through that external provider. Do not post card, bank, payout, tax, identity, or private account details in GitHub or email.\n3. After the provider shows the order as paid, I will mark the request as paid_order_verified and start the pack.\n\nBefore I send the checkout link, please confirm:\n- The item/service list and prices are final enough for a first draft.\n- The QR/contact link is safe to print publicly.\n- You understand the pack is editable starter copy, not legal, tax, accounting, employment, medical, or financial advice.\n- One lightweight revision is included for typos or fit; new branding, logo design, or regulated copy is outside this $29 scope.\n\nRevenue is counted only after the external provider shows a paid order, payout balance, or settled payment.",
+      "cta": "Please confirm the scope bullets, then I can send the external checkout link.",
+      "trackedUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml",
+      "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt?utm_source=warm-followup&utm_medium=manual&utm_campaign=service_sales_pack",
+      "stopRule": "Use this only after a real reply. Do not send payment language to cold contacts.",
+      "status": "reply_only"
+    },
+    {
+      "id": "manual-log-closeout-01",
+      "day": 5,
+      "channel": "operations-log",
+      "audience": "internal tracking",
+      "findWhere": "OPERATIONS.md service-order log section.",
+      "qualification": "After each sent message, reply, request, checkout, paid order, delivery, or closeout.",
+      "opener": "Log date, channel, public-safe source, contact count, reply count, request URL, checkout state, paid amount, and next action. Do not log private buyer/payment details.",
+      "cta": "Update status: sent, replied, intent_received, fit_confirmed, checkout_sent, paid_order_verified, delivered, revision_done, or closed.",
+      "trackedUrl": "https://yanqr213.github.io/printable-tools-lab/service-sales-pack.json",
+      "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/services.json",
+      "stopRule": "Never store payout, card, tax, identity, platform credential, phone, or private address data in the repository.",
+      "status": "required_after_action"
+    }
+  ],
   "audience": [
     "craft fair and market table sellers",
     "home bakers, handmade sellers, and small online sellers",
@@ -92,6 +238,14 @@
     {
       "label": "Fulfillment checklist",
       "url": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
+    },
+    {
+      "label": "Manual outreach queue",
+      "url": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
+    },
+    {
+      "label": "Copy/paste outreach batch",
+      "url": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
     },
     {
       "label": "Main service link",
@@ -168,6 +322,14 @@
     {
       "label": "Fulfillment checklist",
       "value": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt"
+    },
+    {
+      "label": "Manual outreach queue",
+      "value": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json"
+    },
+    {
+      "label": "Copy/paste outreach batch",
+      "value": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt"
     }
   ],
   "executionChecklist": [
@@ -183,7 +345,7 @@
     "Do not collect card, bank, payout, tax, or identity details in the repository or GitHub issues.",
     "Do not begin paid custom work without a real external payment record."
   ],
-  "generatedAt": "2026-06-03T01:17:15.943Z",
+  "generatedAt": "2026-06-03T01:34:07.891Z",
   "directory": "https://yanqr213.github.io/printable-tools-lab/",
   "moneyGate": "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this service."
 }

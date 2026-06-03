@@ -5137,6 +5137,8 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
     const paymentReplyUrl = "/assets/services/custom-local-print-pack-payment-reply.txt";
     const fulfillmentChecklistUrl = "/assets/services/custom-local-print-pack-fulfillment-checklist.txt";
     const orderPipelineUrl = "/assets/services/custom-local-print-pack-order-pipeline.json";
+    const outreachQueueUrl = "/assets/services/custom-local-print-pack-outreach-queue.json";
+    const outreachBatchUrl = "/assets/services/custom-local-print-pack-outreach-batch.txt";
     const issueFormUrl = "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml";
     const serviceRequestUrl = customLocalPrintPackRequestUrl();
     const serviceEmailUrl = customLocalPrintPackEmailUrl();
@@ -5162,6 +5164,8 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       ["Payment-before-work reply", paymentReplyUrl],
       ["Fulfillment checklist", fulfillmentChecklistUrl],
       ["Order pipeline JSON", orderPipelineUrl],
+      ["Manual outreach queue", outreachQueueUrl],
+      ["Copy/paste outreach batch", outreachBatchUrl],
     ];
     setMeta("Custom Local Print Pack Setup", "A $29 done-for-you setup request for one simple printable seller pack: price tags, flyer copy, QR sign text, coupon wording, packing slip starter rows, and a one-page launch checklist.");
     setJsonLd({
@@ -5190,6 +5194,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
           <a class="button secondary" href="${requestTemplateUrl}" download>Download service brief</a>
           ${serviceEmailUrl ? `<a class="button ghost" href="${escapeHtml(serviceEmailUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Email service request</a>` : ""}
           <a class="button ghost" href="${orderPipelineUrl}">Open order pipeline</a>
+          <a class="button ghost" href="${outreachBatchUrl}">Open outreach batch</a>
           <a class="button ghost" href="/local-seller-starter-kit/">See the $9 template kit</a>
           <a class="button ghost" href="/custom-local-print-pack-sales-pack/">Open sales pack</a>
         </div>
@@ -5279,6 +5284,8 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       ["Structured request form", "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml&utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
       ["Payment reply template", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
       ["Fulfillment checklist", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
+      ["Manual outreach queue", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
+      ["Copy/paste outreach batch", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
       ["Main service link", `${absoluteUrl("/custom-local-print-pack/").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
       ["Free price tag generator", `${absoluteUrl("/tools/price-tag/").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
       ["Free flyer maker", `${absoluteUrl("/tools/flyer-maker/").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
@@ -5299,6 +5306,8 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       ["Structured request form", "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml"],
       ["Payment-before-work reply", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt"],
       ["Fulfillment checklist", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt"],
+      ["Manual outreach queue", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json"],
+      ["Copy/paste outreach batch", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt"],
     ];
     const checklist = [
       "Start with 5 to 10 manual, relevant, non-spam contacts where the service solves an immediate print or market-table problem.",
@@ -5313,6 +5322,8 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       ["Payment-before-work reply", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt"],
       ["Fulfillment checklist", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt"],
       ["Order pipeline JSON", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json"],
+      ["Manual outreach queue", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json"],
+      ["Copy/paste outreach batch", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt"],
     ];
     const orderStatuses = ["intent_received", "fit_confirmed", "checkout_sent", "paid_order_verified", "in_progress", "delivered", "revision_done", "closed"];
     setMeta("Custom Local Print Pack Sales Pack", "Copy-ready outreach, tracked links, listing fields, and safe manual execution steps for the $29 Custom Local Print Pack service.");

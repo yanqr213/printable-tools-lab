@@ -104,3 +104,9 @@
 
 /assets/services/custom-local-print-pack-order-pipeline.json
   Content-Type: application/json; charset=utf-8
+
+/assets/services/custom-local-print-pack-outreach-queue.json
+  Content-Type: application/json; charset=utf-8
+
+/assets/services/custom-local-print-pack-outreach-batch.txt
+  Content-Type: text/plain; charset=utf-8
