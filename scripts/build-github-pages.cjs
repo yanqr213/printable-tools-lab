@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, ZERO_DOMAIN_GAME_EXPERIMENTS, siteUrl, tools, landingPages } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, siteUrl, tools, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
@@ -307,6 +307,10 @@ function digitalProductHtml(product) {
   const checkoutConfigured = Boolean(product.checkoutUrl);
   const sampleUrl = pagesAssetUrl(product.publicSamplePath);
   const packageReportUrl = pagesAssetUrl(product.packageReportPath);
+  const checkoutRequestUrl = productCheckoutRequestUrl(product, sampleUrl);
+  const checkoutTargetUrl = checkoutConfigured ? product.checkoutUrl : checkoutRequestUrl;
+  const checkoutLabel = checkoutConfigured ? `Buy for $${product.priceUsd}` : "Request checkout link";
+  const checkoutCopy = productCheckoutRequestCopy(product, sampleUrl);
   return `<!doctype html>
 <html lang="en">
   <head>
@@ -324,10 +328,13 @@ function digitalProductHtml(product) {
       h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin: 0 0 14px; }
       p { color: var(--muted); max-width: 780px; }
       a { color: var(--teal); font-weight: 700; }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 20px 0; }
       .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .button.secondary { background: #17313b; }
       .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
       .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
       code { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 2px 5px; }
+      pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px; color: var(--ink); }
       ul { padding-left: 20px; }
       @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
     </style>
@@ -337,9 +344,15 @@ function digitalProductHtml(product) {
       <p><a href="${pagesBase}">PrintableTools Lab discovery directory</a></p>
       <h1>${escapeHtml(product.headline)}</h1>
       <p>${escapeHtml(product.description)}</p>
-      <p><a class="button" href="${trackedSiteUrl(product.slug, "product-mirror")}">Open live product page</a> <a href="${sampleUrl}">Download sample ZIP</a> <a href="${packageReportUrl}">View package report</a></p>
+      <div class="actions">
+        <a class="button" href="${sampleUrl}" download>Download sample ZIP</a>
+        <a class="button secondary" href="${escapeHtml(checkoutTargetUrl)}">${escapeHtml(checkoutLabel)}</a>
+        <a href="${packageReportUrl}">View package report</a>
+      </div>
       <h2>Checkout state</h2>
-      <p>${checkoutConfigured ? "Checkout is configured on the main product page through an external payment provider." : "Checkout is not connected yet. The product page and delivery ZIP are ready, but a real Gumroad, Payhip, Ko-fi, or Stripe Payment Link must be added before paid promotion."}</p>
+      <p>${checkoutConfigured ? "Checkout is configured through an external payment provider. Revenue is still counted only from paid provider orders." : "Checkout is not connected yet. Use the request link to capture buyer intent without taking payment; a real Gumroad, Payhip, Ko-fi, or Stripe Payment Link is still required before paid promotion."}</p>
+      <pre>${escapeHtml(checkoutCopy)}</pre>
+      <p><a href="${trackedSiteUrl(product.slug, "product-backup")}">Open main site copy</a></p>
       <h2>Included assets</h2>
       <div class="grid">
         ${product.contents.map((item) => `<article class="card"><h3>${escapeHtml(item)}</h3><p>Editable local-selling template content for the paid ZIP.</p></article>`).join("\n")}
@@ -523,6 +536,8 @@ function productFeedEntry(product) {
     priceUsd: product.priceUsd,
     currency: product.currency,
     checkoutConfigured: Boolean(product.checkoutUrl),
+    checkoutUrl: product.checkoutUrl || "",
+    checkoutRequestUrl: productCheckoutRequestUrl(product, pagesAssetUrl(product.publicSamplePath)),
     sampleUrl: siteUrl(product.publicSamplePath).replace(/\/$/, ""),
     discoverySampleUrl: pagesAssetUrl(product.publicSamplePath),
     packageReportUrl: siteUrl(product.packageReportPath).replace(/\/$/, ""),

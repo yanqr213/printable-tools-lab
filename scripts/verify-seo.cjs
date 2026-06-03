@@ -411,7 +411,10 @@ else {
   const html = fs.readFileSync(digitalProductFile, "utf8");
   if (!html.includes("Local Seller Starter Kit")) failures.push("Digital product page missing product name.");
   if (!html.includes("Download sample ZIP")) failures.push("Digital product page missing sample ZIP CTA.");
+  if (!html.includes("Request checkout link")) failures.push("Digital product page missing buyer checkout request CTA.");
   if (!html.includes("Checkout link pending")) failures.push("Digital product page missing honest checkout-pending state.");
+  if (!html.includes("github.com/yanqr213/printable-tools-lab/issues/new")) failures.push("Digital product page missing checkout request URL.");
+  if (!html.includes("seller_checkout_intent")) failures.push("Digital product page missing seller intent tracking.");
   if (!html.includes('"@type":"Product"')) failures.push("Digital product page missing Product schema.");
   if (!html.includes("paid-deliverables/local-seller-starter-kit.zip")) failures.push("Digital product page missing private package setup note.");
   if (!sitemap.includes(`<loc>${siteUrl(LOCAL_SELLER_STARTER_KIT.slug)}</loc>`)) failures.push("Sitemap missing digital product page.");
@@ -426,6 +429,7 @@ else {
   if (!sellerKit) failures.push("digital-products.json missing Local Seller Starter Kit.");
   if (sellerKit && sellerKit.priceUsd !== 9) failures.push("digital-products.json has unexpected seller kit price.");
   if (sellerKit && !String(sellerKit.sampleUrl || "").includes("local-seller-starter-kit-sample.zip")) failures.push("digital-products.json missing sample ZIP URL.");
+  if (sellerKit && !String(sellerKit.checkoutRequestUrl || "").includes("github.com/yanqr213/printable-tools-lab/issues/new")) failures.push("digital-products.json missing checkout request URL.");
   if (sellerKit && !sellerKit.privatePackageReady) failures.push("digital-products.json missing private package readiness.");
   if (!String(data.moneyGate || "").includes("paid order")) failures.push("digital-products.json missing paid-order money gate.");
 }
@@ -604,6 +608,7 @@ else {
   if (!Array.isArray(data.products) || !data.products.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id)) failures.push("GitHub Pages products.json missing seller kit.");
   if (!data.products?.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id && String(product.discoverySampleUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/assets/digital-products/"))) failures.push("GitHub Pages products.json missing local sample ZIP URL.");
   if (!data.products?.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id && String(product.discoveryPackageReportUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/reports/"))) failures.push("GitHub Pages products.json missing local package report URL.");
+  if (!data.products?.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id && String(product.checkoutRequestUrl || "").includes("github.com/yanqr213/printable-tools-lab/issues/new"))) failures.push("GitHub Pages products.json missing checkout request URL.");
   if (!String(data.moneyGate || "").includes("paid order")) failures.push("GitHub Pages products.json missing paid-order money gate.");
 }
 
@@ -613,6 +618,9 @@ else {
   const html = fs.readFileSync(docsProductFile, "utf8");
   if (!html.includes("Local Seller Starter Kit")) failures.push("GitHub Pages seller kit mirror missing title.");
   if (!html.includes("Download sample ZIP")) failures.push("GitHub Pages seller kit mirror missing sample link.");
+  if (!html.includes("Request checkout link")) failures.push("GitHub Pages seller kit mirror missing checkout request CTA.");
+  if (!html.includes("github.com/yanqr213/printable-tools-lab/issues/new")) failures.push("GitHub Pages seller kit mirror missing checkout request URL.");
+  if (html.indexOf("Open live product page") !== -1) failures.push("GitHub Pages seller kit mirror should not make stale Cloudflare the primary product CTA.");
   if (!html.includes("https://yanqr213.github.io/printable-tools-lab/assets/digital-products/local-seller-starter-kit-sample.zip")) failures.push("GitHub Pages seller kit mirror should use local sample ZIP URL.");
   if (!html.includes("https://yanqr213.github.io/printable-tools-lab/reports/local-seller-starter-kit-package.json")) failures.push("GitHub Pages seller kit mirror should link local package report.");
   if (!html.includes('"@type":"Product"')) failures.push("GitHub Pages seller kit mirror missing Product schema.");

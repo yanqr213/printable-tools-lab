@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-02T23:14:10.262Z
+Last generated: 2026-06-03T00:01:37.920Z
 
 ## Current Automated Status
 
@@ -12,6 +12,7 @@ Last generated: 2026-06-02T23:14:10.262Z
 - Custom domain configured: no.
 - Live downloads: 1.
 - Live generations: 0.
+- Seller-kit intent events: 0.
 - Search impressions: 0.
 - Search clicks: 0.
 - External discovery ready: yes.
@@ -62,6 +63,7 @@ Last generated: 2026-06-02T23:14:10.262Z
 - Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.
 - When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.
 - Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.
+- Keep the GitHub Pages seller-kit mirror visible and watch for seller intent events before spending time on more paid-kit variants.
 
 ## Commands
 

@@ -308,6 +308,8 @@ npm.cmd run register:domain -- --register
 6. If AdSense stalls, test Microsoft pubCenter as the mainstream fallback; avoid forced-view or download-gated ad networks.
 7. Keep free tools ungated. Direct checkout is allowed only for the Local Seller Starter Kit after a real external payment link is configured; display ads still wait for approval and search visibility.
 
+Until that real checkout link exists, use the GitHub Pages seller-kit mirror as the public buyer-intent path. Its request link is not revenue; count money only from a paid provider order, payout balance, or settled payment.
+
 Configure the seller-kit payment link after creating a real checkout product:
 
 ```powershell

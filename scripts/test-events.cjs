@@ -24,7 +24,7 @@ async function main() {
   const metricsPayload = await metricsResponse.json();
   assert(metricsPayload.ok, "Metrics endpoint should respond");
   assert(metricsPayload.totals.download_pdf === 1, "Metrics should count downloads");
-  assert(metricsPayload.tools.length === 66, "Metrics should include every active tool");
+  assert(metricsPayload.tools.length === 67, "Metrics should include every active tool plus the digital product");
   const invoice = metricsPayload.tools.find((row) => row.tool === "invoice-generator");
   assert(invoice.download_pdf === 1, "Metrics should count per-tool downloads");
   const noSignupTools = metricsPayload.sources.find((row) => row.source === "nosignuptools");
@@ -100,6 +100,32 @@ async function main() {
   const unknownToolMetrics = await (await metricsSource.onRequestGet({ env })).json();
   assert(unknownToolMetrics.totals.generate_pdf === 1, "Unknown tool IDs should still count total generations");
   assert(!unknownToolMetrics.tools.some((row) => row.tool === "unexpected-tool-id"), "Unknown tool IDs should not create public metric rows");
+
+  const sellerIntentResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "seller_checkout_intent", tool: "local-seller-starter-kit", path: "/local-seller-starter-kit/", source: "github-pages" }),
+    }),
+    env,
+  });
+  assert(sellerIntentResponse.status === 200, "Event collector should accept seller checkout intent events");
+  const sellerDownloadResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "seller_sample_download", tool: "local-seller-starter-kit", path: "/local-seller-starter-kit/", source: "github-pages" }),
+    }),
+    env,
+  });
+  assert(sellerDownloadResponse.status === 200, "Event collector should accept seller sample download events");
+  const sellerMetrics = await (await metricsSource.onRequestGet({ env })).json();
+  const sellerKit = sellerMetrics.tools.find((row) => row.tool === "local-seller-starter-kit");
+  assert(sellerKit.seller_checkout_intent === 1, "Metrics should count seller checkout intent");
+  assert(sellerKit.seller_sample_download === 1, "Metrics should count seller sample downloads");
+  assert(sellerMetrics.totals.seller_checkout_intent === 1, "Metrics should count total seller checkout intent");
+  const githubPages = sellerMetrics.sources.find((row) => row.source === "github-pages");
+  assert(githubPages.seller_checkout_intent === 1, "Metrics should count seller intent by source");
   console.log("Event metrics test passed.");
 }
 

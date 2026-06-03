@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-02T23:14:10.262Z",
+  "generatedAt": "2026-06-03T00:01:37.920Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 66,
     "indexableRoutes": 244,
     "sitemapLocCount": 244,
-    "generatedToolInventoryAt": "2026-06-02T23:09:10.087Z",
+    "generatedToolInventoryAt": "2026-06-02T23:35:34.874Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -2032,10 +2032,10 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 11404,
+        "bytes": 11400,
         "json": {
           "ok": true,
-          "today": "2026-06-02",
+          "today": "2026-06-03",
           "totals": {
             "page_view": 258,
             "generate_pdf": 0,
@@ -2047,7 +2047,7 @@
             "ai_ideas_apply": 0
           },
           "todayTotals": {
-            "page_view": 174,
+            "page_view": 0,
             "generate_pdf": 0,
             "download_pdf": 0,
             "generate_file": 0,
@@ -2661,7 +2661,7 @@
               "generate_file": 0,
               "download_file": 0,
               "today": {
-                "page_view": 164,
+                "page_view": 0,
                 "generate_pdf": 0,
                 "download_pdf": 0,
                 "generate_file": 0,
@@ -2676,7 +2676,7 @@
               "generate_file": 0,
               "download_file": 0,
               "today": {
-                "page_view": 2,
+                "page_view": 0,
                 "generate_pdf": 0,
                 "download_pdf": 0,
                 "generate_file": 0,
@@ -2811,7 +2811,7 @@
               "generate_file": 0,
               "download_file": 0,
               "today": {
-                "page_view": 8,
+                "page_view": 0,
                 "generate_pdf": 0,
                 "download_pdf": 0,
                 "generate_file": 0,
@@ -2853,7 +2853,7 @@
       }
     },
     "metrics": {
-      "today": "2026-06-02",
+      "today": "2026-06-03",
       "totals": {
         "page_view": 258,
         "generate_pdf": 0,
@@ -2865,7 +2865,7 @@
         "ai_ideas_apply": 0
       },
       "todayTotals": {
-        "page_view": 174,
+        "page_view": 0,
         "generate_pdf": 0,
         "download_pdf": 0,
         "generate_file": 0,
@@ -2876,6 +2876,7 @@
       },
       "totalDownloads": 1,
       "totalGenerations": 0,
+      "sellerIntent": 0,
       "topTools": [
         {
           "tool": "invoice-generator",
@@ -3000,8 +3001,8 @@
     },
     "performance": {
       "siteUrl": "https://printable-tools-lab.pages.dev/",
-      "startDate": "2026-05-05",
-      "endDate": "2026-06-01",
+      "startDate": "2026-05-06",
+      "endDate": "2026-06-02",
       "rowCount": 0,
       "totals": {
         "clicks": 0,
@@ -3175,6 +3176,7 @@
     "Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.",
     "Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.",
     "When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.",
-    "Keep the current free product live and track downloads/generations until the 30-day gate has enough signal."
+    "Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.",
+    "Keep the GitHub Pages seller-kit mirror visible and watch for seller intent events before spending time on more paid-kit variants."
   ]
 }

@@ -5007,6 +5007,11 @@
     const checkoutReady = Boolean(checkoutUrl);
     const productUrl = "/local-seller-starter-kit/";
     const sampleUrl = "/assets/digital-products/local-seller-starter-kit-sample.zip";
+    const sampleAbsoluteUrl = absoluteUrl(sampleUrl);
+    const checkoutRequestUrl = sellerKitCheckoutRequestUrl(sampleAbsoluteUrl);
+    const primaryCheckoutUrl = checkoutReady ? checkoutUrl : checkoutRequestUrl;
+    const primaryCheckoutText = checkoutReady ? "Buy for $9" : "Request checkout link";
+    const primaryCheckoutEvent = checkoutReady ? "seller_checkout_click" : "seller_checkout_intent";
     const price = "9";
     const included = [
       "30-day local promo calendar CSV",
@@ -5041,11 +5046,11 @@
         <h1>Local Seller Starter Kit for market tables, services, and small orders</h1>
         <p>A low-price digital operations kit for people who already need invoices, price tags, coupons, flyers, business cards, packing slips, inventory sheets, and QR signs.</p>
         <div class="hero-actions">
-          <a class="button" href="${checkoutReady ? escapeHtml(checkoutUrl) : "#checkout-setup"}">${checkoutReady ? `Buy for $${price}` : "Checkout link pending"}</a>
-          <a class="button secondary" href="${sampleUrl}">Download sample ZIP</a>
+          <a class="button" href="${escapeHtml(primaryCheckoutUrl)}" data-track-event="${primaryCheckoutEvent}" data-track-tool="local-seller-starter-kit">${primaryCheckoutText}</a>
+          <a class="button secondary" href="${sampleUrl}" download data-track-event="seller_sample_download" data-track-tool="local-seller-starter-kit">Download sample ZIP</a>
           <a class="button ghost" href="/tools/price-tag/">Try the free price tag tool</a>
         </div>
-        <p class="notice">${checkoutReady ? "Checkout is configured through the external payment provider linked above." : "Checkout is not connected yet. Add a Gumroad, Payhip, Ko-fi, or Stripe Payment Link in site-config.js before announcing paid availability."}</p>
+        <p class="notice">${checkoutReady ? "Checkout is configured through the external payment provider linked above." : "Checkout link pending: buyers can request a checkout link now, but no payment is collected here until a real Gumroad, Payhip, Ko-fi, or Stripe Payment Link is connected."}</p>
         <div class="hero-proof">
           <div class="proof-tile"><strong>$${price}</strong><span>starter price</span></div>
           <div class="proof-tile"><strong>${included.length}</strong><span>editable assets</span></div>
@@ -5062,11 +5067,12 @@
       </section>
       <section class="shell section" id="checkout-setup">
         <h2>Checkout setup</h2>
-        <p>This page does not fake a payment flow. Create a product in Gumroad, Payhip, Ko-fi, or Stripe Payment Links, upload <code>paid-deliverables/local-seller-starter-kit.zip</code>, then set <code>sellerKitCheckoutUrl</code> in <code>site-config.js</code>.</p>
+        <p>This page does not fake a payment flow. Until the payment link is connected, the request link captures buyer intent without taking money. Create a product in Gumroad, Payhip, Ko-fi, or Stripe Payment Links, upload <code>paid-deliverables/local-seller-starter-kit.zip</code>, then set <code>sellerKitCheckoutUrl</code> in <code>site-config.js</code>.</p>
         <pre class="code-block">Product name: Local Seller Starter Kit
 Price: $${price} USD
 Upload file: paid-deliverables/local-seller-starter-kit.zip
-Sample file: ${absoluteUrl(sampleUrl)}
+Sample file: ${sampleAbsoluteUrl}
+Buyer request link: ${checkoutRequestUrl}
 Delivery: instant ZIP download after payment through the checkout provider</pre>
       </section>
       <section class="shell section">
@@ -5079,6 +5085,23 @@ Delivery: instant ZIP download after payment through the checkout provider</pre>
         </ul>
       </section>
     `;
+  }
+
+  function sellerKitCheckoutRequestUrl(sampleUrl) {
+    const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+    url.searchParams.set("title", "Checkout request: Local Seller Starter Kit");
+    url.searchParams.set("body", [
+      "I want to buy the Local Seller Starter Kit for $9 USD.",
+      "",
+      `Sample checked: ${sampleUrl}`,
+      "Preferred checkout provider: Gumroad / Payhip / Ko-fi / Stripe / other",
+      "Best contact method:",
+      "Country or region (optional):",
+      "Notes:",
+      "",
+      "No payment is collected in this GitHub issue. Please reply with a real external checkout link only after the payment product is ready.",
+    ].join("\n"));
+    return url.toString();
   }
 
   function renderLandingPage(slug) {
@@ -10706,39 +10729,41 @@ ${paragraphs.join("\n")}
       const response = await fetch("/api/metrics", { cache: "no-store" });
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error("Metrics unavailable");
+      const sellerSignal = (row) => (row.seller_sample_download || 0) + (row.seller_checkout_intent || 0) + (row.seller_checkout_click || 0);
       const rows = (data.tools || []).slice().sort((a, b) => {
-        const bScore = ((b.download_pdf || 0) + (b.download_file || 0)) * 3 + (b.generate_pdf || 0) + (b.generate_file || 0);
-        const aScore = ((a.download_pdf || 0) + (a.download_file || 0)) * 3 + (a.generate_pdf || 0) + (a.generate_file || 0);
+        const bScore = ((b.download_pdf || 0) + (b.download_file || 0)) * 3 + sellerSignal(b) * 4 + (b.generate_pdf || 0) + (b.generate_file || 0);
+        const aScore = ((a.download_pdf || 0) + (a.download_file || 0)) * 3 + sellerSignal(a) * 4 + (a.generate_pdf || 0) + (a.generate_file || 0);
         return bScore - aScore || String(a.tool).localeCompare(String(b.tool));
       });
       const sourceRows = (data.sources || []).slice().sort((a, b) => {
-        const bScore = ((b.download_pdf || 0) + (b.download_file || 0)) * 3 + (b.generate_pdf || 0) + (b.generate_file || 0) + (b.page_view || 0);
-        const aScore = ((a.download_pdf || 0) + (a.download_file || 0)) * 3 + (a.generate_pdf || 0) + (a.generate_file || 0) + (a.page_view || 0);
+        const bScore = ((b.download_pdf || 0) + (b.download_file || 0)) * 3 + sellerSignal(b) * 4 + (b.generate_pdf || 0) + (b.generate_file || 0) + (b.page_view || 0);
+        const aScore = ((a.download_pdf || 0) + (a.download_file || 0)) * 3 + sellerSignal(a) * 4 + (a.generate_pdf || 0) + (a.generate_file || 0) + (a.page_view || 0);
         return bScore - aScore || String(a.source).localeCompare(String(b.source));
       });
-      const activeSourceRows = sourceRows.filter((row) => (row.page_view || 0) || (row.generate_pdf || 0) || (row.download_pdf || 0) || (row.generate_file || 0) || (row.download_file || 0));
-      const activeRows = rows.filter((row) => (row.download_pdf || 0) || (row.generate_pdf || 0) || (row.download_file || 0) || (row.generate_file || 0) || (row.limit_hit || 0));
+      const activeSourceRows = sourceRows.filter((row) => (row.page_view || 0) || (row.generate_pdf || 0) || (row.download_pdf || 0) || (row.generate_file || 0) || (row.download_file || 0) || sellerSignal(row));
+      const activeRows = rows.filter((row) => (row.download_pdf || 0) || (row.generate_pdf || 0) || (row.download_file || 0) || (row.generate_file || 0) || (row.limit_hit || 0) || sellerSignal(row));
       const displayRows = activeRows.length ? activeRows : rows;
       const totalGenerations = (data.totals.generate_pdf || 0) + (data.totals.generate_file || 0);
       const totalDownloads = (data.totals.download_pdf || 0) + (data.totals.download_file || 0);
+      const sellerIntent = (data.totals.seller_sample_download || 0) + (data.totals.seller_checkout_intent || 0) + (data.totals.seller_checkout_click || 0);
       target.innerHTML = `
         <div class="metric-grid compact">
           <div class="metric-tile"><strong>${data.totals.page_view || 0}</strong><span>live page views</span></div>
           <div class="metric-tile"><strong>${totalGenerations}</strong><span>live generations</span></div>
           <div class="metric-tile"><strong>${totalDownloads}</strong><span>live downloads</span></div>
-          <div class="metric-tile"><strong>${data.totals.ai_ideas_apply || 0}</strong><span>AI applies</span></div>
+          <div class="metric-tile"><strong>${sellerIntent}</strong><span>seller intent</span></div>
         </div>
-        <p class="help">Tools are sorted by download and generation signal so the next SEO or ad placement decision starts from actual usage.</p>
+        <p class="help">Rows are sorted by downloads, seller intent, and generation signal so the next monetization decision starts from actual usage.</p>
         <div class="preview-stage">
           <table class="event-table">
-            <thead><tr><th>Source</th><th>Views</th><th>Generations</th><th>Downloads</th></tr></thead>
-            <tbody>${(activeSourceRows.length ? activeSourceRows : sourceRows).map((row) => `<tr><td>${escapeHtml(row.source)}</td><td>${row.page_view || 0}</td><td>${(row.generate_pdf || 0) + (row.generate_file || 0)}</td><td>${(row.download_pdf || 0) + (row.download_file || 0)}</td></tr>`).join("")}</tbody>
+            <thead><tr><th>Source</th><th>Views</th><th>Generations</th><th>Downloads</th><th>Seller intent</th></tr></thead>
+            <tbody>${(activeSourceRows.length ? activeSourceRows : sourceRows).map((row) => `<tr><td>${escapeHtml(row.source)}</td><td>${row.page_view || 0}</td><td>${(row.generate_pdf || 0) + (row.generate_file || 0)}</td><td>${(row.download_pdf || 0) + (row.download_file || 0)}</td><td>${sellerSignal(row)}</td></tr>`).join("")}</tbody>
           </table>
         </div>
         <div class="preview-stage">
           <table class="event-table">
-            <thead><tr><th>Tool</th><th>Downloads</th><th>Generations</th><th>Limit hits</th></tr></thead>
-            <tbody>${displayRows.map((row) => `<tr><td>${escapeHtml(row.tool)}</td><td>${(row.download_pdf || 0) + (row.download_file || 0)}</td><td>${(row.generate_pdf || 0) + (row.generate_file || 0)}</td><td>${row.limit_hit || 0}</td></tr>`).join("")}</tbody>
+            <thead><tr><th>Tool</th><th>Downloads</th><th>Seller intent</th><th>Generations</th><th>Limit hits</th></tr></thead>
+            <tbody>${displayRows.map((row) => `<tr><td>${escapeHtml(row.tool)}</td><td>${(row.download_pdf || 0) + (row.download_file || 0)}</td><td>${sellerSignal(row)}</td><td>${(row.generate_pdf || 0) + (row.generate_file || 0)}</td><td>${row.limit_hit || 0}</td></tr>`).join("")}</tbody>
           </table>
         </div>
       `;
@@ -10908,6 +10933,11 @@ ${paragraphs.join("\n")}
   document.addEventListener("click", (event) => {
     const link = event.target.closest("a[href]");
     if (!link) return;
+    if (link.dataset.trackEvent) {
+      track(link.dataset.trackEvent, { tool: link.dataset.trackTool || "site" });
+    }
+    if (link.hasAttribute("download") || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (link.target && link.target !== "_self") return;
     const url = new URL(link.href, window.location.href);
     if (url.origin !== window.location.origin || !url.pathname.startsWith("/")) return;
     if (url.hash && url.pathname === window.location.pathname) return;

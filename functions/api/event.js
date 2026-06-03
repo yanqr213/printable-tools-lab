@@ -9,6 +9,9 @@ const ALLOWED_EVENTS = new Set([
   "ai_ideas",
   "ai_ideas_apply",
   "ai_ideas_error",
+  "seller_sample_download",
+  "seller_checkout_intent",
+  "seller_checkout_click",
 ]);
 
 const ALLOWED_SOURCES = new Set([
@@ -102,6 +105,7 @@ const ALLOWED_TOOLS = new Set([
   "flashcards",
   "weekly-planner",
   "habit-tracker",
+  "local-seller-starter-kit",
 ]);
 
 export async function onRequestPost({ request, env }) {

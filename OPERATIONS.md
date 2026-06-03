@@ -218,6 +218,8 @@ If the 60-day site gate still shows no impressions and no downloads, build one e
 
 For the current strategy, payment can be enabled for the Local Seller Starter Kit only after a real external checkout product is created and the full ZIP is uploaded there.
 
+While the checkout link is pending, the buyer-facing fallback is the GitHub Pages mirror at `https://yanqr213.github.io/printable-tools-lab/local-seller-starter-kit/`. It hosts the sample ZIP locally and links to a prefilled checkout-request issue. Treat those requests as purchase intent only; revenue is still zero until a payment provider shows a paid order, payout balance, or settled payment.
+
 Compliance priority:
 
 1. Use a provider that supports the owner's country, identity, tax profile, and payout bank account.
@@ -233,6 +235,8 @@ Practical order for the current paid product:
 1. Merchant-of-record provider for tax/VAT handling if the owner can pass onboarding.
 2. Gumroad, Payhip, Ko-fi, Stripe Payment Links, or PayPal-style checkout if the owner has a supported account and can satisfy KYC.
 3. China-friendly platform with official Alipay settlement only if it fits the product and account identity.
+
+The generated paid ZIP includes `payment-provider-setup.md`, `checkout-listing-copy.md`, and `buyer-request-template.txt` so the checkout product can be published with copy/paste fields once a real provider account is available.
 
 ## First Launch Keywords
 

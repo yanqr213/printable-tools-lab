@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
 const { strToU8, zipSync } = require("fflate");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, productCheckoutRequestUrl, productCheckoutRequestCopy, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -233,6 +233,7 @@ const digitalProductsJson = {
     "Create an external checkout product in Gumroad, Payhip, Ko-fi, or Stripe Payment Links.",
     `Upload the full ZIP from ${LOCAL_SELLER_STARTER_KIT.privatePackagePath}; do not commit that full paid ZIP to git.`,
     "Set PUBLIC_SELLER_KIT_CHECKOUT_URL or sellerKitCheckoutUrl in site-config.js to make the public page buyable.",
+    `Until checkout is connected, route buyer intent to ${productCheckoutRequestUrl(LOCAL_SELLER_STARTER_KIT)}.`,
     "Keep payout, tax, bank, card, phone, and account credentials inside the payment provider dashboard.",
   ],
 };
@@ -854,6 +855,41 @@ function localSellerKitFiles(product, sampleOnly) {
         "## License",
         "Use inside your own business, table, shop, class, or event. Do not resell or redistribute the kit itself.",
       ].join("\n"),
+      [`${prefix}/payment-provider-setup.md`]: [
+        "# Payment provider setup",
+        "",
+        "Use one real external checkout product. Do not paste payout, tax, card, bank, or account credentials into this repository.",
+        "",
+        "## Product fields",
+        "",
+        `Product name: ${product.name}`,
+        `Price: $${product.priceUsd} ${product.currency}`,
+        `Upload file: ${product.privatePackagePath}`,
+        `Public sample: ${siteUrl(product.publicSamplePath).replace(/\/$/, "")}`,
+        `Buyer request link while checkout is pending: ${productCheckoutRequestUrl(product)}`,
+        "",
+        "## Short description",
+        "",
+        product.shortDescription,
+        "",
+        "## Buyer delivery note",
+        "",
+        "Instant ZIP download after payment. The ZIP includes editable CSV, Markdown, HTML, and text templates for the buyer's own local-selling workflow.",
+        "",
+        "## Refund and support note",
+        "",
+        "Because this is a digital download, review the sample ZIP before buying. If the delivered ZIP cannot be opened, reply through the checkout provider with the order email and a replacement link can be sent.",
+        "",
+        "## Publish checklist",
+        "",
+        "- Upload the full ZIP from paid-deliverables.",
+        "- Paste the short description and license note.",
+        "- Set the price to 9 USD.",
+        "- Make delivery instant after payment.",
+        "- Copy the public checkout URL into site-config.js with npm run configure:checkout.",
+        "- Run npm run build:routes and npm run verify:seo before promoting.",
+      ].join("\n"),
+      [`${prefix}/buyer-request-template.txt`]: productCheckoutRequestCopy(product),
       [`${prefix}/LICENSE.txt`]: [
         `${product.name} Commercial-Use License`,
         "",
@@ -895,6 +931,7 @@ function digitalProductEntry(product) {
     currency: product.currency,
     checkoutConfigured: Boolean(product.checkoutUrl),
     checkoutUrl: product.checkoutUrl,
+    checkoutRequestUrl: productCheckoutRequestUrl(product),
     sampleUrl: fileUrl(product.publicSamplePath),
     packageReportUrl: fileUrl(product.packageReportPath),
     privatePackagePath: product.privatePackagePath,
