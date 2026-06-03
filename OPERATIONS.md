@@ -566,6 +566,7 @@ Completed:
 - `2026-06-02`: JS.ORG free subdomain request for `printable-tools-lab.js.org` was rejected as unrelated/unqualified, confirming that a free JS.ORG domain should not be treated as a dependable custom-domain substitute for AdSense or search trust.
 - `2026-06-03`: NoLogin.tools accepted a no-login directory submission for `https://printable-tools-lab.pages.dev/` via API with slug `printable-tools-lab-pages-dev`; public listing was not live immediately and is now monitored as pending.
 - `2026-06-03`: NoSubscription.org accepted the free/open-source submission for `https://printable-tools-lab.pages.dev/` with a success response; public listing is not live yet and is now monitored as pending.
+- `2026-06-03`: External discovery scripts were updated so the GitHub release, public Gist, and public growth issue promote the buyer-intent path: Free Market Table Print Audit -> optional $29 Custom Local Print Pack Setup -> `paid_order_verified` money gate. `npm.cmd run share-kit-push` wrote a buyer-intent share-kit report and submitted IndexNow, but the live GitHub Release/Gist/Issue update was skipped because no `GITHUB_TOKEN`, `GH_TOKEN`, or `gh` CLI auth was available in this environment. Revenue remains $0 until an external provider proves a paid order.
 
 Submit Google sitemap:
 

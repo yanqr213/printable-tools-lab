@@ -1,7 +1,7 @@
 const { execFileSync } = require("child_process");
-const { HIGH_INTENT_TOOL_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, siteUrl, tools, SITE_SUMMARY } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, CUSTOM_LOCAL_PRINT_PACK_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, siteUrl, tools, SITE_SUMMARY } = require("./seo-content.cjs");
 
-const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || "";
+const token = githubToken();
 if (!token) {
   console.error("Set GITHUB_TOKEN or GH_TOKEN before running github-discovery.");
   process.exit(1);
@@ -134,6 +134,9 @@ function releaseBody() {
     `- [Zero-budget share kit](${siteUrl("share-kit")})`,
     `- [Machine-readable share-kit.json](${siteUrl("share-kit.json").replace(/\/$/, "")})`,
     ...externalDiscoveryLinks(),
+    `- [Free Market Table Print Audit](${MARKET_TABLE_PRINT_AUDIT.githubPagesUrl}?utm_source=github-release&utm_medium=organic&utm_campaign=market_table_audit)`,
+    `- [Optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} Custom Local Print Pack Setup](${SERVICE_SALES_PACK.githubPagesServiceUrl}?utm_source=github-release&utm_medium=organic&utm_campaign=service_sales_pack)`,
+    `- [Custom Local Print Pack sales pack](https://yanqr213.github.io/printable-tools-lab/${SERVICE_SALES_PACK.slug}/?utm_source=github-release&utm_medium=organic&utm_campaign=service_sales_pack)`,
     `- [HTML5 platform submit cockpit](${siteUrl("platform-submit-cockpit")})`,
     `- [HTML5 portal submission pack](${siteUrl("portal-submission-pack")})`,
     `- [Zero-cost monetization map](${siteUrl("zero-cost-monetization-map")})`,
@@ -150,6 +153,14 @@ function releaseBody() {
     "High-intent upload-limit entry points:",
     "",
     ...SHARE_KIT_FEATURED_LINKS.map(([title, pathName, reason]) => `- [${title}](${siteUrl(pathName)}): ${reason}`),
+    "",
+    "Buyer-intent service path:",
+    "",
+    `- [Free Market Table Print Audit](${MARKET_TABLE_PRINT_AUDIT.githubPagesUrl}?utm_source=github-release&utm_medium=organic&utm_campaign=market_table_audit): free public-safe feedback on price tags, QR signs, flyer copy, coupons, and pickup notes.`,
+    `- [Structured audit request form](${MARKET_TABLE_PRINT_AUDIT.issueFormUrl}): free request form; not revenue.`,
+    `- [Audit request template](${MARKET_TABLE_PRINT_AUDIT.githubPagesRequestUrl}): copyable public-safe request text.`,
+    `- [Audit checklist JSON](${MARKET_TABLE_PRINT_AUDIT.githubPagesChecklistUrl}): machine-readable upgrade path from audit_request_received to paid_order_verified.`,
+    `- [Optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} Custom Local Print Pack Setup](${SERVICE_SALES_PACK.githubPagesServiceUrl}?utm_source=github-release&utm_medium=organic&utm_campaign=service_sales_pack): paid only after fit is confirmed and an external checkout proves paid_order_verified.`,
     "",
     "Share-kit copy angles:",
     "",
@@ -216,6 +227,19 @@ function preserveBlock(nextBody, currentBody, blockName) {
   if (!existing) return nextBody;
   if (pattern.test(nextBody)) return nextBody.replace(pattern, existing[0]);
   return `${nextBody.trim()}\n\n${existing[0]}\n`;
+}
+
+function githubToken() {
+  const envToken = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || "";
+  if (envToken) return envToken;
+  try {
+    return execFileSync("gh", ["auth", "token"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+  } catch {
+    return "";
+  }
 }
 
 function escapeRegExp(value) {

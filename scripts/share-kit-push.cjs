@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
-const { spawnSync } = require("child_process");
-const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, siteUrl } = require("./seo-content.cjs");
+const { execFileSync, spawnSync } = require("child_process");
+const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, MARKET_TABLE_PRINT_AUDIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, SERVICE_SALES_PACK, siteUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const reportDir = path.join(root, "reports");
@@ -43,6 +43,7 @@ function main() {
     })),
     rules: SHARE_KIT_RULES,
     zeroDomainGameExperiment: ZERO_DOMAIN_GAME_EXPERIMENT,
+    buyerIntentPath: buyerIntentPath(),
     externalDiscovery: readExternalDiscovery(),
     actions: {
       gistDiscovery,
@@ -51,6 +52,12 @@ function main() {
       indexNow,
     },
     nextManualQueue: [
+      {
+        target: "One relevant local-seller reply",
+        angle: "Free Market Table Print Audit",
+        url: `${MARKET_TABLE_PRINT_AUDIT.githubPagesUrl}?utm_source=community&utm_medium=organic&utm_campaign=market_table_audit`,
+        rule: "Only reply where a seller has an obvious market-table print, price tag, QR sign, flyer, coupon, or pickup-note problem.",
+      },
       {
         target: "One useful community reply",
         angle: "PDF must be under 1MB",
@@ -90,6 +97,20 @@ function readExternalDiscovery() {
     campaignRelease: release?.releaseUrl || "",
     zeroDomainGame: ZERO_DOMAIN_GAME_EXPERIMENT.url,
     zeroDomainGameRepo: ZERO_DOMAIN_GAME_EXPERIMENT.repo,
+    freeMarketTableAudit: MARKET_TABLE_PRINT_AUDIT.githubPagesUrl,
+    customLocalPrintPack: SERVICE_SALES_PACK.githubPagesServiceUrl,
+  };
+}
+
+function buyerIntentPath() {
+  return {
+    auditUrl: `${MARKET_TABLE_PRINT_AUDIT.githubPagesUrl}?utm_source=share-kit-push&utm_medium=organic&utm_campaign=market_table_audit`,
+    auditRequestUrl: MARKET_TABLE_PRINT_AUDIT.githubPagesRequestUrl,
+    auditChecklistUrl: MARKET_TABLE_PRINT_AUDIT.githubPagesChecklistUrl,
+    serviceUrl: `${SERVICE_SALES_PACK.githubPagesServiceUrl}?utm_source=share-kit-push&utm_medium=organic&utm_campaign=service_sales_pack`,
+    salesPackUrl: `https://yanqr213.github.io/printable-tools-lab/${SERVICE_SALES_PACK.slug}/?utm_source=share-kit-push&utm_medium=organic&utm_campaign=service_sales_pack`,
+    priceUsd: CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd,
+    moneyGate: "Free audit requests are not revenue; paid revenue starts only after an external checkout proves paid_order_verified.",
   };
 }
 
@@ -110,11 +131,11 @@ function readJson(filePath) {
 
 function run(command, args, options = {}) {
   const env = { ...process.env };
-  if (options.requireToken && !env.GITHUB_TOKEN && !env.GH_TOKEN) {
+  if (options.requireToken && !hasGithubToken(env)) {
     return {
       ok: false,
       skipped: true,
-      reason: "GITHUB_TOKEN or GH_TOKEN is not set.",
+      reason: "GitHub token is not available from env or gh auth.",
     };
   }
   const result = spawnSync(command, args, {
@@ -133,6 +154,20 @@ function run(command, args, options = {}) {
     stdout: trimOutput(result.stdout),
     stderr: trimOutput(result.stderr),
   };
+}
+
+function hasGithubToken(env) {
+  if (env.GITHUB_TOKEN || env.GH_TOKEN) return true;
+  try {
+    return Boolean(execFileSync("gh", ["auth", "token"], {
+      cwd: root,
+      env,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim());
+  } catch {
+    return false;
+  }
 }
 
 function trimOutput(value) {

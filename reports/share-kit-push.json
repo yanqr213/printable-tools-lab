@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-02T21:01:40.052Z",
+  "generatedAt": "2026-06-03T02:59:57.647Z",
   "shareKitUrl": "https://printable-tools-lab.pages.dev/share-kit/",
   "shareKitJsonUrl": "https://printable-tools-lab.pages.dev/share-kit.json",
   "featuredLinks": [
@@ -169,36 +169,44 @@
     "reviewReadinessUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/review-readiness.md",
     "summary": "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them."
   },
+  "buyerIntentPath": {
+    "auditUrl": "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=share-kit-push&utm_medium=organic&utm_campaign=market_table_audit",
+    "auditRequestUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt",
+    "auditChecklistUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json",
+    "serviceUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=share-kit-push&utm_medium=organic&utm_campaign=service_sales_pack",
+    "salesPackUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack-sales-pack/?utm_source=share-kit-push&utm_medium=organic&utm_campaign=service_sales_pack",
+    "priceUsd": 29,
+    "moneyGate": "Free audit requests are not revenue; paid revenue starts only after an external checkout proves paid_order_verified."
+  },
   "externalDiscovery": {
     "gist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
     "githubIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1",
     "campaignRelease": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
     "zeroDomainGame": "https://upload-limit-panic.pages.dev/",
-    "zeroDomainGameRepo": "https://github.com/yanqr213/upload-limit-panic"
+    "zeroDomainGameRepo": "https://github.com/yanqr213/upload-limit-panic",
+    "freeMarketTableAudit": "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/",
+    "customLocalPrintPack": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/"
   },
   "actions": {
     "gistDiscovery": {
-      "ok": true,
-      "status": 0,
-      "stdout": "Updated public Gist: https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb\nReport written to reports\\gist-discovery.json",
-      "stderr": ""
+      "ok": false,
+      "skipped": true,
+      "reason": "GitHub token is not available from env or gh auth."
     },
     "githubIssueDiscovery": {
-      "ok": true,
-      "status": 0,
-      "stdout": "Updated GitHub issue: https://github.com/yanqr213/printable-tools-lab/issues/1\nReport written to reports\\github-issue-discovery.json",
-      "stderr": ""
+      "ok": false,
+      "skipped": true,
+      "reason": "GitHub token is not available from env or gh auth."
     },
     "githubDiscovery": {
-      "ok": true,
-      "status": 0,
-      "stdout": "Updated GitHub discovery release: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
-      "stderr": ""
+      "ok": false,
+      "skipped": true,
+      "reason": "GitHub token is not available from env or gh auth."
     },
     "indexNow": {
       "ok": true,
       "status": 0,
-      "stdout": "IndexNow accepted 120 URL(s) for github-pages.",
+      "stdout": "IndexNow accepted 124 URL(s) for github-pages.",
       "stderr": "IndexNow did not accept pages.dev: 403 {\"errorCode\":\"UserForbiddedToAccessSite\",\"message\":\"User is unauthorized to access the site. Please verify the site using the key and try again\",\"details\":null}",
       "accepted": true,
       "partialWarning": true,
@@ -206,6 +214,12 @@
     }
   },
   "nextManualQueue": [
+    {
+      "target": "One relevant local-seller reply",
+      "angle": "Free Market Table Print Audit",
+      "url": "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=community&utm_medium=organic&utm_campaign=market_table_audit",
+      "rule": "Only reply where a seller has an obvious market-table print, price tag, QR sign, flyer, coupon, or pickup-note problem."
+    },
     {
       "target": "One useful community reply",
       "angle": "PDF must be under 1MB",

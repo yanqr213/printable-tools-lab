@@ -1,9 +1,10 @@
 const fs = require("fs");
 const path = require("path");
-const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, siteUrl } = require("./seo-content.cjs");
+const { execFileSync } = require("child_process");
+const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CUSTOM_LOCAL_PRINT_PACK_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, siteUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
-const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || "";
+const token = githubToken();
 const marker = "PrintableTools Lab zero-cost share kit";
 const filename = "PrintableTools-Lab-zero-cost-share-kit.md";
 const reportPath = path.join(root, "reports", "gist-discovery.json");
@@ -36,6 +37,7 @@ async function main() {
     public: gist.public,
     file: filename,
     videoAssetCount: videos.length,
+    buyerIntentPath: buyerIntentPath(),
   };
   fs.mkdirSync(path.dirname(reportPath), { recursive: true });
   fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
@@ -90,8 +92,21 @@ function renderGistBody(videos) {
     `- HTML5 platform submit cockpit: ${siteUrl("platform-submit-cockpit")}`,
     `- HTML5 portal submission pack: ${siteUrl("portal-submission-pack")}`,
     `- Zero-cost monetization map: ${siteUrl("zero-cost-monetization-map")}`,
+    `- Free Market Table Print Audit: ${trackedAuditUrl("gist")}`,
+    `- Optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} Custom Local Print Pack Setup: ${trackedServiceUrl("gist")}`,
+    `- Custom Local Print Pack sales pack: ${trackedSalesPackUrl("gist")}`,
     `- Free file tools directory: ${siteUrl("free-pdf-tools")}`,
     `- Tool finder: ${siteUrl("pdf-tool-finder")}`,
+    "",
+    "## Buyer-Intent Service Path",
+    "",
+    `- Free Market Table Print Audit: ${trackedAuditUrl("gist")}`,
+    `- Structured audit request form: ${MARKET_TABLE_PRINT_AUDIT.issueFormUrl}`,
+    `- Audit request template: ${MARKET_TABLE_PRINT_AUDIT.githubPagesRequestUrl}`,
+    `- Audit checklist JSON: ${MARKET_TABLE_PRINT_AUDIT.githubPagesChecklistUrl}`,
+    `- Optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} Custom Local Print Pack Setup: ${trackedServiceUrl("gist")}`,
+    `- Sales pack: ${trackedSalesPackUrl("gist")}`,
+    `- Money gate: free audit requests are not revenue; paid revenue starts only after an external checkout proves paid_order_verified.`,
     "",
     "## Current Platform-Ad Game Route",
     "",
@@ -168,6 +183,29 @@ function trackedPostUrl(post) {
   return `${normalized}${separator}utm_source=gist&utm_medium=organic&utm_campaign=zero_cost_push`;
 }
 
+function buyerIntentPath() {
+  return {
+    auditUrl: trackedAuditUrl("gist-report"),
+    auditRequestUrl: MARKET_TABLE_PRINT_AUDIT.githubPagesRequestUrl,
+    auditChecklistUrl: MARKET_TABLE_PRINT_AUDIT.githubPagesChecklistUrl,
+    serviceUrl: trackedServiceUrl("gist-report"),
+    salesPackUrl: trackedSalesPackUrl("gist-report"),
+    moneyGate: "Free audit requests are not revenue; paid revenue starts only after an external checkout proves paid_order_verified.",
+  };
+}
+
+function trackedAuditUrl(source) {
+  return `${MARKET_TABLE_PRINT_AUDIT.githubPagesUrl}?utm_source=${encodeURIComponent(source)}&utm_medium=organic&utm_campaign=market_table_audit`;
+}
+
+function trackedServiceUrl(source) {
+  return `${SERVICE_SALES_PACK.githubPagesServiceUrl}?utm_source=${encodeURIComponent(source)}&utm_medium=organic&utm_campaign=service_sales_pack`;
+}
+
+function trackedSalesPackUrl(source) {
+  return `https://yanqr213.github.io/printable-tools-lab/${SERVICE_SALES_PACK.slug}/?utm_source=${encodeURIComponent(source)}&utm_medium=organic&utm_campaign=service_sales_pack`;
+}
+
 function readCampaignVideos() {
   const reportPath = path.join(root, "reports", "campaign-assets-release.json");
   if (!fs.existsSync(reportPath)) return [];
@@ -198,4 +236,17 @@ function githubHeaders() {
     "X-GitHub-Api-Version": "2022-11-28",
     "User-Agent": "PrintableToolsLab-GistDiscovery",
   };
+}
+
+function githubToken() {
+  const envToken = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || "";
+  if (envToken) return envToken;
+  try {
+    return execFileSync("gh", ["auth", "token"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+  } catch {
+    return "";
+  }
 }

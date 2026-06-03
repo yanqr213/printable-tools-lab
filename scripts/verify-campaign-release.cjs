@@ -3,6 +3,7 @@ const path = require("path");
 
 const root = path.resolve(__dirname, "..");
 const reportPath = path.join(root, "reports", "campaign-assets-release.json");
+const shareKitPushPath = path.join(root, "reports", "share-kit-push.json");
 const failures = [];
 
 main().catch((error) => {
@@ -50,11 +51,26 @@ async function verifyReleaseBody(report) {
       return;
     }
     if (!text.includes("Short-video campaign assets")) failures.push("Release body missing campaign asset section.");
+    if (!githubPublishSkipped("githubDiscovery")) {
+      for (const needle of ["Free Market Table Print Audit", "market_table_audit", "Custom Local Print Pack Setup", "paid_order_verified"]) {
+        if (!text.includes(needle)) failures.push(`Release page missing ${needle}.`);
+      }
+    }
     for (const asset of report.assets || []) {
       const assetFile = asset.downloadUrl.split("/").pop();
       if (!text.includes(assetFile)) failures.push(`Release page missing ${assetFile}.`);
     }
   } catch (error) {
     failures.push(`Release page verification failed: ${error.message}`);
+  }
+}
+
+function githubPublishSkipped(actionName) {
+  if (!fs.existsSync(shareKitPushPath)) return false;
+  try {
+    const report = JSON.parse(fs.readFileSync(shareKitPushPath, "utf8"));
+    return report.actions?.[actionName]?.skipped === true && String(report.actions?.[actionName]?.reason || "").includes("GitHub token");
+  } catch {
+    return false;
   }
 }
