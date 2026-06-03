@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
 const { strToU8, zipSync } = require("fflate");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -13,6 +13,7 @@ const campaignAssets = readCampaignAssets();
 const gistDiscovery = readGistDiscovery();
 const issueDiscovery = readIssueDiscovery();
 const digitalProductPackages = buildDigitalProductPackages();
+const paidServiceAssets = buildPaidServiceAssets();
 
 function pageHtml(route) {
   const rendered = renderRoute(route);
@@ -152,6 +153,9 @@ if (!headers.includes("/game-submission-feed.json")) {
 if (!headers.includes("/digital-products.json")) {
   fs.appendFileSync(headersPath, "\n/digital-products.json\n  Content-Type: application/json; charset=utf-8\n");
 }
+if (!headers.includes("/services.json")) {
+  fs.appendFileSync(headersPath, "\n/services.json\n  Content-Type: application/json; charset=utf-8\n");
+}
 if (!headers.includes("/zero-cost-monetization-map.json")) {
   fs.appendFileSync(headersPath, "\n/zero-cost-monetization-map.json\n  Content-Type: application/json; charset=utf-8\n");
 }
@@ -238,6 +242,21 @@ const digitalProductsJson = {
   ],
 };
 fs.writeFileSync(path.join(root, "digital-products.json"), `${JSON.stringify(digitalProductsJson, null, 2)}\n`);
+
+const paidServicesJson = {
+  name: "PrintableTools Lab Paid Services",
+  generatedAt: generatedAtIso,
+  canonical: fileUrl("services.json"),
+  services: PAID_SERVICES.map(paidServiceEntry),
+  moneyGate: "Revenue is real only when a payment provider shows a paid order, payout balance, or settled payment. Public request links and service briefs are not revenue.",
+  setup: [
+    "Use the public service page and request brief to capture buyer intent without collecting money on the site.",
+    "Send a real external checkout link only after confirming the buyer details and service availability.",
+    "Keep payout, tax, bank, card, phone, and account credentials inside the payment provider dashboard.",
+    `Primary manual service path: ${siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}`,
+  ],
+};
+fs.writeFileSync(path.join(root, "services.json"), `${JSON.stringify(paidServicesJson, null, 2)}\n`);
 
 const platformSubmitQueueJson = {
   name: "HTML5 Platform Submit Queue",
@@ -348,6 +367,8 @@ const llms = [
   `- Share kit: ${siteUrl("share-kit")}`,
   `- Digital product: ${siteUrl(LOCAL_SELLER_STARTER_KIT.slug)}`,
   `- Machine-readable digital products: ${fileUrl("digital-products.json")}`,
+  `- Paid service: ${siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}`,
+  `- Machine-readable paid services: ${fileUrl("services.json")}`,
   `- HTML5 platform submit queue: ${siteUrl("platform-submit-queue")}`,
   `- HTML5 platform submit cockpit: ${siteUrl("platform-submit-cockpit")}`,
   `- HTML5 platform outreach tracker: ${siteUrl("platform-outreach-tracker")}`,
@@ -393,6 +414,7 @@ const llms = [
   "- Optional AI idea suggestions are server-side and limited to non-sensitive fields.",
   "- Ads are not used as a gate for downloading files.",
   "- Paid digital-product checkout is external and must be connected with a real payment-provider URL before promotion.",
+  "- Paid service checkout is manual and external; a request or brief download is buyer intent only, not revenue.",
   "",
 ].join("\n");
 fs.writeFileSync(path.join(root, "llms.txt"), llms);
@@ -412,13 +434,17 @@ const discoveryIndex = {
   portalSubmissionPack: fileUrl("portal-submission-pack.json"),
   gameSubmissionFeed: fileUrl("game-submission-feed.json"),
   digitalProducts: fileUrl("digital-products.json"),
+  paidServices: fileUrl("services.json"),
   zeroCostMonetizationMap: fileUrl("zero-cost-monetization-map.json"),
-  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl(LOCAL_SELLER_STARTER_KIT.slug), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl(LOCAL_SELLER_STARTER_KIT.slug), siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   distributionAssets: {
     shareKit: siteUrl("share-kit"),
     shareKitJson: fileUrl("share-kit.json"),
     digitalProducts: siteUrl(LOCAL_SELLER_STARTER_KIT.slug),
     digitalProductsJson: fileUrl("digital-products.json"),
+    paidServices: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug),
+    paidServicesJson: fileUrl("services.json"),
+    customLocalPrintPackRequest: fileUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicRequestPath),
     localSellerStarterKitSample: fileUrl(LOCAL_SELLER_STARTER_KIT.publicSamplePath),
     localSellerStarterKitPrivatePackage: LOCAL_SELLER_STARTER_KIT.privatePackagePath,
     localSellerStarterKitReport: LOCAL_SELLER_STARTER_KIT.packageReportPath,
@@ -478,6 +504,7 @@ const feedItems = [
   routeToFeedItem(routes.find((route) => route.path === "free-pdf-tools")),
   routeToFeedItem(routes.find((route) => route.path === "pdf-tool-finder")),
   routeToFeedItem(routes.find((route) => route.path === LOCAL_SELLER_STARTER_KIT.slug)),
+  routeToFeedItem(routes.find((route) => route.path === CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)),
   routeToFeedItem(routes.find((route) => route.path === "share-kit")),
   routeToFeedItem(routes.find((route) => route.path === "tools")),
   ...HIGH_INTENT_LANDING_PATHS
@@ -734,6 +761,26 @@ function buildDigitalProductPackages() {
   });
 }
 
+function buildPaidServiceAssets() {
+  return PAID_SERVICES.map((service) => {
+    const publicRequestPath = path.join(root, service.publicRequestPath);
+    fs.mkdirSync(path.dirname(publicRequestPath), { recursive: true });
+    fs.writeFileSync(publicRequestPath, `${serviceRequestCopy(service)}\n`);
+    return {
+      service: service.name,
+      generatedAt: generatedAtIso,
+      requestTemplate: {
+        path: service.publicRequestPath,
+        url: fileUrl(service.publicRequestPath),
+        sizeBytes: fs.statSync(publicRequestPath).size,
+        sha256: sha256File(publicRequestPath),
+      },
+      moneyGate: service.successGate,
+      riskControls: service.riskControls,
+    };
+  });
+}
+
 function localSellerKitFiles(product, sampleOnly) {
   const prefix = sampleOnly ? "local-seller-starter-kit-sample" : "local-seller-starter-kit";
   const files = {
@@ -952,6 +999,28 @@ function digitalProductEntry(product) {
     freeTools: product.freeTools.map((toolPath) => siteUrl(toolPath)),
     riskControls: product.riskControls,
     successGate: product.successGate,
+  };
+}
+
+function paidServiceEntry(service) {
+  const report = paidServiceAssets.find((item) => item.service === service.name);
+  return {
+    id: service.id,
+    name: service.name,
+    description: service.shortDescription,
+    url: siteUrl(service.slug),
+    priceUsd: service.priceUsd,
+    currency: service.currency,
+    requestUrl: serviceRequestUrl(service),
+    requestEmailUrl: serviceRequestEmailUrl(service),
+    requestTemplateUrl: fileUrl(service.publicRequestPath),
+    requestTemplateSha256: report?.requestTemplate?.sha256 || "",
+    turnaround: service.turnaround,
+    deliverables: service.deliverables,
+    buyerInputs: service.buyerInputs,
+    relatedTools: service.relatedTools.map((toolPath) => siteUrl(toolPath)),
+    riskControls: service.riskControls,
+    successGate: service.successGate,
   };
 }
 

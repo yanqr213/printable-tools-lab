@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, siteUrl, tools, landingPages } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, siteUrl, tools, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
@@ -53,6 +53,13 @@ const discoveryRoutes = [
     description: product.shortDescription,
     url: pagesUrl(product.slug),
     mainUrl: siteUrl(product.slug),
+  })),
+  ...PAID_SERVICES.map((service) => ({
+    path: service.slug,
+    title: service.name,
+    description: service.shortDescription,
+    url: pagesUrl(service.slug),
+    mainUrl: siteUrl(service.slug),
   })),
   ...gameDiscoveryRoutes,
 ];
@@ -109,6 +116,7 @@ const html = `<!doctype html>
         <li><a href="${trackedSiteUrl("tools", "all-tools")}">All free generators</a> for browsing every tool.</li>
         <li><a href="${trackedSiteUrl("guides", "guides")}">Printable guides</a> for original help pages around PDF, image, QR, and printable workflows.</li>
         <li><a href="${pagesUrl(LOCAL_SELLER_STARTER_KIT.slug)}">Local Seller Starter Kit mirror</a> for the sample ZIP, checkout setup notes, and paid-kit delivery checklist.</li>
+        <li><a href="${pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}">Custom Local Print Pack Setup mirror</a> for the done-for-you service brief and manual checkout request.</li>
         <li><a href="${pagesUrl("html5-game-submission-pack")}">HTML5 game submission pack mirror</a> for clean portal ZIPs, GameSnacks packages, demo videos, and platform-review assets.</li>
         ${landingPages.map((page) => `<li><a href="${trackedSiteUrl(page.path, `home-${page.path}`)}">${escapeHtml(page.title)}</a> for ${escapeHtml(page.intent)}.</li>`).join("\n")}
         <li><a href="${siteUrl("feed.xml").replace(/\/$/, "")}">RSS feed</a> for monitoring newly published discovery pages and high-intent tools.</li>
@@ -152,6 +160,8 @@ for (const tool of highIntentTools) {
 }
 writeDigitalProductDiscoveryPages();
 copyDigitalProductPublicAssets();
+writePaidServiceDiscoveryPages();
+copyPaidServicePublicAssets();
 writeGameDiscoveryPages();
 
 fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
@@ -190,6 +200,7 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
     })),
   },
   digitalProducts: DIGITAL_PRODUCTS.map(productFeedEntry),
+  paidServices: PAID_SERVICES.map(serviceFeedEntry),
 }, null, 2)}\n`);
 
 fs.writeFileSync(path.join(docsDir, "products.json"), `${JSON.stringify({
@@ -197,6 +208,14 @@ fs.writeFileSync(path.join(docsDir, "products.json"), `${JSON.stringify({
   generatedAt: generatedAtIso,
   directory: pagesUrl(""),
   products: DIGITAL_PRODUCTS.map(productFeedEntry),
+  moneyGate: "Revenue is real only when a payment provider shows a paid order, payout balance, or settled payment.",
+}, null, 2)}\n`);
+
+fs.writeFileSync(path.join(docsDir, "services.json"), `${JSON.stringify({
+  name: "PrintableTools Lab Paid Services",
+  generatedAt: generatedAtIso,
+  directory: pagesUrl(""),
+  services: PAID_SERVICES.map(serviceFeedEntry),
   moneyGate: "Revenue is real only when a payment provider shows a paid order, payout balance, or settled payment.",
 }, null, 2)}\n`);
 
@@ -294,6 +313,20 @@ function copyDigitalProductPublicAssets() {
   }
 }
 
+function writePaidServiceDiscoveryPages() {
+  for (const service of PAID_SERVICES) {
+    const serviceDir = path.join(docsDir, service.slug);
+    fs.mkdirSync(serviceDir, { recursive: true });
+    fs.writeFileSync(path.join(serviceDir, "index.html"), serviceHtml(service));
+  }
+}
+
+function copyPaidServicePublicAssets() {
+  for (const service of PAID_SERVICES) {
+    copyPublicFile(service.publicRequestPath);
+  }
+}
+
 function copyPublicFile(relativePath) {
   const cleanPath = String(relativePath || "").replace(/^\/+/, "");
   if (!cleanPath) return;
@@ -302,6 +335,69 @@ function copyPublicFile(relativePath) {
   const targetPath = path.join(docsDir, cleanPath);
   fs.mkdirSync(path.dirname(targetPath), { recursive: true });
   fs.copyFileSync(sourcePath, targetPath);
+}
+
+function serviceHtml(service) {
+  const requestTemplateUrl = pagesAssetUrl(service.publicRequestPath);
+  const requestUrl = serviceRequestUrl(service);
+  const requestEmailUrl = serviceRequestEmailUrl(service);
+  const actionLinks = [
+    `<a class="button" href="${escapeHtml(requestUrl)}">Request service checkout</a>`,
+    `<a class="button secondary" href="${requestTemplateUrl}" download>Download service brief</a>`,
+    requestEmailUrl ? `<a href="${escapeHtml(requestEmailUrl)}">Email service request</a>` : "",
+    `<a href="${pagesUrl(LOCAL_SELLER_STARTER_KIT.slug)}">See the $${LOCAL_SELLER_STARTER_KIT.priceUsd} template kit</a>`,
+  ].filter(Boolean).join("\n        ");
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${escapeHtml(service.name)} - PrintableTools Lab Directory</title>
+    <meta name="description" content="${escapeHtml(service.shortDescription)}">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="${pagesUrl(service.slug)}">
+    <style>
+      :root { color-scheme: light; --ink: #17313b; --muted: #5b6f78; --line: #dce8ec; --teal: #176b87; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Arial, sans-serif; color: var(--ink); background: #f7fbfc; line-height: 1.55; }
+      main { width: min(920px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 56px; }
+      h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin: 0 0 14px; }
+      p { color: var(--muted); max-width: 780px; }
+      a { color: var(--teal); font-weight: 700; }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 20px 0; }
+      .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .button.secondary { background: #17313b; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+      .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+      pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px; color: var(--ink); }
+      ul { padding-left: 20px; }
+      @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="${pagesBase}">PrintableTools Lab discovery directory</a></p>
+      <h1>${escapeHtml(service.headline)}</h1>
+      <p>${escapeHtml(service.description)}</p>
+      <div class="actions">
+        ${actionLinks}
+      </div>
+      <h2>Checkout state</h2>
+      <p>Checkout is not connected on this mirror. Use the request link or service brief to capture buyer intent; money is counted only after a real external checkout is paid.</p>
+      <pre>${escapeHtml(serviceRequestCopy(service))}</pre>
+      <p><a href="${trackedSiteUrl(service.slug, "service-backup")}">Open main site copy</a></p>
+      <h2>Deliverables</h2>
+      <div class="grid">
+        ${service.deliverables.map((item) => `<article class="card"><h3>${escapeHtml(item)}</h3><p>Editable starter content for one local seller, small service, booth, event, or simple offer.</p></article>`).join("\n")}
+      </div>
+      <h2>Risk controls</h2>
+      <ul>${service.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+      <p><strong>Money gate:</strong> ${escapeHtml(service.successGate)}</p>
+      ${jsonLdHtml(serviceSchema(service))}
+    </main>
+  </body>
+</html>
+`;
 }
 
 function digitalProductHtml(product) {
@@ -559,6 +655,28 @@ function productFeedEntry(product) {
   };
 }
 
+function serviceFeedEntry(service) {
+  return {
+    id: service.id,
+    name: service.name,
+    description: service.shortDescription,
+    url: siteUrl(service.slug),
+    discoveryUrl: pagesUrl(service.slug),
+    priceUsd: service.priceUsd,
+    currency: service.currency,
+    requestUrl: serviceRequestUrl(service),
+    requestEmailUrl: serviceRequestEmailUrl(service),
+    requestTemplateUrl: siteUrl(service.publicRequestPath).replace(/\/$/, ""),
+    discoveryRequestTemplateUrl: pagesAssetUrl(service.publicRequestPath),
+    turnaround: service.turnaround,
+    deliverables: service.deliverables,
+    buyerInputs: service.buyerInputs,
+    relatedTools: service.relatedTools.map((toolPath) => siteUrl(toolPath)),
+    riskControls: service.riskControls,
+    successGate: service.successGate,
+  };
+}
+
 function pagesAssetUrl(relativePath) {
   const cleanPath = String(relativePath || "").replace(/^\/+/, "");
   return `${pagesBase}${cleanPath}`;
@@ -577,6 +695,29 @@ function productSchema(product) {
       priceCurrency: product.currency,
       availability: product.checkoutUrl ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
       url: product.checkoutUrl || siteUrl(product.slug),
+    },
+  };
+}
+
+function serviceSchema(service) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.name,
+    description: service.shortDescription,
+    url: pagesUrl(service.slug),
+    areaServed: "Online",
+    provider: {
+      "@type": "Organization",
+      name: SITE_SUMMARY.name,
+      url: siteUrl(""),
+    },
+    offers: {
+      "@type": "Offer",
+      price: String(service.priceUsd),
+      priceCurrency: service.currency,
+      availability: "https://schema.org/PreOrder",
+      url: pagesUrl(service.slug),
     },
   };
 }

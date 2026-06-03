@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-03T00:23:27.623Z",
+  "generatedAt": "2026-06-03T00:37:31.070Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -7,9 +7,9 @@
     "toolCount": 66,
     "guideCount": 95,
     "landingPageCount": 66,
-    "indexableRoutes": 244,
-    "sitemapLocCount": 244,
-    "generatedToolInventoryAt": "2026-06-03T00:19:18.050Z",
+    "indexableRoutes": 245,
+    "sitemapLocCount": 245,
+    "generatedToolInventoryAt": "2026-06-03T00:37:02.201Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -3002,7 +3002,7 @@
       "toolPagesInSitemap": 50,
       "gamePagesLinked": 1,
       "gamePagesInSitemap": 3,
-      "expectedUrlCount": 121,
+      "expectedUrlCount": 122,
       "error": ""
     },
     "indexNow": {
@@ -3013,7 +3013,7 @@
       "keyFileReachable": true,
       "singleUrlAccepted": false,
       "latestReport": {
-        "generatedAt": "2026-06-03T00:03:06.999Z",
+        "generatedAt": "2026-06-03T00:25:42.756Z",
         "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
         "results": [
           {
@@ -3057,7 +3057,7 @@
       "acceptedUrlCount": 121,
       "error": ""
     },
-    "externalDiscoveryReady": true
+    "externalDiscoveryReady": false
   },
   "gates": {
     "productReady": true,
@@ -3065,7 +3065,7 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": true,
+    "externalDiscoveryReady": false,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
@@ -3086,7 +3086,7 @@
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 66 landing page link(s), 50 tool mirror link(s), and 1 game submission link(s).",
-        "GitHub Pages discovery sitemap has 121 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 121.",
+        "GitHub Pages discovery sitemap has 121 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 122.",
         "IndexNow key file is reachable from the site root.",
         "IndexNow latest report accepted 121 URL(s) for github-pages."
       ]

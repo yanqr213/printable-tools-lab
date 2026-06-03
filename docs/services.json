@@ -1,0 +1,53 @@
+{
+  "name": "PrintableTools Lab Paid Services",
+  "generatedAt": "2026-06-03T00:37:02.291Z",
+  "directory": "https://yanqr213.github.io/printable-tools-lab/",
+  "services": [
+    {
+      "id": "custom-local-print-pack",
+      "name": "Custom Local Print Pack Setup",
+      "description": "A $29 done-for-you setup request for one simple printable seller pack: price tags, flyer copy, QR sign text, coupon wording, packing slip starter rows, and a one-page launch checklist.",
+      "url": "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
+      "priceUsd": 29,
+      "currency": "USD",
+      "requestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=Service+request%3A+Custom+Local+Print+Pack+Setup&body=I+want+to+request+the+Custom+Local+Print+Pack+Setup+for+%2429+USD.%0A%0ABusiness%2C+booth%2C+event%2C+or+service+name%3A%0AWhat+do+you+sell+or+promote%3F%0AUp+to+12+items%2Fservices+with+prices%3A%0ALink+or+contact+method+for+QR+sign+wording%3A%0APreferred+style%3A+clean+%2F+cute+%2F+bold+%2F+minimal+%2F+local+%2F+premium+%2F+practical%0ANeed-by+date%3A%0APreferred+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+other%0ABest+contact+method%3A%0ACountry+or+region+%28optional%29%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+reply+with+a+real+external+checkout+link+and+details+checklist+only+if+the+service+is+available.",
+      "requestEmailUrl": "",
+      "requestTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-request.txt",
+      "discoveryRequestTemplateUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt",
+      "turnaround": "Target delivery is 2 business days after real payment and complete buyer details.",
+      "deliverables": [
+        "price tag starter CSV for up to 12 items",
+        "one small flyer copy draft",
+        "QR sign wording for one link or contact method",
+        "three coupon or bundle offer ideas",
+        "packing slip or pickup note starter rows",
+        "one-page launch checklist for printing and first outreach"
+      ],
+      "buyerInputs": [
+        "business, event, booth, or service name",
+        "up to 12 items or services with prices",
+        "one URL, social profile, phone, or email to turn into QR sign wording",
+        "preferred style: clean, cute, bold, minimal, local, premium, or practical",
+        "any words, claims, or offers to avoid"
+      ],
+      "relatedTools": [
+        "https://printable-tools-lab.pages.dev/tools/price-tag/",
+        "https://printable-tools-lab.pages.dev/tools/flyer-maker/",
+        "https://printable-tools-lab.pages.dev/tools/coupon-maker/",
+        "https://printable-tools-lab.pages.dev/tools/packing-slip/",
+        "https://printable-tools-lab.pages.dev/tools/business-card/",
+        "https://printable-tools-lab.pages.dev/tools/qr-code/"
+      ],
+      "riskControls": [
+        "The service does not start until a real external payment link is sent and paid.",
+        "No payout, tax, bank, card, identity, or platform credential is stored in the repository.",
+        "The buyer must review all copy, prices, QR links, and claims before printing or publishing.",
+        "No legal, tax, accounting, employment, medical, or financial advice is included.",
+        "One lightweight revision is included for typos or fit; new branding, logo design, or legal copy is out of scope."
+      ],
+      "successGate": "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this service."
+    }
+  ],
+  "moneyGate": "Revenue is real only when a payment provider shows a paid order, payout balance, or settled payment."
+}

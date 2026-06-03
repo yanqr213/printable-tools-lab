@@ -17,6 +17,8 @@ Monetization model: Free tools stay live for search demand. A low-price Local Se
 - Share kit: https://printable-tools-lab.pages.dev/share-kit/
 - Digital product: https://printable-tools-lab.pages.dev/local-seller-starter-kit/
 - Machine-readable digital products: https://printable-tools-lab.pages.dev/digital-products.json
+- Paid service: https://printable-tools-lab.pages.dev/custom-local-print-pack/
+- Machine-readable paid services: https://printable-tools-lab.pages.dev/services.json
 - HTML5 platform submit queue: https://printable-tools-lab.pages.dev/platform-submit-queue/
 - HTML5 platform submit cockpit: https://printable-tools-lab.pages.dev/platform-submit-cockpit/
 - HTML5 platform outreach tracker: https://printable-tools-lab.pages.dev/platform-outreach-tracker/
@@ -224,3 +226,4 @@ Monetization model: Free tools stay live for search demand. A low-price Local Se
 - Optional AI idea suggestions are server-side and limited to non-sensitive fields.
 - Ads are not used as a gate for downloading files.
 - Paid digital-product checkout is external and must be connected with a real payment-provider URL before promotion.
+- Paid service checkout is manual and external; a request or brief download is buyer intent only, not revenue.

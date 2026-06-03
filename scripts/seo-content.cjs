@@ -64,6 +64,53 @@ const LOCAL_SELLER_STARTER_KIT = {
 
 const DIGITAL_PRODUCTS = [LOCAL_SELLER_STARTER_KIT];
 
+const CUSTOM_LOCAL_PRINT_PACK_SERVICE = {
+  id: "custom-local-print-pack",
+  slug: "custom-local-print-pack",
+  name: "Custom Local Print Pack Setup",
+  headline: "Custom Local Print Pack Setup for local sellers who want it done for them",
+  shortDescription: "A $29 done-for-you setup request for one simple printable seller pack: price tags, flyer copy, QR sign text, coupon wording, packing slip starter rows, and a one-page launch checklist.",
+  description: "A lightweight service offer for buyers who like the free generators but do not want to assemble the first local-selling print pack themselves. The buyer sends product, service, or event details; the seller returns editable starter content that can be pasted into the PrintableTools Lab generators and printed.",
+  priceUsd: 29,
+  currency: "USD",
+  contactEmail: configuredContactEmail(),
+  publicRequestPath: "assets/services/custom-local-print-pack-request.txt",
+  turnaround: "Target delivery is 2 business days after real payment and complete buyer details.",
+  deliverables: [
+    "price tag starter CSV for up to 12 items",
+    "one small flyer copy draft",
+    "QR sign wording for one link or contact method",
+    "three coupon or bundle offer ideas",
+    "packing slip or pickup note starter rows",
+    "one-page launch checklist for printing and first outreach",
+  ],
+  buyerInputs: [
+    "business, event, booth, or service name",
+    "up to 12 items or services with prices",
+    "one URL, social profile, phone, or email to turn into QR sign wording",
+    "preferred style: clean, cute, bold, minimal, local, premium, or practical",
+    "any words, claims, or offers to avoid",
+  ],
+  relatedTools: [
+    "tools/price-tag",
+    "tools/flyer-maker",
+    "tools/coupon-maker",
+    "tools/packing-slip",
+    "tools/business-card",
+    "tools/qr-code",
+  ],
+  riskControls: [
+    "The service does not start until a real external payment link is sent and paid.",
+    "No payout, tax, bank, card, identity, or platform credential is stored in the repository.",
+    "The buyer must review all copy, prices, QR links, and claims before printing or publishing.",
+    "No legal, tax, accounting, employment, medical, or financial advice is included.",
+    "One lightweight revision is included for typos or fit; new branding, logo design, or legal copy is out of scope.",
+  ],
+  successGate: "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this service.",
+};
+
+const PAID_SERVICES = [CUSTOM_LOCAL_PRINT_PACK_SERVICE];
+
 function configuredCheckoutUrl() {
   const envUrl = (process.env.PUBLIC_SELLER_KIT_CHECKOUT_URL || process.env.PUBLIC_CHECKOUT_URL || "").trim();
   if (envUrl) return envUrl;
@@ -112,6 +159,42 @@ function productCheckoutRequestUrl(product, sampleUrl = siteUrl(product.publicSa
   const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
   url.searchParams.set("title", `Checkout request: ${product.name}`);
   url.searchParams.set("body", productCheckoutRequestCopy(product, sampleUrl));
+  return url.toString();
+}
+
+function serviceRequestCopy(service) {
+  return [
+    `I want to request the ${service.name} for $${service.priceUsd} ${service.currency}.`,
+    "",
+    "Business, booth, event, or service name:",
+    "What do you sell or promote?",
+    "Up to 12 items/services with prices:",
+    "Link or contact method for QR sign wording:",
+    "Preferred style: clean / cute / bold / minimal / local / premium / practical",
+    "Need-by date:",
+    "Preferred checkout provider: Gumroad / Payhip / Ko-fi / Stripe / other",
+    "Best contact method:",
+    "Country or region (optional):",
+    "Notes:",
+    "",
+    "No payment is collected by this request. Please reply with a real external checkout link and details checklist only if the service is available.",
+  ].join("\n");
+}
+
+function serviceRequestEmailUrl(service, contactEmail = service.contactEmail) {
+  const email = String(contactEmail || "").trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "";
+  const params = new URLSearchParams({
+    subject: `Service request: ${service.name}`,
+    body: serviceRequestCopy(service),
+  });
+  return `mailto:${email}?${params.toString()}`;
+}
+
+function serviceRequestUrl(service) {
+  const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+  url.searchParams.set("title", `Service request: ${service.name}`);
+  url.searchParams.set("body", serviceRequestCopy(service));
   return url.toString();
 }
 
@@ -3366,6 +3449,12 @@ const pages = [
     html: localSellerStarterKitHtml(),
   },
   {
+    path: CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug,
+    title: CUSTOM_LOCAL_PRINT_PACK_SERVICE.name,
+    description: CUSTOM_LOCAL_PRINT_PACK_SERVICE.shortDescription,
+    html: customLocalPrintPackServiceHtml(),
+  },
+  {
     path: "platform-submit-queue",
     title: "HTML5 Platform Submit Queue",
     description: "Submission order, account checklist, game assets, SDK notes, and compliance rules for the zero-domain HTML5 game monetization route.",
@@ -3964,6 +4053,7 @@ function localSellerStarterKitHtml() {
     `<a class="button secondary" data-track-event="seller_sample_download" data-track-tool="${escapeHtml(product.id)}" href="/${escapeHtml(product.publicSamplePath)}" download>Download sample ZIP</a>`,
     `<a class="button ghost" href="/${escapeHtml(product.publicRequestPath)}" download>Download request template</a>`,
     checkoutEmailUrl ? `<a class="button ghost" data-track-event="seller_checkout_intent" data-track-tool="${escapeHtml(product.id)}" href="${escapeHtml(checkoutEmailUrl)}">Email checkout request</a>` : "",
+    `<a class="button ghost" data-track-event="service_offer_click" data-track-tool="${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.id)}" href="/${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}/">Done-for-you setup</a>`,
     `<a class="button ghost" href="/tools/price-tag/">Try the free price tag tool</a>`,
   ].filter(Boolean).join("\n          ");
   return `
@@ -4002,6 +4092,11 @@ function localSellerStarterKitHtml() {
         <pre class="code-block">${escapeHtml(checkoutCopy(product))}</pre>
       </section>
       <section class="shell section">
+        <h2>Want it assembled for you?</h2>
+        <p>The $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} ${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.name)} service is a manual request path for buyers who want one simple starter pack prepared from their own items, prices, and contact link.</p>
+        <p><a class="button" href="/${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}/">Request the done-for-you setup</a></p>
+      </section>
+      <section class="shell section">
         <h2>Risk controls</h2>
         <ul>${product.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
         <p><strong>Money gate:</strong> ${escapeHtml(product.successGate)}</p>
@@ -4036,6 +4131,64 @@ function checkoutCopy(product) {
   ].join("\n");
 }
 
+function customLocalPrintPackServiceHtml() {
+  const service = CUSTOM_LOCAL_PRINT_PACK_SERVICE;
+  const requestUrl = serviceRequestUrl(service);
+  const emailUrl = serviceRequestEmailUrl(service);
+  const actions = [
+    `<a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestUrl)}">Request service checkout</a>`,
+    `<a class="button secondary" href="/${escapeHtml(service.publicRequestPath)}" download>Download service brief</a>`,
+    emailUrl ? `<a class="button ghost" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(emailUrl)}">Email service request</a>` : "",
+    `<a class="button ghost" href="/${escapeHtml(LOCAL_SELLER_STARTER_KIT.slug)}/">See the $${LOCAL_SELLER_STARTER_KIT.priceUsd} template kit</a>`,
+  ].filter(Boolean).join("\n          ");
+  return `
+      <section class="shell page-title section product-hero">
+        <a href="/${escapeHtml(LOCAL_SELLER_STARTER_KIT.slug)}/">Seller starter kit</a>
+        <h1>${escapeHtml(service.headline)}</h1>
+        <p>${escapeHtml(service.description)}</p>
+        <div class="hero-actions">
+          ${actions}
+        </div>
+        <p class="notice">Manual service checkout pending: this page captures buyer intent only. No payment is collected here until a real Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link is sent and paid.</p>
+        <div class="hero-proof" aria-label="Service readiness">
+          <div class="proof-tile"><strong>$${service.priceUsd}</strong><span>setup price</span></div>
+          <div class="proof-tile"><strong>${service.deliverables.length}</strong><span>deliverables</span></div>
+          <div class="proof-tile"><strong>2 days</strong><span>target turnaround</span></div>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>What gets delivered</h2>
+        <div class="grid-3">
+          ${service.deliverables.map((item) => `<article class="panel"><h3>${escapeHtml(item)}</h3><p>Delivered as editable text, CSV, or copy blocks the buyer can review, paste into the free generators, and print.</p></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Buyer details needed</h2>
+        <ul>${service.buyerInputs.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        <p><a class="button" href="/${escapeHtml(service.publicRequestPath)}" download>Download the request brief</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Use the finished pack with these free tools</h2>
+        <div class="grid-3">
+          ${service.relatedTools.map((toolPath) => {
+            const tool = tools.find((item) => item.path === toolPath);
+            return tool ? `<article class="tool-card"><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.description)}</p><a class="button" href="/${tool.path}/">Open generator</a></article>` : "";
+          }).join("\n")}
+        </div>
+      </section>
+      <section class="shell section" id="service-request">
+        <h2>Service request copy</h2>
+        <p>Copy this into GitHub, email, a contact form, or a payment-provider message. Treat it as intent only until a real external payment is recorded.</p>
+        <pre class="code-block">${escapeHtml(serviceRequestCopy(service))}</pre>
+      </section>
+      <section class="shell section">
+        <h2>Risk controls</h2>
+        <ul>${service.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        <p><strong>Money gate:</strong> ${escapeHtml(service.successGate)}</p>
+        ${jsonLdHtml(serviceSchema(service))}
+      </section>`;
+}
+
 function productSchema(product) {
   return {
     "@context": "https://schema.org",
@@ -4054,6 +4207,29 @@ function productSchema(product) {
       priceCurrency: product.currency,
       availability: product.checkoutUrl ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
       url: product.checkoutUrl || siteUrl(product.slug),
+    },
+  };
+}
+
+function serviceSchema(service) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.name,
+    description: service.shortDescription,
+    url: siteUrl(service.slug),
+    areaServed: "Online",
+    provider: {
+      "@type": "Organization",
+      name: SITE_SUMMARY.name,
+      url: siteUrl(""),
+    },
+    offers: {
+      "@type": "Offer",
+      price: String(service.priceUsd),
+      priceCurrency: service.currency,
+      availability: "https://schema.org/PreOrder",
+      url: siteUrl(service.slug),
     },
   };
 }
@@ -5642,4 +5818,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };

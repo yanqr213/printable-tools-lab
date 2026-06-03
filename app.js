@@ -4499,6 +4499,7 @@
     if (parts[0] === "submit-directory") return renderDirectorySubmissionPack();
     if (parts[0] === "share-kit") return renderShareKit();
     if (parts[0] === "local-seller-starter-kit") return renderLocalSellerStarterKit();
+    if (parts[0] === "custom-local-print-pack") return renderCustomLocalPrintPackService();
     if (landingPagesBySlug[parts[0]]) return renderLandingPage(parts[0]);
     if (parts[0] === "dashboard") return renderDashboard();
     if (pages[parts[0]]) return renderStaticPage(parts[0]);
@@ -5052,6 +5053,7 @@
           <a class="button secondary" href="${sampleUrl}" download data-track-event="seller_sample_download" data-track-tool="local-seller-starter-kit">Download sample ZIP</a>
           <a class="button ghost" href="${requestTemplateUrl}" download>Download request template</a>
           ${checkoutEmailUrl ? `<a class="button ghost" href="${escapeHtml(checkoutEmailUrl)}" data-track-event="seller_checkout_intent" data-track-tool="local-seller-starter-kit">Email checkout request</a>` : ""}
+          <a class="button ghost" href="/custom-local-print-pack/" data-track-event="service_offer_click" data-track-tool="custom-local-print-pack">Done-for-you setup</a>
           <a class="button ghost" href="/tools/price-tag/">Try the free price tag tool</a>
         </div>
         <p class="notice">${checkoutReady ? "Checkout is configured through the external payment provider linked above." : "Checkout link pending: buyers can request a checkout link now, but no payment is collected here until a real Gumroad, Payhip, Ko-fi, or Stripe Payment Link is connected."}</p>
@@ -5125,6 +5127,127 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       "",
       "No payment is collected in this email. Please reply with a real external checkout link only after the payment product is ready.",
     ].join("\n"));
+    return url.toString();
+  }
+
+  function renderCustomLocalPrintPackService() {
+    const price = "29";
+    const requestTemplateUrl = "/assets/services/custom-local-print-pack-request.txt";
+    const serviceRequestUrl = customLocalPrintPackRequestUrl();
+    const serviceEmailUrl = customLocalPrintPackEmailUrl();
+    const deliverables = [
+      "price tag starter CSV for up to 12 items",
+      "one small flyer copy draft",
+      "QR sign wording for one link or contact method",
+      "three coupon or bundle offer ideas",
+      "packing slip or pickup note starter rows",
+      "one-page launch checklist for printing and first outreach",
+    ];
+    const buyerInputs = [
+      "business, booth, event, or service name",
+      "up to 12 items or services with prices",
+      "one URL, social profile, phone, or email to turn into QR sign wording",
+      "preferred style: clean, cute, bold, minimal, local, premium, or practical",
+      "any words, claims, or offers to avoid",
+    ];
+    const relatedTools = ["price-tag", "flyer-maker", "coupon-maker", "packing-slip", "business-card", "qr-code"];
+    setMeta("Custom Local Print Pack Setup", "A $29 done-for-you setup request for one simple printable seller pack: price tags, flyer copy, QR sign text, coupon wording, packing slip starter rows, and a one-page launch checklist.");
+    setJsonLd({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "Custom Local Print Pack Setup",
+      description: "Manual setup service for one simple printable seller pack using PrintableTools Lab generators.",
+      url: absoluteUrl("/custom-local-print-pack/"),
+      areaServed: "Online",
+      offers: {
+        "@type": "Offer",
+        price,
+        priceCurrency: "USD",
+        availability: "https://schema.org/PreOrder",
+        url: absoluteUrl("/custom-local-print-pack/"),
+      },
+    });
+    app.innerHTML = `
+      <section class="shell page-title section product-hero">
+        <a href="/local-seller-starter-kit/">Seller starter kit</a>
+        <h1>Custom Local Print Pack Setup for local sellers who want it done for them</h1>
+        <p>A lightweight service request for buyers who like the free generators but do not want to assemble their first price tags, flyer copy, QR sign text, coupons, packing notes, and launch checklist themselves.</p>
+        <div class="hero-actions">
+          <a class="button" href="${escapeHtml(serviceRequestUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Request service checkout</a>
+          <a class="button secondary" href="${requestTemplateUrl}" download>Download service brief</a>
+          ${serviceEmailUrl ? `<a class="button ghost" href="${escapeHtml(serviceEmailUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Email service request</a>` : ""}
+          <a class="button ghost" href="/local-seller-starter-kit/">See the $9 template kit</a>
+        </div>
+        <p class="notice">Manual service checkout pending: this page captures buyer intent only. No payment is collected here until a real Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link is sent and paid.</p>
+        <div class="hero-proof">
+          <div class="proof-tile"><strong>$${price}</strong><span>setup price</span></div>
+          <div class="proof-tile"><strong>${deliverables.length}</strong><span>deliverables</span></div>
+          <div class="proof-tile"><strong>2 days</strong><span>target turnaround</span></div>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>What gets delivered</h2>
+        <div class="grid-3">${deliverables.map((item) => `<article class="panel"><h3>${escapeHtml(item)}</h3><p>Editable starter content for one local seller, small service, booth, event, or simple offer.</p></article>`).join("")}</div>
+      </section>
+      <section class="shell section">
+        <h2>Buyer details needed</h2>
+        <ul>${buyerInputs.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        <p><a class="button" href="${requestTemplateUrl}" download>Download the request brief</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Use the finished pack with these free tools</h2>
+        <div class="grid-3">${relatedTools.map((id) => toolCard(tools[id])).join("")}</div>
+      </section>
+      <section class="shell section" id="service-request">
+        <h2>Service request copy</h2>
+        <p>Copy this into GitHub, email, a contact form, or a payment-provider message. Treat it as intent only until a real external payment is recorded.</p>
+        <pre class="code-block">${escapeHtml(customLocalPrintPackRequestCopy())}</pre>
+      </section>
+      <section class="shell section">
+        <h2>Risk controls</h2>
+        <ul>
+          <li>The service does not start until a real external payment link is sent and paid.</li>
+          <li>No payout, tax, bank, card, identity, or platform credential is stored in the repository.</li>
+          <li>The buyer must review all copy, prices, QR links, and claims before printing or publishing.</li>
+          <li>No legal, tax, accounting, employment, medical, or financial advice is included.</li>
+          <li>Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment.</li>
+        </ul>
+      </section>
+    `;
+  }
+
+  function customLocalPrintPackRequestCopy() {
+    return [
+      "I want to request the Custom Local Print Pack Setup for $29 USD.",
+      "",
+      "Business, booth, event, or service name:",
+      "What do you sell or promote?",
+      "Up to 12 items/services with prices:",
+      "Link or contact method for QR sign wording:",
+      "Preferred style: clean / cute / bold / minimal / local / premium / practical",
+      "Need-by date:",
+      "Preferred checkout provider: Gumroad / Payhip / Ko-fi / Stripe / other",
+      "Best contact method:",
+      "Country or region (optional):",
+      "Notes:",
+      "",
+      "No payment is collected by this request. Please reply with a real external checkout link and details checklist only if the service is available.",
+    ].join("\n");
+  }
+
+  function customLocalPrintPackRequestUrl() {
+    const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+    url.searchParams.set("title", "Service request: Custom Local Print Pack Setup");
+    url.searchParams.set("body", customLocalPrintPackRequestCopy());
+    return url.toString();
+  }
+
+  function customLocalPrintPackEmailUrl() {
+    const email = String(CONFIG.contactEmail || "").trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "";
+    const url = new URL(`mailto:${email}`);
+    url.searchParams.set("subject", "Service request: Custom Local Print Pack Setup");
+    url.searchParams.set("body", customLocalPrintPackRequestCopy());
     return url.toString();
   }
 
