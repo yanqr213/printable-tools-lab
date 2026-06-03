@@ -88,6 +88,96 @@
 <article class="tool-card"><h3>Packing Slip Generator</h3><p>Create a printable packing slip PDF for small orders, marketplace sales, local delivery, and handmade product shipments.</p><a class="button" href="/tools/packing-slip/">Open free tool</a></article>
 <article class="tool-card"><h3>Business Card Generator</h3><p>Create a printable business card PDF sheet for a small business, side project, local service, or event contact card.</p><a class="button" href="/tools/business-card/">Open free tool</a></article></div>
       </section>
+      <section class="shell section" id="build-audit-request">
+        <h2>Build your request</h2>
+        <p>Fill the public-safe fields once, then open a prefilled GitHub request or copy the message into email, a contact form, or a DM.</p>
+        <div class="grid-2" data-audit-request-builder data-audit-request-title="Free audit request: Free Market Table Print Audit">
+          <form class="panel form-grid" data-audit-request-form>
+            <div class="field">
+              <label for="audit-business">Business, booth, event, or service name</label>
+              <input id="audit-business" name="business" autocomplete="organization" placeholder="Saturday market candle table">
+            </div>
+            <div class="field">
+              <label for="audit-sells">What do you sell or promote?</label>
+              <textarea id="audit-sells" name="sells" placeholder="Soy candles, wax melts, and gift bundles"></textarea>
+            </div>
+            <div class="field">
+              <label for="audit-use">Where will this be used?</label>
+              <select id="audit-use" name="use">
+                <option value="">Choose one</option>
+                <option>market table</option>
+                <option>pickup</option>
+                <option>workshop</option>
+                <option>local service</option>
+                <option>online-to-local</option>
+                <option>other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="audit-examples">Current price list, menu, or item examples</label>
+              <textarea id="audit-examples" name="examples" placeholder="Small candle $8, large candle $15, 2 for $25"></textarea>
+            </div>
+            <div class="field">
+              <label for="audit-contact">Current QR/contact link or public-safe contact method</label>
+              <input id="audit-contact" name="contact" inputmode="url" placeholder="Public shop link, booking link, or contact page">
+            </div>
+            <fieldset class="field">
+              <legend>What print pieces do you already have?</legend>
+              <div class="check-list">
+                <label><input type="checkbox" name="pieces" value="price tags"> price tags</label><label><input type="checkbox" name="pieces" value="flyer"> flyer</label><label><input type="checkbox" name="pieces" value="QR sign"> QR sign</label><label><input type="checkbox" name="pieces" value="coupon"> coupon</label><label><input type="checkbox" name="pieces" value="packing note"> packing note</label><label><input type="checkbox" name="pieces" value="none" data-none-option> none</label>
+              </div>
+            </fieldset>
+            <div class="field">
+              <label for="audit-confusing">What feels confusing or unfinished?</label>
+              <textarea id="audit-confusing" name="confusing" placeholder="Prices are on phone notes, QR sign is too small, coupon wording is unclear"></textarea>
+            </div>
+            <div class="field">
+              <label for="audit-date">Need-by date or event date</label>
+              <input id="audit-date" name="date" placeholder="June 22 market">
+            </div>
+            <div class="field">
+              <label for="audit-upgrade">Would you want the optional $29 setup if the audit shows obvious gaps?</label>
+              <select id="audit-upgrade" name="upgrade">
+                <option>maybe</option>
+                <option>yes</option>
+                <option>no</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="audit-preference">Public-safe contact preference</label>
+              <input id="audit-preference" name="preference" placeholder="Reply on GitHub issue, public email, or public profile DM">
+            </div>
+            <div class="field">
+              <label for="audit-notes">Notes</label>
+              <textarea id="audit-notes" name="notes" placeholder="Avoid private customer details, tax IDs, account logins, payment data, and private addresses."></textarea>
+            </div>
+          </form>
+          <article class="panel form-grid">
+            <h3>Generated request</h3>
+            <p class="notice">No payment is collected here. Do not include card, bank, payout, tax, identity, password, private address, customer-list, or platform credential details.</p>
+            <textarea class="code-block audit-request-output" data-audit-request-output readonly>I want a Free Market Table Print Audit.
+
+Business, booth, event, or service name:
+What do you sell or promote?
+Where will this be used? market table / pickup / workshop / local service / online-to-local / other:
+Current price list, menu, or item examples:
+Current QR/contact link or public-safe contact method:
+What print pieces do you already have? price tags / flyer / QR sign / coupon / packing note / none:
+What feels confusing or unfinished?
+Need-by date or event date:
+Would you want a $29 done-for-you setup if the audit shows obvious gaps? yes / maybe / no:
+Public-safe contact preference:
+Notes:
+
+No payment is collected for this audit request. Do not include card, bank, payout, tax, identity, credential, password, private address, customer-list, or private account details.</textarea>
+            <div class="hero-actions">
+              <a class="button" data-audit-request-open data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="https://github.com/yanqr213/printable-tools-lab/issues/new?title=Free+audit+request%3A+Free+Market+Table+Print+Audit&amp;body=I+want+a+Free+Market+Table+Print+Audit.%0A%0ABusiness%2C+booth%2C+event%2C+or+service+name%3A%0AWhat+do+you+sell+or+promote%3F%0AWhere+will+this+be+used%3F+market+table+%2F+pickup+%2F+workshop+%2F+local+service+%2F+online-to-local+%2F+other%3A%0ACurrent+price+list%2C+menu%2C+or+item+examples%3A%0ACurrent+QR%2Fcontact+link+or+public-safe+contact+method%3A%0AWhat+print+pieces+do+you+already+have%3F+price+tags+%2F+flyer+%2F+QR+sign+%2F+coupon+%2F+packing+note+%2F+none%3A%0AWhat+feels+confusing+or+unfinished%3F%0ANeed-by+date+or+event+date%3A%0AWould+you+want+a+%2429+done-for-you+setup+if+the+audit+shows+obvious+gaps%3F+yes+%2F+maybe+%2F+no%3A%0APublic-safe+contact+preference%3A%0ANotes%3A%0A%0ANo+payment+is+collected+for+this+audit+request.+Do+not+include+card%2C+bank%2C+payout%2C+tax%2C+identity%2C+credential%2C+password%2C+private+address%2C+customer-list%2C+or+private+account+details.">Open prefilled GitHub request</a>
+              <button class="button secondary" type="button" data-audit-request-copy>Copy request</button>
+            </div>
+            <p class="notice" data-audit-request-status>Ready to copy or open as a public-safe request.</p>
+          </article>
+        </div>
+      </section>
       <section class="shell section">
         <h2>Upgrade path</h2>
         <ol><li><strong>audit_request_received</strong></li><li><strong>audit_reply_sent</strong></li><li><strong>upgrade_interest</strong></li><li><strong>service_fit_confirmed</strong></li><li><strong>checkout_sent</strong></li><li><strong>paid_order_verified</strong></li></ol>

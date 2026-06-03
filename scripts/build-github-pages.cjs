@@ -469,6 +469,7 @@ function auditLeadMagnetHtml() {
   const audit = MARKET_TABLE_PRINT_AUDIT;
   const requestUrl = marketTableAuditRequestUrl(audit);
   const checklist = marketTableAuditChecklist(audit);
+  const pieces = ["price tags", "flyer", "QR sign", "coupon", "packing note", "none"];
   const toolsList = audit.freeToolPaths.map((toolPath) => {
     const tool = tools.find((item) => item.path === toolPath);
     return tool ? `<li><a href="${pagesUrl(tool.path)}">${escapeHtml(tool.title)}</a>: ${escapeHtml(tool.description)}</li>` : "";
@@ -491,6 +492,18 @@ function auditLeadMagnetHtml() {
       p { color: var(--muted); max-width: 780px; }
       a { color: var(--teal); font-weight: 700; }
       .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 18px 0; }
+      .card { padding: 16px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+      .form-grid { display: grid; gap: 12px; }
+      .field { display: grid; gap: 6px; }
+      .field label, legend { font-weight: 700; }
+      input, select, textarea { width: 100%; min-height: 40px; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); background: #fff; }
+      textarea { min-height: 92px; resize: vertical; }
+      .check-list { display: grid; gap: 8px; }
+      .check-list label { display: flex; gap: 8px; align-items: center; font-weight: 600; }
+      .check-list input { width: auto; min-height: 0; }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+      .audit-request-output { min-height: 340px; }
       table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); }
       th, td { text-align: left; vertical-align: top; padding: 10px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
       pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px; color: var(--ink); }
@@ -513,6 +526,33 @@ function auditLeadMagnetHtml() {
       <ol>${audit.auditQuestions.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol>
       <h2>Free tools to try first</h2>
       <ul>${toolsList}</ul>
+      <h2>Build your request</h2>
+      <p>Fill the public-safe fields once, then open a prefilled GitHub request or copy the message into email, a contact form, or a DM.</p>
+      <div class="grid" data-audit-request-builder data-audit-request-title="Free audit request: ${escapeHtml(audit.name)}">
+        <form class="card form-grid" data-audit-request-form>
+          <div class="field"><label for="audit-business">Business, booth, event, or service name</label><input id="audit-business" name="business" autocomplete="organization" placeholder="Saturday market candle table"></div>
+          <div class="field"><label for="audit-sells">What do you sell or promote?</label><textarea id="audit-sells" name="sells" placeholder="Soy candles, wax melts, and gift bundles"></textarea></div>
+          <div class="field"><label for="audit-use">Where will this be used?</label><select id="audit-use" name="use"><option value="">Choose one</option><option>market table</option><option>pickup</option><option>workshop</option><option>local service</option><option>online-to-local</option><option>other</option></select></div>
+          <div class="field"><label for="audit-examples">Current price list, menu, or item examples</label><textarea id="audit-examples" name="examples" placeholder="Small candle $8, large candle $15, 2 for $25"></textarea></div>
+          <div class="field"><label for="audit-contact">Current QR/contact link or public-safe contact method</label><input id="audit-contact" name="contact" inputmode="url" placeholder="Public shop link, booking link, or contact page"></div>
+          <fieldset class="field"><legend>What print pieces do you already have?</legend><div class="check-list">${pieces.map((piece, index) => `<label><input type="checkbox" name="pieces" value="${escapeHtml(piece)}"${index === pieces.length - 1 ? " data-none-option" : ""}> ${escapeHtml(piece)}</label>`).join("")}</div></fieldset>
+          <div class="field"><label for="audit-confusing">What feels confusing or unfinished?</label><textarea id="audit-confusing" name="confusing" placeholder="Prices are on phone notes, QR sign is too small, coupon wording is unclear"></textarea></div>
+          <div class="field"><label for="audit-date">Need-by date or event date</label><input id="audit-date" name="date" placeholder="June 22 market"></div>
+          <div class="field"><label for="audit-upgrade">Would you want the optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup if the audit shows obvious gaps?</label><select id="audit-upgrade" name="upgrade"><option>maybe</option><option>yes</option><option>no</option></select></div>
+          <div class="field"><label for="audit-preference">Public-safe contact preference</label><input id="audit-preference" name="preference" placeholder="Reply on GitHub issue, public email, or public profile DM"></div>
+          <div class="field"><label for="audit-notes">Notes</label><textarea id="audit-notes" name="notes" placeholder="Avoid private customer details, tax IDs, account logins, payment data, and private addresses."></textarea></div>
+        </form>
+        <article class="card form-grid">
+          <h3>Generated request</h3>
+          <p>No payment is collected here. Do not include card, bank, payout, tax, identity, password, private address, customer-list, or platform credential details.</p>
+          <textarea class="audit-request-output" data-audit-request-output readonly>${escapeHtml(marketTableAuditRequestCopy(audit))}</textarea>
+          <div class="actions">
+            <a class="button" data-audit-request-open href="${escapeHtml(requestUrl)}">Open prefilled GitHub request</a>
+            <button class="button" type="button" data-audit-request-copy>Copy request</button>
+          </div>
+          <p data-audit-request-status>Ready to copy or open as a public-safe request.</p>
+        </article>
+      </div>
       <h2>Upgrade path</h2>
       <ol>${checklist.upgradePath.map((status) => `<li>${escapeHtml(status)}</li>`).join("")}</ol>
       <h2>Request copy</h2>
@@ -521,6 +561,82 @@ function auditLeadMagnetHtml() {
       <ul>${audit.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
       <p><strong>Money gate:</strong> ${escapeHtml(audit.moneyGate)}</p>
     </main>
+    <script>
+      (function () {
+        var builder = document.querySelector("[data-audit-request-builder]");
+        if (!builder) return;
+        var output = builder.querySelector("[data-audit-request-output]");
+        var openLink = builder.querySelector("[data-audit-request-open]");
+        var copyButton = builder.querySelector("[data-audit-request-copy]");
+        var status = builder.querySelector("[data-audit-request-status]");
+        var issueTitle = builder.getAttribute("data-audit-request-title") || "Free audit request: Free Market Table Print Audit";
+        function read(name) {
+          var field = builder.querySelector('[name="' + name + '"]');
+          return field ? String(field.value || "").trim() : "";
+        }
+        function pieces() {
+          return Array.prototype.slice.call(builder.querySelectorAll('input[name="pieces"]:checked')).map(function (field) { return field.value; }).join(", ");
+        }
+        function line(label, value) {
+          return label + (/[?:]$/.test(label) ? " " : ": ") + (value || "");
+        }
+        function update() {
+          var body = [
+            "I want a Free Market Table Print Audit.",
+            "",
+            line("Business, booth, event, or service name", read("business")),
+            line("What do you sell or promote?", read("sells")),
+            line("Where will this be used? market table / pickup / workshop / local service / online-to-local / other", read("use")),
+            line("Current price list, menu, or item examples", read("examples")),
+            line("Current QR/contact link or public-safe contact method", read("contact")),
+            line("What print pieces do you already have? price tags / flyer / QR sign / coupon / packing note / none", pieces()),
+            line("What feels confusing or unfinished?", read("confusing")),
+            line("Need-by date or event date", read("date")),
+            line("Would you want a $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} done-for-you setup if the audit shows obvious gaps? yes / maybe / no", read("upgrade")),
+            line("Public-safe contact preference", read("preference")),
+            line("Notes", read("notes")),
+            "",
+            "No payment is collected for this audit request. Do not include card, bank, payout, tax, identity, credential, password, private address, customer-list, or private account details."
+          ].join("\\n");
+          if (output) output.value = body;
+          if (openLink) {
+            var url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+            url.searchParams.set("title", issueTitle);
+            url.searchParams.set("body", body);
+            openLink.href = url.toString();
+          }
+        }
+        builder.addEventListener("change", function (event) {
+          if (event.target && event.target.matches('input[name="pieces"][data-none-option]') && event.target.checked) {
+            Array.prototype.slice.call(builder.querySelectorAll('input[name="pieces"]:not([data-none-option])')).forEach(function (field) { field.checked = false; });
+          } else if (event.target && event.target.matches('input[name="pieces"]:not([data-none-option])') && event.target.checked) {
+            var noneOption = builder.querySelector('input[name="pieces"][data-none-option]');
+            if (noneOption) noneOption.checked = false;
+          }
+          update();
+        });
+        Array.prototype.slice.call(builder.querySelectorAll("input, select, textarea")).forEach(function (field) {
+          if (!field.hasAttribute("readonly")) field.addEventListener("input", update);
+        });
+        if (copyButton) copyButton.addEventListener("click", function () {
+          update();
+          var text = output ? output.value : "";
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () {
+              if (status) status.textContent = "Request copied. Send only public-safe details.";
+            }).catch(function () {
+              if (status) status.textContent = "Copy failed. Select the generated request and copy it manually.";
+            });
+          } else if (output) {
+            output.focus();
+            output.select();
+            document.execCommand("copy");
+            if (status) status.textContent = "Request copied. Send only public-safe details.";
+          }
+        });
+        update();
+      }());
+    </script>
   </body>
 </html>
 `;

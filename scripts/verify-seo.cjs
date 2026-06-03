@@ -622,6 +622,10 @@ else {
   if (!html.includes("Free Market Table Print Audit")) failures.push("Audit page missing title.");
   if (!html.includes("Request free audit")) failures.push("Audit page missing request CTA.");
   if (!html.includes("Open structured audit form")) failures.push("Audit page missing structured audit form CTA.");
+  if (!html.includes("data-audit-request-builder")) failures.push("Audit page missing interactive audit request builder.");
+  if (!html.includes("Build your request")) failures.push("Audit page missing request builder heading.");
+  if (!html.includes("Open prefilled GitHub request")) failures.push("Audit page missing generated GitHub request CTA.");
+  if (!html.includes("Copy request")) failures.push("Audit page missing generated request copy button.");
   if (!html.includes("market-table-print-audit-request.txt")) failures.push("Audit page missing request template URL.");
   if (!html.includes("market-table-print-audit-checklist.json")) failures.push("Audit page missing checklist JSON URL.");
   if (!html.includes("custom-local-print-pack")) failures.push("Audit page missing optional paid upgrade link.");
@@ -1077,6 +1081,10 @@ else {
   if (!html.includes("Free Market Table Print Audit")) failures.push("GitHub Pages audit mirror missing title.");
   if (!html.includes("Request free audit")) failures.push("GitHub Pages audit mirror missing request CTA.");
   if (!html.includes("Open structured audit form")) failures.push("GitHub Pages audit mirror missing structured audit form link.");
+  if (!html.includes("data-audit-request-builder")) failures.push("GitHub Pages audit mirror missing interactive audit request builder.");
+  if (!html.includes("Build your request")) failures.push("GitHub Pages audit mirror missing request builder heading.");
+  if (!html.includes("Open prefilled GitHub request")) failures.push("GitHub Pages audit mirror missing generated GitHub request CTA.");
+  if (!html.includes("Copy request")) failures.push("GitHub Pages audit mirror missing generated request copy button.");
   if (!html.includes("market-table-print-audit-request.txt")) failures.push("GitHub Pages audit mirror missing request template link.");
   if (!html.includes("market-table-print-audit-checklist.json")) failures.push("GitHub Pages audit mirror missing checklist link.");
   if (!html.includes("custom-local-print-pack")) failures.push("GitHub Pages audit mirror missing upgrade service link.");

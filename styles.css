@@ -460,6 +460,28 @@ main {
   resize: vertical;
 }
 
+.check-list {
+  display: grid;
+  gap: 8px;
+}
+
+.check-list label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-weight: 600;
+}
+
+.check-list input {
+  width: auto;
+  min-height: 0;
+}
+
+.audit-request-output {
+  min-height: 360px;
+  resize: vertical;
+}
+
 .signature-field {
   gap: 9px;
 }

@@ -441,6 +441,86 @@ function marketTableAuditChecklist(audit = MARKET_TABLE_PRINT_AUDIT) {
   };
 }
 
+function marketTableAuditRequestBuilderHtml(audit = MARKET_TABLE_PRINT_AUDIT) {
+  const pieces = ["price tags", "flyer", "QR sign", "coupon", "packing note", "none"];
+  return `<section class="shell section" id="build-audit-request">
+        <h2>Build your request</h2>
+        <p>Fill the public-safe fields once, then open a prefilled GitHub request or copy the message into email, a contact form, or a DM.</p>
+        <div class="grid-2" data-audit-request-builder data-audit-request-title="Free audit request: ${escapeHtml(audit.name)}">
+          <form class="panel form-grid" data-audit-request-form>
+            <div class="field">
+              <label for="audit-business">Business, booth, event, or service name</label>
+              <input id="audit-business" name="business" autocomplete="organization" placeholder="Saturday market candle table">
+            </div>
+            <div class="field">
+              <label for="audit-sells">What do you sell or promote?</label>
+              <textarea id="audit-sells" name="sells" placeholder="Soy candles, wax melts, and gift bundles"></textarea>
+            </div>
+            <div class="field">
+              <label for="audit-use">Where will this be used?</label>
+              <select id="audit-use" name="use">
+                <option value="">Choose one</option>
+                <option>market table</option>
+                <option>pickup</option>
+                <option>workshop</option>
+                <option>local service</option>
+                <option>online-to-local</option>
+                <option>other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="audit-examples">Current price list, menu, or item examples</label>
+              <textarea id="audit-examples" name="examples" placeholder="Small candle $8, large candle $15, 2 for $25"></textarea>
+            </div>
+            <div class="field">
+              <label for="audit-contact">Current QR/contact link or public-safe contact method</label>
+              <input id="audit-contact" name="contact" inputmode="url" placeholder="Public shop link, booking link, or contact page">
+            </div>
+            <fieldset class="field">
+              <legend>What print pieces do you already have?</legend>
+              <div class="check-list">
+                ${pieces.map((piece, index) => `<label><input type="checkbox" name="pieces" value="${escapeHtml(piece)}"${index === pieces.length - 1 ? " data-none-option" : ""}> ${escapeHtml(piece)}</label>`).join("")}
+              </div>
+            </fieldset>
+            <div class="field">
+              <label for="audit-confusing">What feels confusing or unfinished?</label>
+              <textarea id="audit-confusing" name="confusing" placeholder="Prices are on phone notes, QR sign is too small, coupon wording is unclear"></textarea>
+            </div>
+            <div class="field">
+              <label for="audit-date">Need-by date or event date</label>
+              <input id="audit-date" name="date" placeholder="June 22 market">
+            </div>
+            <div class="field">
+              <label for="audit-upgrade">Would you want the optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup if the audit shows obvious gaps?</label>
+              <select id="audit-upgrade" name="upgrade">
+                <option>maybe</option>
+                <option>yes</option>
+                <option>no</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="audit-preference">Public-safe contact preference</label>
+              <input id="audit-preference" name="preference" placeholder="Reply on GitHub issue, public email, or public profile DM">
+            </div>
+            <div class="field">
+              <label for="audit-notes">Notes</label>
+              <textarea id="audit-notes" name="notes" placeholder="Avoid private customer details, tax IDs, account logins, payment data, and private addresses."></textarea>
+            </div>
+          </form>
+          <article class="panel form-grid">
+            <h3>Generated request</h3>
+            <p class="notice">No payment is collected here. Do not include card, bank, payout, tax, identity, password, private address, customer-list, or platform credential details.</p>
+            <textarea class="code-block audit-request-output" data-audit-request-output readonly>${escapeHtml(marketTableAuditRequestCopy(audit))}</textarea>
+            <div class="hero-actions">
+              <a class="button" data-audit-request-open data-track-event="audit_request_intent" data-track-tool="${escapeHtml(audit.id)}" href="${escapeHtml(marketTableAuditRequestUrl(audit))}">Open prefilled GitHub request</a>
+              <button class="button secondary" type="button" data-audit-request-copy>Copy request</button>
+            </div>
+            <p class="notice" data-audit-request-status>Ready to copy or open as a public-safe request.</p>
+          </article>
+        </div>
+      </section>`;
+}
+
 function servicePaymentReplyCopy(service) {
   return [
     `Subject: ${service.name} - fit confirmed, payment link before work starts`,
@@ -4897,6 +4977,7 @@ function marketTablePrintAuditHtml() {
         <h2>Start free with these tools</h2>
         <div class="grid-3">${toolCards}</div>
       </section>
+      ${marketTableAuditRequestBuilderHtml(audit)}
       <section class="shell section">
         <h2>Upgrade path</h2>
         <ol>${checklist.upgradePath.map((status) => `<li><strong>${escapeHtml(status)}</strong></li>`).join("")}</ol>

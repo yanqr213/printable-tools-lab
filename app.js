@@ -4517,6 +4517,7 @@
     track("page_view", { path: getCurrentRoutePath() });
     window.scrollTo(0, 0);
     app.focus({ preventScroll: true });
+    setTimeout(initAuditRequestBuilders, 0);
     setTimeout(pushVisibleAds, 0);
   }
 
@@ -5341,6 +5342,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
         <h2>Start free with these tools</h2>
         <div class="grid-3">${relatedTools.map((id) => toolCard(tools[id])).join("")}</div>
       </section>
+      ${marketTablePrintAuditRequestBuilderHtml()}
       <section class="shell section">
         <h2>Upgrade path</h2>
         <p>Use the audit for feedback first. Mention the paid setup only when the seller asks for help assembling the first pack.</p>
@@ -5383,6 +5385,87 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       "",
       "No payment is collected for this audit request. Do not include card, bank, payout, tax, identity, credential, password, private address, customer-list, or private account details.",
     ].join("\n");
+  }
+
+  function marketTablePrintAuditRequestBuilderHtml() {
+    const pieces = ["price tags", "flyer", "QR sign", "coupon", "packing note", "none"];
+    return `
+      <section class="shell section" id="build-audit-request">
+        <h2>Build your request</h2>
+        <p>Fill the public-safe fields once, then open a prefilled GitHub request or copy the message into email, a contact form, or a DM.</p>
+        <div class="grid-2" data-audit-request-builder data-audit-request-title="Free audit request: Free Market Table Print Audit">
+          <form class="panel form-grid" data-audit-request-form>
+            <div class="field">
+              <label for="audit-business">Business, booth, event, or service name</label>
+              <input id="audit-business" name="business" autocomplete="organization" placeholder="Saturday market candle table">
+            </div>
+            <div class="field">
+              <label for="audit-sells">What do you sell or promote?</label>
+              <textarea id="audit-sells" name="sells" placeholder="Soy candles, wax melts, and gift bundles"></textarea>
+            </div>
+            <div class="field">
+              <label for="audit-use">Where will this be used?</label>
+              <select id="audit-use" name="use">
+                <option value="">Choose one</option>
+                <option>market table</option>
+                <option>pickup</option>
+                <option>workshop</option>
+                <option>local service</option>
+                <option>online-to-local</option>
+                <option>other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="audit-examples">Current price list, menu, or item examples</label>
+              <textarea id="audit-examples" name="examples" placeholder="Small candle $8, large candle $15, 2 for $25"></textarea>
+            </div>
+            <div class="field">
+              <label for="audit-contact">Current QR/contact link or public-safe contact method</label>
+              <input id="audit-contact" name="contact" inputmode="url" placeholder="Public shop link, booking link, or contact page">
+            </div>
+            <fieldset class="field">
+              <legend>What print pieces do you already have?</legend>
+              <div class="check-list">
+                ${pieces.map((piece, index) => `<label><input type="checkbox" name="pieces" value="${escapeHtml(piece)}"${index === pieces.length - 1 ? " data-none-option" : ""}> ${escapeHtml(piece)}</label>`).join("")}
+              </div>
+            </fieldset>
+            <div class="field">
+              <label for="audit-confusing">What feels confusing or unfinished?</label>
+              <textarea id="audit-confusing" name="confusing" placeholder="Prices are on phone notes, QR sign is too small, coupon wording is unclear"></textarea>
+            </div>
+            <div class="field">
+              <label for="audit-date">Need-by date or event date</label>
+              <input id="audit-date" name="date" placeholder="June 22 market">
+            </div>
+            <div class="field">
+              <label for="audit-upgrade">Would you want the optional $29 setup if the audit shows obvious gaps?</label>
+              <select id="audit-upgrade" name="upgrade">
+                <option>maybe</option>
+                <option>yes</option>
+                <option>no</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="audit-preference">Public-safe contact preference</label>
+              <input id="audit-preference" name="preference" placeholder="Reply on GitHub issue, public email, or public profile DM">
+            </div>
+            <div class="field">
+              <label for="audit-notes">Notes</label>
+              <textarea id="audit-notes" name="notes" placeholder="Avoid private customer details, tax IDs, account logins, payment data, and private addresses."></textarea>
+            </div>
+          </form>
+          <article class="panel form-grid">
+            <h3>Generated request</h3>
+            <p class="notice">No payment is collected here. Do not include card, bank, payout, tax, identity, password, private address, customer-list, or platform credential details.</p>
+            <textarea class="code-block audit-request-output" data-audit-request-output readonly>${escapeHtml(marketTablePrintAuditRequestCopy())}</textarea>
+            <div class="hero-actions">
+              <a class="button" data-audit-request-open data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${escapeHtml(marketTablePrintAuditRequestUrl())}">Open prefilled GitHub request</a>
+              <button class="button secondary" type="button" data-audit-request-copy>Copy request</button>
+            </div>
+            <p class="notice" data-audit-request-status>Ready to copy or open as a public-safe request.</p>
+          </article>
+        </div>
+      </section>`;
   }
 
   function marketTablePrintAuditRequestUrl() {
@@ -11315,6 +11398,82 @@ ${paragraphs.join("\n")}
     ]));
     const csv = rows.map((row) => row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(",")).join("\n");
     downloadBlob(new Blob([csv], { type: "text/csv;charset=utf-8" }), "printable-tools-lab-events.csv");
+  }
+
+  function initAuditRequestBuilders(root = document) {
+    root.querySelectorAll("[data-audit-request-builder]").forEach((builder) => {
+      if (builder.dataset.auditRequestReady === "true") return;
+      builder.dataset.auditRequestReady = "true";
+      const output = builder.querySelector("[data-audit-request-output]");
+      const openLink = builder.querySelector("[data-audit-request-open]");
+      const copyButton = builder.querySelector("[data-audit-request-copy]");
+      const status = builder.querySelector("[data-audit-request-status]");
+      const fields = Array.from(builder.querySelectorAll("input, select, textarea")).filter((field) => !field.hasAttribute("readonly"));
+      const issueTitle = builder.dataset.auditRequestTitle || "Free audit request: Free Market Table Print Audit";
+      const read = (name) => {
+        const field = builder.querySelector(`[name="${name}"]`);
+        return field ? String(field.value || "").trim() : "";
+      };
+      const selectedPieces = () => Array.from(builder.querySelectorAll('input[name="pieces"]:checked')).map((field) => field.value);
+      const line = (label, value) => `${label}${/[?:]$/.test(label) ? " " : ": "}${value || ""}`;
+      const update = () => {
+        const body = [
+          "I want a Free Market Table Print Audit.",
+          "",
+          line("Business, booth, event, or service name", read("business")),
+          line("What do you sell or promote?", read("sells")),
+          line("Where will this be used? market table / pickup / workshop / local service / online-to-local / other", read("use")),
+          line("Current price list, menu, or item examples", read("examples")),
+          line("Current QR/contact link or public-safe contact method", read("contact")),
+          line("What print pieces do you already have? price tags / flyer / QR sign / coupon / packing note / none", selectedPieces().join(", ")),
+          line("What feels confusing or unfinished?", read("confusing")),
+          line("Need-by date or event date", read("date")),
+          line("Would you want a $29 done-for-you setup if the audit shows obvious gaps? yes / maybe / no", read("upgrade")),
+          line("Public-safe contact preference", read("preference")),
+          line("Notes", read("notes")),
+          "",
+          "No payment is collected for this audit request. Do not include card, bank, payout, tax, identity, credential, password, private address, customer-list, or private account details.",
+        ].join("\n");
+        if (output) output.value = body;
+        if (openLink) {
+          const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+          url.searchParams.set("title", issueTitle);
+          url.searchParams.set("body", body);
+          openLink.href = url.toString();
+        }
+      };
+      builder.addEventListener("change", (event) => {
+        if (event.target && event.target.matches('input[name="pieces"][data-none-option]') && event.target.checked) {
+          builder.querySelectorAll('input[name="pieces"]:not([data-none-option])').forEach((field) => {
+            field.checked = false;
+          });
+        } else if (event.target && event.target.matches('input[name="pieces"]:not([data-none-option])') && event.target.checked) {
+          const noneOption = builder.querySelector('input[name="pieces"][data-none-option]');
+          if (noneOption) noneOption.checked = false;
+        }
+        update();
+      });
+      fields.forEach((field) => field.addEventListener("input", update));
+      if (copyButton) {
+        copyButton.addEventListener("click", async () => {
+          update();
+          const text = output ? output.value : "";
+          try {
+            if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);
+            else if (output) {
+              output.focus();
+              output.select();
+              document.execCommand("copy");
+            }
+            if (status) status.textContent = "Request copied. Send only public-safe details.";
+            track("audit_request_copy", { tool: "market-table-print-audit" });
+          } catch {
+            if (status) status.textContent = "Copy failed. Select the generated request and copy it manually.";
+          }
+        });
+      }
+      update();
+    });
   }
 
   function escapeHtml(value) {
