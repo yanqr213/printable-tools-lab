@@ -565,6 +565,9 @@ else {
   const service = data.services?.find((item) => item.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id);
   if (!service) failures.push("services.json missing Custom Local Print Pack service.");
   if (service && service.priceUsd !== 29) failures.push("services.json has unexpected service price.");
+  if (service && !String(service.url || "").startsWith("https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/")) failures.push("services.json service URL should point to the live GitHub Pages request builder.");
+  if (service && !String(service.mainSiteFallbackUrl || "").startsWith(siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug))) failures.push("services.json missing Cloudflare fallback URL.");
+  if (service && !String(service.githubPagesServiceUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/")) failures.push("services.json missing GitHub Pages service URL.");
   if (service && !String(service.requestTemplateUrl || "").includes("custom-local-print-pack-request.txt")) failures.push("services.json missing service request template URL.");
   if (service && !String(service.issueFormUrl || "").includes("custom-local-print-pack-service.yml")) failures.push("services.json missing service issue form URL.");
   if (service && !String(service.paymentReplyTemplateUrl || "").includes("custom-local-print-pack-payment-reply.txt")) failures.push("services.json missing payment reply template URL.");
@@ -778,6 +781,9 @@ else {
   if (!Array.isArray(data.trackedLinks) || data.trackedLinks.length < 5) failures.push("service-sales-pack.json missing tracked links.");
   if (!Array.isArray(data.outreachScripts) || data.outreachScripts.length < 4) failures.push("service-sales-pack.json missing outreach scripts.");
   if (!String(data.githubPagesServiceUrl || "").includes("custom-local-print-pack")) failures.push("service-sales-pack.json missing GitHub Pages service URL.");
+  if (!String(data.serviceUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/")) failures.push("service-sales-pack.json service URL should point to the live GitHub Pages request builder.");
+  if (!String(data.mainSiteFallbackUrl || "").startsWith(siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug))) failures.push("service-sales-pack.json missing Cloudflare fallback URL.");
+  if (data.trackedLinks?.some((item) => item.label === "Main service link" && String(item.url || "").includes("printable-tools-lab.pages.dev/custom-local-print-pack"))) failures.push("service-sales-pack.json still promotes stale Cloudflare main service link.");
   if (!String(data.issueFormUrl || "").includes("custom-local-print-pack-service.yml")) failures.push("service-sales-pack.json missing issue form URL.");
   if (!String(data.githubPagesPaymentReplyUrl || "").includes("custom-local-print-pack-payment-reply.txt")) failures.push("service-sales-pack.json missing GitHub Pages payment reply URL.");
   if (!String(data.githubPagesFulfillmentChecklistUrl || "").includes("custom-local-print-pack-fulfillment-checklist.txt")) failures.push("service-sales-pack.json missing GitHub Pages fulfillment checklist URL.");
@@ -1040,6 +1046,9 @@ if (!fs.existsSync(docsServicesFile)) failures.push("Missing GitHub Pages servic
 else {
   const data = JSON.parse(fs.readFileSync(docsServicesFile, "utf8"));
   if (!Array.isArray(data.services) || !data.services.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id)) failures.push("GitHub Pages services.json missing custom print pack service.");
+  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.url || "").startsWith("https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/"))) failures.push("GitHub Pages services.json service URL should point to the live request builder.");
+  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.mainSiteFallbackUrl || "").startsWith(siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)))) failures.push("GitHub Pages services.json missing Cloudflare fallback URL.");
+  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.githubPagesServiceUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/"))) failures.push("GitHub Pages services.json missing GitHub Pages service URL.");
   if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryRequestTemplateUrl || "").includes("custom-local-print-pack-request.txt"))) failures.push("GitHub Pages services.json missing service request brief URL.");
   if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.issueFormUrl || "").includes("custom-local-print-pack-service.yml"))) failures.push("GitHub Pages services.json missing service issue form URL.");
   if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryPaymentReplyTemplateUrl || "").includes("custom-local-print-pack-payment-reply.txt"))) failures.push("GitHub Pages services.json missing service payment reply URL.");
@@ -1196,7 +1205,10 @@ else {
   const data = JSON.parse(fs.readFileSync(docsServiceSalesPackJsonFile, "utf8"));
   if (data.id !== SERVICE_SALES_PACK.id) failures.push("GitHub Pages service-sales-pack.json has unexpected id.");
   if (!String(data.discoveryUrl || "").includes(SERVICE_SALES_PACK.slug)) failures.push("GitHub Pages service-sales-pack.json missing discovery URL.");
+  if (!String(data.serviceUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/")) failures.push("GitHub Pages service-sales-pack.json service URL should point to the live request builder.");
+  if (!String(data.mainSiteFallbackUrl || "").startsWith(siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug))) failures.push("GitHub Pages service-sales-pack.json missing Cloudflare fallback URL.");
   if (!data.trackedLinks?.some((item) => String(item.url || "").includes("service_sales_pack"))) failures.push("GitHub Pages service-sales-pack.json missing tracked links.");
+  if (data.trackedLinks?.some((item) => item.label === "Main service link" && String(item.url || "").includes("printable-tools-lab.pages.dev/custom-local-print-pack"))) failures.push("GitHub Pages service-sales-pack.json still promotes stale Cloudflare main service link.");
   if (!data.trackedLinks?.some((item) => String(item.url || "").includes("market_table_audit"))) failures.push("GitHub Pages service-sales-pack.json missing audit tracked links.");
   if (!data.outreachScripts?.some((item) => String(item.message || "").includes("$29"))) failures.push("GitHub Pages service-sales-pack.json missing $29 outreach copy.");
   if (!String(data.issueFormUrl || "").includes("custom-local-print-pack-service.yml")) failures.push("GitHub Pages service-sales-pack.json missing issue form URL.");

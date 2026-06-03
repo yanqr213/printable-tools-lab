@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Share Kit",
-  "generatedAt": "2026-06-03T04:14:15.785Z",
+  "generatedAt": "2026-06-03T05:21:32.410Z",
   "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
   "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
   "featuredLinks": [
@@ -257,7 +257,8 @@
     "name": "Custom Local Print Pack Sales Pack",
     "description": "A zero-budget outreach pack for promoting the $29 done-for-you local print pack setup to craft sellers, market tables, local services, tutors, cleaners, repair providers, and pop-up organizers.",
     "pageUrl": "https://printable-tools-lab.pages.dev/custom-local-print-pack-sales-pack/",
-    "serviceUrl": "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
+    "serviceUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
+    "mainSiteFallbackUrl": "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
     "githubPagesServiceUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
     "requestBriefUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-request.txt",
     "githubPagesRequestBriefUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt",
@@ -596,7 +597,7 @@
         "url": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
       },
       {
-        "label": "Main service link",
+        "label": "Cloudflare fallback service link",
         "url": "https://printable-tools-lab.pages.dev/custom-local-print-pack?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
       },
       {

@@ -1173,11 +1173,14 @@ function productFeedEntry(product) {
 }
 
 function serviceFeedEntry(service) {
+  const githubPagesServiceUrl = SERVICE_SALES_PACK.serviceId === service.id ? SERVICE_SALES_PACK.githubPagesServiceUrl : pagesUrl(service.slug);
   return {
     id: service.id,
     name: service.name,
     description: service.shortDescription,
-    url: siteUrl(service.slug),
+    url: githubPagesServiceUrl,
+    mainSiteFallbackUrl: siteUrl(service.slug),
+    githubPagesServiceUrl,
     discoveryUrl: pagesUrl(service.slug),
     priceUsd: service.priceUsd,
     currency: service.currency,
@@ -1221,7 +1224,8 @@ function serviceSalesPackEntry() {
     description: SERVICE_SALES_PACK.shortDescription,
     pageUrl: siteUrl(SERVICE_SALES_PACK.slug),
     discoveryUrl: pagesUrl(SERVICE_SALES_PACK.slug),
-    serviceUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug),
+    serviceUrl: SERVICE_SALES_PACK.serviceUrl,
+    mainSiteFallbackUrl: SERVICE_SALES_PACK.mainSiteFallbackUrl,
     serviceDiscoveryUrl: pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug),
     githubPagesServiceUrl: SERVICE_SALES_PACK.githubPagesServiceUrl,
     requestBriefUrl: SERVICE_SALES_PACK.requestBriefUrl,

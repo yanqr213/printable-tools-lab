@@ -1,13 +1,15 @@
 {
   "name": "PrintableTools Lab Paid Services",
-  "generatedAt": "2026-06-03T04:57:36.093Z",
+  "generatedAt": "2026-06-03T05:21:32.505Z",
   "directory": "https://yanqr213.github.io/printable-tools-lab/",
   "services": [
     {
       "id": "custom-local-print-pack",
       "name": "Custom Local Print Pack Setup",
       "description": "A $29 done-for-you setup request for one simple printable seller pack: price tags, flyer copy, QR sign text, coupon wording, packing slip starter rows, and a one-page launch checklist.",
-      "url": "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
+      "url": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
+      "mainSiteFallbackUrl": "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
+      "githubPagesServiceUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
       "priceUsd": 29,
       "currency": "USD",

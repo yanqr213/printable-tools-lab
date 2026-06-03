@@ -1182,11 +1182,14 @@ function digitalProductEntry(product) {
 
 function paidServiceEntry(service) {
   const report = paidServiceAssets.find((item) => item.service === service.name);
+  const githubPagesServiceUrl = SERVICE_SALES_PACK.serviceId === service.id ? SERVICE_SALES_PACK.githubPagesServiceUrl : "";
   return {
     id: service.id,
     name: service.name,
     description: service.shortDescription,
-    url: siteUrl(service.slug),
+    url: githubPagesServiceUrl || siteUrl(service.slug),
+    mainSiteFallbackUrl: siteUrl(service.slug),
+    githubPagesServiceUrl,
     priceUsd: service.priceUsd,
     currency: service.currency,
     requestUrl: serviceRequestUrl(service),
@@ -1228,7 +1231,8 @@ function serviceSalesPackEntry() {
     name: SERVICE_SALES_PACK.name,
     description: SERVICE_SALES_PACK.shortDescription,
     pageUrl: siteUrl(SERVICE_SALES_PACK.slug),
-    serviceUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug),
+    serviceUrl: SERVICE_SALES_PACK.serviceUrl,
+    mainSiteFallbackUrl: SERVICE_SALES_PACK.mainSiteFallbackUrl,
     githubPagesServiceUrl: SERVICE_SALES_PACK.githubPagesServiceUrl,
     requestBriefUrl: SERVICE_SALES_PACK.requestBriefUrl,
     githubPagesRequestBriefUrl: SERVICE_SALES_PACK.githubPagesRequestBriefUrl,

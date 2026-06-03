@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-03T04:57:36.093Z",
+  "generatedAt": "2026-06-03T05:21:32.505Z",
   "landingPages": [
     {
       "title": "Free Upload Limit Fixer",
@@ -773,7 +773,9 @@
       "id": "custom-local-print-pack",
       "name": "Custom Local Print Pack Setup",
       "description": "A $29 done-for-you setup request for one simple printable seller pack: price tags, flyer copy, QR sign text, coupon wording, packing slip starter rows, and a one-page launch checklist.",
-      "url": "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
+      "url": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
+      "mainSiteFallbackUrl": "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
+      "githubPagesServiceUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
       "priceUsd": 29,
       "currency": "USD",
@@ -1100,7 +1102,8 @@
     "description": "A zero-budget outreach pack for promoting the $29 done-for-you local print pack setup to craft sellers, market tables, local services, tutors, cleaners, repair providers, and pop-up organizers.",
     "pageUrl": "https://printable-tools-lab.pages.dev/custom-local-print-pack-sales-pack/",
     "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack-sales-pack/",
-    "serviceUrl": "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
+    "serviceUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
+    "mainSiteFallbackUrl": "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
     "serviceDiscoveryUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
     "githubPagesServiceUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
     "requestBriefUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-request.txt",
@@ -1438,7 +1441,7 @@
         "url": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
       },
       {
-        "label": "Main service link",
+        "label": "Cloudflare fallback service link",
         "url": "https://printable-tools-lab.pages.dev/custom-local-print-pack?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
       },
       {
