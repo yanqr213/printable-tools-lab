@@ -80,6 +80,9 @@ const CUSTOM_LOCAL_PRINT_PACK_SERVICE = {
   publicOrderPipelinePath: "assets/services/custom-local-print-pack-order-pipeline.json",
   publicOutreachQueuePath: "assets/services/custom-local-print-pack-outreach-queue.json",
   publicOutreachBatchPath: "assets/services/custom-local-print-pack-outreach-batch.txt",
+  publicSampleDeliveryPath: "assets/services/custom-local-print-pack-sample-delivery.zip",
+  publicDeliveryInputExamplePath: "assets/services/custom-local-print-pack-delivery-input.example.json",
+  publicDeliveryReportPath: "reports/custom-local-print-pack-sample-delivery.json",
   issueTemplatePath: ".github/ISSUE_TEMPLATE/custom-local-print-pack-service.yml",
   issueFormUrl: "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml",
   turnaround: "Target delivery is 2 business days after real payment and complete buyer details.",
@@ -139,6 +142,12 @@ const SERVICE_SALES_PACK = {
   githubPagesOutreachQueueUrl: "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json",
   outreachBatchUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachBatchPath).replace(/\/$/, ""),
   githubPagesOutreachBatchUrl: "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt",
+  sampleDeliveryUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicSampleDeliveryPath).replace(/\/$/, ""),
+  githubPagesSampleDeliveryUrl: "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip",
+  deliveryInputExampleUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryInputExamplePath).replace(/\/$/, ""),
+  githubPagesDeliveryInputExampleUrl: "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json",
+  deliveryReportUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryReportPath).replace(/\/$/, ""),
+  githubPagesDeliveryReportUrl: "https://yanqr213.github.io/printable-tools-lab/reports/custom-local-print-pack-sample-delivery.json",
   issueFormUrl: CUSTOM_LOCAL_PRINT_PACK_SERVICE.issueFormUrl,
   audience: [
     "craft fair and market table sellers",
@@ -154,6 +163,8 @@ const SERVICE_SALES_PACK = {
     ["Fulfillment checklist", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
     ["Manual outreach queue", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
     ["Copy/paste outreach batch", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
+    ["Sample delivery ZIP", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
+    ["Delivery input example", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
     ["Main service link", `${siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug).replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
     ["Free price tag generator", `${siteUrl("tools/price-tag").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
     ["Free flyer maker", `${siteUrl("tools/flyer-maker").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
@@ -196,11 +207,15 @@ const SERVICE_SALES_PACK = {
     ["Fulfillment checklist", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt"],
     ["Manual outreach queue", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json"],
     ["Copy/paste outreach batch", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt"],
+    ["Sample delivery ZIP", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip"],
+    ["Delivery input example", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json"],
+    ["Sample delivery report", "https://yanqr213.github.io/printable-tools-lab/reports/custom-local-print-pack-sample-delivery.json"],
   ],
   executionChecklist: [
     "Start with 5 to 10 manual, relevant, non-spam contacts where the service solves an immediate print or market-table problem.",
     "Send the request brief first; do not ask for payment until the buyer confirms fit and details.",
     "Use the external checkout provider only after the buyer asks to proceed.",
+    "After paid_order_verified, run npm.cmd run service:delivery -- --input path/to/order.json to generate the private delivery ZIP under paid-deliverables/service-orders.",
     "Log any request URL, reply, or paid order in OPERATIONS.md with the date and source.",
     "Count revenue only from a paid provider order, payout balance, or settled payment.",
   ],
@@ -4641,6 +4656,9 @@ function customLocalPrintPackServiceHtml() {
     ["Order pipeline JSON", `/${service.publicOrderPipelinePath}`],
     ["Manual outreach queue", `/${service.publicOutreachQueuePath}`],
     ["Copy/paste outreach batch", `/${service.publicOutreachBatchPath}`],
+    ["Sample delivery ZIP", `/${service.publicSampleDeliveryPath}`],
+    ["Delivery input example", `/${service.publicDeliveryInputExamplePath}`],
+    ["Sample delivery report", `/${service.publicDeliveryReportPath}`],
   ];
   const actions = [
     `<a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestUrl)}">Request service checkout</a>`,
@@ -4648,6 +4666,7 @@ function customLocalPrintPackServiceHtml() {
     `<a class="button secondary" href="/${escapeHtml(service.publicRequestPath)}" download>Download service brief</a>`,
     emailUrl ? `<a class="button ghost" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(emailUrl)}">Email service request</a>` : "",
     `<a class="button ghost" href="/${escapeHtml(service.publicOrderPipelinePath)}">Open order pipeline</a>`,
+    `<a class="button ghost" href="/${escapeHtml(service.publicSampleDeliveryPath)}">Download sample delivery</a>`,
     `<a class="button ghost" href="/${escapeHtml(LOCAL_SELLER_STARTER_KIT.slug)}/">See the $${LOCAL_SELLER_STARTER_KIT.priceUsd} template kit</a>`,
   ].filter(Boolean).join("\n          ");
   return `
@@ -4683,6 +4702,7 @@ function customLocalPrintPackServiceHtml() {
           <thead><tr><th>Asset</th><th>URL</th></tr></thead>
           <tbody>${orderAssets.map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("\n")}</tbody>
         </table>
+        <p>After a real external provider shows paid_order_verified, generate the private customer ZIP with <code>npm.cmd run service:delivery -- --input path/to/paid-order.json</code>. The output stays under <code>paid-deliverables/service-orders/</code>, which is ignored by git.</p>
         <ol>${pipeline.statuses.map((status) => `<li><strong>${escapeHtml(status.id)}</strong>: ${escapeHtml(status.ownerAction)} <em>${escapeHtml(status.moneyRule)}</em></li>`).join("")}</ol>
       </section>
       <section class="shell section">
@@ -4719,6 +4739,9 @@ function serviceSalesPackHtml() {
     ["Order pipeline JSON", pack.githubPagesOrderPipelineUrl],
     ["Manual outreach queue", pack.githubPagesOutreachQueueUrl],
     ["Copy/paste outreach batch", pack.githubPagesOutreachBatchUrl],
+    ["Sample delivery ZIP", pack.githubPagesSampleDeliveryUrl],
+    ["Delivery input example", pack.githubPagesDeliveryInputExampleUrl],
+    ["Sample delivery report", pack.githubPagesDeliveryReportUrl],
   ];
   return `
       <section class="shell page-title section">
@@ -4753,6 +4776,7 @@ function serviceSalesPackHtml() {
           <thead><tr><th>Asset</th><th>URL</th></tr></thead>
           <tbody>${orderAssets.map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("\n")}</tbody>
         </table>
+        <p>Private delivery command after paid_order_verified: <code>npm.cmd run service:delivery -- --input path/to/paid-order.json</code>. Public sample files show the deliverable structure, not real revenue.</p>
         <ol>${pipeline.statuses.map((status) => `<li><strong>${escapeHtml(status.id)}</strong>: ${escapeHtml(status.moneyRule)}</li>`).join("")}</ol>
       </section>
       <section class="shell section">

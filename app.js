@@ -5139,6 +5139,9 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
     const orderPipelineUrl = "/assets/services/custom-local-print-pack-order-pipeline.json";
     const outreachQueueUrl = "/assets/services/custom-local-print-pack-outreach-queue.json";
     const outreachBatchUrl = "/assets/services/custom-local-print-pack-outreach-batch.txt";
+    const sampleDeliveryUrl = "/assets/services/custom-local-print-pack-sample-delivery.zip";
+    const deliveryInputExampleUrl = "/assets/services/custom-local-print-pack-delivery-input.example.json";
+    const deliveryReportUrl = "/reports/custom-local-print-pack-sample-delivery.json";
     const issueFormUrl = "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml";
     const serviceRequestUrl = customLocalPrintPackRequestUrl();
     const serviceEmailUrl = customLocalPrintPackEmailUrl();
@@ -5166,6 +5169,9 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       ["Order pipeline JSON", orderPipelineUrl],
       ["Manual outreach queue", outreachQueueUrl],
       ["Copy/paste outreach batch", outreachBatchUrl],
+      ["Sample delivery ZIP", sampleDeliveryUrl],
+      ["Delivery input example", deliveryInputExampleUrl],
+      ["Sample delivery report", deliveryReportUrl],
     ];
     setMeta("Custom Local Print Pack Setup", "A $29 done-for-you setup request for one simple printable seller pack: price tags, flyer copy, QR sign text, coupon wording, packing slip starter rows, and a one-page launch checklist.");
     setJsonLd({
@@ -5195,6 +5201,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
           ${serviceEmailUrl ? `<a class="button ghost" href="${escapeHtml(serviceEmailUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Email service request</a>` : ""}
           <a class="button ghost" href="${orderPipelineUrl}">Open order pipeline</a>
           <a class="button ghost" href="${outreachBatchUrl}">Open outreach batch</a>
+          <a class="button ghost" href="${sampleDeliveryUrl}">Download sample delivery</a>
           <a class="button ghost" href="/local-seller-starter-kit/">See the $9 template kit</a>
           <a class="button ghost" href="/custom-local-print-pack-sales-pack/">Open sales pack</a>
         </div>
@@ -5218,6 +5225,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
         <h2>Order pipeline assets</h2>
         <p>Use these when a request arrives: confirm fit, send a real external checkout link, wait for paid_order_verified, then build and deliver the pack.</p>
         <table class="event-table"><tbody>${orderAssets.map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("")}</tbody></table>
+        <p>After paid_order_verified, run <code>npm.cmd run service:delivery -- --input path/to/paid-order.json</code>. Private customer ZIPs stay under <code>paid-deliverables/service-orders/</code>.</p>
         <ol>${orderStatuses.map((status) => `<li><strong>${escapeHtml(status)}</strong></li>`).join("")}</ol>
       </section>
       <section class="shell section">
@@ -5286,6 +5294,8 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       ["Fulfillment checklist", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
       ["Manual outreach queue", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
       ["Copy/paste outreach batch", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
+      ["Sample delivery ZIP", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
+      ["Delivery input example", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
       ["Main service link", `${absoluteUrl("/custom-local-print-pack/").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
       ["Free price tag generator", `${absoluteUrl("/tools/price-tag/").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
       ["Free flyer maker", `${absoluteUrl("/tools/flyer-maker/").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
@@ -5308,6 +5318,9 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       ["Fulfillment checklist", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt"],
       ["Manual outreach queue", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json"],
       ["Copy/paste outreach batch", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt"],
+      ["Sample delivery ZIP", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip"],
+      ["Delivery input example", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json"],
+      ["Sample delivery report", "https://yanqr213.github.io/printable-tools-lab/reports/custom-local-print-pack-sample-delivery.json"],
     ];
     const checklist = [
       "Start with 5 to 10 manual, relevant, non-spam contacts where the service solves an immediate print or market-table problem.",
@@ -5324,6 +5337,9 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       ["Order pipeline JSON", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json"],
       ["Manual outreach queue", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json"],
       ["Copy/paste outreach batch", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt"],
+      ["Sample delivery ZIP", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip"],
+      ["Delivery input example", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json"],
+      ["Sample delivery report", "https://yanqr213.github.io/printable-tools-lab/reports/custom-local-print-pack-sample-delivery.json"],
     ];
     const orderStatuses = ["intent_received", "fit_confirmed", "checkout_sent", "paid_order_verified", "in_progress", "delivered", "revision_done", "closed"];
     setMeta("Custom Local Print Pack Sales Pack", "Copy-ready outreach, tracked links, listing fields, and safe manual execution steps for the $29 Custom Local Print Pack service.");
@@ -5360,6 +5376,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
         <h2>Order pipeline assets</h2>
         <p>These links turn an interested reply into a paid, externally verified service order without collecting payment details in this repository.</p>
         <table class="event-table"><tbody>${orderAssets.map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("")}</tbody></table>
+        <p>Private delivery command after paid_order_verified: <code>npm.cmd run service:delivery -- --input path/to/paid-order.json</code>. Public sample files show structure only.</p>
         <ol>${orderStatuses.map((status) => `<li><strong>${escapeHtml(status)}</strong></li>`).join("")}</ol>
       </section>
       <section class="shell section">

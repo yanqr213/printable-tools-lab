@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-03T01:34:07.803Z",
+  "generatedAt": "2026-06-03T01:59:11.663Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -162,6 +162,9 @@
     "customLocalPrintPackOrderPipeline": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-order-pipeline.json",
     "customLocalPrintPackOutreachQueue": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-outreach-queue.json",
     "customLocalPrintPackOutreachBatch": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-outreach-batch.txt",
+    "customLocalPrintPackSampleDelivery": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-sample-delivery.zip",
+    "customLocalPrintPackDeliveryInputExample": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-delivery-input.example.json",
+    "customLocalPrintPackDeliveryReport": "https://printable-tools-lab.pages.dev/reports/custom-local-print-pack-sample-delivery.json",
     "localSellerStarterKitSample": "https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-sample.zip",
     "localSellerStarterKitPrivatePackage": "paid-deliverables/local-seller-starter-kit.zip",
     "localSellerStarterKitReport": "reports/local-seller-starter-kit-package.json",

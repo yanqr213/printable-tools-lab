@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-03T01:34:07.891Z",
+  "generatedAt": "2026-06-03T01:59:11.761Z",
   "landingPages": [
     {
       "title": "Free Upload Limit Fixer",
@@ -984,6 +984,13 @@
           "status": "required_after_action"
         }
       ],
+      "sampleDeliveryUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-sample-delivery.zip",
+      "discoverySampleDeliveryUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip",
+      "deliveryInputExampleUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-delivery-input.example.json",
+      "discoveryDeliveryInputExampleUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json",
+      "deliveryReportUrl": "https://printable-tools-lab.pages.dev/reports/custom-local-print-pack-sample-delivery.json",
+      "discoveryDeliveryReportUrl": "https://yanqr213.github.io/printable-tools-lab/reports/custom-local-print-pack-sample-delivery.json/",
+      "privateDeliveryCommand": "npm.cmd run service:delivery -- --input path/to/paid-order.json",
       "turnaround": "Target delivery is 2 business days after real payment and complete buyer details.",
       "deliverables": [
         "price tag starter CSV for up to 12 items",
@@ -1232,6 +1239,13 @@
         "status": "required_after_action"
       }
     ],
+    "sampleDeliveryUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-sample-delivery.zip",
+    "githubPagesSampleDeliveryUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip",
+    "deliveryInputExampleUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-delivery-input.example.json",
+    "githubPagesDeliveryInputExampleUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json",
+    "deliveryReportUrl": "https://printable-tools-lab.pages.dev/reports/custom-local-print-pack-sample-delivery.json",
+    "githubPagesDeliveryReportUrl": "https://yanqr213.github.io/printable-tools-lab/reports/custom-local-print-pack-sample-delivery.json",
+    "privateDeliveryCommand": "npm.cmd run service:delivery -- --input path/to/paid-order.json",
     "audience": [
       "craft fair and market table sellers",
       "home bakers, handmade sellers, and small online sellers",
@@ -1266,6 +1280,14 @@
       {
         "label": "Copy/paste outreach batch",
         "url": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
+      },
+      {
+        "label": "Sample delivery ZIP",
+        "url": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
+      },
+      {
+        "label": "Delivery input example",
+        "url": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
       },
       {
         "label": "Main service link",
@@ -1350,12 +1372,25 @@
       {
         "label": "Copy/paste outreach batch",
         "value": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt"
+      },
+      {
+        "label": "Sample delivery ZIP",
+        "value": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip"
+      },
+      {
+        "label": "Delivery input example",
+        "value": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json"
+      },
+      {
+        "label": "Sample delivery report",
+        "value": "https://yanqr213.github.io/printable-tools-lab/reports/custom-local-print-pack-sample-delivery.json"
       }
     ],
     "executionChecklist": [
       "Start with 5 to 10 manual, relevant, non-spam contacts where the service solves an immediate print or market-table problem.",
       "Send the request brief first; do not ask for payment until the buyer confirms fit and details.",
       "Use the external checkout provider only after the buyer asks to proceed.",
+      "After paid_order_verified, run npm.cmd run service:delivery -- --input path/to/order.json to generate the private delivery ZIP under paid-deliverables/service-orders.",
       "Log any request URL, reply, or paid order in OPERATIONS.md with the date and source.",
       "Count revenue only from a paid provider order, payout balance, or settled payment."
     ],

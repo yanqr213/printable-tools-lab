@@ -3,6 +3,7 @@ const path = require("path");
 const { execFileSync } = require("child_process");
 const { strToU8, zipSync } = require("fflate");
 const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
+const { serviceDeliveryInputExample, zipServiceDelivery } = require("./service-delivery-kit.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -469,6 +470,9 @@ const discoveryIndex = {
     customLocalPrintPackOrderPipeline: fileUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOrderPipelinePath),
     customLocalPrintPackOutreachQueue: fileUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachQueuePath),
     customLocalPrintPackOutreachBatch: fileUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachBatchPath),
+    customLocalPrintPackSampleDelivery: fileUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicSampleDeliveryPath),
+    customLocalPrintPackDeliveryInputExample: fileUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryInputExamplePath),
+    customLocalPrintPackDeliveryReport: fileUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryReportPath),
     localSellerStarterKitSample: fileUrl(LOCAL_SELLER_STARTER_KIT.publicSamplePath),
     localSellerStarterKitPrivatePackage: LOCAL_SELLER_STARTER_KIT.privatePackagePath,
     localSellerStarterKitReport: LOCAL_SELLER_STARTER_KIT.packageReportPath,
@@ -612,6 +616,9 @@ const distribution = [
   `- Order pipeline JSON: ${SERVICE_SALES_PACK.githubPagesOrderPipelineUrl}`,
   `- Manual outreach queue: ${SERVICE_SALES_PACK.githubPagesOutreachQueueUrl}`,
   `- Copy/paste outreach batch: ${SERVICE_SALES_PACK.githubPagesOutreachBatchUrl}`,
+  `- Sample delivery ZIP: ${SERVICE_SALES_PACK.githubPagesSampleDeliveryUrl}`,
+  `- Delivery input example: ${SERVICE_SALES_PACK.githubPagesDeliveryInputExampleUrl}`,
+  `- Sample delivery report: ${SERVICE_SALES_PACK.githubPagesDeliveryReportUrl}`,
   `- Sales pack page: ${siteUrl(SERVICE_SALES_PACK.slug)}`,
   `- Machine-readable sales pack: ${fileUrl("service-sales-pack.json")}`,
   "",
@@ -816,13 +823,43 @@ function buildPaidServiceAssets() {
     const orderPipelinePath = path.join(root, service.publicOrderPipelinePath);
     const outreachQueuePath = path.join(root, service.publicOutreachQueuePath);
     const outreachBatchPath = path.join(root, service.publicOutreachBatchPath);
+    const sampleDeliveryPath = path.join(root, service.publicSampleDeliveryPath);
+    const deliveryInputExamplePath = path.join(root, service.publicDeliveryInputExamplePath);
+    const deliveryReportPath = path.join(root, service.publicDeliveryReportPath);
+    const deliveryInputExample = serviceDeliveryInputExample(service);
+    const sampleDeliveryZip = zipServiceDelivery(deliveryInputExample, { sample: true });
     fs.mkdirSync(path.dirname(publicRequestPath), { recursive: true });
+    fs.mkdirSync(path.dirname(deliveryReportPath), { recursive: true });
     fs.writeFileSync(publicRequestPath, `${serviceRequestCopy(service)}\n`);
     fs.writeFileSync(paymentReplyPath, `${servicePaymentReplyCopy(service)}\n`);
     fs.writeFileSync(fulfillmentChecklistPath, `${serviceFulfillmentChecklistCopy(service)}\n`);
     fs.writeFileSync(orderPipelinePath, `${JSON.stringify(serviceOrderPipeline(service), null, 2)}\n`);
     fs.writeFileSync(outreachQueuePath, `${JSON.stringify(serviceOutreachQueue(service), null, 2)}\n`);
     fs.writeFileSync(outreachBatchPath, `${serviceOutreachBatchCopy(service)}\n`);
+    fs.writeFileSync(deliveryInputExamplePath, `${JSON.stringify(deliveryInputExample, null, 2)}\n`);
+    fs.writeFileSync(sampleDeliveryPath, sampleDeliveryZip);
+    const deliveryReport = {
+      service: service.name,
+      generatedAt: generatedAtIso,
+      sampleOnly: true,
+      sampleDelivery: {
+        path: service.publicSampleDeliveryPath,
+        url: fileUrl(service.publicSampleDeliveryPath),
+        sizeBytes: fs.statSync(sampleDeliveryPath).size,
+        sha256: sha256File(sampleDeliveryPath),
+      },
+      deliveryInputExample: {
+        path: service.publicDeliveryInputExamplePath,
+        url: fileUrl(service.publicDeliveryInputExamplePath),
+        sizeBytes: fs.statSync(deliveryInputExamplePath).size,
+        sha256: sha256File(deliveryInputExamplePath),
+      },
+      privateDeliveryCommand: "npm.cmd run service:delivery -- --input path/to/paid-order.json",
+      privateDeliveryOutput: "paid-deliverables/service-orders/<order-id>.zip",
+      moneyGate: service.successGate,
+      buyerReviewRequired: true,
+    };
+    fs.writeFileSync(deliveryReportPath, `${JSON.stringify(deliveryReport, null, 2)}\n`);
     return {
       service: service.name,
       generatedAt: generatedAtIso,
@@ -861,6 +898,14 @@ function buildPaidServiceAssets() {
         url: fileUrl(service.publicOutreachBatchPath),
         sizeBytes: fs.statSync(outreachBatchPath).size,
         sha256: sha256File(outreachBatchPath),
+      },
+      sampleDelivery: deliveryReport.sampleDelivery,
+      deliveryInputExample: deliveryReport.deliveryInputExample,
+      deliveryReport: {
+        path: service.publicDeliveryReportPath,
+        url: fileUrl(service.publicDeliveryReportPath),
+        sizeBytes: fs.statSync(deliveryReportPath).size,
+        sha256: sha256File(deliveryReportPath),
       },
       moneyGate: service.successGate,
       riskControls: service.riskControls,
@@ -1115,6 +1160,13 @@ function paidServiceEntry(service) {
     outreachBatchUrl: fileUrl(service.publicOutreachBatchPath),
     outreachBatchSha256: report?.outreachBatch?.sha256 || "",
     outreachQueue: serviceOutreachQueue(service).batch,
+    sampleDeliveryUrl: fileUrl(service.publicSampleDeliveryPath),
+    sampleDeliverySha256: report?.sampleDelivery?.sha256 || "",
+    deliveryInputExampleUrl: fileUrl(service.publicDeliveryInputExamplePath),
+    deliveryInputExampleSha256: report?.deliveryInputExample?.sha256 || "",
+    deliveryReportUrl: fileUrl(service.publicDeliveryReportPath),
+    deliveryReportSha256: report?.deliveryReport?.sha256 || "",
+    privateDeliveryCommand: "npm.cmd run service:delivery -- --input path/to/paid-order.json",
     turnaround: service.turnaround,
     deliverables: service.deliverables,
     buyerInputs: service.buyerInputs,
@@ -1147,6 +1199,13 @@ function serviceSalesPackEntry() {
     outreachBatchUrl: SERVICE_SALES_PACK.outreachBatchUrl,
     githubPagesOutreachBatchUrl: SERVICE_SALES_PACK.githubPagesOutreachBatchUrl,
     outreachQueue: serviceOutreachQueue(CUSTOM_LOCAL_PRINT_PACK_SERVICE).batch,
+    sampleDeliveryUrl: SERVICE_SALES_PACK.sampleDeliveryUrl,
+    githubPagesSampleDeliveryUrl: SERVICE_SALES_PACK.githubPagesSampleDeliveryUrl,
+    deliveryInputExampleUrl: SERVICE_SALES_PACK.deliveryInputExampleUrl,
+    githubPagesDeliveryInputExampleUrl: SERVICE_SALES_PACK.githubPagesDeliveryInputExampleUrl,
+    deliveryReportUrl: SERVICE_SALES_PACK.deliveryReportUrl,
+    githubPagesDeliveryReportUrl: SERVICE_SALES_PACK.githubPagesDeliveryReportUrl,
+    privateDeliveryCommand: "npm.cmd run service:delivery -- --input path/to/paid-order.json",
     audience: SERVICE_SALES_PACK.audience,
     trackedLinks: SERVICE_SALES_PACK.trackedLinks.map(([label, url]) => ({ label, url })),
     outreachScripts: SERVICE_SALES_PACK.outreachScripts,

@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Paid Services",
-  "generatedAt": "2026-06-03T01:34:07.803Z",
+  "generatedAt": "2026-06-03T01:59:11.663Z",
   "canonical": "https://printable-tools-lab.pages.dev/services.json",
   "services": [
     {
@@ -217,6 +217,13 @@
           "status": "required_after_action"
         }
       ],
+      "sampleDeliveryUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-sample-delivery.zip",
+      "sampleDeliverySha256": "aa3c3ebff8cb41ac5282604102c13f406070e10b73c05a8c639712b70a2ddf9b",
+      "deliveryInputExampleUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-delivery-input.example.json",
+      "deliveryInputExampleSha256": "cc7bb204fc8da14ab5a878b0079dc19a8fb0acad8753e7715c6e7a6a7db32956",
+      "deliveryReportUrl": "https://printable-tools-lab.pages.dev/reports/custom-local-print-pack-sample-delivery.json",
+      "deliveryReportSha256": "b1da9f15b9659fbec26e3428983e6f010c46d5afed6b593afa88e07143f4e5b4",
+      "privateDeliveryCommand": "npm.cmd run service:delivery -- --input path/to/paid-order.json",
       "turnaround": "Target delivery is 2 business days after real payment and complete buyer details.",
       "deliverables": [
         "price tag starter CSV for up to 12 items",

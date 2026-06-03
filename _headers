@@ -110,3 +110,12 @@
 
 /assets/services/custom-local-print-pack-outreach-batch.txt
   Content-Type: text/plain; charset=utf-8
+
+/assets/services/custom-local-print-pack-sample-delivery.zip
+  Content-Type: application/zip
+
+/assets/services/custom-local-print-pack-delivery-input.example.json
+  Content-Type: application/json; charset=utf-8
+
+/reports/custom-local-print-pack-sample-delivery.json
+  Content-Type: application/json; charset=utf-8

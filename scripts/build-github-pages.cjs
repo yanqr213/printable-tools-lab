@@ -347,6 +347,9 @@ function copyPaidServicePublicAssets() {
     copyPublicFile(service.publicOrderPipelinePath);
     copyPublicFile(service.publicOutreachQueuePath);
     copyPublicFile(service.publicOutreachBatchPath);
+    copyPublicFile(service.publicSampleDeliveryPath);
+    copyPublicFile(service.publicDeliveryInputExamplePath);
+    copyPublicFile(service.publicDeliveryReportPath);
   }
 }
 
@@ -380,6 +383,9 @@ function serviceSalesPackHtml() {
     ["Order pipeline JSON", pagesAssetUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOrderPipelinePath)],
     ["Manual outreach queue", pagesAssetUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachQueuePath)],
     ["Copy/paste outreach batch", pagesAssetUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachBatchPath)],
+    ["Sample delivery ZIP", pagesAssetUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicSampleDeliveryPath)],
+    ["Delivery input example", pagesAssetUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryInputExamplePath)],
+    ["Sample delivery report", pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryReportPath)],
   ].map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("\n");
   return `<!doctype html>
 <html lang="en">
@@ -422,6 +428,7 @@ function serviceSalesPackHtml() {
       <h2>Order pipeline assets</h2>
       <p>Use these operational links to move a reply from intent to fit confirmed, checkout sent, paid_order_verified, delivered, and closed without collecting payment details in GitHub.</p>
       <table><tbody>${orderAssets}</tbody></table>
+      <p>Private delivery command after paid_order_verified: <code>npm.cmd run service:delivery -- --input path/to/paid-order.json</code>. Public sample files show structure only.</p>
       <ol>${pipeline.statuses.map((status) => `<li><strong>${escapeHtml(status.id)}</strong>: ${escapeHtml(status.moneyRule)}</li>`).join("")}</ol>
       <h2>Manual execution checklist</h2>
       <ol>${pack.executionChecklist.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol>
@@ -441,6 +448,9 @@ function serviceHtml(service) {
   const orderPipelineUrl = pagesAssetUrl(service.publicOrderPipelinePath);
   const outreachQueueUrl = pagesAssetUrl(service.publicOutreachQueuePath);
   const outreachBatchUrl = pagesAssetUrl(service.publicOutreachBatchPath);
+  const sampleDeliveryUrl = pagesAssetUrl(service.publicSampleDeliveryPath);
+  const deliveryInputExampleUrl = pagesAssetUrl(service.publicDeliveryInputExamplePath);
+  const deliveryReportUrl = pagesUrl(service.publicDeliveryReportPath);
   const requestUrl = serviceRequestUrl(service);
   const requestEmailUrl = serviceRequestEmailUrl(service);
   const pipeline = serviceOrderPipeline(service);
@@ -451,6 +461,9 @@ function serviceHtml(service) {
     ["Order pipeline JSON", orderPipelineUrl],
     ["Manual outreach queue", outreachQueueUrl],
     ["Copy/paste outreach batch", outreachBatchUrl],
+    ["Sample delivery ZIP", sampleDeliveryUrl],
+    ["Delivery input example", deliveryInputExampleUrl],
+    ["Sample delivery report", deliveryReportUrl],
   ].map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("\n");
   const actionLinks = [
     `<a class="button" href="${escapeHtml(requestUrl)}">Request service checkout</a>`,
@@ -459,6 +472,7 @@ function serviceHtml(service) {
     requestEmailUrl ? `<a href="${escapeHtml(requestEmailUrl)}">Email service request</a>` : "",
     `<a href="${orderPipelineUrl}">Open order pipeline</a>`,
     `<a href="${outreachBatchUrl}">Open outreach batch</a>`,
+    `<a href="${sampleDeliveryUrl}">Download sample delivery</a>`,
     `<a href="${pagesUrl(LOCAL_SELLER_STARTER_KIT.slug)}">See the $${LOCAL_SELLER_STARTER_KIT.priceUsd} template kit</a>`,
   ].filter(Boolean).join("\n        ");
   return `<!doctype html>
@@ -503,6 +517,7 @@ function serviceHtml(service) {
       <h2>Order pipeline assets</h2>
       <p>Confirm fit, send a real external checkout link, wait for paid_order_verified, then build and deliver the pack.</p>
       <table><tbody>${orderAssets}</tbody></table>
+      <p>After paid_order_verified, run <code>npm.cmd run service:delivery -- --input path/to/paid-order.json</code>. Private customer ZIPs stay under <code>paid-deliverables/service-orders/</code>.</p>
       <ol>${pipeline.statuses.map((status) => `<li><strong>${escapeHtml(status.id)}</strong>: ${escapeHtml(status.moneyRule)}</li>`).join("")}</ol>
       <h2>Deliverables</h2>
       <div class="grid">
@@ -799,6 +814,13 @@ function serviceFeedEntry(service) {
     outreachBatchUrl: siteUrl(service.publicOutreachBatchPath).replace(/\/$/, ""),
     discoveryOutreachBatchUrl: pagesAssetUrl(service.publicOutreachBatchPath),
     outreachQueue: serviceOutreachQueue(service).batch,
+    sampleDeliveryUrl: siteUrl(service.publicSampleDeliveryPath).replace(/\/$/, ""),
+    discoverySampleDeliveryUrl: pagesAssetUrl(service.publicSampleDeliveryPath),
+    deliveryInputExampleUrl: siteUrl(service.publicDeliveryInputExamplePath).replace(/\/$/, ""),
+    discoveryDeliveryInputExampleUrl: pagesAssetUrl(service.publicDeliveryInputExamplePath),
+    deliveryReportUrl: siteUrl(service.publicDeliveryReportPath).replace(/\/$/, ""),
+    discoveryDeliveryReportUrl: pagesUrl(service.publicDeliveryReportPath),
+    privateDeliveryCommand: "npm.cmd run service:delivery -- --input path/to/paid-order.json",
     turnaround: service.turnaround,
     deliverables: service.deliverables,
     buyerInputs: service.buyerInputs,
@@ -833,6 +855,13 @@ function serviceSalesPackEntry() {
     outreachBatchUrl: SERVICE_SALES_PACK.outreachBatchUrl,
     githubPagesOutreachBatchUrl: SERVICE_SALES_PACK.githubPagesOutreachBatchUrl,
     outreachQueue: serviceOutreachQueue(CUSTOM_LOCAL_PRINT_PACK_SERVICE).batch,
+    sampleDeliveryUrl: SERVICE_SALES_PACK.sampleDeliveryUrl,
+    githubPagesSampleDeliveryUrl: SERVICE_SALES_PACK.githubPagesSampleDeliveryUrl,
+    deliveryInputExampleUrl: SERVICE_SALES_PACK.deliveryInputExampleUrl,
+    githubPagesDeliveryInputExampleUrl: SERVICE_SALES_PACK.githubPagesDeliveryInputExampleUrl,
+    deliveryReportUrl: SERVICE_SALES_PACK.deliveryReportUrl,
+    githubPagesDeliveryReportUrl: SERVICE_SALES_PACK.githubPagesDeliveryReportUrl,
+    privateDeliveryCommand: "npm.cmd run service:delivery -- --input path/to/paid-order.json",
     audience: SERVICE_SALES_PACK.audience,
     trackedLinks: SERVICE_SALES_PACK.trackedLinks.map(([label, url]) => ({ label, url })),
     outreachScripts: SERVICE_SALES_PACK.outreachScripts,

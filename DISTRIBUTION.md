@@ -46,6 +46,9 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Order pipeline JSON: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json
 - Manual outreach queue: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json
 - Copy/paste outreach batch: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt
+- Sample delivery ZIP: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip
+- Delivery input example: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json
+- Sample delivery report: https://yanqr213.github.io/printable-tools-lab/reports/custom-local-print-pack-sample-delivery.json
 - Sales pack page: https://printable-tools-lab.pages.dev/custom-local-print-pack-sales-pack/
 - Machine-readable sales pack: https://printable-tools-lab.pages.dev/service-sales-pack.json
 

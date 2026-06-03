@@ -237,6 +237,9 @@ Public service links:
 - Order pipeline JSON: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json`
 - Manual outreach queue: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json`
 - Copy/paste outreach batch: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt`
+- Sample delivery ZIP: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip`
+- Delivery input example: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json`
+- Sample delivery report: `https://yanqr213.github.io/printable-tools-lab/reports/custom-local-print-pack-sample-delivery.json`
 
 Manual order SOP:
 
@@ -246,8 +249,10 @@ Manual order SOP:
 4. Reply with the payment-before-work template only after fit is confirmed.
 5. Send one real external Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link.
 6. Start custom work only after the external provider shows `paid_order_verified`, a paid order, payout balance, or settled payment.
-7. Fulfill using the checklist, deliver editable text/CSV/copy blocks, and offer one lightweight typo or fit revision.
-8. Log only non-sensitive outcome evidence in this file: date, source, status, provider order state, amount, and public request URL if available.
+7. Create a private order input JSON from the delivery input example, changing `paymentStatus` to `paid_order_verified` only after the provider proves payment.
+8. Generate the private delivery ZIP with `npm.cmd run service:delivery -- --input path/to/paid-order.json`; outputs stay under `paid-deliverables/service-orders/`, which is ignored by git.
+9. Fulfill using the checklist, deliver editable text/CSV/copy blocks, and offer one lightweight typo or fit revision.
+10. Log only non-sensitive outcome evidence in this file: date, source, status, provider order state, amount, and public request URL if available.
 
 Manual outreach SOP:
 

@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Paid Services",
-  "generatedAt": "2026-06-03T01:34:07.891Z",
+  "generatedAt": "2026-06-03T01:59:11.761Z",
   "directory": "https://yanqr213.github.io/printable-tools-lab/",
   "services": [
     {
@@ -218,6 +218,13 @@
           "status": "required_after_action"
         }
       ],
+      "sampleDeliveryUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-sample-delivery.zip",
+      "discoverySampleDeliveryUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip",
+      "deliveryInputExampleUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-delivery-input.example.json",
+      "discoveryDeliveryInputExampleUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json",
+      "deliveryReportUrl": "https://printable-tools-lab.pages.dev/reports/custom-local-print-pack-sample-delivery.json",
+      "discoveryDeliveryReportUrl": "https://yanqr213.github.io/printable-tools-lab/reports/custom-local-print-pack-sample-delivery.json/",
+      "privateDeliveryCommand": "npm.cmd run service:delivery -- --input path/to/paid-order.json",
       "turnaround": "Target delivery is 2 business days after real payment and complete buyer details.",
       "deliverables": [
         "price tag starter CSV for up to 12 items",
