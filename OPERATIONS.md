@@ -226,8 +226,14 @@ For buyers who do not use GitHub, the mirror also hosts `assets/digital-products
 
 The fastest direct-payment test is the `$29 Custom Local Print Pack Setup`, because it can be fulfilled manually after one qualified buyer reply.
 
+Start colder prospects with the free Market Table Print Audit before asking for a paid checkout. It lets a seller share public-safe details, get practical print feedback, and only upgrade if they want the first pack assembled.
+
 Public service links:
 
+- Free audit page: `https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/`
+- Free audit request form: `https://github.com/yanqr213/printable-tools-lab/issues/new?template=market-table-print-audit.yml`
+- Free audit request template: `https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt`
+- Free audit checklist JSON: `https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json`
 - Service page: `https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/`
 - Sales pack: `https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack-sales-pack/`
 - Structured request form: `https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml`
@@ -243,22 +249,23 @@ Public service links:
 
 Manual order SOP:
 
-1. Treat a GitHub issue, email, DM, contact-form reply, or brief download as `intent_received` only.
+1. Treat a free audit request, GitHub issue, email, DM, contact-form reply, or brief download as validation only.
 2. Check the request has public-safe business/event/service name, offer summary, up to 12 items or services with prices, QR/contact link, style preference, need-by date, and preferred checkout provider.
-3. Do not collect card, bank, payout, tax, identity, credential, password, or private account details in GitHub, email, or the repo.
-4. Reply with the payment-before-work template only after fit is confirmed.
-5. Send one real external Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link.
-6. Start custom work only after the external provider shows `paid_order_verified`, a paid order, payout balance, or settled payment.
-7. Create a private order input JSON from the delivery input example, changing `paymentStatus` to `paid_order_verified` only after the provider proves payment.
-8. Generate the private delivery ZIP with `npm.cmd run service:delivery -- --input path/to/paid-order.json`; outputs stay under `paid-deliverables/service-orders/`, which is ignored by git.
-9. Fulfill using the checklist, deliver editable text/CSV/copy blocks, and offer one lightweight typo or fit revision.
-10. Log only non-sensitive outcome evidence in this file: date, source, status, provider order state, amount, and public request URL if available.
+3. For free audit requests, send checklist notes and relevant free generator links first; do not ask for payment unless the seller asks for done-for-you assembly.
+4. Do not collect card, bank, payout, tax, identity, credential, password, or private account details in GitHub, email, or the repo.
+5. Reply with the payment-before-work template only after fit is confirmed.
+6. Send one real external Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link.
+7. Start custom work only after the external provider shows `paid_order_verified`, a paid order, payout balance, or settled payment.
+8. Create a private order input JSON from the delivery input example, changing `paymentStatus` to `paid_order_verified` only after the provider proves payment.
+9. Generate the private delivery ZIP with `npm.cmd run service:delivery -- --input path/to/paid-order.json`; outputs stay under `paid-deliverables/service-orders/`, which is ignored by git.
+10. Fulfill using the checklist, deliver editable text/CSV/copy blocks, and offer one lightweight typo or fit revision.
+11. Log only non-sensitive outcome evidence in this file: date, source, status, provider order state, amount, and public request URL if available.
 
 Manual outreach SOP:
 
 1. Use the outreach batch for the first 10 relevant public-safe actions only; do not scrape, bulk-send, or contact private personal profiles.
 2. Send cold messages only when the seller or service provider has an obvious printable-signage, price-list, flyer, QR sign, pickup-note, or market-table problem.
-3. Lead with the free generators or request brief before mentioning payment.
+3. Lead with the free audit or free generators before mentioning payment.
 4. Use the payment-before-work reply only after the person replies or asks to proceed.
 5. Record `sent`, `replied`, `intent_received`, `fit_confirmed`, `checkout_sent`, `paid_order_verified`, `delivered`, `revision_done`, or `closed` without storing private buyer or payment details.
 

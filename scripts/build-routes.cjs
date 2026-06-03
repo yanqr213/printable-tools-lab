@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
 const { strToU8, zipSync } = require("fflate");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
 const { serviceDeliveryInputExample, zipServiceDelivery } = require("./service-delivery-kit.cjs");
 
 const root = path.resolve(__dirname, "..");
@@ -15,6 +15,7 @@ const gistDiscovery = readGistDiscovery();
 const issueDiscovery = readIssueDiscovery();
 const digitalProductPackages = buildDigitalProductPackages();
 const paidServiceAssets = buildPaidServiceAssets();
+const auditLeadMagnetAssets = buildAuditLeadMagnetAssets();
 
 function pageHtml(route) {
   const rendered = renderRoute(route);
@@ -221,6 +222,7 @@ const shareKitJson = {
   })),
   videoAssets: campaignAssets,
   serviceSalesPack: serviceSalesPackEntry(),
+  marketTablePrintAudit: marketTablePrintAuditEntry(),
   zeroDomainGameExperiment: ZERO_DOMAIN_GAME_EXPERIMENT,
   zeroDomainGameExperiments: ZERO_DOMAIN_GAME_EXPERIMENTS,
   externalDiscovery: {
@@ -234,6 +236,7 @@ fs.writeFileSync(path.join(root, "share-kit.json"), `${JSON.stringify(shareKitJs
 
 const serviceSalesPackJson = {
   ...serviceSalesPackEntry(),
+  marketTablePrintAudit: marketTablePrintAuditEntry(),
   generatedAt: generatedAtIso,
   canonical: fileUrl("service-sales-pack.json"),
   pageUrl: siteUrl(SERVICE_SALES_PACK.slug),
@@ -262,8 +265,10 @@ const paidServicesJson = {
   generatedAt: generatedAtIso,
   canonical: fileUrl("services.json"),
   services: PAID_SERVICES.map(paidServiceEntry),
+  leadMagnets: [marketTablePrintAuditEntry()],
   moneyGate: "Revenue is real only when a payment provider shows a paid order, payout balance, or settled payment. Public request links and service briefs are not revenue.",
   setup: [
+    `Start colder buyers with the free audit at ${siteUrl(MARKET_TABLE_PRINT_AUDIT.slug)}.`,
     "Use the public service page and request brief to capture buyer intent without collecting money on the site.",
     "Send a real external checkout link only after confirming the buyer details and service availability.",
     "Keep payout, tax, bank, card, phone, and account credentials inside the payment provider dashboard.",
@@ -382,6 +387,7 @@ const llms = [
   `- Digital product: ${siteUrl(LOCAL_SELLER_STARTER_KIT.slug)}`,
   `- Machine-readable digital products: ${fileUrl("digital-products.json")}`,
   `- Paid service: ${siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}`,
+  `- Free market table print audit: ${siteUrl(MARKET_TABLE_PRINT_AUDIT.slug)}`,
   `- Machine-readable paid services: ${fileUrl("services.json")}`,
   `- Service sales pack: ${siteUrl(SERVICE_SALES_PACK.slug)}`,
   `- Machine-readable service sales pack: ${fileUrl("service-sales-pack.json")}`,
@@ -453,13 +459,16 @@ const discoveryIndex = {
   paidServices: fileUrl("services.json"),
   serviceSalesPack: fileUrl("service-sales-pack.json"),
   zeroCostMonetizationMap: fileUrl("zero-cost-monetization-map.json"),
-  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl(LOCAL_SELLER_STARTER_KIT.slug), siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug), siteUrl(SERVICE_SALES_PACK.slug), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl(LOCAL_SELLER_STARTER_KIT.slug), siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug), siteUrl(MARKET_TABLE_PRINT_AUDIT.slug), siteUrl(SERVICE_SALES_PACK.slug), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   distributionAssets: {
     shareKit: siteUrl("share-kit"),
     shareKitJson: fileUrl("share-kit.json"),
     digitalProducts: siteUrl(LOCAL_SELLER_STARTER_KIT.slug),
     digitalProductsJson: fileUrl("digital-products.json"),
     paidServices: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug),
+    marketTablePrintAudit: siteUrl(MARKET_TABLE_PRINT_AUDIT.slug),
+    marketTablePrintAuditRequest: fileUrl(MARKET_TABLE_PRINT_AUDIT.publicRequestPath),
+    marketTablePrintAuditChecklist: fileUrl(MARKET_TABLE_PRINT_AUDIT.publicChecklistPath),
     paidServicesJson: fileUrl("services.json"),
     serviceSalesPack: siteUrl(SERVICE_SALES_PACK.slug),
     serviceSalesPackJson: fileUrl("service-sales-pack.json"),
@@ -604,6 +613,16 @@ const distribution = [
   `- Community campaign: ${siteUrl("").replace(/\/$/, "")}?utm_source=community`,
   `- Service sales pack campaign: ${siteUrl(SERVICE_SALES_PACK.slug).replace(/\/$/, "")}?utm_source=distribution&utm_medium=organic&utm_campaign=service_sales_pack`,
   `- Custom Local Print Pack GitHub Pages campaign: ${SERVICE_SALES_PACK.githubPagesServiceUrl}?utm_source=distribution&utm_medium=organic&utm_campaign=service_sales_pack`,
+  `- Free Market Table Print Audit campaign: ${MARKET_TABLE_PRINT_AUDIT.githubPagesUrl}?utm_source=distribution&utm_medium=organic&utm_campaign=market_table_audit`,
+  "",
+  "## Free audit lead magnet",
+  "",
+  `- Audit page: ${siteUrl(MARKET_TABLE_PRINT_AUDIT.slug)}`,
+  `- GitHub Pages audit page: ${MARKET_TABLE_PRINT_AUDIT.githubPagesUrl}`,
+  `- Structured audit form: ${MARKET_TABLE_PRINT_AUDIT.issueFormUrl}`,
+  `- Audit request template: ${MARKET_TABLE_PRINT_AUDIT.githubPagesRequestUrl}`,
+  `- Audit checklist JSON: ${MARKET_TABLE_PRINT_AUDIT.githubPagesChecklistUrl}`,
+  `- Optional upgrade service: ${MARKET_TABLE_PRINT_AUDIT.upgradeServiceUrl}`,
   "",
   "## Paid service sales pack",
   "",
@@ -913,6 +932,33 @@ function buildPaidServiceAssets() {
   });
 }
 
+function buildAuditLeadMagnetAssets() {
+  const audit = MARKET_TABLE_PRINT_AUDIT;
+  const publicRequestPath = path.join(root, audit.publicRequestPath);
+  const publicChecklistPath = path.join(root, audit.publicChecklistPath);
+  fs.mkdirSync(path.dirname(publicRequestPath), { recursive: true });
+  fs.writeFileSync(publicRequestPath, `${marketTableAuditRequestCopy(audit)}\n`);
+  fs.writeFileSync(publicChecklistPath, `${JSON.stringify(marketTableAuditChecklist(audit), null, 2)}\n`);
+  return {
+    id: audit.id,
+    generatedAt: generatedAtIso,
+    requestTemplate: {
+      path: audit.publicRequestPath,
+      url: fileUrl(audit.publicRequestPath),
+      sizeBytes: fs.statSync(publicRequestPath).size,
+      sha256: sha256File(publicRequestPath),
+    },
+    checklist: {
+      path: audit.publicChecklistPath,
+      url: fileUrl(audit.publicChecklistPath),
+      sizeBytes: fs.statSync(publicChecklistPath).size,
+      sha256: sha256File(publicChecklistPath),
+    },
+    moneyGate: audit.moneyGate,
+    upgradeService: CUSTOM_LOCAL_PRINT_PACK_SERVICE.id,
+  };
+}
+
 function localSellerKitFiles(product, sampleOnly) {
   const prefix = sampleOnly ? "local-seller-starter-kit-sample" : "local-seller-starter-kit";
   const files = {
@@ -1206,12 +1252,40 @@ function serviceSalesPackEntry() {
     deliveryReportUrl: SERVICE_SALES_PACK.deliveryReportUrl,
     githubPagesDeliveryReportUrl: SERVICE_SALES_PACK.githubPagesDeliveryReportUrl,
     privateDeliveryCommand: "npm.cmd run service:delivery -- --input path/to/paid-order.json",
+    leadMagnet: marketTablePrintAuditEntry(),
     audience: SERVICE_SALES_PACK.audience,
     trackedLinks: SERVICE_SALES_PACK.trackedLinks.map(([label, url]) => ({ label, url })),
     outreachScripts: SERVICE_SALES_PACK.outreachScripts,
     listingFields: SERVICE_SALES_PACK.listingFields.map(([label, value]) => ({ label, value })),
     executionChecklist: SERVICE_SALES_PACK.executionChecklist,
     riskControls: SERVICE_SALES_PACK.riskControls,
+  };
+}
+
+function marketTablePrintAuditEntry() {
+  const report = auditLeadMagnetAssets;
+  return {
+    id: MARKET_TABLE_PRINT_AUDIT.id,
+    name: MARKET_TABLE_PRINT_AUDIT.name,
+    description: MARKET_TABLE_PRINT_AUDIT.shortDescription,
+    pageUrl: siteUrl(MARKET_TABLE_PRINT_AUDIT.slug),
+    githubPagesUrl: MARKET_TABLE_PRINT_AUDIT.githubPagesUrl,
+    requestUrl: marketTableAuditRequestUrl(MARKET_TABLE_PRINT_AUDIT),
+    issueFormUrl: MARKET_TABLE_PRINT_AUDIT.issueFormUrl,
+    requestTemplateUrl: fileUrl(MARKET_TABLE_PRINT_AUDIT.publicRequestPath),
+    requestTemplateSha256: report?.requestTemplate?.sha256 || "",
+    githubPagesRequestTemplateUrl: MARKET_TABLE_PRINT_AUDIT.githubPagesRequestUrl,
+    checklistUrl: fileUrl(MARKET_TABLE_PRINT_AUDIT.publicChecklistPath),
+    checklistSha256: report?.checklist?.sha256 || "",
+    githubPagesChecklistUrl: MARKET_TABLE_PRINT_AUDIT.githubPagesChecklistUrl,
+    upgradeServiceUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug),
+    githubPagesUpgradeServiceUrl: MARKET_TABLE_PRINT_AUDIT.upgradeServiceUrl,
+    targetAudience: MARKET_TABLE_PRINT_AUDIT.targetAudience,
+    auditQuestions: MARKET_TABLE_PRINT_AUDIT.auditQuestions,
+    statuses: MARKET_TABLE_PRINT_AUDIT.statuses,
+    freeTools: MARKET_TABLE_PRINT_AUDIT.freeToolPaths.map((toolPath) => siteUrl(toolPath)),
+    riskControls: MARKET_TABLE_PRINT_AUDIT.riskControls,
+    moneyGate: MARKET_TABLE_PRINT_AUDIT.moneyGate,
   };
 }
 

@@ -121,6 +121,60 @@ const CUSTOM_LOCAL_PRINT_PACK_SERVICE = {
 
 const PAID_SERVICES = [CUSTOM_LOCAL_PRINT_PACK_SERVICE];
 
+const MARKET_TABLE_PRINT_AUDIT = {
+  id: "market-table-print-audit",
+  slug: "market-table-print-audit",
+  name: "Free Market Table Print Audit",
+  headline: "Free Market Table Print Audit for local sellers",
+  shortDescription: "A free public-safe checklist request that helps craft sellers, market tables, home bakers, and local services spot missing price tags, QR signs, flyer copy, coupon wording, and pickup notes before upgrading to the $29 setup.",
+  description: "A low-friction lead magnet for sellers who are not ready to buy the done-for-you pack yet. The visitor answers a few public-safe questions about their table, menu, price list, QR/contact flow, and current print pieces; the response can point them to free generators first and the $29 Custom Local Print Pack Setup only if they want the first pack assembled for them.",
+  publicRequestPath: "assets/services/market-table-print-audit-request.txt",
+  publicChecklistPath: "assets/services/market-table-print-audit-checklist.json",
+  issueTemplatePath: ".github/ISSUE_TEMPLATE/market-table-print-audit.yml",
+  issueFormUrl: "https://github.com/yanqr213/printable-tools-lab/issues/new?template=market-table-print-audit.yml",
+  githubPagesUrl: "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/",
+  githubPagesRequestUrl: "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt",
+  githubPagesChecklistUrl: "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json",
+  upgradeServiceUrl: "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
+  targetAudience: [
+    "first-time craft fair and market table sellers",
+    "home bakers and cottage-food sellers with public menus",
+    "local service providers with simple price/menu offers",
+    "pop-up class, workshop, and community event organizers",
+  ],
+  auditQuestions: [
+    "Do shoppers see a clear price for each item or service?",
+    "Is there one QR/contact sign that opens a public-safe page or contact method?",
+    "Is there one simple flyer or table note that says what is available today?",
+    "Is there a coupon, bundle, or follow-up offer the seller can actually honor?",
+    "Are pickup, packing, or ordering notes clear enough to reduce repeated questions?",
+    "Are claims, deadlines, food/health language, and discount rules safe for the seller to review before printing?",
+  ],
+  freeToolPaths: [
+    "tools/price-tag",
+    "tools/qr-code",
+    "tools/flyer-maker",
+    "tools/coupon-maker",
+    "tools/packing-slip",
+    "tools/business-card",
+  ],
+  statuses: [
+    { id: "audit_request_received", moneyRule: "Not revenue. A person asked for a free public-safe print audit." },
+    { id: "audit_reply_sent", moneyRule: "Not revenue. Send free checklist notes and relevant generator links." },
+    { id: "upgrade_interest", moneyRule: "Not revenue. The person asked about done-for-you setup or timeline." },
+    { id: "service_fit_confirmed", moneyRule: "Not revenue. Move to the $29 service pipeline only after fit is confirmed." },
+    { id: "paid_order_verified", moneyRule: "Revenue only if the external payment provider proves a paid order for the $29 setup." },
+  ],
+  riskControls: [
+    "The audit is free and does not collect payment.",
+    "Use public-safe business, event, offer, and print-piece details only.",
+    "Do not ask for card, bank, payout, tax, identity, password, credential, private address, or customer-list data.",
+    "The audit is practical feedback, not legal, tax, health, food-labeling, advertising-compliance, or financial advice.",
+    "Mention the paid setup only as an optional upgrade when the seller wants the first pack assembled.",
+  ],
+  moneyGate: "Free audit requests are validation, not revenue. Money is real only after a separate external provider shows a paid order for the $29 Custom Local Print Pack Setup.",
+};
+
 const SERVICE_SALES_PACK = {
   id: "custom-local-print-pack-sales-pack",
   slug: "custom-local-print-pack-sales-pack",
@@ -157,6 +211,9 @@ const SERVICE_SALES_PACK = {
   ],
   trackedLinks: [
     ["GitHub Pages service link", "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
+    ["Free audit lead magnet", "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=direct-outreach&utm_medium=manual&utm_campaign=market_table_audit"],
+    ["Free audit request template", "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=market_table_audit"],
+    ["Free audit checklist JSON", "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json?utm_source=direct-outreach&utm_medium=manual&utm_campaign=market_table_audit"],
     ["GitHub Pages request brief", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
     ["Structured request form", `${CUSTOM_LOCAL_PRINT_PACK_SERVICE.issueFormUrl}&utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
     ["Payment reply template", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
@@ -200,6 +257,9 @@ const SERVICE_SALES_PACK = {
     ["Price", `$${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} ${CUSTOM_LOCAL_PRINT_PACK_SERVICE.currency}`],
     ["Category", "Local business printables, small business service, market seller setup"],
     ["Short tagline", "Done-for-you printable starter pack for local sellers and service providers"],
+    ["Free audit URL", "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/"],
+    ["Free audit request template", "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt"],
+    ["Free audit checklist JSON", "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json"],
     ["Public URL", "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/"],
     ["Request brief", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt"],
     ["Structured request form", CUSTOM_LOCAL_PRINT_PACK_SERVICE.issueFormUrl],
@@ -312,6 +372,73 @@ function serviceRequestUrl(service) {
   url.searchParams.set("title", `Service request: ${service.name}`);
   url.searchParams.set("body", serviceRequestCopy(service));
   return url.toString();
+}
+
+function marketTableAuditRequestCopy(audit = MARKET_TABLE_PRINT_AUDIT) {
+  return [
+    "I want a Free Market Table Print Audit.",
+    "",
+    "Business, booth, event, or service name:",
+    "What do you sell or promote?",
+    "Where will this be used? market table / pickup / workshop / local service / online-to-local / other:",
+    "Current price list, menu, or item examples:",
+    "Current QR/contact link or public-safe contact method:",
+    "What print pieces do you already have? price tags / flyer / QR sign / coupon / packing note / none:",
+    "What feels confusing or unfinished?",
+    "Need-by date or event date:",
+    "Would you want a $29 done-for-you setup if the audit shows obvious gaps? yes / maybe / no:",
+    "Public-safe contact preference:",
+    "Notes:",
+    "",
+    "No payment is collected for this audit request. Do not include card, bank, payout, tax, identity, credential, password, private address, customer-list, or private account details.",
+  ].join("\n");
+}
+
+function marketTableAuditRequestUrl(audit = MARKET_TABLE_PRINT_AUDIT) {
+  const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+  url.searchParams.set("title", `Free audit request: ${audit.name}`);
+  url.searchParams.set("body", marketTableAuditRequestCopy(audit));
+  return url.toString();
+}
+
+function marketTableAuditChecklist(audit = MARKET_TABLE_PRINT_AUDIT) {
+  return {
+    id: audit.id,
+    name: audit.name,
+    purpose: audit.shortDescription,
+    freeAuditUrl: siteUrl(audit.slug),
+    githubPagesAuditUrl: audit.githubPagesUrl,
+    requestUrl: marketTableAuditRequestUrl(audit),
+    issueFormUrl: audit.issueFormUrl,
+    requestTemplateUrl: siteUrl(audit.publicRequestPath).replace(/\/$/, ""),
+    githubPagesRequestTemplateUrl: audit.githubPagesRequestUrl,
+    upgradeServiceUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug),
+    githubPagesUpgradeServiceUrl: audit.upgradeServiceUrl,
+    targetAudience: audit.targetAudience,
+    auditQuestions: audit.auditQuestions,
+    freeTools: audit.freeToolPaths.map((toolPath) => ({
+      path: toolPath,
+      url: siteUrl(toolPath),
+      githubPagesUrl: `https://yanqr213.github.io/printable-tools-lab/${toolPath.replace(/^tools\//, "tools/")}/`,
+    })),
+    statuses: audit.statuses,
+    upgradePath: [
+      "audit_request_received",
+      "audit_reply_sent",
+      "upgrade_interest",
+      "service_fit_confirmed",
+      "checkout_sent",
+      "paid_order_verified",
+    ],
+    replyTemplate: [
+      "Thanks for sending the public-safe details. I would check these before printing:",
+      ...audit.auditQuestions.map((item) => `- ${item}`),
+      "",
+      "Start free with the price tag, QR, flyer, coupon, packing slip, and business-card generators. If you want the first pack assembled for you, the optional done-for-you setup is $29 and only starts after a real external checkout is paid.",
+    ].join("\n"),
+    riskControls: audit.riskControls,
+    moneyGate: audit.moneyGate,
+  };
 }
 
 function servicePaymentReplyCopy(service) {
@@ -3957,6 +4084,12 @@ const pages = [
     html: customLocalPrintPackServiceHtml(),
   },
   {
+    path: MARKET_TABLE_PRINT_AUDIT.slug,
+    title: MARKET_TABLE_PRINT_AUDIT.name,
+    description: MARKET_TABLE_PRINT_AUDIT.shortDescription,
+    html: marketTablePrintAuditHtml(),
+  },
+  {
     path: SERVICE_SALES_PACK.slug,
     title: SERVICE_SALES_PACK.name,
     description: SERVICE_SALES_PACK.shortDescription,
@@ -4663,6 +4796,7 @@ function customLocalPrintPackServiceHtml() {
   const actions = [
     `<a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestUrl)}">Request service checkout</a>`,
     `<a class="button secondary" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(service.issueFormUrl)}">Open structured request form</a>`,
+    `<a class="button secondary" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(MARKET_TABLE_PRINT_AUDIT.id)}" href="/${escapeHtml(MARKET_TABLE_PRINT_AUDIT.slug)}/">Start with free audit</a>`,
     `<a class="button secondary" href="/${escapeHtml(service.publicRequestPath)}" download>Download service brief</a>`,
     emailUrl ? `<a class="button ghost" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(emailUrl)}">Email service request</a>` : "",
     `<a class="button ghost" href="/${escapeHtml(service.publicOrderPipelinePath)}">Open order pipeline</a>`,
@@ -4693,7 +4827,7 @@ function customLocalPrintPackServiceHtml() {
       <section class="shell section">
         <h2>Buyer details needed</h2>
         <ul>${service.buyerInputs.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-        <p><a class="button" href="/${escapeHtml(service.publicRequestPath)}" download>Download the request brief</a></p>
+        <p><a class="button" href="/${escapeHtml(service.publicRequestPath)}" download>Download the request brief</a> <a class="button secondary" href="/${escapeHtml(MARKET_TABLE_PRINT_AUDIT.slug)}/">Get a free print audit first</a></p>
       </section>
       <section class="shell section">
         <h2>Order pipeline assets</h2>
@@ -4727,6 +4861,60 @@ function customLocalPrintPackServiceHtml() {
       </section>`;
 }
 
+function marketTablePrintAuditHtml() {
+  const audit = MARKET_TABLE_PRINT_AUDIT;
+  const requestUrl = marketTableAuditRequestUrl(audit);
+  const checklist = marketTableAuditChecklist(audit);
+  const toolCards = audit.freeToolPaths.map((toolPath) => {
+    const tool = tools.find((item) => item.path === toolPath);
+    return tool ? `<article class="tool-card"><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.description)}</p><a class="button" href="/${tool.path}/">Open free tool</a></article>` : "";
+  }).join("\n");
+  return `
+      <section class="shell page-title section product-hero">
+        <a href="/${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}/">Done-for-you setup</a>
+        <h1>${escapeHtml(audit.headline)}</h1>
+        <p>${escapeHtml(audit.description)}</p>
+        <div class="hero-actions">
+          <a class="button" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(audit.id)}" href="${escapeHtml(requestUrl)}">Request free audit</a>
+          <a class="button secondary" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(audit.id)}" href="${escapeHtml(audit.issueFormUrl)}">Open structured audit form</a>
+          <a class="button ghost" href="/${escapeHtml(audit.publicRequestPath)}" download>Download audit request template</a>
+          <a class="button ghost" href="/${escapeHtml(audit.publicChecklistPath)}">Open audit checklist JSON</a>
+        </div>
+        <p class="notice">This free audit captures buyer intent only. It does not collect payment and does not count as revenue. The optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup starts only after fit is confirmed and a real external checkout is paid.</p>
+        <div class="hero-proof" aria-label="Audit readiness">
+          <div class="proof-tile"><strong>free</strong><span>audit request</span></div>
+          <div class="proof-tile"><strong>${audit.auditQuestions.length}</strong><span>print checks</span></div>
+          <div class="proof-tile"><strong>$${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd}</strong><span>optional upgrade</span></div>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>What the audit checks</h2>
+        <div class="grid-3">
+          ${audit.auditQuestions.map((item) => `<article class="panel"><h3>${escapeHtml(item)}</h3><p>Use this as practical pre-print feedback before making more signs, tags, flyers, coupons, or pickup notes.</p></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Start free with these tools</h2>
+        <div class="grid-3">${toolCards}</div>
+      </section>
+      <section class="shell section">
+        <h2>Upgrade path</h2>
+        <ol>${checklist.upgradePath.map((status) => `<li><strong>${escapeHtml(status)}</strong></li>`).join("")}</ol>
+        <p><a class="button" href="/${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}/">See the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} done-for-you setup</a></p>
+      </section>
+      <section class="shell section" id="audit-request">
+        <h2>Audit request copy</h2>
+        <p>Copy this into GitHub, email, a contact form, or a public-safe message. Treat it as validation only until a separate real payment provider proves a paid order.</p>
+        <pre class="code-block">${escapeHtml(marketTableAuditRequestCopy(audit))}</pre>
+      </section>
+      <section class="shell section">
+        <h2>Risk controls</h2>
+        <ul>${audit.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        <p><strong>Money gate:</strong> ${escapeHtml(audit.moneyGate)}</p>
+        ${jsonLdHtml(itemListSchema(audit.name, audit.auditQuestions.map((item) => ({ title: item, path: audit.slug }))))}
+      </section>`;
+}
+
 function serviceSalesPackHtml() {
   const pack = SERVICE_SALES_PACK;
   const service = CUSTOM_LOCAL_PRINT_PACK_SERVICE;
@@ -4748,7 +4936,7 @@ function serviceSalesPackHtml() {
         <a href="/${escapeHtml(service.slug)}/">Paid service</a>
         <h1>${escapeHtml(pack.headline)}</h1>
         <p>${escapeHtml(pack.shortDescription)}</p>
-        <p><a class="button" href="${escapeHtml(pack.githubPagesServiceUrl)}">Open live GitHub Pages service page</a> <a class="button secondary" href="/service-sales-pack.json">Open machine-readable sales pack</a></p>
+        <p><a class="button" href="${escapeHtml(pack.githubPagesServiceUrl)}">Open live GitHub Pages service page</a> <a class="button secondary" href="https://yanqr213.github.io/printable-tools-lab/${escapeHtml(MARKET_TABLE_PRINT_AUDIT.slug)}/">Open free audit lead magnet</a> <a class="button secondary" href="/service-sales-pack.json">Open machine-readable sales pack</a></p>
       </section>
       <section class="shell section">
         <h2>Tracked links</h2>
@@ -6420,4 +6608,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };

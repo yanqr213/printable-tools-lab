@@ -117,5 +117,11 @@
 /assets/services/custom-local-print-pack-delivery-input.example.json
   Content-Type: application/json; charset=utf-8
 
+/assets/services/market-table-print-audit-request.txt
+  Content-Type: text/plain; charset=utf-8
+
+/assets/services/market-table-print-audit-checklist.json
+  Content-Type: application/json; charset=utf-8
+
 /reports/custom-local-print-pack-sample-delivery.json
   Content-Type: application/json; charset=utf-8

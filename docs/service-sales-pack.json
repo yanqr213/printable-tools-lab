@@ -219,6 +219,73 @@
   "deliveryReportUrl": "https://printable-tools-lab.pages.dev/reports/custom-local-print-pack-sample-delivery.json",
   "githubPagesDeliveryReportUrl": "https://yanqr213.github.io/printable-tools-lab/reports/custom-local-print-pack-sample-delivery.json",
   "privateDeliveryCommand": "npm.cmd run service:delivery -- --input path/to/paid-order.json",
+  "leadMagnet": {
+    "id": "market-table-print-audit",
+    "name": "Free Market Table Print Audit",
+    "description": "A free public-safe checklist request that helps craft sellers, market tables, home bakers, and local services spot missing price tags, QR signs, flyer copy, coupon wording, and pickup notes before upgrading to the $29 setup.",
+    "pageUrl": "https://printable-tools-lab.pages.dev/market-table-print-audit/",
+    "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/",
+    "requestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=Free+audit+request%3A+Free+Market+Table+Print+Audit&body=I+want+a+Free+Market+Table+Print+Audit.%0A%0ABusiness%2C+booth%2C+event%2C+or+service+name%3A%0AWhat+do+you+sell+or+promote%3F%0AWhere+will+this+be+used%3F+market+table+%2F+pickup+%2F+workshop+%2F+local+service+%2F+online-to-local+%2F+other%3A%0ACurrent+price+list%2C+menu%2C+or+item+examples%3A%0ACurrent+QR%2Fcontact+link+or+public-safe+contact+method%3A%0AWhat+print+pieces+do+you+already+have%3F+price+tags+%2F+flyer+%2F+QR+sign+%2F+coupon+%2F+packing+note+%2F+none%3A%0AWhat+feels+confusing+or+unfinished%3F%0ANeed-by+date+or+event+date%3A%0AWould+you+want+a+%2429+done-for-you+setup+if+the+audit+shows+obvious+gaps%3F+yes+%2F+maybe+%2F+no%3A%0APublic-safe+contact+preference%3A%0ANotes%3A%0A%0ANo+payment+is+collected+for+this+audit+request.+Do+not+include+card%2C+bank%2C+payout%2C+tax%2C+identity%2C+credential%2C+password%2C+private+address%2C+customer-list%2C+or+private+account+details.",
+    "issueFormUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=market-table-print-audit.yml",
+    "requestTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/market-table-print-audit-request.txt",
+    "discoveryRequestTemplateUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt",
+    "checklistUrl": "https://printable-tools-lab.pages.dev/assets/services/market-table-print-audit-checklist.json",
+    "discoveryChecklistUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json",
+    "upgradeServiceUrl": "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
+    "discoveryUpgradeServiceUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
+    "targetAudience": [
+      "first-time craft fair and market table sellers",
+      "home bakers and cottage-food sellers with public menus",
+      "local service providers with simple price/menu offers",
+      "pop-up class, workshop, and community event organizers"
+    ],
+    "auditQuestions": [
+      "Do shoppers see a clear price for each item or service?",
+      "Is there one QR/contact sign that opens a public-safe page or contact method?",
+      "Is there one simple flyer or table note that says what is available today?",
+      "Is there a coupon, bundle, or follow-up offer the seller can actually honor?",
+      "Are pickup, packing, or ordering notes clear enough to reduce repeated questions?",
+      "Are claims, deadlines, food/health language, and discount rules safe for the seller to review before printing?"
+    ],
+    "statuses": [
+      {
+        "id": "audit_request_received",
+        "moneyRule": "Not revenue. A person asked for a free public-safe print audit."
+      },
+      {
+        "id": "audit_reply_sent",
+        "moneyRule": "Not revenue. Send free checklist notes and relevant generator links."
+      },
+      {
+        "id": "upgrade_interest",
+        "moneyRule": "Not revenue. The person asked about done-for-you setup or timeline."
+      },
+      {
+        "id": "service_fit_confirmed",
+        "moneyRule": "Not revenue. Move to the $29 service pipeline only after fit is confirmed."
+      },
+      {
+        "id": "paid_order_verified",
+        "moneyRule": "Revenue only if the external payment provider proves a paid order for the $29 setup."
+      }
+    ],
+    "freeTools": [
+      "https://yanqr213.github.io/printable-tools-lab/tools/price-tag/",
+      "https://yanqr213.github.io/printable-tools-lab/tools/qr-code/",
+      "https://yanqr213.github.io/printable-tools-lab/tools/flyer-maker/",
+      "https://yanqr213.github.io/printable-tools-lab/tools/coupon-maker/",
+      "https://yanqr213.github.io/printable-tools-lab/tools/packing-slip/",
+      "https://yanqr213.github.io/printable-tools-lab/tools/business-card/"
+    ],
+    "riskControls": [
+      "The audit is free and does not collect payment.",
+      "Use public-safe business, event, offer, and print-piece details only.",
+      "Do not ask for card, bank, payout, tax, identity, password, credential, private address, or customer-list data.",
+      "The audit is practical feedback, not legal, tax, health, food-labeling, advertising-compliance, or financial advice.",
+      "Mention the paid setup only as an optional upgrade when the seller wants the first pack assembled."
+    ],
+    "moneyGate": "Free audit requests are validation, not revenue. Money is real only after a separate external provider shows a paid order for the $29 Custom Local Print Pack Setup."
+  },
   "audience": [
     "craft fair and market table sellers",
     "home bakers, handmade sellers, and small online sellers",
@@ -229,6 +296,18 @@
     {
       "label": "GitHub Pages service link",
       "url": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
+    },
+    {
+      "label": "Free audit lead magnet",
+      "url": "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=direct-outreach&utm_medium=manual&utm_campaign=market_table_audit"
+    },
+    {
+      "label": "Free audit request template",
+      "url": "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=market_table_audit"
+    },
+    {
+      "label": "Free audit checklist JSON",
+      "url": "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json?utm_source=direct-outreach&utm_medium=manual&utm_campaign=market_table_audit"
     },
     {
       "label": "GitHub Pages request brief",
@@ -319,6 +398,18 @@
       "value": "Done-for-you printable starter pack for local sellers and service providers"
     },
     {
+      "label": "Free audit URL",
+      "value": "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/"
+    },
+    {
+      "label": "Free audit request template",
+      "value": "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt"
+    },
+    {
+      "label": "Free audit checklist JSON",
+      "value": "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json"
+    },
+    {
       "label": "Public URL",
       "value": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/"
     },
@@ -373,7 +464,74 @@
     "Do not collect card, bank, payout, tax, or identity details in the repository or GitHub issues.",
     "Do not begin paid custom work without a real external payment record."
   ],
-  "generatedAt": "2026-06-03T01:59:11.761Z",
+  "marketTablePrintAudit": {
+    "id": "market-table-print-audit",
+    "name": "Free Market Table Print Audit",
+    "description": "A free public-safe checklist request that helps craft sellers, market tables, home bakers, and local services spot missing price tags, QR signs, flyer copy, coupon wording, and pickup notes before upgrading to the $29 setup.",
+    "pageUrl": "https://printable-tools-lab.pages.dev/market-table-print-audit/",
+    "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/",
+    "requestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=Free+audit+request%3A+Free+Market+Table+Print+Audit&body=I+want+a+Free+Market+Table+Print+Audit.%0A%0ABusiness%2C+booth%2C+event%2C+or+service+name%3A%0AWhat+do+you+sell+or+promote%3F%0AWhere+will+this+be+used%3F+market+table+%2F+pickup+%2F+workshop+%2F+local+service+%2F+online-to-local+%2F+other%3A%0ACurrent+price+list%2C+menu%2C+or+item+examples%3A%0ACurrent+QR%2Fcontact+link+or+public-safe+contact+method%3A%0AWhat+print+pieces+do+you+already+have%3F+price+tags+%2F+flyer+%2F+QR+sign+%2F+coupon+%2F+packing+note+%2F+none%3A%0AWhat+feels+confusing+or+unfinished%3F%0ANeed-by+date+or+event+date%3A%0AWould+you+want+a+%2429+done-for-you+setup+if+the+audit+shows+obvious+gaps%3F+yes+%2F+maybe+%2F+no%3A%0APublic-safe+contact+preference%3A%0ANotes%3A%0A%0ANo+payment+is+collected+for+this+audit+request.+Do+not+include+card%2C+bank%2C+payout%2C+tax%2C+identity%2C+credential%2C+password%2C+private+address%2C+customer-list%2C+or+private+account+details.",
+    "issueFormUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=market-table-print-audit.yml",
+    "requestTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/market-table-print-audit-request.txt",
+    "discoveryRequestTemplateUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt",
+    "checklistUrl": "https://printable-tools-lab.pages.dev/assets/services/market-table-print-audit-checklist.json",
+    "discoveryChecklistUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json",
+    "upgradeServiceUrl": "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
+    "discoveryUpgradeServiceUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
+    "targetAudience": [
+      "first-time craft fair and market table sellers",
+      "home bakers and cottage-food sellers with public menus",
+      "local service providers with simple price/menu offers",
+      "pop-up class, workshop, and community event organizers"
+    ],
+    "auditQuestions": [
+      "Do shoppers see a clear price for each item or service?",
+      "Is there one QR/contact sign that opens a public-safe page or contact method?",
+      "Is there one simple flyer or table note that says what is available today?",
+      "Is there a coupon, bundle, or follow-up offer the seller can actually honor?",
+      "Are pickup, packing, or ordering notes clear enough to reduce repeated questions?",
+      "Are claims, deadlines, food/health language, and discount rules safe for the seller to review before printing?"
+    ],
+    "statuses": [
+      {
+        "id": "audit_request_received",
+        "moneyRule": "Not revenue. A person asked for a free public-safe print audit."
+      },
+      {
+        "id": "audit_reply_sent",
+        "moneyRule": "Not revenue. Send free checklist notes and relevant generator links."
+      },
+      {
+        "id": "upgrade_interest",
+        "moneyRule": "Not revenue. The person asked about done-for-you setup or timeline."
+      },
+      {
+        "id": "service_fit_confirmed",
+        "moneyRule": "Not revenue. Move to the $29 service pipeline only after fit is confirmed."
+      },
+      {
+        "id": "paid_order_verified",
+        "moneyRule": "Revenue only if the external payment provider proves a paid order for the $29 setup."
+      }
+    ],
+    "freeTools": [
+      "https://yanqr213.github.io/printable-tools-lab/tools/price-tag/",
+      "https://yanqr213.github.io/printable-tools-lab/tools/qr-code/",
+      "https://yanqr213.github.io/printable-tools-lab/tools/flyer-maker/",
+      "https://yanqr213.github.io/printable-tools-lab/tools/coupon-maker/",
+      "https://yanqr213.github.io/printable-tools-lab/tools/packing-slip/",
+      "https://yanqr213.github.io/printable-tools-lab/tools/business-card/"
+    ],
+    "riskControls": [
+      "The audit is free and does not collect payment.",
+      "Use public-safe business, event, offer, and print-piece details only.",
+      "Do not ask for card, bank, payout, tax, identity, password, credential, private address, or customer-list data.",
+      "The audit is practical feedback, not legal, tax, health, food-labeling, advertising-compliance, or financial advice.",
+      "Mention the paid setup only as an optional upgrade when the seller wants the first pack assembled."
+    ],
+    "moneyGate": "Free audit requests are validation, not revenue. Money is real only after a separate external provider shows a paid order for the $29 Custom Local Print Pack Setup."
+  },
+  "generatedAt": "2026-06-03T02:30:22.307Z",
   "directory": "https://yanqr213.github.io/printable-tools-lab/",
   "moneyGate": "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this service."
 }

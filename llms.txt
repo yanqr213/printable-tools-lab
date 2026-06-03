@@ -18,6 +18,7 @@ Monetization model: Free tools stay live for search demand. A low-price Local Se
 - Digital product: https://printable-tools-lab.pages.dev/local-seller-starter-kit/
 - Machine-readable digital products: https://printable-tools-lab.pages.dev/digital-products.json
 - Paid service: https://printable-tools-lab.pages.dev/custom-local-print-pack/
+- Free market table print audit: https://printable-tools-lab.pages.dev/market-table-print-audit/
 - Machine-readable paid services: https://printable-tools-lab.pages.dev/services.json
 - Service sales pack: https://printable-tools-lab.pages.dev/custom-local-print-pack-sales-pack/
 - Machine-readable service sales pack: https://printable-tools-lab.pages.dev/service-sales-pack.json

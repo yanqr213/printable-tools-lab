@@ -34,6 +34,16 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Community campaign: https://printable-tools-lab.pages.dev?utm_source=community
 - Service sales pack campaign: https://printable-tools-lab.pages.dev/custom-local-print-pack-sales-pack?utm_source=distribution&utm_medium=organic&utm_campaign=service_sales_pack
 - Custom Local Print Pack GitHub Pages campaign: https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=distribution&utm_medium=organic&utm_campaign=service_sales_pack
+- Free Market Table Print Audit campaign: https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=distribution&utm_medium=organic&utm_campaign=market_table_audit
+
+## Free audit lead magnet
+
+- Audit page: https://printable-tools-lab.pages.dev/market-table-print-audit/
+- GitHub Pages audit page: https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/
+- Structured audit form: https://github.com/yanqr213/printable-tools-lab/issues/new?template=market-table-print-audit.yml
+- Audit request template: https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt
+- Audit checklist JSON: https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json
+- Optional upgrade service: https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/
 
 ## Paid service sales pack
 

@@ -4500,6 +4500,7 @@
     if (parts[0] === "share-kit") return renderShareKit();
     if (parts[0] === "local-seller-starter-kit") return renderLocalSellerStarterKit();
     if (parts[0] === "custom-local-print-pack") return renderCustomLocalPrintPackService();
+    if (parts[0] === "market-table-print-audit") return renderMarketTablePrintAudit();
     if (parts[0] === "custom-local-print-pack-sales-pack") return renderServiceSalesPack();
     if (landingPagesBySlug[parts[0]]) return renderLandingPage(parts[0]);
     if (parts[0] === "dashboard") return renderDashboard();
@@ -5197,6 +5198,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
         <div class="hero-actions">
           <a class="button" href="${escapeHtml(serviceRequestUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Request service checkout</a>
           <a class="button secondary" href="${escapeHtml(issueFormUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Open structured request form</a>
+          <a class="button secondary" href="/market-table-print-audit/" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit">Start with free audit</a>
           <a class="button secondary" href="${requestTemplateUrl}" download>Download service brief</a>
           ${serviceEmailUrl ? `<a class="button ghost" href="${escapeHtml(serviceEmailUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Email service request</a>` : ""}
           <a class="button ghost" href="${orderPipelineUrl}">Open order pipeline</a>
@@ -5219,7 +5221,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       <section class="shell section">
         <h2>Buyer details needed</h2>
         <ul>${buyerInputs.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-        <p><a class="button" href="${requestTemplateUrl}" download>Download the request brief</a></p>
+        <p><a class="button" href="${requestTemplateUrl}" download>Download the request brief</a> <a class="button secondary" href="/market-table-print-audit/">Get a free print audit first</a></p>
       </section>
       <section class="shell section">
         <h2>Order pipeline assets</h2>
@@ -5285,9 +5287,117 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
     return url.toString();
   }
 
+  function renderMarketTablePrintAudit() {
+    const requestTemplateUrl = "/assets/services/market-table-print-audit-request.txt";
+    const checklistUrl = "/assets/services/market-table-print-audit-checklist.json";
+    const issueFormUrl = "https://github.com/yanqr213/printable-tools-lab/issues/new?template=market-table-print-audit.yml";
+    const auditRequestUrl = marketTablePrintAuditRequestUrl();
+    const auditQuestions = [
+      "Do shoppers see a clear price for each item or service?",
+      "Is there one QR/contact sign that opens a public-safe page or contact method?",
+      "Is there one simple flyer or table note that says what is available today?",
+      "Is there a coupon, bundle, or follow-up offer the seller can actually honor?",
+      "Are pickup, packing, or ordering notes clear enough to reduce repeated questions?",
+      "Are claims, deadlines, food/health language, and discount rules safe for the seller to review before printing?",
+    ];
+    const relatedTools = ["price-tag", "qr-code", "flyer-maker", "coupon-maker", "packing-slip", "business-card"];
+    const statuses = ["audit_request_received", "audit_reply_sent", "upgrade_interest", "service_fit_confirmed", "checkout_sent", "paid_order_verified"];
+    setMeta("Free Market Table Print Audit", "A free public-safe checklist request for local sellers who want feedback on price tags, QR signs, flyer copy, coupon wording, and pickup notes before optionally upgrading to the $29 Custom Local Print Pack Setup.");
+    setJsonLd({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Free Market Table Print Audit",
+      url: absoluteUrl("/market-table-print-audit/"),
+      itemListElement: auditQuestions.map((question, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: question,
+      })),
+    });
+    app.innerHTML = `
+      <section class="shell page-title section product-hero">
+        <a href="/custom-local-print-pack/">Done-for-you setup</a>
+        <h1>Free Market Table Print Audit for local sellers</h1>
+        <p>A free public-safe checklist request for craft sellers, market tables, home bakers, local services, and pop-up organizers who want to spot missing price tags, QR signs, flyer copy, coupon wording, and pickup notes before buying anything.</p>
+        <div class="hero-actions">
+          <a class="button" href="${escapeHtml(auditRequestUrl)}" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit">Request free audit</a>
+          <a class="button secondary" href="${escapeHtml(issueFormUrl)}" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit">Open structured audit form</a>
+          <a class="button ghost" href="${requestTemplateUrl}" download>Download audit request template</a>
+          <a class="button ghost" href="${checklistUrl}">Open audit checklist JSON</a>
+          <a class="button ghost" href="/custom-local-print-pack/">See optional $29 setup</a>
+        </div>
+        <p class="notice">This is not revenue. The audit is free, collects no payment, and only becomes revenue if a separate external provider later proves a paid order for the optional $29 setup.</p>
+        <div class="hero-proof">
+          <div class="proof-tile"><strong>free</strong><span>audit request</span></div>
+          <div class="proof-tile"><strong>${auditQuestions.length}</strong><span>print checks</span></div>
+          <div class="proof-tile"><strong>$29</strong><span>optional upgrade</span></div>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>What the audit checks</h2>
+        <div class="grid-3">${auditQuestions.map((item) => `<article class="panel"><h3>${escapeHtml(item)}</h3><p>Use this as practical pre-print feedback before making more signs, tags, flyers, coupons, or pickup notes.</p></article>`).join("")}</div>
+      </section>
+      <section class="shell section">
+        <h2>Start free with these tools</h2>
+        <div class="grid-3">${relatedTools.map((id) => toolCard(tools[id])).join("")}</div>
+      </section>
+      <section class="shell section">
+        <h2>Upgrade path</h2>
+        <p>Use the audit for feedback first. Mention the paid setup only when the seller asks for help assembling the first pack.</p>
+        <ol>${statuses.map((status) => `<li><strong>${escapeHtml(status)}</strong></li>`).join("")}</ol>
+        <p><a class="button" href="/custom-local-print-pack/">See the $29 done-for-you setup</a></p>
+      </section>
+      <section class="shell section" id="audit-request">
+        <h2>Audit request copy</h2>
+        <p>Copy this into GitHub, email, a contact form, or a public-safe message. Treat it as validation only until a separate real payment provider proves a paid order.</p>
+        <pre class="code-block">${escapeHtml(marketTablePrintAuditRequestCopy())}</pre>
+      </section>
+      <section class="shell section">
+        <h2>Risk controls</h2>
+        <ul>
+          <li>The audit is free and does not collect payment.</li>
+          <li>Use public-safe business, event, offer, and print-piece details only.</li>
+          <li>Do not ask for card, bank, payout, tax, identity, password, credential, private address, or customer-list data.</li>
+          <li>The audit is practical feedback, not legal, tax, health, food-labeling, advertising-compliance, or financial advice.</li>
+          <li>Free audit requests are validation, not revenue.</li>
+        </ul>
+      </section>
+    `;
+  }
+
+  function marketTablePrintAuditRequestCopy() {
+    return [
+      "I want a Free Market Table Print Audit.",
+      "",
+      "Business, booth, event, or service name:",
+      "What do you sell or promote?",
+      "Where will this be used? market table / pickup / workshop / local service / online-to-local / other:",
+      "Current price list, menu, or item examples:",
+      "Current QR/contact link or public-safe contact method:",
+      "What print pieces do you already have? price tags / flyer / QR sign / coupon / packing note / none:",
+      "What feels confusing or unfinished?",
+      "Need-by date or event date:",
+      "Would you want a $29 done-for-you setup if the audit shows obvious gaps? yes / maybe / no:",
+      "Public-safe contact preference:",
+      "Notes:",
+      "",
+      "No payment is collected for this audit request. Do not include card, bank, payout, tax, identity, credential, password, private address, customer-list, or private account details.",
+    ].join("\n");
+  }
+
+  function marketTablePrintAuditRequestUrl() {
+    const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+    url.searchParams.set("title", "Free audit request: Free Market Table Print Audit");
+    url.searchParams.set("body", marketTablePrintAuditRequestCopy());
+    return url.toString();
+  }
+
   function renderServiceSalesPack() {
     const trackedLinks = [
       ["GitHub Pages service link", "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
+      ["Free audit lead magnet", "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=direct-outreach&utm_medium=manual&utm_campaign=market_table_audit"],
+      ["Free audit request template", "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=market_table_audit"],
+      ["Free audit checklist JSON", "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json?utm_source=direct-outreach&utm_medium=manual&utm_campaign=market_table_audit"],
       ["GitHub Pages request brief", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
       ["Structured request form", "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml&utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
       ["Payment reply template", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
@@ -5311,6 +5421,9 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       ["Price", "$29 USD"],
       ["Category", "Local business printables, small business service, market seller setup"],
       ["Short tagline", "Done-for-you printable starter pack for local sellers and service providers"],
+      ["Free audit URL", "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/"],
+      ["Free audit request template", "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt"],
+      ["Free audit checklist JSON", "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json"],
       ["Public URL", "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/"],
       ["Request brief", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt"],
       ["Structured request form", "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml"],
@@ -5358,7 +5471,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
         <a href="/custom-local-print-pack/">Paid service</a>
         <h1>Copy-ready sales pack for the $29 Custom Local Print Pack service</h1>
         <p>A zero-budget outreach pack for promoting the done-for-you local print pack setup to craft sellers, market tables, local services, tutors, cleaners, repair providers, and pop-up organizers.</p>
-        <p><a class="button" href="https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/">Open live GitHub Pages service page</a> <a class="button secondary" href="/service-sales-pack.json">Open service-sales-pack.json</a></p>
+        <p><a class="button" href="https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/">Open live GitHub Pages service page</a> <a class="button secondary" href="https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/">Open free audit lead magnet</a> <a class="button secondary" href="/service-sales-pack.json">Open service-sales-pack.json</a></p>
       </section>
       <section class="shell section">
         <h2>Tracked links</h2>

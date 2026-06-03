@@ -311,6 +311,8 @@ npm.cmd run register:domain -- --register
 Until that real checkout link exists, use the GitHub Pages seller-kit mirror as the public buyer-intent path. Its request link is not revenue; count money only from a paid provider order, payout balance, or settled payment.
 The mirror also publishes `assets/digital-products/local-seller-starter-kit-buy-request.txt` so non-GitHub buyers can copy a checkout request into email, a form, or a payment-provider message.
 
+For cold buyers, start with the free Market Table Print Audit: `https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/`. The audit request template and checklist are public at `assets/services/market-table-print-audit-request.txt` and `assets/services/market-table-print-audit-checklist.json`. Audit requests are validation only, not revenue.
+
 For the `$29 Custom Local Print Pack Setup`, use the GitHub Pages service mirror as the public service path: `https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/`. The sales pack, structured GitHub issue form, payment-before-work reply template, fulfillment checklist, order-pipeline JSON, manual outreach batch, sample delivery ZIP, and delivery input example are published so an interested reply can become a paid external checkout order without collecting payment details in the repository. After `paid_order_verified`, run `npm.cmd run service:delivery -- --input path/to/paid-order.json` to generate the private customer ZIP under `paid-deliverables/service-orders/`. Count service revenue only after the external provider shows a paid order, payout balance, or settled payment.
 
 Configure the seller-kit payment link after creating a real checkout product:

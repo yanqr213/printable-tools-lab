@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, SERVICE_SALES_PACK, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, serviceOrderPipeline, serviceOutreachQueue, siteUrl, tools, landingPages } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, serviceOrderPipeline, serviceOutreachQueue, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, siteUrl, tools, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
@@ -61,6 +61,13 @@ const discoveryRoutes = [
     url: pagesUrl(service.slug),
     mainUrl: siteUrl(service.slug),
   })),
+  {
+    path: MARKET_TABLE_PRINT_AUDIT.slug,
+    title: MARKET_TABLE_PRINT_AUDIT.name,
+    description: MARKET_TABLE_PRINT_AUDIT.shortDescription,
+    url: pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug),
+    mainUrl: siteUrl(MARKET_TABLE_PRINT_AUDIT.slug),
+  },
   {
     path: SERVICE_SALES_PACK.slug,
     title: SERVICE_SALES_PACK.name,
@@ -124,6 +131,7 @@ const html = `<!doctype html>
         <li><a href="${trackedSiteUrl("guides", "guides")}">Printable guides</a> for original help pages around PDF, image, QR, and printable workflows.</li>
         <li><a href="${pagesUrl(LOCAL_SELLER_STARTER_KIT.slug)}">Local Seller Starter Kit mirror</a> for the sample ZIP, checkout setup notes, and paid-kit delivery checklist.</li>
         <li><a href="${pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}">Custom Local Print Pack Setup mirror</a> for the done-for-you service brief and manual checkout request.</li>
+        <li><a href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Free Market Table Print Audit mirror</a> for the free request form, checklist, and optional upgrade path.</li>
         <li><a href="${pagesUrl(SERVICE_SALES_PACK.slug)}">Custom Local Print Pack sales pack</a> for copy-ready outreach, tracked links, and listing fields.</li>
         <li><a href="${pagesUrl("html5-game-submission-pack")}">HTML5 game submission pack mirror</a> for clean portal ZIPs, GameSnacks packages, demo videos, and platform-review assets.</li>
         ${landingPages.map((page) => `<li><a href="${trackedSiteUrl(page.path, `home-${page.path}`)}">${escapeHtml(page.title)}</a> for ${escapeHtml(page.intent)}.</li>`).join("\n")}
@@ -170,6 +178,8 @@ writeDigitalProductDiscoveryPages();
 copyDigitalProductPublicAssets();
 writePaidServiceDiscoveryPages();
 copyPaidServicePublicAssets();
+writeAuditLeadMagnetDiscoveryPage();
+copyAuditLeadMagnetPublicAssets();
 writeServiceSalesPackDiscoveryPage();
 writeGameDiscoveryPages();
 
@@ -210,6 +220,7 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
   },
   digitalProducts: DIGITAL_PRODUCTS.map(productFeedEntry),
   paidServices: PAID_SERVICES.map(serviceFeedEntry),
+  leadMagnets: [auditLeadMagnetEntry()],
   serviceSalesPack: serviceSalesPackEntry(),
 }, null, 2)}\n`);
 
@@ -226,11 +237,13 @@ fs.writeFileSync(path.join(docsDir, "services.json"), `${JSON.stringify({
   generatedAt: generatedAtIso,
   directory: pagesUrl(""),
   services: PAID_SERVICES.map(serviceFeedEntry),
+  leadMagnets: [auditLeadMagnetEntry()],
   moneyGate: "Revenue is real only when a payment provider shows a paid order, payout balance, or settled payment.",
 }, null, 2)}\n`);
 
 fs.writeFileSync(path.join(docsDir, "service-sales-pack.json"), `${JSON.stringify({
   ...serviceSalesPackEntry(),
+  marketTablePrintAudit: auditLeadMagnetEntry(),
   generatedAt: generatedAtIso,
   directory: pagesUrl(""),
   discoveryUrl: pagesUrl(SERVICE_SALES_PACK.slug),
@@ -353,6 +366,17 @@ function copyPaidServicePublicAssets() {
   }
 }
 
+function writeAuditLeadMagnetDiscoveryPage() {
+  const dir = path.join(docsDir, MARKET_TABLE_PRINT_AUDIT.slug);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, "index.html"), auditLeadMagnetHtml());
+}
+
+function copyAuditLeadMagnetPublicAssets() {
+  copyPublicFile(MARKET_TABLE_PRINT_AUDIT.publicRequestPath);
+  copyPublicFile(MARKET_TABLE_PRINT_AUDIT.publicChecklistPath);
+}
+
 function writeServiceSalesPackDiscoveryPage() {
   const dir = path.join(docsDir, SERVICE_SALES_PACK.slug);
   fs.mkdirSync(dir, { recursive: true });
@@ -441,6 +465,67 @@ function serviceSalesPackHtml() {
 `;
 }
 
+function auditLeadMagnetHtml() {
+  const audit = MARKET_TABLE_PRINT_AUDIT;
+  const requestUrl = marketTableAuditRequestUrl(audit);
+  const checklist = marketTableAuditChecklist(audit);
+  const toolsList = audit.freeToolPaths.map((toolPath) => {
+    const tool = tools.find((item) => item.path === toolPath);
+    return tool ? `<li><a href="${pagesUrl(tool.path)}">${escapeHtml(tool.title)}</a>: ${escapeHtml(tool.description)}</li>` : "";
+  }).filter(Boolean).join("\n");
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${escapeHtml(audit.name)} - PrintableTools Lab Directory</title>
+    <meta name="description" content="${escapeHtml(audit.shortDescription)}">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="${pagesUrl(audit.slug)}">
+    <style>
+      :root { color-scheme: light; --ink: #17313b; --muted: #5b6f78; --line: #dce8ec; --teal: #176b87; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Arial, sans-serif; color: var(--ink); background: #f7fbfc; line-height: 1.55; }
+      main { width: min(920px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 56px; }
+      h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin: 0 0 14px; }
+      p { color: var(--muted); max-width: 780px; }
+      a { color: var(--teal); font-weight: 700; }
+      .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); }
+      th, td { text-align: left; vertical-align: top; padding: 10px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+      pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px; color: var(--ink); }
+      ul, ol { padding-left: 20px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="${pagesBase}">PrintableTools Lab discovery directory</a></p>
+      <h1>${escapeHtml(audit.headline)}</h1>
+      <p>${escapeHtml(audit.description)}</p>
+      <p><a class="button" href="${escapeHtml(requestUrl)}">Request free audit</a> <a href="${escapeHtml(audit.issueFormUrl)}">Open structured audit form</a></p>
+      <h2>Audit assets</h2>
+      <table><tbody>
+        <tr><th>Request template</th><td><a href="${pagesAssetUrl(audit.publicRequestPath)}">${pagesAssetUrl(audit.publicRequestPath)}</a></td></tr>
+        <tr><th>Checklist JSON</th><td><a href="${pagesAssetUrl(audit.publicChecklistPath)}">${pagesAssetUrl(audit.publicChecklistPath)}</a></td></tr>
+        <tr><th>Optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} upgrade</th><td><a href="${pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}">${pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}</a></td></tr>
+      </tbody></table>
+      <h2>What gets checked</h2>
+      <ol>${audit.auditQuestions.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol>
+      <h2>Free tools to try first</h2>
+      <ul>${toolsList}</ul>
+      <h2>Upgrade path</h2>
+      <ol>${checklist.upgradePath.map((status) => `<li>${escapeHtml(status)}</li>`).join("")}</ol>
+      <h2>Request copy</h2>
+      <pre>${escapeHtml(marketTableAuditRequestCopy(audit))}</pre>
+      <h2>Risk controls</h2>
+      <ul>${audit.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+      <p><strong>Money gate:</strong> ${escapeHtml(audit.moneyGate)}</p>
+    </main>
+  </body>
+</html>
+`;
+}
+
 function serviceHtml(service) {
   const requestTemplateUrl = pagesAssetUrl(service.publicRequestPath);
   const paymentReplyUrl = pagesAssetUrl(service.publicPaymentReplyPath);
@@ -468,6 +553,7 @@ function serviceHtml(service) {
   const actionLinks = [
     `<a class="button" href="${escapeHtml(requestUrl)}">Request service checkout</a>`,
     `<a class="button secondary" href="${escapeHtml(service.issueFormUrl)}">Open structured request form</a>`,
+    `<a class="button secondary" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Start with free audit</a>`,
     `<a class="button secondary" href="${requestTemplateUrl}" download>Download service brief</a>`,
     requestEmailUrl ? `<a href="${escapeHtml(requestEmailUrl)}">Email service request</a>` : "",
     `<a href="${orderPipelineUrl}">Open order pipeline</a>`,
@@ -862,12 +948,37 @@ function serviceSalesPackEntry() {
     deliveryReportUrl: SERVICE_SALES_PACK.deliveryReportUrl,
     githubPagesDeliveryReportUrl: SERVICE_SALES_PACK.githubPagesDeliveryReportUrl,
     privateDeliveryCommand: "npm.cmd run service:delivery -- --input path/to/paid-order.json",
+    leadMagnet: auditLeadMagnetEntry(),
     audience: SERVICE_SALES_PACK.audience,
     trackedLinks: SERVICE_SALES_PACK.trackedLinks.map(([label, url]) => ({ label, url })),
     outreachScripts: SERVICE_SALES_PACK.outreachScripts,
     listingFields: SERVICE_SALES_PACK.listingFields.map(([label, value]) => ({ label, value })),
     executionChecklist: SERVICE_SALES_PACK.executionChecklist,
     riskControls: SERVICE_SALES_PACK.riskControls,
+  };
+}
+
+function auditLeadMagnetEntry() {
+  return {
+    id: MARKET_TABLE_PRINT_AUDIT.id,
+    name: MARKET_TABLE_PRINT_AUDIT.name,
+    description: MARKET_TABLE_PRINT_AUDIT.shortDescription,
+    pageUrl: siteUrl(MARKET_TABLE_PRINT_AUDIT.slug),
+    discoveryUrl: pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug),
+    requestUrl: marketTableAuditRequestUrl(MARKET_TABLE_PRINT_AUDIT),
+    issueFormUrl: MARKET_TABLE_PRINT_AUDIT.issueFormUrl,
+    requestTemplateUrl: siteUrl(MARKET_TABLE_PRINT_AUDIT.publicRequestPath).replace(/\/$/, ""),
+    discoveryRequestTemplateUrl: pagesAssetUrl(MARKET_TABLE_PRINT_AUDIT.publicRequestPath),
+    checklistUrl: siteUrl(MARKET_TABLE_PRINT_AUDIT.publicChecklistPath).replace(/\/$/, ""),
+    discoveryChecklistUrl: pagesAssetUrl(MARKET_TABLE_PRINT_AUDIT.publicChecklistPath),
+    upgradeServiceUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug),
+    discoveryUpgradeServiceUrl: pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug),
+    targetAudience: MARKET_TABLE_PRINT_AUDIT.targetAudience,
+    auditQuestions: MARKET_TABLE_PRINT_AUDIT.auditQuestions,
+    statuses: MARKET_TABLE_PRINT_AUDIT.statuses,
+    freeTools: MARKET_TABLE_PRINT_AUDIT.freeToolPaths.map((toolPath) => pagesUrl(toolPath)),
+    riskControls: MARKET_TABLE_PRINT_AUDIT.riskControls,
+    moneyGate: MARKET_TABLE_PRINT_AUDIT.moneyGate,
   };
 }
 
