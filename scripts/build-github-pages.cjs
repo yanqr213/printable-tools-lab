@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, SERVICE_SALES_PACK, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, siteUrl, tools, landingPages } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, SERVICE_SALES_PACK, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, serviceOrderPipeline, siteUrl, tools, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
@@ -342,6 +342,9 @@ function writePaidServiceDiscoveryPages() {
 function copyPaidServicePublicAssets() {
   for (const service of PAID_SERVICES) {
     copyPublicFile(service.publicRequestPath);
+    copyPublicFile(service.publicPaymentReplyPath);
+    copyPublicFile(service.publicFulfillmentChecklistPath);
+    copyPublicFile(service.publicOrderPipelinePath);
   }
 }
 
@@ -366,6 +369,14 @@ function serviceSalesPackHtml() {
   const trackedLinks = pack.trackedLinks.map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("\n");
   const scripts = pack.outreachScripts.map((script) => `<article class="card"><h3>${escapeHtml(script.title)}</h3><p>${escapeHtml(script.message)}</p><p><strong>${escapeHtml(script.cta)}</strong></p></article>`).join("\n");
   const fields = pack.listingFields.map(([label, value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`).join("\n");
+  const pipeline = serviceOrderPipeline(CUSTOM_LOCAL_PRINT_PACK_SERVICE);
+  const orderAssets = [
+    ["Structured request form", pack.issueFormUrl],
+    ["Request brief", pagesAssetUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicRequestPath)],
+    ["Payment-before-work reply", pagesAssetUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicPaymentReplyPath)],
+    ["Fulfillment checklist", pagesAssetUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicFulfillmentChecklistPath)],
+    ["Order pipeline JSON", pagesAssetUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOrderPipelinePath)],
+  ].map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("\n");
   return `<!doctype html>
 <html lang="en">
   <head>
@@ -404,6 +415,10 @@ function serviceSalesPackHtml() {
       <div class="grid">${scripts}</div>
       <h2>Listing fields</h2>
       <table><tbody>${fields}</tbody></table>
+      <h2>Order pipeline assets</h2>
+      <p>Use these operational links to move a reply from intent to fit confirmed, checkout sent, paid_order_verified, delivered, and closed without collecting payment details in GitHub.</p>
+      <table><tbody>${orderAssets}</tbody></table>
+      <ol>${pipeline.statuses.map((status) => `<li><strong>${escapeHtml(status.id)}</strong>: ${escapeHtml(status.moneyRule)}</li>`).join("")}</ol>
       <h2>Manual execution checklist</h2>
       <ol>${pack.executionChecklist.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol>
       <h2>Risk controls</h2>
@@ -417,12 +432,24 @@ function serviceSalesPackHtml() {
 
 function serviceHtml(service) {
   const requestTemplateUrl = pagesAssetUrl(service.publicRequestPath);
+  const paymentReplyUrl = pagesAssetUrl(service.publicPaymentReplyPath);
+  const fulfillmentChecklistUrl = pagesAssetUrl(service.publicFulfillmentChecklistPath);
+  const orderPipelineUrl = pagesAssetUrl(service.publicOrderPipelinePath);
   const requestUrl = serviceRequestUrl(service);
   const requestEmailUrl = serviceRequestEmailUrl(service);
+  const pipeline = serviceOrderPipeline(service);
+  const orderAssets = [
+    ["Structured request form", service.issueFormUrl],
+    ["Payment-before-work reply", paymentReplyUrl],
+    ["Fulfillment checklist", fulfillmentChecklistUrl],
+    ["Order pipeline JSON", orderPipelineUrl],
+  ].map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("\n");
   const actionLinks = [
     `<a class="button" href="${escapeHtml(requestUrl)}">Request service checkout</a>`,
+    `<a class="button secondary" href="${escapeHtml(service.issueFormUrl)}">Open structured request form</a>`,
     `<a class="button secondary" href="${requestTemplateUrl}" download>Download service brief</a>`,
     requestEmailUrl ? `<a href="${escapeHtml(requestEmailUrl)}">Email service request</a>` : "",
+    `<a href="${orderPipelineUrl}">Open order pipeline</a>`,
     `<a href="${pagesUrl(LOCAL_SELLER_STARTER_KIT.slug)}">See the $${LOCAL_SELLER_STARTER_KIT.priceUsd} template kit</a>`,
   ].filter(Boolean).join("\n        ");
   return `<!doctype html>
@@ -464,6 +491,10 @@ function serviceHtml(service) {
       <p>Checkout is not connected on this mirror. Use the request link or service brief to capture buyer intent; money is counted only after a real external checkout is paid.</p>
       <pre>${escapeHtml(serviceRequestCopy(service))}</pre>
       <p><a href="${trackedSiteUrl(service.slug, "service-backup")}">Open main site copy</a></p>
+      <h2>Order pipeline assets</h2>
+      <p>Confirm fit, send a real external checkout link, wait for paid_order_verified, then build and deliver the pack.</p>
+      <table><tbody>${orderAssets}</tbody></table>
+      <ol>${pipeline.statuses.map((status) => `<li><strong>${escapeHtml(status.id)}</strong>: ${escapeHtml(status.moneyRule)}</li>`).join("")}</ol>
       <h2>Deliverables</h2>
       <div class="grid">
         ${service.deliverables.map((item) => `<article class="card"><h3>${escapeHtml(item)}</h3><p>Editable starter content for one local seller, small service, booth, event, or simple offer.</p></article>`).join("\n")}
@@ -743,9 +774,17 @@ function serviceFeedEntry(service) {
     priceUsd: service.priceUsd,
     currency: service.currency,
     requestUrl: serviceRequestUrl(service),
+    issueFormUrl: service.issueFormUrl,
     requestEmailUrl: serviceRequestEmailUrl(service),
     requestTemplateUrl: siteUrl(service.publicRequestPath).replace(/\/$/, ""),
     discoveryRequestTemplateUrl: pagesAssetUrl(service.publicRequestPath),
+    paymentReplyTemplateUrl: siteUrl(service.publicPaymentReplyPath).replace(/\/$/, ""),
+    discoveryPaymentReplyTemplateUrl: pagesAssetUrl(service.publicPaymentReplyPath),
+    fulfillmentChecklistUrl: siteUrl(service.publicFulfillmentChecklistPath).replace(/\/$/, ""),
+    discoveryFulfillmentChecklistUrl: pagesAssetUrl(service.publicFulfillmentChecklistPath),
+    orderPipelineUrl: siteUrl(service.publicOrderPipelinePath).replace(/\/$/, ""),
+    discoveryOrderPipelineUrl: pagesAssetUrl(service.publicOrderPipelinePath),
+    orderPipeline: serviceOrderPipeline(service).statuses,
     turnaround: service.turnaround,
     deliverables: service.deliverables,
     buyerInputs: service.buyerInputs,
@@ -767,6 +806,14 @@ function serviceSalesPackEntry() {
     githubPagesServiceUrl: SERVICE_SALES_PACK.githubPagesServiceUrl,
     requestBriefUrl: SERVICE_SALES_PACK.requestBriefUrl,
     githubPagesRequestBriefUrl: SERVICE_SALES_PACK.githubPagesRequestBriefUrl,
+    issueFormUrl: SERVICE_SALES_PACK.issueFormUrl,
+    paymentReplyUrl: SERVICE_SALES_PACK.paymentReplyUrl,
+    githubPagesPaymentReplyUrl: SERVICE_SALES_PACK.githubPagesPaymentReplyUrl,
+    fulfillmentChecklistUrl: SERVICE_SALES_PACK.fulfillmentChecklistUrl,
+    githubPagesFulfillmentChecklistUrl: SERVICE_SALES_PACK.githubPagesFulfillmentChecklistUrl,
+    orderPipelineUrl: SERVICE_SALES_PACK.orderPipelineUrl,
+    githubPagesOrderPipelineUrl: SERVICE_SALES_PACK.githubPagesOrderPipelineUrl,
+    orderPipeline: serviceOrderPipeline(CUSTOM_LOCAL_PRINT_PACK_SERVICE).statuses,
     audience: SERVICE_SALES_PACK.audience,
     trackedLinks: SERVICE_SALES_PACK.trackedLinks.map(([label, url]) => ({ label, url })),
     outreachScripts: SERVICE_SALES_PACK.outreachScripts,

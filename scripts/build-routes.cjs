@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
 const { strToU8, zipSync } = require("fflate");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -463,6 +463,10 @@ const discoveryIndex = {
     serviceSalesPack: siteUrl(SERVICE_SALES_PACK.slug),
     serviceSalesPackJson: fileUrl("service-sales-pack.json"),
     customLocalPrintPackRequest: fileUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicRequestPath),
+    customLocalPrintPackIssueForm: CUSTOM_LOCAL_PRINT_PACK_SERVICE.issueFormUrl,
+    customLocalPrintPackPaymentReply: fileUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicPaymentReplyPath),
+    customLocalPrintPackFulfillmentChecklist: fileUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicFulfillmentChecklistPath),
+    customLocalPrintPackOrderPipeline: fileUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOrderPipelinePath),
     localSellerStarterKitSample: fileUrl(LOCAL_SELLER_STARTER_KIT.publicSamplePath),
     localSellerStarterKitPrivatePackage: LOCAL_SELLER_STARTER_KIT.privatePackagePath,
     localSellerStarterKitReport: LOCAL_SELLER_STARTER_KIT.packageReportPath,
@@ -600,6 +604,10 @@ const distribution = [
   `- Service page: ${siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}`,
   `- GitHub Pages service page: ${SERVICE_SALES_PACK.githubPagesServiceUrl}`,
   `- Request brief: ${SERVICE_SALES_PACK.githubPagesRequestBriefUrl}`,
+  `- Structured request form: ${CUSTOM_LOCAL_PRINT_PACK_SERVICE.issueFormUrl}`,
+  `- Payment-before-work reply template: ${SERVICE_SALES_PACK.githubPagesPaymentReplyUrl}`,
+  `- Fulfillment checklist: ${SERVICE_SALES_PACK.githubPagesFulfillmentChecklistUrl}`,
+  `- Order pipeline JSON: ${SERVICE_SALES_PACK.githubPagesOrderPipelineUrl}`,
   `- Sales pack page: ${siteUrl(SERVICE_SALES_PACK.slug)}`,
   `- Machine-readable sales pack: ${fileUrl("service-sales-pack.json")}`,
   "",
@@ -799,8 +807,14 @@ function buildDigitalProductPackages() {
 function buildPaidServiceAssets() {
   return PAID_SERVICES.map((service) => {
     const publicRequestPath = path.join(root, service.publicRequestPath);
+    const paymentReplyPath = path.join(root, service.publicPaymentReplyPath);
+    const fulfillmentChecklistPath = path.join(root, service.publicFulfillmentChecklistPath);
+    const orderPipelinePath = path.join(root, service.publicOrderPipelinePath);
     fs.mkdirSync(path.dirname(publicRequestPath), { recursive: true });
     fs.writeFileSync(publicRequestPath, `${serviceRequestCopy(service)}\n`);
+    fs.writeFileSync(paymentReplyPath, `${servicePaymentReplyCopy(service)}\n`);
+    fs.writeFileSync(fulfillmentChecklistPath, `${serviceFulfillmentChecklistCopy(service)}\n`);
+    fs.writeFileSync(orderPipelinePath, `${JSON.stringify(serviceOrderPipeline(service), null, 2)}\n`);
     return {
       service: service.name,
       generatedAt: generatedAtIso,
@@ -809,6 +823,24 @@ function buildPaidServiceAssets() {
         url: fileUrl(service.publicRequestPath),
         sizeBytes: fs.statSync(publicRequestPath).size,
         sha256: sha256File(publicRequestPath),
+      },
+      paymentReplyTemplate: {
+        path: service.publicPaymentReplyPath,
+        url: fileUrl(service.publicPaymentReplyPath),
+        sizeBytes: fs.statSync(paymentReplyPath).size,
+        sha256: sha256File(paymentReplyPath),
+      },
+      fulfillmentChecklist: {
+        path: service.publicFulfillmentChecklistPath,
+        url: fileUrl(service.publicFulfillmentChecklistPath),
+        sizeBytes: fs.statSync(fulfillmentChecklistPath).size,
+        sha256: sha256File(fulfillmentChecklistPath),
+      },
+      orderPipeline: {
+        path: service.publicOrderPipelinePath,
+        url: fileUrl(service.publicOrderPipelinePath),
+        sizeBytes: fs.statSync(orderPipelinePath).size,
+        sha256: sha256File(orderPipelinePath),
       },
       moneyGate: service.successGate,
       riskControls: service.riskControls,
@@ -1047,9 +1079,17 @@ function paidServiceEntry(service) {
     priceUsd: service.priceUsd,
     currency: service.currency,
     requestUrl: serviceRequestUrl(service),
+    issueFormUrl: service.issueFormUrl,
     requestEmailUrl: serviceRequestEmailUrl(service),
     requestTemplateUrl: fileUrl(service.publicRequestPath),
     requestTemplateSha256: report?.requestTemplate?.sha256 || "",
+    paymentReplyTemplateUrl: fileUrl(service.publicPaymentReplyPath),
+    paymentReplyTemplateSha256: report?.paymentReplyTemplate?.sha256 || "",
+    fulfillmentChecklistUrl: fileUrl(service.publicFulfillmentChecklistPath),
+    fulfillmentChecklistSha256: report?.fulfillmentChecklist?.sha256 || "",
+    orderPipelineUrl: fileUrl(service.publicOrderPipelinePath),
+    orderPipelineSha256: report?.orderPipeline?.sha256 || "",
+    orderPipeline: serviceOrderPipeline(service).statuses,
     turnaround: service.turnaround,
     deliverables: service.deliverables,
     buyerInputs: service.buyerInputs,
@@ -1069,6 +1109,14 @@ function serviceSalesPackEntry() {
     githubPagesServiceUrl: SERVICE_SALES_PACK.githubPagesServiceUrl,
     requestBriefUrl: SERVICE_SALES_PACK.requestBriefUrl,
     githubPagesRequestBriefUrl: SERVICE_SALES_PACK.githubPagesRequestBriefUrl,
+    issueFormUrl: SERVICE_SALES_PACK.issueFormUrl,
+    paymentReplyUrl: SERVICE_SALES_PACK.paymentReplyUrl,
+    githubPagesPaymentReplyUrl: SERVICE_SALES_PACK.githubPagesPaymentReplyUrl,
+    fulfillmentChecklistUrl: SERVICE_SALES_PACK.fulfillmentChecklistUrl,
+    githubPagesFulfillmentChecklistUrl: SERVICE_SALES_PACK.githubPagesFulfillmentChecklistUrl,
+    orderPipelineUrl: SERVICE_SALES_PACK.orderPipelineUrl,
+    githubPagesOrderPipelineUrl: SERVICE_SALES_PACK.githubPagesOrderPipelineUrl,
+    orderPipeline: serviceOrderPipeline(CUSTOM_LOCAL_PRINT_PACK_SERVICE).statuses,
     audience: SERVICE_SALES_PACK.audience,
     trackedLinks: SERVICE_SALES_PACK.trackedLinks.map(([label, url]) => ({ label, url })),
     outreachScripts: SERVICE_SALES_PACK.outreachScripts,

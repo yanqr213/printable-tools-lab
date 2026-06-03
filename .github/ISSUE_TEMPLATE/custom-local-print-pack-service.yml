@@ -1,0 +1,112 @@
+name: Custom Local Print Pack service request
+description: Request the $29 done-for-you printable starter pack setup.
+title: "Service request: Custom Local Print Pack Setup"
+labels:
+  - service-request
+  - custom-local-print-pack
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this public issue form to request the Custom Local Print Pack Setup. No payment is collected in this issue. If the request is a fit, the owner will reply with a real external checkout link before any custom work starts.
+
+        Do not post card numbers, bank details, payout details, tax identifiers, identity documents, platform credentials, passwords, or private account information.
+  - type: checkboxes
+    id: payment_gate
+    attributes:
+      label: Payment and privacy acknowledgement
+      options:
+        - label: I understand no payment is collected in this GitHub issue, and work starts only after a real external provider shows a paid order.
+          required: true
+        - label: I will not post card, bank, payout, tax, identity, credential, password, or private account details here.
+          required: true
+  - type: input
+    id: business_name
+    attributes:
+      label: Business, booth, event, or service name
+      description: Use a public-safe name that can appear in printable copy.
+      placeholder: Example: Sunny Table Bakes
+    validations:
+      required: true
+  - type: textarea
+    id: offer_summary
+    attributes:
+      label: What do you sell or promote?
+      description: Briefly describe the products, service, event, class, booth, or local offer.
+      placeholder: Handmade cookies for a weekend market table, local math tutoring, house-cleaning starter offer...
+    validations:
+      required: true
+  - type: textarea
+    id: items_and_prices
+    attributes:
+      label: Up to 12 items or services with prices
+      description: Keep it public-safe. Do not include private customer, payment, bank, or tax details.
+      placeholder: |
+        Chocolate chip cookie bag - $6
+        Brownie box - $10
+        Market bundle - 2 for $15
+    validations:
+      required: true
+  - type: input
+    id: qr_contact
+    attributes:
+      label: QR sign link or public-safe contact method
+      description: Use a public URL, social profile, booking page, or contact method you are comfortable printing publicly.
+      placeholder: https://example.com/order
+    validations:
+      required: true
+  - type: dropdown
+    id: preferred_style
+    attributes:
+      label: Preferred style
+      options:
+        - clean
+        - cute
+        - bold
+        - minimal
+        - local
+        - premium
+        - practical
+    validations:
+      required: true
+  - type: input
+    id: need_by
+    attributes:
+      label: Need-by date
+      description: Target delivery is 2 business days after real payment and complete details.
+      placeholder: 2026-06-10
+    validations:
+      required: true
+  - type: dropdown
+    id: checkout_provider
+    attributes:
+      label: Preferred external checkout provider
+      description: Payment happens only through a real external provider after fit is confirmed.
+      options:
+        - Gumroad
+        - Payhip
+        - Ko-fi
+        - Stripe
+        - Invoice provider
+        - No preference
+    validations:
+      required: true
+  - type: textarea
+    id: avoid_words
+    attributes:
+      label: Words, claims, or offers to avoid
+      description: Mention anything that should not appear in the printable copy.
+      placeholder: Avoid allergy claims, medical claims, guaranteed results, limited-time wording...
+  - type: textarea
+    id: public_contact
+    attributes:
+      label: Public-safe contact preference
+      description: Public issues are visible. Say "reply in this issue" if you do not want to post private contact details.
+      placeholder: Reply in this issue / public social profile / public website contact page
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Optional public-safe context. Do not include sensitive personal, payment, payout, tax, identity, credential, or private account details.

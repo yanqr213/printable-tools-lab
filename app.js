@@ -5134,6 +5134,10 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
   function renderCustomLocalPrintPackService() {
     const price = "29";
     const requestTemplateUrl = "/assets/services/custom-local-print-pack-request.txt";
+    const paymentReplyUrl = "/assets/services/custom-local-print-pack-payment-reply.txt";
+    const fulfillmentChecklistUrl = "/assets/services/custom-local-print-pack-fulfillment-checklist.txt";
+    const orderPipelineUrl = "/assets/services/custom-local-print-pack-order-pipeline.json";
+    const issueFormUrl = "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml";
     const serviceRequestUrl = customLocalPrintPackRequestUrl();
     const serviceEmailUrl = customLocalPrintPackEmailUrl();
     const deliverables = [
@@ -5152,6 +5156,13 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       "any words, claims, or offers to avoid",
     ];
     const relatedTools = ["price-tag", "flyer-maker", "coupon-maker", "packing-slip", "business-card", "qr-code"];
+    const orderStatuses = ["intent_received", "fit_confirmed", "checkout_sent", "paid_order_verified", "in_progress", "delivered", "revision_done", "closed"];
+    const orderAssets = [
+      ["Structured request form", issueFormUrl],
+      ["Payment-before-work reply", paymentReplyUrl],
+      ["Fulfillment checklist", fulfillmentChecklistUrl],
+      ["Order pipeline JSON", orderPipelineUrl],
+    ];
     setMeta("Custom Local Print Pack Setup", "A $29 done-for-you setup request for one simple printable seller pack: price tags, flyer copy, QR sign text, coupon wording, packing slip starter rows, and a one-page launch checklist.");
     setJsonLd({
       "@context": "https://schema.org",
@@ -5175,8 +5186,10 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
         <p>A lightweight service request for buyers who like the free generators but do not want to assemble their first price tags, flyer copy, QR sign text, coupons, packing notes, and launch checklist themselves.</p>
         <div class="hero-actions">
           <a class="button" href="${escapeHtml(serviceRequestUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Request service checkout</a>
+          <a class="button secondary" href="${escapeHtml(issueFormUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Open structured request form</a>
           <a class="button secondary" href="${requestTemplateUrl}" download>Download service brief</a>
           ${serviceEmailUrl ? `<a class="button ghost" href="${escapeHtml(serviceEmailUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Email service request</a>` : ""}
+          <a class="button ghost" href="${orderPipelineUrl}">Open order pipeline</a>
           <a class="button ghost" href="/local-seller-starter-kit/">See the $9 template kit</a>
           <a class="button ghost" href="/custom-local-print-pack-sales-pack/">Open sales pack</a>
         </div>
@@ -5195,6 +5208,12 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
         <h2>Buyer details needed</h2>
         <ul>${buyerInputs.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
         <p><a class="button" href="${requestTemplateUrl}" download>Download the request brief</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Order pipeline assets</h2>
+        <p>Use these when a request arrives: confirm fit, send a real external checkout link, wait for paid_order_verified, then build and deliver the pack.</p>
+        <table class="event-table"><tbody>${orderAssets.map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("")}</tbody></table>
+        <ol>${orderStatuses.map((status) => `<li><strong>${escapeHtml(status)}</strong></li>`).join("")}</ol>
       </section>
       <section class="shell section">
         <h2>Use the finished pack with these free tools</h2>
@@ -5257,6 +5276,9 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
     const trackedLinks = [
       ["GitHub Pages service link", "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
       ["GitHub Pages request brief", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
+      ["Structured request form", "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml&utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
+      ["Payment reply template", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
+      ["Fulfillment checklist", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
       ["Main service link", `${absoluteUrl("/custom-local-print-pack/").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
       ["Free price tag generator", `${absoluteUrl("/tools/price-tag/").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
       ["Free flyer maker", `${absoluteUrl("/tools/flyer-maker/").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
@@ -5274,6 +5296,9 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       ["Short tagline", "Done-for-you printable starter pack for local sellers and service providers"],
       ["Public URL", "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/"],
       ["Request brief", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt"],
+      ["Structured request form", "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml"],
+      ["Payment-before-work reply", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt"],
+      ["Fulfillment checklist", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt"],
     ];
     const checklist = [
       "Start with 5 to 10 manual, relevant, non-spam contacts where the service solves an immediate print or market-table problem.",
@@ -5282,6 +5307,14 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       "Log any request URL, reply, or paid order in OPERATIONS.md with the date and source.",
       "Count revenue only from a paid provider order, payout balance, or settled payment.",
     ];
+    const orderAssets = [
+      ["Structured request form", "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml"],
+      ["Request brief", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt"],
+      ["Payment-before-work reply", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt"],
+      ["Fulfillment checklist", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt"],
+      ["Order pipeline JSON", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json"],
+    ];
+    const orderStatuses = ["intent_received", "fit_confirmed", "checkout_sent", "paid_order_verified", "in_progress", "delivered", "revision_done", "closed"];
     setMeta("Custom Local Print Pack Sales Pack", "Copy-ready outreach, tracked links, listing fields, and safe manual execution steps for the $29 Custom Local Print Pack service.");
     setJsonLd({
       "@context": "https://schema.org",
@@ -5311,6 +5344,12 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       <section class="shell section">
         <h2>Listing fields</h2>
         <table class="event-table"><tbody>${listingFields.map(([label, value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`).join("")}</tbody></table>
+      </section>
+      <section class="shell section">
+        <h2>Order pipeline assets</h2>
+        <p>These links turn an interested reply into a paid, externally verified service order without collecting payment details in this repository.</p>
+        <table class="event-table"><tbody>${orderAssets.map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("")}</tbody></table>
+        <ol>${orderStatuses.map((status) => `<li><strong>${escapeHtml(status)}</strong></li>`).join("")}</ol>
       </section>
       <section class="shell section">
         <h2>Manual execution checklist</h2>

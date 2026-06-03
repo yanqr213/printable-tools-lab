@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-03T00:55:35.253Z",
+  "generatedAt": "2026-06-03T01:17:15.943Z",
   "landingPages": [
     {
       "title": "Free Upload Limit Fixer",
@@ -778,9 +778,66 @@
       "priceUsd": 29,
       "currency": "USD",
       "requestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=Service+request%3A+Custom+Local+Print+Pack+Setup&body=I+want+to+request+the+Custom+Local+Print+Pack+Setup+for+%2429+USD.%0A%0ABusiness%2C+booth%2C+event%2C+or+service+name%3A%0AWhat+do+you+sell+or+promote%3F%0AUp+to+12+items%2Fservices+with+prices%3A%0ALink+or+contact+method+for+QR+sign+wording%3A%0APreferred+style%3A+clean+%2F+cute+%2F+bold+%2F+minimal+%2F+local+%2F+premium+%2F+practical%0ANeed-by+date%3A%0APreferred+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+other%0ABest+contact+method%3A%0ACountry+or+region+%28optional%29%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+reply+with+a+real+external+checkout+link+and+details+checklist+only+if+the+service+is+available.",
+      "issueFormUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml",
       "requestEmailUrl": "",
       "requestTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-request.txt",
       "discoveryRequestTemplateUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt",
+      "paymentReplyTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-payment-reply.txt",
+      "discoveryPaymentReplyTemplateUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt",
+      "fulfillmentChecklistUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-fulfillment-checklist.txt",
+      "discoveryFulfillmentChecklistUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt",
+      "orderPipelineUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-order-pipeline.json",
+      "discoveryOrderPipelineUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json",
+      "orderPipeline": [
+        {
+          "id": "intent_received",
+          "ownerAction": "A buyer submits the structured issue form, prefilled issue, email, or brief text.",
+          "buyerAction": "Provide public-safe service details only.",
+          "moneyRule": "Not revenue."
+        },
+        {
+          "id": "fit_confirmed",
+          "ownerAction": "Confirm the request is within the simple $29 scope and details are complete enough.",
+          "buyerAction": "Confirm scope and that the QR/contact link can be printed publicly.",
+          "moneyRule": "Not revenue."
+        },
+        {
+          "id": "checkout_sent",
+          "ownerAction": "Send one real external Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link.",
+          "buyerAction": "Pay only through the external provider.",
+          "moneyRule": "Not revenue until the provider confirms payment."
+        },
+        {
+          "id": "paid_order_verified",
+          "ownerAction": "Verify paid order, payout balance, or settled payment in the provider dashboard.",
+          "buyerAction": "No extra sensitive data required.",
+          "moneyRule": "This is the first status that can count as revenue."
+        },
+        {
+          "id": "in_progress",
+          "ownerAction": "Prepare the editable starter CSV, flyer copy, QR sign wording, coupon ideas, packing notes, and launch checklist.",
+          "buyerAction": "Answer scope clarifications only if needed.",
+          "moneyRule": "Revenue already verified externally."
+        },
+        {
+          "id": "delivered",
+          "ownerAction": "Send the pack through the agreed channel with review and QR-test reminders.",
+          "buyerAction": "Review all copy, prices, QR links, and claims before printing.",
+          "moneyRule": "Revenue already verified externally."
+        },
+        {
+          "id": "revision_done",
+          "ownerAction": "Complete the included lightweight typo or fit revision if requested.",
+          "buyerAction": "Confirm the revision request is within scope.",
+          "moneyRule": "No extra revenue unless a separate new paid scope is created."
+        },
+        {
+          "id": "closed",
+          "ownerAction": "Log the non-sensitive outcome in OPERATIONS.md and leave private payment details in the provider only.",
+          "buyerAction": "Use the editable pack in their own business or event workflow.",
+          "moneyRule": "Final counted revenue must match the external provider record."
+        }
+      ],
       "turnaround": "Target delivery is 2 business days after real payment and complete buyer details.",
       "deliverables": [
         "price tag starter CSV for up to 12 items",
@@ -826,6 +883,63 @@
     "githubPagesServiceUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
     "requestBriefUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-request.txt",
     "githubPagesRequestBriefUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt",
+    "issueFormUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml",
+    "paymentReplyUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-payment-reply.txt",
+    "githubPagesPaymentReplyUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt",
+    "fulfillmentChecklistUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-fulfillment-checklist.txt",
+    "githubPagesFulfillmentChecklistUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt",
+    "orderPipelineUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-order-pipeline.json",
+    "githubPagesOrderPipelineUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json",
+    "orderPipeline": [
+      {
+        "id": "intent_received",
+        "ownerAction": "A buyer submits the structured issue form, prefilled issue, email, or brief text.",
+        "buyerAction": "Provide public-safe service details only.",
+        "moneyRule": "Not revenue."
+      },
+      {
+        "id": "fit_confirmed",
+        "ownerAction": "Confirm the request is within the simple $29 scope and details are complete enough.",
+        "buyerAction": "Confirm scope and that the QR/contact link can be printed publicly.",
+        "moneyRule": "Not revenue."
+      },
+      {
+        "id": "checkout_sent",
+        "ownerAction": "Send one real external Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link.",
+        "buyerAction": "Pay only through the external provider.",
+        "moneyRule": "Not revenue until the provider confirms payment."
+      },
+      {
+        "id": "paid_order_verified",
+        "ownerAction": "Verify paid order, payout balance, or settled payment in the provider dashboard.",
+        "buyerAction": "No extra sensitive data required.",
+        "moneyRule": "This is the first status that can count as revenue."
+      },
+      {
+        "id": "in_progress",
+        "ownerAction": "Prepare the editable starter CSV, flyer copy, QR sign wording, coupon ideas, packing notes, and launch checklist.",
+        "buyerAction": "Answer scope clarifications only if needed.",
+        "moneyRule": "Revenue already verified externally."
+      },
+      {
+        "id": "delivered",
+        "ownerAction": "Send the pack through the agreed channel with review and QR-test reminders.",
+        "buyerAction": "Review all copy, prices, QR links, and claims before printing.",
+        "moneyRule": "Revenue already verified externally."
+      },
+      {
+        "id": "revision_done",
+        "ownerAction": "Complete the included lightweight typo or fit revision if requested.",
+        "buyerAction": "Confirm the revision request is within scope.",
+        "moneyRule": "No extra revenue unless a separate new paid scope is created."
+      },
+      {
+        "id": "closed",
+        "ownerAction": "Log the non-sensitive outcome in OPERATIONS.md and leave private payment details in the provider only.",
+        "buyerAction": "Use the editable pack in their own business or event workflow.",
+        "moneyRule": "Final counted revenue must match the external provider record."
+      }
+    ],
     "audience": [
       "craft fair and market table sellers",
       "home bakers, handmade sellers, and small online sellers",
@@ -840,6 +954,18 @@
       {
         "label": "GitHub Pages request brief",
         "url": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
+      },
+      {
+        "label": "Structured request form",
+        "url": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml&utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
+      },
+      {
+        "label": "Payment reply template",
+        "url": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
+      },
+      {
+        "label": "Fulfillment checklist",
+        "url": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
       },
       {
         "label": "Main service link",
@@ -904,6 +1030,18 @@
       {
         "label": "Request brief",
         "value": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt"
+      },
+      {
+        "label": "Structured request form",
+        "value": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml"
+      },
+      {
+        "label": "Payment-before-work reply",
+        "value": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt"
+      },
+      {
+        "label": "Fulfillment checklist",
+        "value": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt"
       }
     ],
     "executionChecklist": [

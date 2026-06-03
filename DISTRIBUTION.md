@@ -40,6 +40,10 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Service page: https://printable-tools-lab.pages.dev/custom-local-print-pack/
 - GitHub Pages service page: https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/
 - Request brief: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt
+- Structured request form: https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml
+- Payment-before-work reply template: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt
+- Fulfillment checklist: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt
+- Order pipeline JSON: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json
 - Sales pack page: https://printable-tools-lab.pages.dev/custom-local-print-pack-sales-pack/
 - Machine-readable sales pack: https://printable-tools-lab.pages.dev/service-sales-pack.json
 

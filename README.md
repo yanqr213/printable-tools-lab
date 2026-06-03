@@ -311,6 +311,8 @@ npm.cmd run register:domain -- --register
 Until that real checkout link exists, use the GitHub Pages seller-kit mirror as the public buyer-intent path. Its request link is not revenue; count money only from a paid provider order, payout balance, or settled payment.
 The mirror also publishes `assets/digital-products/local-seller-starter-kit-buy-request.txt` so non-GitHub buyers can copy a checkout request into email, a form, or a payment-provider message.
 
+For the `$29 Custom Local Print Pack Setup`, use the GitHub Pages service mirror as the public service path: `https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/`. The sales pack, structured GitHub issue form, payment-before-work reply template, fulfillment checklist, and order-pipeline JSON are published so an interested reply can become a paid external checkout order without collecting payment details in the repository. Count service revenue only after the external provider shows a paid order, payout balance, or settled payment.
+
 Configure the seller-kit payment link after creating a real checkout product:
 
 ```powershell

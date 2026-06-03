@@ -75,6 +75,11 @@ const CUSTOM_LOCAL_PRINT_PACK_SERVICE = {
   currency: "USD",
   contactEmail: configuredContactEmail(),
   publicRequestPath: "assets/services/custom-local-print-pack-request.txt",
+  publicPaymentReplyPath: "assets/services/custom-local-print-pack-payment-reply.txt",
+  publicFulfillmentChecklistPath: "assets/services/custom-local-print-pack-fulfillment-checklist.txt",
+  publicOrderPipelinePath: "assets/services/custom-local-print-pack-order-pipeline.json",
+  issueTemplatePath: ".github/ISSUE_TEMPLATE/custom-local-print-pack-service.yml",
+  issueFormUrl: "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml",
   turnaround: "Target delivery is 2 business days after real payment and complete buyer details.",
   deliverables: [
     "price tag starter CSV for up to 12 items",
@@ -122,6 +127,13 @@ const SERVICE_SALES_PACK = {
   githubPagesServiceUrl: "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
   requestBriefUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicRequestPath).replace(/\/$/, ""),
   githubPagesRequestBriefUrl: "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt",
+  paymentReplyUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicPaymentReplyPath).replace(/\/$/, ""),
+  githubPagesPaymentReplyUrl: "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt",
+  fulfillmentChecklistUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicFulfillmentChecklistPath).replace(/\/$/, ""),
+  githubPagesFulfillmentChecklistUrl: "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt",
+  orderPipelineUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOrderPipelinePath).replace(/\/$/, ""),
+  githubPagesOrderPipelineUrl: "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json",
+  issueFormUrl: CUSTOM_LOCAL_PRINT_PACK_SERVICE.issueFormUrl,
   audience: [
     "craft fair and market table sellers",
     "home bakers, handmade sellers, and small online sellers",
@@ -131,6 +143,9 @@ const SERVICE_SALES_PACK = {
   trackedLinks: [
     ["GitHub Pages service link", "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
     ["GitHub Pages request brief", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
+    ["Structured request form", `${CUSTOM_LOCAL_PRINT_PACK_SERVICE.issueFormUrl}&utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
+    ["Payment reply template", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
+    ["Fulfillment checklist", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
     ["Main service link", `${siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug).replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
     ["Free price tag generator", `${siteUrl("tools/price-tag").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
     ["Free flyer maker", `${siteUrl("tools/flyer-maker").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
@@ -168,6 +183,9 @@ const SERVICE_SALES_PACK = {
     ["Short tagline", "Done-for-you printable starter pack for local sellers and service providers"],
     ["Public URL", "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/"],
     ["Request brief", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt"],
+    ["Structured request form", CUSTOM_LOCAL_PRINT_PACK_SERVICE.issueFormUrl],
+    ["Payment-before-work reply", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt"],
+    ["Fulfillment checklist", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt"],
   ],
   executionChecklist: [
     "Start with 5 to 10 manual, relevant, non-spam contacts where the service solves an immediate print or market-table problem.",
@@ -269,6 +287,159 @@ function serviceRequestUrl(service) {
   url.searchParams.set("title", `Service request: ${service.name}`);
   url.searchParams.set("body", serviceRequestCopy(service));
   return url.toString();
+}
+
+function servicePaymentReplyCopy(service) {
+  return [
+    `Subject: ${service.name} - fit confirmed, payment link before work starts`,
+    "",
+    "Thanks for sending the details. This looks like a good fit for the simple local print pack scope.",
+    "",
+    "Scope I will prepare after payment:",
+    ...service.deliverables.map((item) => `- ${item}`),
+    "",
+    `Price: $${service.priceUsd} ${service.currency}`,
+    service.turnaround,
+    "",
+    "Next step:",
+    "1. I will send one real external checkout link from Gumroad, Payhip, Ko-fi, Stripe, or an invoice provider.",
+    "2. Please pay only through that external provider. Do not post card, bank, payout, tax, identity, or private account details in GitHub or email.",
+    "3. After the provider shows the order as paid, I will mark the request as paid_order_verified and start the pack.",
+    "",
+    "Before I send the checkout link, please confirm:",
+    "- The item/service list and prices are final enough for a first draft.",
+    "- The QR/contact link is safe to print publicly.",
+    "- You understand the pack is editable starter copy, not legal, tax, accounting, employment, medical, or financial advice.",
+    "- One lightweight revision is included for typos or fit; new branding, logo design, or regulated copy is outside this $29 scope.",
+    "",
+    "Revenue is counted only after the external provider shows a paid order, payout balance, or settled payment.",
+  ].join("\n");
+}
+
+function serviceFulfillmentChecklistCopy(service) {
+  return [
+    `# ${service.name} Fulfillment Checklist`,
+    "",
+    "Use this only after a real external payment provider shows a paid order. Do not start custom work from a request, page view, email, or brief download alone.",
+    "",
+    "## Intake",
+    "",
+    "- Confirm request source URL, date, and public-safe contact method.",
+    "- Confirm buyer sent business/event/service name, offer summary, up to 12 items or services with prices, QR/contact link, style preference, need-by date, and words or claims to avoid.",
+    "- Confirm no card, bank, payout, tax, identity, platform credential, or private account information was collected.",
+    "- Confirm the buyer understands all copy, prices, QR links, and claims must be reviewed before printing or publishing.",
+    "",
+    "## Payment Gate",
+    "",
+    "- Send one real external checkout link only after fit is confirmed.",
+    "- Wait until the provider shows paid_order_verified, paid order, payout balance, or settled payment.",
+    "- Log the order source and provider status in OPERATIONS.md without exposing private buyer or payment details.",
+    "",
+    "## Build",
+    "",
+    "- Prepare price tag starter CSV for up to 12 items.",
+    "- Draft one small flyer with clear local action wording.",
+    "- Draft QR sign wording for the supplied public link or contact method.",
+    "- Draft three coupon or bundle offer ideas.",
+    "- Draft packing slip or pickup note starter rows.",
+    "- Draft one-page launch checklist for printing and first outreach.",
+    "- Keep everything editable and easy to paste into PrintableTools Lab generators.",
+    "",
+    "## Delivery",
+    "",
+    "- Deliver text, CSV, or copy blocks through the buyer's agreed channel.",
+    "- Include a note that the buyer must test the QR code and review all claims before printing.",
+    "- Offer one lightweight revision for typos or fit.",
+    "- Mark the pipeline delivered, then revision_done or closed after the buyer response.",
+  ].join("\n");
+}
+
+function serviceOrderPipeline(service) {
+  const assetUrl = (relativePath) => siteUrl(relativePath).replace(/\/$/, "");
+  return {
+    id: `${service.id}-order-pipeline`,
+    serviceId: service.id,
+    serviceName: service.name,
+    priceUsd: service.priceUsd,
+    currency: service.currency,
+    generatedFor: "Manual service requests that can become paid orders without collecting payment on the site.",
+    issueFormUrl: service.issueFormUrl,
+    requestUrl: serviceRequestUrl(service),
+    requestTemplateUrl: assetUrl(service.publicRequestPath),
+    paymentReplyTemplateUrl: assetUrl(service.publicPaymentReplyPath),
+    fulfillmentChecklistUrl: assetUrl(service.publicFulfillmentChecklistPath),
+    publicSafeFields: [
+      "business, booth, event, or service name",
+      "what the buyer sells or promotes",
+      "up to 12 items or services with prices",
+      "public QR/contact link or public-safe reply preference",
+      "style preference",
+      "need-by date",
+      "preferred external checkout provider",
+      "notes that do not include private payment or identity data",
+    ],
+    forbiddenFields: [
+      "card numbers",
+      "bank details",
+      "payout details",
+      "tax identifiers",
+      "identity documents",
+      "platform credentials",
+      "private account passwords",
+    ],
+    statuses: [
+      {
+        id: "intent_received",
+        ownerAction: "A buyer submits the structured issue form, prefilled issue, email, or brief text.",
+        buyerAction: "Provide public-safe service details only.",
+        moneyRule: "Not revenue.",
+      },
+      {
+        id: "fit_confirmed",
+        ownerAction: "Confirm the request is within the simple $29 scope and details are complete enough.",
+        buyerAction: "Confirm scope and that the QR/contact link can be printed publicly.",
+        moneyRule: "Not revenue.",
+      },
+      {
+        id: "checkout_sent",
+        ownerAction: "Send one real external Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link.",
+        buyerAction: "Pay only through the external provider.",
+        moneyRule: "Not revenue until the provider confirms payment.",
+      },
+      {
+        id: "paid_order_verified",
+        ownerAction: "Verify paid order, payout balance, or settled payment in the provider dashboard.",
+        buyerAction: "No extra sensitive data required.",
+        moneyRule: "This is the first status that can count as revenue.",
+      },
+      {
+        id: "in_progress",
+        ownerAction: "Prepare the editable starter CSV, flyer copy, QR sign wording, coupon ideas, packing notes, and launch checklist.",
+        buyerAction: "Answer scope clarifications only if needed.",
+        moneyRule: "Revenue already verified externally.",
+      },
+      {
+        id: "delivered",
+        ownerAction: "Send the pack through the agreed channel with review and QR-test reminders.",
+        buyerAction: "Review all copy, prices, QR links, and claims before printing.",
+        moneyRule: "Revenue already verified externally.",
+      },
+      {
+        id: "revision_done",
+        ownerAction: "Complete the included lightweight typo or fit revision if requested.",
+        buyerAction: "Confirm the revision request is within scope.",
+        moneyRule: "No extra revenue unless a separate new paid scope is created.",
+      },
+      {
+        id: "closed",
+        ownerAction: "Log the non-sensitive outcome in OPERATIONS.md and leave private payment details in the provider only.",
+        buyerAction: "Use the editable pack in their own business or event workflow.",
+        moneyRule: "Final counted revenue must match the external provider record.",
+      },
+    ],
+    moneyGate: service.successGate,
+    riskControls: service.riskControls,
+  };
 }
 
 const ZERO_DOMAIN_GAME_EXPERIMENT = {
@@ -4219,10 +4390,19 @@ function customLocalPrintPackServiceHtml() {
   const service = CUSTOM_LOCAL_PRINT_PACK_SERVICE;
   const requestUrl = serviceRequestUrl(service);
   const emailUrl = serviceRequestEmailUrl(service);
+  const pipeline = serviceOrderPipeline(service);
+  const orderAssets = [
+    ["Structured request form", service.issueFormUrl],
+    ["Payment-before-work reply", `/${service.publicPaymentReplyPath}`],
+    ["Fulfillment checklist", `/${service.publicFulfillmentChecklistPath}`],
+    ["Order pipeline JSON", `/${service.publicOrderPipelinePath}`],
+  ];
   const actions = [
     `<a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestUrl)}">Request service checkout</a>`,
+    `<a class="button secondary" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(service.issueFormUrl)}">Open structured request form</a>`,
     `<a class="button secondary" href="/${escapeHtml(service.publicRequestPath)}" download>Download service brief</a>`,
     emailUrl ? `<a class="button ghost" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(emailUrl)}">Email service request</a>` : "",
+    `<a class="button ghost" href="/${escapeHtml(service.publicOrderPipelinePath)}">Open order pipeline</a>`,
     `<a class="button ghost" href="/${escapeHtml(LOCAL_SELLER_STARTER_KIT.slug)}/">See the $${LOCAL_SELLER_STARTER_KIT.priceUsd} template kit</a>`,
   ].filter(Boolean).join("\n          ");
   return `
@@ -4252,6 +4432,15 @@ function customLocalPrintPackServiceHtml() {
         <p><a class="button" href="/${escapeHtml(service.publicRequestPath)}" download>Download the request brief</a></p>
       </section>
       <section class="shell section">
+        <h2>Order pipeline assets</h2>
+        <p>Use these when a request arrives: confirm fit, send a real external checkout link, wait for paid_order_verified, then build and deliver the pack.</p>
+        <table class="event-table">
+          <thead><tr><th>Asset</th><th>URL</th></tr></thead>
+          <tbody>${orderAssets.map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("\n")}</tbody>
+        </table>
+        <ol>${pipeline.statuses.map((status) => `<li><strong>${escapeHtml(status.id)}</strong>: ${escapeHtml(status.ownerAction)} <em>${escapeHtml(status.moneyRule)}</em></li>`).join("")}</ol>
+      </section>
+      <section class="shell section">
         <h2>Use the finished pack with these free tools</h2>
         <div class="grid-3">
           ${service.relatedTools.map((toolPath) => {
@@ -4276,6 +4465,14 @@ function customLocalPrintPackServiceHtml() {
 function serviceSalesPackHtml() {
   const pack = SERVICE_SALES_PACK;
   const service = CUSTOM_LOCAL_PRINT_PACK_SERVICE;
+  const pipeline = serviceOrderPipeline(service);
+  const orderAssets = [
+    ["Structured request form", pack.issueFormUrl],
+    ["Request brief", pack.githubPagesRequestBriefUrl],
+    ["Payment-before-work reply", pack.githubPagesPaymentReplyUrl],
+    ["Fulfillment checklist", pack.githubPagesFulfillmentChecklistUrl],
+    ["Order pipeline JSON", pack.githubPagesOrderPipelineUrl],
+  ];
   return `
       <section class="shell page-title section">
         <a href="/${escapeHtml(service.slug)}/">Paid service</a>
@@ -4301,6 +4498,15 @@ function serviceSalesPackHtml() {
         <table class="event-table">
           <tbody>${pack.listingFields.map(([label, value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`).join("\n")}</tbody>
         </table>
+      </section>
+      <section class="shell section">
+        <h2>Order pipeline assets</h2>
+        <p>These are the operational links to turn an interested reply into a paid, externally verified service order without collecting payment details in this repository.</p>
+        <table class="event-table">
+          <thead><tr><th>Asset</th><th>URL</th></tr></thead>
+          <tbody>${orderAssets.map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("\n")}</tbody>
+        </table>
+        <ol>${pipeline.statuses.map((status) => `<li><strong>${escapeHtml(status.id)}</strong>: ${escapeHtml(status.moneyRule)}</li>`).join("")}</ol>
       </section>
       <section class="shell section">
         <h2>Manual execution checklist</h2>
@@ -5943,4 +6149,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };

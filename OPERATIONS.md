@@ -222,6 +222,33 @@ While the checkout link is pending, the buyer-facing fallback is the GitHub Page
 
 For buyers who do not use GitHub, the mirror also hosts `assets/digital-products/local-seller-starter-kit-buy-request.txt`. Copy that text into an email, contact form, payment-provider message, or manual checkout reply. It is still only purchase intent, not revenue.
 
+### Custom Local Print Pack service orders
+
+The fastest direct-payment test is the `$29 Custom Local Print Pack Setup`, because it can be fulfilled manually after one qualified buyer reply.
+
+Public service links:
+
+- Service page: `https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/`
+- Sales pack: `https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack-sales-pack/`
+- Structured request form: `https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml`
+- Request brief: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt`
+- Payment-before-work reply: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt`
+- Fulfillment checklist: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt`
+- Order pipeline JSON: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json`
+
+Manual order SOP:
+
+1. Treat a GitHub issue, email, DM, contact-form reply, or brief download as `intent_received` only.
+2. Check the request has public-safe business/event/service name, offer summary, up to 12 items or services with prices, QR/contact link, style preference, need-by date, and preferred checkout provider.
+3. Do not collect card, bank, payout, tax, identity, credential, password, or private account details in GitHub, email, or the repo.
+4. Reply with the payment-before-work template only after fit is confirmed.
+5. Send one real external Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link.
+6. Start custom work only after the external provider shows `paid_order_verified`, a paid order, payout balance, or settled payment.
+7. Fulfill using the checklist, deliver editable text/CSV/copy blocks, and offer one lightweight typo or fit revision.
+8. Log only non-sensitive outcome evidence in this file: date, source, status, provider order state, amount, and public request URL if available.
+
+Service revenue is still zero until a payment provider proves a paid order. Requests, replies, issue creation, and downloads are useful validation but are not revenue.
+
 Compliance priority:
 
 1. Use a provider that supports the owner's country, identity, tax profile, and payout bank account.

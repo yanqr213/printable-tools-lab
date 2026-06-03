@@ -32,7 +32,9 @@
       <p>A lightweight service offer for buyers who like the free generators but do not want to assemble the first local-selling print pack themselves. The buyer sends product, service, or event details; the seller returns editable starter content that can be pasted into the PrintableTools Lab generators and printed.</p>
       <div class="actions">
         <a class="button" href="https://github.com/yanqr213/printable-tools-lab/issues/new?title=Service+request%3A+Custom+Local+Print+Pack+Setup&amp;body=I+want+to+request+the+Custom+Local+Print+Pack+Setup+for+%2429+USD.%0A%0ABusiness%2C+booth%2C+event%2C+or+service+name%3A%0AWhat+do+you+sell+or+promote%3F%0AUp+to+12+items%2Fservices+with+prices%3A%0ALink+or+contact+method+for+QR+sign+wording%3A%0APreferred+style%3A+clean+%2F+cute+%2F+bold+%2F+minimal+%2F+local+%2F+premium+%2F+practical%0ANeed-by+date%3A%0APreferred+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+other%0ABest+contact+method%3A%0ACountry+or+region+%28optional%29%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+reply+with+a+real+external+checkout+link+and+details+checklist+only+if+the+service+is+available.">Request service checkout</a>
+        <a class="button secondary" href="https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml">Open structured request form</a>
         <a class="button secondary" href="https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt" download>Download service brief</a>
+        <a href="https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json">Open order pipeline</a>
         <a href="https://yanqr213.github.io/printable-tools-lab/local-seller-starter-kit/">See the $9 template kit</a>
       </div>
       <h2>Checkout state</h2>
@@ -52,6 +54,13 @@ Notes:
 
 No payment is collected by this request. Please reply with a real external checkout link and details checklist only if the service is available.</pre>
       <p><a href="https://printable-tools-lab.pages.dev/custom-local-print-pack/?utm_source=github-pages&utm_medium=organic&utm_campaign=discovery_mirror&utm_content=service-backup">Open main site copy</a></p>
+      <h2>Order pipeline assets</h2>
+      <p>Confirm fit, send a real external checkout link, wait for paid_order_verified, then build and deliver the pack.</p>
+      <table><tbody><tr><th>Structured request form</th><td><a href="https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml">https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml</a></td></tr>
+<tr><th>Payment-before-work reply</th><td><a href="https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt">https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt</a></td></tr>
+<tr><th>Fulfillment checklist</th><td><a href="https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt">https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt</a></td></tr>
+<tr><th>Order pipeline JSON</th><td><a href="https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json">https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json</a></td></tr></tbody></table>
+      <ol><li><strong>intent_received</strong>: Not revenue.</li><li><strong>fit_confirmed</strong>: Not revenue.</li><li><strong>checkout_sent</strong>: Not revenue until the provider confirms payment.</li><li><strong>paid_order_verified</strong>: This is the first status that can count as revenue.</li><li><strong>in_progress</strong>: Revenue already verified externally.</li><li><strong>delivered</strong>: Revenue already verified externally.</li><li><strong>revision_done</strong>: No extra revenue unless a separate new paid scope is created.</li><li><strong>closed</strong>: Final counted revenue must match the external provider record.</li></ol>
       <h2>Deliverables</h2>
       <div class="grid">
         <article class="card"><h3>price tag starter CSV for up to 12 items</h3><p>Editable starter content for one local seller, small service, booth, event, or simple offer.</p></article>

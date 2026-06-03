@@ -95,3 +95,12 @@
 
 /assets/services/custom-local-print-pack-request.txt
   Content-Type: text/plain; charset=utf-8
+
+/assets/services/custom-local-print-pack-payment-reply.txt
+  Content-Type: text/plain; charset=utf-8
+
+/assets/services/custom-local-print-pack-fulfillment-checklist.txt
+  Content-Type: text/plain; charset=utf-8
+
+/assets/services/custom-local-print-pack-order-pipeline.json
+  Content-Type: application/json; charset=utf-8

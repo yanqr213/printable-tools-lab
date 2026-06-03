@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Paid Services",
-  "generatedAt": "2026-06-03T00:55:35.163Z",
+  "generatedAt": "2026-06-03T01:17:15.853Z",
   "canonical": "https://printable-tools-lab.pages.dev/services.json",
   "services": [
     {
@@ -11,9 +11,66 @@
       "priceUsd": 29,
       "currency": "USD",
       "requestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=Service+request%3A+Custom+Local+Print+Pack+Setup&body=I+want+to+request+the+Custom+Local+Print+Pack+Setup+for+%2429+USD.%0A%0ABusiness%2C+booth%2C+event%2C+or+service+name%3A%0AWhat+do+you+sell+or+promote%3F%0AUp+to+12+items%2Fservices+with+prices%3A%0ALink+or+contact+method+for+QR+sign+wording%3A%0APreferred+style%3A+clean+%2F+cute+%2F+bold+%2F+minimal+%2F+local+%2F+premium+%2F+practical%0ANeed-by+date%3A%0APreferred+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+other%0ABest+contact+method%3A%0ACountry+or+region+%28optional%29%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+reply+with+a+real+external+checkout+link+and+details+checklist+only+if+the+service+is+available.",
+      "issueFormUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml",
       "requestEmailUrl": "",
       "requestTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-request.txt",
       "requestTemplateSha256": "d383f549dbef656b90a1821bcced41737eb5e330ed9f8fc6f02367d7bbb27fca",
+      "paymentReplyTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-payment-reply.txt",
+      "paymentReplyTemplateSha256": "c18ecc8e1fcdf41c00b6f51ebae8120b9d68c4718735f4260e8512ce43b85928",
+      "fulfillmentChecklistUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-fulfillment-checklist.txt",
+      "fulfillmentChecklistSha256": "888719ae6c46a9537f0e258488dc7cfe08a272806adac74cea7fd008a8c4f202",
+      "orderPipelineUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-order-pipeline.json",
+      "orderPipelineSha256": "fc64672a03bf5dc81a11d7adf00b9a1de554387dcf5fd71b02a7b0fb17c74c53",
+      "orderPipeline": [
+        {
+          "id": "intent_received",
+          "ownerAction": "A buyer submits the structured issue form, prefilled issue, email, or brief text.",
+          "buyerAction": "Provide public-safe service details only.",
+          "moneyRule": "Not revenue."
+        },
+        {
+          "id": "fit_confirmed",
+          "ownerAction": "Confirm the request is within the simple $29 scope and details are complete enough.",
+          "buyerAction": "Confirm scope and that the QR/contact link can be printed publicly.",
+          "moneyRule": "Not revenue."
+        },
+        {
+          "id": "checkout_sent",
+          "ownerAction": "Send one real external Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link.",
+          "buyerAction": "Pay only through the external provider.",
+          "moneyRule": "Not revenue until the provider confirms payment."
+        },
+        {
+          "id": "paid_order_verified",
+          "ownerAction": "Verify paid order, payout balance, or settled payment in the provider dashboard.",
+          "buyerAction": "No extra sensitive data required.",
+          "moneyRule": "This is the first status that can count as revenue."
+        },
+        {
+          "id": "in_progress",
+          "ownerAction": "Prepare the editable starter CSV, flyer copy, QR sign wording, coupon ideas, packing notes, and launch checklist.",
+          "buyerAction": "Answer scope clarifications only if needed.",
+          "moneyRule": "Revenue already verified externally."
+        },
+        {
+          "id": "delivered",
+          "ownerAction": "Send the pack through the agreed channel with review and QR-test reminders.",
+          "buyerAction": "Review all copy, prices, QR links, and claims before printing.",
+          "moneyRule": "Revenue already verified externally."
+        },
+        {
+          "id": "revision_done",
+          "ownerAction": "Complete the included lightweight typo or fit revision if requested.",
+          "buyerAction": "Confirm the revision request is within scope.",
+          "moneyRule": "No extra revenue unless a separate new paid scope is created."
+        },
+        {
+          "id": "closed",
+          "ownerAction": "Log the non-sensitive outcome in OPERATIONS.md and leave private payment details in the provider only.",
+          "buyerAction": "Use the editable pack in their own business or event workflow.",
+          "moneyRule": "Final counted revenue must match the external provider record."
+        }
+      ],
       "turnaround": "Target delivery is 2 business days after real payment and complete buyer details.",
       "deliverables": [
         "price tag starter CSV for up to 12 items",
