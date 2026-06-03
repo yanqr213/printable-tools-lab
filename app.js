@@ -4500,6 +4500,7 @@
     if (parts[0] === "share-kit") return renderShareKit();
     if (parts[0] === "local-seller-starter-kit") return renderLocalSellerStarterKit();
     if (parts[0] === "custom-local-print-pack") return renderCustomLocalPrintPackService();
+    if (parts[0] === "custom-local-print-pack-sales-pack") return renderServiceSalesPack();
     if (landingPagesBySlug[parts[0]]) return renderLandingPage(parts[0]);
     if (parts[0] === "dashboard") return renderDashboard();
     if (pages[parts[0]]) return renderStaticPage(parts[0]);
@@ -5177,6 +5178,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
           <a class="button secondary" href="${requestTemplateUrl}" download>Download service brief</a>
           ${serviceEmailUrl ? `<a class="button ghost" href="${escapeHtml(serviceEmailUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Email service request</a>` : ""}
           <a class="button ghost" href="/local-seller-starter-kit/">See the $9 template kit</a>
+          <a class="button ghost" href="/custom-local-print-pack-sales-pack/">Open sales pack</a>
         </div>
         <p class="notice">Manual service checkout pending: this page captures buyer intent only. No payment is collected here until a real Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link is sent and paid.</p>
         <div class="hero-proof">
@@ -5249,6 +5251,81 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
     url.searchParams.set("subject", "Service request: Custom Local Print Pack Setup");
     url.searchParams.set("body", customLocalPrintPackRequestCopy());
     return url.toString();
+  }
+
+  function renderServiceSalesPack() {
+    const trackedLinks = [
+      ["GitHub Pages service link", "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
+      ["GitHub Pages request brief", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
+      ["Main service link", `${absoluteUrl("/custom-local-print-pack/").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
+      ["Free price tag generator", `${absoluteUrl("/tools/price-tag/").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
+      ["Free flyer maker", `${absoluteUrl("/tools/flyer-maker/").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
+    ];
+    const outreach = [
+      ["Friendly DM to a market or craft seller", "Hi, I noticed your local products would look good with a simple printable table pack. I made a $29 done-for-you setup where I prepare starter price tags, flyer copy, QR sign wording, coupon ideas, packing notes, and a one-page launch checklist from your item list. No payment is taken on the site; you can review the brief first and only pay through a real checkout link if it fits.", "Want the request brief?"],
+      ["DM to a local service provider", "Hi, if you ever need quick printable promo pieces for your service, I have a small $29 setup offer: price/menu rows if needed, one flyer draft, QR sign wording, coupon or bundle ideas, pickup/booking notes, and a print checklist. It is meant for simple local services, not a full branding project.", "I can send the service brief if useful."],
+      ["Helpful community reply", "For a quick market table setup, I would start with simple price tags, one clear flyer, a QR/contact sign, and one small offer card. I made free generators for those, plus a $29 done-for-you setup if someone wants the first pack assembled from their own item list.", "Share the free generator first; mention the paid setup only if the person asks for help."],
+      ["Small service directory blurb", "Custom Local Print Pack Setup is a $29 done-for-you starter pack for local sellers and small service providers who need printable price tags, flyer copy, QR sign wording, coupon ideas, packing notes, and a launch checklist without learning design software.", "Use the GitHub Pages service link as the public listing URL until the main Cloudflare deployment is refreshed."],
+    ];
+    const listingFields = [
+      ["Service name", "Custom Local Print Pack Setup"],
+      ["Price", "$29 USD"],
+      ["Category", "Local business printables, small business service, market seller setup"],
+      ["Short tagline", "Done-for-you printable starter pack for local sellers and service providers"],
+      ["Public URL", "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/"],
+      ["Request brief", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt"],
+    ];
+    const checklist = [
+      "Start with 5 to 10 manual, relevant, non-spam contacts where the service solves an immediate print or market-table problem.",
+      "Send the request brief first; do not ask for payment until the buyer confirms fit and details.",
+      "Use the external checkout provider only after the buyer asks to proceed.",
+      "Log any request URL, reply, or paid order in OPERATIONS.md with the date and source.",
+      "Count revenue only from a paid provider order, payout balance, or settled payment.",
+    ];
+    setMeta("Custom Local Print Pack Sales Pack", "Copy-ready outreach, tracked links, listing fields, and safe manual execution steps for the $29 Custom Local Print Pack service.");
+    setJsonLd({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Custom Local Print Pack Sales Pack",
+      itemListElement: outreach.map(([title], index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: title,
+      })),
+    });
+    app.innerHTML = `
+      <section class="shell page-title section">
+        <a href="/custom-local-print-pack/">Paid service</a>
+        <h1>Copy-ready sales pack for the $29 Custom Local Print Pack service</h1>
+        <p>A zero-budget outreach pack for promoting the done-for-you local print pack setup to craft sellers, market tables, local services, tutors, cleaners, repair providers, and pop-up organizers.</p>
+        <p><a class="button" href="https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/">Open live GitHub Pages service page</a> <a class="button secondary" href="/service-sales-pack.json">Open service-sales-pack.json</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Tracked links</h2>
+        <table class="event-table"><tbody>${trackedLinks.map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("")}</tbody></table>
+      </section>
+      <section class="shell section">
+        <h2>Copy-ready outreach</h2>
+        <div class="grid-2">${outreach.map(([title, message, cta]) => `<article class="panel"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(message)}</p><p><strong>${escapeHtml(cta)}</strong></p></article>`).join("")}</div>
+      </section>
+      <section class="shell section">
+        <h2>Listing fields</h2>
+        <table class="event-table"><tbody>${listingFields.map(([label, value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`).join("")}</tbody></table>
+      </section>
+      <section class="shell section">
+        <h2>Manual execution checklist</h2>
+        <ol>${checklist.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol>
+      </section>
+      <section class="shell section">
+        <h2>Risk controls</h2>
+        <ul>
+          <li>Do not spam communities or scrape private contact lists.</li>
+          <li>Do not promise guaranteed sales, legal compliance, tax results, or ad performance.</li>
+          <li>Do not collect card, bank, payout, tax, or identity details in the repository or GitHub issues.</li>
+          <li>Do not begin paid custom work without a real external payment record.</li>
+        </ul>
+      </section>
+    `;
   }
 
   function renderLandingPage(slug) {

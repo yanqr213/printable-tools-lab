@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, siteUrl, tools, landingPages } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, SERVICE_SALES_PACK, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, siteUrl, tools, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
@@ -61,6 +61,13 @@ const discoveryRoutes = [
     url: pagesUrl(service.slug),
     mainUrl: siteUrl(service.slug),
   })),
+  {
+    path: SERVICE_SALES_PACK.slug,
+    title: SERVICE_SALES_PACK.name,
+    description: SERVICE_SALES_PACK.shortDescription,
+    url: pagesUrl(SERVICE_SALES_PACK.slug),
+    mainUrl: siteUrl(SERVICE_SALES_PACK.slug),
+  },
   ...gameDiscoveryRoutes,
 ];
 
@@ -117,6 +124,7 @@ const html = `<!doctype html>
         <li><a href="${trackedSiteUrl("guides", "guides")}">Printable guides</a> for original help pages around PDF, image, QR, and printable workflows.</li>
         <li><a href="${pagesUrl(LOCAL_SELLER_STARTER_KIT.slug)}">Local Seller Starter Kit mirror</a> for the sample ZIP, checkout setup notes, and paid-kit delivery checklist.</li>
         <li><a href="${pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}">Custom Local Print Pack Setup mirror</a> for the done-for-you service brief and manual checkout request.</li>
+        <li><a href="${pagesUrl(SERVICE_SALES_PACK.slug)}">Custom Local Print Pack sales pack</a> for copy-ready outreach, tracked links, and listing fields.</li>
         <li><a href="${pagesUrl("html5-game-submission-pack")}">HTML5 game submission pack mirror</a> for clean portal ZIPs, GameSnacks packages, demo videos, and platform-review assets.</li>
         ${landingPages.map((page) => `<li><a href="${trackedSiteUrl(page.path, `home-${page.path}`)}">${escapeHtml(page.title)}</a> for ${escapeHtml(page.intent)}.</li>`).join("\n")}
         <li><a href="${siteUrl("feed.xml").replace(/\/$/, "")}">RSS feed</a> for monitoring newly published discovery pages and high-intent tools.</li>
@@ -162,6 +170,7 @@ writeDigitalProductDiscoveryPages();
 copyDigitalProductPublicAssets();
 writePaidServiceDiscoveryPages();
 copyPaidServicePublicAssets();
+writeServiceSalesPackDiscoveryPage();
 writeGameDiscoveryPages();
 
 fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
@@ -201,6 +210,7 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
   },
   digitalProducts: DIGITAL_PRODUCTS.map(productFeedEntry),
   paidServices: PAID_SERVICES.map(serviceFeedEntry),
+  serviceSalesPack: serviceSalesPackEntry(),
 }, null, 2)}\n`);
 
 fs.writeFileSync(path.join(docsDir, "products.json"), `${JSON.stringify({
@@ -217,6 +227,14 @@ fs.writeFileSync(path.join(docsDir, "services.json"), `${JSON.stringify({
   directory: pagesUrl(""),
   services: PAID_SERVICES.map(serviceFeedEntry),
   moneyGate: "Revenue is real only when a payment provider shows a paid order, payout balance, or settled payment.",
+}, null, 2)}\n`);
+
+fs.writeFileSync(path.join(docsDir, "service-sales-pack.json"), `${JSON.stringify({
+  ...serviceSalesPackEntry(),
+  generatedAt: generatedAtIso,
+  directory: pagesUrl(""),
+  discoveryUrl: pagesUrl(SERVICE_SALES_PACK.slug),
+  moneyGate: CUSTOM_LOCAL_PRINT_PACK_SERVICE.successGate,
 }, null, 2)}\n`);
 
 fs.writeFileSync(path.join(docsDir, "games.json"), `${JSON.stringify({
@@ -327,6 +345,12 @@ function copyPaidServicePublicAssets() {
   }
 }
 
+function writeServiceSalesPackDiscoveryPage() {
+  const dir = path.join(docsDir, SERVICE_SALES_PACK.slug);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, "index.html"), serviceSalesPackHtml());
+}
+
 function copyPublicFile(relativePath) {
   const cleanPath = String(relativePath || "").replace(/^\/+/, "");
   if (!cleanPath) return;
@@ -335,6 +359,60 @@ function copyPublicFile(relativePath) {
   const targetPath = path.join(docsDir, cleanPath);
   fs.mkdirSync(path.dirname(targetPath), { recursive: true });
   fs.copyFileSync(sourcePath, targetPath);
+}
+
+function serviceSalesPackHtml() {
+  const pack = SERVICE_SALES_PACK;
+  const trackedLinks = pack.trackedLinks.map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("\n");
+  const scripts = pack.outreachScripts.map((script) => `<article class="card"><h3>${escapeHtml(script.title)}</h3><p>${escapeHtml(script.message)}</p><p><strong>${escapeHtml(script.cta)}</strong></p></article>`).join("\n");
+  const fields = pack.listingFields.map(([label, value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`).join("\n");
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${escapeHtml(pack.name)} - PrintableTools Lab Directory</title>
+    <meta name="description" content="${escapeHtml(pack.shortDescription)}">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="${pagesUrl(pack.slug)}">
+    <style>
+      :root { color-scheme: light; --ink: #17313b; --muted: #5b6f78; --line: #dce8ec; --teal: #176b87; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Arial, sans-serif; color: var(--ink); background: #f7fbfc; line-height: 1.55; }
+      main { width: min(960px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 56px; }
+      h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin: 0 0 14px; }
+      p { color: var(--muted); max-width: 780px; }
+      a { color: var(--teal); font-weight: 700; }
+      .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+      .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+      table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); }
+      th, td { text-align: left; vertical-align: top; padding: 10px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+      ul, ol { padding-left: 20px; }
+      @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="${pagesBase}">PrintableTools Lab discovery directory</a></p>
+      <h1>${escapeHtml(pack.headline)}</h1>
+      <p>${escapeHtml(pack.shortDescription)}</p>
+      <p><a class="button" href="${pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}">Open service mirror</a></p>
+      <h2>Tracked links</h2>
+      <table><tbody>${trackedLinks}</tbody></table>
+      <h2>Copy-ready outreach</h2>
+      <div class="grid">${scripts}</div>
+      <h2>Listing fields</h2>
+      <table><tbody>${fields}</tbody></table>
+      <h2>Manual execution checklist</h2>
+      <ol>${pack.executionChecklist.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol>
+      <h2>Risk controls</h2>
+      <ul>${pack.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+      ${jsonLdHtml(itemListSchema(pack.name, pack.outreachScripts.map((script) => ({ title: script.title, url: pagesUrl(pack.slug) }))))}
+    </main>
+  </body>
+</html>
+`;
 }
 
 function serviceHtml(service) {
@@ -674,6 +752,27 @@ function serviceFeedEntry(service) {
     relatedTools: service.relatedTools.map((toolPath) => siteUrl(toolPath)),
     riskControls: service.riskControls,
     successGate: service.successGate,
+  };
+}
+
+function serviceSalesPackEntry() {
+  return {
+    id: SERVICE_SALES_PACK.id,
+    name: SERVICE_SALES_PACK.name,
+    description: SERVICE_SALES_PACK.shortDescription,
+    pageUrl: siteUrl(SERVICE_SALES_PACK.slug),
+    discoveryUrl: pagesUrl(SERVICE_SALES_PACK.slug),
+    serviceUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug),
+    serviceDiscoveryUrl: pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug),
+    githubPagesServiceUrl: SERVICE_SALES_PACK.githubPagesServiceUrl,
+    requestBriefUrl: SERVICE_SALES_PACK.requestBriefUrl,
+    githubPagesRequestBriefUrl: SERVICE_SALES_PACK.githubPagesRequestBriefUrl,
+    audience: SERVICE_SALES_PACK.audience,
+    trackedLinks: SERVICE_SALES_PACK.trackedLinks.map(([label, url]) => ({ label, url })),
+    outreachScripts: SERVICE_SALES_PACK.outreachScripts,
+    listingFields: SERVICE_SALES_PACK.listingFields.map(([label, value]) => ({ label, value })),
+    executionChecklist: SERVICE_SALES_PACK.executionChecklist,
+    riskControls: SERVICE_SALES_PACK.riskControls,
   };
 }
 

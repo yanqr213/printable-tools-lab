@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
 const { strToU8, zipSync } = require("fflate");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const template = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -156,6 +156,9 @@ if (!headers.includes("/digital-products.json")) {
 if (!headers.includes("/services.json")) {
   fs.appendFileSync(headersPath, "\n/services.json\n  Content-Type: application/json; charset=utf-8\n");
 }
+if (!headers.includes("/service-sales-pack.json")) {
+  fs.appendFileSync(headersPath, "\n/service-sales-pack.json\n  Content-Type: application/json; charset=utf-8\n");
+}
 if (!headers.includes("/zero-cost-monetization-map.json")) {
   fs.appendFileSync(headersPath, "\n/zero-cost-monetization-map.json\n  Content-Type: application/json; charset=utf-8\n");
 }
@@ -216,6 +219,7 @@ const shareKitJson = {
     url: trackedSharePostUrl(post),
   })),
   videoAssets: campaignAssets,
+  serviceSalesPack: serviceSalesPackEntry(),
   zeroDomainGameExperiment: ZERO_DOMAIN_GAME_EXPERIMENT,
   zeroDomainGameExperiments: ZERO_DOMAIN_GAME_EXPERIMENTS,
   externalDiscovery: {
@@ -226,6 +230,15 @@ const shareKitJson = {
   rules: SHARE_KIT_RULES,
 };
 fs.writeFileSync(path.join(root, "share-kit.json"), `${JSON.stringify(shareKitJson, null, 2)}\n`);
+
+const serviceSalesPackJson = {
+  ...serviceSalesPackEntry(),
+  generatedAt: generatedAtIso,
+  canonical: fileUrl("service-sales-pack.json"),
+  pageUrl: siteUrl(SERVICE_SALES_PACK.slug),
+  moneyGate: CUSTOM_LOCAL_PRINT_PACK_SERVICE.successGate,
+};
+fs.writeFileSync(path.join(root, "service-sales-pack.json"), `${JSON.stringify(serviceSalesPackJson, null, 2)}\n`);
 
 const digitalProductsJson = {
   name: "PrintableTools Lab Digital Products",
@@ -369,6 +382,8 @@ const llms = [
   `- Machine-readable digital products: ${fileUrl("digital-products.json")}`,
   `- Paid service: ${siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}`,
   `- Machine-readable paid services: ${fileUrl("services.json")}`,
+  `- Service sales pack: ${siteUrl(SERVICE_SALES_PACK.slug)}`,
+  `- Machine-readable service sales pack: ${fileUrl("service-sales-pack.json")}`,
   `- HTML5 platform submit queue: ${siteUrl("platform-submit-queue")}`,
   `- HTML5 platform submit cockpit: ${siteUrl("platform-submit-cockpit")}`,
   `- HTML5 platform outreach tracker: ${siteUrl("platform-outreach-tracker")}`,
@@ -435,8 +450,9 @@ const discoveryIndex = {
   gameSubmissionFeed: fileUrl("game-submission-feed.json"),
   digitalProducts: fileUrl("digital-products.json"),
   paidServices: fileUrl("services.json"),
+  serviceSalesPack: fileUrl("service-sales-pack.json"),
   zeroCostMonetizationMap: fileUrl("zero-cost-monetization-map.json"),
-  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl(LOCAL_SELLER_STARTER_KIT.slug), siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl(LOCAL_SELLER_STARTER_KIT.slug), siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug), siteUrl(SERVICE_SALES_PACK.slug), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   distributionAssets: {
     shareKit: siteUrl("share-kit"),
     shareKitJson: fileUrl("share-kit.json"),
@@ -444,6 +460,8 @@ const discoveryIndex = {
     digitalProductsJson: fileUrl("digital-products.json"),
     paidServices: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug),
     paidServicesJson: fileUrl("services.json"),
+    serviceSalesPack: siteUrl(SERVICE_SALES_PACK.slug),
+    serviceSalesPackJson: fileUrl("service-sales-pack.json"),
     customLocalPrintPackRequest: fileUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicRequestPath),
     localSellerStarterKitSample: fileUrl(LOCAL_SELLER_STARTER_KIT.publicSamplePath),
     localSellerStarterKitPrivatePackage: LOCAL_SELLER_STARTER_KIT.privatePackagePath,
@@ -505,6 +523,7 @@ const feedItems = [
   routeToFeedItem(routes.find((route) => route.path === "pdf-tool-finder")),
   routeToFeedItem(routes.find((route) => route.path === LOCAL_SELLER_STARTER_KIT.slug)),
   routeToFeedItem(routes.find((route) => route.path === CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)),
+  routeToFeedItem(routes.find((route) => route.path === SERVICE_SALES_PACK.slug)),
   routeToFeedItem(routes.find((route) => route.path === "share-kit")),
   routeToFeedItem(routes.find((route) => route.path === "tools")),
   ...HIGH_INTENT_LANDING_PATHS
@@ -573,6 +592,22 @@ const distribution = [
   `- GitHub issue campaign: ${siteUrl("upload-limit-fixer").replace(/\/$/, "")}?utm_source=github-issue&utm_medium=organic&utm_campaign=zero_cost_push`,
   `- Public Gist campaign: ${siteUrl("upload-limit-fixer").replace(/\/$/, "")}?utm_source=gist&utm_medium=organic&utm_campaign=zero_cost_push`,
   `- Community campaign: ${siteUrl("").replace(/\/$/, "")}?utm_source=community`,
+  `- Service sales pack campaign: ${siteUrl(SERVICE_SALES_PACK.slug).replace(/\/$/, "")}?utm_source=distribution&utm_medium=organic&utm_campaign=service_sales_pack`,
+  `- Custom Local Print Pack GitHub Pages campaign: ${SERVICE_SALES_PACK.githubPagesServiceUrl}?utm_source=distribution&utm_medium=organic&utm_campaign=service_sales_pack`,
+  "",
+  "## Paid service sales pack",
+  "",
+  `- Service page: ${siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}`,
+  `- GitHub Pages service page: ${SERVICE_SALES_PACK.githubPagesServiceUrl}`,
+  `- Request brief: ${SERVICE_SALES_PACK.githubPagesRequestBriefUrl}`,
+  `- Sales pack page: ${siteUrl(SERVICE_SALES_PACK.slug)}`,
+  `- Machine-readable sales pack: ${fileUrl("service-sales-pack.json")}`,
+  "",
+  "Copy-ready opener:",
+  "",
+  SERVICE_SALES_PACK.outreachScripts[0].message,
+  "",
+  "Manual rule: send the brief first, confirm fit, and only then send a real external checkout link. Do not count requests, page views, or brief downloads as revenue.",
   "",
   "## High-intent links",
   "",
@@ -1021,6 +1056,25 @@ function paidServiceEntry(service) {
     relatedTools: service.relatedTools.map((toolPath) => siteUrl(toolPath)),
     riskControls: service.riskControls,
     successGate: service.successGate,
+  };
+}
+
+function serviceSalesPackEntry() {
+  return {
+    id: SERVICE_SALES_PACK.id,
+    name: SERVICE_SALES_PACK.name,
+    description: SERVICE_SALES_PACK.shortDescription,
+    pageUrl: siteUrl(SERVICE_SALES_PACK.slug),
+    serviceUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug),
+    githubPagesServiceUrl: SERVICE_SALES_PACK.githubPagesServiceUrl,
+    requestBriefUrl: SERVICE_SALES_PACK.requestBriefUrl,
+    githubPagesRequestBriefUrl: SERVICE_SALES_PACK.githubPagesRequestBriefUrl,
+    audience: SERVICE_SALES_PACK.audience,
+    trackedLinks: SERVICE_SALES_PACK.trackedLinks.map(([label, url]) => ({ label, url })),
+    outreachScripts: SERVICE_SALES_PACK.outreachScripts,
+    listingFields: SERVICE_SALES_PACK.listingFields.map(([label, value]) => ({ label, value })),
+    executionChecklist: SERVICE_SALES_PACK.executionChecklist,
+    riskControls: SERVICE_SALES_PACK.riskControls,
   };
 }
 

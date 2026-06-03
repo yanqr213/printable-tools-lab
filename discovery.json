@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-03T00:37:02.201Z",
+  "generatedAt": "2026-06-03T00:55:35.163Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -14,6 +14,7 @@
   "gameSubmissionFeed": "https://printable-tools-lab.pages.dev/game-submission-feed.json",
   "digitalProducts": "https://printable-tools-lab.pages.dev/digital-products.json",
   "paidServices": "https://printable-tools-lab.pages.dev/services.json",
+  "serviceSalesPack": "https://printable-tools-lab.pages.dev/service-sales-pack.json",
   "zeroCostMonetizationMap": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map.json",
   "highIntentEntryPoints": [
     "https://printable-tools-lab.pages.dev/free-pdf-tools/",
@@ -22,6 +23,7 @@
     "https://printable-tools-lab.pages.dev/share-kit/",
     "https://printable-tools-lab.pages.dev/local-seller-starter-kit/",
     "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
+    "https://printable-tools-lab.pages.dev/custom-local-print-pack-sales-pack/",
     "https://printable-tools-lab.pages.dev/platform-submit-queue/",
     "https://printable-tools-lab.pages.dev/platform-submit-cockpit/",
     "https://printable-tools-lab.pages.dev/platform-outreach-tracker/",
@@ -151,6 +153,8 @@
     "digitalProductsJson": "https://printable-tools-lab.pages.dev/digital-products.json",
     "paidServices": "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
     "paidServicesJson": "https://printable-tools-lab.pages.dev/services.json",
+    "serviceSalesPack": "https://printable-tools-lab.pages.dev/custom-local-print-pack-sales-pack/",
+    "serviceSalesPackJson": "https://printable-tools-lab.pages.dev/service-sales-pack.json",
     "customLocalPrintPackRequest": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-request.txt",
     "localSellerStarterKitSample": "https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-sample.zip",
     "localSellerStarterKitPrivatePackage": "paid-deliverables/local-seller-starter-kit.zip",

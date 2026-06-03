@@ -1,0 +1,108 @@
+{
+  "id": "custom-local-print-pack-sales-pack",
+  "name": "Custom Local Print Pack Sales Pack",
+  "description": "A zero-budget outreach pack for promoting the $29 done-for-you local print pack setup to craft sellers, market tables, local services, tutors, cleaners, repair providers, and pop-up organizers.",
+  "pageUrl": "https://printable-tools-lab.pages.dev/custom-local-print-pack-sales-pack/",
+  "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack-sales-pack/",
+  "serviceUrl": "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
+  "serviceDiscoveryUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
+  "githubPagesServiceUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
+  "requestBriefUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-request.txt",
+  "githubPagesRequestBriefUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt",
+  "audience": [
+    "craft fair and market table sellers",
+    "home bakers, handmade sellers, and small online sellers",
+    "local service providers such as tutors, cleaners, notaries, coaches, and repair helpers",
+    "workshop, pop-up class, community event, and booth organizers"
+  ],
+  "trackedLinks": [
+    {
+      "label": "GitHub Pages service link",
+      "url": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
+    },
+    {
+      "label": "GitHub Pages request brief",
+      "url": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
+    },
+    {
+      "label": "Main service link",
+      "url": "https://printable-tools-lab.pages.dev/custom-local-print-pack?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
+    },
+    {
+      "label": "Free price tag generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/price-tag?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
+    },
+    {
+      "label": "Free flyer maker",
+      "url": "https://printable-tools-lab.pages.dev/tools/flyer-maker?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"
+    }
+  ],
+  "outreachScripts": [
+    {
+      "channel": "market-seller-dm",
+      "title": "Friendly DM to a market or craft seller",
+      "message": "Hi, I noticed your local products would look good with a simple printable table pack. I made a $29 done-for-you setup where I prepare starter price tags, flyer copy, QR sign wording, coupon ideas, packing notes, and a one-page launch checklist from your item list. No payment is taken on the site; you can review the brief first and only pay through a real checkout link if it fits.",
+      "cta": "Want the request brief?"
+    },
+    {
+      "channel": "local-service-dm",
+      "title": "DM to a local service provider",
+      "message": "Hi, if you ever need quick printable promo pieces for your service, I have a small $29 setup offer: price/menu rows if needed, one flyer draft, QR sign wording, coupon or bundle ideas, pickup/booking notes, and a print checklist. It is meant for simple local services, not a full branding project.",
+      "cta": "I can send the service brief if useful."
+    },
+    {
+      "channel": "community-reply",
+      "title": "Helpful community reply",
+      "message": "For a quick market table setup, I would start with simple price tags, one clear flyer, a QR/contact sign, and one small offer card. I made free generators for those, plus a $29 done-for-you setup if someone wants the first pack assembled from their own item list.",
+      "cta": "Share the free generator first; mention the paid setup only if the person asks for help."
+    },
+    {
+      "channel": "directory-blurb",
+      "title": "Small service directory blurb",
+      "message": "Custom Local Print Pack Setup is a $29 done-for-you starter pack for local sellers and small service providers who need printable price tags, flyer copy, QR sign wording, coupon ideas, packing notes, and a launch checklist without learning design software.",
+      "cta": "Use the GitHub Pages service link as the public listing URL until the main Cloudflare deployment is refreshed."
+    }
+  ],
+  "listingFields": [
+    {
+      "label": "Service name",
+      "value": "Custom Local Print Pack Setup"
+    },
+    {
+      "label": "Price",
+      "value": "$29 USD"
+    },
+    {
+      "label": "Category",
+      "value": "Local business printables, small business service, market seller setup"
+    },
+    {
+      "label": "Short tagline",
+      "value": "Done-for-you printable starter pack for local sellers and service providers"
+    },
+    {
+      "label": "Public URL",
+      "value": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/"
+    },
+    {
+      "label": "Request brief",
+      "value": "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt"
+    }
+  ],
+  "executionChecklist": [
+    "Start with 5 to 10 manual, relevant, non-spam contacts where the service solves an immediate print or market-table problem.",
+    "Send the request brief first; do not ask for payment until the buyer confirms fit and details.",
+    "Use the external checkout provider only after the buyer asks to proceed.",
+    "Log any request URL, reply, or paid order in OPERATIONS.md with the date and source.",
+    "Count revenue only from a paid provider order, payout balance, or settled payment."
+  ],
+  "riskControls": [
+    "Do not spam communities or scrape private contact lists.",
+    "Do not promise guaranteed sales, legal compliance, tax results, or ad performance.",
+    "Do not collect card, bank, payout, tax, or identity details in the repository or GitHub issues.",
+    "Do not begin paid custom work without a real external payment record."
+  ],
+  "generatedAt": "2026-06-03T00:55:35.253Z",
+  "directory": "https://yanqr213.github.io/printable-tools-lab/",
+  "moneyGate": "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this service."
+}

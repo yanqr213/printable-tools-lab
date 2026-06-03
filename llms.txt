@@ -19,6 +19,8 @@ Monetization model: Free tools stay live for search demand. A low-price Local Se
 - Machine-readable digital products: https://printable-tools-lab.pages.dev/digital-products.json
 - Paid service: https://printable-tools-lab.pages.dev/custom-local-print-pack/
 - Machine-readable paid services: https://printable-tools-lab.pages.dev/services.json
+- Service sales pack: https://printable-tools-lab.pages.dev/custom-local-print-pack-sales-pack/
+- Machine-readable service sales pack: https://printable-tools-lab.pages.dev/service-sales-pack.json
 - HTML5 platform submit queue: https://printable-tools-lab.pages.dev/platform-submit-queue/
 - HTML5 platform submit cockpit: https://printable-tools-lab.pages.dev/platform-submit-cockpit/
 - HTML5 platform outreach tracker: https://printable-tools-lab.pages.dev/platform-outreach-tracker/

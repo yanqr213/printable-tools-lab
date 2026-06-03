@@ -32,6 +32,22 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - GitHub issue campaign: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=github-issue&utm_medium=organic&utm_campaign=zero_cost_push
 - Public Gist campaign: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=gist&utm_medium=organic&utm_campaign=zero_cost_push
 - Community campaign: https://printable-tools-lab.pages.dev?utm_source=community
+- Service sales pack campaign: https://printable-tools-lab.pages.dev/custom-local-print-pack-sales-pack?utm_source=distribution&utm_medium=organic&utm_campaign=service_sales_pack
+- Custom Local Print Pack GitHub Pages campaign: https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=distribution&utm_medium=organic&utm_campaign=service_sales_pack
+
+## Paid service sales pack
+
+- Service page: https://printable-tools-lab.pages.dev/custom-local-print-pack/
+- GitHub Pages service page: https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/
+- Request brief: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt
+- Sales pack page: https://printable-tools-lab.pages.dev/custom-local-print-pack-sales-pack/
+- Machine-readable sales pack: https://printable-tools-lab.pages.dev/service-sales-pack.json
+
+Copy-ready opener:
+
+Hi, I noticed your local products would look good with a simple printable table pack. I made a $29 done-for-you setup where I prepare starter price tags, flyer copy, QR sign wording, coupon ideas, packing notes, and a one-page launch checklist from your item list. No payment is taken on the site; you can review the brief first and only pay through a real checkout link if it fits.
+
+Manual rule: send the brief first, confirm fit, and only then send a real external checkout link. Do not count requests, page views, or brief downloads as revenue.
 
 ## High-intent links
 

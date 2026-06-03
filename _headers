@@ -87,6 +87,9 @@
 /services.json
   Content-Type: application/json; charset=utf-8
 
+/service-sales-pack.json
+  Content-Type: application/json; charset=utf-8
+
 /assets/digital-products/local-seller-starter-kit-buy-request.txt
   Content-Type: text/plain; charset=utf-8
 

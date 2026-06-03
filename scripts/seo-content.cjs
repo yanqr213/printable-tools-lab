@@ -111,6 +111,79 @@ const CUSTOM_LOCAL_PRINT_PACK_SERVICE = {
 
 const PAID_SERVICES = [CUSTOM_LOCAL_PRINT_PACK_SERVICE];
 
+const SERVICE_SALES_PACK = {
+  id: "custom-local-print-pack-sales-pack",
+  slug: "custom-local-print-pack-sales-pack",
+  name: "Custom Local Print Pack Sales Pack",
+  headline: "Copy-ready sales pack for the $29 Custom Local Print Pack service",
+  shortDescription: "A zero-budget outreach pack for promoting the $29 done-for-you local print pack setup to craft sellers, market tables, local services, tutors, cleaners, repair providers, and pop-up organizers.",
+  serviceId: CUSTOM_LOCAL_PRINT_PACK_SERVICE.id,
+  serviceUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug),
+  githubPagesServiceUrl: "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
+  requestBriefUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicRequestPath).replace(/\/$/, ""),
+  githubPagesRequestBriefUrl: "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt",
+  audience: [
+    "craft fair and market table sellers",
+    "home bakers, handmade sellers, and small online sellers",
+    "local service providers such as tutors, cleaners, notaries, coaches, and repair helpers",
+    "workshop, pop-up class, community event, and booth organizers",
+  ],
+  trackedLinks: [
+    ["GitHub Pages service link", "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
+    ["GitHub Pages request brief", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
+    ["Main service link", `${siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug).replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
+    ["Free price tag generator", `${siteUrl("tools/price-tag").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
+    ["Free flyer maker", `${siteUrl("tools/flyer-maker").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
+  ],
+  outreachScripts: [
+    {
+      channel: "market-seller-dm",
+      title: "Friendly DM to a market or craft seller",
+      message: "Hi, I noticed your local products would look good with a simple printable table pack. I made a $29 done-for-you setup where I prepare starter price tags, flyer copy, QR sign wording, coupon ideas, packing notes, and a one-page launch checklist from your item list. No payment is taken on the site; you can review the brief first and only pay through a real checkout link if it fits.",
+      cta: "Want the request brief?",
+    },
+    {
+      channel: "local-service-dm",
+      title: "DM to a local service provider",
+      message: "Hi, if you ever need quick printable promo pieces for your service, I have a small $29 setup offer: price/menu rows if needed, one flyer draft, QR sign wording, coupon or bundle ideas, pickup/booking notes, and a print checklist. It is meant for simple local services, not a full branding project.",
+      cta: "I can send the service brief if useful.",
+    },
+    {
+      channel: "community-reply",
+      title: "Helpful community reply",
+      message: "For a quick market table setup, I would start with simple price tags, one clear flyer, a QR/contact sign, and one small offer card. I made free generators for those, plus a $29 done-for-you setup if someone wants the first pack assembled from their own item list.",
+      cta: "Share the free generator first; mention the paid setup only if the person asks for help.",
+    },
+    {
+      channel: "directory-blurb",
+      title: "Small service directory blurb",
+      message: "Custom Local Print Pack Setup is a $29 done-for-you starter pack for local sellers and small service providers who need printable price tags, flyer copy, QR sign wording, coupon ideas, packing notes, and a launch checklist without learning design software.",
+      cta: "Use the GitHub Pages service link as the public listing URL until the main Cloudflare deployment is refreshed.",
+    },
+  ],
+  listingFields: [
+    ["Service name", CUSTOM_LOCAL_PRINT_PACK_SERVICE.name],
+    ["Price", `$${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} ${CUSTOM_LOCAL_PRINT_PACK_SERVICE.currency}`],
+    ["Category", "Local business printables, small business service, market seller setup"],
+    ["Short tagline", "Done-for-you printable starter pack for local sellers and service providers"],
+    ["Public URL", "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/"],
+    ["Request brief", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt"],
+  ],
+  executionChecklist: [
+    "Start with 5 to 10 manual, relevant, non-spam contacts where the service solves an immediate print or market-table problem.",
+    "Send the request brief first; do not ask for payment until the buyer confirms fit and details.",
+    "Use the external checkout provider only after the buyer asks to proceed.",
+    "Log any request URL, reply, or paid order in OPERATIONS.md with the date and source.",
+    "Count revenue only from a paid provider order, payout balance, or settled payment.",
+  ],
+  riskControls: [
+    "Do not spam communities or scrape private contact lists.",
+    "Do not promise guaranteed sales, legal compliance, tax results, or ad performance.",
+    "Do not collect card, bank, payout, tax, or identity details in the repository or GitHub issues.",
+    "Do not begin paid custom work without a real external payment record.",
+  ],
+};
+
 function configuredCheckoutUrl() {
   const envUrl = (process.env.PUBLIC_SELLER_KIT_CHECKOUT_URL || process.env.PUBLIC_CHECKOUT_URL || "").trim();
   if (envUrl) return envUrl;
@@ -3455,6 +3528,12 @@ const pages = [
     html: customLocalPrintPackServiceHtml(),
   },
   {
+    path: SERVICE_SALES_PACK.slug,
+    title: SERVICE_SALES_PACK.name,
+    description: SERVICE_SALES_PACK.shortDescription,
+    html: serviceSalesPackHtml(),
+  },
+  {
     path: "platform-submit-queue",
     title: "HTML5 Platform Submit Queue",
     description: "Submission order, account checklist, game assets, SDK notes, and compliance rules for the zero-domain HTML5 game monetization route.",
@@ -3987,6 +4066,11 @@ function shareKitHtml() {
         </div>
       </section>
       <section class="shell section">
+        <h2>Paid service sales pack</h2>
+        <p>The $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} ${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.name)} is the fastest manual monetization test. Use the sales pack for copy-ready DMs, directory fields, tracked links, and safety rules.</p>
+        <p><a class="button" href="/${escapeHtml(SERVICE_SALES_PACK.slug)}/">Open service sales pack</a> <a class="button secondary" href="/service-sales-pack.json">Open service-sales-pack.json</a></p>
+      </section>
+      <section class="shell section">
         <h2>Short video scripts</h2>
         <div class="grid-2">
           ${posts.filter((post) => post.channel === "short-video").map((post) => `<article class="panel"><h3>${escapeHtml(post.title)}</h3><ol><li>${escapeHtml(post.hook)}</li><li>Show the source file being rejected or too large.</li><li>${escapeHtml(post.body)}</li><li>${escapeHtml(post.cta)}.</li></ol></article>`).join("\n")}
@@ -4186,6 +4270,47 @@ function customLocalPrintPackServiceHtml() {
         <ul>${service.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
         <p><strong>Money gate:</strong> ${escapeHtml(service.successGate)}</p>
         ${jsonLdHtml(serviceSchema(service))}
+      </section>`;
+}
+
+function serviceSalesPackHtml() {
+  const pack = SERVICE_SALES_PACK;
+  const service = CUSTOM_LOCAL_PRINT_PACK_SERVICE;
+  return `
+      <section class="shell page-title section">
+        <a href="/${escapeHtml(service.slug)}/">Paid service</a>
+        <h1>${escapeHtml(pack.headline)}</h1>
+        <p>${escapeHtml(pack.shortDescription)}</p>
+        <p><a class="button" href="${escapeHtml(pack.githubPagesServiceUrl)}">Open live GitHub Pages service page</a> <a class="button secondary" href="/service-sales-pack.json">Open machine-readable sales pack</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Tracked links</h2>
+        <table class="event-table">
+          <thead><tr><th>Use</th><th>URL</th></tr></thead>
+          <tbody>${pack.trackedLinks.map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("\n")}</tbody>
+        </table>
+      </section>
+      <section class="shell section">
+        <h2>Copy-ready outreach</h2>
+        <div class="grid-2">
+          ${pack.outreachScripts.map((script) => `<article class="panel"><h3>${escapeHtml(script.title)}</h3><p>${escapeHtml(script.message)}</p><p><strong>${escapeHtml(script.cta)}</strong></p></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Listing fields</h2>
+        <table class="event-table">
+          <tbody>${pack.listingFields.map(([label, value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`).join("\n")}</tbody>
+        </table>
+      </section>
+      <section class="shell section">
+        <h2>Manual execution checklist</h2>
+        <ol>${pack.executionChecklist.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol>
+      </section>
+      <section class="shell section">
+        <h2>Risk controls</h2>
+        <ul>${pack.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        <p><strong>Money gate:</strong> ${escapeHtml(service.successGate)}</p>
+        ${jsonLdHtml(itemListSchema(pack.name, pack.outreachScripts.map((script) => ({ title: script.title, path: pack.slug }))))}
       </section>`;
 }
 
@@ -5818,4 +5943,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
