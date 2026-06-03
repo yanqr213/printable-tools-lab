@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-03T04:02:18.064Z",
+  "generatedAt": "2026-06-03T04:18:27.313Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 66,
     "indexableRoutes": 247,
     "sitemapLocCount": 247,
-    "generatedToolInventoryAt": "2026-06-03T04:01:57.179Z",
+    "generatedToolInventoryAt": "2026-06-03T04:14:15.785Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -2032,12 +2032,12 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 11400,
+        "bytes": 11402,
         "json": {
           "ok": true,
           "today": "2026-06-03",
           "totals": {
-            "page_view": 265,
+            "page_view": 272,
             "generate_pdf": 0,
             "download_pdf": 1,
             "generate_file": 0,
@@ -2047,7 +2047,7 @@
             "ai_ideas_apply": 0
           },
           "todayTotals": {
-            "page_view": 7,
+            "page_view": 14,
             "generate_pdf": 0,
             "download_pdf": 0,
             "generate_file": 0,
@@ -2820,13 +2820,13 @@
             },
             {
               "source": "referral",
-              "page_view": 39,
+              "page_view": 46,
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
               "today": {
-                "page_view": 4,
+                "page_view": 11,
                 "generate_pdf": 0,
                 "download_pdf": 0,
                 "generate_file": 0,
@@ -2855,7 +2855,7 @@
     "metrics": {
       "today": "2026-06-03",
       "totals": {
-        "page_view": 265,
+        "page_view": 272,
         "generate_pdf": 0,
         "download_pdf": 1,
         "generate_file": 0,
@@ -2865,7 +2865,7 @@
         "ai_ideas_apply": 0
       },
       "todayTotals": {
-        "page_view": 7,
+        "page_view": 14,
         "generate_pdf": 0,
         "download_pdf": 0,
         "generate_file": 0,
@@ -2962,21 +2962,35 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
+      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF size targets, image KB targets, PDF-to-Word, ATS checks, background removal, text overlays, QR codes, PDF edits, paperwork, labels, resumes, and printables.",
       "topics": [
-        "pdf-tools",
+        "background-remover",
+        "compress-image-to-100kb",
+        "compress-pdf",
+        "compress-pdf-to-1mb",
+        "compress-pdf-to-500kb",
+        "free-tools",
+        "image-compressor",
+        "image-converter",
+        "image-resizer",
+        "image-to-pdf",
         "image-tools",
-        "qr-code",
+        "invoice-generator",
         "no-signup",
-        "browser-tools",
-        "free-tools"
+        "passport-photo",
+        "pdf-generator",
+        "pdf-to-jpg",
+        "pdf-to-word",
+        "pdf-tools",
+        "qr-code",
+        "resume-checker"
       ],
-      "error": "GitHub API fallback used: GitHub API 403",
       "discoveryRelease": {
         "tag": "free-pdf-tools",
         "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
         "name": "Free PDF, Image, and QR Tools Without Signup"
-      }
+      },
+      "error": ""
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
@@ -3069,7 +3083,7 @@
         "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
       ],
       "externalDiscovery": [
-        "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 66 landing page link(s), 50 tool mirror link(s), and 1 game submission link(s).",
         "GitHub Pages discovery sitemap has 124 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 124.",

@@ -101,6 +101,8 @@ const html = `<!doctype html>
       .card h3 { margin: 0 0 8px; }
       .card p { margin: 0 0 12px; }
       .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .button.secondary { background: var(--ink); }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
       ul { padding-left: 20px; }
       @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
     </style>
@@ -110,6 +112,15 @@ const html = `<!doctype html>
       <h1>Free PDF, image, and QR tools without signup</h1>
       <p>This GitHub Pages directory points to the live PrintableTools Lab app, a free browser-based PDF, image, and QR tool site for small business paperwork, local promotion, image conversion, static QR codes, career documents, and everyday printables. Use it when you need a quick file and do not want an account, forced ad view, or surprise download fee.</p>
       <p><a class="button" href="${trackedSiteUrl("free-pdf-tools", "directory-home")}">Open the full free tool directory</a></p>
+      <section class="card">
+        <h2>Local seller print help</h2>
+        <p>If this file job is for a market table, pickup order, craft seller, local service, or event booth, start with the free print audit. The optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request can be copied from this mirror without logging into GitHub.</p>
+        <p class="actions">
+          <a class="button" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Request a free print audit</a>
+          <a class="button secondary" href="${pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}">Copy the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request</a>
+        </p>
+        <p>No payment is collected on this mirror. Revenue is counted only after an external payment provider shows a paid order, payout balance, or settled payment.</p>
+      </section>
 
       <h2>Start with a common file job</h2>
       <div class="grid">
@@ -324,6 +335,18 @@ function trackedLiveToolUrl(toolPath) {
   return url.toString();
 }
 
+function sellerIntentCtaHtml() {
+  return `<section class="card seller-intent">
+        <h2>Local seller print help</h2>
+        <p>If this file job is for a market table, pickup order, craft seller, local service, or event booth, start with the free print audit. The optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request can be copied from this mirror without logging into GitHub.</p>
+        <p class="actions">
+          <a class="button" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Request a free print audit</a>
+          <a class="button secondary" href="${pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}">Copy the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request</a>
+        </p>
+        <p>No payment is collected on this mirror. Revenue is counted only after an external payment provider shows a paid order, payout balance, or settled payment.</p>
+      </section>`;
+}
+
 function gameDiscoveryPath(game) {
   return `html5-game-submission-pack/${slugify(game.name)}`;
 }
@@ -429,6 +452,8 @@ function serviceSalesPackHtml() {
       p { color: var(--muted); max-width: 780px; }
       a { color: var(--teal); font-weight: 700; }
       .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .button.secondary { background: var(--ink); }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
       .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
       .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
       table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); }
@@ -1274,6 +1299,8 @@ function landingDiscoveryHtml(page, primaryTool, relatedTools) {
       p { color: var(--muted); max-width: 780px; }
       a { color: var(--teal); font-weight: 700; }
       .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .button.secondary { background: var(--ink); }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
       .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
       .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
       @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
@@ -1285,6 +1312,7 @@ function landingDiscoveryHtml(page, primaryTool, relatedTools) {
       <h1>${escapeHtml(page.headline)}</h1>
       <p>${escapeHtml(page.lead)}</p>
       <p><a class="button" href="${trackedSiteUrl(page.path, `landing-${page.path}`)}">Open the live no-signup page</a></p>
+      ${sellerIntentCtaHtml()}
       <h2>Primary tool</h2>
       <article class="card">
         <h3>${escapeHtml(primaryTool.title)}</h3>
@@ -1322,6 +1350,8 @@ function toolDiscoveryHtml(tool, relatedLandingPages) {
       p { color: var(--muted); max-width: 780px; }
       a { color: var(--teal); font-weight: 700; }
       .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .button.secondary { background: var(--ink); }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
       .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
       .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
       ul { padding-left: 20px; }
@@ -1334,6 +1364,7 @@ function toolDiscoveryHtml(tool, relatedLandingPages) {
       <h1>${escapeHtml(tool.title)}</h1>
       <p>${escapeHtml(tool.description)}</p>
       <p><a class="button" href="${trackedSiteUrl(tool.path, `tool-${tool.path}`)}">Open the live free tool</a></p>
+      ${sellerIntentCtaHtml()}
       <h2>Why this tool exists</h2>
       <p>This mirror page is a zero-cost discovery entry for the live PrintableTools Lab tool. The live app focuses on practical browser-side generation, no account wall, and clear download flow so users can solve a file or printable job quickly.</p>
       <h2>Best fit</h2>

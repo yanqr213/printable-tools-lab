@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-06-03T03:29:35.635Z",
+  "generatedAt": "2026-06-03T04:17:36.1713282Z",
   "question": "Is there traffic now?",
   "answer": "There is small verified traffic on the utility site and light package-download interest, but no proven game plays, seller intent, platform payout balance, or revenue.",
   "siteMetrics": {
     "source": "https://printable-tools-lab.pages.dev/api/metrics",
     "today": "2026-06-03",
     "totals": {
-      "page_view": 265,
+      "page_view": 272,
       "generate_pdf": 0,
       "download_pdf": 1,
       "generate_file": 0,
@@ -16,7 +16,7 @@
       "ai_ideas_apply": 0
     },
     "todayTotals": {
-      "page_view": 7,
+      "page_view": 14,
       "generate_pdf": 0,
       "download_pdf": 0,
       "generate_file": 0,
@@ -65,8 +65,8 @@
     ]
   },
   "platformReviewStatus": {
-    "crazyGames": "Last verified state remains Neon Lane Dash submitted_awaiting_review from 2026-06-02. Current browser check on 2026-06-03 shows only the public/logged-out developer portal, so live dashboard review status needs session restore.",
-    "playgama": "Last verified state remains Waiting for review from 2026-06-02. Current browser check on 2026-06-03 redirects to login, so live dashboard review status needs session restore.",
+    "crazyGames": "Last verified state remains Neon Lane Dash submitted_awaiting_review from 2026-06-02. Current Edge/Playwright check on 2026-06-03 reached only the public CrazyGames developer portal with a Log in CTA, so live dashboard review status needs session restore.",
+    "playgama": "Last verified state remains Waiting for review from 2026-06-02. Current Edge/Playwright check on 2026-06-03 redirected to https://developer.playgama.com/auth?redirect=/, so live dashboard review status needs session restore.",
     "uploadLimitPanicBackup": "Ready package. Keep as backup; do not submit it to the same active reviewing account until Neon receives a first moderation signal unless a separate portal specifically asks for a second package."
   },
   "moneyGate": "Revenue remains 0 until a payment provider or game platform shows a paid order, payout balance, settled payment, or platform earnings."

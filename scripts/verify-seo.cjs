@@ -34,6 +34,37 @@ for (const route of routes) {
   if (!sitemap.includes(`<loc>${loc}</loc>`)) failures.push(`Missing sitemap loc: ${loc}`);
 }
 
+const docsSellerIndexFile = path.join(root, "docs", "index.html");
+if (!fs.existsSync(docsSellerIndexFile)) failures.push("Missing GitHub Pages discovery index.");
+else {
+  const html = fs.readFileSync(docsSellerIndexFile, "utf8");
+  if (!html.includes("Local seller print help")) failures.push("GitHub Pages directory missing seller-intent CTA.");
+  if (!html.includes(MARKET_TABLE_PRINT_AUDIT.slug)) failures.push("GitHub Pages directory missing audit mirror CTA.");
+  if (!html.includes(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)) failures.push("GitHub Pages directory missing custom print pack CTA.");
+  if (!html.includes(`Copy the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request`)) failures.push("GitHub Pages directory missing low-friction paid service copy CTA.");
+  if (!html.includes("No payment is collected on this mirror")) failures.push("GitHub Pages directory missing no-payment warning.");
+}
+
+const docsLandingMirrorFile = path.join(root, "docs", "free-invoice-generator-no-signup", "index.html");
+if (!fs.existsSync(docsLandingMirrorFile)) failures.push("Missing GitHub Pages invoice landing mirror.");
+else {
+  const html = fs.readFileSync(docsLandingMirrorFile, "utf8");
+  if (!html.includes("Local seller print help")) failures.push("GitHub Pages landing mirror missing seller-intent CTA.");
+  if (!html.includes(MARKET_TABLE_PRINT_AUDIT.slug)) failures.push("GitHub Pages landing mirror missing audit mirror CTA.");
+  if (!html.includes(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)) failures.push("GitHub Pages landing mirror missing custom print pack CTA.");
+  if (!html.includes(`Copy the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request`)) failures.push("GitHub Pages landing mirror missing low-friction paid service copy CTA.");
+}
+
+const docsToolMirrorFile = path.join(root, "docs", "tools", "invoice-generator", "index.html");
+if (!fs.existsSync(docsToolMirrorFile)) failures.push("Missing GitHub Pages invoice tool mirror.");
+else {
+  const html = fs.readFileSync(docsToolMirrorFile, "utf8");
+  if (!html.includes("Local seller print help")) failures.push("GitHub Pages tool mirror missing seller-intent CTA.");
+  if (!html.includes(MARKET_TABLE_PRINT_AUDIT.slug)) failures.push("GitHub Pages tool mirror missing audit mirror CTA.");
+  if (!html.includes(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)) failures.push("GitHub Pages tool mirror missing custom print pack CTA.");
+  if (!html.includes(`Copy the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request`)) failures.push("GitHub Pages tool mirror missing low-friction paid service copy CTA.");
+}
+
 for (const toolPath of ["tools/invoice-generator", "tools/price-tag", "tools/flyer-maker", "tools/coupon-maker", "tools/packing-slip", "tools/business-card", "tools/qr-code"]) {
   const file = path.join(root, ...toolPath.split("/"), "index.html");
   if (!fs.existsSync(file)) {
