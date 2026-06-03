@@ -42,6 +42,28 @@
     "unknown",
   ]);
 
+  const LOCAL_SELLER_FUNNEL_TOOL_IDS = new Set([
+    "invoice-generator",
+    "estimate-generator",
+    "receipt-generator",
+    "timesheet-generator",
+    "business-card",
+    "address-labels",
+    "barcode-labels",
+    "price-tag",
+    "flyer-maker",
+    "coupon-maker",
+    "packing-slip",
+    "work-order",
+    "inventory-sheet",
+    "qr-code",
+    "wifi-qr-code",
+    "vcard-qr-code",
+    "add-text-image",
+    "watermark-image",
+    "remove-background",
+  ]);
+
   bootstrapConfiguredIntegrations();
 
   const AI_FIELD_ALLOWLIST = {
@@ -5713,6 +5735,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
           </div>
         </div>
       </section>
+      ${renderLocalSellerFunnelCta(tool)}
       <section class="shell section">
         <div class="section-head">
           <div>
@@ -5886,6 +5909,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
           </div>
         </div>
       </section>
+      ${renderLocalSellerFunnelCta(tool)}
       <section class="shell section">
         <div class="grid-3">${getRelatedTools(tool.id).slice(0, 3).map(toolCard).join("")}</div>
       </section>
@@ -5936,11 +5960,33 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
           </div>
         </div>
       </section>
+      ${renderLocalSellerFunnelCta(tool)}
       <section class="shell section">
         <div class="grid-3">${getRelatedTools(tool.id).slice(0, 3).map(toolCard).join("")}</div>
       </section>
     `;
     bindImageUtilityTool(tool);
+  }
+
+  function renderLocalSellerFunnelCta(tool) {
+    if (!tool || !LOCAL_SELLER_FUNNEL_TOOL_IDS.has(tool.id)) return "";
+    const content = encodeURIComponent(tool.id);
+    const auditHref = `/market-table-print-audit/?utm_source=tool_cta&utm_medium=site&utm_campaign=market_table_audit&utm_content=${content}`;
+    const serviceHref = `/custom-local-print-pack/?utm_source=tool_cta&utm_medium=site&utm_campaign=service_sales_pack&utm_content=${content}`;
+    return `
+      <section class="shell section seller-funnel-cta" aria-label="Local seller print audit">
+        <div>
+          <p class="eyebrow">For local sellers</p>
+          <h2>Want a quick check before printing this for a table, pickup, or service offer?</h2>
+          <p>Send public-safe notes about your price tags, QR sign, flyer, coupon, packing slip, or service menu and get a free print audit first. The optional $29 setup is only for people who ask for done-for-you assembly.</p>
+        </div>
+        <div class="seller-funnel-actions">
+          <a class="button" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${auditHref}">Request free audit</a>
+          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="${serviceHref}">See optional setup</a>
+          <p class="help">No payment is collected here. Revenue only counts after a real external checkout shows a paid order.</p>
+        </div>
+      </section>
+    `;
   }
 
   function bindImageUtilityTool(tool) {
@@ -11216,7 +11262,7 @@ ${paragraphs.join("\n")}
       const response = await fetch("/api/metrics", { cache: "no-store" });
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error("Metrics unavailable");
-      const sellerSignal = (row) => (row.seller_sample_download || 0) + (row.seller_checkout_intent || 0) + (row.seller_checkout_click || 0);
+      const sellerSignal = (row) => (row.seller_sample_download || 0) + (row.seller_checkout_intent || 0) + (row.seller_checkout_click || 0) + (row.service_request_intent || 0) + (row.audit_request_intent || 0);
       const rows = (data.tools || []).slice().sort((a, b) => {
         const bScore = ((b.download_pdf || 0) + (b.download_file || 0)) * 3 + sellerSignal(b) * 4 + (b.generate_pdf || 0) + (b.generate_file || 0);
         const aScore = ((a.download_pdf || 0) + (a.download_file || 0)) * 3 + sellerSignal(a) * 4 + (a.generate_pdf || 0) + (a.generate_file || 0);
@@ -11232,7 +11278,7 @@ ${paragraphs.join("\n")}
       const displayRows = activeRows.length ? activeRows : rows;
       const totalGenerations = (data.totals.generate_pdf || 0) + (data.totals.generate_file || 0);
       const totalDownloads = (data.totals.download_pdf || 0) + (data.totals.download_file || 0);
-      const sellerIntent = (data.totals.seller_sample_download || 0) + (data.totals.seller_checkout_intent || 0) + (data.totals.seller_checkout_click || 0);
+      const sellerIntent = sellerSignal(data.totals || {});
       target.innerHTML = `
         <div class="metric-grid compact">
           <div class="metric-tile"><strong>${data.totals.page_view || 0}</strong><span>live page views</span></div>

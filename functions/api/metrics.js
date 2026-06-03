@@ -1,5 +1,6 @@
-const EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "limit_hit", "ai_ideas", "ai_ideas_apply", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click"];
-const SOURCE_EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click"];
+const EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "limit_hit", "ai_ideas", "ai_ideas_apply", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_request_intent", "audit_request_intent"];
+const SOURCE_EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_request_intent", "audit_request_intent"];
+const TOOL_EVENTS = ["generate_pdf", "download_pdf", "generate_file", "download_file", "limit_hit", "ai_ideas_apply", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_request_intent", "audit_request_intent"];
 const TOOLS = [
   "invoice-generator",
   "estimate-generator",
@@ -68,6 +69,8 @@ const TOOLS = [
   "weekly-planner",
   "habit-tracker",
   "local-seller-starter-kit",
+  "custom-local-print-pack",
+  "market-table-print-audit",
 ];
 const SOURCES = [
   "direct",
@@ -101,7 +104,7 @@ export async function onRequestGet({ env }) {
     Promise.all(EVENTS.map(async (event) => [event, await count(`day:${today}:event:${event}`)])),
     Promise.all(TOOLS.map(async (tool) => {
       const eventEntries = await Promise.all(
-        ["generate_pdf", "download_pdf", "generate_file", "download_file", "limit_hit", "ai_ideas_apply", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click"].map(async (event) => [
+        TOOL_EVENTS.map(async (event) => [
           event,
           await count(`total:tool:${tool}:event:${event}`),
         ]),

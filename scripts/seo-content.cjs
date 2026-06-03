@@ -1878,6 +1878,30 @@ const HIGH_INTENT_TOOL_PATHS = [
   "tools/graph-paper",
 ];
 
+const LOCAL_SELLER_FUNNEL_TOOL_PATHS = [
+  "tools/invoice-generator",
+  "tools/estimate-generator",
+  "tools/receipt-generator",
+  "tools/timesheet-generator",
+  "tools/business-card",
+  "tools/address-labels",
+  "tools/barcode-labels",
+  "tools/price-tag",
+  "tools/flyer-maker",
+  "tools/coupon-maker",
+  "tools/packing-slip",
+  "tools/work-order",
+  "tools/inventory-sheet",
+  "tools/qr-code",
+  "tools/wifi-qr-code",
+  "tools/vcard-qr-code",
+  "tools/add-text-image",
+  "tools/watermark-image",
+  "tools/remove-background",
+];
+
+const LOCAL_SELLER_FUNNEL_TOOL_PATH_SET = new Set(LOCAL_SELLER_FUNNEL_TOOL_PATHS);
+
 const TOOL_FINDER_ROWS = [
   {
     need: "I need to turn a photo, scan, or screenshot into a PDF",
@@ -4386,6 +4410,7 @@ function toolHtml(tool) {
         ${tool.body.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("\n")}
         <p><a class="button" href="/${tool.path}/">Open generator</a></p>
       </section>
+${localSellerFunnelHtml(tool)}
       <section class="shell section">
         <h2>How to use this free ${noun}</h2>
         <ol>
@@ -4411,6 +4436,26 @@ function toolHtml(tool) {
         <p>${related.map((guide) => `<a class="tag" href="/${guide.path}/">${escapeHtml(guide.title)}</a>`).join(" ")}</p>
         ${jsonLdHtml(softwareSchema(tool))}
         ${jsonLdHtml(faqSchema(details.faq))}
+      </section>`;
+}
+
+function localSellerFunnelHtml(tool) {
+  if (!LOCAL_SELLER_FUNNEL_TOOL_PATH_SET.has(tool.path)) return "";
+  const toolSlug = tool.path.replace(/^tools\//, "");
+  const auditHref = `/${MARKET_TABLE_PRINT_AUDIT.slug}/?utm_source=tool_cta&utm_medium=site&utm_campaign=market_table_audit&utm_content=${encodeURIComponent(toolSlug)}`;
+  const serviceHref = `/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug}/?utm_source=tool_cta&utm_medium=site&utm_campaign=service_sales_pack&utm_content=${encodeURIComponent(toolSlug)}`;
+  return `
+      <section class="shell section seller-funnel-cta" aria-label="Local seller print audit">
+        <div>
+          <p class="eyebrow">For local sellers</p>
+          <h2>Want a quick check before printing this for a table, pickup, or service offer?</h2>
+          <p>Send public-safe notes about your price tags, QR sign, flyer, coupon, packing slip, or service menu and get a free print audit first. The optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup is only for people who ask for done-for-you assembly.</p>
+        </div>
+        <div class="seller-funnel-actions">
+          <a class="button" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(MARKET_TABLE_PRINT_AUDIT.id)}" href="${escapeHtml(auditHref)}">Request free audit</a>
+          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.id)}" href="${escapeHtml(serviceHref)}">See optional setup</a>
+          <p class="help">No payment is collected here. Revenue only counts after a real external checkout shows a paid order.</p>
+        </div>
       </section>`;
 }
 

@@ -23,8 +23,8 @@ const server = http.createServer((req, res) => {
     res.end(JSON.stringify({
       ok: true,
       today: new Date().toISOString().slice(0, 10),
-      totals: { page_view: 0, generate_pdf: 0, download_pdf: 0, generate_file: 0, download_file: 0, limit_hit: 0, ai_ideas: 0, ai_ideas_apply: 0, seller_sample_download: 0, seller_checkout_intent: 0, seller_checkout_click: 0 },
-      todayTotals: { page_view: 0, generate_pdf: 0, download_pdf: 0, generate_file: 0, download_file: 0, limit_hit: 0, ai_ideas: 0, ai_ideas_apply: 0, seller_sample_download: 0, seller_checkout_intent: 0, seller_checkout_click: 0 },
+      totals: { page_view: 0, generate_pdf: 0, download_pdf: 0, generate_file: 0, download_file: 0, limit_hit: 0, ai_ideas: 0, ai_ideas_apply: 0, seller_sample_download: 0, seller_checkout_intent: 0, seller_checkout_click: 0, service_request_intent: 0, audit_request_intent: 0 },
+      todayTotals: { page_view: 0, generate_pdf: 0, download_pdf: 0, generate_file: 0, download_file: 0, limit_hit: 0, ai_ideas: 0, ai_ideas_apply: 0, seller_sample_download: 0, seller_checkout_intent: 0, seller_checkout_click: 0, service_request_intent: 0, audit_request_intent: 0 },
       tools: [],
       sources: [],
     }));

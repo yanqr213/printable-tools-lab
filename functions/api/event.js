@@ -12,6 +12,8 @@ const ALLOWED_EVENTS = new Set([
   "seller_sample_download",
   "seller_checkout_intent",
   "seller_checkout_click",
+  "service_request_intent",
+  "audit_request_intent",
 ]);
 
 const ALLOWED_SOURCES = new Set([
@@ -106,6 +108,8 @@ const ALLOWED_TOOLS = new Set([
   "weekly-planner",
   "habit-tracker",
   "local-seller-starter-kit",
+  "custom-local-print-pack",
+  "market-table-print-audit",
 ]);
 
 export async function onRequestPost({ request, env }) {

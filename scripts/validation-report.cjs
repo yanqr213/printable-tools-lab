@@ -564,7 +564,11 @@ function totalGenerations(totals) {
 }
 
 function sellerIntent(totals) {
-  return (totals.seller_sample_download || 0) + (totals.seller_checkout_intent || 0) + (totals.seller_checkout_click || 0);
+  return (totals.seller_sample_download || 0)
+    + (totals.seller_checkout_intent || 0)
+    + (totals.seller_checkout_click || 0)
+    + (totals.service_request_intent || 0)
+    + (totals.audit_request_intent || 0);
 }
 
 function toolScore(row) {

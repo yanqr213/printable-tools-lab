@@ -34,6 +34,21 @@ for (const route of routes) {
   if (!sitemap.includes(`<loc>${loc}</loc>`)) failures.push(`Missing sitemap loc: ${loc}`);
 }
 
+for (const toolPath of ["tools/invoice-generator", "tools/price-tag", "tools/flyer-maker", "tools/coupon-maker", "tools/packing-slip", "tools/business-card", "tools/qr-code"]) {
+  const file = path.join(root, ...toolPath.split("/"), "index.html");
+  if (!fs.existsSync(file)) {
+    failures.push(`Missing local seller funnel tool page: ${toolPath}`);
+    continue;
+  }
+  const html = fs.readFileSync(file, "utf8");
+  if (!html.includes("seller-funnel-cta")) failures.push(`Missing local seller funnel CTA: ${toolPath}`);
+  if (!html.includes("market_table_audit")) failures.push(`Missing audit campaign tracking on funnel CTA: ${toolPath}`);
+  if (!html.includes("service_sales_pack")) failures.push(`Missing service campaign tracking on funnel CTA: ${toolPath}`);
+  if (!html.includes("data-track-event=\"audit_request_intent\"")) failures.push(`Missing audit intent event on funnel CTA: ${toolPath}`);
+  if (!html.includes("data-track-event=\"service_request_intent\"")) failures.push(`Missing service intent event on funnel CTA: ${toolPath}`);
+  if (!html.includes("No payment is collected here")) failures.push(`Missing no-payment warning on funnel CTA: ${toolPath}`);
+}
+
 const robotsFile = path.join(root, "robots.txt");
 if (!fs.existsSync(robotsFile)) failures.push("Missing robots.txt.");
 else {

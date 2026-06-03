@@ -393,6 +393,45 @@ main {
   opacity: 0.58;
 }
 
+.seller-funnel-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 0.42fr);
+  gap: 18px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #f9fcfb;
+}
+
+.seller-funnel-cta .eyebrow {
+  margin: 0 0 8px;
+  color: var(--teal-dark);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.seller-funnel-cta h2 {
+  margin: 0 0 10px;
+}
+
+.seller-funnel-cta p {
+  margin-bottom: 0;
+}
+
+.seller-funnel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.seller-funnel-actions .help {
+  flex-basis: 100%;
+  text-align: right;
+}
+
 .meta {
   display: flex;
   flex-wrap: wrap;
@@ -855,9 +894,18 @@ canvas.preview-canvas {
 
   .hero,
   .tool-layout,
+  .seller-funnel-cta,
   .grid-2,
   .grid-3 {
     grid-template-columns: 1fr;
+  }
+
+  .seller-funnel-actions {
+    justify-content: flex-start;
+  }
+
+  .seller-funnel-actions .help {
+    text-align: left;
   }
 
   .tool-form {
