@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-03T01:57:26.035Z",
+  "generatedAt": "2026-06-03T02:36:25.549Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -7,9 +7,9 @@
     "toolCount": 66,
     "guideCount": 95,
     "landingPageCount": 66,
-    "indexableRoutes": 246,
-    "sitemapLocCount": 246,
-    "generatedToolInventoryAt": "2026-06-03T01:56:46.877Z",
+    "indexableRoutes": 247,
+    "sitemapLocCount": 247,
+    "generatedToolInventoryAt": "2026-06-03T02:30:22.213Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -2037,7 +2037,7 @@
           "ok": true,
           "today": "2026-06-03",
           "totals": {
-            "page_view": 259,
+            "page_view": 262,
             "generate_pdf": 0,
             "download_pdf": 1,
             "generate_file": 0,
@@ -2047,7 +2047,7 @@
             "ai_ideas_apply": 0
           },
           "todayTotals": {
-            "page_view": 1,
+            "page_view": 4,
             "generate_pdf": 0,
             "download_pdf": 0,
             "generate_file": 0,
@@ -2655,13 +2655,13 @@
           "sources": [
             {
               "source": "direct",
-              "page_view": 198,
+              "page_view": 201,
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
               "today": {
-                "page_view": 0,
+                "page_view": 3,
                 "generate_pdf": 0,
                 "download_pdf": 0,
                 "generate_file": 0,
@@ -2855,7 +2855,7 @@
     "metrics": {
       "today": "2026-06-03",
       "totals": {
-        "page_view": 259,
+        "page_view": 262,
         "generate_pdf": 0,
         "download_pdf": 1,
         "generate_file": 0,
@@ -2865,7 +2865,7 @@
         "ai_ideas_apply": 0
       },
       "todayTotals": {
-        "page_view": 1,
+        "page_view": 4,
         "generate_pdf": 0,
         "download_pdf": 0,
         "generate_file": 0,
@@ -2996,13 +2996,13 @@
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 123,
+      "sitemapUrlCount": 124,
       "landingPagesLinked": 66,
       "toolPagesLinked": 50,
       "toolPagesInSitemap": 50,
       "gamePagesLinked": 1,
       "gamePagesInSitemap": 3,
-      "expectedUrlCount": 123,
+      "expectedUrlCount": 124,
       "error": ""
     },
     "indexNow": {
@@ -3013,7 +3013,7 @@
       "keyFileReachable": true,
       "singleUrlAccepted": false,
       "latestReport": {
-        "generatedAt": "2026-06-03T01:41:41.816Z",
+        "generatedAt": "2026-06-03T02:36:24.183Z",
         "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
         "results": [
           {
@@ -3023,7 +3023,7 @@
             "keyReachable": true,
             "keyStatus": 200,
             "keyMessage": "ok",
-            "urlCount": 246,
+            "urlCount": 247,
             "submittedUrls": 0,
             "accepted": false,
             "status": 403,
@@ -3038,8 +3038,8 @@
             "keyReachable": true,
             "keyStatus": 200,
             "keyMessage": "ok",
-            "urlCount": 123,
-            "submittedUrls": 123,
+            "urlCount": 124,
+            "submittedUrls": 124,
             "accepted": true,
             "status": 200,
             "message": "",
@@ -3054,7 +3054,7 @@
       "acceptedTargets": [
         "github-pages"
       ],
-      "acceptedUrlCount": 123,
+      "acceptedUrlCount": 124,
       "error": ""
     },
     "externalDiscoveryReady": true
@@ -3086,9 +3086,9 @@
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 66 landing page link(s), 50 tool mirror link(s), and 1 game submission link(s).",
-        "GitHub Pages discovery sitemap has 123 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 123.",
+        "GitHub Pages discovery sitemap has 124 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 124.",
         "IndexNow key file is reachable from the site root.",
-        "IndexNow latest report accepted 123 URL(s) for github-pages."
+        "IndexNow latest report accepted 124 URL(s) for github-pages."
       ]
     }
   },
