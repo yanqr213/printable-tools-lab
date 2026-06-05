@@ -6999,15 +6999,38 @@ ${paragraphs.join("\n")}
     return `${(size / (1024 * 1024)).toFixed(1)} MB`;
   }
 
+  function renderDownloadAfterAction(tool) {
+    if (!tool || !LOCAL_SELLER_FUNNEL_TOOL_IDS.has(tool.id)) return "";
+    const content = encodeURIComponent(tool.id);
+    const auditHref = `/market-table-print-audit/?utm_source=download_success&utm_medium=site&utm_campaign=market_table_audit&utm_content=${content}`;
+    const serviceHref = `/custom-local-print-pack/?utm_source=download_success&utm_medium=site&utm_campaign=service_sales_pack&utm_content=${content}`;
+    return `
+      <div class="download-after-action" aria-label="Next step after download">
+        <div>
+          <p class="eyebrow">Before you print</p>
+          <strong>Need this for a market table, pickup order, or local service?</strong>
+          <p class="help">Get a free print audit before printing, or open the optional $29 setup request if you want the pack assembled for you.</p>
+        </div>
+        <div class="download-after-actions">
+          <a class="button" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${escapeHtml(auditHref)}">Request free print audit</a>
+          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="${escapeHtml(serviceHref)}">Open $29 setup request</a>
+        </div>
+        <p class="help">No payment is collected here. Paid work starts only after a real external checkout is paid.</p>
+      </div>
+    `;
+  }
+
   function showDownloadComplete(tool, target, remaining, title = "PDF downloaded") {
     if (!target) return;
     const related = getRelatedTools(tool.id).slice(0, 3);
+    const afterAction = renderDownloadAfterAction(tool);
     target.hidden = false;
     target.innerHTML = `
       <div>
         <strong>${escapeHtml(title)}</strong>
         <p class="help">Review the file before sharing or printing. You have ${Math.max(0, remaining)} free ${remaining === 1 ? "generation" : "generations"} left today in this browser.</p>
       </div>
+      ${afterAction}
       <div class="next-links">
         ${related.map((item) => `<a class="tag" href="/tools/${item.id}/">${escapeHtml(item.shortTitle)}</a>`).join("")}
         <a class="tag" href="/guides/">Guides</a>

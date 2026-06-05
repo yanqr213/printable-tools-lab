@@ -93,6 +93,17 @@ for (const toolPath of ["tools/invoice-generator", "tools/price-tag", "tools/fly
   if (!html.includes("No payment is collected here")) failures.push(`Missing no-payment warning on funnel CTA: ${toolPath}`);
 }
 
+const appScriptFile = path.join(root, "app.js");
+if (!fs.existsSync(appScriptFile)) failures.push("Missing app.js.");
+else {
+  const script = fs.readFileSync(appScriptFile, "utf8");
+  if (!script.includes("download-after-action")) failures.push("Missing download success after-action funnel.");
+  if (!script.includes("utm_source=download_success")) failures.push("Missing download success campaign tracking.");
+  if (!script.includes('data-track-event="audit_request_intent"')) failures.push("Missing download success audit intent tracking.");
+  if (!script.includes('data-track-event="service_request_intent"')) failures.push("Missing download success service intent tracking.");
+  if (!script.includes("Paid work starts only after a real external checkout is paid")) failures.push("Missing download success paid-checkout warning.");
+}
+
 const robotsFile = path.join(root, "robots.txt");
 if (!fs.existsSync(robotsFile)) failures.push("Missing robots.txt.");
 else {
