@@ -1,6 +1,6 @@
 {
   "product": "Local Seller Starter Kit",
-  "generatedAt": "2026-06-05T23:46:26.051Z",
+  "generatedAt": "2026-06-05T23:52:15.177Z",
   "priceUsd": 9,
   "checkoutConfigured": false,
   "publicSample": {
@@ -8,7 +8,7 @@
     "url": "https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-sample.zip",
     "fileCount": 4,
     "sizeBytes": 1790,
-    "sha256": "410e74fb6db7bf5df2226f62f913c609c1f996bc23bd9d72551e02f84fff2ad4"
+    "sha256": "bd57718143705c3a0ea25c4331be9bcfd5994a813b6d737f116b0142ac183dd1"
   },
   "publicRequestTemplate": {
     "path": "assets/digital-products/local-seller-starter-kit-buy-request.txt",
@@ -21,7 +21,7 @@
     "gitIgnored": true,
     "fileCount": 13,
     "sizeBytes": 7576,
-    "sha256": "3c99dad9db15bb04601de7bfbca51bc44a0eff90323fd362c7fd58629fc90107"
+    "sha256": "63378d6bb81b43e88a42a916258aca6dcd56b45e0891bb3423fc38caefc32f3f"
   },
   "moneyGate": "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this kit.",
   "riskControls": [

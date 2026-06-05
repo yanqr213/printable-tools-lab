@@ -25,6 +25,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 
 - Directory campaign: https://printable-tools-lab.pages.dev?utm_source=directory
 - TechTools Launchpad tracked directory pack: https://printable-tools-lab.pages.dev/submit-directory?utm_source=techtools&utm_medium=directory&utm_campaign=launchpad_2026_06
+- TechTools Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=techtools&utm_medium=directory&utm_campaign=upload_limit_2026_06&utm_content=upload_limit_fixer
 - NoLogin.tools tracked upload-limit URL: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nologin&utm_medium=directory&utm_campaign=zero_cost_push
 - NoSubscription.org tracked upload-limit URL: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nosubscription&utm_medium=directory&utm_campaign=zero_cost_push
 - Share kit campaign: https://printable-tools-lab.pages.dev/share-kit?utm_source=share-kit&utm_medium=organic
@@ -275,6 +276,7 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - Zearches free URL directory for one homepage submission only
 - ListAi.cc free no-account AI tool directory submission; submitted on 2026-06-01 and awaiting review
 - TechTools Launchpad no-login API listing; submitted on 2026-06-06 and live at https://techtools.cz/tools/launchpad/?tool=161
+- TechTools Upload Limit Fixer high-intent listing; submitted on 2026-06-06 and live at https://techtools.cz/tools/launchpad/?tool=162
 - NoLogin.tools free no-login/privacy tool submission; submitted on 2026-06-03 and awaiting human review
 - NoSubscription.org free/open-source track; submitted on 2026-06-03 and awaiting slow review
 - FOSSHUNTER/open-source directories only when a normal public submit flow is available; do not bypass Cloudflare challenges or submit to directories that prohibit future ads/analytics

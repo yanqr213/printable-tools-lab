@@ -24,12 +24,20 @@ const directories = [
     reviewWindow: "24-48 hours",
   },
   {
-    name: "TechTools Launchpad",
+    name: "TechTools Launchpad site listing",
     url: "https://techtools.cz/tools/launchpad/",
     searchUrl: "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
     expected: [siteHost, "PrintableTools Lab"],
     submittedAt: "2026-06-06",
     reviewWindow: "auto-approved API listing",
+  },
+  {
+    name: "TechTools Launchpad upload-limit listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=162",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/162",
+    expected: [siteHost, "Upload Limit Fixer"],
+    submittedAt: "2026-06-06",
+    reviewWindow: "auto-approved API listing for the high-intent upload-limit entry",
   },
   {
     name: "NoSignupTools",
