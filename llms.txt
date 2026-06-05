@@ -124,6 +124,12 @@ Monetization model: Free tools stay live for search demand and future display ad
 ## High-Intent Landing Pages
 
 - [Free Upload Limit Fixer](https://printable-tools-lab.pages.dev/upload-limit-fixer/): file upload limit fixer, reduce file size, convert file format, resize photo
+- [File Must Be Less Than 1MB Fix](https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb/): file must be less than 1MB, upload file too large, reduce file size
+- [PDF Must Be Under 500KB Fix](https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/): PDF must be under 500KB, compress PDF to 500KB, upload limit error
+- [Photo Must Be Under 100KB Fix](https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/): photo must be under 100KB, image under 100KB, upload photo too large
+- [Invalid File Type JPG or PNG Fix](https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/): invalid file type JPG PNG, upload JPG or PNG, convert image type
+- [Image Dimensions 600x600 Fix](https://printable-tools-lab.pages.dev/image-dimensions-600x600/): image dimensions 600x600, resize image to 600x600, exact pixel upload error
+- [PDF Not Accepted JPG Required Fix](https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/): PDF not accepted JPG required, website accepts image not PDF, convert PDF to JPG
 - [Free Invoice Generator Without Signup](https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/): invoice PDF now, no account, no hidden export fee
 - [JPG to PDF Without Uploading](https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/): private image conversion, no upload, fast PDF
 - [Multiple Images to PDF Without Uploading](https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/): combine images into one PDF without upload

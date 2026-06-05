@@ -5,13 +5,49 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-05T20:54:26.801Z",
+  "generatedAt": "2026-06-05T21:11:50.636Z",
   "landingPages": [
     {
       "title": "Free Upload Limit Fixer",
       "url": "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/upload-limit-fixer/",
       "intent": "file upload limit fixer, reduce file size, convert file format, resize photo"
+    },
+    {
+      "title": "File Must Be Less Than 1MB Fix",
+      "url": "https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/file-must-be-less-than-1mb/",
+      "intent": "file must be less than 1MB, upload file too large, reduce file size"
+    },
+    {
+      "title": "PDF Must Be Under 500KB Fix",
+      "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/pdf-must-be-under-500kb/",
+      "intent": "PDF must be under 500KB, compress PDF to 500KB, upload limit error"
+    },
+    {
+      "title": "Photo Must Be Under 100KB Fix",
+      "url": "https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/photo-must-be-under-100kb/",
+      "intent": "photo must be under 100KB, image under 100KB, upload photo too large"
+    },
+    {
+      "title": "Invalid File Type JPG or PNG Fix",
+      "url": "https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/invalid-file-type-jpg-png/",
+      "intent": "invalid file type JPG PNG, upload JPG or PNG, convert image type"
+    },
+    {
+      "title": "Image Dimensions 600x600 Fix",
+      "url": "https://printable-tools-lab.pages.dev/image-dimensions-600x600/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/image-dimensions-600x600/",
+      "intent": "image dimensions 600x600, resize image to 600x600, exact pixel upload error"
+    },
+    {
+      "title": "PDF Not Accepted JPG Required Fix",
+      "url": "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/pdf-not-accepted-jpg-required/",
+      "intent": "PDF not accepted JPG required, website accepts image not PDF, convert PDF to JPG"
     },
     {
       "title": "Free Invoice Generator Without Signup",

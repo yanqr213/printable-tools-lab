@@ -2303,6 +2303,102 @@ const landingPages = [
     relatedTools: ["tools/compress-pdf?targetSize=1mb", "tools/compress-pdf?targetSize=500kb", "tools/resize-image", "tools/passport-photo", "tools/pdf-to-images", "tools/image-to-pdf"],
   },
   {
+    path: "file-must-be-less-than-1mb",
+    title: "File Must Be Less Than 1MB Fix",
+    description: "Fix a file must be less than 1MB upload error with free no-signup PDF and image size tools.",
+    headline: "Fix file must be less than 1 MB",
+    lead: "Use this when a job portal, school form, email upload, support form, or admin website rejects a file with a message like file must be less than 1 MB.",
+    primaryTool: "tools/compress-pdf?targetSize=1mb",
+    intent: "file must be less than 1MB, upload file too large, reduce file size",
+    uploadErrorMatcher: true,
+    sections: [
+      ["Start with the file type", "If the blocked file is a PDF, open the PDF compressor with the 1MB target. If it is a photo or screenshot, use the image-to-KB compressor and choose the closest KB target."],
+      ["Why this query is urgent", "This error usually appears after the user already has the right document and is trying to submit it. The fastest path is a direct target-size tool, not a general editor."],
+      ["Review before upload", "A 1MB target can reduce detail or flatten PDF text. Open the downloaded result before submitting it to the destination website."],
+    ],
+    relatedTools: ["tools/compress-pdf?targetSize=1mb", "tools/compress-image-to-kb?targetKb=100", "tools/resize-image"],
+  },
+  {
+    path: "pdf-must-be-under-500kb",
+    title: "PDF Must Be Under 500KB Fix",
+    description: "Try to reduce a PDF toward a 500KB upload limit locally when a form says the PDF must be under 500KB.",
+    headline: "Fix PDF must be under 500KB",
+    lead: "Use this when a form, exam portal, school system, or application page rejects a PDF with a strict 500KB limit.",
+    primaryTool: "tools/compress-pdf?targetSize=500kb",
+    intent: "PDF must be under 500KB, compress PDF to 500KB, upload limit error",
+    uploadErrorMatcher: true,
+    sections: [
+      ["Use the strict PDF target", "Open the PDF compressor with the 500KB target already selected. This is the smallest built-in PDF target and works best for short scanned documents."],
+      ["Know the tradeoff", "A 500KB target is aggressive. Long PDFs, text-heavy documents, or high-detail scans may lose clarity or still miss the exact limit."],
+      ["If it still fails", "Split the PDF, convert pages to images, or compress source photos before rebuilding the final upload file."],
+    ],
+    relatedTools: ["tools/compress-pdf?targetSize=500kb", "tools/split-pdf", "tools/pdf-to-images"],
+  },
+  {
+    path: "photo-must-be-under-100kb",
+    title: "Photo Must Be Under 100KB Fix",
+    description: "Compress a photo toward 100KB locally when a job, profile, school, or application form rejects the image file size.",
+    headline: "Fix photo must be under 100KB",
+    lead: "Use this when a form says a photo, image, profile picture, or ID-style upload must be under 100KB.",
+    primaryTool: "tools/compress-image-to-kb?targetKb=100",
+    intent: "photo must be under 100KB, image under 100KB, upload photo too large",
+    uploadErrorMatcher: true,
+    sections: [
+      ["Use the 100KB image target", "Open the image-to-KB compressor with 100KB selected, then download a smaller JPG or WebP copy from the browser."],
+      ["Resize first if dimensions matter", "If the same portal also gives exact width and height, resize or crop before compressing to the KB limit."],
+      ["Check face and text clarity", "Small file-size targets can soften faces, text, screenshots, and document photos. Review the output before submitting."],
+    ],
+    relatedTools: ["tools/compress-image-to-kb?targetKb=100", "tools/resize-image", "tools/passport-photo"],
+  },
+  {
+    path: "invalid-file-type-jpg-png",
+    title: "Invalid File Type JPG or PNG Fix",
+    description: "Convert an image locally when an upload form says invalid file type and asks for JPG, JPEG, or PNG.",
+    headline: "Fix invalid file type: upload JPG or PNG",
+    lead: "Use this when a website rejects an image because the file type is unsupported, or the message says to upload JPG, JPEG, or PNG.",
+    primaryTool: "tools/convert-image",
+    intent: "invalid file type JPG PNG, upload JPG or PNG, convert image type",
+    uploadErrorMatcher: true,
+    sections: [
+      ["Convert the image format", "Open the image converter and export a JPG, PNG, or WebP copy that matches the destination website's accepted file type."],
+      ["Then check file size", "Changing format can increase or decrease file size. If the converted image is still too large, run it through the image-to-KB compressor."],
+      ["Transparency warning", "JPG does not preserve transparency. Use PNG when transparent background or sharp graphics matter and the portal accepts PNG."],
+    ],
+    relatedTools: ["tools/convert-image", "tools/compress-image-to-kb", "tools/resize-image"],
+  },
+  {
+    path: "image-dimensions-600x600",
+    title: "Image Dimensions 600x600 Fix",
+    description: "Resize or crop an image to 600 x 600 pixels locally when a profile, marketplace, or form upload requires exact dimensions.",
+    headline: "Fix image dimensions must be 600 x 600",
+    lead: "Use this when an upload page rejects a photo, product image, avatar, or screenshot because it must be exactly 600 x 600 pixels.",
+    primaryTool: "tools/resize-image?width=600&height=600&fit=cover",
+    intent: "image dimensions 600x600, resize image to 600x600, exact pixel upload error",
+    uploadErrorMatcher: true,
+    sections: [
+      ["Resize to exact pixels", "Open the image resizer with 600 x 600 prefilled. The cover crop option helps make a square output instead of leaving blank space."],
+      ["Crop important content", "Square resizing can cut off edges. Check that faces, product details, logos, or document text remain visible."],
+      ["Compress after resizing", "If the 600 x 600 image still exceeds a KB limit, compress the resized result with the image-to-KB tool."],
+    ],
+    relatedTools: ["tools/resize-image?width=600&height=600&fit=cover", "tools/crop-image", "tools/compress-image-to-kb?targetKb=100"],
+  },
+  {
+    path: "pdf-not-accepted-jpg-required",
+    title: "PDF Not Accepted JPG Required Fix",
+    description: "Convert PDF pages to JPG or PNG locally when a website accepts images but rejects a PDF upload.",
+    headline: "Fix PDF not accepted, JPG required",
+    lead: "Use this when a form or website rejects a PDF and asks for JPG, JPEG, PNG, photo, or image files instead.",
+    primaryTool: "tools/pdf-to-images",
+    intent: "PDF not accepted JPG required, website accepts image not PDF, convert PDF to JPG",
+    uploadErrorMatcher: true,
+    sections: [
+      ["Convert PDF pages to images", "Open the PDF-to-images tool and export selected pages as JPG or PNG files from the browser."],
+      ["Watch page count", "If the PDF has several pages, each page becomes its own image. Some websites expect one image per upload field."],
+      ["Compress images if needed", "Converted pages can still be large. If the upload page also has a KB limit, compress the resulting image before submitting."],
+    ],
+    relatedTools: ["tools/pdf-to-images", "tools/compress-image-to-kb", "tools/image-to-pdf"],
+  },
+  {
     path: "free-invoice-generator-no-signup",
     title: "Free Invoice Generator Without Signup",
     description: "Create and download a clean invoice PDF without creating an account, uploading data, or hitting a surprise export paywall.",
@@ -5971,6 +6067,22 @@ function landingPageHtml(page) {
   const related = uniqueBy(page.relatedTools
     .map((toolPath) => tools.find((item) => item.path === cleanToolPath(toolPath)))
     .filter(Boolean), (item) => item.path);
+  const sectionHtml = page.sections.map(([heading, text]) => `
+      <section class="shell section">
+        <h2>${escapeHtml(heading)}</h2>
+        <p>${escapeHtml(text)}</p>
+      </section>`.trim()).join("\n");
+  const uploadMatcherHtml = page.uploadErrorMatcher ? `\n${uploadLimitMatcherHtml()}` : "";
+  const targetLinksHtml = page.targetLinks ? `
+      <section class="shell section">
+        <h2>Choose an exact KB target</h2>
+        <div class="grid-3">
+          ${page.targetLinks.map(([label, pathName, text]) => `<article class="tool-card"><h3>${escapeHtml(label)}</h3><p>${escapeHtml(text)}</p><a class="button" href="/${escapeHtml(pathName)}/">Open target</a></article>`).join("\n")}
+        </div>
+      </section>`.trim() : "";
+  const uploadShortcutsHtml = page.path === "upload-limit-fixer"
+    ? `\n${uploadLimitShortcutsHtml("Fast upload limit shortcuts", "If the error message names a file size, start with the matching target page instead of browsing every tool.")}`
+    : "";
   return `
       <section class="shell page-title section">
         <a href="/free-pdf-tools/">Free file tools</a>
@@ -5986,19 +6098,7 @@ function landingPageHtml(page) {
           <article class="panel"><h3>Ad-safe</h3><p>Downloads are not gated behind ad interactions or ad impressions. Ads remain disabled until policy review and search visibility are ready.</p></article>
         </div>
       </section>
-      ${page.sections.map(([heading, text]) => `
-      <section class="shell section">
-        <h2>${escapeHtml(heading)}</h2>
-        <p>${escapeHtml(text)}</p>
-      </section>`.trim()).join("\n")}
-      ${page.targetLinks ? `
-      <section class="shell section">
-        <h2>Choose an exact KB target</h2>
-        <div class="grid-3">
-          ${page.targetLinks.map(([label, pathName, text]) => `<article class="tool-card"><h3>${escapeHtml(label)}</h3><p>${escapeHtml(text)}</p><a class="button" href="/${escapeHtml(pathName)}/">Open target</a></article>`).join("\n")}
-        </div>
-      </section>`.trim() : ""}
-      ${page.path === "upload-limit-fixer" ? uploadLimitShortcutsHtml("Fast upload limit shortcuts", "If the error message names a file size, start with the matching target page instead of browsing every tool.") : ""}
+      ${sectionHtml}${uploadMatcherHtml}${targetLinksHtml}${uploadShortcutsHtml}
       <section class="shell section">
         <h2>Related free tools</h2>
         <div class="grid-3">

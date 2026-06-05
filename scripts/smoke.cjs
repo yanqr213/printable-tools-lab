@@ -301,6 +301,23 @@ function delay(ms) {
     await page.goto(`${base}/upload-limit-fixer/`, { waitUntil: "networkidle" });
   }
 
+  const uploadErrorLandingRoutes = [
+    ["/file-must-be-less-than-1mb/", "/tools/compress-pdf/?targetSize=1mb", "#targetSize", "1mb"],
+    ["/photo-must-be-under-100kb/", "/tools/compress-image-to-kb/?targetKb=100", "#targetKb", "100"],
+    ["/image-dimensions-600x600/", "/tools/resize-image/?width=600&height=600&fit=cover", "#width", "600"],
+  ];
+  for (const [landingPath, href, selector, expectedValue] of uploadErrorLandingRoutes) {
+    await page.goto(`${base}${landingPath}`, { waitUntil: "networkidle" });
+    const landingText = await page.locator("main").innerText();
+    if (!landingText.includes("Upload error text")) throw new Error(`Upload-error landing page missing matcher: ${landingPath}`);
+    const toolLink = page.locator(`main a[href="${href}"]`).first();
+    if (!(await toolLink.count())) throw new Error(`Upload-error landing page missing primary link ${href}`);
+    await toolLink.click();
+    await page.waitForLoadState("networkidle");
+    const selectedValue = await page.locator(selector).inputValue();
+    if (selectedValue !== expectedValue) throw new Error(`Upload-error landing ${landingPath} did not preselect ${expectedValue}, got ${selectedValue}`);
+  }
+
   await page.goto(`${base}/submit-directory/`, { waitUntil: "networkidle" });
   const submissionPackText = await page.locator("main").innerText();
   for (const phrase of ["Copy-ready listing details", "Primary links for reviewers", "Representative tools"]) {

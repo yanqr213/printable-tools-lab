@@ -88,6 +88,12 @@ Rule: downloads stay free, ads are disabled until review, and future ads must ne
 - No-signup resume page: https://printable-tools-lab.pages.dev/free-resume-builder-no-signup/
 - Free ATS resume checker page: https://printable-tools-lab.pages.dev/ats-resume-checker-free/
 - Free Upload Limit Fixer: https://printable-tools-lab.pages.dev/upload-limit-fixer/
+- File Must Be Less Than 1MB Fix: https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb/
+- PDF Must Be Under 500KB Fix: https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/
+- Photo Must Be Under 100KB Fix: https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/
+- Invalid File Type JPG or PNG Fix: https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/
+- Image Dimensions 600x600 Fix: https://printable-tools-lab.pages.dev/image-dimensions-600x600/
+- PDF Not Accepted JPG Required Fix: https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/
 - Multiple Images to PDF Without Uploading: https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/
 - Compress PDF Without Uploading: https://printable-tools-lab.pages.dev/compress-pdf-no-upload/
 - PDF Size Reducer Without Uploading: https://printable-tools-lab.pages.dev/pdf-size-reducer/
