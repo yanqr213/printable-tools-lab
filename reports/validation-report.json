@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-05T21:28:52.281Z",
+  "generatedAt": "2026-06-05T21:54:32.084Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -7,9 +7,9 @@
     "toolCount": 66,
     "guideCount": 95,
     "landingPageCount": 92,
-    "indexableRoutes": 273,
-    "sitemapLocCount": 273,
-    "generatedToolInventoryAt": "2026-06-05T21:26:02.499Z",
+    "indexableRoutes": 274,
+    "sitemapLocCount": 274,
+    "generatedToolInventoryAt": "2026-06-05T21:52:37.552Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -51,14 +51,14 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 27599,
+        "bytes": 32280,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 32918,
+        "bytes": 33034,
         "json": null
       },
       "/robots.txt": {
@@ -81,7 +81,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 39365,
+        "bytes": 39677,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for"
       },
@@ -101,7 +101,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-05T21:26:02.499Z",
+          "generatedAt": "2026-06-05T21:52:37.552Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -983,16 +983,17 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 50366,
+        "bytes": 50731,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-05T21:26:02.499Z",
+          "generatedAt": "2026-06-05T21:52:37.552Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
           "opensearch": "https://printable-tools-lab.pages.dev/opensearch.xml",
           "shareKit": "https://printable-tools-lab.pages.dev/share-kit.json",
+          "uploadErrorCheatsheet": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",
           "platformSubmitQueue": "https://printable-tools-lab.pages.dev/platform-submit-queue.json",
           "platformSubmitCockpit": "https://printable-tools-lab.pages.dev/platform-submit-cockpit.json",
           "platformOutreachTracker": "https://printable-tools-lab.pages.dev/platform-outreach-tracker.json",
@@ -1003,6 +1004,7 @@
             "https://printable-tools-lab.pages.dev/free-pdf-tools/",
             "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
             "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
+            "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
             "https://printable-tools-lab.pages.dev/submit-directory/",
             "https://printable-tools-lab.pages.dev/share-kit/",
             "https://printable-tools-lab.pages.dev/market-table-print-audit/",
@@ -1157,6 +1159,8 @@
           "distributionAssets": {
             "shareKit": "https://printable-tools-lab.pages.dev/share-kit/",
             "shareKitJson": "https://printable-tools-lab.pages.dev/share-kit.json",
+            "uploadErrorCheatsheet": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
+            "uploadErrorCheatsheetJson": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",
             "marketTablePrintAudit": "https://printable-tools-lab.pages.dev/market-table-print-audit/",
             "marketTablePrintAuditRequest": "https://printable-tools-lab.pages.dev/assets/services/market-table-print-audit-request.txt",
             "marketTablePrintAuditChecklist": "https://printable-tools-lab.pages.dev/assets/services/market-table-print-audit-checklist.json",
@@ -1875,10 +1879,10 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 27705,
+        "bytes": 36157,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-05T21:26:02.499Z",
+          "generatedAt": "2026-06-05T21:52:37.552Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -2142,6 +2146,132 @@
               "sizeBytes": 177067
             }
           ],
+          "uploadErrorCheatsheet": {
+            "page": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
+            "json": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",
+            "entries": [
+              {
+                "errorText": "PDF must be under 1MB",
+                "problem": "A job, school, email, or admin portal rejects a PDF by file size.",
+                "response": "Open the PDF compressor with the 1MB target, compress locally, then review readability before submitting.",
+                "format": "PDF",
+                "target": "1MB",
+                "landingPage": "https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=1mb"
+              },
+              {
+                "errorText": "PDF must be under 500KB",
+                "problem": "A strict form, exam upload, or school portal requires a very small PDF.",
+                "response": "Use the strict 500KB PDF target and keep the original file in case the compressed copy loses detail.",
+                "format": "PDF",
+                "target": "500KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=500kb"
+              },
+              {
+                "errorText": "Image must be less than 2MB",
+                "problem": "A profile, marketplace, support, or application page rejects an image over 2MB.",
+                "response": "Use the image-to-KB compressor with a 2048KB custom target.",
+                "format": "Image",
+                "target": "2MB",
+                "landingPage": "https://printable-tools-lab.pages.dev/image-must-be-less-than-2mb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/image-must-be-less-than-2mb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=2048"
+              },
+              {
+                "errorText": "Image must be under 500KB",
+                "problem": "A portal or ticket form requires an image below 500KB.",
+                "response": "Use the 500KB image target, then resize if a large phone photo still misses the limit.",
+                "format": "Image",
+                "target": "500KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/image-must-be-under-500kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/image-must-be-under-500kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=500"
+              },
+              {
+                "errorText": "Photo must be under 100KB",
+                "problem": "A job, profile, school, or ID-style form rejects a photo by KB size.",
+                "response": "Use the 100KB image target and check that the face or document text remains clear.",
+                "format": "Photo",
+                "target": "100KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-must-be-under-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=100"
+              },
+              {
+                "errorText": "JPG must be under 200KB",
+                "problem": "A portal accepts JPG/JPEG but rejects the image as too large.",
+                "response": "Use the 200KB image target and keep output as JPG if the destination requires it.",
+                "format": "JPG",
+                "target": "200KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/jpg-must-be-under-200kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/jpg-must-be-under-200kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=200"
+              },
+              {
+                "errorText": "PNG screenshot too large",
+                "problem": "A support ticket, admin upload, or bug report rejects a PNG screenshot.",
+                "response": "Crop private areas first, then compress toward 500KB and review small UI text.",
+                "format": "PNG",
+                "target": "500KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/png-screenshot-too-large/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/png-screenshot-too-large?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=500"
+              },
+              {
+                "errorText": "Invalid file type. Please upload JPG or PNG",
+                "problem": "A website rejects the current image format and asks for JPG/JPEG/PNG.",
+                "response": "Convert the image format locally, then compress if the converted file is still too large.",
+                "format": "Image",
+                "target": "JPG or PNG",
+                "landingPage": "https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/convert-image/"
+              },
+              {
+                "errorText": "Image dimensions must be 600 x 600 px",
+                "problem": "A profile, marketplace, avatar, or product image must match exact pixels.",
+                "response": "Resize or crop to 600 x 600 pixels, then compress only if the KB limit still fails.",
+                "format": "Image",
+                "target": "600 x 600",
+                "landingPage": "https://printable-tools-lab.pages.dev/image-dimensions-600x600/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/image-dimensions-600x600?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=600&fit=cover"
+              },
+              {
+                "errorText": "PDF not accepted, JPG required",
+                "problem": "A form accepts images but rejects a PDF upload.",
+                "response": "Convert PDF pages to JPG/PNG locally and upload the page image the destination expects.",
+                "format": "PDF",
+                "target": "JPG",
+                "landingPage": "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/pdf-to-images/"
+              },
+              {
+                "errorText": "Resume PDF too large",
+                "problem": "A job application or recruiter portal rejects a resume PDF by size.",
+                "response": "Try the 1MB PDF target and confirm all resume text remains readable before applying.",
+                "format": "PDF",
+                "target": "1MB",
+                "landingPage": "https://printable-tools-lab.pages.dev/resume-pdf-too-large/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/resume-pdf-too-large?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=1mb"
+              },
+              {
+                "errorText": "Email attachment too large",
+                "problem": "Gmail, Outlook, school email, or work mail rejects a document attachment.",
+                "response": "Compress PDFs toward 5MB or use the image-to-KB tool for photo attachments.",
+                "format": "PDF or image",
+                "target": "5MB",
+                "landingPage": "https://printable-tools-lab.pages.dev/email-attachment-too-large/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/email-attachment-too-large?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=5mb"
+              }
+            ]
+          },
           "marketTablePrintAudit": {
             "id": "market-table-print-audit",
             "name": "Free Market Table Print Audit",
@@ -3707,7 +3837,7 @@
       "keyFileReachable": true,
       "singleUrlAccepted": false,
       "latestReport": {
-        "generatedAt": "2026-06-05T21:27:09.935Z",
+        "generatedAt": "2026-06-05T21:54:14.674Z",
         "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
         "results": [
           {
@@ -3717,7 +3847,7 @@
             "keyReachable": true,
             "keyStatus": 200,
             "keyMessage": "ok",
-            "urlCount": 273,
+            "urlCount": 274,
             "submittedUrls": 0,
             "accepted": false,
             "status": 403,
