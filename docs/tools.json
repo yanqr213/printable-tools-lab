@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-05T22:30:15.333Z",
+  "generatedAt": "2026-06-05T22:38:57.087Z",
   "landingPages": [
     {
       "title": "Free Upload Limit Fixer",
@@ -860,6 +860,102 @@
       "description": "Generate printable graph paper PDF with quarter-inch, half-inch, or small grid spacing for math, notes, and design sketches.",
       "url": "https://printable-tools-lab.pages.dev/tools/graph-paper/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/graph-paper/"
+    },
+    {
+      "title": "Name Tracing Worksheet Generator",
+      "description": "Create a free one-page name tracing worksheet PDF for preschool and kindergarten handwriting practice.",
+      "url": "https://printable-tools-lab.pages.dev/tools/name-tracing/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/name-tracing/"
+    },
+    {
+      "title": "Chore Chart Generator",
+      "description": "Make a weekly printable chore chart PDF for children, families, roommates, or classroom jobs.",
+      "url": "https://printable-tools-lab.pages.dev/tools/chore-chart/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/chore-chart/"
+    },
+    {
+      "title": "Reward Chart Generator",
+      "description": "Build a printable reward chart PDF with goals, sticker boxes, and a reward note.",
+      "url": "https://printable-tools-lab.pages.dev/tools/reward-chart/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/reward-chart/"
+    },
+    {
+      "title": "Flashcard Generator",
+      "description": "Create a free one-page printable flashcard PDF for vocabulary, classroom review, memory games, and homeschool practice.",
+      "url": "https://printable-tools-lab.pages.dev/tools/flashcards/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/flashcards/"
+    },
+    {
+      "title": "Weekly Planner Generator",
+      "description": "Make a free printable weekly planner PDF for family schedules, class planning, errands, and meal notes.",
+      "url": "https://printable-tools-lab.pages.dev/tools/weekly-planner/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/weekly-planner/"
+    },
+    {
+      "title": "Habit Tracker Generator",
+      "description": "Create a free printable habit tracker PDF for daily routines, reading goals, wellness habits, or classroom practice.",
+      "url": "https://printable-tools-lab.pages.dev/tools/habit-tracker/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/habit-tracker/"
+    },
+    {
+      "title": "Estimate Generator",
+      "description": "Create a free estimate PDF for freelance work, home services, consulting, repairs, or small business quotes.",
+      "url": "https://printable-tools-lab.pages.dev/tools/estimate-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/estimate-generator/"
+    },
+    {
+      "title": "Purchase Order Generator",
+      "description": "Make a free purchase order PDF for supplies, services, small vendors, internal approvals, or project records.",
+      "url": "https://printable-tools-lab.pages.dev/tools/purchase-order/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/purchase-order/"
+    },
+    {
+      "title": "Bill of Sale Generator",
+      "description": "Create a simple bill of sale PDF for a private item sale, equipment transfer, furniture sale, or vehicle record draft.",
+      "url": "https://printable-tools-lab.pages.dev/tools/bill-of-sale/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/bill-of-sale/"
+    },
+    {
+      "title": "Rent Receipt Generator",
+      "description": "Make a free printable rent receipt PDF for a tenant payment, room rental, cash payment record, or landlord file.",
+      "url": "https://printable-tools-lab.pages.dev/tools/rent-receipt/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/rent-receipt/"
+    },
+    {
+      "title": "Cover Letter Generator",
+      "description": "Create a free one-page cover letter PDF for job applications without an account or surprise download fee.",
+      "url": "https://printable-tools-lab.pages.dev/tools/cover-letter/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/cover-letter/"
+    },
+    {
+      "title": "Resignation Letter Generator",
+      "description": "Make a simple resignation letter PDF with notice date, last day, appreciation, and handoff wording.",
+      "url": "https://printable-tools-lab.pages.dev/tools/resignation-letter/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/resignation-letter/"
+    },
+    {
+      "title": "Monthly Calendar Generator",
+      "description": "Create a free printable monthly calendar PDF for appointments, school events, chores, meals, or family planning.",
+      "url": "https://printable-tools-lab.pages.dev/tools/monthly-calendar/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/monthly-calendar/"
+    },
+    {
+      "title": "Meal Planner Generator",
+      "description": "Make a printable weekly meal planner PDF with breakfast, lunch, dinner, grocery list, and prep notes.",
+      "url": "https://printable-tools-lab.pages.dev/tools/meal-planner/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/meal-planner/"
+    },
+    {
+      "title": "Sign-in Sheet Generator",
+      "description": "Create a printable sign-in sheet PDF for events, classrooms, workshops, meetings, or visitor logs.",
+      "url": "https://printable-tools-lab.pages.dev/tools/sign-in-sheet/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/sign-in-sheet/"
+    },
+    {
+      "title": "Packing List Generator",
+      "description": "Make a printable packing list PDF for travel, school trips, business travel, camping, or family vacations.",
+      "url": "https://printable-tools-lab.pages.dev/tools/packing-list/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/packing-list/"
     }
   ],
   "gameSubmissionPack": {
@@ -1722,7 +1818,7 @@
   },
   "organicPushKit": {
     "name": "PrintableTools Lab Organic Push Kit Mirror",
-    "generatedAt": "2026-06-05T22:30:15.333Z",
+    "generatedAt": "2026-06-05T22:38:57.087Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/organic-push-kit/",
     "livePage": "https://printable-tools-lab.pages.dev/organic-push-kit/",
     "liveJson": "https://printable-tools-lab.pages.dev/organic-push-kit.json",
@@ -1819,7 +1915,7 @@
   },
   "uploadErrorCheatsheet": {
     "name": "PrintableTools Lab Upload Error Cheatsheet Mirror",
-    "generatedAt": "2026-06-05T22:30:15.333Z",
+    "generatedAt": "2026-06-05T22:38:57.087Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/",
     "livePage": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
     "liveJson": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",

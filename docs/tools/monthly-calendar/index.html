@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Monthly Calendar Generator - Free Tool Discovery</title>
+    <meta name="description" content="Create a free printable monthly calendar PDF for appointments, school events, chores, meals, or family planning.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://yanqr213.github.io/printable-tools-lab/tools/monthly-calendar/">
+    <style>
+      :root { color-scheme: light; --ink: #17313b; --muted: #5b6f78; --line: #dce8ec; --soft: #eef7f9; --teal: #176b87; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Arial, sans-serif; color: var(--ink); background: #f7fbfc; line-height: 1.55; }
+      main { width: min(920px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 56px; }
+      h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin: 0 0 14px; }
+      p { color: var(--muted); max-width: 780px; }
+      a { color: var(--teal); font-weight: 700; }
+      .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .button.secondary { background: var(--ink); }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+      .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+      ul { padding-left: 20px; }
+      @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="https://yanqr213.github.io/printable-tools-lab/">PrintableTools Lab discovery directory</a></p>
+      <h1>Monthly Calendar Generator</h1>
+      <p>Create a free printable monthly calendar PDF for appointments, school events, chores, meals, or family planning.</p>
+      <p><a class="button" href="https://printable-tools-lab.pages.dev/tools/monthly-calendar/?utm_source=github-pages&utm_medium=organic&utm_campaign=discovery_mirror&utm_content=tool-tools-monthly-calendar">Open the live free tool</a></p>
+      <section class="card seller-intent">
+        <h2>Local seller print help</h2>
+        <p>If this file job is for a market table, pickup order, craft seller, local service, or event booth, start with the free print audit. You can also keep browsing the free PDF, image, QR, and business paperwork tools without creating an account.</p>
+        <p class="actions">
+          <a class="button" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/">Request a free print audit</a>
+          <a class="button secondary" href="https://printable-tools-lab.pages.dev/free-pdf-tools/?utm_source=github-pages&utm_medium=organic&utm_campaign=free_tool_depth&utm_content=seller-help-directory">Browse more free tools</a>
+        </p>
+        <p>Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
+      </section>
+      <h2>Why this tool exists</h2>
+      <p>This mirror page is a zero-cost discovery entry for the live PrintableTools Lab tool. The live app focuses on practical browser-side generation, no account wall, and clear download flow so users can solve a file or printable job quickly.</p>
+      <h2>Best fit</h2>
+      <ul>
+        <li>Use it when you need a practical file now and do not want to create an account first.</li>
+        <li>Use browser-side PDF, image, QR, and printable workflows for ordinary one-off tasks.</li>
+        <li>Review every exported file before printing, submitting, or sending it to someone else.</li>
+      </ul>
+      <h2>Related high-intent pages</h2>
+      <div class="grid">
+        
+        <article class="card">
+          <h3>Free PDF, image, and QR tools</h3>
+          <p>Browse the full no-signup directory and choose the closest tool for your file task.</p>
+          <a href="https://printable-tools-lab.pages.dev/free-pdf-tools/?utm_source=github-pages&utm_medium=organic&utm_campaign=free_tool_depth&utm_content=tool-fallback-directory">Open the live directory</a>
+        </article>
+      </div>
+      <h2>Useful links</h2>
+      <ul>
+        <li><a href="https://printable-tools-lab.pages.dev/free-pdf-tools/?utm_source=github-pages&utm_medium=organic&utm_campaign=free_tool_depth&utm_content=tool-footer-directory">Full free tool directory</a></li>
+        <li><a href="https://printable-tools-lab.pages.dev/pdf-tool-finder/?utm_source=github-pages&utm_medium=organic&utm_campaign=discovery_mirror&utm_content=tool-footer-finder">Tool finder</a></li>
+        <li><a href="https://printable-tools-lab.pages.dev/privacy/?utm_source=github-pages&utm_medium=organic&utm_campaign=discovery_mirror&utm_content=tool-footer-privacy">Privacy policy</a></li>
+        <li><a href="https://printable-tools-lab.pages.dev/tools.json">Machine-readable tools.json</a></li>
+      </ul>
+    </main>
+    <script>
+      (function () {
+        var endpoint = "https://printable-tools-lab.pages.dev/api/event";
+        function pagePath() {
+          return (window.location.pathname || "/").replace(/^\/printable-tools-lab/, "") || "/";
+        }
+        function sendEvent(name, tool) {
+          if (!name) return;
+          var payload = JSON.stringify({
+            name: name,
+            tool: tool || "site",
+            path: pagePath(),
+            source: "github-pages"
+          });
+          try {
+            if (navigator.sendBeacon && navigator.sendBeacon(endpoint, payload)) return;
+          } catch (error) {}
+          try {
+            fetch(endpoint, {
+              method: "POST",
+              mode: "no-cors",
+              keepalive: true,
+              headers: { "Content-Type": "text/plain;charset=UTF-8" },
+              body: payload
+            });
+          } catch (error) {}
+        }
+        document.addEventListener("click", function (event) {
+          var target = event.target.closest ? event.target.closest("[data-track-event]") : null;
+          if (!target) return;
+          sendEvent(target.getAttribute("data-track-event"), target.getAttribute("data-track-tool"));
+        }, true);
+        sendEvent("page_view", "site");
+      }());
+    </script>
+  </body>
+</html>

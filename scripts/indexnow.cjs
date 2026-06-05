@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
-const { routes, siteUrl, landingPages, HIGH_INTENT_TOOL_PATHS } = require("./seo-content.cjs");
+const { routes, siteUrl, landingPages, tools } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const reports = path.join(root, "reports");
@@ -39,7 +39,7 @@ const priorityMainUrls = [
 const githubPagesUrls = [
   `${githubPagesBase}/`,
   ...landingPages.map((page) => `${githubPagesBase}/${page.path}/`),
-  ...HIGH_INTENT_TOOL_PATHS.map((toolPath) => `${githubPagesBase}/${toolPath}/`),
+  ...tools.map((tool) => `${githubPagesBase}/${tool.path}/`),
 ].filter(unique);
 const githubPagesSitemapUrls = readGithubPagesSitemapUrls();
 

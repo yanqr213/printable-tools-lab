@@ -14,7 +14,11 @@ fs.mkdirSync(docsDir, { recursive: true });
 const highIntentTools = HIGH_INTENT_TOOL_PATHS
   .map((toolPath) => tools.find((tool) => tool.path === toolPath))
   .filter(Boolean);
-const highIntentToolDiscoveryRoutes = highIntentTools.map((tool) => ({
+const allDiscoveryTools = [
+  ...highIntentTools,
+  ...tools.filter((tool) => !HIGH_INTENT_TOOL_PATHS.includes(tool.path)),
+];
+const toolDiscoveryRoutes = allDiscoveryTools.map((tool) => ({
   path: tool.path,
   title: tool.title,
   description: tool.description,
@@ -46,7 +50,7 @@ const discoveryRoutes = [
     url: pagesUrl(page.path),
     mainUrl: siteUrl(page.path),
   })),
-  ...highIntentToolDiscoveryRoutes,
+  ...toolDiscoveryRoutes,
   ...DIGITAL_PRODUCTS.map((product) => ({
     path: product.slug,
     title: product.name,
@@ -138,13 +142,23 @@ const html = `<!doctype html>
 
       <h2>Start with a common file job</h2>
       <div class="grid">
-        ${highIntentTools.map((tool) => `
-        <article class="card">
+        ${highIntentTools.map((tool) => `<article class="card">
           <h3>${escapeHtml(tool.title)}</h3>
           <p>${escapeHtml(tool.description)}</p>
           <a href="${pagesUrl(tool.path)}">Open the discovery note</a>
           <br>
           <a href="${trackedSiteUrl(tool.path, `home-${tool.path}`)}">Open this free file tool</a>
+        </article>`).join("\n")}
+      </div>
+
+      <h2>All free tool mirrors</h2>
+      <div class="grid">
+        ${allDiscoveryTools.map((tool) => `<article class="card">
+          <h3>${escapeHtml(tool.title)}</h3>
+          <p>${escapeHtml(tool.description)}</p>
+          <a href="${pagesUrl(tool.path)}">Open mirror</a>
+          <br>
+          <a href="${trackedSiteUrl(tool.path, `all-tools-${tool.path}`)}">Open live tool</a>
         </article>`).join("\n")}
       </div>
 
@@ -166,8 +180,7 @@ const html = `<!doctype html>
 
       <h2>High-intent search pages</h2>
       <div class="grid">
-        ${landingPages.map((page) => `
-        <article class="card">
+        ${landingPages.map((page) => `<article class="card">
           <h3>${escapeHtml(page.title)}</h3>
           <p>${escapeHtml(page.description)}</p>
           <a href="${pagesUrl(page.path)}">Open the discovery note</a>
@@ -192,7 +205,7 @@ for (const page of landingPages) {
     .filter(Boolean);
   fs.writeFileSync(path.join(pageDir, "index.html"), landingDiscoveryHtml(page, primaryTool, relatedTools));
 }
-for (const tool of highIntentTools) {
+for (const tool of allDiscoveryTools) {
   const toolDir = path.join(docsDir, ...tool.path.split("/"));
   fs.mkdirSync(toolDir, { recursive: true });
   const relatedLandingPages = landingPages
@@ -225,7 +238,7 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
     discoveryUrl: pagesUrl(page.path),
     intent: page.intent,
   })),
-  tools: highIntentTools.map((tool) => ({
+  tools: allDiscoveryTools.map((tool) => ({
     title: tool.title,
     description: tool.description,
     url: siteUrl(tool.path),

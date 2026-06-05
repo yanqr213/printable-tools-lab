@@ -1148,7 +1148,7 @@ const docsToolsFile = path.join(root, "docs", "tools.json");
 if (!fs.existsSync(docsToolsFile)) failures.push("Missing GitHub Pages discovery tools.json.");
 else {
   const data = JSON.parse(fs.readFileSync(docsToolsFile, "utf8"));
-  if (!Array.isArray(data.tools) || data.tools.length < 8) failures.push("GitHub Pages discovery tools.json missing high-intent tools.");
+  if (!Array.isArray(data.tools) || data.tools.length < tools.length) failures.push("GitHub Pages discovery tools.json missing full tool mirror inventory.");
   if (!Array.isArray(data.landingPages) || data.landingPages.length < 50) failures.push("GitHub Pages discovery tools.json missing high-intent landing pages.");
   if (data.feed !== siteUrl("feed.xml").replace(/\/$/, "")) failures.push("GitHub Pages discovery tools.json missing feed URL.");
   if (!data.githubPagesDirectory || data.githubPagesDirectory !== "https://yanqr213.github.io/printable-tools-lab/") failures.push("GitHub Pages discovery tools.json missing GitHub directory URL.");
@@ -1528,12 +1528,12 @@ const docsSitemapFile = path.join(root, "docs", "sitemap.xml");
 if (!fs.existsSync(docsSitemapFile)) failures.push("Missing GitHub Pages discovery sitemap.");
 else {
   const docsSitemap = fs.readFileSync(docsSitemapFile, "utf8");
-  if (countMatches(docsSitemap, /<loc>/g) < landingPages.length + HIGH_INTENT_TOOL_PATHS.length + 1) failures.push("GitHub Pages discovery sitemap missing landing/tool pages.");
+  if (countMatches(docsSitemap, /<loc>/g) < landingPages.length + tools.length + 1) failures.push("GitHub Pages discovery sitemap missing landing/tool pages.");
   for (const page of landingPages) {
     const githubUrl = `https://yanqr213.github.io/printable-tools-lab/${page.path}/`;
     if (!docsSitemap.includes(`<loc>${githubUrl}</loc>`)) failures.push(`GitHub Pages sitemap missing landing page: ${page.path}`);
   }
-  for (const toolPath of HIGH_INTENT_TOOL_PATHS) {
+  for (const toolPath of tools.map((tool) => tool.path)) {
     const githubUrl = `https://yanqr213.github.io/printable-tools-lab/${toolPath}/`;
     if (!docsSitemap.includes(`<loc>${githubUrl}</loc>`)) failures.push(`GitHub Pages sitemap missing tool discovery page: ${toolPath}`);
   }
@@ -1553,7 +1553,7 @@ for (const page of landingPages) {
   if (!html.includes(liveToolUrl(page.primaryTool))) failures.push(`GitHub Pages landing page missing primary tool URL: ${page.path}`);
 }
 
-for (const toolPath of HIGH_INTENT_TOOL_PATHS) {
+for (const toolPath of tools.map((tool) => tool.path)) {
   const tool = tools.find((item) => item.path === toolPath);
   const file = path.join(root, "docs", ...toolPath.split("/"), "index.html");
   if (!fs.existsSync(file)) {

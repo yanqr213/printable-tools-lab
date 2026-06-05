@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { routes, siteUrl, landingPages, HIGH_INTENT_TOOL_PATHS, ZERO_DOMAIN_GAME_EXPERIMENTS } = require("./seo-content.cjs");
+const { routes, siteUrl, landingPages, tools, ZERO_DOMAIN_GAME_EXPERIMENTS } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const siteBase = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pages.dev").replace(/\/+$/, "");
@@ -327,12 +327,12 @@ async function readGithubPagesState() {
     const page = await fetchTextWithTimeout(base);
     state.pageOk = page.ok && page.text.includes("Free PDF, image, and QR tools without signup");
     state.landingPagesLinked = landingPages.filter((landing) => page.text.includes(siteUrl(landing.path))).length;
-    state.toolPagesLinked = HIGH_INTENT_TOOL_PATHS.filter((toolPath) => page.text.includes(`${base}${toolPath}/`)).length;
+    state.toolPagesLinked = tools.filter((tool) => page.text.includes(`${base}${tool.path}/`)).length;
     state.gamePagesLinked = gameDiscoveryPaths().filter((gamePath) => page.text.includes(`${base}${gamePath}/`)).length;
     const sitemap = await fetchTextWithTimeout(`${base}sitemap.xml`);
     state.sitemapOk = sitemap.ok && sitemap.text.includes("<urlset");
     state.sitemapUrlCount = countMatches(sitemap.text, /<loc>/g);
-    state.toolPagesInSitemap = HIGH_INTENT_TOOL_PATHS.filter((toolPath) => sitemap.text.includes(`<loc>${base}${toolPath}/</loc>`)).length;
+    state.toolPagesInSitemap = tools.filter((tool) => sitemap.text.includes(`<loc>${base}${tool.path}/</loc>`)).length;
     state.gamePagesInSitemap = gameDiscoveryPaths().filter((gamePath) => sitemap.text.includes(`<loc>${base}${gamePath}/</loc>`)).length;
   } catch (error) {
     state.error = error.message;
@@ -706,7 +706,7 @@ function yesNo(value) {
 
 function githubPagesExpectedUrlCount() {
   const sitemapCount = countMatches(readText("docs/sitemap.xml"), /<loc>/g);
-  return sitemapCount || landingPages.length + HIGH_INTENT_TOOL_PATHS.length + gameDiscoveryPaths().length + 1;
+  return sitemapCount || landingPages.length + tools.length + gameDiscoveryPaths().length + 1;
 }
 
 function gameDiscoveryPaths() {
