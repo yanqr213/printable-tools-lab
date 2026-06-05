@@ -33,6 +33,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Public Gist campaign: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=gist&utm_medium=organic&utm_campaign=zero_cost_push
 - Community campaign: https://printable-tools-lab.pages.dev?utm_source=community
 - Free Market Table Print Audit campaign: https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=distribution&utm_medium=organic&utm_campaign=market_table_audit
+- Organic push kit campaign: https://printable-tools-lab.pages.dev/organic-push-kit?utm_source=distribution&utm_medium=organic&utm_campaign=organic_push_kit
 
 ## Free audit lead magnet
 
@@ -46,11 +47,26 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 
 - Free tool directory: https://printable-tools-lab.pages.dev/free-pdf-tools/?utm_source=distribution&utm_medium=organic&utm_campaign=free_tool_depth
 - Upload limit fixer: https://printable-tools-lab.pages.dev/upload-limit-fixer/?utm_source=distribution&utm_medium=organic&utm_campaign=zero_cost_push
+- Organic push kit: https://printable-tools-lab.pages.dev/organic-push-kit/?utm_source=distribution&utm_medium=organic&utm_campaign=organic_push_kit
+- Organic push kit JSON: https://printable-tools-lab.pages.dev/organic-push-kit.json
 - Upload error cheatsheet: https://printable-tools-lab.pages.dev/upload-error-cheatsheet/?utm_source=distribution&utm_medium=organic&utm_campaign=upload_error_cheatsheet
 - Upload error cheatsheet JSON: https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json
 - Share kit JSON: https://printable-tools-lab.pages.dev/share-kit.json
 
 Rule: downloads stay free, ads are disabled until review, and future ads must never block file generation or downloads.
+
+## Organic push tasks
+
+Use these as a small daily queue. Post only when the trigger is true; otherwise skip the task.
+
+- Helpful reply for PDF under 1MB questions: If the portal says your PDF must be under 1MB, this free browser tool can try compressing scans or image-heavy PDFs locally: https://printable-tools-lab.pages.dev/compress-pdf-to-1mb/?utm_source=community&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=community-pdf-1mb. Check the result before submitting, because very small targets can reduce quality. Success signal: One real visitor lands from community UTM and downloads a PDF after the reply.
+- Helpful reply for 100KB photo upload questions: For a 100KB image limit, this free no-signup browser tool can compress an image locally: https://printable-tools-lab.pages.dev/compress-image-to-100kb/?utm_source=community&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=community-image-100kb. Review the preview before uploading it anywhere, especially for ID-style photos. Success signal: One image-tool visitor arrives from community UTM and triggers a download.
+- Directory listing for free no-signup file tools: PrintableTools Lab is a free no-signup browser utility site for common PDF, image, QR, and paperwork tasks: compression targets, PDF-to-JPG, image-to-PDF, QR codes, invoices, receipts, labels, flyers, resumes, and more. Listing URL: https://printable-tools-lab.pages.dev/submit-directory/?utm_source=directory&utm_medium=organic&utm_campaign=free_tool_depth&utm_content=directory-free-file-tools Success signal: Directory referral appears in live metrics or directory monitor moves from pending to listed.
+- Support thread resource for exact upload errors: I keep a free upload-error cheatsheet for common messages like PDF under 1MB, image under 500KB, JPG under 200KB, PNG screenshot too large, invalid JPG/PNG type, and resume PDF too large: https://printable-tools-lab.pages.dev/upload-error-cheatsheet/?utm_source=community&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=support-upload-errors Success signal: Upload-error-cheatsheet UTM visits increase and at least one visitor clicks into a fixer page.
+- Short demo for strict 500KB PDF forms: Hook: Form says PDF must be under 500KB? Show a generic PDF, choose the 500KB target, download the result, and remind viewers to check readability. Link: https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=short-video-pdf-500kb Success signal: Short-video UTM produces at least one PDF download or returning page view.
+- Short demo for PDF not accepted, JPG required: Hook: Website rejects PDF but asks for JPG? Show PDF pages converted to images locally in the browser, then download the image files. Link: https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=short-video-pdf-to-jpg Success signal: Short-video UTM produces a visit to the PDF-to-image workflow.
+- GitHub Pages mirror for accepted IndexNow discovery: Static mirror for common upload errors and direct free fixes: https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=github-pages-cheatsheet. The live tools remain on PrintableTools Lab and downloads stay free. Success signal: GitHub Pages sitemap and IndexNow accepted URL count remain above 151 and referral visits appear.
+- Free audit lead magnet for local seller print problems: For market-table print setup, I would start with readable price tags, one QR/contact sign, a simple flyer, and one clear offer card. This free audit checklist can help spot gaps: https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=community&utm_medium=organic&utm_campaign=market_table_audit&utm_content=market-table-audit Success signal: Audit request intent or GitHub Pages market-table-audit referral appears.
 
 ## Upload error cheatsheet copy
 

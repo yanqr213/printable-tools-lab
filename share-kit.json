@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Share Kit",
-  "generatedAt": "2026-06-05T22:04:32.987Z",
+  "generatedAt": "2026-06-05T22:22:38.091Z",
   "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
   "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
   "featuredLinks": [
@@ -264,6 +264,92 @@
       "sizeBytes": 177067
     }
   ],
+  "organicPushKit": {
+    "page": "https://printable-tools-lab.pages.dev/organic-push-kit/",
+    "json": "https://printable-tools-lab.pages.dev/organic-push-kit.json",
+    "tasks": [
+      {
+        "id": "community-pdf-1mb",
+        "channel": "community",
+        "title": "Helpful reply for PDF under 1MB questions",
+        "trigger": "Use only when someone asks how to make a PDF smaller for a job, school, email, or form upload.",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb/?utm_source=community&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=community-pdf-1mb",
+        "copy": "If the portal says your PDF must be under 1MB, this free browser tool can try compressing scans or image-heavy PDFs locally: https://printable-tools-lab.pages.dev/compress-pdf-to-1mb/?utm_source=community&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=community-pdf-1mb. Check the result before submitting, because very small targets can reduce quality.",
+        "successSignal": "One real visitor lands from community UTM and downloads a PDF after the reply.",
+        "riskRule": "Do not post in unrelated threads, do not claim guaranteed compression, and do not use private documents as examples."
+      },
+      {
+        "id": "community-image-100kb",
+        "channel": "community",
+        "title": "Helpful reply for 100KB photo upload questions",
+        "trigger": "Use when a job, exam, school, or profile form rejects an image because it is over 100KB.",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/compress-image-to-100kb/?utm_source=community&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=community-image-100kb",
+        "copy": "For a 100KB image limit, this free no-signup browser tool can compress an image locally: https://printable-tools-lab.pages.dev/compress-image-to-100kb/?utm_source=community&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=community-image-100kb. Review the preview before uploading it anywhere, especially for ID-style photos.",
+        "successSignal": "One image-tool visitor arrives from community UTM and triggers a download.",
+        "riskRule": "Do not ask users to share IDs, faces, payment documents, or private files publicly."
+      },
+      {
+        "id": "directory-free-file-tools",
+        "channel": "directory",
+        "title": "Directory listing for free no-signup file tools",
+        "trigger": "Use on directories that accept free productivity, PDF, image, QR, or no-signup tools.",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/submit-directory/?utm_source=directory&utm_medium=organic&utm_campaign=free_tool_depth&utm_content=directory-free-file-tools",
+        "copy": "PrintableTools Lab is a free no-signup browser utility site for common PDF, image, QR, and paperwork tasks: compression targets, PDF-to-JPG, image-to-PDF, QR codes, invoices, receipts, labels, flyers, resumes, and more. Listing URL: https://printable-tools-lab.pages.dev/submit-directory/?utm_source=directory&utm_medium=organic&utm_campaign=free_tool_depth&utm_content=directory-free-file-tools",
+        "successSignal": "Directory referral appears in live metrics or directory monitor moves from pending to listed.",
+        "riskRule": "Use truthful free-tool claims only; do not resubmit duplicates or imply official endorsement."
+      },
+      {
+        "id": "support-upload-errors",
+        "channel": "support-thread",
+        "title": "Support thread resource for exact upload errors",
+        "trigger": "Use where support communities allow a resource link for file-size, file-type, or image-dimension rejection messages.",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/?utm_source=community&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=support-upload-errors",
+        "copy": "I keep a free upload-error cheatsheet for common messages like PDF under 1MB, image under 500KB, JPG under 200KB, PNG screenshot too large, invalid JPG/PNG type, and resume PDF too large: https://printable-tools-lab.pages.dev/upload-error-cheatsheet/?utm_source=community&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=support-upload-errors",
+        "successSignal": "Upload-error-cheatsheet UTM visits increase and at least one visitor clicks into a fixer page.",
+        "riskRule": "Only share as a relevant resource; do not mass-post or ask for ad clicks."
+      },
+      {
+        "id": "short-video-pdf-500kb",
+        "channel": "short-video",
+        "title": "Short demo for strict 500KB PDF forms",
+        "trigger": "Use for a 15-30 second silent demo on Shorts, TikTok, Bilibili, Douyin, or Reels.",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=short-video-pdf-500kb",
+        "copy": "Hook: Form says PDF must be under 500KB? Show a generic PDF, choose the 500KB target, download the result, and remind viewers to check readability. Link: https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=short-video-pdf-500kb",
+        "successSignal": "Short-video UTM produces at least one PDF download or returning page view.",
+        "riskRule": "Use generic sample files only and avoid guaranteed approval language."
+      },
+      {
+        "id": "short-video-pdf-to-jpg",
+        "channel": "short-video",
+        "title": "Short demo for PDF not accepted, JPG required",
+        "trigger": "Use when the content angle is forms that accept images but reject PDFs.",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=short-video-pdf-to-jpg",
+        "copy": "Hook: Website rejects PDF but asks for JPG? Show PDF pages converted to images locally in the browser, then download the image files. Link: https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=short-video-pdf-to-jpg",
+        "successSignal": "Short-video UTM produces a visit to the PDF-to-image workflow.",
+        "riskRule": "Do not use real private forms, IDs, medical, legal, or payment documents in the demo."
+      },
+      {
+        "id": "github-pages-cheatsheet",
+        "channel": "github-pages",
+        "title": "GitHub Pages mirror for accepted IndexNow discovery",
+        "trigger": "Use in resource lists that prefer GitHub Pages mirrors or crawlable static pages.",
+        "trackedUrl": "https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=github-pages-cheatsheet",
+        "copy": "Static mirror for common upload errors and direct free fixes: https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=github-pages-cheatsheet. The live tools remain on PrintableTools Lab and downloads stay free.",
+        "successSignal": "GitHub Pages sitemap and IndexNow accepted URL count remain above 151 and referral visits appear.",
+        "riskRule": "Mirror is for discovery only; send users to the live free tools for actual file work."
+      },
+      {
+        "id": "market-table-audit",
+        "channel": "community",
+        "title": "Free audit lead magnet for local seller print problems",
+        "trigger": "Use only where a local seller asks about price tags, QR signs, flyers, coupon wording, or pickup notes.",
+        "trackedUrl": "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=community&utm_medium=organic&utm_campaign=market_table_audit&utm_content=market-table-audit",
+        "copy": "For market-table print setup, I would start with readable price tags, one QR/contact sign, a simple flyer, and one clear offer card. This free audit checklist can help spot gaps: https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=community&utm_medium=organic&utm_campaign=market_table_audit&utm_content=market-table-audit",
+        "successSignal": "Audit request intent or GitHub Pages market-table-audit referral appears.",
+        "riskRule": "Keep it free-first and mention no paid setup unless the person asks for done-for-you help."
+      }
+    ]
+  },
   "uploadErrorCheatsheet": {
     "page": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
     "json": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",

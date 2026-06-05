@@ -4943,6 +4943,34 @@
         ["p", "Full upload limit matcher: https://printable-tools-lab.pages.dev/upload-limit-fixer/"],
       ],
     },
+    "organic-push-kit": {
+      title: "Organic push kit",
+      description: "Copy-ready low-risk organic distribution tasks, tracked links, trigger rules, and validation signals for growing free-tool traffic before display ads.",
+      body: [
+        ["p", "Use this page as a small daily queue for useful posts, directory updates, short demos, and resource replies. Skip a task when the trigger is not true."],
+        ["h2", "Today queue"],
+        ["ul", [
+          "Helpful reply for PDF under 1MB questions",
+          "Helpful reply for 100KB photo upload questions",
+          "Directory listing for free no-signup file tools",
+          "Support thread resource for exact upload errors",
+        ]],
+        ["h2", "Tracked resources"],
+        ["ul", [
+          "Organic push JSON: https://printable-tools-lab.pages.dev/organic-push-kit.json",
+          "Upload error cheatsheet: https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
+          "Share kit: https://printable-tools-lab.pages.dev/share-kit/",
+          "Directory pack: https://printable-tools-lab.pages.dev/submit-directory/",
+        ]],
+        ["h2", "Rules"],
+        ["ul", [
+          "Post only where the linked tool directly solves the topic.",
+          "Do not ask for ad clicks, ad views, artificial engagement, upvotes, or fake traffic.",
+          "Use generic sample files only; never post private IDs, payment documents, or user files.",
+          "Revenue is still unproven until ad payout, platform payout, or another payment provider shows settled money.",
+        ]],
+      ],
+    },
     "launch-kit": {
       title: "Launch Kit",
       description: "Distribution copy, links, and validation steps for launching PrintableTools Lab.",

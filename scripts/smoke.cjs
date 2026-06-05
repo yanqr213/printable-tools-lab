@@ -343,6 +343,17 @@ function delay(ms) {
   const shareKitJson = await page.evaluate(() => JSON.parse(document.body.innerText));
   if (!Array.isArray(shareKitJson.featuredLinks) || shareKitJson.featuredLinks.length < 8) throw new Error("share-kit.json missing featured links");
   if (!Array.isArray(shareKitJson.uploadErrorCheatsheet?.entries) || shareKitJson.uploadErrorCheatsheet.entries.length < 12) throw new Error("share-kit.json missing upload error cheatsheet entries");
+  if (!Array.isArray(shareKitJson.organicPushKit?.tasks) || shareKitJson.organicPushKit.tasks.length < 8) throw new Error("share-kit.json missing organic push kit tasks");
+
+  await page.goto(`${base}/organic-push-kit/`, { waitUntil: "networkidle" });
+  const organicPushText = await page.locator("main").innerText();
+  for (const phrase of ["Organic push kit", "Today queue", "Helpful reply for PDF under 1MB questions", "Directory listing for free no-signup file tools"]) {
+    if (!organicPushText.includes(phrase)) throw new Error(`Organic push kit is missing ${phrase}`);
+  }
+  const organicPushResponse = await page.goto(`${base}/organic-push-kit.json`, { waitUntil: "networkidle" });
+  if (!organicPushResponse || !organicPushResponse.ok()) throw new Error("organic-push-kit.json route failed");
+  const organicPushJson = await page.evaluate(() => JSON.parse(document.body.innerText));
+  if (!Array.isArray(organicPushJson.tasks) || organicPushJson.tasks.length < 8) throw new Error("organic-push-kit.json missing tasks");
 
   await page.goto(`${base}/upload-error-cheatsheet/`, { waitUntil: "networkidle" });
   const cheatsheetText = await page.locator("main").innerText();

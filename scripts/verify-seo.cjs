@@ -392,6 +392,7 @@ else {
   if (!html.includes("Priority links")) failures.push("Share kit missing priority links.");
   if (!html.includes("/share-kit.json")) failures.push("Share kit missing JSON link.");
   if (!html.includes("Ad-safe free-tool distribution")) failures.push("Share kit missing ad-safe free-tool distribution section.");
+  if (!html.includes("/organic-push-kit/")) failures.push("Share kit missing organic push kit link.");
   if (!html.includes("Upload error cheatsheet")) failures.push("Share kit missing upload error cheatsheet section.");
   if (!html.includes("/upload-error-cheatsheet.json")) failures.push("Share kit missing upload error cheatsheet JSON link.");
   if (!html.includes("/free-pdf-tools/")) failures.push("Share kit missing free tools directory link.");
@@ -435,6 +436,29 @@ else {
   if (!data.entries?.some((item) => item.errorText === "Image must be less than 2MB" && String(item.toolUrl || "").includes("targetKb=2048"))) failures.push("upload-error-cheatsheet.json missing image 2MB target.");
 }
 
+const organicPushKitFile = path.join(root, "organic-push-kit", "index.html");
+if (!fs.existsSync(organicPushKitFile)) failures.push("Missing organic push kit page.");
+else {
+  const html = fs.readFileSync(organicPushKitFile, "utf8");
+  if (!html.includes("Organic push kit")) failures.push("Organic push kit missing heading.");
+  if (!html.includes("Today queue")) failures.push("Organic push kit missing task queue.");
+  if (!html.includes("Helpful reply for PDF under 1MB questions")) failures.push("Organic push kit missing PDF task.");
+  if (!html.includes("Directory listing for free no-signup file tools")) failures.push("Organic push kit missing directory task.");
+  if (!html.includes("utm_campaign=upload_error_cheatsheet")) failures.push("Organic push kit missing upload-error tracking.");
+  if (!html.includes("/organic-push-kit.json")) failures.push("Organic push kit missing JSON link.");
+  if (!sitemap.includes(`<loc>${siteUrl("organic-push-kit")}</loc>`)) failures.push("Sitemap missing organic push kit.");
+}
+
+const organicPushKitJsonFile = path.join(root, "organic-push-kit.json");
+if (!fs.existsSync(organicPushKitJsonFile)) failures.push("Missing organic-push-kit.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(organicPushKitJsonFile, "utf8"));
+  if (!Array.isArray(data.tasks) || data.tasks.length < 8) failures.push("organic-push-kit.json missing tasks.");
+  if (!data.tasks?.some((item) => item.id === "community-pdf-1mb" && String(item.trackedUrl || "").includes("utm_source=community"))) failures.push("organic-push-kit.json missing community PDF task.");
+  if (!data.tasks?.some((item) => item.id === "directory-free-file-tools" && String(item.copy || "").includes("PrintableTools Lab is a free no-signup"))) failures.push("organic-push-kit.json missing directory copy.");
+  if (!String(data.successGate || "").includes("live metrics")) failures.push("organic-push-kit.json missing live metrics success gate.");
+}
+
 const shareKitJsonFile = path.join(root, "share-kit.json");
 if (!fs.existsSync(shareKitJsonFile)) failures.push("Missing share-kit.json.");
 else {
@@ -454,6 +478,7 @@ else {
   if (!Array.isArray(data.zeroDomainGameExperiments) || !data.zeroDomainGameExperiments.some((item) => String(item.gameSnacksZipUrl || "").includes("neon-lane-dash-gamesnacks.zip"))) failures.push("share-kit.json missing Neon Lane Dash GameSnacks ZIP URL.");
   if (!Array.isArray(data.rules) || data.rules.length < 5) failures.push("share-kit.json missing distribution rules.");
   if (!Array.isArray(data.uploadErrorCheatsheet?.entries) || data.uploadErrorCheatsheet.entries.length < 12) failures.push("share-kit.json missing upload error cheatsheet entries.");
+  if (!Array.isArray(data.organicPushKit?.tasks) || data.organicPushKit.tasks.length < 8) failures.push("share-kit.json missing organic push kit tasks.");
   if (!data.featuredLinks.some((item) => item.url && item.url.includes("utm_source=share-kit"))) failures.push("share-kit.json missing tracked share-kit URLs.");
   if (data.serviceSalesPack?.trackedLinks?.some((item) => String(item.url || "").includes("service_sales_pack"))) failures.push("share-kit.json should not promote service sales pack tracked URLs.");
   if (!data.marketTablePrintAudit || data.marketTablePrintAudit.id !== MARKET_TABLE_PRINT_AUDIT.id) failures.push("share-kit.json missing market table print audit lead magnet.");
@@ -976,6 +1001,8 @@ else {
   if (!distribution.includes("Directory submission fields")) failures.push("DISTRIBUTION.md missing directory fields.");
   if (!distribution.includes("Machine-readable share kit")) failures.push("DISTRIBUTION.md missing share kit link.");
   if (!distribution.includes("Ad-safe free-tool distribution")) failures.push("DISTRIBUTION.md missing ad-safe free-tool distribution section.");
+  if (!distribution.includes("Organic push tasks")) failures.push("DISTRIBUTION.md missing organic push task queue.");
+  if (!distribution.includes("organic-push-kit.json")) failures.push("DISTRIBUTION.md missing organic push kit JSON link.");
   if (!distribution.includes("free_tool_depth")) failures.push("DISTRIBUTION.md missing free-tool depth tracking campaign.");
   if (distribution.includes("Paid service sales pack")) failures.push("DISTRIBUTION.md should not promote paid service sales pack in the main distribution pack.");
   if (distribution.includes("service_sales_pack")) failures.push("DISTRIBUTION.md should not promote service sales tracking campaign.");
@@ -1014,8 +1041,10 @@ else {
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("portal-submission-pack"))) failures.push("discovery.json missing portal submission pack page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("zero-cost-monetization-map"))) failures.push("discovery.json missing zero-cost monetization map page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("upload-limit-fixer"))) failures.push("discovery.json missing upload limit fixer page.");
+  if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("organic-push-kit"))) failures.push("discovery.json missing organic push kit page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("upload-error-cheatsheet"))) failures.push("discovery.json missing upload error cheatsheet page.");
   if (discovery.shareKit !== siteUrl("share-kit.json").replace(/\/$/, "")) failures.push("discovery.json missing share-kit.json URL.");
+  if (discovery.organicPushKit !== siteUrl("organic-push-kit.json").replace(/\/$/, "")) failures.push("discovery.json missing organic-push-kit.json URL.");
   if (discovery.uploadErrorCheatsheet !== siteUrl("upload-error-cheatsheet.json").replace(/\/$/, "")) failures.push("discovery.json missing upload-error-cheatsheet.json URL.");
   if (discovery.platformSubmitQueue !== siteUrl("platform-submit-queue.json").replace(/\/$/, "")) failures.push("discovery.json missing platform-submit-queue.json URL.");
   if (discovery.platformSubmitCockpit !== siteUrl("platform-submit-cockpit.json").replace(/\/$/, "")) failures.push("discovery.json missing platform-submit-cockpit.json URL.");
@@ -1024,6 +1053,8 @@ else {
   if (discovery.zeroCostMonetizationMap !== siteUrl("zero-cost-monetization-map.json").replace(/\/$/, "")) failures.push("discovery.json missing zero-cost-monetization-map.json URL.");
   if (!discovery.distributionAssets || !Array.isArray(discovery.distributionAssets.campaignVideos) || discovery.distributionAssets.campaignVideos.length < 6) failures.push("discovery.json missing campaign video assets.");
   if (!discovery.distributionAssets || !String(discovery.distributionAssets.publicGist || "").includes("gist.github.com/yanqr213")) failures.push("discovery.json missing public Gist URL.");
+  if (!discovery.distributionAssets || discovery.distributionAssets.organicPushKit !== siteUrl("organic-push-kit")) failures.push("discovery.json missing organic push kit URL.");
+  if (!discovery.distributionAssets || discovery.distributionAssets.organicPushKitJson !== siteUrl("organic-push-kit.json").replace(/\/$/, "")) failures.push("discovery.json missing organic push kit JSON URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.uploadErrorCheatsheet !== siteUrl("upload-error-cheatsheet")) failures.push("discovery.json missing upload error cheatsheet URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.uploadErrorCheatsheetJson !== siteUrl("upload-error-cheatsheet.json").replace(/\/$/, "")) failures.push("discovery.json missing upload error cheatsheet JSON URL.");
   if (!discovery.distributionAssets || !String(discovery.distributionAssets.publicGrowthIssue || "").includes("github.com/yanqr213/printable-tools-lab/issues/1")) failures.push("discovery.json missing public GitHub issue URL.");

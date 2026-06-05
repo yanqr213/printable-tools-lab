@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
 const { strToU8, zipSync } = require("fflate");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
 const { serviceDeliveryInputExample, zipServiceDelivery } = require("./service-delivery-kit.cjs");
 
 const root = path.resolve(__dirname, "..");
@@ -140,6 +140,9 @@ if (fs.existsSync(headersPath)) {
   if (!headers.includes("/upload-error-cheatsheet.json")) {
     fs.appendFileSync(headersPath, "\n/upload-error-cheatsheet.json\n  Content-Type: application/json; charset=utf-8\n");
   }
+  if (!headers.includes("/organic-push-kit.json")) {
+    fs.appendFileSync(headersPath, "\n/organic-push-kit.json\n  Content-Type: application/json; charset=utf-8\n");
+  }
   if (!headers.includes("/platform-submit-queue.json")) {
     fs.appendFileSync(headersPath, "\n/platform-submit-queue.json\n  Content-Type: application/json; charset=utf-8\n");
   }
@@ -224,6 +227,11 @@ const shareKitJson = {
     url: trackedSharePostUrl(post),
   })),
   videoAssets: campaignAssets,
+  organicPushKit: {
+    page: siteUrl("organic-push-kit"),
+    json: fileUrl("organic-push-kit.json"),
+    tasks: ORGANIC_PUSH_TASKS.map(organicPushTaskEntry),
+  },
   uploadErrorCheatsheet: {
     page: siteUrl("upload-error-cheatsheet"),
     json: fileUrl("upload-error-cheatsheet.json"),
@@ -240,6 +248,21 @@ const shareKitJson = {
   rules: SHARE_KIT_RULES,
 };
 fs.writeFileSync(path.join(root, "share-kit.json"), `${JSON.stringify(shareKitJson, null, 2)}\n`);
+
+const organicPushKitJson = {
+  name: "PrintableTools Lab Organic Push Kit",
+  generatedAt: generatedAtIso,
+  canonical: siteUrl("organic-push-kit"),
+  purpose: "Low-risk organic distribution tasks for getting real free-tool traffic before display ads.",
+  tasks: ORGANIC_PUSH_TASKS.map(organicPushTaskEntry),
+  successGate: "A task is working only when live metrics show real visits, tool-depth clicks, downloads, search exposure, or accepted external listing evidence.",
+  rules: [
+    ...SHARE_KIT_RULES,
+    "Stop using any channel that creates spam complaints, low-quality traffic, or no tool-depth signal.",
+    "Revenue is still unproven until ad payout, platform payout, or another payment provider shows settled money.",
+  ],
+};
+fs.writeFileSync(path.join(root, "organic-push-kit.json"), `${JSON.stringify(organicPushKitJson, null, 2)}\n`);
 
 const uploadErrorCheatsheetJson = {
   name: "PrintableTools Lab Upload Error Cheatsheet",
@@ -405,7 +428,9 @@ const llms = [
   `- Upload limit fixer page: ${siteUrl("upload-limit-fixer")}`,
   `- Directory submission pack: ${siteUrl("submit-directory")}`,
   `- Share kit: ${siteUrl("share-kit")}`,
+  `- Organic push kit: ${siteUrl("organic-push-kit")}`,
   `- Upload error cheatsheet: ${siteUrl("upload-error-cheatsheet")}`,
+  `- Machine-readable organic push kit: ${fileUrl("organic-push-kit.json")}`,
   `- Machine-readable upload error cheatsheet: ${fileUrl("upload-error-cheatsheet.json")}`,
   `- Free market table print audit: ${siteUrl(MARKET_TABLE_PRINT_AUDIT.slug)}`,
   `- HTML5 platform submit queue: ${siteUrl("platform-submit-queue")}`,
@@ -422,6 +447,7 @@ const llms = [
   `- Machine-readable tool list: ${fileUrl("tools.json")}`,
   `- Discovery index: ${fileUrl("discovery.json")}`,
   `- Machine-readable share kit: ${fileUrl("share-kit.json")}`,
+  `- Machine-readable organic push kit: ${fileUrl("organic-push-kit.json")}`,
   `- Machine-readable upload error cheatsheet: ${fileUrl("upload-error-cheatsheet.json")}`,
   `- Machine-readable platform submit queue: ${fileUrl("platform-submit-queue.json")}`,
   `- Machine-readable platform submit cockpit: ${fileUrl("platform-submit-cockpit.json")}`,
@@ -468,6 +494,7 @@ const discoveryIndex = {
   manifest: fileUrl("site.webmanifest"),
   opensearch: fileUrl("opensearch.xml"),
   shareKit: fileUrl("share-kit.json"),
+  organicPushKit: fileUrl("organic-push-kit.json"),
   uploadErrorCheatsheet: fileUrl("upload-error-cheatsheet.json"),
   platformSubmitQueue: fileUrl("platform-submit-queue.json"),
   platformSubmitCockpit: fileUrl("platform-submit-cockpit.json"),
@@ -475,10 +502,12 @@ const discoveryIndex = {
   portalSubmissionPack: fileUrl("portal-submission-pack.json"),
   gameSubmissionFeed: fileUrl("game-submission-feed.json"),
   zeroCostMonetizationMap: fileUrl("zero-cost-monetization-map.json"),
-  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("upload-limit-fixer"), siteUrl("upload-error-cheatsheet"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl(MARKET_TABLE_PRINT_AUDIT.slug), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("upload-limit-fixer"), siteUrl("organic-push-kit"), siteUrl("upload-error-cheatsheet"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl(MARKET_TABLE_PRINT_AUDIT.slug), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   distributionAssets: {
     shareKit: siteUrl("share-kit"),
     shareKitJson: fileUrl("share-kit.json"),
+    organicPushKit: siteUrl("organic-push-kit"),
+    organicPushKitJson: fileUrl("organic-push-kit.json"),
     uploadErrorCheatsheet: siteUrl("upload-error-cheatsheet"),
     uploadErrorCheatsheetJson: fileUrl("upload-error-cheatsheet.json"),
     marketTablePrintAudit: siteUrl(MARKET_TABLE_PRINT_AUDIT.slug),
@@ -608,6 +637,7 @@ const distribution = [
   `- Public Gist campaign: ${siteUrl("upload-limit-fixer").replace(/\/$/, "")}?utm_source=gist&utm_medium=organic&utm_campaign=zero_cost_push`,
   `- Community campaign: ${siteUrl("").replace(/\/$/, "")}?utm_source=community`,
   `- Free Market Table Print Audit campaign: ${MARKET_TABLE_PRINT_AUDIT.githubPagesUrl}?utm_source=distribution&utm_medium=organic&utm_campaign=market_table_audit`,
+  `- Organic push kit campaign: ${siteUrl("organic-push-kit").replace(/\/$/, "")}?utm_source=distribution&utm_medium=organic&utm_campaign=organic_push_kit`,
   "",
   "## Free audit lead magnet",
   "",
@@ -621,11 +651,22 @@ const distribution = [
   "",
   `- Free tool directory: ${siteUrl("free-pdf-tools")}?utm_source=distribution&utm_medium=organic&utm_campaign=free_tool_depth`,
   `- Upload limit fixer: ${siteUrl("upload-limit-fixer")}?utm_source=distribution&utm_medium=organic&utm_campaign=zero_cost_push`,
+  `- Organic push kit: ${siteUrl("organic-push-kit")}?utm_source=distribution&utm_medium=organic&utm_campaign=organic_push_kit`,
+  `- Organic push kit JSON: ${fileUrl("organic-push-kit.json")}`,
   `- Upload error cheatsheet: ${siteUrl("upload-error-cheatsheet")}?utm_source=distribution&utm_medium=organic&utm_campaign=upload_error_cheatsheet`,
   `- Upload error cheatsheet JSON: ${fileUrl("upload-error-cheatsheet.json")}`,
   `- Share kit JSON: ${fileUrl("share-kit.json")}`,
   "",
   "Rule: downloads stay free, ads are disabled until review, and future ads must never block file generation or downloads.",
+  "",
+  "## Organic push tasks",
+  "",
+  "Use these as a small daily queue. Post only when the trigger is true; otherwise skip the task.",
+  "",
+  ...ORGANIC_PUSH_TASKS.map((task) => {
+    const entry = organicPushTaskEntry(task);
+    return `- ${entry.title}: ${entry.copy} Success signal: ${entry.successSignal}`;
+  }),
   "",
   "## Upload error cheatsheet copy",
   "",
@@ -1294,6 +1335,26 @@ function uploadErrorEntry(item) {
     landingPage: pageUrl,
     trackedUrl,
     toolUrl: liveToolUrl(item.toolPath),
+  };
+}
+
+function organicPushTaskEntry(task) {
+  const baseUrl = task.absoluteUrl || siteUrl(task.linkPath);
+  const tracked = new URL(baseUrl);
+  tracked.searchParams.set("utm_source", task.utmSource || task.channel);
+  tracked.searchParams.set("utm_medium", "organic");
+  tracked.searchParams.set("utm_campaign", task.campaign);
+  tracked.searchParams.set("utm_content", task.id);
+  const trackedUrl = tracked.toString();
+  return {
+    id: task.id,
+    channel: task.channel,
+    title: task.title,
+    trigger: task.trigger,
+    trackedUrl,
+    copy: task.copy.replace("{url}", trackedUrl),
+    successSignal: task.successSignal,
+    riskRule: task.riskRule,
   };
 }
 

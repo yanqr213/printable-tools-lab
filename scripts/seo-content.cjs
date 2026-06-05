@@ -1898,6 +1898,105 @@ const SHARE_KIT_POSTS = [
   },
 ];
 
+const ORGANIC_PUSH_TASKS = [
+  {
+    id: "community-pdf-1mb",
+    channel: "community",
+    title: "Helpful reply for PDF under 1MB questions",
+    trigger: "Use only when someone asks how to make a PDF smaller for a job, school, email, or form upload.",
+    linkPath: "compress-pdf-to-1mb",
+    utmSource: "community",
+    campaign: "upload_error_cheatsheet",
+    copy: "If the portal says your PDF must be under 1MB, this free browser tool can try compressing scans or image-heavy PDFs locally: {url}. Check the result before submitting, because very small targets can reduce quality.",
+    successSignal: "One real visitor lands from community UTM and downloads a PDF after the reply.",
+    riskRule: "Do not post in unrelated threads, do not claim guaranteed compression, and do not use private documents as examples.",
+  },
+  {
+    id: "community-image-100kb",
+    channel: "community",
+    title: "Helpful reply for 100KB photo upload questions",
+    trigger: "Use when a job, exam, school, or profile form rejects an image because it is over 100KB.",
+    linkPath: "compress-image-to-100kb",
+    utmSource: "community",
+    campaign: "upload_error_cheatsheet",
+    copy: "For a 100KB image limit, this free no-signup browser tool can compress an image locally: {url}. Review the preview before uploading it anywhere, especially for ID-style photos.",
+    successSignal: "One image-tool visitor arrives from community UTM and triggers a download.",
+    riskRule: "Do not ask users to share IDs, faces, payment documents, or private files publicly.",
+  },
+  {
+    id: "directory-free-file-tools",
+    channel: "directory",
+    title: "Directory listing for free no-signup file tools",
+    trigger: "Use on directories that accept free productivity, PDF, image, QR, or no-signup tools.",
+    linkPath: "submit-directory",
+    utmSource: "directory",
+    campaign: "free_tool_depth",
+    copy: "PrintableTools Lab is a free no-signup browser utility site for common PDF, image, QR, and paperwork tasks: compression targets, PDF-to-JPG, image-to-PDF, QR codes, invoices, receipts, labels, flyers, resumes, and more. Listing URL: {url}",
+    successSignal: "Directory referral appears in live metrics or directory monitor moves from pending to listed.",
+    riskRule: "Use truthful free-tool claims only; do not resubmit duplicates or imply official endorsement.",
+  },
+  {
+    id: "support-upload-errors",
+    channel: "support-thread",
+    title: "Support thread resource for exact upload errors",
+    trigger: "Use where support communities allow a resource link for file-size, file-type, or image-dimension rejection messages.",
+    linkPath: "upload-error-cheatsheet",
+    utmSource: "community",
+    campaign: "upload_error_cheatsheet",
+    copy: "I keep a free upload-error cheatsheet for common messages like PDF under 1MB, image under 500KB, JPG under 200KB, PNG screenshot too large, invalid JPG/PNG type, and resume PDF too large: {url}",
+    successSignal: "Upload-error-cheatsheet UTM visits increase and at least one visitor clicks into a fixer page.",
+    riskRule: "Only share as a relevant resource; do not mass-post or ask for ad clicks.",
+  },
+  {
+    id: "short-video-pdf-500kb",
+    channel: "short-video",
+    title: "Short demo for strict 500KB PDF forms",
+    trigger: "Use for a 15-30 second silent demo on Shorts, TikTok, Bilibili, Douyin, or Reels.",
+    linkPath: "compress-pdf-to-500kb",
+    utmSource: "short-video",
+    campaign: "zero_cost_push",
+    copy: "Hook: Form says PDF must be under 500KB? Show a generic PDF, choose the 500KB target, download the result, and remind viewers to check readability. Link: {url}",
+    successSignal: "Short-video UTM produces at least one PDF download or returning page view.",
+    riskRule: "Use generic sample files only and avoid guaranteed approval language.",
+  },
+  {
+    id: "short-video-pdf-to-jpg",
+    channel: "short-video",
+    title: "Short demo for PDF not accepted, JPG required",
+    trigger: "Use when the content angle is forms that accept images but reject PDFs.",
+    linkPath: "pdf-not-accepted-jpg-required",
+    utmSource: "short-video",
+    campaign: "zero_cost_push",
+    copy: "Hook: Website rejects PDF but asks for JPG? Show PDF pages converted to images locally in the browser, then download the image files. Link: {url}",
+    successSignal: "Short-video UTM produces a visit to the PDF-to-image workflow.",
+    riskRule: "Do not use real private forms, IDs, medical, legal, or payment documents in the demo.",
+  },
+  {
+    id: "github-pages-cheatsheet",
+    channel: "github-pages",
+    title: "GitHub Pages mirror for accepted IndexNow discovery",
+    trigger: "Use in resource lists that prefer GitHub Pages mirrors or crawlable static pages.",
+    absoluteUrl: "https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/",
+    utmSource: "github-pages",
+    campaign: "upload_error_cheatsheet",
+    copy: "Static mirror for common upload errors and direct free fixes: {url}. The live tools remain on PrintableTools Lab and downloads stay free.",
+    successSignal: "GitHub Pages sitemap and IndexNow accepted URL count remain above 151 and referral visits appear.",
+    riskRule: "Mirror is for discovery only; send users to the live free tools for actual file work.",
+  },
+  {
+    id: "market-table-audit",
+    channel: "community",
+    title: "Free audit lead magnet for local seller print problems",
+    trigger: "Use only where a local seller asks about price tags, QR signs, flyers, coupon wording, or pickup notes.",
+    absoluteUrl: "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/",
+    utmSource: "community",
+    campaign: "market_table_audit",
+    copy: "For market-table print setup, I would start with readable price tags, one QR/contact sign, a simple flyer, and one clear offer card. This free audit checklist can help spot gaps: {url}",
+    successSignal: "Audit request intent or GitHub Pages market-table-audit referral appears.",
+    riskRule: "Keep it free-first and mention no paid setup unless the person asks for done-for-you help.",
+  },
+];
+
 const UPLOAD_LIMIT_SHORTCUTS = [
   ["PDF size reducer", "/pdf-size-reducer/", "Pick 500KB, 1MB, 2MB, or 5MB PDF targets for scanned forms and portal uploads.", "compress-pdf"],
   ["Image size reducer in KB", "/image-size-reducer-in-kb/", "Choose exact image and photo targets from 10KB through 500KB without uploading.", "compress-image-to-kb"],
@@ -4857,6 +4956,12 @@ const pages = [
     html: shareKitHtml(),
   },
   {
+    path: "organic-push-kit",
+    title: "Organic Push Kit",
+    description: "Copy-ready low-risk organic distribution tasks, tracked links, trigger rules, and validation signals for growing free-tool traffic before display ads.",
+    html: organicPushKitHtml(),
+  },
+  {
     path: "upload-error-cheatsheet",
     title: "Upload Error Cheatsheet",
     description: "Copy-ready reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup tool fixes.",
@@ -5447,6 +5552,56 @@ function uploadErrorCheatsheetHtml() {
       </section>`;
 }
 
+function organicPushTaskEntry(task) {
+  const baseUrl = task.absoluteUrl || siteUrl(task.linkPath);
+  const url = new URL(baseUrl);
+  url.searchParams.set("utm_source", task.utmSource || task.channel);
+  url.searchParams.set("utm_medium", "organic");
+  url.searchParams.set("utm_campaign", task.campaign);
+  url.searchParams.set("utm_content", task.id);
+  const trackedUrl = url.toString();
+  return {
+    ...task,
+    trackedUrl,
+    copy: task.copy.replace("{url}", trackedUrl),
+  };
+}
+
+function organicPushKitHtml() {
+  const tasks = ORGANIC_PUSH_TASKS.map(organicPushTaskEntry);
+  return `
+      <section class="shell page-title section">
+        <a href="/share-kit/">Share kit</a>
+        <h1>Organic push kit</h1>
+        <p>Copy-ready, low-risk distribution tasks for getting real free-tool traffic before display ads. Each task has a trigger, tracked URL, success signal, and rule to avoid spam or ad-policy problems.</p>
+        <p><a class="button" href="/organic-push-kit.json">Open JSON feed</a> <a class="button secondary" href="/upload-error-cheatsheet/">Open upload error cheatsheet</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Today queue</h2>
+        <table class="event-table">
+          <thead><tr><th>Task</th><th>Use when</th><th>Tracked URL</th><th>Success signal</th></tr></thead>
+          <tbody>
+            ${tasks.map((task) => `<tr><td>${escapeHtml(task.title)}<br><small>${escapeHtml(task.channel)}</small></td><td>${escapeHtml(task.trigger)}</td><td><a href="${escapeHtml(task.trackedUrl)}">${escapeHtml(task.trackedUrl)}</a></td><td>${escapeHtml(task.successSignal)}</td></tr>`).join("\n")}
+          </tbody>
+        </table>
+      </section>
+      <section class="shell section">
+        <h2>Copy-ready tasks</h2>
+        <div class="grid-2">
+          ${tasks.map((task) => `<article class="panel"><h3>${escapeHtml(task.title)}</h3><p><strong>Trigger:</strong> ${escapeHtml(task.trigger)}</p><p>${escapeHtml(task.copy)}</p><p><strong>Risk rule:</strong> ${escapeHtml(task.riskRule)}</p><p><a href="${escapeHtml(task.trackedUrl)}">Open tracked link</a></p></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Rules</h2>
+        <ul>
+          ${SHARE_KIT_RULES.map((rule) => `<li>${escapeHtml(rule)}</li>`).join("\n")}
+          <li>Stop using any channel that produces spam complaints, low-quality traffic, or no tool-depth signal.</li>
+          <li>Revenue is still unproven until ad payout, platform payout, or another payment provider shows settled money.</li>
+        </ul>
+        ${jsonLdHtml(itemListSchema("Organic push kit tasks", tasks.map((task) => ({ title: task.title, path: "organic-push-kit" }))))}
+      </section>`;
+}
+
 function shareKitHtml() {
   const featuredLinks = shareKitFeaturedLinks();
   const posts = shareKitPosts();
@@ -5476,7 +5631,7 @@ function shareKitHtml() {
       <section class="shell section">
         <h2>Ad-safe free-tool distribution</h2>
         <p>The current monetization path is free-tool traffic first, then responsible display ads after review. Share useful tool links, measure downloads and search exposure, and keep ads separate from generator controls.</p>
-        <p><a class="button" href="/free-pdf-tools/">Browse free tools</a> <a class="button secondary" href="/upload-error-cheatsheet/">Open upload error cheatsheet</a></p>
+        <p><a class="button" href="/free-pdf-tools/">Browse free tools</a> <a class="button secondary" href="/organic-push-kit/">Open organic push kit</a> <a class="button ghost" href="/upload-error-cheatsheet/">Open upload error cheatsheet</a></p>
       </section>
       <section class="shell section">
         <h2>Upload error cheatsheet</h2>
@@ -7520,4 +7675,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, UPLOAD_ERROR_CHEATSHEET, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };

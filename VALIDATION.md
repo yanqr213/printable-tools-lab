@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-05T22:06:54.990Z
+Last generated: 2026-06-05T22:23:39.409Z
 
 ## Current Automated Status
 
@@ -8,7 +8,7 @@ Last generated: 2026-06-05T22:06:54.990Z
 - Tools live in inventory: 66.
 - Guide pages live in inventory: 95.
 - High-intent landing pages: 92.
-- Indexable routes: 274.
+- Indexable routes: 275.
 - Custom domain configured: no.
 - Live downloads: 2.
 - Live generations: 0.

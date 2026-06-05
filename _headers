@@ -128,3 +128,6 @@
 
 /upload-error-cheatsheet.json
   Content-Type: application/json; charset=utf-8
+
+/organic-push-kit.json
+  Content-Type: application/json; charset=utf-8
