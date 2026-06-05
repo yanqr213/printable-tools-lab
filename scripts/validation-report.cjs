@@ -214,6 +214,7 @@ async function readGithubState() {
     const response = await fetchJsonWithTimeout(apiUrl, { headers });
     if (!response.ok) return await readPublicGithubFallback(fallback, repoUrl, `GitHub API ${response.status}`);
     const release = await fetchJsonWithTimeout(`${apiUrl}/releases/tags/free-pdf-tools`, { headers });
+    const publicRelease = release.ok ? null : await readPublicDiscoveryRelease(repoUrl);
     return {
       available: true,
       repoUrl,
@@ -224,8 +225,8 @@ async function readGithubState() {
         tag: release.json.tag_name || "",
         url: release.json.html_url || "",
         name: release.json.name || "",
-      } : null,
-      error: "",
+      } : publicRelease,
+      error: release.ok || publicRelease ? "" : `GitHub release API ${release.status}`,
     };
   } catch (error) {
     return await readPublicGithubFallback(fallback, repoUrl, error.message);
@@ -236,24 +237,31 @@ async function readPublicGithubFallback(fallback, repoUrl, apiError) {
   if (!repoUrl) return { ...fallback, error: apiError };
   const releaseUrl = `${repoUrl}/releases/tag/free-pdf-tools`;
   try {
-    const release = await fetchTextWithTimeout(releaseUrl);
-    if (!release.ok) return { ...fallback, error: `${apiError}; public release check ${release.status}` };
+    const publicRelease = await readPublicDiscoveryRelease(repoUrl);
+    if (!publicRelease) return { ...fallback, error: `${apiError}; public release check failed` };
     return {
       ...fallback,
       available: true,
       homepage: siteUrl(""),
       description: "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
-      topics: release.text.includes(siteUrl("free-pdf-tools")) ? ["pdf-tools", "image-tools", "qr-code", "no-signup", "browser-tools", "free-tools"] : [],
-      discoveryRelease: release.text.includes(siteUrl("free-pdf-tools")) ? {
-        tag: "free-pdf-tools",
-        url: releaseUrl,
-        name: "Free PDF, Image, and QR Tools Without Signup",
-      } : null,
+      topics: ["pdf-tools", "image-tools", "qr-code", "no-signup", "browser-tools", "free-tools"],
+      discoveryRelease: publicRelease,
       error: `GitHub API fallback used: ${apiError}`,
     };
   } catch (error) {
     return { ...fallback, error: `${apiError}; public fallback failed: ${error.message}` };
   }
+}
+
+async function readPublicDiscoveryRelease(repoUrl) {
+  const releaseUrl = `${repoUrl}/releases/tag/free-pdf-tools`;
+  const release = await fetchTextWithTimeout(releaseUrl);
+  if (!release.ok || !release.text.includes(siteUrl("free-pdf-tools"))) return null;
+  return {
+    tag: "free-pdf-tools",
+    url: releaseUrl,
+    name: "Free PDF, Image, and QR Tools Without Signup",
+  };
 }
 
 function githubHeaders() {
