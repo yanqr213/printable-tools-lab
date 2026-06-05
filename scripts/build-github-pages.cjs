@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, serviceOrderPipeline, serviceOutreachQueue, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, siteUrl, tools, landingPages } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, serviceOrderPipeline, serviceOutreachQueue, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, siteUrl, tools, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
@@ -75,6 +75,13 @@ const discoveryRoutes = [
     url: pagesUrl(SERVICE_SALES_PACK.slug),
     mainUrl: siteUrl(SERVICE_SALES_PACK.slug),
   },
+  {
+    path: "upload-error-cheatsheet",
+    title: "Upload error cheatsheet",
+    description: "GitHub Pages mirror for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup fixes.",
+    url: pagesUrl("upload-error-cheatsheet"),
+    mainUrl: siteUrl("upload-error-cheatsheet"),
+  },
   ...gameDiscoveryRoutes,
 ];
 
@@ -138,6 +145,7 @@ const html = `<!doctype html>
       <ul>
         <li><a href="${trackedSiteUrl("pdf-tool-finder", "finder")}">File tool finder</a> for choosing between tools such as compress vs resize, invoice vs receipt, or one image vs multi-image PDF.</li>
         <li><a href="${trackedSiteUrl("upload-limit-fixer", "upload-limit-fixer")}">Upload limit fixer</a> for choosing the right no-upload tool when a website rejects a file by size, format, or dimensions.</li>
+        <li><a href="${pagesUrl("upload-error-cheatsheet")}">Upload error cheatsheet mirror</a> for exact PDF, image, resume, and email attachment rejection messages with direct fixes.</li>
         <li><a href="${trackedSiteUrl("tools", "all-tools")}">All free generators</a> for browsing every tool.</li>
         <li><a href="${trackedSiteUrl("guides", "guides")}">Printable guides</a> for original help pages around PDF, image, QR, and printable workflows.</li>
         <li><a href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Free Market Table Print Audit mirror</a> for public-safe feedback on price tags, QR signs, flyer copy, coupons, and pickup notes.</li>
@@ -191,6 +199,7 @@ copyPaidServicePublicAssets();
 writeAuditLeadMagnetDiscoveryPage();
 copyAuditLeadMagnetPublicAssets();
 writeServiceSalesPackDiscoveryPage();
+writeUploadErrorCheatsheetDiscoveryPage();
 writeGameDiscoveryPages();
 
 fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
@@ -232,7 +241,10 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
   paidServices: PAID_SERVICES.map(serviceFeedEntry),
   leadMagnets: [auditLeadMagnetEntry()],
   serviceSalesPack: serviceSalesPackEntry(),
+  uploadErrorCheatsheet: uploadErrorCheatsheetEntry(),
 }, null, 2)}\n`);
+
+fs.writeFileSync(path.join(docsDir, "upload-error-cheatsheet.json"), `${JSON.stringify(uploadErrorCheatsheetEntry(), null, 2)}\n`);
 
 fs.writeFileSync(path.join(docsDir, "products.json"), `${JSON.stringify({
   name: "PrintableTools Lab Digital Products",
@@ -454,6 +466,12 @@ function writeServiceSalesPackDiscoveryPage() {
   fs.writeFileSync(path.join(dir, "index.html"), serviceSalesPackHtml());
 }
 
+function writeUploadErrorCheatsheetDiscoveryPage() {
+  const dir = path.join(docsDir, "upload-error-cheatsheet");
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, "index.html"), uploadErrorCheatsheetHtml());
+}
+
 function copyPublicFile(relativePath) {
   const cleanPath = String(relativePath || "").replace(/^\/+/, "");
   if (!cleanPath) return;
@@ -462,6 +480,69 @@ function copyPublicFile(relativePath) {
   const targetPath = path.join(docsDir, cleanPath);
   fs.mkdirSync(path.dirname(targetPath), { recursive: true });
   fs.copyFileSync(sourcePath, targetPath);
+}
+
+function uploadErrorCheatsheetHtml() {
+  const entry = uploadErrorCheatsheetEntry();
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Upload error cheatsheet - PrintableTools Lab Directory</title>
+    <meta name="description" content="GitHub Pages mirror for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup fixes.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="${pagesUrl("upload-error-cheatsheet")}">
+    <style>
+      :root { color-scheme: light; --ink: #17313b; --muted: #5b6f78; --line: #dce8ec; --teal: #176b87; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Arial, sans-serif; color: var(--ink); background: #f7fbfc; line-height: 1.55; }
+      main { width: min(960px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 56px; }
+      h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin: 0 0 14px; }
+      p { color: var(--muted); max-width: 780px; }
+      a { color: var(--teal); font-weight: 700; }
+      .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .button.secondary { background: var(--ink); }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+      table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); }
+      th, td { text-align: left; vertical-align: top; padding: 10px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+      .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+      ul { padding-left: 20px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="${pagesBase}">PrintableTools Lab discovery directory</a></p>
+      <h1>Upload error cheatsheet</h1>
+      <p>This GitHub Pages mirror points to the live free no-signup browser tools for common upload rejections. It exists as a crawlable external discovery page because GitHub Pages IndexNow submission is currently accepted while pages.dev submission is not.</p>
+      <p class="actions">
+        <a class="button" href="${trackedSiteUrl("upload-error-cheatsheet", "github-pages-cheatsheet")}">Open live upload error cheatsheet</a>
+        <a class="button secondary" href="${pagesAssetUrl("upload-error-cheatsheet.json")}">Open mirror JSON</a>
+      </p>
+      <section class="card">
+        <h2>Ad-safe use</h2>
+        <p>Share only where a specific upload error is being discussed. The live tools stay free, do not require ad interaction, and process ordinary files in the browser for no-upload workflows.</p>
+      </section>
+      <h2>Common upload errors and direct fixes</h2>
+      <table>
+        <thead><tr><th>Error text</th><th>Live fix</th><th>Tool</th></tr></thead>
+        <tbody>
+          ${entry.entries.map((item) => `<tr><td>${escapeHtml(item.errorText)}</td><td><a href="${escapeHtml(item.trackedUrl)}">${escapeHtml(item.landingPage)}</a></td><td><a href="${escapeHtml(item.toolUrl)}">${escapeHtml(item.format)} ${escapeHtml(item.target)}</a></td></tr>`).join("\n")}
+        </tbody>
+      </table>
+      <h2>Machine-readable feeds</h2>
+      <ul>
+        <li><a href="${pagesAssetUrl("upload-error-cheatsheet.json")}">GitHub Pages mirror JSON</a></li>
+        <li><a href="${siteUrl("upload-error-cheatsheet.json").replace(/\/$/, "")}">Live upload error JSON</a></li>
+        <li><a href="${siteUrl("share-kit.json").replace(/\/$/, "")}">Live share-kit JSON</a></li>
+        <li><a href="${siteUrl("discovery.json").replace(/\/$/, "")}">Live discovery index</a></li>
+      </ul>
+      ${jsonLdHtml(itemListSchema("Upload error cheatsheet mirror", entry.entries.map((item) => ({ title: item.errorText, url: item.landingPage }))))}
+    </main>
+    ${intentTrackerScriptHtml()}
+  </body>
+</html>
+`;
 }
 
 function serviceSalesPackHtml() {
@@ -1258,6 +1339,41 @@ function serviceSalesPackEntry() {
     listingFields: SERVICE_SALES_PACK.listingFields.map(([label, value]) => ({ label, value })),
     executionChecklist: SERVICE_SALES_PACK.executionChecklist,
     riskControls: SERVICE_SALES_PACK.riskControls,
+  };
+}
+
+function uploadErrorCheatsheetEntry() {
+  return {
+    name: "PrintableTools Lab Upload Error Cheatsheet Mirror",
+    generatedAt: generatedAtIso,
+    directory: pagesUrl("upload-error-cheatsheet"),
+    livePage: siteUrl("upload-error-cheatsheet"),
+    liveJson: siteUrl("upload-error-cheatsheet.json").replace(/\/$/, ""),
+    purpose: "GitHub Pages discovery mirror for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup fixes.",
+    entries: UPLOAD_ERROR_CHEATSHEET.map((item) => {
+      const landingPage = siteUrl(item.landingPath);
+      const trackedUrl = new URL(landingPage);
+      trackedUrl.searchParams.set("utm_source", "github-pages");
+      trackedUrl.searchParams.set("utm_medium", "organic");
+      trackedUrl.searchParams.set("utm_campaign", "upload_error_cheatsheet");
+      trackedUrl.searchParams.set("utm_content", slugify(item.errorText).slice(0, 64));
+      return {
+        errorText: item.errorText,
+        problem: item.problem,
+        response: item.response,
+        format: item.format,
+        target: item.target,
+        landingPage,
+        discoveryUrl: pagesUrl(item.landingPath),
+        trackedUrl: trackedUrl.toString(),
+        toolUrl: liveToolUrl(item.toolPath),
+      };
+    }),
+    safeUseRules: [
+      "Share only where the linked page directly answers a blocked-upload problem.",
+      "Do not claim guaranteed compression results; tell users to review output quality.",
+      "Do not ask for ad clicks, ad views, artificial engagement, or private file examples.",
+    ],
   };
 }
 

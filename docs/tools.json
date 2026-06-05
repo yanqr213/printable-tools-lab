@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-05T21:52:37.646Z",
+  "generatedAt": "2026-06-05T22:04:33.078Z",
   "landingPages": [
     {
       "title": "Free Upload Limit Fixer",
@@ -1718,6 +1718,153 @@
       "Do not promise guaranteed sales, legal compliance, tax results, or ad performance.",
       "Do not collect card, bank, payout, tax, or identity details in the repository or GitHub issues.",
       "Do not begin paid custom work without a real external payment record."
+    ]
+  },
+  "uploadErrorCheatsheet": {
+    "name": "PrintableTools Lab Upload Error Cheatsheet Mirror",
+    "generatedAt": "2026-06-05T22:04:33.078Z",
+    "directory": "https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/",
+    "livePage": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
+    "liveJson": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",
+    "purpose": "GitHub Pages discovery mirror for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup fixes.",
+    "entries": [
+      {
+        "errorText": "PDF must be under 1MB",
+        "problem": "A job, school, email, or admin portal rejects a PDF by file size.",
+        "response": "Open the PDF compressor with the 1MB target, compress locally, then review readability before submitting.",
+        "format": "PDF",
+        "target": "1MB",
+        "landingPage": "https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/file-must-be-less-than-1mb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=pdf-must-be-under-1mb",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=1mb"
+      },
+      {
+        "errorText": "PDF must be under 500KB",
+        "problem": "A strict form, exam upload, or school portal requires a very small PDF.",
+        "response": "Use the strict 500KB PDF target and keep the original file in case the compressed copy loses detail.",
+        "format": "PDF",
+        "target": "500KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/pdf-must-be-under-500kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=pdf-must-be-under-500kb",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=500kb"
+      },
+      {
+        "errorText": "Image must be less than 2MB",
+        "problem": "A profile, marketplace, support, or application page rejects an image over 2MB.",
+        "response": "Use the image-to-KB compressor with a 2048KB custom target.",
+        "format": "Image",
+        "target": "2MB",
+        "landingPage": "https://printable-tools-lab.pages.dev/image-must-be-less-than-2mb/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/image-must-be-less-than-2mb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/image-must-be-less-than-2mb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=image-must-be-less-than-2mb",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=2048"
+      },
+      {
+        "errorText": "Image must be under 500KB",
+        "problem": "A portal or ticket form requires an image below 500KB.",
+        "response": "Use the 500KB image target, then resize if a large phone photo still misses the limit.",
+        "format": "Image",
+        "target": "500KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/image-must-be-under-500kb/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/image-must-be-under-500kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/image-must-be-under-500kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=image-must-be-under-500kb",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=500"
+      },
+      {
+        "errorText": "Photo must be under 100KB",
+        "problem": "A job, profile, school, or ID-style form rejects a photo by KB size.",
+        "response": "Use the 100KB image target and check that the face or document text remains clear.",
+        "format": "Photo",
+        "target": "100KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/photo-must-be-under-100kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=photo-must-be-under-100kb",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=100"
+      },
+      {
+        "errorText": "JPG must be under 200KB",
+        "problem": "A portal accepts JPG/JPEG but rejects the image as too large.",
+        "response": "Use the 200KB image target and keep output as JPG if the destination requires it.",
+        "format": "JPG",
+        "target": "200KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/jpg-must-be-under-200kb/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/jpg-must-be-under-200kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/jpg-must-be-under-200kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=jpg-must-be-under-200kb",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=200"
+      },
+      {
+        "errorText": "PNG screenshot too large",
+        "problem": "A support ticket, admin upload, or bug report rejects a PNG screenshot.",
+        "response": "Crop private areas first, then compress toward 500KB and review small UI text.",
+        "format": "PNG",
+        "target": "500KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/png-screenshot-too-large/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/png-screenshot-too-large/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/png-screenshot-too-large/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=png-screenshot-too-large",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=500"
+      },
+      {
+        "errorText": "Invalid file type. Please upload JPG or PNG",
+        "problem": "A website rejects the current image format and asks for JPG/JPEG/PNG.",
+        "response": "Convert the image format locally, then compress if the converted file is still too large.",
+        "format": "Image",
+        "target": "JPG or PNG",
+        "landingPage": "https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/invalid-file-type-jpg-png/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=invalid-file-type-please-upload-jpg-or-png",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/convert-image/"
+      },
+      {
+        "errorText": "Image dimensions must be 600 x 600 px",
+        "problem": "A profile, marketplace, avatar, or product image must match exact pixels.",
+        "response": "Resize or crop to 600 x 600 pixels, then compress only if the KB limit still fails.",
+        "format": "Image",
+        "target": "600 x 600",
+        "landingPage": "https://printable-tools-lab.pages.dev/image-dimensions-600x600/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/image-dimensions-600x600/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/image-dimensions-600x600/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=image-dimensions-must-be-600-x-600-px",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=600&fit=cover"
+      },
+      {
+        "errorText": "PDF not accepted, JPG required",
+        "problem": "A form accepts images but rejects a PDF upload.",
+        "response": "Convert PDF pages to JPG/PNG locally and upload the page image the destination expects.",
+        "format": "PDF",
+        "target": "JPG",
+        "landingPage": "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/pdf-not-accepted-jpg-required/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=pdf-not-accepted-jpg-required",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/pdf-to-images/"
+      },
+      {
+        "errorText": "Resume PDF too large",
+        "problem": "A job application or recruiter portal rejects a resume PDF by size.",
+        "response": "Try the 1MB PDF target and confirm all resume text remains readable before applying.",
+        "format": "PDF",
+        "target": "1MB",
+        "landingPage": "https://printable-tools-lab.pages.dev/resume-pdf-too-large/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/resume-pdf-too-large/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/resume-pdf-too-large/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=resume-pdf-too-large",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=1mb"
+      },
+      {
+        "errorText": "Email attachment too large",
+        "problem": "Gmail, Outlook, school email, or work mail rejects a document attachment.",
+        "response": "Compress PDFs toward 5MB or use the image-to-KB tool for photo attachments.",
+        "format": "PDF or image",
+        "target": "5MB",
+        "landingPage": "https://printable-tools-lab.pages.dev/email-attachment-too-large/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/email-attachment-too-large/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/email-attachment-too-large/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=email-attachment-too-large",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=5mb"
+      }
+    ],
+    "safeUseRules": [
+      "Share only where the linked page directly answers a blocked-upload problem.",
+      "Do not claim guaranteed compression results; tell users to review output quality.",
+      "Do not ask for ad clicks, ad views, artificial engagement, or private file examples."
     ]
   }
 }

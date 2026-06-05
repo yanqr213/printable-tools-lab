@@ -1,8 +1,10 @@
 {
-  "name": "PrintableTools Lab Upload Error Cheatsheet",
-  "generatedAt": "2026-06-05T22:04:32.987Z",
-  "canonical": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
-  "purpose": "Machine-readable reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup fixes.",
+  "name": "PrintableTools Lab Upload Error Cheatsheet Mirror",
+  "generatedAt": "2026-06-05T22:04:33.078Z",
+  "directory": "https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/",
+  "livePage": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
+  "liveJson": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",
+  "purpose": "GitHub Pages discovery mirror for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup fixes.",
   "entries": [
     {
       "errorText": "PDF must be under 1MB",
@@ -11,7 +13,8 @@
       "format": "PDF",
       "target": "1MB",
       "landingPage": "https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb/",
-      "trackedUrl": "https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/file-must-be-less-than-1mb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=pdf-must-be-under-1mb",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=1mb"
     },
     {
@@ -21,7 +24,8 @@
       "format": "PDF",
       "target": "500KB",
       "landingPage": "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/",
-      "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/pdf-must-be-under-500kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=pdf-must-be-under-500kb",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=500kb"
     },
     {
@@ -31,7 +35,8 @@
       "format": "Image",
       "target": "2MB",
       "landingPage": "https://printable-tools-lab.pages.dev/image-must-be-less-than-2mb/",
-      "trackedUrl": "https://printable-tools-lab.pages.dev/image-must-be-less-than-2mb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/image-must-be-less-than-2mb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/image-must-be-less-than-2mb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=image-must-be-less-than-2mb",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=2048"
     },
     {
@@ -41,7 +46,8 @@
       "format": "Image",
       "target": "500KB",
       "landingPage": "https://printable-tools-lab.pages.dev/image-must-be-under-500kb/",
-      "trackedUrl": "https://printable-tools-lab.pages.dev/image-must-be-under-500kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/image-must-be-under-500kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/image-must-be-under-500kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=image-must-be-under-500kb",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=500"
     },
     {
@@ -51,7 +57,8 @@
       "format": "Photo",
       "target": "100KB",
       "landingPage": "https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/",
-      "trackedUrl": "https://printable-tools-lab.pages.dev/photo-must-be-under-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/photo-must-be-under-100kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=photo-must-be-under-100kb",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=100"
     },
     {
@@ -61,7 +68,8 @@
       "format": "JPG",
       "target": "200KB",
       "landingPage": "https://printable-tools-lab.pages.dev/jpg-must-be-under-200kb/",
-      "trackedUrl": "https://printable-tools-lab.pages.dev/jpg-must-be-under-200kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/jpg-must-be-under-200kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/jpg-must-be-under-200kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=jpg-must-be-under-200kb",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=200"
     },
     {
@@ -71,7 +79,8 @@
       "format": "PNG",
       "target": "500KB",
       "landingPage": "https://printable-tools-lab.pages.dev/png-screenshot-too-large/",
-      "trackedUrl": "https://printable-tools-lab.pages.dev/png-screenshot-too-large?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/png-screenshot-too-large/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/png-screenshot-too-large/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=png-screenshot-too-large",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=500"
     },
     {
@@ -81,7 +90,8 @@
       "format": "Image",
       "target": "JPG or PNG",
       "landingPage": "https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/",
-      "trackedUrl": "https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/invalid-file-type-jpg-png/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=invalid-file-type-please-upload-jpg-or-png",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/convert-image/"
     },
     {
@@ -91,7 +101,8 @@
       "format": "Image",
       "target": "600 x 600",
       "landingPage": "https://printable-tools-lab.pages.dev/image-dimensions-600x600/",
-      "trackedUrl": "https://printable-tools-lab.pages.dev/image-dimensions-600x600?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/image-dimensions-600x600/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/image-dimensions-600x600/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=image-dimensions-must-be-600-x-600-px",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=600&fit=cover"
     },
     {
@@ -101,7 +112,8 @@
       "format": "PDF",
       "target": "JPG",
       "landingPage": "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/",
-      "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/pdf-not-accepted-jpg-required/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=pdf-not-accepted-jpg-required",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/pdf-to-images/"
     },
     {
@@ -111,7 +123,8 @@
       "format": "PDF",
       "target": "1MB",
       "landingPage": "https://printable-tools-lab.pages.dev/resume-pdf-too-large/",
-      "trackedUrl": "https://printable-tools-lab.pages.dev/resume-pdf-too-large?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/resume-pdf-too-large/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/resume-pdf-too-large/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=resume-pdf-too-large",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=1mb"
     },
     {
@@ -121,13 +134,14 @@
       "format": "PDF or image",
       "target": "5MB",
       "landingPage": "https://printable-tools-lab.pages.dev/email-attachment-too-large/",
-      "trackedUrl": "https://printable-tools-lab.pages.dev/email-attachment-too-large?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/email-attachment-too-large/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/email-attachment-too-large/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=email-attachment-too-large",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=5mb"
     }
   ],
   "safeUseRules": [
-    "Share the clean landing page or tracked campaign URL only where it directly answers an upload-error problem.",
-    "Do not claim guaranteed compression results; say the tools try toward the target and users should review the output.",
-    "Do not ask users to click ads, interact with ads, or upload private files into public examples."
+    "Share only where the linked page directly answers a blocked-upload problem.",
+    "Do not claim guaranteed compression results; tell users to review output quality.",
+    "Do not ask for ad clicks, ad views, artificial engagement, or private file examples."
   ]
 }

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
-const { routes, siteUrl, landingPages, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, HIGH_INTENT_TOOL_PATHS, tools } = require("./seo-content.cjs");
+const { routes, siteUrl, landingPages, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, HIGH_INTENT_TOOL_PATHS, UPLOAD_ERROR_CHEATSHEET, tools } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const failures = [];
@@ -1099,6 +1099,8 @@ else {
   if (!html.includes("Free PDF, image, and QR tools without signup")) failures.push("GitHub Pages discovery page missing heading.");
   if (!html.includes(siteUrl("free-pdf-tools"))) failures.push("GitHub Pages discovery page missing main directory link.");
   if (!html.includes(siteUrl("upload-limit-fixer"))) failures.push("GitHub Pages discovery page missing upload limit fixer link.");
+  if (!html.includes("Upload error cheatsheet mirror")) failures.push("GitHub Pages discovery page missing upload error cheatsheet mirror link.");
+  if (!html.includes("https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/")) failures.push("GitHub Pages discovery page missing upload error cheatsheet mirror URL.");
   if (!html.includes("utm_source=github-pages")) failures.push("GitHub Pages discovery page missing tracked github-pages source links.");
   if (!html.includes(siteUrl("free-invoice-generator-no-signup"))) failures.push("GitHub Pages discovery page missing no-signup invoice landing link.");
   if (!html.includes(`https://yanqr213.github.io/printable-tools-lab/${MARKET_TABLE_PRINT_AUDIT.slug}/`)) failures.push("GitHub Pages discovery page missing market table print audit link.");
@@ -1119,6 +1121,9 @@ else {
   if (!data.githubPagesDirectory || data.githubPagesDirectory !== "https://yanqr213.github.io/printable-tools-lab/") failures.push("GitHub Pages discovery tools.json missing GitHub directory URL.");
   if (!data.tools.some((tool) => tool.url === siteUrl("tools/image-to-pdf") && tool.discoveryUrl === "https://yanqr213.github.io/printable-tools-lab/tools/image-to-pdf/")) failures.push("GitHub Pages discovery tools.json missing tool discovery URL.");
   if (!data.gameSubmissionPack || data.gameSubmissionPack.discoveryUrl !== "https://yanqr213.github.io/printable-tools-lab/html5-game-submission-pack/") failures.push("GitHub Pages discovery tools.json missing HTML5 game submission pack.");
+  if (!data.uploadErrorCheatsheet || data.uploadErrorCheatsheet.directory !== "https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/") failures.push("GitHub Pages discovery tools.json missing upload error cheatsheet mirror.");
+  if (!Array.isArray(data.uploadErrorCheatsheet?.entries) || data.uploadErrorCheatsheet.entries.length !== UPLOAD_ERROR_CHEATSHEET.length) failures.push("GitHub Pages discovery tools.json missing upload error cheatsheet entries.");
+  if (!data.uploadErrorCheatsheet?.entries?.some((item) => item.errorText === "Image must be less than 2MB" && String(item.toolUrl || "").includes("targetKb=2048"))) failures.push("GitHub Pages discovery tools.json missing image 2MB upload error target.");
   if (!data.gameSubmissionPack?.games?.some((game) => game.name === "Neon Lane Dash" && String(game.gameSnacksZipUrl || "").includes("neon-lane-dash-gamesnacks.zip"))) failures.push("GitHub Pages discovery tools.json missing Neon GameSnacks package.");
   if (!data.digitalProducts?.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id && String(product.sampleUrl || "").includes("local-seller-starter-kit-sample.zip"))) failures.push("GitHub Pages discovery tools.json missing digital product.");
   if (!data.digitalProducts?.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id && String(product.discoverySampleUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/assets/digital-products/"))) failures.push("GitHub Pages discovery tools.json missing local sample ZIP URL.");
@@ -1136,6 +1141,31 @@ else {
   if (!String(data.serviceSalesPack?.githubPagesOrderPipelineUrl || "").includes("custom-local-print-pack-order-pipeline.json")) failures.push("GitHub Pages discovery tools.json missing service sales pack order pipeline URL.");
   if (!String(data.serviceSalesPack?.githubPagesOutreachQueueUrl || "").includes("custom-local-print-pack-outreach-queue.json")) failures.push("GitHub Pages discovery tools.json missing service sales pack outreach queue URL.");
   if (!Array.isArray(data.serviceSalesPack?.outreachQueue) || data.serviceSalesPack.outreachQueue.length < 10) failures.push("GitHub Pages discovery tools.json missing service sales pack outreach queue entries.");
+}
+
+const docsUploadErrorCheatsheetFile = path.join(root, "docs", "upload-error-cheatsheet", "index.html");
+if (!fs.existsSync(docsUploadErrorCheatsheetFile)) failures.push("Missing GitHub Pages upload error cheatsheet mirror page.");
+else {
+  const html = fs.readFileSync(docsUploadErrorCheatsheetFile, "utf8");
+  if (!html.includes("Upload error cheatsheet")) failures.push("GitHub Pages upload error cheatsheet missing heading.");
+  if (!html.includes(siteUrl("upload-error-cheatsheet"))) failures.push("GitHub Pages upload error cheatsheet missing live page URL.");
+  if (!html.includes("PDF must be under 1MB")) failures.push("GitHub Pages upload error cheatsheet missing PDF 1MB row.");
+  if (!html.includes("Image must be less than 2MB")) failures.push("GitHub Pages upload error cheatsheet missing image 2MB row.");
+  if (!html.includes("Email attachment too large")) failures.push("GitHub Pages upload error cheatsheet missing email attachment row.");
+  if (!html.includes("utm_source=github-pages")) failures.push("GitHub Pages upload error cheatsheet missing tracked links.");
+  if (!html.includes("upload-error-cheatsheet.json")) failures.push("GitHub Pages upload error cheatsheet missing mirror JSON link.");
+  requireGithubPagesIntentTracking(html, "GitHub Pages upload error cheatsheet mirror");
+}
+
+const docsUploadErrorCheatsheetJsonFile = path.join(root, "docs", "upload-error-cheatsheet.json");
+if (!fs.existsSync(docsUploadErrorCheatsheetJsonFile)) failures.push("Missing GitHub Pages upload-error-cheatsheet.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(docsUploadErrorCheatsheetJsonFile, "utf8"));
+  if (data.directory !== "https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/") failures.push("GitHub Pages upload-error-cheatsheet.json missing directory URL.");
+  if (data.liveJson !== siteUrl("upload-error-cheatsheet.json").replace(/\/$/, "")) failures.push("GitHub Pages upload-error-cheatsheet.json missing live JSON URL.");
+  if (!Array.isArray(data.entries) || data.entries.length !== UPLOAD_ERROR_CHEATSHEET.length) failures.push("GitHub Pages upload-error-cheatsheet.json missing entries.");
+  if (!data.entries?.some((item) => item.errorText === "Resume PDF too large" && String(item.toolUrl || "").includes("targetSize=1mb"))) failures.push("GitHub Pages upload-error-cheatsheet.json missing resume target.");
+  if (!data.entries?.some((item) => item.errorText === "Image must be less than 2MB" && String(item.trackedUrl || "").includes("utm_source=github-pages"))) failures.push("GitHub Pages upload-error-cheatsheet.json missing tracked GitHub Pages URL.");
 }
 
 const docsProductsFile = path.join(root, "docs", "products.json");
@@ -1446,6 +1476,7 @@ else {
     const githubUrl = `https://yanqr213.github.io/printable-tools-lab/${toolPath}/`;
     if (!docsSitemap.includes(`<loc>${githubUrl}</loc>`)) failures.push(`GitHub Pages sitemap missing tool discovery page: ${toolPath}`);
   }
+  if (!docsSitemap.includes("<loc>https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/</loc>")) failures.push("GitHub Pages sitemap missing upload error cheatsheet mirror page.");
 }
 
 for (const page of landingPages) {
