@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-05T19:28:34.357Z
+Last generated: 2026-06-05T19:42:14.943Z
 
 ## Current Automated Status
 
@@ -15,7 +15,7 @@ Last generated: 2026-06-05T19:28:34.357Z
 - Free-tool depth intent events: 0.
 - Search impressions: 0.
 - Search clicks: 0.
-- External discovery ready: no.
+- External discovery ready: yes.
 - Ads enabled: no.
 - AdSense apply-ready: no.
 
@@ -33,10 +33,10 @@ Last generated: 2026-06-05T19:28:34.357Z
 
 - GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.
 - GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.
-- GitHub Pages discovery directory is live with 66 landing page link(s), 50 tool mirror link(s), and 1 game submission link(s).
-- GitHub Pages discovery sitemap has 124 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 130.
+- GitHub Pages discovery directory is live with 72 landing page link(s), 50 tool mirror link(s), and 1 game submission link(s).
+- GitHub Pages discovery sitemap has 130 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 130.
 - IndexNow key file is reachable from the site root.
-- IndexNow latest report accepted 124 URL(s) for github-pages.
+- IndexNow latest report accepted 130 URL(s) for github-pages.
 
 ## Monetization Gate
 
