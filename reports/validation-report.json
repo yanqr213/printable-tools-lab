@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-05T22:40:52.090Z",
+  "generatedAt": "2026-06-05T22:48:18.077Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 92,
     "indexableRoutes": 275,
     "sitemapLocCount": 275,
-    "generatedToolInventoryAt": "2026-06-05T22:38:56.995Z",
+    "generatedToolInventoryAt": "2026-06-05T22:46:44.401Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -3927,7 +3927,7 @@
       "keyFileReachable": true,
       "singleUrlAccepted": false,
       "latestReport": {
-        "generatedAt": "2026-06-05T22:40:47.742Z",
+        "generatedAt": "2026-06-05T22:47:59.969Z",
         "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
         "results": [
           {
