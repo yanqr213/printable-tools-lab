@@ -93,7 +93,7 @@ async function readLiveState() {
       todayTotals: metrics.todayTotals || {},
       totalDownloads: totalDownloads(metrics.totals || {}),
       totalGenerations: totalGenerations(metrics.totals || {}),
-      sellerIntent: sellerIntent(metrics.totals || {}),
+      freeToolDepthIntent: freeToolDepthIntent(metrics.totals || {}),
       topTools: (metrics.tools || [])
         .slice()
         .sort((a, b) => toolScore(b) - toolScore(a))
@@ -463,7 +463,7 @@ function buildNextActions(gates, local, live, searchConsole, discovery) {
   const totals = live.metrics?.totals || {};
   const downloads = totalDownloads(totals);
   const generations = totalGenerations(totals);
-  const intent = sellerIntent(totals);
+  const depthIntent = freeToolDepthIntent(totals);
   const actions = [];
   if (!gates.productReady) actions.push("Fix product readiness failures before adding more tools.");
   if (!gates.searchVisible) actions.push("Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.");
@@ -473,7 +473,7 @@ function buildNextActions(gates, local, live, searchConsole, discovery) {
   if (!local.ads.publisherConfigured) actions.push("When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.");
   if (local.ads.publisherConfigured && !local.ads.enabled && gates.searchVisible) actions.push("Apply/continue AdSense review, then enable ads only after approval and placement verification.");
   if (downloads < 100 && generations < 300) actions.push("Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.");
-  if (intent === 0) actions.push("Keep the GitHub Pages seller-kit mirror visible and watch for seller intent events before spending time on more paid-kit variants.");
+  if (depthIntent === 0) actions.push("Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces.");
   if (searchConsole.performance?.rows?.length) actions.push("Improve titles and intros for queries with impressions but weak CTR.");
   if (!actions.length) actions.push("Maintain the weekly operating loop and compare Search Console plus download trends.");
   return actions;
@@ -483,7 +483,7 @@ function renderValidationMarkdown(report) {
   const totals = report.live.metrics?.totals || {};
   const downloads = totalDownloads(totals);
   const generations = totalGenerations(totals);
-  const intent = sellerIntent(totals);
+  const depthIntent = freeToolDepthIntent(totals);
   const perf = report.searchConsole.performance;
   const sitemap = Array.isArray(report.searchConsole.sitemaps?.sitemap) ? report.searchConsole.sitemaps.sitemap[0] : null;
   const githubPagesSitemap = Array.isArray(report.searchConsole.githubPagesSitemaps?.sitemap) ? report.searchConsole.githubPagesSitemaps.sitemap[0] : null;
@@ -502,7 +502,7 @@ function renderValidationMarkdown(report) {
     `- Custom domain configured: ${yesNo(report.local.customDomainConfigured)}.`,
     `- Live downloads: ${downloads}.`,
     `- Live generations: ${generations}.`,
-    `- Seller-kit intent events: ${intent}.`,
+    `- Free-tool depth intent events: ${depthIntent}.`,
     `- Search impressions: ${perf?.totals?.impressions || 0}.`,
     `- Search clicks: ${perf?.totals?.clicks || 0}.`,
     `- External discovery ready: ${yesNo(report.gates.externalDiscoveryReady)}.`,
@@ -531,7 +531,7 @@ function renderValidationMarkdown(report) {
     "",
     `- 30-day continue gate: ${yesNo(report.gates.continue30Day)}. Continue if downloads >= 100, generations >= 300, or Search Console impressions are growing.`,
     `- 60-day pivot warning: ${yesNo(report.gates.pivot60Day)}. If still true at the 60-day checkpoint, pause printable expansion and test another ad-supported route.`,
-    `- 90-day monetization review: ${yesNo(report.gates.review90Day)}. If true later, optimize ad/affiliate revenue before building paid features.`,
+    `- 90-day monetization review: ${yesNo(report.gates.review90Day)}. If true later, optimize ad revenue, page intent, or compliant affiliate tests before building paid features.`,
     "",
     "## Next Actions",
     "",
@@ -552,7 +552,7 @@ function printSummary(report) {
   const totals = report.live.metrics?.totals || {};
   console.log(`Validation report written to ${path.relative(root, reportPath)} and VALIDATION.md`);
   console.log(`Product ready: ${yesNo(report.gates.productReady)} | Tools: ${report.local.toolCount} | Guides: ${report.local.guideCount} | Landing pages: ${report.local.landingPageCount}`);
-  console.log(`Downloads: ${totalDownloads(totals)} | Generations: ${totalGenerations(totals)} | Seller intent: ${sellerIntent(totals)} | Search visible: ${yesNo(report.gates.searchVisible)} | External discovery: ${yesNo(report.gates.externalDiscoveryReady)} | AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}`);
+  console.log(`Downloads: ${totalDownloads(totals)} | Generations: ${totalGenerations(totals)} | Free-tool depth intent: ${freeToolDepthIntent(totals)} | Search visible: ${yesNo(report.gates.searchVisible)} | External discovery: ${yesNo(report.gates.externalDiscoveryReady)} | AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}`);
 }
 
 function totalDownloads(totals) {
@@ -563,16 +563,13 @@ function totalGenerations(totals) {
   return (totals.generate_pdf || 0) + (totals.generate_file || 0);
 }
 
-function sellerIntent(totals) {
-  return (totals.seller_sample_download || 0)
-    + (totals.seller_checkout_intent || 0)
-    + (totals.seller_checkout_click || 0)
-    + (totals.service_request_intent || 0)
-    + (totals.audit_request_intent || 0);
+function freeToolDepthIntent(totals) {
+  return (totals.audit_request_intent || 0)
+    + (totals.seller_sample_download || 0);
 }
 
 function toolScore(row) {
-  return ((row.download_pdf || 0) + (row.download_file || 0)) * 3 + sellerIntent(row) * 4 + (row.generate_pdf || 0) + (row.generate_file || 0);
+  return ((row.download_pdf || 0) + (row.download_file || 0)) * 3 + freeToolDepthIntent(row) * 4 + (row.generate_pdf || 0) + (row.generate_file || 0);
 }
 
 function runLocalCommand(command, args) {

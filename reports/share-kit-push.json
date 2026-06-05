@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-03T03:24:03.932Z",
+  "generatedAt": "2026-06-05T19:20:32.798Z",
   "shareKitUrl": "https://printable-tools-lab.pages.dev/share-kit/",
   "shareKitJsonUrl": "https://printable-tools-lab.pages.dev/share-kit.json",
   "featuredLinks": [
@@ -115,7 +115,7 @@
       "channel": "community",
       "title": "No-upload file utility pack",
       "hook": "I made a free no-signup file utility site for common upload blockers.",
-      "body": "It handles PDF compression targets, image-to-KB targets, PDF-to-JPG, image resizing, QR codes, invoices, labels, and small business PDFs in the browser. Downloads are free during validation and not gated behind ad clicks.",
+      "body": "It handles PDF compression targets, image-to-KB targets, PDF-to-JPG, image resizing, QR codes, invoices, labels, and small business PDFs in the browser. Downloads are free during validation and not gated behind ad interactions.",
       "cta": "Useful feedback is which tool solved a real blocked-upload moment.",
       "trackedUrl": "https://printable-tools-lab.pages.dev/free-pdf-tools?utm_source=community&utm_medium=organic"
     },
@@ -146,7 +146,7 @@
   ],
   "rules": [
     "Post only where free tools or file utilities are relevant to the community.",
-    "Do not ask for ad clicks, ad views, upvotes, or artificial engagement.",
+    "Do not ask for ad interactions, ad impressions, upvotes, or artificial engagement.",
     "Do not claim guaranteed compression results; say the tool tries toward a target and users should review the output.",
     "Do not post private documents, IDs, payment details, or user files in examples.",
     "Use UTM source labels so the live metrics can separate directory, community, video, and social tests."
@@ -169,14 +169,12 @@
     "reviewReadinessUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/review-readiness.md",
     "summary": "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them."
   },
-  "buyerIntentPath": {
+  "freeHelpPath": {
     "auditUrl": "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=share-kit-push&utm_medium=organic&utm_campaign=market_table_audit",
     "auditRequestUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt",
     "auditChecklistUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json",
-    "serviceUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=share-kit-push&utm_medium=organic&utm_campaign=service_sales_pack",
-    "salesPackUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack-sales-pack/?utm_source=share-kit-push&utm_medium=organic&utm_campaign=service_sales_pack",
-    "priceUsd": 29,
-    "moneyGate": "Free audit requests are not revenue; paid revenue starts only after an external checkout proves paid_order_verified."
+    "freeToolDirectoryUrl": "https://printable-tools-lab.pages.dev/free-pdf-tools?utm_source=share-kit-push&utm_medium=organic&utm_campaign=free_tool_depth",
+    "adSafetyRule": "Downloads stay free; future ads must never block tool use or file downloads."
   },
   "externalDiscovery": {
     "gist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
@@ -184,8 +182,7 @@
     "campaignRelease": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
     "zeroDomainGame": "https://upload-limit-panic.pages.dev/",
     "zeroDomainGameRepo": "https://github.com/yanqr213/upload-limit-panic",
-    "freeMarketTableAudit": "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/",
-    "customLocalPrintPack": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/"
+    "freeMarketTableAudit": "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/"
   },
   "actions": {
     "gistDiscovery": {

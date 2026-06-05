@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-03T04:33:29.695Z",
+  "generatedAt": "2026-06-05T19:22:37.125Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 66,
     "indexableRoutes": 247,
     "sitemapLocCount": 247,
-    "generatedToolInventoryAt": "2026-06-03T04:14:15.785Z",
+    "generatedToolInventoryAt": "2026-06-05T19:17:09.938Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -37,28 +37,28 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 26189,
+        "bytes": 27229,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 39641,
+        "bytes": 39701,
         "json": null
       },
       "/share-kit/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 26080,
+        "bytes": 26648,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 29409,
+        "bytes": 29886,
         "json": null
       },
       "/robots.txt": {
@@ -81,7 +81,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 34396,
+        "bytes": 34924,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for"
       },
@@ -101,7 +101,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-02T20:53:59.568Z",
+          "generatedAt": "2026-06-05T19:17:09.938Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -983,11 +983,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 39434,
+        "bytes": 40149,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-02T20:53:59.568Z",
+          "generatedAt": "2026-06-05T19:17:09.938Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -997,12 +997,15 @@
           "platformSubmitCockpit": "https://printable-tools-lab.pages.dev/platform-submit-cockpit.json",
           "platformOutreachTracker": "https://printable-tools-lab.pages.dev/platform-outreach-tracker.json",
           "portalSubmissionPack": "https://printable-tools-lab.pages.dev/portal-submission-pack.json",
+          "gameSubmissionFeed": "https://printable-tools-lab.pages.dev/game-submission-feed.json",
           "zeroCostMonetizationMap": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map.json",
           "highIntentEntryPoints": [
             "https://printable-tools-lab.pages.dev/free-pdf-tools/",
             "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
+            "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
             "https://printable-tools-lab.pages.dev/submit-directory/",
             "https://printable-tools-lab.pages.dev/share-kit/",
+            "https://printable-tools-lab.pages.dev/market-table-print-audit/",
             "https://printable-tools-lab.pages.dev/platform-submit-queue/",
             "https://printable-tools-lab.pages.dev/platform-submit-cockpit/",
             "https://printable-tools-lab.pages.dev/platform-outreach-tracker/",
@@ -1128,6 +1131,9 @@
           "distributionAssets": {
             "shareKit": "https://printable-tools-lab.pages.dev/share-kit/",
             "shareKitJson": "https://printable-tools-lab.pages.dev/share-kit.json",
+            "marketTablePrintAudit": "https://printable-tools-lab.pages.dev/market-table-print-audit/",
+            "marketTablePrintAuditRequest": "https://printable-tools-lab.pages.dev/assets/services/market-table-print-audit-request.txt",
+            "marketTablePrintAuditChecklist": "https://printable-tools-lab.pages.dev/assets/services/market-table-print-audit-checklist.json",
             "platformSubmitQueue": "https://printable-tools-lab.pages.dev/platform-submit-queue/",
             "platformSubmitQueueJson": "https://printable-tools-lab.pages.dev/platform-submit-queue.json",
             "platformSubmitCockpit": "https://printable-tools-lab.pages.dev/platform-submit-cockpit/",
@@ -1136,6 +1142,7 @@
             "platformOutreachTrackerJson": "https://printable-tools-lab.pages.dev/platform-outreach-tracker.json",
             "portalSubmissionPack": "https://printable-tools-lab.pages.dev/portal-submission-pack/",
             "portalSubmissionPackJson": "https://printable-tools-lab.pages.dev/portal-submission-pack.json",
+            "gameSubmissionFeedJson": "https://printable-tools-lab.pages.dev/game-submission-feed.json",
             "zeroCostMonetizationMap": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map/",
             "zeroCostMonetizationMapJson": "https://printable-tools-lab.pages.dev/zero-cost-monetization-map.json",
             "distributionPack": "https://printable-tools-lab.pages.dev/DISTRIBUTION.md",
@@ -1238,7 +1245,7 @@
               }
             ],
             "publicGist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-            "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/93f23c1aa75369187334442b4729a68e1e221968/PrintableTools-Lab-zero-cost-share-kit.md",
+            "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/eb874c63e907b69755fe316b60f2a6f28936a5f1/PrintableTools-Lab-zero-cost-share-kit.md",
             "publicGrowthIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1",
             "zeroDomainGame": "https://upload-limit-panic.pages.dev/",
             "zeroDomainGameRepo": "https://github.com/yanqr213/upload-limit-panic",
@@ -1672,7 +1679,7 @@
           "constraints": [
             "No account required.",
             "No ad interaction gate.",
-            "No paid checkout in the validation version.",
+            "Future ad units must stay separate from generator controls and downloads.",
             "No upload for image and PDF utility tools that are marked local-first."
           ],
           "validationGates": {
@@ -1686,10 +1693,10 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 21672,
+        "bytes": 27030,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-02T20:53:59.568Z",
+          "generatedAt": "2026-06-05T19:17:09.938Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -1810,7 +1817,7 @@
               "channel": "community",
               "title": "No-upload file utility pack",
               "hook": "I made a free no-signup file utility site for common upload blockers.",
-              "body": "It handles PDF compression targets, image-to-KB targets, PDF-to-JPG, image resizing, QR codes, invoices, labels, and small business PDFs in the browser. Downloads are free during validation and not gated behind ad clicks.",
+              "body": "It handles PDF compression targets, image-to-KB targets, PDF-to-JPG, image resizing, QR codes, invoices, labels, and small business PDFs in the browser. Downloads are free during validation and not gated behind ad interactions.",
               "cta": "Useful feedback is which tool solved a real blocked-upload moment.",
               "linkPath": "free-pdf-tools",
               "url": "https://printable-tools-lab.pages.dev/free-pdf-tools?utm_source=community&utm_medium=organic"
@@ -1941,6 +1948,75 @@
               "sizeBytes": 177067
             }
           ],
+          "marketTablePrintAudit": {
+            "id": "market-table-print-audit",
+            "name": "Free Market Table Print Audit",
+            "description": "A free public-safe checklist request that helps craft sellers, market tables, home bakers, and local services spot missing price tags, QR signs, flyer copy, coupon wording, and pickup notes before upgrading to the $29 setup.",
+            "pageUrl": "https://printable-tools-lab.pages.dev/market-table-print-audit/",
+            "githubPagesUrl": "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/",
+            "requestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=Free+audit+request%3A+Free+Market+Table+Print+Audit&body=I+want+a+Free+Market+Table+Print+Audit.%0A%0ABusiness%2C+booth%2C+event%2C+or+service+name%3A%0AWhat+do+you+sell+or+promote%3F%0AWhere+will+this+be+used%3F+market+table+%2F+pickup+%2F+workshop+%2F+local+service+%2F+online-to-local+%2F+other%3A%0ACurrent+price+list%2C+menu%2C+or+item+examples%3A%0ACurrent+QR%2Fcontact+link+or+public-safe+contact+method%3A%0AWhat+print+pieces+do+you+already+have%3F+price+tags+%2F+flyer+%2F+QR+sign+%2F+coupon+%2F+packing+note+%2F+none%3A%0AWhat+feels+confusing+or+unfinished%3F%0ANeed-by+date+or+event+date%3A%0AWould+you+want+a+%2429+done-for-you+setup+if+the+audit+shows+obvious+gaps%3F+yes+%2F+maybe+%2F+no%3A%0APublic-safe+contact+preference%3A%0ANotes%3A%0A%0ANo+payment+is+collected+for+this+audit+request.+Do+not+include+card%2C+bank%2C+payout%2C+tax%2C+identity%2C+credential%2C+password%2C+private+address%2C+customer-list%2C+or+private+account+details.",
+            "issueFormUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=market-table-print-audit.yml",
+            "requestTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/market-table-print-audit-request.txt",
+            "requestTemplateSha256": "c4ef742595c8995b6c0e30fd0c15b8fef6c60b5e689ef7a667b3a57764a02d6b",
+            "githubPagesRequestTemplateUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt",
+            "checklistUrl": "https://printable-tools-lab.pages.dev/assets/services/market-table-print-audit-checklist.json",
+            "checklistSha256": "e6ee67be2a3a979efc8286b2eafe3053dc41124b7ef0f692ab73d0a0352f2e86",
+            "githubPagesChecklistUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json",
+            "upgradeServiceUrl": "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
+            "githubPagesUpgradeServiceUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
+            "targetAudience": [
+              "first-time craft fair and market table sellers",
+              "home bakers and cottage-food sellers with public menus",
+              "local service providers with simple price/menu offers",
+              "pop-up class, workshop, and community event organizers"
+            ],
+            "auditQuestions": [
+              "Do shoppers see a clear price for each item or service?",
+              "Is there one QR/contact sign that opens a public-safe page or contact method?",
+              "Is there one simple flyer or table note that says what is available today?",
+              "Is there a coupon, bundle, or follow-up offer the seller can actually honor?",
+              "Are pickup, packing, or ordering notes clear enough to reduce repeated questions?",
+              "Are claims, deadlines, food/health language, and discount rules safe for the seller to review before printing?"
+            ],
+            "statuses": [
+              {
+                "id": "audit_request_received",
+                "moneyRule": "Not revenue. A person asked for a free public-safe print audit."
+              },
+              {
+                "id": "audit_reply_sent",
+                "moneyRule": "Not revenue. Send free checklist notes and relevant generator links."
+              },
+              {
+                "id": "upgrade_interest",
+                "moneyRule": "Not revenue. The person asked about done-for-you setup or timeline."
+              },
+              {
+                "id": "service_fit_confirmed",
+                "moneyRule": "Not revenue. Move to the $29 service pipeline only after fit is confirmed."
+              },
+              {
+                "id": "paid_order_verified",
+                "moneyRule": "Revenue only if the external payment provider proves a paid order for the $29 setup."
+              }
+            ],
+            "freeTools": [
+              "https://printable-tools-lab.pages.dev/tools/price-tag/",
+              "https://printable-tools-lab.pages.dev/tools/qr-code/",
+              "https://printable-tools-lab.pages.dev/tools/flyer-maker/",
+              "https://printable-tools-lab.pages.dev/tools/coupon-maker/",
+              "https://printable-tools-lab.pages.dev/tools/packing-slip/",
+              "https://printable-tools-lab.pages.dev/tools/business-card/"
+            ],
+            "riskControls": [
+              "The audit is free and does not collect payment.",
+              "Use public-safe business, event, offer, and print-piece details only.",
+              "Do not ask for card, bank, payout, tax, identity, password, credential, private address, or customer-list data.",
+              "The audit is practical feedback, not legal, tax, health, food-labeling, advertising-compliance, or financial advice.",
+              "Mention the paid setup only as an optional upgrade when the seller wants the first pack assembled."
+            ],
+            "moneyGate": "Free audit requests are validation, not revenue. Money is real only after a separate external provider shows a paid order for the $29 Custom Local Print Pack Setup."
+          },
           "zeroDomainGameExperiment": {
             "name": "Upload Limit Panic",
             "url": "https://upload-limit-panic.pages.dev/",
@@ -2002,12 +2078,12 @@
           ],
           "externalDiscovery": {
             "gist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-            "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/93f23c1aa75369187334442b4729a68e1e221968/PrintableTools-Lab-zero-cost-share-kit.md",
+            "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/eb874c63e907b69755fe316b60f2a6f28936a5f1/PrintableTools-Lab-zero-cost-share-kit.md",
             "githubIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1"
           },
           "rules": [
             "Post only where free tools or file utilities are relevant to the community.",
-            "Do not ask for ad clicks, ad views, upvotes, or artificial engagement.",
+            "Do not ask for ad interactions, ad impressions, upvotes, or artificial engagement.",
             "Do not claim guaranteed compression results; say the tool tries toward a target and users should review the output.",
             "Do not post private documents, IDs, payment details, or user files in examples.",
             "Use UTM source labels so the live metrics can separate directory, community, video, and social tests."
@@ -2032,39 +2108,53 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 11402,
+        "bytes": 22051,
         "json": {
           "ok": true,
-          "today": "2026-06-03",
+          "today": "2026-06-05",
           "totals": {
-            "page_view": 272,
+            "page_view": 282,
             "generate_pdf": 0,
-            "download_pdf": 1,
+            "download_pdf": 2,
             "generate_file": 0,
             "download_file": 0,
             "limit_hit": 0,
             "ai_ideas": 0,
-            "ai_ideas_apply": 0
+            "ai_ideas_apply": 0,
+            "seller_sample_download": 0,
+            "seller_checkout_intent": 0,
+            "seller_checkout_click": 0,
+            "service_request_intent": 0,
+            "audit_request_intent": 0
           },
           "todayTotals": {
-            "page_view": 14,
+            "page_view": 4,
             "generate_pdf": 0,
             "download_pdf": 0,
             "generate_file": 0,
             "download_file": 0,
             "limit_hit": 0,
             "ai_ideas": 0,
-            "ai_ideas_apply": 0
+            "ai_ideas_apply": 0,
+            "seller_sample_download": 0,
+            "seller_checkout_intent": 0,
+            "seller_checkout_click": 0,
+            "service_request_intent": 0,
+            "audit_request_intent": 0
           },
           "tools": [
             {
               "tool": "invoice-generator",
               "generate_pdf": 0,
-              "download_pdf": 1,
+              "download_pdf": 2,
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "estimate-generator",
@@ -2073,7 +2163,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "purchase-order",
@@ -2082,7 +2176,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "bill-of-sale",
@@ -2091,7 +2189,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "business-card",
@@ -2100,7 +2202,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "address-labels",
@@ -2109,7 +2215,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "price-tag",
@@ -2118,7 +2228,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "flyer-maker",
@@ -2127,7 +2241,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "barcode-labels",
@@ -2136,7 +2254,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "coupon-maker",
@@ -2145,7 +2267,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "packing-slip",
@@ -2154,7 +2280,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "work-order",
@@ -2163,7 +2293,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "inventory-sheet",
@@ -2172,7 +2306,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "resume-builder",
@@ -2181,7 +2319,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "ats-resume-checker",
@@ -2190,7 +2332,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "cover-letter",
@@ -2199,7 +2345,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "resignation-letter",
@@ -2208,7 +2358,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "monthly-calendar",
@@ -2217,7 +2371,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "meal-planner",
@@ -2226,7 +2384,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "image-to-pdf",
@@ -2235,7 +2397,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "multi-image-pdf",
@@ -2244,7 +2410,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "compress-pdf",
@@ -2253,7 +2423,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "pdf-to-images",
@@ -2262,7 +2436,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "pdf-to-text",
@@ -2271,7 +2449,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "pdf-to-word",
@@ -2280,7 +2462,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "compress-image",
@@ -2289,7 +2475,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "compress-image-to-kb",
@@ -2298,7 +2488,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "resize-image",
@@ -2307,7 +2501,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "convert-image",
@@ -2316,7 +2514,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "remove-background",
@@ -2325,7 +2527,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "crop-image",
@@ -2334,7 +2540,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "rotate-image",
@@ -2343,7 +2553,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "watermark-image",
@@ -2352,7 +2566,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "add-text-image",
@@ -2361,7 +2579,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "signature-png",
@@ -2370,7 +2592,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "passport-photo",
@@ -2379,7 +2605,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "qr-code",
@@ -2388,7 +2618,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "wifi-qr-code",
@@ -2397,7 +2631,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "vcard-qr-code",
@@ -2406,7 +2644,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "merge-pdf",
@@ -2415,7 +2657,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "split-pdf",
@@ -2424,7 +2670,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "pdf-page-numbers",
@@ -2433,7 +2683,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "rotate-pdf",
@@ -2442,7 +2696,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "remove-pdf-pages",
@@ -2451,7 +2709,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "reorder-pdf-pages",
@@ -2460,7 +2722,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "watermark-pdf",
@@ -2469,7 +2735,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "stamp-pdf",
@@ -2478,7 +2748,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "sign-pdf",
@@ -2487,7 +2761,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "text-to-pdf",
@@ -2496,7 +2774,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "markdown-to-pdf",
@@ -2505,7 +2787,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "csv-to-pdf",
@@ -2514,7 +2800,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "json-to-pdf",
@@ -2523,7 +2813,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "sign-in-sheet",
@@ -2532,7 +2826,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "graph-paper",
@@ -2541,7 +2839,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "packing-list",
@@ -2550,7 +2852,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "receipt-generator",
@@ -2559,7 +2865,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "timesheet-generator",
@@ -2568,7 +2878,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "certificate-generator",
@@ -2577,7 +2891,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "todo-list",
@@ -2586,7 +2904,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "rent-receipt",
@@ -2595,7 +2917,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "name-tracing",
@@ -2604,7 +2930,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "chore-chart",
@@ -2613,7 +2943,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "reward-chart",
@@ -2622,7 +2956,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "flashcards",
@@ -2631,7 +2969,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "weekly-planner",
@@ -2640,7 +2982,11 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "tool": "habit-tracker",
@@ -2649,24 +2995,65 @@
               "generate_file": 0,
               "download_file": 0,
               "limit_hit": 0,
-              "ai_ideas_apply": 0
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
+            },
+            {
+              "tool": "local-seller-starter-kit",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "limit_hit": 0,
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
+            },
+            {
+              "tool": "custom-local-print-pack",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "limit_hit": 0,
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
+            },
+            {
+              "tool": "market-table-print-audit",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "limit_hit": 0,
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             }
           ],
           "sources": [
             {
               "source": "direct",
-              "page_view": 201,
+              "page_view": 204,
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
-              "today": {
-                "page_view": 3,
-                "generate_pdf": 0,
-                "download_pdf": 0,
-                "generate_file": 0,
-                "download_file": 0
-              }
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "source": "google",
@@ -2675,13 +3062,11 @@
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
-              "today": {
-                "page_view": 0,
-                "generate_pdf": 0,
-                "download_pdf": 0,
-                "generate_file": 0,
-                "download_file": 0
-              }
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "source": "bing",
@@ -2690,13 +3075,11 @@
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
-              "today": {
-                "page_view": 0,
-                "generate_pdf": 0,
-                "download_pdf": 0,
-                "generate_file": 0,
-                "download_file": 0
-              }
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "source": "github",
@@ -2705,28 +3088,50 @@
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
-              "today": {
-                "page_view": 0,
-                "generate_pdf": 0,
-                "download_pdf": 0,
-                "generate_file": 0,
-                "download_file": 0
-              }
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "source": "github-pages",
+              "page_view": 4,
+              "generate_pdf": 0,
+              "download_pdf": 1,
+              "generate_file": 0,
+              "download_file": 0,
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
+            },
+            {
+              "source": "github-issue",
               "page_view": 0,
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
-              "today": {
-                "page_view": 0,
-                "generate_pdf": 0,
-                "download_pdf": 0,
-                "generate_file": 0,
-                "download_file": 0
-              }
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
+            },
+            {
+              "source": "gist",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "source": "zearches",
@@ -2735,13 +3140,11 @@
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
-              "today": {
-                "page_view": 0,
-                "generate_pdf": 0,
-                "download_pdf": 0,
-                "generate_file": 0,
-                "download_file": 0
-              }
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "source": "listai",
@@ -2750,13 +3153,11 @@
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
-              "today": {
-                "page_view": 0,
-                "generate_pdf": 0,
-                "download_pdf": 0,
-                "generate_file": 0,
-                "download_file": 0
-              }
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "source": "nosignuptools",
@@ -2765,13 +3166,11 @@
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
-              "today": {
-                "page_view": 0,
-                "generate_pdf": 0,
-                "download_pdf": 0,
-                "generate_file": 0,
-                "download_file": 0
-              }
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "source": "freenosignup",
@@ -2780,13 +3179,76 @@
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
-              "today": {
-                "page_view": 0,
-                "generate_pdf": 0,
-                "download_pdf": 0,
-                "generate_file": 0,
-                "download_file": 0
-              }
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
+            },
+            {
+              "source": "nologin",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
+            },
+            {
+              "source": "nosubscription",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
+            },
+            {
+              "source": "share-kit",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
+            },
+            {
+              "source": "short-video",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
+            },
+            {
+              "source": "game-platform",
+              "page_view": 0,
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "source": "directory",
@@ -2795,13 +3257,11 @@
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
-              "today": {
-                "page_view": 0,
-                "generate_pdf": 0,
-                "download_pdf": 0,
-                "generate_file": 0,
-                "download_file": 0
-              }
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "source": "community",
@@ -2810,28 +3270,24 @@
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
-              "today": {
-                "page_view": 0,
-                "generate_pdf": 0,
-                "download_pdf": 0,
-                "generate_file": 0,
-                "download_file": 0
-              }
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "source": "referral",
-              "page_view": 46,
+              "page_view": 49,
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
-              "today": {
-                "page_view": 11,
-                "generate_pdf": 0,
-                "download_pdf": 0,
-                "generate_file": 0,
-                "download_file": 0
-              }
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             },
             {
               "source": "unknown",
@@ -2840,52 +3296,64 @@
               "download_pdf": 0,
               "generate_file": 0,
               "download_file": 0,
-              "today": {
-                "page_view": 0,
-                "generate_pdf": 0,
-                "download_pdf": 0,
-                "generate_file": 0,
-                "download_file": 0
-              }
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0
             }
           ]
         }
       }
     },
     "metrics": {
-      "today": "2026-06-03",
+      "today": "2026-06-05",
       "totals": {
-        "page_view": 272,
+        "page_view": 282,
         "generate_pdf": 0,
-        "download_pdf": 1,
+        "download_pdf": 2,
         "generate_file": 0,
         "download_file": 0,
         "limit_hit": 0,
         "ai_ideas": 0,
-        "ai_ideas_apply": 0
+        "ai_ideas_apply": 0,
+        "seller_sample_download": 0,
+        "seller_checkout_intent": 0,
+        "seller_checkout_click": 0,
+        "service_request_intent": 0,
+        "audit_request_intent": 0
       },
       "todayTotals": {
-        "page_view": 14,
+        "page_view": 4,
         "generate_pdf": 0,
         "download_pdf": 0,
         "generate_file": 0,
         "download_file": 0,
         "limit_hit": 0,
         "ai_ideas": 0,
-        "ai_ideas_apply": 0
+        "ai_ideas_apply": 0,
+        "seller_sample_download": 0,
+        "seller_checkout_intent": 0,
+        "seller_checkout_click": 0,
+        "service_request_intent": 0,
+        "audit_request_intent": 0
       },
-      "totalDownloads": 1,
+      "totalDownloads": 2,
       "totalGenerations": 0,
-      "sellerIntent": 0,
+      "freeToolDepthIntent": 0,
       "topTools": [
         {
           "tool": "invoice-generator",
           "generate_pdf": 0,
-          "download_pdf": 1,
+          "download_pdf": 2,
           "generate_file": 0,
           "download_file": 0,
           "limit_hit": 0,
-          "ai_ideas_apply": 0
+          "seller_sample_download": 0,
+          "seller_checkout_intent": 0,
+          "seller_checkout_click": 0,
+          "service_request_intent": 0,
+          "audit_request_intent": 0
         },
         {
           "tool": "estimate-generator",
@@ -2894,7 +3362,11 @@
           "generate_file": 0,
           "download_file": 0,
           "limit_hit": 0,
-          "ai_ideas_apply": 0
+          "seller_sample_download": 0,
+          "seller_checkout_intent": 0,
+          "seller_checkout_click": 0,
+          "service_request_intent": 0,
+          "audit_request_intent": 0
         },
         {
           "tool": "purchase-order",
@@ -2903,7 +3375,11 @@
           "generate_file": 0,
           "download_file": 0,
           "limit_hit": 0,
-          "ai_ideas_apply": 0
+          "seller_sample_download": 0,
+          "seller_checkout_intent": 0,
+          "seller_checkout_click": 0,
+          "service_request_intent": 0,
+          "audit_request_intent": 0
         },
         {
           "tool": "bill-of-sale",
@@ -2912,7 +3388,11 @@
           "generate_file": 0,
           "download_file": 0,
           "limit_hit": 0,
-          "ai_ideas_apply": 0
+          "seller_sample_download": 0,
+          "seller_checkout_intent": 0,
+          "seller_checkout_click": 0,
+          "service_request_intent": 0,
+          "audit_request_intent": 0
         },
         {
           "tool": "business-card",
@@ -2921,7 +3401,11 @@
           "generate_file": 0,
           "download_file": 0,
           "limit_hit": 0,
-          "ai_ideas_apply": 0
+          "seller_sample_download": 0,
+          "seller_checkout_intent": 0,
+          "seller_checkout_click": 0,
+          "service_request_intent": 0,
+          "audit_request_intent": 0
         },
         {
           "tool": "address-labels",
@@ -2930,7 +3414,11 @@
           "generate_file": 0,
           "download_file": 0,
           "limit_hit": 0,
-          "ai_ideas_apply": 0
+          "seller_sample_download": 0,
+          "seller_checkout_intent": 0,
+          "seller_checkout_click": 0,
+          "service_request_intent": 0,
+          "audit_request_intent": 0
         },
         {
           "tool": "price-tag",
@@ -2939,7 +3427,11 @@
           "generate_file": 0,
           "download_file": 0,
           "limit_hit": 0,
-          "ai_ideas_apply": 0
+          "seller_sample_download": 0,
+          "seller_checkout_intent": 0,
+          "seller_checkout_click": 0,
+          "service_request_intent": 0,
+          "audit_request_intent": 0
         },
         {
           "tool": "flyer-maker",
@@ -2948,7 +3440,11 @@
           "generate_file": 0,
           "download_file": 0,
           "limit_hit": 0,
-          "ai_ideas_apply": 0
+          "seller_sample_download": 0,
+          "seller_checkout_intent": 0,
+          "seller_checkout_click": 0,
+          "service_request_intent": 0,
+          "audit_request_intent": 0
         }
       ]
     }
@@ -3013,7 +3509,7 @@
       "keyFileReachable": true,
       "singleUrlAccepted": false,
       "latestReport": {
-        "generatedAt": "2026-06-03T03:24:03.925Z",
+        "generatedAt": "2026-06-05T19:20:32.789Z",
         "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
         "results": [
           {
@@ -3097,6 +3593,6 @@
     "Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.",
     "When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.",
     "Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.",
-    "Keep the GitHub Pages seller-kit mirror visible and watch for seller intent events before spending time on more paid-kit variants."
+    "Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces."
   ]
 }

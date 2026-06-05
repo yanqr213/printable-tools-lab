@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-03T04:33:29.695Z
+Last generated: 2026-06-05T19:22:37.125Z
 
 ## Current Automated Status
 
@@ -10,9 +10,9 @@ Last generated: 2026-06-03T04:33:29.695Z
 - High-intent landing pages: 66.
 - Indexable routes: 247.
 - Custom domain configured: no.
-- Live downloads: 1.
+- Live downloads: 2.
 - Live generations: 0.
-- Seller-kit intent events: 0.
+- Free-tool depth intent events: 0.
 - Search impressions: 0.
 - Search clicks: 0.
 - External discovery ready: yes.
@@ -49,7 +49,7 @@ Last generated: 2026-06-03T04:33:29.695Z
 
 - 30-day continue gate: no. Continue if downloads >= 100, generations >= 300, or Search Console impressions are growing.
 - 60-day pivot warning: no. If still true at the 60-day checkpoint, pause printable expansion and test another ad-supported route.
-- 90-day monetization review: no. If true later, optimize ad/affiliate revenue before building paid features.
+- 90-day monetization review: no. If true later, optimize ad revenue, page intent, or compliant affiliate tests before building paid features.
 
 ## Next Actions
 
@@ -57,7 +57,7 @@ Last generated: 2026-06-03T04:33:29.695Z
 - Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.
 - When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.
 - Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.
-- Keep the GitHub Pages seller-kit mirror visible and watch for seller intent events before spending time on more paid-kit variants.
+- Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces.
 
 ## Commands
 
