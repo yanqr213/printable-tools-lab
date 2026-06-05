@@ -1,6 +1,6 @@
 const EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "limit_hit", "ai_ideas", "ai_ideas_apply", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_request_intent", "audit_request_intent"];
 const SOURCE_EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_request_intent", "audit_request_intent"];
-const TOOL_EVENTS = ["generate_pdf", "download_pdf", "generate_file", "download_file", "limit_hit", "ai_ideas_apply", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_request_intent", "audit_request_intent"];
+const TOOL_EVENTS = ["generate_pdf", "download_pdf", "generate_file", "download_file", "limit_hit", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_request_intent", "audit_request_intent"];
 const TOOLS = [
   "invoice-generator",
   "estimate-generator",
@@ -112,21 +112,11 @@ export async function onRequestGet({ env }) {
       return { tool, ...Object.fromEntries(eventEntries) };
     })),
     Promise.all(SOURCES.map(async (source) => {
-      const [totalSourceEntries, todaySourceEntries] = await Promise.all([
-        Promise.all(SOURCE_EVENTS.map(async (event) => [
-          event,
-          await count(`total:source:${source}:event:${event}`),
-        ])),
-        Promise.all(SOURCE_EVENTS.map(async (event) => [
-          event,
-          await count(`day:${today}:source:${source}:event:${event}`),
-        ])),
-      ]);
-      return {
-        source,
-        ...Object.fromEntries(totalSourceEntries),
-        today: Object.fromEntries(todaySourceEntries),
-      };
+      const totalSourceEntries = await Promise.all(SOURCE_EVENTS.map(async (event) => [
+        event,
+        await count(`total:source:${source}:event:${event}`),
+      ]));
+      return { source, ...Object.fromEntries(totalSourceEntries) };
     })),
   ]);
   return json({

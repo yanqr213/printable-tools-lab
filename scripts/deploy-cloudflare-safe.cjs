@@ -55,6 +55,7 @@ function main() {
       env: process.env,
       encoding: "utf8",
       stdio: "inherit",
+      shell: process.platform === "win32",
     });
     if (result.error) throw result.error;
     if (result.status !== 0) process.exit(result.status || 1);
@@ -64,7 +65,7 @@ function main() {
 }
 
 function run(command, args) {
-  execFileSync(command, args, { cwd: root, stdio: "inherit" });
+  execFileSync(command, args, { cwd: root, stdio: "inherit", shell: process.platform === "win32" });
 }
 
 function gitTrackedFiles() {
