@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-05T22:46:44.494Z",
+  "generatedAt": "2026-06-05T23:12:10.550Z",
   "landingPages": [
     {
       "title": "Free Upload Limit Fixer",
@@ -958,6 +958,578 @@
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/tools/packing-list/"
     }
   ],
+  "guides": [
+    {
+      "title": "Free printable name tracing worksheet maker",
+      "description": "How to create a readable name tracing page for preschool and kindergarten handwriting practice.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-printable-name-tracing-worksheet-maker/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-printable-name-tracing-worksheet-maker/"
+    },
+    {
+      "title": "Free chore chart generator for kids",
+      "description": "Make a printable weekly chore chart that children can understand without a complicated app.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-chore-chart-generator-for-kids/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-chore-chart-generator-for-kids/"
+    },
+    {
+      "title": "Free reward chart generator",
+      "description": "Create a printable sticker chart for goals, habits, classroom behavior, or family routines.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-reward-chart-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-reward-chart-generator/"
+    },
+    {
+      "title": "Free sticker chart printable maker",
+      "description": "Create a simple printable sticker chart for reading, bedtime, chores, classroom behavior, or kindness goals.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-sticker-chart-printable-maker/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-sticker-chart-printable-maker/"
+    },
+    {
+      "title": "Bedtime routine chart printable",
+      "description": "Make a bedtime routine chart that turns repeated reminders into a simple printable checklist.",
+      "url": "https://printable-tools-lab.pages.dev/guides/bedtime-routine-chart-printable/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/bedtime-routine-chart-printable/"
+    },
+    {
+      "title": "Classroom job chart printable",
+      "description": "Use a printable job chart for weekly classroom helpers, centers, small groups, and clean-up routines.",
+      "url": "https://printable-tools-lab.pages.dev/guides/classroom-job-chart-printable/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/classroom-job-chart-printable/"
+    },
+    {
+      "title": "Free printable weekly calendar for kids",
+      "description": "Create a simple weekly calendar printable for school events, chores, reading, meals, and family reminders.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-printable-weekly-calendar-for-kids/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-printable-weekly-calendar-for-kids/"
+    },
+    {
+      "title": "Printable morning routine chart ideas",
+      "description": "Simple morning chart layouts that help kids move from wake-up to school without constant reminders.",
+      "url": "https://printable-tools-lab.pages.dev/guides/printable-routine-chart-for-mornings/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/printable-routine-chart-for-mornings/"
+    },
+    {
+      "title": "How to build a weekly family planner printable",
+      "description": "Plan meals, school events, chores, and appointments on one printable weekly page.",
+      "url": "https://printable-tools-lab.pages.dev/guides/weekly-family-planner-printable/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/weekly-family-planner-printable/"
+    },
+    {
+      "title": "Classroom label generator ideas",
+      "description": "Use printable labels for bins, centers, cubbies, small groups, and take-home folders.",
+      "url": "https://printable-tools-lab.pages.dev/guides/classroom-label-generator-ideas/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/classroom-label-generator-ideas/"
+    },
+    {
+      "title": "Habit tracker printable for beginners",
+      "description": "Create a printable habit tracker that tracks progress without turning into a guilt chart.",
+      "url": "https://printable-tools-lab.pages.dev/guides/habit-tracker-printable-for-beginners/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/habit-tracker-printable-for-beginners/"
+    },
+    {
+      "title": "Printable flashcard generator guide",
+      "description": "Make flashcards that are easy to cut, review, and reuse for vocabulary or classroom games.",
+      "url": "https://printable-tools-lab.pages.dev/guides/flashcard-generator-printable-guide/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/flashcard-generator-printable-guide/"
+    },
+    {
+      "title": "Printable worksheets for preschool at home",
+      "description": "A practical way to use short printable pages without overloading young children.",
+      "url": "https://printable-tools-lab.pages.dev/guides/printable-worksheets-for-preschool-at-home/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/printable-worksheets-for-preschool-at-home/"
+    },
+    {
+      "title": "Black-and-white printable design tips",
+      "description": "Design worksheets and charts that still look clear on a basic home printer.",
+      "url": "https://printable-tools-lab.pages.dev/guides/black-and-white-printable-design-tips/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/black-and-white-printable-design-tips/"
+    },
+    {
+      "title": "A4 vs US Letter for printable PDFs",
+      "description": "Choose the right paper size for families, schools, and international downloads.",
+      "url": "https://printable-tools-lab.pages.dev/guides/a4-vs-us-letter-printable-guide/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/a4-vs-us-letter-printable-guide/"
+    },
+    {
+      "title": "When batch printable generation is worth it",
+      "description": "Understand when a free one-page printable is enough and when repeated printable workflows need a better process.",
+      "url": "https://printable-tools-lab.pages.dev/guides/batch-printable-generator-for-classrooms/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/batch-printable-generator-for-classrooms/"
+    },
+    {
+      "title": "Free weekly planner generator",
+      "description": "Create a printable weekly planner for family schedules, classroom planning, errands, and meal notes.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-weekly-planner-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-weekly-planner-generator/"
+    },
+    {
+      "title": "Free habit tracker generator",
+      "description": "Build a simple habit tracker printable for routines, reading goals, wellness habits, or classroom practice.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-habit-tracker-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-habit-tracker-generator/"
+    },
+    {
+      "title": "Free invoice generator without signup",
+      "description": "Create a clean invoice PDF without an account, template marketplace, or surprise download fee.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-invoice-generator-no-signup/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-invoice-generator-no-signup/"
+    },
+    {
+      "title": "Freelance invoice PDF template",
+      "description": "Make a one-page freelance invoice PDF for design, writing, consulting, development, and project work.",
+      "url": "https://printable-tools-lab.pages.dev/guides/freelance-invoice-pdf-template/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/freelance-invoice-pdf-template/"
+    },
+    {
+      "title": "Free estimate generator PDF",
+      "description": "Create a free estimate PDF for services, repairs, project work, consulting, or home jobs.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-estimate-generator-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-estimate-generator-pdf/"
+    },
+    {
+      "title": "Service quote PDF template",
+      "description": "Make a printable service quote PDF for contractors, freelancers, consultants, or small local businesses.",
+      "url": "https://printable-tools-lab.pages.dev/guides/service-quote-pdf-template/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/service-quote-pdf-template/"
+    },
+    {
+      "title": "Free purchase order generator",
+      "description": "Create a purchase order PDF for vendor orders, supply requests, services, or internal approvals.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-purchase-order-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-purchase-order-generator/"
+    },
+    {
+      "title": "Purchase order PDF template",
+      "description": "Use a clean purchase order PDF template when a small team needs approval before buying goods or services.",
+      "url": "https://printable-tools-lab.pages.dev/guides/purchase-order-pdf-template/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/purchase-order-pdf-template/"
+    },
+    {
+      "title": "Free bill of sale generator",
+      "description": "Create a simple bill of sale PDF for a private item sale, equipment transfer, or sale record.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-bill-of-sale-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-bill-of-sale-generator/"
+    },
+    {
+      "title": "Private sale receipt PDF",
+      "description": "Make a printable receipt for a private sale of equipment, furniture, electronics, or household items.",
+      "url": "https://printable-tools-lab.pages.dev/guides/private-sale-receipt-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/private-sale-receipt-pdf/"
+    },
+    {
+      "title": "Free rent receipt generator",
+      "description": "Generate a printable rent receipt PDF for tenant records, landlord files, or cash payment documentation.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-rent-receipt-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-rent-receipt-generator/"
+    },
+    {
+      "title": "Rent receipt for cash payment",
+      "description": "Create a simple receipt PDF when rent is paid by cash, bank transfer, check, or another payment method.",
+      "url": "https://printable-tools-lab.pages.dev/guides/rent-receipt-for-cash-payment/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/rent-receipt-for-cash-payment/"
+    },
+    {
+      "title": "Free printable business card generator",
+      "description": "Create printable business cards for a service, side business, class, event, or pop-up table.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-business-card-generator-printable/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-business-card-generator-printable/"
+    },
+    {
+      "title": "Business card PDF for local services",
+      "description": "Make a practical contact card for notaries, tutors, cleaners, repair services, coaches, and small local businesses.",
+      "url": "https://printable-tools-lab.pages.dev/guides/business-card-pdf-for-local-services/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/business-card-pdf-for-local-services/"
+    },
+    {
+      "title": "Free printable address label generator",
+      "description": "Create return address labels, mailing labels, classroom labels, bin labels, or badge labels as a PDF sheet.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-address-label-generator-printable/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-address-label-generator-printable/"
+    },
+    {
+      "title": "Mailing label PDF template",
+      "description": "Use a printable mailing label sheet for small batches of envelopes, packages, folders, and event materials.",
+      "url": "https://printable-tools-lab.pages.dev/guides/mailing-label-pdf-template/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/mailing-label-pdf-template/"
+    },
+    {
+      "title": "Free printable barcode label generator",
+      "description": "Generate Code 39 barcode labels for SKU stickers, inventory bins, event check-in, and internal tracking.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-barcode-label-generator-printable/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-barcode-label-generator-printable/"
+    },
+    {
+      "title": "SKU label PDF template",
+      "description": "Create a simple SKU label PDF for handmade products, market tables, storage bins, or internal inventory.",
+      "url": "https://printable-tools-lab.pages.dev/guides/sku-label-pdf-template/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/sku-label-pdf-template/"
+    },
+    {
+      "title": "Free printable price tag generator",
+      "description": "Make price tags and shelf labels for yard sales, craft fairs, pop-up shops, and small retail tables.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-price-tag-generator-printable/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-price-tag-generator-printable/"
+    },
+    {
+      "title": "Yard sale price tags PDF",
+      "description": "Create quick printable price tags for garage sales, estate sales, moving sales, and community markets.",
+      "url": "https://printable-tools-lab.pages.dev/guides/yard-sale-price-tags-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/yard-sale-price-tags-pdf/"
+    },
+    {
+      "title": "Free flyer maker PDF without signup",
+      "description": "Make a one-page flyer PDF for a local service, yard sale, class, club, or community event.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-flyer-maker-pdf-no-signup/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-flyer-maker-pdf-no-signup/"
+    },
+    {
+      "title": "Local service flyer PDF template",
+      "description": "Create a simple printable flyer for cleaning, tutoring, repair, notary, coaching, or neighborhood services.",
+      "url": "https://printable-tools-lab.pages.dev/guides/local-service-flyer-pdf-template/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/local-service-flyer-pdf-template/"
+    },
+    {
+      "title": "Free printable coupon maker",
+      "description": "Create printable coupon cards for local services, pop-up shops, classes, events, and small offers.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-coupon-maker-printable/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-coupon-maker-printable/"
+    },
+    {
+      "title": "Discount coupon PDF template",
+      "description": "Make a coupon PDF sheet with offer text, coupon code, expiration note, and fine print.",
+      "url": "https://printable-tools-lab.pages.dev/guides/discount-coupon-pdf-template/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/discount-coupon-pdf-template/"
+    },
+    {
+      "title": "Free printable packing slip generator",
+      "description": "Create a packing slip PDF for small orders, handmade products, marketplace shipments, and local delivery.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-packing-slip-generator-printable/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-packing-slip-generator-printable/"
+    },
+    {
+      "title": "Order packing slip PDF template",
+      "description": "Use a simple packing slip PDF as a package insert for small shops, pop-up pickups, and marketplace sales.",
+      "url": "https://printable-tools-lab.pages.dev/guides/order-packing-slip-pdf-template/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/order-packing-slip-pdf-template/"
+    },
+    {
+      "title": "Free work order generator PDF",
+      "description": "Create a work order PDF for repairs, maintenance visits, cleaning jobs, field service, and contractor tasks.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-work-order-generator-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-work-order-generator-pdf/"
+    },
+    {
+      "title": "Service work order PDF template",
+      "description": "Make a printable work order for contractors, local services, maintenance teams, and repair visits.",
+      "url": "https://printable-tools-lab.pages.dev/guides/service-work-order-pdf-template/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/service-work-order-pdf-template/"
+    },
+    {
+      "title": "Free inventory sheet generator",
+      "description": "Create a printable inventory count sheet for stock checks, market tables, storage bins, and classroom supplies.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-inventory-sheet-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-inventory-sheet-generator/"
+    },
+    {
+      "title": "Stock count sheet PDF template",
+      "description": "Use a printable stock count sheet for SKU checks, shelf reviews, craft fairs, event supplies, and restock notes.",
+      "url": "https://printable-tools-lab.pages.dev/guides/stock-count-sheet-pdf-template/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/stock-count-sheet-pdf-template/"
+    },
+    {
+      "title": "Free resume builder PDF",
+      "description": "Build a clean resume PDF without an account, paywall, or complicated design tool.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-resume-builder-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-resume-builder-pdf/"
+    },
+    {
+      "title": "ATS friendly resume PDF guide",
+      "description": "Format a simple resume PDF so it stays readable for recruiters and applicant tracking systems.",
+      "url": "https://printable-tools-lab.pages.dev/guides/ats-friendly-resume-pdf-guide/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/ats-friendly-resume-pdf-guide/"
+    },
+    {
+      "title": "ATS resume keyword match guide",
+      "description": "Compare a resume against a job description without stuffing fake keywords or uploading private details.",
+      "url": "https://printable-tools-lab.pages.dev/guides/ats-resume-keyword-match/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/ats-resume-keyword-match/"
+    },
+    {
+      "title": "Free cover letter generator PDF",
+      "description": "Create a one-page cover letter PDF for job applications without an account or download paywall.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-cover-letter-generator-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-cover-letter-generator-pdf/"
+    },
+    {
+      "title": "Cover letter generator without signup",
+      "description": "Use a free cover letter PDF maker when you need a quick application document without creating an account.",
+      "url": "https://printable-tools-lab.pages.dev/guides/cover-letter-no-signup/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/cover-letter-no-signup/"
+    },
+    {
+      "title": "Free resignation letter generator",
+      "description": "Create a professional resignation letter PDF with last working day, appreciation, and transition wording.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-resignation-letter-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-resignation-letter-generator/"
+    },
+    {
+      "title": "Two weeks notice letter PDF",
+      "description": "Make a simple two weeks notice PDF that states your resignation date and final working day.",
+      "url": "https://printable-tools-lab.pages.dev/guides/two-weeks-notice-letter-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/two-weeks-notice-letter-pdf/"
+    },
+    {
+      "title": "Free monthly calendar generator",
+      "description": "Create a printable monthly calendar PDF for appointments, bills, family plans, classes, or routines.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-monthly-calendar-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-monthly-calendar-generator/"
+    },
+    {
+      "title": "Printable calendar PDF maker",
+      "description": "Generate a simple black-and-white monthly calendar PDF that works on home printers.",
+      "url": "https://printable-tools-lab.pages.dev/guides/printable-calendar-pdf-maker/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/printable-calendar-pdf-maker/"
+    },
+    {
+      "title": "Free meal planner generator",
+      "description": "Make a weekly meal planner PDF with meals, grocery list, and prep notes.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-meal-planner-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-meal-planner-generator/"
+    },
+    {
+      "title": "Weekly meal plan and grocery list PDF",
+      "description": "Create one printable page that combines a weekly meal plan with a grocery list and prep reminders.",
+      "url": "https://printable-tools-lab.pages.dev/guides/weekly-meal-plan-grocery-list-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/weekly-meal-plan-grocery-list-pdf/"
+    },
+    {
+      "title": "Free image to PDF converter",
+      "description": "Convert a JPG, PNG, or WebP image into a one-page PDF without uploading files.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-image-to-pdf-converter/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-image-to-pdf-converter/"
+    },
+    {
+      "title": "JPG to PDF without uploading",
+      "description": "Make a PDF from a JPG file in the browser when you do not want to send the image to a conversion server.",
+      "url": "https://printable-tools-lab.pages.dev/guides/jpg-to-pdf-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/jpg-to-pdf-without-uploading/"
+    },
+    {
+      "title": "Multiple images to PDF without uploading",
+      "description": "Combine several JPG, PNG, or WebP images into one multi-page PDF in the browser.",
+      "url": "https://printable-tools-lab.pages.dev/guides/multiple-images-to-pdf-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/multiple-images-to-pdf-without-uploading/"
+    },
+    {
+      "title": "Compress PDF without uploading",
+      "description": "Reduce a PDF file size locally by rebuilding selected pages as a smaller image-based PDF.",
+      "url": "https://printable-tools-lab.pages.dev/guides/compress-pdf-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/compress-pdf-without-uploading/"
+    },
+    {
+      "title": "PDF to JPG without uploading",
+      "description": "Convert PDF pages to JPG or PNG images locally in your browser.",
+      "url": "https://printable-tools-lab.pages.dev/guides/pdf-to-jpg-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/pdf-to-jpg-without-uploading/"
+    },
+    {
+      "title": "Extract text from PDF without uploading",
+      "description": "Turn selectable PDF text into a downloadable TXT file locally in your browser.",
+      "url": "https://printable-tools-lab.pages.dev/guides/extract-text-from-pdf-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/extract-text-from-pdf-without-uploading/"
+    },
+    {
+      "title": "PDF to Word without uploading",
+      "description": "Convert selectable PDF text into a simple DOCX document locally in your browser.",
+      "url": "https://printable-tools-lab.pages.dev/guides/pdf-to-word-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/pdf-to-word-without-uploading/"
+    },
+    {
+      "title": "Signature PNG generator",
+      "description": "Draw or type a signature and download a transparent PNG locally without signup or upload.",
+      "url": "https://printable-tools-lab.pages.dev/guides/signature-png-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/signature-png-generator/"
+    },
+    {
+      "title": "Passport photo maker without uploading",
+      "description": "Crop a passport-style photo locally for common print sizes before checking official requirements.",
+      "url": "https://printable-tools-lab.pages.dev/guides/passport-photo-maker/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/passport-photo-maker/"
+    },
+    {
+      "title": "Compress image without uploading",
+      "description": "Reduce JPG, PNG, or WebP file size in the browser before uploading elsewhere.",
+      "url": "https://printable-tools-lab.pages.dev/guides/compress-image-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/compress-image-without-uploading/"
+    },
+    {
+      "title": "Compress image to 100KB without uploading",
+      "description": "Reduce a JPG, PNG, or WebP image toward a 100KB upload limit locally in the browser.",
+      "url": "https://printable-tools-lab.pages.dev/guides/compress-image-to-100kb-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/compress-image-to-100kb-without-uploading/"
+    },
+    {
+      "title": "Resize image without uploading",
+      "description": "Change image width, height, or preset size locally in the browser.",
+      "url": "https://printable-tools-lab.pages.dev/guides/resize-image-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/resize-image-without-uploading/"
+    },
+    {
+      "title": "Convert image format without uploading",
+      "description": "Convert JPG, PNG, and WebP files locally when a website requires a different image format.",
+      "url": "https://printable-tools-lab.pages.dev/guides/convert-image-format-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/convert-image-format-without-uploading/"
+    },
+    {
+      "title": "Remove background without uploading",
+      "description": "Create a transparent PNG from a white, solid, or near-solid background image locally in your browser.",
+      "url": "https://printable-tools-lab.pages.dev/guides/remove-background-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/remove-background-without-uploading/"
+    },
+    {
+      "title": "Add text to image without uploading",
+      "description": "Put a headline, caption, label, or price on a photo locally in your browser.",
+      "url": "https://printable-tools-lab.pages.dev/guides/add-text-to-image-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/add-text-to-image-without-uploading/"
+    },
+    {
+      "title": "Merge PDF without uploading",
+      "description": "Combine several PDF files into one PDF locally in your browser.",
+      "url": "https://printable-tools-lab.pages.dev/guides/merge-pdf-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/merge-pdf-without-uploading/"
+    },
+    {
+      "title": "Split PDF without uploading",
+      "description": "Extract selected pages from a PDF without uploading the document.",
+      "url": "https://printable-tools-lab.pages.dev/guides/split-pdf-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/split-pdf-without-uploading/"
+    },
+    {
+      "title": "Add page numbers to PDF",
+      "description": "Add simple visible page numbers to an existing PDF in the browser.",
+      "url": "https://printable-tools-lab.pages.dev/guides/add-page-numbers-to-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/add-page-numbers-to-pdf/"
+    },
+    {
+      "title": "Rotate PDF pages without uploading",
+      "description": "Fix sideways or upside-down PDF pages locally in your browser.",
+      "url": "https://printable-tools-lab.pages.dev/guides/rotate-pdf-pages-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/rotate-pdf-pages-without-uploading/"
+    },
+    {
+      "title": "Remove pages from PDF without uploading",
+      "description": "Delete selected PDF pages locally without sending the source file to a converter.",
+      "url": "https://printable-tools-lab.pages.dev/guides/remove-pages-from-pdf-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/remove-pages-from-pdf-without-uploading/"
+    },
+    {
+      "title": "Reorder PDF pages without uploading",
+      "description": "Organize PDF pages by entering a new page order in the browser.",
+      "url": "https://printable-tools-lab.pages.dev/guides/reorder-pdf-pages-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/reorder-pdf-pages-without-uploading/"
+    },
+    {
+      "title": "Watermark PDF without uploading",
+      "description": "Add a light text watermark to PDF pages locally in your browser.",
+      "url": "https://printable-tools-lab.pages.dev/guides/watermark-pdf-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/watermark-pdf-without-uploading/"
+    },
+    {
+      "title": "Stamp PDF without uploading",
+      "description": "Add a simple PAID, APPROVED, DRAFT, or custom stamp to a PDF locally.",
+      "url": "https://printable-tools-lab.pages.dev/guides/stamp-pdf-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/stamp-pdf-without-uploading/"
+    },
+    {
+      "title": "Add signature text to PDF without uploading",
+      "description": "Place a typed signature block on a selected PDF page locally in your browser.",
+      "url": "https://printable-tools-lab.pages.dev/guides/add-signature-text-to-pdf-without-uploading/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/add-signature-text-to-pdf-without-uploading/"
+    },
+    {
+      "title": "Text to PDF converter without signup",
+      "description": "Paste plain text and download a clean one-page PDF without installing an editor.",
+      "url": "https://printable-tools-lab.pages.dev/guides/text-to-pdf-converter-no-signup/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/text-to-pdf-converter-no-signup/"
+    },
+    {
+      "title": "Markdown to PDF converter without signup",
+      "description": "Paste Markdown and download a readable PDF without creating an account.",
+      "url": "https://printable-tools-lab.pages.dev/guides/markdown-to-pdf-converter-no-signup/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/markdown-to-pdf-converter-no-signup/"
+    },
+    {
+      "title": "CSV to PDF table without uploading",
+      "description": "Paste CSV rows and download a readable PDF table without uploading a spreadsheet.",
+      "url": "https://printable-tools-lab.pages.dev/guides/csv-to-pdf-table-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/csv-to-pdf-table-no-upload/"
+    },
+    {
+      "title": "JSON to PDF formatter without uploading",
+      "description": "Paste JSON and download a formatted PDF without sending the source data to a server.",
+      "url": "https://printable-tools-lab.pages.dev/guides/json-to-pdf-formatter-no-upload/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/json-to-pdf-formatter-no-upload/"
+    },
+    {
+      "title": "Free sign-in sheet generator",
+      "description": "Create a printable sign-in sheet PDF for events, classes, workshops, meetings, or visitor logs.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-sign-in-sheet-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-sign-in-sheet-generator/"
+    },
+    {
+      "title": "Attendance sheet PDF template",
+      "description": "Use a simple printable attendance sheet for classes, clubs, workshops, and small meetings.",
+      "url": "https://printable-tools-lab.pages.dev/guides/attendance-sheet-pdf-template/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/attendance-sheet-pdf-template/"
+    },
+    {
+      "title": "Free printable graph paper generator",
+      "description": "Generate graph paper PDF with quarter-inch, half-inch, or small grid spacing.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-printable-graph-paper-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-printable-graph-paper-generator/"
+    },
+    {
+      "title": "Quarter inch graph paper PDF",
+      "description": "Create a quarter-inch graph paper PDF for math practice, planning, and sketching.",
+      "url": "https://printable-tools-lab.pages.dev/guides/quarter-inch-graph-paper-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/quarter-inch-graph-paper-pdf/"
+    },
+    {
+      "title": "Free packing list generator",
+      "description": "Make a printable packing checklist PDF for travel, camping, family vacations, or business trips.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-packing-list-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-packing-list-generator/"
+    },
+    {
+      "title": "Travel checklist PDF",
+      "description": "Create a one-page travel checklist PDF with categories, checkboxes, and reminder notes.",
+      "url": "https://printable-tools-lab.pages.dev/guides/travel-checklist-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/travel-checklist-pdf/"
+    },
+    {
+      "title": "Free receipt generator PDF",
+      "description": "Create a simple printable receipt for a sale, service payment, deposit, or reimbursement.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-receipt-generator-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-receipt-generator-pdf/"
+    },
+    {
+      "title": "Weekly timesheet generator PDF",
+      "description": "Make a printable timesheet for freelance hours, staff records, project tracking, or approvals.",
+      "url": "https://printable-tools-lab.pages.dev/guides/weekly-timesheet-generator-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/weekly-timesheet-generator-pdf/"
+    },
+    {
+      "title": "Free certificate generator PDF",
+      "description": "Create a printable certificate for completion, participation, classroom awards, or small events.",
+      "url": "https://printable-tools-lab.pages.dev/guides/free-certificate-generator-pdf/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/free-certificate-generator-pdf/"
+    },
+    {
+      "title": "Printable to do list generator",
+      "description": "Build a one-page checklist for errands, work tasks, study sessions, home projects, or events.",
+      "url": "https://printable-tools-lab.pages.dev/guides/printable-to-do-list-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/guides/printable-to-do-list-generator/"
+    }
+  ],
   "gameSubmissionPack": {
     "title": "HTML5 Game Submission Pack",
     "url": "https://printable-tools-lab.pages.dev/portal-submission-pack/",
@@ -1818,7 +2390,7 @@
   },
   "organicPushKit": {
     "name": "PrintableTools Lab Organic Push Kit Mirror",
-    "generatedAt": "2026-06-05T22:46:44.494Z",
+    "generatedAt": "2026-06-05T23:12:10.550Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/organic-push-kit/",
     "livePage": "https://printable-tools-lab.pages.dev/organic-push-kit/",
     "liveJson": "https://printable-tools-lab.pages.dev/organic-push-kit.json",
@@ -1915,7 +2487,7 @@
   },
   "uploadErrorCheatsheet": {
     "name": "PrintableTools Lab Upload Error Cheatsheet Mirror",
-    "generatedAt": "2026-06-05T22:46:44.494Z",
+    "generatedAt": "2026-06-05T23:12:10.550Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/",
     "livePage": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
     "liveJson": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",

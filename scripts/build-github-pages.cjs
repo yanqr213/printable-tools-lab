@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, serviceOrderPipeline, serviceOutreachQueue, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, siteUrl, tools, landingPages } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, serviceOrderPipeline, serviceOutreachQueue, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, siteUrl, tools, guides, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
@@ -24,6 +24,13 @@ const toolDiscoveryRoutes = allDiscoveryTools.map((tool) => ({
   description: tool.description,
   url: pagesUrl(tool.path),
   mainUrl: siteUrl(tool.path),
+}));
+const guideDiscoveryRoutes = guides.map((guide) => ({
+  path: guide.path,
+  title: guide.title,
+  description: guide.description,
+  url: pagesUrl(guide.path),
+  mainUrl: siteUrl(guide.path),
 }));
 const gameDiscoveryRoutes = [
   {
@@ -51,6 +58,7 @@ const discoveryRoutes = [
     mainUrl: siteUrl(page.path),
   })),
   ...toolDiscoveryRoutes,
+  ...guideDiscoveryRoutes,
   ...DIGITAL_PRODUCTS.map((product) => ({
     path: product.slug,
     title: product.name,
@@ -169,7 +177,7 @@ const html = `<!doctype html>
         <li><a href="${pagesUrl("organic-push-kit")}">Organic push kit mirror</a> for copy-ready, low-risk free-tool distribution tasks with tracked links and success signals.</li>
         <li><a href="${pagesUrl("upload-error-cheatsheet")}">Upload error cheatsheet mirror</a> for exact PDF, image, resume, and email attachment rejection messages with direct fixes.</li>
         <li><a href="${trackedSiteUrl("tools", "all-tools")}">All free generators</a> for browsing every tool.</li>
-        <li><a href="${trackedSiteUrl("guides", "guides")}">Printable guides</a> for original help pages around PDF, image, QR, and printable workflows.</li>
+        <li><a href="${pagesUrl("guides")}">Printable guide mirrors</a> for original help pages around PDF, image, QR, and printable workflows.</li>
         <li><a href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Free Market Table Print Audit mirror</a> for public-safe feedback on price tags, QR signs, flyer copy, coupons, and pickup notes.</li>
         <li><a href="${trackedSiteUrl("free-pdf-tools", "seller-help-directory")}">Free PDF, image, and QR tools directory</a> for continuing to another useful browser tool.</li>
         <li><a href="${pagesUrl("html5-game-submission-pack")}">HTML5 game submission pack mirror</a> for clean portal ZIPs, GameSnacks packages, demo videos, and platform-review assets.</li>
@@ -184,6 +192,17 @@ const html = `<!doctype html>
           <h3>${escapeHtml(page.title)}</h3>
           <p>${escapeHtml(page.description)}</p>
           <a href="${pagesUrl(page.path)}">Open the discovery note</a>
+        </article>`).join("\n")}
+      </div>
+
+      <h2>Printable guide mirrors</h2>
+      <div class="grid">
+        ${guides.map((guide) => `<article class="card">
+          <h3>${escapeHtml(guide.title)}</h3>
+          <p>${escapeHtml(guide.description)}</p>
+          <a href="${pagesUrl(guide.path)}">Open guide mirror</a>
+          <br>
+          <a data-track-event="guide_depth" data-track-tool="site" href="${trackedGuideUrl(guide)}">Open live guide</a>
         </article>`).join("\n")}
       </div>
 
@@ -213,6 +232,7 @@ for (const tool of allDiscoveryTools) {
     .slice(0, 6);
   fs.writeFileSync(path.join(toolDir, "index.html"), toolDiscoveryHtml(tool, relatedLandingPages));
 }
+writeGuideDiscoveryPages();
 writeDigitalProductDiscoveryPages();
 copyDigitalProductPublicAssets();
 writePaidServiceDiscoveryPages();
@@ -243,6 +263,12 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
     description: tool.description,
     url: siteUrl(tool.path),
     discoveryUrl: pagesUrl(tool.path),
+  })),
+  guides: guides.map((guide) => ({
+    title: guide.title,
+    description: guide.description,
+    url: siteUrl(guide.path),
+    discoveryUrl: pagesUrl(guide.path),
   })),
   gameSubmissionPack: {
     title: "HTML5 Game Submission Pack",
@@ -382,6 +408,15 @@ function trackedLiveToolUrl(toolPath) {
   url.searchParams.set("utm_medium", "organic");
   url.searchParams.set("utm_campaign", "discovery_mirror");
   url.searchParams.set("utm_content", slugify(String(toolPath).split("?")[0]).slice(0, 64));
+  return url.toString();
+}
+
+function trackedGuideUrl(guide) {
+  const url = new URL(siteUrl(guide.path));
+  url.searchParams.set("utm_source", "github-pages");
+  url.searchParams.set("utm_medium", "organic");
+  url.searchParams.set("utm_campaign", "guide_mirror");
+  url.searchParams.set("utm_content", slugify(guide.path).slice(0, 64));
   return url.toString();
 }
 
@@ -1652,6 +1687,133 @@ function copyIndexNowKeyFile() {
   const keyFileName = `${key}.txt`;
   const keyFilePath = path.join(root, keyFileName);
   if (fs.existsSync(keyFilePath)) fs.copyFileSync(keyFilePath, path.join(docsDir, keyFileName));
+}
+
+function writeGuideDiscoveryPages() {
+  const guidesIndexDir = path.join(docsDir, "guides");
+  fs.mkdirSync(guidesIndexDir, { recursive: true });
+  fs.writeFileSync(path.join(guidesIndexDir, "index.html"), guideIndexDiscoveryHtml());
+  for (const guide of guides) {
+    const guideDir = path.join(docsDir, ...guide.path.split("/"));
+    fs.mkdirSync(guideDir, { recursive: true });
+    fs.writeFileSync(path.join(guideDir, "index.html"), guideDiscoveryHtml(guide, relatedToolsForGuide(guide)));
+  }
+}
+
+function relatedToolsForGuide(guide) {
+  const guideText = `${guide.path} ${guide.title} ${guide.description} ${guide.intro}`.toLowerCase();
+  const matches = tools.filter((tool) => {
+    const slug = cleanToolPath(tool.path).split("/").pop();
+    const titleWords = tool.title.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length > 3);
+    return guideText.includes(slug) || titleWords.some((word) => guideText.includes(word));
+  });
+  return matches.length ? matches.slice(0, 4) : highIntentTools.slice(0, 4);
+}
+
+function guideIndexDiscoveryHtml() {
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Printable guide mirrors - PrintableTools Lab</title>
+    <meta name="description" content="GitHub Pages discovery mirrors for PrintableTools Lab practical guides about free no-signup PDF, image, QR, and printable workflows.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="${pagesUrl("guides")}">
+    <style>
+      :root { color-scheme: light; --ink: #17313b; --muted: #5b6f78; --line: #dce8ec; --teal: #176b87; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Arial, sans-serif; color: var(--ink); background: #f7fbfc; line-height: 1.55; }
+      main { width: min(1040px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 56px; }
+      h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin: 0 0 14px; }
+      p { color: var(--muted); max-width: 780px; }
+      a { color: var(--teal); font-weight: 700; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+      .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+      .card h3 { margin: 0 0 8px; }
+      .card p { margin: 0 0 12px; }
+      @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="${pagesUrl("")}">PrintableTools Lab discovery directory</a></p>
+      <h1>Printable guide mirrors</h1>
+      <p>These GitHub Pages discovery notes point to practical live guides for free no-signup PDF, image, QR, and printable workflows. They help search engines and directories find specific user problems without forcing an account, payment, or ad interaction.</p>
+      <div class="grid">
+        ${guides.map((guide) => `<article class="card">
+          <h3>${escapeHtml(guide.title)}</h3>
+          <p>${escapeHtml(guide.description)}</p>
+          <a href="${pagesUrl(guide.path)}">Open guide mirror</a>
+          <br>
+          <a data-track-event="guide_depth" data-track-tool="site" href="${trackedGuideUrl(guide)}">Open live guide</a>
+        </article>`).join("\n")}
+      </div>
+    </main>
+    ${intentTrackerScriptHtml()}
+  </body>
+</html>
+`;
+}
+
+function guideDiscoveryHtml(guide, relatedTools) {
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${escapeHtml(guide.title)} - Guide Discovery</title>
+    <meta name="description" content="${escapeHtml(guide.description)}">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="${pagesUrl(guide.path)}">
+    <style>
+      :root { color-scheme: light; --ink: #17313b; --muted: #5b6f78; --line: #dce8ec; --teal: #176b87; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Arial, sans-serif; color: var(--ink); background: #f7fbfc; line-height: 1.55; }
+      main { width: min(920px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 56px; }
+      h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin: 0 0 14px; }
+      p { color: var(--muted); max-width: 780px; }
+      a { color: var(--teal); font-weight: 700; }
+      .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+      .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+      ul { padding-left: 20px; }
+      @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="${pagesUrl("guides")}">Printable guide mirrors</a></p>
+      <h1>${escapeHtml(guide.title)}</h1>
+      <p>${escapeHtml(guide.description)}</p>
+      <p><a class="button" data-track-event="guide_depth" data-track-tool="site" href="${trackedGuideUrl(guide)}">Open the live guide</a></p>
+      <h2>Why this guide exists</h2>
+      <p>${escapeHtml(guide.intro)}</p>
+      <h2>Best fit</h2>
+      <ul>
+        <li>Use it when the linked live guide matches the exact PDF, image, QR, or printable problem you are solving.</li>
+        <li>Use the related browser tools when you need to generate, compress, convert, or download a practical file without signup.</li>
+        <li>Review every exported file before printing, submitting, sending, or relying on it.</li>
+      </ul>
+      <h2>Related free tools</h2>
+      <div class="grid">
+        ${relatedTools.map((tool) => `<article class="card">
+          <h3>${escapeHtml(tool.title)}</h3>
+          <p>${escapeHtml(tool.description)}</p>
+          <a data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolTrackingId(tool))}" href="${trackedSiteUrl(tool.path, `guide-related-${guide.path}-${tool.path}`)}">Open live tool</a>
+        </article>`).join("\n")}
+      </div>
+      <h2>Useful links</h2>
+      <ul>
+        <li><a href="${pagesUrl("guides")}">All guide mirrors</a></li>
+        <li><a href="${trackedSiteUrl("free-pdf-tools", `guide-footer-${guide.path}`)}">Full free tool directory</a></li>
+        <li><a href="${siteUrl("feed.xml").replace(/\/$/, "")}">RSS feed</a></li>
+      </ul>
+    </main>
+    ${intentTrackerScriptHtml()}
+  </body>
+</html>
+`;
 }
 
 function landingDiscoveryHtml(page, primaryTool, relatedTools) {

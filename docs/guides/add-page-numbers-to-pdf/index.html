@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add page numbers to PDF - Guide Discovery</title>
+    <meta name="description" content="Add simple visible page numbers to an existing PDF in the browser.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://yanqr213.github.io/printable-tools-lab/guides/add-page-numbers-to-pdf/">
+    <style>
+      :root { color-scheme: light; --ink: #17313b; --muted: #5b6f78; --line: #dce8ec; --teal: #176b87; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Arial, sans-serif; color: var(--ink); background: #f7fbfc; line-height: 1.55; }
+      main { width: min(920px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 56px; }
+      h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin: 0 0 14px; }
+      p { color: var(--muted); max-width: 780px; }
+      a { color: var(--teal); font-weight: 700; }
+      .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+      .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+      ul { padding-left: 20px; }
+      @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="https://yanqr213.github.io/printable-tools-lab/guides/">Printable guide mirrors</a></p>
+      <h1>Add page numbers to PDF</h1>
+      <p>Add simple visible page numbers to an existing PDF in the browser.</p>
+      <p><a class="button" data-track-event="guide_depth" data-track-tool="site" href="https://printable-tools-lab.pages.dev/guides/add-page-numbers-to-pdf/?utm_source=github-pages&utm_medium=organic&utm_campaign=guide_mirror&utm_content=guides-add-page-numbers-to-pdf">Open the live guide</a></p>
+      <h2>Why this guide exists</h2>
+      <p>Page numbers help reviewers refer to pages in packets, drafts, reports, and handouts. A local tool can add simple numbering without a full PDF editor.</p>
+      <h2>Best fit</h2>
+      <ul>
+        <li>Use it when the linked live guide matches the exact PDF, image, QR, or printable problem you are solving.</li>
+        <li>Use the related browser tools when you need to generate, compress, convert, or download a practical file without signup.</li>
+        <li>Review every exported file before printing, submitting, sending, or relying on it.</li>
+      </ul>
+      <h2>Related free tools</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Merge PDF Tool</h3>
+          <p>Combine several PDF files into one PDF in your browser without uploading documents.</p>
+          <a data-track-event="free_tool_depth" data-track-tool="merge-pdf" href="https://printable-tools-lab.pages.dev/tools/merge-pdf/?utm_source=github-pages&utm_medium=organic&utm_campaign=discovery_mirror&utm_content=guide-related-guides-add-page-numbers-to-pdf-tools-merge-pdf">Open live tool</a>
+        </article>
+<article class="card">
+          <h3>Split PDF Tool</h3>
+          <p>Extract selected pages from a PDF in your browser without uploading the document.</p>
+          <a data-track-event="free_tool_depth" data-track-tool="split-pdf" href="https://printable-tools-lab.pages.dev/tools/split-pdf/?utm_source=github-pages&utm_medium=organic&utm_campaign=discovery_mirror&utm_content=guide-related-guides-add-page-numbers-to-pdf-tools-split-pdf">Open live tool</a>
+        </article>
+<article class="card">
+          <h3>Add Page Numbers to PDF</h3>
+          <p>Add simple page numbers to an existing PDF locally in your browser.</p>
+          <a data-track-event="free_tool_depth" data-track-tool="pdf-page-numbers" href="https://printable-tools-lab.pages.dev/tools/pdf-page-numbers/?utm_source=github-pages&utm_medium=organic&utm_campaign=discovery_mirror&utm_content=guide-related-guides-add-page-numbers-to-pdf-tools-pdf-page-numb">Open live tool</a>
+        </article>
+<article class="card">
+          <h3>Rotate PDF Pages</h3>
+          <p>Rotate all PDF pages or selected pages locally in your browser without uploading the file.</p>
+          <a data-track-event="free_tool_depth" data-track-tool="rotate-pdf" href="https://printable-tools-lab.pages.dev/tools/rotate-pdf/?utm_source=github-pages&utm_medium=organic&utm_campaign=discovery_mirror&utm_content=guide-related-guides-add-page-numbers-to-pdf-tools-rotate-pdf">Open live tool</a>
+        </article>
+      </div>
+      <h2>Useful links</h2>
+      <ul>
+        <li><a href="https://yanqr213.github.io/printable-tools-lab/guides/">All guide mirrors</a></li>
+        <li><a href="https://printable-tools-lab.pages.dev/free-pdf-tools/?utm_source=github-pages&utm_medium=organic&utm_campaign=free_tool_depth&utm_content=guide-footer-guides-add-page-numbers-to-pdf">Full free tool directory</a></li>
+        <li><a href="https://printable-tools-lab.pages.dev/feed.xml">RSS feed</a></li>
+      </ul>
+    </main>
+    <script>
+      (function () {
+        var endpoint = "https://printable-tools-lab.pages.dev/api/event";
+        function pagePath() {
+          return (window.location.pathname || "/").replace(/^\/printable-tools-lab/, "") || "/";
+        }
+        function sendEvent(name, tool) {
+          if (!name) return;
+          var payload = JSON.stringify({
+            name: name,
+            tool: tool || "site",
+            path: pagePath(),
+            source: "github-pages"
+          });
+          try {
+            if (navigator.sendBeacon && navigator.sendBeacon(endpoint, payload)) return;
+          } catch (error) {}
+          try {
+            fetch(endpoint, {
+              method: "POST",
+              mode: "no-cors",
+              keepalive: true,
+              headers: { "Content-Type": "text/plain;charset=UTF-8" },
+              body: payload
+            });
+          } catch (error) {}
+        }
+        document.addEventListener("click", function (event) {
+          var target = event.target.closest ? event.target.closest("[data-track-event]") : null;
+          if (!target) return;
+          sendEvent(target.getAttribute("data-track-event"), target.getAttribute("data-track-tool"));
+        }, true);
+        sendEvent("page_view", "site");
+      }());
+    </script>
+  </body>
+</html>

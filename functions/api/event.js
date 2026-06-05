@@ -6,6 +6,7 @@ const ALLOWED_EVENTS = new Set([
   "generate_file",
   "download_file",
   "free_tool_depth",
+  "guide_depth",
   "limit_hit",
   "ai_ideas",
   "ai_ideas_apply",

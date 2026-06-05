@@ -12007,7 +12007,7 @@ ${paragraphs.join("\n")}
       const response = await fetch("/api/metrics", { cache: "no-store" });
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error("Metrics unavailable");
-      const depthSignal = (row) => (row.free_tool_depth || 0) + (row.seller_sample_download || 0) + (row.seller_checkout_intent || 0) + (row.seller_checkout_click || 0) + (row.service_request_intent || 0) + (row.audit_request_intent || 0);
+      const depthSignal = (row) => (row.free_tool_depth || 0) + (row.guide_depth || 0) + (row.seller_sample_download || 0) + (row.seller_checkout_intent || 0) + (row.seller_checkout_click || 0) + (row.service_request_intent || 0) + (row.audit_request_intent || 0);
       const rows = (data.tools || []).slice().sort((a, b) => {
         const bScore = ((b.download_pdf || 0) + (b.download_file || 0)) * 3 + depthSignal(b) * 4 + (b.generate_pdf || 0) + (b.generate_file || 0);
         const aScore = ((a.download_pdf || 0) + (a.download_file || 0)) * 3 + depthSignal(a) * 4 + (a.generate_pdf || 0) + (a.generate_file || 0);

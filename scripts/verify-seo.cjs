@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
-const { routes, siteUrl, landingPages, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, HIGH_INTENT_TOOL_PATHS, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, tools } = require("./seo-content.cjs");
+const { routes, siteUrl, landingPages, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, HIGH_INTENT_TOOL_PATHS, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, tools, guides } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const failures = [];
@@ -1528,7 +1528,7 @@ const docsSitemapFile = path.join(root, "docs", "sitemap.xml");
 if (!fs.existsSync(docsSitemapFile)) failures.push("Missing GitHub Pages discovery sitemap.");
 else {
   const docsSitemap = fs.readFileSync(docsSitemapFile, "utf8");
-  if (countMatches(docsSitemap, /<loc>/g) < landingPages.length + tools.length + 1) failures.push("GitHub Pages discovery sitemap missing landing/tool pages.");
+  if (countMatches(docsSitemap, /<loc>/g) < landingPages.length + tools.length + guides.length + 1) failures.push("GitHub Pages discovery sitemap missing landing/tool/guide pages.");
   for (const page of landingPages) {
     const githubUrl = `https://yanqr213.github.io/printable-tools-lab/${page.path}/`;
     if (!docsSitemap.includes(`<loc>${githubUrl}</loc>`)) failures.push(`GitHub Pages sitemap missing landing page: ${page.path}`);
@@ -1536,6 +1536,10 @@ else {
   for (const toolPath of tools.map((tool) => tool.path)) {
     const githubUrl = `https://yanqr213.github.io/printable-tools-lab/${toolPath}/`;
     if (!docsSitemap.includes(`<loc>${githubUrl}</loc>`)) failures.push(`GitHub Pages sitemap missing tool discovery page: ${toolPath}`);
+  }
+  for (const guidePath of guides.map((guide) => guide.path)) {
+    const githubUrl = `https://yanqr213.github.io/printable-tools-lab/${guidePath}/`;
+    if (!docsSitemap.includes(`<loc>${githubUrl}</loc>`)) failures.push(`GitHub Pages sitemap missing guide discovery page: ${guidePath}`);
   }
   if (!docsSitemap.includes("<loc>https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/</loc>")) failures.push("GitHub Pages sitemap missing upload error cheatsheet mirror page.");
   if (!docsSitemap.includes("<loc>https://yanqr213.github.io/printable-tools-lab/organic-push-kit/</loc>")) failures.push("GitHub Pages sitemap missing organic push kit mirror page.");
@@ -1566,6 +1570,20 @@ for (const toolPath of tools.map((tool) => tool.path)) {
   if (!html.includes('data-track-event="free_tool_depth"')) failures.push(`GitHub Pages tool page missing free_tool_depth tracking: ${toolPath}`);
   if (tool && !html.includes(`data-track-tool="${toolTrackingId(tool)}"`)) failures.push(`GitHub Pages tool page missing tool id tracking: ${toolPath}`);
   if (!html.includes(`rel="canonical" href="https://yanqr213.github.io/printable-tools-lab/${toolPath}/"`)) failures.push(`GitHub Pages tool page missing canonical: ${toolPath}`);
+}
+
+for (const guide of guides) {
+  const file = path.join(root, "docs", ...guide.path.split("/"), "index.html");
+  if (!fs.existsSync(file)) {
+    failures.push(`Missing GitHub Pages guide discovery page: ${guide.path}`);
+    continue;
+  }
+  const html = fs.readFileSync(file, "utf8");
+  if (!html.includes(guide.title)) failures.push(`GitHub Pages guide page missing title: ${guide.path}`);
+  if (!html.includes(siteUrl(guide.path))) failures.push(`GitHub Pages guide page missing live guide URL: ${guide.path}`);
+  if (!html.includes('data-track-event="guide_depth"')) failures.push(`GitHub Pages guide page missing guide_depth tracking: ${guide.path}`);
+  if (!html.includes('data-track-tool="site"')) failures.push(`GitHub Pages guide page missing site tracking tool: ${guide.path}`);
+  if (!html.includes(`rel="canonical" href="https://yanqr213.github.io/printable-tools-lab/${guide.path}/"`)) failures.push(`GitHub Pages guide page missing canonical: ${guide.path}`);
 }
 
 const verificationFile = path.join(root, "google1b771d6159b52de7.html");

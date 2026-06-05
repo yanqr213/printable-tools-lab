@@ -66,6 +66,20 @@ async function main() {
   const shortVideo = depthMetrics.sources.find((row) => row.source === "short-video");
   assert(shortVideo.free_tool_depth === 1, "Metrics should count per-source free-tool depth events");
 
+  const guideDepthResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "guide_depth", tool: "site", path: "/guides/free-invoice-generator-no-signup/", source: "github-pages" }),
+    }),
+    env,
+  });
+  assert(guideDepthResponse.status === 200, "Event collector should accept guide-depth events");
+  const guideDepthMetrics = await (await metricsSource.onRequestGet({ env })).json();
+  assert(guideDepthMetrics.totals.guide_depth === 1, "Metrics should count total guide-depth events");
+  const guidePagesSource = guideDepthMetrics.sources.find((row) => row.source === "github-pages");
+  assert(guidePagesSource.guide_depth === 1, "Metrics should count guide-depth events by source");
+
   const directoryEventResponse = await eventSource.onRequestPost({
     request: new Request("https://example.test/api/event", {
       method: "POST",

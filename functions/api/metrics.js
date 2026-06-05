@@ -1,5 +1,5 @@
-const EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "limit_hit", "ai_ideas", "ai_ideas_apply", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_request_intent", "audit_request_intent"];
-const SOURCE_EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "seller_sample_download", "seller_checkout_intent", "service_request_intent", "audit_request_intent"];
+const EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "guide_depth", "limit_hit", "ai_ideas", "ai_ideas_apply", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_request_intent", "audit_request_intent"];
+const SOURCE_EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "guide_depth", "seller_sample_download", "seller_checkout_intent", "service_request_intent", "audit_request_intent"];
 const TOOL_EVENTS = ["generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "limit_hit", "seller_sample_download", "seller_checkout_intent", "service_request_intent", "audit_request_intent"];
 const TOOLS = [
   "invoice-generator",
