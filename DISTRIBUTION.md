@@ -46,9 +46,20 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 
 - Free tool directory: https://printable-tools-lab.pages.dev/free-pdf-tools/?utm_source=distribution&utm_medium=organic&utm_campaign=free_tool_depth
 - Upload limit fixer: https://printable-tools-lab.pages.dev/upload-limit-fixer/?utm_source=distribution&utm_medium=organic&utm_campaign=zero_cost_push
+- Upload error cheatsheet: https://printable-tools-lab.pages.dev/upload-error-cheatsheet/?utm_source=distribution&utm_medium=organic&utm_campaign=upload_error_cheatsheet
+- Upload error cheatsheet JSON: https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json
 - Share kit JSON: https://printable-tools-lab.pages.dev/share-kit.json
 
 Rule: downloads stay free, ads are disabled until review, and future ads must never block file generation or downloads.
+
+## Upload error cheatsheet copy
+
+Use this when a directory, support thread, job seeker community, or small-business forum allows a useful resource link for file upload problems.
+
+PrintableTools Lab has a free upload error cheatsheet for common blocked-upload messages: PDF must be under 1MB or 500KB, image must be under 2MB or 500KB, photo under 100KB, JPG under 200KB, PNG screenshot too large, invalid JPG/PNG file type, 600 x 600 image dimensions, PDF not accepted JPG required, resume PDF too large, and email attachment too large.
+
+Resource page: https://printable-tools-lab.pages.dev/upload-error-cheatsheet/
+Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json
 
 ## High-intent links
 

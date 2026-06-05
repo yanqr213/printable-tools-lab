@@ -15,6 +15,8 @@ Monetization model: Free tools stay live for search demand and future display ad
 - Upload limit fixer page: https://printable-tools-lab.pages.dev/upload-limit-fixer/
 - Directory submission pack: https://printable-tools-lab.pages.dev/submit-directory/
 - Share kit: https://printable-tools-lab.pages.dev/share-kit/
+- Upload error cheatsheet: https://printable-tools-lab.pages.dev/upload-error-cheatsheet/
+- Machine-readable upload error cheatsheet: https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json
 - Free market table print audit: https://printable-tools-lab.pages.dev/market-table-print-audit/
 - HTML5 platform submit queue: https://printable-tools-lab.pages.dev/platform-submit-queue/
 - HTML5 platform submit cockpit: https://printable-tools-lab.pages.dev/platform-submit-cockpit/
@@ -30,6 +32,7 @@ Monetization model: Free tools stay live for search demand and future display ad
 - Machine-readable tool list: https://printable-tools-lab.pages.dev/tools.json
 - Discovery index: https://printable-tools-lab.pages.dev/discovery.json
 - Machine-readable share kit: https://printable-tools-lab.pages.dev/share-kit.json
+- Machine-readable upload error cheatsheet: https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json
 - Machine-readable platform submit queue: https://printable-tools-lab.pages.dev/platform-submit-queue.json
 - Machine-readable platform submit cockpit: https://printable-tools-lab.pages.dev/platform-submit-cockpit.json
 - Machine-readable platform outreach tracker: https://printable-tools-lab.pages.dev/platform-outreach-tracker.json

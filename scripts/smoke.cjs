@@ -7,7 +7,7 @@ const { PDFDocument, StandardFonts, rgb } = require("pdf-lib");
 const root = path.resolve(__dirname, "..");
 const serverPath = path.join(root, "scripts", "server.cjs");
 process.env.PORT = process.env.PORT || "4181";
-require(serverPath);
+const server = require(serverPath);
 
 const base = `http://localhost:${process.env.PORT}`;
 
@@ -337,10 +337,22 @@ function delay(ms) {
   for (const phrase of ["PrintableTools Lab share kit", "Priority links", "Copy-ready posts", "Rules for safe distribution"]) {
     if (!shareKitText.includes(phrase)) throw new Error(`Share kit is missing ${phrase}`);
   }
+  if (!shareKitText.includes("Upload error cheatsheet")) throw new Error("Share kit is missing upload error cheatsheet.");
   const shareKitResponse = await page.goto(`${base}/share-kit.json`, { waitUntil: "networkidle" });
   if (!shareKitResponse || !shareKitResponse.ok()) throw new Error("share-kit.json route failed");
   const shareKitJson = await page.evaluate(() => JSON.parse(document.body.innerText));
   if (!Array.isArray(shareKitJson.featuredLinks) || shareKitJson.featuredLinks.length < 8) throw new Error("share-kit.json missing featured links");
+  if (!Array.isArray(shareKitJson.uploadErrorCheatsheet?.entries) || shareKitJson.uploadErrorCheatsheet.entries.length < 12) throw new Error("share-kit.json missing upload error cheatsheet entries");
+
+  await page.goto(`${base}/upload-error-cheatsheet/`, { waitUntil: "networkidle" });
+  const cheatsheetText = await page.locator("main").innerText();
+  for (const phrase of ["Upload error cheatsheet", "PDF must be under 1MB", "Image must be less than 2MB", "Email attachment too large"]) {
+    if (!cheatsheetText.includes(phrase)) throw new Error(`Upload error cheatsheet is missing ${phrase}`);
+  }
+  const cheatsheetResponse = await page.goto(`${base}/upload-error-cheatsheet.json`, { waitUntil: "networkidle" });
+  if (!cheatsheetResponse || !cheatsheetResponse.ok()) throw new Error("upload-error-cheatsheet.json route failed");
+  const cheatsheetJson = await page.evaluate(() => JSON.parse(document.body.innerText));
+  if (!Array.isArray(cheatsheetJson.entries) || cheatsheetJson.entries.length < 12) throw new Error("upload-error-cheatsheet.json missing entries");
 
   const onePagePdf = await samplePdf("First document");
   const secondPagePdf = await samplePdf("Second document");
@@ -842,10 +854,12 @@ function delay(ms) {
   if (!canvasBox || canvasBox.width < 250) throw new Error("Mobile preview canvas is not visible.");
 
   await browser.close();
+  server.close();
   console.log(`Smoke checks passed. Downloads observed: ${downloads.length}`);
   process.exit(0);
 })().catch(async (error) => {
   console.error(error);
+  server.close();
   process.exit(1);
 });
 

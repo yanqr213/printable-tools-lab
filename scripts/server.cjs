@@ -52,3 +52,5 @@ const server = http.createServer((req, res) => {
 server.listen(port, () => {
   console.log(`PrintableTools Lab running at http://localhost:${port}/`);
 });
+
+module.exports = server;

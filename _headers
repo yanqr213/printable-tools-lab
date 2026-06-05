@@ -125,3 +125,6 @@
 
 /reports/custom-local-print-pack-sample-delivery.json
   Content-Type: application/json; charset=utf-8
+
+/upload-error-cheatsheet.json
+  Content-Type: application/json; charset=utf-8

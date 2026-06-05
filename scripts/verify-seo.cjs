@@ -392,6 +392,8 @@ else {
   if (!html.includes("Priority links")) failures.push("Share kit missing priority links.");
   if (!html.includes("/share-kit.json")) failures.push("Share kit missing JSON link.");
   if (!html.includes("Ad-safe free-tool distribution")) failures.push("Share kit missing ad-safe free-tool distribution section.");
+  if (!html.includes("Upload error cheatsheet")) failures.push("Share kit missing upload error cheatsheet section.");
+  if (!html.includes("/upload-error-cheatsheet.json")) failures.push("Share kit missing upload error cheatsheet JSON link.");
   if (!html.includes("/free-pdf-tools/")) failures.push("Share kit missing free tools directory link.");
   if (html.includes("Paid service sales pack")) failures.push("Share kit should not promote paid service sales pack.");
   if (!html.includes("Compress PDF to 1MB")) failures.push("Share kit missing PDF compression angle.");
@@ -412,6 +414,27 @@ else {
   if (!sitemap.includes(`<loc>${siteUrl("share-kit")}</loc>`)) failures.push("Sitemap missing share kit.");
 }
 
+const uploadErrorCheatsheetFile = path.join(root, "upload-error-cheatsheet", "index.html");
+if (!fs.existsSync(uploadErrorCheatsheetFile)) failures.push("Missing upload error cheatsheet page.");
+else {
+  const html = fs.readFileSync(uploadErrorCheatsheetFile, "utf8");
+  if (!html.includes("Upload error cheatsheet")) failures.push("Upload error cheatsheet missing heading.");
+  if (!html.includes("PDF must be under 1MB")) failures.push("Upload error cheatsheet missing PDF 1MB row.");
+  if (!html.includes("Image must be less than 2MB")) failures.push("Upload error cheatsheet missing image 2MB row.");
+  if (!html.includes("Email attachment too large")) failures.push("Upload error cheatsheet missing email attachment row.");
+  if (!html.includes("/upload-error-cheatsheet.json")) failures.push("Upload error cheatsheet missing JSON link.");
+  if (!sitemap.includes(`<loc>${siteUrl("upload-error-cheatsheet")}</loc>`)) failures.push("Sitemap missing upload error cheatsheet.");
+}
+
+const uploadErrorCheatsheetJsonFile = path.join(root, "upload-error-cheatsheet.json");
+if (!fs.existsSync(uploadErrorCheatsheetJsonFile)) failures.push("Missing upload-error-cheatsheet.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(uploadErrorCheatsheetJsonFile, "utf8"));
+  if (!Array.isArray(data.entries) || data.entries.length < 12) failures.push("upload-error-cheatsheet.json missing entries.");
+  if (!data.entries?.some((item) => item.errorText === "Resume PDF too large" && String(item.toolUrl || "").includes("targetSize=1mb"))) failures.push("upload-error-cheatsheet.json missing resume PDF target.");
+  if (!data.entries?.some((item) => item.errorText === "Image must be less than 2MB" && String(item.toolUrl || "").includes("targetKb=2048"))) failures.push("upload-error-cheatsheet.json missing image 2MB target.");
+}
+
 const shareKitJsonFile = path.join(root, "share-kit.json");
 if (!fs.existsSync(shareKitJsonFile)) failures.push("Missing share-kit.json.");
 else {
@@ -430,6 +453,7 @@ else {
   if (!Array.isArray(data.zeroDomainGameExperiments) || !data.zeroDomainGameExperiments.some((item) => String(item.zipUrl || "").includes("neon-lane-dash-html5.zip"))) failures.push("share-kit.json missing Neon Lane Dash ZIP URL.");
   if (!Array.isArray(data.zeroDomainGameExperiments) || !data.zeroDomainGameExperiments.some((item) => String(item.gameSnacksZipUrl || "").includes("neon-lane-dash-gamesnacks.zip"))) failures.push("share-kit.json missing Neon Lane Dash GameSnacks ZIP URL.");
   if (!Array.isArray(data.rules) || data.rules.length < 5) failures.push("share-kit.json missing distribution rules.");
+  if (!Array.isArray(data.uploadErrorCheatsheet?.entries) || data.uploadErrorCheatsheet.entries.length < 12) failures.push("share-kit.json missing upload error cheatsheet entries.");
   if (!data.featuredLinks.some((item) => item.url && item.url.includes("utm_source=share-kit"))) failures.push("share-kit.json missing tracked share-kit URLs.");
   if (data.serviceSalesPack?.trackedLinks?.some((item) => String(item.url || "").includes("service_sales_pack"))) failures.push("share-kit.json should not promote service sales pack tracked URLs.");
   if (!data.marketTablePrintAudit || data.marketTablePrintAudit.id !== MARKET_TABLE_PRINT_AUDIT.id) failures.push("share-kit.json missing market table print audit lead magnet.");
@@ -990,7 +1014,9 @@ else {
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("portal-submission-pack"))) failures.push("discovery.json missing portal submission pack page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("zero-cost-monetization-map"))) failures.push("discovery.json missing zero-cost monetization map page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("upload-limit-fixer"))) failures.push("discovery.json missing upload limit fixer page.");
+  if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("upload-error-cheatsheet"))) failures.push("discovery.json missing upload error cheatsheet page.");
   if (discovery.shareKit !== siteUrl("share-kit.json").replace(/\/$/, "")) failures.push("discovery.json missing share-kit.json URL.");
+  if (discovery.uploadErrorCheatsheet !== siteUrl("upload-error-cheatsheet.json").replace(/\/$/, "")) failures.push("discovery.json missing upload-error-cheatsheet.json URL.");
   if (discovery.platformSubmitQueue !== siteUrl("platform-submit-queue.json").replace(/\/$/, "")) failures.push("discovery.json missing platform-submit-queue.json URL.");
   if (discovery.platformSubmitCockpit !== siteUrl("platform-submit-cockpit.json").replace(/\/$/, "")) failures.push("discovery.json missing platform-submit-cockpit.json URL.");
   if (discovery.platformOutreachTracker !== siteUrl("platform-outreach-tracker.json").replace(/\/$/, "")) failures.push("discovery.json missing platform-outreach-tracker.json URL.");
@@ -998,6 +1024,8 @@ else {
   if (discovery.zeroCostMonetizationMap !== siteUrl("zero-cost-monetization-map.json").replace(/\/$/, "")) failures.push("discovery.json missing zero-cost-monetization-map.json URL.");
   if (!discovery.distributionAssets || !Array.isArray(discovery.distributionAssets.campaignVideos) || discovery.distributionAssets.campaignVideos.length < 6) failures.push("discovery.json missing campaign video assets.");
   if (!discovery.distributionAssets || !String(discovery.distributionAssets.publicGist || "").includes("gist.github.com/yanqr213")) failures.push("discovery.json missing public Gist URL.");
+  if (!discovery.distributionAssets || discovery.distributionAssets.uploadErrorCheatsheet !== siteUrl("upload-error-cheatsheet")) failures.push("discovery.json missing upload error cheatsheet URL.");
+  if (!discovery.distributionAssets || discovery.distributionAssets.uploadErrorCheatsheetJson !== siteUrl("upload-error-cheatsheet.json").replace(/\/$/, "")) failures.push("discovery.json missing upload error cheatsheet JSON URL.");
   if (!discovery.distributionAssets || !String(discovery.distributionAssets.publicGrowthIssue || "").includes("github.com/yanqr213/printable-tools-lab/issues/1")) failures.push("discovery.json missing public GitHub issue URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.platformSubmitQueue !== siteUrl("platform-submit-queue")) failures.push("discovery.json missing platform submit queue URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.platformSubmitCockpit !== siteUrl("platform-submit-cockpit")) failures.push("discovery.json missing platform submit cockpit URL.");

@@ -1945,6 +1945,117 @@ const UPLOAD_LIMIT_MATCHER_EXAMPLES = [
   "Image dimensions must be 600 x 600 px",
 ];
 
+const UPLOAD_ERROR_CHEATSHEET = [
+  {
+    errorText: "PDF must be under 1MB",
+    problem: "A job, school, email, or admin portal rejects a PDF by file size.",
+    landingPath: "file-must-be-less-than-1mb",
+    toolPath: "tools/compress-pdf?targetSize=1mb",
+    response: "Open the PDF compressor with the 1MB target, compress locally, then review readability before submitting.",
+    format: "PDF",
+    target: "1MB",
+  },
+  {
+    errorText: "PDF must be under 500KB",
+    problem: "A strict form, exam upload, or school portal requires a very small PDF.",
+    landingPath: "pdf-must-be-under-500kb",
+    toolPath: "tools/compress-pdf?targetSize=500kb",
+    response: "Use the strict 500KB PDF target and keep the original file in case the compressed copy loses detail.",
+    format: "PDF",
+    target: "500KB",
+  },
+  {
+    errorText: "Image must be less than 2MB",
+    problem: "A profile, marketplace, support, or application page rejects an image over 2MB.",
+    landingPath: "image-must-be-less-than-2mb",
+    toolPath: "tools/compress-image-to-kb?targetKb=2048",
+    response: "Use the image-to-KB compressor with a 2048KB custom target.",
+    format: "Image",
+    target: "2MB",
+  },
+  {
+    errorText: "Image must be under 500KB",
+    problem: "A portal or ticket form requires an image below 500KB.",
+    landingPath: "image-must-be-under-500kb",
+    toolPath: "tools/compress-image-to-kb?targetKb=500",
+    response: "Use the 500KB image target, then resize if a large phone photo still misses the limit.",
+    format: "Image",
+    target: "500KB",
+  },
+  {
+    errorText: "Photo must be under 100KB",
+    problem: "A job, profile, school, or ID-style form rejects a photo by KB size.",
+    landingPath: "photo-must-be-under-100kb",
+    toolPath: "tools/compress-image-to-kb?targetKb=100",
+    response: "Use the 100KB image target and check that the face or document text remains clear.",
+    format: "Photo",
+    target: "100KB",
+  },
+  {
+    errorText: "JPG must be under 200KB",
+    problem: "A portal accepts JPG/JPEG but rejects the image as too large.",
+    landingPath: "jpg-must-be-under-200kb",
+    toolPath: "tools/compress-image-to-kb?targetKb=200",
+    response: "Use the 200KB image target and keep output as JPG if the destination requires it.",
+    format: "JPG",
+    target: "200KB",
+  },
+  {
+    errorText: "PNG screenshot too large",
+    problem: "A support ticket, admin upload, or bug report rejects a PNG screenshot.",
+    landingPath: "png-screenshot-too-large",
+    toolPath: "tools/compress-image-to-kb?targetKb=500",
+    response: "Crop private areas first, then compress toward 500KB and review small UI text.",
+    format: "PNG",
+    target: "500KB",
+  },
+  {
+    errorText: "Invalid file type. Please upload JPG or PNG",
+    problem: "A website rejects the current image format and asks for JPG/JPEG/PNG.",
+    landingPath: "invalid-file-type-jpg-png",
+    toolPath: "tools/convert-image",
+    response: "Convert the image format locally, then compress if the converted file is still too large.",
+    format: "Image",
+    target: "JPG or PNG",
+  },
+  {
+    errorText: "Image dimensions must be 600 x 600 px",
+    problem: "A profile, marketplace, avatar, or product image must match exact pixels.",
+    landingPath: "image-dimensions-600x600",
+    toolPath: "tools/resize-image?width=600&height=600&fit=cover",
+    response: "Resize or crop to 600 x 600 pixels, then compress only if the KB limit still fails.",
+    format: "Image",
+    target: "600 x 600",
+  },
+  {
+    errorText: "PDF not accepted, JPG required",
+    problem: "A form accepts images but rejects a PDF upload.",
+    landingPath: "pdf-not-accepted-jpg-required",
+    toolPath: "tools/pdf-to-images",
+    response: "Convert PDF pages to JPG/PNG locally and upload the page image the destination expects.",
+    format: "PDF",
+    target: "JPG",
+  },
+  {
+    errorText: "Resume PDF too large",
+    problem: "A job application or recruiter portal rejects a resume PDF by size.",
+    landingPath: "resume-pdf-too-large",
+    toolPath: "tools/compress-pdf?targetSize=1mb",
+    response: "Try the 1MB PDF target and confirm all resume text remains readable before applying.",
+    format: "PDF",
+    target: "1MB",
+  },
+  {
+    errorText: "Email attachment too large",
+    problem: "Gmail, Outlook, school email, or work mail rejects a document attachment.",
+    landingPath: "email-attachment-too-large",
+    toolPath: "tools/compress-pdf?targetSize=5mb",
+    response: "Compress PDFs toward 5MB or use the image-to-KB tool for photo attachments.",
+    format: "PDF or image",
+    target: "5MB",
+  },
+];
+
 const SHARE_KIT_RULES = [
   "Post only where free tools or file utilities are relevant to the community.",
   "Do not ask for ad interactions, ad impressions, upvotes, or artificial engagement.",
@@ -4746,6 +4857,12 @@ const pages = [
     html: shareKitHtml(),
   },
   {
+    path: "upload-error-cheatsheet",
+    title: "Upload Error Cheatsheet",
+    description: "Copy-ready reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup tool fixes.",
+    html: uploadErrorCheatsheetHtml(),
+  },
+  {
     path: LOCAL_SELLER_STARTER_KIT.slug,
     title: LOCAL_SELLER_STARTER_KIT.name,
     description: LOCAL_SELLER_STARTER_KIT.shortDescription,
@@ -5297,6 +5414,39 @@ function directorySubmissionHtml() {
       </section>`;
 }
 
+function uploadErrorCheatsheetHtml() {
+  return `
+      <section class="shell page-title section">
+        <a href="/upload-limit-fixer/">Upload limit fixer</a>
+        <h1>Upload error cheatsheet</h1>
+        <p>A copy-ready reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors. Each row links to a free no-signup browser tool and a specific landing page that explains the fix.</p>
+        <p><a class="button" href="/upload-error-cheatsheet.json">Open JSON feed</a> <a class="button secondary" href="/share-kit/">Open share kit</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Common upload errors and direct fixes</h2>
+        <table class="event-table">
+          <thead><tr><th>Error text</th><th>Use this link</th><th>Response</th></tr></thead>
+          <tbody>
+            ${UPLOAD_ERROR_CHEATSHEET.map((item) => `<tr><td>${escapeHtml(item.errorText)}</td><td><a href="/${escapeHtml(item.landingPath)}/">${escapeHtml(item.format)} ${escapeHtml(item.target)}</a></td><td>${escapeHtml(item.response)}</td></tr>`).join("\n")}
+          </tbody>
+        </table>
+      </section>
+      <section class="shell section">
+        <h2>Copy block for directories and community replies</h2>
+        <p>PrintableTools Lab has a free upload error cheatsheet for common file rejections: PDF under 1MB or 500KB, image under 2MB or 500KB, photo under 100KB, JPG under 200KB, PNG screenshot too large, invalid JPG/PNG file type, 600 x 600 image dimensions, PDF not accepted JPG required, resume PDF too large, and email attachment too large.</p>
+        <p><a class="button" href="/upload-limit-fixer/">Open upload limit fixer</a> <a class="button secondary" href="/free-pdf-tools/">Browse all free file tools</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Machine-readable fields</h2>
+        <div class="grid-3">
+          <article class="panel"><h3>JSON</h3><p><a href="/upload-error-cheatsheet.json">/upload-error-cheatsheet.json</a></p></article>
+          <article class="panel"><h3>Share kit</h3><p><a href="/share-kit.json">/share-kit.json</a></p></article>
+          <article class="panel"><h3>Discovery index</h3><p><a href="/discovery.json">/discovery.json</a></p></article>
+        </div>
+        ${jsonLdHtml(itemListSchema("Upload error cheatsheet", UPLOAD_ERROR_CHEATSHEET.map((item) => ({ title: item.errorText, path: item.landingPath }))))}
+      </section>`;
+}
+
 function shareKitHtml() {
   const featuredLinks = shareKitFeaturedLinks();
   const posts = shareKitPosts();
@@ -5326,7 +5476,18 @@ function shareKitHtml() {
       <section class="shell section">
         <h2>Ad-safe free-tool distribution</h2>
         <p>The current monetization path is free-tool traffic first, then responsible display ads after review. Share useful tool links, measure downloads and search exposure, and keep ads separate from generator controls.</p>
-        <p><a class="button" href="/free-pdf-tools/">Browse free tools</a> <a class="button secondary" href="/share-kit.json">Open share-kit.json</a></p>
+        <p><a class="button" href="/free-pdf-tools/">Browse free tools</a> <a class="button secondary" href="/upload-error-cheatsheet/">Open upload error cheatsheet</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Upload error cheatsheet</h2>
+        <p>This table is built for directory editors, community replies, support threads, and search crawlers that need exact upload-error wording with a direct free fix.</p>
+        <table class="event-table">
+          <thead><tr><th>Error</th><th>Tracked landing page</th><th>Fix</th></tr></thead>
+          <tbody>
+            ${UPLOAD_ERROR_CHEATSHEET.map((item) => `<tr><td>${escapeHtml(item.errorText)}</td><td><a href="${escapeHtml(`${siteUrl(item.landingPath).replace(/\/$/, "")}?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet`)}">${escapeHtml(item.landingPath)}</a></td><td>${escapeHtml(item.response)}</td></tr>`).join("\n")}
+          </tbody>
+        </table>
+        <p><a class="button" href="/upload-error-cheatsheet.json">Open upload-error JSON</a> <a class="button secondary" href="/share-kit.json">Open share-kit.json</a></p>
       </section>
       <section class="shell section">
         <h2>Short video scripts</h2>
@@ -7359,4 +7520,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, UPLOAD_ERROR_CHEATSHEET, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };

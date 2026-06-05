@@ -4919,6 +4919,30 @@
         ["p", "Machine-readable version: https://printable-tools-lab.pages.dev/share-kit.json"],
       ],
     },
+    "upload-error-cheatsheet": {
+      title: "Upload error cheatsheet",
+      description: "Copy-ready reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup tool fixes.",
+      body: [
+        ["p", "Use this reference when a form, job portal, support ticket, marketplace, or email app rejects a file by size, type, or dimensions."],
+        ["h2", "Direct fixes"],
+        ["ul", [
+          "PDF must be under 1MB: https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb/",
+          "PDF must be under 500KB: https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/",
+          "Image must be less than 2MB: https://printable-tools-lab.pages.dev/image-must-be-less-than-2mb/",
+          "Image must be under 500KB: https://printable-tools-lab.pages.dev/image-must-be-under-500kb/",
+          "Photo must be under 100KB: https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/",
+          "JPG must be under 200KB: https://printable-tools-lab.pages.dev/jpg-must-be-under-200kb/",
+          "PNG screenshot too large: https://printable-tools-lab.pages.dev/png-screenshot-too-large/",
+          "Invalid file type, upload JPG or PNG: https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/",
+          "Image dimensions must be 600 x 600: https://printable-tools-lab.pages.dev/image-dimensions-600x600/",
+          "Resume PDF too large: https://printable-tools-lab.pages.dev/resume-pdf-too-large/",
+          "Email attachment too large: https://printable-tools-lab.pages.dev/email-attachment-too-large/",
+        ]],
+        ["h2", "Machine-readable feed"],
+        ["p", "JSON: https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json"],
+        ["p", "Full upload limit matcher: https://printable-tools-lab.pages.dev/upload-limit-fixer/"],
+      ],
+    },
     "launch-kit": {
       title: "Launch Kit",
       description: "Distribution copy, links, and validation steps for launching PrintableTools Lab.",
@@ -5474,6 +5498,20 @@
       "Do not post private documents, IDs, payment details, or user files in examples.",
       "Use UTM source labels so the live metrics can separate directory, community, video, and social tests.",
     ];
+    const uploadErrorCheatsheet = [
+      ["PDF must be under 1MB", "/file-must-be-less-than-1mb/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Open the PDF compressor with the 1MB target."],
+      ["PDF must be under 500KB", "/pdf-must-be-under-500kb/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Use the strict 500KB PDF target."],
+      ["Image must be less than 2MB", "/image-must-be-less-than-2mb/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Use the image-to-KB compressor with a 2048KB target."],
+      ["Image must be under 500KB", "/image-must-be-under-500kb/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Use the 500KB image target."],
+      ["Photo must be under 100KB", "/photo-must-be-under-100kb/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Use the 100KB image target and review clarity."],
+      ["JPG must be under 200KB", "/jpg-must-be-under-200kb/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Use the 200KB image target and keep output as JPG."],
+      ["PNG screenshot too large", "/png-screenshot-too-large/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Crop private areas, then compress toward 500KB."],
+      ["Invalid file type. Please upload JPG or PNG", "/invalid-file-type-jpg-png/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Convert the image format locally."],
+      ["Image dimensions must be 600 x 600 px", "/image-dimensions-600x600/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Resize or crop to exact dimensions."],
+      ["PDF not accepted, JPG required", "/pdf-not-accepted-jpg-required/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Convert PDF pages to image files locally."],
+      ["Resume PDF too large", "/resume-pdf-too-large/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Try the 1MB PDF target and review readability."],
+      ["Email attachment too large", "/email-attachment-too-large/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Compress PDFs toward 5MB or compress image attachments."],
+    ];
     const videoAssets = [
       ["Compress PDF to 1MB", "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-pdf-under-1mb.mp4", "/compress-pdf-to-1mb/?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-under-1mb"],
       ["Compress PDF to 500KB", "https://github.com/yanqr213/printable-tools-lab/releases/download/free-pdf-tools/ptl-pdf-under-500kb.mp4", "/compress-pdf-to-500kb/?utm_source=community&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=pdf-under-500kb"],
@@ -5515,6 +5553,15 @@
         <div class="grid-2">
           ${posts.map(([title, hook, body, href, cta]) => `<article class="panel"><h3>${escapeHtml(title)}</h3><p><strong>${escapeHtml(hook)}</strong></p><p>${escapeHtml(body)}</p><p><a href="${href}">${escapeHtml(cta)}</a></p></article>`).join("")}
         </div>
+      </section>
+      <section class="shell section">
+        <h2>Upload error cheatsheet</h2>
+        <p>This table is built for directory editors, community replies, support threads, and search crawlers that need exact upload-error wording with a direct free fix.</p>
+        <table class="event-table">
+          <thead><tr><th>Error</th><th>Tracked landing page</th><th>Fix</th></tr></thead>
+          <tbody>${uploadErrorCheatsheet.map(([errorText, href, fix]) => `<tr><td>${escapeHtml(errorText)}</td><td><a href="${href}">${escapeHtml(absoluteUrl(href))}</a></td><td>${escapeHtml(fix)}</td></tr>`).join("")}</tbody>
+        </table>
+        <p><a class="button" href="/upload-error-cheatsheet/">Open upload error cheatsheet</a> <a class="button secondary" href="/upload-error-cheatsheet.json">Open upload-error JSON</a></p>
       </section>
       <section class="shell section">
         <h2>Short video scripts</h2>

@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
 const { strToU8, zipSync } = require("fflate");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
 const { serviceDeliveryInputExample, zipServiceDelivery } = require("./service-delivery-kit.cjs");
 
 const root = path.resolve(__dirname, "..");
@@ -137,6 +137,9 @@ if (fs.existsSync(headersPath)) {
   if (!headers.includes("/share-kit.json")) {
     fs.appendFileSync(headersPath, "\n/share-kit.json\n  Content-Type: application/json; charset=utf-8\n");
   }
+  if (!headers.includes("/upload-error-cheatsheet.json")) {
+    fs.appendFileSync(headersPath, "\n/upload-error-cheatsheet.json\n  Content-Type: application/json; charset=utf-8\n");
+  }
   if (!headers.includes("/platform-submit-queue.json")) {
     fs.appendFileSync(headersPath, "\n/platform-submit-queue.json\n  Content-Type: application/json; charset=utf-8\n");
   }
@@ -221,6 +224,11 @@ const shareKitJson = {
     url: trackedSharePostUrl(post),
   })),
   videoAssets: campaignAssets,
+  uploadErrorCheatsheet: {
+    page: siteUrl("upload-error-cheatsheet"),
+    json: fileUrl("upload-error-cheatsheet.json"),
+    entries: UPLOAD_ERROR_CHEATSHEET.map(uploadErrorEntry),
+  },
   marketTablePrintAudit: marketTablePrintAuditEntry(),
   zeroDomainGameExperiment: ZERO_DOMAIN_GAME_EXPERIMENT,
   zeroDomainGameExperiments: ZERO_DOMAIN_GAME_EXPERIMENTS,
@@ -232,6 +240,20 @@ const shareKitJson = {
   rules: SHARE_KIT_RULES,
 };
 fs.writeFileSync(path.join(root, "share-kit.json"), `${JSON.stringify(shareKitJson, null, 2)}\n`);
+
+const uploadErrorCheatsheetJson = {
+  name: "PrintableTools Lab Upload Error Cheatsheet",
+  generatedAt: generatedAtIso,
+  canonical: siteUrl("upload-error-cheatsheet"),
+  purpose: "Machine-readable reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup fixes.",
+  entries: UPLOAD_ERROR_CHEATSHEET.map(uploadErrorEntry),
+  safeUseRules: [
+    "Share the clean landing page or tracked campaign URL only where it directly answers an upload-error problem.",
+    "Do not claim guaranteed compression results; say the tools try toward the target and users should review the output.",
+    "Do not ask users to click ads, interact with ads, or upload private files into public examples.",
+  ],
+};
+fs.writeFileSync(path.join(root, "upload-error-cheatsheet.json"), `${JSON.stringify(uploadErrorCheatsheetJson, null, 2)}\n`);
 
 const serviceSalesPackJson = {
   ...serviceSalesPackEntry(),
@@ -383,6 +405,8 @@ const llms = [
   `- Upload limit fixer page: ${siteUrl("upload-limit-fixer")}`,
   `- Directory submission pack: ${siteUrl("submit-directory")}`,
   `- Share kit: ${siteUrl("share-kit")}`,
+  `- Upload error cheatsheet: ${siteUrl("upload-error-cheatsheet")}`,
+  `- Machine-readable upload error cheatsheet: ${fileUrl("upload-error-cheatsheet.json")}`,
   `- Free market table print audit: ${siteUrl(MARKET_TABLE_PRINT_AUDIT.slug)}`,
   `- HTML5 platform submit queue: ${siteUrl("platform-submit-queue")}`,
   `- HTML5 platform submit cockpit: ${siteUrl("platform-submit-cockpit")}`,
@@ -398,6 +422,7 @@ const llms = [
   `- Machine-readable tool list: ${fileUrl("tools.json")}`,
   `- Discovery index: ${fileUrl("discovery.json")}`,
   `- Machine-readable share kit: ${fileUrl("share-kit.json")}`,
+  `- Machine-readable upload error cheatsheet: ${fileUrl("upload-error-cheatsheet.json")}`,
   `- Machine-readable platform submit queue: ${fileUrl("platform-submit-queue.json")}`,
   `- Machine-readable platform submit cockpit: ${fileUrl("platform-submit-cockpit.json")}`,
   `- Machine-readable platform outreach tracker: ${fileUrl("platform-outreach-tracker.json")}`,
@@ -443,16 +468,19 @@ const discoveryIndex = {
   manifest: fileUrl("site.webmanifest"),
   opensearch: fileUrl("opensearch.xml"),
   shareKit: fileUrl("share-kit.json"),
+  uploadErrorCheatsheet: fileUrl("upload-error-cheatsheet.json"),
   platformSubmitQueue: fileUrl("platform-submit-queue.json"),
   platformSubmitCockpit: fileUrl("platform-submit-cockpit.json"),
   platformOutreachTracker: fileUrl("platform-outreach-tracker.json"),
   portalSubmissionPack: fileUrl("portal-submission-pack.json"),
   gameSubmissionFeed: fileUrl("game-submission-feed.json"),
   zeroCostMonetizationMap: fileUrl("zero-cost-monetization-map.json"),
-  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("upload-limit-fixer"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl(MARKET_TABLE_PRINT_AUDIT.slug), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("upload-limit-fixer"), siteUrl("upload-error-cheatsheet"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl(MARKET_TABLE_PRINT_AUDIT.slug), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   distributionAssets: {
     shareKit: siteUrl("share-kit"),
     shareKitJson: fileUrl("share-kit.json"),
+    uploadErrorCheatsheet: siteUrl("upload-error-cheatsheet"),
+    uploadErrorCheatsheetJson: fileUrl("upload-error-cheatsheet.json"),
     marketTablePrintAudit: siteUrl(MARKET_TABLE_PRINT_AUDIT.slug),
     marketTablePrintAuditRequest: fileUrl(MARKET_TABLE_PRINT_AUDIT.publicRequestPath),
     marketTablePrintAuditChecklist: fileUrl(MARKET_TABLE_PRINT_AUDIT.publicChecklistPath),
@@ -593,9 +621,20 @@ const distribution = [
   "",
   `- Free tool directory: ${siteUrl("free-pdf-tools")}?utm_source=distribution&utm_medium=organic&utm_campaign=free_tool_depth`,
   `- Upload limit fixer: ${siteUrl("upload-limit-fixer")}?utm_source=distribution&utm_medium=organic&utm_campaign=zero_cost_push`,
+  `- Upload error cheatsheet: ${siteUrl("upload-error-cheatsheet")}?utm_source=distribution&utm_medium=organic&utm_campaign=upload_error_cheatsheet`,
+  `- Upload error cheatsheet JSON: ${fileUrl("upload-error-cheatsheet.json")}`,
   `- Share kit JSON: ${fileUrl("share-kit.json")}`,
   "",
   "Rule: downloads stay free, ads are disabled until review, and future ads must never block file generation or downloads.",
+  "",
+  "## Upload error cheatsheet copy",
+  "",
+  "Use this when a directory, support thread, job seeker community, or small-business forum allows a useful resource link for file upload problems.",
+  "",
+  "PrintableTools Lab has a free upload error cheatsheet for common blocked-upload messages: PDF must be under 1MB or 500KB, image must be under 2MB or 500KB, photo under 100KB, JPG under 200KB, PNG screenshot too large, invalid JPG/PNG file type, 600 x 600 image dimensions, PDF not accepted JPG required, resume PDF too large, and email attachment too large.",
+  "",
+  `Resource page: ${siteUrl("upload-error-cheatsheet")}`,
+  `Machine-readable JSON: ${fileUrl("upload-error-cheatsheet.json")}`,
   "",
   "## High-intent links",
   "",
@@ -1240,6 +1279,21 @@ function marketTablePrintAuditEntry() {
     freeTools: MARKET_TABLE_PRINT_AUDIT.freeToolPaths.map((toolPath) => siteUrl(toolPath)),
     riskControls: MARKET_TABLE_PRINT_AUDIT.riskControls,
     moneyGate: MARKET_TABLE_PRINT_AUDIT.moneyGate,
+  };
+}
+
+function uploadErrorEntry(item) {
+  const pageUrl = siteUrl(item.landingPath);
+  const trackedUrl = `${pageUrl.replace(/\/$/, "")}?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet`;
+  return {
+    errorText: item.errorText,
+    problem: item.problem,
+    response: item.response,
+    format: item.format,
+    target: item.target,
+    landingPage: pageUrl,
+    trackedUrl,
+    toolUrl: liveToolUrl(item.toolPath),
   };
 }
 
