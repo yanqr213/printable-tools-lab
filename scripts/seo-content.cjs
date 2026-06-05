@@ -1898,6 +1898,17 @@ const SHARE_KIT_POSTS = [
   },
 ];
 
+const UPLOAD_LIMIT_SHORTCUTS = [
+  ["PDF size reducer", "/pdf-size-reducer/", "Pick 500KB, 1MB, 2MB, or 5MB PDF targets for scanned forms and portal uploads."],
+  ["Image size reducer in KB", "/image-size-reducer-in-kb/", "Choose exact image and photo targets from 10KB through 500KB without uploading."],
+  ["Compress PDF to 1MB", "/compress-pdf-to-1mb/", "A common job, school, email, and admin portal PDF limit."],
+  ["Compress PDF to 500KB", "/compress-pdf-to-500kb/", "A strict PDF target for forms, exam portals, and government-style uploads."],
+  ["Compress image to 100KB", "/compress-image-to-100kb/", "A common profile, job, school, and form photo limit."],
+  ["Compress JPG to 100KB", "/compress-jpg-to-100kb/", "Use this when the destination asks for JPG and a fixed 100KB limit."],
+  ["Compress PNG to 100KB", "/compress-png-to-100kb/", "Use this when a screenshot, graphic, or form upload must stay PNG under 100KB."],
+  ["Passport photo size fixer", "/passport-photo-size-fixer/", "Crop, resize, and compress ID-style photos for dimension and file-size rules."],
+];
+
 const SHARE_KIT_RULES = [
   "Post only where free tools or file utilities are relevant to the community.",
   "Do not ask for ad interactions, ad impressions, upvotes, or artificial engagement.",
@@ -4390,6 +4401,7 @@ const pages = [
           ${keywordClusters.map(keywordClusterHtml).join("\n")}
         </div>
       </section>
+      ${uploadLimitShortcutsHtml()}
       <section class="shell section">
         <h2>Ad-supported free tool validation</h2>
         <div class="grid-2">
@@ -4846,6 +4858,7 @@ function freePdfToolsHtml() {
           `).join("\n")}
         </div>
       </section>
+      ${uploadLimitShortcutsHtml()}
       <section class="shell section">
         <h2>Why the tools are free</h2>
         <p>The validation version is free because the project is testing which document, image, and QR jobs attract real search traffic and repeat downloads. If ads are enabled later, they should sit away from generator controls and never become a condition for downloading.</p>
@@ -5956,6 +5969,7 @@ function landingPageHtml(page) {
           ${page.targetLinks.map(([label, pathName, text]) => `<article class="tool-card"><h3>${escapeHtml(label)}</h3><p>${escapeHtml(text)}</p><a class="button" href="/${escapeHtml(pathName)}/">Open target</a></article>`).join("\n")}
         </div>
       </section>`.trim() : ""}
+      ${page.path === "upload-limit-fixer" ? uploadLimitShortcutsHtml("Fast upload limit shortcuts", "If the error message names a file size, start with the matching target page instead of browsing every tool.") : ""}
       <section class="shell section">
         <h2>Related free tools</h2>
         <div class="grid-3">
@@ -7037,6 +7051,17 @@ function guideIndexHtml() {
 
 function keywordClusterHtml(cluster) {
   return `<article class="panel keyword-cluster"><h3>${escapeHtml(cluster.title)}</h3><p>${escapeHtml(cluster.description)}</p><div class="cluster-links">${cluster.links.map(([label, href]) => `<a href="/${href}/">${escapeHtml(label)}</a>`).join("")}</div></article>`;
+}
+
+function uploadLimitShortcutsHtml(title = "Fast upload limit shortcuts", text = "Most visitors with a rejected upload already know the target size or file type. These direct routes lead to the free no-upload compressor or fixer that matches the error message.") {
+  return `
+      <section class="shell section">
+        <h2>${escapeHtml(title)}</h2>
+        <p>${escapeHtml(text)}</p>
+        <div class="grid-3">
+          ${UPLOAD_LIMIT_SHORTCUTS.map(([label, href, description]) => `<article class="tool-card"><h3>${escapeHtml(label)}</h3><p>${escapeHtml(description)}</p><a class="button" href="${escapeHtml(href)}">Open fixer</a></article>`).join("\n")}
+        </div>
+      </section>`;
 }
 
 function relatedGuideLinks(toolPath) {

@@ -1917,6 +1917,9 @@
         ["vCard contact QR code", "/contact-qr-code-generator/"],
         ["Compress JPG", "/compress-jpg-no-upload/"],
         ["Compress PNG", "/compress-png-no-upload/"],
+        ["Upload limit fixer", "/upload-limit-fixer/"],
+        ["Image size reducer in KB", "/image-size-reducer-in-kb/"],
+        ["PDF size reducer", "/pdf-size-reducer/"],
         ["Resize image to 1080x1080", "/resize-image-1080x1080/"],
         ["Resize image to 512x512", "/resize-image-512x512/"],
         ["PNG to JPG", "/png-to-jpg-no-upload/"],
@@ -2023,7 +2026,33 @@
     },
   ];
 
+  const uploadLimitShortcuts = [
+    ["PDF size reducer", "/pdf-size-reducer/", "Pick 500KB, 1MB, 2MB, or 5MB PDF targets for scanned forms and portal uploads."],
+    ["Image size reducer in KB", "/image-size-reducer-in-kb/", "Choose exact image and photo targets from 10KB through 500KB without uploading."],
+    ["Compress PDF to 1MB", "/compress-pdf-to-1mb/", "A common job, school, email, and admin portal PDF limit."],
+    ["Compress PDF to 500KB", "/compress-pdf-to-500kb/", "A strict PDF target for forms, exam portals, and government-style uploads."],
+    ["Compress image to 100KB", "/compress-image-to-100kb/", "A common profile, job, school, and form photo limit."],
+    ["Compress JPG to 100KB", "/compress-jpg-to-100kb/", "Use this when the destination asks for JPG and a fixed 100KB limit."],
+    ["Compress PNG to 100KB", "/compress-png-to-100kb/", "Use this when a screenshot, graphic, or form upload must stay PNG under 100KB."],
+    ["Passport photo size fixer", "/passport-photo-size-fixer/", "Crop, resize, and compress ID-style photos for dimension and file-size rules."],
+  ];
+
   const landingPages = [
+    {
+      slug: "upload-limit-fixer",
+      title: "Free Upload Limit Fixer",
+      headline: "Fix a file upload limit without signup",
+      description: "Find the right free no-upload tool when a form rejects your PDF, image, photo, or document because of file size, format, or dimensions.",
+      lead: "Start here when a job application, school portal, marketplace, visa-style form, email, or admin website rejects a file because it is too large, the wrong format, or the wrong image dimensions.",
+      tool: "compress-image-to-kb",
+      intent: "file upload limit fixer, reduce file size, convert file format, resize photo",
+      sections: [
+        ["Start from the error message", "If the site says PDF must be under 1MB or 500KB, use the PDF compressor. If it says image must be under 100KB or 200KB, use the image-to-KB compressor. If it asks for JPG, PNG, PDF, or a specific pixel size, choose the matching converter or resizer."],
+        ["Keep the file local", "The linked PDF and image tools run in the browser for ordinary use. That is useful when the blocked upload is a resume, ID-style photo, school form, receipt, support screenshot, or private document."],
+        ["Review before submitting", "Small file-size targets can blur text, flatten PDF text, or reduce photo detail. Always open the downloaded result before uploading it to the destination website."],
+      ],
+      related: ["compress-pdf", "compress-image-to-kb", "resize-image", "passport-photo", "pdf-to-images", "image-to-pdf"],
+    },
     {
       slug: "free-invoice-generator-no-signup",
       title: "Free Invoice Generator Without Signup",
@@ -4829,7 +4858,7 @@
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
-            <a class="button ghost" href="/local-seller-starter-kit/">Seller starter kit</a>
+            <a class="button ghost" href="/upload-limit-fixer/">Fix upload limits</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
             <div class="proof-tile"><strong>${toolCount}</strong><span>high-frequency tools</span></div>
@@ -4854,6 +4883,7 @@
         <div class="cluster-links">${landingPages.map((page) => `<a href="/${page.slug}/">${escapeHtml(page.headline)}</a>`).join("")}</div>
         <div class="grid-2">${keywordClusters.map(keywordClusterCard).join("")}</div>
       </section>
+      ${renderUploadLimitShortcuts()}
       <section class="shell section">
         <h2>Ad-supported free tool validation</h2>
         <div class="grid-2">
@@ -4977,6 +5007,7 @@
           ${freePdfToolGroups.map(freePdfToolGroupCard).join("")}
         </div>
       </section>
+      ${renderUploadLimitShortcuts()}
       <section class="shell section">
         <div class="section-head">
           <div>
@@ -5983,6 +6014,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
         <h2>Choose an exact KB target</h2>
         <div class="grid-3">${page.targetLinks.map(([label, pathName, text]) => `<article class="tool-card"><h3>${escapeHtml(label)}</h3><p>${escapeHtml(text)}</p><a class="button" href="/${escapeHtml(pathName)}/">Open target</a></article>`).join("")}</div>
       </section>` : ""}
+      ${page.slug === "upload-limit-fixer" ? renderUploadLimitShortcuts("Fast upload limit shortcuts", "If the error message names a file size, start with the matching target page instead of browsing every tool.") : ""}
       <section class="shell section">
         <h2>Related free tools</h2>
         <div class="grid-3">${related.map(toolCard).join("")}</div>
@@ -6013,6 +6045,18 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
           ${cluster.links.map(([label, href]) => `<a href="${href}">${escapeHtml(label)}</a>`).join("")}
         </div>
       </article>
+    `;
+  }
+
+  function renderUploadLimitShortcuts(title = "Fast upload limit shortcuts", text = "Most visitors with a rejected upload already know the target size or file type. These direct routes lead to the free no-upload compressor or fixer that matches the error message.") {
+    return `
+      <section class="shell section">
+        <h2>${escapeHtml(title)}</h2>
+        <p>${escapeHtml(text)}</p>
+        <div class="grid-3">
+          ${uploadLimitShortcuts.map(([label, href, description]) => `<article class="tool-card"><h3>${escapeHtml(label)}</h3><p>${escapeHtml(description)}</p><a class="button" href="${escapeHtml(href)}">Open fixer</a></article>`).join("")}
+        </div>
+      </section>
     `;
   }
 

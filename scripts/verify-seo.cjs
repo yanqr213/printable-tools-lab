@@ -6,6 +6,16 @@ const { routes, siteUrl, landingPages, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PR
 const root = path.resolve(__dirname, "..");
 const failures = [];
 const GITHUB_PAGES_EVENT_ENDPOINT = "https://printable-tools-lab.pages.dev/api/event";
+const UPLOAD_LIMIT_SHORTCUT_PATHS = [
+  "/pdf-size-reducer/",
+  "/image-size-reducer-in-kb/",
+  "/compress-pdf-to-1mb/",
+  "/compress-pdf-to-500kb/",
+  "/compress-image-to-100kb/",
+  "/compress-jpg-to-100kb/",
+  "/compress-png-to-100kb/",
+  "/passport-photo-size-fixer/",
+];
 
 function requireGithubPagesIntentTracking(html, label, events = []) {
   if (!html.includes(GITHUB_PAGES_EVENT_ENDPOINT)) failures.push(`${label} missing GitHub Pages event endpoint.`);
@@ -13,6 +23,13 @@ function requireGithubPagesIntentTracking(html, label, events = []) {
   if (!html.includes('sendEvent("page_view", "site")')) failures.push(`${label} missing GitHub Pages page_view tracking.`);
   for (const event of events) {
     if (!html.includes(`data-track-event="${event}"`)) failures.push(`${label} missing ${event} tracking hook.`);
+  }
+}
+
+function requireUploadLimitShortcuts(html, label) {
+  if (!html.includes("Fast upload limit shortcuts")) failures.push(`${label} missing upload limit shortcut section.`);
+  for (const pathName of UPLOAD_LIMIT_SHORTCUT_PATHS) {
+    if (!html.includes(pathName)) failures.push(`${label} missing upload limit shortcut: ${pathName}`);
   }
 }
 
@@ -42,6 +59,13 @@ for (const route of routes) {
   if (route.index === false) continue;
   const loc = siteUrl(route.path);
   if (!sitemap.includes(`<loc>${loc}</loc>`)) failures.push(`Missing sitemap loc: ${loc}`);
+}
+
+const homeFile = path.join(root, "index.html");
+if (!fs.existsSync(homeFile)) failures.push("Missing homepage.");
+else {
+  const html = fs.readFileSync(homeFile, "utf8");
+  requireUploadLimitShortcuts(html, "Homepage");
 }
 
 const docsSellerIndexFile = path.join(root, "docs", "index.html");
@@ -306,7 +330,16 @@ else {
   const html = fs.readFileSync(freePdfToolsFile, "utf8");
   if (!html.includes("Free PDF, image, and QR tools without signup")) failures.push("Free PDF tools page missing target heading.");
   if (!html.includes("/tools/ats-resume-checker/") || !html.includes("/tools/compress-pdf/") || !html.includes("/tools/compress-image/") || !html.includes("/tools/compress-image-to-kb/") || !html.includes("/tools/resize-image/") || !html.includes("/tools/convert-image/") || !html.includes("/tools/remove-background/") || !html.includes("/tools/crop-image/") || !html.includes("/tools/rotate-image/") || !html.includes("/tools/watermark-image/") || !html.includes("/tools/add-text-image/") || !html.includes("/tools/signature-png/") || !html.includes("/tools/passport-photo/") || !html.includes("/tools/qr-code/") || !html.includes("/tools/wifi-qr-code/") || !html.includes("/tools/vcard-qr-code/") || !html.includes("/tools/multi-image-pdf/") || !html.includes("/tools/pdf-to-images/") || !html.includes("/tools/pdf-to-text/") || !html.includes("/tools/pdf-to-word/") || !html.includes("/tools/merge-pdf/") || !html.includes("/tools/split-pdf/") || !html.includes("/tools/pdf-page-numbers/") || !html.includes("/tools/rotate-pdf/") || !html.includes("/tools/remove-pdf-pages/") || !html.includes("/tools/reorder-pdf-pages/") || !html.includes("/tools/watermark-pdf/") || !html.includes("/tools/stamp-pdf/") || !html.includes("/tools/sign-pdf/") || !html.includes("/tools/text-to-pdf/") || !html.includes("/tools/markdown-to-pdf/") || !html.includes("/tools/csv-to-pdf/") || !html.includes("/tools/json-to-pdf/")) failures.push("Free PDF tools page missing conversion links.");
+  requireUploadLimitShortcuts(html, "Free PDF tools page");
   if (!html.includes('"@type":"ItemList"')) failures.push("Free PDF tools page missing ItemList schema.");
+}
+
+const uploadLimitFile = path.join(root, "upload-limit-fixer", "index.html");
+if (!fs.existsSync(uploadLimitFile)) failures.push("Missing upload limit fixer page.");
+else {
+  const html = fs.readFileSync(uploadLimitFile, "utf8");
+  if (!html.includes("Fix a file upload limit without signup")) failures.push("Upload limit fixer missing target heading.");
+  requireUploadLimitShortcuts(html, "Upload limit fixer");
 }
 
 const finderFile = path.join(root, "pdf-tool-finder", "index.html");
