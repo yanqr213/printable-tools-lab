@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-05T19:47:15.760Z",
+  "generatedAt": "2026-06-05T19:51:45.479Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -30,6 +30,7 @@
     "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/compress-pdf-no-upload/",
+    "https://printable-tools-lab.pages.dev/pdf-size-reducer/",
     "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/",
     "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb/",
     "https://printable-tools-lab.pages.dev/compress-pdf-to-2mb/",
@@ -328,6 +329,12 @@
       "title": "Compress PDF Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/compress-pdf-no-upload/",
       "intent": "compress PDF, reduce PDF size, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/"
+    },
+    {
+      "title": "PDF Size Reducer Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/pdf-size-reducer/",
+      "intent": "PDF size reducer, compress PDF under 1MB, compress PDF under 500KB, no upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/"
     },
     {

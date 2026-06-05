@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Paid Services",
-  "generatedAt": "2026-06-05T19:47:15.760Z",
+  "generatedAt": "2026-06-05T19:51:45.479Z",
   "canonical": "https://printable-tools-lab.pages.dev/services.json",
   "services": [
     {
@@ -220,11 +220,11 @@
         }
       ],
       "sampleDeliveryUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-sample-delivery.zip",
-      "sampleDeliverySha256": "3d46d4ce2774ae760c133095e7bcd8757846514b6eb854e4e92604ce60c6d89f",
+      "sampleDeliverySha256": "d41bf6f5a4eb536b9cc78700ce41a8c86e4e96adbc51691e090fdb66d971e74a",
       "deliveryInputExampleUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-delivery-input.example.json",
       "deliveryInputExampleSha256": "cc7bb204fc8da14ab5a878b0079dc19a8fb0acad8753e7715c6e7a6a7db32956",
       "deliveryReportUrl": "https://printable-tools-lab.pages.dev/reports/custom-local-print-pack-sample-delivery.json",
-      "deliveryReportSha256": "ea1ce397a4f52d99c60665b310c83bf09988425d40566b5ea95bb364e10e9f59",
+      "deliveryReportSha256": "f66bbb5800b7de76ec013f5009f9846ca1337de5c17e0937e191b368954b9538",
       "privateDeliveryCommand": "npm.cmd run service:delivery -- --input path/to/paid-order.json",
       "turnaround": "Target delivery is 2 business days after real payment and complete buyer details.",
       "deliverables": [

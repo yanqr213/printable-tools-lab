@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-05T19:47:15.850Z",
+  "generatedAt": "2026-06-05T19:51:45.573Z",
   "landingPages": [
     {
       "title": "Free Upload Limit Fixer",
@@ -36,6 +36,12 @@
       "url": "https://printable-tools-lab.pages.dev/compress-pdf-no-upload/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-pdf-no-upload/",
       "intent": "compress PDF, reduce PDF size, no upload"
+    },
+    {
+      "title": "PDF Size Reducer Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/pdf-size-reducer/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/pdf-size-reducer/",
+      "intent": "PDF size reducer, compress PDF under 1MB, compress PDF under 500KB, no upload"
     },
     {
       "title": "Compress PDF to 500KB Without Uploading",

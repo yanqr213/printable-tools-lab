@@ -90,6 +90,7 @@ Rule: downloads stay free, ads are disabled until review, and future ads must ne
 - Free Upload Limit Fixer: https://printable-tools-lab.pages.dev/upload-limit-fixer/
 - Multiple Images to PDF Without Uploading: https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/
 - Compress PDF Without Uploading: https://printable-tools-lab.pages.dev/compress-pdf-no-upload/
+- PDF Size Reducer Without Uploading: https://printable-tools-lab.pages.dev/pdf-size-reducer/
 - Compress PDF to 500KB Without Uploading: https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/
 - Compress PDF to 1MB Without Uploading: https://printable-tools-lab.pages.dev/compress-pdf-to-1mb/
 - Compress PDF to 2MB Without Uploading: https://printable-tools-lab.pages.dev/compress-pdf-to-2mb/

@@ -2085,6 +2085,27 @@
       related: ["pdf-to-images", "compress-image-to-kb", "merge-pdf"],
     },
     {
+      slug: "pdf-size-reducer",
+      title: "PDF Size Reducer Without Uploading",
+      headline: "PDF size reducer without uploading",
+      description: "Reduce a scanned or image-heavy PDF toward exact upload limits locally, including 500KB, 1MB, 2MB, and 5MB targets.",
+      lead: "Start here when a job portal, school form, email system, exam site, or admin upload page rejects a PDF because the file is too large. Pick the target size, open the no-upload PDF compressor, and download a smaller copy from your browser.",
+      tool: "compress-pdf",
+      intent: "PDF size reducer, compress PDF under 1MB, compress PDF under 500KB, no upload",
+      sections: [
+        ["Pick the target from the upload rule", "Use the exact size from the destination site whenever possible. A 500KB target is strict, 1MB is common for forms, and 2MB or 5MB usually preserves more readable detail."],
+        ["Best for scanned PDFs", "The compressor rebuilds image-based pages locally, so it is strongest for scanned forms, photo-heavy documents, and PDFs that are already mostly images."],
+        ["Honest limits", "Very small PDF targets can flatten selectable text, lower image quality, or still miss the exact limit on long documents. Review the downloaded PDF before submitting it anywhere important."],
+      ],
+      targetLinks: [
+        ["Compress PDF to 500KB", "compress-pdf-to-500kb", "For strict form, school, government-style, and exam upload limits."],
+        ["Compress PDF to 1MB", "compress-pdf-to-1mb", "For common job, school, email, and portal PDF limits."],
+        ["Compress PDF to 2MB", "compress-pdf-to-2mb", "For upload forms that allow more readable scanned detail."],
+        ["Compress PDF to 5MB", "compress-pdf-to-5mb", "For moderate limits where readability matters more than extreme compression."],
+      ],
+      related: ["compress-pdf", "pdf-to-images", "split-pdf", "merge-pdf"],
+    },
+    {
       slug: "compress-pdf-to-500kb",
       title: "Compress PDF to 500KB Without Uploading",
       headline: "Compress PDF to 500KB without uploading",
@@ -5055,6 +5076,7 @@
     const featuredLinks = [
       ["Upload limit fixer", "/upload-limit-fixer/?utm_source=share-kit&utm_medium=organic", "Task-first entry for users blocked by file size, format, or photo dimension limits."],
       ["Image size reducer in KB", "/image-size-reducer-in-kb/?utm_source=share-kit&utm_medium=organic", "Hub for exact image and photo file-size limits from 10KB to 500KB."],
+      ["PDF size reducer", "/pdf-size-reducer/?utm_source=share-kit&utm_medium=organic", "Hub for exact PDF upload limits including 500KB, 1MB, 2MB, and 5MB."],
       ["Compress image to 20KB", "/compress-image-to-20kb/?utm_source=share-kit&utm_medium=organic", "Strict exam, profile, and application photo size limit intent."],
       ["Fix passport photo size", "/passport-photo-size-fixer/?utm_source=share-kit&utm_medium=organic", "Urgent ID-style photo crop, resize, and file-size workflow."],
       ["Compress PDF to 1MB", "/compress-pdf-to-1mb/?utm_source=share-kit&utm_medium=organic", "Urgent upload-limit search for job, school, email, and portal PDFs."],

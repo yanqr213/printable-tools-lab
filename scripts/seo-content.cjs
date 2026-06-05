@@ -1810,6 +1810,7 @@ const PLATFORM_SUBMIT_COCKPIT = {
 const SHARE_KIT_FEATURED_LINKS = [
   ["Upload limit fixer", "upload-limit-fixer", "Task-first entry for users blocked by file size, format, or photo dimension limits."],
   ["Image size reducer in KB", "image-size-reducer-in-kb", "Hub for exact image and photo file-size limits from 10KB to 500KB."],
+  ["PDF size reducer", "pdf-size-reducer", "Hub for exact PDF upload limits including 500KB, 1MB, 2MB, and 5MB."],
   ["Compress image to 20KB", "compress-image-to-20kb", "Strict exam, profile, and application photo size limit intent."],
   ["Fix passport photo size", "passport-photo-size-fixer", "Urgent ID-style photo crop, resize, and file-size workflow."],
   ["Compress PDF to 1MB", "compress-pdf-to-1mb", "Urgent upload-limit search for job, school, email, and portal PDFs."],
@@ -2320,6 +2321,27 @@ const landingPages = [
       ["Best fit", "Use it for scanned PDFs, photo-heavy documents, receipts, and one-off upload limits. For contracts, forms, or accessible documents with selectable text, keep the original file too."],
     ],
     relatedTools: ["tools/pdf-to-images", "tools/compress-image-to-kb", "tools/merge-pdf"],
+  },
+  {
+    path: "pdf-size-reducer",
+    title: "PDF Size Reducer Without Uploading",
+    description: "Reduce a scanned or image-heavy PDF toward exact upload limits locally, including 500KB, 1MB, 2MB, and 5MB targets.",
+    headline: "PDF size reducer without uploading",
+    lead: "Start here when a job portal, school form, email system, exam site, or admin upload page rejects a PDF because the file is too large. Pick the target size, open the no-upload PDF compressor, and download a smaller copy from your browser.",
+    primaryTool: "tools/compress-pdf",
+    intent: "PDF size reducer, compress PDF under 1MB, compress PDF under 500KB, no upload",
+    sections: [
+      ["Pick the target from the upload rule", "Use the exact size from the destination site whenever possible. A 500KB target is strict, 1MB is common for forms, and 2MB or 5MB usually preserves more readable detail."],
+      ["Best for scanned PDFs", "The compressor rebuilds image-based pages locally, so it is strongest for scanned forms, photo-heavy documents, and PDFs that are already mostly images."],
+      ["Honest limits", "Very small PDF targets can flatten selectable text, lower image quality, or still miss the exact limit on long documents. Review the downloaded PDF before submitting it anywhere important."],
+    ],
+    targetLinks: [
+      ["Compress PDF to 500KB", "compress-pdf-to-500kb", "For strict form, school, government-style, and exam upload limits."],
+      ["Compress PDF to 1MB", "compress-pdf-to-1mb", "For common job, school, email, and portal PDF limits."],
+      ["Compress PDF to 2MB", "compress-pdf-to-2mb", "For upload forms that allow more readable scanned detail."],
+      ["Compress PDF to 5MB", "compress-pdf-to-5mb", "For moderate limits where readability matters more than extreme compression."],
+    ],
+    relatedTools: ["tools/compress-pdf", "tools/pdf-to-images", "tools/split-pdf", "tools/merge-pdf"],
   },
   {
     path: "compress-pdf-to-500kb",

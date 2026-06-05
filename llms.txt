@@ -128,6 +128,7 @@ Monetization model: Free tools stay live for search demand and future display ad
 - [JPG to PDF Without Uploading](https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/): private image conversion, no upload, fast PDF
 - [Multiple Images to PDF Without Uploading](https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/): combine images into one PDF without upload
 - [Compress PDF Without Uploading](https://printable-tools-lab.pages.dev/compress-pdf-no-upload/): compress PDF, reduce PDF size, no upload
+- [PDF Size Reducer Without Uploading](https://printable-tools-lab.pages.dev/pdf-size-reducer/): PDF size reducer, compress PDF under 1MB, compress PDF under 500KB, no upload
 - [Compress PDF to 500KB Without Uploading](https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/): compress PDF to 500KB, reduce PDF size, no upload
 - [Compress PDF to 1MB Without Uploading](https://printable-tools-lab.pages.dev/compress-pdf-to-1mb/): compress PDF to 1MB, reduce PDF size, no upload
 - [Compress PDF to 2MB Without Uploading](https://printable-tools-lab.pages.dev/compress-pdf-to-2mb/): compress PDF to 2MB, reduce PDF size, no upload

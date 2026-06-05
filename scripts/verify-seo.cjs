@@ -269,6 +269,18 @@ for (const [pagePath, targetSize, headlineSize] of [["compress-pdf-to-500kb", "5
   if (!sitemap.includes(`<loc>${siteUrl(pagePath)}</loc>`)) failures.push(`Sitemap missing target-size PDF landing page: ${pagePath}`);
 }
 
+const pdfSizeHubFile = path.join(root, "pdf-size-reducer", "index.html");
+if (!fs.existsSync(pdfSizeHubFile)) failures.push("Missing PDF size reducer hub page.");
+else {
+  const html = fs.readFileSync(pdfSizeHubFile, "utf8");
+  if (!html.includes("PDF size reducer without uploading")) failures.push("PDF size hub page missing headline.");
+  if (!html.includes("/tools/compress-pdf/")) failures.push("PDF size hub page missing PDF compressor link.");
+  for (const pagePath of ["compress-pdf-to-500kb", "compress-pdf-to-1mb", "compress-pdf-to-2mb", "compress-pdf-to-5mb"]) {
+    if (!html.includes(`/${pagePath}/`)) failures.push(`PDF size hub page missing target link: ${pagePath}`);
+  }
+  if (!sitemap.includes(`<loc>${siteUrl("pdf-size-reducer")}</loc>`)) failures.push("Sitemap missing PDF size hub page.");
+}
+
 const freePdfToolsFile = path.join(root, "free-pdf-tools", "index.html");
 if (!fs.existsSync(freePdfToolsFile)) failures.push("Missing free PDF tools directory page.");
 else {
