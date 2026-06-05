@@ -32,8 +32,6 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - GitHub issue campaign: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=github-issue&utm_medium=organic&utm_campaign=zero_cost_push
 - Public Gist campaign: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=gist&utm_medium=organic&utm_campaign=zero_cost_push
 - Community campaign: https://printable-tools-lab.pages.dev?utm_source=community
-- Service sales pack campaign: https://printable-tools-lab.pages.dev/custom-local-print-pack-sales-pack?utm_source=distribution&utm_medium=organic&utm_campaign=service_sales_pack
-- Custom Local Print Pack GitHub Pages campaign: https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=distribution&utm_medium=organic&utm_campaign=service_sales_pack
 - Free Market Table Print Audit campaign: https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=distribution&utm_medium=organic&utm_campaign=market_table_audit
 
 ## Free audit lead magnet
@@ -43,30 +41,14 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Structured audit form: https://github.com/yanqr213/printable-tools-lab/issues/new?template=market-table-print-audit.yml
 - Audit request template: https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt
 - Audit checklist JSON: https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json
-- Optional upgrade service: https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/
 
-## Paid service sales pack
+## Ad-safe free-tool distribution
 
-- Service page: https://printable-tools-lab.pages.dev/custom-local-print-pack/
-- GitHub Pages service page: https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/
-- Request brief: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt
-- Structured request form: https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml
-- Payment-before-work reply template: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt
-- Fulfillment checklist: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt
-- Order pipeline JSON: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json
-- Manual outreach queue: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json
-- Copy/paste outreach batch: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt
-- Sample delivery ZIP: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip
-- Delivery input example: https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json
-- Sample delivery report: https://yanqr213.github.io/printable-tools-lab/reports/custom-local-print-pack-sample-delivery.json
-- Sales pack page: https://printable-tools-lab.pages.dev/custom-local-print-pack-sales-pack/
-- Machine-readable sales pack: https://printable-tools-lab.pages.dev/service-sales-pack.json
+- Free tool directory: https://printable-tools-lab.pages.dev/free-pdf-tools/?utm_source=distribution&utm_medium=organic&utm_campaign=free_tool_depth
+- Upload limit fixer: https://printable-tools-lab.pages.dev/upload-limit-fixer/?utm_source=distribution&utm_medium=organic&utm_campaign=zero_cost_push
+- Share kit JSON: https://printable-tools-lab.pages.dev/share-kit.json
 
-Copy-ready opener:
-
-Hi, I noticed your local products would look good with a simple printable table pack. I made a $29 done-for-you setup where I prepare starter price tags, flyer copy, QR sign wording, coupon ideas, packing notes, and a one-page launch checklist from your item list. No payment is taken on the site; you can review the brief first and only pay through a real checkout link if it fits.
-
-Manual rule: send the brief first, confirm fit, and only then send a real external checkout link. Do not count requests, page views, or brief downloads as revenue.
+Rule: downloads stay free, ads are disabled until review, and future ads must never block file generation or downloads.
 
 ## High-intent links
 
@@ -247,7 +229,7 @@ Manual rule: send the brief first, confirm fit, and only then send a real extern
 
 ## Rules
 
-- Never ask users to click ads.
+- Never ask users to interact with ads.
 - Never claim legal, tax, employment, or financial advice.
 - Never claim that image conversion or compression removes the need to review sensitive documents before sharing.
 - Keep the post framed as a free utility and ask for feedback.

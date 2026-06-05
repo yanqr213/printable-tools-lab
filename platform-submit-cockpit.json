@@ -1,6 +1,6 @@
 {
   "name": "HTML5 Platform Submit Cockpit",
-  "generatedAt": "2026-06-05T18:55:42.889Z",
+  "generatedAt": "2026-06-05T19:17:09.938Z",
   "canonical": "https://printable-tools-lab.pages.dev/platform-submit-cockpit/",
   "cockpit": {
     "generatedFrom": "2026-06-02 release assets and official platform requirements",
@@ -42,7 +42,7 @@
     "notAutomatable": [
       "Dashboard signup, email verification, identity checks, payout profile, legal checkboxes, and CAPTCHA must be completed by the account owner.",
       "No platform should receive bank, Alipay, API token, or private credential details by email.",
-      "No flow should request fake plays, fake ad views, or incentivized ad clicks."
+      "No flow should request fake plays, fake ad impressions, or incentivized ad interactions."
     ],
     "readyAssets": {
       "neonLaneDashZip": "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",

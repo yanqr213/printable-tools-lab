@@ -21,7 +21,7 @@ const campaigns = [
     proof: "Best for scanned or image-heavy PDFs. Users still need to review the output.",
     demoSteps: ["Open the 1MB PDF compressor", "Choose a PDF locally in the browser", "Download a smaller copy", "Try a lower quality setting if needed"],
     captionEn: "PDF upload blocked by a 1MB limit? This free no-upload tool tries to compress scans and image-heavy PDFs in your browser.",
-    captionZh: "表格要求 PDF 小于 1MB？这个免费工具在浏览器里压缩，不用上传文件，适合扫描件和图片型 PDF，下载前记得检查效果。",
+    captionZh: "表格要求 PDF 小于 1MB？这个免费工具在浏览器里压缩，不用上传文件，适合扫描件和图片�?PDF，下载前记得检查效果�?,
     hashtags: ["#PDFTools", "#FileUpload", "#NoSignup", "#JobSearch", "#StudentTools"],
   },
   {
@@ -33,7 +33,7 @@ const campaigns = [
     proof: "A 500KB target may require visible quality loss. Keep the wording honest.",
     demoSteps: ["Open the 500KB landing page", "Select a scanned PDF", "Use stronger compression", "Compare before submitting"],
     captionEn: "When a form asks for a tiny 500KB PDF, use a no-upload compressor and check the result before submitting.",
-    captionZh: "遇到 500KB 的 PDF 上传限制，可以先用这个无上传压缩工具试一下。压得越小画质可能越差，提交前一定检查。",
+    captionZh: "遇到 500KB �?PDF 上传限制，可以先用这个无上传压缩工具试一下。压得越小画质可能越差，提交前一定检查�?,
     hashtags: ["#PDFCompressor", "#UploadLimit", "#NoUpload", "#FormHelp", "#FreeTools"],
   },
   {
@@ -45,7 +45,7 @@ const campaigns = [
     proof: "The original image stays local. JPG and WebP often compress best.",
     demoSteps: ["Open the 100KB image compressor", "Pick a photo", "Adjust quality if needed", "Download a smaller file"],
     captionEn: "Photo upload too large? Compress an image toward 100KB locally in the browser, without creating an account.",
-    captionZh: "照片超过 100KB 被表单拒绝？这个工具可以在浏览器本地压缩，不需要注册账号，也不用上传原图。",
+    captionZh: "照片超过 100KB 被表单拒绝？这个工具可以在浏览器本地压缩，不需要注册账号，也不用上传原图�?,
     hashtags: ["#ImageCompressor", "#100KB", "#ProfilePhoto", "#NoSignup", "#BrowserTools"],
   },
   {
@@ -57,7 +57,7 @@ const campaigns = [
     proof: "A 50KB target can require resizing and stronger compression.",
     demoSteps: ["Open the 50KB image compressor", "Select an image", "Let the tool try smaller quality", "Check the final preview"],
     captionEn: "Need a very small 50KB image? Try browser-local compression and review the preview before uploading it anywhere.",
-    captionZh: "如果系统要求图片小于 50KB，可以先用这个本地压缩工具试一下。50KB 很小，预览确认后再提交。",
+    captionZh: "如果系统要求图片小于 50KB，可以先用这个本地压缩工具试一下�?0KB 很小，预览确认后再提交�?,
     hashtags: ["#50KB", "#ImageTools", "#UploadFix", "#NoUpload", "#FreeUtility"],
   },
   {
@@ -69,7 +69,7 @@ const campaigns = [
     proof: "Useful when a page needs an image file instead of a PDF.",
     demoSteps: ["Open the PDF-to-JPG tool", "Choose a PDF locally", "Convert pages to images", "Download the page images"],
     captionEn: "If a form rejects PDF but accepts JPG, convert PDF pages to images locally in the browser.",
-    captionZh: "有些表单不要 PDF、只收 JPG。这个工具可以在浏览器里把 PDF 页面转成图片，不用上传文件。",
+    captionZh: "有些表单不要 PDF、只�?JPG。这个工具可以在浏览器里�?PDF 页面转成图片，不用上传文件�?,
     hashtags: ["#PDFToJPG", "#NoUpload", "#FileConverter", "#FormHelp", "#FreeTools"],
   },
   {
@@ -81,7 +81,7 @@ const campaigns = [
     proof: "Not an AI portrait cutout. It is best for simple backgrounds.",
     demoSteps: ["Open the background remover", "Choose a simple-background image", "Tune tolerance", "Export a transparent PNG"],
     captionEn: "For simple white or solid backgrounds, remove the background locally and export a transparent PNG.",
-    captionZh: "白底商品图、Logo 或签名扫描件，可以试试这个本地去背景工具。它适合简单背景，不是人像精修工具。",
+    captionZh: "白底商品图、Logo 或签名扫描件，可以试试这个本地去背景工具。它适合简单背景，不是人像精修工具�?,
     hashtags: ["#TransparentPNG", "#BackgroundRemover", "#ProductPhoto", "#NoUpload", "#DesignTools"],
   },
 ];
@@ -375,7 +375,7 @@ function renderPlatformPosts(prepared) {
       "",
       `链接: ${campaign.trackedUrl}`,
       "",
-      "注意: 不要说保证压缩成功，不要诱导用户点击广告，不要展示真实身份证、银行卡、简历或私密文件。",
+      "注意: 不要说保证压缩成功，不要诱导用户点击广告，不要展示真实身份证、银行卡、简历或私密文件�?,
       "",
     ]),
   ].join("\n");

@@ -18,11 +18,11 @@ async function main() {
     const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
     if (!report.issueUrl || !report.issueUrl.includes("/issues/")) failures.push("Issue report missing issueUrl.");
     if (report.state !== "open") failures.push("Issue must be open.");
-    const buyerPathPublished = Boolean(report.buyerIntentPath?.auditUrl || report.buyerIntentPath?.serviceUrl);
-    if (!buyerPathPublished && !githubPublishSkipped("githubIssueDiscovery")) failures.push("Issue report missing buyer-intent path. Run npm.cmd run github-issue-discovery.");
-    if (buyerPathPublished && !String(report.buyerIntentPath?.auditUrl || "").includes("market_table_audit")) failures.push("Issue report missing buyer-intent audit URL.");
-    if (buyerPathPublished && !String(report.buyerIntentPath?.serviceUrl || "").includes("service_sales_pack")) failures.push("Issue report missing buyer-intent service URL.");
-    await verifyIssuePage(report.issueUrl, buyerPathPublished);
+    const freeHelpPublished = Boolean(report.freeHelpPath?.auditUrl || report.freeHelpPath?.freeToolDirectoryUrl);
+    if (!freeHelpPublished && !githubPublishSkipped("githubIssueDiscovery")) failures.push("Issue report missing free-help path. Run npm.cmd run github-issue-discovery.");
+    if (freeHelpPublished && !String(report.freeHelpPath?.auditUrl || "").includes("market_table_audit")) failures.push("Issue report missing free-help audit URL.");
+    if (freeHelpPublished && !String(report.freeHelpPath?.freeToolDirectoryUrl || "").includes("free_tool_depth")) failures.push("Issue report missing free-tool depth URL.");
+    await verifyIssuePage(report.issueUrl, freeHelpPublished);
   }
 
   if (failures.length) {
@@ -32,7 +32,7 @@ async function main() {
   console.log("GitHub issue discovery verification passed.");
 }
 
-async function verifyIssuePage(url, buyerPathPublished) {
+async function verifyIssuePage(url, freeHelpPublished) {
   try {
     const response = await fetch(url, { cache: "no-store", redirect: "follow" });
     const text = await response.text();
@@ -40,8 +40,8 @@ async function verifyIssuePage(url, buyerPathPublished) {
       failures.push(`Issue page returned ${response.status}.`);
       return;
     }
-    const buyerNeedles = buyerPathPublished ? ["Free Market Table Print Audit", "market_table_audit", "Custom Local Print Pack Setup", "paid_order_verified"] : [];
-    for (const needle of ["Growth log", "ptl-pdf-under-1mb.mp4", "utm_source=github-issue", "Public Gist mirror", "portal-submission-pack", "Expanded backup portals", ...buyerNeedles]) {
+    const freeHelpNeedles = freeHelpPublished ? ["Free Market Table Print Audit", "market_table_audit", "free_tool_depth", "future ads must never block"] : [];
+    for (const needle of ["Growth log", "ptl-pdf-under-1mb.mp4", "utm_source=github-issue", "Public Gist mirror", "portal-submission-pack", "Expanded backup portals", ...freeHelpNeedles]) {
       if (!text.includes(needle)) failures.push(`Issue page missing ${needle}.`);
     }
   } catch (error) {

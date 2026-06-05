@@ -114,12 +114,12 @@ const html = `<!doctype html>
       <p><a class="button" href="${trackedSiteUrl("free-pdf-tools", "directory-home")}">Open the full free tool directory</a></p>
       <section class="card">
         <h2>Local seller print help</h2>
-        <p>If this file job is for a market table, pickup order, craft seller, local service, or event booth, start with the free print audit. The optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request can be copied from this mirror without logging into GitHub.</p>
+        <p>If this file job is for a market table, pickup order, craft seller, local service, or event booth, start with the free print audit. You can also keep browsing the free PDF, image, QR, and business paperwork tools without creating an account.</p>
         <p class="actions">
           <a class="button" data-track-event="audit_request_intent" data-track-tool="${MARKET_TABLE_PRINT_AUDIT.id}" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Request a free print audit</a>
-          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="${CUSTOM_LOCAL_PRINT_PACK_SERVICE.id}" href="${pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}">Copy the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request</a>
+          <a class="button secondary" href="${trackedSiteUrl("free-pdf-tools", "directory-seller-help")}">Browse more free tools</a>
         </p>
-        <p>No payment is collected on this mirror. Revenue is counted only after an external payment provider shows a paid order, payout balance, or settled payment.</p>
+        <p>Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
       </section>
 
       <h2>Start with a common file job</h2>
@@ -140,10 +140,8 @@ const html = `<!doctype html>
         <li><a href="${trackedSiteUrl("upload-limit-fixer", "upload-limit-fixer")}">Upload limit fixer</a> for choosing the right no-upload tool when a website rejects a file by size, format, or dimensions.</li>
         <li><a href="${trackedSiteUrl("tools", "all-tools")}">All free generators</a> for browsing every tool.</li>
         <li><a href="${trackedSiteUrl("guides", "guides")}">Printable guides</a> for original help pages around PDF, image, QR, and printable workflows.</li>
-        <li><a href="${pagesUrl(LOCAL_SELLER_STARTER_KIT.slug)}">Local Seller Starter Kit mirror</a> for the sample ZIP, checkout setup notes, and paid-kit delivery checklist.</li>
-        <li><a href="${pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}">Custom Local Print Pack Setup mirror</a> for the done-for-you service brief and manual checkout request.</li>
-        <li><a href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Free Market Table Print Audit mirror</a> for the free request form, checklist, and optional upgrade path.</li>
-        <li><a href="${pagesUrl(SERVICE_SALES_PACK.slug)}">Custom Local Print Pack sales pack</a> for copy-ready outreach, tracked links, and listing fields.</li>
+        <li><a href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Free Market Table Print Audit mirror</a> for public-safe feedback on price tags, QR signs, flyer copy, coupons, and pickup notes.</li>
+        <li><a href="${trackedSiteUrl("free-pdf-tools", "seller-help-directory")}">Free PDF, image, and QR tools directory</a> for continuing to another useful browser tool.</li>
         <li><a href="${pagesUrl("html5-game-submission-pack")}">HTML5 game submission pack mirror</a> for clean portal ZIPs, GameSnacks packages, demo videos, and platform-review assets.</li>
         ${landingPages.map((page) => `<li><a href="${trackedSiteUrl(page.path, `home-${page.path}`)}">${escapeHtml(page.title)}</a> for ${escapeHtml(page.intent)}.</li>`).join("\n")}
         <li><a href="${siteUrl("feed.xml").replace(/\/$/, "")}">RSS feed</a> for monitoring newly published discovery pages and high-intent tools.</li>
@@ -333,7 +331,7 @@ function trackedSiteUrl(routePath = "", content = "") {
   const url = new URL(siteUrl(routePath));
   url.searchParams.set("utm_source", "github-pages");
   url.searchParams.set("utm_medium", "organic");
-  url.searchParams.set("utm_campaign", "discovery_mirror");
+  url.searchParams.set("utm_campaign", cleanToolPath(routePath) === "free-pdf-tools" ? "free_tool_depth" : "discovery_mirror");
   if (content) url.searchParams.set("utm_content", slugify(content).slice(0, 64));
   return url.toString();
 }
@@ -350,12 +348,12 @@ function trackedLiveToolUrl(toolPath) {
 function sellerIntentCtaHtml() {
   return `<section class="card seller-intent">
         <h2>Local seller print help</h2>
-        <p>If this file job is for a market table, pickup order, craft seller, local service, or event booth, start with the free print audit. The optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request can be copied from this mirror without logging into GitHub.</p>
+        <p>If this file job is for a market table, pickup order, craft seller, local service, or event booth, start with the free print audit. You can also keep browsing the free PDF, image, QR, and business paperwork tools without creating an account.</p>
         <p class="actions">
           <a class="button" data-track-event="audit_request_intent" data-track-tool="${MARKET_TABLE_PRINT_AUDIT.id}" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Request a free print audit</a>
-          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="${CUSTOM_LOCAL_PRINT_PACK_SERVICE.id}" href="${pagesUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}">Copy the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request</a>
+          <a class="button secondary" href="${trackedSiteUrl("free-pdf-tools", "seller-help-directory")}">Browse more free tools</a>
         </p>
-        <p>No payment is collected on this mirror. Revenue is counted only after an external payment provider shows a paid order, payout balance, or settled payment.</p>
+        <p>Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
       </section>`;
 }
 
@@ -1111,7 +1109,7 @@ function gameDiscoveryHtml(game) {
       </section>
       <section class="card">
         <h2>Monetization route</h2>
-        <p>The package is designed for platform-managed advertising after review. It does not include a fake payout flow, fake ad clicks, or private payment details.</p>
+        <p>The package is designed for platform-managed advertising after review. It does not include a fake payout flow, fake ad interactions, or private payment details.</p>
       </section>
       ${jsonLdHtml(videoGameSchema(game))}
     </main>
@@ -1445,7 +1443,7 @@ function landingDiscoveryHtml(page, primaryTool, relatedTools) {
         <a href="${trackedLiveToolUrl(page.primaryTool)}">Open ${escapeHtml(primaryTool.title)}</a>
       </article>
       <h2>Intent match</h2>
-      <p>${escapeHtml(page.intent)}. The live page is designed to route this search intent to a practical browser tool without account creation or an ad-click gate.</p>
+      <p>${escapeHtml(page.intent)}. The live page is designed to route this search intent to a practical browser tool without account creation or an ad interaction gate.</p>
       <h2>Related tools</h2>
       <div class="grid">
         ${relatedTools.map((tool) => `<article class="card"><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.description)}</p><a href="${trackedSiteUrl(tool.path, `related-${tool.path}`)}">Open this tool</a></article>`).join("\n")}

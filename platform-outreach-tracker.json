@@ -1,6 +1,6 @@
 {
   "name": "HTML5 Platform Outreach Tracker",
-  "generatedAt": "2026-06-05T18:55:42.889Z",
+  "generatedAt": "2026-06-05T19:17:09.938Z",
   "canonical": "https://printable-tools-lab.pages.dev/platform-outreach-tracker/",
   "tracker": {
     "generatedFromProbe": "2026-06-02 platform-entry-probe",
@@ -18,7 +18,7 @@
     "rules": [
       "Send only live preview, GitHub release, ZIP link, screenshots, and demo video; do not send private keys or account tokens.",
       "Do not promise exclusivity unless the platform explicitly negotiates it and other submissions are paused.",
-      "Do not ask for ad clicks, ad views, fake engagement, or artificial traffic.",
+      "Do not ask for ad interactions, ad impressions, fake engagement, or artificial traffic.",
       "Keep payment details for platform dashboards only; do not email bank or Alipay account data."
     ],
     "channels": [

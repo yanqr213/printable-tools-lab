@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync, spawnSync } = require("child_process");
-const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, MARKET_TABLE_PRINT_AUDIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, SERVICE_SALES_PACK, siteUrl } = require("./seo-content.cjs");
+const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, MARKET_TABLE_PRINT_AUDIT, siteUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const reportDir = path.join(root, "reports");
@@ -43,7 +43,7 @@ function main() {
     })),
     rules: SHARE_KIT_RULES,
     zeroDomainGameExperiment: ZERO_DOMAIN_GAME_EXPERIMENT,
-    buyerIntentPath: buyerIntentPath(),
+    freeHelpPath: freeHelpPath(),
     externalDiscovery: readExternalDiscovery(),
     actions: {
       gistDiscovery,
@@ -98,19 +98,16 @@ function readExternalDiscovery() {
     zeroDomainGame: ZERO_DOMAIN_GAME_EXPERIMENT.url,
     zeroDomainGameRepo: ZERO_DOMAIN_GAME_EXPERIMENT.repo,
     freeMarketTableAudit: MARKET_TABLE_PRINT_AUDIT.githubPagesUrl,
-    customLocalPrintPack: SERVICE_SALES_PACK.githubPagesServiceUrl,
   };
 }
 
-function buyerIntentPath() {
+function freeHelpPath() {
   return {
     auditUrl: `${MARKET_TABLE_PRINT_AUDIT.githubPagesUrl}?utm_source=share-kit-push&utm_medium=organic&utm_campaign=market_table_audit`,
     auditRequestUrl: MARKET_TABLE_PRINT_AUDIT.githubPagesRequestUrl,
     auditChecklistUrl: MARKET_TABLE_PRINT_AUDIT.githubPagesChecklistUrl,
-    serviceUrl: `${SERVICE_SALES_PACK.githubPagesServiceUrl}?utm_source=share-kit-push&utm_medium=organic&utm_campaign=service_sales_pack`,
-    salesPackUrl: `https://yanqr213.github.io/printable-tools-lab/${SERVICE_SALES_PACK.slug}/?utm_source=share-kit-push&utm_medium=organic&utm_campaign=service_sales_pack`,
-    priceUsd: CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd,
-    moneyGate: "Free audit requests are not revenue; paid revenue starts only after an external checkout proves paid_order_verified.",
+    freeToolDirectoryUrl: `${siteUrl("free-pdf-tools").replace(/\/$/, "")}?utm_source=share-kit-push&utm_medium=organic&utm_campaign=free_tool_depth`,
+    adSafetyRule: "Downloads stay free; future ads must never block tool use or file downloads.",
   };
 }
 

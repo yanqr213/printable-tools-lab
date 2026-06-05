@@ -1,6 +1,6 @@
 {
   "name": "HTML5 Game Portal Submission Pack",
-  "generatedAt": "2026-06-05T18:55:42.889Z",
+  "generatedAt": "2026-06-05T19:17:09.938Z",
   "canonical": "https://printable-tools-lab.pages.dev/portal-submission-pack/",
   "pack": {
     "generatedFrom": "2026-06-03 expanded HTML5 portal research",
@@ -23,7 +23,7 @@
         "submissionSignal": "Developer dashboard for submitting games to Lagged.com.",
         "monetizationSignal": "Public developer page advertises 50% revenue share with Google AdSense and SDK support for interstitials and reward ads.",
         "fit": "Good next account route if CrazyGames/Playgama review stalls.",
-        "risk": "Requires developer account and AdSense-related setup; do not force ad views or clicks.",
+        "risk": "Requires developer account and AdSense-related setup; do not force ad impressions or clicks.",
         "action": "Prepare Neon Lane Dash clean package and SDK notes, then submit only through the official dashboard."
       },
       {

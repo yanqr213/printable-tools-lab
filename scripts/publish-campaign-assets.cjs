@@ -132,7 +132,7 @@ function mergeReleaseBody(body, assets) {
       `  - Hashtags: ${asset.hashtags.join(" ")}`,
     ]),
     "",
-    "Use these assets for useful short-video demos only. Do not ask users to click ads, watch ads to unlock a tool, or treat compression as guaranteed.",
+    "Use these assets for useful short-video demos only. Do not ask users to interact with ads, interact with ads to unlock a tool, or treat compression as guaranteed.",
     "",
     end,
   ].join("\n");

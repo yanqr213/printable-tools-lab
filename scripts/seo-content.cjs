@@ -6,7 +6,7 @@ const SITE_SUMMARY = {
   name: "PrintableTools Lab",
   description: "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   audience: "Freelancers, small businesses, local sellers, event organizers, job seekers, parents, teachers, tutors, homeschool families, students, travelers, tenants, landlords, household planners, cafe operators, booth exhibitors, rental hosts, and office admins.",
-  monetization: "Free tools stay live for search demand. A low-price Local Seller Starter Kit digital product is checkout-ready and can become buyable by setting PUBLIC_SELLER_KIT_CHECKOUT_URL or PUBLIC_CHECKOUT_URL to a real payment link.",
+  monetization: "Free tools stay live for search demand and future display ads. Ads remain disabled until policy readiness, traffic quality, and ad slots are configured, and downloads must never require an ad click or payment.",
 };
 
 const LOCAL_SELLER_STARTER_KIT = {
@@ -1292,7 +1292,7 @@ const PORTAL_SUBMISSION_PACK = {
       submissionSignal: "Developer dashboard for submitting games to Lagged.com.",
       monetizationSignal: "Public developer page advertises 50% revenue share with Google AdSense and SDK support for interstitials and reward ads.",
       fit: "Good next account route if CrazyGames/Playgama review stalls.",
-      risk: "Requires developer account and AdSense-related setup; do not force ad views or clicks.",
+      risk: "Requires developer account and AdSense-related setup; do not force ad impressions or clicks.",
       action: "Prepare Neon Lane Dash clean package and SDK notes, then submit only through the official dashboard.",
     },
     {
@@ -1449,7 +1449,7 @@ const ZERO_DOMAIN_PLATFORM_STRATEGY = {
 
 const ZERO_COST_MONETIZATION_MAP = {
   generatedFrom: "2026-06-02 platform research and current package state",
-  conclusion: "Without buying a domain, the fastest honest monetization path is hosted HTML5 game platforms with platform-managed ads. Free subdomain websites are useful for proof and utility traffic, but they are weaker for immediate ad approval and cannot legally force ad views. Domestic mini-game ports are worth preparing after the overseas ZIP path is submitted because they add account, packaging, and compliance gates.",
+  conclusion: "Without buying a domain, the fastest honest monetization path is hosted HTML5 game platforms with platform-managed ads. Free subdomain websites are useful for proof and utility traffic, but they are weaker for immediate ad approval and cannot legally force ad impressions. Domestic mini-game ports are worth preparing after the overseas ZIP path is submitted because they add account, packaging, and compliance gates.",
   routes: [
     {
       route: "Hosted HTML5 game platforms",
@@ -1504,7 +1504,7 @@ const ZERO_COST_MONETIZATION_MAP = {
       expectedFirstSignal: "Search impressions, downloads, and eventual ad-network approval, not instant revenue.",
       why: "Cloudflare Pages, GitHub Pages, Netlify, Vercel, and similar hosts provide free subdomains. They are good for content and utility validation, but display ads need review and cannot be used as an ad-view gate.",
       currentAssets: ["PrintableTools Lab", "Search Console verification", "content pages", "tool pages"],
-      blockers: ["AdSense/ad-network review", "traffic ramp", "free subdomain review uncertainty", "no incentivized ad-click behavior"],
+      blockers: ["AdSense/ad-network review", "traffic ramp", "free subdomain review uncertainty", "no incentivized ad interaction behavior"],
       nextAction: "Keep the tool site as a discovery/SEO asset while games pursue platform-managed ads.",
     },
     {
@@ -1549,8 +1549,8 @@ const ZERO_COST_MONETIZATION_MAP = {
     },
   ],
   adGateRules: [
-    "Do not make users watch ads before basic gameplay; rewarded ads must be optional assists such as continue, hint, shield, or bonus.",
-    "Do not ask users to click ads or imply clicks support the project.",
+    "Do not make users interact with ads before basic gameplay; rewarded ads must be optional assists such as continue, hint, shield, or bonus.",
+    "Do not ask users to interact with ads or imply clicks support the project.",
     "Do not hide core controls behind display ads on a website; AdSense-style display ads are not rewarded-ad gates.",
     "Keep standalone builds ad-disabled until a platform accepts the game and provides approved ad context or ad unit IDs.",
     "Payment and bank details should stay inside official platform payout dashboards, not emails or front-end code.",
@@ -1565,7 +1565,7 @@ const ZERO_COST_MONETIZATION_MAP = {
   sources: [
     "Douyin mini-game official revenue and ad docs describe platform ad monetization and rewarded video flows.",
     "Bilibili mini-game official docs describe account/app setup and rewarded video ad components.",
-    "AdSense policy forbids encouraging ad clicks; website display ads are not a compliant use-gate.",
+    "AdSense policy forbids encouraging ad interactions; website display ads are not a compliant use-gate.",
     "Cloudflare Pages, GitHub Pages, Netlify, and Vercel provide free project subdomains, but they do not remove ad-network approval requirements.",
   ],
   moneyGate: "This route is still incomplete until a platform-hosted game is accepted, real play data appears, ads are enabled by the platform, and revenue or payout balance is visible.",
@@ -1587,7 +1587,7 @@ const PLATFORM_OUTREACH_TRACKER = {
   rules: [
     "Send only live preview, GitHub release, ZIP link, screenshots, and demo video; do not send private keys or account tokens.",
     "Do not promise exclusivity unless the platform explicitly negotiates it and other submissions are paused.",
-    "Do not ask for ad clicks, ad views, fake engagement, or artificial traffic.",
+    "Do not ask for ad interactions, ad impressions, fake engagement, or artificial traffic.",
     "Keep payment details for platform dashboards only; do not email bank or Alipay account data.",
   ],
   channels: [
@@ -1706,7 +1706,7 @@ const PLATFORM_SUBMIT_COCKPIT = {
   notAutomatable: [
     "Dashboard signup, email verification, identity checks, payout profile, legal checkboxes, and CAPTCHA must be completed by the account owner.",
     "No platform should receive bank, Alipay, API token, or private credential details by email.",
-    "No flow should request fake plays, fake ad views, or incentivized ad clicks.",
+    "No flow should request fake plays, fake ad impressions, or incentivized ad interactions.",
   ],
   readyAssets: {
     neonLaneDashZip: "https://github.com/yanqr213/neon-lane-dash/releases/download/platform-submission-v1/neon-lane-dash-html5.zip",
@@ -1866,7 +1866,7 @@ const SHARE_KIT_POSTS = [
     channel: "community",
     title: "No-upload file utility pack",
     hook: "I made a free no-signup file utility site for common upload blockers.",
-    body: "It handles PDF compression targets, image-to-KB targets, PDF-to-JPG, image resizing, QR codes, invoices, labels, and small business PDFs in the browser. Downloads are free during validation and not gated behind ad clicks.",
+    body: "It handles PDF compression targets, image-to-KB targets, PDF-to-JPG, image resizing, QR codes, invoices, labels, and small business PDFs in the browser. Downloads are free during validation and not gated behind ad interactions.",
     cta: "Useful feedback is which tool solved a real blocked-upload moment.",
     linkPath: "free-pdf-tools",
   },
@@ -1898,7 +1898,7 @@ const SHARE_KIT_POSTS = [
 
 const SHARE_KIT_RULES = [
   "Post only where free tools or file utilities are relevant to the community.",
-  "Do not ask for ad clicks, ad views, upvotes, or artificial engagement.",
+  "Do not ask for ad interactions, ad impressions, upvotes, or artificial engagement.",
   "Do not claim guaranteed compression results; say the tool tries toward a target and users should review the output.",
   "Do not post private documents, IDs, payment details, or user files in examples.",
   "Use UTM source labels so the live metrics can separate directory, community, video, and social tests.",
@@ -2660,7 +2660,7 @@ const landingPages = [
     intent: "watermark image online, add text watermark, no upload",
     sections: [
       ["Why it can convert", "People often need to share a sample, proof, preview, or product image while keeping a visible ownership or draft mark on the file."],
-      ["Ad-safe free workflow", "The watermark export stays free and does not ask visitors to click or watch an ad before downloading. That keeps the path safer for future display advertising."],
+      ["Ad-safe free workflow", "The watermark export stays free and does not ask visitors to interact with an ad before downloading. That keeps the path safer for future display advertising."],
       ["Practical limits", "A text watermark is a visual deterrent, not copyright enforcement. Keep original files and use proper licensing or platform tools when the image is commercially important."],
     ],
     relatedTools: ["tools/compress-image", "tools/resize-image", "tools/crop-image"],
@@ -4131,7 +4131,7 @@ const pages = [
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
-            <a class="button ghost" href="/local-seller-starter-kit/">Seller starter kit</a>
+            <a class="button ghost" href="/upload-limit-fixer/">Fix upload limits</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
             <div class="proof-tile"><strong>66</strong><span>high-frequency tools</span></div>
@@ -4153,16 +4153,16 @@ const pages = [
         </div>
       </section>
       <section class="shell section">
-        <h2>Small seller monetization test</h2>
+        <h2>Ad-supported free tool validation</h2>
         <div class="grid-2">
           <article class="panel">
-            <h3>Local Seller Starter Kit</h3>
-            <p>A low-price editable template kit for market tables, local services, coupons, price tags, packing slips, QR signs, and inventory starters. The free generators remain available; the kit is the direct-payment product test.</p>
-            <p><a class="button" href="/local-seller-starter-kit/">Open the seller kit</a> <a class="button secondary" href="/assets/digital-products/local-seller-starter-kit-sample.zip">Download sample ZIP</a></p>
+            <h3>Free tools first</h3>
+            <p>The site earns attention by solving useful file jobs: compressing PDFs and images, fixing upload limits, making QR codes, and creating simple business paperwork without signup.</p>
+            <p><a class="button" href="/free-pdf-tools/">Browse free tools</a> <a class="button secondary" href="/upload-limit-fixer/">Open upload limit fixer</a></p>
           </article>
           <article class="panel">
-            <h3>Revenue gate</h3>
-            <p>Progress is counted as revenue only after a real payment provider shows a paid order, payout balance, or settled payment. Sample downloads and checkout setup do not count as income.</p>
+            <h3>Ad safety gate</h3>
+            <p>Ads are off during validation. When enabled, they must stay away from generator controls, never block downloads, and never ask visitors to click or interact with ads for access.</p>
           </article>
         </div>
       </section>
@@ -4356,20 +4356,20 @@ const pages = [
     path: "terms",
     title: "Terms of Use",
     description: "Terms of use for PrintableTools Lab.",
-    html: `<article class="article-shell article"><h1>Terms of Use</h1><p>The free printable generators are provided as-is for personal, classroom, small-business, and small-group use.</p><p>Do not use the tools or digital product files to create unlawful, harmful, infringing, or misleading materials.</p><p>Purchased digital kits may be used inside the buyer's own business or event workflow, but the kit files themselves may not be resold, repackaged, or listed as a competing template product.</p></article>`,
+    html: `<article class="article-shell article"><h1>Terms of Use</h1><p>The free printable generators are provided as-is for personal, classroom, small-business, and small-group use.</p><p>Do not use the tools to create unlawful, harmful, infringing, or misleading materials.</p><p>Generated files are starting points. Review all copy, numbers, QR links, and claims before printing, publishing, or relying on them.</p></article>`,
   },
   {
     path: "license",
     title: "AI & License Disclosure",
     description: "How PrintableTools Lab handles generated content, design assets, and licensing.",
-    html: `<article class="article-shell article"><h1>AI & License Disclosure</h1><p>PrintableTools Lab uses code-driven templates and may use AI assistance during product design, wording, and template ideation.</p><p>Existing PDF merge, split, and page-number operations use the MIT-licensed pdf-lib JavaScript library in the browser. PDF-to-image rendering uses the Apache-2.0 pdf.js library, ZIP downloads use the MIT-licensed fflate library, and static QR tools use the MIT-licensed qrcode-generator JavaScript library.</p><p>The Local Seller Starter Kit uses original plain-text, CSV, Markdown, and HTML templates produced for this project. The default templates avoid third-party characters, trademarked brands, and protected artwork.</p></article>`,
+    html: `<article class="article-shell article"><h1>AI & License Disclosure</h1><p>PrintableTools Lab uses code-driven templates and may use AI assistance during product design, wording, and template ideation.</p><p>Existing PDF merge, split, and page-number operations use the MIT-licensed pdf-lib JavaScript library in the browser. PDF-to-image rendering uses the Apache-2.0 pdf.js library, ZIP downloads use the MIT-licensed fflate library, and static QR tools use the MIT-licensed qrcode-generator JavaScript library.</p><p>The default templates avoid third-party characters, trademarked brands, and protected artwork. Users should not enter copyrighted or trademarked content they do not have permission to use.</p></article>`,
   },
   {
     path: "roadmap",
     title: "PrintableTools Lab Roadmap",
     description: "A noindex roadmap for future PrintableTools Lab product decisions after the free version is validated.",
     index: false,
-    html: `<article class="article-shell article"><h1>PrintableTools Lab Roadmap</h1><p>The current product focus is a free printable tool site plus one small digital product that can take payment through an external checkout link.</p><p>Display advertising is still deferred until search visibility and policy readiness improve. Paid template kits can be tested earlier because they do not require ad-network approval and do not gate the free generators.</p></article>`,
+    html: `<article class="article-shell article"><h1>PrintableTools Lab Roadmap</h1><p>The current product focus is a free printable, PDF, image, and QR utility site that can earn through responsible display advertising after review.</p><p>Display ads are deferred until search visibility, content quality, and policy readiness improve. Ads must never gate downloads, sit inside generator controls, or ask visitors for clicks.</p></article>`,
   },
   {
     path: "launch-kit",
@@ -4526,18 +4526,18 @@ function localSellerFunnelHtml(tool) {
   if (!LOCAL_SELLER_FUNNEL_TOOL_PATH_SET.has(tool.path)) return "";
   const toolSlug = tool.path.replace(/^tools\//, "");
   const auditHref = `/${MARKET_TABLE_PRINT_AUDIT.slug}/?utm_source=tool_cta&utm_medium=site&utm_campaign=market_table_audit&utm_content=${encodeURIComponent(toolSlug)}`;
-  const serviceHref = `/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug}/?utm_source=tool_cta&utm_medium=site&utm_campaign=service_sales_pack&utm_content=${encodeURIComponent(toolSlug)}`;
+  const finderHref = `/free-pdf-tools/?utm_source=tool_cta&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${encodeURIComponent(toolSlug)}`;
   return `
       <section class="shell section seller-funnel-cta" aria-label="Local seller print audit">
         <div>
           <p class="eyebrow">For local sellers</p>
           <h2>Want a quick check before printing this for a table, pickup, or service offer?</h2>
-          <p>Send public-safe notes about your price tags, QR sign, flyer, coupon, packing slip, or service menu and get a free print audit first. The optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup is only for people who ask for done-for-you assembly.</p>
+          <p>Send public-safe notes about your price tags, QR sign, flyer, coupon, packing slip, or service menu and get a free print audit first. You can also keep browsing the free PDF, image, QR, and business paperwork tools.</p>
         </div>
         <div class="seller-funnel-actions">
           <a class="button" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(MARKET_TABLE_PRINT_AUDIT.id)}" href="${escapeHtml(auditHref)}">Request free audit</a>
-          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.id)}" href="${escapeHtml(serviceHref)}">See optional setup</a>
-          <p class="help">No payment is collected here. Revenue only counts after a real external checkout shows a paid order.</p>
+          <a class="button secondary" href="${escapeHtml(finderHref)}">Browse more free tools</a>
+          <p class="help">Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
         </div>
       </section>`;
 }
@@ -4589,7 +4589,7 @@ function freePdfToolsHtml() {
   return `
       <section class="shell page-title section">
         <h1>Free PDF, image, and QR tools without signup</h1>
-        <p>Open a browser-based generator, edit the sample fields, and download a practical PDF, image, or QR file. No account, no surprise download fee, and no ad-click requirement.</p>
+        <p>Open a browser-based generator, edit the sample fields, and download a practical PDF, image, or QR file. No account, no surprise download fee, and no ad interaction requirement.</p>
       </section>
       <section class="shell section">
         <h2>Start with the file job</h2>
@@ -4787,7 +4787,7 @@ function directorySubmissionHtml() {
         <div class="grid-3">
           <article class="panel"><h3>No signup</h3><p>Core file tools open directly in the browser and do not require an account before export.</p></article>
           <article class="panel"><h3>Free export</h3><p>The validation version keeps PDF, image, and QR downloads free and avoids surprise checkout screens.</p></article>
-          <article class="panel"><h3>Ad-safe</h3><p>Ads are disabled during validation and downloads are not gated behind ad clicks or ad views.</p></article>
+          <article class="panel"><h3>Ad-safe</h3><p>Ads are disabled during validation and downloads are not gated behind ad interactions or ad impressions.</p></article>
         </div>
       </section>
       <section class="shell section">
@@ -4845,9 +4845,9 @@ function shareKitHtml() {
         </div>
       </section>
       <section class="shell section">
-        <h2>Paid service sales pack</h2>
-        <p>The $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} ${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.name)} is the fastest manual monetization test. Use the sales pack for copy-ready DMs, directory fields, tracked links, and safety rules.</p>
-        <p><a class="button" href="/${escapeHtml(SERVICE_SALES_PACK.slug)}/">Open service sales pack</a> <a class="button secondary" href="/service-sales-pack.json">Open service-sales-pack.json</a></p>
+        <h2>Ad-safe free-tool distribution</h2>
+        <p>The current monetization path is free-tool traffic first, then responsible display ads after review. Share useful tool links, measure downloads and search exposure, and keep ads separate from generator controls.</p>
+        <p><a class="button" href="/free-pdf-tools/">Browse free tools</a> <a class="button secondary" href="/share-kit.json">Open share-kit.json</a></p>
       </section>
       <section class="shell section">
         <h2>Short video scripts</h2>
@@ -4857,7 +4857,7 @@ function shareKitHtml() {
       </section>
       ${videoAssets.length ? `<section class="shell section">
         <h2>Ready-to-upload MP4 assets</h2>
-        <p>These silent 9:16 videos are already published on the public GitHub release. Use them with the matching caption and tracked landing page; do not ask for ad clicks or imply guaranteed compression.</p>
+        <p>These silent 9:16 videos are already published on the public GitHub release. Use them with the matching caption and tracked landing page; do not ask for ad interactions or imply guaranteed compression.</p>
         <div class="grid-2">
           ${videoAssets.map((asset) => `<article class="panel"><h3>${escapeHtml(asset.title)}</h3><p>${escapeHtml(asset.captionEn)}</p><p><a href="${escapeHtml(asset.downloadUrl)}">Download MP4</a></p><p><a href="${escapeHtml(asset.trackedUrl)}">Tracked landing page</a></p></article>`).join("\n")}
         </div>
@@ -5321,7 +5321,7 @@ function platformSubmitQueueHtml() {
         <h2>Gate rules</h2>
         <ul>
           <li>Do not enable ads in standalone builds.</li>
-          <li>Do not ask users to click ads or watch ads for external rewards.</li>
+          <li>Do not ask users to interact with ads or interact with ads for external rewards.</li>
           <li>Submit Neon Lane Dash first because its lane-reflex loop is broader than the file-sorting theme.</li>
           <li>Submit Upload Limit Panic second as a differentiated puzzle/sorting title.</li>
           <li>If both are rejected for quality, improve controls and visual feedback before building a third game.</li>
@@ -5703,7 +5703,7 @@ function landingPageHtml(page) {
         <div class="grid-3">
           <article class="panel"><h3>Intent</h3><p>${escapeHtml(page.intent)}</p></article>
           <article class="panel"><h3>No signup</h3><p>The free workflow starts in the browser and does not require an account before file export.</p></article>
-          <article class="panel"><h3>Ad-safe</h3><p>Downloads are not gated behind ad clicks or ad views. Ads remain disabled until policy review and search visibility are ready.</p></article>
+          <article class="panel"><h3>Ad-safe</h3><p>Downloads are not gated behind ad interactions or ad impressions. Ads remain disabled until policy review and search visibility are ready.</p></article>
         </div>
       </section>
       ${page.sections.map(([heading, text]) => `

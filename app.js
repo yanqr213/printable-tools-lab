@@ -2420,7 +2420,7 @@
       intent: "watermark image online, add text watermark, no upload",
       sections: [
         ["Why it can convert", "People often need to share a sample, proof, preview, or product image while keeping a visible ownership or draft mark on the file."],
-        ["Ad-safe free workflow", "The watermark export stays free and does not ask visitors to click or watch an ad before downloading. That keeps the path safer for future display advertising."],
+        ["Ad-safe free workflow", "The watermark export stays free and does not ask visitors to interact with an ad before downloading. That keeps the path safer for future display advertising."],
         ["Practical limits", "A text watermark is a visual deterrent, not copyright enforcement. Keep original files and use proper licensing or platform tools when the image is commercially important."],
       ],
       related: ["compress-image", "resize-image", "crop-image"],
@@ -4368,18 +4368,18 @@
       title: "PrintableTools Lab Roadmap",
       description: "A noindex roadmap for future PrintableTools Lab product decisions after the free version is validated.",
       body: [
-        ["p", "The current product focus is the free printable and file utility site plus a small Local Seller Starter Kit that can take payment through a real external checkout link."],
+        ["p", "The current product focus is the free printable and file utility site plus responsible display advertising after traffic and policy readiness improve."],
         ["h2", "Signals to watch"],
-        ["ul", ["Search Console impressions for generator keywords.", "PDF, image, and QR downloads by tool.", "Digital product sample downloads and checkout clicks.", "Requests for classroom, local seller, or batch workflows."]],
+        ["ul", ["Search Console impressions for generator keywords.", "PDF, image, and QR downloads by tool.", "Return visits and high-intent tool depth.", "Requests for classroom, local seller, or batch workflows."]],
         ["h2", "Possible later work"],
-        ["p", "Display ads still wait for policy readiness and search visibility. Template-kit checkout can be tested earlier because it does not block the free generators and uses an external payment provider for delivery and refunds."],
+        ["p", "Display ads still wait for policy readiness and search visibility. Ads must stay away from generator controls and never block a file download."],
       ],
     },
     "free-pdf-tools": {
       title: "Free PDF Tools Without Signup",
       description: "Start with free browser PDF, image, and QR tools for compression, resizing, format conversion, QR codes, image-to-PDF, text-to-PDF, invoices, receipts, labels, business cards, flyers, coupons, timesheets, certificates, checklists, and printable pages.",
       body: [
-        ["p", "Use this directory when you need a PDF or image file now and do not want an account, hidden export fee, or ad-click requirement."],
+        ["p", "Use this directory when you need a PDF or image file now and do not want an account, hidden export fee, or ad interaction requirement."],
         ["h2", "No-upload conversion tools"],
         ["ul", ["Image compressor, image resizer, and image format converter: make smaller or correctly sized JPG, PNG, and WebP files locally.", "QR, WiFi QR, and contact QR tools: create printable static codes without a signup wall.", "Image to PDF Converter: turn JPG, PNG, or WebP images into a one-page PDF.", "Multiple Images to PDF Converter: combine up to eight images into one multi-page PDF.", "Merge, split, rotate, remove, reorder, and number PDF pages locally in the browser.", "Text, Markdown, CSV, and JSON converters: turn common notes, docs, table rows, and technical snippets into readable PDFs."]],
         ["h2", "Business and work PDFs"],
@@ -4402,7 +4402,7 @@
         ["p", "Job form rejecting your photo because it is over 100KB? Use the local image-to-KB compressor, pick 100KB, and download a smaller JPG or WebP without uploading the original photo."],
         ["p", "I made a free no-signup file utility site for common upload blockers: PDF compression targets, image-to-KB targets, PDF-to-JPG, image resizing, QR codes, invoices, labels, and small business PDFs."],
         ["h2", "Rules"],
-        ["ul", ["Post only where free tools or file utilities are relevant.", "Do not ask for ad clicks, ad views, upvotes, or artificial engagement.", "Do not claim guaranteed compression results; say the tool tries toward a target.", "Do not post private documents, IDs, payment details, or user files in examples.", "Use UTM source labels so the live metrics can separate directory, community, video, and social tests."]],
+        ["ul", ["Post only where free tools or file utilities are relevant.", "Do not ask for ad interactions, ad impressions, upvotes, or artificial engagement.", "Do not claim guaranteed compression results; say the tool tries toward a target.", "Do not post private documents, IDs, payment details, or user files in examples.", "Use UTM source labels so the live metrics can separate directory, community, video, and social tests."]],
         ["p", "Machine-readable version: https://printable-tools-lab.pages.dev/share-kit.json"],
       ],
     },
@@ -4607,16 +4607,16 @@
         <div class="grid-2">${keywordClusters.map(keywordClusterCard).join("")}</div>
       </section>
       <section class="shell section">
-        <h2>Small seller monetization test</h2>
+        <h2>Ad-supported free tool validation</h2>
         <div class="grid-2">
           <article class="panel">
-            <h3>Local Seller Starter Kit</h3>
-            <p>A $9 digital operations kit for market tables, local service providers, and small-order sellers who already need invoices, price tags, coupons, flyers, packing slips, inventory sheets, and QR signs.</p>
-            <p><a class="button" href="/local-seller-starter-kit/">Open the seller kit</a> <a class="button secondary" href="/assets/digital-products/local-seller-starter-kit-sample.zip">Download sample ZIP</a></p>
+            <h3>Free tools first</h3>
+            <p>The site earns attention by solving useful file jobs: compressing PDFs and images, fixing upload limits, making QR codes, and creating simple business paperwork without signup.</p>
+            <p><a class="button" href="/free-pdf-tools/">Browse free tools</a> <a class="button secondary" href="/upload-limit-fixer/">Open upload limit fixer</a></p>
           </article>
           <article class="panel">
-            <h3>Honest payment gate</h3>
-            <p>The public page only becomes buyable after a real external checkout link is configured. Revenue is counted only when the payment provider shows a paid order, payout balance, or settled payment.</p>
+            <h3>Ad safety gate</h3>
+            <p>Ads are off during validation. When enabled, they must stay away from generator controls, never block downloads, and never ask visitors to click or interact with ads for access.</p>
           </article>
         </div>
       </section>
@@ -4624,7 +4624,7 @@
         <div class="section-head">
           <div>
             <h2>Free file and printable tools</h2>
-            <p>Each tool creates a useful PDF, image, or QR file in your browser. The free version prioritizes clean exports, no account wall, and no ad-click requirement so visitors have a real reason to return.</p>
+            <p>Each tool creates a useful PDF, image, or QR file in your browser. The free version prioritizes clean exports, no account wall, and no ad interaction requirement so visitors have a real reason to return.</p>
           </div>
           <a class="button ghost" href="/dashboard/">View local data</a>
         </div>
@@ -4634,12 +4634,12 @@
         <div class="section-head">
           <div>
             <h2>Built for cautious monetization</h2>
-            <p>The site keeps the free tools useful while testing one low-price digital product. Ads stay disabled until content quality, traffic, and policy readiness are stronger.</p>
+            <p>The site keeps the free tools useful while preparing for responsible display ads. Ads stay disabled until content quality, traffic, and policy readiness are stronger.</p>
           </div>
         </div>
         <div class="grid-3">
           <div class="panel"><h3>Original content</h3><p>Guide pages explain practical use cases instead of relying on empty generator pages.</p></div>
-          <div class="panel"><h3>Direct checkout first</h3><p>The seller kit uses an external checkout link only after a real payment product is created.</p></div>
+          <div class="panel"><h3>Ad-safe placement</h3><p>Future ad units must stay outside the editing and download path.</p></div>
           <div class="panel"><h3>Zero server cost</h3><p>PDF generation, daily limits, and validation events work locally in the browser.</p></div>
         </div>
       </section>
@@ -4716,7 +4716,7 @@
     app.innerHTML = `
       <section class="shell page-title section">
         <h1>Free PDF, image, and QR tools without signup</h1>
-        <p>Open a browser-based generator, edit the sample fields, and download a practical PDF, image, or QR file. No account, no surprise download fee, and no ad-click requirement.</p>
+        <p>Open a browser-based generator, edit the sample fields, and download a practical PDF, image, or QR file. No account, no surprise download fee, and no ad interaction requirement.</p>
       </section>
       <section class="shell section">
         <div class="section-head">
@@ -4895,7 +4895,7 @@
         <div class="grid-3">
           <article class="panel"><h3>No signup</h3><p>Core file tools open directly in the browser and do not require an account before export.</p></article>
           <article class="panel"><h3>Free export</h3><p>The validation version keeps PDF, image, and QR downloads free and avoids surprise checkout screens.</p></article>
-          <article class="panel"><h3>Ad-safe</h3><p>Ads are disabled during validation and downloads are not gated behind ad clicks or ad views.</p></article>
+          <article class="panel"><h3>Ad-safe</h3><p>Ads are disabled during validation and downloads are not gated behind ad interactions or ad impressions.</p></article>
         </div>
       </section>
       <section class="shell section">
@@ -4946,12 +4946,12 @@
       ["Fix an ID photo size", "Photo rejected for dimensions or file size?", "Start with the passport photo size fixer. It points to the local crop, resize, and image-to-KB tools so the file can match a portal's photo rules without uploading the original.", "/passport-photo-size-fixer/?utm_source=short-video&utm_medium=organic", "Fix a passport-style photo"],
       ["Upload limit fix: PDF under 1MB", "Portal says your PDF must be under 1MB?", "Open the no-upload PDF compressor, choose the 1MB target, select your PDF, and download a smaller copy from the browser. It works best for scans and image-heavy PDFs.", "/compress-pdf-to-1mb/?utm_source=short-video&utm_medium=organic", "Try the free 1MB PDF compressor"],
       ["Image under 100KB", "Job form rejecting your photo because it is over 100KB?", "Use the local image-to-KB compressor, pick 100KB, and download a smaller JPG or WebP without uploading the original photo.", "/compress-image-to-100kb/?utm_source=short-video&utm_medium=organic", "Compress an image to 100KB"],
-      ["No-upload file utility pack", "I made a free no-signup file utility site for common upload blockers.", "It handles PDF compression targets, image-to-KB targets, PDF-to-JPG, image resizing, QR codes, invoices, labels, and small business PDFs in the browser. Downloads are free during validation and not gated behind ad clicks.", "/free-pdf-tools/?utm_source=community&utm_medium=organic", "Open the free file tools"],
+      ["No-upload file utility pack", "I made a free no-signup file utility site for common upload blockers.", "It handles PDF compression targets, image-to-KB targets, PDF-to-JPG, image resizing, QR codes, invoices, labels, and small business PDFs in the browser. Downloads are free during validation and not gated behind ad interactions.", "/free-pdf-tools/?utm_source=community&utm_medium=organic", "Open the free file tools"],
       ["Directory listing blurb", "Free browser PDF, image, and QR tools without signup.", "PrintableTools Lab helps users create and edit practical files locally: compress PDFs to target sizes, compress images to KB limits, convert PDF pages to JPG, resize and convert images, make static QR codes, and generate everyday PDFs.", "/submit-directory/?utm_source=directory&utm_medium=organic", "Open the directory pack"],
     ];
     const rules = [
       "Post only where free tools or file utilities are relevant to the community.",
-      "Do not ask for ad clicks, ad views, upvotes, or artificial engagement.",
+      "Do not ask for ad interactions, ad impressions, upvotes, or artificial engagement.",
       "Do not claim guaranteed compression results; say the tool tries toward a target and users should review the output.",
       "Do not post private documents, IDs, payment details, or user files in examples.",
       "Use UTM source labels so the live metrics can separate directory, community, video, and social tests.",
@@ -5006,7 +5006,7 @@
       </section>
       <section class="shell section">
         <h2>Ready-to-upload MP4 assets</h2>
-        <p>These silent 9:16 videos are published on the public GitHub release. Use them with the matching caption and tracked landing page; do not ask for ad clicks or imply guaranteed compression.</p>
+        <p>These silent 9:16 videos are published on the public GitHub release. Use them with the matching caption and tracked landing page; do not ask for ad interactions or imply guaranteed compression.</p>
         <div class="grid-2">
           ${videoAssets.map(([title, downloadUrl, trackedUrl]) => `<article class="panel"><h3>${escapeHtml(title)}</h3><p><a href="${downloadUrl}">Download MP4</a></p><p><a href="${trackedUrl}">Tracked landing page</a></p></article>`).join("")}
         </div>
@@ -5720,7 +5720,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
         <div class="grid-3">
           <article class="panel"><h3>Intent</h3><p>${escapeHtml(page.intent)}</p></article>
           <article class="panel"><h3>No signup</h3><p>The free workflow starts in the browser and does not require an account before export.</p></article>
-          <article class="panel"><h3>Ad-safe</h3><p>Downloads are not gated behind ad clicks or ad views. Ads remain disabled until policy review and search visibility are ready.</p></article>
+          <article class="panel"><h3>Ad-safe</h3><p>Downloads are not gated behind ad interactions or ad impressions. Ads remain disabled until policy review and search visibility are ready.</p></article>
         </div>
       </section>
       ${page.sections.map(([heading, text]) => `
@@ -6047,18 +6047,18 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
     if (!tool || !LOCAL_SELLER_FUNNEL_TOOL_IDS.has(tool.id)) return "";
     const content = encodeURIComponent(tool.id);
     const auditHref = `/market-table-print-audit/?utm_source=tool_cta&utm_medium=site&utm_campaign=market_table_audit&utm_content=${content}`;
-    const serviceHref = `/custom-local-print-pack/?utm_source=tool_cta&utm_medium=site&utm_campaign=service_sales_pack&utm_content=${content}`;
+    const finderHref = `/free-pdf-tools/?utm_source=tool_cta&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     return `
       <section class="shell section seller-funnel-cta" aria-label="Local seller print audit">
         <div>
           <p class="eyebrow">For local sellers</p>
           <h2>Want a quick check before printing this for a table, pickup, or service offer?</h2>
-          <p>Send public-safe notes about your price tags, QR sign, flyer, coupon, packing slip, or service menu and get a free print audit first. The optional $29 setup is only for people who ask for done-for-you assembly.</p>
+          <p>Send public-safe notes about your price tags, QR sign, flyer, coupon, packing slip, or service menu and get a free print audit first. You can also keep browsing the free PDF, image, QR, and business paperwork tools.</p>
         </div>
         <div class="seller-funnel-actions">
           <a class="button" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${auditHref}">Request free audit</a>
-          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="${serviceHref}">See optional setup</a>
-          <p class="help">No payment is collected here. Revenue only counts after a real external checkout shows a paid order.</p>
+          <a class="button secondary" href="${finderHref}">Browse more free tools</a>
+          <p class="help">Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
         </div>
       </section>
     `;

@@ -60,7 +60,7 @@ async function main() {
       captionEn: campaign.captionEn,
       captionZh: campaign.captionZh,
       hashtags: campaign.hashtags,
-      postingNote: "Upload the MP4 with the matching caption. Do not ask users to click ads or imply guaranteed compression.",
+      postingNote: "Upload the MP4 with the matching caption. Do not ask users to interact with ads or imply guaranteed compression.",
     });
   }
 

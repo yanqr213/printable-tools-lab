@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_RULES, CUSTOM_LOCAL_PRINT_PACK_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, siteUrl } = require("./seo-content.cjs");
+const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_RULES, MARKET_TABLE_PRINT_AUDIT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, siteUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const token = githubToken();
@@ -40,7 +40,7 @@ async function main() {
     apiUrl: issue.url,
     state: issue.state,
     title: issue.title,
-    buyerIntentPath: buyerIntentPath(),
+    freeHelpPath: freeHelpPath(),
   };
   fs.mkdirSync(path.dirname(reportPath), { recursive: true });
   fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
@@ -77,8 +77,6 @@ function renderIssueBody() {
     `- HTML5 portal submission pack: ${siteUrl("portal-submission-pack")}`,
     `- Zero-cost monetization map: ${siteUrl("zero-cost-monetization-map")}`,
     `- Free Market Table Print Audit: ${trackedAuditUrl("github-issue")}`,
-    `- Optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} Custom Local Print Pack Setup: ${trackedServiceUrl("github-issue")}`,
-    `- Custom Local Print Pack sales pack: ${trackedSalesPackUrl("github-issue")}`,
     `- Public Gist mirror: ${gist?.htmlUrl || "not available"}`,
     `- Release MP4 assets: https://github.com/${repo}/releases/tag/free-pdf-tools`,
     `- Platform-ad lead game: ${PLATFORM_SUBMIT_COCKPIT.leadGame}`,
@@ -88,17 +86,16 @@ function renderIssueBody() {
     `- Recorded downloads: ${downloads}`,
     "- Monetization: ads remain disabled until real search visibility and ad-network readiness exist.",
     "- HTML5 game monetization: platform-managed ads are gated until platform review, live plays, and ad eligibility exist.",
-    "- Service monetization: free audit requests are not revenue; the $29 setup counts only after paid_order_verified in an external payment provider.",
+    "- Free-tools rule: downloads stay ungated; future ads must never block tool use or file downloads.",
     "",
-    "## Buyer-intent service path",
+    "## Free local-seller help path",
     "",
     `- Free Market Table Print Audit: ${trackedAuditUrl("github-issue")}`,
     `- Structured audit request form: ${MARKET_TABLE_PRINT_AUDIT.issueFormUrl}`,
     `- Audit request template: ${MARKET_TABLE_PRINT_AUDIT.githubPagesRequestUrl}`,
     `- Audit checklist JSON: ${MARKET_TABLE_PRINT_AUDIT.githubPagesChecklistUrl}`,
-    `- Optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} Custom Local Print Pack Setup: ${trackedServiceUrl("github-issue")}`,
-    `- Sales pack: ${trackedSalesPackUrl("github-issue")}`,
-    "- Money gate: audit_request_received, audit_reply_sent, upgrade_interest, and service_fit_confirmed are not revenue; only paid_order_verified can count.",
+    `- Free tool directory: ${siteUrl("free-pdf-tools")}?utm_source=github-issue&utm_medium=organic&utm_campaign=free_tool_depth`,
+    "- Ad-safety rule: do not ask for ad interactions, ad impressions, fake upvotes, or gated downloads.",
     "",
     "## Platform-ad game route",
     "",
@@ -137,7 +134,7 @@ function renderIssueBody() {
     "## Safe distribution rules",
     "",
     ...SHARE_KIT_RULES.map((rule) => `- ${rule}`),
-    "- Do not ask for ad clicks, fake upvotes, fake engagement, or ad views.",
+    "- Do not ask for ad interactions, fake upvotes, fake engagement, or ad impressions.",
     "- Do not claim exact compression, acceptance, rankings, hiring, or official approval.",
     "",
     "## Validation gates",
@@ -146,32 +143,23 @@ function renderIssueBody() {
     "- 72 hours: at least 10 tracked visits, 3 tool events, or one relevant external reply remains live.",
     "- 7 days: at least 30 tracked visits, 10 tool events, or Search Console impressions start moving.",
     "",
-    "Free tools stay ungated. The active buyer-intent path is a free Market Table Print Audit that can upgrade to the $29 Custom Local Print Pack Setup only after fit is confirmed and a real external checkout proves paid_order_verified.",
+    "Free tools stay ungated. The active path is search and discovery traffic for useful free tools, with the free Market Table Print Audit as a public-safe helper for seller print jobs.",
     "",
   ].join("\n");
 }
 
-function buyerIntentPath() {
+function freeHelpPath() {
   return {
     auditUrl: trackedAuditUrl("github-issue-report"),
     auditRequestUrl: MARKET_TABLE_PRINT_AUDIT.githubPagesRequestUrl,
     auditChecklistUrl: MARKET_TABLE_PRINT_AUDIT.githubPagesChecklistUrl,
-    serviceUrl: trackedServiceUrl("github-issue-report"),
-    salesPackUrl: trackedSalesPackUrl("github-issue-report"),
-    moneyGate: "Free audit requests are not revenue; paid revenue starts only after an external checkout proves paid_order_verified.",
+    freeToolDirectoryUrl: `${siteUrl("free-pdf-tools")}?utm_source=github-issue-report&utm_medium=organic&utm_campaign=free_tool_depth`,
+    adSafetyRule: "Downloads stay free; future ads must never block tool use or file downloads.",
   };
 }
 
 function trackedAuditUrl(source) {
   return `${MARKET_TABLE_PRINT_AUDIT.githubPagesUrl}?utm_source=${encodeURIComponent(source)}&utm_medium=organic&utm_campaign=market_table_audit`;
-}
-
-function trackedServiceUrl(source) {
-  return `${SERVICE_SALES_PACK.githubPagesServiceUrl}?utm_source=${encodeURIComponent(source)}&utm_medium=organic&utm_campaign=service_sales_pack`;
-}
-
-function trackedSalesPackUrl(source) {
-  return `https://yanqr213.github.io/printable-tools-lab/${SERVICE_SALES_PACK.slug}/?utm_source=${encodeURIComponent(source)}&utm_medium=organic&utm_campaign=service_sales_pack`;
 }
 
 function readCampaignVideos() {
