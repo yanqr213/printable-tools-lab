@@ -130,6 +130,12 @@ Monetization model: Free tools stay live for search demand and future display ad
 - [Invalid File Type JPG or PNG Fix](https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/): invalid file type JPG PNG, upload JPG or PNG, convert image type
 - [Image Dimensions 600x600 Fix](https://printable-tools-lab.pages.dev/image-dimensions-600x600/): image dimensions 600x600, resize image to 600x600, exact pixel upload error
 - [PDF Not Accepted JPG Required Fix](https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/): PDF not accepted JPG required, website accepts image not PDF, convert PDF to JPG
+- [Image Must Be Less Than 2MB Fix](https://printable-tools-lab.pages.dev/image-must-be-less-than-2mb/): image must be less than 2MB, image upload too large, compress image under 2MB
+- [Image Must Be Under 500KB Fix](https://printable-tools-lab.pages.dev/image-must-be-under-500kb/): image must be under 500KB, compress image to 500KB, upload image too large
+- [JPG Must Be Under 200KB Fix](https://printable-tools-lab.pages.dev/jpg-must-be-under-200kb/): JPG must be under 200KB, compress JPG to 200KB, JPEG upload limit
+- [PNG Screenshot Too Large Fix](https://printable-tools-lab.pages.dev/png-screenshot-too-large/): PNG screenshot too large, compress PNG screenshot, screenshot upload too large
+- [Resume PDF Too Large Fix](https://printable-tools-lab.pages.dev/resume-pdf-too-large/): resume PDF too large, compress resume PDF, job application PDF upload limit
+- [Email Attachment Too Large Fix](https://printable-tools-lab.pages.dev/email-attachment-too-large/): email attachment too large, compress PDF for email, reduce image before email
 - [Free Invoice Generator Without Signup](https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/): invoice PDF now, no account, no hidden export fee
 - [JPG to PDF Without Uploading](https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/): private image conversion, no upload, fast PDF
 - [Multiple Images to PDF Without Uploading](https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/): combine images into one PDF without upload

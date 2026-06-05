@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-05T21:11:50.636Z",
+  "generatedAt": "2026-06-05T21:26:02.591Z",
   "landingPages": [
     {
       "title": "Free Upload Limit Fixer",
@@ -48,6 +48,42 @@
       "url": "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/pdf-not-accepted-jpg-required/",
       "intent": "PDF not accepted JPG required, website accepts image not PDF, convert PDF to JPG"
+    },
+    {
+      "title": "Image Must Be Less Than 2MB Fix",
+      "url": "https://printable-tools-lab.pages.dev/image-must-be-less-than-2mb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/image-must-be-less-than-2mb/",
+      "intent": "image must be less than 2MB, image upload too large, compress image under 2MB"
+    },
+    {
+      "title": "Image Must Be Under 500KB Fix",
+      "url": "https://printable-tools-lab.pages.dev/image-must-be-under-500kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/image-must-be-under-500kb/",
+      "intent": "image must be under 500KB, compress image to 500KB, upload image too large"
+    },
+    {
+      "title": "JPG Must Be Under 200KB Fix",
+      "url": "https://printable-tools-lab.pages.dev/jpg-must-be-under-200kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/jpg-must-be-under-200kb/",
+      "intent": "JPG must be under 200KB, compress JPG to 200KB, JPEG upload limit"
+    },
+    {
+      "title": "PNG Screenshot Too Large Fix",
+      "url": "https://printable-tools-lab.pages.dev/png-screenshot-too-large/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/png-screenshot-too-large/",
+      "intent": "PNG screenshot too large, compress PNG screenshot, screenshot upload too large"
+    },
+    {
+      "title": "Resume PDF Too Large Fix",
+      "url": "https://printable-tools-lab.pages.dev/resume-pdf-too-large/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/resume-pdf-too-large/",
+      "intent": "resume PDF too large, compress resume PDF, job application PDF upload limit"
+    },
+    {
+      "title": "Email Attachment Too Large Fix",
+      "url": "https://printable-tools-lab.pages.dev/email-attachment-too-large/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/email-attachment-too-large/",
+      "intent": "email attachment too large, compress PDF for email, reduce image before email"
     },
     {
       "title": "Free Invoice Generator Without Signup",

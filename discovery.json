@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-05T21:11:50.529Z",
+  "generatedAt": "2026-06-05T21:26:02.499Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -32,6 +32,12 @@
     "https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/",
     "https://printable-tools-lab.pages.dev/image-dimensions-600x600/",
     "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/",
+    "https://printable-tools-lab.pages.dev/image-must-be-less-than-2mb/",
+    "https://printable-tools-lab.pages.dev/image-must-be-under-500kb/",
+    "https://printable-tools-lab.pages.dev/jpg-must-be-under-200kb/",
+    "https://printable-tools-lab.pages.dev/png-screenshot-too-large/",
+    "https://printable-tools-lab.pages.dev/resume-pdf-too-large/",
+    "https://printable-tools-lab.pages.dev/email-attachment-too-large/",
     "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
@@ -354,6 +360,42 @@
       "url": "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/",
       "intent": "PDF not accepted JPG required, website accepts image not PDF, convert PDF to JPG",
       "tool": "https://printable-tools-lab.pages.dev/tools/pdf-to-images/"
+    },
+    {
+      "title": "Image Must Be Less Than 2MB Fix",
+      "url": "https://printable-tools-lab.pages.dev/image-must-be-less-than-2mb/",
+      "intent": "image must be less than 2MB, image upload too large, compress image under 2MB",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=2048"
+    },
+    {
+      "title": "Image Must Be Under 500KB Fix",
+      "url": "https://printable-tools-lab.pages.dev/image-must-be-under-500kb/",
+      "intent": "image must be under 500KB, compress image to 500KB, upload image too large",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=500"
+    },
+    {
+      "title": "JPG Must Be Under 200KB Fix",
+      "url": "https://printable-tools-lab.pages.dev/jpg-must-be-under-200kb/",
+      "intent": "JPG must be under 200KB, compress JPG to 200KB, JPEG upload limit",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=200"
+    },
+    {
+      "title": "PNG Screenshot Too Large Fix",
+      "url": "https://printable-tools-lab.pages.dev/png-screenshot-too-large/",
+      "intent": "PNG screenshot too large, compress PNG screenshot, screenshot upload too large",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=500"
+    },
+    {
+      "title": "Resume PDF Too Large Fix",
+      "url": "https://printable-tools-lab.pages.dev/resume-pdf-too-large/",
+      "intent": "resume PDF too large, compress resume PDF, job application PDF upload limit",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=1mb"
+    },
+    {
+      "title": "Email Attachment Too Large Fix",
+      "url": "https://printable-tools-lab.pages.dev/email-attachment-too-large/",
+      "intent": "email attachment too large, compress PDF for email, reduce image before email",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=5mb"
     },
     {
       "title": "Free Invoice Generator Without Signup",

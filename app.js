@@ -2040,9 +2040,14 @@
   const uploadLimitDecisions = [
     ["PDF must be under 1MB", "/tools/compress-pdf/?targetSize=1mb", "Compress PDF", "Use the PDF compressor with the 1MB target for job, school, email, and admin portals.", "compress-pdf"],
     ["PDF must be under 500KB", "/tools/compress-pdf/?targetSize=500kb", "Compress PDF", "Use the strict 500KB target for forms and exam-style upload limits.", "compress-pdf"],
+    ["Image must be under 2MB", "/tools/compress-image-to-kb/?targetKb=2048", "Compress image", "Use a 2048KB custom target when the upload page names a 2MB image cap.", "compress-image-to-kb"],
+    ["Image must be under 500KB", "/tools/compress-image-to-kb/?targetKb=500", "Compress image", "Use the 500KB image target for profile, marketplace, and portal uploads.", "compress-image-to-kb"],
     ["Photo or image must be under 100KB", "/tools/compress-image-to-kb/?targetKb=100", "Compress image to KB", "Use the image-to-KB compressor when the site names a fixed photo or image file-size limit.", "compress-image-to-kb"],
     ["JPG must be under 100KB", "/tools/compress-image-to-kb/?targetKb=100", "Compress JPG", "Start with the 100KB target and export a smaller JPG or WebP copy locally.", "compress-image-to-kb"],
-    ["PNG screenshot is too large", "/tools/compress-image-to-kb/?targetKb=100", "Compress PNG", "Use this when a support form, portal, or profile page accepts PNG but rejects the screenshot size.", "compress-image-to-kb"],
+    ["JPG must be under 200KB", "/tools/compress-image-to-kb/?targetKb=200", "Compress JPG", "Start with the 200KB target when a profile or application form gives a JPG cap.", "compress-image-to-kb"],
+    ["PNG screenshot is too large", "/tools/compress-image-to-kb/?targetKb=500", "Compress PNG", "Use this when a support form, portal, or profile page accepts PNG but rejects the screenshot size.", "compress-image-to-kb"],
+    ["Resume PDF is too large", "/tools/compress-pdf/?targetSize=1mb", "Compress resume PDF", "Try the 1MB PDF target, then review that resume text remains readable before submitting.", "compress-pdf"],
+    ["Email attachment is too large", "/tools/compress-pdf/?targetSize=5mb", "Compress PDF for email", "Start with the 5MB PDF target for large scanned attachments and email limits.", "compress-pdf"],
     ["Wrong file type: needs JPG or PNG", "/tools/convert-image/", "Convert image", "Convert JPG, PNG, or WebP locally when the upload form rejects the current image type.", "convert-image"],
     ["Wrong image dimensions", "/tools/resize-image/", "Resize image", "Resize first when the portal gives width, height, square, thumbnail, or profile-photo dimensions.", "resize-image"],
     ["Passport or ID photo rejected", "/passport-photo-size-fixer/", "Fix passport photo", "Crop, resize, and compress ID-style photos when both dimensions and KB limits matter.", "passport-photo"],
@@ -2059,7 +2064,9 @@
   };
   const uploadLimitMatcherExamples = [
     "PDF must be less than 1 MB",
+    "Image must be less than 2 MB",
     "Photo must be under 100 KB",
+    "Resume PDF too large",
     "Invalid file type. Please upload JPG or PNG",
     "Image dimensions must be 600 x 600 px",
   ];
@@ -2179,6 +2186,108 @@
         ["Compress images if needed", "Converted pages can still be large. If the upload page also has a KB limit, compress the resulting image before submitting."],
       ],
       related: ["pdf-to-images", "compress-image-to-kb", "image-to-pdf"],
+    },
+    {
+      slug: "image-must-be-less-than-2mb",
+      title: "Image Must Be Less Than 2MB Fix",
+      headline: "Fix image must be less than 2 MB",
+      description: "Compress an image locally toward a 2MB upload cap when a profile, marketplace, support, or application form rejects the file.",
+      lead: "Use this when a website says an image, photo, screenshot, avatar, or product picture must be less than 2 MB before upload.",
+      tool: "compress-image-to-kb",
+      toolQuery: "targetKb=2048",
+      intent: "image must be less than 2MB, image upload too large, compress image under 2MB",
+      uploadErrorMatcher: true,
+      sections: [
+        ["Use a 2048KB custom target", "Open the image-to-KB compressor with a 2048KB custom target. This maps the common 2MB rule to the tool's KB input."],
+        ["Keep enough detail", "A 2MB cap is usually generous enough for profile photos, product images, and support screenshots. Resize first only if the dimensions are also rejected."],
+        ["Check the final upload", "Open the downloaded image, confirm it is below the portal limit, and verify that faces, text, or product details still look clear."],
+      ],
+      related: ["compress-image-to-kb", "resize-image", "convert-image"],
+    },
+    {
+      slug: "image-must-be-under-500kb",
+      title: "Image Must Be Under 500KB Fix",
+      headline: "Fix image must be under 500KB",
+      description: "Compress a photo, screenshot, avatar, or product image toward a 500KB upload limit locally without creating an account.",
+      lead: "Use this when a portal, marketplace, job form, school page, or support ticket says an image file must be under 500KB.",
+      tool: "compress-image-to-kb",
+      toolQuery: "targetKb=500",
+      intent: "image must be under 500KB, compress image to 500KB, upload image too large",
+      uploadErrorMatcher: true,
+      sections: [
+        ["Use the 500KB target", "Open the image-to-KB compressor with 500KB selected and export a smaller JPG or WebP copy from the browser."],
+        ["Resize if it still fails", "Large screenshots and phone photos may need a smaller maximum width before they can fit under 500KB cleanly."],
+        ["Review text and faces", "Compression can soften document text, ID photos, screenshots, and product details. Check the file before sending it to the destination site."],
+      ],
+      related: ["compress-image-to-kb", "resize-image", "crop-image"],
+    },
+    {
+      slug: "jpg-must-be-under-200kb",
+      title: "JPG Must Be Under 200KB Fix",
+      headline: "Fix JPG must be under 200KB",
+      description: "Compress a JPG or photo toward a 200KB upload limit locally for applications, profiles, marketplaces, and school forms.",
+      lead: "Use this when a website accepts JPG or JPEG but rejects the file because it is over 200KB.",
+      tool: "compress-image-to-kb",
+      toolQuery: "targetKb=200",
+      intent: "JPG must be under 200KB, compress JPG to 200KB, JPEG upload limit",
+      uploadErrorMatcher: true,
+      sections: [
+        ["Use the 200KB target", "Open the image-to-KB compressor with 200KB selected, then export a smaller JPG or WebP copy locally."],
+        ["Convert after checking the rule", "If the portal specifically requires JPG, keep the output as JPG. If it only asks for an image, WebP may be smaller but not accepted everywhere."],
+        ["Avoid over-compressing IDs", "For ID-style photos, applications, and resumes with headshots, make sure the face and any printed text remain readable."],
+      ],
+      related: ["compress-image-to-kb", "convert-image", "passport-photo"],
+    },
+    {
+      slug: "png-screenshot-too-large",
+      title: "PNG Screenshot Too Large Fix",
+      headline: "Fix PNG screenshot too large",
+      description: "Reduce a PNG screenshot locally when a support form, admin portal, or upload page rejects the screenshot as too large.",
+      lead: "Use this when a support ticket, bug report, admin upload, school portal, or marketplace page rejects a PNG screenshot because the file size is too large.",
+      tool: "compress-image-to-kb",
+      toolQuery: "targetKb=500",
+      intent: "PNG screenshot too large, compress PNG screenshot, screenshot upload too large",
+      uploadErrorMatcher: true,
+      sections: [
+        ["Start with 500KB", "Open the image-to-KB compressor with a 500KB target. This is a practical first pass for screenshots that need to stay readable."],
+        ["Crop first for privacy", "Before compressing, crop out unrelated tabs, messages, account details, or private desktop areas if they are not needed."],
+        ["Check text clarity", "Screenshots often contain small UI text. Review the compressed image before attaching it to a ticket or form."],
+      ],
+      related: ["compress-image-to-kb", "crop-image", "convert-image"],
+    },
+    {
+      slug: "resume-pdf-too-large",
+      title: "Resume PDF Too Large Fix",
+      headline: "Fix resume PDF too large",
+      description: "Compress a resume PDF locally when a job application portal rejects the file because it is too large.",
+      lead: "Use this when a job application, recruiter portal, or career site says your resume PDF is too large to upload.",
+      tool: "compress-pdf",
+      toolQuery: "targetSize=1mb",
+      intent: "resume PDF too large, compress resume PDF, job application PDF upload limit",
+      uploadErrorMatcher: true,
+      sections: [
+        ["Try the 1MB PDF target", "Open the PDF compressor with the 1MB target selected. Many job portals accept resumes around this size."],
+        ["Preserve readability", "A resume must stay readable after compression. Check name, headings, dates, and contact details before uploading."],
+        ["If text becomes blurry", "Return to the source resume editor and export a simpler PDF, remove oversized images, or rebuild from a text-first document."],
+      ],
+      related: ["compress-pdf", "resume-builder", "pdf-to-word"],
+    },
+    {
+      slug: "email-attachment-too-large",
+      title: "Email Attachment Too Large Fix",
+      headline: "Fix email attachment too large",
+      description: "Reduce a PDF or image before emailing it when an inbox, webmail app, or mail client says the attachment is too large.",
+      lead: "Use this when Gmail, Outlook, a school inbox, or a work mail client rejects a PDF, scanned document, or image attachment because it is too large.",
+      tool: "compress-pdf",
+      toolQuery: "targetSize=5mb",
+      intent: "email attachment too large, compress PDF for email, reduce image before email",
+      uploadErrorMatcher: true,
+      sections: [
+        ["Start with the file type", "If the attachment is a PDF, open the PDF compressor with the 5MB target. If it is a photo or screenshot, use the image-to-KB compressor instead."],
+        ["Keep the original copy", "Compression makes a new file for sending. Keep the original document or image in case the recipient needs full quality later."],
+        ["Review before sending", "Open the smaller file and confirm all pages, text, signatures, and images are visible before attaching it to the email."],
+      ],
+      related: ["compress-pdf", "compress-image-to-kb", "split-pdf"],
     },
     {
       slug: "free-invoice-generator-no-signup",
@@ -12188,6 +12297,9 @@ ${paragraphs.join("\n")}
     const hasPdf = /\bpdf\b/.test(normalized);
     const hasImage = /\b(image|photo|picture|jpg|jpeg|png|webp|screenshot|avatar|profile|passport|id photo)\b/.test(normalized);
     const hasJpgPng = /\b(jpg|jpeg|png)\b/.test(normalized);
+    const tooLarge = /\b(too large|file too big|file is too big|exceeds|exceed|maximum size|max size|attachment too large|over limit|larger than|less than|under)\b/.test(normalized);
+    const isResume = /\b(resume|cv)\b/.test(normalized);
+    const isEmail = /\b(email|e-mail|mail|attachment|gmail|outlook)\b/.test(normalized);
     const hasDimension = /\b(dimension|dimensions|pixel|pixels|px|width|height|resolution|resize|crop|square)\b/.test(normalized) || /\d{2,5}\s*(x|by|\*)\s*\d{2,5}/.test(normalized);
     const needsPdf = /\b(pdf only|pdf required|upload pdf|accepts pdf|must be pdf|as pdf)\b/.test(normalized);
     const rejectsPdfForImage = hasPdf && /\b(jpg|jpeg|png|image|photo)\b/.test(normalized) && /\b(need|needs|required|only|accepted|accepts|upload)\b/.test(normalized);
@@ -12206,6 +12318,16 @@ ${paragraphs.join("\n")}
     if (hasImage && size) {
       const targetKb = size.unit === "mb" ? Math.min(5000, Math.round(size.value * 1024)) : size.value;
       return uploadLimitMatch(`Image under ${targetKb}KB`, `/tools/compress-image-to-kb/?targetKb=${targetKb}`, "Open image compressor", "Starts the image-to-KB compressor with the target from the error message.", "compress-image-to-kb");
+    }
+
+    if (hasPdf && (tooLarge || isResume || isEmail)) {
+      if (isEmail) return uploadLimitMatch("Email PDF attachment too large", "/tools/compress-pdf/?targetSize=5mb", "Compress PDF for email", "Starts the PDF compressor with the 5MB email-friendly target.", "compress-pdf");
+      return uploadLimitMatch(isResume ? "Resume PDF too large" : "PDF too large", "/tools/compress-pdf/?targetSize=1mb", "Open PDF compressor", "Starts the PDF compressor with the common 1MB upload target.", "compress-pdf");
+    }
+
+    if (hasImage && tooLarge) {
+      const targetKb = normalized.includes("2 mb") || normalized.includes("2mb") ? 2048 : 500;
+      return uploadLimitMatch("Image too large", `/tools/compress-image-to-kb/?targetKb=${targetKb}`, "Open image compressor", "Starts the image-to-KB compressor with a practical upload target.", "compress-image-to-kb");
     }
 
     if (hasDimension) return uploadLimitMatch("Wrong image dimensions", "/tools/resize-image/", "Open image resizer", "Resize or crop first when the portal names width, height, pixels, or a square photo rule.", "resize-image");

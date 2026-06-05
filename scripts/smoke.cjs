@@ -279,6 +279,9 @@ function delay(ms) {
   const matcherCases = [
     ["PDF must be less than 1 MB", "/tools/compress-pdf/?targetSize=1mb", "compress-pdf"],
     ["Photo must be under 100 KB", "/tools/compress-image-to-kb/?targetKb=100", "compress-image-to-kb"],
+    ["Image must be less than 2 MB", "/tools/compress-image-to-kb/?targetKb=2048", "compress-image-to-kb"],
+    ["Resume PDF too large", "/tools/compress-pdf/?targetSize=1mb", "compress-pdf"],
+    ["PNG screenshot is too large", "/tools/compress-image-to-kb/?targetKb=500", "compress-image-to-kb"],
     ["Image dimensions must be 600 x 600 px", "/tools/resize-image/", "resize-image"],
     ["Invalid file type. Please upload JPG or PNG", "/tools/convert-image/", "convert-image"],
   ];
@@ -305,6 +308,11 @@ function delay(ms) {
     ["/file-must-be-less-than-1mb/", "/tools/compress-pdf/?targetSize=1mb", "#targetSize", "1mb"],
     ["/photo-must-be-under-100kb/", "/tools/compress-image-to-kb/?targetKb=100", "#targetKb", "100"],
     ["/image-dimensions-600x600/", "/tools/resize-image/?width=600&height=600&fit=cover", "#width", "600"],
+    ["/image-must-be-less-than-2mb/", "/tools/compress-image-to-kb/?targetKb=2048", "#customKb", "2048"],
+    ["/image-must-be-under-500kb/", "/tools/compress-image-to-kb/?targetKb=500", "#targetKb", "500"],
+    ["/jpg-must-be-under-200kb/", "/tools/compress-image-to-kb/?targetKb=200", "#targetKb", "200"],
+    ["/resume-pdf-too-large/", "/tools/compress-pdf/?targetSize=1mb", "#targetSize", "1mb"],
+    ["/email-attachment-too-large/", "/tools/compress-pdf/?targetSize=5mb", "#targetSize", "5mb"],
   ];
   for (const [landingPath, href, selector, expectedValue] of uploadErrorLandingRoutes) {
     await page.goto(`${base}${landingPath}`, { waitUntil: "networkidle" });

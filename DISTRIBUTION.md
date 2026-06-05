@@ -94,6 +94,12 @@ Rule: downloads stay free, ads are disabled until review, and future ads must ne
 - Invalid File Type JPG or PNG Fix: https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/
 - Image Dimensions 600x600 Fix: https://printable-tools-lab.pages.dev/image-dimensions-600x600/
 - PDF Not Accepted JPG Required Fix: https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/
+- Image Must Be Less Than 2MB Fix: https://printable-tools-lab.pages.dev/image-must-be-less-than-2mb/
+- Image Must Be Under 500KB Fix: https://printable-tools-lab.pages.dev/image-must-be-under-500kb/
+- JPG Must Be Under 200KB Fix: https://printable-tools-lab.pages.dev/jpg-must-be-under-200kb/
+- PNG Screenshot Too Large Fix: https://printable-tools-lab.pages.dev/png-screenshot-too-large/
+- Resume PDF Too Large Fix: https://printable-tools-lab.pages.dev/resume-pdf-too-large/
+- Email Attachment Too Large Fix: https://printable-tools-lab.pages.dev/email-attachment-too-large/
 - Multiple Images to PDF Without Uploading: https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/
 - Compress PDF Without Uploading: https://printable-tools-lab.pages.dev/compress-pdf-no-upload/
 - PDF Size Reducer Without Uploading: https://printable-tools-lab.pages.dev/pdf-size-reducer/

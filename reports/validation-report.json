@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-05T21:15:19.211Z",
+  "generatedAt": "2026-06-05T21:27:27.476Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
     "customDomainConfigured": false,
     "toolCount": 66,
     "guideCount": 95,
-    "landingPageCount": 86,
-    "indexableRoutes": 267,
-    "sitemapLocCount": 267,
-    "generatedToolInventoryAt": "2026-06-05T21:11:50.529Z",
+    "landingPageCount": 92,
+    "indexableRoutes": 273,
+    "sitemapLocCount": 273,
+    "generatedToolInventoryAt": "2026-06-05T21:26:02.499Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -37,7 +37,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 35892,
+        "bytes": 37925,
         "json": null
       },
       "/tools/": {
@@ -58,7 +58,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 32215,
+        "bytes": 32918,
         "json": null
       },
       "/robots.txt": {
@@ -81,7 +81,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 38317,
+        "bytes": 39365,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for"
       },
@@ -89,7 +89,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 70777,
+        "bytes": 73561,
         "json": null
       },
       "/tools.json": {
@@ -101,7 +101,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-05T21:11:50.529Z",
+          "generatedAt": "2026-06-05T21:26:02.499Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -983,11 +983,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 47972,
+        "bytes": 50366,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-05T21:11:50.529Z",
+          "generatedAt": "2026-06-05T21:26:02.499Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1018,6 +1018,12 @@
             "https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/",
             "https://printable-tools-lab.pages.dev/image-dimensions-600x600/",
             "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/",
+            "https://printable-tools-lab.pages.dev/image-must-be-less-than-2mb/",
+            "https://printable-tools-lab.pages.dev/image-must-be-under-500kb/",
+            "https://printable-tools-lab.pages.dev/jpg-must-be-under-200kb/",
+            "https://printable-tools-lab.pages.dev/png-screenshot-too-large/",
+            "https://printable-tools-lab.pages.dev/resume-pdf-too-large/",
+            "https://printable-tools-lab.pages.dev/email-attachment-too-large/",
             "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
             "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
@@ -1340,6 +1346,42 @@
               "url": "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/",
               "intent": "PDF not accepted JPG required, website accepts image not PDF, convert PDF to JPG",
               "tool": "https://printable-tools-lab.pages.dev/tools/pdf-to-images/"
+            },
+            {
+              "title": "Image Must Be Less Than 2MB Fix",
+              "url": "https://printable-tools-lab.pages.dev/image-must-be-less-than-2mb/",
+              "intent": "image must be less than 2MB, image upload too large, compress image under 2MB",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=2048"
+            },
+            {
+              "title": "Image Must Be Under 500KB Fix",
+              "url": "https://printable-tools-lab.pages.dev/image-must-be-under-500kb/",
+              "intent": "image must be under 500KB, compress image to 500KB, upload image too large",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=500"
+            },
+            {
+              "title": "JPG Must Be Under 200KB Fix",
+              "url": "https://printable-tools-lab.pages.dev/jpg-must-be-under-200kb/",
+              "intent": "JPG must be under 200KB, compress JPG to 200KB, JPEG upload limit",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=200"
+            },
+            {
+              "title": "PNG Screenshot Too Large Fix",
+              "url": "https://printable-tools-lab.pages.dev/png-screenshot-too-large/",
+              "intent": "PNG screenshot too large, compress PNG screenshot, screenshot upload too large",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=500"
+            },
+            {
+              "title": "Resume PDF Too Large Fix",
+              "url": "https://printable-tools-lab.pages.dev/resume-pdf-too-large/",
+              "intent": "resume PDF too large, compress resume PDF, job application PDF upload limit",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=1mb"
+            },
+            {
+              "title": "Email Attachment Too Large Fix",
+              "url": "https://printable-tools-lab.pages.dev/email-attachment-too-large/",
+              "intent": "email attachment too large, compress PDF for email, reduce image before email",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=5mb"
             },
             {
               "title": "Free Invoice Generator Without Signup",
@@ -1836,7 +1878,7 @@
         "bytes": 27705,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-05T21:11:50.529Z",
+          "generatedAt": "2026-06-05T21:26:02.499Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -3654,7 +3696,7 @@
       "toolPagesInSitemap": 50,
       "gamePagesLinked": 1,
       "gamePagesInSitemap": 3,
-      "expectedUrlCount": 144,
+      "expectedUrlCount": 150,
       "error": ""
     },
     "indexNow": {
@@ -3665,7 +3707,7 @@
       "keyFileReachable": true,
       "singleUrlAccepted": false,
       "latestReport": {
-        "generatedAt": "2026-06-05T21:13:12.474Z",
+        "generatedAt": "2026-06-05T21:27:09.935Z",
         "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
         "results": [
           {
@@ -3675,7 +3717,7 @@
             "keyReachable": true,
             "keyStatus": 200,
             "keyMessage": "ok",
-            "urlCount": 267,
+            "urlCount": 273,
             "submittedUrls": 0,
             "accepted": false,
             "status": 403,
@@ -3690,8 +3732,8 @@
             "keyReachable": true,
             "keyStatus": 200,
             "keyMessage": "ok",
-            "urlCount": 144,
-            "submittedUrls": 144,
+            "urlCount": 150,
+            "submittedUrls": 150,
             "accepted": true,
             "status": 200,
             "message": "",
@@ -3706,10 +3748,10 @@
       "acceptedTargets": [
         "github-pages"
       ],
-      "acceptedUrlCount": 144,
+      "acceptedUrlCount": 150,
       "error": ""
     },
-    "externalDiscoveryReady": true
+    "externalDiscoveryReady": false
   },
   "gates": {
     "productReady": true,
@@ -3717,13 +3759,13 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": true,
+    "externalDiscoveryReady": false,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "66 tools, 95 guides, 86 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "66 tools, 95 guides, 92 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
@@ -3738,9 +3780,9 @@
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 86 landing page link(s), 50 tool mirror link(s), and 1 game submission link(s).",
-        "GitHub Pages discovery sitemap has 144 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 144.",
+        "GitHub Pages discovery sitemap has 144 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 150.",
         "IndexNow key file is reachable from the site root.",
-        "IndexNow latest report accepted 144 URL(s) for github-pages."
+        "IndexNow latest report accepted 150 URL(s) for github-pages."
       ]
     }
   },
