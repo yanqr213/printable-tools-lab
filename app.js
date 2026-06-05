@@ -7003,19 +7003,19 @@ ${paragraphs.join("\n")}
     if (!tool || !LOCAL_SELLER_FUNNEL_TOOL_IDS.has(tool.id)) return "";
     const content = encodeURIComponent(tool.id);
     const auditHref = `/market-table-print-audit/?utm_source=download_success&utm_medium=site&utm_campaign=market_table_audit&utm_content=${content}`;
-    const serviceHref = `/custom-local-print-pack/?utm_source=download_success&utm_medium=site&utm_campaign=service_sales_pack&utm_content=${content}`;
+    const finderHref = `/free-pdf-tools/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     return `
       <div class="download-after-action" aria-label="Next step after download">
         <div>
-          <p class="eyebrow">Before you print</p>
-          <strong>Need this for a market table, pickup order, or local service?</strong>
-          <p class="help">Get a free print audit before printing, or open the optional $29 setup request if you want the pack assembled for you.</p>
+          <p class="eyebrow">Keep working free</p>
+          <strong>Need another business PDF, label, QR code, or image fix?</strong>
+          <p class="help">Try another free browser tool, or request a free print audit if this file is for a market table, pickup order, or local service.</p>
         </div>
         <div class="download-after-actions">
           <a class="button" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${escapeHtml(auditHref)}">Request free print audit</a>
-          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="${escapeHtml(serviceHref)}">Open $29 setup request</a>
+          <a class="button secondary" href="${escapeHtml(finderHref)}">Browse more free tools</a>
         </div>
-        <p class="help">No payment is collected here. Paid work starts only after a real external checkout is paid.</p>
+        <p class="help">Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
       </div>
     `;
   }

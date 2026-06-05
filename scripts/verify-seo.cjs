@@ -100,8 +100,10 @@ else {
   if (!script.includes("download-after-action")) failures.push("Missing download success after-action funnel.");
   if (!script.includes("utm_source=download_success")) failures.push("Missing download success campaign tracking.");
   if (!script.includes('data-track-event="audit_request_intent"')) failures.push("Missing download success audit intent tracking.");
-  if (!script.includes('data-track-event="service_request_intent"')) failures.push("Missing download success service intent tracking.");
-  if (!script.includes("Paid work starts only after a real external checkout is paid")) failures.push("Missing download success paid-checkout warning.");
+  if (!script.includes("free_tool_depth")) failures.push("Missing download success free-tool depth campaign.");
+  if (!script.includes("Browse more free tools")) failures.push("Missing download success free-tool browse CTA.");
+  if (!script.includes("Future ads must stay separated from generator controls")) failures.push("Missing download success ad-safety warning.");
+  if (script.includes("Open $29 setup request")) failures.push("Download success CTA should not promote paid setup.");
 }
 
 const robotsFile = path.join(root, "robots.txt");
