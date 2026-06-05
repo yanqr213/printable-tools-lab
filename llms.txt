@@ -137,6 +137,7 @@ Monetization model: Free tools stay live for search demand and future display ad
 - [Signature PNG Generator](https://printable-tools-lab.pages.dev/signature-png-generator/): signature PNG, transparent signature, draw signature online
 - [Passport Photo Maker](https://printable-tools-lab.pages.dev/passport-photo-maker/): passport photo maker, 2x2 photo, 35x45 photo, no upload
 - [Compress Image Without Uploading](https://printable-tools-lab.pages.dev/compress-image-no-upload/): compress image online, reduce image size, no upload
+- [Image Size Reducer in KB Without Uploading](https://printable-tools-lab.pages.dev/image-size-reducer-in-kb/): image size reducer in KB, photo size reducer under KB, no upload
 - [Compress Image to 10KB Without Uploading](https://printable-tools-lab.pages.dev/compress-image-to-10kb/): compress image to 10KB, reduce photo size, strict upload limit, no upload
 - [Compress Image to 20KB Without Uploading](https://printable-tools-lab.pages.dev/compress-image-to-20kb/): compress image to 20KB, reduce photo size, exam photo upload, no upload
 - [Compress Image to 30KB Without Uploading](https://printable-tools-lab.pages.dev/compress-image-to-30kb/): compress image to 30KB, reduce photo size, form upload limit, no upload

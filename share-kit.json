@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Share Kit",
-  "generatedAt": "2026-06-05T19:30:10.194Z",
+  "generatedAt": "2026-06-05T19:47:15.760Z",
   "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
   "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
   "featuredLinks": [
@@ -9,6 +9,12 @@
       "url": "https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=share-kit&utm_medium=organic",
       "canonicalUrl": "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
       "reason": "Task-first entry for users blocked by file size, format, or photo dimension limits."
+    },
+    {
+      "title": "Image size reducer in KB",
+      "url": "https://printable-tools-lab.pages.dev/image-size-reducer-in-kb?utm_source=share-kit&utm_medium=organic",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/image-size-reducer-in-kb/",
+      "reason": "Hub for exact image and photo file-size limits from 10KB to 500KB."
     },
     {
       "title": "Compress image to 20KB",

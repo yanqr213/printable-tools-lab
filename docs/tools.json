@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-05T19:30:10.285Z",
+  "generatedAt": "2026-06-05T19:47:15.850Z",
   "landingPages": [
     {
       "title": "Free Upload Limit Fixer",
@@ -90,6 +90,12 @@
       "url": "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-image-no-upload/",
       "intent": "compress image online, reduce image size, no upload"
+    },
+    {
+      "title": "Image Size Reducer in KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/image-size-reducer-in-kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/image-size-reducer-in-kb/",
+      "intent": "image size reducer in KB, photo size reducer under KB, no upload"
     },
     {
       "title": "Compress Image to 10KB Without Uploading",

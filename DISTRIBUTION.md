@@ -99,6 +99,7 @@ Rule: downloads stay free, ads are disabled until review, and future ads must ne
 - Signature PNG Generator: https://printable-tools-lab.pages.dev/signature-png-generator/
 - Passport Photo Maker: https://printable-tools-lab.pages.dev/passport-photo-maker/
 - Compress Image Without Uploading: https://printable-tools-lab.pages.dev/compress-image-no-upload/
+- Image Size Reducer in KB Without Uploading: https://printable-tools-lab.pages.dev/image-size-reducer-in-kb/
 - Compress Image to 10KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-10kb/
 - Compress Image to 20KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-20kb/
 - Compress Image to 30KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-30kb/

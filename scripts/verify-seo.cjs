@@ -245,6 +245,18 @@ for (const pagePath of ["compress-image-to-10kb", "compress-image-to-20kb", "com
   if (!sitemap.includes(`<loc>${siteUrl(pagePath)}</loc>`)) failures.push(`Sitemap missing target-KB landing page: ${pagePath}`);
 }
 
+const imageKbHubFile = path.join(root, "image-size-reducer-in-kb", "index.html");
+if (!fs.existsSync(imageKbHubFile)) failures.push("Missing image size reducer in KB hub page.");
+else {
+  const html = fs.readFileSync(imageKbHubFile, "utf8");
+  if (!html.includes("Image size reducer in KB without uploading")) failures.push("Image KB hub page missing headline.");
+  if (!html.includes("/tools/compress-image-to-kb/")) failures.push("Image KB hub page missing image-to-KB tool link.");
+  for (const pagePath of ["compress-image-to-10kb", "compress-image-to-20kb", "compress-image-to-30kb", "compress-image-to-50kb", "compress-image-to-100kb", "compress-image-to-150kb", "compress-image-to-200kb", "compress-image-to-300kb", "compress-image-to-500kb", "passport-photo-compress-to-50kb", "passport-photo-compress-to-100kb", "passport-photo-compress-to-200kb"]) {
+    if (!html.includes(`/${pagePath}/`)) failures.push(`Image KB hub page missing target link: ${pagePath}`);
+  }
+  if (!sitemap.includes(`<loc>${siteUrl("image-size-reducer-in-kb")}</loc>`)) failures.push("Sitemap missing image KB hub page.");
+}
+
 for (const [pagePath, targetSize, headlineSize] of [["compress-pdf-to-500kb", "500kb", "500KB"], ["compress-pdf-to-1mb", "1mb", "1MB"], ["compress-pdf-to-2mb", "2mb", "2MB"], ["compress-pdf-to-5mb", "5mb", "5MB"]]) {
   const file = path.join(root, pagePath, "index.html");
   if (!fs.existsSync(file)) {

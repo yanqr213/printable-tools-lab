@@ -1809,6 +1809,7 @@ const PLATFORM_SUBMIT_COCKPIT = {
 
 const SHARE_KIT_FEATURED_LINKS = [
   ["Upload limit fixer", "upload-limit-fixer", "Task-first entry for users blocked by file size, format, or photo dimension limits."],
+  ["Image size reducer in KB", "image-size-reducer-in-kb", "Hub for exact image and photo file-size limits from 10KB to 500KB."],
   ["Compress image to 20KB", "compress-image-to-20kb", "Strict exam, profile, and application photo size limit intent."],
   ["Fix passport photo size", "passport-photo-size-fixer", "Urgent ID-style photo crop, resize, and file-size workflow."],
   ["Compress PDF to 1MB", "compress-pdf-to-1mb", "Urgent upload-limit search for job, school, email, and portal PDFs."],
@@ -2454,6 +2455,35 @@ const landingPages = [
       ["Best fit", "Use it for profile pictures, marketplace listings, support tickets, form uploads, email attachments, screenshots, and document photos."],
     ],
     relatedTools: ["tools/resize-image", "tools/convert-image", "tools/image-to-pdf"],
+  },
+  {
+    path: "image-size-reducer-in-kb",
+    title: "Image Size Reducer in KB Without Uploading",
+    description: "Reduce JPG, PNG, or WebP image file size toward exact KB limits locally, including 10KB, 20KB, 30KB, 50KB, 100KB, 150KB, 200KB, 300KB, and 500KB targets.",
+    headline: "Image size reducer in KB without uploading",
+    lead: "Start here when a form, exam portal, job application, profile page, or support site rejects an image because the file is over a fixed KB limit. Pick the exact target, open the local image-to-KB compressor, and download a smaller copy without creating an account.",
+    primaryTool: "tools/compress-image-to-kb",
+    intent: "image size reducer in KB, photo size reducer under KB, no upload",
+    sections: [
+      ["Pick the target from the error message", "Use the exact KB number shown by the portal whenever possible. If the site says under 100KB, use the 100KB target; if it says under 20KB or 50KB, expect stronger quality tradeoffs."],
+      ["Local target-size workflow", "The browser tries different dimensions and compression levels locally, then exports the closest smaller JPG or WebP it can make. The original image is not uploaded during ordinary use."],
+      ["When to resize first", "If the portal also gives pixel dimensions, resize or crop before compressing. This is especially important for passport-style, exam, school, and profile photos."],
+    ],
+    targetLinks: [
+      ["Compress image to 10KB", "compress-image-to-10kb", "For extremely strict profile, exam, school, and application upload limits."],
+      ["Compress image to 20KB", "compress-image-to-20kb", "For severe exam, profile, and application photo limits."],
+      ["Compress image to 30KB", "compress-image-to-30kb", "For strict portals that sit between 20KB and 50KB."],
+      ["Compress image to 50KB", "compress-image-to-50kb", "For small profile photos, ID-style uploads, and form portals."],
+      ["Compress image to 100KB", "compress-image-to-100kb", "For common job, school, profile, and form upload limits."],
+      ["Compress image to 150KB", "compress-image-to-150kb", "For portals that allow more clarity than 100KB but still block phone photos."],
+      ["Compress image to 200KB", "compress-image-to-200kb", "For forms and listings where image detail still matters."],
+      ["Compress image to 300KB", "compress-image-to-300kb", "For support screenshots, listings, documents, and email attachments."],
+      ["Compress image to 500KB", "compress-image-to-500kb", "For moderate upload limits where readability and detail are important."],
+      ["Passport photo to 50KB", "passport-photo-compress-to-50kb", "For strict ID-style photo file-size limits."],
+      ["Passport photo to 100KB", "passport-photo-compress-to-100kb", "For common passport-style and application photo upload limits."],
+      ["Passport photo to 200KB", "passport-photo-compress-to-200kb", "For ID-style uploads that allow more detail."],
+    ],
+    relatedTools: ["tools/compress-image-to-kb", "tools/resize-image", "tools/crop-image", "tools/passport-photo"],
   },
   {
     path: "compress-image-to-10kb",
@@ -5801,6 +5831,13 @@ function landingPageHtml(page) {
         <h2>${escapeHtml(heading)}</h2>
         <p>${escapeHtml(text)}</p>
       </section>`.trim()).join("\n")}
+      ${page.targetLinks ? `
+      <section class="shell section">
+        <h2>Choose an exact KB target</h2>
+        <div class="grid-3">
+          ${page.targetLinks.map(([label, pathName, text]) => `<article class="tool-card"><h3>${escapeHtml(label)}</h3><p>${escapeHtml(text)}</p><a class="button" href="/${escapeHtml(pathName)}/">Open target</a></article>`).join("\n")}
+        </div>
+      </section>`.trim() : ""}
       <section class="shell section">
         <h2>Related free tools</h2>
         <div class="grid-3">
