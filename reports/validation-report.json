@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-05T19:47:04.141Z",
+  "generatedAt": "2026-06-05T19:49:15.222Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 73,
     "indexableRoutes": 254,
     "sitemapLocCount": 254,
-    "generatedToolInventoryAt": "2026-06-05T19:46:35.982Z",
+    "generatedToolInventoryAt": "2026-06-05T19:47:15.760Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -37,7 +37,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 27713,
+        "bytes": 27796,
         "json": null
       },
       "/tools/": {
@@ -51,14 +51,14 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 26648,
+        "bytes": 27143,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 30597,
+        "bytes": 30714,
         "json": null
       },
       "/robots.txt": {
@@ -81,7 +81,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 35977,
+        "bytes": 36155,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for"
       },
@@ -89,7 +89,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 64331,
+        "bytes": 64845,
         "json": null
       },
       "/tools.json": {
@@ -101,7 +101,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-05T19:30:10.194Z",
+          "generatedAt": "2026-06-05T19:47:15.760Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -983,11 +983,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 42564,
+        "bytes": 42955,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-05T19:30:10.194Z",
+          "generatedAt": "2026-06-05T19:47:15.760Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1025,6 +1025,7 @@
             "https://printable-tools-lab.pages.dev/signature-png-generator/",
             "https://printable-tools-lab.pages.dev/passport-photo-maker/",
             "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
+            "https://printable-tools-lab.pages.dev/image-size-reducer-in-kb/",
             "https://printable-tools-lab.pages.dev/compress-image-to-10kb/",
             "https://printable-tools-lab.pages.dev/compress-image-to-20kb/",
             "https://printable-tools-lab.pages.dev/compress-image-to-30kb/",
@@ -1368,6 +1369,12 @@
               "url": "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
               "intent": "compress image online, reduce image size, no upload",
               "tool": "https://printable-tools-lab.pages.dev/tools/compress-image/"
+            },
+            {
+              "title": "Image Size Reducer in KB Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/image-size-reducer-in-kb/",
+              "intent": "image size reducer in KB, photo size reducer under KB, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/"
             },
             {
               "title": "Compress Image to 10KB Without Uploading",
@@ -1735,10 +1742,10 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 27030,
+        "bytes": 27379,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-05T19:30:10.194Z",
+          "generatedAt": "2026-06-05T19:47:15.760Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -1747,6 +1754,12 @@
               "url": "https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=share-kit&utm_medium=organic",
               "canonicalUrl": "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
               "reason": "Task-first entry for users blocked by file size, format, or photo dimension limits."
+            },
+            {
+              "title": "Image size reducer in KB",
+              "url": "https://printable-tools-lab.pages.dev/image-size-reducer-in-kb?utm_source=share-kit&utm_medium=organic",
+              "canonicalUrl": "https://printable-tools-lab.pages.dev/image-size-reducer-in-kb/",
+              "reason": "Hub for exact image and photo file-size limits from 10KB to 500KB."
             },
             {
               "title": "Compress image to 20KB",
@@ -3520,8 +3533,8 @@
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 130,
-      "landingPagesLinked": 72,
+      "sitemapUrlCount": 131,
+      "landingPagesLinked": 73,
       "toolPagesLinked": 50,
       "toolPagesInSitemap": 50,
       "gamePagesLinked": 1,
@@ -3537,7 +3550,7 @@
       "keyFileReachable": true,
       "singleUrlAccepted": false,
       "latestReport": {
-        "generatedAt": "2026-06-05T19:41:50.142Z",
+        "generatedAt": "2026-06-05T19:48:50.703Z",
         "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
         "results": [
           {
@@ -3547,7 +3560,7 @@
             "keyReachable": true,
             "keyStatus": 200,
             "keyMessage": "ok",
-            "urlCount": 253,
+            "urlCount": 254,
             "submittedUrls": 0,
             "accepted": false,
             "status": 403,
@@ -3562,8 +3575,8 @@
             "keyReachable": true,
             "keyStatus": 200,
             "keyMessage": "ok",
-            "urlCount": 130,
-            "submittedUrls": 130,
+            "urlCount": 131,
+            "submittedUrls": 131,
             "accepted": true,
             "status": 200,
             "message": "",
@@ -3578,10 +3591,10 @@
       "acceptedTargets": [
         "github-pages"
       ],
-      "acceptedUrlCount": 130,
+      "acceptedUrlCount": 131,
       "error": ""
     },
-    "externalDiscoveryReady": false
+    "externalDiscoveryReady": true
   },
   "gates": {
     "productReady": true,
@@ -3589,7 +3602,7 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": false,
+    "externalDiscoveryReady": true,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
@@ -3609,10 +3622,10 @@
       "externalDiscovery": [
         "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
-        "GitHub Pages discovery directory is live with 72 landing page link(s), 50 tool mirror link(s), and 1 game submission link(s).",
-        "GitHub Pages discovery sitemap has 130 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 131.",
+        "GitHub Pages discovery directory is live with 73 landing page link(s), 50 tool mirror link(s), and 1 game submission link(s).",
+        "GitHub Pages discovery sitemap has 131 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 131.",
         "IndexNow key file is reachable from the site root.",
-        "IndexNow latest report accepted 130 URL(s) for github-pages."
+        "IndexNow latest report accepted 131 URL(s) for github-pages."
       ]
     }
   },
