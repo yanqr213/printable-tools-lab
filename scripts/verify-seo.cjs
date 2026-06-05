@@ -1563,6 +1563,8 @@ for (const toolPath of tools.map((tool) => tool.path)) {
   const html = fs.readFileSync(file, "utf8");
   if (!tool || !html.includes(tool.title)) failures.push(`GitHub Pages tool page missing title: ${toolPath}`);
   if (!html.includes(siteUrl(toolPath))) failures.push(`GitHub Pages tool page missing live tool URL: ${toolPath}`);
+  if (!html.includes('data-track-event="free_tool_depth"')) failures.push(`GitHub Pages tool page missing free_tool_depth tracking: ${toolPath}`);
+  if (tool && !html.includes(`data-track-tool="${toolTrackingId(tool)}"`)) failures.push(`GitHub Pages tool page missing tool id tracking: ${toolPath}`);
   if (!html.includes(`rel="canonical" href="https://yanqr213.github.io/printable-tools-lab/${toolPath}/"`)) failures.push(`GitHub Pages tool page missing canonical: ${toolPath}`);
 }
 
@@ -1598,6 +1600,10 @@ function countMatches(value, pattern) {
 
 function cleanToolPath(toolPath) {
   return String(toolPath).split("?")[0];
+}
+
+function toolTrackingId(tool) {
+  return tool.id || cleanToolPath(tool.path).split("/").filter(Boolean).pop() || "tool";
 }
 
 function liveToolUrl(toolPath) {

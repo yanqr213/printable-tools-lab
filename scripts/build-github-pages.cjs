@@ -147,7 +147,7 @@ const html = `<!doctype html>
           <p>${escapeHtml(tool.description)}</p>
           <a href="${pagesUrl(tool.path)}">Open the discovery note</a>
           <br>
-          <a href="${trackedSiteUrl(tool.path, `home-${tool.path}`)}">Open this free file tool</a>
+          <a data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolTrackingId(tool))}" href="${trackedSiteUrl(tool.path, `home-${tool.path}`)}">Open this free file tool</a>
         </article>`).join("\n")}
       </div>
 
@@ -158,7 +158,7 @@ const html = `<!doctype html>
           <p>${escapeHtml(tool.description)}</p>
           <a href="${pagesUrl(tool.path)}">Open mirror</a>
           <br>
-          <a href="${trackedSiteUrl(tool.path, `all-tools-${tool.path}`)}">Open live tool</a>
+          <a data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolTrackingId(tool))}" href="${trackedSiteUrl(tool.path, `all-tools-${tool.path}`)}">Open live tool</a>
         </article>`).join("\n")}
       </div>
 
@@ -356,6 +356,10 @@ function pagesUrl(routePath = "") {
 
 function cleanToolPath(toolPath) {
   return String(toolPath).split("?")[0];
+}
+
+function toolTrackingId(tool) {
+  return tool.id || cleanToolPath(tool.path).split("/").filter(Boolean).pop() || "tool";
 }
 
 function liveToolUrl(toolPath) {
@@ -1734,7 +1738,7 @@ function toolDiscoveryHtml(tool, relatedLandingPages) {
       <p><a href="${pagesUrl("")}">PrintableTools Lab discovery directory</a></p>
       <h1>${escapeHtml(tool.title)}</h1>
       <p>${escapeHtml(tool.description)}</p>
-      <p><a class="button" href="${trackedSiteUrl(tool.path, `tool-${tool.path}`)}">Open the live free tool</a></p>
+      <p><a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolTrackingId(tool))}" href="${trackedSiteUrl(tool.path, `tool-${tool.path}`)}">Open the live free tool</a></p>
       ${sellerIntentCtaHtml()}
       <h2>Why this tool exists</h2>
       <p>This mirror page is a zero-cost discovery entry for the live PrintableTools Lab tool. The live app focuses on practical browser-side generation, no account wall, and clear download flow so users can solve a file or printable job quickly.</p>
