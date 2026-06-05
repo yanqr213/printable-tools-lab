@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-05T19:17:09.938Z",
+  "generatedAt": "2026-06-05T19:30:10.194Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -39,12 +39,18 @@
     "https://printable-tools-lab.pages.dev/signature-png-generator/",
     "https://printable-tools-lab.pages.dev/passport-photo-maker/",
     "https://printable-tools-lab.pages.dev/compress-image-no-upload/",
+    "https://printable-tools-lab.pages.dev/compress-image-to-10kb/",
     "https://printable-tools-lab.pages.dev/compress-image-to-20kb/",
+    "https://printable-tools-lab.pages.dev/compress-image-to-30kb/",
     "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
+    "https://printable-tools-lab.pages.dev/compress-image-to-150kb/",
     "https://printable-tools-lab.pages.dev/compress-image-to-50kb/",
     "https://printable-tools-lab.pages.dev/compress-image-to-200kb/",
+    "https://printable-tools-lab.pages.dev/compress-image-to-300kb/",
     "https://printable-tools-lab.pages.dev/compress-image-to-500kb/",
+    "https://printable-tools-lab.pages.dev/passport-photo-compress-to-50kb/",
     "https://printable-tools-lab.pages.dev/passport-photo-compress-to-100kb/",
+    "https://printable-tools-lab.pages.dev/passport-photo-compress-to-200kb/",
     "https://printable-tools-lab.pages.dev/passport-photo-size-fixer/",
     "https://printable-tools-lab.pages.dev/resize-photo-413x531/",
     "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
@@ -378,16 +384,34 @@
       "tool": "https://printable-tools-lab.pages.dev/tools/compress-image/"
     },
     {
+      "title": "Compress Image to 10KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-10kb/",
+      "intent": "compress image to 10KB, reduce photo size, strict upload limit, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=10"
+    },
+    {
       "title": "Compress Image to 20KB Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/compress-image-to-20kb/",
       "intent": "compress image to 20KB, reduce photo size, exam photo upload, no upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=20"
     },
     {
+      "title": "Compress Image to 30KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-30kb/",
+      "intent": "compress image to 30KB, reduce photo size, form upload limit, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=30"
+    },
+    {
       "title": "Compress Image to 100KB Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
       "intent": "compress image to 100KB, reduce image size, no upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=100"
+    },
+    {
+      "title": "Compress Image to 150KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-150kb/",
+      "intent": "compress image to 150KB, image size reducer, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=150"
     },
     {
       "title": "Compress Image to 50KB Without Uploading",
@@ -402,16 +426,34 @@
       "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=200"
     },
     {
+      "title": "Compress Image to 300KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-300kb/",
+      "intent": "compress image to 300KB, reduce image file size, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=300"
+    },
+    {
       "title": "Compress Image to 500KB Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/compress-image-to-500kb/",
       "intent": "compress image to 500KB, reduce image file size, no upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=500"
     },
     {
+      "title": "Passport Photo Compress to 50KB",
+      "url": "https://printable-tools-lab.pages.dev/passport-photo-compress-to-50kb/",
+      "intent": "passport photo compress to 50KB, ID photo size reducer, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=50"
+    },
+    {
       "title": "Passport Photo Compress to 100KB",
       "url": "https://printable-tools-lab.pages.dev/passport-photo-compress-to-100kb/",
       "intent": "passport photo compress to 100KB, ID photo size reducer, no upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=100"
+    },
+    {
+      "title": "Passport Photo Compress to 200KB",
+      "url": "https://printable-tools-lab.pages.dev/passport-photo-compress-to-200kb/",
+      "intent": "passport photo compress to 200KB, ID photo size reducer, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=200"
     },
     {
       "title": "Passport Photo Size Fixer",

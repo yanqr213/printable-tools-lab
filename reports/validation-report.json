@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-05T19:22:37.125Z",
+  "generatedAt": "2026-06-05T19:28:34.357Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
     "customDomainConfigured": false,
     "toolCount": 66,
     "guideCount": 95,
-    "landingPageCount": 66,
-    "indexableRoutes": 247,
-    "sitemapLocCount": 247,
-    "generatedToolInventoryAt": "2026-06-05T19:17:09.938Z",
+    "landingPageCount": 72,
+    "indexableRoutes": 253,
+    "sitemapLocCount": 253,
+    "generatedToolInventoryAt": "2026-06-05T19:27:53.247Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -3458,35 +3458,21 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF size targets, image KB targets, PDF-to-Word, ATS checks, background removal, text overlays, QR codes, PDF edits, paperwork, labels, resumes, and printables.",
+      "description": "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
       "topics": [
-        "background-remover",
-        "compress-image-to-100kb",
-        "compress-pdf",
-        "compress-pdf-to-1mb",
-        "compress-pdf-to-500kb",
-        "free-tools",
-        "image-compressor",
-        "image-converter",
-        "image-resizer",
-        "image-to-pdf",
-        "image-tools",
-        "invoice-generator",
-        "no-signup",
-        "passport-photo",
-        "pdf-generator",
-        "pdf-to-jpg",
-        "pdf-to-word",
         "pdf-tools",
+        "image-tools",
         "qr-code",
-        "resume-checker"
+        "no-signup",
+        "browser-tools",
+        "free-tools"
       ],
+      "error": "GitHub API fallback used: GitHub API 403",
       "discoveryRelease": {
         "tag": "free-pdf-tools",
         "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
         "name": "Free PDF, Image, and QR Tools Without Signup"
-      },
-      "error": ""
+      }
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
@@ -3498,7 +3484,7 @@
       "toolPagesInSitemap": 50,
       "gamePagesLinked": 1,
       "gamePagesInSitemap": 3,
-      "expectedUrlCount": 124,
+      "expectedUrlCount": 130,
       "error": ""
     },
     "indexNow": {
@@ -3553,7 +3539,7 @@
       "acceptedUrlCount": 124,
       "error": ""
     },
-    "externalDiscoveryReady": true
+    "externalDiscoveryReady": false
   },
   "gates": {
     "productReady": true,
@@ -3561,13 +3547,13 @@
     "adsenseApplyReady": false,
     "adsEnabled": false,
     "searchVisible": false,
-    "externalDiscoveryReady": true,
+    "externalDiscoveryReady": false,
     "continue30Day": false,
     "pivot60Day": false,
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "66 tools, 95 guides, 66 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "66 tools, 95 guides, 72 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
@@ -3579,10 +3565,10 @@
         "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
       ],
       "externalDiscovery": [
-        "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 66 landing page link(s), 50 tool mirror link(s), and 1 game submission link(s).",
-        "GitHub Pages discovery sitemap has 124 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 124.",
+        "GitHub Pages discovery sitemap has 124 URL(s), including 50 tool mirror URL(s) and 3 game submission URL(s); expected at least 130.",
         "IndexNow key file is reachable from the site root.",
         "IndexNow latest report accepted 124 URL(s) for github-pages."
       ]

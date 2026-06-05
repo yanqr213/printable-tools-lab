@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-05T19:17:10.036Z",
+  "generatedAt": "2026-06-05T19:30:10.285Z",
   "landingPages": [
     {
       "title": "Free Upload Limit Fixer",
@@ -92,16 +92,34 @@
       "intent": "compress image online, reduce image size, no upload"
     },
     {
+      "title": "Compress Image to 10KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-10kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-image-to-10kb/",
+      "intent": "compress image to 10KB, reduce photo size, strict upload limit, no upload"
+    },
+    {
       "title": "Compress Image to 20KB Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/compress-image-to-20kb/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-image-to-20kb/",
       "intent": "compress image to 20KB, reduce photo size, exam photo upload, no upload"
     },
     {
+      "title": "Compress Image to 30KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-30kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-image-to-30kb/",
+      "intent": "compress image to 30KB, reduce photo size, form upload limit, no upload"
+    },
+    {
       "title": "Compress Image to 100KB Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/compress-image-to-100kb/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-image-to-100kb/",
       "intent": "compress image to 100KB, reduce image size, no upload"
+    },
+    {
+      "title": "Compress Image to 150KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-150kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-image-to-150kb/",
+      "intent": "compress image to 150KB, image size reducer, no upload"
     },
     {
       "title": "Compress Image to 50KB Without Uploading",
@@ -116,16 +134,34 @@
       "intent": "compress image to 200KB, image size reducer, no upload"
     },
     {
+      "title": "Compress Image to 300KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-image-to-300kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-image-to-300kb/",
+      "intent": "compress image to 300KB, reduce image file size, no upload"
+    },
+    {
       "title": "Compress Image to 500KB Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/compress-image-to-500kb/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-image-to-500kb/",
       "intent": "compress image to 500KB, reduce image file size, no upload"
     },
     {
+      "title": "Passport Photo Compress to 50KB",
+      "url": "https://printable-tools-lab.pages.dev/passport-photo-compress-to-50kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/passport-photo-compress-to-50kb/",
+      "intent": "passport photo compress to 50KB, ID photo size reducer, no upload"
+    },
+    {
       "title": "Passport Photo Compress to 100KB",
       "url": "https://printable-tools-lab.pages.dev/passport-photo-compress-to-100kb/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/passport-photo-compress-to-100kb/",
       "intent": "passport photo compress to 100KB, ID photo size reducer, no upload"
+    },
+    {
+      "title": "Passport Photo Compress to 200KB",
+      "url": "https://printable-tools-lab.pages.dev/passport-photo-compress-to-200kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/passport-photo-compress-to-200kb/",
+      "intent": "passport photo compress to 200KB, ID photo size reducer, no upload"
     },
     {
       "title": "Passport Photo Size Fixer",

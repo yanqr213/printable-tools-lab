@@ -99,12 +99,18 @@ Rule: downloads stay free, ads are disabled until review, and future ads must ne
 - Signature PNG Generator: https://printable-tools-lab.pages.dev/signature-png-generator/
 - Passport Photo Maker: https://printable-tools-lab.pages.dev/passport-photo-maker/
 - Compress Image Without Uploading: https://printable-tools-lab.pages.dev/compress-image-no-upload/
+- Compress Image to 10KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-10kb/
 - Compress Image to 20KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-20kb/
+- Compress Image to 30KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-30kb/
 - Compress Image to 100KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-100kb/
+- Compress Image to 150KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-150kb/
 - Compress Image to 50KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-50kb/
 - Compress Image to 200KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-200kb/
+- Compress Image to 300KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-300kb/
 - Compress Image to 500KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-500kb/
+- Passport Photo Compress to 50KB: https://printable-tools-lab.pages.dev/passport-photo-compress-to-50kb/
 - Passport Photo Compress to 100KB: https://printable-tools-lab.pages.dev/passport-photo-compress-to-100kb/
+- Passport Photo Compress to 200KB: https://printable-tools-lab.pages.dev/passport-photo-compress-to-200kb/
 - Passport Photo Size Fixer: https://printable-tools-lab.pages.dev/passport-photo-size-fixer/
 - Resize Photo to 413x531: https://printable-tools-lab.pages.dev/resize-photo-413x531/
 - Resize Image Without Uploading: https://printable-tools-lab.pages.dev/resize-image-no-upload/
