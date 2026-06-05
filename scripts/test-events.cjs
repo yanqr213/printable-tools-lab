@@ -23,6 +23,7 @@ async function main() {
   const metricsResponse = await metricsSource.onRequestGet({ env });
   const metricsPayload = await metricsResponse.json();
   assert(metricsPayload.ok, "Metrics endpoint should respond");
+  assert(store.getCount <= 1000, `Metrics endpoint should stay under Cloudflare KV read limits, got ${store.getCount}`);
   assert(metricsPayload.totals.download_pdf === 1, "Metrics should count downloads");
   assert(metricsPayload.tools.length === 69, "Metrics should include every active tool plus monetization funnel rows");
   const invoice = metricsPayload.tools.find((row) => row.tool === "invoice-generator");
@@ -48,6 +49,22 @@ async function main() {
   assert(fileMetrics.totals.download_file === 1, "Metrics should count total file downloads");
   const google = fileMetrics.sources.find((row) => row.source === "google");
   assert(google.download_file === 1, "Metrics should count per-source file downloads");
+
+  const freeToolDepthResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "free_tool_depth", tool: "compress-image-to-kb", path: "/tools/compress-image-to-kb/", source: "short-video" }),
+    }),
+    env,
+  });
+  assert(freeToolDepthResponse.status === 200, "Event collector should accept free-tool depth events");
+  const depthMetrics = await (await metricsSource.onRequestGet({ env })).json();
+  const imageKbTool = depthMetrics.tools.find((row) => row.tool === "compress-image-to-kb");
+  assert(imageKbTool.free_tool_depth === 1, "Metrics should count per-tool free-tool depth events");
+  assert(depthMetrics.totals.free_tool_depth === 1, "Metrics should count total free-tool depth events");
+  const shortVideo = depthMetrics.sources.find((row) => row.source === "short-video");
+  assert(shortVideo.free_tool_depth === 1, "Metrics should count per-source free-tool depth events");
 
   const directoryEventResponse = await eventSource.onRequestPost({
     request: new Request("https://example.test/api/event", {
@@ -220,9 +237,11 @@ function loadFunction(file, exportsList) {
 class MemoryStore {
   constructor() {
     this.data = new Map();
+    this.getCount = 0;
   }
 
   async get(key) {
+    this.getCount += 1;
     return this.data.get(key) || null;
   }
 

@@ -4786,7 +4786,7 @@ function localSellerFunnelHtml(tool) {
         </div>
         <div class="seller-funnel-actions">
           <a class="button" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(MARKET_TABLE_PRINT_AUDIT.id)}" href="${escapeHtml(auditHref)}">Request free audit</a>
-          <a class="button secondary" href="${escapeHtml(finderHref)}">Browse more free tools</a>
+          <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolSlug)}" href="${escapeHtml(finderHref)}">Browse more free tools</a>
           <p class="help">Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
         </div>
       </section>`;

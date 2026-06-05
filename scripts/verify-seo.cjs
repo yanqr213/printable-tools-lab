@@ -115,6 +115,7 @@ for (const toolPath of ["tools/invoice-generator", "tools/price-tag", "tools/fly
   if (!html.includes("seller-funnel-cta")) failures.push(`Missing local seller funnel CTA: ${toolPath}`);
   if (!html.includes("market_table_audit")) failures.push(`Missing audit campaign tracking on funnel CTA: ${toolPath}`);
   if (!html.includes("free_tool_depth")) failures.push(`Missing free-tool depth campaign on funnel CTA: ${toolPath}`);
+  if (!html.includes('data-track-event="free_tool_depth"')) failures.push(`Missing free-tool depth event on funnel CTA: ${toolPath}`);
   if (!html.includes("data-track-event=\"audit_request_intent\"")) failures.push(`Missing audit intent event on funnel CTA: ${toolPath}`);
   if (!html.includes("Browse more free tools")) failures.push(`Missing free-tool browse CTA: ${toolPath}`);
   if (!html.includes("Future ads must stay separated from generator controls")) failures.push(`Missing ad-safety warning on funnel CTA: ${toolPath}`);
@@ -129,6 +130,7 @@ else {
   if (!script.includes("utm_source=download_success")) failures.push("Missing download success campaign tracking.");
   if (!script.includes('data-track-event="audit_request_intent"')) failures.push("Missing download success audit intent tracking.");
   if (!script.includes("free_tool_depth")) failures.push("Missing download success free-tool depth campaign.");
+  if (!script.includes('data-track-event="free_tool_depth"')) failures.push("Missing download success free-tool depth event tracking.");
   if (!script.includes("Browse more free tools")) failures.push("Missing download success free-tool browse CTA.");
   if (!script.includes("Future ads must stay separated from generator controls")) failures.push("Missing download success ad-safety warning.");
   if (script.includes("Open $29 setup request")) failures.push("Download success CTA should not promote paid setup.");

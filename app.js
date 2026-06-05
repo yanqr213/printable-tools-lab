@@ -6356,7 +6356,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
         </div>
         <div class="seller-funnel-actions">
           <a class="button" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${auditHref}">Request free audit</a>
-          <a class="button secondary" href="${finderHref}">Browse more free tools</a>
+          <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${finderHref}">Browse more free tools</a>
           <p class="help">Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
         </div>
       </section>
@@ -7312,7 +7312,7 @@ ${paragraphs.join("\n")}
         </div>
         <div class="download-after-actions">
           <a class="button" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${escapeHtml(auditHref)}">Request free print audit</a>
-          <a class="button secondary" href="${escapeHtml(finderHref)}">Browse more free tools</a>
+          <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(finderHref)}">Browse more free tools</a>
         </div>
         <p class="help">Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
       </div>
@@ -11659,41 +11659,41 @@ ${paragraphs.join("\n")}
       const response = await fetch("/api/metrics", { cache: "no-store" });
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error("Metrics unavailable");
-      const sellerSignal = (row) => (row.seller_sample_download || 0) + (row.seller_checkout_intent || 0) + (row.seller_checkout_click || 0) + (row.service_request_intent || 0) + (row.audit_request_intent || 0);
+      const depthSignal = (row) => (row.free_tool_depth || 0) + (row.seller_sample_download || 0) + (row.seller_checkout_intent || 0) + (row.seller_checkout_click || 0) + (row.service_request_intent || 0) + (row.audit_request_intent || 0);
       const rows = (data.tools || []).slice().sort((a, b) => {
-        const bScore = ((b.download_pdf || 0) + (b.download_file || 0)) * 3 + sellerSignal(b) * 4 + (b.generate_pdf || 0) + (b.generate_file || 0);
-        const aScore = ((a.download_pdf || 0) + (a.download_file || 0)) * 3 + sellerSignal(a) * 4 + (a.generate_pdf || 0) + (a.generate_file || 0);
+        const bScore = ((b.download_pdf || 0) + (b.download_file || 0)) * 3 + depthSignal(b) * 4 + (b.generate_pdf || 0) + (b.generate_file || 0);
+        const aScore = ((a.download_pdf || 0) + (a.download_file || 0)) * 3 + depthSignal(a) * 4 + (a.generate_pdf || 0) + (a.generate_file || 0);
         return bScore - aScore || String(a.tool).localeCompare(String(b.tool));
       });
       const sourceRows = (data.sources || []).slice().sort((a, b) => {
-        const bScore = ((b.download_pdf || 0) + (b.download_file || 0)) * 3 + sellerSignal(b) * 4 + (b.generate_pdf || 0) + (b.generate_file || 0) + (b.page_view || 0);
-        const aScore = ((a.download_pdf || 0) + (a.download_file || 0)) * 3 + sellerSignal(a) * 4 + (a.generate_pdf || 0) + (a.generate_file || 0) + (a.page_view || 0);
+        const bScore = ((b.download_pdf || 0) + (b.download_file || 0)) * 3 + depthSignal(b) * 4 + (b.generate_pdf || 0) + (b.generate_file || 0) + (b.page_view || 0);
+        const aScore = ((a.download_pdf || 0) + (a.download_file || 0)) * 3 + depthSignal(a) * 4 + (a.generate_pdf || 0) + (a.generate_file || 0) + (a.page_view || 0);
         return bScore - aScore || String(a.source).localeCompare(String(b.source));
       });
-      const activeSourceRows = sourceRows.filter((row) => (row.page_view || 0) || (row.generate_pdf || 0) || (row.download_pdf || 0) || (row.generate_file || 0) || (row.download_file || 0) || sellerSignal(row));
-      const activeRows = rows.filter((row) => (row.download_pdf || 0) || (row.generate_pdf || 0) || (row.download_file || 0) || (row.generate_file || 0) || (row.limit_hit || 0) || sellerSignal(row));
+      const activeSourceRows = sourceRows.filter((row) => (row.page_view || 0) || (row.generate_pdf || 0) || (row.download_pdf || 0) || (row.generate_file || 0) || (row.download_file || 0) || depthSignal(row));
+      const activeRows = rows.filter((row) => (row.download_pdf || 0) || (row.generate_pdf || 0) || (row.download_file || 0) || (row.generate_file || 0) || (row.limit_hit || 0) || depthSignal(row));
       const displayRows = activeRows.length ? activeRows : rows;
       const totalGenerations = (data.totals.generate_pdf || 0) + (data.totals.generate_file || 0);
       const totalDownloads = (data.totals.download_pdf || 0) + (data.totals.download_file || 0);
-      const sellerIntent = sellerSignal(data.totals || {});
+      const depthIntent = depthSignal(data.totals || {});
       target.innerHTML = `
         <div class="metric-grid compact">
           <div class="metric-tile"><strong>${data.totals.page_view || 0}</strong><span>live page views</span></div>
           <div class="metric-tile"><strong>${totalGenerations}</strong><span>live generations</span></div>
           <div class="metric-tile"><strong>${totalDownloads}</strong><span>live downloads</span></div>
-          <div class="metric-tile"><strong>${sellerIntent}</strong><span>seller intent</span></div>
+          <div class="metric-tile"><strong>${depthIntent}</strong><span>depth signals</span></div>
         </div>
-        <p class="help">Rows are sorted by downloads, seller intent, and generation signal so the next monetization decision starts from actual usage.</p>
+        <p class="help">Rows are sorted by downloads, free-tool depth, and generation signal so the next monetization decision starts from actual usage.</p>
         <div class="preview-stage">
           <table class="event-table">
-            <thead><tr><th>Source</th><th>Views</th><th>Generations</th><th>Downloads</th><th>Seller intent</th></tr></thead>
-            <tbody>${(activeSourceRows.length ? activeSourceRows : sourceRows).map((row) => `<tr><td>${escapeHtml(row.source)}</td><td>${row.page_view || 0}</td><td>${(row.generate_pdf || 0) + (row.generate_file || 0)}</td><td>${(row.download_pdf || 0) + (row.download_file || 0)}</td><td>${sellerSignal(row)}</td></tr>`).join("")}</tbody>
+            <thead><tr><th>Source</th><th>Views</th><th>Generations</th><th>Downloads</th><th>Depth</th></tr></thead>
+            <tbody>${(activeSourceRows.length ? activeSourceRows : sourceRows).map((row) => `<tr><td>${escapeHtml(row.source)}</td><td>${row.page_view || 0}</td><td>${(row.generate_pdf || 0) + (row.generate_file || 0)}</td><td>${(row.download_pdf || 0) + (row.download_file || 0)}</td><td>${depthSignal(row)}</td></tr>`).join("")}</tbody>
           </table>
         </div>
         <div class="preview-stage">
           <table class="event-table">
-            <thead><tr><th>Tool</th><th>Downloads</th><th>Seller intent</th><th>Generations</th><th>Limit hits</th></tr></thead>
-            <tbody>${displayRows.map((row) => `<tr><td>${escapeHtml(row.tool)}</td><td>${(row.download_pdf || 0) + (row.download_file || 0)}</td><td>${sellerSignal(row)}</td><td>${(row.generate_pdf || 0) + (row.generate_file || 0)}</td><td>${row.limit_hit || 0}</td></tr>`).join("")}</tbody>
+            <thead><tr><th>Tool</th><th>Downloads</th><th>Depth</th><th>Generations</th><th>Limit hits</th></tr></thead>
+            <tbody>${displayRows.map((row) => `<tr><td>${escapeHtml(row.tool)}</td><td>${(row.download_pdf || 0) + (row.download_file || 0)}</td><td>${depthSignal(row)}</td><td>${(row.generate_pdf || 0) + (row.generate_file || 0)}</td><td>${row.limit_hit || 0}</td></tr>`).join("")}</tbody>
           </table>
         </div>
       `;
