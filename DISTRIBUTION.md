@@ -110,6 +110,12 @@ Rule: downloads stay free, ads are disabled until review, and future ads must ne
 - Compress Image to 200KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-200kb/
 - Compress Image to 300KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-300kb/
 - Compress Image to 500KB Without Uploading: https://printable-tools-lab.pages.dev/compress-image-to-500kb/
+- Compress JPG to 50KB Without Uploading: https://printable-tools-lab.pages.dev/compress-jpg-to-50kb/
+- Compress JPG to 100KB Without Uploading: https://printable-tools-lab.pages.dev/compress-jpg-to-100kb/
+- Compress JPG to 200KB Without Uploading: https://printable-tools-lab.pages.dev/compress-jpg-to-200kb/
+- Compress PNG to 50KB Without Uploading: https://printable-tools-lab.pages.dev/compress-png-to-50kb/
+- Compress PNG to 100KB Without Uploading: https://printable-tools-lab.pages.dev/compress-png-to-100kb/
+- Compress PNG to 200KB Without Uploading: https://printable-tools-lab.pages.dev/compress-png-to-200kb/
 - Passport Photo Compress to 50KB: https://printable-tools-lab.pages.dev/passport-photo-compress-to-50kb/
 - Passport Photo Compress to 100KB: https://printable-tools-lab.pages.dev/passport-photo-compress-to-100kb/
 - Passport Photo Compress to 200KB: https://printable-tools-lab.pages.dev/passport-photo-compress-to-200kb/

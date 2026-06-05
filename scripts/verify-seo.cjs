@@ -245,13 +245,32 @@ for (const pagePath of ["compress-image-to-10kb", "compress-image-to-20kb", "com
   if (!sitemap.includes(`<loc>${siteUrl(pagePath)}</loc>`)) failures.push(`Sitemap missing target-KB landing page: ${pagePath}`);
 }
 
+for (const [pagePath, formatLabel, target] of [
+  ["compress-jpg-to-50kb", "JPG", "50"],
+  ["compress-jpg-to-100kb", "JPG", "100"],
+  ["compress-jpg-to-200kb", "JPG", "200"],
+  ["compress-png-to-50kb", "PNG", "50"],
+  ["compress-png-to-100kb", "PNG", "100"],
+  ["compress-png-to-200kb", "PNG", "200"],
+]) {
+  const file = path.join(root, pagePath, "index.html");
+  if (!fs.existsSync(file)) {
+    failures.push(`Missing format target-KB landing page: ${pagePath}`);
+    continue;
+  }
+  const html = fs.readFileSync(file, "utf8");
+  if (!html.includes(`Compress ${formatLabel} to ${target}KB without uploading`)) failures.push(`Format target-KB page missing headline: ${pagePath}`);
+  if (!html.includes(`/tools/compress-image-to-kb/?targetKb=${target}`)) failures.push(`Format target-KB page missing prefilled tool link: ${pagePath}`);
+  if (!sitemap.includes(`<loc>${siteUrl(pagePath)}</loc>`)) failures.push(`Sitemap missing format target-KB page: ${pagePath}`);
+}
+
 const imageKbHubFile = path.join(root, "image-size-reducer-in-kb", "index.html");
 if (!fs.existsSync(imageKbHubFile)) failures.push("Missing image size reducer in KB hub page.");
 else {
   const html = fs.readFileSync(imageKbHubFile, "utf8");
   if (!html.includes("Image size reducer in KB without uploading")) failures.push("Image KB hub page missing headline.");
   if (!html.includes("/tools/compress-image-to-kb/")) failures.push("Image KB hub page missing image-to-KB tool link.");
-  for (const pagePath of ["compress-image-to-10kb", "compress-image-to-20kb", "compress-image-to-30kb", "compress-image-to-50kb", "compress-image-to-100kb", "compress-image-to-150kb", "compress-image-to-200kb", "compress-image-to-300kb", "compress-image-to-500kb", "passport-photo-compress-to-50kb", "passport-photo-compress-to-100kb", "passport-photo-compress-to-200kb"]) {
+  for (const pagePath of ["compress-image-to-10kb", "compress-image-to-20kb", "compress-image-to-30kb", "compress-image-to-50kb", "compress-image-to-100kb", "compress-image-to-150kb", "compress-image-to-200kb", "compress-image-to-300kb", "compress-image-to-500kb", "compress-jpg-to-50kb", "compress-jpg-to-100kb", "compress-jpg-to-200kb", "compress-png-to-50kb", "compress-png-to-100kb", "compress-png-to-200kb", "passport-photo-compress-to-50kb", "passport-photo-compress-to-100kb", "passport-photo-compress-to-200kb"]) {
     if (!html.includes(`/${pagePath}/`)) failures.push(`Image KB hub page missing target link: ${pagePath}`);
   }
   if (!sitemap.includes(`<loc>${siteUrl("image-size-reducer-in-kb")}</loc>`)) failures.push("Sitemap missing image KB hub page.");

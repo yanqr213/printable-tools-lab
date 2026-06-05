@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-05T19:51:45.479Z",
+  "generatedAt": "2026-06-05T19:56:45.926Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -50,6 +50,12 @@
     "https://printable-tools-lab.pages.dev/compress-image-to-200kb/",
     "https://printable-tools-lab.pages.dev/compress-image-to-300kb/",
     "https://printable-tools-lab.pages.dev/compress-image-to-500kb/",
+    "https://printable-tools-lab.pages.dev/compress-jpg-to-50kb/",
+    "https://printable-tools-lab.pages.dev/compress-jpg-to-100kb/",
+    "https://printable-tools-lab.pages.dev/compress-jpg-to-200kb/",
+    "https://printable-tools-lab.pages.dev/compress-png-to-50kb/",
+    "https://printable-tools-lab.pages.dev/compress-png-to-100kb/",
+    "https://printable-tools-lab.pages.dev/compress-png-to-200kb/",
     "https://printable-tools-lab.pages.dev/passport-photo-compress-to-50kb/",
     "https://printable-tools-lab.pages.dev/passport-photo-compress-to-100kb/",
     "https://printable-tools-lab.pages.dev/passport-photo-compress-to-200kb/",
@@ -450,6 +456,42 @@
       "url": "https://printable-tools-lab.pages.dev/compress-image-to-500kb/",
       "intent": "compress image to 500KB, reduce image file size, no upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=500"
+    },
+    {
+      "title": "Compress JPG to 50KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-jpg-to-50kb/",
+      "intent": "compress JPG to 50KB, reduce JPG file size, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=50"
+    },
+    {
+      "title": "Compress JPG to 100KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-jpg-to-100kb/",
+      "intent": "compress JPG to 100KB, JPG size reducer, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=100"
+    },
+    {
+      "title": "Compress JPG to 200KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-jpg-to-200kb/",
+      "intent": "compress JPG to 200KB, reduce JPG size, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=200"
+    },
+    {
+      "title": "Compress PNG to 50KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-png-to-50kb/",
+      "intent": "compress PNG to 50KB, reduce PNG size, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=50"
+    },
+    {
+      "title": "Compress PNG to 100KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-png-to-100kb/",
+      "intent": "compress PNG to 100KB, PNG size reducer, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=100"
+    },
+    {
+      "title": "Compress PNG to 200KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/compress-png-to-200kb/",
+      "intent": "compress PNG to 200KB, reduce PNG file size, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=200"
     },
     {
       "title": "Passport Photo Compress to 50KB",
