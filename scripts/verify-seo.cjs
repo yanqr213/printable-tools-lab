@@ -28,6 +28,8 @@ function requireGithubPagesIntentTracking(html, label, events = []) {
 
 function requireUploadLimitShortcuts(html, label) {
   if (!html.includes("Fast upload limit shortcuts")) failures.push(`${label} missing upload limit shortcut section.`);
+  if (!html.includes("Upload message") || !html.includes("PDF must be under 1MB") || !html.includes("Wrong image dimensions")) failures.push(`${label} missing upload limit decision table.`);
+  if (!html.includes('data-track-event="free_tool_depth"')) failures.push(`${label} missing upload limit depth tracking.`);
   for (const pathName of UPLOAD_LIMIT_SHORTCUT_PATHS) {
     if (!html.includes(pathName)) failures.push(`${label} missing upload limit shortcut: ${pathName}`);
   }

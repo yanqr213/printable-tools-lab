@@ -1909,6 +1909,19 @@ const UPLOAD_LIMIT_SHORTCUTS = [
   ["Passport photo size fixer", "/passport-photo-size-fixer/", "Crop, resize, and compress ID-style photos for dimension and file-size rules."],
 ];
 
+const UPLOAD_LIMIT_DECISIONS = [
+  ["PDF must be under 1MB", "/tools/compress-pdf/?targetSize=1mb", "Compress PDF", "Use the PDF compressor with the 1MB target for job, school, email, and admin portals."],
+  ["PDF must be under 500KB", "/tools/compress-pdf/?targetSize=500kb", "Compress PDF", "Use the strict 500KB target for forms and exam-style upload limits."],
+  ["Photo or image must be under 100KB", "/tools/compress-image-to-kb/?targetKb=100", "Compress image to KB", "Use the image-to-KB compressor when the site names a fixed photo or image file-size limit."],
+  ["JPG must be under 100KB", "/tools/compress-image-to-kb/?targetKb=100", "Compress JPG", "Start with the 100KB target and export a smaller JPG or WebP copy locally."],
+  ["PNG screenshot is too large", "/tools/compress-image-to-kb/?targetKb=100", "Compress PNG", "Use this when a support form, portal, or profile page accepts PNG but rejects the screenshot size."],
+  ["Wrong file type: needs JPG or PNG", "/tools/convert-image/", "Convert image", "Convert JPG, PNG, or WebP locally when the upload form rejects the current image type."],
+  ["Wrong image dimensions", "/tools/resize-image/", "Resize image", "Resize first when the portal gives width, height, square, thumbnail, or profile-photo dimensions."],
+  ["Passport or ID photo rejected", "/passport-photo-size-fixer/", "Fix passport photo", "Crop, resize, and compress ID-style photos when both dimensions and KB limits matter."],
+  ["Website accepts image but rejects PDF", "/tools/pdf-to-images/", "PDF to JPG", "Convert PDF pages to JPG or PNG when a form wants image files instead of a PDF."],
+  ["Website accepts PDF but I only have photos", "/tools/image-to-pdf/", "Image to PDF", "Turn a photo, scan, screenshot, or receipt image into a PDF locally."],
+];
+
 const SHARE_KIT_RULES = [
   "Post only where free tools or file utilities are relevant to the community.",
   "Do not ask for ad interactions, ad impressions, upvotes, or artificial engagement.",
@@ -7058,8 +7071,14 @@ function uploadLimitShortcutsHtml(title = "Fast upload limit shortcuts", text = 
       <section class="shell section">
         <h2>${escapeHtml(title)}</h2>
         <p>${escapeHtml(text)}</p>
+        <table class="event-table">
+          <thead><tr><th>Upload message</th><th>Open</th><th>Why</th></tr></thead>
+          <tbody>
+            ${UPLOAD_LIMIT_DECISIONS.map(([message, href, label, why]) => `<tr><td>${escapeHtml(message)}</td><td><a href="${escapeHtml(href)}" data-track-event="free_tool_depth" data-track-tool="site">${escapeHtml(label)}</a></td><td>${escapeHtml(why)}</td></tr>`).join("\n")}
+          </tbody>
+        </table>
         <div class="grid-3">
-          ${UPLOAD_LIMIT_SHORTCUTS.map(([label, href, description]) => `<article class="tool-card"><h3>${escapeHtml(label)}</h3><p>${escapeHtml(description)}</p><a class="button" href="${escapeHtml(href)}">Open fixer</a></article>`).join("\n")}
+          ${UPLOAD_LIMIT_SHORTCUTS.map(([label, href, description]) => `<article class="tool-card"><h3>${escapeHtml(label)}</h3><p>${escapeHtml(description)}</p><a class="button" data-track-event="free_tool_depth" data-track-tool="site" href="${escapeHtml(href)}">Open fixer</a></article>`).join("\n")}
         </div>
       </section>`;
 }
