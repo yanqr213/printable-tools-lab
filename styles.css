@@ -637,6 +637,74 @@ canvas.preview-canvas {
   margin-bottom: 3px;
 }
 
+.upload-limit-matcher {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr);
+  gap: 16px;
+  align-items: stretch;
+  margin: 20px 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.upload-limit-message-field textarea {
+  min-height: 150px;
+}
+
+.upload-limit-recommendation {
+  display: grid;
+  gap: 12px;
+}
+
+.upload-match-card {
+  display: grid;
+  gap: 10px;
+  min-height: 150px;
+  padding: 14px;
+  border: 1px solid rgba(23, 107, 135, 0.22);
+  border-radius: 8px;
+  background: var(--soft);
+}
+
+.upload-match-card h3,
+.upload-match-card p {
+  margin: 0;
+}
+
+.upload-match-card p {
+  color: var(--muted);
+}
+
+.upload-match-card .button {
+  justify-self: start;
+  align-self: end;
+}
+
+.upload-limit-examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.upload-limit-examples button {
+  min-height: 34px;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--teal-dark);
+  cursor: pointer;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.upload-limit-examples button:hover {
+  border-color: var(--teal);
+  background: var(--soft);
+}
+
 .download-after-action {
   display: grid;
   gap: 10px;
@@ -931,6 +999,10 @@ canvas.preview-canvas {
 
   .seller-funnel-actions .help {
     text-align: left;
+  }
+
+  .upload-limit-matcher {
+    grid-template-columns: 1fr;
   }
 
   .tool-form {

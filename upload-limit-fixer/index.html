@@ -82,6 +82,29 @@
       <section class="shell section">
         <h2>Fast upload limit shortcuts</h2>
         <p>If the error message names a file size, start with the matching target page instead of browsing every tool.</p>
+        <div class="upload-limit-matcher" data-upload-limit-helper>
+          <label class="field upload-limit-message-field">
+            <span>Upload error text</span>
+            <textarea data-upload-limit-input placeholder="PDF must be less than 1 MB"></textarea>
+            <span class="help">Local text match only. The pasted message is not sent to the server.</span>
+          </label>
+          <div class="upload-limit-recommendation">
+            <div data-upload-limit-result>
+              <article class="upload-match-card">
+                <span class="tag">Common match</span>
+                <h3>PDF under 1MB</h3>
+                <p>Starts the compressor with the 1MB target already selected.</p>
+                <a class="button" href="/tools/compress-pdf/?targetSize=1mb" data-track-event="free_tool_depth" data-track-tool="compress-pdf">Open PDF compressor</a>
+              </article>
+            </div>
+            <div class="upload-limit-examples" aria-label="Common upload errors">
+              <button type="button" data-upload-limit-example="PDF must be less than 1 MB">PDF must be less than 1 MB</button>
+<button type="button" data-upload-limit-example="Photo must be under 100 KB">Photo must be under 100 KB</button>
+<button type="button" data-upload-limit-example="Invalid file type. Please upload JPG or PNG">Invalid file type. Please upload JPG or PNG</button>
+<button type="button" data-upload-limit-example="Image dimensions must be 600 x 600 px">Image dimensions must be 600 x 600 px</button>
+            </div>
+          </div>
+        </div>
         <table class="event-table">
           <thead><tr><th>Upload message</th><th>Open</th><th>Why</th></tr></thead>
           <tbody>

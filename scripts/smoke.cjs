@@ -273,8 +273,19 @@ function delay(ms) {
 
   await page.goto(`${base}/upload-limit-fixer/`, { waitUntil: "networkidle" });
   const uploadLimitText = await page.locator("main").innerText();
-  for (const phrase of ["Upload message", "PDF must be under 1MB", "Photo or image must be under 100KB"]) {
+  for (const phrase of ["Upload error text", "Local text match only", "Upload message", "PDF must be under 1MB", "Photo or image must be under 100KB"]) {
     if (!uploadLimitText.includes(phrase)) throw new Error(`Upload limit fixer is missing ${phrase}`);
+  }
+  const matcherCases = [
+    ["PDF must be less than 1 MB", "/tools/compress-pdf/?targetSize=1mb", "compress-pdf"],
+    ["Photo must be under 100 KB", "/tools/compress-image-to-kb/?targetKb=100", "compress-image-to-kb"],
+    ["Image dimensions must be 600 x 600 px", "/tools/resize-image/", "resize-image"],
+    ["Invalid file type. Please upload JPG or PNG", "/tools/convert-image/", "convert-image"],
+  ];
+  for (const [message, expectedHref, expectedTool] of matcherCases) {
+    await page.fill("[data-upload-limit-input]", message);
+    const recommendation = page.locator(`[data-upload-limit-result] a[href="${expectedHref}"][data-track-tool="${expectedTool}"]`);
+    if (!(await recommendation.count())) throw new Error(`Upload limit matcher did not recommend ${expectedHref} for ${message}`);
   }
   const uploadLimitRoutes = [
     ["/tools/compress-pdf/?targetSize=1mb", "#targetSize", "1mb"],

@@ -2049,6 +2049,20 @@
     ["Website accepts image but rejects PDF", "/tools/pdf-to-images/", "PDF to JPG", "Convert PDF pages to JPG or PNG when a form wants image files instead of a PDF.", "pdf-to-images"],
     ["Website accepts PDF but I only have photos", "/tools/image-to-pdf/", "Image to PDF", "Turn a photo, scan, screenshot, or receipt image into a PDF locally.", "image-to-pdf"],
   ];
+  const uploadLimitMatcherDefault = {
+    badge: "Common match",
+    title: "PDF under 1MB",
+    href: "/tools/compress-pdf/?targetSize=1mb",
+    label: "Open PDF compressor",
+    why: "Starts the compressor with the 1MB target already selected.",
+    trackTool: "compress-pdf",
+  };
+  const uploadLimitMatcherExamples = [
+    "PDF must be less than 1 MB",
+    "Photo must be under 100 KB",
+    "Invalid file type. Please upload JPG or PNG",
+    "Image dimensions must be 600 x 600 px",
+  ];
 
   const landingPages = [
     {
@@ -4831,6 +4845,7 @@
     app.focus({ preventScroll: true });
     setTimeout(initAuditRequestBuilders, 0);
     setTimeout(initServiceRequestCopies, 0);
+    setTimeout(initUploadLimitHelpers, 0);
     setTimeout(pushVisibleAds, 0);
   }
 
@@ -6066,6 +6081,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
       <section class="shell section">
         <h2>${escapeHtml(title)}</h2>
         <p>${escapeHtml(text)}</p>
+        ${renderUploadLimitMatcher()}
         <table class="event-table">
           <thead><tr><th>Upload message</th><th>Open</th><th>Why</th></tr></thead>
           <tbody>
@@ -6077,6 +6093,34 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
         </div>
       </section>
     `;
+  }
+
+  function renderUploadLimitMatcher() {
+    return `<div class="upload-limit-matcher" data-upload-limit-helper>
+          <label class="field upload-limit-message-field">
+            <span>Upload error text</span>
+            <textarea data-upload-limit-input placeholder="PDF must be less than 1 MB"></textarea>
+            <span class="help">Local text match only. The pasted message is not sent to the server.</span>
+          </label>
+          <div class="upload-limit-recommendation">
+            <div data-upload-limit-result>
+              ${renderUploadLimitRecommendation(uploadLimitMatcherDefault)}
+            </div>
+            <div class="upload-limit-examples" aria-label="Common upload errors">
+              ${uploadLimitMatcherExamples.map((example) => `<button type="button" data-upload-limit-example="${escapeHtml(example)}">${escapeHtml(example)}</button>`).join("")}
+            </div>
+          </div>
+        </div>
+    `;
+  }
+
+  function renderUploadLimitRecommendation(match) {
+    return `<article class="upload-match-card">
+                <span class="tag">${escapeHtml(match.badge)}</span>
+                <h3>${escapeHtml(match.title)}</h3>
+                <p>${escapeHtml(match.why)}</p>
+                <a class="button" href="${escapeHtml(match.href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(match.trackTool)}">${escapeHtml(match.label)}</a>
+              </article>`;
   }
 
   function renderTool(id) {
@@ -12010,6 +12054,85 @@ ${paragraphs.join("\n")}
         }
       });
     });
+  }
+
+  function initUploadLimitHelpers(root = document) {
+    root.querySelectorAll("[data-upload-limit-helper]").forEach((helper) => {
+      if (helper.dataset.uploadLimitReady === "true") return;
+      helper.dataset.uploadLimitReady = "true";
+      const input = helper.querySelector("[data-upload-limit-input]");
+      const result = helper.querySelector("[data-upload-limit-result]");
+      const update = () => {
+        if (!result) return;
+        result.innerHTML = renderUploadLimitRecommendation(matchUploadLimitMessage(input ? input.value : ""));
+      };
+      if (input) {
+        input.addEventListener("input", update);
+        input.addEventListener("change", update);
+      }
+      helper.querySelectorAll("[data-upload-limit-example]").forEach((button) => {
+        button.addEventListener("click", () => {
+          if (!input) return;
+          input.value = button.dataset.uploadLimitExample || "";
+          update();
+          input.focus();
+        });
+      });
+      update();
+    });
+  }
+
+  function matchUploadLimitMessage(message) {
+    const normalized = String(message || "").toLowerCase().replace(/,/g, "").replace(/\s+/g, " ");
+    const hasPdf = /\bpdf\b/.test(normalized);
+    const hasImage = /\b(image|photo|picture|jpg|jpeg|png|webp|screenshot|avatar|profile|passport|id photo)\b/.test(normalized);
+    const hasJpgPng = /\b(jpg|jpeg|png)\b/.test(normalized);
+    const hasDimension = /\b(dimension|dimensions|pixel|pixels|px|width|height|resolution|resize|crop|square)\b/.test(normalized) || /\d{2,5}\s*(x|by|\*)\s*\d{2,5}/.test(normalized);
+    const needsPdf = /\b(pdf only|pdf required|upload pdf|accepts pdf|must be pdf|as pdf)\b/.test(normalized);
+    const rejectsPdfForImage = hasPdf && /\b(jpg|jpeg|png|image|photo)\b/.test(normalized) && /\b(need|needs|required|only|accepted|accepts|upload)\b/.test(normalized);
+    const size = parseUploadLimitSize(normalized);
+
+    if (hasPdf && size) {
+      if (size.unit === "mb") {
+        if (size.value <= 0.6) return uploadLimitMatch("PDF under 500KB", "/tools/compress-pdf/?targetSize=500kb", "Open PDF compressor", "Uses the strict 500KB PDF target for small portal limits.", "compress-pdf");
+        if (size.value <= 1.2) return uploadLimitMatch("PDF under 1MB", "/tools/compress-pdf/?targetSize=1mb", "Open PDF compressor", "Uses the 1MB PDF target already selected.", "compress-pdf");
+        if (size.value <= 2.2) return uploadLimitMatch("PDF under 2MB", "/tools/compress-pdf/?targetSize=2mb", "Open PDF compressor", "Uses the 2MB PDF target for larger application and email limits.", "compress-pdf");
+        return uploadLimitMatch("PDF under 5MB", "/tools/compress-pdf/?targetSize=5mb", "Open PDF compressor", "Uses the 5MB PDF target for broad upload caps.", "compress-pdf");
+      }
+      return uploadLimitMatch(`PDF under ${size.value}KB`, `/tools/compress-pdf/?targetSize=${size.value <= 500 ? "500kb" : "1mb"}`, "Open PDF compressor", "Starts with the closest built-in PDF target. Review the result before uploading.", "compress-pdf");
+    }
+
+    if (hasImage && size) {
+      const targetKb = size.unit === "mb" ? Math.min(5000, Math.round(size.value * 1024)) : size.value;
+      return uploadLimitMatch(`Image under ${targetKb}KB`, `/tools/compress-image-to-kb/?targetKb=${targetKb}`, "Open image compressor", "Starts the image-to-KB compressor with the target from the error message.", "compress-image-to-kb");
+    }
+
+    if (hasDimension) return uploadLimitMatch("Wrong image dimensions", "/tools/resize-image/", "Open image resizer", "Resize or crop first when the portal names width, height, pixels, or a square photo rule.", "resize-image");
+    if (rejectsPdfForImage) return uploadLimitMatch("PDF rejected, image required", "/tools/pdf-to-images/", "Convert PDF to images", "Turn PDF pages into JPG or PNG files when the form asks for image uploads.", "pdf-to-images");
+    if (needsPdf && hasImage) return uploadLimitMatch("Photos need to become PDF", "/tools/image-to-pdf/", "Convert image to PDF", "Turn one or more photos, scans, or screenshots into a PDF locally.", "image-to-pdf");
+    if (hasJpgPng || /\b(file type|format|invalid type|unsupported type|convert)\b/.test(normalized)) return uploadLimitMatch("Wrong file type", "/tools/convert-image/", "Open image converter", "Convert JPG, PNG, or WebP locally when the upload form rejects the current type.", "convert-image");
+    if (/\b(passport|visa|id photo|profile photo)\b/.test(normalized)) return uploadLimitMatch("Passport or ID photo rejected", "/passport-photo-size-fixer/", "Open passport photo fixer", "Crop, resize, and compress ID-style photos when size and dimensions both matter.", "passport-photo");
+    return uploadLimitMatcherDefault;
+  }
+
+  function parseUploadLimitSize(text) {
+    const match = String(text || "").match(/(\d+(?:\.\d+)?)\s*(kb|k|kilobytes?|mb|m|megabytes?)/i);
+    if (!match) return null;
+    const value = Number(match[1]);
+    if (!Number.isFinite(value) || value <= 0) return null;
+    const unit = match[2].toLowerCase().startsWith("m") ? "mb" : "kb";
+    return { value: Math.round(value * 10) / 10, unit };
+  }
+
+  function uploadLimitMatch(title, href, label, why, trackTool) {
+    return {
+      badge: "Best match",
+      title,
+      href,
+      label,
+      why,
+      trackTool,
+    };
   }
 
   function escapeHtml(value) {

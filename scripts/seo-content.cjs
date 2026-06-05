@@ -1922,6 +1922,22 @@ const UPLOAD_LIMIT_DECISIONS = [
   ["Website accepts PDF but I only have photos", "/tools/image-to-pdf/", "Image to PDF", "Turn a photo, scan, screenshot, or receipt image into a PDF locally.", "image-to-pdf"],
 ];
 
+const UPLOAD_LIMIT_MATCHER_DEFAULT = {
+  badge: "Common match",
+  title: "PDF under 1MB",
+  href: "/tools/compress-pdf/?targetSize=1mb",
+  label: "Open PDF compressor",
+  why: "Starts the compressor with the 1MB target already selected.",
+  trackTool: "compress-pdf",
+};
+
+const UPLOAD_LIMIT_MATCHER_EXAMPLES = [
+  "PDF must be less than 1 MB",
+  "Photo must be under 100 KB",
+  "Invalid file type. Please upload JPG or PNG",
+  "Image dimensions must be 600 x 600 px",
+];
+
 const SHARE_KIT_RULES = [
   "Post only where free tools or file utilities are relevant to the community.",
   "Do not ask for ad interactions, ad impressions, upvotes, or artificial engagement.",
@@ -7071,6 +7087,7 @@ function uploadLimitShortcutsHtml(title = "Fast upload limit shortcuts", text = 
       <section class="shell section">
         <h2>${escapeHtml(title)}</h2>
         <p>${escapeHtml(text)}</p>
+        ${uploadLimitMatcherHtml()}
         <table class="event-table">
           <thead><tr><th>Upload message</th><th>Open</th><th>Why</th></tr></thead>
           <tbody>
@@ -7081,6 +7098,33 @@ function uploadLimitShortcutsHtml(title = "Fast upload limit shortcuts", text = 
           ${UPLOAD_LIMIT_SHORTCUTS.map(([label, href, description, trackTool]) => `<article class="tool-card"><h3>${escapeHtml(label)}</h3><p>${escapeHtml(description)}</p><a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(trackTool)}" href="${escapeHtml(href)}">Open fixer</a></article>`).join("\n")}
         </div>
       </section>`;
+}
+
+function uploadLimitMatcherHtml() {
+  return `<div class="upload-limit-matcher" data-upload-limit-helper>
+          <label class="field upload-limit-message-field">
+            <span>Upload error text</span>
+            <textarea data-upload-limit-input placeholder="PDF must be less than 1 MB"></textarea>
+            <span class="help">Local text match only. The pasted message is not sent to the server.</span>
+          </label>
+          <div class="upload-limit-recommendation">
+            <div data-upload-limit-result>
+              ${uploadLimitRecommendationHtml(UPLOAD_LIMIT_MATCHER_DEFAULT)}
+            </div>
+            <div class="upload-limit-examples" aria-label="Common upload errors">
+              ${UPLOAD_LIMIT_MATCHER_EXAMPLES.map((example) => `<button type="button" data-upload-limit-example="${escapeHtml(example)}">${escapeHtml(example)}</button>`).join("\n")}
+            </div>
+          </div>
+        </div>`;
+}
+
+function uploadLimitRecommendationHtml(match) {
+  return `<article class="upload-match-card">
+                <span class="tag">${escapeHtml(match.badge)}</span>
+                <h3>${escapeHtml(match.title)}</h3>
+                <p>${escapeHtml(match.why)}</p>
+                <a class="button" href="${escapeHtml(match.href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(match.trackTool)}">${escapeHtml(match.label)}</a>
+              </article>`;
 }
 
 function relatedGuideLinks(toolPath) {
