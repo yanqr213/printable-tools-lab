@@ -92,7 +92,7 @@ async function main() {
   const directoryMetrics = await (await metricsSource.onRequestGet({ env })).json();
   const noSubscription = directoryMetrics.sources.find((row) => row.source === "nosubscription");
   assert(noSubscription.page_view === 1, "Metrics should count NoSubscription directory aliases");
-  for (const source of ["nologin", "share-kit", "short-video", "github-issue", "gist"]) {
+  for (const source of ["techtools", "nologin", "share-kit", "short-video", "github-issue", "gist"]) {
     assert(directoryMetrics.sources.some((row) => row.source === source), `Metrics should include ${source} source row`);
   }
 

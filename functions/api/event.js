@@ -28,6 +28,7 @@ const ALLOWED_SOURCES = new Set([
   "gist",
   "zearches",
   "listai",
+  "techtools",
   "nosignuptools",
   "freenosignup",
   "nologin",

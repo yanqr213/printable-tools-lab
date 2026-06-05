@@ -29,6 +29,7 @@
     "gist",
     "zearches",
     "listai",
+    "techtools",
     "nosignuptools",
     "freenosignup",
     "nologin",
@@ -12112,6 +12113,7 @@ ${paragraphs.join("\n")}
       if (host.includes("github.com")) return "github";
       if (host.includes("zearches.com")) return "zearches";
       if (host.includes("listai.cc")) return "listai";
+      if (host.includes("techtools.cz")) return "techtools";
       if (host.includes("nosignuptools.com")) return "nosignuptools";
       if (host.includes("freenosignup.com")) return "freenosignup";
       if (host.includes("nologin.tools")) return "nologin";

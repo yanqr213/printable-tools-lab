@@ -15,8 +15,9 @@ async function main() {
   const live = await readLiveState();
   const searchConsole = readSearchConsoleState();
   const discovery = await readDiscoveryState();
-  const gates = evaluateGates(local, live, searchConsole, discovery);
-  const nextActions = buildNextActions(gates, local, live, searchConsole, discovery);
+  const directories = readDirectoryMonitorState();
+  const gates = evaluateGates(local, live, searchConsole, discovery, directories);
+  const nextActions = buildNextActions(gates, local, live, searchConsole, discovery, directories);
   const report = {
     generatedAt: new Date().toISOString(),
     siteUrl: `${siteBase}/`,
@@ -24,6 +25,7 @@ async function main() {
     live,
     searchConsole,
     discovery,
+    directories,
     gates,
     nextActions,
   };
@@ -363,7 +365,7 @@ function runSearchConsole(args, env) {
   }
 }
 
-function evaluateGates(local, live, searchConsole, discovery) {
+function evaluateGates(local, live, searchConsole, discovery, directories = null) {
   const totals = live.metrics?.totals || {};
   const performanceTotals = searchConsole.performance?.totals || {};
   const sitemap = Array.isArray(searchConsole.sitemaps?.sitemap) ? searchConsole.sitemaps.sitemap[0] : null;
@@ -403,7 +405,7 @@ function evaluateGates(local, live, searchConsole, discovery) {
       productReady: productReady ? [`${local.toolCount} tools, ${local.guideCount} guides, ${local.landingPageCount} high-intent landing pages, sitemap, discovery assets, and live metrics are present.`] : missingProductReasons(local, live),
       adsenseApplyReady: adsenseApplyReady ? ["Product is ready, a custom domain is configured, Search Console has visibility, and a real publisher ID is configured."] : missingAdsenseReasons(local, searchConsole, searchVisible),
       searchConsole: summarizeSearchConsoleReasons(searchConsole, sitemap, githubPagesSitemap, unknown, { mainSearchConsoleVerified, githubPagesSearchConsoleVerified }),
-      externalDiscovery: summarizeDiscoveryReasons(discovery),
+      externalDiscovery: summarizeDiscoveryReasons(discovery, directories),
     },
   };
 }
@@ -453,7 +455,7 @@ function summarizeSearchConsoleReasons(searchConsole, sitemap, githubPagesSitema
   return reasons.length ? reasons : ["Search Console calls completed without notable warnings."];
 }
 
-function summarizeDiscoveryReasons(discovery) {
+function summarizeDiscoveryReasons(discovery, directories = null) {
   const reasons = [];
   if (discovery.github.available) {
     reasons.push(`GitHub repo has ${discovery.github.topics.length} topic(s) and homepage ${discovery.github.homepage || "missing"}.`);
@@ -468,17 +470,19 @@ function summarizeDiscoveryReasons(discovery) {
   else reasons.push("IndexNow key file is not reachable or does not match the configured key.");
   if (discovery.indexNow.singleUrlAccepted) reasons.push("Bing IndexNow single-URL notification accepts the key.");
   if (discovery.indexNow.acceptedUrlCount > 0) reasons.push(`IndexNow latest report accepted ${discovery.indexNow.acceptedUrlCount} URL(s) for ${discovery.indexNow.acceptedTargets.join(", ")}.`);
+  if (directories) reasons.push(`Directory monitor shows ${directories.listedCount} listed, ${directories.pendingCount} pending, and ${directories.errorCount} error directory target(s).`);
   return reasons;
 }
 
-function buildNextActions(gates, local, live, searchConsole, discovery) {
+function buildNextActions(gates, local, live, searchConsole, discovery, directories = null) {
   const totals = live.metrics?.totals || {};
   const downloads = totalDownloads(totals);
   const generations = totalGenerations(totals);
   const depthIntent = freeToolDepthIntent(totals);
   const actions = [];
   if (!gates.productReady) actions.push("Fix product readiness failures before adding more tools.");
-  if (!gates.searchVisible) actions.push("Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.");
+  if (!gates.searchVisible && (directories?.listedCount || 0) < 2) actions.push("Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.");
+  else if (!gates.searchVisible) actions.push("Watch the newly listed directories for real referrals and depth events before adding another same-category submission.");
   if (!discovery.github.discoveryRelease?.url) actions.push("Create or refresh the GitHub discovery release with high-intent tool links.");
   if (!discovery.indexNow.keyFileReachable) actions.push("Fix IndexNow key verification or keep it documented as a non-Google fallback.");
   if (!local.customDomainConfigured) actions.push("Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.");
@@ -533,7 +537,7 @@ function renderValidationMarkdown(report) {
     "",
     "## External Discovery Gate",
     "",
-    ...report.gates.reasons.externalDiscovery.map((reason) => `- ${reason}`),
+    ...summarizeDiscoveryReasons(report.discovery, report.directories).map((reason) => `- ${reason}`),
     "",
     "## Monetization Gate",
     "",
@@ -641,6 +645,36 @@ function readJson(file, fallback) {
   } catch {
     return fallback;
   }
+}
+
+function readDirectoryMonitorState() {
+  const fallback = {
+    available: false,
+    listedCount: 0,
+    pendingCount: 0,
+    errorCount: 0,
+    listed: [],
+    pending: [],
+    errors: [],
+  };
+  const report = readJson(path.join("reports", "directory-monitor.json"), null);
+  if (!report || !Array.isArray(report.results)) return fallback;
+  const byStatus = (status) => report.results
+    .filter((item) => item.status === status)
+    .map((item) => ({
+      name: item.name,
+      evidenceUrl: item.evidenceUrl || item.url || "",
+    }));
+  return {
+    available: true,
+    generatedAt: report.generatedAt || null,
+    listedCount: Number(report.listedCount) || 0,
+    pendingCount: Number(report.pendingCount) || 0,
+    errorCount: Number(report.errorCount) || 0,
+    listed: byStatus("listed"),
+    pending: byStatus("pending"),
+    errors: byStatus("error"),
+  };
 }
 
 function readString(source, key) {

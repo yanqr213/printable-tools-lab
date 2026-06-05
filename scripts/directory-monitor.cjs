@@ -24,6 +24,14 @@ const directories = [
     reviewWindow: "24-48 hours",
   },
   {
+    name: "TechTools Launchpad",
+    url: "https://techtools.cz/tools/launchpad/",
+    searchUrl: "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
+    expected: [siteHost, "PrintableTools Lab"],
+    submittedAt: "2026-06-06",
+    reviewWindow: "auto-approved API listing",
+  },
+  {
     name: "NoSignupTools",
     url: "https://nosignuptools.com/",
     searchUrl: "https://nosignuptools.com/?q=PrintableTools+Lab",
@@ -135,11 +143,15 @@ async function checkJsOrg(directory) {
     && body.includes("- [x] I have read and accepted")
     && body.includes("https://printable-tools-lab.pages.dev/")
     && body.includes("relevant to JavaScript developers") : null;
+  const pageShowsClosedOrRejected = /unrelated\s*\/\s*unqualified/i.test(page.text || "")
+    || /State:\s*Closed/i.test(page.text || "")
+    || /status:\s*closed/i.test(page.text || "");
   const latestChecks = checksAvailable ? latestCheckRuns(checks.json?.check_runs || []) : [];
   const checksOk = checksAvailable ? latestChecks.length > 0 && latestChecks.every((check) => check.conclusion === "success") : null;
   let status = "pending";
   if (apiAvailable && api.json?.merged) status = "listed";
   else if (apiAvailable && api.json?.state === "closed") status = "error";
+  else if (page.ok && pageShowsClosedOrRejected) status = "error";
   else if (apiAvailable && templateOk === false) status = "error";
   else if (checksAvailable && latestChecks.some((check) => check.conclusion === "failure")) status = "error";
   else if (!page.ok || !pageHasExpectedText) status = "error";

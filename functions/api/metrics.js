@@ -82,6 +82,7 @@ const SOURCES = [
   "gist",
   "zearches",
   "listai",
+  "techtools",
   "nosignuptools",
   "freenosignup",
   "nologin",

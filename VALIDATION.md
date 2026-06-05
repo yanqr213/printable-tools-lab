@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-05T23:33:53.566Z
+Last generated: 2026-06-05T23:47:20.554Z
 
 ## Current Automated Status
 
@@ -31,12 +31,13 @@ Last generated: 2026-06-05T23:33:53.566Z
 
 ## External Discovery Gate
 
-- GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.
+- GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.
 - GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.
 - GitHub Pages discovery directory is live with 92 landing page link(s), 66 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).
 - GitHub Pages discovery sitemap has 263 URL(s), including 66 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 263.
 - IndexNow key file is reachable from the site root.
 - IndexNow latest report accepted 263 URL(s) for github-pages.
+- Directory monitor shows 2 listed, 5 pending, and 1 error directory target(s).
 
 ## Monetization Gate
 
@@ -53,7 +54,7 @@ Last generated: 2026-06-05T23:33:53.566Z
 
 ## Next Actions
 
-- Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.
+- Watch the newly listed directories for real referrals and depth events before adding another same-category submission.
 - Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.
 - When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.
 - Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.
