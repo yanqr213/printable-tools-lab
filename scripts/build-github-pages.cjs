@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, serviceOrderPipeline, serviceOutreachQueue, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, siteUrl, tools, landingPages } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, serviceOrderPipeline, serviceOutreachQueue, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, siteUrl, tools, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
@@ -76,6 +76,13 @@ const discoveryRoutes = [
     mainUrl: siteUrl(SERVICE_SALES_PACK.slug),
   },
   {
+    path: "organic-push-kit",
+    title: "Organic push kit",
+    description: "GitHub Pages mirror for copy-ready low-risk organic distribution tasks, tracked links, and success signals for free-tool traffic before display ads.",
+    url: pagesUrl("organic-push-kit"),
+    mainUrl: siteUrl("organic-push-kit"),
+  },
+  {
     path: "upload-error-cheatsheet",
     title: "Upload error cheatsheet",
     description: "GitHub Pages mirror for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup fixes.",
@@ -145,6 +152,7 @@ const html = `<!doctype html>
       <ul>
         <li><a href="${trackedSiteUrl("pdf-tool-finder", "finder")}">File tool finder</a> for choosing between tools such as compress vs resize, invoice vs receipt, or one image vs multi-image PDF.</li>
         <li><a href="${trackedSiteUrl("upload-limit-fixer", "upload-limit-fixer")}">Upload limit fixer</a> for choosing the right no-upload tool when a website rejects a file by size, format, or dimensions.</li>
+        <li><a href="${pagesUrl("organic-push-kit")}">Organic push kit mirror</a> for copy-ready, low-risk free-tool distribution tasks with tracked links and success signals.</li>
         <li><a href="${pagesUrl("upload-error-cheatsheet")}">Upload error cheatsheet mirror</a> for exact PDF, image, resume, and email attachment rejection messages with direct fixes.</li>
         <li><a href="${trackedSiteUrl("tools", "all-tools")}">All free generators</a> for browsing every tool.</li>
         <li><a href="${trackedSiteUrl("guides", "guides")}">Printable guides</a> for original help pages around PDF, image, QR, and printable workflows.</li>
@@ -199,6 +207,7 @@ copyPaidServicePublicAssets();
 writeAuditLeadMagnetDiscoveryPage();
 copyAuditLeadMagnetPublicAssets();
 writeServiceSalesPackDiscoveryPage();
+writeOrganicPushKitDiscoveryPage();
 writeUploadErrorCheatsheetDiscoveryPage();
 writeGameDiscoveryPages();
 
@@ -241,9 +250,11 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
   paidServices: PAID_SERVICES.map(serviceFeedEntry),
   leadMagnets: [auditLeadMagnetEntry()],
   serviceSalesPack: serviceSalesPackEntry(),
+  organicPushKit: organicPushKitEntry(),
   uploadErrorCheatsheet: uploadErrorCheatsheetEntry(),
 }, null, 2)}\n`);
 
+fs.writeFileSync(path.join(docsDir, "organic-push-kit.json"), `${JSON.stringify(organicPushKitEntry(), null, 2)}\n`);
 fs.writeFileSync(path.join(docsDir, "upload-error-cheatsheet.json"), `${JSON.stringify(uploadErrorCheatsheetEntry(), null, 2)}\n`);
 
 fs.writeFileSync(path.join(docsDir, "products.json"), `${JSON.stringify({
@@ -472,6 +483,12 @@ function writeUploadErrorCheatsheetDiscoveryPage() {
   fs.writeFileSync(path.join(dir, "index.html"), uploadErrorCheatsheetHtml());
 }
 
+function writeOrganicPushKitDiscoveryPage() {
+  const dir = path.join(docsDir, "organic-push-kit");
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, "index.html"), organicPushKitHtml());
+}
+
 function copyPublicFile(relativePath) {
   const cleanPath = String(relativePath || "").replace(/^\/+/, "");
   if (!cleanPath) return;
@@ -538,6 +555,71 @@ function uploadErrorCheatsheetHtml() {
         <li><a href="${siteUrl("discovery.json").replace(/\/$/, "")}">Live discovery index</a></li>
       </ul>
       ${jsonLdHtml(itemListSchema("Upload error cheatsheet mirror", entry.entries.map((item) => ({ title: item.errorText, url: item.landingPage }))))}
+    </main>
+    ${intentTrackerScriptHtml()}
+  </body>
+</html>
+`;
+}
+
+function organicPushKitHtml() {
+  const entry = organicPushKitEntry();
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Organic push kit - PrintableTools Lab Directory</title>
+    <meta name="description" content="GitHub Pages mirror for copy-ready low-risk organic distribution tasks, tracked links, trigger rules, and success signals for growing free-tool traffic before display ads.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="${pagesUrl("organic-push-kit")}">
+    <style>
+      :root { color-scheme: light; --ink: #17313b; --muted: #5b6f78; --line: #dce8ec; --teal: #176b87; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Arial, sans-serif; color: var(--ink); background: #f7fbfc; line-height: 1.55; }
+      main { width: min(960px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 56px; }
+      h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin: 0 0 14px; }
+      p { color: var(--muted); max-width: 780px; }
+      a { color: var(--teal); font-weight: 700; }
+      .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .button.secondary { background: var(--ink); }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+      table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); }
+      th, td { text-align: left; vertical-align: top; padding: 10px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+      .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; margin: 18px 0; }
+      ul { padding-left: 20px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="${pagesBase}">PrintableTools Lab discovery directory</a></p>
+      <h1>Organic push kit</h1>
+      <p>This GitHub Pages mirror exists because GitHub Pages IndexNow submission is currently accepted while pages.dev submission is not. Use it as a crawlable daily queue for useful directory listings, community replies, short demos, and support-thread resources that send real visitors to the free no-signup tools.</p>
+      <p class="actions">
+        <a class="button" href="${trackedSiteUrl("organic-push-kit", "github-pages-organic-push-kit")}">Open live organic push kit</a>
+        <a class="button secondary" href="${pagesAssetUrl("organic-push-kit.json")}">Open mirror JSON</a>
+      </p>
+      <section class="card">
+        <h2>Ad-safe free-tool distribution</h2>
+        <p>Downloads stay free. Ads are still disabled until review, and future ads must not block generators or downloads. Share only where the linked tool directly solves the user's file problem.</p>
+      </section>
+      <h2>Today queue</h2>
+      <table>
+        <thead><tr><th>Task</th><th>Use when</th><th>Tracked live link</th><th>Success signal</th></tr></thead>
+        <tbody>
+          ${entry.tasks.map((task) => `<tr><td>${escapeHtml(task.title)}<br><small>${escapeHtml(task.channel)}</small></td><td>${escapeHtml(task.trigger)}</td><td><a href="${escapeHtml(task.trackedUrl)}">${escapeHtml(task.trackedUrl)}</a></td><td>${escapeHtml(task.successSignal)}</td></tr>`).join("\n")}
+        </tbody>
+      </table>
+      <h2>Copy-ready tasks</h2>
+      ${entry.tasks.map((task) => `<article class="card"><h3>${escapeHtml(task.title)}</h3><p>${escapeHtml(task.copy)}</p><p><strong>Risk rule:</strong> ${escapeHtml(task.riskRule)}</p></article>`).join("\n")}
+      <h2>Machine-readable feeds</h2>
+      <ul>
+        <li><a href="${pagesAssetUrl("organic-push-kit.json")}">GitHub Pages organic push JSON</a></li>
+        <li><a href="${siteUrl("organic-push-kit.json").replace(/\/$/, "")}">Live organic push JSON</a></li>
+        <li><a href="${siteUrl("share-kit.json").replace(/\/$/, "")}">Live share-kit JSON</a></li>
+        <li><a href="${siteUrl("discovery.json").replace(/\/$/, "")}">Live discovery index</a></li>
+      </ul>
+      ${jsonLdHtml(itemListSchema("Organic push kit mirror", entry.tasks.map((task) => ({ title: task.title, url: task.trackedUrl }))))}
     </main>
     ${intentTrackerScriptHtml()}
   </body>
@@ -1339,6 +1421,42 @@ function serviceSalesPackEntry() {
     listingFields: SERVICE_SALES_PACK.listingFields.map(([label, value]) => ({ label, value })),
     executionChecklist: SERVICE_SALES_PACK.executionChecklist,
     riskControls: SERVICE_SALES_PACK.riskControls,
+  };
+}
+
+function organicPushKitEntry() {
+  return {
+    name: "PrintableTools Lab Organic Push Kit Mirror",
+    generatedAt: generatedAtIso,
+    directory: pagesUrl("organic-push-kit"),
+    livePage: siteUrl("organic-push-kit"),
+    liveJson: siteUrl("organic-push-kit.json").replace(/\/$/, ""),
+    purpose: "GitHub Pages discovery mirror for low-risk organic distribution tasks that send real visitors to free no-signup tools before display ads.",
+    tasks: ORGANIC_PUSH_TASKS.map((task) => {
+      const baseUrl = task.absoluteUrl || siteUrl(task.linkPath);
+      const trackedUrl = new URL(baseUrl);
+      trackedUrl.searchParams.set("utm_source", "github-pages");
+      trackedUrl.searchParams.set("utm_medium", "organic");
+      trackedUrl.searchParams.set("utm_campaign", task.campaign);
+      trackedUrl.searchParams.set("utm_content", task.id);
+      return {
+        id: task.id,
+        channel: task.channel,
+        title: task.title,
+        trigger: task.trigger,
+        trackedUrl: trackedUrl.toString(),
+        copy: task.copy.replace("{url}", trackedUrl.toString()),
+        successSignal: task.successSignal,
+        riskRule: task.riskRule,
+      };
+    }),
+    safeUseRules: [
+      "Share only where the linked tool directly solves the topic.",
+      "Do not ask for ad clicks, ad views, artificial engagement, upvotes, or fake traffic.",
+      "Use generic sample files only; never post private IDs, payment documents, or user files.",
+      "Revenue is still unproven until ad payout, platform payout, or another payment provider shows settled money.",
+    ],
+    successGate: "A task is working only when live metrics show real visits, tool-depth clicks, downloads, search exposure, or accepted external listing evidence.",
   };
 }
 

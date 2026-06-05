@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
-const { routes, siteUrl, landingPages, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, HIGH_INTENT_TOOL_PATHS, UPLOAD_ERROR_CHEATSHEET, tools } = require("./seo-content.cjs");
+const { routes, siteUrl, landingPages, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, HIGH_INTENT_TOOL_PATHS, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, tools } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const failures = [];
@@ -1130,6 +1130,8 @@ else {
   if (!html.includes("Free PDF, image, and QR tools without signup")) failures.push("GitHub Pages discovery page missing heading.");
   if (!html.includes(siteUrl("free-pdf-tools"))) failures.push("GitHub Pages discovery page missing main directory link.");
   if (!html.includes(siteUrl("upload-limit-fixer"))) failures.push("GitHub Pages discovery page missing upload limit fixer link.");
+  if (!html.includes("Organic push kit mirror")) failures.push("GitHub Pages discovery page missing organic push kit mirror link.");
+  if (!html.includes("https://yanqr213.github.io/printable-tools-lab/organic-push-kit/")) failures.push("GitHub Pages discovery page missing organic push kit mirror URL.");
   if (!html.includes("Upload error cheatsheet mirror")) failures.push("GitHub Pages discovery page missing upload error cheatsheet mirror link.");
   if (!html.includes("https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/")) failures.push("GitHub Pages discovery page missing upload error cheatsheet mirror URL.");
   if (!html.includes("utm_source=github-pages")) failures.push("GitHub Pages discovery page missing tracked github-pages source links.");
@@ -1152,6 +1154,9 @@ else {
   if (!data.githubPagesDirectory || data.githubPagesDirectory !== "https://yanqr213.github.io/printable-tools-lab/") failures.push("GitHub Pages discovery tools.json missing GitHub directory URL.");
   if (!data.tools.some((tool) => tool.url === siteUrl("tools/image-to-pdf") && tool.discoveryUrl === "https://yanqr213.github.io/printable-tools-lab/tools/image-to-pdf/")) failures.push("GitHub Pages discovery tools.json missing tool discovery URL.");
   if (!data.gameSubmissionPack || data.gameSubmissionPack.discoveryUrl !== "https://yanqr213.github.io/printable-tools-lab/html5-game-submission-pack/") failures.push("GitHub Pages discovery tools.json missing HTML5 game submission pack.");
+  if (!data.organicPushKit || data.organicPushKit.directory !== "https://yanqr213.github.io/printable-tools-lab/organic-push-kit/") failures.push("GitHub Pages discovery tools.json missing organic push kit mirror.");
+  if (!Array.isArray(data.organicPushKit?.tasks) || data.organicPushKit.tasks.length !== ORGANIC_PUSH_TASKS.length) failures.push("GitHub Pages discovery tools.json missing organic push kit tasks.");
+  if (!data.organicPushKit?.tasks?.some((item) => item.id === "community-pdf-1mb" && String(item.trackedUrl || "").includes("utm_source=github-pages"))) failures.push("GitHub Pages discovery tools.json missing organic push tracked URL.");
   if (!data.uploadErrorCheatsheet || data.uploadErrorCheatsheet.directory !== "https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/") failures.push("GitHub Pages discovery tools.json missing upload error cheatsheet mirror.");
   if (!Array.isArray(data.uploadErrorCheatsheet?.entries) || data.uploadErrorCheatsheet.entries.length !== UPLOAD_ERROR_CHEATSHEET.length) failures.push("GitHub Pages discovery tools.json missing upload error cheatsheet entries.");
   if (!data.uploadErrorCheatsheet?.entries?.some((item) => item.errorText === "Image must be less than 2MB" && String(item.toolUrl || "").includes("targetKb=2048"))) failures.push("GitHub Pages discovery tools.json missing image 2MB upload error target.");
@@ -1172,6 +1177,31 @@ else {
   if (!String(data.serviceSalesPack?.githubPagesOrderPipelineUrl || "").includes("custom-local-print-pack-order-pipeline.json")) failures.push("GitHub Pages discovery tools.json missing service sales pack order pipeline URL.");
   if (!String(data.serviceSalesPack?.githubPagesOutreachQueueUrl || "").includes("custom-local-print-pack-outreach-queue.json")) failures.push("GitHub Pages discovery tools.json missing service sales pack outreach queue URL.");
   if (!Array.isArray(data.serviceSalesPack?.outreachQueue) || data.serviceSalesPack.outreachQueue.length < 10) failures.push("GitHub Pages discovery tools.json missing service sales pack outreach queue entries.");
+}
+
+const docsOrganicPushKitFile = path.join(root, "docs", "organic-push-kit", "index.html");
+if (!fs.existsSync(docsOrganicPushKitFile)) failures.push("Missing GitHub Pages organic push kit mirror page.");
+else {
+  const html = fs.readFileSync(docsOrganicPushKitFile, "utf8");
+  if (!html.includes("Organic push kit")) failures.push("GitHub Pages organic push kit missing heading.");
+  if (!html.includes(siteUrl("organic-push-kit"))) failures.push("GitHub Pages organic push kit missing live page URL.");
+  if (!html.includes("Today queue")) failures.push("GitHub Pages organic push kit missing task queue.");
+  if (!html.includes("Helpful reply for PDF under 1MB questions")) failures.push("GitHub Pages organic push kit missing PDF task.");
+  if (!html.includes("Directory listing for free no-signup file tools")) failures.push("GitHub Pages organic push kit missing directory task.");
+  if (!html.includes("utm_source=github-pages")) failures.push("GitHub Pages organic push kit missing tracked links.");
+  if (!html.includes("organic-push-kit.json")) failures.push("GitHub Pages organic push kit missing mirror JSON link.");
+  requireGithubPagesIntentTracking(html, "GitHub Pages organic push kit mirror");
+}
+
+const docsOrganicPushKitJsonFile = path.join(root, "docs", "organic-push-kit.json");
+if (!fs.existsSync(docsOrganicPushKitJsonFile)) failures.push("Missing GitHub Pages organic-push-kit.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(docsOrganicPushKitJsonFile, "utf8"));
+  if (data.directory !== "https://yanqr213.github.io/printable-tools-lab/organic-push-kit/") failures.push("GitHub Pages organic-push-kit.json missing directory URL.");
+  if (data.liveJson !== siteUrl("organic-push-kit.json").replace(/\/$/, "")) failures.push("GitHub Pages organic-push-kit.json missing live JSON URL.");
+  if (!Array.isArray(data.tasks) || data.tasks.length !== ORGANIC_PUSH_TASKS.length) failures.push("GitHub Pages organic-push-kit.json missing tasks.");
+  if (!data.tasks?.some((item) => item.id === "community-pdf-1mb" && String(item.trackedUrl || "").includes("utm_source=github-pages"))) failures.push("GitHub Pages organic-push-kit.json missing tracked GitHub Pages URL.");
+  if (!String(data.successGate || "").includes("live metrics")) failures.push("GitHub Pages organic-push-kit.json missing live metrics success gate.");
 }
 
 const docsUploadErrorCheatsheetFile = path.join(root, "docs", "upload-error-cheatsheet", "index.html");
@@ -1508,6 +1538,7 @@ else {
     if (!docsSitemap.includes(`<loc>${githubUrl}</loc>`)) failures.push(`GitHub Pages sitemap missing tool discovery page: ${toolPath}`);
   }
   if (!docsSitemap.includes("<loc>https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/</loc>")) failures.push("GitHub Pages sitemap missing upload error cheatsheet mirror page.");
+  if (!docsSitemap.includes("<loc>https://yanqr213.github.io/printable-tools-lab/organic-push-kit/</loc>")) failures.push("GitHub Pages sitemap missing organic push kit mirror page.");
 }
 
 for (const page of landingPages) {
