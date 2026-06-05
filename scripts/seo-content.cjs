@@ -1899,27 +1899,27 @@ const SHARE_KIT_POSTS = [
 ];
 
 const UPLOAD_LIMIT_SHORTCUTS = [
-  ["PDF size reducer", "/pdf-size-reducer/", "Pick 500KB, 1MB, 2MB, or 5MB PDF targets for scanned forms and portal uploads."],
-  ["Image size reducer in KB", "/image-size-reducer-in-kb/", "Choose exact image and photo targets from 10KB through 500KB without uploading."],
-  ["Compress PDF to 1MB", "/compress-pdf-to-1mb/", "A common job, school, email, and admin portal PDF limit."],
-  ["Compress PDF to 500KB", "/compress-pdf-to-500kb/", "A strict PDF target for forms, exam portals, and government-style uploads."],
-  ["Compress image to 100KB", "/compress-image-to-100kb/", "A common profile, job, school, and form photo limit."],
-  ["Compress JPG to 100KB", "/compress-jpg-to-100kb/", "Use this when the destination asks for JPG and a fixed 100KB limit."],
-  ["Compress PNG to 100KB", "/compress-png-to-100kb/", "Use this when a screenshot, graphic, or form upload must stay PNG under 100KB."],
-  ["Passport photo size fixer", "/passport-photo-size-fixer/", "Crop, resize, and compress ID-style photos for dimension and file-size rules."],
+  ["PDF size reducer", "/pdf-size-reducer/", "Pick 500KB, 1MB, 2MB, or 5MB PDF targets for scanned forms and portal uploads.", "compress-pdf"],
+  ["Image size reducer in KB", "/image-size-reducer-in-kb/", "Choose exact image and photo targets from 10KB through 500KB without uploading.", "compress-image-to-kb"],
+  ["Compress PDF to 1MB", "/compress-pdf-to-1mb/", "A common job, school, email, and admin portal PDF limit.", "compress-pdf"],
+  ["Compress PDF to 500KB", "/compress-pdf-to-500kb/", "A strict PDF target for forms, exam portals, and government-style uploads.", "compress-pdf"],
+  ["Compress image to 100KB", "/compress-image-to-100kb/", "A common profile, job, school, and form photo limit.", "compress-image-to-kb"],
+  ["Compress JPG to 100KB", "/compress-jpg-to-100kb/", "Use this when the destination asks for JPG and a fixed 100KB limit.", "compress-image-to-kb"],
+  ["Compress PNG to 100KB", "/compress-png-to-100kb/", "Use this when a screenshot, graphic, or form upload must stay PNG under 100KB.", "compress-image-to-kb"],
+  ["Passport photo size fixer", "/passport-photo-size-fixer/", "Crop, resize, and compress ID-style photos for dimension and file-size rules.", "passport-photo"],
 ];
 
 const UPLOAD_LIMIT_DECISIONS = [
-  ["PDF must be under 1MB", "/tools/compress-pdf/?targetSize=1mb", "Compress PDF", "Use the PDF compressor with the 1MB target for job, school, email, and admin portals."],
-  ["PDF must be under 500KB", "/tools/compress-pdf/?targetSize=500kb", "Compress PDF", "Use the strict 500KB target for forms and exam-style upload limits."],
-  ["Photo or image must be under 100KB", "/tools/compress-image-to-kb/?targetKb=100", "Compress image to KB", "Use the image-to-KB compressor when the site names a fixed photo or image file-size limit."],
-  ["JPG must be under 100KB", "/tools/compress-image-to-kb/?targetKb=100", "Compress JPG", "Start with the 100KB target and export a smaller JPG or WebP copy locally."],
-  ["PNG screenshot is too large", "/tools/compress-image-to-kb/?targetKb=100", "Compress PNG", "Use this when a support form, portal, or profile page accepts PNG but rejects the screenshot size."],
-  ["Wrong file type: needs JPG or PNG", "/tools/convert-image/", "Convert image", "Convert JPG, PNG, or WebP locally when the upload form rejects the current image type."],
-  ["Wrong image dimensions", "/tools/resize-image/", "Resize image", "Resize first when the portal gives width, height, square, thumbnail, or profile-photo dimensions."],
-  ["Passport or ID photo rejected", "/passport-photo-size-fixer/", "Fix passport photo", "Crop, resize, and compress ID-style photos when both dimensions and KB limits matter."],
-  ["Website accepts image but rejects PDF", "/tools/pdf-to-images/", "PDF to JPG", "Convert PDF pages to JPG or PNG when a form wants image files instead of a PDF."],
-  ["Website accepts PDF but I only have photos", "/tools/image-to-pdf/", "Image to PDF", "Turn a photo, scan, screenshot, or receipt image into a PDF locally."],
+  ["PDF must be under 1MB", "/tools/compress-pdf/?targetSize=1mb", "Compress PDF", "Use the PDF compressor with the 1MB target for job, school, email, and admin portals.", "compress-pdf"],
+  ["PDF must be under 500KB", "/tools/compress-pdf/?targetSize=500kb", "Compress PDF", "Use the strict 500KB target for forms and exam-style upload limits.", "compress-pdf"],
+  ["Photo or image must be under 100KB", "/tools/compress-image-to-kb/?targetKb=100", "Compress image to KB", "Use the image-to-KB compressor when the site names a fixed photo or image file-size limit.", "compress-image-to-kb"],
+  ["JPG must be under 100KB", "/tools/compress-image-to-kb/?targetKb=100", "Compress JPG", "Start with the 100KB target and export a smaller JPG or WebP copy locally.", "compress-image-to-kb"],
+  ["PNG screenshot is too large", "/tools/compress-image-to-kb/?targetKb=100", "Compress PNG", "Use this when a support form, portal, or profile page accepts PNG but rejects the screenshot size.", "compress-image-to-kb"],
+  ["Wrong file type: needs JPG or PNG", "/tools/convert-image/", "Convert image", "Convert JPG, PNG, or WebP locally when the upload form rejects the current image type.", "convert-image"],
+  ["Wrong image dimensions", "/tools/resize-image/", "Resize image", "Resize first when the portal gives width, height, square, thumbnail, or profile-photo dimensions.", "resize-image"],
+  ["Passport or ID photo rejected", "/passport-photo-size-fixer/", "Fix passport photo", "Crop, resize, and compress ID-style photos when both dimensions and KB limits matter.", "passport-photo"],
+  ["Website accepts image but rejects PDF", "/tools/pdf-to-images/", "PDF to JPG", "Convert PDF pages to JPG or PNG when a form wants image files instead of a PDF.", "pdf-to-images"],
+  ["Website accepts PDF but I only have photos", "/tools/image-to-pdf/", "Image to PDF", "Turn a photo, scan, screenshot, or receipt image into a PDF locally.", "image-to-pdf"],
 ];
 
 const SHARE_KIT_RULES = [
@@ -7074,11 +7074,11 @@ function uploadLimitShortcutsHtml(title = "Fast upload limit shortcuts", text = 
         <table class="event-table">
           <thead><tr><th>Upload message</th><th>Open</th><th>Why</th></tr></thead>
           <tbody>
-            ${UPLOAD_LIMIT_DECISIONS.map(([message, href, label, why]) => `<tr><td>${escapeHtml(message)}</td><td><a href="${escapeHtml(href)}" data-track-event="free_tool_depth" data-track-tool="site">${escapeHtml(label)}</a></td><td>${escapeHtml(why)}</td></tr>`).join("\n")}
+            ${UPLOAD_LIMIT_DECISIONS.map(([message, href, label, why, trackTool]) => `<tr><td>${escapeHtml(message)}</td><td><a href="${escapeHtml(href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(trackTool)}">${escapeHtml(label)}</a></td><td>${escapeHtml(why)}</td></tr>`).join("\n")}
           </tbody>
         </table>
         <div class="grid-3">
-          ${UPLOAD_LIMIT_SHORTCUTS.map(([label, href, description]) => `<article class="tool-card"><h3>${escapeHtml(label)}</h3><p>${escapeHtml(description)}</p><a class="button" data-track-event="free_tool_depth" data-track-tool="site" href="${escapeHtml(href)}">Open fixer</a></article>`).join("\n")}
+          ${UPLOAD_LIMIT_SHORTCUTS.map(([label, href, description, trackTool]) => `<article class="tool-card"><h3>${escapeHtml(label)}</h3><p>${escapeHtml(description)}</p><a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(trackTool)}" href="${escapeHtml(href)}">Open fixer</a></article>`).join("\n")}
         </div>
       </section>`;
 }

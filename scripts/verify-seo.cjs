@@ -16,6 +16,15 @@ const UPLOAD_LIMIT_SHORTCUT_PATHS = [
   "/compress-png-to-100kb/",
   "/passport-photo-size-fixer/",
 ];
+const UPLOAD_LIMIT_DECISION_LINKS = [
+  ["/tools/compress-pdf/?targetSize=1mb", "compress-pdf"],
+  ["/tools/compress-pdf/?targetSize=500kb", "compress-pdf"],
+  ["/tools/compress-image-to-kb/?targetKb=100", "compress-image-to-kb"],
+  ["/tools/convert-image/", "convert-image"],
+  ["/tools/resize-image/", "resize-image"],
+  ["/tools/pdf-to-images/", "pdf-to-images"],
+  ["/tools/image-to-pdf/", "image-to-pdf"],
+];
 
 function requireGithubPagesIntentTracking(html, label, events = []) {
   if (!html.includes(GITHUB_PAGES_EVENT_ENDPOINT)) failures.push(`${label} missing GitHub Pages event endpoint.`);
@@ -33,6 +42,11 @@ function requireUploadLimitShortcuts(html, label) {
   for (const pathName of UPLOAD_LIMIT_SHORTCUT_PATHS) {
     if (!html.includes(pathName)) failures.push(`${label} missing upload limit shortcut: ${pathName}`);
   }
+  for (const [href, trackTool] of UPLOAD_LIMIT_DECISION_LINKS) {
+    if (!html.includes(`href="${href}"`)) failures.push(`${label} missing upload limit decision link: ${href}`);
+    if (!html.includes(`data-track-tool="${trackTool}"`)) failures.push(`${label} missing upload limit tool tracking: ${trackTool}`);
+  }
+  if (html.includes('data-track-event="free_tool_depth" data-track-tool="site"')) failures.push(`${label} has generic upload limit depth tracking.`);
 }
 
 for (const route of routes) {

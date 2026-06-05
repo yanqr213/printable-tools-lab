@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-05T20:27:09.458Z",
+  "generatedAt": "2026-06-05T20:39:49.659Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 80,
     "indexableRoutes": 261,
     "sitemapLocCount": 261,
-    "generatedToolInventoryAt": "2026-06-05T20:22:57.141Z",
+    "generatedToolInventoryAt": "2026-06-05T20:37:24.754Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -37,7 +37,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 33651,
+        "bytes": 33857,
         "json": null
       },
       "/tools/": {
@@ -101,7 +101,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-05T20:22:57.141Z",
+          "generatedAt": "2026-06-05T20:37:24.754Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -987,7 +987,7 @@
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-05T20:22:57.141Z",
+          "generatedAt": "2026-06-05T20:37:24.754Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1794,7 +1794,7 @@
         "bytes": 27705,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-05T20:22:57.141Z",
+          "generatedAt": "2026-06-05T20:37:24.754Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -2223,7 +2223,7 @@
           "ok": true,
           "today": "2026-06-05",
           "totals": {
-            "page_view": 282,
+            "page_view": 283,
             "generate_pdf": 0,
             "download_pdf": 2,
             "generate_file": 0,
@@ -2239,7 +2239,7 @@
             "audit_request_intent": 0
           },
           "todayTotals": {
-            "page_view": 4,
+            "page_view": 5,
             "generate_pdf": 0,
             "download_pdf": 0,
             "generate_file": 0,
@@ -3156,7 +3156,7 @@
           "sources": [
             {
               "source": "direct",
-              "page_view": 204,
+              "page_view": 205,
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
@@ -3421,7 +3421,7 @@
     "metrics": {
       "today": "2026-06-05",
       "totals": {
-        "page_view": 282,
+        "page_view": 283,
         "generate_pdf": 0,
         "download_pdf": 2,
         "generate_file": 0,
@@ -3437,7 +3437,7 @@
         "audit_request_intent": 0
       },
       "todayTotals": {
-        "page_view": 4,
+        "page_view": 5,
         "generate_pdf": 0,
         "download_pdf": 0,
         "generate_file": 0,
@@ -3609,7 +3609,7 @@
       "keyFileReachable": true,
       "singleUrlAccepted": false,
       "latestReport": {
-        "generatedAt": "2026-06-05T20:25:21.342Z",
+        "generatedAt": "2026-06-05T20:39:32.563Z",
         "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
         "results": [
           {

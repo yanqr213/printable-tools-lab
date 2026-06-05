@@ -271,6 +271,25 @@ function delay(ms) {
     if (selectedTarget !== targetSize) throw new Error(`PDF target-size tool did not preselect ${targetSize}, got ${selectedTarget}`);
   }
 
+  await page.goto(`${base}/upload-limit-fixer/`, { waitUntil: "networkidle" });
+  const uploadLimitText = await page.locator("main").innerText();
+  for (const phrase of ["Upload message", "PDF must be under 1MB", "Photo or image must be under 100KB"]) {
+    if (!uploadLimitText.includes(phrase)) throw new Error(`Upload limit fixer is missing ${phrase}`);
+  }
+  const uploadLimitRoutes = [
+    ["/tools/compress-pdf/?targetSize=1mb", "#targetSize", "1mb"],
+    ["/tools/compress-image-to-kb/?targetKb=100", "#targetKb", "100"],
+  ];
+  for (const [href, selector, expectedValue] of uploadLimitRoutes) {
+    const trackedLink = page.locator(`main a[href="${href}"][data-track-event="free_tool_depth"]`).first();
+    if (!(await trackedLink.count())) throw new Error(`Upload limit fixer is missing tracked decision link ${href}`);
+    await trackedLink.click();
+    await page.waitForLoadState("networkidle");
+    const selectedValue = await page.locator(selector).inputValue();
+    if (selectedValue !== expectedValue) throw new Error(`Upload limit decision ${href} did not preselect ${expectedValue}, got ${selectedValue}`);
+    await page.goto(`${base}/upload-limit-fixer/`, { waitUntil: "networkidle" });
+  }
+
   await page.goto(`${base}/submit-directory/`, { waitUntil: "networkidle" });
   const submissionPackText = await page.locator("main").innerText();
   for (const phrase of ["Copy-ready listing details", "Primary links for reviewers", "Representative tools"]) {
