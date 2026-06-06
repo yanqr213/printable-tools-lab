@@ -64,6 +64,14 @@ const directories = [
     reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev",
   },
   {
+    name: "NoLogin.tools upload-limit listing",
+    url: "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer",
+    searchUrl: "https://nologin.tools/?q=Upload+Limit+Fixer",
+    expected: [siteHost, "Upload Limit Fixer"],
+    submittedAt: "2026-06-06",
+    reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev-upload-limit-fixer",
+  },
+  {
     name: "NoSubscription.org",
     url: "https://nosubscription.org/",
     searchUrl: "https://nosubscription.org/?s=PrintableTools+Lab",

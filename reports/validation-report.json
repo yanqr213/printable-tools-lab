@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-05T23:52:55.699Z",
+  "generatedAt": "2026-06-06T00:00:44.525Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 92,
     "indexableRoutes": 275,
     "sitemapLocCount": 275,
-    "generatedToolInventoryAt": "2026-06-05T23:52:15.177Z",
+    "generatedToolInventoryAt": "2026-06-05T23:58:33.254Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -2522,12 +2522,12 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 22159,
+        "bytes": 22158,
         "json": {
           "ok": true,
-          "today": "2026-06-05",
+          "today": "2026-06-06",
           "totals": {
-            "page_view": 300,
+            "page_view": 301,
             "generate_pdf": 0,
             "download_pdf": 2,
             "generate_file": 0,
@@ -2544,7 +2544,7 @@
             "audit_request_intent": 0
           },
           "todayTotals": {
-            "page_view": 22,
+            "page_view": 0,
             "generate_pdf": 0,
             "download_pdf": 0,
             "generate_file": 0,
@@ -3630,7 +3630,7 @@
             },
             {
               "source": "nologin",
-              "page_view": 0,
+              "page_view": 1,
               "generate_pdf": 0,
               "download_pdf": 0,
               "generate_file": 0,
@@ -3759,9 +3759,9 @@
       }
     },
     "metrics": {
-      "today": "2026-06-05",
+      "today": "2026-06-06",
       "totals": {
-        "page_view": 300,
+        "page_view": 301,
         "generate_pdf": 0,
         "download_pdf": 2,
         "generate_file": 0,
@@ -3778,7 +3778,7 @@
         "audit_request_intent": 0
       },
       "todayTotals": {
-        "page_view": 22,
+        "page_view": 0,
         "generate_pdf": 0,
         "download_pdf": 0,
         "generate_file": 0,
@@ -3914,21 +3914,35 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
+      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF size targets, image KB targets, PDF-to-Word, ATS checks, background removal, text overlays, QR codes, PDF edits, paperwork, labels, resumes, and printables.",
       "topics": [
-        "pdf-tools",
+        "background-remover",
+        "compress-image-to-100kb",
+        "compress-pdf",
+        "compress-pdf-to-1mb",
+        "compress-pdf-to-500kb",
+        "free-tools",
+        "image-compressor",
+        "image-converter",
+        "image-resizer",
+        "image-to-pdf",
         "image-tools",
-        "qr-code",
+        "invoice-generator",
         "no-signup",
-        "browser-tools",
-        "free-tools"
+        "passport-photo",
+        "pdf-generator",
+        "pdf-to-jpg",
+        "pdf-to-word",
+        "pdf-tools",
+        "qr-code",
+        "resume-checker"
       ],
-      "error": "GitHub API fallback used: GitHub API 403",
       "discoveryRelease": {
         "tag": "free-pdf-tools",
         "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
         "name": "Free PDF, Image, and QR Tools Without Signup"
-      }
+      },
+      "error": ""
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
@@ -4001,9 +4015,9 @@
   },
   "directories": {
     "available": true,
-    "generatedAt": "2026-06-05T23:51:48.036Z",
+    "generatedAt": "2026-06-06T00:00:27.278Z",
     "listedCount": 3,
-    "pendingCount": 5,
+    "pendingCount": 6,
     "errorCount": 1,
     "listed": [
       {
@@ -4035,6 +4049,10 @@
       {
         "name": "FreeNoSignup",
         "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "NoLogin.tools upload-limit listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer"
       },
       {
         "name": "NoSubscription.org",
@@ -4072,13 +4090,13 @@
         "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
       ],
       "externalDiscovery": [
-        "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 92 landing page link(s), 66 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).",
         "GitHub Pages discovery sitemap has 263 URL(s), including 66 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 263.",
         "IndexNow key file is reachable from the site root.",
         "IndexNow latest report accepted 263 URL(s) for github-pages.",
-        "Directory monitor shows 3 listed, 5 pending, and 1 error directory target(s)."
+        "Directory monitor shows 3 listed, 6 pending, and 1 error directory target(s)."
       ]
     }
   },
