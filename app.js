@@ -5339,10 +5339,10 @@
 
   function renderRetiredPaidExperiment(slug) {
     const labels = {
-      "local-seller-starter-kit": "Local Seller Starter Kit",
-      "custom-local-print-pack": "Custom Local Print Pack Setup",
-      "market-table-print-audit": "Market Table Print Audit",
-      "custom-local-print-pack-sales-pack": "Custom Local Print Pack Sales Pack",
+      "local-seller-starter-kit": "Retired seller kit experiment",
+      "custom-local-print-pack": "Retired custom print pack experiment",
+      "market-table-print-audit": "Retired print audit experiment",
+      "custom-local-print-pack-sales-pack": "Retired service sales pack experiment",
     };
     const title = labels[slug] || "Retired payment experiment";
     setMeta(`${title} retired`, "This older payment experiment is retired from the public site. PrintableTools Lab is now focused on free no-signup tools and future ad-supported monetization.");
@@ -5351,7 +5351,7 @@
       <section class="shell page-title section">
         <a href="/free-pdf-tools/">Free tools</a>
         <h1>${escapeHtml(title)} has been retired</h1>
-        <p>This older buyer-intent experiment is no longer part of the public product path. PrintableTools Lab is staying free for visitors and is being validated for responsible display ads later.</p>
+        <p>This older direct-payment experiment is no longer part of the public product path. PrintableTools Lab is staying free for visitors and is being validated for responsible display ads later.</p>
         <div class="hero-actions">
           <a class="button" href="/free-pdf-tools/">Browse free tools</a>
           <a class="button secondary" href="/upload-limit-fixer/">Fix upload limits</a>
@@ -5653,670 +5653,26 @@
       <section class="shell section">
         <h2>Rules for safe distribution</h2>
         <ul>${rules.map((rule) => `<li>${escapeHtml(rule)}</li>`).join("")}</ul>
-        <p><a class="button" href="/share-kit.json">Open machine-readable share-kit.json</a> <a class="button secondary" href="/DISTRIBUTION.md">Open distribution pack</a></p>
+        <p><a class="button" href="/share-kit.json">Open machine-readable share-kit.json</a> <a class="button secondary" href="/submit-directory/">Open directory submission pack</a></p>
       </section>
     `;
   }
 
   function renderLocalSellerStarterKit() {
-    const checkoutUrl = CONFIG.sellerKitCheckoutUrl || "";
-    const checkoutReady = Boolean(checkoutUrl);
-    const productUrl = "/local-seller-starter-kit/";
-    const sampleUrl = "/assets/digital-products/local-seller-starter-kit-sample.zip";
-    const requestTemplateUrl = "/assets/digital-products/local-seller-starter-kit-buy-request.txt";
-    const sampleAbsoluteUrl = absoluteUrl(sampleUrl);
-    const checkoutRequestUrl = sellerKitCheckoutRequestUrl(sampleAbsoluteUrl);
-    const checkoutEmailUrl = sellerKitCheckoutEmailUrl(sampleAbsoluteUrl);
-    const primaryCheckoutUrl = checkoutReady ? checkoutUrl : checkoutRequestUrl;
-    const primaryCheckoutText = checkoutReady ? "Buy for $9" : "Request checkout link";
-    const primaryCheckoutEvent = checkoutReady ? "seller_checkout_click" : "seller_checkout_intent";
-    const price = "9";
-    const included = [
-      "30-day local promo calendar CSV",
-      "price tag and SKU starter CSV",
-      "coupon offer and fine-print examples",
-      "packing slip batch CSV",
-      "inventory starter sheet",
-      "flyer and QR sign copy bank",
-      "market-day checklist",
-      "checkout listing copy",
-      "simple commercial-use license",
-    ];
-    const relatedTools = ["price-tag", "coupon-maker", "packing-slip", "business-card", "inventory-sheet", "qr-code"];
-    setMeta("Local Seller Starter Kit", "A checkout-ready digital pack of editable local-selling templates: price tags, coupon copy, packing slips, QR sign wording, inventory starters, promo posts, and market-day checklists.");
-    setJsonLd({
-      "@context": "https://schema.org",
-      "@type": "Product",
-      name: "Local Seller Starter Kit",
-      description: "Editable local-selling templates for market tables, service providers, small orders, coupons, price tags, QR signs, and simple promo workflows.",
-      url: absoluteUrl(productUrl),
-      offers: {
-        "@type": "Offer",
-        price,
-        priceCurrency: "USD",
-        availability: checkoutReady ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
-        url: checkoutReady ? checkoutUrl : absoluteUrl(productUrl),
-      },
-    });
-    app.innerHTML = `
-      <section class="shell page-title section product-hero">
-        <a href="/free-pdf-tools/">Free tools</a>
-        <h1>Local Seller Starter Kit for market tables, services, and small orders</h1>
-        <p>A low-price digital operations kit for people who already need invoices, price tags, coupons, flyers, business cards, packing slips, inventory sheets, and QR signs.</p>
-        <div class="hero-actions">
-          <a class="button" href="${escapeHtml(primaryCheckoutUrl)}" data-track-event="${primaryCheckoutEvent}" data-track-tool="local-seller-starter-kit">${primaryCheckoutText}</a>
-          <a class="button secondary" href="${sampleUrl}" download data-track-event="seller_sample_download" data-track-tool="local-seller-starter-kit">Download sample ZIP</a>
-          <a class="button ghost" href="${requestTemplateUrl}" download>Download request template</a>
-          ${checkoutEmailUrl ? `<a class="button ghost" href="${escapeHtml(checkoutEmailUrl)}" data-track-event="seller_checkout_intent" data-track-tool="local-seller-starter-kit">Email checkout request</a>` : ""}
-          <a class="button ghost" href="/custom-local-print-pack/" data-track-event="service_offer_click" data-track-tool="custom-local-print-pack">Done-for-you setup</a>
-          <a class="button ghost" href="/tools/price-tag/">Try the free price tag tool</a>
-        </div>
-        <p class="notice">${checkoutReady ? "Checkout is configured through the external payment provider linked above." : "Checkout link pending: buyers can request a checkout link now, but no payment is collected here until a real Gumroad, Payhip, Ko-fi, or Stripe Payment Link is connected."}</p>
-        <div class="hero-proof">
-          <div class="proof-tile"><strong>$${price}</strong><span>starter price</span></div>
-          <div class="proof-tile"><strong>${included.length}</strong><span>editable assets</span></div>
-          <div class="proof-tile"><strong>0</strong><span>private payout data stored</span></div>
-        </div>
-      </section>
-      <section class="shell section">
-        <h2>What the buyer gets</h2>
-        <div class="grid-3">${included.map((item) => `<article class="panel"><h3>${escapeHtml(item)}</h3><p>Editable CSV, Markdown, HTML, or text content designed for quick customization and printing.</p></article>`).join("")}</div>
-      </section>
-      <section class="shell section">
-        <h2>Use it with the free generators</h2>
-        <div class="grid-3">${relatedTools.map((id) => toolCard(tools[id])).join("")}</div>
-      </section>
-      <section class="shell section" id="checkout-setup">
-        <h2>Checkout setup</h2>
-        <p>This page does not fake a payment flow. Until the payment link is connected, the request link captures buyer intent without taking money. Create a product in Gumroad, Payhip, Ko-fi, or Stripe Payment Links, upload <code>paid-deliverables/local-seller-starter-kit.zip</code>, then set <code>sellerKitCheckoutUrl</code> in <code>site-config.js</code>.</p>
-        <pre class="code-block">Product name: Local Seller Starter Kit
-Price: $${price} USD
-Upload file: paid-deliverables/local-seller-starter-kit.zip
-Sample file: ${sampleAbsoluteUrl}
-Buyer request template: ${absoluteUrl(requestTemplateUrl)}
-Buyer request link: ${checkoutRequestUrl}
-${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: instant ZIP download after payment through the checkout provider</pre>
-      </section>
-      <section class="shell section">
-        <h2>Risk controls</h2>
-        <ul>
-          <li>No payout, tax, bank, card, or platform credential is stored in the repository.</li>
-          <li>The full paid ZIP is generated locally under paid-deliverables and is ignored by git.</li>
-          <li>The public site exposes a sample ZIP and checkout status, not fake purchase or fake revenue claims.</li>
-          <li>Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment.</li>
-        </ul>
-      </section>
-    `;
-  }
-
-  function sellerKitCheckoutRequestUrl(sampleUrl) {
-    const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
-    url.searchParams.set("title", "Checkout request: Local Seller Starter Kit");
-    url.searchParams.set("body", [
-      "I want to buy the Local Seller Starter Kit for $9 USD.",
-      "",
-      `Sample checked: ${sampleUrl}`,
-      "Preferred checkout provider: Gumroad / Payhip / Ko-fi / Stripe / other",
-      "Best contact method:",
-      "Country or region (optional):",
-      "Notes:",
-      "",
-      "No payment is collected in this GitHub issue. Please reply with a real external checkout link only after the payment product is ready.",
-    ].join("\n"));
-    return url.toString();
-  }
-
-  function sellerKitCheckoutEmailUrl(sampleUrl) {
-    const email = String(CONFIG.contactEmail || "").trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "";
-    const url = new URL(`mailto:${email}`);
-    url.searchParams.set("subject", "Checkout request: Local Seller Starter Kit");
-    url.searchParams.set("body", [
-      "I want to buy the Local Seller Starter Kit for $9 USD.",
-      "",
-      `Sample checked: ${sampleUrl}`,
-      "Preferred checkout provider: Gumroad / Payhip / Ko-fi / Stripe / other",
-      "Best contact method:",
-      "Country or region (optional):",
-      "Notes:",
-      "",
-      "No payment is collected in this email. Please reply with a real external checkout link only after the payment product is ready.",
-    ].join("\n"));
-    return url.toString();
+    return renderRetiredPaidExperiment("local-seller-starter-kit");
   }
 
   function renderCustomLocalPrintPackService() {
-    const price = "29";
-    const requestTemplateUrl = "/assets/services/custom-local-print-pack-request.txt";
-    const paymentReplyUrl = "/assets/services/custom-local-print-pack-payment-reply.txt";
-    const fulfillmentChecklistUrl = "/assets/services/custom-local-print-pack-fulfillment-checklist.txt";
-    const orderPipelineUrl = "/assets/services/custom-local-print-pack-order-pipeline.json";
-    const outreachQueueUrl = "/assets/services/custom-local-print-pack-outreach-queue.json";
-    const outreachBatchUrl = "/assets/services/custom-local-print-pack-outreach-batch.txt";
-    const sampleDeliveryUrl = "/assets/services/custom-local-print-pack-sample-delivery.zip";
-    const deliveryInputExampleUrl = "/assets/services/custom-local-print-pack-delivery-input.example.json";
-    const deliveryReportUrl = "/reports/custom-local-print-pack-sample-delivery.json";
-    const issueFormUrl = "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml";
-    const serviceRequestUrl = customLocalPrintPackRequestUrl();
-    const serviceEmailUrl = customLocalPrintPackEmailUrl();
-    const deliverables = [
-      "price tag starter CSV for up to 12 items",
-      "one small flyer copy draft",
-      "QR sign wording for one link or contact method",
-      "three coupon or bundle offer ideas",
-      "packing slip or pickup note starter rows",
-      "one-page launch checklist for printing and first outreach",
-    ];
-    const buyerInputs = [
-      "business, booth, event, or service name",
-      "up to 12 items or services with prices",
-      "one URL, social profile, phone, or email to turn into QR sign wording",
-      "preferred style: clean, cute, bold, minimal, local, premium, or practical",
-      "any words, claims, or offers to avoid",
-    ];
-    const relatedTools = ["price-tag", "flyer-maker", "coupon-maker", "packing-slip", "business-card", "qr-code"];
-    const orderStatuses = ["intent_received", "fit_confirmed", "checkout_sent", "paid_order_verified", "in_progress", "delivered", "revision_done", "closed"];
-    const orderAssets = [
-      ["Structured request form", issueFormUrl],
-      ["Payment-before-work reply", paymentReplyUrl],
-      ["Fulfillment checklist", fulfillmentChecklistUrl],
-      ["Order pipeline JSON", orderPipelineUrl],
-      ["Manual outreach queue", outreachQueueUrl],
-      ["Copy/paste outreach batch", outreachBatchUrl],
-      ["Sample delivery ZIP", sampleDeliveryUrl],
-      ["Delivery input example", deliveryInputExampleUrl],
-      ["Sample delivery report", deliveryReportUrl],
-    ];
-    setMeta("Custom Local Print Pack Setup", "A $29 done-for-you setup request for one simple printable seller pack: price tags, flyer copy, QR sign text, coupon wording, packing slip starter rows, and a one-page launch checklist.");
-    setJsonLd({
-      "@context": "https://schema.org",
-      "@type": "Service",
-      name: "Custom Local Print Pack Setup",
-      description: "Manual setup service for one simple printable seller pack using PrintableTools Lab generators.",
-      url: absoluteUrl("/custom-local-print-pack/"),
-      areaServed: "Online",
-      offers: {
-        "@type": "Offer",
-        price,
-        priceCurrency: "USD",
-        availability: "https://schema.org/PreOrder",
-        url: absoluteUrl("/custom-local-print-pack/"),
-      },
-    });
-    app.innerHTML = `
-      <section class="shell page-title section product-hero">
-        <a href="/local-seller-starter-kit/">Seller starter kit</a>
-        <h1>Custom Local Print Pack Setup for local sellers who want it done for them</h1>
-        <p>A lightweight service request for buyers who like the free generators but do not want to assemble their first price tags, flyer copy, QR sign text, coupons, packing notes, and launch checklist themselves.</p>
-        <div class="hero-actions">
-          <a class="button" href="${escapeHtml(serviceRequestUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Request service checkout</a>
-          <a class="button secondary" href="${escapeHtml(issueFormUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Open structured request form</a>
-          <a class="button secondary" href="/market-table-print-audit/" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit">Start with free audit</a>
-          <a class="button secondary" href="${requestTemplateUrl}" download>Download service brief</a>
-          ${serviceEmailUrl ? `<a class="button ghost" href="${escapeHtml(serviceEmailUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Email service request</a>` : ""}
-          <a class="button ghost" href="${orderPipelineUrl}">Open order pipeline</a>
-          <a class="button ghost" href="${outreachBatchUrl}">Open outreach batch</a>
-          <a class="button ghost" href="${sampleDeliveryUrl}">Download sample delivery</a>
-          <a class="button ghost" href="/local-seller-starter-kit/">See the $9 template kit</a>
-          <a class="button ghost" href="/custom-local-print-pack-sales-pack/">Open sales pack</a>
-        </div>
-        <p class="notice">Manual service checkout pending: this page captures buyer intent only. No payment is collected here until a real Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link is sent and paid.</p>
-        <div class="hero-proof">
-          <div class="proof-tile"><strong>$${price}</strong><span>setup price</span></div>
-          <div class="proof-tile"><strong>${deliverables.length}</strong><span>deliverables</span></div>
-          <div class="proof-tile"><strong>2 days</strong><span>target turnaround</span></div>
-        </div>
-      </section>
-      <section class="shell section">
-        <h2>What gets delivered</h2>
-        <div class="grid-3">${deliverables.map((item) => `<article class="panel"><h3>${escapeHtml(item)}</h3><p>Editable starter content for one local seller, small service, booth, event, or simple offer.</p></article>`).join("")}</div>
-      </section>
-      <section class="shell section">
-        <h2>Buyer details needed</h2>
-        <ul>${buyerInputs.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-        <p><a class="button" href="${requestTemplateUrl}" download>Download the request brief</a> <a class="button secondary" href="/market-table-print-audit/">Get a free print audit first</a></p>
-      </section>
-      <section class="shell section">
-        <h2>Order pipeline assets</h2>
-        <p>Use these when a request arrives: confirm fit, send a real external checkout link, wait for paid_order_verified, then build and deliver the pack.</p>
-        <table class="event-table"><tbody>${orderAssets.map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("")}</tbody></table>
-        <p>After paid_order_verified, run <code>npm.cmd run service:delivery -- --input path/to/paid-order.json</code>. Private customer ZIPs stay under <code>paid-deliverables/service-orders/</code>.</p>
-        <ol>${orderStatuses.map((status) => `<li><strong>${escapeHtml(status)}</strong></li>`).join("")}</ol>
-      </section>
-      <section class="shell section">
-        <h2>Use the finished pack with these free tools</h2>
-        <div class="grid-3">${relatedTools.map((id) => toolCard(tools[id])).join("")}</div>
-      </section>
-      ${customLocalPrintPackRequestBuilderHtml(serviceRequestUrl, serviceEmailUrl)}
-      <section class="shell section">
-        <h2>Risk controls</h2>
-        <ul>
-          <li>The service does not start until a real external payment link is sent and paid.</li>
-          <li>No payout, tax, bank, card, identity, or platform credential is stored in the repository.</li>
-          <li>The buyer must review all copy, prices, QR links, and claims before printing or publishing.</li>
-          <li>No legal, tax, accounting, employment, medical, or financial advice is included.</li>
-          <li>Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment.</li>
-        </ul>
-      </section>
-    `;
-  }
-
-  function customLocalPrintPackRequestCopy() {
-    return [
-      "I want to request the Custom Local Print Pack Setup for $29 USD.",
-      "",
-      "Business, booth, event, or service name:",
-      "What do you sell or promote?",
-      "Up to 12 items/services with prices:",
-      "Link or contact method for QR sign wording:",
-      "Preferred style: clean / cute / bold / minimal / local / premium / practical",
-      "Need-by date:",
-      "Preferred checkout provider: Gumroad / Payhip / Ko-fi / Stripe / other",
-      "Best contact method:",
-      "Country or region (optional):",
-      "Notes:",
-      "",
-      "No payment is collected by this request. Please reply with a real external checkout link and details checklist only if the service is available.",
-    ].join("\n");
-  }
-
-  function customLocalPrintPackRequestBuilderHtml(serviceRequestUrl, serviceEmailUrl) {
-    return `
-      <section class="shell section" id="service-request">
-        <h2>Build a service request</h2>
-        <p>Fill the public-safe fields once, then copy the generated request or open it as a prefilled GitHub issue. Treat it as intent only until a real external payment is recorded.</p>
-        <div class="grid-2" data-service-request-builder data-service-request-title="Service request: Custom Local Print Pack Setup">
-          <form class="panel form-grid" data-service-request-form>
-            <div class="field">
-              <label for="service-business">Business, booth, event, or service name</label>
-              <input id="service-business" name="business" autocomplete="organization" placeholder="Sunny Table Bakes">
-            </div>
-            <div class="field">
-              <label for="service-sells">What do you sell or promote?</label>
-              <textarea id="service-sells" name="sells" placeholder="Cookies, market boxes, and weekend pickup orders"></textarea>
-            </div>
-            <div class="field">
-              <label for="service-items">Up to 12 items or services with prices</label>
-              <textarea id="service-items" name="items" placeholder="Chocolate chip cookie bag - $6&#10;Brownie box - $10&#10;Market bundle - 2 for $15"></textarea>
-            </div>
-            <div class="field">
-              <label for="service-contact">QR sign link or public-safe contact method</label>
-              <input id="service-contact" name="contact" inputmode="url" placeholder="Public shop link, booking page, or contact page">
-            </div>
-            <div class="field">
-              <label for="service-style">Preferred style</label>
-              <select id="service-style" name="style">
-                <option>clean</option>
-                <option>cute</option>
-                <option>bold</option>
-                <option>minimal</option>
-                <option>local</option>
-                <option>premium</option>
-                <option>practical</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="service-date">Need-by date</label>
-              <input id="service-date" name="date" placeholder="June 22 market">
-            </div>
-            <div class="field">
-              <label for="service-checkout">Preferred checkout provider</label>
-              <select id="service-checkout" name="checkout">
-                <option>No preference</option>
-                <option>Gumroad</option>
-                <option>Payhip</option>
-                <option>Ko-fi</option>
-                <option>Stripe</option>
-                <option>Invoice provider</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="service-preference">Best public-safe contact method</label>
-              <input id="service-preference" name="preference" placeholder="Reply in GitHub issue, public email, or public website contact page">
-            </div>
-            <div class="field">
-              <label for="service-region">Country or region (optional)</label>
-              <input id="service-region" name="region" placeholder="Optional">
-            </div>
-            <div class="field">
-              <label for="service-notes">Notes</label>
-              <textarea id="service-notes" name="notes" placeholder="Avoid private customer details, tax IDs, account logins, payment data, and private addresses."></textarea>
-            </div>
-          </form>
-          <article class="panel form-grid">
-            <h3>Generated request</h3>
-            <p class="notice">No payment is collected here. Do not include card, bank, payout, tax, identity, password, private address, customer-list, or platform credential details.</p>
-            <textarea class="code-block request-copy-output" data-service-request-output readonly>${escapeHtml(customLocalPrintPackRequestCopy())}</textarea>
-            <div class="hero-actions">
-              <button class="button secondary" type="button" data-service-request-copy data-track-tool="custom-local-print-pack">Copy generated service request</button>
-              <a class="button" href="${escapeHtml(serviceRequestUrl)}" data-service-request-open data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Open generated GitHub request</a>
-              ${serviceEmailUrl ? `<a class="button ghost" href="${escapeHtml(serviceEmailUrl)}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Open email draft</a>` : ""}
-            </div>
-            <p class="notice" data-service-request-status>Ready to copy into email, a contact form, or a public-safe request.</p>
-          </article>
-        </div>
-      </section>`;
-  }
-
-  function customLocalPrintPackRequestUrl() {
-    const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
-    url.searchParams.set("title", "Service request: Custom Local Print Pack Setup");
-    url.searchParams.set("body", customLocalPrintPackRequestCopy());
-    return url.toString();
-  }
-
-  function customLocalPrintPackEmailUrl() {
-    const email = String(CONFIG.contactEmail || "").trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "";
-    const url = new URL(`mailto:${email}`);
-    url.searchParams.set("subject", "Service request: Custom Local Print Pack Setup");
-    url.searchParams.set("body", customLocalPrintPackRequestCopy());
-    return url.toString();
+    return renderRetiredPaidExperiment("custom-local-print-pack");
   }
 
   function renderMarketTablePrintAudit() {
-    const requestTemplateUrl = "/assets/services/market-table-print-audit-request.txt";
-    const checklistUrl = "/assets/services/market-table-print-audit-checklist.json";
-    const issueFormUrl = "https://github.com/yanqr213/printable-tools-lab/issues/new?template=market-table-print-audit.yml";
-    const auditRequestUrl = marketTablePrintAuditRequestUrl();
-    const auditQuestions = [
-      "Do shoppers see a clear price for each item or service?",
-      "Is there one QR/contact sign that opens a public-safe page or contact method?",
-      "Is there one simple flyer or table note that says what is available today?",
-      "Is there a coupon, bundle, or follow-up offer the seller can actually honor?",
-      "Are pickup, packing, or ordering notes clear enough to reduce repeated questions?",
-      "Are claims, deadlines, food/health language, and discount rules safe for the seller to review before printing?",
-    ];
-    const relatedTools = ["price-tag", "qr-code", "flyer-maker", "coupon-maker", "packing-slip", "business-card"];
-    const statuses = ["audit_request_received", "audit_reply_sent", "upgrade_interest", "service_fit_confirmed", "checkout_sent", "paid_order_verified"];
-    setMeta("Free Market Table Print Audit", "A free public-safe checklist request for local sellers who want feedback on price tags, QR signs, flyer copy, coupon wording, and pickup notes before optionally upgrading to the $29 Custom Local Print Pack Setup.");
-    setJsonLd({
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      name: "Free Market Table Print Audit",
-      url: absoluteUrl("/market-table-print-audit/"),
-      itemListElement: auditQuestions.map((question, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        name: question,
-      })),
-    });
-    app.innerHTML = `
-      <section class="shell page-title section product-hero">
-        <a href="/custom-local-print-pack/">Done-for-you setup</a>
-        <h1>Free Market Table Print Audit for local sellers</h1>
-        <p>A free public-safe checklist request for craft sellers, market tables, home bakers, local services, and pop-up organizers who want to spot missing price tags, QR signs, flyer copy, coupon wording, and pickup notes before buying anything.</p>
-        <div class="hero-actions">
-          <a class="button" href="${escapeHtml(auditRequestUrl)}" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit">Request free audit</a>
-          <a class="button secondary" href="${escapeHtml(issueFormUrl)}" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit">Open structured audit form</a>
-          <a class="button ghost" href="${requestTemplateUrl}" download>Download audit request template</a>
-          <a class="button ghost" href="${checklistUrl}">Open audit checklist JSON</a>
-          <a class="button ghost" href="/custom-local-print-pack/">See optional $29 setup</a>
-        </div>
-        <p class="notice">This is not revenue. The audit is free, collects no payment, and only becomes revenue if a separate external provider later proves a paid order for the optional $29 setup.</p>
-        <div class="hero-proof">
-          <div class="proof-tile"><strong>free</strong><span>audit request</span></div>
-          <div class="proof-tile"><strong>${auditQuestions.length}</strong><span>print checks</span></div>
-          <div class="proof-tile"><strong>$29</strong><span>optional upgrade</span></div>
-        </div>
-      </section>
-      <section class="shell section">
-        <h2>What the audit checks</h2>
-        <div class="grid-3">${auditQuestions.map((item) => `<article class="panel"><h3>${escapeHtml(item)}</h3><p>Use this as practical pre-print feedback before making more signs, tags, flyers, coupons, or pickup notes.</p></article>`).join("")}</div>
-      </section>
-      <section class="shell section">
-        <h2>Start free with these tools</h2>
-        <div class="grid-3">${relatedTools.map((id) => toolCard(tools[id])).join("")}</div>
-      </section>
-      ${marketTablePrintAuditRequestBuilderHtml()}
-      <section class="shell section">
-        <h2>Upgrade path</h2>
-        <p>Use the audit for feedback first. Mention the paid setup only when the seller asks for help assembling the first pack.</p>
-        <ol>${statuses.map((status) => `<li><strong>${escapeHtml(status)}</strong></li>`).join("")}</ol>
-        <p><a class="button" href="/custom-local-print-pack/">See the $29 done-for-you setup</a></p>
-      </section>
-      <section class="shell section" id="audit-request">
-        <h2>Audit request copy</h2>
-        <p>Copy this into GitHub, email, a contact form, or a public-safe message. Treat it as validation only until a separate real payment provider proves a paid order.</p>
-        <pre class="code-block">${escapeHtml(marketTablePrintAuditRequestCopy())}</pre>
-      </section>
-      <section class="shell section">
-        <h2>Risk controls</h2>
-        <ul>
-          <li>The audit is free and does not collect payment.</li>
-          <li>Use public-safe business, event, offer, and print-piece details only.</li>
-          <li>Do not ask for card, bank, payout, tax, identity, password, credential, private address, or customer-list data.</li>
-          <li>The audit is practical feedback, not legal, tax, health, food-labeling, advertising-compliance, or financial advice.</li>
-          <li>Free audit requests are validation, not revenue.</li>
-        </ul>
-      </section>
-    `;
-  }
-
-  function marketTablePrintAuditRequestCopy() {
-    return [
-      "I want a Free Market Table Print Audit.",
-      "",
-      "Business, booth, event, or service name:",
-      "What do you sell or promote?",
-      "Where will this be used? market table / pickup / workshop / local service / online-to-local / other:",
-      "Current price list, menu, or item examples:",
-      "Current QR/contact link or public-safe contact method:",
-      "What print pieces do you already have? price tags / flyer / QR sign / coupon / packing note / none:",
-      "What feels confusing or unfinished?",
-      "Need-by date or event date:",
-      "Would you want a $29 done-for-you setup if the audit shows obvious gaps? yes / maybe / no:",
-      "Public-safe contact preference:",
-      "Notes:",
-      "",
-      "No payment is collected for this audit request. Do not include card, bank, payout, tax, identity, credential, password, private address, customer-list, or private account details.",
-    ].join("\n");
-  }
-
-  function marketTablePrintAuditRequestBuilderHtml() {
-    const pieces = ["price tags", "flyer", "QR sign", "coupon", "packing note", "none"];
-    return `
-      <section class="shell section" id="build-audit-request">
-        <h2>Build your request</h2>
-        <p>Fill the public-safe fields once, then open a prefilled GitHub request or copy the message into email, a contact form, or a DM.</p>
-        <div class="grid-2" data-audit-request-builder data-audit-request-title="Free audit request: Free Market Table Print Audit">
-          <form class="panel form-grid" data-audit-request-form>
-            <div class="field">
-              <label for="audit-business">Business, booth, event, or service name</label>
-              <input id="audit-business" name="business" autocomplete="organization" placeholder="Saturday market candle table">
-            </div>
-            <div class="field">
-              <label for="audit-sells">What do you sell or promote?</label>
-              <textarea id="audit-sells" name="sells" placeholder="Soy candles, wax melts, and gift bundles"></textarea>
-            </div>
-            <div class="field">
-              <label for="audit-use">Where will this be used?</label>
-              <select id="audit-use" name="use">
-                <option value="">Choose one</option>
-                <option>market table</option>
-                <option>pickup</option>
-                <option>workshop</option>
-                <option>local service</option>
-                <option>online-to-local</option>
-                <option>other</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="audit-examples">Current price list, menu, or item examples</label>
-              <textarea id="audit-examples" name="examples" placeholder="Small candle $8, large candle $15, 2 for $25"></textarea>
-            </div>
-            <div class="field">
-              <label for="audit-contact">Current QR/contact link or public-safe contact method</label>
-              <input id="audit-contact" name="contact" inputmode="url" placeholder="Public shop link, booking link, or contact page">
-            </div>
-            <fieldset class="field">
-              <legend>What print pieces do you already have?</legend>
-              <div class="check-list">
-                ${pieces.map((piece, index) => `<label><input type="checkbox" name="pieces" value="${escapeHtml(piece)}"${index === pieces.length - 1 ? " data-none-option" : ""}> ${escapeHtml(piece)}</label>`).join("")}
-              </div>
-            </fieldset>
-            <div class="field">
-              <label for="audit-confusing">What feels confusing or unfinished?</label>
-              <textarea id="audit-confusing" name="confusing" placeholder="Prices are on phone notes, QR sign is too small, coupon wording is unclear"></textarea>
-            </div>
-            <div class="field">
-              <label for="audit-date">Need-by date or event date</label>
-              <input id="audit-date" name="date" placeholder="June 22 market">
-            </div>
-            <div class="field">
-              <label for="audit-upgrade">Would you want the optional $29 setup if the audit shows obvious gaps?</label>
-              <select id="audit-upgrade" name="upgrade">
-                <option>maybe</option>
-                <option>yes</option>
-                <option>no</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="audit-preference">Public-safe contact preference</label>
-              <input id="audit-preference" name="preference" placeholder="Reply on GitHub issue, public email, or public profile DM">
-            </div>
-            <div class="field">
-              <label for="audit-notes">Notes</label>
-              <textarea id="audit-notes" name="notes" placeholder="Avoid private customer details, tax IDs, account logins, payment data, and private addresses."></textarea>
-            </div>
-          </form>
-          <article class="panel form-grid">
-            <h3>Generated request</h3>
-            <p class="notice">No payment is collected here. Do not include card, bank, payout, tax, identity, password, private address, customer-list, or platform credential details.</p>
-            <textarea class="code-block audit-request-output" data-audit-request-output readonly>${escapeHtml(marketTablePrintAuditRequestCopy())}</textarea>
-            <div class="hero-actions">
-              <a class="button" data-audit-request-open data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${escapeHtml(marketTablePrintAuditRequestUrl())}">Open prefilled GitHub request</a>
-              <button class="button secondary" type="button" data-audit-request-copy>Copy request</button>
-            </div>
-            <p class="notice" data-audit-request-status>Ready to copy or open as a public-safe request.</p>
-          </article>
-        </div>
-      </section>`;
-  }
-
-  function marketTablePrintAuditRequestUrl() {
-    const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
-    url.searchParams.set("title", "Free audit request: Free Market Table Print Audit");
-    url.searchParams.set("body", marketTablePrintAuditRequestCopy());
-    return url.toString();
+    return renderRetiredPaidExperiment("market-table-print-audit");
   }
 
   function renderServiceSalesPack() {
-    const trackedLinks = [
-      ["GitHub Pages service link", "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
-      ["Free audit lead magnet", "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=direct-outreach&utm_medium=manual&utm_campaign=market_table_audit"],
-      ["Free audit request template", "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=market_table_audit"],
-      ["Free audit checklist JSON", "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json?utm_source=direct-outreach&utm_medium=manual&utm_campaign=market_table_audit"],
-      ["GitHub Pages request brief", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
-      ["Structured request form", "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml&utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
-      ["Payment reply template", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
-      ["Fulfillment checklist", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
-      ["Manual outreach queue", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
-      ["Copy/paste outreach batch", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
-      ["Sample delivery ZIP", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
-      ["Delivery input example", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack"],
-      ["Main service link", `${absoluteUrl("/custom-local-print-pack/").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
-      ["Free price tag generator", `${absoluteUrl("/tools/price-tag/").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
-      ["Free flyer maker", `${absoluteUrl("/tools/flyer-maker/").replace(/\/$/, "")}?utm_source=direct-outreach&utm_medium=manual&utm_campaign=service_sales_pack`],
-    ];
-    const outreach = [
-      ["Friendly DM to a market or craft seller", "Hi, I noticed your local products would look good with a simple printable table pack. I made a $29 done-for-you setup where I prepare starter price tags, flyer copy, QR sign wording, coupon ideas, packing notes, and a one-page launch checklist from your item list. No payment is taken on the site; you can review the brief first and only pay through a real checkout link if it fits.", "Want the request brief?"],
-      ["DM to a local service provider", "Hi, if you ever need quick printable promo pieces for your service, I have a small $29 setup offer: price/menu rows if needed, one flyer draft, QR sign wording, coupon or bundle ideas, pickup/booking notes, and a print checklist. It is meant for simple local services, not a full branding project.", "I can send the service brief if useful."],
-      ["Helpful community reply", "For a quick market table setup, I would start with simple price tags, one clear flyer, a QR/contact sign, and one small offer card. I made free generators for those, plus a $29 done-for-you setup if someone wants the first pack assembled from their own item list.", "Share the free generator first; mention the paid setup only if the person asks for help."],
-      ["Small service directory blurb", "Custom Local Print Pack Setup is a $29 done-for-you starter pack for local sellers and small service providers who need printable price tags, flyer copy, QR sign wording, coupon ideas, packing notes, and a launch checklist without learning design software.", "Use the GitHub Pages service link as the public listing URL until the main Cloudflare deployment is refreshed."],
-    ];
-    const listingFields = [
-      ["Service name", "Custom Local Print Pack Setup"],
-      ["Price", "$29 USD"],
-      ["Category", "Local business printables, small business service, market seller setup"],
-      ["Short tagline", "Done-for-you printable starter pack for local sellers and service providers"],
-      ["Free audit URL", "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/"],
-      ["Free audit request template", "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt"],
-      ["Free audit checklist JSON", "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json"],
-      ["Public URL", "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/"],
-      ["Request brief", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt"],
-      ["Structured request form", "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml"],
-      ["Payment-before-work reply", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt"],
-      ["Fulfillment checklist", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt"],
-      ["Manual outreach queue", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json"],
-      ["Copy/paste outreach batch", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt"],
-      ["Sample delivery ZIP", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip"],
-      ["Delivery input example", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json"],
-      ["Sample delivery report", "https://yanqr213.github.io/printable-tools-lab/reports/custom-local-print-pack-sample-delivery.json"],
-    ];
-    const checklist = [
-      "Start with 5 to 10 manual, relevant, non-spam contacts where the service solves an immediate print or market-table problem.",
-      "Send the request brief first; do not ask for payment until the buyer confirms fit and details.",
-      "Use the external checkout provider only after the buyer asks to proceed.",
-      "Log any request URL, reply, or paid order in OPERATIONS.md with the date and source.",
-      "Count revenue only from a paid provider order, payout balance, or settled payment.",
-    ];
-    const orderAssets = [
-      ["Structured request form", "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml"],
-      ["Request brief", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt"],
-      ["Payment-before-work reply", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt"],
-      ["Fulfillment checklist", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt"],
-      ["Order pipeline JSON", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json"],
-      ["Manual outreach queue", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json"],
-      ["Copy/paste outreach batch", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt"],
-      ["Sample delivery ZIP", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip"],
-      ["Delivery input example", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json"],
-      ["Sample delivery report", "https://yanqr213.github.io/printable-tools-lab/reports/custom-local-print-pack-sample-delivery.json"],
-    ];
-    const orderStatuses = ["intent_received", "fit_confirmed", "checkout_sent", "paid_order_verified", "in_progress", "delivered", "revision_done", "closed"];
-    setMeta("Custom Local Print Pack Sales Pack", "Copy-ready outreach, tracked links, listing fields, and safe manual execution steps for the $29 Custom Local Print Pack service.");
-    setJsonLd({
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      name: "Custom Local Print Pack Sales Pack",
-      itemListElement: outreach.map(([title], index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        name: title,
-      })),
-    });
-    app.innerHTML = `
-      <section class="shell page-title section">
-        <a href="/custom-local-print-pack/">Paid service</a>
-        <h1>Copy-ready sales pack for the $29 Custom Local Print Pack service</h1>
-        <p>A zero-budget outreach pack for promoting the done-for-you local print pack setup to craft sellers, market tables, local services, tutors, cleaners, repair providers, and pop-up organizers.</p>
-        <p><a class="button" href="https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/">Open live GitHub Pages service page</a> <a class="button secondary" href="https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/">Open free audit lead magnet</a> <a class="button secondary" href="/service-sales-pack.json">Open service-sales-pack.json</a></p>
-      </section>
-      <section class="shell section">
-        <h2>Tracked links</h2>
-        <table class="event-table"><tbody>${trackedLinks.map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("")}</tbody></table>
-      </section>
-      <section class="shell section">
-        <h2>Copy-ready outreach</h2>
-        <div class="grid-2">${outreach.map(([title, message, cta]) => `<article class="panel"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(message)}</p><p><strong>${escapeHtml(cta)}</strong></p></article>`).join("")}</div>
-      </section>
-      <section class="shell section">
-        <h2>Listing fields</h2>
-        <table class="event-table"><tbody>${listingFields.map(([label, value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`).join("")}</tbody></table>
-      </section>
-      <section class="shell section">
-        <h2>Order pipeline assets</h2>
-        <p>These links turn an interested reply into a paid, externally verified service order without collecting payment details in this repository.</p>
-        <table class="event-table"><tbody>${orderAssets.map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("")}</tbody></table>
-        <p>Private delivery command after paid_order_verified: <code>npm.cmd run service:delivery -- --input path/to/paid-order.json</code>. Public sample files show structure only.</p>
-        <ol>${orderStatuses.map((status) => `<li><strong>${escapeHtml(status)}</strong></li>`).join("")}</ol>
-      </section>
-      <section class="shell section">
-        <h2>Manual execution checklist</h2>
-        <ol>${checklist.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol>
-      </section>
-      <section class="shell section">
-        <h2>Risk controls</h2>
-        <ul>
-          <li>Do not spam communities or scrape private contact lists.</li>
-          <li>Do not promise guaranteed sales, legal compliance, tax results, or ad performance.</li>
-          <li>Do not collect card, bank, payout, tax, or identity details in the repository or GitHub issues.</li>
-          <li>Do not begin paid custom work without a real external payment record.</li>
-        </ul>
-      </section>
-    `;
+    return renderRetiredPaidExperiment("custom-local-print-pack-sales-pack");
   }
-
   function renderLandingPage(slug) {
     const page = landingPagesBySlug[slug];
     const tool = tools[page.tool];
@@ -6493,7 +5849,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
           </div>
         </div>
       </section>
-      ${renderLocalSellerFunnelCta(tool)}
+      ${renderFreeToolDepthCta(tool)}
       <section class="shell section">
         <div class="section-head">
           <div>
@@ -6667,7 +6023,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
           </div>
         </div>
       </section>
-      ${renderLocalSellerFunnelCta(tool)}
+      ${renderFreeToolDepthCta(tool)}
       <section class="shell section">
         <div class="grid-3">${getRelatedTools(tool.id).slice(0, 3).map(toolCard).join("")}</div>
       </section>
@@ -6718,7 +6074,7 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
           </div>
         </div>
       </section>
-      ${renderLocalSellerFunnelCta(tool)}
+      ${renderFreeToolDepthCta(tool)}
       <section class="shell section">
         <div class="grid-3">${getRelatedTools(tool.id).slice(0, 3).map(toolCard).join("")}</div>
       </section>
@@ -6726,19 +6082,19 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
     bindImageUtilityTool(tool);
   }
 
-  function renderLocalSellerFunnelCta(tool) {
+  function renderFreeToolDepthCta(tool) {
     if (!tool || !LOCAL_SELLER_FUNNEL_TOOL_IDS.has(tool.id)) return "";
     const content = encodeURIComponent(tool.id);
     const uploadHref = `/upload-limit-fixer/?utm_source=tool_cta&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     const finderHref = `/free-pdf-tools/?utm_source=tool_cta&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     return `
-      <section class="shell section seller-funnel-cta" aria-label="More free tools">
+      <section class="shell section free-tool-depth-cta" aria-label="More free tools">
         <div>
           <p class="eyebrow">Free tool path</p>
           <h2>Need another file fix before downloading?</h2>
           <p>Keep using the free PDF, image, QR, and business paperwork tools. The current monetization path is future ads, not charging visitors for exports.</p>
         </div>
-        <div class="seller-funnel-actions">
+        <div class="free-tool-depth-actions">
           <a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(uploadHref)}">Fix upload limits</a>
           <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${finderHref}">Browse more free tools</a>
           <p class="help">Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
@@ -12229,155 +11585,12 @@ ${paragraphs.join("\n")}
   }
 
   function initAuditRequestBuilders(root = document) {
-    root.querySelectorAll("[data-audit-request-builder]").forEach((builder) => {
-      if (builder.dataset.auditRequestReady === "true") return;
-      builder.dataset.auditRequestReady = "true";
-      const output = builder.querySelector("[data-audit-request-output]");
-      const openLink = builder.querySelector("[data-audit-request-open]");
-      const copyButton = builder.querySelector("[data-audit-request-copy]");
-      const status = builder.querySelector("[data-audit-request-status]");
-      const fields = Array.from(builder.querySelectorAll("input, select, textarea")).filter((field) => !field.hasAttribute("readonly"));
-      const issueTitle = builder.dataset.auditRequestTitle || "Free audit request: Free Market Table Print Audit";
-      const read = (name) => {
-        const field = builder.querySelector(`[name="${name}"]`);
-        return field ? String(field.value || "").trim() : "";
-      };
-      const selectedPieces = () => Array.from(builder.querySelectorAll('input[name="pieces"]:checked')).map((field) => field.value);
-      const line = (label, value) => `${label}${/[?:]$/.test(label) ? " " : ": "}${value || ""}`;
-      const update = () => {
-        const body = [
-          "I want a Free Market Table Print Audit.",
-          "",
-          line("Business, booth, event, or service name", read("business")),
-          line("What do you sell or promote?", read("sells")),
-          line("Where will this be used? market table / pickup / workshop / local service / online-to-local / other", read("use")),
-          line("Current price list, menu, or item examples", read("examples")),
-          line("Current QR/contact link or public-safe contact method", read("contact")),
-          line("What print pieces do you already have? price tags / flyer / QR sign / coupon / packing note / none", selectedPieces().join(", ")),
-          line("What feels confusing or unfinished?", read("confusing")),
-          line("Need-by date or event date", read("date")),
-          line("Would you want a $29 done-for-you setup if the audit shows obvious gaps? yes / maybe / no", read("upgrade")),
-          line("Public-safe contact preference", read("preference")),
-          line("Notes", read("notes")),
-          "",
-          "No payment is collected for this audit request. Do not include card, bank, payout, tax, identity, credential, password, private address, customer-list, or private account details.",
-        ].join("\n");
-        if (output) output.value = body;
-        if (openLink) {
-          const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
-          url.searchParams.set("title", issueTitle);
-          url.searchParams.set("body", body);
-          openLink.href = url.toString();
-        }
-      };
-      builder.addEventListener("change", (event) => {
-        if (event.target && event.target.matches('input[name="pieces"][data-none-option]') && event.target.checked) {
-          builder.querySelectorAll('input[name="pieces"]:not([data-none-option])').forEach((field) => {
-            field.checked = false;
-          });
-        } else if (event.target && event.target.matches('input[name="pieces"]:not([data-none-option])') && event.target.checked) {
-          const noneOption = builder.querySelector('input[name="pieces"][data-none-option]');
-          if (noneOption) noneOption.checked = false;
-        }
-        update();
-      });
-      fields.forEach((field) => field.addEventListener("input", update));
-      if (copyButton) {
-        copyButton.addEventListener("click", async () => {
-          update();
-          const text = output ? output.value : "";
-          try {
-            if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);
-            else if (output) {
-              output.focus();
-              output.select();
-              document.execCommand("copy");
-            }
-            if (status) status.textContent = "Request copied. Send only public-safe details.";
-            track("audit_request_intent", { tool: "market-table-print-audit" });
-          } catch {
-            if (status) status.textContent = "Copy failed. Select the generated request and copy it manually.";
-          }
-        });
-      }
-      update();
-    });
+    void root;
   }
 
   function initServiceRequestCopies(root = document) {
-    root.querySelectorAll("[data-service-request-builder]").forEach((builder) => {
-      if (builder.dataset.serviceBuilderReady === "true") return;
-      builder.dataset.serviceBuilderReady = "true";
-      const output = builder.querySelector("[data-service-request-output]");
-      const openLink = builder.querySelector("[data-service-request-open]");
-      const issueTitle = builder.dataset.serviceRequestTitle || "Service request: Custom Local Print Pack Setup";
-      const read = (name) => {
-        const field = builder.querySelector(`[name="${name}"]`);
-        return field ? String(field.value || "").trim() : "";
-      };
-      const line = (label, value) => `${label}${/[?:]$/.test(label) ? " " : ": "}${value || ""}`;
-      const update = () => {
-        const body = [
-          "I want to request the Custom Local Print Pack Setup for $29 USD.",
-          "",
-          line("Business, booth, event, or service name", read("business")),
-          line("What do you sell or promote?", read("sells")),
-          line("Up to 12 items/services with prices", read("items")),
-          line("Link or contact method for QR sign wording", read("contact")),
-          line("Preferred style: clean / cute / bold / minimal / local / premium / practical", read("style")),
-          line("Need-by date", read("date")),
-          line("Preferred checkout provider: Gumroad / Payhip / Ko-fi / Stripe / Invoice provider / No preference", read("checkout")),
-          line("Best public-safe contact method", read("preference")),
-          line("Country or region (optional)", read("region")),
-          line("Notes", read("notes")),
-          "",
-          "No payment is collected by this request. Please reply with a real external checkout link and details checklist only if the service is available. Do not include card, bank, payout, tax, identity, credential, password, private address, customer-list, or private account details.",
-        ].join("\n");
-        if (output) output.value = body;
-        if (openLink) {
-          const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
-          url.searchParams.set("title", issueTitle);
-          url.searchParams.set("body", body);
-          openLink.href = url.toString();
-        }
-      };
-      builder.querySelectorAll("input, select, textarea").forEach((field) => {
-        if (field.hasAttribute("readonly")) return;
-        field.addEventListener("input", update);
-        field.addEventListener("change", update);
-      });
-      update();
-    });
-    root.querySelectorAll("[data-service-request-copy]").forEach((copyButton) => {
-      if (copyButton.dataset.serviceCopyReady === "true") return;
-      copyButton.dataset.serviceCopyReady = "true";
-      const section = copyButton.closest("section") || root;
-      const output = section.querySelector("[data-service-request-output]");
-      const status = section.querySelector("[data-service-request-status]");
-      copyButton.addEventListener("click", async () => {
-        const builder = copyButton.closest("[data-service-request-builder]");
-        if (builder) {
-          builder.querySelectorAll("input, select, textarea").forEach((field) => {
-            if (!field.hasAttribute("readonly")) field.dispatchEvent(new Event("input", { bubbles: true }));
-          });
-        }
-        const text = output ? output.value || output.textContent || "" : "";
-        try {
-          if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);
-          else if (output && "select" in output) {
-            output.focus();
-            output.select();
-            document.execCommand("copy");
-          }
-          if (status) status.textContent = "Service request copied. Send only public-safe details.";
-          track("service_request_intent", { tool: copyButton.dataset.trackTool || "custom-local-print-pack" });
-        } catch {
-          if (status) status.textContent = "Copy failed. Select the request text and copy it manually.";
-        }
-      });
-    });
+    void root;
   }
-
   function initUploadLimitHelpers(root = document) {
     root.querySelectorAll("[data-upload-limit-helper]").forEach((helper) => {
       if (helper.dataset.uploadLimitReady === "true") return;

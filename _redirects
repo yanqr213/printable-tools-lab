@@ -2,6 +2,17 @@
 /premium-waitlist /roadmap/ 301
 /pro/ /roadmap/ 301
 /pro /roadmap/ 301
+/scripts/* /free-pdf-tools/ 301
+/reports/* /free-pdf-tools/ 301
+/functions/* /free-pdf-tools/ 301
+/package.json /free-pdf-tools/ 301
+/package-lock.json /free-pdf-tools/ 301
+/README.md /free-pdf-tools/ 301
+/OPERATIONS.md /free-pdf-tools/ 301
+/VALIDATION.md /free-pdf-tools/ 301
+/DISTRIBUTION.md /submit-directory/ 301
+/LICENSE.md /license/ 301
+/wrangler.toml /free-pdf-tools/ 301
 /digital-products.json /free-pdf-tools/ 301
 /services.json /free-pdf-tools/ 301
 /service-sales-pack.json /free-pdf-tools/ 301

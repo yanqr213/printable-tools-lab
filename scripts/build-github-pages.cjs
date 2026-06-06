@@ -115,7 +115,7 @@ const html = `<!doctype html>
         <p>If this file job is for a market table, pickup order, craft seller, local service, or event booth, keep using the free PDF, image, QR, and business paperwork tools without creating an account.</p>
         <p class="actions">
           <a class="button" data-track-event="free_tool_depth" data-track-tool="upload-limit-fixer" href="${trackedSiteUrl("upload-limit-fixer", "directory-free-tools")}">Fix upload limits</a>
-          <a class="button secondary" href="${trackedSiteUrl("free-pdf-tools", "directory-seller-help")}">Browse more free tools</a>
+          <a class="button secondary" href="${trackedSiteUrl("free-pdf-tools", "directory-free-tool-depth")}">Browse more free tools</a>
         </p>
         <p>Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
       </section>
@@ -150,7 +150,7 @@ const html = `<!doctype html>
         <li><a href="${pagesUrl("upload-error-cheatsheet")}">Upload error cheatsheet mirror</a> for exact PDF, image, resume, and email attachment rejection messages with direct fixes.</li>
         <li><a href="${trackedSiteUrl("tools", "all-tools")}">All free generators</a> for browsing every tool.</li>
         <li><a href="${pagesUrl("guides")}">Printable guide mirrors</a> for original help pages around PDF, image, QR, and printable workflows.</li>
-        <li><a href="${trackedSiteUrl("free-pdf-tools", "seller-help-directory")}">Free PDF, image, and QR tools directory</a> for continuing to another useful browser tool.</li>
+        <li><a href="${trackedSiteUrl("free-pdf-tools", "free-tool-depth-directory")}">Free PDF, image, and QR tools directory</a> for continuing to another useful browser tool.</li>
         <li><a href="${pagesUrl("html5-game-submission-pack")}">HTML5 game submission pack mirror</a> for clean portal ZIPs, GameSnacks packages, demo videos, and platform-review assets.</li>
         ${landingPages.map((page) => `<li><a href="${trackedSiteUrl(page.path, `home-${page.path}`)}">${escapeHtml(page.title)}</a> for ${escapeHtml(page.intent)}.</li>`).join("\n")}
         <li><a href="${siteUrl("feed.xml").replace(/\/$/, "")}">RSS feed</a> for monitoring newly published discovery pages and high-intent tools.</li>
@@ -354,13 +354,13 @@ function trackedGuideUrl(guide) {
   return url.toString();
 }
 
-function sellerIntentCtaHtml() {
-  return `<section class="card seller-intent">
+function freeToolDepthCtaHtml() {
+  return `<section class="card free-tool-depth-cta">
         <h2>Free file tools first</h2>
         <p>If this file job is for a market table, pickup order, craft seller, local service, or event booth, keep using the free PDF, image, QR, and business paperwork tools without creating an account.</p>
         <p class="actions">
-          <a class="button" data-track-event="free_tool_depth" data-track-tool="upload-limit-fixer" href="${trackedSiteUrl("upload-limit-fixer", "seller-help-directory")}">Fix upload limits</a>
-          <a class="button secondary" href="${trackedSiteUrl("free-pdf-tools", "seller-help-directory")}">Browse more free tools</a>
+          <a class="button" data-track-event="free_tool_depth" data-track-tool="upload-limit-fixer" href="${trackedSiteUrl("upload-limit-fixer", "free-tool-depth-directory")}">Fix upload limits</a>
+          <a class="button secondary" href="${trackedSiteUrl("free-pdf-tools", "free-tool-depth-directory")}">Browse more free tools</a>
         </p>
         <p>Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
       </section>`;
@@ -1782,7 +1782,7 @@ function landingDiscoveryHtml(page, primaryTool, relatedTools) {
       <h1>${escapeHtml(page.headline)}</h1>
       <p>${escapeHtml(page.lead)}</p>
       <p><a class="button" href="${trackedSiteUrl(page.path, `landing-${page.path}`)}">Open the live no-signup page</a></p>
-      ${sellerIntentCtaHtml()}
+      ${freeToolDepthCtaHtml()}
       <h2>Primary tool</h2>
       <article class="card">
         <h3>${escapeHtml(primaryTool.title)}</h3>
@@ -1835,7 +1835,7 @@ function toolDiscoveryHtml(tool, relatedLandingPages) {
       <h1>${escapeHtml(tool.title)}</h1>
       <p>${escapeHtml(tool.description)}</p>
       <p><a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolTrackingId(tool))}" href="${trackedSiteUrl(tool.path, `tool-${tool.path}`)}">Open the live free tool</a></p>
-      ${sellerIntentCtaHtml()}
+      ${freeToolDepthCtaHtml()}
       <h2>Why this tool exists</h2>
       <p>This mirror page is a zero-cost discovery entry for the live PrintableTools Lab tool. The live app focuses on practical browser-side generation, no account wall, and clear download flow so users can solve a file or printable job quickly.</p>
       <h2>Best fit</h2>

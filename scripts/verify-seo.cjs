@@ -125,18 +125,18 @@ else {
 for (const toolPath of ["tools/invoice-generator", "tools/price-tag", "tools/flyer-maker", "tools/coupon-maker", "tools/packing-slip", "tools/business-card", "tools/qr-code"]) {
   const file = path.join(root, ...toolPath.split("/"), "index.html");
   if (!fs.existsSync(file)) {
-    failures.push(`Missing local seller funnel tool page: ${toolPath}`);
+    failures.push(`Missing free-tool depth CTA tool page: ${toolPath}`);
     continue;
   }
   const html = fs.readFileSync(file, "utf8");
-  if (!html.includes("seller-funnel-cta")) failures.push(`Missing local seller funnel CTA: ${toolPath}`);
+  if (!html.includes("free-tool-depth-cta")) failures.push(`Missing free-tool depth CTA: ${toolPath}`);
   if (html.includes("market_table_audit") || html.includes(MARKET_TABLE_PRINT_AUDIT.slug)) failures.push(`Local tool funnel should not promote retired audit path: ${toolPath}`);
-  if (!html.includes("free_tool_depth")) failures.push(`Missing free-tool depth campaign on funnel CTA: ${toolPath}`);
-  if (!html.includes('data-track-event="free_tool_depth"')) failures.push(`Missing free-tool depth event on funnel CTA: ${toolPath}`);
+  if (!html.includes("free_tool_depth")) failures.push(`Missing free-tool depth campaign on CTA: ${toolPath}`);
+  if (!html.includes('data-track-event="free_tool_depth"')) failures.push(`Missing free-tool depth event on CTA: ${toolPath}`);
   if (html.includes("data-track-event=\"audit_request_intent\"")) failures.push(`Local tool funnel should not track retired audit intent: ${toolPath}`);
   if (!html.includes("Browse more free tools")) failures.push(`Missing free-tool browse CTA: ${toolPath}`);
   if (!html.includes("Future ads must stay separated from generator controls")) failures.push(`Missing ad-safety warning on funnel CTA: ${toolPath}`);
-  if (html.includes("See optional setup")) failures.push(`Local seller funnel should not promote optional setup: ${toolPath}`);
+  if (html.includes("See optional setup")) failures.push(`Free-tool depth CTA should not promote optional setup: ${toolPath}`);
 }
 
 const appScriptFile = path.join(root, "app.js");
@@ -152,6 +152,20 @@ else {
   if (script.includes("Open $29 setup request")) failures.push("Download success CTA should not promote paid setup.");
   if (!script.includes("renderRetiredPaidExperiment")) failures.push("app.js missing retired payment route renderer.");
   if (!script.includes("No payment is collected here")) failures.push("app.js retired payment route missing no-payment copy.");
+  if (script.includes("I want to request the Custom Local Print Pack Setup")) failures.push("app.js should not expose retired service request copy.");
+  if (script.includes("Free Market Table Print Audit")) failures.push("app.js should not expose retired audit request copy outside retired labels.");
+  if (script.includes("seller-funnel-cta") || script.includes("seller-help-directory")) failures.push("app.js should use free-tool depth naming, not seller funnel naming.");
+}
+
+const redirectsFile = path.join(root, "_redirects");
+if (!fs.existsSync(redirectsFile)) failures.push("Missing _redirects.");
+else {
+  const redirects = fs.readFileSync(redirectsFile, "utf8");
+  for (const privatePath of ["/scripts/*", "/reports/*", "/functions/*", "/package.json", "/package-lock.json", "/README.md", "/OPERATIONS.md", "/VALIDATION.md", "/wrangler.toml"]) {
+    if (!redirects.includes(`${privatePath} /free-pdf-tools/ 301`)) failures.push(`_redirects missing private file redirect: ${privatePath}`);
+  }
+  if (!redirects.includes("/DISTRIBUTION.md /submit-directory/ 301")) failures.push("_redirects missing distribution pack redirect.");
+  if (!redirects.includes("/LICENSE.md /license/ 301")) failures.push("_redirects missing license markdown redirect.");
 }
 
 const robotsFile = path.join(root, "robots.txt");

@@ -12,8 +12,57 @@ const forbiddenPathPrefixes = [
   ".git/",
   ".wrangler/",
   "node_modules/",
+  "scripts/",
+  "reports/",
+  ".github/",
   ".env",
   ".env.",
+  "package.json",
+  "package-lock.json",
+  "README.md",
+  "OPERATIONS.md",
+  "VALIDATION.md",
+  "DISTRIBUTION.md",
+  "LICENSE.md",
+  "wrangler.toml",
+];
+const allowedPublicFilePatterns = [
+  /^_headers$/,
+  /^_redirects$/,
+  /^index\.html$/,
+  /^ads\.txt$/,
+  /^app\.js$/,
+  /^styles\.css$/,
+  /^robots\.txt$/,
+  /^sitemap\.xml$/,
+  /^feed\.xml$/,
+  /^llms\.txt$/,
+  /^tools\.json$/,
+  /^discovery\.json$/,
+  /^share-kit\.json$/,
+  /^organic-push-kit\.json$/,
+  /^upload-error-cheatsheet\.json$/,
+  /^platform-submit-queue\.json$/,
+  /^platform-submit-cockpit\.json$/,
+  /^platform-outreach-tracker\.json$/,
+  /^portal-submission-pack\.json$/,
+  /^game-submission-feed\.json$/,
+  /^zero-cost-monetization-map\.json$/,
+  /^site\.webmanifest$/,
+  /^opensearch\.xml$/,
+  /^indexnow-key\.txt$/,
+  /^fb2b7a50e6a8b37f8d959a1c17b850eb\.txt$/,
+  /^google[^/]*(?:\.html)?$/,
+  /^assets\/(?:images|vendor)\//,
+  /^docs\//,
+  /^functions\/api\//,
+  /^[a-z0-9][a-z0-9-]*\/index\.html$/,
+  /^tools\/[a-z0-9-]+\/index\.html$/,
+  /^guides\/[a-z0-9-]+\/index\.html$/,
+  /^privacy\/index\.html$/,
+  /^terms\/index\.html$/,
+  /^about\/index\.html$/,
+  /^license\/index\.html$/,
 ];
 const forbiddenContentPatterns = [
   ["github", "_pat_", "[A-Za-z0-9_]{20,}"],
@@ -44,11 +93,13 @@ function main() {
   run("npm.cmd", ["run", "verify:adsense"]);
 
   const trackedFiles = gitTrackedFiles();
-  assertNoForbiddenPaths(trackedFiles);
+  const deployFiles = publicDeployFiles(trackedFiles);
+  assertNoForbiddenPaths(deployFiles);
   const deployDir = fs.mkdtempSync(path.join(os.tmpdir(), "ptl-cloudflare-deploy-"));
   try {
-    copyTrackedFiles(trackedFiles, deployDir);
+    copyTrackedFiles(deployFiles, deployDir);
     assertNoForbiddenFiles(deployDir);
+    console.log(`Prepared ${deployFiles.length} public deploy file(s).`);
     const wranglerArgs = ["wrangler", "pages", "deploy", deployDir, "--project-name", projectName, "--commit-dirty=true"];
     const result = spawnSync("npx.cmd", wranglerArgs, {
       cwd: root,
@@ -66,6 +117,20 @@ function main() {
 
 function run(command, args) {
   execFileSync(command, args, { cwd: root, stdio: "inherit", shell: process.platform === "win32" });
+}
+
+function publicDeployFiles(files) {
+  const deployFiles = files.filter((file) => allowedPublicFilePatterns.some((pattern) => pattern.test(file)));
+  const missingRequired = ["index.html", "app.js", "styles.css", "_redirects", "_headers", "sitemap.xml", "robots.txt", "functions/api/event.js", "functions/api/metrics.js"]
+    .filter((file) => !deployFiles.includes(file));
+  if (missingRequired.length) {
+    throw new Error(`Public deploy file list is missing required file(s): ${missingRequired.join(", ")}`);
+  }
+  const accidentallyPublic = deployFiles.filter((file) => forbiddenPathPrefixes.some((prefix) => file === prefix.replace(/\/$/, "") || file.startsWith(prefix)));
+  if (accidentallyPublic.length) {
+    throw new Error(`Refusing to include non-public file(s): ${accidentallyPublic.slice(0, 12).join(", ")}`);
+  }
+  return deployFiles;
 }
 
 function gitTrackedFiles() {

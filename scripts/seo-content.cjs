@@ -4971,28 +4971,28 @@ const pages = [
     path: LOCAL_SELLER_STARTER_KIT.slug,
     title: "Retired payment experiment",
     description: "This older payment experiment is retired from the public site. PrintableTools Lab is focused on free no-signup tools and future ad-supported monetization.",
-    html: retiredPaidExperimentHtml(LOCAL_SELLER_STARTER_KIT.name),
+    html: retiredPaidExperimentHtml("Retired seller kit experiment"),
     index: false,
   },
   {
     path: CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug,
     title: "Retired payment experiment",
     description: "This older payment experiment is retired from the public site. PrintableTools Lab is focused on free no-signup tools and future ad-supported monetization.",
-    html: retiredPaidExperimentHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.name),
+    html: retiredPaidExperimentHtml("Retired custom print pack experiment"),
     index: false,
   },
   {
     path: MARKET_TABLE_PRINT_AUDIT.slug,
     title: "Retired payment experiment",
-    description: "This older buyer-intent experiment is retired from the public site. PrintableTools Lab is focused on free no-signup tools and future ad-supported monetization.",
-    html: retiredPaidExperimentHtml(MARKET_TABLE_PRINT_AUDIT.name),
+    description: "This older direct-payment experiment is retired from the public site. PrintableTools Lab is focused on free no-signup tools and future ad-supported monetization.",
+    html: retiredPaidExperimentHtml("Retired print audit experiment"),
     index: false,
   },
   {
     path: SERVICE_SALES_PACK.slug,
     title: "Retired payment experiment",
     description: "This older payment experiment is retired from the public site. PrintableTools Lab is focused on free no-signup tools and future ad-supported monetization.",
-    html: retiredPaidExperimentHtml(SERVICE_SALES_PACK.name),
+    html: retiredPaidExperimentHtml("Retired service sales pack experiment"),
     index: false,
   },
   {
@@ -5197,7 +5197,7 @@ function toolHtml(tool) {
         ${tool.body.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("\n")}
         <p><a class="button" href="/${tool.path}/">Open generator</a></p>
       </section>
-${localSellerFunnelHtml(tool)}
+${freeToolDepthCtaHtml(tool)}
       <section class="shell section">
         <h2>How to use this free ${noun}</h2>
         <ol>
@@ -5226,19 +5226,19 @@ ${localSellerFunnelHtml(tool)}
       </section>`;
 }
 
-function localSellerFunnelHtml(tool) {
+function freeToolDepthCtaHtml(tool) {
   if (!LOCAL_SELLER_FUNNEL_TOOL_PATH_SET.has(tool.path)) return "";
   const toolSlug = tool.path.replace(/^tools\//, "");
   const finderHref = `/free-pdf-tools/?utm_source=tool_cta&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${encodeURIComponent(toolSlug)}`;
   const uploadHref = `/upload-limit-fixer/?utm_source=tool_cta&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${encodeURIComponent(toolSlug)}`;
   return `
-      <section class="shell section seller-funnel-cta" aria-label="More free tools">
+      <section class="shell section free-tool-depth-cta" aria-label="More free tools">
         <div>
           <p class="eyebrow">Free tool path</p>
           <h2>Need another file fix before downloading?</h2>
           <p>Keep using the free PDF, image, QR, and business paperwork tools. The current monetization path is future ads, not charging visitors for exports.</p>
         </div>
-        <div class="seller-funnel-actions">
+        <div class="free-tool-depth-actions">
           <a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolSlug)}" href="${escapeHtml(uploadHref)}">Fix upload limits</a>
           <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolSlug)}" href="${escapeHtml(finderHref)}">Browse more free tools</a>
           <p class="help">Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
@@ -5697,7 +5697,7 @@ function shareKitHtml() {
         <ul>
           ${SHARE_KIT_RULES.map((rule) => `<li>${escapeHtml(rule)}</li>`).join("\n")}
         </ul>
-        <p><a class="button" href="/share-kit.json">Open machine-readable share-kit.json</a> <a class="button secondary" href="/DISTRIBUTION.md">Open distribution pack</a></p>
+        <p><a class="button" href="/share-kit.json">Open machine-readable share-kit.json</a> <a class="button secondary" href="/submit-directory/">Open directory submission pack</a></p>
         ${jsonLdHtml(itemListSchema("PrintableTools Lab share kit priority links", featuredLinks.map((item) => ({ title: item.title, path: item.path }))))}
       </section>`;
 }
@@ -5707,7 +5707,7 @@ function retiredPaidExperimentHtml(name) {
       <section class="shell page-title section">
         <a href="/free-pdf-tools/">Free tools</a>
         <h1>${escapeHtml(name)} has been retired</h1>
-        <p>This older buyer-intent experiment is no longer part of the public product path. PrintableTools Lab is staying free for visitors and is being validated for responsible display ads later.</p>
+        <p>This older direct-payment experiment is no longer part of the public product path. PrintableTools Lab is staying free for visitors and is being validated for responsible display ads later.</p>
         <p><a class="button" href="/free-pdf-tools/">Browse free tools</a> <a class="button secondary" href="/upload-limit-fixer/">Fix upload limits</a> <a class="button ghost" href="/tools/">All tools</a></p>
         <p class="notice">No payment is collected here. Current monetization work is traffic, usage depth, ad policy readiness, and future ad-network payout.</p>
       </section>

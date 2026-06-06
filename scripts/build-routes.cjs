@@ -464,7 +464,7 @@ const discoveryIndex = {
     gameSubmissionFeedJson: fileUrl("game-submission-feed.json"),
     zeroCostMonetizationMap: siteUrl("zero-cost-monetization-map"),
     zeroCostMonetizationMapJson: fileUrl("zero-cost-monetization-map.json"),
-    distributionPack: fileUrl("DISTRIBUTION.md"),
+    distributionPack: siteUrl("submit-directory"),
     campaignVideos: campaignAssets,
     publicGist: gistDiscovery?.htmlUrl || "",
     publicGistRaw: gistDiscovery?.rawUrl || "",
