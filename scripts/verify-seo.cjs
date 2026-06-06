@@ -157,6 +157,37 @@ else {
   if (script.includes("seller-funnel-cta") || script.includes("seller-help-directory")) failures.push("app.js should use free-tool depth naming, not seller funnel naming.");
 }
 
+const externalGrowthScripts = [
+  "scripts/github-discovery.cjs",
+  "scripts/gist-discovery.cjs",
+  "scripts/github-issue-discovery.cjs",
+  "scripts/share-kit-push.cjs",
+];
+const retiredGrowthPatterns = [
+  "MARKET_TABLE_PRINT_AUDIT",
+  "CUSTOM_LOCAL_PRINT_PACK_SERVICE",
+  "SERVICE_SALES_PACK",
+  "market_table_audit",
+  "service_sales_pack",
+  "Free Market Table Print Audit",
+  "Custom Local Print Pack",
+  "paid_order_verified",
+  "buyerIntentPath",
+  "freeHelpPath",
+  "freeMarketTableAudit",
+];
+for (const scriptPath of externalGrowthScripts) {
+  const file = path.join(root, ...scriptPath.split("/"));
+  if (!fs.existsSync(file)) {
+    failures.push(`Missing external growth script: ${scriptPath}`);
+    continue;
+  }
+  const script = fs.readFileSync(file, "utf8");
+  for (const pattern of retiredGrowthPatterns) {
+    if (script.includes(pattern)) failures.push(`${scriptPath} should not publish retired payment experiment reference: ${pattern}`);
+  }
+}
+
 const redirectsFile = path.join(root, "_redirects");
 if (!fs.existsSync(redirectsFile)) failures.push("Missing _redirects.");
 else {

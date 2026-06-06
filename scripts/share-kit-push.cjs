@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync, spawnSync } = require("child_process");
-const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, MARKET_TABLE_PRINT_AUDIT, siteUrl } = require("./seo-content.cjs");
+const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, siteUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const reportDir = path.join(root, "reports");
@@ -43,7 +43,7 @@ function main() {
     })),
     rules: SHARE_KIT_RULES,
     zeroDomainGameExperiment: ZERO_DOMAIN_GAME_EXPERIMENT,
-    freeHelpPath: freeHelpPath(),
+    freeToolPath: freeToolPath(),
     externalDiscovery: readExternalDiscovery(),
     actions: {
       gistDiscovery,
@@ -52,12 +52,6 @@ function main() {
       indexNow,
     },
     nextManualQueue: [
-      {
-        target: "One relevant local-seller reply",
-        angle: "Free Market Table Print Audit",
-        url: `${MARKET_TABLE_PRINT_AUDIT.githubPagesUrl}?utm_source=community&utm_medium=organic&utm_campaign=market_table_audit`,
-        rule: "Only reply where a seller has an obvious market-table print, price tag, QR sign, flyer, coupon, or pickup-note problem.",
-      },
       {
         target: "One useful community reply",
         angle: "PDF must be under 1MB",
@@ -97,16 +91,16 @@ function readExternalDiscovery() {
     campaignRelease: release?.releaseUrl || "",
     zeroDomainGame: ZERO_DOMAIN_GAME_EXPERIMENT.url,
     zeroDomainGameRepo: ZERO_DOMAIN_GAME_EXPERIMENT.repo,
-    freeMarketTableAudit: MARKET_TABLE_PRINT_AUDIT.githubPagesUrl,
+    uploadLimitFixer: siteUrl("upload-limit-fixer"),
+    uploadErrorCheatsheet: siteUrl("upload-error-cheatsheet"),
   };
 }
 
-function freeHelpPath() {
+function freeToolPath() {
   return {
-    auditUrl: `${MARKET_TABLE_PRINT_AUDIT.githubPagesUrl}?utm_source=share-kit-push&utm_medium=organic&utm_campaign=market_table_audit`,
-    auditRequestUrl: MARKET_TABLE_PRINT_AUDIT.githubPagesRequestUrl,
-    auditChecklistUrl: MARKET_TABLE_PRINT_AUDIT.githubPagesChecklistUrl,
     freeToolDirectoryUrl: `${siteUrl("free-pdf-tools").replace(/\/$/, "")}?utm_source=share-kit-push&utm_medium=organic&utm_campaign=free_tool_depth`,
+    uploadLimitFixerUrl: `${siteUrl("upload-limit-fixer").replace(/\/$/, "")}?utm_source=share-kit-push&utm_medium=organic&utm_campaign=free_tool_depth`,
+    uploadErrorCheatsheetUrl: `${siteUrl("upload-error-cheatsheet").replace(/\/$/, "")}?utm_source=share-kit-push&utm_medium=organic&utm_campaign=free_tool_depth`,
     adSafetyRule: "Downloads stay free; future ads must never block tool use or file downloads.",
   };
 }

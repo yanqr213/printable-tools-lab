@@ -1,5 +1,5 @@
 const { execFileSync } = require("child_process");
-const { HIGH_INTENT_TOOL_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, CUSTOM_LOCAL_PRINT_PACK_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, siteUrl, tools, SITE_SUMMARY } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, siteUrl, tools, SITE_SUMMARY } = require("./seo-content.cjs");
 
 const token = githubToken();
 if (!token) {
@@ -134,7 +134,6 @@ function releaseBody() {
     `- [Zero-budget share kit](${siteUrl("share-kit")})`,
     `- [Machine-readable share-kit.json](${siteUrl("share-kit.json").replace(/\/$/, "")})`,
     ...externalDiscoveryLinks(),
-    `- [Free Market Table Print Audit](${MARKET_TABLE_PRINT_AUDIT.githubPagesUrl}?utm_source=github-release&utm_medium=organic&utm_campaign=market_table_audit)`,
     `- [HTML5 platform submit cockpit](${siteUrl("platform-submit-cockpit")})`,
     `- [HTML5 portal submission pack](${siteUrl("portal-submission-pack")})`,
     `- [Zero-cost monetization map](${siteUrl("zero-cost-monetization-map")})`,
@@ -151,13 +150,6 @@ function releaseBody() {
     "High-intent upload-limit entry points:",
     "",
     ...SHARE_KIT_FEATURED_LINKS.map(([title, pathName, reason]) => `- [${title}](${siteUrl(pathName)}): ${reason}`),
-    "",
-    "Free local-seller help path:",
-    "",
-    `- [Free Market Table Print Audit](${MARKET_TABLE_PRINT_AUDIT.githubPagesUrl}?utm_source=github-release&utm_medium=organic&utm_campaign=market_table_audit): free public-safe feedback on price tags, QR signs, flyer copy, coupons, and pickup notes.`,
-    `- [Structured audit request form](${MARKET_TABLE_PRINT_AUDIT.issueFormUrl}): free request form; not revenue.`,
-    `- [Audit request template](${MARKET_TABLE_PRINT_AUDIT.githubPagesRequestUrl}): copyable public-safe request text.`,
-    `- [Free tool directory](${siteUrl("free-pdf-tools")}): continue to another free PDF, image, QR, or business paperwork tool.`,
     "",
     "Share-kit copy angles:",
     "",

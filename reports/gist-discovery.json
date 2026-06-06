@@ -1,10 +1,16 @@
 {
-  "generatedAt": "2026-06-02T21:01:29.946Z",
+  "generatedAt": "2026-06-06T01:50:02.709Z",
   "action": "updated",
   "gistId": "fd9cbd597802dd7343fcfa1834e0beeb",
   "htmlUrl": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-  "rawUrl": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/eb874c63e907b69755fe316b60f2a6f28936a5f1/PrintableTools-Lab-zero-cost-share-kit.md",
+  "rawUrl": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/520d4e5531452010ae48e5928c1ea0c33c754f3b/PrintableTools-Lab-zero-cost-share-kit.md",
   "public": true,
   "file": "PrintableTools-Lab-zero-cost-share-kit.md",
-  "videoAssetCount": 6
+  "videoAssetCount": 6,
+  "freeToolPath": {
+    "freeToolDirectoryUrl": "https://printable-tools-lab.pages.dev/free-pdf-tools?utm_source=gist-report&utm_medium=organic&utm_campaign=free_tool_depth",
+    "uploadLimitFixerUrl": "https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=gist-report&utm_medium=organic&utm_campaign=free_tool_depth",
+    "uploadErrorCheatsheetUrl": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet?utm_source=gist-report&utm_medium=organic&utm_campaign=free_tool_depth",
+    "moneyGate": "Public downloads stay free. Revenue starts only after mainstream ads or approved platform payouts are active and visible in an external dashboard."
+  }
 }

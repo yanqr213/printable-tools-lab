@@ -1,9 +1,15 @@
 {
-  "generatedAt": "2026-06-02T21:01:32.001Z",
+  "generatedAt": "2026-06-06T01:50:04.100Z",
   "action": "updated",
   "issueNumber": 1,
   "issueUrl": "https://github.com/yanqr213/printable-tools-lab/issues/1",
   "apiUrl": "https://api.github.com/repos/yanqr213/printable-tools-lab/issues/1",
   "state": "open",
-  "title": "Growth log: free no-signup PDF and image upload-limit tools"
+  "title": "Growth log: free no-signup PDF and image upload-limit tools",
+  "freeToolPath": {
+    "freeToolDirectoryUrl": "https://printable-tools-lab.pages.dev/free-pdf-tools?utm_source=github-issue-report&utm_medium=organic&utm_campaign=free_tool_depth",
+    "uploadLimitFixerUrl": "https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=github-issue-report&utm_medium=organic&utm_campaign=free_tool_depth",
+    "uploadErrorCheatsheetUrl": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet?utm_source=github-issue-report&utm_medium=organic&utm_campaign=free_tool_depth",
+    "adSafetyRule": "Downloads stay free; future ads must never block tool use or file downloads."
+  }
 }

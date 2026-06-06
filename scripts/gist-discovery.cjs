@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, CUSTOM_LOCAL_PRINT_PACK_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, siteUrl } = require("./seo-content.cjs");
+const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, siteUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const token = githubToken();
@@ -37,7 +37,7 @@ async function main() {
     public: gist.public,
     file: filename,
     videoAssetCount: videos.length,
-    buyerIntentPath: buyerIntentPath(),
+    freeToolPath: freeToolPath(),
   };
   fs.mkdirSync(path.dirname(reportPath), { recursive: true });
   fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
@@ -92,17 +92,10 @@ function renderGistBody(videos) {
     `- HTML5 platform submit cockpit: ${siteUrl("platform-submit-cockpit")}`,
     `- HTML5 portal submission pack: ${siteUrl("portal-submission-pack")}`,
     `- Zero-cost monetization map: ${siteUrl("zero-cost-monetization-map")}`,
-    `- Free Market Table Print Audit: ${trackedAuditUrl("gist")}`,
     `- Free file tools directory: ${siteUrl("free-pdf-tools")}`,
     `- Tool finder: ${siteUrl("pdf-tool-finder")}`,
-    "",
-    "## Free Local-Seller Help Path",
-    "",
-    `- Free Market Table Print Audit: ${trackedAuditUrl("gist")}`,
-    `- Structured audit request form: ${MARKET_TABLE_PRINT_AUDIT.issueFormUrl}`,
-    `- Audit request template: ${MARKET_TABLE_PRINT_AUDIT.githubPagesRequestUrl}`,
-    `- Audit checklist JSON: ${MARKET_TABLE_PRINT_AUDIT.githubPagesChecklistUrl}`,
-    `- Free file tools directory: ${siteUrl("free-pdf-tools")}`,
+    `- Upload limit fixer: ${trackedToolUrl("upload-limit-fixer", "gist")}`,
+    `- Upload error cheatsheet: ${trackedToolUrl("upload-error-cheatsheet", "gist")}`,
     "- Ad-safety rule: downloads stay free, and future ads must never block tool use or file downloads.",
     "",
     "## Current Platform-Ad Game Route",
@@ -180,27 +173,17 @@ function trackedPostUrl(post) {
   return `${normalized}${separator}utm_source=gist&utm_medium=organic&utm_campaign=zero_cost_push`;
 }
 
-function buyerIntentPath() {
+function freeToolPath() {
   return {
-    auditUrl: trackedAuditUrl("gist-report"),
-    auditRequestUrl: MARKET_TABLE_PRINT_AUDIT.githubPagesRequestUrl,
-    auditChecklistUrl: MARKET_TABLE_PRINT_AUDIT.githubPagesChecklistUrl,
-    serviceUrl: trackedServiceUrl("gist-report"),
-    salesPackUrl: trackedSalesPackUrl("gist-report"),
-    moneyGate: "Free audit requests are not revenue; paid revenue starts only after an external checkout proves paid_order_verified.",
+    freeToolDirectoryUrl: trackedToolUrl("free-pdf-tools", "gist-report"),
+    uploadLimitFixerUrl: trackedToolUrl("upload-limit-fixer", "gist-report"),
+    uploadErrorCheatsheetUrl: trackedToolUrl("upload-error-cheatsheet", "gist-report"),
+    moneyGate: "Public downloads stay free. Revenue starts only after mainstream ads or approved platform payouts are active and visible in an external dashboard.",
   };
 }
 
-function trackedAuditUrl(source) {
-  return `${MARKET_TABLE_PRINT_AUDIT.githubPagesUrl}?utm_source=${encodeURIComponent(source)}&utm_medium=organic&utm_campaign=market_table_audit`;
-}
-
-function trackedServiceUrl(source) {
-  return `${SERVICE_SALES_PACK.githubPagesServiceUrl}?utm_source=${encodeURIComponent(source)}&utm_medium=organic&utm_campaign=service_sales_pack`;
-}
-
-function trackedSalesPackUrl(source) {
-  return `https://yanqr213.github.io/printable-tools-lab/${SERVICE_SALES_PACK.slug}/?utm_source=${encodeURIComponent(source)}&utm_medium=organic&utm_campaign=service_sales_pack`;
+function trackedToolUrl(pathName, source) {
+  return `${siteUrl(pathName).replace(/\/$/, "")}?utm_source=${encodeURIComponent(source)}&utm_medium=organic&utm_campaign=free_tool_depth`;
 }
 
 function readCampaignVideos() {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-05T19:20:32.798Z",
+  "generatedAt": "2026-06-06T01:50:11.256Z",
   "shareKitUrl": "https://printable-tools-lab.pages.dev/share-kit/",
   "shareKitJsonUrl": "https://printable-tools-lab.pages.dev/share-kit.json",
   "featuredLinks": [
@@ -8,6 +8,18 @@
       "canonicalUrl": "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
       "trackedUrl": "https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=share-kit&utm_medium=organic",
       "reason": "Task-first entry for users blocked by file size, format, or photo dimension limits."
+    },
+    {
+      "title": "Image size reducer in KB",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/image-size-reducer-in-kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/image-size-reducer-in-kb?utm_source=share-kit&utm_medium=organic",
+      "reason": "Hub for exact image and photo file-size limits from 10KB to 500KB."
+    },
+    {
+      "title": "PDF size reducer",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/pdf-size-reducer/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-size-reducer?utm_source=share-kit&utm_medium=organic",
+      "reason": "Hub for exact PDF upload limits including 500KB, 1MB, 2MB, and 5MB."
     },
     {
       "title": "Compress image to 20KB",
@@ -169,11 +181,10 @@
     "reviewReadinessUrl": "https://github.com/yanqr213/upload-limit-panic/blob/main/reports/review-readiness.md",
     "summary": "A free HTML5 file-sorting game prototype for the zero-domain platform-ad route. CrazyGames, Yandex, Playgama, GamePix, and GameDistribution adapters are present; ad calls remain gated until platform review allows them."
   },
-  "freeHelpPath": {
-    "auditUrl": "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=share-kit-push&utm_medium=organic&utm_campaign=market_table_audit",
-    "auditRequestUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt",
-    "auditChecklistUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json",
+  "freeToolPath": {
     "freeToolDirectoryUrl": "https://printable-tools-lab.pages.dev/free-pdf-tools?utm_source=share-kit-push&utm_medium=organic&utm_campaign=free_tool_depth",
+    "uploadLimitFixerUrl": "https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=share-kit-push&utm_medium=organic&utm_campaign=free_tool_depth",
+    "uploadErrorCheatsheetUrl": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet?utm_source=share-kit-push&utm_medium=organic&utm_campaign=free_tool_depth",
     "adSafetyRule": "Downloads stay free; future ads must never block tool use or file downloads."
   },
   "externalDiscovery": {
@@ -182,28 +193,32 @@
     "campaignRelease": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
     "zeroDomainGame": "https://upload-limit-panic.pages.dev/",
     "zeroDomainGameRepo": "https://github.com/yanqr213/upload-limit-panic",
-    "freeMarketTableAudit": "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/"
+    "uploadLimitFixer": "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
+    "uploadErrorCheatsheet": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/"
   },
   "actions": {
     "gistDiscovery": {
-      "ok": false,
-      "skipped": true,
-      "reason": "GitHub token is not available from env or gh auth."
+      "ok": true,
+      "status": 0,
+      "stdout": "Updated public Gist: https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb\nReport written to reports\\gist-discovery.json",
+      "stderr": ""
     },
     "githubIssueDiscovery": {
-      "ok": false,
-      "skipped": true,
-      "reason": "GitHub token is not available from env or gh auth."
+      "ok": true,
+      "status": 0,
+      "stdout": "Updated GitHub issue: https://github.com/yanqr213/printable-tools-lab/issues/1\nReport written to reports\\github-issue-discovery.json",
+      "stderr": ""
     },
     "githubDiscovery": {
-      "ok": false,
-      "skipped": true,
-      "reason": "GitHub token is not available from env or gh auth."
+      "ok": true,
+      "status": 0,
+      "stdout": "Updated GitHub discovery release: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
+      "stderr": ""
     },
     "indexNow": {
       "ok": true,
       "status": 0,
-      "stdout": "IndexNow accepted 124 URL(s) for github-pages.",
+      "stdout": "IndexNow accepted 259 URL(s) for github-pages.",
       "stderr": "IndexNow did not accept pages.dev: 403 {\"errorCode\":\"UserForbiddedToAccessSite\",\"message\":\"User is unauthorized to access the site. Please verify the site using the key and try again\",\"details\":null}",
       "accepted": true,
       "partialWarning": true,
@@ -211,12 +226,6 @@
     }
   },
   "nextManualQueue": [
-    {
-      "target": "One relevant local-seller reply",
-      "angle": "Free Market Table Print Audit",
-      "url": "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=community&utm_medium=organic&utm_campaign=market_table_audit",
-      "rule": "Only reply where a seller has an obvious market-table print, price tag, QR sign, flyer, coupon, or pickup-note problem."
-    },
     {
       "target": "One useful community reply",
       "angle": "PDF must be under 1MB",
