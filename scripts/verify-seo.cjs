@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require("path");
-const { spawnSync } = require("child_process");
 const { routes, siteUrl, landingPages, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, HIGH_INTENT_TOOL_PATHS, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, tools, guides } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
@@ -90,37 +89,37 @@ const docsSellerIndexFile = path.join(root, "docs", "index.html");
 if (!fs.existsSync(docsSellerIndexFile)) failures.push("Missing GitHub Pages discovery index.");
 else {
   const html = fs.readFileSync(docsSellerIndexFile, "utf8");
-  if (!html.includes("Local seller print help")) failures.push("GitHub Pages directory missing seller-intent CTA.");
-  if (!html.includes(MARKET_TABLE_PRINT_AUDIT.slug)) failures.push("GitHub Pages directory missing audit mirror CTA.");
+  if (!html.includes("Free file tools first")) failures.push("GitHub Pages directory missing free-tool CTA.");
+  if (html.includes(MARKET_TABLE_PRINT_AUDIT.slug)) failures.push("GitHub Pages directory should not promote retired audit mirror CTA.");
   if (!html.includes("free_tool_depth")) failures.push("GitHub Pages directory missing free-tool depth link.");
   if (!html.includes("Browse more free tools")) failures.push("GitHub Pages directory missing free-tool browse CTA.");
   if (!html.includes("Future ads must stay separated from generator controls")) failures.push("GitHub Pages directory missing ad-safe download copy.");
   if (html.includes(`Copy the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request`)) failures.push("GitHub Pages directory should not promote paid setup in seller CTA.");
-  requireGithubPagesIntentTracking(html, "GitHub Pages directory", ["audit_request_intent"]);
+  requireGithubPagesIntentTracking(html, "GitHub Pages directory", ["free_tool_depth"]);
 }
 
 const docsLandingMirrorFile = path.join(root, "docs", "free-invoice-generator-no-signup", "index.html");
 if (!fs.existsSync(docsLandingMirrorFile)) failures.push("Missing GitHub Pages invoice landing mirror.");
 else {
   const html = fs.readFileSync(docsLandingMirrorFile, "utf8");
-  if (!html.includes("Local seller print help")) failures.push("GitHub Pages landing mirror missing seller-intent CTA.");
-  if (!html.includes(MARKET_TABLE_PRINT_AUDIT.slug)) failures.push("GitHub Pages landing mirror missing audit mirror CTA.");
+  if (!html.includes("Free file tools first")) failures.push("GitHub Pages landing mirror missing free-tool CTA.");
+  if (html.includes(MARKET_TABLE_PRINT_AUDIT.slug)) failures.push("GitHub Pages landing mirror should not promote retired audit mirror CTA.");
   if (!html.includes("free_tool_depth")) failures.push("GitHub Pages landing mirror missing free-tool depth link.");
   if (!html.includes("Browse more free tools")) failures.push("GitHub Pages landing mirror missing free-tool browse CTA.");
   if (html.includes(`Copy the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request`)) failures.push("GitHub Pages landing mirror should not promote paid setup in seller CTA.");
-  requireGithubPagesIntentTracking(html, "GitHub Pages landing mirror", ["audit_request_intent"]);
+  requireGithubPagesIntentTracking(html, "GitHub Pages landing mirror", ["free_tool_depth"]);
 }
 
 const docsToolMirrorFile = path.join(root, "docs", "tools", "invoice-generator", "index.html");
 if (!fs.existsSync(docsToolMirrorFile)) failures.push("Missing GitHub Pages invoice tool mirror.");
 else {
   const html = fs.readFileSync(docsToolMirrorFile, "utf8");
-  if (!html.includes("Local seller print help")) failures.push("GitHub Pages tool mirror missing seller-intent CTA.");
-  if (!html.includes(MARKET_TABLE_PRINT_AUDIT.slug)) failures.push("GitHub Pages tool mirror missing audit mirror CTA.");
+  if (!html.includes("Free file tools first")) failures.push("GitHub Pages tool mirror missing free-tool CTA.");
+  if (html.includes(MARKET_TABLE_PRINT_AUDIT.slug)) failures.push("GitHub Pages tool mirror should not promote retired audit mirror CTA.");
   if (!html.includes("free_tool_depth")) failures.push("GitHub Pages tool mirror missing free-tool depth link.");
   if (!html.includes("Browse more free tools")) failures.push("GitHub Pages tool mirror missing free-tool browse CTA.");
   if (html.includes(`Copy the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup request`)) failures.push("GitHub Pages tool mirror should not promote paid setup in seller CTA.");
-  requireGithubPagesIntentTracking(html, "GitHub Pages tool mirror", ["audit_request_intent"]);
+  requireGithubPagesIntentTracking(html, "GitHub Pages tool mirror", ["free_tool_depth"]);
 }
 
 for (const toolPath of ["tools/invoice-generator", "tools/price-tag", "tools/flyer-maker", "tools/coupon-maker", "tools/packing-slip", "tools/business-card", "tools/qr-code"]) {
@@ -131,10 +130,10 @@ for (const toolPath of ["tools/invoice-generator", "tools/price-tag", "tools/fly
   }
   const html = fs.readFileSync(file, "utf8");
   if (!html.includes("seller-funnel-cta")) failures.push(`Missing local seller funnel CTA: ${toolPath}`);
-  if (!html.includes("market_table_audit")) failures.push(`Missing audit campaign tracking on funnel CTA: ${toolPath}`);
+  if (html.includes("market_table_audit") || html.includes(MARKET_TABLE_PRINT_AUDIT.slug)) failures.push(`Local tool funnel should not promote retired audit path: ${toolPath}`);
   if (!html.includes("free_tool_depth")) failures.push(`Missing free-tool depth campaign on funnel CTA: ${toolPath}`);
   if (!html.includes('data-track-event="free_tool_depth"')) failures.push(`Missing free-tool depth event on funnel CTA: ${toolPath}`);
-  if (!html.includes("data-track-event=\"audit_request_intent\"")) failures.push(`Missing audit intent event on funnel CTA: ${toolPath}`);
+  if (html.includes("data-track-event=\"audit_request_intent\"")) failures.push(`Local tool funnel should not track retired audit intent: ${toolPath}`);
   if (!html.includes("Browse more free tools")) failures.push(`Missing free-tool browse CTA: ${toolPath}`);
   if (!html.includes("Future ads must stay separated from generator controls")) failures.push(`Missing ad-safety warning on funnel CTA: ${toolPath}`);
   if (html.includes("See optional setup")) failures.push(`Local seller funnel should not promote optional setup: ${toolPath}`);
@@ -146,12 +145,13 @@ else {
   const script = fs.readFileSync(appScriptFile, "utf8");
   if (!script.includes("download-after-action")) failures.push("Missing download success after-action funnel.");
   if (!script.includes("utm_source=download_success")) failures.push("Missing download success campaign tracking.");
-  if (!script.includes('data-track-event="audit_request_intent"')) failures.push("Missing download success audit intent tracking.");
   if (!script.includes("free_tool_depth")) failures.push("Missing download success free-tool depth campaign.");
   if (!script.includes('data-track-event="free_tool_depth"')) failures.push("Missing download success free-tool depth event tracking.");
   if (!script.includes("Browse more free tools")) failures.push("Missing download success free-tool browse CTA.");
   if (!script.includes("Future ads must stay separated from generator controls")) failures.push("Missing download success ad-safety warning.");
   if (script.includes("Open $29 setup request")) failures.push("Download success CTA should not promote paid setup.");
+  if (!script.includes("renderRetiredPaidExperiment")) failures.push("app.js missing retired payment route renderer.");
+  if (!script.includes("No payment is collected here")) failures.push("app.js retired payment route missing no-payment copy.");
 }
 
 const robotsFile = path.join(root, "robots.txt");
@@ -179,7 +179,8 @@ else {
   if (!llms.includes(siteUrl("tools.json").replace(/\/$/, ""))) failures.push("llms.txt missing tools.json URL.");
   if (!llms.includes(siteUrl("share-kit"))) failures.push("llms.txt missing share kit URL.");
   if (!llms.includes(siteUrl("share-kit.json").replace(/\/$/, ""))) failures.push("llms.txt missing share-kit.json URL.");
-  if (!llms.includes(siteUrl(MARKET_TABLE_PRINT_AUDIT.slug))) failures.push("llms.txt missing free market table print audit URL.");
+  if (llms.includes(siteUrl(MARKET_TABLE_PRINT_AUDIT.slug))) failures.push("llms.txt should not promote retired market table print audit URL.");
+  if (llms.includes("Legacy paid product and service experiments are retired") && !llms.includes("future ad-network payout")) failures.push("llms.txt retired payment note should point to future ad-network payout.");
   if (!llms.includes(siteUrl("platform-submit-queue"))) failures.push("llms.txt missing platform submit queue URL.");
   if (!llms.includes(siteUrl("platform-submit-queue.json").replace(/\/$/, ""))) failures.push("llms.txt missing platform submit queue JSON URL.");
   if (!llms.includes(siteUrl("platform-submit-cockpit"))) failures.push("llms.txt missing platform submit cockpit URL.");
@@ -480,9 +481,8 @@ else {
   if (!Array.isArray(data.uploadErrorCheatsheet?.entries) || data.uploadErrorCheatsheet.entries.length < 12) failures.push("share-kit.json missing upload error cheatsheet entries.");
   if (!Array.isArray(data.organicPushKit?.tasks) || data.organicPushKit.tasks.length < 8) failures.push("share-kit.json missing organic push kit tasks.");
   if (!data.featuredLinks.some((item) => item.url && item.url.includes("utm_source=share-kit"))) failures.push("share-kit.json missing tracked share-kit URLs.");
-  if (data.serviceSalesPack?.trackedLinks?.some((item) => String(item.url || "").includes("service_sales_pack"))) failures.push("share-kit.json should not promote service sales pack tracked URLs.");
-  if (!data.marketTablePrintAudit || data.marketTablePrintAudit.id !== MARKET_TABLE_PRINT_AUDIT.id) failures.push("share-kit.json missing market table print audit lead magnet.");
-  if (!String(data.marketTablePrintAudit?.moneyGate || "").includes("not revenue")) failures.push("share-kit.json audit lead magnet missing no-revenue gate.");
+  if (data.serviceSalesPack || data.serviceSalesPack?.trackedLinks?.some((item) => String(item.url || "").includes("service_sales_pack"))) failures.push("share-kit.json should not promote service sales pack tracked URLs.");
+  if (data.marketTablePrintAudit) failures.push("share-kit.json should not promote retired market table print audit.");
 }
 
 const platformSubmitQueueFile = path.join(root, "platform-submit-queue", "index.html");
@@ -632,335 +632,50 @@ else {
   if (!Array.isArray(data.safetyRules) || !data.safetyRules.some((rule) => String(rule).includes("bank"))) failures.push("game-submission-feed.json missing private-data safety rule.");
 }
 
-const digitalProductFile = path.join(root, LOCAL_SELLER_STARTER_KIT.slug, "index.html");
-if (!fs.existsSync(digitalProductFile)) failures.push("Missing Local Seller Starter Kit product page.");
-else {
-  const html = fs.readFileSync(digitalProductFile, "utf8");
-  if (!html.includes("Local Seller Starter Kit")) failures.push("Digital product page missing product name.");
-  if (!html.includes("Download sample ZIP")) failures.push("Digital product page missing sample ZIP CTA.");
-  if (!html.includes("Request checkout link")) failures.push("Digital product page missing buyer checkout request CTA.");
-  if (!html.includes("Checkout link pending")) failures.push("Digital product page missing honest checkout-pending state.");
-  if (!html.includes("github.com/yanqr213/printable-tools-lab/issues/new")) failures.push("Digital product page missing checkout request URL.");
-  if (!html.includes("local-seller-starter-kit-buy-request.txt")) failures.push("Digital product page missing buyer request template URL.");
-  if (!html.includes("seller_checkout_intent")) failures.push("Digital product page missing seller intent tracking.");
-  if (!html.includes('"@type":"Product"')) failures.push("Digital product page missing Product schema.");
-  if (!html.includes("paid-deliverables/local-seller-starter-kit.zip")) failures.push("Digital product page missing private package setup note.");
-  if (!sitemap.includes(`<loc>${siteUrl(LOCAL_SELLER_STARTER_KIT.slug)}</loc>`)) failures.push("Sitemap missing digital product page.");
+const retiredPaymentRoutes = [
+  LOCAL_SELLER_STARTER_KIT.slug,
+  CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug,
+  MARKET_TABLE_PRINT_AUDIT.slug,
+  SERVICE_SALES_PACK.slug,
+];
+for (const routePath of retiredPaymentRoutes) {
+  const file = path.join(root, routePath, "index.html");
+  if (!fs.existsSync(file)) {
+    failures.push(`Missing retired payment route page: ${routePath}`);
+    continue;
+  }
+  const html = fs.readFileSync(file, "utf8");
+  if (!html.includes('content="noindex,follow"')) failures.push(`Retired payment route should be noindex: ${routePath}`);
+  if (!html.includes("has been retired")) failures.push(`Retired payment route missing retired message: ${routePath}`);
+  if (!html.includes("No payment is collected here")) failures.push(`Retired payment route missing no-payment message: ${routePath}`);
+  if (!html.includes("/free-pdf-tools/") || !html.includes("/upload-limit-fixer/")) failures.push(`Retired payment route missing free-tool redirects: ${routePath}`);
+  if (html.includes("Request checkout link") || html.includes("Request service checkout") || html.includes("Buy for $") || html.includes("Open structured request form")) failures.push(`Retired payment route still contains payment/request CTA: ${routePath}`);
+  if (sitemap.includes(`<loc>${siteUrl(routePath)}</loc>`)) failures.push(`Sitemap should not include retired payment route: ${routePath}`);
 }
 
-const digitalProductsJsonFile = path.join(root, "digital-products.json");
-if (!fs.existsSync(digitalProductsJsonFile)) failures.push("Missing digital-products.json.");
-else {
-  const data = JSON.parse(fs.readFileSync(digitalProductsJsonFile, "utf8"));
-  if (!Array.isArray(data.products) || data.products.length < 1) failures.push("digital-products.json missing product list.");
-  const sellerKit = data.products.find((item) => item.id === LOCAL_SELLER_STARTER_KIT.id);
-  if (!sellerKit) failures.push("digital-products.json missing Local Seller Starter Kit.");
-  if (sellerKit && sellerKit.priceUsd !== 9) failures.push("digital-products.json has unexpected seller kit price.");
-  if (sellerKit && !String(sellerKit.sampleUrl || "").includes("local-seller-starter-kit-sample.zip")) failures.push("digital-products.json missing sample ZIP URL.");
-  if (sellerKit && !String(sellerKit.requestTemplateUrl || "").includes("local-seller-starter-kit-buy-request.txt")) failures.push("digital-products.json missing buyer request template URL.");
-  if (sellerKit && !String(sellerKit.checkoutRequestUrl || "").includes("github.com/yanqr213/printable-tools-lab/issues/new")) failures.push("digital-products.json missing checkout request URL.");
-  if (sellerKit && !sellerKit.privatePackageReady) failures.push("digital-products.json missing private package readiness.");
-  if (!String(data.moneyGate || "").includes("paid order")) failures.push("digital-products.json missing paid-order money gate.");
-}
-
-const sellerKitPackageReportFile = path.join(root, LOCAL_SELLER_STARTER_KIT.packageReportPath);
-if (!fs.existsSync(sellerKitPackageReportFile)) failures.push("Missing Local Seller Starter Kit package report.");
-else {
-  const report = JSON.parse(fs.readFileSync(sellerKitPackageReportFile, "utf8"));
-  if (!report.publicSample || report.publicSample.fileCount < 4) failures.push("Seller kit package report missing public sample file count.");
-  if (!report.publicRequestTemplate || !String(report.publicRequestTemplate.path || "").includes("local-seller-starter-kit-buy-request.txt")) failures.push("Seller kit package report missing public request template.");
-  if (!report.privatePackage || report.privatePackage.fileCount < 10) failures.push("Seller kit package report missing full private package file count.");
-  if (!String(report.privatePackage?.sha256 || "").match(/^[0-9a-f]{64}$/)) failures.push("Seller kit private package missing sha256.");
-}
-
-const sellerKitSampleFile = path.join(root, LOCAL_SELLER_STARTER_KIT.publicSamplePath);
-if (!fs.existsSync(sellerKitSampleFile)) failures.push("Missing public seller kit sample ZIP.");
-else if (fs.statSync(sellerKitSampleFile).size < 500) failures.push("Public seller kit sample ZIP is too small.");
-
-const sellerKitRequestFile = path.join(root, LOCAL_SELLER_STARTER_KIT.publicRequestPath);
-if (!fs.existsSync(sellerKitRequestFile)) failures.push("Missing public seller kit buyer request template.");
-else {
-  const text = fs.readFileSync(sellerKitRequestFile, "utf8");
-  if (!text.includes("I want to buy the Local Seller Starter Kit")) failures.push("Seller kit buyer request template missing request copy.");
-}
-
-const paidServiceFile = path.join(root, CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug, "index.html");
-if (!fs.existsSync(paidServiceFile)) failures.push("Missing Custom Local Print Pack service page.");
-else {
-  const html = fs.readFileSync(paidServiceFile, "utf8");
-  if (!html.includes("Custom Local Print Pack Setup")) failures.push("Service page missing service name.");
-  if (!html.includes("Request service checkout")) failures.push("Service page missing service request CTA.");
-  if (!html.includes("Open structured request form")) failures.push("Service page missing structured issue form CTA.");
-  if (!html.includes("Build a service request")) failures.push("Service page missing service request builder.");
-  if (!html.includes("Copy generated service request")) failures.push("Service page missing low-friction generated request CTA.");
-  if (!html.includes("Open generated GitHub request")) failures.push("Service page missing generated GitHub request CTA.");
-  if (!html.includes("data-service-request-builder")) failures.push("Service page missing service request builder hook.");
-  if (!html.includes("data-service-request-open")) failures.push("Service page missing generated request open hook.");
-  if (!html.includes("data-service-request-copy")) failures.push("Service page missing service request copy hook.");
-  if (!html.includes("data-service-request-output")) failures.push("Service page missing service request copy output.");
-  if (!html.includes("Up to 12 items or services with prices")) failures.push("Service page missing buyer item intake field.");
-  if (!html.includes("Preferred checkout provider")) failures.push("Service page missing checkout preference field.");
-  if (!html.includes("Download service brief")) failures.push("Service page missing service brief CTA.");
-  if (!html.includes("custom-local-print-pack-request.txt")) failures.push("Service page missing public request brief URL.");
-  if (!html.includes("custom-local-print-pack-payment-reply.txt")) failures.push("Service page missing payment reply asset URL.");
-  if (!html.includes("custom-local-print-pack-fulfillment-checklist.txt")) failures.push("Service page missing fulfillment checklist URL.");
-  if (!html.includes("custom-local-print-pack-order-pipeline.json")) failures.push("Service page missing order pipeline URL.");
-  if (!html.includes("custom-local-print-pack-outreach-queue.json")) failures.push("Service page missing outreach queue URL.");
-  if (!html.includes("custom-local-print-pack-outreach-batch.txt")) failures.push("Service page missing outreach batch URL.");
-  if (!html.includes("custom-local-print-pack-sample-delivery.zip")) failures.push("Service page missing sample delivery ZIP URL.");
-  if (!html.includes("custom-local-print-pack-delivery-input.example.json")) failures.push("Service page missing delivery input example URL.");
-  if (!html.includes("service:delivery")) failures.push("Service page missing private delivery command.");
-  if (!html.includes("paid_order_verified")) failures.push("Service page missing paid order pipeline status.");
-  if (!html.includes("service_request_intent")) failures.push("Service page missing service intent tracking.");
-  if (!html.includes("Open generated GitHub request")) failures.push("Service page missing generated request fallback.");
-  if (!html.includes('"@type":"Service"')) failures.push("Service page missing Service schema.");
-  if (!html.includes("Revenue is proven only after a real payment provider")) failures.push("Service page missing real revenue gate.");
-  if (!sitemap.includes(`<loc>${siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}</loc>`)) failures.push("Sitemap missing custom local print pack service page.");
-}
-
-const paidServicesJsonFile = path.join(root, "services.json");
-if (!fs.existsSync(paidServicesJsonFile)) failures.push("Missing services.json.");
-else {
-  const data = JSON.parse(fs.readFileSync(paidServicesJsonFile, "utf8"));
-  const service = data.services?.find((item) => item.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id);
-  if (!service) failures.push("services.json missing Custom Local Print Pack service.");
-  if (service && service.priceUsd !== 29) failures.push("services.json has unexpected service price.");
-  if (service && !String(service.url || "").startsWith("https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/")) failures.push("services.json service URL should point to the live GitHub Pages request builder.");
-  if (service && !String(service.mainSiteFallbackUrl || "").startsWith(siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug))) failures.push("services.json missing Cloudflare fallback URL.");
-  if (service && !String(service.githubPagesServiceUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/")) failures.push("services.json missing GitHub Pages service URL.");
-  if (service && !String(service.requestTemplateUrl || "").includes("custom-local-print-pack-request.txt")) failures.push("services.json missing service request template URL.");
-  if (service && !String(service.issueFormUrl || "").includes("custom-local-print-pack-service.yml")) failures.push("services.json missing service issue form URL.");
-  if (service && !String(service.paymentReplyTemplateUrl || "").includes("custom-local-print-pack-payment-reply.txt")) failures.push("services.json missing payment reply template URL.");
-  if (service && !String(service.fulfillmentChecklistUrl || "").includes("custom-local-print-pack-fulfillment-checklist.txt")) failures.push("services.json missing fulfillment checklist URL.");
-  if (service && !String(service.orderPipelineUrl || "").includes("custom-local-print-pack-order-pipeline.json")) failures.push("services.json missing order pipeline URL.");
-  if (service && !service.orderPipeline?.some((status) => status.id === "paid_order_verified")) failures.push("services.json missing paid_order_verified pipeline status.");
-  if (service && !String(service.outreachQueueUrl || "").includes("custom-local-print-pack-outreach-queue.json")) failures.push("services.json missing outreach queue URL.");
-  if (service && !String(service.outreachBatchUrl || "").includes("custom-local-print-pack-outreach-batch.txt")) failures.push("services.json missing outreach batch URL.");
-  if (service && !Array.isArray(service.outreachQueue)) failures.push("services.json missing outreach queue entries.");
-  if (service && service.outreachQueue?.length < 10) failures.push("services.json outreach queue too small.");
-  if (service && !String(service.sampleDeliveryUrl || "").includes("custom-local-print-pack-sample-delivery.zip")) failures.push("services.json missing sample delivery URL.");
-  if (service && !String(service.deliveryInputExampleUrl || "").includes("custom-local-print-pack-delivery-input.example.json")) failures.push("services.json missing delivery input example URL.");
-  if (service && !String(service.deliveryReportUrl || "").includes("custom-local-print-pack-sample-delivery.json")) failures.push("services.json missing delivery report URL.");
-  if (service && !String(service.privateDeliveryCommand || "").includes("service:delivery")) failures.push("services.json missing private delivery command.");
-  if (service && !service.outreachQueue?.some((item) => item.status === "reply_only" && String(item.opener || "").includes("payment link before work starts"))) failures.push("services.json missing reply-only payment followup.");
-  if (service && !service.outreachQueue?.some((item) => String(item.stopRule || "").includes("Do not send more than one"))) failures.push("services.json missing cold outreach stop rule.");
-  if (service && !String(service.requestUrl || "").includes("github.com/yanqr213/printable-tools-lab/issues/new")) failures.push("services.json missing service request URL.");
-  const audit = data.leadMagnets?.find((item) => item.id === MARKET_TABLE_PRINT_AUDIT.id);
-  if (!audit) failures.push("services.json missing free audit lead magnet.");
-  if (audit && !String(audit.requestTemplateUrl || "").includes("market-table-print-audit-request.txt")) failures.push("services.json audit lead magnet missing request template URL.");
-  if (audit && !String(audit.checklistUrl || "").includes("market-table-print-audit-checklist.json")) failures.push("services.json audit lead magnet missing checklist URL.");
-  if (audit && !audit.statuses?.some((status) => status.id === "audit_request_received" && String(status.moneyRule || "").includes("Not revenue"))) failures.push("services.json audit lead magnet missing no-revenue request status.");
-  if (audit && !audit.statuses?.some((status) => status.id === "paid_order_verified" && String(status.moneyRule || "").includes("Revenue only"))) failures.push("services.json audit lead magnet missing paid-order revenue status.");
-  if (audit && !String(audit.moneyGate || "").includes("not revenue")) failures.push("services.json audit lead magnet missing money gate.");
-  if (!String(data.moneyGate || "").includes("paid order")) failures.push("services.json missing paid-order money gate.");
-}
-
-const issueTemplateFile = path.join(root, CUSTOM_LOCAL_PRINT_PACK_SERVICE.issueTemplatePath);
-if (!fs.existsSync(issueTemplateFile)) failures.push("Missing Custom Local Print Pack GitHub issue form.");
-else {
-  const text = fs.readFileSync(issueTemplateFile, "utf8");
-  if (!text.includes("No payment is collected")) failures.push("Service issue form missing no-payment warning.");
-  if (!text.includes("paid order")) failures.push("Service issue form missing paid-order gate.");
-  if (!text.includes("Do not post card")) failures.push("Service issue form missing sensitive-data warning.");
-  if (!text.includes("business_name")) failures.push("Service issue form missing business name field.");
-  if (!text.includes("items_and_prices")) failures.push("Service issue form missing items/prices field.");
-  if (!text.includes("checkout_provider")) failures.push("Service issue form missing checkout provider field.");
-}
-
-const serviceRequestFile = path.join(root, CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicRequestPath);
-if (!fs.existsSync(serviceRequestFile)) failures.push("Missing public service request brief.");
-else {
-  const text = fs.readFileSync(serviceRequestFile, "utf8");
-  if (!text.includes("I want to request the Custom Local Print Pack Setup")) failures.push("Service request brief missing request copy.");
-  if (!text.includes("No payment is collected by this request")) failures.push("Service request brief missing money gate.");
-}
-
-const servicePaymentReplyFile = path.join(root, CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicPaymentReplyPath);
-if (!fs.existsSync(servicePaymentReplyFile)) failures.push("Missing public service payment reply template.");
-else {
-  const text = fs.readFileSync(servicePaymentReplyFile, "utf8");
-  if (!text.includes("payment link before work starts")) failures.push("Service payment reply missing payment-before-work language.");
-  if (!text.includes("paid_order_verified")) failures.push("Service payment reply missing paid_order_verified status.");
-  if (!text.includes("Do not post card, bank, payout, tax, identity")) failures.push("Service payment reply missing sensitive-data warning.");
-}
-
-const serviceFulfillmentChecklistFile = path.join(root, CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicFulfillmentChecklistPath);
-if (!fs.existsSync(serviceFulfillmentChecklistFile)) failures.push("Missing public service fulfillment checklist.");
-else {
-  const text = fs.readFileSync(serviceFulfillmentChecklistFile, "utf8");
-  if (!text.includes("Use this only after a real external payment provider shows a paid order")) failures.push("Service fulfillment checklist missing paid-order start gate.");
-  if (!text.includes("Deliver text, CSV, or copy blocks")) failures.push("Service fulfillment checklist missing delivery step.");
-}
-
-const serviceOrderPipelineFile = path.join(root, CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOrderPipelinePath);
-if (!fs.existsSync(serviceOrderPipelineFile)) failures.push("Missing public service order pipeline JSON.");
-else {
-  const data = JSON.parse(fs.readFileSync(serviceOrderPipelineFile, "utf8"));
-  if (data.serviceId !== CUSTOM_LOCAL_PRINT_PACK_SERVICE.id) failures.push("Service order pipeline has unexpected service id.");
-  if (!String(data.issueFormUrl || "").includes("custom-local-print-pack-service.yml")) failures.push("Service order pipeline missing issue form URL.");
-  if (!data.statuses?.some((status) => status.id === "paid_order_verified" && String(status.moneyRule || "").includes("first status"))) failures.push("Service order pipeline missing paid revenue status gate.");
-  if (!data.forbiddenFields?.some((field) => String(field).includes("card"))) failures.push("Service order pipeline missing forbidden sensitive fields.");
-}
-
-const serviceOutreachQueueFile = path.join(root, CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachQueuePath);
-if (!fs.existsSync(serviceOutreachQueueFile)) failures.push("Missing public service outreach queue JSON.");
-else {
-  const data = JSON.parse(fs.readFileSync(serviceOutreachQueueFile, "utf8"));
-  if (data.serviceId !== CUSTOM_LOCAL_PRINT_PACK_SERVICE.id) failures.push("Service outreach queue has unexpected service id.");
-  if (!String(data.dailyCap || "").includes("10 relevant")) failures.push("Service outreach queue missing daily cap.");
-  if (!data.forbiddenActions?.some((item) => String(item).includes("scrape private contact lists"))) failures.push("Service outreach queue missing no-scraping rule.");
-  if (!Array.isArray(data.batch) || data.batch.length < 10) failures.push("Service outreach queue missing 10-action batch.");
-  if (!data.batch?.some((item) => item.id === "warm-reply-followup-01" && item.status === "reply_only")) failures.push("Service outreach queue missing reply-only followup item.");
-  if (!data.batch?.every((item) => item.trackedUrl && item.stopRule && item.qualification)) failures.push("Service outreach queue entries missing tracked URL, stop rule, or qualification.");
-}
-
-const serviceOutreachBatchFile = path.join(root, CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachBatchPath);
-if (!fs.existsSync(serviceOutreachBatchFile)) failures.push("Missing public service outreach batch text.");
-else {
-  const text = fs.readFileSync(serviceOutreachBatchFile, "utf8");
-  if (!text.includes("Daily cap: no more than 10 relevant cold contacts")) failures.push("Service outreach batch missing daily cap.");
-  if (!text.includes("Do not scrape, spam, repeat-send")) failures.push("Service outreach batch missing anti-spam warning.");
-  if (!text.includes("warm-reply-followup-01")) failures.push("Service outreach batch missing warm reply followup.");
-  if (!text.includes("Revenue remains zero until an external provider proves a paid order")) failures.push("Service outreach batch missing revenue gate.");
-}
-
-const serviceSampleDeliveryFile = path.join(root, CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicSampleDeliveryPath);
-if (!fs.existsSync(serviceSampleDeliveryFile)) failures.push("Missing public service sample delivery ZIP.");
-else if (fs.statSync(serviceSampleDeliveryFile).size < 1000) failures.push("Public service sample delivery ZIP is too small.");
-
-const serviceDeliveryInputExampleFile = path.join(root, CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryInputExamplePath);
-if (!fs.existsSync(serviceDeliveryInputExampleFile)) failures.push("Missing public service delivery input example.");
-else {
-  const data = JSON.parse(fs.readFileSync(serviceDeliveryInputExampleFile, "utf8"));
-  if (data.serviceId !== CUSTOM_LOCAL_PRINT_PACK_SERVICE.id) failures.push("Service delivery input example has wrong service id.");
-  if (data.paymentStatus !== "sample_only_not_revenue") failures.push("Service delivery input example should be marked sample_only_not_revenue.");
-  if (!Array.isArray(data.items) || data.items.length < 3) failures.push("Service delivery input example missing sample items.");
-}
-
-const serviceDeliveryReportFile = path.join(root, CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryReportPath);
-if (!fs.existsSync(serviceDeliveryReportFile)) failures.push("Missing public service sample delivery report.");
-else {
-  const data = JSON.parse(fs.readFileSync(serviceDeliveryReportFile, "utf8"));
-  if (!data.sampleOnly) failures.push("Service sample delivery report should be sampleOnly.");
-  if (!String(data.sampleDelivery?.path || "").includes("custom-local-print-pack-sample-delivery.zip")) failures.push("Service sample delivery report missing ZIP path.");
-  if (!String(data.privateDeliveryCommand || "").includes("service:delivery")) failures.push("Service sample delivery report missing private delivery command.");
-  if (!String(data.moneyGate || "").includes("paid order")) failures.push("Service sample delivery report missing paid-order money gate.");
-}
-
-const auditLeadMagnetFile = path.join(root, MARKET_TABLE_PRINT_AUDIT.slug, "index.html");
-if (!fs.existsSync(auditLeadMagnetFile)) failures.push("Missing Free Market Table Print Audit page.");
-else {
-  const html = fs.readFileSync(auditLeadMagnetFile, "utf8");
-  if (!html.includes("Free Market Table Print Audit")) failures.push("Audit page missing title.");
-  if (!html.includes("Request free audit")) failures.push("Audit page missing request CTA.");
-  if (!html.includes("Open structured audit form")) failures.push("Audit page missing structured audit form CTA.");
-  if (!html.includes("data-audit-request-builder")) failures.push("Audit page missing interactive audit request builder.");
-  if (!html.includes("Build your request")) failures.push("Audit page missing request builder heading.");
-  if (!html.includes("Open prefilled GitHub request")) failures.push("Audit page missing generated GitHub request CTA.");
-  if (!html.includes("Copy request")) failures.push("Audit page missing generated request copy button.");
-  if (!html.includes("market-table-print-audit-request.txt")) failures.push("Audit page missing request template URL.");
-  if (!html.includes("market-table-print-audit-checklist.json")) failures.push("Audit page missing checklist JSON URL.");
-  if (!html.includes("custom-local-print-pack")) failures.push("Audit page missing optional paid upgrade link.");
-  if (!html.includes("not revenue")) failures.push("Audit page missing no-revenue warning.");
-  if (!html.includes("audit_request_intent")) failures.push("Audit page missing audit intent tracking.");
-  if (!html.includes("paid_order_verified")) failures.push("Audit page missing paid-order upgrade status.");
-  if (!sitemap.includes(`<loc>${siteUrl(MARKET_TABLE_PRINT_AUDIT.slug)}</loc>`)) failures.push("Sitemap missing market table print audit page.");
-}
-
-const auditIssueTemplateFile = path.join(root, MARKET_TABLE_PRINT_AUDIT.issueTemplatePath);
-if (!fs.existsSync(auditIssueTemplateFile)) failures.push("Missing Free Market Table Print Audit GitHub issue form.");
-else {
-  const text = fs.readFileSync(auditIssueTemplateFile, "utf8");
-  if (!text.includes("No payment is collected")) failures.push("Audit issue form missing no-payment warning.");
-  if (!text.includes("not revenue")) failures.push("Audit issue form missing no-revenue warning.");
-  if (!text.includes("Do not post card")) failures.push("Audit issue form missing sensitive-data warning.");
-  if (!text.includes("business_name")) failures.push("Audit issue form missing business name field.");
-  if (!text.includes("upgrade_interest")) failures.push("Audit issue form missing upgrade interest field.");
-}
-
-const auditRequestFile = path.join(root, MARKET_TABLE_PRINT_AUDIT.publicRequestPath);
-if (!fs.existsSync(auditRequestFile)) failures.push("Missing public audit request template.");
-else {
-  const text = fs.readFileSync(auditRequestFile, "utf8");
-  if (!text.includes("I want a Free Market Table Print Audit")) failures.push("Audit request template missing request copy.");
-  if (!text.includes("No payment is collected for this audit request")) failures.push("Audit request template missing no-payment warning.");
-  if (!text.includes("Do not include card, bank, payout")) failures.push("Audit request template missing sensitive-data warning.");
-}
-
-const auditChecklistFile = path.join(root, MARKET_TABLE_PRINT_AUDIT.publicChecklistPath);
-if (!fs.existsSync(auditChecklistFile)) failures.push("Missing public audit checklist JSON.");
-else {
-  const data = JSON.parse(fs.readFileSync(auditChecklistFile, "utf8"));
-  if (data.id !== MARKET_TABLE_PRINT_AUDIT.id) failures.push("Audit checklist has unexpected id.");
-  if (!String(data.requestTemplateUrl || "").includes("market-table-print-audit-request.txt")) failures.push("Audit checklist missing request template URL.");
-  if (!String(data.githubPagesRequestTemplateUrl || "").includes("market-table-print-audit-request.txt")) failures.push("Audit checklist missing GitHub Pages request template URL.");
-  if (!String(data.githubPagesUpgradeServiceUrl || "").includes("custom-local-print-pack")) failures.push("Audit checklist missing upgrade service URL.");
-  if (!Array.isArray(data.auditQuestions) || data.auditQuestions.length < 6) failures.push("Audit checklist missing audit questions.");
-  if (!data.statuses?.some((status) => status.id === "audit_request_received" && String(status.moneyRule || "").includes("Not revenue"))) failures.push("Audit checklist missing no-revenue request status.");
-  if (!data.statuses?.some((status) => status.id === "paid_order_verified" && String(status.moneyRule || "").includes("Revenue only"))) failures.push("Audit checklist missing paid-order revenue gate.");
-  if (!String(data.moneyGate || "").includes("not revenue")) failures.push("Audit checklist missing no-revenue money gate.");
-}
-
-const unpaidDeliveryProbe = spawnSync(process.execPath, [path.join(root, "scripts", "generate-service-delivery.cjs"), "--input", CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryInputExamplePath, "--out", "paid-deliverables/service-orders"], {
-  cwd: root,
-  encoding: "utf8",
-  shell: false,
-});
-if (unpaidDeliveryProbe.status === 0) failures.push("service:delivery CLI should reject sample/unpaid delivery input for live generation.");
-if (!String(unpaidDeliveryProbe.stderr || unpaidDeliveryProbe.stdout || "").includes("paid_order_verified")) failures.push("service:delivery unpaid rejection should mention paid_order_verified.");
-
-const serviceSalesPackFile = path.join(root, SERVICE_SALES_PACK.slug, "index.html");
-if (!fs.existsSync(serviceSalesPackFile)) failures.push("Missing service sales pack page.");
-else {
-  const html = fs.readFileSync(serviceSalesPackFile, "utf8");
-  if (!html.includes("Copy-ready sales pack")) failures.push("Service sales pack page missing headline.");
-  if (!html.includes("Tracked links")) failures.push("Service sales pack page missing tracked links.");
-  if (!html.includes("Copy-ready outreach")) failures.push("Service sales pack page missing outreach copy.");
-  if (!html.includes("service-sales-pack.json")) failures.push("Service sales pack page missing machine-readable JSON link.");
-  if (!html.includes("Open free audit lead magnet")) failures.push("Service sales pack page missing free audit lead magnet link.");
-  if (!html.includes("market-table-print-audit-request.txt")) failures.push("Service sales pack page missing audit request template link.");
-  if (!html.includes("market_table_audit")) failures.push("Service sales pack page missing audit tracking campaign.");
-  if (!html.includes("direct-outreach")) failures.push("Service sales pack page missing direct outreach tracking.");
-  if (!html.includes("Order pipeline assets")) failures.push("Service sales pack page missing order pipeline section.");
-  if (!html.includes("custom-local-print-pack-service.yml")) failures.push("Service sales pack page missing structured issue form link.");
-  if (!html.includes("custom-local-print-pack-payment-reply.txt")) failures.push("Service sales pack page missing payment reply asset.");
-  if (!html.includes("custom-local-print-pack-outreach-queue.json")) failures.push("Service sales pack page missing outreach queue asset.");
-  if (!html.includes("custom-local-print-pack-outreach-batch.txt")) failures.push("Service sales pack page missing outreach batch asset.");
-  if (!html.includes("custom-local-print-pack-sample-delivery.zip")) failures.push("Service sales pack page missing sample delivery asset.");
-  if (!html.includes("custom-local-print-pack-delivery-input.example.json")) failures.push("Service sales pack page missing delivery input example asset.");
-  if (!html.includes("service:delivery")) failures.push("Service sales pack page missing private delivery command.");
-  if (!html.includes("paid_order_verified")) failures.push("Service sales pack page missing paid order pipeline status.");
-  if (!sitemap.includes(`<loc>${siteUrl(SERVICE_SALES_PACK.slug)}</loc>`)) failures.push("Sitemap missing service sales pack page.");
-}
-
-const serviceSalesPackJsonFile = path.join(root, "service-sales-pack.json");
-if (!fs.existsSync(serviceSalesPackJsonFile)) failures.push("Missing service-sales-pack.json.");
-else {
-  const data = JSON.parse(fs.readFileSync(serviceSalesPackJsonFile, "utf8"));
-  if (data.id !== SERVICE_SALES_PACK.id) failures.push("service-sales-pack.json has unexpected id.");
-  if (!Array.isArray(data.trackedLinks) || data.trackedLinks.length < 5) failures.push("service-sales-pack.json missing tracked links.");
-  if (!Array.isArray(data.outreachScripts) || data.outreachScripts.length < 4) failures.push("service-sales-pack.json missing outreach scripts.");
-  if (!String(data.githubPagesServiceUrl || "").includes("custom-local-print-pack")) failures.push("service-sales-pack.json missing GitHub Pages service URL.");
-  if (!String(data.serviceUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/")) failures.push("service-sales-pack.json service URL should point to the live GitHub Pages request builder.");
-  if (!String(data.mainSiteFallbackUrl || "").startsWith(siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug))) failures.push("service-sales-pack.json missing Cloudflare fallback URL.");
-  if (data.trackedLinks?.some((item) => item.label === "Main service link" && String(item.url || "").includes("printable-tools-lab.pages.dev/custom-local-print-pack"))) failures.push("service-sales-pack.json still promotes stale Cloudflare main service link.");
-  if (!String(data.issueFormUrl || "").includes("custom-local-print-pack-service.yml")) failures.push("service-sales-pack.json missing issue form URL.");
-  if (!String(data.githubPagesPaymentReplyUrl || "").includes("custom-local-print-pack-payment-reply.txt")) failures.push("service-sales-pack.json missing GitHub Pages payment reply URL.");
-  if (!String(data.githubPagesFulfillmentChecklistUrl || "").includes("custom-local-print-pack-fulfillment-checklist.txt")) failures.push("service-sales-pack.json missing GitHub Pages fulfillment checklist URL.");
-  if (!String(data.githubPagesOrderPipelineUrl || "").includes("custom-local-print-pack-order-pipeline.json")) failures.push("service-sales-pack.json missing GitHub Pages order pipeline URL.");
-  if (!data.orderPipeline?.some((status) => status.id === "paid_order_verified")) failures.push("service-sales-pack.json missing paid_order_verified pipeline status.");
-  if (!String(data.githubPagesOutreachQueueUrl || "").includes("custom-local-print-pack-outreach-queue.json")) failures.push("service-sales-pack.json missing GitHub Pages outreach queue URL.");
-  if (!String(data.githubPagesOutreachBatchUrl || "").includes("custom-local-print-pack-outreach-batch.txt")) failures.push("service-sales-pack.json missing GitHub Pages outreach batch URL.");
-  if (!Array.isArray(data.outreachQueue) || data.outreachQueue.length < 10) failures.push("service-sales-pack.json missing outreach queue entries.");
-  if (!String(data.githubPagesSampleDeliveryUrl || "").includes("custom-local-print-pack-sample-delivery.zip")) failures.push("service-sales-pack.json missing GitHub Pages sample delivery URL.");
-  if (!String(data.githubPagesDeliveryInputExampleUrl || "").includes("custom-local-print-pack-delivery-input.example.json")) failures.push("service-sales-pack.json missing GitHub Pages delivery input example URL.");
-  if (!String(data.githubPagesDeliveryReportUrl || "").includes("custom-local-print-pack-sample-delivery.json")) failures.push("service-sales-pack.json missing GitHub Pages delivery report URL.");
-  if (!String(data.privateDeliveryCommand || "").includes("service:delivery")) failures.push("service-sales-pack.json missing private delivery command.");
-  if (!data.leadMagnet || data.leadMagnet.id !== MARKET_TABLE_PRINT_AUDIT.id) failures.push("service-sales-pack.json missing lead magnet.");
-  if (!data.marketTablePrintAudit || data.marketTablePrintAudit.id !== MARKET_TABLE_PRINT_AUDIT.id) failures.push("service-sales-pack.json missing market table print audit.");
-  if (!data.trackedLinks?.some((item) => String(item.url || "").includes("market_table_audit"))) failures.push("service-sales-pack.json missing market table audit tracked link.");
-  if (!String(data.marketTablePrintAudit?.moneyGate || "").includes("not revenue")) failures.push("service-sales-pack.json audit lead magnet missing no-revenue gate.");
-  if (!String(data.moneyGate || "").includes("paid order")) failures.push("service-sales-pack.json missing paid-order money gate.");
+const retiredPublicArtifacts = [
+  "digital-products.json",
+  "services.json",
+  "service-sales-pack.json",
+  LOCAL_SELLER_STARTER_KIT.publicSamplePath,
+  LOCAL_SELLER_STARTER_KIT.publicRequestPath,
+  LOCAL_SELLER_STARTER_KIT.packageReportPath,
+  CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicRequestPath,
+  CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicPaymentReplyPath,
+  CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicFulfillmentChecklistPath,
+  CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOrderPipelinePath,
+  CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachQueuePath,
+  CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachBatchPath,
+  CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicSampleDeliveryPath,
+  CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryInputExamplePath,
+  CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryReportPath,
+  MARKET_TABLE_PRINT_AUDIT.publicRequestPath,
+  MARKET_TABLE_PRINT_AUDIT.publicChecklistPath,
+  CUSTOM_LOCAL_PRINT_PACK_SERVICE.issueTemplatePath,
+  MARKET_TABLE_PRINT_AUDIT.issueTemplatePath,
+];
+for (const retiredPath of retiredPublicArtifacts) {
+  if (fs.existsSync(path.join(root, retiredPath))) failures.push(`Retired public payment artifact still exists: ${retiredPath}`);
 }
 
 const zeroCostMapFile = path.join(root, "zero-cost-monetization-map", "index.html");
@@ -1031,9 +746,9 @@ else {
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("tools/json-to-pdf"))) failures.push("discovery.json missing high-intent JSON-to-PDF route.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("submit-directory"))) failures.push("discovery.json missing directory submission pack.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("share-kit"))) failures.push("discovery.json missing share kit page.");
-  if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl(MARKET_TABLE_PRINT_AUDIT.slug))) failures.push("discovery.json missing market table print audit page.");
   if (Array.isArray(discovery.highIntentEntryPoints) && discovery.highIntentEntryPoints.some((url) => url === siteUrl(LOCAL_SELLER_STARTER_KIT.slug))) failures.push("discovery.json should not list digital product page as a high-intent entry point.");
   if (Array.isArray(discovery.highIntentEntryPoints) && discovery.highIntentEntryPoints.some((url) => url === siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug))) failures.push("discovery.json should not list paid service page as a high-intent entry point.");
+  if (Array.isArray(discovery.highIntentEntryPoints) && discovery.highIntentEntryPoints.some((url) => url === siteUrl(MARKET_TABLE_PRINT_AUDIT.slug))) failures.push("discovery.json should not list retired market table audit page as a high-intent entry point.");
   if (Array.isArray(discovery.highIntentEntryPoints) && discovery.highIntentEntryPoints.some((url) => url === siteUrl(SERVICE_SALES_PACK.slug))) failures.push("discovery.json should not list service sales pack as a high-intent entry point.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("platform-submit-queue"))) failures.push("discovery.json missing platform submit queue page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("platform-submit-cockpit"))) failures.push("discovery.json missing platform submit cockpit page.");
@@ -1062,12 +777,10 @@ else {
   if (!discovery.distributionAssets || discovery.distributionAssets.platformSubmitCockpit !== siteUrl("platform-submit-cockpit")) failures.push("discovery.json missing platform submit cockpit URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.platformOutreachTracker !== siteUrl("platform-outreach-tracker")) failures.push("discovery.json missing platform outreach tracker URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.portalSubmissionPack !== siteUrl("portal-submission-pack")) failures.push("discovery.json missing portal submission pack URL.");
-  if (!discovery.distributionAssets || discovery.distributionAssets.marketTablePrintAudit !== siteUrl(MARKET_TABLE_PRINT_AUDIT.slug)) failures.push("discovery.json missing market table print audit URL.");
-  if (!discovery.distributionAssets || !String(discovery.distributionAssets.marketTablePrintAuditRequest || "").includes("market-table-print-audit-request.txt")) failures.push("discovery.json missing market table print audit request template.");
-  if (!discovery.distributionAssets || !String(discovery.distributionAssets.marketTablePrintAuditChecklist || "").includes("market-table-print-audit-checklist.json")) failures.push("discovery.json missing market table print audit checklist.");
   if (discovery.distributionAssets?.digitalProducts) failures.push("discovery.json should not promote digital products in primary distribution assets.");
   if (discovery.distributionAssets?.paidServices) failures.push("discovery.json should not promote paid services in primary distribution assets.");
   if (discovery.distributionAssets?.serviceSalesPack) failures.push("discovery.json should not promote service sales pack in primary distribution assets.");
+  if (discovery.distributionAssets?.marketTablePrintAudit || discovery.distributionAssets?.marketTablePrintAuditRequest || discovery.distributionAssets?.marketTablePrintAuditChecklist) failures.push("discovery.json should not promote retired market table audit assets.");
   if (!discovery.distributionAssets || discovery.distributionAssets.zeroCostMonetizationMap !== siteUrl("zero-cost-monetization-map")) failures.push("discovery.json missing zero-cost monetization map URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.zeroDomainGame !== "https://upload-limit-panic.pages.dev/") failures.push("discovery.json missing zero-domain game URL.");
   if (!discovery.distributionAssets || !Array.isArray(discovery.distributionAssets.zeroDomainGames) || discovery.distributionAssets.zeroDomainGames.length < 2) failures.push("discovery.json missing zero-domain game list.");
@@ -1136,7 +849,7 @@ else {
   if (!html.includes("https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/")) failures.push("GitHub Pages discovery page missing upload error cheatsheet mirror URL.");
   if (!html.includes("utm_source=github-pages")) failures.push("GitHub Pages discovery page missing tracked github-pages source links.");
   if (!html.includes(siteUrl("free-invoice-generator-no-signup"))) failures.push("GitHub Pages discovery page missing no-signup invoice landing link.");
-  if (!html.includes(`https://yanqr213.github.io/printable-tools-lab/${MARKET_TABLE_PRINT_AUDIT.slug}/`)) failures.push("GitHub Pages discovery page missing market table print audit link.");
+  if (html.includes(`https://yanqr213.github.io/printable-tools-lab/${MARKET_TABLE_PRINT_AUDIT.slug}/`)) failures.push("GitHub Pages discovery page should not promote retired market table print audit link.");
   if (html.includes(`https://yanqr213.github.io/printable-tools-lab/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug}/`)) failures.push("GitHub Pages discovery page should not promote paid service mirror in the main directory.");
   if (html.includes(`https://yanqr213.github.io/printable-tools-lab/${SERVICE_SALES_PACK.slug}/`)) failures.push("GitHub Pages discovery page should not promote service sales pack in the main directory.");
   if (!html.includes(siteUrl("tools/image-to-pdf"))) failures.push("GitHub Pages discovery page missing image-to-PDF link.");
@@ -1161,22 +874,10 @@ else {
   if (!Array.isArray(data.uploadErrorCheatsheet?.entries) || data.uploadErrorCheatsheet.entries.length !== UPLOAD_ERROR_CHEATSHEET.length) failures.push("GitHub Pages discovery tools.json missing upload error cheatsheet entries.");
   if (!data.uploadErrorCheatsheet?.entries?.some((item) => item.errorText === "Image must be less than 2MB" && String(item.toolUrl || "").includes("targetKb=2048"))) failures.push("GitHub Pages discovery tools.json missing image 2MB upload error target.");
   if (!data.gameSubmissionPack?.games?.some((game) => game.name === "Neon Lane Dash" && String(game.gameSnacksZipUrl || "").includes("neon-lane-dash-gamesnacks.zip"))) failures.push("GitHub Pages discovery tools.json missing Neon GameSnacks package.");
-  if (!data.digitalProducts?.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id && String(product.sampleUrl || "").includes("local-seller-starter-kit-sample.zip"))) failures.push("GitHub Pages discovery tools.json missing digital product.");
-  if (!data.digitalProducts?.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id && String(product.discoverySampleUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/assets/digital-products/"))) failures.push("GitHub Pages discovery tools.json missing local sample ZIP URL.");
-  if (!data.paidServices?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryRequestTemplateUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/assets/services/"))) failures.push("GitHub Pages discovery tools.json missing paid service request brief URL.");
-  if (!data.paidServices?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryPaymentReplyTemplateUrl || "").includes("custom-local-print-pack-payment-reply.txt"))) failures.push("GitHub Pages discovery tools.json missing paid service payment reply URL.");
-  if (!data.paidServices?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryFulfillmentChecklistUrl || "").includes("custom-local-print-pack-fulfillment-checklist.txt"))) failures.push("GitHub Pages discovery tools.json missing paid service fulfillment checklist URL.");
-  if (!data.paidServices?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryOrderPipelineUrl || "").includes("custom-local-print-pack-order-pipeline.json"))) failures.push("GitHub Pages discovery tools.json missing paid service order pipeline URL.");
-  if (!data.paidServices?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryOutreachQueueUrl || "").includes("custom-local-print-pack-outreach-queue.json"))) failures.push("GitHub Pages discovery tools.json missing paid service outreach queue URL.");
-  if (!data.paidServices?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryOutreachBatchUrl || "").includes("custom-local-print-pack-outreach-batch.txt"))) failures.push("GitHub Pages discovery tools.json missing paid service outreach batch URL.");
-  if (!data.leadMagnets?.some((lead) => lead.id === MARKET_TABLE_PRINT_AUDIT.id && String(lead.discoveryRequestTemplateUrl || "").includes("market-table-print-audit-request.txt"))) failures.push("GitHub Pages discovery tools.json missing audit request template URL.");
-  if (!data.leadMagnets?.some((lead) => lead.id === MARKET_TABLE_PRINT_AUDIT.id && String(lead.discoveryChecklistUrl || "").includes("market-table-print-audit-checklist.json"))) failures.push("GitHub Pages discovery tools.json missing audit checklist URL.");
-  if (!data.leadMagnets?.some((lead) => lead.id === MARKET_TABLE_PRINT_AUDIT.id && String(lead.moneyGate || "").includes("not revenue"))) failures.push("GitHub Pages discovery tools.json missing audit no-revenue gate.");
-  if (!data.serviceSalesPack || data.serviceSalesPack.id !== SERVICE_SALES_PACK.id) failures.push("GitHub Pages discovery tools.json missing service sales pack.");
-  if (!data.serviceSalesPack?.trackedLinks?.some((item) => String(item.url || "").includes("service_sales_pack"))) failures.push("GitHub Pages discovery tools.json missing service sales pack tracking.");
-  if (!String(data.serviceSalesPack?.githubPagesOrderPipelineUrl || "").includes("custom-local-print-pack-order-pipeline.json")) failures.push("GitHub Pages discovery tools.json missing service sales pack order pipeline URL.");
-  if (!String(data.serviceSalesPack?.githubPagesOutreachQueueUrl || "").includes("custom-local-print-pack-outreach-queue.json")) failures.push("GitHub Pages discovery tools.json missing service sales pack outreach queue URL.");
-  if (!Array.isArray(data.serviceSalesPack?.outreachQueue) || data.serviceSalesPack.outreachQueue.length < 10) failures.push("GitHub Pages discovery tools.json missing service sales pack outreach queue entries.");
+  if (data.digitalProducts) failures.push("GitHub Pages discovery tools.json should not include retired digitalProducts.");
+  if (data.paidServices) failures.push("GitHub Pages discovery tools.json should not include retired paidServices.");
+  if (data.leadMagnets) failures.push("GitHub Pages discovery tools.json should not include retired leadMagnets.");
+  if (data.serviceSalesPack) failures.push("GitHub Pages discovery tools.json should not include retired serviceSalesPack.");
 }
 
 const docsOrganicPushKitFile = path.join(root, "docs", "organic-push-kit", "index.html");
@@ -1230,257 +931,46 @@ else {
 }
 
 const docsProductsFile = path.join(root, "docs", "products.json");
-if (!fs.existsSync(docsProductsFile)) failures.push("Missing GitHub Pages products.json.");
-else {
-  const data = JSON.parse(fs.readFileSync(docsProductsFile, "utf8"));
-  if (!Array.isArray(data.products) || !data.products.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id)) failures.push("GitHub Pages products.json missing seller kit.");
-  if (!data.products?.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id && String(product.discoverySampleUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/assets/digital-products/"))) failures.push("GitHub Pages products.json missing local sample ZIP URL.");
-  if (!data.products?.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id && String(product.discoveryRequestTemplateUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/assets/digital-products/"))) failures.push("GitHub Pages products.json missing local buyer request template URL.");
-  if (!data.products?.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id && String(product.discoveryPackageReportUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/reports/"))) failures.push("GitHub Pages products.json missing local package report URL.");
-  if (!data.products?.some((product) => product.id === LOCAL_SELLER_STARTER_KIT.id && String(product.checkoutRequestUrl || "").includes("github.com/yanqr213/printable-tools-lab/issues/new"))) failures.push("GitHub Pages products.json missing checkout request URL.");
-  if (!String(data.moneyGate || "").includes("paid order")) failures.push("GitHub Pages products.json missing paid-order money gate.");
-}
-
-const docsProductFile = path.join(root, "docs", LOCAL_SELLER_STARTER_KIT.slug, "index.html");
-if (!fs.existsSync(docsProductFile)) failures.push("Missing GitHub Pages seller kit mirror page.");
-else {
-  const html = fs.readFileSync(docsProductFile, "utf8");
-  if (!html.includes("Local Seller Starter Kit")) failures.push("GitHub Pages seller kit mirror missing title.");
-  if (!html.includes("Download sample ZIP")) failures.push("GitHub Pages seller kit mirror missing sample link.");
-  if (!html.includes("Request checkout link")) failures.push("GitHub Pages seller kit mirror missing checkout request CTA.");
-  if (!html.includes("github.com/yanqr213/printable-tools-lab/issues/new")) failures.push("GitHub Pages seller kit mirror missing checkout request URL.");
-  if (!html.includes("local-seller-starter-kit-buy-request.txt")) failures.push("GitHub Pages seller kit mirror missing buyer request template URL.");
-  if (html.indexOf("Open live product page") !== -1) failures.push("GitHub Pages seller kit mirror should not make stale Cloudflare the primary product CTA.");
-  if (!html.includes("https://yanqr213.github.io/printable-tools-lab/assets/digital-products/local-seller-starter-kit-sample.zip")) failures.push("GitHub Pages seller kit mirror should use local sample ZIP URL.");
-  if (!html.includes("https://yanqr213.github.io/printable-tools-lab/reports/local-seller-starter-kit-package.json")) failures.push("GitHub Pages seller kit mirror should link local package report.");
-  if (!html.includes('"@type":"Product"')) failures.push("GitHub Pages seller kit mirror missing Product schema.");
-  requireGithubPagesIntentTracking(html, "GitHub Pages seller kit mirror", ["seller_sample_download", "seller_checkout_intent"]);
-  if (!sitemapIncludes(path.join(root, "docs", "sitemap.xml"), `https://yanqr213.github.io/printable-tools-lab/${LOCAL_SELLER_STARTER_KIT.slug}/`)) failures.push("GitHub Pages sitemap missing seller kit mirror page.");
-}
-
-const docsSellerKitSampleFile = path.join(root, "docs", LOCAL_SELLER_STARTER_KIT.publicSamplePath);
-if (!fs.existsSync(docsSellerKitSampleFile)) failures.push("Missing GitHub Pages seller kit sample ZIP copy.");
-else if (fs.statSync(docsSellerKitSampleFile).size < 500) failures.push("GitHub Pages seller kit sample ZIP copy is too small.");
-
-const docsSellerKitRequestFile = path.join(root, "docs", LOCAL_SELLER_STARTER_KIT.publicRequestPath);
-if (!fs.existsSync(docsSellerKitRequestFile)) failures.push("Missing GitHub Pages seller kit buyer request template copy.");
-
-const docsSellerKitReportFile = path.join(root, "docs", LOCAL_SELLER_STARTER_KIT.packageReportPath);
-if (!fs.existsSync(docsSellerKitReportFile)) failures.push("Missing GitHub Pages seller kit package report copy.");
-else {
-  const report = JSON.parse(fs.readFileSync(docsSellerKitReportFile, "utf8"));
-  if (!report.publicSample || report.publicSample.fileCount < 4) failures.push("GitHub Pages seller kit package report copy missing public sample count.");
-  if (!String(report.moneyGate || "").includes("paid order")) failures.push("GitHub Pages seller kit package report copy missing paid-order gate.");
+if (fs.existsSync(docsProductsFile)) failures.push("GitHub Pages products.json should be retired.");
+for (const retiredPath of [
+  `docs/${LOCAL_SELLER_STARTER_KIT.slug}/index.html`,
+  `docs/${LOCAL_SELLER_STARTER_KIT.publicSamplePath}`,
+  `docs/${LOCAL_SELLER_STARTER_KIT.publicRequestPath}`,
+  `docs/${LOCAL_SELLER_STARTER_KIT.packageReportPath}`,
+]) {
+  if (fs.existsSync(path.join(root, ...retiredPath.split("/")))) failures.push(`Retired GitHub Pages seller-kit artifact still exists: ${retiredPath}`);
 }
 
 const docsServicesFile = path.join(root, "docs", "services.json");
-if (!fs.existsSync(docsServicesFile)) failures.push("Missing GitHub Pages services.json.");
-else {
-  const data = JSON.parse(fs.readFileSync(docsServicesFile, "utf8"));
-  if (!Array.isArray(data.services) || !data.services.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id)) failures.push("GitHub Pages services.json missing custom print pack service.");
-  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.url || "").startsWith("https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/"))) failures.push("GitHub Pages services.json service URL should point to the live request builder.");
-  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.mainSiteFallbackUrl || "").startsWith(siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)))) failures.push("GitHub Pages services.json missing Cloudflare fallback URL.");
-  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.githubPagesServiceUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/"))) failures.push("GitHub Pages services.json missing GitHub Pages service URL.");
-  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryRequestTemplateUrl || "").includes("custom-local-print-pack-request.txt"))) failures.push("GitHub Pages services.json missing service request brief URL.");
-  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.issueFormUrl || "").includes("custom-local-print-pack-service.yml"))) failures.push("GitHub Pages services.json missing service issue form URL.");
-  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryPaymentReplyTemplateUrl || "").includes("custom-local-print-pack-payment-reply.txt"))) failures.push("GitHub Pages services.json missing service payment reply URL.");
-  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryFulfillmentChecklistUrl || "").includes("custom-local-print-pack-fulfillment-checklist.txt"))) failures.push("GitHub Pages services.json missing service fulfillment checklist URL.");
-  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryOrderPipelineUrl || "").includes("custom-local-print-pack-order-pipeline.json"))) failures.push("GitHub Pages services.json missing service order pipeline URL.");
-  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && service.orderPipeline?.some((status) => status.id === "paid_order_verified"))) failures.push("GitHub Pages services.json missing paid_order_verified pipeline status.");
-  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryOutreachQueueUrl || "").includes("custom-local-print-pack-outreach-queue.json"))) failures.push("GitHub Pages services.json missing service outreach queue URL.");
-  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryOutreachBatchUrl || "").includes("custom-local-print-pack-outreach-batch.txt"))) failures.push("GitHub Pages services.json missing service outreach batch URL.");
-  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && service.outreachQueue?.length >= 10)) failures.push("GitHub Pages services.json missing service outreach queue entries.");
-  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoverySampleDeliveryUrl || "").includes("custom-local-print-pack-sample-delivery.zip"))) failures.push("GitHub Pages services.json missing service sample delivery URL.");
-  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryDeliveryInputExampleUrl || "").includes("custom-local-print-pack-delivery-input.example.json"))) failures.push("GitHub Pages services.json missing service delivery input example URL.");
-  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.discoveryDeliveryReportUrl || "").includes("custom-local-print-pack-sample-delivery.json"))) failures.push("GitHub Pages services.json missing service delivery report URL.");
-  if (!data.services?.some((service) => service.id === CUSTOM_LOCAL_PRINT_PACK_SERVICE.id && String(service.privateDeliveryCommand || "").includes("service:delivery"))) failures.push("GitHub Pages services.json missing service private delivery command.");
-  if (!data.leadMagnets?.some((lead) => lead.id === MARKET_TABLE_PRINT_AUDIT.id && String(lead.discoveryRequestTemplateUrl || "").includes("market-table-print-audit-request.txt"))) failures.push("GitHub Pages services.json missing audit request template URL.");
-  if (!data.leadMagnets?.some((lead) => lead.id === MARKET_TABLE_PRINT_AUDIT.id && String(lead.discoveryChecklistUrl || "").includes("market-table-print-audit-checklist.json"))) failures.push("GitHub Pages services.json missing audit checklist URL.");
-  if (!data.leadMagnets?.some((lead) => lead.id === MARKET_TABLE_PRINT_AUDIT.id && lead.statuses?.some((status) => status.id === "audit_request_received" && String(status.moneyRule || "").includes("Not revenue")))) failures.push("GitHub Pages services.json missing audit no-revenue request status.");
-  if (!String(data.moneyGate || "").includes("paid order")) failures.push("GitHub Pages services.json missing paid-order money gate.");
-}
-
-const docsServiceFile = path.join(root, "docs", CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug, "index.html");
-if (!fs.existsSync(docsServiceFile)) failures.push("Missing GitHub Pages custom print pack service mirror page.");
-else {
-  const html = fs.readFileSync(docsServiceFile, "utf8");
-  if (!html.includes("Custom Local Print Pack Setup")) failures.push("GitHub Pages service mirror missing title.");
-  if (!html.includes("Request service checkout")) failures.push("GitHub Pages service mirror missing request CTA.");
-  if (!html.includes("Open structured request form")) failures.push("GitHub Pages service mirror missing structured issue form CTA.");
-  if (!html.includes("Build a service request")) failures.push("GitHub Pages service mirror missing service request builder.");
-  if (!html.includes("Copy generated service request")) failures.push("GitHub Pages service mirror missing low-friction generated request CTA.");
-  if (!html.includes("Open generated GitHub request")) failures.push("GitHub Pages service mirror missing generated GitHub request CTA.");
-  if (!html.includes("data-service-request-builder")) failures.push("GitHub Pages service mirror missing service request builder hook.");
-  if (!html.includes("data-service-request-open")) failures.push("GitHub Pages service mirror missing generated request open hook.");
-  if (!html.includes("data-service-request-copy")) failures.push("GitHub Pages service mirror missing service request copy hook.");
-  if (!html.includes("data-service-request-output")) failures.push("GitHub Pages service mirror missing service request copy output.");
-  if (!html.includes("Up to 12 items or services with prices")) failures.push("GitHub Pages service mirror missing buyer item intake field.");
-  if (!html.includes("Preferred checkout provider")) failures.push("GitHub Pages service mirror missing checkout preference field.");
-  if (!html.includes("custom-local-print-pack-request.txt")) failures.push("GitHub Pages service mirror missing request brief URL.");
-  if (!html.includes("custom-local-print-pack-payment-reply.txt")) failures.push("GitHub Pages service mirror missing payment reply URL.");
-  if (!html.includes("custom-local-print-pack-fulfillment-checklist.txt")) failures.push("GitHub Pages service mirror missing fulfillment checklist URL.");
-  if (!html.includes("custom-local-print-pack-order-pipeline.json")) failures.push("GitHub Pages service mirror missing order pipeline URL.");
-  if (!html.includes("custom-local-print-pack-outreach-queue.json")) failures.push("GitHub Pages service mirror missing outreach queue URL.");
-  if (!html.includes("custom-local-print-pack-outreach-batch.txt")) failures.push("GitHub Pages service mirror missing outreach batch URL.");
-  if (!html.includes("custom-local-print-pack-sample-delivery.zip")) failures.push("GitHub Pages service mirror missing sample delivery URL.");
-  if (!html.includes("custom-local-print-pack-delivery-input.example.json")) failures.push("GitHub Pages service mirror missing delivery input example URL.");
-  if (!html.includes("service:delivery")) failures.push("GitHub Pages service mirror missing private delivery command.");
-  if (!html.includes("paid_order_verified")) failures.push("GitHub Pages service mirror missing paid_order_verified status.");
-  if (!html.includes("github.com/yanqr213/printable-tools-lab/issues/new")) failures.push("GitHub Pages service mirror missing GitHub request URL.");
-  if (!html.includes("market-table-print-audit")) failures.push("GitHub Pages service mirror missing audit lead magnet link.");
-  if (!html.includes('"@type":"Service"')) failures.push("GitHub Pages service mirror missing Service schema.");
-  requireGithubPagesIntentTracking(html, "GitHub Pages service mirror", ["service_request_intent", "audit_request_intent"]);
-  if (!sitemapIncludes(path.join(root, "docs", "sitemap.xml"), `https://yanqr213.github.io/printable-tools-lab/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug}/`)) failures.push("GitHub Pages sitemap missing custom print pack service mirror page.");
-}
-
-const docsServiceRequestFile = path.join(root, "docs", CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicRequestPath);
-if (!fs.existsSync(docsServiceRequestFile)) failures.push("Missing GitHub Pages service request brief copy.");
-else {
-  const text = fs.readFileSync(docsServiceRequestFile, "utf8");
-  if (!text.includes("I want to request the Custom Local Print Pack Setup")) failures.push("GitHub Pages service request brief missing request copy.");
-}
-
-const docsServicePaymentReplyFile = path.join(root, "docs", CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicPaymentReplyPath);
-if (!fs.existsSync(docsServicePaymentReplyFile)) failures.push("Missing GitHub Pages service payment reply copy.");
-else {
-  const text = fs.readFileSync(docsServicePaymentReplyFile, "utf8");
-  if (!text.includes("payment link before work starts")) failures.push("GitHub Pages service payment reply missing payment-before-work language.");
-}
-
-const docsServiceFulfillmentChecklistFile = path.join(root, "docs", CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicFulfillmentChecklistPath);
-if (!fs.existsSync(docsServiceFulfillmentChecklistFile)) failures.push("Missing GitHub Pages service fulfillment checklist copy.");
-else {
-  const text = fs.readFileSync(docsServiceFulfillmentChecklistFile, "utf8");
-  if (!text.includes("Use this only after a real external payment provider shows a paid order")) failures.push("GitHub Pages service fulfillment checklist missing paid-order gate.");
-}
-
-const docsServiceOrderPipelineFile = path.join(root, "docs", CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOrderPipelinePath);
-if (!fs.existsSync(docsServiceOrderPipelineFile)) failures.push("Missing GitHub Pages service order pipeline copy.");
-else {
-  const data = JSON.parse(fs.readFileSync(docsServiceOrderPipelineFile, "utf8"));
-  if (!data.statuses?.some((status) => status.id === "paid_order_verified")) failures.push("GitHub Pages service order pipeline missing paid_order_verified status.");
-}
-
-const docsServiceOutreachQueueFile = path.join(root, "docs", CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachQueuePath);
-if (!fs.existsSync(docsServiceOutreachQueueFile)) failures.push("Missing GitHub Pages service outreach queue copy.");
-else {
-  const data = JSON.parse(fs.readFileSync(docsServiceOutreachQueueFile, "utf8"));
-  if (!Array.isArray(data.batch) || data.batch.length < 10) failures.push("GitHub Pages service outreach queue missing 10-action batch.");
-  if (!data.forbiddenActions?.some((item) => String(item).includes("scrape private contact lists"))) failures.push("GitHub Pages service outreach queue missing no-scraping rule.");
-}
-
-const docsServiceOutreachBatchFile = path.join(root, "docs", CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachBatchPath);
-if (!fs.existsSync(docsServiceOutreachBatchFile)) failures.push("Missing GitHub Pages service outreach batch copy.");
-else {
-  const text = fs.readFileSync(docsServiceOutreachBatchFile, "utf8");
-  if (!text.includes("Daily cap: no more than 10 relevant cold contacts")) failures.push("GitHub Pages service outreach batch missing daily cap.");
-}
-
-const docsServiceSampleDeliveryFile = path.join(root, "docs", CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicSampleDeliveryPath);
-if (!fs.existsSync(docsServiceSampleDeliveryFile)) failures.push("Missing GitHub Pages service sample delivery ZIP copy.");
-else if (fs.statSync(docsServiceSampleDeliveryFile).size < 1000) failures.push("GitHub Pages service sample delivery ZIP copy is too small.");
-
-const docsServiceDeliveryInputExampleFile = path.join(root, "docs", CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryInputExamplePath);
-if (!fs.existsSync(docsServiceDeliveryInputExampleFile)) failures.push("Missing GitHub Pages service delivery input example copy.");
-else {
-  const data = JSON.parse(fs.readFileSync(docsServiceDeliveryInputExampleFile, "utf8"));
-  if (data.paymentStatus !== "sample_only_not_revenue") failures.push("GitHub Pages service delivery input example should be sample_only_not_revenue.");
-}
-
-const docsServiceDeliveryReportFile = path.join(root, "docs", CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryReportPath);
-if (!fs.existsSync(docsServiceDeliveryReportFile)) failures.push("Missing GitHub Pages service delivery report copy.");
-else {
-  const data = JSON.parse(fs.readFileSync(docsServiceDeliveryReportFile, "utf8"));
-  if (!data.sampleOnly) failures.push("GitHub Pages service delivery report should be sampleOnly.");
-  if (!String(data.privateDeliveryCommand || "").includes("service:delivery")) failures.push("GitHub Pages service delivery report missing private delivery command.");
+if (fs.existsSync(docsServicesFile)) failures.push("GitHub Pages services.json should be retired.");
+for (const retiredPath of [
+  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug}/index.html`,
+  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicRequestPath}`,
+  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicPaymentReplyPath}`,
+  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicFulfillmentChecklistPath}`,
+  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOrderPipelinePath}`,
+  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachQueuePath}`,
+  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachBatchPath}`,
+  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicSampleDeliveryPath}`,
+  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryInputExamplePath}`,
+  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryReportPath}`,
+]) {
+  if (fs.existsSync(path.join(root, ...retiredPath.split("/")))) failures.push(`Retired GitHub Pages service artifact still exists: ${retiredPath}`);
 }
 
 const docsAuditLeadMagnetFile = path.join(root, "docs", MARKET_TABLE_PRINT_AUDIT.slug, "index.html");
-if (!fs.existsSync(docsAuditLeadMagnetFile)) failures.push("Missing GitHub Pages market table print audit mirror page.");
-else {
-  const html = fs.readFileSync(docsAuditLeadMagnetFile, "utf8");
-  if (!html.includes("Free Market Table Print Audit")) failures.push("GitHub Pages audit mirror missing title.");
-  if (!html.includes("Request free audit")) failures.push("GitHub Pages audit mirror missing request CTA.");
-  if (!html.includes("Open structured audit form")) failures.push("GitHub Pages audit mirror missing structured audit form link.");
-  if (!html.includes("data-audit-request-builder")) failures.push("GitHub Pages audit mirror missing interactive audit request builder.");
-  if (!html.includes("Build your request")) failures.push("GitHub Pages audit mirror missing request builder heading.");
-  if (!html.includes("Open prefilled GitHub request")) failures.push("GitHub Pages audit mirror missing generated GitHub request CTA.");
-  if (!html.includes("Copy request")) failures.push("GitHub Pages audit mirror missing generated request copy button.");
-  if (!html.includes("market-table-print-audit-request.txt")) failures.push("GitHub Pages audit mirror missing request template link.");
-  if (!html.includes("market-table-print-audit-checklist.json")) failures.push("GitHub Pages audit mirror missing checklist link.");
-  if (!html.includes("custom-local-print-pack")) failures.push("GitHub Pages audit mirror missing upgrade service link.");
-  if (!html.includes("not revenue")) failures.push("GitHub Pages audit mirror missing no-revenue gate.");
-  requireGithubPagesIntentTracking(html, "GitHub Pages audit mirror", ["audit_request_intent"]);
-  if (!sitemapIncludes(path.join(root, "docs", "sitemap.xml"), `https://yanqr213.github.io/printable-tools-lab/${MARKET_TABLE_PRINT_AUDIT.slug}/`)) failures.push("GitHub Pages sitemap missing market table print audit mirror page.");
-}
-
-const docsAuditRequestFile = path.join(root, "docs", MARKET_TABLE_PRINT_AUDIT.publicRequestPath);
-if (!fs.existsSync(docsAuditRequestFile)) failures.push("Missing GitHub Pages audit request template copy.");
-else {
-  const text = fs.readFileSync(docsAuditRequestFile, "utf8");
-  if (!text.includes("I want a Free Market Table Print Audit")) failures.push("GitHub Pages audit request template missing request copy.");
-  if (!text.includes("No payment is collected for this audit request")) failures.push("GitHub Pages audit request template missing no-payment warning.");
-}
-
-const docsAuditChecklistFile = path.join(root, "docs", MARKET_TABLE_PRINT_AUDIT.publicChecklistPath);
-if (!fs.existsSync(docsAuditChecklistFile)) failures.push("Missing GitHub Pages audit checklist copy.");
-else {
-  const data = JSON.parse(fs.readFileSync(docsAuditChecklistFile, "utf8"));
-  if (data.id !== MARKET_TABLE_PRINT_AUDIT.id) failures.push("GitHub Pages audit checklist has unexpected id.");
-  if (!String(data.githubPagesUpgradeServiceUrl || "").includes("custom-local-print-pack")) failures.push("GitHub Pages audit checklist missing upgrade service URL.");
-  if (!data.statuses?.some((status) => status.id === "audit_request_received" && String(status.moneyRule || "").includes("Not revenue"))) failures.push("GitHub Pages audit checklist missing no-revenue request status.");
+if (fs.existsSync(docsAuditLeadMagnetFile)) failures.push("GitHub Pages market table print audit mirror should be retired.");
+for (const retiredPath of [
+  `docs/${MARKET_TABLE_PRINT_AUDIT.publicRequestPath}`,
+  `docs/${MARKET_TABLE_PRINT_AUDIT.publicChecklistPath}`,
+]) {
+  if (fs.existsSync(path.join(root, ...retiredPath.split("/")))) failures.push(`Retired GitHub Pages audit artifact still exists: ${retiredPath}`);
 }
 
 const docsServiceSalesPackJsonFile = path.join(root, "docs", "service-sales-pack.json");
-if (!fs.existsSync(docsServiceSalesPackJsonFile)) failures.push("Missing GitHub Pages service-sales-pack.json.");
-else {
-  const data = JSON.parse(fs.readFileSync(docsServiceSalesPackJsonFile, "utf8"));
-  if (data.id !== SERVICE_SALES_PACK.id) failures.push("GitHub Pages service-sales-pack.json has unexpected id.");
-  if (!String(data.discoveryUrl || "").includes(SERVICE_SALES_PACK.slug)) failures.push("GitHub Pages service-sales-pack.json missing discovery URL.");
-  if (!String(data.serviceUrl || "").startsWith("https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/")) failures.push("GitHub Pages service-sales-pack.json service URL should point to the live request builder.");
-  if (!String(data.mainSiteFallbackUrl || "").startsWith(siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug))) failures.push("GitHub Pages service-sales-pack.json missing Cloudflare fallback URL.");
-  if (!data.trackedLinks?.some((item) => String(item.url || "").includes("service_sales_pack"))) failures.push("GitHub Pages service-sales-pack.json missing tracked links.");
-  if (data.trackedLinks?.some((item) => item.label === "Main service link" && String(item.url || "").includes("printable-tools-lab.pages.dev/custom-local-print-pack"))) failures.push("GitHub Pages service-sales-pack.json still promotes stale Cloudflare main service link.");
-  if (!data.trackedLinks?.some((item) => String(item.url || "").includes("market_table_audit"))) failures.push("GitHub Pages service-sales-pack.json missing audit tracked links.");
-  if (!data.outreachScripts?.some((item) => String(item.message || "").includes("$29"))) failures.push("GitHub Pages service-sales-pack.json missing $29 outreach copy.");
-  if (!String(data.issueFormUrl || "").includes("custom-local-print-pack-service.yml")) failures.push("GitHub Pages service-sales-pack.json missing issue form URL.");
-  if (!String(data.githubPagesPaymentReplyUrl || "").includes("custom-local-print-pack-payment-reply.txt")) failures.push("GitHub Pages service-sales-pack.json missing payment reply URL.");
-  if (!String(data.githubPagesFulfillmentChecklistUrl || "").includes("custom-local-print-pack-fulfillment-checklist.txt")) failures.push("GitHub Pages service-sales-pack.json missing fulfillment checklist URL.");
-  if (!String(data.githubPagesOrderPipelineUrl || "").includes("custom-local-print-pack-order-pipeline.json")) failures.push("GitHub Pages service-sales-pack.json missing order pipeline URL.");
-  if (!data.orderPipeline?.some((status) => status.id === "paid_order_verified")) failures.push("GitHub Pages service-sales-pack.json missing paid_order_verified status.");
-  if (!String(data.githubPagesOutreachQueueUrl || "").includes("custom-local-print-pack-outreach-queue.json")) failures.push("GitHub Pages service-sales-pack.json missing outreach queue URL.");
-  if (!String(data.githubPagesOutreachBatchUrl || "").includes("custom-local-print-pack-outreach-batch.txt")) failures.push("GitHub Pages service-sales-pack.json missing outreach batch URL.");
-  if (!Array.isArray(data.outreachQueue) || data.outreachQueue.length < 10) failures.push("GitHub Pages service-sales-pack.json missing outreach queue entries.");
-  if (!String(data.githubPagesSampleDeliveryUrl || "").includes("custom-local-print-pack-sample-delivery.zip")) failures.push("GitHub Pages service-sales-pack.json missing sample delivery URL.");
-  if (!String(data.githubPagesDeliveryInputExampleUrl || "").includes("custom-local-print-pack-delivery-input.example.json")) failures.push("GitHub Pages service-sales-pack.json missing delivery input example URL.");
-  if (!String(data.githubPagesDeliveryReportUrl || "").includes("custom-local-print-pack-sample-delivery.json")) failures.push("GitHub Pages service-sales-pack.json missing delivery report URL.");
-  if (!String(data.privateDeliveryCommand || "").includes("service:delivery")) failures.push("GitHub Pages service-sales-pack.json missing private delivery command.");
-  if (!data.leadMagnet || data.leadMagnet.id !== MARKET_TABLE_PRINT_AUDIT.id) failures.push("GitHub Pages service-sales-pack.json missing audit lead magnet.");
-  if (!data.marketTablePrintAudit || data.marketTablePrintAudit.id !== MARKET_TABLE_PRINT_AUDIT.id) failures.push("GitHub Pages service-sales-pack.json missing market table print audit.");
-}
-
+if (fs.existsSync(docsServiceSalesPackJsonFile)) failures.push("GitHub Pages service-sales-pack.json should be retired.");
 const docsServiceSalesPackFile = path.join(root, "docs", SERVICE_SALES_PACK.slug, "index.html");
-if (!fs.existsSync(docsServiceSalesPackFile)) failures.push("Missing GitHub Pages service sales pack mirror page.");
-else {
-  const html = fs.readFileSync(docsServiceSalesPackFile, "utf8");
-  if (!html.includes("Copy-ready sales pack")) failures.push("GitHub Pages service sales pack missing headline.");
-  if (!html.includes("Tracked links")) failures.push("GitHub Pages service sales pack missing tracked links.");
-  if (!html.includes("Copy-ready outreach")) failures.push("GitHub Pages service sales pack missing outreach copy.");
-  if (!html.includes("market_table_audit")) failures.push("GitHub Pages service sales pack missing audit tracking campaign.");
-  if (!html.includes("market-table-print-audit-request.txt")) failures.push("GitHub Pages service sales pack missing audit request template.");
-  if (!html.includes("service_sales_pack")) failures.push("GitHub Pages service sales pack missing tracking campaign.");
-  if (!html.includes("Order pipeline assets")) failures.push("GitHub Pages service sales pack missing order pipeline section.");
-  if (!html.includes("custom-local-print-pack-service.yml")) failures.push("GitHub Pages service sales pack missing issue form link.");
-  if (!html.includes("custom-local-print-pack-payment-reply.txt")) failures.push("GitHub Pages service sales pack missing payment reply link.");
-  if (!html.includes("custom-local-print-pack-outreach-queue.json")) failures.push("GitHub Pages service sales pack missing outreach queue link.");
-  if (!html.includes("custom-local-print-pack-outreach-batch.txt")) failures.push("GitHub Pages service sales pack missing outreach batch link.");
-  if (!html.includes("custom-local-print-pack-sample-delivery.zip")) failures.push("GitHub Pages service sales pack missing sample delivery link.");
-  if (!html.includes("custom-local-print-pack-delivery-input.example.json")) failures.push("GitHub Pages service sales pack missing delivery input example link.");
-  if (!html.includes("service:delivery")) failures.push("GitHub Pages service sales pack missing private delivery command.");
-  if (!html.includes("paid_order_verified")) failures.push("GitHub Pages service sales pack missing paid_order_verified status.");
-  requireGithubPagesIntentTracking(html, "GitHub Pages service sales pack", ["service_request_intent"]);
-  if (!sitemapIncludes(path.join(root, "docs", "sitemap.xml"), `https://yanqr213.github.io/printable-tools-lab/${SERVICE_SALES_PACK.slug}/`)) failures.push("GitHub Pages sitemap missing service sales pack mirror page.");
-}
+if (fs.existsSync(docsServiceSalesPackFile)) failures.push("GitHub Pages service sales pack mirror should be retired.");
 
 const docsGamesFile = path.join(root, "docs", "games.json");
 if (!fs.existsSync(docsGamesFile)) failures.push("Missing GitHub Pages games.json.");
@@ -1543,6 +1033,9 @@ else {
   }
   if (!docsSitemap.includes("<loc>https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/</loc>")) failures.push("GitHub Pages sitemap missing upload error cheatsheet mirror page.");
   if (!docsSitemap.includes("<loc>https://yanqr213.github.io/printable-tools-lab/organic-push-kit/</loc>")) failures.push("GitHub Pages sitemap missing organic push kit mirror page.");
+  for (const routePath of retiredPaymentRoutes) {
+    if (docsSitemap.includes(`<loc>https://yanqr213.github.io/printable-tools-lab/${routePath}/</loc>`)) failures.push(`GitHub Pages sitemap should not include retired payment route: ${routePath}`);
+  }
 }
 
 for (const page of landingPages) {

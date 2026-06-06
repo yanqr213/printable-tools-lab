@@ -1,6 +1,6 @@
 # PrintableTools Lab Operations
 
-This file keeps the project pointed at the current model: free browser PDF, image, QR, and signature tools for acquisition, plus one low-price digital product for direct-payment validation. Display ads still wait for policy readiness and search visibility.
+This file keeps the project pointed at the current model: free browser PDF, image, QR, and signature tools for acquisition, with monetization coming later from responsible display ads or approved platform payouts. Direct-payment experiments are retired from the public path.
 
 ## Business Model
 
@@ -14,15 +14,13 @@ This file keeps the project pointed at the current model: free browser PDF, imag
 - Ads only after approval by a mainstream ad network, never blocking downloads or disguised as controls.
 - Move from `pages.dev` to a custom domain before serious ad review; keep `pages.dev` only as the free validation and fallback host.
 
-### Direct-payment digital product layer
+### Retired direct-payment experiments
 
-- Current product: Local Seller Starter Kit at `/local-seller-starter-kit/`.
-- Public sample: `/assets/digital-products/local-seller-starter-kit-sample.zip`.
-- Full delivery ZIP is generated at `paid-deliverables/local-seller-starter-kit.zip` and must stay out of git.
-- Checkout is allowed only through a real external provider such as Gumroad, Payhip, Ko-fi, Stripe Payment Links, or another provider that the owner can legally onboard with.
-- Configure the checkout link with `npm.cmd run configure:checkout -- --url https://...`, then run `npm.cmd run build:routes` and verification.
-- Do not fake a checkout, fake a paid order, use personal QR-code collection, or expose payout, tax, bank, card, phone, or platform credentials in the repo.
-- Revenue is proven only when the payment provider shows a paid order, payout balance, or settled payment.
+- The Local Seller Starter Kit, Market Table Print Audit, Custom Local Print Pack, and service sales pack were retired from the public product path on 2026-06-06.
+- Old public URLs should render noindex retired pages that say no payment is collected and point visitors back to free tools.
+- Do not regenerate public checkout, buyer-request, service-request, payment-reply, audit, ZIP, order-pipeline, GitHub issue template, or GitHub Pages mirror assets for these experiments.
+- Do not collect visitor payments, personal QR payments, card details, payout details, tax details, or private buyer data through this site.
+- Current revenue proof is an ad-network or approved platform payable balance or settled payout, not user payments.
 
 ### Ad-network fallback policy
 
@@ -216,78 +214,24 @@ If the 60-day site gate still shows no impressions and no downloads, build one e
 
 ### Payment account
 
-For the current strategy, payment can be enabled for the Local Seller Starter Kit only after a real external checkout product is created and the full ZIP is uploaded there.
+There is no current user-payment setup for PrintableTools Lab. Keep the public product free and focus on search visibility, directory listings, organic tool usage, and later mainstream ad-network review.
 
-While the checkout link is pending, the buyer-facing fallback is the GitHub Pages mirror at `https://yanqr213.github.io/printable-tools-lab/local-seller-starter-kit/`. It hosts the sample ZIP locally and links to a prefilled checkout-request issue. Treat those requests as purchase intent only; revenue is still zero until a payment provider shows a paid order, payout balance, or settled payment.
+Retired payment paths:
 
-For buyers who do not use GitHub, the mirror also hosts `assets/digital-products/local-seller-starter-kit-buy-request.txt`. Copy that text into an email, contact form, payment-provider message, or manual checkout reply. It is still only purchase intent, not revenue.
+- `/local-seller-starter-kit/`
+- `/market-table-print-audit/`
+- `/custom-local-print-pack/`
+- `/custom-local-print-pack-sales-pack/`
 
-### Custom Local Print Pack service orders
+These paths should not appear in sitemap, discovery JSON, GitHub Pages mirrors, public issue templates, or distribution packs. If old links are visited, they should explain that the experiment has been retired and send users to `/free-pdf-tools/` or `/upload-limit-fixer/`.
 
-The fastest direct-payment test is the `$29 Custom Local Print Pack Setup`, because it can be fulfilled manually after one qualified buyer reply.
+Current monetization SOP:
 
-Start colder prospects with the free Market Table Print Audit before asking for a paid checkout. It lets a seller share public-safe details, get practical print feedback, and only upgrade if they want the first pack assembled.
-
-Public service links:
-
-- Free audit page: `https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/`
-- Free audit request form: `https://github.com/yanqr213/printable-tools-lab/issues/new?template=market-table-print-audit.yml`
-- Free audit request template: `https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt`
-- Free audit checklist JSON: `https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json`
-- Service page: `https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/`
-- Sales pack: `https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack-sales-pack/`
-- Structured request form: `https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml`
-- Request brief: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-request.txt`
-- Payment-before-work reply: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-payment-reply.txt`
-- Fulfillment checklist: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-fulfillment-checklist.txt`
-- Order pipeline JSON: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-order-pipeline.json`
-- Manual outreach queue: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-queue.json`
-- Copy/paste outreach batch: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt`
-- Sample delivery ZIP: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip`
-- Delivery input example: `https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json`
-- Sample delivery report: `https://yanqr213.github.io/printable-tools-lab/reports/custom-local-print-pack-sample-delivery.json`
-
-Manual order SOP:
-
-1. Treat a free audit request, GitHub issue, email, DM, contact-form reply, or brief download as validation only.
-2. Check the request has public-safe business/event/service name, offer summary, up to 12 items or services with prices, QR/contact link, style preference, need-by date, and preferred checkout provider.
-3. For free audit requests, send checklist notes and relevant free generator links first; do not ask for payment unless the seller asks for done-for-you assembly.
-4. Do not collect card, bank, payout, tax, identity, credential, password, or private account details in GitHub, email, or the repo.
-5. Reply with the payment-before-work template only after fit is confirmed.
-6. Send one real external Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link.
-7. Start custom work only after the external provider shows `paid_order_verified`, a paid order, payout balance, or settled payment.
-8. Create a private order input JSON from the delivery input example, changing `paymentStatus` to `paid_order_verified` only after the provider proves payment.
-9. Generate the private delivery ZIP with `npm.cmd run service:delivery -- --input path/to/paid-order.json`; outputs stay under `paid-deliverables/service-orders/`, which is ignored by git.
-10. Fulfill using the checklist, deliver editable text/CSV/copy blocks, and offer one lightweight typo or fit revision.
-11. Log only non-sensitive outcome evidence in this file: date, source, status, provider order state, amount, and public request URL if available.
-
-Manual outreach SOP:
-
-1. Use the outreach batch for the first 10 relevant public-safe actions only; do not scrape, bulk-send, or contact private personal profiles.
-2. Send cold messages only when the seller or service provider has an obvious printable-signage, price-list, flyer, QR sign, pickup-note, or market-table problem.
-3. Lead with the free audit or free generators before mentioning payment.
-4. Use the payment-before-work reply only after the person replies or asks to proceed.
-5. Record `sent`, `replied`, `intent_received`, `fit_confirmed`, `checkout_sent`, `paid_order_verified`, `delivered`, `revision_done`, or `closed` without storing private buyer or payment details.
-
-Service revenue is still zero until a payment provider proves a paid order. Requests, replies, issue creation, and downloads are useful validation but are not revenue.
-
-Compliance priority:
-
-1. Use a provider that supports the owner's country, identity, tax profile, and payout bank account.
-2. Keep product claims accurate and refund handling clear.
-3. Avoid personal QR-code collection, account sharing, proxy collection, false business categories, or disguised transactions.
-4. Do not route subscription payments through a personal Alipay account unless the platform officially supports that collection and settlement flow.
-5. Keep buyer payments on mainstream methods such as card, Apple Pay, Google Pay, or PayPal when supported.
-
-If Alipay payout is required, use only a China-friendly checkout page or service platform that officially supports Alipay collection for the account holder. Most overseas creator and SaaS platforms settle to a bank account, card processor balance, or PayPal rather than directly into an Alipay balance.
-
-Practical order for the current paid product:
-
-1. Merchant-of-record provider for tax/VAT handling if the owner can pass onboarding.
-2. Gumroad, Payhip, Ko-fi, Stripe Payment Links, or PayPal-style checkout if the owner has a supported account and can satisfy KYC.
-3. China-friendly platform with official Alipay settlement only if it fits the product and account identity.
-
-The generated paid ZIP includes `payment-provider-setup.md`, `checkout-listing-copy.md`, and `buyer-request-template.txt` so the checkout product can be published with copy/paste fields once a real provider account is available.
+1. Keep every PDF, image, QR, and upload-limit tool free to use without signup.
+2. Track page views, generation events, downloads, guide depth, free-tool depth, search visibility, and accepted directory listings.
+3. Apply only to mainstream ad networks after the site has sufficient useful content, clean policy posture, and a custom domain or stable traffic signal.
+4. Do not gate downloads behind ads, force ad interactions, disguise ads as tool controls, or ask users to pay.
+5. Count revenue only from a real ad-network or platform payable balance or settled payout.
 
 For Cloudflare Pages, use `npm.cmd run deploy:cloudflare:safe` after setting `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. The script builds, verifies, copies only git-tracked files into a temporary deploy directory, scans for forbidden paths/content, and refuses to deploy `paid-deliverables`, `.env`, or secrets.
 
@@ -528,6 +472,7 @@ Current Search Console checkpoint:
 - `2026-06-06`: submitted `PrintableTools Lab` to TechTools Launchpad through its no-login public API using the tracked URL `https://printable-tools-lab.pages.dev/submit-directory/?utm_source=techtools&utm_medium=directory&utm_campaign=launchpad_2026_06`. The API returned `success=true`, live tool id `161`, and share URL `https://techtools.cz/tools/launchpad/?tool=161`; directory monitoring now confirms it as a live listing.
 - `2026-06-06`: submitted the high-intent `Upload Limit Fixer` entry to TechTools Launchpad with tracked URL `https://printable-tools-lab.pages.dev/upload-limit-fixer/?utm_source=techtools&utm_medium=directory&utm_campaign=upload_limit_2026_06&utm_content=upload_limit_fixer`. The API returned `success=true`, live tool id `162`, and share URL `https://techtools.cz/tools/launchpad/?tool=162`. This is a pain-point listing for upload errors rather than another homepage submission.
 - `2026-06-06`: submitted the high-intent `Upload Limit Fixer` entry to NoLogin.tools through its public `/api/submit` form endpoint with tracked URL `https://printable-tools-lab.pages.dev/upload-limit-fixer/?utm_source=nologin&utm_medium=directory&utm_campaign=upload_limit_2026_06&utm_content=upload_limit_fixer`. The API returned `ok=true` and slug `printable-tools-lab-pages-dev-upload-limit-fixer`; treat it as awaiting human review until the public detail page or search result matches.
+- `2026-06-06`: retired the public direct-payment experiments after strategy review. The current public route is free tools, directory/search distribution, and future responsible display ads; old checkout, audit, service, ZIP, and GitHub Pages mirror assets should stay removed, while old URLs render noindex retired pages that point back to free tools.
 - `2026-06-03`: traffic/status check: public `/api/metrics` showed 272 cumulative `page_view` events, 14 page views today, 1 cumulative PDF download on `invoice-generator`, 0 generation events, and 0 seller-intent events. GitHub release assets still showed Neon Lane Dash HTML5 ZIP 3 downloads, Neon Lane Dash GameSnacks ZIP 4 downloads, and Upload Limit Panic HTML5 ZIP 3 downloads. Treat this as early low-volume traffic and package interest, not platform plays or revenue. Revenue remains `$0`.
 - `2026-06-03`: platform review check: Edge/Playwright reached only the public CrazyGames developer portal with a `Log in` CTA, and Playgama redirected to `https://developer.playgama.com/auth?redirect=/`. No newer review feedback, acceptance, rejection, payout, or earnings signal was visible. Keep last verified states: CrazyGames submitted/awaiting review for Neon Lane Dash, Playgama Waiting for review, Upload Limit Panic ready as backup until Neon receives a first moderation signal.
 - `2026-06-03`: GitHub Pages discovery mirrors now surface the seller-intent path above the fold: Free Market Table Print Audit -> optional `$29` Custom Local Print Pack Setup request. This keeps the zero-cost fallback monetization path visible even when the main Cloudflare Pages deploy is stale; no payment is collected on the mirror, and revenue still requires an external paid-order record.

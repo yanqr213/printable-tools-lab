@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-06T00:00:44.525Z",
+  "generatedAt": "2026-06-06T00:35:41.829Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -7,9 +7,9 @@
     "toolCount": 66,
     "guideCount": 95,
     "landingPageCount": 92,
-    "indexableRoutes": 275,
-    "sitemapLocCount": 275,
-    "generatedToolInventoryAt": "2026-06-05T23:58:33.254Z",
+    "indexableRoutes": 271,
+    "sitemapLocCount": 271,
+    "generatedToolInventoryAt": "2026-06-06T00:34:55.113Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -101,7 +101,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-05T23:52:15.177Z",
+          "generatedAt": "2026-06-06T00:01:05.928Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -987,7 +987,7 @@
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-05T23:52:15.177Z",
+          "generatedAt": "2026-06-06T00:01:05.928Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1886,7 +1886,7 @@
         "bytes": 44778,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-05T23:52:15.177Z",
+          "generatedAt": "2026-06-06T00:01:05.928Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -3956,7 +3956,7 @@
       "guidePagesInSitemap": 95,
       "gamePagesLinked": 1,
       "gamePagesInSitemap": 3,
-      "expectedUrlCount": 263,
+      "expectedUrlCount": 259,
       "error": ""
     },
     "indexNow": {
@@ -4015,7 +4015,7 @@
   },
   "directories": {
     "available": true,
-    "generatedAt": "2026-06-06T00:00:27.278Z",
+    "generatedAt": "2026-06-06T00:03:58.243Z",
     "listedCount": 3,
     "pendingCount": 6,
     "errorCount": 1,
@@ -4093,7 +4093,7 @@
         "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 92 landing page link(s), 66 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).",
-        "GitHub Pages discovery sitemap has 263 URL(s), including 66 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 263.",
+        "GitHub Pages discovery sitemap has 263 URL(s), including 66 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 259.",
         "IndexNow key file is reachable from the site root.",
         "IndexNow latest report accepted 263 URL(s) for github-pages.",
         "Directory monitor shows 3 listed, 6 pending, and 1 error directory target(s)."

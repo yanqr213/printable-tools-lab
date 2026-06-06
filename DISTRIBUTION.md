@@ -35,16 +35,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - GitHub issue campaign: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=github-issue&utm_medium=organic&utm_campaign=zero_cost_push
 - Public Gist campaign: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=gist&utm_medium=organic&utm_campaign=zero_cost_push
 - Community campaign: https://printable-tools-lab.pages.dev?utm_source=community
-- Free Market Table Print Audit campaign: https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=distribution&utm_medium=organic&utm_campaign=market_table_audit
 - Organic push kit campaign: https://printable-tools-lab.pages.dev/organic-push-kit?utm_source=distribution&utm_medium=organic&utm_campaign=organic_push_kit
-
-## Free audit lead magnet
-
-- Audit page: https://printable-tools-lab.pages.dev/market-table-print-audit/
-- GitHub Pages audit page: https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/
-- Structured audit form: https://github.com/yanqr213/printable-tools-lab/issues/new?template=market-table-print-audit.yml
-- Audit request template: https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-request.txt
-- Audit checklist JSON: https://yanqr213.github.io/printable-tools-lab/assets/services/market-table-print-audit-checklist.json
 
 ## Ad-safe free-tool distribution
 
@@ -69,7 +60,7 @@ Use these as a small daily queue. Post only when the trigger is true; otherwise 
 - Short demo for strict 500KB PDF forms: Hook: Form says PDF must be under 500KB? Show a generic PDF, choose the 500KB target, download the result, and remind viewers to check readability. Link: https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=short-video-pdf-500kb Success signal: Short-video UTM produces at least one PDF download or returning page view.
 - Short demo for PDF not accepted, JPG required: Hook: Website rejects PDF but asks for JPG? Show PDF pages converted to images locally in the browser, then download the image files. Link: https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push&utm_content=short-video-pdf-to-jpg Success signal: Short-video UTM produces a visit to the PDF-to-image workflow.
 - GitHub Pages mirror for accepted IndexNow discovery: Static mirror for common upload errors and direct free fixes: https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=github-pages-cheatsheet. The live tools remain on PrintableTools Lab and downloads stay free. Success signal: GitHub Pages sitemap and IndexNow accepted URL count remain above 151 and referral visits appear.
-- Free audit lead magnet for local seller print problems: For market-table print setup, I would start with readable price tags, one QR/contact sign, a simple flyer, and one clear offer card. This free audit checklist can help spot gaps: https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=community&utm_medium=organic&utm_campaign=market_table_audit&utm_content=market-table-audit Success signal: Audit request intent or GitHub Pages market-table-audit referral appears.
+- Upload-limit fixer for file-size questions: If the site gives a file-size or format error, this free upload-limit fixer maps the message to the right no-signup PDF or image tool: https://printable-tools-lab.pages.dev/upload-limit-fixer/?utm_source=community&utm_medium=organic&utm_campaign=free_tool_depth&utm_content=free-tool-depth-upload-limit Success signal: free_tool_depth visits increase and at least one visitor opens a fixer tool or downloads a processed file.
 
 ## Upload error cheatsheet copy
 

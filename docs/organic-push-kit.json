@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Organic Push Kit Mirror",
-  "generatedAt": "2026-06-06T00:01:06.024Z",
+  "generatedAt": "2026-06-06T00:39:07.204Z",
   "directory": "https://yanqr213.github.io/printable-tools-lab/organic-push-kit/",
   "livePage": "https://printable-tools-lab.pages.dev/organic-push-kit/",
   "liveJson": "https://printable-tools-lab.pages.dev/organic-push-kit.json",
@@ -77,14 +77,14 @@
       "riskRule": "Mirror is for discovery only; send users to the live free tools for actual file work."
     },
     {
-      "id": "market-table-audit",
+      "id": "free-tool-depth-upload-limit",
       "channel": "community",
-      "title": "Free audit lead magnet for local seller print problems",
-      "trigger": "Use only where a local seller asks about price tags, QR signs, flyers, coupon wording, or pickup notes.",
-      "trackedUrl": "https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=github-pages&utm_medium=organic&utm_campaign=market_table_audit&utm_content=market-table-audit",
-      "copy": "For market-table print setup, I would start with readable price tags, one QR/contact sign, a simple flyer, and one clear offer card. This free audit checklist can help spot gaps: https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/?utm_source=github-pages&utm_medium=organic&utm_campaign=market_table_audit&utm_content=market-table-audit",
-      "successSignal": "Audit request intent or GitHub Pages market-table-audit referral appears.",
-      "riskRule": "Keep it free-first and mention no paid setup unless the person asks for done-for-you help."
+      "title": "Upload-limit fixer for file-size questions",
+      "trigger": "Use only where someone asks how to make a PDF, JPG, PNG, resume, or passport photo fit a named upload limit.",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/upload-limit-fixer/?utm_source=github-pages&utm_medium=organic&utm_campaign=free_tool_depth&utm_content=free-tool-depth-upload-limit",
+      "copy": "If the site gives a file-size or format error, this free upload-limit fixer maps the message to the right no-signup PDF or image tool: https://printable-tools-lab.pages.dev/upload-limit-fixer/?utm_source=github-pages&utm_medium=organic&utm_campaign=free_tool_depth&utm_content=free-tool-depth-upload-limit",
+      "successSignal": "free_tool_depth visits increase and at least one visitor opens a fixer tool or downloads a processed file.",
+      "riskRule": "Answer the specific upload problem only; do not ask for ad clicks, payments, or private files."
     }
   ],
   "safeUseRules": [

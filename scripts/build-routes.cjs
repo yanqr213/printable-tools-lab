@@ -13,9 +13,6 @@ const lastmod = generatedAtIso.slice(0, 10);
 const campaignAssets = readCampaignAssets();
 const gistDiscovery = readGistDiscovery();
 const issueDiscovery = readIssueDiscovery();
-const digitalProductPackages = buildDigitalProductPackages();
-const paidServiceAssets = buildPaidServiceAssets();
-const auditLeadMagnetAssets = buildAuditLeadMagnetAssets();
 
 function pageHtml(route) {
   const rendered = renderRoute(route);
@@ -158,15 +155,6 @@ if (!headers.includes("/portal-submission-pack.json")) {
 if (!headers.includes("/game-submission-feed.json")) {
   fs.appendFileSync(headersPath, "\n/game-submission-feed.json\n  Content-Type: application/json; charset=utf-8\n");
 }
-if (!headers.includes("/digital-products.json")) {
-  fs.appendFileSync(headersPath, "\n/digital-products.json\n  Content-Type: application/json; charset=utf-8\n");
-}
-if (!headers.includes("/services.json")) {
-  fs.appendFileSync(headersPath, "\n/services.json\n  Content-Type: application/json; charset=utf-8\n");
-}
-if (!headers.includes("/service-sales-pack.json")) {
-  fs.appendFileSync(headersPath, "\n/service-sales-pack.json\n  Content-Type: application/json; charset=utf-8\n");
-}
 if (!headers.includes("/zero-cost-monetization-map.json")) {
   fs.appendFileSync(headersPath, "\n/zero-cost-monetization-map.json\n  Content-Type: application/json; charset=utf-8\n");
 }
@@ -237,7 +225,6 @@ const shareKitJson = {
     json: fileUrl("upload-error-cheatsheet.json"),
     entries: UPLOAD_ERROR_CHEATSHEET.map(uploadErrorEntry),
   },
-  marketTablePrintAudit: marketTablePrintAuditEntry(),
   zeroDomainGameExperiment: ZERO_DOMAIN_GAME_EXPERIMENT,
   zeroDomainGameExperiments: ZERO_DOMAIN_GAME_EXPERIMENTS,
   externalDiscovery: {
@@ -277,49 +264,6 @@ const uploadErrorCheatsheetJson = {
   ],
 };
 fs.writeFileSync(path.join(root, "upload-error-cheatsheet.json"), `${JSON.stringify(uploadErrorCheatsheetJson, null, 2)}\n`);
-
-const serviceSalesPackJson = {
-  ...serviceSalesPackEntry(),
-  marketTablePrintAudit: marketTablePrintAuditEntry(),
-  generatedAt: generatedAtIso,
-  canonical: fileUrl("service-sales-pack.json"),
-  pageUrl: siteUrl(SERVICE_SALES_PACK.slug),
-  moneyGate: CUSTOM_LOCAL_PRINT_PACK_SERVICE.successGate,
-};
-fs.writeFileSync(path.join(root, "service-sales-pack.json"), `${JSON.stringify(serviceSalesPackJson, null, 2)}\n`);
-
-const digitalProductsJson = {
-  name: "PrintableTools Lab Digital Products",
-  generatedAt: generatedAtIso,
-  canonical: fileUrl("digital-products.json"),
-  products: DIGITAL_PRODUCTS.map(digitalProductEntry),
-  moneyGate: "Revenue is real only when a payment provider shows a paid order, payout balance, or settled payment. Public checkout links and sample downloads are not revenue.",
-  setup: [
-    "Create an external checkout product in Gumroad, Payhip, Ko-fi, or Stripe Payment Links.",
-    `Upload the full ZIP from ${LOCAL_SELLER_STARTER_KIT.privatePackagePath}; do not commit that full paid ZIP to git.`,
-    "Set PUBLIC_SELLER_KIT_CHECKOUT_URL or sellerKitCheckoutUrl in site-config.js to make the public page buyable.",
-    `Until checkout is connected, route buyer intent to ${productCheckoutRequestUrl(LOCAL_SELLER_STARTER_KIT)}.`,
-    "Keep payout, tax, bank, card, phone, and account credentials inside the payment provider dashboard.",
-  ],
-};
-fs.writeFileSync(path.join(root, "digital-products.json"), `${JSON.stringify(digitalProductsJson, null, 2)}\n`);
-
-const paidServicesJson = {
-  name: "PrintableTools Lab Paid Services",
-  generatedAt: generatedAtIso,
-  canonical: fileUrl("services.json"),
-  services: PAID_SERVICES.map(paidServiceEntry),
-  leadMagnets: [marketTablePrintAuditEntry()],
-  moneyGate: "Revenue is real only when a payment provider shows a paid order, payout balance, or settled payment. Public request links and service briefs are not revenue.",
-  setup: [
-    `Start colder buyers with the free audit at ${siteUrl(MARKET_TABLE_PRINT_AUDIT.slug)}.`,
-    "Use the public service page and request brief to capture buyer intent without collecting money on the site.",
-    "Send a real external checkout link only after confirming the buyer details and service availability.",
-    "Keep payout, tax, bank, card, phone, and account credentials inside the payment provider dashboard.",
-    `Primary manual service path: ${siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}`,
-  ],
-};
-fs.writeFileSync(path.join(root, "services.json"), `${JSON.stringify(paidServicesJson, null, 2)}\n`);
 
 const platformSubmitQueueJson = {
   name: "HTML5 Platform Submit Queue",
@@ -432,7 +376,6 @@ const llms = [
   `- Upload error cheatsheet: ${siteUrl("upload-error-cheatsheet")}`,
   `- Machine-readable organic push kit: ${fileUrl("organic-push-kit.json")}`,
   `- Machine-readable upload error cheatsheet: ${fileUrl("upload-error-cheatsheet.json")}`,
-  `- Free market table print audit: ${siteUrl(MARKET_TABLE_PRINT_AUDIT.slug)}`,
   `- HTML5 platform submit queue: ${siteUrl("platform-submit-queue")}`,
   `- HTML5 platform submit cockpit: ${siteUrl("platform-submit-cockpit")}`,
   `- HTML5 platform outreach tracker: ${siteUrl("platform-outreach-tracker")}`,
@@ -480,7 +423,7 @@ const llms = [
   "- Optional AI idea suggestions are server-side and limited to non-sensitive fields.",
   "- Ads are disabled during validation and are never used as a gate for downloading files.",
   "- Future ad units must stay away from generator controls and must never ask visitors to interact with ads.",
-  "- Legacy paid product and service assets may exist as backup files, but they are not the current primary monetization path.",
+  "- Legacy paid product and service experiments are retired from the public product path; the current route is free tools plus future ad-network payout.",
   "",
 ].join("\n");
 fs.writeFileSync(path.join(root, "llms.txt"), llms);
@@ -502,7 +445,7 @@ const discoveryIndex = {
   portalSubmissionPack: fileUrl("portal-submission-pack.json"),
   gameSubmissionFeed: fileUrl("game-submission-feed.json"),
   zeroCostMonetizationMap: fileUrl("zero-cost-monetization-map.json"),
-  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("upload-limit-fixer"), siteUrl("organic-push-kit"), siteUrl("upload-error-cheatsheet"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl(MARKET_TABLE_PRINT_AUDIT.slug), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("upload-limit-fixer"), siteUrl("organic-push-kit"), siteUrl("upload-error-cheatsheet"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   distributionAssets: {
     shareKit: siteUrl("share-kit"),
     shareKitJson: fileUrl("share-kit.json"),
@@ -510,9 +453,6 @@ const discoveryIndex = {
     organicPushKitJson: fileUrl("organic-push-kit.json"),
     uploadErrorCheatsheet: siteUrl("upload-error-cheatsheet"),
     uploadErrorCheatsheetJson: fileUrl("upload-error-cheatsheet.json"),
-    marketTablePrintAudit: siteUrl(MARKET_TABLE_PRINT_AUDIT.slug),
-    marketTablePrintAuditRequest: fileUrl(MARKET_TABLE_PRINT_AUDIT.publicRequestPath),
-    marketTablePrintAuditChecklist: fileUrl(MARKET_TABLE_PRINT_AUDIT.publicChecklistPath),
     platformSubmitQueue: siteUrl("platform-submit-queue"),
     platformSubmitQueueJson: fileUrl("platform-submit-queue.json"),
     platformSubmitCockpit: siteUrl("platform-submit-cockpit"),
@@ -639,16 +579,7 @@ const distribution = [
   `- GitHub issue campaign: ${siteUrl("upload-limit-fixer").replace(/\/$/, "")}?utm_source=github-issue&utm_medium=organic&utm_campaign=zero_cost_push`,
   `- Public Gist campaign: ${siteUrl("upload-limit-fixer").replace(/\/$/, "")}?utm_source=gist&utm_medium=organic&utm_campaign=zero_cost_push`,
   `- Community campaign: ${siteUrl("").replace(/\/$/, "")}?utm_source=community`,
-  `- Free Market Table Print Audit campaign: ${MARKET_TABLE_PRINT_AUDIT.githubPagesUrl}?utm_source=distribution&utm_medium=organic&utm_campaign=market_table_audit`,
   `- Organic push kit campaign: ${siteUrl("organic-push-kit").replace(/\/$/, "")}?utm_source=distribution&utm_medium=organic&utm_campaign=organic_push_kit`,
-  "",
-  "## Free audit lead magnet",
-  "",
-  `- Audit page: ${siteUrl(MARKET_TABLE_PRINT_AUDIT.slug)}`,
-  `- GitHub Pages audit page: ${MARKET_TABLE_PRINT_AUDIT.githubPagesUrl}`,
-  `- Structured audit form: ${MARKET_TABLE_PRINT_AUDIT.issueFormUrl}`,
-  `- Audit request template: ${MARKET_TABLE_PRINT_AUDIT.githubPagesRequestUrl}`,
-  `- Audit checklist JSON: ${MARKET_TABLE_PRINT_AUDIT.githubPagesChecklistUrl}`,
   "",
   "## Ad-safe free-tool distribution",
   "",

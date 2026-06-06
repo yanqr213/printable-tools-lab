@@ -306,22 +306,11 @@ npm.cmd run register:domain -- --register
 4. Add a custom domain before serious ad-network review; use `pages.dev` as validation/fallback only.
 5. After the custom domain is deployed and indexed, create/apply for AdSense.
 6. If AdSense stalls, test Microsoft pubCenter as the mainstream fallback; avoid forced-view or download-gated ad networks.
-7. Keep free tools ungated. Direct checkout is allowed only for the Local Seller Starter Kit after a real external payment link is configured; display ads still wait for approval and search visibility.
+7. Keep free tools ungated. The current public monetization route is traffic, search visibility, ad-policy readiness, and later mainstream display-ad payout.
 
-Until that real checkout link exists, use the GitHub Pages seller-kit mirror as the public buyer-intent path. Its request link is not revenue; count money only from a paid provider order, payout balance, or settled payment.
-The mirror also publishes `assets/digital-products/local-seller-starter-kit-buy-request.txt` so non-GitHub buyers can copy a checkout request into email, a form, or a payment-provider message.
+Legacy direct-payment experiments for the Local Seller Starter Kit, Market Table Print Audit, and Custom Local Print Pack were retired from the public path on 2026-06-06. Old URLs should stay noindex and point users back to free tools; public JSON, ZIP, checkout-request, service-request, and GitHub Pages mirror assets should not be regenerated.
 
-For cold buyers, start with the free Market Table Print Audit: `https://yanqr213.github.io/printable-tools-lab/market-table-print-audit/`. The audit request template and checklist are public at `assets/services/market-table-print-audit-request.txt` and `assets/services/market-table-print-audit-checklist.json`. Audit requests are validation only, not revenue.
-
-For the `$29 Custom Local Print Pack Setup`, use the GitHub Pages service mirror as the public service path: `https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/`. The sales pack, structured GitHub issue form, payment-before-work reply template, fulfillment checklist, order-pipeline JSON, manual outreach batch, sample delivery ZIP, and delivery input example are published so an interested reply can become a paid external checkout order without collecting payment details in the repository. After `paid_order_verified`, run `npm.cmd run service:delivery -- --input path/to/paid-order.json` to generate the private customer ZIP under `paid-deliverables/service-orders/`. Count service revenue only after the external provider shows a paid order, payout balance, or settled payment.
-
-Configure the seller-kit payment link after creating a real checkout product:
-
-```powershell
-npm.cmd run configure:checkout -- --url https://your-payment-provider.example/product
-npm.cmd run build:routes
-npm.cmd run verify:seo
-```
+Do not collect user payments, personal QR payments, card details, payout details, tax details, or private buyer data through this site. Count revenue only after a real ad network or approved platform reports a payable balance or settled payout.
 
 Deploy Cloudflare Pages only through the safe wrapper so ignored paid files and local secrets are not uploaded:
 

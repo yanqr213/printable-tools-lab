@@ -81,51 +81,6 @@
 /game-submission-feed.json
   Content-Type: application/json; charset=utf-8
 
-/digital-products.json
-  Content-Type: application/json; charset=utf-8
-
-/services.json
-  Content-Type: application/json; charset=utf-8
-
-/service-sales-pack.json
-  Content-Type: application/json; charset=utf-8
-
-/assets/digital-products/local-seller-starter-kit-buy-request.txt
-  Content-Type: text/plain; charset=utf-8
-
-/assets/services/custom-local-print-pack-request.txt
-  Content-Type: text/plain; charset=utf-8
-
-/assets/services/custom-local-print-pack-payment-reply.txt
-  Content-Type: text/plain; charset=utf-8
-
-/assets/services/custom-local-print-pack-fulfillment-checklist.txt
-  Content-Type: text/plain; charset=utf-8
-
-/assets/services/custom-local-print-pack-order-pipeline.json
-  Content-Type: application/json; charset=utf-8
-
-/assets/services/custom-local-print-pack-outreach-queue.json
-  Content-Type: application/json; charset=utf-8
-
-/assets/services/custom-local-print-pack-outreach-batch.txt
-  Content-Type: text/plain; charset=utf-8
-
-/assets/services/custom-local-print-pack-sample-delivery.zip
-  Content-Type: application/zip
-
-/assets/services/custom-local-print-pack-delivery-input.example.json
-  Content-Type: application/json; charset=utf-8
-
-/assets/services/market-table-print-audit-request.txt
-  Content-Type: text/plain; charset=utf-8
-
-/assets/services/market-table-print-audit-checklist.json
-  Content-Type: application/json; charset=utf-8
-
-/reports/custom-local-print-pack-sample-delivery.json
-  Content-Type: application/json; charset=utf-8
-
 /upload-error-cheatsheet.json
   Content-Type: application/json; charset=utf-8
 

@@ -581,9 +581,7 @@ function totalGenerations(totals) {
 
 function freeToolDepthIntent(totals) {
   return (totals.free_tool_depth || 0)
-    + (totals.guide_depth || 0)
-    + (totals.audit_request_intent || 0)
-    + (totals.seller_sample_download || 0);
+    + (totals.guide_depth || 0);
 }
 
 function toolScore(row) {

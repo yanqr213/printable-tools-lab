@@ -5086,10 +5086,12 @@
     if (parts[0] === "pdf-tool-finder") return renderPdfToolFinder();
     if (parts[0] === "submit-directory") return renderDirectorySubmissionPack();
     if (parts[0] === "share-kit") return renderShareKit();
-    if (parts[0] === "local-seller-starter-kit") return renderLocalSellerStarterKit();
-    if (parts[0] === "custom-local-print-pack") return renderCustomLocalPrintPackService();
-    if (parts[0] === "market-table-print-audit") return renderMarketTablePrintAudit();
-    if (parts[0] === "custom-local-print-pack-sales-pack") return renderServiceSalesPack();
+    if ([
+      "local-seller-starter-kit",
+      "custom-local-print-pack",
+      "market-table-print-audit",
+      "custom-local-print-pack-sales-pack",
+    ].includes(parts[0])) return renderRetiredPaidExperiment(parts[0]);
     if (landingPagesBySlug[parts[0]]) return renderLandingPage(parts[0]);
     if (parts[0] === "dashboard") return renderDashboard();
     if (pages[parts[0]]) return renderStaticPage(parts[0]);
@@ -5332,6 +5334,39 @@
           ${group.links.map((id) => `<a href="/tools/${id}/">${escapeHtml(tools[id].title)}</a>`).join("")}
         </div>
       </article>
+    `;
+  }
+
+  function renderRetiredPaidExperiment(slug) {
+    const labels = {
+      "local-seller-starter-kit": "Local Seller Starter Kit",
+      "custom-local-print-pack": "Custom Local Print Pack Setup",
+      "market-table-print-audit": "Market Table Print Audit",
+      "custom-local-print-pack-sales-pack": "Custom Local Print Pack Sales Pack",
+    };
+    const title = labels[slug] || "Retired payment experiment";
+    setMeta(`${title} retired`, "This older payment experiment is retired from the public site. PrintableTools Lab is now focused on free no-signup tools and future ad-supported monetization.");
+    setMetaTag("robots", "noindex,follow");
+    app.innerHTML = `
+      <section class="shell page-title section">
+        <a href="/free-pdf-tools/">Free tools</a>
+        <h1>${escapeHtml(title)} has been retired</h1>
+        <p>This older buyer-intent experiment is no longer part of the public product path. PrintableTools Lab is staying free for visitors and is being validated for responsible display ads later.</p>
+        <div class="hero-actions">
+          <a class="button" href="/free-pdf-tools/">Browse free tools</a>
+          <a class="button secondary" href="/upload-limit-fixer/">Fix upload limits</a>
+          <a class="button ghost" href="/tools/">All tools</a>
+        </div>
+        <p class="notice">No payment is collected here. Current monetization work is traffic, usage depth, ad policy readiness, and future ad-network payout.</p>
+      </section>
+      <section class="shell section">
+        <h2>Use these instead</h2>
+        <div class="grid-3">
+          <article class="tool-card"><h3>Upload limit fixer</h3><p>Route PDF, image, JPG, PNG, and photo-size upload errors to the matching free no-signup tool.</p><a class="button" href="/upload-limit-fixer/">Open fixer</a></article>
+          <article class="tool-card"><h3>Free PDF, image, and QR tools</h3><p>Browse no-signup generators for compression, conversion, QR codes, invoices, receipts, labels, resumes, and printable pages.</p><a class="button" href="/free-pdf-tools/">Browse tools</a></article>
+          <article class="tool-card"><h3>Directory submission pack</h3><p>Review the public facts used for free-tool directory listings and organic discovery.</p><a class="button" href="/submit-directory/">Open pack</a></article>
+        </div>
+      </section>
     `;
   }
 
@@ -6694,17 +6729,17 @@ ${checkoutEmailUrl ? `Email request link: ${checkoutEmailUrl}\n` : ""}Delivery: 
   function renderLocalSellerFunnelCta(tool) {
     if (!tool || !LOCAL_SELLER_FUNNEL_TOOL_IDS.has(tool.id)) return "";
     const content = encodeURIComponent(tool.id);
-    const auditHref = `/market-table-print-audit/?utm_source=tool_cta&utm_medium=site&utm_campaign=market_table_audit&utm_content=${content}`;
+    const uploadHref = `/upload-limit-fixer/?utm_source=tool_cta&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     const finderHref = `/free-pdf-tools/?utm_source=tool_cta&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     return `
-      <section class="shell section seller-funnel-cta" aria-label="Local seller print audit">
+      <section class="shell section seller-funnel-cta" aria-label="More free tools">
         <div>
-          <p class="eyebrow">For local sellers</p>
-          <h2>Want a quick check before printing this for a table, pickup, or service offer?</h2>
-          <p>Send public-safe notes about your price tags, QR sign, flyer, coupon, packing slip, or service menu and get a free print audit first. You can also keep browsing the free PDF, image, QR, and business paperwork tools.</p>
+          <p class="eyebrow">Free tool path</p>
+          <h2>Need another file fix before downloading?</h2>
+          <p>Keep using the free PDF, image, QR, and business paperwork tools. The current monetization path is future ads, not charging visitors for exports.</p>
         </div>
         <div class="seller-funnel-actions">
-          <a class="button" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${auditHref}">Request free audit</a>
+          <a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(uploadHref)}">Fix upload limits</a>
           <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${finderHref}">Browse more free tools</a>
           <p class="help">Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
         </div>
@@ -7650,17 +7685,17 @@ ${paragraphs.join("\n")}
   function renderDownloadAfterAction(tool) {
     if (!tool || !LOCAL_SELLER_FUNNEL_TOOL_IDS.has(tool.id)) return "";
     const content = encodeURIComponent(tool.id);
-    const auditHref = `/market-table-print-audit/?utm_source=download_success&utm_medium=site&utm_campaign=market_table_audit&utm_content=${content}`;
+    const uploadHref = `/upload-limit-fixer/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     const finderHref = `/free-pdf-tools/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     return `
       <div class="download-after-action" aria-label="Next step after download">
         <div>
           <p class="eyebrow">Keep working free</p>
           <strong>Need another business PDF, label, QR code, or image fix?</strong>
-          <p class="help">Try another free browser tool, or request a free print audit if this file is for a market table, pickup order, or local service.</p>
+          <p class="help">Try another free browser tool, or use the upload limit fixer if another site rejects a PDF, image, or photo size.</p>
         </div>
         <div class="download-after-actions">
-          <a class="button" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${escapeHtml(auditHref)}">Request free print audit</a>
+          <a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(uploadHref)}">Fix upload limits</a>
           <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(finderHref)}">Browse more free tools</a>
         </div>
         <p class="help">Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>

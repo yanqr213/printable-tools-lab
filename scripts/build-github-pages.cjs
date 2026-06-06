@@ -59,34 +59,6 @@ const discoveryRoutes = [
   })),
   ...toolDiscoveryRoutes,
   ...guideDiscoveryRoutes,
-  ...DIGITAL_PRODUCTS.map((product) => ({
-    path: product.slug,
-    title: product.name,
-    description: product.shortDescription,
-    url: pagesUrl(product.slug),
-    mainUrl: siteUrl(product.slug),
-  })),
-  ...PAID_SERVICES.map((service) => ({
-    path: service.slug,
-    title: service.name,
-    description: service.shortDescription,
-    url: pagesUrl(service.slug),
-    mainUrl: siteUrl(service.slug),
-  })),
-  {
-    path: MARKET_TABLE_PRINT_AUDIT.slug,
-    title: MARKET_TABLE_PRINT_AUDIT.name,
-    description: MARKET_TABLE_PRINT_AUDIT.shortDescription,
-    url: pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug),
-    mainUrl: siteUrl(MARKET_TABLE_PRINT_AUDIT.slug),
-  },
-  {
-    path: SERVICE_SALES_PACK.slug,
-    title: SERVICE_SALES_PACK.name,
-    description: SERVICE_SALES_PACK.shortDescription,
-    url: pagesUrl(SERVICE_SALES_PACK.slug),
-    mainUrl: siteUrl(SERVICE_SALES_PACK.slug),
-  },
   {
     path: "organic-push-kit",
     title: "Organic push kit",
@@ -139,10 +111,10 @@ const html = `<!doctype html>
       <p>This GitHub Pages directory points to the live PrintableTools Lab app, a free browser-based PDF, image, and QR tool site for small business paperwork, local promotion, image conversion, static QR codes, career documents, and everyday printables. Use it when you need a quick file and do not want an account, forced ad view, or surprise download fee.</p>
       <p><a class="button" href="${trackedSiteUrl("free-pdf-tools", "directory-home")}">Open the full free tool directory</a></p>
       <section class="card">
-        <h2>Local seller print help</h2>
-        <p>If this file job is for a market table, pickup order, craft seller, local service, or event booth, start with the free print audit. You can also keep browsing the free PDF, image, QR, and business paperwork tools without creating an account.</p>
+        <h2>Free file tools first</h2>
+        <p>If this file job is for a market table, pickup order, craft seller, local service, or event booth, keep using the free PDF, image, QR, and business paperwork tools without creating an account.</p>
         <p class="actions">
-          <a class="button" data-track-event="audit_request_intent" data-track-tool="${MARKET_TABLE_PRINT_AUDIT.id}" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Request a free print audit</a>
+          <a class="button" data-track-event="free_tool_depth" data-track-tool="upload-limit-fixer" href="${trackedSiteUrl("upload-limit-fixer", "directory-free-tools")}">Fix upload limits</a>
           <a class="button secondary" href="${trackedSiteUrl("free-pdf-tools", "directory-seller-help")}">Browse more free tools</a>
         </p>
         <p>Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
@@ -178,7 +150,6 @@ const html = `<!doctype html>
         <li><a href="${pagesUrl("upload-error-cheatsheet")}">Upload error cheatsheet mirror</a> for exact PDF, image, resume, and email attachment rejection messages with direct fixes.</li>
         <li><a href="${trackedSiteUrl("tools", "all-tools")}">All free generators</a> for browsing every tool.</li>
         <li><a href="${pagesUrl("guides")}">Printable guide mirrors</a> for original help pages around PDF, image, QR, and printable workflows.</li>
-        <li><a href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Free Market Table Print Audit mirror</a> for public-safe feedback on price tags, QR signs, flyer copy, coupons, and pickup notes.</li>
         <li><a href="${trackedSiteUrl("free-pdf-tools", "seller-help-directory")}">Free PDF, image, and QR tools directory</a> for continuing to another useful browser tool.</li>
         <li><a href="${pagesUrl("html5-game-submission-pack")}">HTML5 game submission pack mirror</a> for clean portal ZIPs, GameSnacks packages, demo videos, and platform-review assets.</li>
         ${landingPages.map((page) => `<li><a href="${trackedSiteUrl(page.path, `home-${page.path}`)}">${escapeHtml(page.title)}</a> for ${escapeHtml(page.intent)}.</li>`).join("\n")}
@@ -233,13 +204,6 @@ for (const tool of allDiscoveryTools) {
   fs.writeFileSync(path.join(toolDir, "index.html"), toolDiscoveryHtml(tool, relatedLandingPages));
 }
 writeGuideDiscoveryPages();
-writeDigitalProductDiscoveryPages();
-copyDigitalProductPublicAssets();
-writePaidServiceDiscoveryPages();
-copyPaidServicePublicAssets();
-writeAuditLeadMagnetDiscoveryPage();
-copyAuditLeadMagnetPublicAssets();
-writeServiceSalesPackDiscoveryPage();
 writeOrganicPushKitDiscoveryPage();
 writeUploadErrorCheatsheetDiscoveryPage();
 writeGameDiscoveryPages();
@@ -285,42 +249,12 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
       reviewReadinessUrl: game.reviewReadinessUrl,
     })),
   },
-  digitalProducts: DIGITAL_PRODUCTS.map(productFeedEntry),
-  paidServices: PAID_SERVICES.map(serviceFeedEntry),
-  leadMagnets: [auditLeadMagnetEntry()],
-  serviceSalesPack: serviceSalesPackEntry(),
   organicPushKit: organicPushKitEntry(),
   uploadErrorCheatsheet: uploadErrorCheatsheetEntry(),
 }, null, 2)}\n`);
 
 fs.writeFileSync(path.join(docsDir, "organic-push-kit.json"), `${JSON.stringify(organicPushKitEntry(), null, 2)}\n`);
 fs.writeFileSync(path.join(docsDir, "upload-error-cheatsheet.json"), `${JSON.stringify(uploadErrorCheatsheetEntry(), null, 2)}\n`);
-
-fs.writeFileSync(path.join(docsDir, "products.json"), `${JSON.stringify({
-  name: "PrintableTools Lab Digital Products",
-  generatedAt: generatedAtIso,
-  directory: pagesUrl(""),
-  products: DIGITAL_PRODUCTS.map(productFeedEntry),
-  moneyGate: "Revenue is real only when a payment provider shows a paid order, payout balance, or settled payment.",
-}, null, 2)}\n`);
-
-fs.writeFileSync(path.join(docsDir, "services.json"), `${JSON.stringify({
-  name: "PrintableTools Lab Paid Services",
-  generatedAt: generatedAtIso,
-  directory: pagesUrl(""),
-  services: PAID_SERVICES.map(serviceFeedEntry),
-  leadMagnets: [auditLeadMagnetEntry()],
-  moneyGate: "Revenue is real only when a payment provider shows a paid order, payout balance, or settled payment.",
-}, null, 2)}\n`);
-
-fs.writeFileSync(path.join(docsDir, "service-sales-pack.json"), `${JSON.stringify({
-  ...serviceSalesPackEntry(),
-  marketTablePrintAudit: auditLeadMagnetEntry(),
-  generatedAt: generatedAtIso,
-  directory: pagesUrl(""),
-  discoveryUrl: pagesUrl(SERVICE_SALES_PACK.slug),
-  moneyGate: CUSTOM_LOCAL_PRINT_PACK_SERVICE.successGate,
-}, null, 2)}\n`);
 
 const githubPagesGameSubmissionFeed = {
   name: "HTML5 Game Submission Feed",
@@ -422,10 +356,10 @@ function trackedGuideUrl(guide) {
 
 function sellerIntentCtaHtml() {
   return `<section class="card seller-intent">
-        <h2>Local seller print help</h2>
-        <p>If this file job is for a market table, pickup order, craft seller, local service, or event booth, start with the free print audit. You can also keep browsing the free PDF, image, QR, and business paperwork tools without creating an account.</p>
+        <h2>Free file tools first</h2>
+        <p>If this file job is for a market table, pickup order, craft seller, local service, or event booth, keep using the free PDF, image, QR, and business paperwork tools without creating an account.</p>
         <p class="actions">
-          <a class="button" data-track-event="audit_request_intent" data-track-tool="${MARKET_TABLE_PRINT_AUDIT.id}" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Request a free print audit</a>
+          <a class="button" data-track-event="free_tool_depth" data-track-tool="upload-limit-fixer" href="${trackedSiteUrl("upload-limit-fixer", "seller-help-directory")}">Fix upload limits</a>
           <a class="button secondary" href="${trackedSiteUrl("free-pdf-tools", "seller-help-directory")}">Browse more free tools</a>
         </p>
         <p>Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>

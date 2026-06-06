@@ -19,7 +19,6 @@ Monetization model: Free tools stay live for search demand and future display ad
 - Upload error cheatsheet: https://printable-tools-lab.pages.dev/upload-error-cheatsheet/
 - Machine-readable organic push kit: https://printable-tools-lab.pages.dev/organic-push-kit.json
 - Machine-readable upload error cheatsheet: https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json
-- Free market table print audit: https://printable-tools-lab.pages.dev/market-table-print-audit/
 - HTML5 platform submit queue: https://printable-tools-lab.pages.dev/platform-submit-queue/
 - HTML5 platform submit cockpit: https://printable-tools-lab.pages.dev/platform-submit-cockpit/
 - HTML5 platform outreach tracker: https://printable-tools-lab.pages.dev/platform-outreach-tracker/
@@ -255,4 +254,4 @@ Monetization model: Free tools stay live for search demand and future display ad
 - Optional AI idea suggestions are server-side and limited to non-sensitive fields.
 - Ads are disabled during validation and are never used as a gate for downloading files.
 - Future ad units must stay away from generator controls and must never ask visitors to interact with ads.
-- Legacy paid product and service assets may exist as backup files, but they are not the current primary monetization path.
+- Legacy paid product and service experiments are retired from the public product path; the current route is free tools plus future ad-network payout.
