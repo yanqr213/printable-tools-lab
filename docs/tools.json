@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-06T01:48:41.459Z",
+  "generatedAt": "2026-06-07T06:10:58.334Z",
   "landingPages": [
     {
       "title": "Free Upload Limit Fixer",
@@ -1559,7 +1559,7 @@
   },
   "organicPushKit": {
     "name": "PrintableTools Lab Organic Push Kit Mirror",
-    "generatedAt": "2026-06-06T01:48:41.459Z",
+    "generatedAt": "2026-06-07T06:10:58.334Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/organic-push-kit/",
     "livePage": "https://printable-tools-lab.pages.dev/organic-push-kit/",
     "liveJson": "https://printable-tools-lab.pages.dev/organic-push-kit.json",
@@ -1656,7 +1656,7 @@
   },
   "uploadErrorCheatsheet": {
     "name": "PrintableTools Lab Upload Error Cheatsheet Mirror",
-    "generatedAt": "2026-06-06T01:48:41.459Z",
+    "generatedAt": "2026-06-07T06:10:58.334Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/",
     "livePage": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
     "liveJson": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",
@@ -1800,5 +1800,107 @@
       "Do not claim guaranteed compression results; tell users to review output quality.",
       "Do not ask for ad clicks, ad views, artificial engagement, or private file examples."
     ]
+  },
+  "sponsorCall": {
+    "name": "PrintableTools Lab Sponsor Call Mirror",
+    "generatedAt": "2026-06-07T06:10:58.334Z",
+    "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-call/",
+    "livePage": "https://printable-tools-lab.pages.dev/sponsor-call/",
+    "liveJson": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+    "trackedSponsorCallUrl": "https://printable-tools-lab.pages.dev/sponsor-call/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=github-pages-mirror",
+    "trackedSponsorFormUrl": "https://printable-tools-lab.pages.dev/sponsor/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=github-pages-form#sponsor-inquiry",
+    "mediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+    "outreachPack": "https://printable-tools-lab.pages.dev/sponsor-outreach-pack.json",
+    "purpose": "GitHub Pages discovery mirror for policy-fit sponsor and partner inquiries while the live site keeps downloads free and collects no payment on-site.",
+    "actions": [
+      {
+        "title": "Sponsor a relevant guide",
+        "audience": "PDF, image, QR, resume, classroom, or small-business workflow products.",
+        "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=github-pages-guide-sponsor",
+        "signal": "A qualified sponsor lead submits audience fit and budget range through the site form."
+      },
+      {
+        "title": "Request a starter fit review",
+        "audience": "Early partners who want a quick policy-fit review before discussing copy.",
+        "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=github-pages-starter-review",
+        "signal": "A business asks for the USD 49 exploratory review or a no-cash partner test."
+      },
+      {
+        "title": "Use a vertical sponsor page",
+        "audience": "Partners who care about one audience: QR/local marketing, resume, classroom, small business, or file workflow SaaS.",
+        "url": "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=github-pages-vertical-pages",
+        "signal": "A sponsor lead arrives with sponsor-call attribution and a vertical path."
+      }
+    ],
+    "discoveryLinks": [
+      {
+        "title": "Public sponsor call",
+        "path": "sponsor-call",
+        "url": "https://printable-tools-lab.pages.dev/sponsor-call/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=github-pages-mirror",
+        "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-call/",
+        "reason": "Open invitation for policy-fit sponsors and partners to use the sponsor form instead of private outreach."
+      },
+      {
+        "title": "Sponsor inquiry form",
+        "path": "sponsor",
+        "url": "https://printable-tools-lab.pages.dev/sponsor/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=github-pages-form#sponsor-inquiry",
+        "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor/",
+        "reason": "Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries."
+      },
+      {
+        "title": "Sponsor call JSON",
+        "path": "sponsor-call.json",
+        "url": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+        "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+        "reason": "Machine-readable sponsor openings, reply path, vertical pages, and success gate."
+      },
+      {
+        "title": "Sponsor media kit JSON",
+        "path": "sponsor-media-kit.json",
+        "url": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+        "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+        "reason": "Public facts, placement rules, vertical fits, and safety constraints for partners."
+      }
+    ],
+    "verticalPages": [
+      {
+        "title": "PDF, Image, and QR SaaS Sponsorship",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=pdf-image-qr-saas",
+        "sponsorFit": "PDF APIs, image optimization tools, QR platforms, privacy-friendly document automation, browser utility products, and file-workflow SaaS.",
+        "priceHint": "USD 99-149 pilot"
+      },
+      {
+        "title": "Resume and Career Tool Sponsorship",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/resume-career-sponsors/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=resume-career-sponsors",
+        "sponsorFit": "Resume builders, ATS tools, job boards, interview prep products, career coaching, and applicant-document utilities.",
+        "priceHint": "USD 99-149 pilot"
+      },
+      {
+        "title": "Classroom Printable Sponsorship",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/classroom-printable-sponsors/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=classroom-printable-sponsors",
+        "sponsorFit": "Teacher marketplaces, homeschool resources, classroom apps, learning printables, family routine products, and child-safe educational tools.",
+        "priceHint": "USD 99-149 pilot"
+      },
+      {
+        "title": "Small Business Paperwork Sponsorship",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/small-business-paperwork-sponsors/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=small-business-paperwork-sponsors",
+        "sponsorFit": "Invoicing apps, bookkeeping tools, POS products, local marketing services, shipping tools, label systems, and small-business operations software.",
+        "priceHint": "USD 99-149 pilot"
+      },
+      {
+        "title": "Local Marketing and QR Sponsorship",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/local-marketing-qr-sponsors/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=local-marketing-qr-sponsors",
+        "sponsorFit": "QR platforms, review-request tools, local SEO products, print shops, signage services, event tools, and small-business marketing software.",
+        "priceHint": "USD 49 exploratory or USD 99-149 pilot"
+      }
+    ],
+    "safeUseRules": [
+      "Use only where sponsor, partner, resource-page, newsletter, or directory submissions are explicitly welcome.",
+      "Downloads stay free and cannot require ad clicks, sponsor interaction, accounts, or payment.",
+      "Sponsor copy must be clearly labeled and manually reviewed before placement.",
+      "Do not send payment, tax, bank, phone, private identity, passwords, or customer files through this site.",
+      "Success is a real qualified sponsor inquiry, signed agreement, or settled external payment. Clicks alone are not revenue."
+    ],
+    "successGate": "The call works only when a qualified sponsor inquiry, signed agreement, or settled external payment is verified."
   }
 }
