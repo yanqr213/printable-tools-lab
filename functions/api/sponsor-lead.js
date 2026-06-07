@@ -423,10 +423,11 @@ function sponsorStoreFallbackResponse(lead, validation) {
     ok: false,
     error: validation
       ? "Sponsor validation storage is temporarily limited."
-      : "Sponsor lead storage is temporarily limited. Copy the backup request and send it through the email fallback.",
+      : "Sponsor lead storage is temporarily limited. Use the public-safe reply form or copy the backup request.",
     fallbackRequired: !validation,
     fallbackSubject: "PrintableTools Lab sponsor invoice review",
     fallbackBody: lead ? sponsorLeadFallbackText(lead) : "",
+    fallbackPublicReplyUrl: !validation && lead ? sponsorLeadPublicReplyUrl(lead) : "",
   }, validation ? 503 : 503);
 }
 
@@ -469,6 +470,28 @@ function sponsorLeadDryRunPayload(lead) {
     path: lead.path,
     vertical: lead.vertical,
   };
+}
+
+function sponsorLeadPublicReplyUrl(lead) {
+  const title = `[Sponsor/Partner]: ${lead.company || "Sponsor pilot review"}`;
+  const body = [
+    "Public-safe sponsor reply.",
+    "",
+    `Company / project: ${lead.company || ""}`,
+    `Public website URL: ${lead.website || ""}`,
+    `Audience fit: ${lead.vertical || lead.path || ""}`,
+    `Selected pilot deal: ${lead.dealId || ""}`,
+    `Proposal or deal URL: https://printable-tools-lab.pages.dev${lead.path || "/sponsor/"}`,
+    "",
+    `Requested next step: ${lead.commitment || "Request pilot invoice review"}`,
+    "",
+    "Do not include private payment, tax, bank, phone, customer, identity, password, or confidential file data in this public issue.",
+  ].join("\n");
+  const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+  url.searchParams.set("template", "sponsor-partner-inquiry.yml");
+  url.searchParams.set("title", title);
+  url.searchParams.set("body", body);
+  return url.toString();
 }
 
 function arrayOrEmpty(value) {

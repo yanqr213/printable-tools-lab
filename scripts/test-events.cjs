@@ -384,6 +384,8 @@ async function main() {
   assert(sponsorLeadWriteLimitedPayload.fallbackRequired, "Sponsor lead endpoint should ask for a backup request when storage is unavailable");
   assert(sponsorLeadWriteLimitedPayload.fallbackBody.includes("Fallback Partner"), "Sponsor lead fallback should include the normalized company");
   assert(sponsorLeadWriteLimitedPayload.fallbackBody.includes("fallback@example.com"), "Sponsor lead fallback should include the normalized email");
+  assert(String(sponsorLeadWriteLimitedPayload.fallbackPublicReplyUrl || "").includes("sponsor-partner-inquiry.yml"), "Sponsor lead fallback should include a public-safe reply URL");
+  assert(String(sponsorLeadWriteLimitedPayload.fallbackPublicReplyUrl || "").includes("Fallback+Partner"), "Sponsor lead fallback reply URL should prefill the sponsor company");
   const sponsorLeadReadLimitedStore = new MemoryStore({ failReadsWith: "KV get() limit exceeded for the day." });
   const sponsorLeadReadLimitedResponse = await sponsorLeadSource.onRequestPost({
     request: new Request("https://example.test/api/sponsor-lead", {

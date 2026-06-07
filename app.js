@@ -12781,7 +12781,7 @@ ${paragraphs.join("\n")}
     if (fallback) fallback.remove();
   }
 
-  function renderSponsorLeadFallback(form, values, subject = "PrintableTools Lab sponsor inquiry") {
+  function renderSponsorLeadFallback(form, values, subject = "PrintableTools Lab sponsor inquiry", publicReplyUrl = "") {
     const text = typeof values === "string" ? values : sponsorLeadFallbackText(values);
     if (!text.trim()) return;
     let panel = form.querySelector("[data-sponsor-lead-fallback]");
@@ -12794,10 +12794,12 @@ ${paragraphs.join("\n")}
       else form.appendChild(panel);
     }
     const mailto = sponsorLeadFallbackMailto(subject, text);
+    const replyUrl = publicReplyUrl || (typeof values === "string" ? "" : sponsorLeadPublicReplyUrl(values));
     panel.innerHTML = `
-      <p><strong>Backup request ready.</strong> Lead storage is temporarily limited, so copy this request before leaving the page.</p>
+      <p><strong>Backup request ready.</strong> Lead storage is temporarily limited, so use the public-safe reply form or copy this request before leaving the page.</p>
       <textarea class="request-copy-output sponsor-lead-fallback-output" readonly>${escapeHtml(text)}</textarea>
       <div class="actions">
+        ${replyUrl ? `<a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(replyUrl)}" target="_blank" rel="noreferrer">Open public-safe reply</a>` : ""}
         <button class="button" type="button" data-copy-text="${escapeHtml(text)}">Copy backup request</button>
         <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(mailto)}">Email fallback</a>
       </div>
@@ -12842,6 +12844,21 @@ ${paragraphs.join("\n")}
     ].join("\n");
   }
 
+  function sponsorLeadPublicReplyUrl(values) {
+    const deal = sponsorDeals.find((item) => item.id === values.dealId) || sponsorDeals.find((item) => item.id === values.quickDealId) || sponsorDeals.find((item) => item.id === "guide-sponsor-pilot") || sponsorDeals[0];
+    const vertical = sponsorVerticals.find((item) => item.slug === values.vertical) || sponsorVerticals.find((item) => item.campaign === values.utmCampaign) || sponsorVerticals[0];
+    const proposalPath = values.path || deal?.trackedUrl || "/sponsor-deal-room/";
+    return sponsorPublicReplyUrl(
+      {
+        name: values.company || "Sponsor pilot review",
+        website: values.website || "",
+      },
+      deal || {},
+      vertical || {},
+      proposalPath,
+    );
+  }
+
   async function submitSponsorLeadForm(form) {
     const status = form.querySelector("[data-sponsor-lead-status]");
     const submit = form.querySelector("button[type='submit']");
@@ -12867,7 +12884,7 @@ ${paragraphs.join("\n")}
       const data = await response.json().catch(() => ({}));
       if (!response.ok || !data.ok) {
         if (data.fallbackRequired) {
-          renderSponsorLeadFallback(form, data.fallbackBody || values, data.fallbackSubject || "PrintableTools Lab sponsor inquiry");
+          renderSponsorLeadFallback(form, data.fallbackBody || values, data.fallbackSubject || "PrintableTools Lab sponsor inquiry", data.fallbackPublicReplyUrl || "");
           setStatus(data.error || "Lead storage is temporarily limited. Copy the backup request below.", "error");
           return;
         }
@@ -12927,7 +12944,7 @@ ${paragraphs.join("\n")}
       const data = await response.json().catch(() => ({}));
       if (!response.ok || !data.ok) {
         if (data.fallbackRequired) {
-          renderSponsorLeadFallback(form, data.fallbackBody || payload, data.fallbackSubject || "PrintableTools Lab sponsor invoice review");
+          renderSponsorLeadFallback(form, data.fallbackBody || payload, data.fallbackSubject || "PrintableTools Lab sponsor invoice review", data.fallbackPublicReplyUrl || "");
           setStatus(data.error || "Lead storage is temporarily limited. Copy the backup request below.", "error");
           return;
         }
