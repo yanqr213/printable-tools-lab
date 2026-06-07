@@ -4899,6 +4899,19 @@ function sponsorDealCommitment(deal) {
   return deal?.commitment || (String(deal?.price || "").toLowerCase().includes("no-cash") ? "question-only" : "request-invoice");
 }
 
+function sponsorInvoiceRequestCopy(prospect, deal, vertical, dealUrl) {
+  return [
+    "Hi PrintableTools Lab team,",
+    "",
+    `We are interested in the ${deal.title} (${deal.price}) for ${vertical.title}.`,
+    `Company/prospect: ${prospect.name}`,
+    `Pilot link: ${dealUrl}`,
+    "",
+    "Please review fit and send the external invoice/agreement if this sponsor placement is policy-safe.",
+    "We will keep payment, tax, bank, phone, and private customer details outside the website form.",
+  ].join("\n");
+}
+
 const SPONSOR_OUTREACH_TARGETS = [
   {
     category: "PDF, image, and QR SaaS",
@@ -5992,6 +6005,17 @@ function sponsorDealRoomHtml() {
         <h2>Available pilot deals</h2>
         <div class="grid-2">
           ${SPONSOR_DEALS.map((deal) => `<article class="panel"><h3>${escapeHtml(deal.title)}</h3><p><strong>${escapeHtml(deal.price)}</strong></p><p>${escapeHtml(deal.bestFor)}</p><p>${escapeHtml(deal.deliverable)}</p><p class="help">Needed: ${escapeHtml(deal.proofNeeded)}</p><p><a class="button" data-sponsor-deal-select ${sponsorDealPrefillAttrs(deal)} data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(deal.trackedUrl)}">Use this deal path</a></p></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Copy-ready pilot request</h2>
+        <div class="grid-2">
+          ${SPONSOR_DEALS.filter((deal) => deal.id !== "partner-distribution-test").slice(0, 2).map((deal) => {
+            const vertical = SPONSOR_VERTICALS[0];
+            const prospect = { id: deal.id, name: "Sponsor team", category: "Direct buyer", fitReason: deal.bestFor, vertical: vertical.slug };
+            const copy = sponsorInvoiceRequestCopy(prospect, deal, vertical, deal.trackedUrl);
+            return `<article class="panel"><h3>${escapeHtml(deal.title)}</h3><p><strong>${escapeHtml(deal.price)}</strong></p><p>${escapeHtml(deal.deliverable)}</p><p><button class="button" type="button" data-copy-text="${escapeHtml(copy)}" data-track-event="sponsor_request_intent" data-track-tool="sponsor">Copy invoice request</button></p></article>`;
+          }).join("\n")}
         </div>
       </section>
       <section class="shell section">

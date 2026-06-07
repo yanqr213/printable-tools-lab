@@ -7525,6 +7525,17 @@ ${paragraphs.join("\n")}
         </div>
       </section>
       <section class="shell section">
+        <h2>Copy-ready pilot request</h2>
+        <div class="grid-2">
+          ${sponsorDeals.filter((deal) => deal.id !== "partner-distribution-test").slice(0, 2).map((deal) => {
+            const vertical = sponsorVerticals[0];
+            const prospect = { id: deal.id, name: "Sponsor team", category: "Direct buyer", fitReason: deal.bestFor, vertical: vertical.slug };
+            const copy = sponsorInvoiceRequestCopy(prospect, deal, vertical, deal.trackedUrl);
+            return `<article class="panel"><h3>${escapeHtml(deal.title)}</h3><p><strong>${escapeHtml(deal.price)}</strong></p><p>${escapeHtml(deal.deliverable)}</p><p><button class="button" type="button" data-copy-text="${escapeHtml(copy)}" data-track-event="sponsor_request_intent" data-track-tool="sponsor">Copy invoice request</button></p></article>`;
+          }).join("")}
+        </div>
+      </section>
+      <section class="shell section">
         <h2>Best-fit sponsor categories</h2>
         <div class="grid-3">
           ${sponsorVerticals.map((vertical) => `<article class="panel"><h3>${escapeHtml(vertical.title)}</h3><p>${escapeHtml(vertical.sponsorFit)}</p><p><strong>${escapeHtml(vertical.priceHint)}</strong></p><p><a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor/${escapeHtml(vertical.slug)}/?utm_source=sponsor-deal-room&utm_medium=organic&utm_campaign=${escapeHtml(vertical.campaign)}&utm_content=vertical-card">Open vertical fit</a></p></article>`).join("")}
@@ -7563,12 +7574,13 @@ ${paragraphs.join("\n")}
     const dealUrl = sponsorProspectDealUrl(prospect, deal, vertical);
     const proposalUrl = sponsorProspectProposalUrl(prospect, deal, vertical);
     const pitch = sponsorProspectPitch(prospect, deal, vertical, proposalUrl);
+    const invoiceRequest = sponsorInvoiceRequestCopy(prospect, deal, vertical, proposalUrl);
     app.innerHTML = `
       <section class="shell page-title section sponsor-hero">
         <a href="/sponsor-deal-room/">Sponsor deal room</a>
         <h1>${escapeHtml(prospect.name)} sponsor proposal</h1>
         <p>A direct, business-safe proposal for a small, clearly labeled sponsor pilot with PrintableTools Lab. Downloads stay free, sponsor copy is manually reviewed, and revenue is counted only after a signed agreement or settled external payment.</p>
-        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Start inquiry</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(dealUrl)}">Open deal room path</a> <button class="button ghost" type="button" data-copy-text="${escapeHtml(pitch)}">Copy outreach note</button></p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Start inquiry</a> <button class="button secondary" type="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" data-copy-text="${escapeHtml(invoiceRequest)}">Copy invoice request</button> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(dealUrl)}">Open deal room path</a> <button class="button ghost" type="button" data-copy-text="${escapeHtml(pitch)}">Copy outreach note</button></p>
       </section>
       <section class="shell section">
         <h2>Why this is a fit</h2>
@@ -7583,7 +7595,7 @@ ${paragraphs.join("\n")}
         <div class="grid-3">
           <article class="panel"><h3>${escapeHtml(deal.title)}</h3><p><strong>${escapeHtml(deal.price)}</strong></p><p>${escapeHtml(deal.bestFor)}</p></article>
           <article class="panel"><h3>Deliverable</h3><p>${escapeHtml(deal.deliverable)}</p></article>
-          <article class="panel"><h3>Review needed</h3><p>${escapeHtml(deal.proofNeeded)}</p></article>
+          <article class="panel"><h3>Review needed</h3><p>${escapeHtml(deal.proofNeeded)}</p><p><button class="button ghost" type="button" data-copy-text="${escapeHtml(invoiceRequest)}">Copy invoice request</button></p></article>
         </div>
       </section>
       <section class="shell section">
@@ -8050,6 +8062,7 @@ ${paragraphs.join("\n")}
           <a class="button secondary" href="${escapeHtml(prospect.contactUrl)}" target="_blank" rel="noreferrer">Contact</a>
           <a class="button secondary" href="${escapeHtml(proposalUrl)}" target="_blank" rel="noreferrer">Proposal</a>
           <a class="button ghost" href="${escapeHtml(dealUrl)}" target="_blank" rel="noreferrer">Deal link</a>
+          <button class="button ghost" type="button" data-copy-text="${escapeHtml(invoiceRequest)}">Copy invoice request</button>
           <button class="button ghost" type="button" data-copy-text="${escapeHtml(pitch)}">Copy pitch</button>
         </div>
       </article>
@@ -8118,6 +8131,20 @@ ${paragraphs.join("\n")}
       "Downloads stay free, sponsor copy is separated from generator controls, and placements are manually reviewed for policy fit. I am not claiming guaranteed traffic or conversions; this is a small validation pilot before any placement goes live.",
       "",
       "Would this be relevant for your partnership or marketing team?",
+    ].join("\n");
+  }
+
+  function sponsorInvoiceRequestCopy(prospect, deal, vertical, dealUrl) {
+    const absoluteDealUrl = absoluteSponsorUrl(dealUrl);
+    return [
+      "Hi PrintableTools Lab team,",
+      "",
+      `We are interested in the ${deal.title} (${deal.price}) for ${vertical.title}.`,
+      `Company/prospect: ${prospect.name}`,
+      `Pilot link: ${absoluteDealUrl}`,
+      "",
+      "Please review fit and send the external invoice/agreement if this sponsor placement is policy-safe.",
+      "We will keep payment, tax, bank, phone, and private customer details outside the website form.",
     ].join("\n");
   }
 
