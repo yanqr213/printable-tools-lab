@@ -274,10 +274,11 @@ async function main() {
         consent: true,
         source: "sponsor-call",
         path: "/sponsor/pdf-image-qr-saas/",
+        dealId: "guide-sponsor-pilot",
         utmSource: "sponsor-call",
         utmMedium: "manual",
         utmCampaign: "pdf_image_qr_saas",
-        utmContent: "fit-email",
+        utmContent: "guide-sponsor-pilot",
         vertical: "pdf-image-qr-saas",
       }),
     }),
@@ -342,8 +343,11 @@ async function main() {
   assert(storedSponsorLead.source === "sponsor-outreach", "Sponsor lead should canonicalize sponsor-call into sponsor-outreach source metrics");
   assert(storedSponsorLead.utmSource === "sponsor-call", "Sponsor lead should preserve original sponsor-call UTM attribution");
   assert(storedSponsorLead.utmCampaign === "pdf_image_qr_saas", "Sponsor lead should store UTM campaign attribution");
+  assert(storedSponsorLead.dealId === "guide-sponsor-pilot", "Sponsor lead should store selected sponsor deal attribution");
   assert(storedSponsorLead.vertical === "pdf-image-qr-saas", "Sponsor lead should store sponsor vertical attribution");
   assert(storedSponsorLead.path === "/sponsor/pdf-image-qr-saas/", "Sponsor lead should store the clean sponsor path");
+  const sponsorLeadIndex = JSON.parse(store.data.get(`sponsor:lead_index:${storedSponsorLead.createdAt.slice(0, 7)}`));
+  assert(sponsorLeadIndex.some((lead) => lead.id === sponsorLeadPayload.id && lead.dealId === "guide-sponsor-pilot"), "Sponsor lead index should include selected deal attribution");
   assert([...store.data.keys()].some((key) => key.startsWith("sponsor:validation:")), "Validation sponsor lead should use isolated KV keys");
   assert(Number(store.data.get("total:sponsor_lead_tests")) === 1, "Validation sponsor lead should count only validation tests");
   const githubPages = sellerMetrics.sources.find((row) => row.source === "github-pages");

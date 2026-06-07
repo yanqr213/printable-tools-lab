@@ -21,6 +21,13 @@ const TIMELINES = new Set([
   "later",
 ]);
 
+const DEAL_IDS = new Set([
+  "starter-fit-review",
+  "guide-sponsor-pilot",
+  "vertical-category-pilot",
+  "partner-distribution-test",
+]);
+
 const ALLOWED_SOURCES = new Set([
   "direct",
   "google",
@@ -103,6 +110,7 @@ function normalizeLead(body, request) {
   const timeline = cleanChoice(body.timeline, TIMELINES, "exploratory");
   const audienceFit = cleanText(body.audienceFit, 420);
   const notes = cleanText(body.notes, 1000);
+  const dealId = cleanChoice(body.dealId || body.utmContent, DEAL_IDS, "");
   const source = cleanSource(body.source || body.utmSource || "direct");
   const path = cleanPath(body.path || "/sponsor/");
   const utmSource = cleanKey(body.utmSource, 64);
@@ -128,6 +136,7 @@ function normalizeLead(body, request) {
       timeline,
       audienceFit,
       notes,
+      dealId,
       source,
       path,
       utmSource,
@@ -192,6 +201,7 @@ async function appendLeadIndex(store, lead) {
     utmMedium: lead.utmMedium,
     utmCampaign: lead.utmCampaign,
     utmContent: lead.utmContent,
+    dealId: lead.dealId,
     vertical: lead.vertical,
   });
   await store.put(key, JSON.stringify(rows.slice(-200)));

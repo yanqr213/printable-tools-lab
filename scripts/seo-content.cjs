@@ -4880,6 +4880,16 @@ const SPONSOR_DEALS = [
   },
 ];
 
+function sponsorDealPrefillAttrs(deal) {
+  return [
+    `data-sponsor-deal-id="${escapeHtml(deal.id)}"`,
+    `data-sponsor-placement="${escapeHtml(deal.placement)}"`,
+    `data-sponsor-budget-range="${escapeHtml(deal.budgetRange)}"`,
+    `data-sponsor-timeline="${escapeHtml(deal.timeline)}"`,
+    `data-sponsor-notes="${escapeHtml(`${deal.title} (${deal.price}): ${deal.deliverable} Needed: ${deal.proofNeeded}`)}"`,
+  ].join(" ");
+}
+
 const SPONSOR_OUTREACH_TARGETS = [
   {
     category: "PDF, image, and QR SaaS",
@@ -5965,7 +5975,7 @@ function sponsorDealRoomHtml() {
       <section class="shell section">
         <h2>Available pilot deals</h2>
         <div class="grid-2">
-          ${SPONSOR_DEALS.map((deal) => `<article class="panel"><h3>${escapeHtml(deal.title)}</h3><p><strong>${escapeHtml(deal.price)}</strong></p><p>${escapeHtml(deal.bestFor)}</p><p>${escapeHtml(deal.deliverable)}</p><p class="help">Needed: ${escapeHtml(deal.proofNeeded)}</p><p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(deal.trackedUrl)}">Use this deal path</a></p></article>`).join("\n")}
+          ${SPONSOR_DEALS.map((deal) => `<article class="panel"><h3>${escapeHtml(deal.title)}</h3><p><strong>${escapeHtml(deal.price)}</strong></p><p>${escapeHtml(deal.bestFor)}</p><p>${escapeHtml(deal.deliverable)}</p><p class="help">Needed: ${escapeHtml(deal.proofNeeded)}</p><p><a class="button" data-sponsor-deal-select ${sponsorDealPrefillAttrs(deal)} data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(deal.trackedUrl)}">Use this deal path</a></p></article>`).join("\n")}
         </div>
       </section>
       <section class="shell section">
@@ -6157,6 +6167,7 @@ function sponsorLeadFormHtml() {
           </div>
           <form class="panel form-grid sponsor-lead-form" data-sponsor-lead-form>
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="hidden" name="dealId">
             <label class="field">
               <span>Company or project</span>
               <input name="company" maxlength="90" autocomplete="organization" required>
@@ -6208,6 +6219,7 @@ function sponsorLeadFormHtml() {
               <span>Notes</span>
               <textarea name="notes" maxlength="1000" placeholder="Placement requirements, policy notes, geography, campaign idea, or useful public context."></textarea>
             </label>
+            <p class="notice" data-sponsor-deal-status>Choose a deal above to prefill placement, budget, and timeline.</p>
             <label class="check-row">
               <input name="consent" type="checkbox" required>
               <span>I am sending a business inquiry and will not include payment, tax, private identity, passwords, or customer files.</span>

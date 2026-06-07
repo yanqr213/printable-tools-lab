@@ -167,6 +167,9 @@ else {
   if (!html.includes("What happens before money counts")) failures.push("Sponsor deal room missing money-count process.");
   if (!html.includes("sponsor-deal-room.json")) failures.push("Sponsor deal room missing JSON link.");
   if (!html.includes('data-sponsor-lead-form')) failures.push("Sponsor deal room missing lead capture form.");
+  if (!html.includes('data-sponsor-deal-select')) failures.push("Sponsor deal room missing deal prefill buttons.");
+  if (!html.includes('name="dealId"')) failures.push("Sponsor deal room form missing selected deal field.");
+  if (!html.includes("data-sponsor-budget-range")) failures.push("Sponsor deal room missing budget prefill data.");
   if (!html.includes('data-track-event="sponsor_request_intent"')) failures.push("Sponsor deal room missing sponsor intent tracking.");
   if (!SPONSOR_DEALS.every((deal) => html.includes(deal.title) && html.includes(deal.price))) failures.push("Sponsor deal room missing one or more deal offers.");
   if (!html.includes("Revenue is real only after a sponsor agreement or settled external payment")) failures.push("Sponsor deal room missing revenue gate.");
@@ -293,6 +296,7 @@ else {
   if (!script.includes("Browse more free tools")) failures.push("Missing download success free-tool browse CTA.");
   if (!script.includes("Future ads must stay separated from generator controls")) failures.push("Missing download success ad-safety warning.");
   if (!script.includes("utmCampaign") || !script.includes("vertical")) failures.push("app.js missing sponsor attribution fields.");
+  if (!script.includes('window.location.hash.startsWith("#/")')) failures.push("app.js should keep ordinary anchor hashes from overriding routed pages.");
   if (script.includes("Open $29 setup request")) failures.push("Download success CTA should not promote paid setup.");
   if (!script.includes("renderRetiredPaidExperiment")) failures.push("app.js missing retired payment route renderer.");
   if (!script.includes("No payment is collected here")) failures.push("app.js retired payment route missing no-payment copy.");
@@ -314,6 +318,7 @@ if (!fs.existsSync(sponsorLeadFunctionFile)) failures.push("Missing sponsor lead
 else {
   const sponsorLeadScript = fs.readFileSync(sponsorLeadFunctionFile, "utf8");
   if (!sponsorLeadScript.includes("utmCampaign") || !sponsorLeadScript.includes("vertical")) failures.push("Sponsor lead API missing attribution persistence.");
+  if (!sponsorLeadScript.includes("dealId") || !sponsorLeadScript.includes("DEAL_IDS")) failures.push("Sponsor lead API missing selected deal persistence.");
 }
 if (!fs.existsSync(sponsorProspectScriptFile)) failures.push("Missing sponsor prospect queue generator.");
 else {

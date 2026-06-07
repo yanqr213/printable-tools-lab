@@ -5107,6 +5107,9 @@
       id: "starter-fit-review",
       title: "Starter fit review",
       price: "USD 49",
+      budgetRange: "under-250",
+      placement: "media-kit-review",
+      timeline: "this-week",
       bestFor: "A sponsor wants to know whether their product is safe and relevant before buying a visible placement.",
       deliverable: "Manual sponsor-fit review, audience match, recommended page family, and safe next-step copy.",
       proofNeeded: "Company URL, product category, intended audience, and any placement rules.",
@@ -5116,6 +5119,9 @@
       id: "guide-sponsor-pilot",
       title: "Guide sponsor pilot",
       price: "USD 99-149",
+      budgetRange: "250-500",
+      placement: "content-sponsorship",
+      timeline: "this-month",
       bestFor: "A PDF, image, QR, career, classroom, or small-business product wants one clearly labeled pilot mention.",
       deliverable: "One manually approved, clearly labeled sponsor mention on a relevant guide or resource page.",
       proofNeeded: "Campaign fit, sponsor copy draft, safe landing URL, and category exclusions.",
@@ -5125,6 +5131,9 @@
       id: "vertical-category-pilot",
       title: "Vertical category pilot",
       price: "USD 149-250",
+      budgetRange: "250-500",
+      placement: "directory-visibility",
+      timeline: "this-month",
       bestFor: "A partner cares about one audience such as QR/local marketing, resume/career, classroom, or small-business paperwork.",
       deliverable: "Tracked vertical sponsor page, fit review, and one approved contextual placement candidate.",
       proofNeeded: "Target vertical, audience fit, sponsor category, and safe public landing URL.",
@@ -5134,6 +5143,9 @@
       id: "partner-distribution-test",
       title: "Partner distribution test",
       price: "No-cash mutual test",
+      budgetRange: "exploratory",
+      placement: "partner-distribution",
+      timeline: "exploratory",
       bestFor: "A newsletter, directory, resource page, or community wants to test relevant traffic before a paid placement.",
       deliverable: "Tracked partner link, source attribution, and review against page views, depth, downloads, or lead signal.",
       proofNeeded: "Partner page, expected audience, planned link context, and review window.",
@@ -5207,6 +5219,16 @@
       sponsorCategories: ["QR code platforms", "review-management tools", "local SEO products", "print shops", "event marketing tools"],
     },
   ];
+
+  function sponsorDealPrefillAttrs(deal) {
+    return [
+      `data-sponsor-deal-id="${escapeHtml(deal.id)}"`,
+      `data-sponsor-placement="${escapeHtml(deal.placement)}"`,
+      `data-sponsor-budget-range="${escapeHtml(deal.budgetRange)}"`,
+      `data-sponsor-timeline="${escapeHtml(deal.timeline)}"`,
+      `data-sponsor-notes="${escapeHtml(`${deal.title} (${deal.price}): ${deal.deliverable} Needed: ${deal.proofNeeded}`)}"`,
+    ].join(" ");
+  }
   const sponsorCallActions = [
     {
       title: "Sponsor a relevant guide",
@@ -5229,7 +5251,7 @@
   ];
 
   function route() {
-    const hash = window.location.hash.replace(/^#\/?/, "");
+    const hash = window.location.hash.startsWith("#/") ? window.location.hash.replace(/^#\/?/, "") : "";
     const path = hash || window.location.pathname.replace(/^\/+|\/+$/g, "");
     const parts = path.split("/").filter(Boolean);
     if (!parts.length) return renderHome();
@@ -7414,7 +7436,7 @@ ${paragraphs.join("\n")}
       <section class="shell section">
         <h2>Available pilot deals</h2>
         <div class="grid-2">
-          ${sponsorDeals.map((deal) => `<article class="panel"><h3>${escapeHtml(deal.title)}</h3><p><strong>${escapeHtml(deal.price)}</strong></p><p>${escapeHtml(deal.bestFor)}</p><p>${escapeHtml(deal.deliverable)}</p><p class="help">Needed: ${escapeHtml(deal.proofNeeded)}</p><p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(deal.trackedUrl)}">Use this deal path</a></p></article>`).join("")}
+          ${sponsorDeals.map((deal) => `<article class="panel"><h3>${escapeHtml(deal.title)}</h3><p><strong>${escapeHtml(deal.price)}</strong></p><p>${escapeHtml(deal.bestFor)}</p><p>${escapeHtml(deal.deliverable)}</p><p class="help">Needed: ${escapeHtml(deal.proofNeeded)}</p><p><a class="button" data-sponsor-deal-select ${sponsorDealPrefillAttrs(deal)} data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(deal.trackedUrl)}">Use this deal path</a></p></article>`).join("")}
         </div>
       </section>
       <section class="shell section">
@@ -7580,6 +7602,7 @@ ${paragraphs.join("\n")}
           </div>
           <form class="panel form-grid sponsor-lead-form" data-sponsor-lead-form>
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="hidden" name="dealId">
             <label class="field">
               <span>Company or project</span>
               <input name="company" maxlength="90" autocomplete="organization" required>
@@ -7631,6 +7654,7 @@ ${paragraphs.join("\n")}
               <span>Notes</span>
               <textarea name="notes" maxlength="1000" placeholder="Placement requirements, policy notes, geography, campaign idea, or useful public context."></textarea>
             </label>
+            <p class="notice" data-sponsor-deal-status>Choose a deal above to prefill placement, budget, and timeline.</p>
             <label class="check-row">
               <input name="consent" type="checkbox" required>
               <span>I am sending a business inquiry and will not include payment, tax, private identity, passwords, or customer files.</span>
@@ -12155,14 +12179,82 @@ ${paragraphs.join("\n")}
   }
 
   function initSponsorLeadForms(root = document) {
+    root.querySelectorAll("[data-sponsor-deal-select]").forEach((link) => {
+      if (link.dataset.boundSponsorDeal === "true") return;
+      link.dataset.boundSponsorDeal = "true";
+      link.addEventListener("click", () => {
+        saveSponsorDealPrefill(link.dataset);
+      });
+    });
     root.querySelectorAll("[data-sponsor-lead-form]").forEach((form) => {
       if (form.dataset.boundSponsorLead === "true") return;
       form.dataset.boundSponsorLead = "true";
+      applySponsorDealPrefill(form, sponsorDealPrefillFromUrl() || loadSponsorDealPrefill());
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
         await submitSponsorLeadForm(form);
       });
     });
+  }
+
+  function sponsorDealPrefillFromUrl() {
+    const params = new URLSearchParams(window.location.search || "");
+    const dealId = String(params.get("utm_content") || "").trim();
+    if (!dealId) return null;
+    const deal = sponsorDeals.find((item) => item.id === dealId);
+    if (!deal) return null;
+    return sponsorDealPrefillFromDeal(deal);
+  }
+
+  function sponsorDealPrefillFromDeal(deal) {
+    return {
+      sponsorDealId: deal.id,
+      sponsorPlacement: deal.placement,
+      sponsorBudgetRange: deal.budgetRange,
+      sponsorTimeline: deal.timeline,
+      sponsorNotes: `${deal.title} (${deal.price}): ${deal.deliverable} Needed: ${deal.proofNeeded}`,
+    };
+  }
+
+  function saveSponsorDealPrefill(dataset) {
+    const prefill = {
+      sponsorDealId: dataset.sponsorDealId || "",
+      sponsorPlacement: dataset.sponsorPlacement || "",
+      sponsorBudgetRange: dataset.sponsorBudgetRange || "",
+      sponsorTimeline: dataset.sponsorTimeline || "",
+      sponsorNotes: dataset.sponsorNotes || "",
+    };
+    try {
+      sessionStorage.setItem("ptl_sponsor_deal_prefill", JSON.stringify(prefill));
+    } catch (error) {
+      // Session storage can be unavailable in strict privacy modes; URL prefill still works.
+    }
+  }
+
+  function loadSponsorDealPrefill() {
+    try {
+      return JSON.parse(sessionStorage.getItem("ptl_sponsor_deal_prefill") || "null");
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function applySponsorDealPrefill(form, prefill) {
+    if (!form || !prefill || !prefill.sponsorDealId) return;
+    setFormFieldValue(form, "dealId", prefill.sponsorDealId);
+    setFormFieldValue(form, "placement", prefill.sponsorPlacement);
+    setFormFieldValue(form, "budgetRange", prefill.sponsorBudgetRange);
+    setFormFieldValue(form, "timeline", prefill.sponsorTimeline);
+    const notes = form.elements.notes;
+    if (notes && !String(notes.value || "").trim()) notes.value = prefill.sponsorNotes || "";
+    const status = form.querySelector("[data-sponsor-deal-status]");
+    if (status) status.textContent = `Selected sponsor path: ${prefill.sponsorDealId}. Placement, budget, and timeline are prefilled.`;
+  }
+
+  function setFormFieldValue(form, name, value) {
+    const field = form.elements[name];
+    if (!field || value === undefined || value === null || value === "") return;
+    field.value = value;
   }
 
   async function submitSponsorLeadForm(form) {
