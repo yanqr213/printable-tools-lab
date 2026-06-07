@@ -5338,6 +5338,7 @@
     if (parts[0] === "pdf-tool-finder") return renderPdfToolFinder();
     if (parts[0] === "submit-directory") return renderDirectorySubmissionPack();
     if (parts[0] === "share-kit") return renderShareKit();
+    if (parts[0] === "sponsor-proposal") return renderSponsorProposalPage();
     if (parts[0] === "sponsor-deal-room") return renderSponsorDealRoomPage();
     if (parts[0] === "sponsor-call") return renderSponsorCallPage();
     if (parts[0] === "sponsor-opportunities") return renderSponsorOpportunitiesPage();
@@ -7543,6 +7544,61 @@ ${paragraphs.join("\n")}
     initSponsorLeadForms(app);
   }
 
+  function renderSponsorProposalPage() {
+    setMeta("Sponsor Proposal for PrintableTools Lab", "Noindex sponsor proposal page for one policy-fit partner, with a recommended pilot deal and prefilled inquiry path.");
+    setMetaTag("robots", "noindex,follow");
+    const params = new URLSearchParams(window.location.search || "");
+    const prospect = sponsorProspectFromParams(params);
+    const vertical = sponsorVerticals.find((item) => item.slug === prospect.vertical) || sponsorVerticals[0];
+    const deal = sponsorDeals.find((item) => item.id === (params.get("deal") || prospect.dealId)) || sponsorDeals[1] || sponsorDeals[0];
+    const dealUrl = sponsorProspectDealUrl(prospect, deal, vertical);
+    const proposalUrl = sponsorProspectProposalUrl(prospect, deal, vertical);
+    const pitch = sponsorProspectPitch(prospect, deal, vertical, proposalUrl);
+    app.innerHTML = `
+      <section class="shell page-title section sponsor-hero">
+        <a href="/sponsor-deal-room/">Sponsor deal room</a>
+        <h1>${escapeHtml(prospect.name)} sponsor proposal</h1>
+        <p>A direct, business-safe proposal for a small, clearly labeled sponsor pilot with PrintableTools Lab. Downloads stay free, sponsor copy is manually reviewed, and revenue is counted only after a signed agreement or settled external payment.</p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Start inquiry</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(dealUrl)}">Open deal room path</a> <button class="button ghost" type="button" data-copy-text="${escapeHtml(pitch)}">Copy outreach note</button></p>
+      </section>
+      <section class="shell section">
+        <h2>Why this is a fit</h2>
+        <div class="grid-3">
+          <article class="panel"><h3>Partner</h3><p><strong>${escapeHtml(prospect.name)}</strong></p><p>${escapeHtml(prospect.category)}</p></article>
+          <article class="panel"><h3>Audience match</h3><p>${escapeHtml(prospect.fitReason)}</p></article>
+          <article class="panel"><h3>Relevant vertical</h3><p><strong>${escapeHtml(vertical.title)}</strong></p><p>${escapeHtml(vertical.audience)}</p></article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Recommended pilot</h2>
+        <div class="grid-3">
+          <article class="panel"><h3>${escapeHtml(deal.title)}</h3><p><strong>${escapeHtml(deal.price)}</strong></p><p>${escapeHtml(deal.bestFor)}</p></article>
+          <article class="panel"><h3>Deliverable</h3><p>${escapeHtml(deal.deliverable)}</p></article>
+          <article class="panel"><h3>Review needed</h3><p>${escapeHtml(deal.proofNeeded)}</p></article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Relevant tool inventory</h2>
+        <div class="cluster-links">
+          ${vertical.links.map(([label, pathName]) => `<a href="/${escapeHtml(pathName)}/?utm_source=sponsor-proposal&utm_medium=proposal&utm_campaign=${escapeHtml(vertical.campaign)}&utm_content=${escapeHtml(prospect.id)}">${escapeHtml(label)}</a>`).join("")}
+        </div>
+      </section>
+      ${renderSponsorLeadForm()}
+      <section class="shell section">
+        <h2>Proposal rules</h2>
+        <ul>
+          <li>Sponsor copy must be clearly labeled and manually approved before placement.</li>
+          <li>Downloads stay free and cannot require sponsor interaction, ad clicks, accounts, or payment.</li>
+          <li>No gambling, adult, deceptive finance, malware, fake document, misleading upload-service, or unsafe claims.</li>
+          <li>Payment, tax, bank, private identity, phone, and customer-file details stay outside this form.</li>
+        </ul>
+        <p class="help">Proposal URL: ${escapeHtml(proposalUrl)}</p>
+      </section>
+    `;
+    applySponsorDealPrefill(app.querySelector("[data-sponsor-lead-form]"), sponsorDealPrefillFromDeal(deal));
+    initSponsorLeadForms(app);
+  }
+
   function renderSponsorCallPage() {
     setMeta("Sponsor Call for PrintableTools Lab", "Public sponsor call for privacy-friendly PDF, image, QR, resume, classroom, and small-business workflow partners to request a labeled pilot placement.");
     app.innerHTML = `
@@ -7954,7 +8010,8 @@ ${paragraphs.join("\n")}
     const vertical = sponsorVerticals.find((item) => item.slug === prospect.vertical) || sponsorVerticals[0];
     const deal = sponsorDeals.find((item) => item.id === prospect.dealId) || sponsorDeals[1] || sponsorDeals[0];
     const dealUrl = sponsorProspectDealUrl(prospect, deal, vertical);
-    const pitch = sponsorProspectPitch(prospect, deal, vertical, dealUrl);
+    const proposalUrl = sponsorProspectProposalUrl(prospect, deal, vertical);
+    const pitch = sponsorProspectPitch(prospect, deal, vertical, proposalUrl);
     return `
       <article class="ops-action-card">
         <div>
@@ -7965,11 +8022,28 @@ ${paragraphs.join("\n")}
         </div>
         <div class="ops-action-buttons">
           <a class="button secondary" href="${escapeHtml(prospect.contactUrl)}" target="_blank" rel="noreferrer">Contact</a>
-          <a class="button secondary" href="${escapeHtml(dealUrl)}" target="_blank" rel="noreferrer">Deal link</a>
+          <a class="button secondary" href="${escapeHtml(proposalUrl)}" target="_blank" rel="noreferrer">Proposal</a>
+          <a class="button ghost" href="${escapeHtml(dealUrl)}" target="_blank" rel="noreferrer">Deal link</a>
           <button class="button ghost" type="button" data-copy-text="${escapeHtml(pitch)}">Copy pitch</button>
         </div>
       </article>
     `;
+  }
+
+  function sponsorProspectFromParams(params) {
+    const id = String(params.get("prospect") || params.get("utm_content") || "").trim();
+    const found = sponsorProspects.find((item) => item.id === id);
+    if (found) return found;
+    const vertical = sponsorVerticals.find((item) => item.slug === params.get("vertical")) || sponsorVerticals[0];
+    return {
+      id: id || "direct-sponsor",
+      name: "Policy-fit partner",
+      vertical: vertical.slug,
+      category: "Sponsor prospect",
+      contactUrl: "/sponsor-deal-room/",
+      fitReason: `This proposal is for partners that fit ${vertical.title} and can help visitors with ${vertical.audience.toLowerCase()}`,
+      dealId: params.get("deal") || "guide-sponsor-pilot",
+    };
   }
 
   function sponsorProspectDealUrl(prospect, deal, vertical) {
@@ -7982,6 +8056,19 @@ ${paragraphs.join("\n")}
       vertical: vertical.slug,
     });
     return `/sponsor-deal-room/?${params.toString()}#sponsor-inquiry`;
+  }
+
+  function sponsorProspectProposalUrl(prospect, deal, vertical) {
+    const params = new URLSearchParams({
+      prospect: prospect.id,
+      deal: deal.id,
+      vertical: vertical.slug,
+      utm_source: "sponsor-outreach",
+      utm_medium: "manual",
+      utm_campaign: "sponsor_proposal",
+      utm_content: prospect.id,
+    });
+    return `/sponsor-proposal/?${params.toString()}#sponsor-inquiry`;
   }
 
   function sponsorProspectPitch(prospect, deal, vertical, dealUrl) {
@@ -12403,7 +12490,7 @@ ${paragraphs.join("\n")}
       utmMedium: clean(params.get("utm_medium")),
       utmCampaign: clean(params.get("utm_campaign")),
       utmContent: clean(params.get("utm_content")),
-      vertical: parts[0] === "sponsor" && parts[1] ? clean(parts[1]) : "",
+      vertical: clean(params.get("vertical")) || (parts[0] === "sponsor" && parts[1] ? clean(parts[1]) : ""),
     };
   }
 

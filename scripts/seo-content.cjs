@@ -5376,6 +5376,13 @@ const pages = [
     html: sponsorPageHtml(),
   },
   {
+    path: "sponsor-proposal",
+    title: "Sponsor Proposal",
+    description: "Noindex sponsor proposal page for one policy-fit partner, with a recommended pilot deal and prefilled inquiry path.",
+    index: false,
+    html: `<section class="shell section"><h1>Sponsor proposal</h1><p>This direct proposal page loads a partner-specific sponsor fit, recommended deal, and prefilled inquiry form after the app loads.</p></section>`,
+  },
+  {
     path: "sponsor-deal-room",
     title: "Sponsor Deal Room for PrintableTools Lab",
     description: "Direct sponsor deal room with pilot pricing, fit rules, tracked sponsor paths, and the business-safe inquiry form for PrintableTools Lab.",

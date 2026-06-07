@@ -176,6 +176,15 @@ else {
   if (!sitemap.includes(`<loc>${siteUrl("sponsor-deal-room")}</loc>`)) failures.push("Sitemap missing sponsor deal room page.");
 }
 
+const sponsorProposalFile = path.join(root, "sponsor-proposal", "index.html");
+if (!fs.existsSync(sponsorProposalFile)) failures.push("Missing sponsor proposal route.");
+else {
+  const html = fs.readFileSync(sponsorProposalFile, "utf8");
+  if (!html.includes('content="noindex,follow"')) failures.push("Sponsor proposal page should be noindex.");
+  if (!html.includes("Sponsor proposal")) failures.push("Sponsor proposal route missing fallback heading.");
+  if (sitemap.includes(`<loc>${siteUrl("sponsor-proposal")}</loc>`)) failures.push("Sitemap should not include noindex sponsor proposal page.");
+}
+
 const sponsorOpportunitiesFile = path.join(root, "sponsor-opportunities", "index.html");
 if (!fs.existsSync(sponsorOpportunitiesFile)) failures.push("Missing sponsor opportunities page.");
 else {
@@ -300,6 +309,7 @@ else {
   if (!script.includes('params.get("deal")') || !script.includes("Sponsor close cockpit") || !script.includes("data-copy-text")) failures.push("app.js missing sponsor close cockpit or deal-param prefill.");
   if (!script.includes("absoluteSponsorUrl")) failures.push("app.js sponsor outreach pitch should copy absolute URLs.");
   if (!script.includes("sponsorSprintHtml({ totals: {}, projects: [] })")) failures.push("app.js ops monitor should keep sponsor close actions visible when live metrics fail.");
+  if (!script.includes("renderSponsorProposalPage") || !script.includes("sponsorProspectProposalUrl") || !script.includes("sponsor_proposal")) failures.push("app.js missing direct sponsor proposal funnel.");
   if (script.includes("Open $29 setup request")) failures.push("Download success CTA should not promote paid setup.");
   if (!script.includes("renderRetiredPaidExperiment")) failures.push("app.js missing retired payment route renderer.");
   if (!script.includes("No payment is collected here")) failures.push("app.js retired payment route missing no-payment copy.");
