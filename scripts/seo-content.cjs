@@ -6001,22 +6001,15 @@ function pdfToolFinderHtml() {
 }
 
 function sponsorPageHtml() {
-  const sponsorEmail = "partners@printable-tools-lab.pages.dev";
-  const subject = encodeURIComponent("PrintableTools Lab sponsor inquiry");
-  const body = encodeURIComponent([
-    "Hi PrintableTools Lab,",
-    "",
-    "I am interested in a sponsorship or partner placement.",
-    "",
-    "Company / project:",
-    "Website:",
-    "Audience fit:",
-    "Preferred placement: media kit review / directory mention / content sponsorship / other",
-    "Notes:",
-    "",
-    "I understand that downloads must stay free, ads cannot gate files, and approval depends on fit.",
-  ].join("\n"));
-  const mailto = `mailto:${sponsorEmail}?subject=${subject}&body=${body}`;
+  const defaultDeal = SPONSOR_DEALS.find((deal) => deal.id === DEFAULT_SPONSOR_DEAL_ID) || SPONSOR_DEALS[0];
+  const defaultVertical = SPONSOR_VERTICALS[0];
+  const publicReplyUrl = sponsorPublicReplyUrl({
+    prospectName: "Sponsor team",
+    verticalTitle: defaultVertical.title,
+    dealTitle: defaultDeal.title,
+    dealPrice: defaultDeal.price,
+    proposalUrl: defaultDeal.trackedUrl || siteUrl("sponsor-deal-room"),
+  });
   return `
       <section class="shell page-title section sponsor-hero">
         <a href="/free-pdf-tools/">Free tools</a>
@@ -6075,7 +6068,7 @@ ${sponsorLeadFormHtml()}
       <section class="shell section">
         <h2>Inquiry checklist</h2>
         <p>Use the form above for a public-safe note with the company URL, audience fit, intended placement, and any policy requirements. Do not include private payment details, tax IDs, passwords, or customer files.</p>
-        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(mailto)}">Email fallback</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/tools.json">Open tools feed</a> <a class="button ghost" href="/privacy/">Privacy policy</a></p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open public-safe reply</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/tools.json">Open tools feed</a> <a class="button ghost" href="/privacy/">Privacy policy</a></p>
         ${jsonLdHtml({
           "@context": "https://schema.org",
           "@type": "WebPage",

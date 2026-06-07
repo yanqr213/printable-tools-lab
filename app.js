@@ -7466,22 +7466,14 @@ ${paragraphs.join("\n")}
   }
 
   function renderSponsorPage() {
-    const sponsorEmail = "partners@printable-tools-lab.pages.dev";
-    const subject = encodeURIComponent("PrintableTools Lab sponsor inquiry");
-    const body = encodeURIComponent([
-      "Hi PrintableTools Lab,",
-      "",
-      "I am interested in a sponsorship or partner placement.",
-      "",
-      "Company / project:",
-      "Website:",
-      "Audience fit:",
-      "Preferred placement: media kit review / directory mention / content sponsorship / other",
-      "Notes:",
-      "",
-      "I understand that downloads must stay free, ads cannot gate files, and approval depends on fit.",
-    ].join("\n"));
-    const mailto = `mailto:${sponsorEmail}?subject=${subject}&body=${body}`;
+    const defaultDeal = sponsorDeals.find((deal) => deal.id === DEFAULT_SPONSOR_DEAL_ID) || sponsorDeals[0];
+    const defaultVertical = sponsorVerticals[0];
+    const publicReplyUrl = sponsorPublicReplyUrl(
+      { name: "Sponsor team", website: "" },
+      defaultDeal,
+      defaultVertical,
+      defaultDeal?.trackedUrl || "/sponsor-deal-room/",
+    );
     setMeta("Sponsor PrintableTools Lab", "Sponsor and partner inquiry page for PrintableTools Lab, a free no-signup browser PDF, image, QR, and document utility site with ad-safe placement rules.");
     app.innerHTML = `
       <section class="shell page-title section sponsor-hero">
@@ -7541,7 +7533,7 @@ ${paragraphs.join("\n")}
       <section class="shell section">
         <h2>Inquiry checklist</h2>
         <p>Use the form above for a public-safe note with the company URL, audience fit, intended placement, and any policy requirements. Do not include private payment details, tax IDs, passwords, or customer files.</p>
-        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(mailto)}">Email fallback</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/tools.json">Open tools feed</a> <a class="button ghost" href="/privacy/">Privacy policy</a></p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open public-safe reply</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/tools.json">Open tools feed</a> <a class="button ghost" href="/privacy/">Privacy policy</a></p>
       </section>
     `;
     initSponsorLeadForms(app);
@@ -12981,25 +12973,15 @@ ${paragraphs.join("\n")}
       if (status && status.parentNode) status.parentNode.insertBefore(panel, status.nextSibling);
       else form.appendChild(panel);
     }
-    const mailto = sponsorLeadFallbackMailto(subject, text);
     const replyUrl = publicReplyUrl || (typeof values === "string" ? "" : sponsorLeadPublicReplyUrl(values));
     panel.innerHTML = `
-      <p><strong>Backup request ready.</strong> Lead storage is temporarily limited, so use the public-safe reply form or copy this request before leaving the page.</p>
+      <p><strong>Backup request ready.</strong> Lead storage is temporarily limited, so open the public-safe reply form or copy this request before leaving the page.</p>
       <textarea class="request-copy-output sponsor-lead-fallback-output" readonly>${escapeHtml(text)}</textarea>
       <div class="actions">
         ${replyUrl ? `<a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(replyUrl)}" target="_blank" rel="noreferrer">Open public-safe reply</a>` : ""}
         <button class="button" type="button" data-copy-text="${escapeHtml(text)}">Copy backup request</button>
-        <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(mailto)}">Email fallback</a>
       </div>
     `;
-  }
-
-  function sponsorLeadFallbackMailto(subject, body) {
-    const params = new URLSearchParams({
-      subject: subject || "PrintableTools Lab sponsor inquiry",
-      body,
-    });
-    return `mailto:partners@printable-tools-lab.pages.dev?${params.toString()}`;
   }
 
   function sponsorLeadFallbackText(values) {
@@ -13092,7 +13074,7 @@ ${paragraphs.join("\n")}
       form.reset();
     } catch (error) {
       if (!error.skipFallback) renderSponsorLeadFallback(form, values, "PrintableTools Lab sponsor inquiry");
-      setStatus(error.message || "Could not send inquiry. Please use the email fallback.", "error");
+      setStatus(error.message || "Could not send inquiry. Please use the public-safe reply or copy the backup request.", "error");
     } finally {
       if (submit) submit.disabled = false;
     }

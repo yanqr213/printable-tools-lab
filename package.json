@@ -31,6 +31,7 @@
     "verify:gist-discovery": "node scripts/verify-gist-discovery.cjs",
     "github-issue-discovery": "node scripts/github-issue-discovery.cjs",
     "verify:github-issue-discovery": "node scripts/verify-github-issue-discovery.cjs",
+    "verify:sponsor-close": "node scripts/verify-sponsor-close-path.cjs",
     "monitor:directories": "node scripts/directory-monitor.cjs",
     "indexnow": "node scripts/indexnow.cjs",
     "sponsor:leads": "node scripts/export-sponsor-leads.cjs",

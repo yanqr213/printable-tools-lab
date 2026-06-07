@@ -97,6 +97,7 @@ function main() {
 
   run("npm.cmd", ["run", "build:routes"]);
   run("npm.cmd", ["run", "verify:seo"]);
+  run("npm.cmd", ["run", "verify:sponsor-close"]);
   run("npm.cmd", ["run", "test:events"]);
   run("npm.cmd", ["run", "verify:adsense"]);
 
