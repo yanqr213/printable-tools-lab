@@ -366,6 +366,7 @@ else {
   if (!logScript.includes("proposalUrl") || !logScript.includes("dealRoomUrl") || !logScript.includes("suggestedDealTitle")) failures.push("Sponsor outreach log script missing proposal and deal-room follow-up fields.");
   if (!logScript.includes("publicReplyUrl") || !logScript.includes("publicReplyAvailable")) failures.push("Sponsor outreach log script missing public-safe reply fallback tracking.");
   if (!logScript.includes("publicReplyFallbackReady") || !logScript.includes("contactFormMessage") || !logScript.includes("contactFormProposalUrl")) failures.push("Sponsor outreach log script missing public reply fallback execution fields.");
+  if (!logScript.includes("sponsor-contact-route-probe.json") || !logScript.includes("bestContactUrl") || !logScript.includes("contactRouteStatus") || !logScript.includes("contactRouteReady")) failures.push("Sponsor outreach log script missing contact-probe prioritization fields.");
 }
 if (!fs.existsSync(sponsorContactProbeScriptFile)) failures.push("Missing sponsor contact route probe script.");
 else {

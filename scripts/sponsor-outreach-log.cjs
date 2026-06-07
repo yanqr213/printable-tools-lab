@@ -4,6 +4,7 @@ const path = require("path");
 const root = path.resolve(__dirname, "..");
 const reportsDir = path.join(root, "reports");
 const queuePath = path.join(reportsDir, "sponsor-prospect-queue.json");
+const contactProbePath = path.join(reportsDir, "sponsor-contact-route-probe.json");
 const logPath = path.join(reportsDir, "sponsor-outreach-log.json");
 const csvPath = path.join(reportsDir, "sponsor-outreach-log.csv");
 const nextBatchPath = path.join(reportsDir, "sponsor-next-submission-batch.md");
@@ -18,8 +19,12 @@ function main() {
     process.exit(2);
   }
   const existing = readJson(logPath, { rows: [] });
+  const contactProbe = readJson(contactProbePath, { rows: [] });
   const existingById = new Map((existing.rows || []).map((row) => [row.id, row]));
-  const rows = queue.rows.map((prospect) => normalizeLogRow(prospect, existingById.get(prospect.id)));
+  const contactProbeById = new Map((contactProbe.rows || []).map((row) => [row.id, row]));
+  const rows = queue.rows
+    .map((prospect) => normalizeLogRow(prospect, existingById.get(prospect.id), contactProbeById.get(prospect.id)))
+    .sort((a, b) => outreachPriorityScore(b) - outreachPriorityScore(a) || Number(a.priority || 999) - Number(b.priority || 999));
   const log = {
     name: "PrintableTools Lab Sponsor Outreach Log",
     generatedAt: now,
@@ -31,9 +36,13 @@ function main() {
     settled: rows.filter((row) => row.status === "settled").length,
     blockedByReplyEmail: rows.filter((row) => row.needsReplyEmail && !row.publicReplyAvailable && row.status === "queued").length,
     publicReplyFallbackReady: rows.filter((row) => row.needsReplyEmail && row.publicReplyAvailable && row.status === "queued").length,
+    contactRouteReady: rows.filter((row) => row.contactRouteStatus === "ready" && row.status === "queued").length,
+    contactRouteReview: rows.filter((row) => row.contactRouteStatus === "review" && row.status === "queued").length,
+    contactRouteBlocked: rows.filter((row) => row.contactRouteStatus === "blocked" && row.status === "queued").length,
     rules: [
       "Use public contact, partner, or sales forms only.",
       "Do not submit fake identity, phone, payment, tax, or bank details.",
+      "Prioritize rows where contactRouteStatus is ready and bestContactUrl has a sponsor, partner, or sales route.",
       "If a form requires a reply email that is not available and no publicReplyUrl exists, leave the row queued and set evidenceNote accordingly.",
       "If outbound email is unavailable, send only the proposal URL through an allowed public contact route and point partners to publicReplyUrl or the site sponsor form.",
       "Change status to sent only after a real form submission or email send with timestamped evidence.",
@@ -48,22 +57,36 @@ function main() {
   console.log(`Sponsor outreach log ready: ${log.count} row(s), ${log.queued} queued, ${log.sent} sent, ${log.settled} settled.`);
 }
 
-function normalizeLogRow(prospect, existing = {}) {
+function normalizeLogRow(prospect, existing = {}, probe = {}) {
   const publicReplyAvailable = Boolean(prospect.publicReplyUrl);
+  const contactRouteStatus = probe.routeStatus || existing.contactRouteStatus || "unknown";
+  const bestContactUrl = probe.bestContactUrl || existing.bestContactUrl || prospect.contactUrl;
+  const contactRouteScore = Number.isFinite(Number(probe.score)) ? Number(probe.score) : Number(existing.contactRouteScore || 0);
+  const contactRouteEvidence = Array.isArray(probe.evidence) ? probe.evidence : existing.contactRouteEvidence || [];
+  const contactRouteBlockers = Array.isArray(probe.blockers) ? probe.blockers : existing.contactRouteBlockers || [];
   const existingNextAction = String(existing.nextAction || "");
   const existingEvidenceNote = String(existing.evidenceNote || "");
   const staleReplyEmailBlocker = /legitimate reply email|private reply email|reply email is available|needs a real reply email/i;
+  const staleContactRouteAction = /open contactUrl|public-safe partner note|prepared proposal pitch/i;
   const defaultEvidenceNote = publicReplyAvailable
     ? "Public reply fallback is ready; mark sent only after a real public contact form submission, public-safe issue reply, or legitimate email send."
     : "Needs a real public contact form submission or legitimate email send before marking sent.";
-  const defaultNextAction = publicReplyAvailable
-    ? "Open contactUrl, submit contactFormMessage only if the form allows a public-safe partner note, and include proposalUrl plus publicReplyUrl so the partner can request invoice review without private email."
-    : "Open contactUrl and submit the prepared proposal pitch only if a legitimate reply email or public-safe contact route is available, then record timestamp and evidence.";
+  const defaultNextAction = contactRouteStatus === "ready"
+    ? "Open bestContactUrl, submit contactFormMessage only if the page accepts sponsor, partner, sales, or marketing notes, then record timestamp and evidence."
+    : publicReplyAvailable
+      ? "Open bestContactUrl or contactUrl, submit contactFormMessage only after confirming the route allows a public-safe partner note, and include proposalUrl plus publicReplyUrl."
+      : "Open bestContactUrl or contactUrl only if a legitimate reply email or public-safe contact route is available, then record timestamp and evidence.";
   return {
+    priority: prospect.priority || "",
     id: prospect.id,
     name: prospect.name,
     vertical: prospect.vertical,
     contactUrl: prospect.contactUrl,
+    bestContactUrl,
+    contactRouteStatus,
+    contactRouteScore,
+    contactRouteEvidence,
+    contactRouteBlockers,
     suggestedDealId: prospect.suggestedDealId || "",
     suggestedDealTitle: prospect.suggestedDealTitle || "",
     suggestedDealPrice: prospect.suggestedDealPrice || "",
@@ -83,7 +106,7 @@ function normalizeLogRow(prospect, existing = {}) {
     settledAt: existing.settledAt || "",
     evidenceUrl: existing.evidenceUrl || "",
     evidenceNote: existingEvidenceNote && !(publicReplyAvailable && staleReplyEmailBlocker.test(existingEvidenceNote)) ? existingEvidenceNote : defaultEvidenceNote,
-    nextAction: existingNextAction && !(publicReplyAvailable && staleReplyEmailBlocker.test(existingNextAction)) ? existingNextAction : defaultNextAction,
+    nextAction: existingNextAction && !(publicReplyAvailable && staleReplyEmailBlocker.test(existingNextAction)) && !(contactRouteStatus !== "unknown" && staleContactRouteAction.test(existingNextAction)) ? existingNextAction : defaultNextAction,
     successSignal: prospect.successSignal || "qualified sponsor inquiry, signed agreement, or settled external payment",
     contactFormMessage: prospect.contactFormMessage || "",
     body: prospect.body,
@@ -91,10 +114,10 @@ function normalizeLogRow(prospect, existing = {}) {
 }
 
 function toCsv(rows) {
-  const headers = ["id", "name", "vertical", "contactUrl", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "proposalUrl", "contactFormProposalUrl", "dealRoomUrl", "publicReplyUrl", "verticalTrackedUrl", "trackedUrl", "status", "needsReplyEmail", "publicReplyAvailable", "submittedAt", "replyAt", "qualifiedAt", "settledAt", "evidenceUrl", "evidenceNote", "nextAction", "contactFormMessage"];
+  const headers = ["priority", "id", "name", "vertical", "contactUrl", "bestContactUrl", "contactRouteStatus", "contactRouteScore", "contactRouteEvidence", "contactRouteBlockers", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "proposalUrl", "contactFormProposalUrl", "dealRoomUrl", "publicReplyUrl", "verticalTrackedUrl", "trackedUrl", "status", "needsReplyEmail", "publicReplyAvailable", "submittedAt", "replyAt", "qualifiedAt", "settledAt", "evidenceUrl", "evidenceNote", "nextAction", "contactFormMessage"];
   return [
     headers,
-    ...rows.map((row) => headers.map((header) => row[header] || "")),
+    ...rows.map((row) => headers.map((header) => Array.isArray(row[header]) ? row[header].join("; ") : row[header] || "")),
   ].map((row) => row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(",")).join("\n") + "\n";
 }
 
@@ -114,6 +137,10 @@ function nextBatchMarkdown(rows) {
       "",
       `- Status: ${row.status}`,
       `- Contact: ${row.contactUrl}`,
+      `- Best contact route: ${row.bestContactUrl}`,
+      `- Contact route status: ${row.contactRouteStatus} (${row.contactRouteScore})`,
+      `- Contact route evidence: ${row.contactRouteEvidence.join("; ") || "none"}`,
+      `- Contact route blockers: ${row.contactRouteBlockers.join("; ") || "none"}`,
       `- Recommended deal: ${row.suggestedDealTitle} (${row.suggestedDealPrice})`,
       `- Proposal URL: ${row.proposalUrl}`,
       `- Short contact-form proposal URL: ${row.contactFormProposalUrl}`,
@@ -141,6 +168,17 @@ function nextBatchMarkdown(rows) {
       "",
     ].join("\n")),
   ].join("\n");
+}
+
+function outreachPriorityScore(row) {
+  let score = 0;
+  if (row.status === "queued") score += 100;
+  if (row.contactRouteStatus === "ready") score += 50;
+  else if (row.contactRouteStatus === "review") score += 20;
+  else if (row.contactRouteStatus === "blocked") score -= 30;
+  score += Math.max(-20, Math.min(40, Number(row.contactRouteScore || 0)));
+  if (row.publicReplyAvailable) score += 8;
+  return score;
 }
 
 function readJson(file, fallback) {
