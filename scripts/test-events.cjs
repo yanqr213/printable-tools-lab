@@ -298,17 +298,7 @@ async function main() {
     request: new Request("https://example.test/api/sponsor-lead", {
       method: "POST",
       headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.10" },
-      body: JSON.stringify({
-        company: "Example Partner",
-        contactEmail: "sponsor@example.com",
-        website: "https://example.com",
-        placement: "content-sponsorship",
-        budgetRange: "250-500",
-        timeline: "this-month",
-        commitment: "request-invoice",
-        audienceFit: "Privacy-friendly PDF and image tool users.",
-        notes: "Interested in a clearly labeled guide sponsorship.",
-        consent: true,
+      body: JSON.stringify(sponsorLeadBody({
         source: "sponsor-call",
         path: "/sponsor/pdf-image-qr-saas/",
         deal: "guide-sponsor-pilot",
@@ -317,7 +307,7 @@ async function main() {
         utmCampaign: "pdf_image_qr_saas",
         utmContent: "pdfco-pdf-api",
         vertical: "pdf-image-qr-saas",
-      }),
+      })),
     }),
     env,
   });
@@ -357,6 +347,52 @@ async function main() {
     env,
   });
   assert(validationSponsorLeadResponse.status === 200, "Sponsor lead endpoint should accept isolated validation inquiries");
+  const sponsorLeadWriteLimitedStore = new MemoryStore({ failWritesWith: "KV put() limit exceeded for the day." });
+  const sponsorLeadWriteLimitedResponse = await sponsorLeadSource.onRequestPost({
+    request: new Request("https://example.test/api/sponsor-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.13" },
+      body: JSON.stringify(sponsorLeadBody({
+        company: "Fallback Partner",
+        contactEmail: "fallback@example.com",
+        website: "https://fallback.example",
+      })),
+    }),
+    env: { PTL_EVENTS: sponsorLeadWriteLimitedStore },
+  });
+  const sponsorLeadWriteLimitedPayload = await sponsorLeadWriteLimitedResponse.json();
+  assert(sponsorLeadWriteLimitedResponse.status === 503, "Sponsor lead endpoint should not claim success when private lead storage is unavailable");
+  assert(sponsorLeadWriteLimitedPayload.fallbackRequired, "Sponsor lead endpoint should ask for a backup request when storage is unavailable");
+  assert(sponsorLeadWriteLimitedPayload.fallbackBody.includes("Fallback Partner"), "Sponsor lead fallback should include the normalized company");
+  assert(sponsorLeadWriteLimitedPayload.fallbackBody.includes("fallback@example.com"), "Sponsor lead fallback should include the normalized email");
+  const sponsorLeadReadLimitedStore = new MemoryStore({ failReadsWith: "KV get() limit exceeded for the day." });
+  const sponsorLeadReadLimitedResponse = await sponsorLeadSource.onRequestPost({
+    request: new Request("https://example.test/api/sponsor-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.14" },
+      body: JSON.stringify(sponsorLeadBody({ company: "Read Limited Partner", contactEmail: "readlimited@example.com" })),
+    }),
+    env: { PTL_EVENTS: sponsorLeadReadLimitedStore },
+  });
+  const sponsorLeadReadLimitedPayload = await sponsorLeadReadLimitedResponse.json();
+  assert(sponsorLeadReadLimitedResponse.status === 200 && sponsorLeadReadLimitedPayload.ok, "Sponsor lead endpoint should store the private lead when rate-limit reads fail");
+  assert(sponsorLeadReadLimitedPayload.rateLimitSkipped, "Sponsor lead endpoint should report skipped rate limiting when KV reads are limited");
+  assert(sponsorLeadReadLimitedPayload.dataQuality === "stored-private-only", "Sponsor lead endpoint should report private-only storage when index or metrics reads fail");
+  assert(sponsorLeadReadLimitedStore.data.has(`sponsor:lead:${sponsorLeadReadLimitedPayload.id}`), "Read-limited sponsor lead should still be stored privately");
+  const sponsorLeadSideEffectLimitedStore = new MemoryStore({ failWritesWith: "KV put() limit exceeded for the day.", failWritesAfter: 3 });
+  const sponsorLeadSideEffectLimitedResponse = await sponsorLeadSource.onRequestPost({
+    request: new Request("https://example.test/api/sponsor-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.15" },
+      body: JSON.stringify(sponsorLeadBody({ company: "Private Stored Partner", contactEmail: "privateonly@example.com" })),
+    }),
+    env: { PTL_EVENTS: sponsorLeadSideEffectLimitedStore },
+  });
+  const sponsorLeadSideEffectLimitedPayload = await sponsorLeadSideEffectLimitedResponse.json();
+  assert(sponsorLeadSideEffectLimitedResponse.status === 200 && sponsorLeadSideEffectLimitedPayload.ok, "Sponsor lead endpoint should succeed after private storage when side effects are write-limited");
+  assert(sponsorLeadSideEffectLimitedPayload.metricsSampledOut, "Sponsor lead endpoint should flag metrics sampling when side effects are write-limited");
+  assert(sponsorLeadSideEffectLimitedPayload.dataQuality === "stored-private-only", "Sponsor lead endpoint should report private-only storage when side-effect writes fail");
+  assert(sponsorLeadSideEffectLimitedStore.data.has(`sponsor:lead:${sponsorLeadSideEffectLimitedPayload.id}`), "Side-effect-limited sponsor lead should still be stored privately");
   const sellerMetrics = await (await metricsSource.onRequestGet({ env })).json();
   const sellerKit = sellerMetrics.tools.find((row) => row.tool === "local-seller-starter-kit");
   assert(sellerKit.seller_checkout_intent === 1, "Metrics should count seller checkout intent");
@@ -430,6 +466,7 @@ class MemoryStore {
     this.getCount = 0;
     this.putCount = 0;
     this.failWritesWith = options.failWritesWith || "";
+    this.failWritesAfter = Number.isInteger(options.failWritesAfter) ? options.failWritesAfter : null;
     this.failReadsWith = options.failReadsWith || "";
   }
 
@@ -440,7 +477,9 @@ class MemoryStore {
   }
 
   async put(key, value, options) {
-    if (this.failWritesWith) throw new Error(this.failWritesWith);
+    if (this.failWritesWith && (this.failWritesAfter === null || this.putCount >= this.failWritesAfter)) {
+      throw new Error(this.failWritesWith);
+    }
     if (arguments.length >= 3 && options === undefined) {
       throw new Error(`Invalid undefined options for ${key}`);
     }
@@ -450,6 +489,22 @@ class MemoryStore {
     this.putCount += 1;
     this.data.set(key, value);
   }
+}
+
+function sponsorLeadBody(overrides = {}) {
+  return {
+    company: "Example Partner",
+    contactEmail: "sponsor@example.com",
+    website: "https://example.com",
+    placement: "content-sponsorship",
+    budgetRange: "250-500",
+    timeline: "this-month",
+    commitment: "request-invoice",
+    audienceFit: "Privacy-friendly PDF and image tool users.",
+    notes: "Interested in a clearly labeled guide sponsorship.",
+    consent: true,
+    ...overrides,
+  };
 }
 
 function assert(condition, message) {

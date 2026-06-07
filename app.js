@@ -12675,6 +12675,72 @@ ${paragraphs.join("\n")}
     field.value = value;
   }
 
+  function clearSponsorLeadFallback(form) {
+    const fallback = form.querySelector("[data-sponsor-lead-fallback]");
+    if (fallback) fallback.remove();
+  }
+
+  function renderSponsorLeadFallback(form, values, subject = "PrintableTools Lab sponsor inquiry") {
+    const text = typeof values === "string" ? values : sponsorLeadFallbackText(values);
+    if (!text.trim()) return;
+    let panel = form.querySelector("[data-sponsor-lead-fallback]");
+    if (!panel) {
+      panel = document.createElement("div");
+      panel.className = "notice sponsor-lead-fallback";
+      panel.dataset.sponsorLeadFallback = "true";
+      const status = form.querySelector("[data-sponsor-lead-status]");
+      if (status && status.parentNode) status.parentNode.insertBefore(panel, status.nextSibling);
+      else form.appendChild(panel);
+    }
+    const mailto = sponsorLeadFallbackMailto(subject, text);
+    panel.innerHTML = `
+      <p><strong>Backup request ready.</strong> Lead storage is temporarily limited, so copy this request before leaving the page.</p>
+      <textarea class="request-copy-output sponsor-lead-fallback-output" readonly>${escapeHtml(text)}</textarea>
+      <div class="actions">
+        <button class="button" type="button" data-copy-text="${escapeHtml(text)}">Copy backup request</button>
+        <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(mailto)}">Email fallback</a>
+      </div>
+    `;
+  }
+
+  function sponsorLeadFallbackMailto(subject, body) {
+    const params = new URLSearchParams({
+      subject: subject || "PrintableTools Lab sponsor inquiry",
+      body,
+    });
+    return `mailto:partners@printable-tools-lab.pages.dev?${params.toString()}`;
+  }
+
+  function sponsorLeadFallbackText(values) {
+    return [
+      "Hi PrintableTools Lab team,",
+      "",
+      "Please review this sponsor inquiry manually because the website lead store was temporarily limited.",
+      "",
+      `Company / project: ${values.company || ""}`,
+      `Business email: ${values.contactEmail || ""}`,
+      `Website: ${values.website || ""}`,
+      `Placement interest: ${values.placement || ""}`,
+      `Budget range: ${values.budgetRange || ""}`,
+      `Timeline: ${values.timeline || ""}`,
+      `Next step: ${values.commitment || ""}`,
+      `Deal ID: ${values.dealId || ""}`,
+      `Page path: ${values.path || ""}`,
+      `Source: ${values.source || ""}`,
+      `Campaign: ${values.utmCampaign || ""}`,
+      `Content: ${values.utmContent || ""}`,
+      `Vertical: ${values.vertical || ""}`,
+      "",
+      "Audience fit:",
+      values.audienceFit || "",
+      "",
+      "Notes:",
+      values.notes || "",
+      "",
+      "I will keep payment, tax, bank, phone, private identity, password, and customer-file details outside the website form.",
+    ].join("\n");
+  }
+
   async function submitSponsorLeadForm(form) {
     const status = form.querySelector("[data-sponsor-lead-status]");
     const submit = form.querySelector("button[type='submit']");
@@ -12689,6 +12755,7 @@ ${paragraphs.join("\n")}
     values.source = getTrafficSource();
     Object.assign(values, getSponsorAttribution());
     setStatus("Sending sponsor inquiry...", "pending");
+    clearSponsorLeadFallback(form);
     if (submit) submit.disabled = true;
     try {
       const response = await fetch("/api/sponsor-lead", {
@@ -12697,15 +12764,26 @@ ${paragraphs.join("\n")}
         body: JSON.stringify(values),
       });
       const data = await response.json().catch(() => ({}));
-      if (!response.ok || !data.ok) throw new Error(data.error || "Could not send inquiry.");
+      if (!response.ok || !data.ok) {
+        if (data.fallbackRequired) {
+          renderSponsorLeadFallback(form, data.fallbackBody || values, data.fallbackSubject || "PrintableTools Lab sponsor inquiry");
+          setStatus(data.error || "Lead storage is temporarily limited. Copy the backup request below.", "error");
+          return;
+        }
+        const apiError = new Error(data.error || "Could not send inquiry.");
+        apiError.skipFallback = Boolean(data.error);
+        throw apiError;
+      }
       track("sponsor_request_intent", { tool: "sponsor" });
       if (values.commitment === "request-invoice" || values.commitment === "ready-this-month") {
         setStatus("Invoice request received. Sponsorship fit will be reviewed manually before any external invoice or agreement is sent.", "success");
       } else {
         setStatus("Inquiry received. Sponsorship fit will be reviewed manually before any placement is discussed.", "success");
       }
+      clearSponsorLeadFallback(form);
       form.reset();
     } catch (error) {
+      if (!error.skipFallback) renderSponsorLeadFallback(form, values, "PrintableTools Lab sponsor inquiry");
       setStatus(error.message || "Could not send inquiry. Please use the email fallback.", "error");
     } finally {
       if (submit) submit.disabled = false;
@@ -12737,6 +12815,7 @@ ${paragraphs.join("\n")}
       ...getSponsorAttribution(),
     };
     setStatus("Sending fast invoice review request...", "pending");
+    clearSponsorLeadFallback(form);
     if (submit) submit.disabled = true;
     try {
       const response = await fetch("/api/sponsor-lead", {
@@ -12745,11 +12824,22 @@ ${paragraphs.join("\n")}
         body: JSON.stringify(payload),
       });
       const data = await response.json().catch(() => ({}));
-      if (!response.ok || !data.ok) throw new Error(data.error || "Could not send request.");
+      if (!response.ok || !data.ok) {
+        if (data.fallbackRequired) {
+          renderSponsorLeadFallback(form, data.fallbackBody || payload, data.fallbackSubject || "PrintableTools Lab sponsor invoice review");
+          setStatus(data.error || "Lead storage is temporarily limited. Copy the backup request below.", "error");
+          return;
+        }
+        const apiError = new Error(data.error || "Could not send request.");
+        apiError.skipFallback = Boolean(data.error);
+        throw apiError;
+      }
       track("sponsor_request_intent", { tool: "sponsor" });
       setStatus("Invoice review request received. Fit will be checked manually before any external invoice or agreement is sent.", "success");
+      clearSponsorLeadFallback(form);
       form.reset();
     } catch (error) {
+      if (!error.skipFallback) renderSponsorLeadFallback(form, payload, "PrintableTools Lab sponsor invoice review");
       setStatus(error.message || "Could not send request. Please use the full inquiry form.", "error");
     } finally {
       if (submit) submit.disabled = false;

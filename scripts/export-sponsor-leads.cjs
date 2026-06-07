@@ -22,7 +22,11 @@ function main() {
 
   const indexKey = `sponsor:lead_index:${month}`;
   const rows = readKvJson(indexKey, [], token);
-  const leads = rows.map((row) => readKvJson(`sponsor:lead:${row.id}`, row, token));
+  const indexedLeads = rows.map((row) => readKvJson(`sponsor:lead:${row.id}`, row, token));
+  const orphanLeads = readLeadKeys(token)
+    .map((key) => readKvJson(key.name || key, null, token))
+    .filter((lead) => lead && String(lead.createdAt || "").startsWith(month));
+  const leads = mergeLeads(indexedLeads, orphanLeads);
   fs.mkdirSync(reportsDir, { recursive: true });
   const jsonPath = path.join(reportsDir, `sponsor-leads-${month}.json`);
   const csvPath = path.join(reportsDir, `sponsor-leads-${month}.csv`);
@@ -48,7 +52,21 @@ function readKvJson(key, fallback, token) {
 }
 
 function runWranglerKvGet(key, token) {
-  const wranglerArgs = ["wrangler", "kv", "key", "get", key, "--namespace-id", namespaceId];
+  return runWrangler(["wrangler", "kv", "key", "get", key, "--namespace-id", namespaceId], token);
+}
+
+function readLeadKeys(token) {
+  const monthPrefix = month.replace("-", "");
+  const output = runWrangler(["wrangler", "kv", "key", "list", "--namespace-id", namespaceId, "--prefix", `sponsor:lead:${monthPrefix}`], token);
+  try {
+    const keys = JSON.parse(String(output || "[]"));
+    return Array.isArray(keys) ? keys : [];
+  } catch {
+    return [];
+  }
+}
+
+function runWrangler(wranglerArgs, token) {
   const options = {
     cwd: root,
     env: { ...process.env, CLOUDFLARE_API_TOKEN: token },
@@ -68,6 +86,18 @@ function runWranglerKvGet(key, token) {
     ], options);
   }
   return execFileSync("npx", wranglerArgs, options);
+}
+
+function mergeLeads(...groups) {
+  const byId = new Map();
+  for (const group of groups) {
+    for (const lead of group) {
+      const id = lead?.id || `${lead?.createdAt || ""}:${lead?.contactEmail || ""}:${lead?.website || ""}`;
+      if (!id || id === "::") continue;
+      byId.set(id, { ...(byId.get(id) || {}), ...lead });
+    }
+  }
+  return [...byId.values()].sort((a, b) => String(a.createdAt || "").localeCompare(String(b.createdAt || "")));
 }
 
 function toCsv(leads) {

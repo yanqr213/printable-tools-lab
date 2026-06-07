@@ -60,17 +60,22 @@ const ALLOWED_SOURCES = new Set([
 
 export async function onRequestPost({ request, env }) {
   if (!env.PTL_EVENTS) return json({ ok: false, error: "Lead store unavailable" }, 503);
+  let normalizedLead = null;
+  let validation = false;
   try {
     const body = await request.json();
     if (String(body.websiteTrap || body.companyWebsite || "").trim()) return json({ ok: true, ignored: true });
 
     const lead = normalizeLead(body, request);
     if (lead.error) return json({ ok: false, error: lead.error }, 400);
+    normalizedLead = lead.value;
 
     const ipHash = await hashIp(request.headers.get("CF-Connecting-IP") || "");
-    const validation = Boolean(body.validation);
+    validation = Boolean(body.validation);
+    let rateLimitSkipped = false;
     if (!validation) {
-      const rate = await rateLimit(env.PTL_EVENTS, ipHash);
+      const rate = await safeRateLimit(env.PTL_EVENTS, ipHash);
+      rateLimitSkipped = Boolean(rate.skipped);
       if (!rate.ok) return json({ ok: false, error: "Too many sponsor inquiries. Please try again later." }, 429);
     }
 
@@ -86,15 +91,29 @@ export async function onRequestPost({ request, env }) {
 
     if (validation) {
       await env.PTL_EVENTS.put(`sponsor:validation:${id}`, JSON.stringify(payload), { expirationTtl: 60 * 60 * 24 * 14 });
-      await increment(env.PTL_EVENTS, "total:sponsor_lead_tests");
+      await safeOptionalStoreTask(increment(env.PTL_EVENTS, "total:sponsor_lead_tests"));
     } else {
       await env.PTL_EVENTS.put(`sponsor:lead:${id}`, JSON.stringify(payload));
-      await appendLeadIndex(env.PTL_EVENTS, payload);
-      await incrementLeadMetrics(env.PTL_EVENTS, payload, now);
+      const sideEffects = await Promise.allSettled([
+        appendLeadIndex(env.PTL_EVENTS, payload),
+        incrementLeadMetrics(env.PTL_EVENTS, payload, now),
+      ]);
+      const sideEffectLimited = sideEffects.some((result) => result.status === "rejected" && isKvLimitError(result.reason));
+      const sideEffectFailed = sideEffects.some((result) => result.status === "rejected");
+      const dataQuality = sideEffectFailed ? "stored-private-only" : "stored";
+      return json({
+        ok: true,
+        id,
+        validation,
+        dataQuality,
+        rateLimitSkipped,
+        metricsSampledOut: sideEffectLimited || undefined,
+      });
     }
 
-    return json({ ok: true, id, validation });
+    return json({ ok: true, id, validation, rateLimitSkipped });
   } catch (error) {
+    if (isKvLimitError(error)) return sponsorStoreFallbackResponse(normalizedLead, validation);
     return json({ ok: false, error: "Sponsor inquiry rejected" }, 400);
   }
 }
@@ -174,6 +193,23 @@ async function rateLimit(store, ipHash) {
     increment(store, dayKey, 60 * 60 * 24 * 2),
   ]);
   return { ok: true };
+}
+
+async function safeRateLimit(store, ipHash) {
+  try {
+    return await rateLimit(store, ipHash);
+  } catch (error) {
+    if (isKvLimitError(error)) return { ok: true, skipped: true };
+    throw error;
+  }
+}
+
+async function safeOptionalStoreTask(task) {
+  try {
+    await task;
+  } catch (error) {
+    if (!isKvLimitError(error)) throw error;
+  }
 }
 
 async function incrementLeadMetrics(store, lead, now) {
@@ -329,6 +365,54 @@ function safeJson(text, fallback) {
   } catch {
     return fallback;
   }
+}
+
+function isKvLimitError(error) {
+  const message = String(error?.message || "").toLowerCase();
+  return message.includes("kv put() limit exceeded")
+    || message.includes("kv get() limit exceeded")
+    || message.includes("write limit")
+    || message.includes("read limit")
+    || message.includes("too many requests")
+    || message.includes("1101");
+}
+
+function sponsorStoreFallbackResponse(lead, validation) {
+  return json({
+    ok: false,
+    error: validation
+      ? "Sponsor validation storage is temporarily limited."
+      : "Sponsor lead storage is temporarily limited. Copy the backup request and send it through the email fallback.",
+    fallbackRequired: !validation,
+    fallbackSubject: "PrintableTools Lab sponsor invoice review",
+    fallbackBody: lead ? sponsorLeadFallbackText(lead) : "",
+  }, validation ? 503 : 503);
+}
+
+function sponsorLeadFallbackText(lead) {
+  return [
+    "Hi PrintableTools Lab team,",
+    "",
+    "Please review this sponsor inquiry manually because the website lead store was temporarily limited.",
+    "",
+    `Company / project: ${lead.company || ""}`,
+    `Business email: ${lead.contactEmail || ""}`,
+    `Website: ${lead.website || ""}`,
+    `Placement interest: ${lead.placement || ""}`,
+    `Budget range: ${lead.budgetRange || ""}`,
+    `Timeline: ${lead.timeline || ""}`,
+    `Next step: ${lead.commitment || ""}`,
+    `Deal ID: ${lead.dealId || ""}`,
+    `Audience / vertical: ${lead.vertical || ""}`,
+    "",
+    "Audience fit:",
+    lead.audienceFit || "",
+    "",
+    "Notes:",
+    lead.notes || "",
+    "",
+    "I will keep payment, tax, bank, phone, private identity, password, and customer-file details outside the website form.",
+  ].join("\n");
 }
 
 function arrayOrEmpty(value) {
