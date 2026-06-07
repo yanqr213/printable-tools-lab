@@ -83,6 +83,28 @@
               <li>Payment, tax, bank, phone, and private identity details stay outside this form.</li>
             </ul>
           </div>
+          <form class="panel form-grid sponsor-quick-form" data-sponsor-quick-form>
+            <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="hidden" name="dealId">
+            <h3>Fast pilot invoice review</h3>
+            <p class="help">Three business-safe fields. This requests manual fit review only; any invoice or agreement is sent later through an external provider. Do not send private payment, tax, phone, identity, password, or customer-file details.</p>
+            <label class="field">
+              <span>Company or project</span>
+              <input name="company" maxlength="90" autocomplete="organization" required>
+            </label>
+            <label class="field">
+              <span>Business email</span>
+              <input name="contactEmail" type="email" maxlength="140" autocomplete="email" required>
+            </label>
+            <label class="field">
+              <span>Website</span>
+              <input name="website" type="url" maxlength="220" placeholder="https://example.com" autocomplete="url" required>
+            </label>
+            <div class="actions">
+              <button class="button" type="submit" data-track-event="sponsor_request_intent" data-track-tool="sponsor">Request pilot invoice review</button>
+            </div>
+            <p class="help sponsor-lead-status" data-sponsor-lead-status role="status" aria-live="polite">No payment is collected here.</p>
+          </form>
           <form class="panel form-grid sponsor-lead-form" data-sponsor-lead-form>
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="dealId">

@@ -132,6 +132,7 @@ else {
   if (!html.includes('data-track-event="sponsor_request_intent"')) failures.push("Sponsor page missing sponsor intent tracking.");
   if (!html.includes('data-track-tool="sponsor"')) failures.push("Sponsor page missing sponsor tool tracking.");
   if (!html.includes('data-sponsor-lead-form')) failures.push("Sponsor page missing lead capture form.");
+  if (!html.includes('data-sponsor-quick-form') || !html.includes("Request pilot invoice review")) failures.push("Sponsor page missing fast invoice review form.");
   if (!html.includes('name="contactEmail"')) failures.push("Sponsor page missing business email field.");
   if (!html.includes('name="budgetRange"')) failures.push("Sponsor page missing budget range field.");
   if (!html.includes('name="commitment"') || !html.includes("Request pilot invoice")) failures.push("Sponsor page missing invoice request next-step field.");
@@ -168,6 +169,7 @@ else {
   if (!html.includes("What happens before money counts")) failures.push("Sponsor deal room missing money-count process.");
   if (!html.includes("sponsor-deal-room.json")) failures.push("Sponsor deal room missing JSON link.");
   if (!html.includes('data-sponsor-lead-form')) failures.push("Sponsor deal room missing lead capture form.");
+  if (!html.includes('data-sponsor-quick-form')) failures.push("Sponsor deal room missing fast invoice review form.");
   if (!html.includes('data-sponsor-deal-select')) failures.push("Sponsor deal room missing deal prefill buttons.");
   if (!html.includes('name="dealId"')) failures.push("Sponsor deal room form missing selected deal field.");
   if (!html.includes('name="commitment"')) failures.push("Sponsor deal room form missing commitment next-step field.");
@@ -216,6 +218,7 @@ for (const vertical of SPONSOR_VERTICALS) {
   if (!html.includes("Pilot offer")) failures.push(`${label} missing pilot offer section.`);
   if (!html.includes(vertical.priceHint)) failures.push(`${label} missing price hint.`);
   if (!html.includes('data-sponsor-lead-form')) failures.push(`${label} missing lead capture form.`);
+  if (!html.includes('data-sponsor-quick-form')) failures.push(`${label} missing fast invoice review form.`);
   if (!html.includes('data-track-event="sponsor_request_intent"')) failures.push(`${label} missing sponsor intent tracking.`);
   if (!html.includes("Revenue counts only after a signed agreement or settled external payment")) failures.push(`${label} missing revenue gate copy.`);
   if (!html.includes("Good-fit sponsor categories")) failures.push(`${label} missing sponsor categories.`);
@@ -314,6 +317,7 @@ else {
   if (!script.includes('params.get("deal")') || !script.includes("Sponsor close cockpit") || !script.includes("data-copy-text")) failures.push("app.js missing sponsor close cockpit or deal-param prefill.");
   if (!script.includes('params.get("commitment")') || !script.includes("sponsorCommitment")) failures.push("app.js missing sponsor invoice-request prefill from deal links.");
   if (!script.includes("sponsorInvoiceRequestCopy") || !script.includes("Copy invoice request")) failures.push("app.js missing copy-ready sponsor invoice request path.");
+  if (!script.includes("submitSponsorQuickLeadForm") || !script.includes("data-sponsor-quick-form")) failures.push("app.js missing fast sponsor invoice review form handler.");
   if (!script.includes("absoluteSponsorUrl")) failures.push("app.js sponsor outreach pitch should copy absolute URLs.");
   if (!script.includes("sponsorSprintHtml({ totals: {}, projects: [] })")) failures.push("app.js ops monitor should keep sponsor close actions visible when live metrics fail.");
   if (!script.includes("renderSponsorProposalPage") || !script.includes("sponsorProspectProposalUrl") || !script.includes("sponsor_proposal")) failures.push("app.js missing direct sponsor proposal funnel.");

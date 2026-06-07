@@ -7752,6 +7752,28 @@ ${paragraphs.join("\n")}
               <li>Payment, tax, bank, phone, and private identity details stay outside this form.</li>
             </ul>
           </div>
+          <form class="panel form-grid sponsor-quick-form" data-sponsor-quick-form>
+            <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="hidden" name="dealId">
+            <h3>Fast pilot invoice review</h3>
+            <p class="help">Three business-safe fields. This requests manual fit review only; any invoice or agreement is sent later through an external provider. Do not send private payment, tax, phone, identity, password, or customer-file details.</p>
+            <label class="field">
+              <span>Company or project</span>
+              <input name="company" maxlength="90" autocomplete="organization" required>
+            </label>
+            <label class="field">
+              <span>Business email</span>
+              <input name="contactEmail" type="email" maxlength="140" autocomplete="email" required>
+            </label>
+            <label class="field">
+              <span>Website</span>
+              <input name="website" type="url" maxlength="220" placeholder="https://example.com" autocomplete="url" required>
+            </label>
+            <div class="actions">
+              <button class="button" type="submit" data-track-event="sponsor_request_intent" data-track-tool="sponsor">Request pilot invoice review</button>
+            </div>
+            <p class="help sponsor-lead-status" data-sponsor-lead-status role="status" aria-live="polite">No payment is collected here.</p>
+          </form>
           <form class="panel form-grid sponsor-lead-form" data-sponsor-lead-form>
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="dealId">
@@ -12571,6 +12593,15 @@ ${paragraphs.join("\n")}
         await submitSponsorLeadForm(form);
       });
     });
+    root.querySelectorAll("[data-sponsor-quick-form]").forEach((form) => {
+      if (form.dataset.boundSponsorQuickLead === "true") return;
+      form.dataset.boundSponsorQuickLead = "true";
+      applySponsorDealPrefill(form, sponsorDealPrefillFromUrl() || loadSponsorDealPrefill() || sponsorDealPrefillFromDeal(sponsorDeals.find((deal) => deal.id === "guide-sponsor-pilot") || sponsorDeals[0]));
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        await submitSponsorQuickLeadForm(form);
+      });
+    });
   }
 
   function sponsorDealPrefillFromUrl() {
@@ -12676,6 +12707,50 @@ ${paragraphs.join("\n")}
       form.reset();
     } catch (error) {
       setStatus(error.message || "Could not send inquiry. Please use the email fallback.", "error");
+    } finally {
+      if (submit) submit.disabled = false;
+    }
+  }
+
+  async function submitSponsorQuickLeadForm(form) {
+    const values = getFormValues(form);
+    const deal = sponsorDeals.find((item) => item.id === values.dealId) || sponsorDeals.find((item) => item.id === "guide-sponsor-pilot") || sponsorDeals[0];
+    const status = form.querySelector("[data-sponsor-lead-status]");
+    const submit = form.querySelector("button[type='submit']");
+    const setStatus = (message, kind = "") => {
+      if (!status) return;
+      status.textContent = message;
+      status.dataset.status = kind;
+    };
+    const payload = {
+      ...values,
+      dealId: deal.id,
+      placement: deal.placement,
+      budgetRange: deal.budgetRange,
+      timeline: deal.timeline,
+      commitment: sponsorDealCommitment(deal),
+      audienceFit: `Fast invoice review request for ${deal.title}; sponsor says their website may fit PrintableTools Lab's free PDF, image, QR, career, classroom, or small-business workflows.`,
+      notes: `${deal.title} (${deal.price}). ${deal.deliverable} Needed: ${deal.proofNeeded}`,
+      consent: true,
+      path: getCurrentRoutePath(),
+      source: getTrafficSource(),
+      ...getSponsorAttribution(),
+    };
+    setStatus("Sending fast invoice review request...", "pending");
+    if (submit) submit.disabled = true;
+    try {
+      const response = await fetch("/api/sponsor-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data.ok) throw new Error(data.error || "Could not send request.");
+      track("sponsor_request_intent", { tool: "sponsor" });
+      setStatus("Invoice review request received. Fit will be checked manually before any external invoice or agreement is sent.", "success");
+      form.reset();
+    } catch (error) {
+      setStatus(error.message || "Could not send request. Please use the full inquiry form.", "error");
     } finally {
       if (submit) submit.disabled = false;
     }
