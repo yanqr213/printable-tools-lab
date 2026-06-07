@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-07T10:08:46.455Z",
+  "generatedAt": "2026-06-07T10:34:58.373Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 92,
     "indexableRoutes": 280,
     "sitemapLocCount": 280,
-    "generatedToolInventoryAt": "2026-06-07T10:08:23.576Z",
+    "generatedToolInventoryAt": "2026-06-07T10:26:51.151Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -116,7 +116,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-07T09:38:55.544Z",
+          "generatedAt": "2026-06-07T10:26:51.151Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -1002,7 +1002,7 @@
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-07T09:38:55.544Z",
+          "generatedAt": "2026-06-07T10:26:51.151Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -2039,7 +2039,7 @@
         "bytes": 42284,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-07T09:38:55.544Z",
+          "generatedAt": "2026-06-07T10:26:51.151Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -2652,7 +2652,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 22510,
+        "bytes": 23241,
         "json": {
           "ok": true,
           "today": "2026-06-07",
@@ -2673,7 +2673,8 @@
             "service_request_intent": 0,
             "audit_request_intent": 0,
             "sponsor_request_intent": 2,
-            "sponsor_lead_submit": 0
+            "sponsor_lead_submit": 0,
+            "sponsor_invoice_request": 0
           },
           "todayTotals": {
             "page_view": 92,
@@ -2692,13 +2693,16 @@
             "service_request_intent": 0,
             "audit_request_intent": 0,
             "sponsor_request_intent": 2,
-            "sponsor_lead_submit": 0
+            "sponsor_lead_submit": 0,
+            "sponsor_invoice_request": 0
           },
           "totalDownloads": 2,
           "totalGenerations": 0,
           "freeToolDepthIntent": 0,
           "sponsorLeads": 0,
           "todaySponsorLeads": 0,
+          "sponsorInvoiceRequests": 0,
+          "todaySponsorInvoiceRequests": 0,
           "commercialIntent": 2,
           "tools": [
             {
@@ -3611,7 +3615,8 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 2,
-              "sponsor_lead_submit": 0
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             }
           ],
           "sources": [
@@ -3626,7 +3631,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "google",
@@ -3639,7 +3645,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "bing",
@@ -3652,7 +3659,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "github",
@@ -3665,7 +3673,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "github-pages",
@@ -3678,7 +3687,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "github-issue",
@@ -3691,7 +3701,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "gist",
@@ -3704,7 +3715,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "zearches",
@@ -3717,7 +3729,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "listai",
@@ -3730,7 +3743,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "techtools",
@@ -3743,7 +3757,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "nosignuptools",
@@ -3756,7 +3771,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "freenosignup",
@@ -3769,7 +3785,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "nologin",
@@ -3782,7 +3799,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "nosubscription",
@@ -3795,7 +3813,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "share-kit",
@@ -3808,7 +3827,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "short-video",
@@ -3821,7 +3841,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "game-platform",
@@ -3834,7 +3855,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "sponsor-outreach",
@@ -3847,7 +3869,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 1
+              "sponsor_request_intent": 1,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "directory",
@@ -3860,7 +3883,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 1
+              "sponsor_request_intent": 1,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "community",
@@ -3873,7 +3897,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "source": "referral",
@@ -3886,7 +3911,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 0
+              "sponsor_request_intent": 0,
+              "sponsor_invoice_request": 0
             }
           ]
         }
@@ -3911,7 +3937,8 @@
         "service_request_intent": 0,
         "audit_request_intent": 0,
         "sponsor_request_intent": 2,
-        "sponsor_lead_submit": 0
+        "sponsor_lead_submit": 0,
+        "sponsor_invoice_request": 0
       },
       "todayTotals": {
         "page_view": 92,
@@ -3930,7 +3957,8 @@
         "service_request_intent": 0,
         "audit_request_intent": 0,
         "sponsor_request_intent": 2,
-        "sponsor_lead_submit": 0
+        "sponsor_lead_submit": 0,
+        "sponsor_invoice_request": 0
       },
       "totalDownloads": 2,
       "totalGenerations": 0,

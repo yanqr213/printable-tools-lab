@@ -160,28 +160,7 @@ export async function onRequestPost({ request, env }) {
     const path = cleanPath(body.path || "/");
     const project = cleanProject(body.project || inferProject(request));
     const day = new Date().toISOString().slice(0, 10);
-    const keys = [
-      `day:${day}:event:${name}`,
-      `day:${day}:tool:${tool}:event:${name}`,
-      `day:${day}:source:${source}:event:${name}`,
-      `day:${day}:project:${project}:event:${name}`,
-      `day:${day}:project:${project}:tool:${tool}:event:${name}`,
-      `day:${day}:project:${project}:source:${source}:event:${name}`,
-      `total:event:${name}`,
-      `total:tool:${tool}:event:${name}`,
-      `total:source:${source}:event:${name}`,
-      `total:project:${project}:event:${name}`,
-      `total:project:${project}:tool:${tool}:event:${name}`,
-      `total:project:${project}:source:${source}:event:${name}`,
-    ];
-    if (name === "page_view") {
-      keys.push(`day:${day}:path:${path}:views`);
-      keys.push(`day:${day}:project:${project}:path:${path}:views`);
-      keys.push(`total:project:${project}:path:${path}:views`);
-    }
-    for (const key of keys) {
-      await increment(env.PTL_EVENTS, key);
-    }
+    await appendRollup(env.PTL_EVENTS, { day, name, tool, source, path, project });
     return json({ ok: true });
   } catch (error) {
     if (isKvWriteLimitError(error)) {
@@ -195,9 +174,72 @@ export function onRequestGet() {
   return json({ ok: true, service: "PrintableTools Lab event collector" });
 }
 
-async function increment(store, key) {
-  const current = Number(await store.get(key)) || 0;
-  await store.put(key, String(current + 1));
+async function appendRollup(store, event) {
+  const month = event.day.slice(0, 7);
+  const key = `rollup:${month}`;
+  const rollup = safeJson(await store.get(key), null) || emptyRollup(month);
+  const dayBucket = ensureDay(rollup, event.day);
+  addCount(rollup.totals.events, event.name);
+  addCount(dayBucket.events, event.name);
+  addNestedCount(rollup.totals.tools, event.tool, event.name);
+  addNestedCount(dayBucket.tools, event.tool, event.name);
+  addNestedCount(rollup.totals.sources, event.source, event.name);
+  addNestedCount(dayBucket.sources, event.source, event.name);
+  const projectTotal = ensureNested(rollup.totals.projects, event.project);
+  addCount(projectTotal.events, event.name);
+  addNestedCount(projectTotal.tools, event.tool, event.name);
+  addNestedCount(projectTotal.sources, event.source, event.name);
+  const projectToday = ensureNested(dayBucket.projects, event.project);
+  addCount(projectToday.events, event.name);
+  addNestedCount(projectToday.tools, event.tool, event.name);
+  addNestedCount(projectToday.sources, event.source, event.name);
+  if (event.name === "page_view") {
+    addCount(projectTotal.paths, event.path);
+    addCount(projectToday.paths, event.path);
+  }
+  rollup.updatedAt = new Date().toISOString();
+  await store.put(key, JSON.stringify(rollup));
+}
+
+function emptyRollup(month) {
+  return { month, updatedAt: "", totals: emptyBucket(), today: {} };
+}
+
+function emptyBucket() {
+  return { events: {}, tools: {}, sources: {}, projects: {}, paths: {} };
+}
+
+function ensureDay(rollup, day) {
+  if (!rollup.today || typeof rollup.today !== "object") rollup.today = {};
+  if (!rollup.today[day]) rollup.today[day] = emptyBucket();
+  return rollup.today[day];
+}
+
+function ensureNested(container, key) {
+  if (!container[key]) container[key] = emptyBucket();
+  return container[key];
+}
+
+function addCount(container, key) {
+  container[key] = (Number(container[key]) || 0) + 1;
+}
+
+function addNestedCount(container, outerKey, innerKey) {
+  if (!container[outerKey]) container[outerKey] = {};
+  addCount(container[outerKey], innerKey);
+}
+
+function safeJson(text, fallback) {
+  try {
+    const value = JSON.parse(text);
+    if (value && value.today) {
+      const days = Object.keys(value.today);
+      for (const day of days) ensureDay(value, day);
+    }
+    return value;
+  } catch {
+    return fallback;
+  }
 }
 
 function isKvWriteLimitError(error) {

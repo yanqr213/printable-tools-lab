@@ -33,15 +33,16 @@ const PROJECTS = [
 export async function onRequestGet({ env }) {
   if (!env.PTL_EVENTS) return json({ ok: false, error: "Metrics store unavailable" }, 503);
   const today = new Date().toISOString().slice(0, 10);
+  const rollup = await readRollup(env.PTL_EVENTS, today);
   const count = async (key) => Number(await env.PTL_EVENTS.get(key)) || 0;
   const [totalEntries, todayEntries, sponsorLeads, todaySponsorLeads, sponsorInvoiceRequests, todaySponsorInvoiceRequests, projects] = await Promise.all([
-    Promise.all(EVENTS.map(async (event) => [event, await count(`total:event:${event}`)])),
-    Promise.all(EVENTS.map(async (event) => [event, await count(`day:${today}:event:${event}`)])),
+    Promise.all(EVENTS.map(async (event) => [event, await count(`total:event:${event}`) + countFrom(rollup.totals.events, event)])),
+    Promise.all(EVENTS.map(async (event) => [event, await count(`day:${today}:event:${event}`) + countFrom(rollup.today.events, event)])),
     count("total:sponsor_leads"),
     count(`day:${today}:sponsor_leads`),
     count("total:sponsor_invoice_requests"),
     count(`day:${today}:sponsor_invoice_requests`),
-    Promise.all(PROJECTS.map((project) => projectMetrics(project, count, today))),
+    Promise.all(PROJECTS.map((project) => projectMetrics(project, count, today, rollup))),
   ]);
   const totals = Object.fromEntries(totalEntries);
   return json({
@@ -51,35 +52,37 @@ export async function onRequestGet({ env }) {
     todayTotals: Object.fromEntries(todayEntries),
     sponsorLeads,
     todaySponsorLeads,
-    sponsorInvoiceRequests,
-    todaySponsorInvoiceRequests,
+    sponsorInvoiceRequests: sponsorInvoiceRequests + countFrom(rollup.totals.events, "sponsor_invoice_request"),
+    todaySponsorInvoiceRequests: todaySponsorInvoiceRequests + countFrom(rollup.today.events, "sponsor_invoice_request"),
     projects,
     revenueGate: "Revenue is real only after a platform balance, sponsor agreement, or settled payment is verified. Views and clicks are operating signals.",
   });
 }
 
-async function projectMetrics(project, count, today) {
+async function projectMetrics(project, count, today, rollup) {
+  const projectRollup = normalizeBucket(rollup.totals.projects[project.id]);
+  const todayProjectRollup = normalizeBucket(rollup.today.projects[project.id]);
   const [totalEntries, todayEntries, toolRows, sourceRows, pathRows, sponsorLeads, sponsorInvoiceRequests] = await Promise.all([
-    Promise.all(project.events.map(async (event) => [event, await count(totalEventKey(project, event))])),
-    Promise.all(project.events.map(async (event) => [event, await count(dayEventKey(project, today, event))])),
+    Promise.all(project.events.map(async (event) => [event, await count(totalEventKey(project, event)) + countFrom(projectRollup.events, event)])),
+    Promise.all(project.events.map(async (event) => [event, await count(dayEventKey(project, today, event)) + countFrom(todayProjectRollup.events, event)])),
     Promise.all(project.tools.map(async (tool) => {
       const entries = await Promise.all(project.events.map(async (event) => [
         event,
-        await count(totalToolKey(project, tool, event)),
+        await count(totalToolKey(project, tool, event)) + countNested(projectRollup.tools, tool, event),
       ]));
       return { tool, ...Object.fromEntries(entries) };
     })),
     Promise.all(SOURCES.map(async (source) => {
       const entries = await Promise.all(project.sourceEvents.map(async (event) => [
         event,
-        await count(totalSourceKey(project, source, event)),
+        await count(totalSourceKey(project, source, event)) + countNested(projectRollup.sources, source, event),
       ]));
       return { source, ...Object.fromEntries(entries) };
     })),
     Promise.all(project.paths.map(async (path) => ({
       path,
-      page_view: await count(totalPathKey(project, path)),
-      today_page_view: await count(dayPathKey(project, today, path)),
+      page_view: await count(totalPathKey(project, path)) + countFrom(projectRollup.paths, path),
+      today_page_view: await count(dayPathKey(project, today, path)) + countFrom(todayProjectRollup.paths, path),
     }))),
     project.id === "printable-tools-lab" ? count("total:sponsor_leads") : 0,
     project.id === "printable-tools-lab" ? count("total:sponsor_invoice_requests") : 0,
@@ -101,7 +104,7 @@ async function projectMetrics(project, count, today) {
       depthIntent: (totals.free_tool_depth || 0) + (totals.guide_depth || 0),
       commercialIntent: commercialIntent(totals),
       sponsorLeads,
-      sponsorInvoiceRequests,
+      sponsorInvoiceRequests: sponsorInvoiceRequests + (project.id === "printable-tools-lab" ? countFrom(projectRollup.events, "sponsor_invoice_request") : 0),
       gamePlayIntent: totals.game_play_intent || 0,
       gameFullscreenOpen: totals.game_fullscreen_open || 0,
       gameEmbedOpen: totals.game_embed_open || 0,
@@ -110,6 +113,43 @@ async function projectMetrics(project, count, today) {
     paths: pathRows,
     tools: toolRows,
   };
+}
+
+async function readRollup(store, today) {
+  const month = today.slice(0, 7);
+  const data = safeJson(await store.get(`rollup:${month}`), {});
+  return {
+    totals: normalizeBucket(data.totals),
+    today: normalizeBucket(data.today?.[today]),
+  };
+}
+
+function normalizeBucket(bucket = {}) {
+  return {
+    events: bucket.events || {},
+    tools: bucket.tools || {},
+    sources: bucket.sources || {},
+    projects: bucket.projects || {},
+    paths: bucket.paths || {},
+  };
+}
+
+function countFrom(container, key) {
+  return Number(container?.[key]) || 0;
+}
+
+function countNested(container, outerKey, innerKey) {
+  return Number(container?.[outerKey]?.[innerKey]) || 0;
+}
+
+function safeJson(text, fallback) {
+  try {
+    if (!text) return fallback;
+    const value = JSON.parse(text);
+    return value && typeof value === "object" ? value : fallback;
+  } catch {
+    return fallback;
+  }
 }
 
 function totalEventKey(project, event) {

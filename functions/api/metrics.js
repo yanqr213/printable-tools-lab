@@ -102,10 +102,11 @@ const SOURCES = [
 export async function onRequestGet({ env }) {
   if (!env.PTL_EVENTS) return json({ ok: false, error: "Metrics store unavailable" }, 503);
   const today = new Date().toISOString().slice(0, 10);
+  const rollup = await readRollup(env.PTL_EVENTS, today);
   const count = async (key) => Number(await env.PTL_EVENTS.get(key)) || 0;
   const [totalEntries, todayEntries, sponsorLeads, todaySponsorLeads, sponsorInvoiceRequests, todaySponsorInvoiceRequests, tools, sources] = await Promise.all([
-    Promise.all(EVENTS.map(async (event) => [event, await count(`total:event:${event}`)])),
-    Promise.all(EVENTS.map(async (event) => [event, await count(`day:${today}:event:${event}`)])),
+    Promise.all(EVENTS.map(async (event) => [event, await count(`total:event:${event}`) + countFrom(rollup.totals.events, event)])),
+    Promise.all(EVENTS.map(async (event) => [event, await count(`day:${today}:event:${event}`) + countFrom(rollup.today.events, event)])),
     count("total:sponsor_leads"),
     count(`day:${today}:sponsor_leads`),
     count("total:sponsor_invoice_requests"),
@@ -114,19 +115,19 @@ export async function onRequestGet({ env }) {
       const eventEntries = await Promise.all(
         TOOL_EVENTS.map(async (event) => [
           event,
-          await count(`total:tool:${tool}:event:${event}`),
+          await count(`total:tool:${tool}:event:${event}`) + countNested(rollup.totals.tools, tool, event),
         ]),
       );
       const row = { tool, ...Object.fromEntries(eventEntries) };
-      if (tool === "sponsor") row.sponsor_request_intent = await count(`total:tool:${tool}:event:sponsor_request_intent`);
-      if (tool === "sponsor") row.sponsor_lead_submit = await count(`total:tool:${tool}:event:sponsor_lead_submit`);
-      if (tool === "sponsor") row.sponsor_invoice_request = await count(`total:tool:${tool}:event:sponsor_invoice_request`);
+      if (tool === "sponsor") row.sponsor_request_intent = await count(`total:tool:${tool}:event:sponsor_request_intent`) + countNested(rollup.totals.tools, tool, "sponsor_request_intent");
+      if (tool === "sponsor") row.sponsor_lead_submit = await count(`total:tool:${tool}:event:sponsor_lead_submit`) + countNested(rollup.totals.tools, tool, "sponsor_lead_submit");
+      if (tool === "sponsor") row.sponsor_invoice_request = await count(`total:tool:${tool}:event:sponsor_invoice_request`) + countNested(rollup.totals.tools, tool, "sponsor_invoice_request");
       return row;
     })),
     Promise.all(SOURCES.map(async (source) => {
       const totalSourceEntries = await Promise.all(SOURCE_EVENTS.map(async (event) => [
         event,
-        await count(`total:source:${source}:event:${event}`),
+        await count(`total:source:${source}:event:${event}`) + countNested(rollup.totals.sources, source, event),
       ]));
       return { source, ...Object.fromEntries(totalSourceEntries) };
     })),
@@ -142,8 +143,8 @@ export async function onRequestGet({ env }) {
     freeToolDepthIntent: (totals.free_tool_depth || 0) + (totals.guide_depth || 0),
     sponsorLeads,
     todaySponsorLeads,
-    sponsorInvoiceRequests,
-    todaySponsorInvoiceRequests,
+    sponsorInvoiceRequests: sponsorInvoiceRequests + countFrom(rollup.totals.events, "sponsor_invoice_request"),
+    todaySponsorInvoiceRequests: todaySponsorInvoiceRequests + countFrom(rollup.today.events, "sponsor_invoice_request"),
     commercialIntent:
       (totals.seller_checkout_intent || 0)
       + (totals.seller_checkout_click || 0)
@@ -155,6 +156,43 @@ export async function onRequestGet({ env }) {
     tools,
     sources,
   });
+}
+
+async function readRollup(store, today) {
+  const month = today.slice(0, 7);
+  const data = safeJson(await store.get(`rollup:${month}`), {});
+  return {
+    totals: normalizeBucket(data.totals),
+    today: normalizeBucket(data.today?.[today]),
+  };
+}
+
+function normalizeBucket(bucket = {}) {
+  return {
+    events: bucket.events || {},
+    tools: bucket.tools || {},
+    sources: bucket.sources || {},
+    projects: bucket.projects || {},
+    paths: bucket.paths || {},
+  };
+}
+
+function countFrom(container, key) {
+  return Number(container?.[key]) || 0;
+}
+
+function countNested(container, outerKey, innerKey) {
+  return Number(container?.[outerKey]?.[innerKey]) || 0;
+}
+
+function safeJson(text, fallback) {
+  try {
+    if (!text) return fallback;
+    const value = JSON.parse(text);
+    return value && typeof value === "object" ? value : fallback;
+  } catch {
+    return fallback;
+  }
 }
 
 function json(payload, status = 200) {

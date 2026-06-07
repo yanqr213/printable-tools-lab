@@ -21,6 +21,13 @@ async function main() {
   });
   const eventPayload = await eventResponse.json();
   assert(eventResponse.status === 200 && eventPayload.ok, "Event collector should accept supported events");
+  const rollupKey = Array.from(store.data.keys()).find((key) => key.startsWith("rollup:"));
+  assert(rollupKey, "Event collector should store regular events in a compressed monthly rollup");
+  const initialRollup = JSON.parse(store.data.get(rollupKey));
+  assert(initialRollup.totals.events.download_pdf === 1, "Event rollup should count total events");
+  assert(initialRollup.totals.tools["invoice-generator"].download_pdf === 1, "Event rollup should count per-tool events");
+  assert(initialRollup.totals.sources.nosignuptools.download_pdf === 1, "Event rollup should count per-source events");
+  assert(store.putCount === 1, "Event collector should use one KV write per regular event");
   const limitedStore = new MemoryStore({ failWritesWith: "KV put() limit exceeded for the day." });
   const limitedEventResponse = await eventSource.onRequestPost({
     request: new Request("https://example.test/api/event", {
@@ -402,6 +409,7 @@ class MemoryStore {
   constructor(options = {}) {
     this.data = new Map();
     this.getCount = 0;
+    this.putCount = 0;
     this.failWritesWith = options.failWritesWith || "";
   }
 
@@ -418,6 +426,7 @@ class MemoryStore {
     if (options && Object.prototype.hasOwnProperty.call(options, "expirationTtl") && options.expirationTtl === undefined) {
       throw new Error(`Invalid undefined expirationTtl for ${key}`);
     }
+    this.putCount += 1;
     this.data.set(key, value);
   }
 }
