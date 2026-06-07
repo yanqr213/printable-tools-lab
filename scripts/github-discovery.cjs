@@ -137,6 +137,7 @@ function releaseBody() {
     `- [Sponsor deal room](${trackedSponsorUrl("sponsor-deal-room", "release-deal-room")})`,
     `- [Public sponsor call](${siteUrl("sponsor-call")})`,
     `- [Sponsor media kit JSON](${siteUrl("sponsor-media-kit.json").replace(/\/$/, "")})`,
+    `- [Sponsor intent feed JSON](${siteUrl("sponsor-intent-feed.json").replace(/\/$/, "")})`,
     ...externalDiscoveryLinks(),
     `- [HTML5 platform submit cockpit](${siteUrl("platform-submit-cockpit")})`,
     `- [HTML5 portal submission pack](${siteUrl("portal-submission-pack")})`,

@@ -147,6 +147,7 @@ function main() {
       "Stop contacting a prospect after an opt-out or negative reply.",
       "Do not claim guaranteed traffic, guaranteed conversions, or existing revenue.",
       "Use the proposalUrl as the first-touch URL so sponsor intent lands on a partner-specific, noindex proposal page.",
+      "Use invoiceReviewUrl when a public contact route asks for one concise commercial URL; it points directly to the USD 49 invoice review form.",
       "Use publicReplyUrl only for public-safe sponsor replies; the site form remains the preferred private lead path.",
       "Keep dealRoomUrl available as the transparent pricing and inquiry fallback.",
       "Revenue is real only after a signed agreement or settled external payment.",
@@ -166,6 +167,7 @@ function prospectRow(prospect, verticals, index) {
   const suggestedDeal = SPONSOR_DEALS.find((deal) => deal.id === prospect.dealId) || SPONSOR_DEALS.find((deal) => deal.id === "guide-sponsor-pilot") || SPONSOR_DEALS[0];
   const commitment = sponsorDealCommitment(suggestedDeal);
   const verticalTrackedUrl = `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}&utm_content=${encodeURIComponent(prospect.id)}`;
+  const invoiceReviewUrl = `${siteUrl("sponsor-starter-review").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_starter_review&utm_content=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}&commitment=request-invoice#sponsor-inquiry`;
   const dealRoomUrl = `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}&commitment=${encodeURIComponent(commitment)}#sponsor-inquiry`;
   const proposalUrl = `${siteUrl("sponsor-proposal").replace(/\/$/, "")}?prospect=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}&utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_proposal&utm_content=${encodeURIComponent(prospect.id)}&commitment=${encodeURIComponent(commitment)}#sponsor-inquiry`;
   const contactFormProposalUrl = `${siteUrl("sponsor-proposal").replace(/\/$/, "")}?prospect=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}#sponsor-inquiry`;
@@ -181,6 +183,7 @@ function prospectRow(prospect, verticals, index) {
   const contactFormMessage = [
     `Hi ${prospect.name} team - I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, resume, classroom, and small-business document workflows.`,
     `Your product looks relevant to this audience.`,
+    `Fast invoice review URL: ${invoiceReviewUrl}`,
     `Sponsor proposal: ${contactFormProposalUrl}`,
     `Public-safe reply form: ${PUBLIC_REPLY_FORM_URL}`,
     "Please keep private payment, tax, bank, phone, customer, identity, password, or file data out of the public reply.",
@@ -193,6 +196,8 @@ function prospectRow(prospect, verticals, index) {
     `Your product looks relevant because ${prospect.fitReason}`,
     "",
     `I opened a short partner-specific sponsor proposal for this audience: ${proposalUrl}`,
+    "",
+    `Fast USD 49 invoice review path: ${invoiceReviewUrl}`,
     "",
     `The best starting option is "${suggestedDeal.title}" (${suggestedDeal.price}): ${suggestedDeal.deliverable}`,
     "",
@@ -224,6 +229,7 @@ function prospectRow(prospect, verticals, index) {
     suggestedDealPrice: suggestedDeal.price,
     suggestedDealDeliverable: suggestedDeal.deliverable,
     requestedCommitment: commitment,
+    invoiceReviewUrl,
     proposalUrl,
     contactFormProposalUrl,
     dealRoomUrl,
@@ -243,7 +249,7 @@ function sponsorDealCommitment(deal) {
 }
 
 function toCsv(rows) {
-  const headers = ["priority", "id", "name", "vertical", "category", "website", "contactUrl", "evidenceUrl", "offer", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "requestedCommitment", "proposalUrl", "contactFormProposalUrl", "dealRoomUrl", "publicReplyUrl", "verticalTrackedUrl", "trackedUrl", "subject", "contactFormMessage", "status", "successSignal"];
+  const headers = ["priority", "id", "name", "vertical", "category", "website", "contactUrl", "evidenceUrl", "offer", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "requestedCommitment", "invoiceReviewUrl", "proposalUrl", "contactFormProposalUrl", "dealRoomUrl", "publicReplyUrl", "verticalTrackedUrl", "trackedUrl", "subject", "contactFormMessage", "status", "successSignal"];
   return [
     headers,
     ...rows.map((row) => headers.map((header) => row[header] || "")),
@@ -265,6 +271,7 @@ function toMarkdown(rows) {
       `- Contact: ${row.contactUrl}`,
       `- Evidence: ${row.evidenceUrl}`,
       `- Recommended deal: ${row.suggestedDealTitle} (${row.suggestedDealPrice})`,
+      `- Fast invoice review URL: ${row.invoiceReviewUrl}`,
       `- Proposal URL: ${row.proposalUrl}`,
       `- Short contact-form proposal URL: ${row.contactFormProposalUrl}`,
       `- Deal room URL: ${row.dealRoomUrl}`,

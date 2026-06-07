@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-07T22:59:49.732Z",
+  "generatedAt": "2026-06-07T23:09:51.590Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 92,
     "indexableRoutes": 281,
     "sitemapLocCount": 281,
-    "generatedToolInventoryAt": "2026-06-07T22:59:24.590Z",
+    "generatedToolInventoryAt": "2026-06-07T23:08:03.878Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -96,7 +96,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 40054,
+        "bytes": 40157,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for"
       },
@@ -116,7 +116,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-07T22:44:31.099Z",
+          "generatedAt": "2026-06-07T23:01:41.678Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -998,11 +998,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 62253,
+        "bytes": 62437,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-07T22:44:31.099Z",
+          "generatedAt": "2026-06-07T23:01:41.678Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1013,6 +1013,7 @@
           "sponsorCall": "https://printable-tools-lab.pages.dev/sponsor-call.json",
           "sponsorDealRoom": "https://printable-tools-lab.pages.dev/sponsor-deal-room.json",
           "sponsorOpportunities": "https://printable-tools-lab.pages.dev/sponsor-opportunities.json",
+          "sponsorIntentFeed": "https://printable-tools-lab.pages.dev/sponsor-intent-feed.json",
           "sponsorMediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
           "sponsorOutreachPack": "https://printable-tools-lab.pages.dev/sponsor-outreach-pack.json",
           "platformSubmitQueue": "https://printable-tools-lab.pages.dev/platform-submit-queue.json",
@@ -1253,6 +1254,7 @@
             ],
             "sponsorOpportunities": "https://printable-tools-lab.pages.dev/sponsor-opportunities/",
             "sponsorOpportunitiesJson": "https://printable-tools-lab.pages.dev/sponsor-opportunities.json",
+            "sponsorIntentFeedJson": "https://printable-tools-lab.pages.dev/sponsor-intent-feed.json",
             "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
             "sponsorMediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
             "sponsorOutreachPack": "https://printable-tools-lab.pages.dev/sponsor-outreach-pack.json",
@@ -2057,7 +2059,7 @@
         "bytes": 43794,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-07T22:44:31.099Z",
+          "generatedAt": "2026-06-07T23:01:41.678Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -4422,7 +4424,7 @@
       "keyFileReachable": true,
       "singleUrlAccepted": false,
       "latestReport": {
-        "generatedAt": "2026-06-07T22:15:29.671Z",
+        "generatedAt": "2026-06-07T23:08:23.563Z",
         "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
         "results": [
           {

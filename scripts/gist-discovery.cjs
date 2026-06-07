@@ -73,6 +73,7 @@ function writePermissionBlockedReport(existing, videos) {
     intendedSponsorDealRoom: trackedSponsorUrl("sponsor-deal-room", "gist-direct"),
     intendedSponsorStarterReview: trackedSponsorUrl("sponsor-starter-review", "gist-direct-starter"),
     intendedSponsorDealRoomJson: siteUrl("sponsor-deal-room.json").replace(/\/$/, ""),
+    intendedSponsorIntentFeed: siteUrl("sponsor-intent-feed.json").replace(/\/$/, ""),
     freeToolPath: freeToolPath(),
     sponsorDiscovery: sponsorDiscovery(),
   };
@@ -139,6 +140,7 @@ function renderGistBody(videos) {
     `- Sponsor deal room: ${trackedSponsorUrl("sponsor-deal-room", "deal-room")}`,
     `- Public sponsor call: ${trackedSponsorUrl("sponsor-call", "public-call")}`,
     `- Sponsor deal room JSON: ${siteUrl("sponsor-deal-room.json").replace(/\/$/, "")}`,
+    `- Sponsor intent feed JSON: ${siteUrl("sponsor-intent-feed.json").replace(/\/$/, "")}`,
     `- Sponsor media kit JSON: ${siteUrl("sponsor-media-kit.json").replace(/\/$/, "")}`,
     "- Ad-safety rule: downloads stay free, and future ads must never block tool use or file downloads.",
     "",
@@ -181,6 +183,7 @@ function renderGistBody(videos) {
     `- Start here: ${trackedSponsorUrl("sponsor-starter-review", "gist-direct-starter")}`,
     `- Deal-room fallback: ${trackedSponsorUrl("sponsor-deal-room", "gist-direct-deal-room")}`,
     `- Machine-readable deals: ${siteUrl("sponsor-deal-room.json").replace(/\/$/, "")}`,
+    `- Machine-readable sponsor intent feed: ${siteUrl("sponsor-intent-feed.json").replace(/\/$/, "")}`,
     "- Shortest paid pilot: USD 49 starter sponsor review before any visible placement or external invoice.",
     "",
     ...SPONSOR_DEALS.map((deal) => `- ${deal.title} (${deal.price}) - ${deal.deliverable}`),
@@ -248,6 +251,7 @@ function sponsorDiscovery() {
     sponsorStarterReviewUrl: trackedSponsorUrl("sponsor-starter-review", "gist-report-starter"),
     sponsorDealRoomUrl: trackedSponsorUrl("sponsor-deal-room", "gist-report-deal-room"),
     sponsorDealRoomJsonUrl: siteUrl("sponsor-deal-room.json").replace(/\/$/, ""),
+    sponsorIntentFeedUrl: siteUrl("sponsor-intent-feed.json").replace(/\/$/, ""),
     mediaKitUrl: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
     successGate: "A real qualified sponsor inquiry, signed agreement, or settled external payment. Clicks alone are not revenue.",
   };

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-07T22:15:29.679Z",
+  "generatedAt": "2026-06-07T23:08:23.570Z",
   "shareKitUrl": "https://printable-tools-lab.pages.dev/share-kit/",
   "shareKitJsonUrl": "https://printable-tools-lab.pages.dev/share-kit.json",
   "featuredLinks": [
@@ -191,6 +191,7 @@
     "sponsorStarterReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=share-kit-push-starter#sponsor-inquiry",
     "sponsorDealRoomUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=share-kit-push-deal-room#sponsor-inquiry",
     "sponsorDealRoomJsonUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room.json",
+    "sponsorIntentFeedUrl": "https://printable-tools-lab.pages.dev/sponsor-intent-feed.json",
     "sponsorCallUrl": "https://printable-tools-lab.pages.dev/sponsor-call?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=share-kit-push",
     "sponsorFormUrl": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=share-kit-push-form#sponsor-inquiry",
     "sponsorCallJsonUrl": "https://printable-tools-lab.pages.dev/sponsor-call.json",
@@ -362,6 +363,12 @@
       "angle": "USD 49 starter sponsor review before any visible placement",
       "url": "https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=share-kit-push-next#sponsor-inquiry",
       "rule": "Use only where sponsor or partner submissions are explicitly welcome; do not send private payment, tax, bank, phone, or identity details."
+    },
+    {
+      "target": "One sponsor intent feed placement",
+      "angle": "Public-safe sponsor opportunity feed for PDF, QR, resume, classroom, and small-business workflow partners",
+      "url": "https://printable-tools-lab.pages.dev/sponsor-intent-feed.json",
+      "rule": "Use only in directories, resource pages, newsletters, or partner pages that accept sponsor or partnership discovery assets."
     }
   ]
 }

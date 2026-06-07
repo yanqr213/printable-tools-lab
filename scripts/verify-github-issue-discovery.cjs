@@ -20,6 +20,7 @@ async function main() {
     if (!report.issueUrl || !report.issueUrl.includes("/issues/")) failures.push("Issue report missing issueUrl.");
     if (report.state !== "open") failures.push("Issue must be open.");
     if (!publishSkipped && !String(report.sponsorDiscovery?.sponsorStarterReviewUrl || "").includes("sponsor-starter-review")) failures.push("Issue report missing starter sponsor review URL.");
+    if (!publishSkipped && !String(report.sponsorDiscovery?.sponsorIntentFeedUrl || "").includes("sponsor-intent-feed.json")) failures.push("Issue report missing sponsor intent feed URL.");
     const freeHelpPath = report.freeHelpPath || report.freeToolPath || {};
     const freeHelpPublished = Boolean(freeHelpPath.auditUrl || freeHelpPath.freeToolDirectoryUrl);
     if (!freeHelpPublished && !githubPublishSkipped("githubIssueDiscovery")) failures.push("Issue report missing free-help path. Run npm.cmd run github-issue-discovery.");
@@ -45,7 +46,7 @@ async function verifyIssuePage(url, freeHelpPublished, publishSkipped) {
     const freeHelpNeedles = freeHelpPublished ? ["free_tool_depth", "future ads must never block"] : [];
     const sponsorNeedles = publishSkipped
       ? ["Sponsor and partner discovery", "Sponsor deal room", "sponsor-deal-room", "sponsor-deal-room.json", "USD 49", "USD 99-149", "utm_source=sponsor-outreach", "qualified inquiry"]
-      : ["Sponsor and partner discovery", "Direct sponsor starter review", "USD 49 starter sponsor review", "sponsor-starter-review", "sponsor_starter_review", "Sponsor deal room", "sponsor-deal-room", "sponsor-deal-room.json", "USD 49", "USD 99-149", "utm_source=sponsor-outreach", "qualified inquiry"];
+      : ["Sponsor and partner discovery", "Direct sponsor starter review", "USD 49 starter sponsor review", "sponsor-starter-review", "sponsor_starter_review", "Sponsor deal room", "sponsor-deal-room", "sponsor-deal-room.json", "sponsor-intent-feed.json", "USD 49", "USD 99-149", "utm_source=sponsor-outreach", "qualified inquiry"];
     for (const needle of ["Growth log", "ptl-pdf-under-1mb.mp4", "utm_source=github-issue", "Public Gist mirror", "portal-submission-pack", "Expanded backup portals", ...sponsorNeedles, ...freeHelpNeedles]) {
       if (!text.includes(needle)) failures.push(`Issue page missing ${needle}.`);
     }

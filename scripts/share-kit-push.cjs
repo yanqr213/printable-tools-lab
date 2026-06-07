@@ -77,6 +77,12 @@ function main() {
         url: trackedSponsorUrl("sponsor-starter-review", "share-kit-push-next"),
         rule: "Use only where sponsor or partner submissions are explicitly welcome; do not send private payment, tax, bank, phone, or identity details.",
       },
+      {
+        target: "One sponsor intent feed placement",
+        angle: "Public-safe sponsor opportunity feed for PDF, QR, resume, classroom, and small-business workflow partners",
+        url: siteUrl("sponsor-intent-feed.json").replace(/\/$/, ""),
+        rule: "Use only in directories, resource pages, newsletters, or partner pages that accept sponsor or partnership discovery assets.",
+      },
     ],
   };
   fs.mkdirSync(reportDir, { recursive: true });
@@ -117,6 +123,7 @@ function sponsorDiscovery() {
     sponsorStarterReviewUrl: trackedSponsorUrl("sponsor-starter-review", "share-kit-push-starter"),
     sponsorDealRoomUrl: trackedSponsorUrl("sponsor-deal-room", "share-kit-push-deal-room"),
     sponsorDealRoomJsonUrl: siteUrl("sponsor-deal-room.json").replace(/\/$/, ""),
+    sponsorIntentFeedUrl: siteUrl("sponsor-intent-feed.json").replace(/\/$/, ""),
     sponsorCallUrl: trackedSponsorUrl("sponsor-call", "share-kit-push"),
     sponsorFormUrl: trackedSponsorUrl("sponsor", "share-kit-push-form"),
     sponsorCallJsonUrl: siteUrl("sponsor-call.json").replace(/\/$/, ""),

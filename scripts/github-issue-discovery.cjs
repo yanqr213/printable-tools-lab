@@ -78,6 +78,7 @@ function renderIssueBody() {
     `- Sponsor deal room: ${trackedSponsorUrl("sponsor-deal-room", "github-issue-status-deal-room")}`,
     `- Public sponsor call: ${siteUrl("sponsor-call")}`,
     `- Sponsor deal room JSON: ${siteUrl("sponsor-deal-room.json").replace(/\/$/, "")}`,
+    `- Sponsor intent feed JSON: ${siteUrl("sponsor-intent-feed.json").replace(/\/$/, "")}`,
     `- Sponsor media kit: ${siteUrl("sponsor-media-kit.json").replace(/\/$/, "")}`,
     `- HTML5 platform submit cockpit: ${siteUrl("platform-submit-cockpit")}`,
     `- HTML5 portal submission pack: ${siteUrl("portal-submission-pack")}`,
@@ -109,6 +110,7 @@ function renderIssueBody() {
     `- Start here: ${trackedSponsorUrl("sponsor-starter-review", "github-issue-direct-starter")}`,
     `- Deal-room fallback: ${trackedSponsorUrl("sponsor-deal-room", "github-issue-direct-deal-room")}`,
     `- Machine-readable deals: ${siteUrl("sponsor-deal-room.json").replace(/\/$/, "")}`,
+    `- Machine-readable sponsor intent feed: ${siteUrl("sponsor-intent-feed.json").replace(/\/$/, "")}`,
     "- Shortest paid pilot: USD 49 starter sponsor review before any visible placement or external invoice.",
     "",
     ...SPONSOR_DEALS.map((deal) => `- ${deal.title} (${deal.price}) - ${deal.deliverable}`),
@@ -181,6 +183,7 @@ function sponsorDiscovery() {
     sponsorStarterReviewUrl: trackedSponsorUrl("sponsor-starter-review", "github-issue-report-starter"),
     sponsorDealRoomUrl: trackedSponsorUrl("sponsor-deal-room", "github-issue-report-deal-room"),
     sponsorDealRoomJsonUrl: siteUrl("sponsor-deal-room.json").replace(/\/$/, ""),
+    sponsorIntentFeedUrl: siteUrl("sponsor-intent-feed.json").replace(/\/$/, ""),
     mediaKitUrl: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
     successGate: "A real qualified sponsor inquiry, signed agreement, or settled external payment. Clicks alone are not revenue.",
   };
