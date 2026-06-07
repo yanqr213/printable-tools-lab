@@ -1,6 +1,6 @@
-const EVENTS = ["page_view", "download_pdf", "download_file", "generate_pdf", "generate_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "game_play_intent", "game_fullscreen_open", "game_embed_open"];
-const PRINTABLE_EVENTS = ["page_view", "download_pdf", "download_file", "generate_pdf", "generate_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit"];
-const PRINTABLE_SOURCE_EVENTS = ["page_view", "download_pdf", "download_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "service_request_intent", "audit_request_intent", "sponsor_request_intent"];
+const EVENTS = ["page_view", "download_pdf", "download_file", "generate_pdf", "generate_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request", "game_play_intent", "game_fullscreen_open", "game_embed_open"];
+const PRINTABLE_EVENTS = ["page_view", "download_pdf", "download_file", "generate_pdf", "generate_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request"];
+const PRINTABLE_SOURCE_EVENTS = ["page_view", "download_pdf", "download_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_invoice_request"];
 const GAME_EVENTS = ["page_view", "game_play_intent", "game_fullscreen_open", "game_embed_open"];
 const SOURCES = ["direct", "google", "bing", "github", "github-pages", "github-issue", "gist", "zearches", "listai", "techtools", "nosignuptools", "freenosignup", "nologin", "nosubscription", "share-kit", "short-video", "game-platform", "sponsor-outreach", "directory", "community", "referral", "embed", "publisher", "platform-review"];
 const PRINTABLE_TOOLS = ["site", "sponsor", "compress-pdf", "compress-image", "compress-image-to-kb", "invoice-generator", "receipt-generator", "qr-code", "wifi-qr-code", "ats-resume-checker", "resume-builder", "pdf-to-word", "local-seller-starter-kit", "custom-local-print-pack", "market-table-print-audit"];
@@ -34,11 +34,13 @@ export async function onRequestGet({ env }) {
   if (!env.PTL_EVENTS) return json({ ok: false, error: "Metrics store unavailable" }, 503);
   const today = new Date().toISOString().slice(0, 10);
   const count = async (key) => Number(await env.PTL_EVENTS.get(key)) || 0;
-  const [totalEntries, todayEntries, sponsorLeads, todaySponsorLeads, projects] = await Promise.all([
+  const [totalEntries, todayEntries, sponsorLeads, todaySponsorLeads, sponsorInvoiceRequests, todaySponsorInvoiceRequests, projects] = await Promise.all([
     Promise.all(EVENTS.map(async (event) => [event, await count(`total:event:${event}`)])),
     Promise.all(EVENTS.map(async (event) => [event, await count(`day:${today}:event:${event}`)])),
     count("total:sponsor_leads"),
     count(`day:${today}:sponsor_leads`),
+    count("total:sponsor_invoice_requests"),
+    count(`day:${today}:sponsor_invoice_requests`),
     Promise.all(PROJECTS.map((project) => projectMetrics(project, count, today))),
   ]);
   const totals = Object.fromEntries(totalEntries);
@@ -49,13 +51,15 @@ export async function onRequestGet({ env }) {
     todayTotals: Object.fromEntries(todayEntries),
     sponsorLeads,
     todaySponsorLeads,
+    sponsorInvoiceRequests,
+    todaySponsorInvoiceRequests,
     projects,
     revenueGate: "Revenue is real only after a platform balance, sponsor agreement, or settled payment is verified. Views and clicks are operating signals.",
   });
 }
 
 async function projectMetrics(project, count, today) {
-  const [totalEntries, todayEntries, toolRows, sourceRows, pathRows, sponsorLeads] = await Promise.all([
+  const [totalEntries, todayEntries, toolRows, sourceRows, pathRows, sponsorLeads, sponsorInvoiceRequests] = await Promise.all([
     Promise.all(project.events.map(async (event) => [event, await count(totalEventKey(project, event))])),
     Promise.all(project.events.map(async (event) => [event, await count(dayEventKey(project, today, event))])),
     Promise.all(project.tools.map(async (tool) => {
@@ -78,6 +82,7 @@ async function projectMetrics(project, count, today) {
       today_page_view: await count(dayPathKey(project, today, path)),
     }))),
     project.id === "printable-tools-lab" ? count("total:sponsor_leads") : 0,
+    project.id === "printable-tools-lab" ? count("total:sponsor_invoice_requests") : 0,
   ]);
   const totals = Object.fromEntries(totalEntries);
   const todayTotals = Object.fromEntries(todayEntries);
@@ -96,6 +101,7 @@ async function projectMetrics(project, count, today) {
       depthIntent: (totals.free_tool_depth || 0) + (totals.guide_depth || 0),
       commercialIntent: commercialIntent(totals),
       sponsorLeads,
+      sponsorInvoiceRequests,
       gamePlayIntent: totals.game_play_intent || 0,
       gameFullscreenOpen: totals.game_fullscreen_open || 0,
       gameEmbedOpen: totals.game_embed_open || 0,
@@ -135,7 +141,8 @@ function commercialIntent(totals) {
     + (totals.service_request_intent || 0)
     + (totals.audit_request_intent || 0)
     + (totals.sponsor_request_intent || 0)
-    + (totals.sponsor_lead_submit || 0);
+    + (totals.sponsor_lead_submit || 0)
+    + (totals.sponsor_invoice_request || 0);
 }
 
 function json(payload, status = 200) {

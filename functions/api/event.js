@@ -179,9 +179,14 @@ export async function onRequestPost({ request, env }) {
       keys.push(`day:${day}:project:${project}:path:${path}:views`);
       keys.push(`total:project:${project}:path:${path}:views`);
     }
-    await Promise.all(keys.map((key) => increment(env.PTL_EVENTS, key)));
+    for (const key of keys) {
+      await increment(env.PTL_EVENTS, key);
+    }
     return json({ ok: true });
   } catch (error) {
+    if (isKvWriteLimitError(error)) {
+      return json({ ok: true, sampledOut: true, reason: "event_write_limit" }, 202);
+    }
     return json({ ok: false, error: "Event rejected" }, 400);
   }
 }
@@ -192,7 +197,12 @@ export function onRequestGet() {
 
 async function increment(store, key) {
   const current = Number(await store.get(key)) || 0;
-  await store.put(key, String(current + 1), { expirationTtl: key.startsWith("day:") ? 60 * 60 * 24 * 120 : undefined });
+  await store.put(key, String(current + 1));
+}
+
+function isKvWriteLimitError(error) {
+  const message = String(error?.message || "").toLowerCase();
+  return message.includes("kv put() limit exceeded") || message.includes("write limit");
 }
 
 function cleanKey(value, maxLength) {

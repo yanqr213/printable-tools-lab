@@ -21,6 +21,17 @@ async function main() {
   });
   const eventPayload = await eventResponse.json();
   assert(eventResponse.status === 200 && eventPayload.ok, "Event collector should accept supported events");
+  const limitedStore = new MemoryStore({ failWritesWith: "KV put() limit exceeded for the day." });
+  const limitedEventResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "page_view", tool: "site", path: "/ops/", source: "direct" }),
+    }),
+    env: { PTL_EVENTS: limitedStore },
+  });
+  const limitedEventPayload = await limitedEventResponse.json();
+  assert(limitedEventResponse.status === 202 && limitedEventPayload.sampledOut, "Event collector should degrade cleanly when KV daily writes are exhausted");
   const optionsResponse = eventSource.onRequestOptions();
   assert(optionsResponse.status === 200, "Event collector should accept CORS preflight");
   assert(optionsResponse.headers.get("Access-Control-Allow-Origin") === "*", "Event collector should expose cross-project CORS headers");
@@ -269,6 +280,7 @@ async function main() {
         placement: "content-sponsorship",
         budgetRange: "250-500",
         timeline: "this-month",
+        commitment: "request-invoice",
         audienceFit: "Privacy-friendly PDF and image tool users.",
         notes: "Interested in a clearly labeled guide sponsorship.",
         consent: true,
@@ -334,20 +346,28 @@ async function main() {
   const sponsor = sellerMetrics.tools.find((row) => row.tool === "sponsor");
   assert(sponsor.sponsor_request_intent === 2, "Metrics should count sponsor intent");
   assert(sponsor.sponsor_lead_submit === 1, "Metrics should count sponsor lead submissions");
+  assert(sponsor.sponsor_invoice_request === 1, "Metrics should count sponsor invoice requests");
   assert(sellerMetrics.totals.sponsor_request_intent === 2, "Metrics should count total sponsor intent");
   assert(sellerMetrics.totals.sponsor_lead_submit === 1, "Metrics should count total sponsor lead submissions");
+  assert(sellerMetrics.totals.sponsor_invoice_request === 1, "Metrics should count total sponsor invoice requests");
   assert(sellerMetrics.sponsorLeads === 1, "Metrics should expose real sponsor lead count");
-  assert(sellerMetrics.commercialIntent === 10, "Commercial intent should include sponsor lead submissions");
+  assert(sellerMetrics.sponsorInvoiceRequests === 1, "Metrics should expose sponsor invoice request count");
+  assert(sellerMetrics.commercialIntent === 11, "Commercial intent should include sponsor invoice requests");
   assert(store.data.has(`sponsor:lead:${sponsorLeadPayload.id}`), "Sponsor lead should be stored privately in KV");
   const storedSponsorLead = JSON.parse(store.data.get(`sponsor:lead:${sponsorLeadPayload.id}`));
   assert(storedSponsorLead.source === "sponsor-outreach", "Sponsor lead should canonicalize sponsor-call into sponsor-outreach source metrics");
   assert(storedSponsorLead.utmSource === "sponsor-call", "Sponsor lead should preserve original sponsor-call UTM attribution");
   assert(storedSponsorLead.utmCampaign === "pdf_image_qr_saas", "Sponsor lead should store UTM campaign attribution");
   assert(storedSponsorLead.dealId === "guide-sponsor-pilot", "Sponsor lead should store selected sponsor deal attribution");
+  assert(storedSponsorLead.commitment === "request-invoice", "Sponsor lead should store sponsor commitment level");
   assert(storedSponsorLead.vertical === "pdf-image-qr-saas", "Sponsor lead should store sponsor vertical attribution");
   assert(storedSponsorLead.path === "/sponsor/pdf-image-qr-saas/", "Sponsor lead should store the clean sponsor path");
   const sponsorLeadIndex = JSON.parse(store.data.get(`sponsor:lead_index:${storedSponsorLead.createdAt.slice(0, 7)}`));
-  assert(sponsorLeadIndex.some((lead) => lead.id === sponsorLeadPayload.id && lead.dealId === "guide-sponsor-pilot"), "Sponsor lead index should include selected deal attribution");
+  assert(sponsorLeadIndex.some((lead) => lead.id === sponsorLeadPayload.id && lead.dealId === "guide-sponsor-pilot" && lead.commitment === "request-invoice"), "Sponsor lead index should include selected deal and commitment attribution");
+  const finalOpsMetrics = await (await opsMetricsSource.onRequestGet({ env })).json();
+  const finalPrintableProject = finalOpsMetrics.projects.find((row) => row.id === "printable-tools-lab");
+  assert(finalOpsMetrics.sponsorInvoiceRequests === 1, "Ops metrics should expose sponsor invoice request count");
+  assert(finalPrintableProject.summary.sponsorInvoiceRequests === 1, "Project ops metrics should expose sponsor invoice request count");
   assert([...store.data.keys()].some((key) => key.startsWith("sponsor:validation:")), "Validation sponsor lead should use isolated KV keys");
   assert(Number(store.data.get("total:sponsor_lead_tests")) === 1, "Validation sponsor lead should count only validation tests");
   const githubPages = sellerMetrics.sources.find((row) => row.source === "github-pages");
@@ -364,6 +384,7 @@ async function main() {
   assert(directory.sponsor_request_intent === 1, "Metrics should count sponsor clicks by source");
   const sponsorOutreach = sellerMetrics.sources.find((row) => row.source === "sponsor-outreach");
   assert(sponsorOutreach.sponsor_request_intent === 2, "Metrics should count sponsor-call and lead submissions by outreach source");
+  assert(sponsorOutreach.sponsor_invoice_request === 1, "Metrics should count sponsor invoice requests by outreach source");
   console.log("Event metrics test passed.");
 }
 
@@ -378,9 +399,10 @@ function loadFunction(file, exportsList) {
 }
 
 class MemoryStore {
-  constructor() {
+  constructor(options = {}) {
     this.data = new Map();
     this.getCount = 0;
+    this.failWritesWith = options.failWritesWith || "";
   }
 
   async get(key) {
@@ -388,7 +410,14 @@ class MemoryStore {
     return this.data.get(key) || null;
   }
 
-  async put(key, value) {
+  async put(key, value, options) {
+    if (this.failWritesWith) throw new Error(this.failWritesWith);
+    if (arguments.length >= 3 && options === undefined) {
+      throw new Error(`Invalid undefined options for ${key}`);
+    }
+    if (options && Object.prototype.hasOwnProperty.call(options, "expirationTtl") && options.expirationTtl === undefined) {
+      throw new Error(`Invalid undefined expirationTtl for ${key}`);
+    }
     this.data.set(key, value);
   }
 }

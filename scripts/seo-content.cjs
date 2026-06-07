@@ -6219,6 +6219,14 @@ function sponsorLeadFormHtml() {
               </select>
             </label>
             <label class="field">
+              <span>Next step</span>
+              <select name="commitment">
+                <option value="question-only">Question or fit review</option>
+                <option value="request-invoice">Request pilot invoice</option>
+                <option value="ready-this-month">Ready to start this month</option>
+              </select>
+            </label>
+            <label class="field">
               <span>Audience fit</span>
               <textarea name="audienceFit" maxlength="420" required placeholder="Why your product or partnership helps free PDF, image, QR, classroom, career, or small-business tool users."></textarea>
             </label>
@@ -6235,7 +6243,7 @@ function sponsorLeadFormHtml() {
               <button class="button" type="submit" data-track-event="sponsor_request_intent" data-track-tool="sponsor">Send inquiry</button>
               <a class="button ghost" href="/privacy/">Privacy policy</a>
             </div>
-            <p class="help sponsor-lead-status" data-sponsor-lead-status role="status" aria-live="polite">No payment is collected here. Approved sponsorships are reviewed manually for fit.</p>
+            <p class="help sponsor-lead-status" data-sponsor-lead-status role="status" aria-live="polite">No payment is collected here. Invoice requests are reviewed manually and handled only through an external provider.</p>
           </form>
         </div>
       </section>`;

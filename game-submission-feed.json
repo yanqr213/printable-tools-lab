@@ -1,6 +1,6 @@
 {
   "name": "HTML5 Game Submission Feed",
-  "generatedAt": "2026-06-07T09:38:55.544Z",
+  "generatedAt": "2026-06-07T10:26:51.151Z",
   "canonical": "https://printable-tools-lab.pages.dev/game-submission-feed.json",
   "purpose": "Machine-readable public feed for HTML5 game portals and reviewers. It lists playable builds, clean ZIPs, SDK packages, review assets, ad-safety notes, and manual-consent gates without private account or payout data.",
   "leadGame": "Neon Lane Dash",

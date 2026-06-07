@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-07T09:58:53.626Z",
+  "generatedAt": "2026-06-07T10:08:46.455Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 92,
     "indexableRoutes": 280,
     "sitemapLocCount": 280,
-    "generatedToolInventoryAt": "2026-06-07T09:38:55.544Z",
+    "generatedToolInventoryAt": "2026-06-07T10:08:23.576Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -3937,6 +3937,7 @@
       "freeToolDepthIntent": 0,
       "commercialIntent": 2,
       "sponsorLeads": 0,
+      "sponsorInvoiceRequests": 0,
       "topTools": [
         {
           "tool": "invoice-generator",

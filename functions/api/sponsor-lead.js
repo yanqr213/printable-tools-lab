@@ -21,6 +21,12 @@ const TIMELINES = new Set([
   "later",
 ]);
 
+const COMMITMENT_LEVELS = new Set([
+  "question-only",
+  "request-invoice",
+  "ready-this-month",
+]);
+
 const DEAL_IDS = new Set([
   "starter-fit-review",
   "guide-sponsor-pilot",
@@ -108,6 +114,7 @@ function normalizeLead(body, request) {
   const placement = cleanChoice(body.placement, PLACEMENTS, "media-kit-review");
   const budgetRange = cleanChoice(body.budgetRange, BUDGET_RANGES, "exploratory");
   const timeline = cleanChoice(body.timeline, TIMELINES, "exploratory");
+  const commitment = cleanChoice(body.commitment, COMMITMENT_LEVELS, "question-only");
   const audienceFit = cleanText(body.audienceFit, 420);
   const notes = cleanText(body.notes, 1000);
   const dealId = cleanChoice(body.dealId || body.deal || body.sponsorDealId || body.utmContent, DEAL_IDS, "");
@@ -134,6 +141,7 @@ function normalizeLead(body, request) {
       placement,
       budgetRange,
       timeline,
+      commitment,
       audienceFit,
       notes,
       dealId,
@@ -178,6 +186,17 @@ async function incrementLeadMetrics(store, lead, now) {
     `day:${day}:tool:sponsor:event:sponsor_lead_submit`,
     `day:${day}:sponsor_leads`,
   ];
+  if (lead.commitment === "request-invoice" || lead.commitment === "ready-this-month") {
+    keys.push(
+      "total:event:sponsor_invoice_request",
+      "total:tool:sponsor:event:sponsor_invoice_request",
+      "total:sponsor_invoice_requests",
+      `day:${day}:event:sponsor_invoice_request`,
+      `day:${day}:tool:sponsor:event:sponsor_invoice_request`,
+      `day:${day}:sponsor_invoice_requests`,
+    );
+    if (lead.source) keys.push(`total:source:${lead.source}:event:sponsor_invoice_request`);
+  }
   if (lead.source) keys.push(`total:source:${lead.source}:event:sponsor_request_intent`);
   await Promise.all(keys.map((key) => increment(store, key, key.startsWith("day:") ? 60 * 60 * 24 * 120 : undefined)));
 }
@@ -196,6 +215,7 @@ async function appendLeadIndex(store, lead) {
     placement: lead.placement,
     budgetRange: lead.budgetRange,
     timeline: lead.timeline,
+    commitment: lead.commitment,
     source: lead.source,
     utmSource: lead.utmSource,
     utmMedium: lead.utmMedium,
@@ -214,7 +234,8 @@ async function count(store, key) {
 async function increment(store, key, expirationTtl) {
   const current = await count(store, key);
   const options = expirationTtl ? { expirationTtl } : undefined;
-  await store.put(key, String(current + 1), options);
+  if (options) await store.put(key, String(current + 1), options);
+  else await store.put(key, String(current + 1));
 }
 
 async function hashIp(value) {

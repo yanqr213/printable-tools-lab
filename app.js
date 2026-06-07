@@ -7778,6 +7778,14 @@ ${paragraphs.join("\n")}
               </select>
             </label>
             <label class="field">
+              <span>Next step</span>
+              <select name="commitment">
+                <option value="question-only">Question or fit review</option>
+                <option value="request-invoice">Request pilot invoice</option>
+                <option value="ready-this-month">Ready to start this month</option>
+              </select>
+            </label>
+            <label class="field">
               <span>Audience fit</span>
               <textarea name="audienceFit" maxlength="420" required placeholder="Why your product or partnership helps free PDF, image, QR, classroom, career, or small-business tool users."></textarea>
             </label>
@@ -7794,7 +7802,7 @@ ${paragraphs.join("\n")}
               <button class="button" type="submit" data-track-event="sponsor_request_intent" data-track-tool="sponsor">Send inquiry</button>
               <a class="button ghost" href="/privacy/">Privacy policy</a>
             </div>
-            <p class="help sponsor-lead-status" data-sponsor-lead-status role="status" aria-live="polite">No payment is collected here. Approved sponsorships are reviewed manually for fit.</p>
+            <p class="help sponsor-lead-status" data-sponsor-lead-status role="status" aria-live="polite">No payment is collected here. Invoice requests are reviewed manually and handled only through an external provider.</p>
           </form>
         </div>
       </section>`;
@@ -7886,6 +7894,7 @@ ${paragraphs.join("\n")}
       const totalDownloads = (totals.download_pdf || 0) + (totals.download_file || 0);
       const totalGenerations = (totals.generate_pdf || 0) + (totals.generate_file || 0);
       const totalGameIntent = (totals.game_play_intent || 0) + (totals.game_fullscreen_open || 0) + (totals.game_embed_open || 0);
+      const sponsorInvoiceRequests = data.sponsorInvoiceRequests || totals.sponsor_invoice_request || 0;
       target.innerHTML = `
         <div class="metric-grid ops-summary-grid">
           <div class="metric-tile"><strong>${totals.page_view || 0}</strong><span>all page views</span></div>
@@ -7893,6 +7902,7 @@ ${paragraphs.join("\n")}
           <div class="metric-tile"><strong>${totalDownloads}</strong><span>tool downloads</span></div>
           <div class="metric-tile"><strong>${totalGenerations}</strong><span>tool generations</span></div>
           <div class="metric-tile"><strong>${data.sponsorLeads || 0}</strong><span>sponsor leads</span></div>
+          <div class="metric-tile"><strong>${sponsorInvoiceRequests}</strong><span>invoice requests</span></div>
           <div class="metric-tile"><strong>${totalGameIntent}</strong><span>game play signals</span></div>
         </div>
         ${sponsorSprintHtml(data)}
@@ -7924,11 +7934,12 @@ ${paragraphs.join("\n")}
     const totals = data.totals || {};
     const sponsorIntent = totals.sponsor_request_intent || 0;
     const sponsorLeads = data.sponsorLeads || totals.sponsor_lead_submit || 0;
+    const sponsorInvoiceRequests = data.sponsorInvoiceRequests || totals.sponsor_invoice_request || 0;
     const pageViews = totals.page_view || 0;
     const downloads = (totals.download_pdf || 0) + (totals.download_file || 0);
     const topSponsorPaths = sponsorPathRows(data).slice(0, 4);
     const prospectRows = rankedSponsorProspects(data).slice(0, 4);
-    const action = sponsorNextAction(sponsorLeads, sponsorIntent, pageViews, downloads);
+    const action = sponsorNextAction(sponsorLeads, sponsorIntent, pageViews, downloads, sponsorInvoiceRequests);
     return `
       <section class="panel ops-sponsor-sprint" aria-label="Sponsor revenue sprint">
         <div class="ops-project-head">
@@ -7942,10 +7953,11 @@ ${paragraphs.join("\n")}
         <div class="metric-grid compact ops-project-grid">
           <div class="metric-tile"><strong>${sponsorIntent}</strong><span>sponsor intent</span></div>
           <div class="metric-tile"><strong>${sponsorLeads}</strong><span>sponsor leads</span></div>
+          <div class="metric-tile"><strong>${sponsorInvoiceRequests}</strong><span>invoice requests</span></div>
           <div class="metric-tile"><strong>${prospectRows.length}</strong><span>priority prospects</span></div>
           <div class="metric-tile"><strong>${topSponsorPaths.length}</strong><span>warm sponsor pages</span></div>
           <div class="metric-tile"><strong>${sponsorDeals[1]?.price || "USD 99-149"}</strong><span>default pilot</span></div>
-          <div class="metric-tile"><strong>${sponsorLeads ? "Follow up" : "Outreach"}</strong><span>next mode</span></div>
+          <div class="metric-tile"><strong>${sponsorInvoiceRequests ? "Invoice" : sponsorLeads ? "Follow up" : "Outreach"}</strong><span>next mode</span></div>
         </div>
         <div class="ops-detail-grid">
           <section>
@@ -7970,7 +7982,8 @@ ${paragraphs.join("\n")}
     `;
   }
 
-  function sponsorNextAction(sponsorLeads, sponsorIntent, pageViews, downloads) {
+  function sponsorNextAction(sponsorLeads, sponsorIntent, pageViews, downloads, sponsorInvoiceRequests = 0) {
+    if (sponsorInvoiceRequests > 0) return "A sponsor requested an invoice or this-month pilot. Export the private lead, verify policy fit, and send only an external invoice or agreement.";
     if (sponsorLeads > 0) return "Export the sponsor lead, reply with the selected deal, and move only signed agreement or settled external payment into revenue.";
     if (sponsorIntent > 0) return "There is sponsor intent without a lead. Send the deal-room link to four matched prospects and keep the inquiry form prefilled.";
     if (pageViews >= 100 || downloads > 0) return "Traffic exists but sponsor intent is thin. Push one vertical sponsor pitch tied to the warmest PDF, QR, resume, or paperwork audience.";
@@ -8170,6 +8183,7 @@ ${paragraphs.join("\n")}
       ["free_tool_depth", "Free-tool depth"],
       ["sponsor_request_intent", "Sponsor intent"],
       ["sponsor_lead_submit", "Sponsor leads"],
+      ["sponsor_invoice_request", "Invoice requests"],
       ["game_play_intent", "Game play intent"],
       ["game_fullscreen_open", "Fullscreen opens"],
       ["game_embed_open", "Embed opens"],
@@ -12597,7 +12611,11 @@ ${paragraphs.join("\n")}
       const data = await response.json().catch(() => ({}));
       if (!response.ok || !data.ok) throw new Error(data.error || "Could not send inquiry.");
       track("sponsor_request_intent", { tool: "sponsor" });
-      setStatus("Inquiry received. Sponsorship fit will be reviewed manually before any placement is discussed.", "success");
+      if (values.commitment === "request-invoice" || values.commitment === "ready-this-month") {
+        setStatus("Invoice request received. Sponsorship fit will be reviewed manually before any external invoice or agreement is sent.", "success");
+      } else {
+        setStatus("Inquiry received. Sponsorship fit will be reviewed manually before any placement is discussed.", "success");
+      }
       form.reset();
     } catch (error) {
       setStatus(error.message || "Could not send inquiry. Please use the email fallback.", "error");

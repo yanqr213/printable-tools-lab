@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-07T09:58:53.626Z
+Last generated: 2026-06-07T10:08:46.455Z
 
 ## Current Automated Status
 
@@ -15,6 +15,7 @@ Last generated: 2026-06-07T09:58:53.626Z
 - Free-tool depth intent events: 0.
 - Commercial intent events: 2.
 - Sponsor leads captured: 0.
+- Sponsor invoice requests: 0.
 - Sponsor outreach queued/sent/settled: 10/0/0.
 - Search impressions: 0.
 - Search clicks: 0.

@@ -134,6 +134,7 @@ else {
   if (!html.includes('data-sponsor-lead-form')) failures.push("Sponsor page missing lead capture form.");
   if (!html.includes('name="contactEmail"')) failures.push("Sponsor page missing business email field.");
   if (!html.includes('name="budgetRange"')) failures.push("Sponsor page missing budget range field.");
+  if (!html.includes('name="commitment"') || !html.includes("Request pilot invoice")) failures.push("Sponsor page missing invoice request next-step field.");
   if (!html.includes("public dashboards show only aggregate lead counts")) failures.push("Sponsor page missing private lead/public metric note.");
   if (!html.includes("Early sponsor pilots")) failures.push("Sponsor page missing early sponsor pilot pricing.");
   if (!html.includes("USD 99-149 pilot")) failures.push("Sponsor page missing guide sponsorship pilot price anchor.");
@@ -169,6 +170,7 @@ else {
   if (!html.includes('data-sponsor-lead-form')) failures.push("Sponsor deal room missing lead capture form.");
   if (!html.includes('data-sponsor-deal-select')) failures.push("Sponsor deal room missing deal prefill buttons.");
   if (!html.includes('name="dealId"')) failures.push("Sponsor deal room form missing selected deal field.");
+  if (!html.includes('name="commitment"')) failures.push("Sponsor deal room form missing commitment next-step field.");
   if (!html.includes("data-sponsor-budget-range")) failures.push("Sponsor deal room missing budget prefill data.");
   if (!html.includes('data-track-event="sponsor_request_intent"')) failures.push("Sponsor deal room missing sponsor intent tracking.");
   if (!SPONSOR_DEALS.every((deal) => html.includes(deal.title) && html.includes(deal.price))) failures.push("Sponsor deal room missing one or more deal offers.");
@@ -332,6 +334,7 @@ else {
   const sponsorLeadScript = fs.readFileSync(sponsorLeadFunctionFile, "utf8");
   if (!sponsorLeadScript.includes("utmCampaign") || !sponsorLeadScript.includes("vertical")) failures.push("Sponsor lead API missing attribution persistence.");
   if (!sponsorLeadScript.includes("dealId") || !sponsorLeadScript.includes("DEAL_IDS")) failures.push("Sponsor lead API missing selected deal persistence.");
+  if (!sponsorLeadScript.includes("COMMITMENT_LEVELS") || !sponsorLeadScript.includes("sponsor_invoice_request")) failures.push("Sponsor lead API missing invoice request commitment tracking.");
   if (!sponsorLeadScript.includes("body.deal")) failures.push("Sponsor lead API should accept deal-param attribution from outreach links.");
 }
 if (!fs.existsSync(sponsorProspectScriptFile)) failures.push("Missing sponsor prospect queue generator.");

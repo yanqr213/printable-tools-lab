@@ -142,6 +142,7 @@ async function readLiveState() {
       freeToolDepthIntent: freeToolDepthIntent(metrics.totals || {}),
       commercialIntent: commercialIntent(metrics.totals || {}),
       sponsorLeads: Number(metrics.sponsorLeads || metrics.totals?.sponsor_lead_submit || 0),
+      sponsorInvoiceRequests: Number(metrics.sponsorInvoiceRequests || metrics.totals?.sponsor_invoice_request || 0),
       topTools: (metrics.tools || [])
         .slice()
         .sort((a, b) => toolScore(b) - toolScore(a))
@@ -527,6 +528,7 @@ function buildNextActions(gates, local, live, searchConsole, discovery, director
   const depthIntent = freeToolDepthIntent(totals);
   const commercial = commercialIntent(totals);
   const sponsorLeads = live.metrics?.sponsorLeads || 0;
+  const sponsorInvoiceRequests = live.metrics?.sponsorInvoiceRequests || 0;
   const actions = [];
   if (!gates.productReady) actions.push("Fix product readiness failures before adding more tools.");
   if (!gates.searchVisible && (directories?.listedCount || 0) < 2) actions.push("Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.");
@@ -542,6 +544,7 @@ function buildNextActions(gates, local, live, searchConsole, discovery, director
   if (downloads < 100 && generations < 300) actions.push("Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.");
   if (depthIntent === 0) actions.push("Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces.");
   if (commercial === 0) actions.push("Keep the sponsorship and partner inquiry page visible as a no-payment commercial-intent surface while ad-network setup waits.");
+  if (sponsorInvoiceRequests > 0) actions.push("Export the invoice-request sponsor lead, verify policy fit, and send only an external invoice or agreement; do not collect payment details in this site.");
   else if (sponsorLeads > 0) actions.push("Review sponsor lead details in private KV/export workflow and reply only to policy-fit business inquiries.");
   else if ((local.sponsorOutreach?.sent || 0) === 0) actions.push("Submit the first sponsor outreach batch using reports/sponsor-next-submission-batch.md, but mark rows sent only after real public-form submission evidence exists.");
   else actions.push("Drive partner traffic to the sponsor form until at least one qualified lead is captured, not just a CTA click.");
@@ -557,6 +560,7 @@ function renderValidationMarkdown(report) {
   const depthIntent = freeToolDepthIntent(totals);
   const commercial = commercialIntent(totals);
   const sponsorLeads = report.live.metrics?.sponsorLeads || 0;
+  const sponsorInvoiceRequests = report.live.metrics?.sponsorInvoiceRequests || 0;
   const perf = report.searchConsole.performance;
   const sitemap = Array.isArray(report.searchConsole.sitemaps?.sitemap) ? report.searchConsole.sitemaps.sitemap[0] : null;
   const githubPagesSitemap = Array.isArray(report.searchConsole.githubPagesSitemaps?.sitemap) ? report.searchConsole.githubPagesSitemaps.sitemap[0] : null;
@@ -578,6 +582,7 @@ function renderValidationMarkdown(report) {
     `- Free-tool depth intent events: ${depthIntent}.`,
     `- Commercial intent events: ${commercial}.`,
     `- Sponsor leads captured: ${sponsorLeads}.`,
+    `- Sponsor invoice requests: ${sponsorInvoiceRequests}.`,
     `- Sponsor outreach queued/sent/settled: ${report.local.sponsorOutreach.queued}/${report.local.sponsorOutreach.sent}/${report.local.sponsorOutreach.settled}.`,
     `- Search impressions: ${perf?.totals?.impressions || 0}.`,
     `- Search clicks: ${perf?.totals?.clicks || 0}.`,
@@ -627,9 +632,10 @@ function renderValidationMarkdown(report) {
 function printSummary(report) {
   const totals = report.live.metrics?.totals || {};
   const sponsorLeads = report.live.metrics?.sponsorLeads || 0;
+  const sponsorInvoiceRequests = report.live.metrics?.sponsorInvoiceRequests || 0;
   console.log(`Validation report written to ${path.relative(root, reportPath)} and VALIDATION.md`);
   console.log(`Product ready: ${yesNo(report.gates.productReady)} | Tools: ${report.local.toolCount} | Guides: ${report.local.guideCount} | Landing pages: ${report.local.landingPageCount}`);
-  console.log(`Downloads: ${totalDownloads(totals)} | Generations: ${totalGenerations(totals)} | Free-tool depth intent: ${freeToolDepthIntent(totals)} | Commercial intent: ${commercialIntent(totals)} | Sponsor leads: ${sponsorLeads} | Search visible: ${yesNo(report.gates.searchVisible)} | External discovery: ${yesNo(report.gates.externalDiscoveryReady)} | AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}`);
+  console.log(`Downloads: ${totalDownloads(totals)} | Generations: ${totalGenerations(totals)} | Free-tool depth intent: ${freeToolDepthIntent(totals)} | Commercial intent: ${commercialIntent(totals)} | Sponsor leads: ${sponsorLeads} | Sponsor invoice requests: ${sponsorInvoiceRequests} | Search visible: ${yesNo(report.gates.searchVisible)} | External discovery: ${yesNo(report.gates.externalDiscoveryReady)} | AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}`);
 }
 
 function totalDownloads(totals) {
@@ -651,7 +657,8 @@ function commercialIntent(totals) {
     + (totals.service_request_intent || 0)
     + (totals.audit_request_intent || 0)
     + (totals.sponsor_request_intent || 0)
-    + (totals.sponsor_lead_submit || 0);
+    + (totals.sponsor_lead_submit || 0)
+    + (totals.sponsor_invoice_request || 0);
 }
 
 function toolScore(row) {
