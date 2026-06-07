@@ -6,6 +6,7 @@ const { SPONSOR_DEALS, SPONSOR_VERTICALS, siteUrl, sponsorPublicReplyUrl } = req
 const root = path.resolve(__dirname, "..");
 const reportsDir = path.join(root, "reports");
 const generatedAt = new Date().toISOString();
+const PUBLIC_REPLY_FORM_URL = "https://github.com/yanqr213/printable-tools-lab/issues/new?template=sponsor-partner-inquiry.yml";
 
 const prospects = [
   {
@@ -167,6 +168,7 @@ function prospectRow(prospect, verticals, index) {
   const verticalTrackedUrl = `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}&utm_content=${encodeURIComponent(prospect.id)}`;
   const dealRoomUrl = `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}&commitment=${encodeURIComponent(commitment)}#sponsor-inquiry`;
   const proposalUrl = `${siteUrl("sponsor-proposal").replace(/\/$/, "")}?prospect=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}&utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_proposal&utm_content=${encodeURIComponent(prospect.id)}&commitment=${encodeURIComponent(commitment)}#sponsor-inquiry`;
+  const contactFormProposalUrl = `${siteUrl("sponsor-proposal").replace(/\/$/, "")}?prospect=${encodeURIComponent(prospect.id)}#sponsor-inquiry`;
   const publicReplyUrl = sponsorPublicReplyUrl({
     prospectName: prospect.name,
     website: prospect.website,
@@ -176,6 +178,13 @@ function prospectRow(prospect, verticals, index) {
     proposalUrl,
   });
   const subject = `${suggestedDeal.title} for ${vertical.title}`;
+  const contactFormMessage = [
+    `Hi ${prospect.name} team - I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, resume, classroom, and small-business document workflows.`,
+    `Your product looks relevant to this audience.`,
+    `Sponsor proposal: ${contactFormProposalUrl}`,
+    `Public-safe reply form: ${PUBLIC_REPLY_FORM_URL}`,
+    "Please keep private payment, tax, bank, phone, customer, identity, password, or file data out of the public reply.",
+  ].join(" ");
   const body = [
     `Hi ${prospect.name} team,`,
     "",
@@ -216,11 +225,13 @@ function prospectRow(prospect, verticals, index) {
     suggestedDealDeliverable: suggestedDeal.deliverable,
     requestedCommitment: commitment,
     proposalUrl,
+    contactFormProposalUrl,
     dealRoomUrl,
     publicReplyUrl,
     verticalTrackedUrl,
     trackedUrl: proposalUrl,
     subject,
+    contactFormMessage,
     body,
     status: "ready_to_send",
     successSignal: "qualified sponsor inquiry, signed agreement, or settled external payment",
@@ -232,7 +243,7 @@ function sponsorDealCommitment(deal) {
 }
 
 function toCsv(rows) {
-  const headers = ["priority", "id", "name", "vertical", "category", "website", "contactUrl", "evidenceUrl", "offer", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "requestedCommitment", "proposalUrl", "dealRoomUrl", "publicReplyUrl", "verticalTrackedUrl", "trackedUrl", "subject", "status", "successSignal"];
+  const headers = ["priority", "id", "name", "vertical", "category", "website", "contactUrl", "evidenceUrl", "offer", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "requestedCommitment", "proposalUrl", "contactFormProposalUrl", "dealRoomUrl", "publicReplyUrl", "verticalTrackedUrl", "trackedUrl", "subject", "contactFormMessage", "status", "successSignal"];
   return [
     headers,
     ...rows.map((row) => headers.map((header) => row[header] || "")),
@@ -255,10 +266,19 @@ function toMarkdown(rows) {
       `- Evidence: ${row.evidenceUrl}`,
       `- Recommended deal: ${row.suggestedDealTitle} (${row.suggestedDealPrice})`,
       `- Proposal URL: ${row.proposalUrl}`,
+      `- Short contact-form proposal URL: ${row.contactFormProposalUrl}`,
       `- Deal room URL: ${row.dealRoomUrl}`,
       `- Public-safe reply URL: ${row.publicReplyUrl}`,
       `- Vertical fit URL: ${row.verticalTrackedUrl}`,
       `- Subject: ${row.subject}`,
+      "",
+      "Short contact form message:",
+      "",
+      "```text",
+      row.contactFormMessage,
+      "```",
+      "",
+      "Long outreach note:",
       "",
       "```text",
       row.body,
