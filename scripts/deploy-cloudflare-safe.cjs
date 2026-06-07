@@ -44,6 +44,7 @@ const allowedPublicFilePatterns = [
   /^sponsor-outreach-pack\.json$/,
   /^sponsor-call\.json$/,
   /^sponsor-opportunities\.json$/,
+  /^sponsor-deal-room\.json$/,
   /^organic-push-kit\.json$/,
   /^upload-error-cheatsheet\.json$/,
   /^platform-submit-queue\.json$/,

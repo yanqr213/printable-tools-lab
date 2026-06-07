@@ -234,6 +234,12 @@ else {
   if (!String(data.moneyGate || "").includes("settled external payment")) failures.push("Sponsor deal room JSON missing money gate.");
 }
 
+const cloudflareDeployScriptFile = path.join(root, "scripts", "deploy-cloudflare-safe.cjs");
+if (fs.existsSync(cloudflareDeployScriptFile)) {
+  const deployScript = fs.readFileSync(cloudflareDeployScriptFile, "utf8");
+  if (!deployScript.includes("sponsor-deal-room\\.json")) failures.push("Cloudflare safe deploy allowlist missing sponsor-deal-room.json.");
+}
+
 const sponsorCallJsonFile = path.join(root, "sponsor-call.json");
 if (!fs.existsSync(sponsorCallJsonFile)) failures.push("Missing sponsor-call.json.");
 else {
