@@ -32,6 +32,7 @@ const allowedPublicFilePatterns = [
   /^index\.html$/,
   /^ads\.txt$/,
   /^app\.js$/,
+  /^site-config\.js$/,
   /^styles\.css$/,
   /^robots\.txt$/,
   /^sitemap\.xml$/,
@@ -143,7 +144,7 @@ function resolveArgs(command, args) {
 
 function publicDeployFiles(files) {
   const deployFiles = uniqueFiles(files).filter((file) => allowedPublicFilePatterns.some((pattern) => pattern.test(file)));
-  const missingRequired = ["index.html", "app.js", "styles.css", "_redirects", "_headers", "sitemap.xml", "robots.txt", "functions/api/event.js", "functions/api/metrics.js", "functions/api/sponsor-lead.js"]
+  const missingRequired = ["index.html", "app.js", "site-config.js", "styles.css", "_redirects", "_headers", "sitemap.xml", "robots.txt", "functions/api/event.js", "functions/api/metrics.js", "functions/api/sponsor-lead.js"]
     .filter((file) => !deployFiles.includes(file));
   if (missingRequired.length) {
     throw new Error(`Public deploy file list is missing required file(s): ${missingRequired.join(", ")}`);
