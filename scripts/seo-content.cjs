@@ -5583,7 +5583,7 @@ const pages = [
     description: "Noindex operations monitor for project-level traffic, sponsor close actions, source, path, tool, game, and monetization signals.",
     index: false,
     chrome: "internal",
-    html: `<section class="shell section"><h1>Project operations monitor</h1><p>This page loads aggregate project metrics and the sponsor close cockpit after the app loads.</p></section>`,
+    html: `<section class="shell section"><h1>Project operations monitor</h1><p>This page loads aggregate project metrics and the sponsor close cockpit after the app loads.</p><p><a class="button" href="/sponsor-starter-review/?utm_source=ops&utm_medium=internal&utm_campaign=sponsor_close&utm_content=static-ops&commitment=request-invoice#sponsor-inquiry">Open invoice review form</a></p></section>`,
   },
   {
     path: "about",
@@ -6175,12 +6175,13 @@ ${sponsorLeadFormHtml()}
 }
 
 function sponsorCallHtml() {
+  const starterReviewUrl = `${siteUrl("sponsor-starter-review").replace(/\/$/, "")}?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=primary-cta&commitment=request-invoice#sponsor-inquiry`;
   return `
       <section class="shell page-title section sponsor-hero">
         <a href="/sponsor/">Sponsor page</a>
         <h1>Sponsor call: privacy-friendly file and printable workflows</h1>
         <p>PrintableTools Lab is accepting a small number of manually reviewed sponsor and partner inquiries for free no-signup PDF, image, QR, resume, classroom, and small-business workflows. This public call is designed so partners can respond through the sponsor form instead of private outreach email.</p>
-        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor-deal-room/?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=primary-cta">Open deal room</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor/?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=primary-cta#sponsor-inquiry">Send sponsor inquiry</a> <a class="button ghost" href="/sponsor-call.json">Open sponsor call JSON</a> <a class="button ghost" href="/sponsor-media-kit.json">Open media kit</a></p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(starterReviewUrl)}">Request USD 49 invoice review</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor-deal-room/?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=secondary-cta">Open deal room</a> <a class="button ghost" href="/sponsor-call.json">Open sponsor call JSON</a> <a class="button ghost" href="/sponsor-media-kit.json">Open media kit</a></p>
       </section>
       <section class="shell section">
         <h2>Current sponsor openings</h2>
@@ -6216,12 +6217,13 @@ function sponsorCallHtml() {
 
 function sponsorOpportunitiesHtml() {
   const board = sponsorOpportunityPayload();
+  const starterReviewUrl = `${siteUrl("sponsor-starter-review").replace(/\/$/, "")}?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=board-hero&commitment=request-invoice#sponsor-inquiry`;
   return `
       <section class="shell page-title section sponsor-hero">
         <a href="/sponsor-call/">Sponsor call</a>
         <h1>Sponsor opportunities for free PDF, image, and QR workflows</h1>
         <p>This board lists the current policy-fit sponsor categories for PrintableTools Lab. It is built for partners, resource pages, newsletters, and crawlers that need a concise view of the available audiences without private outreach or payment details.</p>
-        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(board.inquiryUrl)}">Send sponsor inquiry</a> <a class="button secondary" href="/sponsor-opportunities.json">Open opportunities JSON</a> <a class="button ghost" href="/sponsor-media-kit.json">Open media kit</a></p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(starterReviewUrl)}">Request USD 49 invoice review</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(board.inquiryUrl)}">Send sponsor inquiry</a> <a class="button ghost" href="/sponsor-opportunities.json">Open opportunities JSON</a> <a class="button ghost" href="/sponsor-media-kit.json">Open media kit</a></p>
       </section>
       <section class="shell section">
         <h2>Open sponsor audiences</h2>

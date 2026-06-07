@@ -161,6 +161,7 @@ else {
   if (!html.includes("Current sponsor openings")) failures.push("Sponsor call page missing current openings.");
   if (!html.includes("Audience-specific sponsor pages")) failures.push("Sponsor call page missing vertical sponsor links.");
   if (!html.includes("/sponsor-starter-review/")) failures.push("Sponsor call page missing starter sponsor review path.");
+  if (!html.includes("Request USD 49 invoice review") || !html.includes("utm_source=sponsor-call") || !html.includes("commitment=request-invoice")) failures.push("Sponsor call page should lead with the USD 49 invoice review path.");
   if (!html.includes("/sponsor-deal-room/")) failures.push("Sponsor call page missing deal room link.");
   if (!html.includes('data-track-event="sponsor_request_intent"')) failures.push("Sponsor call page missing sponsor intent tracking.");
   if (!html.includes("sponsor-call.json")) failures.push("Sponsor call page should reference machine-readable JSON.");
@@ -235,6 +236,7 @@ for (const routePath of ["dashboard", "ops"]) {
   if (html.includes("site-header") || html.includes("top-nav") || html.includes("site-footer")) failures.push(`${routePath} should not render public site navigation chrome.`);
   if (!html.includes('content="noindex,follow"')) failures.push(`${routePath} should be noindex.`);
   if (sitemap.includes(`<loc>${siteUrl(routePath)}</loc>`)) failures.push(`Sitemap should not include noindex internal route: ${routePath}.`);
+  if (routePath === "ops" && (!html.includes("/sponsor-starter-review/?utm_source=ops") || !html.includes("Open invoice review form"))) failures.push("Ops monitor should route sponsor close work to the invoice review form.");
 }
 
 const sponsorOpportunitiesFile = path.join(root, "sponsor-opportunities", "index.html");
@@ -246,6 +248,7 @@ else {
   if (!html.includes("Good-fit sponsor categories")) failures.push("Sponsor opportunities page missing categories.");
   if (!html.includes("sponsor-opportunities.json")) failures.push("Sponsor opportunities page missing JSON link.");
   if (!html.includes("utm_source=sponsor-opportunities")) failures.push("Sponsor opportunities page missing tracked source.");
+  if (!html.includes("Request USD 49 invoice review") || !html.includes("sponsor_starter_review") || !html.includes("commitment=request-invoice")) failures.push("Sponsor opportunities page should lead with the USD 49 invoice review path.");
   if (!html.includes("Views and clicks alone are not revenue")) failures.push("Sponsor opportunities page missing revenue gate.");
   if (!sitemap.includes(`<loc>${siteUrl("sponsor-opportunities")}</loc>`)) failures.push("Sitemap missing sponsor opportunities page.");
 }
