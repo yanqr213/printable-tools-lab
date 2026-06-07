@@ -73,8 +73,8 @@ function main() {
       },
       {
         target: "One sponsor-fit partner reply",
-        angle: "Direct sponsor deal room with USD 49 and USD 99-149 pilot options",
-        url: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=share-kit-push#sponsor-inquiry`,
+        angle: "USD 49 starter sponsor review before any visible placement",
+        url: trackedSponsorUrl("sponsor-starter-review", "share-kit-push-next"),
         rule: "Use only where sponsor or partner submissions are explicitly welcome; do not send private payment, tax, bank, phone, or identity details.",
       },
     ],
@@ -114,10 +114,11 @@ function freeToolPath() {
 
 function sponsorDiscovery() {
   return {
-    sponsorDealRoomUrl: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=share-kit-push#sponsor-inquiry`,
+    sponsorStarterReviewUrl: trackedSponsorUrl("sponsor-starter-review", "share-kit-push-starter"),
+    sponsorDealRoomUrl: trackedSponsorUrl("sponsor-deal-room", "share-kit-push-deal-room"),
     sponsorDealRoomJsonUrl: siteUrl("sponsor-deal-room.json").replace(/\/$/, ""),
-    sponsorCallUrl: `${siteUrl("sponsor-call").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=share-kit-push`,
-    sponsorFormUrl: `${siteUrl("sponsor").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=share-kit-push#sponsor-inquiry`,
+    sponsorCallUrl: trackedSponsorUrl("sponsor-call", "share-kit-push"),
+    sponsorFormUrl: trackedSponsorUrl("sponsor", "share-kit-push-form"),
     sponsorCallJsonUrl: siteUrl("sponsor-call.json").replace(/\/$/, ""),
     mediaKitUrl: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
     outreachPackUrl: siteUrl("sponsor-outreach-pack.json").replace(/\/$/, ""),
@@ -125,6 +126,12 @@ function sponsorDiscovery() {
     links: SPONSOR_DISCOVERY_LINKS,
     successGate: "A real qualified sponsor lead, signed agreement, or settled external payment. Clicks alone are not revenue.",
   };
+}
+
+function trackedSponsorUrl(pathName, content) {
+  const campaign = pathName === "sponsor-starter-review" ? "sponsor_starter_review" : pathName === "sponsor-deal-room" ? "sponsor_deal_room" : "sponsor_call";
+  const hash = ["sponsor", "sponsor-starter-review", "sponsor-deal-room"].includes(pathName) ? "#sponsor-inquiry" : "";
+  return `${siteUrl(pathName).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=${campaign}&utm_content=${encodeURIComponent(content)}${hash}`;
 }
 
 function trackedSharePostUrl(post) {

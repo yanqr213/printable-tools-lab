@@ -49,6 +49,7 @@ async function main() {
     file: filename,
     videoAssetCount: videos.length,
     freeToolPath: freeToolPath(),
+    sponsorDiscovery: sponsorDiscovery(),
   };
   fs.mkdirSync(path.dirname(reportPath), { recursive: true });
   fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
@@ -70,8 +71,10 @@ function writePermissionBlockedReport(existing, videos) {
     updateBlockedByPermission: true,
     blocker: "The available GitHub token cannot update gists. Add gist scope or use a token owned by the Gist author, then rerun npm.cmd run gist-discovery.",
     intendedSponsorDealRoom: trackedSponsorUrl("sponsor-deal-room", "gist-direct"),
+    intendedSponsorStarterReview: trackedSponsorUrl("sponsor-starter-review", "gist-direct-starter"),
     intendedSponsorDealRoomJson: siteUrl("sponsor-deal-room.json").replace(/\/$/, ""),
     freeToolPath: freeToolPath(),
+    sponsorDiscovery: sponsorDiscovery(),
   };
   fs.mkdirSync(path.dirname(reportPath), { recursive: true });
   fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
@@ -132,6 +135,7 @@ function renderGistBody(videos) {
     `- Tool finder: ${siteUrl("pdf-tool-finder")}`,
     `- Upload limit fixer: ${trackedToolUrl("upload-limit-fixer", "gist")}`,
     `- Upload error cheatsheet: ${trackedToolUrl("upload-error-cheatsheet", "gist")}`,
+    `- USD 49 starter sponsor review: ${trackedSponsorUrl("sponsor-starter-review", "starter-review")}`,
     `- Sponsor deal room: ${trackedSponsorUrl("sponsor-deal-room", "deal-room")}`,
     `- Public sponsor call: ${trackedSponsorUrl("sponsor-call", "public-call")}`,
     `- Sponsor deal room JSON: ${siteUrl("sponsor-deal-room.json").replace(/\/$/, "")}`,
@@ -172,10 +176,12 @@ function renderGistBody(videos) {
     "",
     "PrintableTools Lab is accepting a small number of manually reviewed sponsor and partner inquiries for relevant PDF, image, QR, resume, classroom, and small-business workflow products.",
     "",
-    "### Direct sponsor deal room",
+    "### Direct sponsor starter review",
     "",
-    `- Start here: ${trackedSponsorUrl("sponsor-deal-room", "gist-direct")}`,
+    `- Start here: ${trackedSponsorUrl("sponsor-starter-review", "gist-direct-starter")}`,
+    `- Deal-room fallback: ${trackedSponsorUrl("sponsor-deal-room", "gist-direct-deal-room")}`,
     `- Machine-readable deals: ${siteUrl("sponsor-deal-room.json").replace(/\/$/, "")}`,
+    "- Shortest paid pilot: USD 49 starter sponsor review before any visible placement or external invoice.",
     "",
     ...SPONSOR_DEALS.map((deal) => `- ${deal.title} (${deal.price}) - ${deal.deliverable}`),
     "",
@@ -237,12 +243,24 @@ function freeToolPath() {
   };
 }
 
+function sponsorDiscovery() {
+  return {
+    sponsorStarterReviewUrl: trackedSponsorUrl("sponsor-starter-review", "gist-report-starter"),
+    sponsorDealRoomUrl: trackedSponsorUrl("sponsor-deal-room", "gist-report-deal-room"),
+    sponsorDealRoomJsonUrl: siteUrl("sponsor-deal-room.json").replace(/\/$/, ""),
+    mediaKitUrl: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
+    successGate: "A real qualified sponsor inquiry, signed agreement, or settled external payment. Clicks alone are not revenue.",
+  };
+}
+
 function trackedToolUrl(pathName, source) {
   return `${siteUrl(pathName).replace(/\/$/, "")}?utm_source=${encodeURIComponent(source)}&utm_medium=organic&utm_campaign=free_tool_depth`;
 }
 
 function trackedSponsorUrl(pathName, content) {
-  return `${siteUrl(pathName).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=${encodeURIComponent(content)}`;
+  const campaign = pathName === "sponsor-starter-review" ? "sponsor_starter_review" : pathName === "sponsor-deal-room" ? "sponsor_deal_room" : "sponsor_call";
+  const hash = ["sponsor", "sponsor-starter-review", "sponsor-deal-room"].includes(pathName) ? "#sponsor-inquiry" : "";
+  return `${siteUrl(pathName).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=${campaign}&utm_content=${encodeURIComponent(content)}${hash}`;
 }
 
 function readCampaignVideos() {

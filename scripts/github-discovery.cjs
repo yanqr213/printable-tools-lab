@@ -133,6 +133,8 @@ function releaseBody() {
     `- [PDF, image, and QR tool finder](${siteUrl("pdf-tool-finder")})`,
     `- [Zero-budget share kit](${siteUrl("share-kit")})`,
     `- [Machine-readable share-kit.json](${siteUrl("share-kit.json").replace(/\/$/, "")})`,
+    `- [USD 49 starter sponsor review](${trackedSponsorUrl("sponsor-starter-review", "release-start")})`,
+    `- [Sponsor deal room](${trackedSponsorUrl("sponsor-deal-room", "release-deal-room")})`,
     `- [Public sponsor call](${siteUrl("sponsor-call")})`,
     `- [Sponsor media kit JSON](${siteUrl("sponsor-media-kit.json").replace(/\/$/, "")})`,
     ...externalDiscoveryLinks(),
@@ -198,6 +200,12 @@ function externalDiscoveryLinks() {
   if (gist?.htmlUrl) links.push(`- [Public Gist share kit](${gist.htmlUrl})`);
   if (issue?.issueUrl) links.push(`- [Public GitHub growth issue](${issue.issueUrl})`);
   return links;
+}
+
+function trackedSponsorUrl(pathName, content) {
+  const campaign = pathName === "sponsor-starter-review" ? "sponsor_starter_review" : pathName === "sponsor-deal-room" ? "sponsor_deal_room" : "sponsor_call";
+  const hash = ["sponsor", "sponsor-starter-review", "sponsor-deal-room"].includes(pathName) ? "#sponsor-inquiry" : "";
+  return `${siteUrl(pathName).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=${campaign}&utm_content=${encodeURIComponent(content)}${hash}`;
 }
 
 function readReport(fileName) {

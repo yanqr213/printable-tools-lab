@@ -16,11 +16,14 @@ async function main() {
     failures.push("Missing reports/gist-discovery.json.");
   } else {
     const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
+    const sponsorDiscovery = report.sponsorDiscovery || {};
+    const publishSkipped = githubPublishSkipped("gistDiscovery");
     if (!report.htmlUrl || !report.htmlUrl.includes("gist.github.com/")) failures.push("Gist report missing htmlUrl.");
     if (!report.rawUrl || !report.rawUrl.includes("gist.githubusercontent.com/")) failures.push("Gist report missing rawUrl.");
     if (report.public !== true) failures.push("Gist must be public.");
     if (report.videoAssetCount < 6) failures.push("Gist report should include 6 video assets.");
     if (report.updateBlockedByPermission === true) {
+      if (!publishSkipped && !String(report.intendedSponsorStarterReview || sponsorDiscovery.sponsorStarterReviewUrl || "").includes("sponsor-starter-review")) failures.push("Gist permission-blocked report missing intended starter sponsor review.");
       if (!String(report.intendedSponsorDealRoom || "").includes("sponsor-deal-room")) failures.push("Gist permission-blocked report missing intended sponsor deal room.");
       if (!String(report.blocker || "").includes("gist")) failures.push("Gist permission-blocked report missing gist permission blocker.");
       return finish();
@@ -28,7 +31,9 @@ async function main() {
     const freeHelpPath = report.freeHelpPath || report.freeToolPath || {};
     const freeHelpPublished = Boolean(freeHelpPath.auditUrl || freeHelpPath.freeToolDirectoryUrl);
     const freeHelpNeedles = ["Free file tools directory", "future ads must never block"];
-    const sponsorNeedles = ["Sponsor And Partner Discovery", "Sponsor deal room", "sponsor-deal-room", "sponsor-deal-room.json", "USD 49", "USD 99-149", "utm_source=sponsor-outreach", "qualified sponsor inquiry"];
+    const sponsorNeedles = publishSkipped
+      ? ["Sponsor And Partner Discovery", "Sponsor deal room", "sponsor-deal-room", "sponsor-deal-room.json", "USD 49", "USD 99-149", "utm_source=sponsor-outreach", "qualified sponsor inquiry"]
+      : ["Sponsor And Partner Discovery", "Direct sponsor starter review", "USD 49 starter sponsor review", "sponsor-starter-review", "sponsor_starter_review", "Sponsor deal room", "sponsor-deal-room", "sponsor-deal-room.json", "USD 49", "USD 99-149", "utm_source=sponsor-outreach", "qualified sponsor inquiry"];
     if (!freeHelpPublished && !githubPublishSkipped("gistDiscovery")) failures.push("Gist report missing free-help path. Run npm.cmd run gist-discovery.");
     if (freeHelpPublished && !String(freeHelpPath.freeToolDirectoryUrl || "").includes("free_tool_depth")) failures.push("Gist report missing free-tool depth URL.");
     await verifyUrl(report.htmlUrl, ...["PrintableTools Lab zero-cost share kit", "ptl-pdf-under-1mb.mp4", "portal-submission-pack", ...sponsorNeedles, ...(freeHelpPublished ? freeHelpNeedles : [])]);

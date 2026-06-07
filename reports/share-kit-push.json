@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-07T08:38:32.352Z",
+  "generatedAt": "2026-06-07T22:15:29.679Z",
   "shareKitUrl": "https://printable-tools-lab.pages.dev/share-kit/",
   "shareKitJsonUrl": "https://printable-tools-lab.pages.dev/share-kit.json",
   "featuredLinks": [
@@ -188,10 +188,11 @@
     "adSafetyRule": "Downloads stay free; future ads must never block tool use or file downloads."
   },
   "sponsorDiscovery": {
-    "sponsorDealRoomUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=share-kit-push#sponsor-inquiry",
+    "sponsorStarterReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=share-kit-push-starter#sponsor-inquiry",
+    "sponsorDealRoomUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=share-kit-push-deal-room#sponsor-inquiry",
     "sponsorDealRoomJsonUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room.json",
     "sponsorCallUrl": "https://printable-tools-lab.pages.dev/sponsor-call?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=share-kit-push",
-    "sponsorFormUrl": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=share-kit-push#sponsor-inquiry",
+    "sponsorFormUrl": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=share-kit-push-form#sponsor-inquiry",
     "sponsorCallJsonUrl": "https://printable-tools-lab.pages.dev/sponsor-call.json",
     "mediaKitUrl": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
     "outreachPackUrl": "https://printable-tools-lab.pages.dev/sponsor-outreach-pack.json",
@@ -203,10 +204,11 @@
         "budgetRange": "under-250",
         "placement": "media-kit-review",
         "timeline": "this-week",
+        "commitment": "request-invoice",
         "bestFor": "A sponsor wants to know whether their product is safe and relevant before buying a visible placement.",
         "deliverable": "Manual sponsor-fit review, audience match, recommended page family, and safe next-step copy.",
         "proofNeeded": "Company URL, product category, intended audience, and any placement rules.",
-        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=starter-fit-review#sponsor-inquiry"
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_starter_review&utm_content=starter-fit-review&commitment=request-invoice#sponsor-inquiry"
       },
       {
         "id": "guide-sponsor-pilot",
@@ -215,10 +217,11 @@
         "budgetRange": "250-500",
         "placement": "content-sponsorship",
         "timeline": "this-month",
+        "commitment": "request-invoice",
         "bestFor": "A PDF, image, QR, career, classroom, or small-business product wants one clearly labeled pilot mention.",
         "deliverable": "One manually approved, clearly labeled sponsor mention on a relevant guide or resource page.",
         "proofNeeded": "Campaign fit, sponsor copy draft, safe landing URL, and category exclusions.",
-        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=guide-sponsor-pilot#sponsor-inquiry"
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=guide-sponsor-pilot&commitment=request-invoice#sponsor-inquiry"
       },
       {
         "id": "vertical-category-pilot",
@@ -227,10 +230,11 @@
         "budgetRange": "250-500",
         "placement": "directory-visibility",
         "timeline": "this-month",
+        "commitment": "request-invoice",
         "bestFor": "A partner cares about one audience such as QR/local marketing, resume/career, classroom, or small-business paperwork.",
         "deliverable": "Tracked vertical sponsor page, fit review, and one approved contextual placement candidate.",
         "proofNeeded": "Target vertical, audience fit, sponsor category, and safe public landing URL.",
-        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=vertical-category-pilot#sponsor-inquiry"
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=vertical-category-pilot&commitment=request-invoice#sponsor-inquiry"
       },
       {
         "id": "partner-distribution-test",
@@ -239,13 +243,21 @@
         "budgetRange": "exploratory",
         "placement": "partner-distribution",
         "timeline": "exploratory",
+        "commitment": "question-only",
         "bestFor": "A newsletter, directory, resource page, or community wants to test relevant traffic before a paid placement.",
         "deliverable": "Tracked partner link, source attribution, and review against page views, depth, downloads, or lead signal.",
         "proofNeeded": "Partner page, expected audience, planned link context, and review window.",
-        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=partner-distribution-test#sponsor-inquiry"
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=partner-distribution-test&commitment=question-only#sponsor-inquiry"
       }
     ],
     "links": [
+      {
+        "title": "USD 49 starter sponsor review",
+        "path": "sponsor-starter-review",
+        "url": "https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=discovery",
+        "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/",
+        "reason": "Shortest paid pilot entry point for sponsors who want a manual fit review before any visible placement or invoice."
+      },
       {
         "title": "Sponsor deal room",
         "path": "sponsor-deal-room",
@@ -266,6 +278,13 @@
         "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=inquiry-form#sponsor-inquiry",
         "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor/",
         "reason": "Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries."
+      },
+      {
+        "title": "Public sponsor reply form",
+        "path": "github-sponsor-issue",
+        "url": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=sponsor-partner-inquiry.yml&title=%5BSponsor%2FPartner%5D%3A+Sponsor+pilot+review&body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+%0APublic+website+URL%3A+%0AAudience+fit%3A+%0ASelected+pilot+deal%3A+%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-deal-room%2F%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.",
+        "canonicalUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=sponsor-partner-inquiry.yml",
+        "reason": "Public-safe GitHub issue fallback for partners who cannot use email; no private payment, tax, bank, phone, customer, identity, password, or file data."
       },
       {
         "title": "Sponsor call JSON",
@@ -295,27 +314,24 @@
   },
   "actions": {
     "gistDiscovery": {
-      "ok": true,
-      "status": 0,
-      "stdout": "Skipped public Gist update because the available GitHub token cannot edit gists: https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb\nReport written to reports\\gist-discovery.json",
-      "stderr": ""
+      "ok": false,
+      "skipped": true,
+      "reason": "GitHub token is not available from env or gh auth."
     },
     "githubIssueDiscovery": {
-      "ok": true,
-      "status": 0,
-      "stdout": "Updated GitHub issue: https://github.com/yanqr213/printable-tools-lab/issues/1\nReport written to reports\\github-issue-discovery.json",
-      "stderr": ""
+      "ok": false,
+      "skipped": true,
+      "reason": "GitHub token is not available from env or gh auth."
     },
     "githubDiscovery": {
-      "ok": true,
-      "status": 0,
-      "stdout": "Updated GitHub discovery release: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
-      "stderr": ""
+      "ok": false,
+      "skipped": true,
+      "reason": "GitHub token is not available from env or gh auth."
     },
     "indexNow": {
       "ok": true,
       "status": 0,
-      "stdout": "IndexNow accepted 262 URL(s) for github-pages.",
+      "stdout": "IndexNow accepted 263 URL(s) for github-pages.",
       "stderr": "IndexNow did not accept pages.dev: 403 {\"errorCode\":\"UserForbiddedToAccessSite\",\"message\":\"User is unauthorized to access the site. Please verify the site using the key and try again\",\"details\":null}",
       "accepted": true,
       "partialWarning": true,
@@ -343,8 +359,8 @@
     },
     {
       "target": "One sponsor-fit partner reply",
-      "angle": "Direct sponsor deal room with USD 49 and USD 99-149 pilot options",
-      "url": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=share-kit-push#sponsor-inquiry",
+      "angle": "USD 49 starter sponsor review before any visible placement",
+      "url": "https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=share-kit-push-next#sponsor-inquiry",
       "rule": "Use only where sponsor or partner submissions are explicitly welcome; do not send private payment, tax, bank, phone, or identity details."
     }
   ]

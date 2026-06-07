@@ -41,6 +41,7 @@ async function main() {
     state: issue.state,
     title: issue.title,
     freeToolPath: freeToolPath(),
+    sponsorDiscovery: sponsorDiscovery(),
   };
   fs.mkdirSync(path.dirname(reportPath), { recursive: true });
   fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
@@ -73,7 +74,8 @@ function renderIssueBody() {
     "",
     `- Product: ${siteUrl("")}`,
     `- Share kit: ${siteUrl("share-kit")}`,
-    `- Sponsor deal room: ${siteUrl("sponsor-deal-room")}`,
+    `- USD 49 starter sponsor review: ${trackedSponsorUrl("sponsor-starter-review", "github-issue-status-starter")}`,
+    `- Sponsor deal room: ${trackedSponsorUrl("sponsor-deal-room", "github-issue-status-deal-room")}`,
     `- Public sponsor call: ${siteUrl("sponsor-call")}`,
     `- Sponsor deal room JSON: ${siteUrl("sponsor-deal-room.json").replace(/\/$/, "")}`,
     `- Sponsor media kit: ${siteUrl("sponsor-media-kit.json").replace(/\/$/, "")}`,
@@ -102,10 +104,12 @@ function renderIssueBody() {
     "",
     "The sponsor path is a public, no-payment intake surface for policy-fit partners. It is validation until a qualified inquiry, signed agreement, or settled external payment is verified.",
     "",
-    "### Direct sponsor deal room",
+    "### Direct sponsor starter review",
     "",
-    `- Start here: ${trackedSponsorUrl("sponsor-deal-room", "github-issue-direct")}`,
+    `- Start here: ${trackedSponsorUrl("sponsor-starter-review", "github-issue-direct-starter")}`,
+    `- Deal-room fallback: ${trackedSponsorUrl("sponsor-deal-room", "github-issue-direct-deal-room")}`,
     `- Machine-readable deals: ${siteUrl("sponsor-deal-room.json").replace(/\/$/, "")}`,
+    "- Shortest paid pilot: USD 49 starter sponsor review before any visible placement or external invoice.",
     "",
     ...SPONSOR_DEALS.map((deal) => `- ${deal.title} (${deal.price}) - ${deal.deliverable}`),
     "",
@@ -172,12 +176,24 @@ function freeToolPath() {
   };
 }
 
+function sponsorDiscovery() {
+  return {
+    sponsorStarterReviewUrl: trackedSponsorUrl("sponsor-starter-review", "github-issue-report-starter"),
+    sponsorDealRoomUrl: trackedSponsorUrl("sponsor-deal-room", "github-issue-report-deal-room"),
+    sponsorDealRoomJsonUrl: siteUrl("sponsor-deal-room.json").replace(/\/$/, ""),
+    mediaKitUrl: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
+    successGate: "A real qualified sponsor inquiry, signed agreement, or settled external payment. Clicks alone are not revenue.",
+  };
+}
+
 function trackedToolUrl(pathName, source) {
   return `${siteUrl(pathName).replace(/\/$/, "")}?utm_source=${encodeURIComponent(source)}&utm_medium=organic&utm_campaign=free_tool_depth`;
 }
 
 function trackedSponsorUrl(pathName, content) {
-  return `${siteUrl(pathName).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=${encodeURIComponent(content)}`;
+  const campaign = pathName === "sponsor-starter-review" ? "sponsor_starter_review" : pathName === "sponsor-deal-room" ? "sponsor_deal_room" : "sponsor_call";
+  const hash = ["sponsor", "sponsor-starter-review", "sponsor-deal-room"].includes(pathName) ? "#sponsor-inquiry" : "";
+  return `${siteUrl(pathName).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=${campaign}&utm_content=${encodeURIComponent(content)}${hash}`;
 }
 
 function readCampaignVideos() {

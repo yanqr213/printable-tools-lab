@@ -494,6 +494,7 @@ for (const scriptPath of externalGrowthScripts) {
   for (const pattern of retiredGrowthPatterns) {
     if (script.includes(pattern)) failures.push(`${scriptPath} should not publish retired payment experiment reference: ${pattern}`);
   }
+  if (!script.includes("sponsor-starter-review") || !script.includes("sponsor_starter_review")) failures.push(`${scriptPath} missing USD 49 starter sponsor review distribution.`);
   if (["scripts/gist-discovery.cjs", "scripts/github-issue-discovery.cjs", "scripts/share-kit-push.cjs"].includes(scriptPath) && !script.includes("sponsor-deal-room")) failures.push(`${scriptPath} missing sponsor deal room distribution.`);
 }
 

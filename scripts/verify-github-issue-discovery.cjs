@@ -16,13 +16,15 @@ async function main() {
     failures.push("Missing reports/github-issue-discovery.json.");
   } else {
     const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
+    const publishSkipped = githubPublishSkipped("githubIssueDiscovery");
     if (!report.issueUrl || !report.issueUrl.includes("/issues/")) failures.push("Issue report missing issueUrl.");
     if (report.state !== "open") failures.push("Issue must be open.");
+    if (!publishSkipped && !String(report.sponsorDiscovery?.sponsorStarterReviewUrl || "").includes("sponsor-starter-review")) failures.push("Issue report missing starter sponsor review URL.");
     const freeHelpPath = report.freeHelpPath || report.freeToolPath || {};
     const freeHelpPublished = Boolean(freeHelpPath.auditUrl || freeHelpPath.freeToolDirectoryUrl);
     if (!freeHelpPublished && !githubPublishSkipped("githubIssueDiscovery")) failures.push("Issue report missing free-help path. Run npm.cmd run github-issue-discovery.");
     if (freeHelpPublished && !String(freeHelpPath.freeToolDirectoryUrl || "").includes("free_tool_depth")) failures.push("Issue report missing free-tool depth URL.");
-    await verifyIssuePage(report.issueUrl, freeHelpPublished);
+    await verifyIssuePage(report.issueUrl, freeHelpPublished, publishSkipped);
   }
 
   if (failures.length) {
@@ -32,7 +34,7 @@ async function main() {
   console.log("GitHub issue discovery verification passed.");
 }
 
-async function verifyIssuePage(url, freeHelpPublished) {
+async function verifyIssuePage(url, freeHelpPublished, publishSkipped) {
   try {
     const response = await fetch(url, { cache: "no-store", redirect: "follow" });
     const text = await response.text();
@@ -41,7 +43,9 @@ async function verifyIssuePage(url, freeHelpPublished) {
       return;
     }
     const freeHelpNeedles = freeHelpPublished ? ["free_tool_depth", "future ads must never block"] : [];
-    const sponsorNeedles = ["Sponsor and partner discovery", "Sponsor deal room", "sponsor-deal-room", "sponsor-deal-room.json", "USD 49", "USD 99-149", "utm_source=sponsor-outreach", "qualified inquiry"];
+    const sponsorNeedles = publishSkipped
+      ? ["Sponsor and partner discovery", "Sponsor deal room", "sponsor-deal-room", "sponsor-deal-room.json", "USD 49", "USD 99-149", "utm_source=sponsor-outreach", "qualified inquiry"]
+      : ["Sponsor and partner discovery", "Direct sponsor starter review", "USD 49 starter sponsor review", "sponsor-starter-review", "sponsor_starter_review", "Sponsor deal room", "sponsor-deal-room", "sponsor-deal-room.json", "USD 49", "USD 99-149", "utm_source=sponsor-outreach", "qualified inquiry"];
     for (const needle of ["Growth log", "ptl-pdf-under-1mb.mp4", "utm_source=github-issue", "Public Gist mirror", "portal-submission-pack", "Expanded backup portals", ...sponsorNeedles, ...freeHelpNeedles]) {
       if (!text.includes(needle)) failures.push(`Issue page missing ${needle}.`);
     }
