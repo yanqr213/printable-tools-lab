@@ -5360,7 +5360,7 @@
             <h2>Free file and printable tools</h2>
             <p>Each tool creates a useful PDF, image, or QR file in your browser. The free version prioritizes clean exports, no account wall, and no ad interaction requirement so visitors have a real reason to return.</p>
           </div>
-          <a class="button ghost" href="/dashboard/">View local data</a>
+          <a class="button ghost" href="/share-kit/">Share kit</a>
         </div>
         <div class="grid-3">${toolOrder.map((id) => toolCard(tools[id])).join("")}</div>
       </section>
@@ -7343,7 +7343,7 @@ ${paragraphs.join("\n")}
         <a href="/free-pdf-tools/">Free tools</a>
         <h1>Sponsor PrintableTools Lab</h1>
         <p>PrintableTools Lab is a free no-signup browser utility site for PDF compression, image conversion, QR codes, business documents, career PDFs, upload-limit fixes, and printable planners. This page captures responsible sponsorship and partner inquiries without enabling ads or collecting payment on-site.</p>
-        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor-deal-room/?utm_source=sponsor-page&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=hero">Open deal room</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Send sponsor inquiry</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/dashboard/">View live metrics</a></p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor-deal-room/?utm_source=sponsor-page&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=hero">Open deal room</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Send sponsor inquiry</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor-media-kit.json">Open media kit</a></p>
       </section>
       ${renderSponsorLeadForm()}
       <section class="shell section">
@@ -7362,7 +7362,7 @@ ${paragraphs.join("\n")}
           <div class="metric-tile"><strong>${landingPages.length}</strong><span>landing pages</span></div>
           <div class="metric-tile"><strong>free</strong><span>no signup exports</span></div>
         </div>
-        <p class="help">Live usage counters are available on the dashboard. Search visibility and ad-network eligibility are still validation gates, so this is an early partner inquiry surface rather than a guaranteed media buy.</p>
+        <p class="help">Aggregate usage signals are reviewed internally before any sponsor fit review. Search visibility and ad-network eligibility are still validation gates, so this is an early partner inquiry surface rather than a guaranteed media buy.</p>
       </section>
       <section class="shell section">
         <h2>Early sponsor pilots</h2>
@@ -7381,7 +7381,7 @@ ${paragraphs.join("\n")}
       <section class="shell section">
         <h2>Media kit and outreach pack</h2>
         <p>The machine-readable media kit gives partners the current facts, placement rules, suggested sponsor categories, and copy-safe outreach templates.</p>
-        <p><a class="button" href="/sponsor-media-kit.json">Open sponsor media kit JSON</a> <a class="button secondary" href="/sponsor-outreach-pack.json">Open outreach pack JSON</a> <a class="button ghost" href="/dashboard/">Check live signals</a></p>
+        <p><a class="button" href="/sponsor-media-kit.json">Open sponsor media kit JSON</a> <a class="button secondary" href="/sponsor-outreach-pack.json">Open outreach pack JSON</a> <a class="button ghost" href="/sponsor-deal-room.json">Open deal JSON</a></p>
       </section>
       <section class="shell section">
         <h2>Placement rules</h2>
@@ -7409,7 +7409,7 @@ ${paragraphs.join("\n")}
         <a href="/sponsor/">Sponsor page</a>
         <h1>Sponsor deal room for PrintableTools Lab</h1>
         <p>A direct buyer-facing room for policy-fit sponsors who want a small, manually reviewed pilot around free PDF, image, QR, career, classroom, and small-business workflows. No payment is collected here; the next step is a qualified business inquiry and manual fit review.</p>
-        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Start sponsor inquiry</a> <a class="button secondary" href="/sponsor-deal-room.json">Open deal JSON</a> <a class="button ghost" href="/dashboard/">View public metrics</a></p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Start sponsor inquiry</a> <a class="button secondary" href="/sponsor-deal-room.json">Open deal JSON</a> <a class="button ghost" href="/sponsor-media-kit.json">Open media kit</a></p>
       </section>
       <section class="shell section">
         <h2>Available pilot deals</h2>

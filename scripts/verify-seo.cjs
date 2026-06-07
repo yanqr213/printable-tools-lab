@@ -61,6 +61,8 @@ for (const route of routes) {
   if (!html.includes(`<title>${route.title} - PrintableTools Lab</title>`)) failures.push(`Missing title: ${route.path || "/"}`);
   if (!html.includes(`content="${escapeAttr(route.description)}"`)) failures.push(`Missing description: ${route.path || "/"}`);
   if (!html.includes(`rel="canonical" href="${siteUrl(route.path)}"`)) failures.push(`Missing canonical: ${route.path || "/"}`);
+  if (html.includes('href="/ops/') || html.includes("href='/ops/")) failures.push(`Public route exposes ops monitor link: ${route.path || "/"}`);
+  if (html.includes('href="/dashboard/') || html.includes("href='/dashboard/")) failures.push(`Public route exposes dashboard link: ${route.path || "/"}`);
   if (!/<main id="app" tabindex="-1">\s*[\s\S]{120,}\s*<\/main>/.test(html)) failures.push(`Weak static body: ${route.path || "/"}`);
   if (route.path && route.path.startsWith("tools/")) {
     if (!html.includes('"@type":"SoftwareApplication"')) failures.push(`Missing tool SoftwareApplication schema: ${route.path}`);
@@ -210,6 +212,7 @@ else {
   if (!Array.isArray(data.placements) || data.placements.length < 3) failures.push("Sponsor media kit missing placement options.");
   if (!Array.isArray(data.outreachTargets) || data.outreachTargets.length < 4) failures.push("Sponsor media kit missing outreach target categories.");
   if (!Array.isArray(data.verticalSponsorPages) || data.verticalSponsorPages.length < 5) failures.push("Sponsor media kit missing vertical sponsor pages.");
+  if (Object.prototype.hasOwnProperty.call(data, "metricsDashboard")) failures.push("Sponsor media kit JSON should not expose the direct dashboard URL.");
   if (!String(data.moneyGate || "").includes("settled payment")) failures.push("Sponsor media kit missing revenue money gate.");
 }
 
@@ -230,6 +233,8 @@ else {
   const data = JSON.parse(fs.readFileSync(sponsorDealRoomJsonFile, "utf8"));
   if (data.canonical !== siteUrl("sponsor-deal-room")) failures.push("Sponsor deal room JSON missing canonical URL.");
   if (!Array.isArray(data.deals) || data.deals.length !== SPONSOR_DEALS.length) failures.push("Sponsor deal room JSON missing deals.");
+  if (Object.prototype.hasOwnProperty.call(data, "metrics")) failures.push("Sponsor deal room JSON should not expose the direct dashboard URL.");
+  if (Object.prototype.hasOwnProperty.call(data, "operations")) failures.push("Sponsor deal room JSON should not expose the operations monitor URL.");
   if (!String(data.inquiryUrl || "").includes("utm_source=sponsor-outreach")) failures.push("Sponsor deal room JSON missing tracked inquiry URL.");
   if (!String(data.moneyGate || "").includes("settled external payment")) failures.push("Sponsor deal room JSON missing money gate.");
 }
