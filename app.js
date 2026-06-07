@@ -6173,6 +6173,7 @@
         </div>
       </section>
       ${renderFreeToolDepthCta(tool)}
+      ${renderInvoiceSponsorCloseCta(tool, "tool_cta")}
       <section class="shell section">
         <div class="section-head">
           <div>
@@ -6421,6 +6422,26 @@
           <a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(uploadHref)}">Fix upload limits</a>
           <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${finderHref}">Browse more free tools</a>
           <p class="help">Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
+        </div>
+      </section>
+    `;
+  }
+
+  function renderInvoiceSponsorCloseCta(tool, source = "tool_cta") {
+    if (!tool || tool.id !== "invoice-generator") return "";
+    const content = encodeURIComponent(tool.id);
+    const sponsorHref = `/sponsor-starter-review/?utm_source=${encodeURIComponent(source)}&utm_medium=site&utm_campaign=sponsor_starter_review&utm_content=${content}&vertical=small-business-paperwork-sponsors&commitment=request-invoice#sponsor-inquiry`;
+    return `
+      <section class="shell section invoice-sponsor-close-cta" aria-label="Sponsor invoice workflow">
+        <div>
+          <p class="eyebrow">Small-business sponsor pilot</p>
+          <h2>Sponsor the free invoice workflow</h2>
+          <p>Invoicing, bookkeeping, POS, payment, and small-business workflow products can request a manual USD 49 fit review for a clearly labeled pilot around this free invoice page. Downloads stay free and no payment is collected on-site.</p>
+        </div>
+        <div class="free-tool-depth-actions">
+          <a class="button" data-track-event="sponsor_request_intent" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(sponsorHref)}">Request USD 49 invoice review</a>
+          <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="${escapeHtml(tool.id)}" href="/sponsor/small-business-paperwork-sponsors/?utm_source=${encodeURIComponent(source)}&utm_medium=site&utm_campaign=small_business_paperwork_sponsors&utm_content=${content}">Open paperwork sponsor fit</a>
+          <p class="help">Revenue counts only after a signed sponsor agreement or settled external payment is verified.</p>
         </div>
       </section>
     `;
@@ -7366,6 +7387,10 @@ ${paragraphs.join("\n")}
     const content = encodeURIComponent(tool.id);
     const uploadHref = `/upload-limit-fixer/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     const finderHref = `/free-pdf-tools/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
+    const sponsorHref = `/sponsor-starter-review/?utm_source=download_success&utm_medium=site&utm_campaign=sponsor_starter_review&utm_content=${content}&vertical=small-business-paperwork-sponsors&commitment=request-invoice#sponsor-inquiry`;
+    const invoiceSponsorAction = tool.id === "invoice-generator"
+      ? `<a class="button" data-track-event="sponsor_request_intent" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(sponsorHref)}">Request USD 49 invoice review</a>`
+      : "";
     return `
       <div class="download-after-action" aria-label="Next step after download">
         <div>
@@ -7374,6 +7399,7 @@ ${paragraphs.join("\n")}
           <p class="help">Try another free browser tool, or use the upload limit fixer if another site rejects a PDF, image, or photo size.</p>
         </div>
         <div class="download-after-actions">
+          ${invoiceSponsorAction}
           <a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(uploadHref)}">Fix upload limits</a>
           <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(finderHref)}">Browse more free tools</a>
         </div>

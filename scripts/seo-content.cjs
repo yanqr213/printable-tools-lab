@@ -5778,7 +5778,7 @@ function toolHtml(tool) {
         ${tool.body.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("\n")}
         <p><a class="button" href="/${tool.path}/">Open generator</a></p>
       </section>
-${freeToolDepthCtaHtml(tool)}
+${freeToolDepthCtaHtml(tool)}${invoiceSponsorCloseCtaHtml(tool)}
       <section class="shell section">
         <h2>How to use this free ${noun}</h2>
         <ol>
@@ -5804,6 +5804,30 @@ ${freeToolDepthCtaHtml(tool)}
         <p>${related.map((guide) => `<a class="tag" href="/${guide.path}/">${escapeHtml(guide.title)}</a>`).join(" ")}</p>
         ${jsonLdHtml(softwareSchema(tool))}
         ${jsonLdHtml(faqSchema(details.faq))}
+      </section>`;
+}
+
+function invoiceSponsorCloseCtaHtml(tool) {
+  if (tool.path !== "tools/invoice-generator") return "";
+  const sponsorHref = "/sponsor-starter-review/?utm_source=invoice_tool&utm_medium=site&utm_campaign=sponsor_starter_review&utm_content=invoice-generator&vertical=small-business-paperwork-sponsors&commitment=request-invoice#sponsor-inquiry";
+  const publicHref = sponsorPublicReplyUrl({
+    verticalTitle: "Small Business Paperwork Sponsorship",
+    dealTitle: "Starter fit review",
+    dealPrice: "USD 49",
+    proposalUrl: siteUrl("sponsor-starter-review").replace(/\/$/, "") + "?utm_source=invoice_tool&utm_medium=site&utm_campaign=sponsor_starter_review&utm_content=invoice-generator-public&vertical=small-business-paperwork-sponsors&commitment=request-invoice#sponsor-inquiry",
+  });
+  return `
+      <section class="shell section invoice-sponsor-close-cta" aria-label="Sponsor invoice workflow">
+        <div>
+          <p class="eyebrow">Small-business sponsor pilot</p>
+          <h2>Sponsor the free invoice workflow</h2>
+          <p>Invoicing, bookkeeping, POS, payment, and small-business workflow products can request a manual USD 49 fit review for a clearly labeled pilot around this free invoice page. Downloads stay free and no payment is collected on-site.</p>
+        </div>
+        <div class="free-tool-depth-actions">
+          <a class="button" data-track-event="sponsor_request_intent" data-track-tool="invoice-generator" href="${escapeHtml(sponsorHref)}">Request USD 49 invoice review</a>
+          <a class="button secondary" data-sponsor-public-invoice-request data-track-event="sponsor_request_intent" data-track-tool="invoice-generator" href="${escapeHtml(publicHref)}" target="_blank" rel="noreferrer">Open public invoice request</a>
+          <p class="help">Revenue counts only after a signed sponsor agreement or settled external payment is verified.</p>
+        </div>
       </section>`;
 }
 

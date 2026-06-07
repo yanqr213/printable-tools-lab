@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-07T23:47:22.742Z",
+  "generatedAt": "2026-06-07T23:55:22.430Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 92,
     "indexableRoutes": 281,
     "sitemapLocCount": 281,
-    "generatedToolInventoryAt": "2026-06-07T23:46:44.424Z",
+    "generatedToolInventoryAt": "2026-06-07T23:54:42.948Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -66,7 +66,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 36944,
+        "bytes": 37522,
         "json": null
       },
       "/sitemap.xml": {
@@ -116,7 +116,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-07T23:40:30.617Z",
+          "generatedAt": "2026-06-07T23:47:30.864Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -998,11 +998,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 62406,
+        "bytes": 62729,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-07T23:40:30.617Z",
+          "generatedAt": "2026-06-07T23:47:30.864Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1288,11 +1288,11 @@
                 "reason": "Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries."
               },
               {
-                "title": "Public sponsor reply form",
+                "title": "Public USD 49 invoice request",
                 "path": "github-sponsor-issue",
-                "url": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Sponsor+pilot+review&body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+%0APublic+website+URL%3A+%0AAudience+fit%3A+%0ASelected+pilot+deal%3A+%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-deal-room%2F%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&labels=sponsor%2Cpartner%2Cbusiness-review",
+                "url": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Sponsor+pilot+review&body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+%0APublic+website+URL%3A+%0AAudience+fit%3A+PDF%2C+Image%2C+and+QR+SaaS+Sponsorship%0ASelected+pilot+deal%3A+Starter+fit+review+%28USD+49%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-starter-review%3Futm_source%3Dsponsor-outreach%26utm_medium%3Dorganic%26utm_campaign%3Dsponsor_starter_review%26utm_content%3Dpublic-invoice-request%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&labels=sponsor%2Cpartner%2Cbusiness-review",
                 "canonicalUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new",
-                "reason": "Public-safe GitHub issue fallback for partners who cannot use email; no private payment, tax, bank, phone, customer, identity, password, or file data."
+                "reason": "Public-safe prefilled GitHub issue for partners who want a verifiable USD 49 invoice-review request without using site lead storage; no private payment, tax, bank, phone, customer, identity, password, or file data."
               },
               {
                 "title": "Sponsor call JSON",
@@ -2056,10 +2056,10 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 43763,
+        "bytes": 44086,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-07T23:40:30.617Z",
+          "generatedAt": "2026-06-07T23:47:30.864Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -2572,11 +2572,11 @@
                 "reason": "Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries."
               },
               {
-                "title": "Public sponsor reply form",
+                "title": "Public USD 49 invoice request",
                 "path": "github-sponsor-issue",
-                "url": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Sponsor+pilot+review&body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+%0APublic+website+URL%3A+%0AAudience+fit%3A+%0ASelected+pilot+deal%3A+%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-deal-room%2F%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&labels=sponsor%2Cpartner%2Cbusiness-review",
+                "url": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Sponsor+pilot+review&body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+%0APublic+website+URL%3A+%0AAudience+fit%3A+PDF%2C+Image%2C+and+QR+SaaS+Sponsorship%0ASelected+pilot+deal%3A+Starter+fit+review+%28USD+49%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-starter-review%3Futm_source%3Dsponsor-outreach%26utm_medium%3Dorganic%26utm_campaign%3Dsponsor_starter_review%26utm_content%3Dpublic-invoice-request%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&labels=sponsor%2Cpartner%2Cbusiness-review",
                 "canonicalUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new",
-                "reason": "Public-safe GitHub issue fallback for partners who cannot use email; no private payment, tax, bank, phone, customer, identity, password, or file data."
+                "reason": "Public-safe prefilled GitHub issue for partners who want a verifiable USD 49 invoice-review request without using site lead storage; no private payment, tax, bank, phone, customer, identity, password, or file data."
               },
               {
                 "title": "Sponsor call JSON",
