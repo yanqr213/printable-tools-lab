@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const { SPONSOR_DEALS, SPONSOR_VERTICALS, siteUrl } = require("./seo-content.cjs");
+const { SPONSOR_DEALS, SPONSOR_VERTICALS, siteUrl, sponsorPublicReplyUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const reportsDir = path.join(root, "reports");
@@ -146,6 +146,7 @@ function main() {
       "Stop contacting a prospect after an opt-out or negative reply.",
       "Do not claim guaranteed traffic, guaranteed conversions, or existing revenue.",
       "Use the proposalUrl as the first-touch URL so sponsor intent lands on a partner-specific, noindex proposal page.",
+      "Use publicReplyUrl only for public-safe sponsor replies; the site form remains the preferred private lead path.",
       "Keep dealRoomUrl available as the transparent pricing and inquiry fallback.",
       "Revenue is real only after a signed agreement or settled external payment.",
     ],
@@ -166,6 +167,14 @@ function prospectRow(prospect, verticals, index) {
   const verticalTrackedUrl = `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}&utm_content=${encodeURIComponent(prospect.id)}`;
   const dealRoomUrl = `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}&commitment=${encodeURIComponent(commitment)}#sponsor-inquiry`;
   const proposalUrl = `${siteUrl("sponsor-proposal").replace(/\/$/, "")}?prospect=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}&utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_proposal&utm_content=${encodeURIComponent(prospect.id)}&commitment=${encodeURIComponent(commitment)}#sponsor-inquiry`;
+  const publicReplyUrl = sponsorPublicReplyUrl({
+    prospectName: prospect.name,
+    website: prospect.website,
+    verticalTitle: vertical.title,
+    dealTitle: suggestedDeal.title,
+    dealPrice: suggestedDeal.price,
+    proposalUrl,
+  });
   const subject = `${suggestedDeal.title} for ${vertical.title}`;
   const body = [
     `Hi ${prospect.name} team,`,
@@ -181,6 +190,8 @@ function prospectRow(prospect, verticals, index) {
     commitment === "request-invoice" ? "If there is a fit, the form opens on Request pilot invoice so the next step is explicit while still requiring manual review." : "The form opens on a question/fit-review step because this is a non-cash exploratory path.",
     "",
     `The transparent deal-room fallback is here: ${dealRoomUrl}`,
+    "",
+    `If email is inconvenient, this public-safe GitHub reply form is also available: ${publicReplyUrl}`,
     "",
     `For vertical context, this is the audience fit page: ${verticalTrackedUrl}`,
     "",
@@ -206,6 +217,7 @@ function prospectRow(prospect, verticals, index) {
     requestedCommitment: commitment,
     proposalUrl,
     dealRoomUrl,
+    publicReplyUrl,
     verticalTrackedUrl,
     trackedUrl: proposalUrl,
     subject,
@@ -220,7 +232,7 @@ function sponsorDealCommitment(deal) {
 }
 
 function toCsv(rows) {
-  const headers = ["priority", "id", "name", "vertical", "category", "website", "contactUrl", "evidenceUrl", "offer", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "requestedCommitment", "proposalUrl", "dealRoomUrl", "verticalTrackedUrl", "trackedUrl", "subject", "status", "successSignal"];
+  const headers = ["priority", "id", "name", "vertical", "category", "website", "contactUrl", "evidenceUrl", "offer", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "requestedCommitment", "proposalUrl", "dealRoomUrl", "publicReplyUrl", "verticalTrackedUrl", "trackedUrl", "subject", "status", "successSignal"];
   return [
     headers,
     ...rows.map((row) => headers.map((header) => row[header] || "")),
@@ -244,6 +256,7 @@ function toMarkdown(rows) {
       `- Recommended deal: ${row.suggestedDealTitle} (${row.suggestedDealPrice})`,
       `- Proposal URL: ${row.proposalUrl}`,
       `- Deal room URL: ${row.dealRoomUrl}`,
+      `- Public-safe reply URL: ${row.publicReplyUrl}`,
       `- Vertical fit URL: ${row.verticalTrackedUrl}`,
       `- Subject: ${row.subject}`,
       "",

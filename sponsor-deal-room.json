@@ -1,8 +1,9 @@
 {
   "name": "PrintableTools Lab Sponsor Deal Room",
-  "generatedAt": "2026-06-07T19:16:10.577Z",
+  "generatedAt": "2026-06-07T19:45:45.410Z",
   "canonical": "https://printable-tools-lab.pages.dev/sponsor-deal-room/",
   "inquiryUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=direct#sponsor-inquiry",
+  "publicReplyUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=sponsor-partner-inquiry.yml&title=%5BSponsor%2FPartner%5D%3A+Sponsor+pilot+review&body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+%0APublic+website+URL%3A+%0AAudience+fit%3A+%0ASelected+pilot+deal%3A+%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-deal-room%3Futm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_deal_room%26utm_content%3Ddirect%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.",
   "deals": [
     {
       "id": "starter-fit-review",

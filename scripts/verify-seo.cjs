@@ -189,6 +189,7 @@ else {
   const html = fs.readFileSync(sponsorProposalFile, "utf8");
   if (!html.includes('content="noindex,follow"')) failures.push("Sponsor proposal page should be noindex.");
   if (!html.includes("Sponsor proposal")) failures.push("Sponsor proposal route missing fallback heading.");
+  if (!html.includes("sponsor-partner-inquiry.yml") || !html.includes("public-safe GitHub reply form")) failures.push("Sponsor proposal route missing public-safe reply fallback.");
   if (sitemap.includes(`<loc>${siteUrl("sponsor-proposal")}</loc>`)) failures.push("Sitemap should not include noindex sponsor proposal page.");
 }
 
@@ -354,12 +355,20 @@ else {
   if (!prospectScript.includes("&deal=")) failures.push("Sponsor prospect generator missing explicit deal parameter for prefilled inquiries.");
   if (!prospectScript.includes("requestedCommitment") || !prospectScript.includes("&commitment=")) failures.push("Sponsor prospect generator missing invoice request commitment links.");
   if (!prospectScript.includes("sponsor-proposal") || !prospectScript.includes("sponsor_proposal")) failures.push("Sponsor prospect generator missing direct proposal outreach URLs.");
+  if (!prospectScript.includes("sponsorPublicReplyUrl") || !prospectScript.includes("publicReplyUrl")) failures.push("Sponsor prospect generator missing public-safe reply fallback URLs.");
 }
 if (!fs.existsSync(sponsorOutreachLogScriptFile)) failures.push("Missing sponsor outreach log script.");
 else {
   const logScript = fs.readFileSync(sponsorOutreachLogScriptFile, "utf8");
   if (!logScript.includes("sponsor-outreach-log.json") || !logScript.includes("needsReplyEmail") || !logScript.includes("settled")) failures.push("Sponsor outreach log script missing status/evidence tracking.");
   if (!logScript.includes("proposalUrl") || !logScript.includes("dealRoomUrl") || !logScript.includes("suggestedDealTitle")) failures.push("Sponsor outreach log script missing proposal and deal-room follow-up fields.");
+  if (!logScript.includes("publicReplyUrl") || !logScript.includes("publicReplyAvailable")) failures.push("Sponsor outreach log script missing public-safe reply fallback tracking.");
+}
+const sponsorIssueTemplateFile = path.join(root, ".github", "ISSUE_TEMPLATE", "sponsor-partner-inquiry.yml");
+if (!fs.existsSync(sponsorIssueTemplateFile)) failures.push("Missing sponsor public issue template.");
+else {
+  const issueTemplate = fs.readFileSync(sponsorIssueTemplateFile, "utf8");
+  if (!issueTemplate.includes("requested_next_step") || !issueTemplate.includes("Request pilot invoice review") || !issueTemplate.includes("proposal_url") || !issueTemplate.includes("selected_deal")) failures.push("Sponsor public issue template missing invoice review fallback fields.");
 }
 const packageJson = readJsonFile(path.join(root, "package.json"), {});
 if (packageJson.scripts?.["sponsor:prospects"] !== "node scripts/generate-sponsor-prospect-queue.cjs") failures.push("package.json missing sponsor:prospects command.");

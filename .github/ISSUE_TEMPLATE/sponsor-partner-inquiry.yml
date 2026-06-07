@@ -69,6 +69,37 @@ body:
     validations:
       required: true
 
+  - type: dropdown
+    id: requested_next_step
+    attributes:
+      label: Requested next step
+      description: Pick the safest public next step. External invoices or agreements are sent only after manual fit review.
+      options:
+        - Request pilot invoice review
+        - Ask a fit question first
+        - Partner or no-cash distribution test
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: proposal_url
+    attributes:
+      label: Proposal or deal URL
+      description: Paste the PrintableTools Lab proposal, deal-room, or sponsor page URL that brought you here.
+      placeholder: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=...
+    validations:
+      required: false
+
+  - type: input
+    id: selected_deal
+    attributes:
+      label: Selected pilot deal
+      description: Public-safe deal label, if known.
+      placeholder: Guide sponsor pilot / Starter fit review / Vertical category pilot
+    validations:
+      required: false
+
   - type: checkboxes
     id: public_safety_confirmations
     attributes:

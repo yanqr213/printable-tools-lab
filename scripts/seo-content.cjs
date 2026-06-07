@@ -4912,6 +4912,28 @@ function sponsorInvoiceRequestCopy(prospect, deal, vertical, dealUrl) {
   ].join("\n");
 }
 
+function sponsorPublicReplyUrl({ prospectName = "", website = "", verticalTitle = "", dealTitle = "", dealPrice = "", proposalUrl = "" } = {}) {
+  const title = `[Sponsor/Partner]: ${prospectName || "Sponsor pilot review"}`;
+  const body = [
+    "Public-safe sponsor reply.",
+    "",
+    `Company / project: ${prospectName}`,
+    `Public website URL: ${website}`,
+    `Audience fit: ${verticalTitle}`,
+    `Selected pilot deal: ${dealTitle}${dealPrice ? ` (${dealPrice})` : ""}`,
+    `Proposal or deal URL: ${proposalUrl}`,
+    "",
+    "Requested next step: Request pilot invoice review",
+    "",
+    "Do not include private payment, tax, bank, phone, customer, identity, password, or confidential file data in this public issue.",
+  ].join("\n");
+  const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+  url.searchParams.set("template", "sponsor-partner-inquiry.yml");
+  url.searchParams.set("title", title);
+  url.searchParams.set("body", body);
+  return url.toString();
+}
+
 const SPONSOR_OUTREACH_TARGETS = [
   {
     category: "PDF, image, and QR SaaS",
@@ -5103,6 +5125,13 @@ const SPONSOR_DISCOVERY_LINKS = [
     reason: "Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries.",
   },
   {
+    title: "Public sponsor reply form",
+    path: "github-sponsor-issue",
+    url: sponsorPublicReplyUrl({ proposalUrl: siteUrl("sponsor-deal-room") }),
+    canonicalUrl: "https://github.com/yanqr213/printable-tools-lab/issues/new?template=sponsor-partner-inquiry.yml",
+    reason: "Public-safe GitHub issue fallback for partners who cannot use email; no private payment, tax, bank, phone, customer, identity, password, or file data.",
+  },
+  {
     title: "Sponsor call JSON",
     path: "sponsor-call.json",
     url: siteUrl("sponsor-call.json").replace(/\/$/, ""),
@@ -5128,6 +5157,7 @@ function sponsorOpportunityPayload(generatedAt = new Date().toISOString()) {
     sponsorCall: siteUrl("sponsor-call"),
     mediaKit: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
     inquiryUrl: trackedInquiryUrl,
+    publicReplyUrl: sponsorPublicReplyUrl({ proposalUrl: trackedInquiryUrl }),
     opportunities: SPONSOR_VERTICALS.map((vertical) => ({
       slug: vertical.slug,
       title: vertical.title,
@@ -5149,11 +5179,13 @@ function sponsorOpportunityPayload(generatedAt = new Date().toISOString()) {
 }
 
 function sponsorDealRoomPayload(generatedAt = new Date().toISOString()) {
+  const inquiryUrl = `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=direct#sponsor-inquiry`;
   return {
     name: "PrintableTools Lab Sponsor Deal Room",
     generatedAt,
     canonical: siteUrl("sponsor-deal-room"),
-    inquiryUrl: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=direct#sponsor-inquiry`,
+    inquiryUrl,
+    publicReplyUrl: sponsorPublicReplyUrl({ proposalUrl: inquiryUrl }),
     deals: SPONSOR_DEALS,
     verticals: SPONSOR_VERTICALS.map(sponsorVerticalEntry),
     requiredReview: [
@@ -5173,6 +5205,7 @@ function sponsorMediaKitPayload(generatedAt = new Date().toISOString()) {
     site: siteUrl(""),
     sponsorPage: siteUrl("sponsor"),
     sponsorDealRoom: siteUrl("sponsor-deal-room"),
+    publicReplyForm: sponsorPublicReplyUrl({ proposalUrl: siteUrl("sponsor-deal-room") }),
     toolsJson: siteUrl("tools.json").replace(/\/$/, ""),
     directoryPack: siteUrl("submit-directory"),
     facts: {
@@ -5206,6 +5239,7 @@ function sponsorCallPayload(generatedAt = new Date().toISOString()) {
     canonical: siteUrl("sponsor-call"),
     sponsorPage: siteUrl("sponsor"),
     sponsorDealRoom: siteUrl("sponsor-deal-room"),
+    publicReplyForm: sponsorPublicReplyUrl({ proposalUrl: siteUrl("sponsor-call") }),
     mediaKit: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
     outreachPack: siteUrl("sponsor-outreach-pack.json").replace(/\/$/, ""),
     actions: SPONSOR_CALL_ACTIONS,
@@ -5402,7 +5436,7 @@ const pages = [
     title: "Sponsor Proposal",
     description: "Noindex sponsor proposal page for one policy-fit partner, with a recommended pilot deal and prefilled inquiry path.",
     index: false,
-    html: `<section class="shell section"><h1>Sponsor proposal</h1><p>This direct proposal page loads a partner-specific sponsor fit, recommended deal, and prefilled inquiry form after the app loads.</p></section>`,
+    html: `<section class="shell section"><h1>Sponsor proposal</h1><p>This direct proposal page loads a partner-specific sponsor fit, recommended deal, and prefilled inquiry form after the app loads.</p><p><a class="button ghost" href="${escapeHtml(sponsorPublicReplyUrl({ proposalUrl: siteUrl("sponsor-proposal") }))}" target="_blank" rel="noreferrer">Open public-safe GitHub reply form</a></p></section>`,
   },
   {
     path: "sponsor-deal-room",
@@ -8587,4 +8621,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY, SPONSOR_PLACEMENTS, SPONSOR_DEALS, SPONSOR_OUTREACH_TARGETS, SPONSOR_OUTREACH_TEMPLATES, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, SPONSOR_DISCOVERY_LINKS, sponsorMediaKitPayload, sponsorCallPayload, sponsorOpportunityPayload, sponsorDealRoomPayload };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY, SPONSOR_PLACEMENTS, SPONSOR_DEALS, SPONSOR_OUTREACH_TARGETS, SPONSOR_OUTREACH_TEMPLATES, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, SPONSOR_DISCOVERY_LINKS, sponsorPublicReplyUrl, sponsorMediaKitPayload, sponsorCallPayload, sponsorOpportunityPayload, sponsorDealRoomPayload };

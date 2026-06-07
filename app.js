@@ -7575,12 +7575,13 @@ ${paragraphs.join("\n")}
     const proposalUrl = sponsorProspectProposalUrl(prospect, deal, vertical);
     const pitch = sponsorProspectPitch(prospect, deal, vertical, proposalUrl);
     const invoiceRequest = sponsorInvoiceRequestCopy(prospect, deal, vertical, proposalUrl);
+    const publicReplyUrl = sponsorPublicReplyUrl(prospect, deal, vertical, proposalUrl);
     app.innerHTML = `
       <section class="shell page-title section sponsor-hero">
         <a href="/sponsor-deal-room/">Sponsor deal room</a>
         <h1>${escapeHtml(prospect.name)} sponsor proposal</h1>
         <p>A direct, business-safe proposal for a small, clearly labeled sponsor pilot with PrintableTools Lab. Downloads stay free, sponsor copy is manually reviewed, and revenue is counted only after a signed agreement or settled external payment.</p>
-        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Start inquiry</a> <button class="button secondary" type="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" data-copy-text="${escapeHtml(invoiceRequest)}">Copy invoice request</button> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(dealUrl)}">Open deal room path</a> <button class="button ghost" type="button" data-copy-text="${escapeHtml(pitch)}">Copy outreach note</button></p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Start inquiry</a> <button class="button secondary" type="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" data-copy-text="${escapeHtml(invoiceRequest)}">Copy invoice request</button> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(dealUrl)}">Open deal room path</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Public reply form</a> <button class="button ghost" type="button" data-copy-text="${escapeHtml(pitch)}">Copy outreach note</button></p>
       </section>
       <section class="shell section">
         <h2>Why this is a fit</h2>
@@ -7614,6 +7615,7 @@ ${paragraphs.join("\n")}
           <li>Payment, tax, bank, private identity, phone, and customer-file details stay outside this form.</li>
         </ul>
         <p class="help">Proposal URL: ${escapeHtml(proposalUrl)}</p>
+        <p><a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open public-safe GitHub reply form</a></p>
       </section>
     `;
     applySponsorDealPrefill(app.querySelector("[data-sponsor-lead-form]"), sponsorDealPrefillFromDeal(deal));
@@ -8137,6 +8139,7 @@ ${paragraphs.join("\n")}
   function sponsorProspectPitch(prospect, deal, vertical, dealUrl) {
     const absoluteDealUrl = absoluteSponsorUrl(dealUrl);
     const contextUrl = absoluteSponsorUrl(`/sponsor/${vertical.slug}/?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}&utm_content=${encodeURIComponent(prospect.id)}`);
+    const publicReplyUrl = sponsorPublicReplyUrl(prospect, deal, vertical, dealUrl);
     return [
       `Hi ${prospect.name} team,`,
       "",
@@ -8150,10 +8153,34 @@ ${paragraphs.join("\n")}
       "",
       `For vertical context, this is the audience fit page: ${contextUrl}`,
       "",
+      `If email is inconvenient, this public-safe GitHub reply form is also available: ${publicReplyUrl}`,
+      "",
       "Downloads stay free, sponsor copy is separated from generator controls, and placements are manually reviewed for policy fit. I am not claiming guaranteed traffic or conversions; this is a small validation pilot before any placement goes live.",
       "",
       "Would this be relevant for your partnership or marketing team?",
     ].join("\n");
+  }
+
+  function sponsorPublicReplyUrl(prospect, deal, vertical, proposalPath) {
+    const title = `[Sponsor/Partner]: ${prospect.name || "Sponsor pilot review"}`;
+    const body = [
+      "Public-safe sponsor reply.",
+      "",
+      `Company / project: ${prospect.name || ""}`,
+      `Public website URL: ${prospect.website || ""}`,
+      `Audience fit: ${vertical.title || ""}`,
+      `Selected pilot deal: ${deal.title || ""}${deal.price ? ` (${deal.price})` : ""}`,
+      `Proposal or deal URL: ${absoluteSponsorUrl(proposalPath)}`,
+      "",
+      "Requested next step: Request pilot invoice review",
+      "",
+      "Do not include private payment, tax, bank, phone, customer, identity, password, or confidential file data in this public issue.",
+    ].join("\n");
+    const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+    url.searchParams.set("template", "sponsor-partner-inquiry.yml");
+    url.searchParams.set("title", title);
+    url.searchParams.set("body", body);
+    return url.toString();
   }
 
   function sponsorInvoiceRequestCopy(prospect, deal, vertical, dealUrl) {
