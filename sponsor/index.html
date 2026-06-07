@@ -71,8 +71,16 @@
           <form class="panel form-grid sponsor-quick-form" data-sponsor-quick-form>
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="dealId">
-            <h3>Fast pilot invoice review</h3>
-            <p class="help">Three business-safe fields. This requests manual fit review only; any invoice or agreement is sent later through an external provider. Do not send private payment, tax, phone, identity, password, or customer-file details.</p>
+            <h3>2-minute pilot invoice review</h3>
+            <p class="help">Pick a starter pilot and send three business-safe fields. This requests manual fit review only; any invoice or agreement is sent later through an external provider.</p>
+            <label class="field sponsor-deal-picker">
+              <span>Selected pilot</span>
+              <select name="quickDealId" data-sponsor-quick-deal>
+                <option value="starter-fit-review">Starter fit review - USD 49</option>
+<option value="guide-sponsor-pilot" selected>Guide sponsor pilot - USD 99-149</option>
+<option value="vertical-category-pilot">Vertical category pilot - USD 149-250</option>
+              </select>
+            </label>
             <label class="field">
               <span>Company or project</span>
               <input name="company" maxlength="90" autocomplete="organization" required>
@@ -88,7 +96,8 @@
             <div class="actions">
               <button class="button" type="submit" data-track-event="sponsor_request_intent" data-track-tool="sponsor">Request pilot invoice review</button>
             </div>
-            <p class="help sponsor-lead-status" data-sponsor-lead-status role="status" aria-live="polite">No payment is collected here.</p>
+            <p class="notice compact-notice" data-sponsor-quick-summary>Selected pilot: Guide sponsor pilot - USD 99-149. No payment is collected here.</p>
+            <p class="help sponsor-lead-status" data-sponsor-lead-status role="status" aria-live="polite">No payment is collected here. Fit is reviewed manually first.</p>
           </form>
           <form class="panel form-grid sponsor-lead-form" data-sponsor-lead-form>
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">

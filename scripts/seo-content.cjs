@@ -4899,6 +4899,13 @@ function sponsorDealCommitment(deal) {
   return deal?.commitment || (String(deal?.price || "").toLowerCase().includes("no-cash") ? "question-only" : "request-invoice");
 }
 
+function sponsorQuickDealOptions() {
+  return SPONSOR_DEALS
+    .filter((deal) => sponsorDealCommitment(deal) === "request-invoice")
+    .map((deal) => `<option value="${escapeHtml(deal.id)}"${deal.id === "guide-sponsor-pilot" ? " selected" : ""}>${escapeHtml(deal.title)} - ${escapeHtml(deal.price)}</option>`)
+    .join("\n");
+}
+
 function sponsorInvoiceRequestCopy(prospect, deal, vertical, dealUrl) {
   return [
     "Hi PrintableTools Lab team,",
@@ -6244,8 +6251,14 @@ function sponsorLeadFormHtml() {
           <form class="panel form-grid sponsor-quick-form" data-sponsor-quick-form>
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="dealId">
-            <h3>Fast pilot invoice review</h3>
-            <p class="help">Three business-safe fields. This requests manual fit review only; any invoice or agreement is sent later through an external provider. Do not send private payment, tax, phone, identity, password, or customer-file details.</p>
+            <h3>2-minute pilot invoice review</h3>
+            <p class="help">Pick a starter pilot and send three business-safe fields. This requests manual fit review only; any invoice or agreement is sent later through an external provider.</p>
+            <label class="field sponsor-deal-picker">
+              <span>Selected pilot</span>
+              <select name="quickDealId" data-sponsor-quick-deal>
+                ${sponsorQuickDealOptions()}
+              </select>
+            </label>
             <label class="field">
               <span>Company or project</span>
               <input name="company" maxlength="90" autocomplete="organization" required>
@@ -6261,7 +6274,8 @@ function sponsorLeadFormHtml() {
             <div class="actions">
               <button class="button" type="submit" data-track-event="sponsor_request_intent" data-track-tool="sponsor">Request pilot invoice review</button>
             </div>
-            <p class="help sponsor-lead-status" data-sponsor-lead-status role="status" aria-live="polite">No payment is collected here.</p>
+            <p class="notice compact-notice" data-sponsor-quick-summary>Selected pilot: Guide sponsor pilot - USD 99-149. No payment is collected here.</p>
+            <p class="help sponsor-lead-status" data-sponsor-lead-status role="status" aria-live="polite">No payment is collected here. Fit is reviewed manually first.</p>
           </form>
           <form class="panel form-grid sponsor-lead-form" data-sponsor-lead-form>
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">

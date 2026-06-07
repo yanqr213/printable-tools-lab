@@ -425,10 +425,29 @@ async function main() {
   assert(storedSponsorLead.path === "/sponsor/pdf-image-qr-saas/", "Sponsor lead should store the clean sponsor path");
   const sponsorLeadIndex = JSON.parse(store.data.get(`sponsor:lead_index:${storedSponsorLead.createdAt.slice(0, 7)}`));
   assert(sponsorLeadIndex.some((lead) => lead.id === sponsorLeadPayload.id && lead.dealId === "guide-sponsor-pilot" && lead.commitment === "request-invoice"), "Sponsor lead index should include selected deal and commitment attribution");
+  const quickDealResponse = await sponsorLeadSource.onRequestPost({
+    request: new Request("https://example.test/api/sponsor-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.16" },
+      body: JSON.stringify(sponsorLeadBody({
+        company: "Quick Deal Partner",
+        contactEmail: "quickdeal@example.com",
+        dealId: "starter-fit-review",
+        budgetRange: "under-250",
+      })),
+    }),
+    env,
+  });
+  const quickDealPayload = await quickDealResponse.json();
+  assert(quickDealResponse.status === 200 && quickDealPayload.ok, "Sponsor lead endpoint should accept quick deal picker invoice requests");
+  const quickDealLead = JSON.parse(store.data.get(`sponsor:lead:${quickDealPayload.id}`));
+  assert(quickDealLead.dealId === "starter-fit-review", "Quick sponsor deal picker should persist the selected starter deal");
+  assert(quickDealLead.budgetRange === "under-250", "Quick sponsor deal picker should persist the selected deal budget range");
+  assert(quickDealLead.commitment === "request-invoice", "Quick sponsor deal picker should keep invoice request commitment");
   const finalOpsMetrics = await (await opsMetricsSource.onRequestGet({ env })).json();
   const finalPrintableProject = finalOpsMetrics.projects.find((row) => row.id === "printable-tools-lab");
-  assert(finalOpsMetrics.sponsorInvoiceRequests === 1, "Ops metrics should expose sponsor invoice request count");
-  assert(finalPrintableProject.summary.sponsorInvoiceRequests === 1, "Project ops metrics should expose sponsor invoice request count");
+  assert(finalOpsMetrics.sponsorInvoiceRequests === 2, "Ops metrics should count full and quick sponsor invoice requests");
+  assert(finalPrintableProject.summary.sponsorInvoiceRequests === 2, "Project ops metrics should count full and quick sponsor invoice requests");
   assert([...store.data.keys()].some((key) => key.startsWith("sponsor:validation:")), "Validation sponsor lead should use isolated KV keys");
   assert(Number(store.data.get("total:sponsor_lead_tests")) === 1, "Validation sponsor lead should count only validation tests");
   const githubPages = sellerMetrics.sources.find((row) => row.source === "github-pages");

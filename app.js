@@ -5239,6 +5239,13 @@
     return deal?.commitment || (String(deal?.price || "").toLowerCase().includes("no-cash") ? "question-only" : "request-invoice");
   }
 
+  function sponsorQuickDealOptions() {
+    return sponsorDeals
+      .filter((deal) => sponsorDealCommitment(deal) === "request-invoice")
+      .map((deal) => `<option value="${escapeHtml(deal.id)}"${deal.id === "guide-sponsor-pilot" ? " selected" : ""}>${escapeHtml(deal.title)} - ${escapeHtml(deal.price)}</option>`)
+      .join("");
+  }
+
   const sponsorProspects = [
     {
       id: "pdfco-pdf-api",
@@ -7780,8 +7787,14 @@ ${paragraphs.join("\n")}
           <form class="panel form-grid sponsor-quick-form" data-sponsor-quick-form>
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="dealId">
-            <h3>Fast pilot invoice review</h3>
-            <p class="help">Three business-safe fields. This requests manual fit review only; any invoice or agreement is sent later through an external provider. Do not send private payment, tax, phone, identity, password, or customer-file details.</p>
+            <h3>2-minute pilot invoice review</h3>
+            <p class="help">Pick a starter pilot and send three business-safe fields. This requests manual fit review only; any invoice or agreement is sent later through an external provider.</p>
+            <label class="field sponsor-deal-picker">
+              <span>Selected pilot</span>
+              <select name="quickDealId" data-sponsor-quick-deal>
+                ${sponsorQuickDealOptions()}
+              </select>
+            </label>
             <label class="field">
               <span>Company or project</span>
               <input name="company" maxlength="90" autocomplete="organization" required>
@@ -7797,7 +7810,8 @@ ${paragraphs.join("\n")}
             <div class="actions">
               <button class="button" type="submit" data-track-event="sponsor_request_intent" data-track-tool="sponsor">Request pilot invoice review</button>
             </div>
-            <p class="help sponsor-lead-status" data-sponsor-lead-status role="status" aria-live="polite">No payment is collected here.</p>
+            <p class="notice compact-notice" data-sponsor-quick-summary>Selected pilot: Guide sponsor pilot - USD 99-149. No payment is collected here.</p>
+            <p class="help sponsor-lead-status" data-sponsor-lead-status role="status" aria-live="polite">No payment is collected here. Fit is reviewed manually first.</p>
           </form>
           <form class="panel form-grid sponsor-lead-form" data-sponsor-lead-form>
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -12647,6 +12661,7 @@ ${paragraphs.join("\n")}
       if (form.dataset.boundSponsorQuickLead === "true") return;
       form.dataset.boundSponsorQuickLead = "true";
       applySponsorDealPrefill(form, sponsorDealPrefillFromUrl() || loadSponsorDealPrefill() || sponsorDealPrefillFromDeal(sponsorDeals.find((deal) => deal.id === "guide-sponsor-pilot") || sponsorDeals[0]));
+      initSponsorQuickDealPicker(form);
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
         await submitSponsorQuickLeadForm(form);
@@ -12709,6 +12724,7 @@ ${paragraphs.join("\n")}
   function applySponsorDealPrefill(form, prefill) {
     if (!form || !prefill || !prefill.sponsorDealId) return;
     setFormFieldValue(form, "dealId", prefill.sponsorDealId);
+    setFormFieldValue(form, "quickDealId", prefill.sponsorDealId);
     setFormFieldValue(form, "placement", prefill.sponsorPlacement);
     setFormFieldValue(form, "budgetRange", prefill.sponsorBudgetRange);
     setFormFieldValue(form, "timeline", prefill.sponsorTimeline);
@@ -12717,12 +12733,34 @@ ${paragraphs.join("\n")}
     if (notes && !String(notes.value || "").trim()) notes.value = prefill.sponsorNotes || "";
     const status = form.querySelector("[data-sponsor-deal-status]");
     if (status) status.textContent = `Selected sponsor path: ${prefill.sponsorDealId}. Placement, budget, timeline, and next step are prefilled.`;
+    updateSponsorQuickSummary(form);
   }
 
   function setFormFieldValue(form, name, value) {
     const field = form.elements[name];
     if (!field || value === undefined || value === null || value === "") return;
     field.value = value;
+  }
+
+  function initSponsorQuickDealPicker(form) {
+    const picker = form.querySelector("[data-sponsor-quick-deal]");
+    if (!picker) return;
+    picker.addEventListener("change", () => {
+      const deal = sponsorDeals.find((item) => item.id === picker.value);
+      if (deal) applySponsorDealPrefill(form, sponsorDealPrefillFromDeal(deal));
+    });
+    if (!picker.value) picker.value = form.elements.dealId?.value || "guide-sponsor-pilot";
+    const selectedDeal = sponsorDeals.find((item) => item.id === picker.value);
+    if (selectedDeal) applySponsorDealPrefill(form, sponsorDealPrefillFromDeal(selectedDeal));
+    updateSponsorQuickSummary(form);
+  }
+
+  function updateSponsorQuickSummary(form) {
+    const summary = form.querySelector("[data-sponsor-quick-summary]");
+    const dealId = form.elements.quickDealId?.value || form.elements.dealId?.value || "";
+    const deal = sponsorDeals.find((item) => item.id === dealId);
+    if (!summary || !deal) return;
+    summary.textContent = `Selected pilot: ${deal.title} - ${deal.price}. ${deal.deliverable} No payment is collected here.`;
   }
 
   function clearSponsorLeadFallback(form) {
@@ -12842,7 +12880,7 @@ ${paragraphs.join("\n")}
 
   async function submitSponsorQuickLeadForm(form) {
     const values = getFormValues(form);
-    const deal = sponsorDeals.find((item) => item.id === values.dealId) || sponsorDeals.find((item) => item.id === "guide-sponsor-pilot") || sponsorDeals[0];
+    const deal = sponsorDeals.find((item) => item.id === values.quickDealId) || sponsorDeals.find((item) => item.id === values.dealId) || sponsorDeals.find((item) => item.id === "guide-sponsor-pilot") || sponsorDeals[0];
     const status = form.querySelector("[data-sponsor-lead-status]");
     const submit = form.querySelector("button[type='submit']");
     const setStatus = (message, kind = "") => {
