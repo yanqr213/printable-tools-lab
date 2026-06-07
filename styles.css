@@ -951,6 +951,47 @@ canvas.preview-canvas {
   gap: 18px;
 }
 
+.ops-sponsor-sprint {
+  display: grid;
+  gap: 16px;
+}
+
+.ops-action-list {
+  display: grid;
+  gap: 12px;
+}
+
+.ops-action-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.ops-action-card h4 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+}
+
+.ops-action-card p {
+  margin: 0 0 8px;
+}
+
+.ops-action-buttons,
+.ops-deal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ops-action-buttons {
+  justify-content: flex-end;
+}
+
 .ops-project {
   display: grid;
   gap: 16px;
@@ -1099,6 +1140,14 @@ canvas.preview-canvas {
 
   .ops-project-head {
     flex-direction: column;
+  }
+
+  .ops-action-card {
+    grid-template-columns: 1fr;
+  }
+
+  .ops-action-buttons {
+    justify-content: flex-start;
   }
 }
 

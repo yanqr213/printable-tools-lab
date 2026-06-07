@@ -5491,9 +5491,9 @@ const pages = [
   {
     path: "ops",
     title: "Project Operations Monitor",
-    description: "Noindex operations monitor for project-level traffic, source, path, tool, game, and monetization signals.",
+    description: "Noindex operations monitor for project-level traffic, sponsor close actions, source, path, tool, game, and monetization signals.",
     index: false,
-    html: `<section class="shell section"><h1>Project operations monitor</h1><p>This page loads aggregate project metrics after the app loads.</p></section>`,
+    html: `<section class="shell section"><h1>Project operations monitor</h1><p>This page loads aggregate project metrics and the sponsor close cockpit after the app loads.</p></section>`,
   },
   {
     path: "about",

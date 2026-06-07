@@ -5229,6 +5229,81 @@
       `data-sponsor-notes="${escapeHtml(`${deal.title} (${deal.price}): ${deal.deliverable} Needed: ${deal.proofNeeded}`)}"`,
     ].join(" ");
   }
+
+  const sponsorProspects = [
+    {
+      id: "pdfco-pdf-api",
+      name: "PDF.co",
+      vertical: "pdf-image-qr-saas",
+      category: "PDF API and document automation",
+      contactUrl: "https://pdf.co/contact",
+      fitReason: "PDF.co sells PDF and document automation APIs, which fits visitors compressing, converting, and editing PDF files.",
+      dealId: "guide-sponsor-pilot",
+    },
+    {
+      id: "cloudmersive-document-api",
+      name: "Cloudmersive",
+      vertical: "pdf-image-qr-saas",
+      category: "Document conversion API",
+      contactUrl: "https://cloudmersive.com/contact",
+      fitReason: "Cloudmersive offers file conversion and document APIs, adjacent to PrintableTools Lab's PDF and image conversion intent.",
+      dealId: "starter-fit-review",
+    },
+    {
+      id: "uniqode-qr-platform",
+      name: "Uniqode",
+      vertical: "local-marketing-qr-sponsors",
+      category: "QR code platform",
+      contactUrl: "https://www.uniqode.com/contact-us",
+      fitReason: "Uniqode sells QR code and offline-to-online marketing tools, matching QR, WiFi QR, contact QR, flyer, and coupon workflows.",
+      dealId: "vertical-category-pilot",
+    },
+    {
+      id: "qrcodechimp-qr-marketing",
+      name: "QRCodeChimp",
+      vertical: "local-marketing-qr-sponsors",
+      category: "QR code marketing",
+      contactUrl: "https://www.qrcodechimp.com/contact",
+      fitReason: "QRCodeChimp targets business QR code use cases, a close fit for printable QR signs, flyers, coupons, and local service handouts.",
+      dealId: "guide-sponsor-pilot",
+    },
+    {
+      id: "jobscan-ats-resume",
+      name: "Jobscan",
+      vertical: "resume-career-sponsors",
+      category: "ATS resume checker",
+      contactUrl: "https://www.jobscan.co/contact",
+      fitReason: "Jobscan's ATS and resume optimization product fits visitors using resume builder, ATS checker, and resume upload-size pages.",
+      dealId: "vertical-category-pilot",
+    },
+    {
+      id: "teal-career-resume",
+      name: "Teal",
+      vertical: "resume-career-sponsors",
+      category: "Career and resume software",
+      contactUrl: "https://www.tealhq.com/contact",
+      fitReason: "Teal offers job-search and resume tools, matching job seekers creating application PDFs and ATS-friendly documents.",
+      dealId: "guide-sponsor-pilot",
+    },
+    {
+      id: "invoice-ninja-small-business",
+      name: "Invoice Ninja",
+      vertical: "small-business-paperwork-sponsors",
+      category: "Invoicing software",
+      contactUrl: "https://www.invoiceninja.com/contact/",
+      fitReason: "Invoice Ninja sells invoicing and small-business payment workflow software, fitting invoice, estimate, receipt, and client paperwork pages.",
+      dealId: "vertical-category-pilot",
+    },
+    {
+      id: "zoho-invoice-small-business",
+      name: "Zoho Invoice",
+      vertical: "small-business-paperwork-sponsors",
+      category: "Small-business invoicing",
+      contactUrl: "https://www.zoho.com/contactus.html",
+      fitReason: "Zoho Invoice targets small businesses that need invoices, estimates, payments, and client records.",
+      dealId: "guide-sponsor-pilot",
+    },
+  ];
   const sponsorCallActions = [
     {
       title: "Sponsor a relevant guide",
@@ -7764,6 +7839,7 @@ ${paragraphs.join("\n")}
           <div class="metric-tile"><strong>${data.sponsorLeads || 0}</strong><span>sponsor leads</span></div>
           <div class="metric-tile"><strong>${totalGameIntent}</strong><span>game play signals</span></div>
         </div>
+        ${sponsorSprintHtml(data)}
         <div class="ops-project-list">
           ${projects.map(projectOpsHtml).join("") || `<div class="panel"><p>No project rows returned yet.</p></div>`}
         </div>
@@ -7781,7 +7857,160 @@ ${paragraphs.join("\n")}
         <p class="help">Revenue is still counted only after a platform balance, sponsor agreement, or settled payment is verified. Views and clicks are operating signals, not money.</p>
       `;
     } catch (error) {
-      target.innerHTML = `<div class="panel"><p>Live project metrics are not available yet.</p><p class="help">${escapeHtml(error.message || "Metrics unavailable")}</p></div>`;
+      target.innerHTML = `
+        ${sponsorSprintHtml({ totals: {}, projects: [] })}
+        <div class="panel"><p>Live project metrics are not available yet.</p><p class="help">${escapeHtml(error.message || "Metrics unavailable")}</p></div>
+      `;
+    }
+  }
+
+  function sponsorSprintHtml(data) {
+    const totals = data.totals || {};
+    const sponsorIntent = totals.sponsor_request_intent || 0;
+    const sponsorLeads = data.sponsorLeads || totals.sponsor_lead_submit || 0;
+    const pageViews = totals.page_view || 0;
+    const downloads = (totals.download_pdf || 0) + (totals.download_file || 0);
+    const topSponsorPaths = sponsorPathRows(data).slice(0, 4);
+    const prospectRows = rankedSponsorProspects(data).slice(0, 4);
+    const action = sponsorNextAction(sponsorLeads, sponsorIntent, pageViews, downloads);
+    return `
+      <section class="panel ops-sponsor-sprint" aria-label="Sponsor revenue sprint">
+        <div class="ops-project-head">
+          <div>
+            <p class="eyebrow">revenue sprint</p>
+            <h2>Sponsor close cockpit</h2>
+            <p>${escapeHtml(action)}</p>
+          </div>
+          <a class="button" href="/sponsor-deal-room/?utm_source=ops&utm_medium=internal&utm_campaign=sponsor_close&utm_content=close-cockpit#sponsor-inquiry">Open deal form</a>
+        </div>
+        <div class="metric-grid compact ops-project-grid">
+          <div class="metric-tile"><strong>${sponsorIntent}</strong><span>sponsor intent</span></div>
+          <div class="metric-tile"><strong>${sponsorLeads}</strong><span>sponsor leads</span></div>
+          <div class="metric-tile"><strong>${prospectRows.length}</strong><span>priority prospects</span></div>
+          <div class="metric-tile"><strong>${topSponsorPaths.length}</strong><span>warm sponsor pages</span></div>
+          <div class="metric-tile"><strong>${sponsorDeals[1]?.price || "USD 99-149"}</strong><span>default pilot</span></div>
+          <div class="metric-tile"><strong>${sponsorLeads ? "Follow up" : "Outreach"}</strong><span>next mode</span></div>
+        </div>
+        <div class="ops-detail-grid">
+          <section>
+            <h3>Priority sponsor prospects</h3>
+            <div class="ops-action-list">
+              ${prospectRows.map(sponsorProspectCard).join("")}
+            </div>
+          </section>
+          <section>
+            <h3>Warm sponsor pages</h3>
+            ${opsTable(["Path", "Views", "Today"], topSponsorPaths.map((row) => [
+              row.path,
+              row.page_view || 0,
+              row.today_page_view || 0,
+            ]))}
+            <div class="ops-deal-links">
+              ${sponsorDeals.filter((deal) => deal.id !== "partner-distribution-test").map((deal) => `<a class="tag" href="${escapeHtml(deal.trackedUrl)}">${escapeHtml(deal.title)} ${escapeHtml(deal.price)}</a>`).join("")}
+            </div>
+          </section>
+        </div>
+      </section>
+    `;
+  }
+
+  function sponsorNextAction(sponsorLeads, sponsorIntent, pageViews, downloads) {
+    if (sponsorLeads > 0) return "Export the sponsor lead, reply with the selected deal, and move only signed agreement or settled external payment into revenue.";
+    if (sponsorIntent > 0) return "There is sponsor intent without a lead. Send the deal-room link to four matched prospects and keep the inquiry form prefilled.";
+    if (pageViews >= 100 || downloads > 0) return "Traffic exists but sponsor intent is thin. Push one vertical sponsor pitch tied to the warmest PDF, QR, resume, or paperwork audience.";
+    return "Keep free-tool distribution running while sending a small sponsor pilot pitch to the first two highest-fit prospects.";
+  }
+
+  function sponsorPathRows(data) {
+    const projects = Array.isArray(data.projects) ? data.projects : [];
+    const printable = projects.find((project) => project.id === "printable-tools-lab") || {};
+    return activeRows(printable.paths || [], (row) => {
+      const path = String(row.path || "");
+      const sponsorBonus = path.includes("/sponsor") ? 20 : 0;
+      return (row.page_view || 0) + (row.today_page_view || 0) * 2 + sponsorBonus;
+    }).filter((row) => String(row.path || "").includes("/sponsor") || (row.page_view || 0) > 0);
+  }
+
+  function rankedSponsorProspects(data) {
+    const printable = (Array.isArray(data.projects) ? data.projects : []).find((project) => project.id === "printable-tools-lab") || {};
+    const tools = printable.tools || [];
+    const scoreFor = (prospect) => {
+      const vertical = sponsorVerticals.find((item) => item.slug === prospect.vertical);
+      if (!vertical) return 0;
+      const linkedTools = vertical.links.map(([, pathName]) => String(pathName).split("/").pop());
+      const toolSignal = tools
+        .filter((row) => linkedTools.includes(row.tool))
+        .reduce((sum, row) => sum + toolScore(row), 0);
+      const deal = sponsorDeals.find((item) => item.id === prospect.dealId);
+      const priceWeight = deal?.id === "vertical-category-pilot" ? 8 : deal?.id === "guide-sponsor-pilot" ? 5 : 2;
+      return toolSignal + priceWeight;
+    };
+    return sponsorProspects
+      .map((prospect, index) => ({ ...prospect, priority: index + 1, score: scoreFor(prospect) }))
+      .sort((a, b) => b.score - a.score || a.priority - b.priority);
+  }
+
+  function sponsorProspectCard(prospect) {
+    const vertical = sponsorVerticals.find((item) => item.slug === prospect.vertical) || sponsorVerticals[0];
+    const deal = sponsorDeals.find((item) => item.id === prospect.dealId) || sponsorDeals[1] || sponsorDeals[0];
+    const dealUrl = sponsorProspectDealUrl(prospect, deal, vertical);
+    const pitch = sponsorProspectPitch(prospect, deal, vertical, dealUrl);
+    return `
+      <article class="ops-action-card">
+        <div>
+          <p class="eyebrow">${escapeHtml(prospect.category)}</p>
+          <h4>${escapeHtml(prospect.name)}</h4>
+          <p>${escapeHtml(prospect.fitReason)}</p>
+          <p><strong>${escapeHtml(deal.title)}:</strong> ${escapeHtml(deal.price)} · ${escapeHtml(vertical.title)}</p>
+        </div>
+        <div class="ops-action-buttons">
+          <a class="button secondary" href="${escapeHtml(prospect.contactUrl)}" target="_blank" rel="noreferrer">Contact</a>
+          <a class="button secondary" href="${escapeHtml(dealUrl)}" target="_blank" rel="noreferrer">Deal link</a>
+          <button class="button ghost" type="button" data-copy-text="${escapeHtml(pitch)}">Copy pitch</button>
+        </div>
+      </article>
+    `;
+  }
+
+  function sponsorProspectDealUrl(prospect, deal, vertical) {
+    const params = new URLSearchParams({
+      utm_source: "sponsor-outreach",
+      utm_medium: "manual",
+      utm_campaign: "sponsor_deal_room",
+      utm_content: prospect.id,
+      deal: deal.id,
+      vertical: vertical.slug,
+    });
+    return `/sponsor-deal-room/?${params.toString()}#sponsor-inquiry`;
+  }
+
+  function sponsorProspectPitch(prospect, deal, vertical, dealUrl) {
+    const absoluteDealUrl = absoluteSponsorUrl(dealUrl);
+    const contextUrl = absoluteSponsorUrl(`/sponsor/${vertical.slug}/?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}&utm_content=${encodeURIComponent(prospect.id)}`);
+    return [
+      `Hi ${prospect.name} team,`,
+      "",
+      "I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, resume, classroom, and small-business document workflows.",
+      "",
+      `Your product looks relevant because ${prospect.fitReason}`,
+      "",
+      `I am opening a small, clearly labeled sponsor pilot for this audience: ${absoluteDealUrl}`,
+      "",
+      `The best starting option is "${deal.title}" (${deal.price}): ${deal.deliverable}`,
+      "",
+      `For vertical context, this is the audience fit page: ${contextUrl}`,
+      "",
+      "Downloads stay free, sponsor copy is separated from generator controls, and placements are manually reviewed for policy fit. I am not claiming guaranteed traffic or conversions; this is a small validation pilot before any placement goes live.",
+      "",
+      "Would this be relevant for your partnership or marketing team?",
+    ].join("\n");
+  }
+
+  function absoluteSponsorUrl(pathName) {
+    try {
+      return new URL(pathName, CONFIG.siteUrl || window.location.origin).toString();
+    } catch (error) {
+      return pathName;
     }
   }
 
@@ -12199,7 +12428,7 @@ ${paragraphs.join("\n")}
 
   function sponsorDealPrefillFromUrl() {
     const params = new URLSearchParams(window.location.search || "");
-    const dealId = String(params.get("utm_content") || "").trim();
+    const dealId = String(params.get("deal") || params.get("deal_id") || params.get("sponsor_deal") || params.get("utm_content") || "").trim();
     if (!dealId) return null;
     const deal = sponsorDeals.find((item) => item.id === dealId);
     if (!deal) return null;
@@ -12536,6 +12765,12 @@ ${paragraphs.join("\n")}
   }
 
   document.addEventListener("click", (event) => {
+    const copyButton = event.target.closest("[data-copy-text]");
+    if (copyButton) {
+      event.preventDefault();
+      copyTextToClipboard(copyButton.dataset.copyText || "", copyButton);
+      return;
+    }
     const link = event.target.closest("a[href]");
     if (!link) return;
     if (link.dataset.trackEvent) {
@@ -12550,6 +12785,22 @@ ${paragraphs.join("\n")}
     window.history.pushState({}, "", url.pathname + url.search + url.hash);
     route();
   });
+
+  async function copyTextToClipboard(text, button) {
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+      if (button) {
+        const original = button.textContent;
+        button.textContent = "Copied";
+        setTimeout(() => {
+          button.textContent = original;
+        }, 1600);
+      }
+    } catch (error) {
+      window.prompt("Copy this text", text);
+    }
+  }
   window.addEventListener("hashchange", route);
   window.addEventListener("popstate", route);
   window.addEventListener("DOMContentLoaded", () => {

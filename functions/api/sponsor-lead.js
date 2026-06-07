@@ -110,7 +110,7 @@ function normalizeLead(body, request) {
   const timeline = cleanChoice(body.timeline, TIMELINES, "exploratory");
   const audienceFit = cleanText(body.audienceFit, 420);
   const notes = cleanText(body.notes, 1000);
-  const dealId = cleanChoice(body.dealId || body.utmContent, DEAL_IDS, "");
+  const dealId = cleanChoice(body.dealId || body.deal || body.sponsorDealId || body.utmContent, DEAL_IDS, "");
   const source = cleanSource(body.source || body.utmSource || "direct");
   const path = cleanPath(body.path || "/sponsor/");
   const utmSource = cleanKey(body.utmSource, 64);
