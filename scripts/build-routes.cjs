@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
 const { strToU8, zipSync } = require("fflate");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, SPONSOR_PLACEMENTS, SPONSOR_OUTREACH_TARGETS, SPONSOR_OUTREACH_TEMPLATES, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, SPONSOR_DISCOVERY_LINKS, sponsorMediaKitPayload, sponsorCallPayload, sponsorOpportunityPayload } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, SPONSOR_PLACEMENTS, SPONSOR_DEALS, SPONSOR_OUTREACH_TARGETS, SPONSOR_OUTREACH_TEMPLATES, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, SPONSOR_DISCOVERY_LINKS, sponsorMediaKitPayload, sponsorCallPayload, sponsorOpportunityPayload, sponsorDealRoomPayload } = require("./seo-content.cjs");
 const { serviceDeliveryInputExample, zipServiceDelivery } = require("./service-delivery-kit.cjs");
 
 const root = path.resolve(__dirname, "..");
@@ -151,6 +151,9 @@ if (fs.existsSync(headersPath)) {
   if (!headers.includes("/sponsor-opportunities.json")) {
     fs.appendFileSync(headersPath, "\n/sponsor-opportunities.json\n  Content-Type: application/json; charset=utf-8\n");
   }
+  if (!headers.includes("/sponsor-deal-room.json")) {
+    fs.appendFileSync(headersPath, "\n/sponsor-deal-room.json\n  Content-Type: application/json; charset=utf-8\n");
+  }
   if (!headers.includes("/organic-push-kit.json")) {
     fs.appendFileSync(headersPath, "\n/organic-push-kit.json\n  Content-Type: application/json; charset=utf-8\n");
   }
@@ -242,6 +245,8 @@ const shareKitJson = {
   sponsorDiscovery: {
     sponsorCall: siteUrl("sponsor-call"),
     sponsorCallJson: fileUrl("sponsor-call.json"),
+    sponsorDealRoom: siteUrl("sponsor-deal-room"),
+    sponsorDealRoomJson: fileUrl("sponsor-deal-room.json"),
     mediaKit: fileUrl("sponsor-media-kit.json"),
     outreachPack: fileUrl("sponsor-outreach-pack.json"),
     links: SPONSOR_DISCOVERY_LINKS,
@@ -296,11 +301,19 @@ fs.writeFileSync(path.join(root, "sponsor-call.json"), `${JSON.stringify(sponsor
 const sponsorOpportunitiesJson = sponsorOpportunityPayload(generatedAtIso);
 fs.writeFileSync(path.join(root, "sponsor-opportunities.json"), `${JSON.stringify(sponsorOpportunitiesJson, null, 2)}\n`);
 
+const sponsorDealRoomJson = sponsorDealRoomPayload(generatedAtIso);
+fs.writeFileSync(path.join(root, "sponsor-deal-room.json"), `${JSON.stringify(sponsorDealRoomJson, null, 2)}\n`);
+
 const sponsorOutreachPackJson = {
   name: "PrintableTools Lab Sponsor Outreach Pack",
   generatedAt: generatedAtIso,
   canonical: fileUrl("sponsor-outreach-pack.json"),
   sponsorPage: siteUrl("sponsor"),
+  sponsorDealRoom: {
+    page: siteUrl("sponsor-deal-room"),
+    json: fileUrl("sponsor-deal-room.json"),
+    deals: SPONSOR_DEALS,
+  },
   mediaKit: fileUrl("sponsor-media-kit.json"),
   placements: SPONSOR_PLACEMENTS,
   targets: SPONSOR_OUTREACH_TARGETS,
@@ -325,6 +338,11 @@ const sponsorOutreachPackJson = {
   })),
   templates: SPONSOR_OUTREACH_TEMPLATES,
   trackedLinks: [
+    ...SPONSOR_DEALS.map((deal) => ({
+      category: deal.title,
+      url: deal.trackedUrl,
+      pitch: deal.bestFor,
+    })),
     ...SPONSOR_OUTREACH_TARGETS.map((target) => ({
       category: target.category,
       url: `${siteUrl("sponsor").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_pilot&utm_content=${encodeURIComponent(target.category.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""))}`,
@@ -448,6 +466,8 @@ const llms = [
   `- Upload limit fixer page: ${siteUrl("upload-limit-fixer")}`,
   `- Directory submission pack: ${siteUrl("submit-directory")}`,
   `- Share kit: ${siteUrl("share-kit")}`,
+  `- Sponsor deal room: ${siteUrl("sponsor-deal-room")}`,
+  `- Machine-readable sponsor deal room: ${fileUrl("sponsor-deal-room.json")}`,
   `- Organic push kit: ${siteUrl("organic-push-kit")}`,
   `- Upload error cheatsheet: ${siteUrl("upload-error-cheatsheet")}`,
   `- Machine-readable organic push kit: ${fileUrl("organic-push-kit.json")}`,
@@ -516,6 +536,7 @@ const discoveryIndex = {
   organicPushKit: fileUrl("organic-push-kit.json"),
   uploadErrorCheatsheet: fileUrl("upload-error-cheatsheet.json"),
   sponsorCall: fileUrl("sponsor-call.json"),
+  sponsorDealRoom: fileUrl("sponsor-deal-room.json"),
   sponsorOpportunities: fileUrl("sponsor-opportunities.json"),
   sponsorMediaKit: fileUrl("sponsor-media-kit.json"),
   sponsorOutreachPack: fileUrl("sponsor-outreach-pack.json"),
@@ -525,7 +546,7 @@ const discoveryIndex = {
   portalSubmissionPack: fileUrl("portal-submission-pack.json"),
   gameSubmissionFeed: fileUrl("game-submission-feed.json"),
   zeroCostMonetizationMap: fileUrl("zero-cost-monetization-map.json"),
-  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("upload-limit-fixer"), siteUrl("organic-push-kit"), siteUrl("upload-error-cheatsheet"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl("sponsor-call"), siteUrl("sponsor-opportunities"), siteUrl("sponsor"), ...SPONSOR_VERTICALS.map((vertical) => siteUrl(`sponsor/${vertical.slug}`)), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("upload-limit-fixer"), siteUrl("organic-push-kit"), siteUrl("upload-error-cheatsheet"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl("sponsor-call"), siteUrl("sponsor-deal-room"), siteUrl("sponsor-opportunities"), siteUrl("sponsor"), ...SPONSOR_VERTICALS.map((vertical) => siteUrl(`sponsor/${vertical.slug}`)), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   distributionAssets: {
     shareKit: siteUrl("share-kit"),
     shareKitJson: fileUrl("share-kit.json"),
@@ -535,6 +556,9 @@ const discoveryIndex = {
     uploadErrorCheatsheetJson: fileUrl("upload-error-cheatsheet.json"),
     sponsorCall: siteUrl("sponsor-call"),
     sponsorCallJson: fileUrl("sponsor-call.json"),
+    sponsorDealRoom: siteUrl("sponsor-deal-room"),
+    sponsorDealRoomJson: fileUrl("sponsor-deal-room.json"),
+    sponsorDeals: SPONSOR_DEALS,
     sponsorOpportunities: siteUrl("sponsor-opportunities"),
     sponsorOpportunitiesJson: fileUrl("sponsor-opportunities.json"),
     sponsorPage: siteUrl("sponsor"),
@@ -672,6 +696,7 @@ const distribution = [
   `- GitHub campaign: ${siteUrl("").replace(/\/$/, "")}?utm_source=github`,
   `- GitHub issue campaign: ${siteUrl("upload-limit-fixer").replace(/\/$/, "")}?utm_source=github-issue&utm_medium=organic&utm_campaign=zero_cost_push`,
   `- Public Gist campaign: ${siteUrl("upload-limit-fixer").replace(/\/$/, "")}?utm_source=gist&utm_medium=organic&utm_campaign=zero_cost_push`,
+  `- Sponsor deal room campaign: ${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=distribution-pack`,
   `- Sponsor call campaign: ${siteUrl("sponsor-call").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=distribution-pack`,
   `- Sponsor opportunities campaign: ${siteUrl("sponsor-opportunities").replace(/\/$/, "")}?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_opportunities&utm_content=distribution-pack`,
   `- Sponsor inquiry form campaign: ${siteUrl("sponsor").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=distribution-pack#sponsor-inquiry`,
@@ -694,6 +719,9 @@ const distribution = [
   "",
   "Use these only where sponsor, partnership, directory, newsletter, or resource-page submissions are explicitly welcome. This is not a payment page; every inquiry still needs manual fit review and a separate external agreement or payment record before revenue is real.",
   "",
+  `- Sponsor deal room: ${siteUrl("sponsor-deal-room")} - Direct pilot pricing, fit rules, tracked deal paths, and sponsor inquiry form.`,
+  `- Sponsor deal room JSON: ${fileUrl("sponsor-deal-room.json")}`,
+  ...SPONSOR_DEALS.map((deal) => `- ${deal.title}: ${deal.trackedUrl} - ${deal.price}; ${deal.bestFor}`),
   ...SPONSOR_DISCOVERY_LINKS.map((item) => `- ${item.title}: ${item.url} - ${item.reason}`),
   `- Sponsor opportunities board: ${siteUrl("sponsor-opportunities")} - Crawlable board for PDF API, QR, resume, classroom, and small-business sponsor categories.`,
   `- Sponsor opportunities JSON: ${fileUrl("sponsor-opportunities.json")}`,

@@ -5102,6 +5102,44 @@
       deliverable: "Tracked partner link and review of whether traffic creates depth, download, or lead signal.",
     },
   ];
+  const sponsorDeals = [
+    {
+      id: "starter-fit-review",
+      title: "Starter fit review",
+      price: "USD 49",
+      bestFor: "A sponsor wants to know whether their product is safe and relevant before buying a visible placement.",
+      deliverable: "Manual sponsor-fit review, audience match, recommended page family, and safe next-step copy.",
+      proofNeeded: "Company URL, product category, intended audience, and any placement rules.",
+      trackedUrl: "/sponsor-deal-room/?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=starter-fit-review#sponsor-inquiry",
+    },
+    {
+      id: "guide-sponsor-pilot",
+      title: "Guide sponsor pilot",
+      price: "USD 99-149",
+      bestFor: "A PDF, image, QR, career, classroom, or small-business product wants one clearly labeled pilot mention.",
+      deliverable: "One manually approved, clearly labeled sponsor mention on a relevant guide or resource page.",
+      proofNeeded: "Campaign fit, sponsor copy draft, safe landing URL, and category exclusions.",
+      trackedUrl: "/sponsor-deal-room/?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=guide-sponsor-pilot#sponsor-inquiry",
+    },
+    {
+      id: "vertical-category-pilot",
+      title: "Vertical category pilot",
+      price: "USD 149-250",
+      bestFor: "A partner cares about one audience such as QR/local marketing, resume/career, classroom, or small-business paperwork.",
+      deliverable: "Tracked vertical sponsor page, fit review, and one approved contextual placement candidate.",
+      proofNeeded: "Target vertical, audience fit, sponsor category, and safe public landing URL.",
+      trackedUrl: "/sponsor-deal-room/?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=vertical-category-pilot#sponsor-inquiry",
+    },
+    {
+      id: "partner-distribution-test",
+      title: "Partner distribution test",
+      price: "No-cash mutual test",
+      bestFor: "A newsletter, directory, resource page, or community wants to test relevant traffic before a paid placement.",
+      deliverable: "Tracked partner link, source attribution, and review against page views, depth, downloads, or lead signal.",
+      proofNeeded: "Partner page, expected audience, planned link context, and review window.",
+      trackedUrl: "/sponsor-deal-room/?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=partner-distribution-test#sponsor-inquiry",
+    },
+  ];
   const sponsorVerticals = [
     {
       slug: "pdf-image-qr-saas",
@@ -5203,6 +5241,7 @@
     if (parts[0] === "pdf-tool-finder") return renderPdfToolFinder();
     if (parts[0] === "submit-directory") return renderDirectorySubmissionPack();
     if (parts[0] === "share-kit") return renderShareKit();
+    if (parts[0] === "sponsor-deal-room") return renderSponsorDealRoomPage();
     if (parts[0] === "sponsor-call") return renderSponsorCallPage();
     if (parts[0] === "sponsor-opportunities") return renderSponsorOpportunitiesPage();
     if (parts[0] === "sponsor" && parts[1]) {
@@ -7304,7 +7343,7 @@ ${paragraphs.join("\n")}
         <a href="/free-pdf-tools/">Free tools</a>
         <h1>Sponsor PrintableTools Lab</h1>
         <p>PrintableTools Lab is a free no-signup browser utility site for PDF compression, image conversion, QR codes, business documents, career PDFs, upload-limit fixes, and printable planners. This page captures responsible sponsorship and partner inquiries without enabling ads or collecting payment on-site.</p>
-        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Send sponsor inquiry</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/dashboard/">View live metrics</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/submit-directory/">Review media facts</a></p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor-deal-room/?utm_source=sponsor-page&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=hero">Open deal room</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Send sponsor inquiry</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/dashboard/">View live metrics</a></p>
       </section>
       ${renderSponsorLeadForm()}
       <section class="shell section">
@@ -7363,6 +7402,50 @@ ${paragraphs.join("\n")}
     initSponsorLeadForms(app);
   }
 
+  function renderSponsorDealRoomPage() {
+    setMeta("Sponsor Deal Room for PrintableTools Lab", "Direct sponsor deal room with pilot pricing, fit rules, tracked sponsor paths, and the business-safe inquiry form for PrintableTools Lab.");
+    app.innerHTML = `
+      <section class="shell page-title section sponsor-hero">
+        <a href="/sponsor/">Sponsor page</a>
+        <h1>Sponsor deal room for PrintableTools Lab</h1>
+        <p>A direct buyer-facing room for policy-fit sponsors who want a small, manually reviewed pilot around free PDF, image, QR, career, classroom, and small-business workflows. No payment is collected here; the next step is a qualified business inquiry and manual fit review.</p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Start sponsor inquiry</a> <a class="button secondary" href="/sponsor-deal-room.json">Open deal JSON</a> <a class="button ghost" href="/dashboard/">View public metrics</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Available pilot deals</h2>
+        <div class="grid-2">
+          ${sponsorDeals.map((deal) => `<article class="panel"><h3>${escapeHtml(deal.title)}</h3><p><strong>${escapeHtml(deal.price)}</strong></p><p>${escapeHtml(deal.bestFor)}</p><p>${escapeHtml(deal.deliverable)}</p><p class="help">Needed: ${escapeHtml(deal.proofNeeded)}</p><p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(deal.trackedUrl)}">Use this deal path</a></p></article>`).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Best-fit sponsor categories</h2>
+        <div class="grid-3">
+          ${sponsorVerticals.map((vertical) => `<article class="panel"><h3>${escapeHtml(vertical.title)}</h3><p>${escapeHtml(vertical.sponsorFit)}</p><p><strong>${escapeHtml(vertical.priceHint)}</strong></p><p><a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor/${escapeHtml(vertical.slug)}/?utm_source=sponsor-deal-room&utm_medium=organic&utm_campaign=${escapeHtml(vertical.campaign)}&utm_content=vertical-card">Open vertical fit</a></p></article>`).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>What happens before money counts</h2>
+        <div class="grid-3">
+          <article class="panel"><h3>1. Qualified inquiry</h3><p>The sponsor submits business-safe details, website, audience fit, budget range, and timing through the form below.</p></article>
+          <article class="panel"><h3>2. Manual fit review</h3><p>The placement is checked for relevance, visitor safety, label clarity, and policy exclusions before any sponsor copy is discussed.</p></article>
+          <article class="panel"><h3>3. External agreement</h3><p>Revenue is real only after a signed sponsor agreement or settled external payment. Visits and clicks remain operating signals.</p></article>
+        </div>
+      </section>
+      ${renderSponsorLeadForm()}
+      <section class="shell section">
+        <h2>Deal-room rules</h2>
+        <ul>
+          <li>Company/product fit must be relevant to free PDF, image, QR, career, classroom, or small-business workflows.</li>
+          <li>Sponsor copy must be clearly labeled and manually approved before placement.</li>
+          <li>Downloads stay free and cannot require sponsor interaction, ad clicks, accounts, or payment.</li>
+          <li>No gambling, adult, deceptive finance, malware, fake document, misleading upload-service, or unsafe claims.</li>
+        </ul>
+        <p class="help">Revenue is real only after a sponsor agreement or settled external payment is verified. Deal-room visits, clicks, and lead submissions are operating signals.</p>
+      </section>
+    `;
+    initSponsorLeadForms(app);
+  }
+
   function renderSponsorCallPage() {
     setMeta("Sponsor Call for PrintableTools Lab", "Public sponsor call for privacy-friendly PDF, image, QR, resume, classroom, and small-business workflow partners to request a labeled pilot placement.");
     app.innerHTML = `
@@ -7370,7 +7453,7 @@ ${paragraphs.join("\n")}
         <a href="/sponsor/">Sponsor page</a>
         <h1>Sponsor call: privacy-friendly file and printable workflows</h1>
         <p>PrintableTools Lab is accepting a small number of manually reviewed sponsor and partner inquiries for free no-signup PDF, image, QR, resume, classroom, and small-business workflows. This public call is designed so partners can respond through the sponsor form instead of private outreach email.</p>
-        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor/?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=primary-cta#sponsor-inquiry">Send sponsor inquiry</a> <a class="button secondary" href="/sponsor-call.json">Open sponsor call JSON</a> <a class="button ghost" href="/sponsor-media-kit.json">Open media kit</a></p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor-deal-room/?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=primary-cta">Open deal room</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor/?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=primary-cta#sponsor-inquiry">Send sponsor inquiry</a> <a class="button ghost" href="/sponsor-call.json">Open sponsor call JSON</a> <a class="button ghost" href="/sponsor-media-kit.json">Open media kit</a></p>
       </section>
       <section class="shell section">
         <h2>Current sponsor openings</h2>

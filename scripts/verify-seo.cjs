@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { routes, siteUrl, landingPages, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, HIGH_INTENT_TOOL_PATHS, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, SPONSOR_DISCOVERY_LINKS, SPONSOR_VERTICALS, tools, guides } = require("./seo-content.cjs");
+const { routes, siteUrl, landingPages, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, HIGH_INTENT_TOOL_PATHS, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, SPONSOR_DISCOVERY_LINKS, SPONSOR_VERTICALS, SPONSOR_DEALS, tools, guides } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const failures = [];
@@ -149,9 +149,26 @@ else {
   if (!html.includes("Sponsor call: privacy-friendly file and printable workflows")) failures.push("Sponsor call page missing headline.");
   if (!html.includes("Current sponsor openings")) failures.push("Sponsor call page missing current openings.");
   if (!html.includes("Audience-specific sponsor pages")) failures.push("Sponsor call page missing vertical sponsor links.");
+  if (!html.includes("/sponsor-deal-room/")) failures.push("Sponsor call page missing deal room link.");
   if (!html.includes('data-track-event="sponsor_request_intent"')) failures.push("Sponsor call page missing sponsor intent tracking.");
   if (!html.includes("sponsor-call.json")) failures.push("Sponsor call page should reference machine-readable JSON.");
   if (!sitemap.includes(`<loc>${siteUrl("sponsor-call")}</loc>`)) failures.push("Sitemap missing sponsor call page.");
+}
+
+const sponsorDealRoomFile = path.join(root, "sponsor-deal-room", "index.html");
+if (!fs.existsSync(sponsorDealRoomFile)) failures.push("Missing sponsor deal room page.");
+else {
+  const html = fs.readFileSync(sponsorDealRoomFile, "utf8");
+  if (!html.includes("Sponsor deal room for PrintableTools Lab")) failures.push("Sponsor deal room missing headline.");
+  if (!html.includes("Available pilot deals")) failures.push("Sponsor deal room missing pilot deals.");
+  if (!html.includes("Best-fit sponsor categories")) failures.push("Sponsor deal room missing sponsor categories.");
+  if (!html.includes("What happens before money counts")) failures.push("Sponsor deal room missing money-count process.");
+  if (!html.includes("sponsor-deal-room.json")) failures.push("Sponsor deal room missing JSON link.");
+  if (!html.includes('data-sponsor-lead-form')) failures.push("Sponsor deal room missing lead capture form.");
+  if (!html.includes('data-track-event="sponsor_request_intent"')) failures.push("Sponsor deal room missing sponsor intent tracking.");
+  if (!SPONSOR_DEALS.every((deal) => html.includes(deal.title) && html.includes(deal.price))) failures.push("Sponsor deal room missing one or more deal offers.");
+  if (!html.includes("Revenue is real only after a sponsor agreement or settled external payment")) failures.push("Sponsor deal room missing revenue gate.");
+  if (!sitemap.includes(`<loc>${siteUrl("sponsor-deal-room")}</loc>`)) failures.push("Sitemap missing sponsor deal room page.");
 }
 
 const sponsorOpportunitiesFile = path.join(root, "sponsor-opportunities", "index.html");
@@ -200,10 +217,21 @@ const sponsorOutreachPackFile = path.join(root, "sponsor-outreach-pack.json");
 if (!fs.existsSync(sponsorOutreachPackFile)) failures.push("Missing sponsor-outreach-pack.json.");
 else {
   const data = JSON.parse(fs.readFileSync(sponsorOutreachPackFile, "utf8"));
+  if (!data.sponsorDealRoom || data.sponsorDealRoom.page !== siteUrl("sponsor-deal-room")) failures.push("Sponsor outreach pack missing sponsor deal room.");
   if (!Array.isArray(data.templates) || data.templates.length < 3) failures.push("Sponsor outreach pack missing copy templates.");
   if (!Array.isArray(data.verticalSponsorPages) || data.verticalSponsorPages.length < 5) failures.push("Sponsor outreach pack missing vertical sponsor pages.");
   if (!Array.isArray(data.trackedLinks) || data.trackedLinks.length < 10) failures.push("Sponsor outreach pack missing vertical tracked links.");
   if (!String(data.successGate || "").includes("settled payment")) failures.push("Sponsor outreach pack missing settled-payment success gate.");
+}
+
+const sponsorDealRoomJsonFile = path.join(root, "sponsor-deal-room.json");
+if (!fs.existsSync(sponsorDealRoomJsonFile)) failures.push("Missing sponsor-deal-room.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(sponsorDealRoomJsonFile, "utf8"));
+  if (data.canonical !== siteUrl("sponsor-deal-room")) failures.push("Sponsor deal room JSON missing canonical URL.");
+  if (!Array.isArray(data.deals) || data.deals.length !== SPONSOR_DEALS.length) failures.push("Sponsor deal room JSON missing deals.");
+  if (!String(data.inquiryUrl || "").includes("utm_source=sponsor-outreach")) failures.push("Sponsor deal room JSON missing tracked inquiry URL.");
+  if (!String(data.moneyGate || "").includes("settled external payment")) failures.push("Sponsor deal room JSON missing money gate.");
 }
 
 const sponsorCallJsonFile = path.join(root, "sponsor-call.json");
@@ -935,6 +963,7 @@ else {
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("submit-directory"))) failures.push("discovery.json missing directory submission pack.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("share-kit"))) failures.push("discovery.json missing share kit page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("sponsor-call"))) failures.push("discovery.json missing sponsor call page.");
+  if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("sponsor-deal-room"))) failures.push("discovery.json missing sponsor deal room page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("sponsor-opportunities"))) failures.push("discovery.json missing sponsor opportunities page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("sponsor"))) failures.push("discovery.json missing sponsor page.");
   if (Array.isArray(discovery.highIntentEntryPoints) && discovery.highIntentEntryPoints.some((url) => url === siteUrl(LOCAL_SELLER_STARTER_KIT.slug))) failures.push("discovery.json should not list digital product page as a high-intent entry point.");
@@ -953,6 +982,7 @@ else {
   if (discovery.organicPushKit !== siteUrl("organic-push-kit.json").replace(/\/$/, "")) failures.push("discovery.json missing organic-push-kit.json URL.");
   if (discovery.uploadErrorCheatsheet !== siteUrl("upload-error-cheatsheet.json").replace(/\/$/, "")) failures.push("discovery.json missing upload-error-cheatsheet.json URL.");
   if (discovery.sponsorCall !== siteUrl("sponsor-call.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor-call.json URL.");
+  if (discovery.sponsorDealRoom !== siteUrl("sponsor-deal-room.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor-deal-room.json URL.");
   if (discovery.sponsorOpportunities !== siteUrl("sponsor-opportunities.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor-opportunities.json URL.");
   if (discovery.sponsorMediaKit !== siteUrl("sponsor-media-kit.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor-media-kit.json URL.");
   if (discovery.sponsorOutreachPack !== siteUrl("sponsor-outreach-pack.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor-outreach-pack.json URL.");
@@ -969,6 +999,9 @@ else {
   if (!discovery.distributionAssets || discovery.distributionAssets.uploadErrorCheatsheetJson !== siteUrl("upload-error-cheatsheet.json").replace(/\/$/, "")) failures.push("discovery.json missing upload error cheatsheet JSON URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.sponsorCall !== siteUrl("sponsor-call")) failures.push("discovery.json missing sponsor call URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.sponsorCallJson !== siteUrl("sponsor-call.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor call JSON URL.");
+  if (!discovery.distributionAssets || discovery.distributionAssets.sponsorDealRoom !== siteUrl("sponsor-deal-room")) failures.push("discovery.json missing sponsor deal room URL.");
+  if (!discovery.distributionAssets || discovery.distributionAssets.sponsorDealRoomJson !== siteUrl("sponsor-deal-room.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor deal room JSON URL.");
+  if (!Array.isArray(discovery.distributionAssets?.sponsorDeals) || discovery.distributionAssets.sponsorDeals.length !== SPONSOR_DEALS.length) failures.push("discovery.json missing sponsor deals.");
   if (!discovery.distributionAssets || discovery.distributionAssets.sponsorOpportunities !== siteUrl("sponsor-opportunities")) failures.push("discovery.json missing sponsor opportunities URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.sponsorOpportunitiesJson !== siteUrl("sponsor-opportunities.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor opportunities JSON URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.sponsorPage !== siteUrl("sponsor")) failures.push("discovery.json missing sponsor page URL.");
@@ -1153,6 +1186,29 @@ else {
   if (!html.includes("utm_source=sponsor-outreach")) failures.push("GitHub Pages sponsor call missing sponsor outreach tracking.");
   if (!html.includes("sponsor-call.json")) failures.push("GitHub Pages sponsor call missing mirror JSON link.");
   requireGithubPagesIntentTracking(html, "GitHub Pages sponsor call mirror");
+}
+
+const docsSponsorDealRoomFile = path.join(root, "docs", "sponsor-deal-room", "index.html");
+if (!fs.existsSync(docsSponsorDealRoomFile)) failures.push("Missing GitHub Pages sponsor deal room mirror page.");
+else {
+  const html = fs.readFileSync(docsSponsorDealRoomFile, "utf8");
+  if (!html.includes("Sponsor deal room")) failures.push("GitHub Pages sponsor deal room missing heading.");
+  if (!html.includes(siteUrl("sponsor-deal-room"))) failures.push("GitHub Pages sponsor deal room missing live page URL.");
+  if (!html.includes("Available pilot deals")) failures.push("GitHub Pages sponsor deal room missing pilot deals.");
+  if (!html.includes("utm_source=sponsor-outreach")) failures.push("GitHub Pages sponsor deal room missing sponsor outreach tracking.");
+  if (!html.includes("sponsor-deal-room.json")) failures.push("GitHub Pages sponsor deal room missing mirror JSON link.");
+  requireGithubPagesIntentTracking(html, "GitHub Pages sponsor deal room mirror");
+}
+
+const docsSponsorDealRoomJsonFile = path.join(root, "docs", "sponsor-deal-room.json");
+if (!fs.existsSync(docsSponsorDealRoomJsonFile)) failures.push("Missing GitHub Pages sponsor-deal-room.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(docsSponsorDealRoomJsonFile, "utf8"));
+  if (data.directory !== "https://yanqr213.github.io/printable-tools-lab/sponsor-deal-room/") failures.push("GitHub Pages sponsor-deal-room.json missing directory URL.");
+  if (data.liveJson !== siteUrl("sponsor-deal-room.json").replace(/\/$/, "")) failures.push("GitHub Pages sponsor-deal-room.json missing live JSON URL.");
+  if (!Array.isArray(data.deals) || data.deals.length !== SPONSOR_DEALS.length) failures.push("GitHub Pages sponsor-deal-room.json missing deals.");
+  if (!String(data.trackedInquiryUrl || "").includes("utm_source=sponsor-outreach")) failures.push("GitHub Pages sponsor-deal-room.json missing tracked inquiry URL.");
+  if (!String(data.moneyGate || "").includes("settled external payment")) failures.push("GitHub Pages sponsor-deal-room.json missing money gate.");
 }
 
 const docsSponsorCallJsonFile = path.join(root, "docs", "sponsor-call.json");

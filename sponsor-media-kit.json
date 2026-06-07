@@ -1,8 +1,9 @@
 {
   "name": "PrintableTools Lab Sponsor Media Kit",
-  "generatedAt": "2026-06-07T07:28:54.458Z",
+  "generatedAt": "2026-06-07T08:06:32.076Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
+  "sponsorDealRoom": "https://printable-tools-lab.pages.dev/sponsor-deal-room/",
   "metricsDashboard": "https://printable-tools-lab.pages.dev/dashboard/",
   "toolsJson": "https://printable-tools-lab.pages.dev/tools.json",
   "directoryPack": "https://printable-tools-lab.pages.dev/submit-directory/",
@@ -10,7 +11,7 @@
     "tools": 66,
     "guides": 95,
     "landingPages": 92,
-    "indexableRoutes": 279,
+    "indexableRoutes": 280,
     "exports": "Free browser exports; no signup required for core tools.",
     "ads": "Ads disabled during validation. Downloads must never be gated by sponsor or ad interaction."
   },
@@ -35,6 +36,56 @@
       "price": "No-cash mutual test",
       "fit": "Directories, newsletters, or communities that can send relevant visitors to free tools.",
       "deliverable": "Tracked partner link and review of whether traffic creates depth, download, or lead signal."
+    }
+  ],
+  "dealRoomOffers": [
+    {
+      "id": "starter-fit-review",
+      "title": "Starter fit review",
+      "price": "USD 49",
+      "budgetRange": "under-250",
+      "placement": "media-kit-review",
+      "timeline": "this-week",
+      "bestFor": "A sponsor wants to know whether their product is safe and relevant before buying a visible placement.",
+      "deliverable": "Manual sponsor-fit review, audience match, recommended page family, and safe next-step copy.",
+      "proofNeeded": "Company URL, product category, intended audience, and any placement rules.",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=starter-fit-review#sponsor-inquiry"
+    },
+    {
+      "id": "guide-sponsor-pilot",
+      "title": "Guide sponsor pilot",
+      "price": "USD 99-149",
+      "budgetRange": "250-500",
+      "placement": "content-sponsorship",
+      "timeline": "this-month",
+      "bestFor": "A PDF, image, QR, career, classroom, or small-business product wants one clearly labeled pilot mention.",
+      "deliverable": "One manually approved, clearly labeled sponsor mention on a relevant guide or resource page.",
+      "proofNeeded": "Campaign fit, sponsor copy draft, safe landing URL, and category exclusions.",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=guide-sponsor-pilot#sponsor-inquiry"
+    },
+    {
+      "id": "vertical-category-pilot",
+      "title": "Vertical category pilot",
+      "price": "USD 149-250",
+      "budgetRange": "250-500",
+      "placement": "directory-visibility",
+      "timeline": "this-month",
+      "bestFor": "A partner cares about one audience such as QR/local marketing, resume/career, classroom, or small-business paperwork.",
+      "deliverable": "Tracked vertical sponsor page, fit review, and one approved contextual placement candidate.",
+      "proofNeeded": "Target vertical, audience fit, sponsor category, and safe public landing URL.",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=vertical-category-pilot#sponsor-inquiry"
+    },
+    {
+      "id": "partner-distribution-test",
+      "title": "Partner distribution test",
+      "price": "No-cash mutual test",
+      "budgetRange": "exploratory",
+      "placement": "partner-distribution",
+      "timeline": "exploratory",
+      "bestFor": "A newsletter, directory, resource page, or community wants to test relevant traffic before a paid placement.",
+      "deliverable": "Tracked partner link, source attribution, and review against page views, depth, downloads, or lead signal.",
+      "proofNeeded": "Partner page, expected audience, planned link context, and review window.",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=partner-distribution-test#sponsor-inquiry"
     }
   ],
   "outreachTargets": [

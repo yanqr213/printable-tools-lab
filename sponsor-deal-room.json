@@ -1,69 +1,61 @@
 {
-  "name": "PrintableTools Lab Sponsor Call",
+  "name": "PrintableTools Lab Sponsor Deal Room",
   "generatedAt": "2026-06-07T08:06:32.076Z",
-  "canonical": "https://printable-tools-lab.pages.dev/sponsor-call/",
-  "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
-  "sponsorDealRoom": "https://printable-tools-lab.pages.dev/sponsor-deal-room/",
-  "mediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
-  "outreachPack": "https://printable-tools-lab.pages.dev/sponsor-outreach-pack.json",
-  "actions": [
+  "canonical": "https://printable-tools-lab.pages.dev/sponsor-deal-room/",
+  "inquiryUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=direct#sponsor-inquiry",
+  "metrics": "https://printable-tools-lab.pages.dev/dashboard/",
+  "operations": "https://printable-tools-lab.pages.dev/ops/",
+  "deals": [
     {
-      "title": "Sponsor a relevant guide",
-      "audience": "PDF, image, QR, resume, classroom, or small-business workflow products.",
-      "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=guide-sponsor",
-      "signal": "A qualified sponsor lead submits audience fit and budget range through the site form."
+      "id": "starter-fit-review",
+      "title": "Starter fit review",
+      "price": "USD 49",
+      "budgetRange": "under-250",
+      "placement": "media-kit-review",
+      "timeline": "this-week",
+      "bestFor": "A sponsor wants to know whether their product is safe and relevant before buying a visible placement.",
+      "deliverable": "Manual sponsor-fit review, audience match, recommended page family, and safe next-step copy.",
+      "proofNeeded": "Company URL, product category, intended audience, and any placement rules.",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=starter-fit-review#sponsor-inquiry"
     },
     {
-      "title": "Request a starter fit review",
-      "audience": "Early partners who want a quick policy-fit review before discussing copy.",
-      "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=starter-review",
-      "signal": "A business asks for the USD 49 exploratory review or a no-cash partner test."
+      "id": "guide-sponsor-pilot",
+      "title": "Guide sponsor pilot",
+      "price": "USD 99-149",
+      "budgetRange": "250-500",
+      "placement": "content-sponsorship",
+      "timeline": "this-month",
+      "bestFor": "A PDF, image, QR, career, classroom, or small-business product wants one clearly labeled pilot mention.",
+      "deliverable": "One manually approved, clearly labeled sponsor mention on a relevant guide or resource page.",
+      "proofNeeded": "Campaign fit, sponsor copy draft, safe landing URL, and category exclusions.",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=guide-sponsor-pilot#sponsor-inquiry"
     },
     {
-      "title": "Use a vertical sponsor page",
-      "audience": "Partners who care about one audience: QR/local marketing, resume, classroom, small business, or file workflow SaaS.",
-      "url": "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=vertical-pages",
-      "signal": "A sponsor lead arrives with sponsor-call attribution and a vertical path."
+      "id": "vertical-category-pilot",
+      "title": "Vertical category pilot",
+      "price": "USD 149-250",
+      "budgetRange": "250-500",
+      "placement": "directory-visibility",
+      "timeline": "this-month",
+      "bestFor": "A partner cares about one audience such as QR/local marketing, resume/career, classroom, or small-business paperwork.",
+      "deliverable": "Tracked vertical sponsor page, fit review, and one approved contextual placement candidate.",
+      "proofNeeded": "Target vertical, audience fit, sponsor category, and safe public landing URL.",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=vertical-category-pilot#sponsor-inquiry"
+    },
+    {
+      "id": "partner-distribution-test",
+      "title": "Partner distribution test",
+      "price": "No-cash mutual test",
+      "budgetRange": "exploratory",
+      "placement": "partner-distribution",
+      "timeline": "exploratory",
+      "bestFor": "A newsletter, directory, resource page, or community wants to test relevant traffic before a paid placement.",
+      "deliverable": "Tracked partner link, source attribution, and review against page views, depth, downloads, or lead signal.",
+      "proofNeeded": "Partner page, expected audience, planned link context, and review window.",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=partner-distribution-test#sponsor-inquiry"
     }
   ],
-  "discoveryLinks": [
-    {
-      "title": "Sponsor deal room",
-      "path": "sponsor-deal-room",
-      "url": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=deal-room",
-      "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room/",
-      "reason": "Direct pilot pricing, fit rules, tracked deal paths, and the business-safe inquiry form for partners ready to discuss a sponsor test."
-    },
-    {
-      "title": "Public sponsor call",
-      "path": "sponsor-call",
-      "url": "https://printable-tools-lab.pages.dev/sponsor-call?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=public-call",
-      "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-call/",
-      "reason": "Open invitation for policy-fit sponsors and partners to use the sponsor form instead of private outreach."
-    },
-    {
-      "title": "Sponsor inquiry form",
-      "path": "sponsor",
-      "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=inquiry-form#sponsor-inquiry",
-      "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor/",
-      "reason": "Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries."
-    },
-    {
-      "title": "Sponsor call JSON",
-      "path": "sponsor-call.json",
-      "url": "https://printable-tools-lab.pages.dev/sponsor-call.json",
-      "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-call.json",
-      "reason": "Machine-readable sponsor openings, reply path, vertical pages, and success gate."
-    },
-    {
-      "title": "Sponsor media kit JSON",
-      "path": "sponsor-media-kit.json",
-      "url": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
-      "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
-      "reason": "Public facts, placement rules, vertical fits, and safety constraints for partners."
-    }
-  ],
-  "verticalSponsorPages": [
+  "verticals": [
     {
       "slug": "pdf-image-qr-saas",
       "title": "PDF, Image, and QR SaaS Sponsorship",
@@ -150,12 +142,11 @@
       ]
     }
   ],
-  "publicFacts": {
-    "tools": 66,
-    "guides": 95,
-    "landingPages": 92,
-    "exports": "Free no-signup browser exports."
-  },
-  "replyPath": "Use the sponsor inquiry form. Do not send payment, tax, phone, bank, private identity, passwords, or customer files.",
-  "successGate": "The call works only when a qualified sponsor inquiry, signed agreement, or settled external payment is verified."
+  "requiredReview": [
+    "Company/product fit must be relevant to free PDF, image, QR, career, classroom, or small-business workflows.",
+    "Sponsor copy must be clearly labeled and manually approved before placement.",
+    "Downloads stay free and cannot require sponsor interaction, ad clicks, accounts, or payment.",
+    "No gambling, adult, deceptive finance, malware, fake document, misleading upload-service, or unsafe claims."
+  ],
+  "moneyGate": "Revenue is real only after a sponsor agreement or settled external payment is verified. Deal-room visits, clicks, and lead submissions are operating signals."
 }

@@ -34,6 +34,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - GitHub campaign: https://printable-tools-lab.pages.dev?utm_source=github
 - GitHub issue campaign: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=github-issue&utm_medium=organic&utm_campaign=zero_cost_push
 - Public Gist campaign: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=gist&utm_medium=organic&utm_campaign=zero_cost_push
+- Sponsor deal room campaign: https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=distribution-pack
 - Sponsor call campaign: https://printable-tools-lab.pages.dev/sponsor-call?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=distribution-pack
 - Sponsor opportunities campaign: https://printable-tools-lab.pages.dev/sponsor-opportunities?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_opportunities&utm_content=distribution-pack
 - Sponsor inquiry form campaign: https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=distribution-pack#sponsor-inquiry
@@ -56,6 +57,13 @@ Rule: downloads stay free, ads are disabled until review, and future ads must ne
 
 Use these only where sponsor, partnership, directory, newsletter, or resource-page submissions are explicitly welcome. This is not a payment page; every inquiry still needs manual fit review and a separate external agreement or payment record before revenue is real.
 
+- Sponsor deal room: https://printable-tools-lab.pages.dev/sponsor-deal-room/ - Direct pilot pricing, fit rules, tracked deal paths, and sponsor inquiry form.
+- Sponsor deal room JSON: https://printable-tools-lab.pages.dev/sponsor-deal-room.json
+- Starter fit review: https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=starter-fit-review#sponsor-inquiry - USD 49; A sponsor wants to know whether their product is safe and relevant before buying a visible placement.
+- Guide sponsor pilot: https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=guide-sponsor-pilot#sponsor-inquiry - USD 99-149; A PDF, image, QR, career, classroom, or small-business product wants one clearly labeled pilot mention.
+- Vertical category pilot: https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=vertical-category-pilot#sponsor-inquiry - USD 149-250; A partner cares about one audience such as QR/local marketing, resume/career, classroom, or small-business paperwork.
+- Partner distribution test: https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=partner-distribution-test#sponsor-inquiry - No-cash mutual test; A newsletter, directory, resource page, or community wants to test relevant traffic before a paid placement.
+- Sponsor deal room: https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=deal-room - Direct pilot pricing, fit rules, tracked deal paths, and the business-safe inquiry form for partners ready to discuss a sponsor test.
 - Public sponsor call: https://printable-tools-lab.pages.dev/sponsor-call?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=public-call - Open invitation for policy-fit sponsors and partners to use the sponsor form instead of private outreach.
 - Sponsor inquiry form: https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=inquiry-form#sponsor-inquiry - Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries.
 - Sponsor call JSON: https://printable-tools-lab.pages.dev/sponsor-call.json - Machine-readable sponsor openings, reply path, vertical pages, and success gate.

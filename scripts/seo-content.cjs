@@ -4829,6 +4829,57 @@ const SPONSOR_PLACEMENTS = [
   },
 ];
 
+const SPONSOR_DEALS = [
+  {
+    id: "starter-fit-review",
+    title: "Starter fit review",
+    price: "USD 49",
+    budgetRange: "under-250",
+    placement: "media-kit-review",
+    timeline: "this-week",
+    bestFor: "A sponsor wants to know whether their product is safe and relevant before buying a visible placement.",
+    deliverable: "Manual sponsor-fit review, audience match, recommended page family, and safe next-step copy.",
+    proofNeeded: "Company URL, product category, intended audience, and any placement rules.",
+    trackedUrl: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=starter-fit-review#sponsor-inquiry`,
+  },
+  {
+    id: "guide-sponsor-pilot",
+    title: "Guide sponsor pilot",
+    price: "USD 99-149",
+    budgetRange: "250-500",
+    placement: "content-sponsorship",
+    timeline: "this-month",
+    bestFor: "A PDF, image, QR, career, classroom, or small-business product wants one clearly labeled pilot mention.",
+    deliverable: "One manually approved, clearly labeled sponsor mention on a relevant guide or resource page.",
+    proofNeeded: "Campaign fit, sponsor copy draft, safe landing URL, and category exclusions.",
+    trackedUrl: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=guide-sponsor-pilot#sponsor-inquiry`,
+  },
+  {
+    id: "vertical-category-pilot",
+    title: "Vertical category pilot",
+    price: "USD 149-250",
+    budgetRange: "250-500",
+    placement: "directory-visibility",
+    timeline: "this-month",
+    bestFor: "A partner cares about one audience such as QR/local marketing, resume/career, classroom, or small-business paperwork.",
+    deliverable: "Tracked vertical sponsor page, fit review, and one approved contextual placement candidate.",
+    proofNeeded: "Target vertical, audience fit, sponsor category, and safe public landing URL.",
+    trackedUrl: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=vertical-category-pilot#sponsor-inquiry`,
+  },
+  {
+    id: "partner-distribution-test",
+    title: "Partner distribution test",
+    price: "No-cash mutual test",
+    budgetRange: "exploratory",
+    placement: "partner-distribution",
+    timeline: "exploratory",
+    bestFor: "A newsletter, directory, resource page, or community wants to test relevant traffic before a paid placement.",
+    deliverable: "Tracked partner link, source attribution, and review against page views, depth, downloads, or lead signal.",
+    proofNeeded: "Partner page, expected audience, planned link context, and review window.",
+    trackedUrl: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=partner-distribution-test#sponsor-inquiry`,
+  },
+];
+
 const SPONSOR_OUTREACH_TARGETS = [
   {
     category: "PDF, image, and QR SaaS",
@@ -4999,6 +5050,13 @@ const SPONSOR_CALL_ACTIONS = [
 
 const SPONSOR_DISCOVERY_LINKS = [
   {
+    title: "Sponsor deal room",
+    path: "sponsor-deal-room",
+    url: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=deal-room`,
+    canonicalUrl: siteUrl("sponsor-deal-room"),
+    reason: "Direct pilot pricing, fit rules, tracked deal paths, and the business-safe inquiry form for partners ready to discuss a sponsor test.",
+  },
+  {
     title: "Public sponsor call",
     path: "sponsor-call",
     url: `${siteUrl("sponsor-call").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=public-call`,
@@ -5058,12 +5116,33 @@ function sponsorOpportunityPayload(generatedAt = new Date().toISOString()) {
   };
 }
 
+function sponsorDealRoomPayload(generatedAt = new Date().toISOString()) {
+  return {
+    name: "PrintableTools Lab Sponsor Deal Room",
+    generatedAt,
+    canonical: siteUrl("sponsor-deal-room"),
+    inquiryUrl: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=direct#sponsor-inquiry`,
+    metrics: siteUrl("dashboard"),
+    operations: siteUrl("ops"),
+    deals: SPONSOR_DEALS,
+    verticals: SPONSOR_VERTICALS.map(sponsorVerticalEntry),
+    requiredReview: [
+      "Company/product fit must be relevant to free PDF, image, QR, career, classroom, or small-business workflows.",
+      "Sponsor copy must be clearly labeled and manually approved before placement.",
+      "Downloads stay free and cannot require sponsor interaction, ad clicks, accounts, or payment.",
+      "No gambling, adult, deceptive finance, malware, fake document, misleading upload-service, or unsafe claims.",
+    ],
+    moneyGate: "Revenue is real only after a sponsor agreement or settled external payment is verified. Deal-room visits, clicks, and lead submissions are operating signals.",
+  };
+}
+
 function sponsorMediaKitPayload(generatedAt = new Date().toISOString()) {
   return {
     name: "PrintableTools Lab Sponsor Media Kit",
     generatedAt,
     site: siteUrl(""),
     sponsorPage: siteUrl("sponsor"),
+    sponsorDealRoom: siteUrl("sponsor-deal-room"),
     metricsDashboard: siteUrl("dashboard"),
     toolsJson: siteUrl("tools.json").replace(/\/$/, ""),
     directoryPack: siteUrl("submit-directory"),
@@ -5076,6 +5155,7 @@ function sponsorMediaKitPayload(generatedAt = new Date().toISOString()) {
       ads: "Ads disabled during validation. Downloads must never be gated by sponsor or ad interaction.",
     },
     placements: SPONSOR_PLACEMENTS,
+    dealRoomOffers: SPONSOR_DEALS,
     outreachTargets: SPONSOR_OUTREACH_TARGETS,
     outreachTemplates: SPONSOR_OUTREACH_TEMPLATES,
     verticalSponsorPages: SPONSOR_VERTICALS.map(sponsorVerticalEntry),
@@ -5096,6 +5176,7 @@ function sponsorCallPayload(generatedAt = new Date().toISOString()) {
     generatedAt,
     canonical: siteUrl("sponsor-call"),
     sponsorPage: siteUrl("sponsor"),
+    sponsorDealRoom: siteUrl("sponsor-deal-room"),
     mediaKit: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
     outreachPack: siteUrl("sponsor-outreach-pack.json").replace(/\/$/, ""),
     actions: SPONSOR_CALL_ACTIONS,
@@ -5286,6 +5367,12 @@ const pages = [
     title: "Sponsor PrintableTools Lab",
     description: "Sponsor and partner inquiry page for PrintableTools Lab, a free no-signup browser PDF, image, QR, and document utility site with ad-safe placement rules.",
     html: sponsorPageHtml(),
+  },
+  {
+    path: "sponsor-deal-room",
+    title: "Sponsor Deal Room for PrintableTools Lab",
+    description: "Direct sponsor deal room with pilot pricing, fit rules, tracked sponsor paths, and the business-safe inquiry form for PrintableTools Lab.",
+    html: sponsorDealRoomHtml(),
   },
   {
     path: "sponsor-call",
@@ -5804,7 +5891,7 @@ function sponsorPageHtml() {
         <a href="/free-pdf-tools/">Free tools</a>
         <h1>Sponsor PrintableTools Lab</h1>
         <p>PrintableTools Lab is a free no-signup browser utility site for PDF compression, image conversion, QR codes, business documents, career PDFs, upload-limit fixes, and printable planners. This page captures responsible sponsorship and partner inquiries without enabling ads or collecting payment on-site.</p>
-        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Send sponsor inquiry</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/dashboard/">View live metrics</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/submit-directory/">Review media facts</a></p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor-deal-room/?utm_source=sponsor-page&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=hero">Open deal room</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Send sponsor inquiry</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/dashboard/">View live metrics</a></p>
       </section>
 ${sponsorLeadFormHtml()}
       <section class="shell section">
@@ -5869,13 +5956,65 @@ ${sponsorLeadFormHtml()}
       </section>`;
 }
 
+function sponsorDealRoomHtml() {
+  const payload = sponsorDealRoomPayload();
+  return `
+      <section class="shell page-title section sponsor-hero">
+        <a href="/sponsor/">Sponsor page</a>
+        <h1>Sponsor deal room for PrintableTools Lab</h1>
+        <p>A direct buyer-facing room for policy-fit sponsors who want a small, manually reviewed pilot around free PDF, image, QR, career, classroom, and small-business workflows. No payment is collected here; the next step is a qualified business inquiry and manual fit review.</p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Start sponsor inquiry</a> <a class="button secondary" href="/sponsor-deal-room.json">Open deal JSON</a> <a class="button ghost" href="/dashboard/">View public metrics</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Available pilot deals</h2>
+        <div class="grid-2">
+          ${SPONSOR_DEALS.map((deal) => `<article class="panel"><h3>${escapeHtml(deal.title)}</h3><p><strong>${escapeHtml(deal.price)}</strong></p><p>${escapeHtml(deal.bestFor)}</p><p>${escapeHtml(deal.deliverable)}</p><p class="help">Needed: ${escapeHtml(deal.proofNeeded)}</p><p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(deal.trackedUrl)}">Use this deal path</a></p></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Best-fit sponsor categories</h2>
+        <div class="grid-3">
+          ${SPONSOR_VERTICALS.map((vertical) => `<article class="panel"><h3>${escapeHtml(vertical.title)}</h3><p>${escapeHtml(vertical.sponsorFit)}</p><p><strong>${escapeHtml(vertical.priceHint)}</strong></p><p><a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor/${escapeHtml(vertical.slug)}/?utm_source=sponsor-deal-room&utm_medium=organic&utm_campaign=${escapeHtml(vertical.campaign)}&utm_content=vertical-card">Open vertical fit</a></p></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>What happens before money counts</h2>
+        <div class="grid-3">
+          <article class="panel"><h3>1. Qualified inquiry</h3><p>The sponsor submits business-safe details, website, audience fit, budget range, and timing through the form below.</p></article>
+          <article class="panel"><h3>2. Manual fit review</h3><p>The placement is checked for relevance, visitor safety, label clarity, and policy exclusions before any sponsor copy is discussed.</p></article>
+          <article class="panel"><h3>3. External agreement</h3><p>Revenue is real only after a signed sponsor agreement or settled external payment. Visits and clicks remain operating signals.</p></article>
+        </div>
+      </section>
+${sponsorLeadFormHtml()}
+      <section class="shell section">
+        <h2>Deal-room rules</h2>
+        <ul>
+          ${payload.requiredReview.map((rule) => `<li>${escapeHtml(rule)}</li>`).join("\n")}
+        </ul>
+        <p class="help">${escapeHtml(payload.moneyGate)}</p>
+        ${jsonLdHtml({
+          "@context": "https://schema.org",
+          "@type": "OfferCatalog",
+          name: "PrintableTools Lab Sponsor Deal Room",
+          url: siteUrl("sponsor-deal-room"),
+          itemListElement: SPONSOR_DEALS.map((deal, index) => ({
+            "@type": "Offer",
+            position: index + 1,
+            name: deal.title,
+            description: deal.deliverable,
+            url: deal.trackedUrl,
+          })),
+        })}
+      </section>`;
+}
+
 function sponsorCallHtml() {
   return `
       <section class="shell page-title section sponsor-hero">
         <a href="/sponsor/">Sponsor page</a>
         <h1>Sponsor call: privacy-friendly file and printable workflows</h1>
         <p>PrintableTools Lab is accepting a small number of manually reviewed sponsor and partner inquiries for free no-signup PDF, image, QR, resume, classroom, and small-business workflows. This public call is designed so partners can respond through the sponsor form instead of private outreach email.</p>
-        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor/?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=primary-cta#sponsor-inquiry">Send sponsor inquiry</a> <a class="button secondary" href="/sponsor-call.json">Open sponsor call JSON</a> <a class="button ghost" href="/sponsor-media-kit.json">Open media kit</a></p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor-deal-room/?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=primary-cta">Open deal room</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor/?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=primary-cta#sponsor-inquiry">Send sponsor inquiry</a> <a class="button ghost" href="/sponsor-call.json">Open sponsor call JSON</a> <a class="button ghost" href="/sponsor-media-kit.json">Open media kit</a></p>
       </section>
       <section class="shell section">
         <h2>Current sponsor openings</h2>
@@ -8369,4 +8508,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY, SPONSOR_PLACEMENTS, SPONSOR_OUTREACH_TARGETS, SPONSOR_OUTREACH_TEMPLATES, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, SPONSOR_DISCOVERY_LINKS, sponsorMediaKitPayload, sponsorCallPayload, sponsorOpportunityPayload };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY, SPONSOR_PLACEMENTS, SPONSOR_DEALS, SPONSOR_OUTREACH_TARGETS, SPONSOR_OUTREACH_TEMPLATES, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, SPONSOR_DISCOVERY_LINKS, sponsorMediaKitPayload, sponsorCallPayload, sponsorOpportunityPayload, sponsorDealRoomPayload };

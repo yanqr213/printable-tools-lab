@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-06T01:49:28.626Z",
+  "generatedAt": "2026-06-07T07:33:25.793Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -7,9 +7,9 @@
     "toolCount": 66,
     "guideCount": 95,
     "landingPageCount": 92,
-    "indexableRoutes": 271,
-    "sitemapLocCount": 271,
-    "generatedToolInventoryAt": "2026-06-06T01:48:41.354Z",
+    "indexableRoutes": 279,
+    "sitemapLocCount": 279,
+    "generatedToolInventoryAt": "2026-06-07T07:30:29.136Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -21,7 +21,22 @@
       "shareKitJson": true,
       "distributionPack": true,
       "webManifest": true,
-      "opensearch": true
+      "opensearch": true,
+      "sponsorMediaKit": true,
+      "sponsorOutreachPack": true,
+      "sponsorCall": true,
+      "sponsorVerticalPages": true,
+      "sponsorProspectQueue": false,
+      "sponsorOutreachLog": false
+    },
+    "sponsorOutreach": {
+      "count": 0,
+      "queued": 0,
+      "sent": 0,
+      "replied": 0,
+      "qualified": 0,
+      "settled": 0,
+      "blockedByReplyEmail": 0
     },
     "ads": {
       "enabled": false,
@@ -37,45 +52,45 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 37915,
+        "bytes": 37986,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 39691,
+        "bytes": 39762,
         "json": null
       },
       "/share-kit/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 32356,
+        "bytes": 34491,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 32666,
+        "bytes": 33617,
         "json": null
       },
       "/robots.txt": {
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 167,
+        "bytes": 183,
         "json": null,
-        "sample": "User-agent: *\nAllow: /\nDisallow: /dashboard/\nDisallow: /roadmap/\nDisallow: /launch-kit/\nDisallow: /reports/\nSitemap: https://printable-tools-lab.pages.dev/sitemap.xml\n"
+        "sample": "User-agent: *\nAllow: /\nDisallow: /dashboard/\nDisallow: /ops/\nDisallow: /roadmap/\nDisallow: /launch-kit/\nDisallow: /reports/\nSitemap: https://printable-tools-lab.pages.dev/sitemap.x"
       },
       "/ads.txt": {
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 52,
+        "bytes": 53,
         "json": null,
-        "sample": "# No authorized advertising sellers configured yet.\n"
+        "sample": "# No authorized advertising sellers configured yet.\r\n"
       },
       "/llms.txt": {
         "ok": true,
@@ -101,7 +116,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-06T01:40:43.333Z",
+          "generatedAt": "2026-06-07T07:30:29.136Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -983,11 +998,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 50617,
+        "bytes": 56386,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-06T01:40:43.333Z",
+          "generatedAt": "2026-06-07T07:30:29.136Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -995,6 +1010,10 @@
           "shareKit": "https://printable-tools-lab.pages.dev/share-kit.json",
           "organicPushKit": "https://printable-tools-lab.pages.dev/organic-push-kit.json",
           "uploadErrorCheatsheet": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",
+          "sponsorCall": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+          "sponsorOpportunities": "https://printable-tools-lab.pages.dev/sponsor-opportunities.json",
+          "sponsorMediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+          "sponsorOutreachPack": "https://printable-tools-lab.pages.dev/sponsor-outreach-pack.json",
           "platformSubmitQueue": "https://printable-tools-lab.pages.dev/platform-submit-queue.json",
           "platformSubmitCockpit": "https://printable-tools-lab.pages.dev/platform-submit-cockpit.json",
           "platformOutreachTracker": "https://printable-tools-lab.pages.dev/platform-outreach-tracker.json",
@@ -1009,6 +1028,14 @@
             "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
             "https://printable-tools-lab.pages.dev/submit-directory/",
             "https://printable-tools-lab.pages.dev/share-kit/",
+            "https://printable-tools-lab.pages.dev/sponsor-call/",
+            "https://printable-tools-lab.pages.dev/sponsor-opportunities/",
+            "https://printable-tools-lab.pages.dev/sponsor/",
+            "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas/",
+            "https://printable-tools-lab.pages.dev/sponsor/resume-career-sponsors/",
+            "https://printable-tools-lab.pages.dev/sponsor/classroom-printable-sponsors/",
+            "https://printable-tools-lab.pages.dev/sponsor/small-business-paperwork-sponsors/",
+            "https://printable-tools-lab.pages.dev/sponsor/local-marketing-qr-sponsors/",
             "https://printable-tools-lab.pages.dev/platform-submit-queue/",
             "https://printable-tools-lab.pages.dev/platform-submit-cockpit/",
             "https://printable-tools-lab.pages.dev/platform-outreach-tracker/",
@@ -1164,6 +1191,75 @@
             "organicPushKitJson": "https://printable-tools-lab.pages.dev/organic-push-kit.json",
             "uploadErrorCheatsheet": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
             "uploadErrorCheatsheetJson": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",
+            "sponsorCall": "https://printable-tools-lab.pages.dev/sponsor-call/",
+            "sponsorCallJson": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+            "sponsorOpportunities": "https://printable-tools-lab.pages.dev/sponsor-opportunities/",
+            "sponsorOpportunitiesJson": "https://printable-tools-lab.pages.dev/sponsor-opportunities.json",
+            "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
+            "sponsorMediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+            "sponsorOutreachPack": "https://printable-tools-lab.pages.dev/sponsor-outreach-pack.json",
+            "sponsorDiscoveryLinks": [
+              {
+                "title": "Public sponsor call",
+                "path": "sponsor-call",
+                "url": "https://printable-tools-lab.pages.dev/sponsor-call?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=public-call",
+                "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-call/",
+                "reason": "Open invitation for policy-fit sponsors and partners to use the sponsor form instead of private outreach."
+              },
+              {
+                "title": "Sponsor inquiry form",
+                "path": "sponsor",
+                "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=inquiry-form#sponsor-inquiry",
+                "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor/",
+                "reason": "Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries."
+              },
+              {
+                "title": "Sponsor call JSON",
+                "path": "sponsor-call.json",
+                "url": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+                "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+                "reason": "Machine-readable sponsor openings, reply path, vertical pages, and success gate."
+              },
+              {
+                "title": "Sponsor media kit JSON",
+                "path": "sponsor-media-kit.json",
+                "url": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+                "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+                "reason": "Public facts, placement rules, vertical fits, and safety constraints for partners."
+              }
+            ],
+            "sponsorVerticalPages": [
+              {
+                "title": "PDF, Image, and QR SaaS Sponsorship",
+                "url": "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=pdf_image_qr_saas",
+                "sponsorFit": "PDF APIs, image optimization tools, QR platforms, privacy-friendly document automation, browser utility products, and file-workflow SaaS."
+              },
+              {
+                "title": "Resume and Career Tool Sponsorship",
+                "url": "https://printable-tools-lab.pages.dev/sponsor/resume-career-sponsors/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/resume-career-sponsors?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=resume_career_sponsors",
+                "sponsorFit": "Resume builders, ATS tools, job boards, interview prep products, career coaching, and applicant-document utilities."
+              },
+              {
+                "title": "Classroom Printable Sponsorship",
+                "url": "https://printable-tools-lab.pages.dev/sponsor/classroom-printable-sponsors/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/classroom-printable-sponsors?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=classroom_printable_sponsors",
+                "sponsorFit": "Teacher marketplaces, homeschool resources, classroom apps, learning printables, family routine products, and child-safe educational tools."
+              },
+              {
+                "title": "Small Business Paperwork Sponsorship",
+                "url": "https://printable-tools-lab.pages.dev/sponsor/small-business-paperwork-sponsors/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/small-business-paperwork-sponsors?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=small_business_paperwork_sponsors",
+                "sponsorFit": "Invoicing apps, bookkeeping tools, POS products, local marketing services, shipping tools, label systems, and small-business operations software."
+              },
+              {
+                "title": "Local Marketing and QR Sponsorship",
+                "url": "https://printable-tools-lab.pages.dev/sponsor/local-marketing-qr-sponsors/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/local-marketing-qr-sponsors?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=local_marketing_qr_sponsors",
+                "sponsorFit": "QR platforms, review-request tools, local SEO products, print shops, signage services, event tools, and small-business marketing software."
+              }
+            ],
             "platformSubmitQueue": "https://printable-tools-lab.pages.dev/platform-submit-queue/",
             "platformSubmitQueueJson": "https://printable-tools-lab.pages.dev/platform-submit-queue.json",
             "platformSubmitCockpit": "https://printable-tools-lab.pages.dev/platform-submit-cockpit/",
@@ -1275,7 +1371,7 @@
               }
             ],
             "publicGist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-            "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/eb874c63e907b69755fe316b60f2a6f28936a5f1/PrintableTools-Lab-zero-cost-share-kit.md",
+            "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/520d4e5531452010ae48e5928c1ea0c33c754f3b/PrintableTools-Lab-zero-cost-share-kit.md",
             "publicGrowthIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1",
             "zeroDomainGame": "https://upload-limit-panic.pages.dev/",
             "zeroDomainGameRepo": "https://github.com/yanqr213/upload-limit-panic",
@@ -1879,10 +1975,10 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 39418,
+        "bytes": 41606,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-06T01:40:43.333Z",
+          "generatedAt": "2026-06-07T07:30:29.136Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -2358,6 +2454,43 @@
               }
             ]
           },
+          "sponsorDiscovery": {
+            "sponsorCall": "https://printable-tools-lab.pages.dev/sponsor-call/",
+            "sponsorCallJson": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+            "mediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+            "outreachPack": "https://printable-tools-lab.pages.dev/sponsor-outreach-pack.json",
+            "links": [
+              {
+                "title": "Public sponsor call",
+                "path": "sponsor-call",
+                "url": "https://printable-tools-lab.pages.dev/sponsor-call?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=public-call",
+                "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-call/",
+                "reason": "Open invitation for policy-fit sponsors and partners to use the sponsor form instead of private outreach."
+              },
+              {
+                "title": "Sponsor inquiry form",
+                "path": "sponsor",
+                "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=inquiry-form#sponsor-inquiry",
+                "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor/",
+                "reason": "Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries."
+              },
+              {
+                "title": "Sponsor call JSON",
+                "path": "sponsor-call.json",
+                "url": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+                "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+                "reason": "Machine-readable sponsor openings, reply path, vertical pages, and success gate."
+              },
+              {
+                "title": "Sponsor media kit JSON",
+                "path": "sponsor-media-kit.json",
+                "url": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+                "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+                "reason": "Public facts, placement rules, vertical fits, and safety constraints for partners."
+              }
+            ],
+            "successGate": "Commercial discovery is working only when a qualified sponsor lead, signed agreement, or settled external payment is verified. Clicks alone are not revenue."
+          },
           "zeroDomainGameExperiment": {
             "name": "Upload Limit Panic",
             "url": "https://upload-limit-panic.pages.dev/",
@@ -2419,7 +2552,7 @@
           ],
           "externalDiscovery": {
             "gist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-            "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/eb874c63e907b69755fe316b60f2a6f28936a5f1/PrintableTools-Lab-zero-cost-share-kit.md",
+            "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/520d4e5531452010ae48e5928c1ea0c33c754f3b/PrintableTools-Lab-zero-cost-share-kit.md",
             "githubIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1"
           },
           "rules": [
@@ -2435,7 +2568,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/manifest+json; charset=utf-8",
-        "bytes": 4194,
+        "bytes": 4288,
         "json": null
       },
       "/opensearch.xml": {
@@ -2449,12 +2582,12 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 22158,
+        "bytes": 22508,
         "json": {
           "ok": true,
-          "today": "2026-06-06",
+          "today": "2026-06-07",
           "totals": {
-            "page_view": 301,
+            "page_view": 387,
             "generate_pdf": 0,
             "download_pdf": 2,
             "generate_file": 0,
@@ -2468,10 +2601,12 @@
             "seller_checkout_intent": 0,
             "seller_checkout_click": 0,
             "service_request_intent": 0,
-            "audit_request_intent": 0
+            "audit_request_intent": 0,
+            "sponsor_request_intent": 1,
+            "sponsor_lead_submit": 0
           },
           "todayTotals": {
-            "page_view": 0,
+            "page_view": 2,
             "generate_pdf": 0,
             "download_pdf": 0,
             "generate_file": 0,
@@ -2485,8 +2620,16 @@
             "seller_checkout_intent": 0,
             "seller_checkout_click": 0,
             "service_request_intent": 0,
-            "audit_request_intent": 0
+            "audit_request_intent": 0,
+            "sponsor_request_intent": 1,
+            "sponsor_lead_submit": 0
           },
+          "totalDownloads": 2,
+          "totalGenerations": 0,
+          "freeToolDepthIntent": 0,
+          "sponsorLeads": 0,
+          "todaySponsorLeads": 0,
+          "commercialIntent": 1,
           "tools": [
             {
               "tool": "invoice-generator",
@@ -3384,311 +3527,305 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0
+            },
+            {
+              "tool": "sponsor",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "free_tool_depth": 0,
+              "limit_hit": 0,
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 1,
+              "sponsor_lead_submit": 0
             }
           ],
           "sources": [
             {
               "source": "direct",
-              "page_view": 222,
-              "generate_pdf": 0,
+              "page_view": 239,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "google",
               "page_view": 3,
-              "generate_pdf": 0,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "bing",
-              "page_view": 2,
-              "generate_pdf": 0,
+              "page_view": 12,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "github",
               "page_view": 4,
-              "generate_pdf": 0,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "github-pages",
-              "page_view": 4,
-              "generate_pdf": 0,
+              "page_view": 6,
               "download_pdf": 1,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "github-issue",
-              "page_view": 0,
-              "generate_pdf": 0,
+              "page_view": 54,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "gist",
               "page_view": 0,
-              "generate_pdf": 0,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "zearches",
               "page_view": 0,
-              "generate_pdf": 0,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "listai",
               "page_view": 0,
-              "generate_pdf": 0,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "techtools",
               "page_view": 0,
-              "generate_pdf": 0,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "nosignuptools",
               "page_view": 0,
-              "generate_pdf": 0,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "freenosignup",
               "page_view": 0,
-              "generate_pdf": 0,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "nologin",
               "page_view": 1,
-              "generate_pdf": 0,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "nosubscription",
               "page_view": 0,
-              "generate_pdf": 0,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "share-kit",
               "page_view": 0,
-              "generate_pdf": 0,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "short-video",
-              "page_view": 0,
-              "generate_pdf": 0,
+              "page_view": 12,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "game-platform",
               "page_view": 0,
-              "generate_pdf": 0,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
+            },
+            {
+              "source": "sponsor-outreach",
+              "page_view": 0,
+              "download_pdf": 0,
+              "download_file": 0,
+              "free_tool_depth": 0,
+              "guide_depth": 0,
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "directory",
               "page_view": 0,
-              "generate_pdf": 0,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 1
             },
             {
               "source": "community",
-              "page_view": 21,
-              "generate_pdf": 0,
+              "page_view": 31,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             },
             {
               "source": "referral",
               "page_view": 49,
-              "generate_pdf": 0,
               "download_pdf": 0,
-              "generate_file": 0,
               "download_file": 0,
               "free_tool_depth": 0,
               "guide_depth": 0,
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
-            },
-            {
-              "source": "unknown",
-              "page_view": 0,
-              "generate_pdf": 0,
-              "download_pdf": 0,
-              "generate_file": 0,
-              "download_file": 0,
-              "free_tool_depth": 0,
-              "guide_depth": 0,
-              "seller_sample_download": 0,
-              "seller_checkout_intent": 0,
-              "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0
             }
           ]
         }
       }
     },
     "metrics": {
-      "today": "2026-06-06",
+      "today": "2026-06-07",
       "totals": {
-        "page_view": 301,
+        "page_view": 387,
         "generate_pdf": 0,
         "download_pdf": 2,
         "generate_file": 0,
@@ -3702,10 +3839,12 @@
         "seller_checkout_intent": 0,
         "seller_checkout_click": 0,
         "service_request_intent": 0,
-        "audit_request_intent": 0
+        "audit_request_intent": 0,
+        "sponsor_request_intent": 1,
+        "sponsor_lead_submit": 0
       },
       "todayTotals": {
-        "page_view": 0,
+        "page_view": 2,
         "generate_pdf": 0,
         "download_pdf": 0,
         "generate_file": 0,
@@ -3719,11 +3858,15 @@
         "seller_checkout_intent": 0,
         "seller_checkout_click": 0,
         "service_request_intent": 0,
-        "audit_request_intent": 0
+        "audit_request_intent": 0,
+        "sponsor_request_intent": 1,
+        "sponsor_lead_submit": 0
       },
       "totalDownloads": 2,
       "totalGenerations": 0,
       "freeToolDepthIntent": 0,
+      "commercialIntent": 1,
+      "sponsorLeads": 0,
       "topTools": [
         {
           "tool": "invoice-generator",
@@ -3841,27 +3984,41 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
+      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF size targets, image KB targets, PDF-to-Word, ATS checks, background removal, text overlays, QR codes, PDF edits, paperwork, labels, resumes, and printables.",
       "topics": [
-        "pdf-tools",
+        "background-remover",
+        "compress-image-to-100kb",
+        "compress-pdf",
+        "compress-pdf-to-1mb",
+        "compress-pdf-to-500kb",
+        "free-tools",
+        "image-compressor",
+        "image-converter",
+        "image-resizer",
+        "image-to-pdf",
         "image-tools",
-        "qr-code",
+        "invoice-generator",
         "no-signup",
-        "browser-tools",
-        "free-tools"
+        "passport-photo",
+        "pdf-generator",
+        "pdf-to-jpg",
+        "pdf-to-word",
+        "pdf-tools",
+        "qr-code",
+        "resume-checker"
       ],
-      "error": "GitHub API fallback used: GitHub API 403",
       "discoveryRelease": {
         "tag": "free-pdf-tools",
         "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
         "name": "Free PDF, Image, and QR Tools Without Signup"
-      }
+      },
+      "error": ""
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 259,
+      "sitemapUrlCount": 261,
       "landingPagesLinked": 92,
       "toolPagesLinked": 66,
       "toolPagesInSitemap": 66,
@@ -3869,7 +4026,7 @@
       "guidePagesInSitemap": 95,
       "gamePagesLinked": 1,
       "gamePagesInSitemap": 3,
-      "expectedUrlCount": 259,
+      "expectedUrlCount": 261,
       "error": ""
     },
     "indexNow": {
@@ -3880,7 +4037,7 @@
       "keyFileReachable": true,
       "singleUrlAccepted": false,
       "latestReport": {
-        "generatedAt": "2026-06-06T01:49:00.938Z",
+        "generatedAt": "2026-06-06T01:50:11.247Z",
         "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
         "results": [
           {
@@ -3928,7 +4085,7 @@
   },
   "directories": {
     "available": true,
-    "generatedAt": "2026-06-06T00:42:26.307Z",
+    "generatedAt": "2026-06-06T01:49:30.680Z",
     "listedCount": 3,
     "pendingCount": 6,
     "errorCount": 1,
@@ -3980,7 +4137,7 @@
     ]
   },
   "gates": {
-    "productReady": true,
+    "productReady": false,
     "adsenseAutomationReady": true,
     "adsenseApplyReady": false,
     "adsEnabled": false,
@@ -3991,7 +4148,8 @@
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "66 tools, 95 guides, 92 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "Missing discovery asset: sponsorProspectQueue.",
+        "Missing discovery asset: sponsorOutreachLog."
       ],
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
@@ -4003,10 +4161,10 @@
         "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
       ],
       "externalDiscovery": [
-        "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 92 landing page link(s), 66 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).",
-        "GitHub Pages discovery sitemap has 259 URL(s), including 66 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 259.",
+        "GitHub Pages discovery sitemap has 261 URL(s), including 66 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 261.",
         "IndexNow key file is reachable from the site root.",
         "IndexNow latest report accepted 259 URL(s) for github-pages.",
         "Directory monitor shows 3 listed, 6 pending, and 1 error directory target(s)."
@@ -4014,10 +4172,12 @@
     }
   },
   "nextActions": [
+    "Fix product readiness failures before adding more tools.",
     "Watch the newly listed directories for real referrals and depth events before adding another same-category submission.",
     "Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.",
     "When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.",
     "Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.",
-    "Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces."
+    "Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces.",
+    "Submit the first sponsor outreach batch using reports/sponsor-next-submission-batch.md, but mark rows sent only after real public-form submission evidence exists."
   ]
 }
