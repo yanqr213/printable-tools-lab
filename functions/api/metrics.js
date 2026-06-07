@@ -1,8 +1,7 @@
 const EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "guide_depth", "limit_hit", "ai_ideas", "ai_ideas_apply", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request"];
-const SOURCE_EVENTS = ["page_view", "download_pdf", "download_file", "free_tool_depth", "guide_depth", "seller_sample_download", "seller_checkout_intent", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_invoice_request"];
+const SOURCE_EVENTS = ["page_view", "download_pdf", "download_file", "free_tool_depth", "guide_depth", "seller_sample_download", "seller_checkout_intent", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request"];
 const TOOL_EVENTS = ["generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "limit_hit", "seller_sample_download", "seller_checkout_intent", "service_request_intent", "audit_request_intent"];
 const PRINTABLE_TOOL_EVENTS = [...TOOL_EVENTS, "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request"];
-const GAME_EVENTS = ["page_view", "game_play_intent", "game_fullscreen_open", "game_embed_open"];
 const PRINTABLE_TOOLS = [
   "invoice-generator",
   "estimate-generator",
@@ -99,52 +98,72 @@ const SOURCES = [
   "referral",
 ];
 
+const LEGACY_BASELINE = {
+  capturedAt: "2026-06-07T17:00:00.000Z",
+  reason: "Last verified legacy multi-key counters before metrics moved to low-read rollups.",
+  totals: {
+    events: {
+      page_view: 494,
+      download_pdf: 2,
+      sponsor_request_intent: 2,
+    },
+    tools: {
+      "invoice-generator": { download_pdf: 2 },
+      sponsor: { sponsor_request_intent: 2 },
+    },
+    sources: {
+      direct: { page_view: 494 },
+      "sponsor-outreach": { sponsor_request_intent: 2 },
+    },
+  },
+  today: {
+    "2026-06-07": {
+      events: {
+        page_view: 92,
+        sponsor_request_intent: 2,
+      },
+      tools: {
+        sponsor: { sponsor_request_intent: 2 },
+      },
+      sources: {
+        direct: { page_view: 92 },
+        "sponsor-outreach": { sponsor_request_intent: 2 },
+      },
+    },
+  },
+};
+
 export async function onRequestGet({ env }) {
   if (!env.PTL_EVENTS) return json({ ok: false, error: "Metrics store unavailable" }, 503);
   const today = new Date().toISOString().slice(0, 10);
-  const rollup = await readRollup(env.PTL_EVENTS, today);
-  const count = async (key) => Number(await env.PTL_EVENTS.get(key)) || 0;
-  const [totalEntries, todayEntries, sponsorLeads, todaySponsorLeads, sponsorInvoiceRequests, todaySponsorInvoiceRequests, tools, sources] = await Promise.all([
-    Promise.all(EVENTS.map(async (event) => [event, await count(`total:event:${event}`) + countFrom(rollup.totals.events, event)])),
-    Promise.all(EVENTS.map(async (event) => [event, await count(`day:${today}:event:${event}`) + countFrom(rollup.today.events, event)])),
-    count("total:sponsor_leads"),
-    count(`day:${today}:sponsor_leads`),
-    count("total:sponsor_invoice_requests"),
-    count(`day:${today}:sponsor_invoice_requests`),
-    Promise.all(PRINTABLE_TOOLS.map(async (tool) => {
-      const eventEntries = await Promise.all(
-        TOOL_EVENTS.map(async (event) => [
-          event,
-          await count(`total:tool:${tool}:event:${event}`) + countNested(rollup.totals.tools, tool, event),
-        ]),
-      );
-      const row = { tool, ...Object.fromEntries(eventEntries) };
-      if (tool === "sponsor") row.sponsor_request_intent = await count(`total:tool:${tool}:event:sponsor_request_intent`) + countNested(rollup.totals.tools, tool, "sponsor_request_intent");
-      if (tool === "sponsor") row.sponsor_lead_submit = await count(`total:tool:${tool}:event:sponsor_lead_submit`) + countNested(rollup.totals.tools, tool, "sponsor_lead_submit");
-      if (tool === "sponsor") row.sponsor_invoice_request = await count(`total:tool:${tool}:event:sponsor_invoice_request`) + countNested(rollup.totals.tools, tool, "sponsor_invoice_request");
-      return row;
-    })),
-    Promise.all(SOURCES.map(async (source) => {
-      const totalSourceEntries = await Promise.all(SOURCE_EVENTS.map(async (event) => [
-        event,
-        await count(`total:source:${source}:event:${event}`) + countNested(rollup.totals.sources, source, event),
-      ]));
-      return { source, ...Object.fromEntries(totalSourceEntries) };
-    })),
-  ]);
-  const totals = Object.fromEntries(totalEntries);
+  const rollupResult = await readRollup(env.PTL_EVENTS, today);
+  const combined = combineBuckets(legacyBucket(today, env), rollupResult.rollup);
+  const totals = entriesFromEvents(EVENTS, combined.totals.events);
+  const todayTotals = entriesFromEvents(EVENTS, combined.today.events);
+  const tools = PRINTABLE_TOOLS.map((tool) => {
+    const row = { tool };
+    for (const event of PRINTABLE_TOOL_EVENTS) row[event] = countNested(combined.totals.tools, tool, event);
+    return row;
+  });
+  const sources = SOURCES.map((source) => {
+    const row = { source };
+    for (const event of SOURCE_EVENTS) row[event] = countNested(combined.totals.sources, source, event);
+    return row;
+  });
   return json({
     ok: true,
     today,
+    dataQuality: rollupResult.ok ? "rollup" : "degraded-baseline",
+    dataWarning: rollupResult.ok ? "" : "KV rollup read failed, so this response uses the last verified baseline and may lag live activity.",
     totals,
-    todayTotals: Object.fromEntries(todayEntries),
+    todayTotals,
     totalDownloads: (totals.download_pdf || 0) + (totals.download_file || 0),
     totalGenerations: (totals.generate_pdf || 0) + (totals.generate_file || 0),
     freeToolDepthIntent: (totals.free_tool_depth || 0) + (totals.guide_depth || 0),
-    sponsorLeads,
-    todaySponsorLeads,
-    sponsorInvoiceRequests: sponsorInvoiceRequests + countFrom(rollup.totals.events, "sponsor_invoice_request"),
-    todaySponsorInvoiceRequests: todaySponsorInvoiceRequests + countFrom(rollup.today.events, "sponsor_invoice_request"),
+    sponsorLeads: totals.sponsor_lead_submit || 0,
+    todaySponsorLeads: todayTotals.sponsor_lead_submit || 0,
+    sponsorInvoiceRequests: totals.sponsor_invoice_request || 0,
+    todaySponsorInvoiceRequests: todayTotals.sponsor_invoice_request || 0,
     commercialIntent:
       (totals.seller_checkout_intent || 0)
       + (totals.seller_checkout_click || 0)
@@ -159,22 +178,86 @@ export async function onRequestGet({ env }) {
 }
 
 async function readRollup(store, today) {
-  const month = today.slice(0, 7);
-  const data = safeJson(await store.get(`rollup:${month}`), {});
+  try {
+    const month = today.slice(0, 7);
+    const data = safeJson(await store.get(`rollup:${month}`), {});
+    return {
+      ok: true,
+      rollup: {
+        totals: normalizeBucket(data.totals),
+        today: normalizeBucket(data.today?.[today]),
+      },
+    };
+  } catch {
+    return { ok: false, rollup: emptyRollup() };
+  }
+}
+
+function legacyBucket(today, env) {
+  if (String(env.PTL_METRICS_BASELINE || "").toLowerCase() === "off") return emptyRollup();
   return {
-    totals: normalizeBucket(data.totals),
-    today: normalizeBucket(data.today?.[today]),
+    totals: normalizeBucket(LEGACY_BASELINE.totals),
+    today: normalizeBucket(LEGACY_BASELINE.today[today]),
   };
+}
+
+function combineBuckets(...buckets) {
+  const combined = emptyRollup();
+  for (const bucket of buckets) {
+    mergeBucket(combined.totals, normalizeBucket(bucket.totals));
+    mergeBucket(combined.today, normalizeBucket(bucket.today));
+  }
+  return combined;
+}
+
+function emptyRollup() {
+  return { totals: emptyBucket(), today: emptyBucket() };
+}
+
+function emptyBucket() {
+  return { events: {}, tools: {}, sources: {}, projects: {}, paths: {} };
 }
 
 function normalizeBucket(bucket = {}) {
   return {
-    events: bucket.events || {},
-    tools: bucket.tools || {},
-    sources: bucket.sources || {},
-    projects: bucket.projects || {},
-    paths: bucket.paths || {},
+    events: isObject(bucket.events) ? bucket.events : {},
+    tools: isObject(bucket.tools) ? bucket.tools : {},
+    sources: isObject(bucket.sources) ? bucket.sources : {},
+    projects: isObject(bucket.projects) ? bucket.projects : {},
+    paths: isObject(bucket.paths) ? bucket.paths : {},
   };
+}
+
+function mergeBucket(target, source) {
+  mergeCounts(target.events, source.events);
+  mergeNestedCounts(target.tools, source.tools);
+  mergeNestedCounts(target.sources, source.sources);
+  mergeProjectBuckets(target.projects, source.projects);
+  mergeCounts(target.paths, source.paths);
+}
+
+function mergeProjectBuckets(target, source) {
+  for (const [project, bucket] of Object.entries(source || {})) {
+    if (!target[project]) target[project] = emptyBucket();
+    mergeBucket(target[project], normalizeBucket(bucket));
+  }
+}
+
+function mergeCounts(target, source) {
+  for (const [key, value] of Object.entries(source || {})) {
+    target[key] = (Number(target[key]) || 0) + (Number(value) || 0);
+  }
+}
+
+function mergeNestedCounts(target, source) {
+  for (const [outerKey, values] of Object.entries(source || {})) {
+    if (!target[outerKey]) target[outerKey] = {};
+    mergeCounts(target[outerKey], values);
+  }
+}
+
+function entriesFromEvents(events, source) {
+  return Object.fromEntries(events.map((event) => [event, countFrom(source, event)]));
 }
 
 function countFrom(container, key) {
@@ -193,6 +276,10 @@ function safeJson(text, fallback) {
   } catch {
     return fallback;
   }
+}
+
+function isObject(value) {
+  return Boolean(value && typeof value === "object" && !Array.isArray(value));
 }
 
 function json(payload, status = 200) {

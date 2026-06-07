@@ -7904,7 +7904,11 @@ ${paragraphs.join("\n")}
       const totalGenerations = (totals.generate_pdf || 0) + (totals.generate_file || 0);
       const totalGameIntent = (totals.game_play_intent || 0) + (totals.game_fullscreen_open || 0) + (totals.game_embed_open || 0);
       const sponsorInvoiceRequests = data.sponsorInvoiceRequests || totals.sponsor_invoice_request || 0;
+      const dataQualityNotice = data.dataQuality && data.dataQuality !== "rollup"
+        ? `<p class="notice">Metrics are using a protected baseline because live KV reads are currently limited. Treat counts as conservative until the API returns rollup quality again.</p>`
+        : "";
       target.innerHTML = `
+        ${dataQualityNotice}
         <div class="metric-grid ops-summary-grid">
           <div class="metric-tile"><strong>${totals.page_view || 0}</strong><span>all page views</span></div>
           <div class="metric-tile"><strong>${data.todayTotals?.page_view || 0}</strong><span>today views</span></div>
@@ -12461,7 +12465,11 @@ ${paragraphs.join("\n")}
       const totalDownloads = (data.totals.download_pdf || 0) + (data.totals.download_file || 0);
       const depthIntent = depthSignal(data.totals || {});
       const sponsorLeads = data.sponsorLeads || data.totals.sponsor_lead_submit || 0;
+      const dataQualityNotice = data.dataQuality && data.dataQuality !== "rollup"
+        ? `<p class="notice">Live metrics are temporarily using the last verified baseline while KV reads are limited.</p>`
+        : "";
       target.innerHTML = `
+        ${dataQualityNotice}
         <div class="metric-grid compact">
           <div class="metric-tile"><strong>${data.totals.page_view || 0}</strong><span>live page views</span></div>
           <div class="metric-tile"><strong>${totalGenerations}</strong><span>live generations</span></div>

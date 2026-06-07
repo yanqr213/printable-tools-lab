@@ -163,8 +163,8 @@ export async function onRequestPost({ request, env }) {
     await appendRollup(env.PTL_EVENTS, { day, name, tool, source, path, project });
     return json({ ok: true });
   } catch (error) {
-    if (isKvWriteLimitError(error)) {
-      return json({ ok: true, sampledOut: true, reason: "event_write_limit" }, 202);
+    if (isKvLimitError(error)) {
+      return json({ ok: true, sampledOut: true, reason: "event_store_limit" }, 202);
     }
     return json({ ok: false, error: "Event rejected" }, 400);
   }
@@ -242,9 +242,13 @@ function safeJson(text, fallback) {
   }
 }
 
-function isKvWriteLimitError(error) {
+function isKvLimitError(error) {
   const message = String(error?.message || "").toLowerCase();
-  return message.includes("kv put() limit exceeded") || message.includes("write limit");
+  return message.includes("kv put() limit exceeded")
+    || message.includes("kv get() limit exceeded")
+    || message.includes("write limit")
+    || message.includes("read limit")
+    || message.includes("too many requests");
 }
 
 function cleanKey(value, maxLength) {

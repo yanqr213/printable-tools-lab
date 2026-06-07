@@ -1,6 +1,6 @@
 const EVENTS = ["page_view", "download_pdf", "download_file", "generate_pdf", "generate_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request", "game_play_intent", "game_fullscreen_open", "game_embed_open"];
 const PRINTABLE_EVENTS = ["page_view", "download_pdf", "download_file", "generate_pdf", "generate_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request"];
-const PRINTABLE_SOURCE_EVENTS = ["page_view", "download_pdf", "download_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_invoice_request"];
+const PRINTABLE_SOURCE_EVENTS = ["page_view", "download_pdf", "download_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request"];
 const GAME_EVENTS = ["page_view", "game_play_intent", "game_fullscreen_open", "game_embed_open"];
 const SOURCES = ["direct", "google", "bing", "github", "github-pages", "github-issue", "gist", "zearches", "listai", "techtools", "nosignuptools", "freenosignup", "nologin", "nosubscription", "share-kit", "short-video", "game-platform", "sponsor-outreach", "directory", "community", "referral", "embed", "publisher", "platform-review"];
 const PRINTABLE_TOOLS = ["site", "sponsor", "compress-pdf", "compress-image", "compress-image-to-kb", "invoice-generator", "receipt-generator", "qr-code", "wifi-qr-code", "ats-resume-checker", "resume-builder", "pdf-to-word", "local-seller-starter-kit", "custom-local-print-pack", "market-table-print-audit"];
@@ -30,65 +30,112 @@ const PROJECTS = [
   },
 ];
 
+const LEGACY_BASELINE = {
+  capturedAt: "2026-06-07T17:00:00.000Z",
+  reason: "Last verified legacy multi-key counters before metrics moved to low-read rollups.",
+  totals: {
+    events: {
+      page_view: 494,
+      download_pdf: 2,
+      sponsor_request_intent: 2,
+    },
+    tools: {
+      "invoice-generator": { download_pdf: 2 },
+      sponsor: { sponsor_request_intent: 2 },
+    },
+    sources: {
+      direct: { page_view: 494 },
+      "sponsor-outreach": { sponsor_request_intent: 2 },
+    },
+    projects: {
+      "printable-tools-lab": {
+        events: {
+          page_view: 494,
+          download_pdf: 2,
+          sponsor_request_intent: 2,
+        },
+        tools: {
+          "invoice-generator": { download_pdf: 2 },
+          sponsor: { sponsor_request_intent: 2 },
+        },
+        sources: {
+          direct: { page_view: 494 },
+          "sponsor-outreach": { sponsor_request_intent: 2 },
+        },
+        paths: {
+          "/": 494,
+        },
+      },
+    },
+  },
+  today: {
+    "2026-06-07": {
+      events: {
+        page_view: 92,
+        sponsor_request_intent: 2,
+      },
+      tools: {
+        sponsor: { sponsor_request_intent: 2 },
+      },
+      sources: {
+        direct: { page_view: 92 },
+        "sponsor-outreach": { sponsor_request_intent: 2 },
+      },
+      projects: {
+        "printable-tools-lab": {
+          events: {
+            page_view: 92,
+            sponsor_request_intent: 2,
+          },
+          tools: {
+            sponsor: { sponsor_request_intent: 2 },
+          },
+          sources: {
+            direct: { page_view: 92 },
+            "sponsor-outreach": { sponsor_request_intent: 2 },
+          },
+          paths: {
+            "/": 92,
+          },
+        },
+      },
+    },
+  },
+};
+
 export async function onRequestGet({ env }) {
   if (!env.PTL_EVENTS) return json({ ok: false, error: "Metrics store unavailable" }, 503);
   const today = new Date().toISOString().slice(0, 10);
-  const rollup = await readRollup(env.PTL_EVENTS, today);
-  const count = async (key) => Number(await env.PTL_EVENTS.get(key)) || 0;
-  const [totalEntries, todayEntries, sponsorLeads, todaySponsorLeads, sponsorInvoiceRequests, todaySponsorInvoiceRequests, projects] = await Promise.all([
-    Promise.all(EVENTS.map(async (event) => [event, await count(`total:event:${event}`) + countFrom(rollup.totals.events, event)])),
-    Promise.all(EVENTS.map(async (event) => [event, await count(`day:${today}:event:${event}`) + countFrom(rollup.today.events, event)])),
-    count("total:sponsor_leads"),
-    count(`day:${today}:sponsor_leads`),
-    count("total:sponsor_invoice_requests"),
-    count(`day:${today}:sponsor_invoice_requests`),
-    Promise.all(PROJECTS.map((project) => projectMetrics(project, count, today, rollup))),
-  ]);
-  const totals = Object.fromEntries(totalEntries);
+  const rollupResult = await readRollup(env.PTL_EVENTS, today);
+  const combined = combineBuckets(legacyBucket(today, env), rollupResult.rollup);
+  const totals = entriesFromEvents(EVENTS, combined.totals.events);
+  const todayTotals = entriesFromEvents(EVENTS, combined.today.events);
+  const projects = PROJECTS.map((project) => projectMetrics(project, today, combined));
   return json({
     ok: true,
     today,
+    dataQuality: rollupResult.ok ? "rollup" : "degraded-baseline",
+    dataWarning: rollupResult.ok ? "" : "KV rollup read failed, so this response uses the last verified baseline and may lag live activity.",
     totals,
-    todayTotals: Object.fromEntries(todayEntries),
-    sponsorLeads,
-    todaySponsorLeads,
-    sponsorInvoiceRequests: sponsorInvoiceRequests + countFrom(rollup.totals.events, "sponsor_invoice_request"),
-    todaySponsorInvoiceRequests: todaySponsorInvoiceRequests + countFrom(rollup.today.events, "sponsor_invoice_request"),
+    todayTotals,
+    sponsorLeads: totals.sponsor_lead_submit || 0,
+    todaySponsorLeads: todayTotals.sponsor_lead_submit || 0,
+    sponsorInvoiceRequests: totals.sponsor_invoice_request || 0,
+    todaySponsorInvoiceRequests: todayTotals.sponsor_invoice_request || 0,
     projects,
     revenueGate: "Revenue is real only after a platform balance, sponsor agreement, or settled payment is verified. Views and clicks are operating signals.",
   });
 }
 
-async function projectMetrics(project, count, today, rollup) {
-  const projectRollup = normalizeBucket(rollup.totals.projects[project.id]);
-  const todayProjectRollup = normalizeBucket(rollup.today.projects[project.id]);
-  const [totalEntries, todayEntries, toolRows, sourceRows, pathRows, sponsorLeads, sponsorInvoiceRequests] = await Promise.all([
-    Promise.all(project.events.map(async (event) => [event, await count(totalEventKey(project, event)) + countFrom(projectRollup.events, event)])),
-    Promise.all(project.events.map(async (event) => [event, await count(dayEventKey(project, today, event)) + countFrom(todayProjectRollup.events, event)])),
-    Promise.all(project.tools.map(async (tool) => {
-      const entries = await Promise.all(project.events.map(async (event) => [
-        event,
-        await count(totalToolKey(project, tool, event)) + countNested(projectRollup.tools, tool, event),
-      ]));
-      return { tool, ...Object.fromEntries(entries) };
-    })),
-    Promise.all(SOURCES.map(async (source) => {
-      const entries = await Promise.all(project.sourceEvents.map(async (event) => [
-        event,
-        await count(totalSourceKey(project, source, event)) + countNested(projectRollup.sources, source, event),
-      ]));
-      return { source, ...Object.fromEntries(entries) };
-    })),
-    Promise.all(project.paths.map(async (path) => ({
-      path,
-      page_view: await count(totalPathKey(project, path)) + countFrom(projectRollup.paths, path),
-      today_page_view: await count(dayPathKey(project, today, path)) + countFrom(todayProjectRollup.paths, path),
-    }))),
-    project.id === "printable-tools-lab" ? count("total:sponsor_leads") : 0,
-    project.id === "printable-tools-lab" ? count("total:sponsor_invoice_requests") : 0,
-  ]);
-  const totals = Object.fromEntries(totalEntries);
-  const todayTotals = Object.fromEntries(todayEntries);
+function projectMetrics(project, today, combined) {
+  const projectRollup = normalizeBucket(combined.totals.projects[project.id]);
+  const todayProjectRollup = normalizeBucket(combined.today.projects[project.id]);
+  const totals = entriesFromEvents(project.events, project.legacy ? combined.totals.events : projectRollup.events);
+  const todayTotals = entriesFromEvents(project.events, project.legacy ? combined.today.events : todayProjectRollup.events);
+  const toolsBucket = project.legacy ? combined.totals.tools : projectRollup.tools;
+  const sourcesBucket = project.legacy ? combined.totals.sources : projectRollup.sources;
+  const pathsBucket = project.legacy ? projectRollup.paths : projectRollup.paths;
+  const todayPathsBucket = project.legacy ? todayProjectRollup.paths : todayProjectRollup.paths;
   return {
     id: project.id,
     name: project.name,
@@ -103,35 +150,111 @@ async function projectMetrics(project, count, today, rollup) {
       generations: (totals.generate_pdf || 0) + (totals.generate_file || 0),
       depthIntent: (totals.free_tool_depth || 0) + (totals.guide_depth || 0),
       commercialIntent: commercialIntent(totals),
-      sponsorLeads,
-      sponsorInvoiceRequests: sponsorInvoiceRequests + (project.id === "printable-tools-lab" ? countFrom(projectRollup.events, "sponsor_invoice_request") : 0),
+      sponsorLeads: project.id === "printable-tools-lab" ? (totals.sponsor_lead_submit || 0) : 0,
+      sponsorInvoiceRequests: project.id === "printable-tools-lab" ? (totals.sponsor_invoice_request || 0) : 0,
       gamePlayIntent: totals.game_play_intent || 0,
       gameFullscreenOpen: totals.game_fullscreen_open || 0,
       gameEmbedOpen: totals.game_embed_open || 0,
     },
-    sources: sourceRows,
-    paths: pathRows,
-    tools: toolRows,
+    sources: SOURCES.map((source) => {
+      const row = { source };
+      for (const event of project.sourceEvents) row[event] = countNested(sourcesBucket, source, event);
+      return row;
+    }),
+    paths: project.paths.map((path) => ({
+      path,
+      page_view: countFrom(pathsBucket, path),
+      today_page_view: countFrom(todayPathsBucket, path),
+    })),
+    tools: project.tools.map((tool) => {
+      const row = { tool };
+      for (const event of project.events) row[event] = countNested(toolsBucket, tool, event);
+      return row;
+    }),
   };
 }
 
 async function readRollup(store, today) {
-  const month = today.slice(0, 7);
-  const data = safeJson(await store.get(`rollup:${month}`), {});
+  try {
+    const month = today.slice(0, 7);
+    const data = safeJson(await store.get(`rollup:${month}`), {});
+    return {
+      ok: true,
+      rollup: {
+        totals: normalizeBucket(data.totals),
+        today: normalizeBucket(data.today?.[today]),
+      },
+    };
+  } catch {
+    return { ok: false, rollup: emptyRollup() };
+  }
+}
+
+function legacyBucket(today, env) {
+  if (String(env.PTL_METRICS_BASELINE || "").toLowerCase() === "off") return emptyRollup();
   return {
-    totals: normalizeBucket(data.totals),
-    today: normalizeBucket(data.today?.[today]),
+    totals: normalizeBucket(LEGACY_BASELINE.totals),
+    today: normalizeBucket(LEGACY_BASELINE.today[today]),
   };
+}
+
+function combineBuckets(...buckets) {
+  const combined = emptyRollup();
+  for (const bucket of buckets) {
+    mergeBucket(combined.totals, normalizeBucket(bucket.totals));
+    mergeBucket(combined.today, normalizeBucket(bucket.today));
+  }
+  return combined;
+}
+
+function emptyRollup() {
+  return { totals: emptyBucket(), today: emptyBucket() };
+}
+
+function emptyBucket() {
+  return { events: {}, tools: {}, sources: {}, projects: {}, paths: {} };
 }
 
 function normalizeBucket(bucket = {}) {
   return {
-    events: bucket.events || {},
-    tools: bucket.tools || {},
-    sources: bucket.sources || {},
-    projects: bucket.projects || {},
-    paths: bucket.paths || {},
+    events: isObject(bucket.events) ? bucket.events : {},
+    tools: isObject(bucket.tools) ? bucket.tools : {},
+    sources: isObject(bucket.sources) ? bucket.sources : {},
+    projects: isObject(bucket.projects) ? bucket.projects : {},
+    paths: isObject(bucket.paths) ? bucket.paths : {},
   };
+}
+
+function mergeBucket(target, source) {
+  mergeCounts(target.events, source.events);
+  mergeNestedCounts(target.tools, source.tools);
+  mergeNestedCounts(target.sources, source.sources);
+  mergeProjectBuckets(target.projects, source.projects);
+  mergeCounts(target.paths, source.paths);
+}
+
+function mergeProjectBuckets(target, source) {
+  for (const [project, bucket] of Object.entries(source || {})) {
+    if (!target[project]) target[project] = emptyBucket();
+    mergeBucket(target[project], normalizeBucket(bucket));
+  }
+}
+
+function mergeCounts(target, source) {
+  for (const [key, value] of Object.entries(source || {})) {
+    target[key] = (Number(target[key]) || 0) + (Number(value) || 0);
+  }
+}
+
+function mergeNestedCounts(target, source) {
+  for (const [outerKey, values] of Object.entries(source || {})) {
+    if (!target[outerKey]) target[outerKey] = {};
+    mergeCounts(target[outerKey], values);
+  }
+}
+
+function entriesFromEvents(events, source) {
+  return Object.fromEntries(events.map((event) => [event, countFrom(source, event)]));
 }
 
 function countFrom(container, key) {
@@ -152,28 +275,8 @@ function safeJson(text, fallback) {
   }
 }
 
-function totalEventKey(project, event) {
-  return project.legacy ? `total:event:${event}` : `total:project:${project.id}:event:${event}`;
-}
-
-function dayEventKey(project, today, event) {
-  return project.legacy ? `day:${today}:event:${event}` : `day:${today}:project:${project.id}:event:${event}`;
-}
-
-function totalToolKey(project, tool, event) {
-  return project.legacy ? `total:tool:${tool}:event:${event}` : `total:project:${project.id}:tool:${tool}:event:${event}`;
-}
-
-function totalSourceKey(project, source, event) {
-  return project.legacy ? `total:source:${source}:event:${event}` : `total:project:${project.id}:source:${source}:event:${event}`;
-}
-
-function totalPathKey(project, path) {
-  return `total:project:${project.id}:path:${path}:views`;
-}
-
-function dayPathKey(project, today, path) {
-  return `day:${today}:project:${project.id}:path:${path}:views`;
+function isObject(value) {
+  return Boolean(value && typeof value === "object" && !Array.isArray(value));
 }
 
 function commercialIntent(totals) {

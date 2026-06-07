@@ -178,27 +178,35 @@ async function rateLimit(store, ipHash) {
 
 async function incrementLeadMetrics(store, lead, now) {
   const day = now.toISOString().slice(0, 10);
-  const keys = [
-    "total:event:sponsor_lead_submit",
-    "total:tool:sponsor:event:sponsor_lead_submit",
-    "total:sponsor_leads",
-    `day:${day}:event:sponsor_lead_submit`,
-    `day:${day}:tool:sponsor:event:sponsor_lead_submit`,
-    `day:${day}:sponsor_leads`,
-  ];
+  await appendSponsorMetricRollup(store, lead, day, "sponsor_lead_submit");
   if (lead.commitment === "request-invoice" || lead.commitment === "ready-this-month") {
-    keys.push(
-      "total:event:sponsor_invoice_request",
-      "total:tool:sponsor:event:sponsor_invoice_request",
-      "total:sponsor_invoice_requests",
-      `day:${day}:event:sponsor_invoice_request`,
-      `day:${day}:tool:sponsor:event:sponsor_invoice_request`,
-      `day:${day}:sponsor_invoice_requests`,
-    );
-    if (lead.source) keys.push(`total:source:${lead.source}:event:sponsor_invoice_request`);
+    await appendSponsorMetricRollup(store, lead, day, "sponsor_invoice_request");
   }
-  if (lead.source) keys.push(`total:source:${lead.source}:event:sponsor_request_intent`);
-  await Promise.all(keys.map((key) => increment(store, key, key.startsWith("day:") ? 60 * 60 * 24 * 120 : undefined)));
+}
+
+async function appendSponsorMetricRollup(store, lead, day, event) {
+  const month = day.slice(0, 7);
+  const key = `rollup:${month}`;
+  const rollup = safeJson(await store.get(key), null) || emptyRollup(month);
+  const dayBucket = ensureDay(rollup, day);
+  addCount(rollup.totals.events, event);
+  addCount(dayBucket.events, event);
+  addNestedCount(rollup.totals.tools, "sponsor", event);
+  addNestedCount(dayBucket.tools, "sponsor", event);
+  if (lead.source) {
+    addNestedCount(rollup.totals.sources, lead.source, event);
+    addNestedCount(dayBucket.sources, lead.source, event);
+  }
+  const projectTotal = ensureNested(rollup.totals.projects, "printable-tools-lab");
+  addCount(projectTotal.events, event);
+  addNestedCount(projectTotal.tools, "sponsor", event);
+  if (lead.source) addNestedCount(projectTotal.sources, lead.source, event);
+  const projectToday = ensureNested(dayBucket.projects, "printable-tools-lab");
+  addCount(projectToday.events, event);
+  addNestedCount(projectToday.tools, "sponsor", event);
+  if (lead.source) addNestedCount(projectToday.sources, lead.source, event);
+  rollup.updatedAt = new Date().toISOString();
+  await store.put(key, JSON.stringify(rollup));
 }
 
 async function appendLeadIndex(store, lead) {
@@ -316,7 +324,8 @@ function inferVerticalFromPath(path) {
 
 function safeJson(text, fallback) {
   try {
-    return JSON.parse(text);
+    const value = JSON.parse(text);
+    return value && typeof value === "object" ? value : fallback;
   } catch {
     return fallback;
   }
@@ -324,6 +333,34 @@ function safeJson(text, fallback) {
 
 function arrayOrEmpty(value) {
   return Array.isArray(value) ? value : [];
+}
+
+function emptyRollup(month) {
+  return { month, updatedAt: "", totals: emptyBucket(), today: {} };
+}
+
+function emptyBucket() {
+  return { events: {}, tools: {}, sources: {}, projects: {}, paths: {} };
+}
+
+function ensureDay(rollup, day) {
+  if (!rollup.today || typeof rollup.today !== "object") rollup.today = {};
+  if (!rollup.today[day]) rollup.today[day] = emptyBucket();
+  return rollup.today[day];
+}
+
+function ensureNested(container, key) {
+  if (!container[key]) container[key] = emptyBucket();
+  return container[key];
+}
+
+function addCount(container, key) {
+  container[key] = (Number(container[key]) || 0) + 1;
+}
+
+function addNestedCount(container, outerKey, innerKey) {
+  if (!container[outerKey]) container[outerKey] = {};
+  addCount(container[outerKey], innerKey);
 }
 
 function json(payload, status = 200) {

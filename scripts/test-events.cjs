@@ -9,7 +9,7 @@ async function main() {
   const opsMetricsSource = loadFunction("functions/api/ops-metrics.js", ["onRequestGet"]);
   const sponsorLeadSource = loadFunction("functions/api/sponsor-lead.js", ["onRequestPost", "onRequestGet"]);
   const store = new MemoryStore();
-  const env = { PTL_EVENTS: store };
+  const env = { PTL_EVENTS: store, PTL_METRICS_BASELINE: "off" };
 
   const eventResponse = await eventSource.onRequestPost({
     request: new Request("https://example.test/api/event", {
@@ -39,6 +39,18 @@ async function main() {
   });
   const limitedEventPayload = await limitedEventResponse.json();
   assert(limitedEventResponse.status === 202 && limitedEventPayload.sampledOut, "Event collector should degrade cleanly when KV daily writes are exhausted");
+  assert(limitedEventPayload.reason === "event_store_limit", "Event collector should report store limits consistently");
+  const readLimitedStore = new MemoryStore({ failReadsWith: "KV get() limit exceeded for the day." });
+  const readLimitedEventResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "page_view", tool: "site", path: "/", source: "direct" }),
+    }),
+    env: { PTL_EVENTS: readLimitedStore },
+  });
+  const readLimitedEventPayload = await readLimitedEventResponse.json();
+  assert(readLimitedEventResponse.status === 202 && readLimitedEventPayload.sampledOut, "Event collector should degrade cleanly when KV reads are exhausted");
   const optionsResponse = eventSource.onRequestOptions();
   assert(optionsResponse.status === 200, "Event collector should accept CORS preflight");
   assert(optionsResponse.headers.get("Access-Control-Allow-Origin") === "*", "Event collector should expose cross-project CORS headers");
@@ -53,6 +65,12 @@ async function main() {
   assert(invoice.download_pdf === 1, "Metrics should count per-tool downloads");
   const noSignupTools = metricsPayload.sources.find((row) => row.source === "nosignuptools");
   assert(noSignupTools.download_pdf === 1, "Metrics should count per-source downloads");
+  assert(store.getCount <= 8, `Metrics endpoint should avoid legacy KV scans, got ${store.getCount} total reads after first metrics call`);
+  const failingReadEnv = { PTL_EVENTS: new MemoryStore({ failReadsWith: "KV read limit exceeded for the day." }), PTL_METRICS_BASELINE: "off" };
+  const degradedMetrics = await (await metricsSource.onRequestGet({ env: failingReadEnv })).json();
+  assert(degradedMetrics.ok && degradedMetrics.dataQuality === "degraded-baseline", "Metrics should degrade cleanly when KV reads fail");
+  const degradedOpsMetrics = await (await opsMetricsSource.onRequestGet({ env: failingReadEnv })).json();
+  assert(degradedOpsMetrics.ok && degradedOpsMetrics.dataQuality === "degraded-baseline", "Ops metrics should degrade cleanly when KV reads fail");
   const opsMetricsPayload = await (await opsMetricsSource.onRequestGet({ env })).json();
   const printableProject = opsMetricsPayload.projects.find((row) => row.id === "printable-tools-lab");
   const gameProject = opsMetricsPayload.projects.find((row) => row.id === "pocket-arcade-shelf");
@@ -390,7 +408,8 @@ async function main() {
   const directory = sellerMetrics.sources.find((row) => row.source === "directory");
   assert(directory.sponsor_request_intent === 1, "Metrics should count sponsor clicks by source");
   const sponsorOutreach = sellerMetrics.sources.find((row) => row.source === "sponsor-outreach");
-  assert(sponsorOutreach.sponsor_request_intent === 2, "Metrics should count sponsor-call and lead submissions by outreach source");
+  assert(sponsorOutreach.sponsor_request_intent === 1, "Metrics should count sponsor-call intent by outreach source");
+  assert(sponsorOutreach.sponsor_lead_submit === 1, "Metrics should count sponsor lead submissions by outreach source");
   assert(sponsorOutreach.sponsor_invoice_request === 1, "Metrics should count sponsor invoice requests by outreach source");
   console.log("Event metrics test passed.");
 }
@@ -411,9 +430,11 @@ class MemoryStore {
     this.getCount = 0;
     this.putCount = 0;
     this.failWritesWith = options.failWritesWith || "";
+    this.failReadsWith = options.failReadsWith || "";
   }
 
   async get(key) {
+    if (this.failReadsWith) throw new Error(this.failReadsWith);
     this.getCount += 1;
     return this.data.get(key) || null;
   }
