@@ -1853,6 +1853,7 @@ function sponsorCallMirrorEntry() {
     liveJson: siteUrl("sponsor-call.json").replace(/\/$/, ""),
     trackedSponsorCallUrl,
     trackedSponsorFormUrl,
+    publicInvoiceRequest: call.publicInvoiceRequest,
     mediaKit: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
     outreachPack: siteUrl("sponsor-outreach-pack.json").replace(/\/$/, ""),
     purpose: "GitHub Pages discovery mirror for policy-fit sponsor and partner inquiries while the live site keeps downloads free and collects no payment on-site.",

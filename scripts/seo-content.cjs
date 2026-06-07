@@ -5141,11 +5141,16 @@ const SPONSOR_DISCOVERY_LINKS = [
     reason: "Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries.",
   },
   {
-    title: "Public sponsor reply form",
+    title: "Public USD 49 invoice request",
     path: "github-sponsor-issue",
-    url: sponsorPublicReplyUrl({ proposalUrl: siteUrl("sponsor-deal-room") }),
+    url: sponsorPublicReplyUrl({
+      verticalTitle: SPONSOR_VERTICALS[0]?.title || "",
+      dealTitle: SPONSOR_DEALS.find((deal) => deal.id === "starter-fit-review")?.title || "Starter fit review",
+      dealPrice: SPONSOR_DEALS.find((deal) => deal.id === "starter-fit-review")?.price || "USD 49",
+      proposalUrl: `${siteUrl("sponsor-starter-review").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=public-invoice-request&commitment=request-invoice#sponsor-inquiry`,
+    }),
     canonicalUrl: "https://github.com/yanqr213/printable-tools-lab/issues/new",
-    reason: "Public-safe GitHub issue fallback for partners who cannot use email; no private payment, tax, bank, phone, customer, identity, password, or file data.",
+    reason: "Public-safe prefilled GitHub issue for partners who want a verifiable USD 49 invoice-review request without using site lead storage; no private payment, tax, bank, phone, customer, identity, password, or file data.",
   },
   {
     title: "Sponsor call JSON",
@@ -5293,6 +5298,7 @@ function sponsorCallPayload(generatedAt = new Date().toISOString()) {
     sponsorStarterReview: siteUrl("sponsor-starter-review"),
     sponsorDealRoom: siteUrl("sponsor-deal-room"),
     publicReplyForm: sponsorPublicReplyUrl({ proposalUrl: siteUrl("sponsor-call") }),
+    publicInvoiceRequest: SPONSOR_DISCOVERY_LINKS.find((item) => item.path === "github-sponsor-issue")?.url || sponsorPublicReplyUrl({ proposalUrl: siteUrl("sponsor-starter-review") }),
     mediaKit: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
     outreachPack: siteUrl("sponsor-outreach-pack.json").replace(/\/$/, ""),
     actions: SPONSOR_CALL_ACTIONS,

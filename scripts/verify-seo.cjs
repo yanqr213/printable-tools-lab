@@ -894,6 +894,7 @@ else {
   if (!Array.isArray(data.organicPushKit?.tasks) || data.organicPushKit.tasks.length < 8) failures.push("share-kit.json missing organic push kit tasks.");
   if (!data.sponsorDiscovery || data.sponsorDiscovery.sponsorCall !== siteUrl("sponsor-call")) failures.push("share-kit.json missing sponsor call discovery.");
   if (!Array.isArray(data.sponsorDiscovery?.links) || !data.sponsorDiscovery.links.some((item) => String(item.url || "").includes("utm_source=sponsor-outreach"))) failures.push("share-kit.json missing tracked sponsor discovery links.");
+  if (!Array.isArray(data.sponsorDiscovery?.links) || !data.sponsorDiscovery.links.some((item) => item.title === "Public USD 49 invoice request" && String(item.url || "").includes("commitment%3Drequest-invoice") && String(item.url || "").includes("body=Public-safe+sponsor+reply"))) failures.push("share-kit.json missing public USD 49 invoice request link.");
   if (!String(data.sponsorDiscovery?.successGate || "").includes("qualified sponsor lead")) failures.push("share-kit.json missing sponsor discovery success gate.");
   if (!data.featuredLinks.some((item) => item.url && item.url.includes("utm_source=share-kit"))) failures.push("share-kit.json missing tracked share-kit URLs.");
   if (data.serviceSalesPack || data.serviceSalesPack?.trackedLinks?.some((item) => String(item.url || "").includes("service_sales_pack"))) failures.push("share-kit.json should not promote service sales pack tracked URLs.");
@@ -1210,6 +1211,7 @@ else {
   if (!discovery.distributionAssets || discovery.distributionAssets.sponsorIntentFeedJson !== siteUrl("sponsor-intent-feed.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor intent feed JSON URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.sponsorPage !== siteUrl("sponsor")) failures.push("discovery.json missing sponsor page URL.");
   if (!discovery.distributionAssets || !Array.isArray(discovery.distributionAssets.sponsorDiscoveryLinks) || !discovery.distributionAssets.sponsorDiscoveryLinks.some((item) => String(item.url || "").includes("utm_source=sponsor-outreach"))) failures.push("discovery.json missing sponsor discovery links.");
+  if (!discovery.distributionAssets || !Array.isArray(discovery.distributionAssets.sponsorDiscoveryLinks) || !discovery.distributionAssets.sponsorDiscoveryLinks.some((item) => item.title === "Public USD 49 invoice request" && String(item.url || "").includes("commitment%3Drequest-invoice") && String(item.url || "").includes("body=Public-safe+sponsor+reply"))) failures.push("discovery.json missing public USD 49 invoice request link.");
   if (!discovery.distributionAssets || !Array.isArray(discovery.distributionAssets.sponsorVerticalPages) || discovery.distributionAssets.sponsorVerticalPages.length < 5) failures.push("discovery.json missing sponsor vertical page list.");
   if (!discovery.distributionAssets || !String(discovery.distributionAssets.publicGrowthIssue || "").includes("github.com/yanqr213/printable-tools-lab/issues/1")) failures.push("discovery.json missing public GitHub issue URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.platformSubmitQueue !== siteUrl("platform-submit-queue")) failures.push("discovery.json missing platform submit queue URL.");
@@ -1449,6 +1451,7 @@ else {
   if (data.directory !== "https://yanqr213.github.io/printable-tools-lab/sponsor-call/") failures.push("GitHub Pages sponsor-call.json missing directory URL.");
   if (data.liveJson !== siteUrl("sponsor-call.json").replace(/\/$/, "")) failures.push("GitHub Pages sponsor-call.json missing live JSON URL.");
   if (!Array.isArray(data.discoveryLinks) || data.discoveryLinks.length !== SPONSOR_DISCOVERY_LINKS.length) failures.push("GitHub Pages sponsor-call.json missing discovery links.");
+  if (!String(data.publicInvoiceRequest || "").includes("commitment%3Drequest-invoice") || !String(data.publicInvoiceRequest || "").includes("body=Public-safe+sponsor+reply")) failures.push("GitHub Pages sponsor-call.json missing public invoice request URL.");
   if (!Array.isArray(data.verticalPages) || data.verticalPages.length !== SPONSOR_VERTICALS.length) failures.push("GitHub Pages sponsor-call.json missing vertical pages.");
   if (!String(data.trackedSponsorCallUrl || "").includes("utm_source=sponsor-outreach")) failures.push("GitHub Pages sponsor-call.json missing tracked sponsor-call URL.");
   if (!String(data.successGate || "").includes("qualified sponsor")) failures.push("GitHub Pages sponsor-call.json missing sponsor success gate.");

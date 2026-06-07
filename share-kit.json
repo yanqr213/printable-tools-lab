@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Share Kit",
-  "generatedAt": "2026-06-07T23:40:30.617Z",
+  "generatedAt": "2026-06-07T23:47:30.864Z",
   "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
   "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
   "featuredLinks": [
@@ -513,11 +513,11 @@
         "reason": "Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries."
       },
       {
-        "title": "Public sponsor reply form",
+        "title": "Public USD 49 invoice request",
         "path": "github-sponsor-issue",
-        "url": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Sponsor+pilot+review&body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+%0APublic+website+URL%3A+%0AAudience+fit%3A+%0ASelected+pilot+deal%3A+%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-deal-room%2F%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&labels=sponsor%2Cpartner%2Cbusiness-review",
+        "url": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Sponsor+pilot+review&body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+%0APublic+website+URL%3A+%0AAudience+fit%3A+PDF%2C+Image%2C+and+QR+SaaS+Sponsorship%0ASelected+pilot+deal%3A+Starter+fit+review+%28USD+49%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-starter-review%3Futm_source%3Dsponsor-outreach%26utm_medium%3Dorganic%26utm_campaign%3Dsponsor_starter_review%26utm_content%3Dpublic-invoice-request%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&labels=sponsor%2Cpartner%2Cbusiness-review",
         "canonicalUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new",
-        "reason": "Public-safe GitHub issue fallback for partners who cannot use email; no private payment, tax, bank, phone, customer, identity, password, or file data."
+        "reason": "Public-safe prefilled GitHub issue for partners who want a verifiable USD 49 invoice-review request without using site lead storage; no private payment, tax, bank, phone, customer, identity, password, or file data."
       },
       {
         "title": "Sponsor call JSON",
