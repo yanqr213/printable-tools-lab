@@ -77,6 +77,16 @@ async function main() {
   assert(printableProject, "Metrics should include PrintableTools Lab project row");
   assert(gameProject, "Metrics should include Pocket Arcade Shelf project row");
   assert(printableProject.summary.downloads === 1, "PrintableTools Lab project should count project downloads");
+  assert(printableProject.summary.todayDownloads === 1, "PrintableTools Lab project should expose today's downloads");
+  assert(printableProject.nextAction && printableProject.nextAction.includes("Downloads"), "PrintableTools Lab project should expose an ops next action");
+  const opsNoSignupSource = opsMetricsPayload.sources.find((row) => row.source === "nosignuptools");
+  assert(opsNoSignupSource.download_pdf === 1, "Ops metrics should expose global source totals");
+  assert(opsNoSignupSource.today_download_pdf === 1, "Ops metrics should expose global source today totals");
+  const opsInvoiceTool = printableProject.tools.find((row) => row.tool === "invoice-generator");
+  assert(opsInvoiceTool.today_download_pdf === 1, "Project ops metrics should expose today's per-tool downloads");
+  const opsNoSignupProjectSource = printableProject.sources.find((row) => row.source === "nosignuptools");
+  assert(opsNoSignupProjectSource.today_download_pdf === 1, "Project ops metrics should expose today's per-source downloads");
+  assert(Array.isArray(opsMetricsPayload.nextActions) && opsMetricsPayload.nextActions.length, "Ops metrics should expose operating next actions");
 
   const gameIntentResponse = await eventSource.onRequestPost({
     request: new Request("https://printable-tools-lab.pages.dev/api/event", {

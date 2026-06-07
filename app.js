@@ -8083,14 +8083,19 @@ ${paragraphs.join("\n")}
         </div>
         <div class="panel">
           <h2>Global source mix</h2>
-          ${opsTable(["Source", "Views", "Downloads", "Depth", "Sponsor intent", "Game intent"], activeRows(data.sources || [], sourceScore).slice(0, 12).map((row) => [
+          ${opsTable(["Source", "Views", "Today", "Downloads", "Depth", "Sponsor intent", "Game intent"], activeRows(data.sources || [], sourceScore).slice(0, 12).map((row) => [
             row.source,
             row.page_view || 0,
+            row.today_page_view || 0,
             (row.download_pdf || 0) + (row.download_file || 0),
             (row.free_tool_depth || 0) + (row.guide_depth || 0),
             row.sponsor_request_intent || 0,
             (row.game_play_intent || 0) + (row.game_fullscreen_open || 0) + (row.game_embed_open || 0),
           ]))}
+        </div>
+        <div class="panel">
+          <h2>Operating actions</h2>
+          ${opsActionList(data.nextActions || [])}
         </div>
         <p class="help">Revenue is still counted only after a platform balance, sponsor agreement, or settled payment is verified. Views and clicks are operating signals, not money.</p>
       `;
@@ -8197,6 +8202,7 @@ ${paragraphs.join("\n")}
     const dealUrl = sponsorProspectDealUrl(prospect, deal, vertical);
     const proposalUrl = sponsorProspectProposalUrl(prospect, deal, vertical);
     const pitch = sponsorProspectPitch(prospect, deal, vertical, proposalUrl);
+    const invoiceRequest = sponsorInvoiceRequestCopy(prospect, deal, vertical, proposalUrl);
     return `
       <article class="ops-action-card">
         <div>
@@ -8352,16 +8358,22 @@ ${paragraphs.join("\n")}
           <div class="metric-tile"><strong>${summary.todayPageViews || 0}</strong><span>today views</span></div>
           <div class="metric-tile"><strong>${primarySignal}</strong><span>${escapeHtml(primaryLabel)}</span></div>
           <div class="metric-tile"><strong>${summary.downloads || 0}</strong><span>downloads</span></div>
+          <div class="metric-tile"><strong>${summary.todayDownloads || 0}</strong><span>today downloads</span></div>
           <div class="metric-tile"><strong>${summary.generations || 0}</strong><span>generations</span></div>
+          <div class="metric-tile"><strong>${summary.todayGenerations || summary.todayGamePlayIntent || 0}</strong><span>${isGameProject ? "today plays" : "today generations"}</span></div>
           <div class="metric-tile"><strong>${summary.commercialIntent || summary.gameFullscreenOpen || 0}</strong><span>${isGameProject ? "fullscreen opens" : "commercial intent"}</span></div>
+          <div class="metric-tile"><strong>${summary.todayCommercialIntent || summary.todayGameFullscreenOpen || 0}</strong><span>${isGameProject ? "today fullscreen" : "today commercial"}</span></div>
         </div>
+        <div class="notice compact-notice">${escapeHtml(project.nextAction || "Watch the next live signal before expanding this project.")}</div>
         <div class="ops-detail-grid">
           <section>
             <h3>Sources</h3>
-            ${opsTable(["Source", "Views", "Intent"], sourceRows.map((row) => [
+            ${opsTable(["Source", "Views", "Today", "Intent", "Today intent"], sourceRows.map((row) => [
               row.source,
               row.page_view || 0,
+              row.today_page_view || 0,
               (row.sponsor_request_intent || 0) + (row.game_play_intent || 0) + (row.game_fullscreen_open || 0) + (row.game_embed_open || 0),
+              (row.today_sponsor_request_intent || 0) + (row.today_game_play_intent || 0) + (row.today_game_fullscreen_open || 0) + (row.today_game_embed_open || 0),
             ]))}
           </section>
           <section>
@@ -8374,9 +8386,10 @@ ${paragraphs.join("\n")}
           </section>
           <section>
             <h3>${isGameProject ? "Games" : "Tools and offers"}</h3>
-            ${opsTable([isGameProject ? "Game" : "Tool", "Views/actions", "Downloads"], toolRows.map((row) => [
+            ${opsTable([isGameProject ? "Game" : "Tool", "Score", "Today", "Downloads"], toolRows.map((row) => [
               row.tool,
               toolScore(row),
+              todayToolScore(row),
               (row.download_pdf || 0) + (row.download_file || 0),
             ]))}
           </section>
@@ -8434,11 +8447,30 @@ ${paragraphs.join("\n")}
       + ((row.game_play_intent || 0) + (row.game_fullscreen_open || 0) + (row.game_embed_open || 0)) * 4;
   }
 
+  function todayToolScore(row) {
+    return ((row.today_download_pdf || 0) + (row.today_download_file || 0)) * 4
+      + ((row.today_generate_pdf || 0) + (row.today_generate_file || 0)) * 2
+      + (row.today_free_tool_depth || 0) * 3
+      + (row.today_limit_hit || 0)
+      + (row.today_seller_checkout_intent || 0) * 4
+      + (row.today_service_request_intent || 0) * 4
+      + (row.today_audit_request_intent || 0) * 4
+      + (row.today_sponsor_request_intent || 0) * 5
+      + ((row.today_game_play_intent || 0) + (row.today_game_fullscreen_open || 0) + (row.today_game_embed_open || 0)) * 4;
+  }
+
   function opsTable(headers, rows) {
     const body = rows.length
       ? rows.map((row) => `<tr>${row.map((cell) => `<td>${escapeHtml(cell)}</td>`).join("")}</tr>`).join("")
       : `<tr><td colspan="${headers.length}">No signal yet.</td></tr>`;
     return `<div class="preview-stage compact-table"><table class="event-table"><thead><tr>${headers.map((header) => `<th>${escapeHtml(header)}</th>`).join("")}</tr></thead><tbody>${body}</tbody></table></div>`;
+  }
+
+  function opsActionList(actions) {
+    const rows = Array.isArray(actions) ? actions.filter(Boolean) : [];
+    return rows.length
+      ? `<ul class="ops-action-summary">${rows.map((action) => `<li>${escapeHtml(action)}</li>`).join("")}</ul>`
+      : `<p class="help">No operating action returned yet.</p>`;
   }
 
   function renderNotFound() {

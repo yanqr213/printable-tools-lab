@@ -111,6 +111,7 @@ export async function onRequestGet({ env }) {
   const totals = entriesFromEvents(EVENTS, combined.totals.events);
   const todayTotals = entriesFromEvents(EVENTS, combined.today.events);
   const projects = PROJECTS.map((project) => projectMetrics(project, today, combined));
+  const sources = sourceRows(SOURCES, EVENTS, combined.totals.sources, combined.today.sources);
   return json({
     ok: true,
     today,
@@ -122,8 +123,10 @@ export async function onRequestGet({ env }) {
     todaySponsorLeads: todayTotals.sponsor_lead_submit || 0,
     sponsorInvoiceRequests: totals.sponsor_invoice_request || 0,
     todaySponsorInvoiceRequests: todayTotals.sponsor_invoice_request || 0,
+    sources,
     projects,
     revenueGate: "Revenue is real only after a platform balance, sponsor agreement, or settled payment is verified. Views and clicks are operating signals.",
+    nextActions: opsNextActions(totals, todayTotals, projects),
   });
 }
 
@@ -133,9 +136,33 @@ function projectMetrics(project, today, combined) {
   const totals = entriesFromEvents(project.events, project.legacy ? combined.totals.events : projectRollup.events);
   const todayTotals = entriesFromEvents(project.events, project.legacy ? combined.today.events : todayProjectRollup.events);
   const toolsBucket = project.legacy ? combined.totals.tools : projectRollup.tools;
+  const todayToolsBucket = project.legacy ? combined.today.tools : todayProjectRollup.tools;
   const sourcesBucket = project.legacy ? combined.totals.sources : projectRollup.sources;
+  const todaySourcesBucket = project.legacy ? combined.today.sources : todayProjectRollup.sources;
   const pathsBucket = project.legacy ? projectRollup.paths : projectRollup.paths;
   const todayPathsBucket = project.legacy ? todayProjectRollup.paths : todayProjectRollup.paths;
+  const summary = {
+    pageViews: totals.page_view || 0,
+    todayPageViews: todayTotals.page_view || 0,
+    downloads: (totals.download_pdf || 0) + (totals.download_file || 0),
+    todayDownloads: (todayTotals.download_pdf || 0) + (todayTotals.download_file || 0),
+    generations: (totals.generate_pdf || 0) + (totals.generate_file || 0),
+    todayGenerations: (todayTotals.generate_pdf || 0) + (todayTotals.generate_file || 0),
+    depthIntent: (totals.free_tool_depth || 0) + (totals.guide_depth || 0),
+    todayDepthIntent: (todayTotals.free_tool_depth || 0) + (todayTotals.guide_depth || 0),
+    commercialIntent: commercialIntent(totals),
+    todayCommercialIntent: commercialIntent(todayTotals),
+    sponsorLeads: project.id === "printable-tools-lab" ? (totals.sponsor_lead_submit || 0) : 0,
+    todaySponsorLeads: project.id === "printable-tools-lab" ? (todayTotals.sponsor_lead_submit || 0) : 0,
+    sponsorInvoiceRequests: project.id === "printable-tools-lab" ? (totals.sponsor_invoice_request || 0) : 0,
+    todaySponsorInvoiceRequests: project.id === "printable-tools-lab" ? (todayTotals.sponsor_invoice_request || 0) : 0,
+    gamePlayIntent: totals.game_play_intent || 0,
+    todayGamePlayIntent: todayTotals.game_play_intent || 0,
+    gameFullscreenOpen: totals.game_fullscreen_open || 0,
+    todayGameFullscreenOpen: todayTotals.game_fullscreen_open || 0,
+    gameEmbedOpen: totals.game_embed_open || 0,
+    todayGameEmbedOpen: todayTotals.game_embed_open || 0,
+  };
   return {
     id: project.id,
     name: project.name,
@@ -143,24 +170,9 @@ function projectMetrics(project, today, combined) {
     goal: project.goal,
     totals,
     todayTotals,
-    summary: {
-      pageViews: totals.page_view || 0,
-      todayPageViews: todayTotals.page_view || 0,
-      downloads: (totals.download_pdf || 0) + (totals.download_file || 0),
-      generations: (totals.generate_pdf || 0) + (totals.generate_file || 0),
-      depthIntent: (totals.free_tool_depth || 0) + (totals.guide_depth || 0),
-      commercialIntent: commercialIntent(totals),
-      sponsorLeads: project.id === "printable-tools-lab" ? (totals.sponsor_lead_submit || 0) : 0,
-      sponsorInvoiceRequests: project.id === "printable-tools-lab" ? (totals.sponsor_invoice_request || 0) : 0,
-      gamePlayIntent: totals.game_play_intent || 0,
-      gameFullscreenOpen: totals.game_fullscreen_open || 0,
-      gameEmbedOpen: totals.game_embed_open || 0,
-    },
-    sources: SOURCES.map((source) => {
-      const row = { source };
-      for (const event of project.sourceEvents) row[event] = countNested(sourcesBucket, source, event);
-      return row;
-    }),
+    summary,
+    nextAction: projectNextAction(project, summary),
+    sources: sourceRows(SOURCES, project.sourceEvents, sourcesBucket, todaySourcesBucket),
     paths: project.paths.map((path) => ({
       path,
       page_view: countFrom(pathsBucket, path),
@@ -168,10 +180,24 @@ function projectMetrics(project, today, combined) {
     })),
     tools: project.tools.map((tool) => {
       const row = { tool };
-      for (const event of project.events) row[event] = countNested(toolsBucket, tool, event);
+      for (const event of project.events) {
+        row[event] = countNested(toolsBucket, tool, event);
+        row[`today_${event}`] = countNested(todayToolsBucket, tool, event);
+      }
       return row;
     }),
   };
+}
+
+function sourceRows(sources, events, totalsBucket, todayBucket) {
+  return sources.map((source) => {
+    const row = { source };
+    for (const event of events) {
+      row[event] = countNested(totalsBucket, source, event);
+      row[`today_${event}`] = countNested(todayBucket, source, event);
+    }
+    return row;
+  });
 }
 
 async function readRollup(store, today) {
@@ -286,6 +312,37 @@ function commercialIntent(totals) {
     + (totals.sponsor_request_intent || 0)
     + (totals.sponsor_lead_submit || 0)
     + (totals.sponsor_invoice_request || 0);
+}
+
+function opsNextActions(totals, todayTotals, projects) {
+  const actions = [];
+  const sponsorLeads = totals.sponsor_lead_submit || 0;
+  const sponsorInvoices = totals.sponsor_invoice_request || 0;
+  const sponsorIntent = totals.sponsor_request_intent || 0;
+  const todayViews = todayTotals.page_view || 0;
+  const downloads = (totals.download_pdf || 0) + (totals.download_file || 0);
+  const gameProject = projects.find((project) => project.id === "pocket-arcade-shelf");
+  if (sponsorInvoices > 0) actions.push("Export private sponsor leads and send only a real external invoice or agreement after policy review.");
+  else if (sponsorLeads > 0) actions.push("Reply to qualified sponsor leads with the selected pilot deal and do not count revenue until agreement or settled payment.");
+  else if (sponsorIntent > 0) actions.push("Sponsor clicks exist without lead capture; send the starter review proposal to the highest-fit sponsor prospects.");
+  else if (downloads > 0 || todayViews >= 50) actions.push("Traffic exists; push one sponsor vertical tied to the warmest PDF, QR, resume, or paperwork path.");
+  if (gameProject?.summary?.gamePlayIntent > 0) actions.push("Game play intent exists; continue platform submission and monitor embed/fullscreen rows for revenue-share readiness.");
+  if (!actions.length) actions.push("Keep distribution running and watch for the first download, sponsor intent, game play, or search signal.");
+  return actions;
+}
+
+function projectNextAction(project, summary) {
+  if (project.id === "pocket-arcade-shelf") {
+    if (summary.todayGamePlayIntent || summary.todayGameFullscreenOpen || summary.todayGameEmbedOpen) return "Fresh game traffic today: submit or update the strongest platform listing and track embed/fullscreen intent.";
+    if (summary.gamePlayIntent || summary.gameFullscreenOpen || summary.gameEmbedOpen) return "Game intent exists: keep platform outreach active and compare source rows before adding new games.";
+    return "No game play signal yet: prioritize distribution and platform review over more game inventory.";
+  }
+  if (summary.todaySponsorInvoiceRequests || summary.sponsorInvoiceRequests) return "Invoice request present: export private sponsor lead details and move only external agreement or settled payment into revenue.";
+  if (summary.todaySponsorLeads || summary.sponsorLeads) return "Sponsor lead present: review fit, reply with the selected deal, and keep unsafe categories out.";
+  if (summary.todayCommercialIntent || summary.commercialIntent) return "Commercial intent exists: route warm sponsor clicks into the USD 49 starter review path.";
+  if (summary.todayDownloads || summary.downloads) return "Downloads exist: pitch sponsors around the warmest utility family while search and ad gates mature.";
+  if (summary.todayPageViews || summary.pageViews) return "Traffic exists but conversion is thin: test one targeted sponsor proposal against the warmest page family.";
+  return "No meaningful signal yet: keep organic distribution active and avoid adding monetization clutter.";
 }
 
 function json(payload, status = 200) {

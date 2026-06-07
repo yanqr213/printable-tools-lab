@@ -371,6 +371,8 @@ else {
   if (!script.includes("absoluteSponsorUrl")) failures.push("app.js sponsor outreach pitch should copy absolute URLs.");
   if (!script.includes("sponsorSprintHtml({ totals: {}, projects: [] })")) failures.push("app.js ops monitor should keep sponsor close actions visible when live metrics fail.");
   if (!script.includes("renderSponsorProposalPage") || !script.includes("sponsorProspectProposalUrl") || !script.includes("sponsor_proposal")) failures.push("app.js missing direct sponsor proposal funnel.");
+  if (!script.includes("todayToolScore") || !script.includes("Operating actions") || !script.includes("project.nextAction")) failures.push("app.js ops monitor should show detailed project traffic and next actions.");
+  if (!script.includes("sponsorInvoiceRequestCopy(prospect, deal, vertical, proposalUrl)")) failures.push("app.js ops sponsor cards should copy a real invoice request.");
   if (script.includes("Open $29 setup request")) failures.push("Download success CTA should not promote paid setup.");
   if (!script.includes("renderRetiredPaidExperiment")) failures.push("app.js missing retired payment route renderer.");
   if (!script.includes("No payment is collected here")) failures.push("app.js retired payment route missing no-payment copy.");
@@ -389,6 +391,12 @@ if (!fs.existsSync(eventFunctionFile)) failures.push("Missing event API function
 else if (!fs.readFileSync(eventFunctionFile, "utf8").includes('"sponsor-outreach"')) failures.push("Event API missing sponsor-outreach source tracking.");
 if (!fs.existsSync(metricsFunctionFile)) failures.push("Missing metrics API function.");
 else if (!fs.readFileSync(metricsFunctionFile, "utf8").includes('"sponsor-outreach"')) failures.push("Metrics API missing sponsor-outreach source row.");
+const opsMetricsFunctionFile = path.join(root, "functions", "api", "ops-metrics.js");
+if (!fs.existsSync(opsMetricsFunctionFile)) failures.push("Missing ops metrics API function.");
+else {
+  const opsMetricsScript = fs.readFileSync(opsMetricsFunctionFile, "utf8");
+  if (!opsMetricsScript.includes("nextActions") || !opsMetricsScript.includes("row[`today_${event}`]") || !opsMetricsScript.includes("projectNextAction")) failures.push("Ops metrics API should expose project next actions and today source/tool fields.");
+}
 if (!fs.existsSync(sponsorLeadFunctionFile)) failures.push("Missing sponsor lead API function.");
 else {
   const sponsorLeadScript = fs.readFileSync(sponsorLeadFunctionFile, "utf8");
