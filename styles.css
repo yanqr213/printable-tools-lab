@@ -556,6 +556,16 @@ main {
   font-size: 0.88rem;
 }
 
+.sponsor-public-reply {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.sponsor-public-reply p {
+  margin: 0;
+}
+
 .sponsor-lead-status {
   margin: 0;
 }

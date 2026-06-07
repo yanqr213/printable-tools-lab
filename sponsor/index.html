@@ -67,12 +67,17 @@
               <li>Not accepted: gambling, adult, deceptive finance, malware, fake document, or misleading upload-service offers.</li>
               <li>Payment, tax, bank, phone, and private identity details stay outside this form.</li>
             </ul>
+            <div class="notice sponsor-public-reply">
+              <strong>Prefer a public-safe reply?</strong>
+              <p>Open the GitHub sponsor reply form with only public company, website, fit, and deal context. It is a backup path for partners who do not want to use the site form.</p>
+              <p><a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="https://github.com/yanqr213/printable-tools-lab/issues/new?template=sponsor-partner-inquiry.yml&amp;title=%5BSponsor%2FPartner%5D%3A+Sponsor+team&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+Sponsor+team%0APublic+website+URL%3A+%0AAudience+fit%3A+PDF%2C+Image%2C+and+QR+SaaS+Sponsorship%0ASelected+pilot+deal%3A+Guide+sponsor+pilot+%28USD+99-149%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-deal-room%3Futm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_deal_room%26utm_content%3Dguide-sponsor-pilot%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue." target="_blank" rel="noreferrer">Public-safe reply form</a></p>
+            </div>
           </div>
           <form class="panel form-grid sponsor-quick-form" data-sponsor-quick-form>
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="dealId">
             <h3>2-minute pilot invoice review</h3>
-            <p class="help">Pick a starter pilot and send three business-safe fields. This requests manual fit review only; any invoice or agreement is sent later through an external provider.</p>
+            <p class="help">Pick a starter pilot and send two business-safe fields. This requests manual fit review only; any invoice or agreement is sent later through an external provider.</p>
             <label class="field sponsor-deal-picker">
               <span>Selected pilot</span>
               <select name="quickDealId" data-sponsor-quick-deal>
@@ -82,8 +87,8 @@
               </select>
             </label>
             <label class="field">
-              <span>Company or project</span>
-              <input name="company" maxlength="90" autocomplete="organization" required>
+              <span>Company or project (optional)</span>
+              <input name="company" maxlength="90" autocomplete="organization" placeholder="Auto-filled from website if blank">
             </label>
             <label class="field">
               <span>Business email</span>

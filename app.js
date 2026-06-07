@@ -7772,6 +7772,14 @@ ${paragraphs.join("\n")}
   }
 
   function renderSponsorLeadForm() {
+    const defaultDeal = sponsorDeals.find((deal) => deal.id === "guide-sponsor-pilot") || sponsorDeals[0];
+    const defaultVertical = sponsorVerticals[0];
+    const publicReplyUrl = sponsorPublicReplyUrl(
+      { name: "Sponsor team", website: "" },
+      defaultDeal,
+      defaultVertical,
+      defaultDeal?.trackedUrl || "/sponsor-deal-room/",
+    );
     return `
       <section id="sponsor-inquiry" class="shell section">
         <div class="grid-2">
@@ -7783,12 +7791,17 @@ ${paragraphs.join("\n")}
               <li>Not accepted: gambling, adult, deceptive finance, malware, fake document, or misleading upload-service offers.</li>
               <li>Payment, tax, bank, phone, and private identity details stay outside this form.</li>
             </ul>
+            <div class="notice sponsor-public-reply">
+              <strong>Prefer a public-safe reply?</strong>
+              <p>Open the GitHub sponsor reply form with only public company, website, fit, and deal context. It is a backup path for partners who do not want to use the site form.</p>
+              <p><a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Public-safe reply form</a></p>
+            </div>
           </div>
           <form class="panel form-grid sponsor-quick-form" data-sponsor-quick-form>
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="dealId">
             <h3>2-minute pilot invoice review</h3>
-            <p class="help">Pick a starter pilot and send three business-safe fields. This requests manual fit review only; any invoice or agreement is sent later through an external provider.</p>
+            <p class="help">Pick a starter pilot and send two business-safe fields. This requests manual fit review only; any invoice or agreement is sent later through an external provider.</p>
             <label class="field sponsor-deal-picker">
               <span>Selected pilot</span>
               <select name="quickDealId" data-sponsor-quick-deal>
@@ -7796,8 +7809,8 @@ ${paragraphs.join("\n")}
               </select>
             </label>
             <label class="field">
-              <span>Company or project</span>
-              <input name="company" maxlength="90" autocomplete="organization" required>
+              <span>Company or project (optional)</span>
+              <input name="company" maxlength="90" autocomplete="organization" placeholder="Auto-filled from website if blank">
             </label>
             <label class="field">
               <span>Business email</span>

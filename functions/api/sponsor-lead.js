@@ -127,9 +127,10 @@ export function onRequestGet() {
 }
 
 function normalizeLead(body, request) {
-  const company = cleanText(body.company, 90);
+  const rawCompany = cleanText(body.company, 90);
   const contactEmail = cleanEmail(body.contactEmail);
   const website = cleanUrl(body.website, 220);
+  const company = rawCompany || inferCompanyFromContact(website, contactEmail);
   const placement = cleanChoice(body.placement, PLACEMENTS, "media-kit-review");
   const budgetRange = cleanChoice(body.budgetRange, BUDGET_RANGES, "exploratory");
   const timeline = cleanChoice(body.timeline, TIMELINES, "exploratory");
@@ -314,6 +315,37 @@ function cleanUrl(value, maxLength) {
   } catch {
     return "";
   }
+}
+
+function inferCompanyFromContact(website, contactEmail) {
+  const host = hostFromUrl(website) || hostFromEmail(contactEmail);
+  const base = host
+    .replace(/^www\./, "")
+    .split(".")
+    .filter(Boolean)
+    .slice(0, -1)
+    .pop() || "";
+  const words = base
+    .replace(/[-_]+/g, " ")
+    .replace(/[^a-zA-Z0-9 ]+/g, " ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 6);
+  const label = words.map((word) => word ? word[0].toUpperCase() + word.slice(1) : "").join(" ");
+  return cleanText(label, 90);
+}
+
+function hostFromUrl(value) {
+  try {
+    return new URL(value).hostname.toLowerCase();
+  } catch {
+    return "";
+  }
+}
+
+function hostFromEmail(value) {
+  return String(value || "").split("@").pop()?.toLowerCase() || "";
 }
 
 function cleanChoice(value, allowed, fallback) {
