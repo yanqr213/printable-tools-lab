@@ -63,6 +63,7 @@ for (const route of routes) {
   if (!html.includes(`rel="canonical" href="${siteUrl(route.path)}"`)) failures.push(`Missing canonical: ${route.path || "/"}`);
   if (html.includes('href="/ops/') || html.includes("href='/ops/")) failures.push(`Public route exposes ops monitor link: ${route.path || "/"}`);
   if (html.includes('href="/dashboard/') || html.includes("href='/dashboard/")) failures.push(`Public route exposes dashboard link: ${route.path || "/"}`);
+  if (html.includes('href="/sponsor-proposal') || html.includes("href='/sponsor-proposal")) failures.push(`Public route exposes direct sponsor proposal link: ${route.path || "/"}`);
   if (!/<main id="app" tabindex="-1">\s*[\s\S]{120,}\s*<\/main>/.test(html)) failures.push(`Weak static body: ${route.path || "/"}`);
   if (route.path && route.path.startsWith("tools/")) {
     if (!html.includes('"@type":"SoftwareApplication"')) failures.push(`Missing tool SoftwareApplication schema: ${route.path}`);
@@ -191,6 +192,19 @@ else {
   if (!html.includes("Sponsor proposal")) failures.push("Sponsor proposal route missing fallback heading.");
   if (!html.includes("sponsor-partner-inquiry.yml") || !html.includes("public-safe GitHub reply form")) failures.push("Sponsor proposal route missing public-safe reply fallback.");
   if (sitemap.includes(`<loc>${siteUrl("sponsor-proposal")}</loc>`)) failures.push("Sitemap should not include noindex sponsor proposal page.");
+}
+
+for (const routePath of ["dashboard", "ops"]) {
+  const file = path.join(root, routePath, "index.html");
+  if (!fs.existsSync(file)) {
+    failures.push(`Missing internal route: ${routePath}.`);
+    continue;
+  }
+  const html = fs.readFileSync(file, "utf8");
+  if (!html.includes('<body class="internal-route">')) failures.push(`${routePath} should use internal route chrome.`);
+  if (html.includes("site-header") || html.includes("top-nav") || html.includes("site-footer")) failures.push(`${routePath} should not render public site navigation chrome.`);
+  if (!html.includes('content="noindex,follow"')) failures.push(`${routePath} should be noindex.`);
+  if (sitemap.includes(`<loc>${siteUrl(routePath)}</loc>`)) failures.push(`Sitemap should not include noindex internal route: ${routePath}.`);
 }
 
 const sponsorOpportunitiesFile = path.join(root, "sponsor-opportunities", "index.html");
@@ -367,12 +381,14 @@ else {
   if (!logScript.includes("publicReplyUrl") || !logScript.includes("publicReplyAvailable")) failures.push("Sponsor outreach log script missing public-safe reply fallback tracking.");
   if (!logScript.includes("publicReplyFallbackReady") || !logScript.includes("contactFormMessage") || !logScript.includes("contactFormProposalUrl")) failures.push("Sponsor outreach log script missing public reply fallback execution fields.");
   if (!logScript.includes("sponsor-contact-route-probe.json") || !logScript.includes("bestContactUrl") || !logScript.includes("contactRouteStatus") || !logScript.includes("contactRouteReady")) failures.push("Sponsor outreach log script missing contact-probe prioritization fields.");
+  if (!logScript.includes("requiresAuthorizedSender") || !logScript.includes("contactRouteSubmissionBlockers")) failures.push("Sponsor outreach log script missing authorized-sender submission blockers.");
 }
 if (!fs.existsSync(sponsorContactProbeScriptFile)) failures.push("Missing sponsor contact route probe script.");
 else {
   const contactProbeScript = fs.readFileSync(sponsorContactProbeScriptFile, "utf8");
   if (!contactProbeScript.includes("sponsor-contact-route-probe.json") || !contactProbeScript.includes("contactFormMessage") || !contactProbeScript.includes("routeStatus")) failures.push("Sponsor contact probe missing route status report fields.");
   if (!contactProbeScript.includes("never submits forms") || !contactProbeScript.includes("fetchWithTimeout")) failures.push("Sponsor contact probe must remain read-only and timeout bounded.");
+  if (!contactProbeScript.includes("extractFormFields") || !contactProbeScript.includes("submissionBlockers") || !contactProbeScript.includes("requiresAuthorizedSender")) failures.push("Sponsor contact probe missing form-field submission blockers.");
 }
 const sponsorIssueTemplateFile = path.join(root, ".github", "ISSUE_TEMPLATE", "sponsor-partner-inquiry.yml");
 if (!fs.existsSync(sponsorIssueTemplateFile)) failures.push("Missing sponsor public issue template.");

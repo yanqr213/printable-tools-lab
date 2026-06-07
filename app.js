@@ -5356,6 +5356,7 @@
     const hash = window.location.hash.startsWith("#/") ? window.location.hash.replace(/^#\/?/, "") : "";
     const path = hash || window.location.pathname.replace(/^\/+|\/+$/g, "");
     const parts = path.split("/").filter(Boolean);
+    setInternalRouteChrome(parts[0] === "dashboard" || parts[0] === "ops");
     if (!parts.length) return renderHome();
     if (parts[0] === "tools" && !parts[1]) return renderToolsIndex();
     if (parts[0] === "tools" && tools[parts[1]]) return renderTool(parts[1]);
@@ -5400,6 +5401,10 @@
     setTimeout(initServiceRequestCopies, 0);
     setTimeout(initUploadLimitHelpers, 0);
     setTimeout(pushVisibleAds, 0);
+  }
+
+  function setInternalRouteChrome(isInternal) {
+    document.body.classList.toggle("internal-route", Boolean(isInternal));
   }
 
   function setMetaTag(name, content) {

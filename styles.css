@@ -31,6 +31,15 @@ body {
   line-height: 1.5;
 }
 
+body.internal-route {
+  background: #f4f7f8;
+}
+
+body.internal-route .site-header,
+body.internal-route .site-footer {
+  display: none;
+}
+
 a {
   color: var(--teal-dark);
   text-decoration: none;

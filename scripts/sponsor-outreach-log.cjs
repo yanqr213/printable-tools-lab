@@ -39,10 +39,12 @@ function main() {
     contactRouteReady: rows.filter((row) => row.contactRouteStatus === "ready" && row.status === "queued").length,
     contactRouteReview: rows.filter((row) => row.contactRouteStatus === "review" && row.status === "queued").length,
     contactRouteBlocked: rows.filter((row) => row.contactRouteStatus === "blocked" && row.status === "queued").length,
+    requiresAuthorizedSender: rows.filter((row) => row.requiresAuthorizedSender && row.status === "queued").length,
     rules: [
       "Use public contact, partner, or sales forms only.",
       "Do not submit fake identity, phone, payment, tax, or bank details.",
       "Prioritize rows where contactRouteStatus is ready and bestContactUrl has a sponsor, partner, or sales route.",
+      "Treat contactRouteStatus as route availability, not permission to submit without a legitimate sender.",
       "If a form requires a reply email that is not available and no publicReplyUrl exists, leave the row queued and set evidenceNote accordingly.",
       "If outbound email is unavailable, send only the proposal URL through an allowed public contact route and point partners to publicReplyUrl or the site sponsor form.",
       "Change status to sent only after a real form submission or email send with timestamped evidence.",
@@ -64,14 +66,23 @@ function normalizeLogRow(prospect, existing = {}, probe = {}) {
   const contactRouteScore = Number.isFinite(Number(probe.score)) ? Number(probe.score) : Number(existing.contactRouteScore || 0);
   const contactRouteEvidence = Array.isArray(probe.evidence) ? probe.evidence : existing.contactRouteEvidence || [];
   const contactRouteBlockers = Array.isArray(probe.blockers) ? probe.blockers : existing.contactRouteBlockers || [];
+  const contactRouteRequiredFields = Array.isArray(probe.requiredFields) ? probe.requiredFields : existing.contactRouteRequiredFields || [];
+  const contactRoutePublicSafeFields = Array.isArray(probe.publicSafeFields) ? probe.publicSafeFields : existing.contactRoutePublicSafeFields || [];
+  const contactRouteSubmissionBlockers = Array.isArray(probe.submissionBlockers) ? probe.submissionBlockers : existing.contactRouteSubmissionBlockers || [];
+  const requiresAuthorizedSender = probe.requiresAuthorizedSender !== undefined ? Boolean(probe.requiresAuthorizedSender) : Boolean(existing.requiresAuthorizedSender);
   const existingNextAction = String(existing.nextAction || "");
   const existingEvidenceNote = String(existing.evidenceNote || "");
   const staleReplyEmailBlocker = /legitimate reply email|private reply email|reply email is available|needs a real reply email/i;
-  const staleContactRouteAction = /open contactUrl|public-safe partner note|prepared proposal pitch/i;
-  const defaultEvidenceNote = publicReplyAvailable
+  const staleContactRouteAction = /open contactUrl|public-safe partner note|prepared proposal pitch|submit contactFormMessage/i;
+  const staleAuthorizedSenderEvidence = /public reply fallback is ready|real public contact form submission|legitimate email send/i;
+  const defaultEvidenceNote = requiresAuthorizedSender
+    ? `Contact route exists, but submission needs a legitimate sender or manual consent (${contactRouteSubmissionBlockers.join("; ") || "authorized sender fields"}).`
+    : publicReplyAvailable
     ? "Public reply fallback is ready; mark sent only after a real public contact form submission, public-safe issue reply, or legitimate email send."
     : "Needs a real public contact form submission or legitimate email send before marking sent.";
-  const defaultNextAction = contactRouteStatus === "ready"
+  const defaultNextAction = requiresAuthorizedSender
+    ? "Prepare the proposal URL and message, but do not submit until a legitimate business email, sender name, phone if required, and any consent checkbox can be truthfully provided."
+    : contactRouteStatus === "ready"
     ? "Open bestContactUrl, submit contactFormMessage only if the page accepts sponsor, partner, sales, or marketing notes, then record timestamp and evidence."
     : publicReplyAvailable
       ? "Open bestContactUrl or contactUrl, submit contactFormMessage only after confirming the route allows a public-safe partner note, and include proposalUrl plus publicReplyUrl."
@@ -87,6 +98,10 @@ function normalizeLogRow(prospect, existing = {}, probe = {}) {
     contactRouteScore,
     contactRouteEvidence,
     contactRouteBlockers,
+    contactRouteRequiredFields,
+    contactRoutePublicSafeFields,
+    contactRouteSubmissionBlockers,
+    requiresAuthorizedSender,
     suggestedDealId: prospect.suggestedDealId || "",
     suggestedDealTitle: prospect.suggestedDealTitle || "",
     suggestedDealPrice: prospect.suggestedDealPrice || "",
@@ -105,7 +120,7 @@ function normalizeLogRow(prospect, existing = {}, probe = {}) {
     qualifiedAt: existing.qualifiedAt || "",
     settledAt: existing.settledAt || "",
     evidenceUrl: existing.evidenceUrl || "",
-    evidenceNote: existingEvidenceNote && !(publicReplyAvailable && staleReplyEmailBlocker.test(existingEvidenceNote)) ? existingEvidenceNote : defaultEvidenceNote,
+    evidenceNote: existingEvidenceNote && !(publicReplyAvailable && staleReplyEmailBlocker.test(existingEvidenceNote)) && !(requiresAuthorizedSender && staleAuthorizedSenderEvidence.test(existingEvidenceNote)) ? existingEvidenceNote : defaultEvidenceNote,
     nextAction: existingNextAction && !(publicReplyAvailable && staleReplyEmailBlocker.test(existingNextAction)) && !(contactRouteStatus !== "unknown" && staleContactRouteAction.test(existingNextAction)) ? existingNextAction : defaultNextAction,
     successSignal: prospect.successSignal || "qualified sponsor inquiry, signed agreement, or settled external payment",
     contactFormMessage: prospect.contactFormMessage || "",
@@ -114,7 +129,7 @@ function normalizeLogRow(prospect, existing = {}, probe = {}) {
 }
 
 function toCsv(rows) {
-  const headers = ["priority", "id", "name", "vertical", "contactUrl", "bestContactUrl", "contactRouteStatus", "contactRouteScore", "contactRouteEvidence", "contactRouteBlockers", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "proposalUrl", "contactFormProposalUrl", "dealRoomUrl", "publicReplyUrl", "verticalTrackedUrl", "trackedUrl", "status", "needsReplyEmail", "publicReplyAvailable", "submittedAt", "replyAt", "qualifiedAt", "settledAt", "evidenceUrl", "evidenceNote", "nextAction", "contactFormMessage"];
+  const headers = ["priority", "id", "name", "vertical", "contactUrl", "bestContactUrl", "contactRouteStatus", "contactRouteScore", "contactRouteEvidence", "contactRouteBlockers", "contactRouteRequiredFields", "contactRoutePublicSafeFields", "contactRouteSubmissionBlockers", "requiresAuthorizedSender", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "proposalUrl", "contactFormProposalUrl", "dealRoomUrl", "publicReplyUrl", "verticalTrackedUrl", "trackedUrl", "status", "needsReplyEmail", "publicReplyAvailable", "submittedAt", "replyAt", "qualifiedAt", "settledAt", "evidenceUrl", "evidenceNote", "nextAction", "contactFormMessage"];
   return [
     headers,
     ...rows.map((row) => headers.map((header) => Array.isArray(row[header]) ? row[header].join("; ") : row[header] || "")),
@@ -141,6 +156,10 @@ function nextBatchMarkdown(rows) {
       `- Contact route status: ${row.contactRouteStatus} (${row.contactRouteScore})`,
       `- Contact route evidence: ${row.contactRouteEvidence.join("; ") || "none"}`,
       `- Contact route blockers: ${row.contactRouteBlockers.join("; ") || "none"}`,
+      `- Required fields: ${row.contactRouteRequiredFields.join("; ") || "none"}`,
+      `- Public-safe fields: ${row.contactRoutePublicSafeFields.join("; ") || "none"}`,
+      `- Submission blockers: ${row.contactRouteSubmissionBlockers.join("; ") || "none"}`,
+      `- Requires authorized sender: ${row.requiresAuthorizedSender ? "yes" : "no"}`,
       `- Recommended deal: ${row.suggestedDealTitle} (${row.suggestedDealPrice})`,
       `- Proposal URL: ${row.proposalUrl}`,
       `- Short contact-form proposal URL: ${row.contactFormProposalUrl}`,
@@ -177,6 +196,7 @@ function outreachPriorityScore(row) {
   else if (row.contactRouteStatus === "review") score += 20;
   else if (row.contactRouteStatus === "blocked") score -= 30;
   score += Math.max(-20, Math.min(40, Number(row.contactRouteScore || 0)));
+  if (row.requiresAuthorizedSender) score -= 25;
   if (row.publicReplyAvailable) score += 8;
   return score;
 }

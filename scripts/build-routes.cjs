@@ -16,7 +16,7 @@ const issueDiscovery = readIssueDiscovery();
 
 function pageHtml(route) {
   const rendered = renderRoute(route);
-  return template
+  let html = template
     .replace(/<title>.*?<\/title>/, `<title>${rendered.title} - PrintableTools Lab</title>`)
     .replace(/<meta name="description" content=".*?">/, `<meta name="description" content="${escapeAttr(rendered.description)}">`)
     .replace(/<meta name="robots" content=".*?">/, `<meta name="robots" content="${route.index === false ? "noindex,follow" : "index,follow"}">`)
@@ -25,6 +25,13 @@ function pageHtml(route) {
     .replace(/<meta property="og:image" content=".*?">/, `<meta property="og:image" content="${siteUrl("assets/images/social-card.webp").replace(/\/$/, "")}">`)
     .replace(/<link rel="canonical" href=".*?">/, `<link rel="canonical" href="${siteUrl(route.path)}">`)
     .replace(/<main id="app" tabindex="-1">[\s\S]*?<\/main>/, `<main id="app" tabindex="-1">\n${rendered.html}\n    </main>`);
+  if (route.chrome === "internal") {
+    html = html
+      .replace("<body>", '<body class="internal-route">')
+      .replace(/\s*<header class="site-header">[\s\S]*?<\/header>\s*/, "\n")
+      .replace(/\s*<footer class="site-footer">[\s\S]*?<\/footer>\s*/, "\n");
+  }
+  return html;
 }
 
 function escapeAttr(value) {

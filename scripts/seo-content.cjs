@@ -5549,6 +5549,7 @@ const pages = [
     title: "Local Validation Dashboard",
     description: "Local browser dashboard for PrintableTools Lab validation events.",
     index: false,
+    chrome: "internal",
     html: `<section class="shell section"><h1>Local validation dashboard</h1><p>This page shows local browser validation events after the app loads.</p></section>`,
   },
   {
@@ -5556,6 +5557,7 @@ const pages = [
     title: "Project Operations Monitor",
     description: "Noindex operations monitor for project-level traffic, sponsor close actions, source, path, tool, game, and monetization signals.",
     index: false,
+    chrome: "internal",
     html: `<section class="shell section"><h1>Project operations monitor</h1><p>This page loads aggregate project metrics and the sponsor close cockpit after the app loads.</p></section>`,
   },
   {

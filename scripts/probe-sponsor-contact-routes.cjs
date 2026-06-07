@@ -70,6 +70,11 @@ async function probeProspect(prospect) {
     score: 0,
     evidence: [],
     blockers: [],
+    formFields: [],
+    requiredFields: [],
+    publicSafeFields: [],
+    submissionBlockers: [],
+    requiresAuthorizedSender: false,
     recommendedAction: "",
     checkedAt: generatedAt,
     elapsedMs: 0,
@@ -104,6 +109,11 @@ async function probeProspect(prospect) {
     if (bestProbe.url !== result.contactUrl) result.evidence.unshift(`better route discovered: ${bestProbe.url}`);
     result.score = bestProbe.score;
     result.routeStatus = routeStatusFromScore(result.score, bestProbe.signals);
+    result.formFields = bestProbe.signals.formFields;
+    result.requiredFields = bestProbe.signals.requiredFields;
+    result.publicSafeFields = bestProbe.signals.publicSafeFields;
+    result.submissionBlockers = bestProbe.signals.submissionBlockers;
+    result.requiresAuthorizedSender = bestProbe.signals.requiresAuthorizedSender;
     result.recommendedAction = recommendedAction(result, bestProbe.signals);
   } catch (error) {
     result.routeStatus = "blocked";
@@ -156,9 +166,14 @@ function analyzeContactHtml(html, finalUrl) {
   const forms = countMatches(raw, /<form\b/g);
   const textareas = countMatches(raw, /<textarea\b/g);
   const inputs = countMatches(raw, /<input\b/g);
+  const formFields = extractFormFields(html);
+  const fieldSummary = summarizeFormFields(formFields);
   if (forms) evidence.push(`${forms} form element(s)`);
   if (textareas) evidence.push(`${textareas} textarea/message field(s)`);
   if (inputs) evidence.push(`${inputs} input field(s)`);
+  if (fieldSummary.visibleFieldKinds.length) evidence.push(`visible form fields: ${fieldSummary.visibleFieldKinds.join(", ")}`);
+  if (fieldSummary.requiredFields.length) evidence.push(`required fields: ${fieldSummary.requiredFieldKinds.join(", ")}`);
+  if (fieldSummary.publicSafeFields.length) evidence.push(`public-safe autofill fields: ${fieldSummary.publicSafeFields.join(", ")}`);
   const sponsorTerms = keywordHits(text, ["partner", "partnership", "sponsor", "sponsorship", "advertis", "marketing", "sales", "business", "media"]);
   if (sponsorTerms.length) evidence.push(`sponsor-route terms: ${sponsorTerms.join(", ")}`);
   const emailHits = (html.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi) || []).slice(0, 3);
@@ -176,7 +191,96 @@ function analyzeContactHtml(html, finalUrl) {
     inputs,
     sponsorTerms,
     emailHits,
+    formFields,
+    requiredFields: fieldSummary.requiredFields,
+    publicSafeFields: fieldSummary.publicSafeFields,
+    submissionBlockers: fieldSummary.submissionBlockers,
+    requiresAuthorizedSender: fieldSummary.requiresAuthorizedSender,
   };
+}
+
+function extractFormFields(html) {
+  const fields = [];
+  const labelByFor = labelMap(html);
+  const forms = String(html || "").match(/<form\b[\s\S]*?<\/form>/gi) || [];
+  for (const [formIndex, form] of forms.entries()) {
+    for (const match of form.matchAll(/<(input|textarea|select)\b([^>]*)>/gi)) {
+      const tag = match[1].toLowerCase();
+      const attrs = attrsFromString(match[2]);
+      const type = (attrs.type || (tag === "input" ? "text" : tag)).toLowerCase();
+      const id = attrs.id || "";
+      const name = attrs.name || "";
+      fields.push({
+        formIndex: formIndex + 1,
+        tag,
+        type,
+        name,
+        id,
+        label: labelByFor.get(id) || attrs["aria-label"] || "",
+        placeholder: attrs.placeholder || "",
+        required: Boolean(attrs.required) || /\brequired\b/i.test(match[2]),
+        kind: "",
+      });
+    }
+  }
+  return fields.map((field) => ({ ...field, kind: classifyField(field) }));
+}
+
+function attrsFromString(value) {
+  const attrs = {};
+  const text = String(value || "");
+  for (const match of text.matchAll(/([:\w-]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g)) {
+    attrs[match[1].toLowerCase()] = match[2] || match[3] || match[4] || true;
+  }
+  return attrs;
+}
+
+function labelMap(html) {
+  const labels = new Map();
+  for (const match of String(html || "").matchAll(/<label\b[^>]*for=["']([^"']+)["'][^>]*>([\s\S]*?)<\/label>/gi)) {
+    labels.set(match[1], stripHtml(match[2]));
+  }
+  return labels;
+}
+
+function summarizeFormFields(fields) {
+  const visible = fields.filter((field) => !["hidden", "submit", "button", "reset", "image"].includes(field.type));
+  const visibleFieldKinds = unique(visible.map((field) => field.kind).filter(Boolean));
+  const requiredFields = visible.filter((field) => field.required).map(fieldSummary);
+  const requiredFieldKinds = unique(visible.filter((field) => field.required).map((field) => field.kind).filter(Boolean));
+  const publicSafeFields = unique(visibleFieldKinds.filter((kind) => ["company", "website", "message"].includes(kind)));
+  const identityKinds = unique(visibleFieldKinds.filter((kind) => ["email", "name", "phone"].includes(kind)));
+  const submissionBlockers = [];
+  if (requiredFieldKinds.some((kind) => ["email", "name", "phone"].includes(kind))) {
+    submissionBlockers.push(`required authorized sender fields: ${requiredFieldKinds.filter((kind) => ["email", "name", "phone"].includes(kind)).join(", ")}`);
+  } else if (identityKinds.length) {
+    submissionBlockers.push(`authorized sender fields present: ${identityKinds.join(", ")}`);
+  }
+  if (visibleFieldKinds.includes("terms consent")) submissionBlockers.push("terms or consent checkbox requires manual review");
+  return {
+    visibleFieldKinds,
+    requiredFields,
+    requiredFieldKinds,
+    publicSafeFields,
+    submissionBlockers,
+    requiresAuthorizedSender: submissionBlockers.some((item) => /authorized sender|terms|consent/i.test(item)),
+  };
+}
+
+function classifyField(field) {
+  const text = `${field.label} ${field.name} ${field.id} ${field.placeholder} ${field.type}`.toLowerCase();
+  if (field.type === "email" || /\b(e-?mail|txtemail)\b/.test(text)) return "email";
+  if (field.type === "tel" || /\b(phone|telephone|mobile|txtphone)\b/.test(text)) return "phone";
+  if (/\b(first\s*name|last\s*name|full\s*name|firstname|lastname|fullname|txtfirstname|txtlastname|contact name)\b/.test(text)) return "name";
+  if (/\b(company|organization|organisation|business|txtcompany)\b/.test(text)) return "company";
+  if (/\b(website|site url|url|domain)\b/.test(text)) return "website";
+  if (field.tag === "textarea" || /\b(note|notes|message|comment|inquiry|description|txtnotes)\b/.test(text)) return "message";
+  if (field.type === "checkbox" && /(agree|terms|privacy|consent|policy)/.test(text)) return "terms consent";
+  return "";
+}
+
+function fieldSummary(field) {
+  return field.kind || field.label || field.name || field.id || field.type;
 }
 
 function discoverCandidateUrls(html, baseUrl) {
@@ -273,6 +377,9 @@ function routeStatusFromScore(score, signals) {
 }
 
 function recommendedAction(row, signals) {
+  if (signals.requiresAuthorizedSender) {
+    return "Route is available, but do not submit yet. Prepare contactFormMessage and proposal URL only after a legitimate business email, sender name, phone if required, and any consent checkbox can be truthfully provided.";
+  }
   if (row.routeStatus === "ready") {
     return "Open bestContactUrl manually, paste contactFormMessage only if the page accepts sponsor, partner, sales, or marketing notes, then record timestamp and evidence.";
   }
@@ -298,12 +405,16 @@ function keywordHits(text, keywords) {
   return keywords.filter((keyword) => text.includes(keyword));
 }
 
+function unique(values) {
+  return [...new Set(values.filter(Boolean))];
+}
+
 function countMatches(text, regex) {
   return (text.match(regex) || []).length;
 }
 
 function toCsv(rows) {
-  const headers = ["priority", "id", "name", "vertical", "contactUrl", "bestContactUrl", "httpStatus", "routeStatus", "score", "evidence", "blockers", "recommendedAction", "contactFormProposalUrl", "publicReplyUrl"];
+  const headers = ["priority", "id", "name", "vertical", "contactUrl", "bestContactUrl", "httpStatus", "routeStatus", "score", "evidence", "blockers", "requiredFields", "publicSafeFields", "submissionBlockers", "requiresAuthorizedSender", "recommendedAction", "contactFormProposalUrl", "publicReplyUrl"];
   return [
     headers,
     ...rows.map((row) => headers.map((header) => Array.isArray(row[header]) ? row[header].join("; ") : row[header] || "")),
@@ -332,6 +443,10 @@ function toMarkdown(report) {
       `- HTTP: ${row.httpStatus}`,
       `- Evidence: ${row.evidence.join("; ") || "none"}`,
       `- Blockers: ${row.blockers.join("; ") || "none"}`,
+      `- Required fields: ${row.requiredFields.join("; ") || "none"}`,
+      `- Public-safe fields: ${row.publicSafeFields.join("; ") || "none"}`,
+      `- Submission blockers: ${row.submissionBlockers.join("; ") || "none"}`,
+      `- Requires authorized sender: ${row.requiresAuthorizedSender ? "yes" : "no"}`,
       `- Recommended action: ${row.recommendedAction}`,
       `- Short proposal URL: ${row.contactFormProposalUrl}`,
       "",
