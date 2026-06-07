@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, SPONSOR_DISCOVERY_LINKS, siteUrl } = require("./seo-content.cjs");
+const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, SPONSOR_DEALS, SPONSOR_DISCOVERY_LINKS, siteUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const token = githubToken();
@@ -73,7 +73,9 @@ function renderIssueBody() {
     "",
     `- Product: ${siteUrl("")}`,
     `- Share kit: ${siteUrl("share-kit")}`,
+    `- Sponsor deal room: ${siteUrl("sponsor-deal-room")}`,
     `- Public sponsor call: ${siteUrl("sponsor-call")}`,
+    `- Sponsor deal room JSON: ${siteUrl("sponsor-deal-room.json").replace(/\/$/, "")}`,
     `- Sponsor media kit: ${siteUrl("sponsor-media-kit.json").replace(/\/$/, "")}`,
     `- HTML5 platform submit cockpit: ${siteUrl("platform-submit-cockpit")}`,
     `- HTML5 portal submission pack: ${siteUrl("portal-submission-pack")}`,
@@ -99,6 +101,13 @@ function renderIssueBody() {
     "## Sponsor and partner discovery",
     "",
     "The sponsor path is a public, no-payment intake surface for policy-fit partners. It is validation until a qualified inquiry, signed agreement, or settled external payment is verified.",
+    "",
+    "### Direct sponsor deal room",
+    "",
+    `- Start here: ${trackedSponsorUrl("sponsor-deal-room", "github-issue-direct")}`,
+    `- Machine-readable deals: ${siteUrl("sponsor-deal-room.json").replace(/\/$/, "")}`,
+    "",
+    ...SPONSOR_DEALS.map((deal) => `- ${deal.title} (${deal.price}) - ${deal.deliverable}`),
     "",
     ...SPONSOR_DISCOVERY_LINKS.map((item) => `- [${item.title}](${item.url}) - ${item.reason}`),
     "- Sponsor safety rule: downloads stay free, sponsor copy must be labeled, and private payout, tax, bank, phone, identity, password, or customer-file details stay outside the site.",
@@ -165,6 +174,10 @@ function freeToolPath() {
 
 function trackedToolUrl(pathName, source) {
   return `${siteUrl(pathName).replace(/\/$/, "")}?utm_source=${encodeURIComponent(source)}&utm_medium=organic&utm_campaign=free_tool_depth`;
+}
+
+function trackedSponsorUrl(pathName, content) {
+  return `${siteUrl(pathName).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=${encodeURIComponent(content)}`;
 }
 
 function readCampaignVideos() {

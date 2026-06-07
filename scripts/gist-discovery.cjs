@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, SPONSOR_DISCOVERY_LINKS, siteUrl } = require("./seo-content.cjs");
+const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, SPONSOR_DEALS, SPONSOR_DISCOVERY_LINKS, siteUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const token = githubToken();
@@ -96,7 +96,9 @@ function renderGistBody(videos) {
     `- Tool finder: ${siteUrl("pdf-tool-finder")}`,
     `- Upload limit fixer: ${trackedToolUrl("upload-limit-fixer", "gist")}`,
     `- Upload error cheatsheet: ${trackedToolUrl("upload-error-cheatsheet", "gist")}`,
+    `- Sponsor deal room: ${trackedSponsorUrl("sponsor-deal-room", "deal-room")}`,
     `- Public sponsor call: ${trackedSponsorUrl("sponsor-call", "public-call")}`,
+    `- Sponsor deal room JSON: ${siteUrl("sponsor-deal-room.json").replace(/\/$/, "")}`,
     `- Sponsor media kit JSON: ${siteUrl("sponsor-media-kit.json").replace(/\/$/, "")}`,
     "- Ad-safety rule: downloads stay free, and future ads must never block tool use or file downloads.",
     "",
@@ -133,6 +135,13 @@ function renderGistBody(videos) {
     "## Sponsor And Partner Discovery",
     "",
     "PrintableTools Lab is accepting a small number of manually reviewed sponsor and partner inquiries for relevant PDF, image, QR, resume, classroom, and small-business workflow products.",
+    "",
+    "### Direct sponsor deal room",
+    "",
+    `- Start here: ${trackedSponsorUrl("sponsor-deal-room", "gist-direct")}`,
+    `- Machine-readable deals: ${siteUrl("sponsor-deal-room.json").replace(/\/$/, "")}`,
+    "",
+    ...SPONSOR_DEALS.map((deal) => `- ${deal.title} (${deal.price}) - ${deal.deliverable}`),
     "",
     ...SPONSOR_DISCOVERY_LINKS.map((item) => `- [${item.title}](${item.url}) - ${item.reason}`),
     "- Rule: downloads stay free, sponsor copy must be clearly labeled, and no payment, tax, bank, phone, private identity, passwords, or customer files are collected through the site.",

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const { SPONSOR_VERTICALS, siteUrl } = require("./seo-content.cjs");
+const { SPONSOR_DEALS, SPONSOR_VERTICALS, siteUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const reportsDir = path.join(root, "reports");
@@ -18,6 +18,7 @@ const prospects = [
     evidenceUrl: "https://pdf.co/",
     fitReason: "PDF.co sells PDF and document automation APIs, which fits visitors compressing, converting, and editing PDF files.",
     offer: "Guide sponsorship pilot around no-upload PDF workflow pages.",
+    dealId: "guide-sponsor-pilot",
   },
   {
     id: "cloudmersive-document-api",
@@ -29,6 +30,7 @@ const prospects = [
     evidenceUrl: "https://cloudmersive.com/convert-api",
     fitReason: "Cloudmersive offers file conversion and document APIs, adjacent to PrintableTools Lab's PDF and image conversion intent.",
     offer: "Starter media review or guide sponsorship pilot for developer-facing file workflow pages.",
+    dealId: "starter-fit-review",
   },
   {
     id: "uniqode-qr-platform",
@@ -40,6 +42,7 @@ const prospects = [
     evidenceUrl: "https://www.uniqode.com/qr-code-generator",
     fitReason: "Uniqode sells QR code and offline-to-online marketing tools, matching QR, WiFi QR, contact QR, flyer, and coupon workflows.",
     offer: "Local marketing and QR sponsorship pilot.",
+    dealId: "vertical-category-pilot",
   },
   {
     id: "qrcodechimp-qr-marketing",
@@ -51,6 +54,7 @@ const prospects = [
     evidenceUrl: "https://www.qrcodechimp.com/",
     fitReason: "QRCodeChimp targets business QR code use cases, a close fit for printable QR signs, flyers, coupons, and local service handouts.",
     offer: "Starter review or guide sponsorship around QR print assets.",
+    dealId: "guide-sponsor-pilot",
   },
   {
     id: "jobscan-ats-resume",
@@ -62,6 +66,7 @@ const prospects = [
     evidenceUrl: "https://www.jobscan.co/resume-scanner",
     fitReason: "Jobscan's ATS and resume optimization product fits visitors using resume builder, ATS checker, and resume upload-size pages.",
     offer: "Resume and career tool sponsorship pilot.",
+    dealId: "vertical-category-pilot",
   },
   {
     id: "teal-career-resume",
@@ -73,6 +78,7 @@ const prospects = [
     evidenceUrl: "https://www.tealhq.com/resume-builder",
     fitReason: "Teal offers job-search and resume tools, matching job seekers creating application PDFs and ATS-friendly documents.",
     offer: "Guide sponsorship pilot near resume and cover-letter workflows.",
+    dealId: "guide-sponsor-pilot",
   },
   {
     id: "invoice-ninja-small-business",
@@ -84,6 +90,7 @@ const prospects = [
     evidenceUrl: "https://www.invoiceninja.com/",
     fitReason: "Invoice Ninja sells invoicing and small-business payment workflow software, fitting invoice, estimate, receipt, and client paperwork pages.",
     offer: "Small business paperwork sponsorship pilot.",
+    dealId: "vertical-category-pilot",
   },
   {
     id: "zoho-invoice-small-business",
@@ -95,6 +102,7 @@ const prospects = [
     evidenceUrl: "https://www.zoho.com/invoice/",
     fitReason: "Zoho Invoice targets small businesses that need invoices, estimates, payments, and client records.",
     offer: "Guide sponsorship around free invoice and small-business paperwork pages.",
+    dealId: "guide-sponsor-pilot",
   },
   {
     id: "educationcom-worksheets",
@@ -106,6 +114,7 @@ const prospects = [
     evidenceUrl: "https://www.education.com/worksheets/",
     fitReason: "Education.com publishes worksheets and learning resources, matching name tracing, flashcards, classroom labels, and printable routine pages.",
     offer: "Classroom printable sponsorship pilot with child-safety review.",
+    dealId: "vertical-category-pilot",
   },
   {
     id: "twinkl-teacher-resources",
@@ -117,6 +126,7 @@ const prospects = [
     evidenceUrl: "https://www.twinkl.com/resources",
     fitReason: "Twinkl's teacher-resource catalog fits visitors making classroom printables, labels, worksheets, and routine charts.",
     offer: "Classroom printable guide sponsorship pilot.",
+    dealId: "guide-sponsor-pilot",
   },
 ];
 
@@ -135,6 +145,7 @@ function main() {
       "Do not scrape private emails or use purchased lead lists.",
       "Stop contacting a prospect after an opt-out or negative reply.",
       "Do not claim guaranteed traffic, guaranteed conversions, or existing revenue.",
+      "Use the dealRoomUrl as the first-touch URL so sponsor intent lands on published pilot pricing.",
       "Revenue is real only after a signed agreement or settled external payment.",
     ],
     rows,
@@ -147,8 +158,10 @@ function main() {
 function prospectRow(prospect, verticals, index) {
   const vertical = verticals[prospect.vertical];
   if (!vertical) throw new Error(`Unknown sponsor vertical: ${prospect.vertical}`);
-  const trackedUrl = `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}&utm_content=${encodeURIComponent(prospect.id)}`;
-  const subject = `${vertical.title}: small sponsor pilot`;
+  const suggestedDeal = SPONSOR_DEALS.find((deal) => deal.id === prospect.dealId) || SPONSOR_DEALS.find((deal) => deal.id === "guide-sponsor-pilot") || SPONSOR_DEALS[0];
+  const verticalTrackedUrl = `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}&utm_content=${encodeURIComponent(prospect.id)}`;
+  const dealRoomUrl = `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}#sponsor-inquiry`;
+  const subject = `${suggestedDeal.title} for ${vertical.title}`;
   const body = [
     `Hi ${prospect.name} team,`,
     "",
@@ -156,9 +169,13 @@ function prospectRow(prospect, verticals, index) {
     "",
     `Your product looks relevant because ${prospect.fitReason}`,
     "",
-    `I am opening a small, clearly labeled sponsor pilot for this audience: ${trackedUrl}`,
+    `I am opening a small, clearly labeled sponsor pilot for this audience: ${dealRoomUrl}`,
     "",
-    "Downloads stay free, sponsor copy is separated from generator controls, and placements are manually reviewed for policy fit. The early pilot range is USD 49 for a fit review or USD 99-149 for a guide sponsorship pilot.",
+    `The best starting option is "${suggestedDeal.title}" (${suggestedDeal.price}): ${suggestedDeal.deliverable}`,
+    "",
+    `For vertical context, this is the audience fit page: ${verticalTrackedUrl}`,
+    "",
+    "Downloads stay free, sponsor copy is separated from generator controls, and placements are manually reviewed for policy fit. I am not claiming guaranteed traffic or conversions; this is a small validation pilot before any placement goes live.",
     "",
     "Would this be relevant for your partnership or marketing team?",
   ].join("\n");
@@ -173,7 +190,13 @@ function prospectRow(prospect, verticals, index) {
     evidenceUrl: prospect.evidenceUrl,
     fitReason: prospect.fitReason,
     offer: prospect.offer,
-    trackedUrl,
+    suggestedDealId: suggestedDeal.id,
+    suggestedDealTitle: suggestedDeal.title,
+    suggestedDealPrice: suggestedDeal.price,
+    suggestedDealDeliverable: suggestedDeal.deliverable,
+    dealRoomUrl,
+    verticalTrackedUrl,
+    trackedUrl: dealRoomUrl,
     subject,
     body,
     status: "ready_to_send",
@@ -182,7 +205,7 @@ function prospectRow(prospect, verticals, index) {
 }
 
 function toCsv(rows) {
-  const headers = ["priority", "id", "name", "vertical", "category", "website", "contactUrl", "evidenceUrl", "offer", "trackedUrl", "subject", "status", "successSignal"];
+  const headers = ["priority", "id", "name", "vertical", "category", "website", "contactUrl", "evidenceUrl", "offer", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "dealRoomUrl", "verticalTrackedUrl", "trackedUrl", "subject", "status", "successSignal"];
   return [
     headers,
     ...rows.map((row) => headers.map((header) => row[header] || "")),
@@ -203,7 +226,9 @@ function toMarkdown(rows) {
       `- Vertical: ${row.vertical}`,
       `- Contact: ${row.contactUrl}`,
       `- Evidence: ${row.evidenceUrl}`,
-      `- Tracked URL: ${row.trackedUrl}`,
+      `- Recommended deal: ${row.suggestedDealTitle} (${row.suggestedDealPrice})`,
+      `- Deal room URL: ${row.dealRoomUrl}`,
+      `- Vertical fit URL: ${row.verticalTrackedUrl}`,
       `- Subject: ${row.subject}`,
       "",
       "```text",

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync, spawnSync } = require("child_process");
-const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, SPONSOR_DISCOVERY_LINKS, siteUrl } = require("./seo-content.cjs");
+const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, SPONSOR_DEALS, SPONSOR_DISCOVERY_LINKS, siteUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const reportDir = path.join(root, "reports");
@@ -73,8 +73,8 @@ function main() {
       },
       {
         target: "One sponsor-fit partner reply",
-        angle: "Public sponsor call for privacy-friendly file and printable workflows",
-        url: `${siteUrl("sponsor-call").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=share-kit-push`,
+        angle: "Direct sponsor deal room with USD 49 and USD 99-149 pilot options",
+        url: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=share-kit-push#sponsor-inquiry`,
         rule: "Use only where sponsor or partner submissions are explicitly welcome; do not send private payment, tax, bank, phone, or identity details.",
       },
     ],
@@ -114,11 +114,14 @@ function freeToolPath() {
 
 function sponsorDiscovery() {
   return {
+    sponsorDealRoomUrl: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=share-kit-push#sponsor-inquiry`,
+    sponsorDealRoomJsonUrl: siteUrl("sponsor-deal-room.json").replace(/\/$/, ""),
     sponsorCallUrl: `${siteUrl("sponsor-call").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=share-kit-push`,
     sponsorFormUrl: `${siteUrl("sponsor").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=share-kit-push#sponsor-inquiry`,
     sponsorCallJsonUrl: siteUrl("sponsor-call.json").replace(/\/$/, ""),
     mediaKitUrl: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
     outreachPackUrl: siteUrl("sponsor-outreach-pack.json").replace(/\/$/, ""),
+    deals: SPONSOR_DEALS,
     links: SPONSOR_DISCOVERY_LINKS,
     successGate: "A real qualified sponsor lead, signed agreement, or settled external payment. Clicks alone are not revenue.",
   };

@@ -41,7 +41,7 @@ async function verifyIssuePage(url, freeHelpPublished) {
       return;
     }
     const freeHelpNeedles = freeHelpPublished ? ["free_tool_depth", "future ads must never block"] : [];
-    const sponsorNeedles = ["Sponsor and partner discovery", "sponsor-call", "utm_source=sponsor-outreach", "qualified inquiry"];
+    const sponsorNeedles = ["Sponsor and partner discovery", "Sponsor deal room", "sponsor-deal-room", "sponsor-deal-room.json", "USD 49", "USD 99-149", "utm_source=sponsor-outreach", "qualified inquiry"];
     for (const needle of ["Growth log", "ptl-pdf-under-1mb.mp4", "utm_source=github-issue", "Public Gist mirror", "portal-submission-pack", "Expanded backup portals", ...sponsorNeedles, ...freeHelpNeedles]) {
       if (!text.includes(needle)) failures.push(`Issue page missing ${needle}.`);
     }
