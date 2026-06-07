@@ -360,7 +360,7 @@ async function main() {
   const dryRunFallbackPayload = await dryRunFallbackResponse.json();
   assert(dryRunFallbackResponse.status === 503 && dryRunFallbackPayload.dryRunFallback, "Sponsor lead endpoint should support validation fallback dry-runs without KV writes");
   assert(dryRunFallbackPayload.fallbackRequired, "Sponsor fallback dry-run should expose fallback-required behavior");
-  assert(String(dryRunFallbackPayload.fallbackPublicReplyUrl || "").includes("sponsor-partner-inquiry.yml"), "Sponsor fallback dry-run should include a public-safe reply URL");
+  assertSponsorPublicReplyUrl(dryRunFallbackPayload.fallbackPublicReplyUrl, "Sponsor fallback dry-run");
   const invalidSponsorLeadResponse = await sponsorLeadSource.onRequestPost({
     request: new Request("https://example.test/api/sponsor-lead", {
       method: "POST",
@@ -413,7 +413,7 @@ async function main() {
   assert(sponsorLeadWriteLimitedPayload.fallbackRequired, "Sponsor lead endpoint should ask for a backup request when storage is unavailable");
   assert(sponsorLeadWriteLimitedPayload.fallbackBody.includes("Fallback Partner"), "Sponsor lead fallback should include the normalized company");
   assert(sponsorLeadWriteLimitedPayload.fallbackBody.includes("fallback@example.com"), "Sponsor lead fallback should include the normalized email");
-  assert(String(sponsorLeadWriteLimitedPayload.fallbackPublicReplyUrl || "").includes("sponsor-partner-inquiry.yml"), "Sponsor lead fallback should include a public-safe reply URL");
+  assertSponsorPublicReplyUrl(sponsorLeadWriteLimitedPayload.fallbackPublicReplyUrl, "Sponsor lead fallback");
   assert(String(sponsorLeadWriteLimitedPayload.fallbackPublicReplyUrl || "").includes("Fallback+Partner"), "Sponsor lead fallback reply URL should prefill the sponsor company");
   const sponsorLeadReadLimitedStore = new MemoryStore({ failReadsWith: "KV get() limit exceeded for the day." });
   const sponsorLeadReadLimitedResponse = await sponsorLeadSource.onRequestPost({
@@ -601,6 +601,14 @@ function sponsorLeadBody(overrides = {}) {
     consent: true,
     ...overrides,
   };
+}
+
+function assertSponsorPublicReplyUrl(value, label) {
+  const text = String(value || "");
+  assert(text.includes("https://github.com/yanqr213/printable-tools-lab/issues/new?"), `${label} should include a public-safe reply URL`);
+  assert(!text.includes("template=sponsor-partner-inquiry.yml"), `${label} should not use the YAML issue form because it cannot reliably preserve the prefilled body`);
+  assert(text.includes("body=Public-safe+sponsor+reply"), `${label} should prefill the public-safe issue body`);
+  assert(text.includes("labels=sponsor%2Cpartner%2Cbusiness-review"), `${label} should pre-label the sponsor issue`);
 }
 
 function assert(condition, message) {

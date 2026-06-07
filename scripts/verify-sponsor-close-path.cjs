@@ -36,9 +36,14 @@ if (!app.includes("function renderSponsorLeadFallback")) failures.push("app.js m
 if (!app.includes("Open public-safe reply")) failures.push("app.js fallback missing public-safe reply CTA.");
 if (!app.includes("Copy backup request")) failures.push("app.js fallback missing copyable backup request.");
 if (app.includes("function sponsorLeadFallbackMailto")) failures.push("app.js still defines sponsorLeadFallbackMailto.");
+if (app.includes('url.searchParams.set("template", "sponsor-partner-inquiry.yml")')) failures.push("app.js should not route sponsor fallback replies through a YAML issue form.");
+if (!app.includes('url.searchParams.set("labels", "sponsor,partner,business-review")')) failures.push("app.js sponsor fallback should pre-label public sponsor reply issues.");
 
 const sponsor = read("sponsor/index.html");
-if (!sponsor.includes("sponsor-partner-inquiry.yml")) failures.push("Sponsor page missing GitHub public-safe reply template link.");
+if (!sponsor.includes("github.com/yanqr213/printable-tools-lab/issues/new?")) failures.push("Sponsor page missing GitHub public-safe reply link.");
+if (!sponsor.includes("body=Public-safe+sponsor+reply")) failures.push("Sponsor page public-safe reply link should prefill the issue body.");
+if (!sponsor.includes("labels=sponsor%2Cpartner%2Cbusiness-review")) failures.push("Sponsor page public-safe reply link should pre-label sponsor issues.");
+if (sponsor.includes("template=sponsor-partner-inquiry.yml")) failures.push("Sponsor page should not route public-safe replies through a YAML issue form.");
 if (!sponsor.includes("Open public-safe reply")) failures.push("Sponsor page missing public-safe reply CTA.");
 if (!sponsor.includes("Request pilot invoice review")) failures.push("Sponsor page missing fast invoice review CTA.");
 if (!sponsor.includes("data-sponsor-quick-form")) failures.push("Sponsor page missing quick sponsor form.");

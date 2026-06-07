@@ -522,9 +522,9 @@ function sponsorLeadPublicReplyUrl(lead) {
     "Do not include private payment, tax, bank, phone, customer, identity, password, or confidential file data in this public issue.",
   ].join("\n");
   const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
-  url.searchParams.set("template", "sponsor-partner-inquiry.yml");
   url.searchParams.set("title", title);
   url.searchParams.set("body", body);
+  url.searchParams.set("labels", "sponsor,partner,business-review");
   return url.toString();
 }
 

@@ -25,6 +25,15 @@ const UPLOAD_LIMIT_DECISION_LINKS = [
   ["/tools/image-to-pdf/", "image-to-pdf"],
 ];
 
+function hasPrefilledSponsorReplyUrl(text) {
+  return (
+    text.includes("github.com/yanqr213/printable-tools-lab/issues/new?") &&
+    text.includes("body=Public-safe+sponsor+reply") &&
+    text.includes("labels=sponsor%2Cpartner%2Cbusiness-review") &&
+    !text.includes("template=sponsor-partner-inquiry.yml")
+  );
+}
+
 function requireGithubPagesIntentTracking(html, label, events = []) {
   if (!html.includes(GITHUB_PAGES_EVENT_ENDPOINT)) failures.push(`${label} missing GitHub Pages event endpoint.`);
   if (!html.includes('source: "github-pages"')) failures.push(`${label} missing github-pages source tracking.`);
@@ -139,7 +148,7 @@ else {
   if (!html.includes('/sponsor-starter-review/?utm_source=sponsor-page') || !html.includes("Start USD 49 review")) failures.push("Sponsor page hero should point to the USD 49 starter review.");
   if (!html.includes('option value="starter-fit-review" selected')) failures.push("Sponsor page should default quick pilot to USD 49 starter fit review.");
   if (!html.includes("two business-safe fields") || !html.includes("Company or project (optional)")) failures.push("Sponsor page quick invoice form should require only email and website.");
-  if (!html.includes("Public-safe reply form") || !html.includes("sponsor-partner-inquiry.yml")) failures.push("Sponsor page missing public-safe reply fallback.");
+  if (!html.includes("Public-safe reply form") || !hasPrefilledSponsorReplyUrl(html)) failures.push("Sponsor page missing prefilled public-safe reply fallback.");
   if (!html.includes('name="contactEmail"')) failures.push("Sponsor page missing business email field.");
   if (!html.includes('name="budgetRange"')) failures.push("Sponsor page missing budget range field.");
   if (!html.includes('name="commitment"') || !html.includes("Request pilot invoice")) failures.push("Sponsor page missing invoice request next-step field.");
@@ -180,7 +189,7 @@ else {
   if (!html.includes('data-sponsor-quick-form') || !html.includes('data-sponsor-lead-form')) failures.push("Starter sponsor review page missing sponsor lead forms.");
   if (!html.includes('option value="starter-fit-review" selected')) failures.push("Starter sponsor review page should default quick pilot to USD 49 starter fit review.");
   if (!html.includes('data-sponsor-deal-select') || !html.includes('data-sponsor-commitment="request-invoice"')) failures.push("Starter sponsor review page missing request-invoice prefill.");
-  if (!html.includes("Public-safe reply") || !html.includes("sponsor-partner-inquiry.yml")) failures.push("Starter sponsor review page missing public-safe reply fallback.");
+  if (!html.includes("Public-safe reply") || !hasPrefilledSponsorReplyUrl(html)) failures.push("Starter sponsor review page missing prefilled public-safe reply fallback.");
   if (!html.includes("/sponsor-deal-room.json") || !html.includes("/sponsor-media-kit.json")) failures.push("Starter sponsor review page missing sponsor JSON proof links.");
   if (!html.includes("No payment is collected on this page") || !html.includes("settled external payment")) failures.push("Starter sponsor review page missing external payment/revenue gate.");
   if (html.includes('href="/ops/') || html.includes("href='/ops/")) failures.push("Starter sponsor review page should not expose ops monitor.");
@@ -221,7 +230,7 @@ else {
   const html = fs.readFileSync(sponsorProposalFile, "utf8");
   if (!html.includes('content="noindex,follow"')) failures.push("Sponsor proposal page should be noindex.");
   if (!html.includes("Sponsor proposal")) failures.push("Sponsor proposal route missing fallback heading.");
-  if (!html.includes("sponsor-partner-inquiry.yml") || !html.includes("public-safe GitHub reply form")) failures.push("Sponsor proposal route missing public-safe reply fallback.");
+  if (!hasPrefilledSponsorReplyUrl(html) || !html.includes("public-safe GitHub reply form")) failures.push("Sponsor proposal route missing prefilled public-safe reply fallback.");
   if (sitemap.includes(`<loc>${siteUrl("sponsor-proposal")}</loc>`)) failures.push("Sitemap should not include noindex sponsor proposal page.");
 }
 
@@ -445,7 +454,7 @@ else {
   if (!sponsorLeadScript.includes("dealId") || !sponsorLeadScript.includes("DEAL_IDS")) failures.push("Sponsor lead API missing selected deal persistence.");
   if (!sponsorLeadScript.includes("COMMITMENT_LEVELS") || !sponsorLeadScript.includes("sponsor_invoice_request")) failures.push("Sponsor lead API missing invoice request commitment tracking.");
   if (!sponsorLeadScript.includes("body.deal")) failures.push("Sponsor lead API should accept deal-param attribution from outreach links.");
-  if (!sponsorLeadScript.includes("fallbackPublicReplyUrl") || !sponsorLeadScript.includes("sponsor-partner-inquiry.yml")) failures.push("Sponsor lead API missing public-safe fallback reply URL.");
+  if (!sponsorLeadScript.includes("fallbackPublicReplyUrl") || !sponsorLeadScript.includes('url.searchParams.set("body", body)') || !sponsorLeadScript.includes('url.searchParams.set("labels", "sponsor,partner,business-review")') || sponsorLeadScript.includes('url.searchParams.set("template", "sponsor-partner-inquiry.yml")')) failures.push("Sponsor lead API missing prefilled public-safe fallback reply URL.");
   if (!sponsorLeadScript.includes("dryRunFallback")) failures.push("Sponsor lead API missing no-write fallback validation path.");
   if (!sponsorLeadScript.includes("publicLeadSummary") || !sponsorLeadScript.includes("privateFields") || !sponsorLeadScript.includes("not exposed")) failures.push("Sponsor lead API should expose only public-safe lead summary counts.");
 }

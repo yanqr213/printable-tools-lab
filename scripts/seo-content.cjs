@@ -4937,9 +4937,9 @@ function sponsorPublicReplyUrl({ prospectName = "", website = "", verticalTitle 
     "Do not include private payment, tax, bank, phone, customer, identity, password, or confidential file data in this public issue.",
   ].join("\n");
   const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
-  url.searchParams.set("template", "sponsor-partner-inquiry.yml");
   url.searchParams.set("title", title);
   url.searchParams.set("body", body);
+  url.searchParams.set("labels", "sponsor,partner,business-review");
   return url.toString();
 }
 
@@ -5144,7 +5144,7 @@ const SPONSOR_DISCOVERY_LINKS = [
     title: "Public sponsor reply form",
     path: "github-sponsor-issue",
     url: sponsorPublicReplyUrl({ proposalUrl: siteUrl("sponsor-deal-room") }),
-    canonicalUrl: "https://github.com/yanqr213/printable-tools-lab/issues/new?template=sponsor-partner-inquiry.yml",
+    canonicalUrl: "https://github.com/yanqr213/printable-tools-lab/issues/new",
     reason: "Public-safe GitHub issue fallback for partners who cannot use email; no private payment, tax, bank, phone, customer, identity, password, or file data.",
   },
   {

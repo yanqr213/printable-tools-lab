@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Sponsor Call Mirror",
-  "generatedAt": "2026-06-07T23:19:14.797Z",
+  "generatedAt": "2026-06-07T23:32:30.106Z",
   "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-call/",
   "livePage": "https://printable-tools-lab.pages.dev/sponsor-call/",
   "liveJson": "https://printable-tools-lab.pages.dev/sponsor-call.json",
@@ -61,8 +61,8 @@
     {
       "title": "Public sponsor reply form",
       "path": "github-sponsor-issue",
-      "url": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=sponsor-partner-inquiry.yml&title=%5BSponsor%2FPartner%5D%3A+Sponsor+pilot+review&body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+%0APublic+website+URL%3A+%0AAudience+fit%3A+%0ASelected+pilot+deal%3A+%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-deal-room%2F%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.",
-      "canonicalUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=sponsor-partner-inquiry.yml",
+      "url": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Sponsor+pilot+review&body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+%0APublic+website+URL%3A+%0AAudience+fit%3A+%0ASelected+pilot+deal%3A+%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-deal-room%2F%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&labels=sponsor%2Cpartner%2Cbusiness-review",
+      "canonicalUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new",
       "reason": "Public-safe GitHub issue fallback for partners who cannot use email; no private payment, tax, bank, phone, customer, identity, password, or file data."
     },
     {

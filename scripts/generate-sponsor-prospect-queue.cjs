@@ -6,7 +6,6 @@ const { SPONSOR_DEALS, SPONSOR_VERTICALS, siteUrl, sponsorPublicReplyUrl } = req
 const root = path.resolve(__dirname, "..");
 const reportsDir = path.join(root, "reports");
 const generatedAt = new Date().toISOString();
-const PUBLIC_REPLY_FORM_URL = "https://github.com/yanqr213/printable-tools-lab/issues/new?template=sponsor-partner-inquiry.yml";
 
 const prospects = [
   {
@@ -185,7 +184,7 @@ function prospectRow(prospect, verticals, index) {
     `Your product looks relevant to this audience.`,
     `Fast invoice review URL: ${invoiceReviewUrl}`,
     `Sponsor proposal: ${contactFormProposalUrl}`,
-    `Public-safe reply form: ${PUBLIC_REPLY_FORM_URL}`,
+    `Public-safe reply form: ${publicReplyUrl}`,
     "Please keep private payment, tax, bank, phone, customer, identity, password, or file data out of the public reply.",
   ].join(" ");
   const body = [
