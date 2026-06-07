@@ -23,9 +23,20 @@ async function main() {
   const videos = readCampaignVideos();
   const body = renderGistBody(videos);
   const existing = await findExistingGist();
-  const gist = existing
-    ? await github(`/gists/${existing.id}`, { method: "PATCH", body: gistPayload(body) })
-    : await github("/gists", { method: "POST", body: gistPayload(body) });
+  let gist;
+  try {
+    gist = existing
+      ? await github(`/gists/${existing.id}`, { method: "PATCH", body: gistPayload(body) })
+      : await github("/gists", { method: "POST", body: gistPayload(body) });
+  } catch (error) {
+    if (existing && isGistPermissionError(error)) {
+      writePermissionBlockedReport(existing, videos);
+      console.log(`Skipped public Gist update because the available GitHub token cannot edit gists: ${existing.html_url}`);
+      console.log(`Report written to ${path.relative(root, reportPath)}`);
+      return;
+    }
+    throw error;
+  }
 
   const rawUrl = gist.files?.[filename]?.raw_url || "";
   const report = {
@@ -43,6 +54,31 @@ async function main() {
   fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
   console.log(`${existing ? "Updated" : "Created"} public Gist: ${gist.html_url}`);
   console.log(`Report written to ${path.relative(root, reportPath)}`);
+}
+
+function writePermissionBlockedReport(existing, videos) {
+  const rawUrl = existing.files?.[filename]?.raw_url || "";
+  const report = {
+    generatedAt: new Date().toISOString(),
+    action: "skipped_permission",
+    gistId: existing.id,
+    htmlUrl: existing.html_url,
+    rawUrl,
+    public: existing.public,
+    file: filename,
+    videoAssetCount: videos.length,
+    updateBlockedByPermission: true,
+    blocker: "The available GitHub token cannot update gists. Add gist scope or use a token owned by the Gist author, then rerun npm.cmd run gist-discovery.",
+    intendedSponsorDealRoom: trackedSponsorUrl("sponsor-deal-room", "gist-direct"),
+    intendedSponsorDealRoomJson: siteUrl("sponsor-deal-room.json").replace(/\/$/, ""),
+    freeToolPath: freeToolPath(),
+  };
+  fs.mkdirSync(path.dirname(reportPath), { recursive: true });
+  fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
+}
+
+function isGistPermissionError(error) {
+  return error?.status === 403 || /Resource not accessible by personal access token|requires.*gist|not accessible/i.test(String(error?.message || ""));
 }
 
 async function findExistingGist() {
@@ -227,7 +263,12 @@ async function github(pathName, options = {}) {
     body: options.body ? JSON.stringify(options.body) : undefined,
   });
   const payload = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(`GitHub API ${options.method || "GET"} ${pathName} failed ${response.status}: ${JSON.stringify(payload).slice(0, 360)}`);
+  if (!response.ok) {
+    const error = new Error(`GitHub API ${options.method || "GET"} ${pathName} failed ${response.status}: ${JSON.stringify(payload).slice(0, 360)}`);
+    error.status = response.status;
+    error.payload = payload;
+    throw error;
+  }
   return payload;
 }
 

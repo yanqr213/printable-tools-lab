@@ -10,7 +10,7 @@ const reportPath = path.join(reportDir, "share-kit-push.json");
 main();
 
 function main() {
-  const gistDiscovery = run("node", ["scripts/gist-discovery.cjs"], { requireToken: true });
+  const gistDiscovery = run("node", ["scripts/gist-discovery.cjs"], { requireToken: true, allowFailure: true });
   const githubIssueDiscovery = run("node", ["scripts/github-issue-discovery.cjs"], { requireToken: true });
   const github = run("node", ["scripts/github-discovery.cjs"], { requireToken: true });
   const indexNowRaw = run("node", ["scripts/indexnow.cjs"], { allowFailure: true });

@@ -1,12 +1,16 @@
 {
-  "generatedAt": "2026-06-06T01:50:02.709Z",
-  "action": "updated",
+  "generatedAt": "2026-06-07T08:38:22.469Z",
+  "action": "skipped_permission",
   "gistId": "fd9cbd597802dd7343fcfa1834e0beeb",
   "htmlUrl": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
   "rawUrl": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/520d4e5531452010ae48e5928c1ea0c33c754f3b/PrintableTools-Lab-zero-cost-share-kit.md",
   "public": true,
   "file": "PrintableTools-Lab-zero-cost-share-kit.md",
   "videoAssetCount": 6,
+  "updateBlockedByPermission": true,
+  "blocker": "The available GitHub token cannot update gists. Add gist scope or use a token owned by the Gist author, then rerun npm.cmd run gist-discovery.",
+  "intendedSponsorDealRoom": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=gist-direct",
+  "intendedSponsorDealRoomJson": "https://printable-tools-lab.pages.dev/sponsor-deal-room.json",
   "freeToolPath": {
     "freeToolDirectoryUrl": "https://printable-tools-lab.pages.dev/free-pdf-tools?utm_source=gist-report&utm_medium=organic&utm_campaign=free_tool_depth",
     "uploadLimitFixerUrl": "https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=gist-report&utm_medium=organic&utm_campaign=free_tool_depth",

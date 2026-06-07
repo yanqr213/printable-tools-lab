@@ -20,6 +20,11 @@ async function main() {
     if (!report.rawUrl || !report.rawUrl.includes("gist.githubusercontent.com/")) failures.push("Gist report missing rawUrl.");
     if (report.public !== true) failures.push("Gist must be public.");
     if (report.videoAssetCount < 6) failures.push("Gist report should include 6 video assets.");
+    if (report.updateBlockedByPermission === true) {
+      if (!String(report.intendedSponsorDealRoom || "").includes("sponsor-deal-room")) failures.push("Gist permission-blocked report missing intended sponsor deal room.");
+      if (!String(report.blocker || "").includes("gist")) failures.push("Gist permission-blocked report missing gist permission blocker.");
+      return finish();
+    }
     const freeHelpPath = report.freeHelpPath || report.freeToolPath || {};
     const freeHelpPublished = Boolean(freeHelpPath.auditUrl || freeHelpPath.freeToolDirectoryUrl);
     const freeHelpNeedles = ["Free file tools directory", "future ads must never block"];
@@ -30,6 +35,14 @@ async function main() {
     await verifyUrl(report.rawUrl, ...["Compress PDF to 1MB", "utm_source=gist", "Expanded backup portals", ...sponsorNeedles, ...(freeHelpPublished ? freeHelpNeedles : [])]);
   }
 
+  if (failures.length) {
+    console.error(failures.map((failure) => `- ${failure}`).join("\n"));
+    process.exit(1);
+  }
+  finish();
+}
+
+function finish() {
   if (failures.length) {
     console.error(failures.map((failure) => `- ${failure}`).join("\n"));
     process.exit(1);
