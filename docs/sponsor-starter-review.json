@@ -1,0 +1,36 @@
+{
+  "name": "PrintableTools Lab USD 49 Starter Sponsor Review Mirror",
+  "generatedAt": "2026-06-07T21:38:12.437Z",
+  "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-starter-review/",
+  "livePage": "https://printable-tools-lab.pages.dev/sponsor-starter-review/",
+  "trackedReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=github-pages-starter-review#sponsor-inquiry",
+  "trackedInquiryUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=github-pages-starter-inquiry#sponsor-inquiry",
+  "mediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+  "dealRoomJson": "https://printable-tools-lab.pages.dev/sponsor-deal-room.json",
+  "deal": {
+    "id": "starter-fit-review",
+    "title": "Starter fit review",
+    "price": "USD 49",
+    "budgetRange": "under-250",
+    "placement": "media-kit-review",
+    "timeline": "this-week",
+    "commitment": "request-invoice",
+    "bestFor": "A sponsor wants to know whether their product is safe and relevant before buying a visible placement.",
+    "deliverable": "Manual sponsor-fit review, audience match, recommended page family, and safe next-step copy.",
+    "proofNeeded": "Company URL, product category, intended audience, and any placement rules.",
+    "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_starter_review&utm_content=starter-fit-review&commitment=request-invoice#sponsor-inquiry"
+  },
+  "reviewCovers": [
+    "Product and category fit for PDF, image, QR, classroom, career, or small-business workflows.",
+    "Safe landing URL review before sponsor copy is discussed.",
+    "Best page family recommendation: starter review, deal room, vertical sponsor page, guide pilot, or no placement.",
+    "Public-safe next-step wording for sponsor inquiry, invoice request, or partner distribution test."
+  ],
+  "safeUseRules": [
+    "Use only where sponsor, partner, resource-page, newsletter, or directory submissions are explicitly welcome.",
+    "No payment is collected on the mirror or the live starter review page.",
+    "Sponsor copy must be clearly labeled and manually reviewed before placement.",
+    "Success is a real qualified sponsor inquiry, signed agreement, or settled external payment. Clicks alone are not revenue."
+  ],
+  "successGate": "A qualified sponsor inquiry, signed agreement, or settled external payment for the USD 49 starter review."
+}

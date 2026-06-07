@@ -1205,6 +1205,8 @@ else {
   if (!html.includes("https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/")) failures.push("GitHub Pages discovery page missing upload error cheatsheet mirror URL.");
   if (!html.includes("Sponsor call mirror")) failures.push("GitHub Pages discovery page missing sponsor call mirror link.");
   if (!html.includes("https://yanqr213.github.io/printable-tools-lab/sponsor-call/")) failures.push("GitHub Pages discovery page missing sponsor call mirror URL.");
+  if (!html.includes("USD 49 starter sponsor review mirror")) failures.push("GitHub Pages discovery page missing starter sponsor review mirror link.");
+  if (!html.includes("https://yanqr213.github.io/printable-tools-lab/sponsor-starter-review/")) failures.push("GitHub Pages discovery page missing starter sponsor review mirror URL.");
   if (!html.includes("Sponsor opportunities mirror")) failures.push("GitHub Pages discovery page missing sponsor opportunities mirror link.");
   if (!html.includes("https://yanqr213.github.io/printable-tools-lab/sponsor-opportunities/")) failures.push("GitHub Pages discovery page missing sponsor opportunities mirror URL.");
   if (!html.includes("utm_source=github-pages")) failures.push("GitHub Pages discovery page missing tracked github-pages source links.");
@@ -1236,6 +1238,8 @@ else {
   if (!data.sponsorCall || data.sponsorCall.directory !== "https://yanqr213.github.io/printable-tools-lab/sponsor-call/") failures.push("GitHub Pages discovery tools.json missing sponsor call mirror.");
   if (!Array.isArray(data.sponsorCall?.discoveryLinks) || data.sponsorCall.discoveryLinks.length !== SPONSOR_DISCOVERY_LINKS.length) failures.push("GitHub Pages discovery tools.json missing sponsor discovery links.");
   if (!String(data.sponsorCall?.trackedSponsorCallUrl || "").includes("utm_source=sponsor-outreach")) failures.push("GitHub Pages discovery tools.json missing tracked sponsor-call URL.");
+  if (!data.sponsorStarterReview || data.sponsorStarterReview.directory !== "https://yanqr213.github.io/printable-tools-lab/sponsor-starter-review/") failures.push("GitHub Pages discovery tools.json missing starter sponsor review mirror.");
+  if (!String(data.sponsorStarterReview?.trackedReviewUrl || "").includes("utm_source=sponsor-outreach")) failures.push("GitHub Pages discovery tools.json missing tracked starter sponsor review URL.");
   if (!data.sponsorOpportunities || data.sponsorOpportunities.directory !== "https://yanqr213.github.io/printable-tools-lab/sponsor-opportunities/") failures.push("GitHub Pages discovery tools.json missing sponsor opportunities mirror.");
   if (!Array.isArray(data.sponsorOpportunities?.opportunities) || data.sponsorOpportunities.opportunities.length < SPONSOR_VERTICALS.length) failures.push("GitHub Pages discovery tools.json missing sponsor opportunities.");
   if (!String(data.sponsorOpportunities?.trackedInquiryUrl || "").includes("utm_source=sponsor-outreach")) failures.push("GitHub Pages discovery tools.json missing tracked sponsor opportunities inquiry URL.");
@@ -1309,6 +1313,18 @@ else {
   requireGithubPagesIntentTracking(html, "GitHub Pages sponsor call mirror");
 }
 
+const docsSponsorStarterReviewFile = path.join(root, "docs", "sponsor-starter-review", "index.html");
+if (!fs.existsSync(docsSponsorStarterReviewFile)) failures.push("Missing GitHub Pages starter sponsor review mirror page.");
+else {
+  const html = fs.readFileSync(docsSponsorStarterReviewFile, "utf8");
+  if (!html.includes("USD 49 starter sponsor review")) failures.push("GitHub Pages starter sponsor review missing heading.");
+  if (!html.includes(siteUrl("sponsor-starter-review"))) failures.push("GitHub Pages starter sponsor review missing live page URL.");
+  if (!html.includes("What the starter review covers")) failures.push("GitHub Pages starter sponsor review missing review scope.");
+  if (!html.includes("sponsor-starter-review.json")) failures.push("GitHub Pages starter sponsor review missing mirror JSON link.");
+  if (!html.includes("utm_source=sponsor-outreach")) failures.push("GitHub Pages starter sponsor review missing sponsor outreach tracking.");
+  requireGithubPagesIntentTracking(html, "GitHub Pages starter sponsor review mirror");
+}
+
 const docsSponsorDealRoomFile = path.join(root, "docs", "sponsor-deal-room", "index.html");
 if (!fs.existsSync(docsSponsorDealRoomFile)) failures.push("Missing GitHub Pages sponsor deal room mirror page.");
 else {
@@ -1330,6 +1346,17 @@ else {
   if (!Array.isArray(data.deals) || data.deals.length !== SPONSOR_DEALS.length) failures.push("GitHub Pages sponsor-deal-room.json missing deals.");
   if (!String(data.trackedInquiryUrl || "").includes("utm_source=sponsor-outreach")) failures.push("GitHub Pages sponsor-deal-room.json missing tracked inquiry URL.");
   if (!String(data.moneyGate || "").includes("settled external payment")) failures.push("GitHub Pages sponsor-deal-room.json missing money gate.");
+}
+
+const docsSponsorStarterReviewJsonFile = path.join(root, "docs", "sponsor-starter-review.json");
+if (!fs.existsSync(docsSponsorStarterReviewJsonFile)) failures.push("Missing GitHub Pages sponsor-starter-review.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(docsSponsorStarterReviewJsonFile, "utf8"));
+  if (data.directory !== "https://yanqr213.github.io/printable-tools-lab/sponsor-starter-review/") failures.push("GitHub Pages sponsor-starter-review.json missing directory URL.");
+  if (data.livePage !== siteUrl("sponsor-starter-review")) failures.push("GitHub Pages sponsor-starter-review.json missing live page URL.");
+  if (!String(data.trackedReviewUrl || "").includes("utm_source=sponsor-outreach")) failures.push("GitHub Pages sponsor-starter-review.json missing tracked review URL.");
+  if (data.deal?.id !== "starter-fit-review" || data.deal?.price !== "USD 49") failures.push("GitHub Pages sponsor-starter-review.json missing USD 49 starter deal.");
+  if (!String(data.successGate || "").includes("settled external payment")) failures.push("GitHub Pages sponsor-starter-review.json missing money gate.");
 }
 
 const docsSponsorCallJsonFile = path.join(root, "docs", "sponsor-call.json");

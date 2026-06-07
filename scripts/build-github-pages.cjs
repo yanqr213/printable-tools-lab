@@ -81,6 +81,13 @@ const discoveryRoutes = [
     mainUrl: siteUrl("sponsor-deal-room"),
   },
   {
+    path: "sponsor-starter-review",
+    title: "USD 49 starter sponsor review",
+    description: "GitHub Pages mirror for the direct USD 49 starter sponsor review path, with tracked inquiry links and no on-site payment collection.",
+    url: pagesUrl("sponsor-starter-review"),
+    mainUrl: siteUrl("sponsor-starter-review"),
+  },
+  {
     path: "sponsor-call",
     title: "Sponsor call",
     description: "GitHub Pages mirror for PrintableTools Lab sponsor and partner discovery, with tracked sponsor-call links, public media kit, and no on-site payment collection.",
@@ -170,6 +177,7 @@ const html = `<!doctype html>
         <li><a href="${pagesUrl("organic-push-kit")}">Organic push kit mirror</a> for copy-ready, low-risk free-tool distribution tasks with tracked links and success signals.</li>
         <li><a href="${pagesUrl("upload-error-cheatsheet")}">Upload error cheatsheet mirror</a> for exact PDF, image, resume, and email attachment rejection messages with direct fixes.</li>
         <li><a href="${pagesUrl("sponsor-deal-room")}">Sponsor deal room mirror</a> for pilot prices, tracked deal paths, and a direct sponsor inquiry path.</li>
+        <li><a href="${pagesUrl("sponsor-starter-review")}">USD 49 starter sponsor review mirror</a> for the shortest sponsor fit-review and invoice-request path.</li>
         <li><a href="${pagesUrl("sponsor-call")}">Sponsor call mirror</a> for policy-fit partners who need the public sponsor call, media kit, and tracked inquiry path.</li>
         <li><a href="${pagesUrl("sponsor-opportunities")}">Sponsor opportunities mirror</a> for PDF API, QR, resume, classroom, and small-business sponsor categories.</li>
         <li><a href="${trackedSiteUrl("tools", "all-tools")}">All free generators</a> for browsing every tool.</li>
@@ -231,6 +239,7 @@ writeGuideDiscoveryPages();
 writeOrganicPushKitDiscoveryPage();
 writeUploadErrorCheatsheetDiscoveryPage();
 writeSponsorDealRoomDiscoveryPage();
+writeSponsorStarterReviewDiscoveryPage();
 writeSponsorCallDiscoveryPage();
 writeSponsorOpportunitiesDiscoveryPage();
 writeGameDiscoveryPages();
@@ -279,6 +288,7 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
   organicPushKit: organicPushKitEntry(),
   uploadErrorCheatsheet: uploadErrorCheatsheetEntry(),
   sponsorDealRoom: sponsorDealRoomMirrorEntry(),
+  sponsorStarterReview: sponsorStarterReviewMirrorEntry(),
   sponsorCall: sponsorCallMirrorEntry(),
   sponsorOpportunities: sponsorOpportunitiesMirrorEntry(),
 }, null, 2)}\n`);
@@ -286,6 +296,7 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
 fs.writeFileSync(path.join(docsDir, "organic-push-kit.json"), `${JSON.stringify(organicPushKitEntry(), null, 2)}\n`);
 fs.writeFileSync(path.join(docsDir, "upload-error-cheatsheet.json"), `${JSON.stringify(uploadErrorCheatsheetEntry(), null, 2)}\n`);
 fs.writeFileSync(path.join(docsDir, "sponsor-deal-room.json"), `${JSON.stringify(sponsorDealRoomMirrorEntry(), null, 2)}\n`);
+fs.writeFileSync(path.join(docsDir, "sponsor-starter-review.json"), `${JSON.stringify(sponsorStarterReviewMirrorEntry(), null, 2)}\n`);
 fs.writeFileSync(path.join(docsDir, "sponsor-call.json"), `${JSON.stringify(sponsorCallMirrorEntry(), null, 2)}\n`);
 fs.writeFileSync(path.join(docsDir, "sponsor-opportunities.json"), `${JSON.stringify(sponsorOpportunitiesMirrorEntry(), null, 2)}\n`);
 
@@ -520,6 +531,12 @@ function writeSponsorDealRoomDiscoveryPage() {
   fs.writeFileSync(path.join(dir, "index.html"), sponsorDealRoomMirrorHtml());
 }
 
+function writeSponsorStarterReviewDiscoveryPage() {
+  const dir = path.join(docsDir, "sponsor-starter-review");
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, "index.html"), sponsorStarterReviewMirrorHtml());
+}
+
 function writeSponsorOpportunitiesDiscoveryPage() {
   const dir = path.join(docsDir, "sponsor-opportunities");
   fs.mkdirSync(dir, { recursive: true });
@@ -722,6 +739,82 @@ function sponsorDealRoomMirrorHtml() {
         <li><a href="${siteUrl("sponsor-outreach-pack.json").replace(/\/$/, "")}">Live sponsor outreach pack JSON</a></li>
       </ul>
       ${jsonLdHtml(itemListSchema("Sponsor deal room mirror", entry.deals.map((deal) => ({ title: deal.title, url: deal.trackedUrl }))))}
+    </main>
+    ${intentTrackerScriptHtml()}
+  </body>
+</html>
+`;
+}
+
+function sponsorStarterReviewMirrorHtml() {
+  const entry = sponsorStarterReviewMirrorEntry();
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>USD 49 starter sponsor review - PrintableTools Lab Directory</title>
+    <meta name="description" content="GitHub Pages mirror for the direct USD 49 PrintableTools Lab starter sponsor review, with tracked inquiry links and no on-site payment collection.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="${pagesUrl("sponsor-starter-review")}">
+    <style>
+      :root { color-scheme: light; --ink: #17313b; --muted: #5b6f78; --line: #dce8ec; --teal: #176b87; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Arial, sans-serif; color: var(--ink); background: #f7fbfc; line-height: 1.55; }
+      main { width: min(960px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 56px; }
+      h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin: 0 0 14px; }
+      p { color: var(--muted); max-width: 780px; }
+      a { color: var(--teal); font-weight: 700; }
+      .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .button.secondary { background: var(--ink); }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+      table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); }
+      th, td { text-align: left; vertical-align: top; padding: 10px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+      .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; margin: 18px 0; }
+      ul { padding-left: 20px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="${pagesBase}">PrintableTools Lab discovery directory</a></p>
+      <h1>USD 49 starter sponsor review</h1>
+      <p>This mirror points policy-fit sponsors to the shortest live PrintableTools Lab sponsor path: a USD 49 manual fit review before any visible placement or external invoice. No payment is collected here; revenue is real only after a signed agreement or settled external payment is verified.</p>
+      <p class="actions">
+        <a class="button" href="${escapeHtml(entry.trackedReviewUrl)}">Open live USD 49 review</a>
+        <a class="button secondary" href="${escapeHtml(entry.trackedInquiryUrl)}">Open live inquiry form</a>
+      </p>
+      <section class="card">
+        <h2>What the starter review covers</h2>
+        <ul>
+          ${entry.reviewCovers.map((item) => `<li>${escapeHtml(item)}</li>`).join("\n")}
+        </ul>
+      </section>
+      <h2>Starter offer</h2>
+      <table>
+        <tbody>
+          <tr><th>Deal</th><td>${escapeHtml(entry.deal.title)}</td></tr>
+          <tr><th>Price anchor</th><td>${escapeHtml(entry.deal.price)}</td></tr>
+          <tr><th>Deliverable</th><td>${escapeHtml(entry.deal.deliverable)}</td></tr>
+          <tr><th>Needed</th><td>${escapeHtml(entry.deal.proofNeeded)}</td></tr>
+          <tr><th>Tracked live URL</th><td><a href="${escapeHtml(entry.trackedReviewUrl)}">${escapeHtml(entry.trackedReviewUrl)}</a></td></tr>
+        </tbody>
+      </table>
+      <h2>Machine-readable feeds</h2>
+      <ul>
+        <li><a href="${pagesAssetUrl("sponsor-starter-review.json")}">GitHub Pages starter review JSON</a></li>
+        <li><a href="${siteUrl("sponsor-deal-room.json").replace(/\/$/, "")}">Live sponsor deal room JSON</a></li>
+        <li><a href="${siteUrl("sponsor-media-kit.json").replace(/\/$/, "")}">Live sponsor media kit JSON</a></li>
+        <li><a href="${pagesUrl("sponsor-call")}">Sponsor call mirror</a></li>
+      </ul>
+      ${jsonLdHtml({
+        "@context": "https://schema.org",
+        "@type": "Offer",
+        name: "PrintableTools Lab starter sponsor review",
+        price: "49",
+        priceCurrency: "USD",
+        url: entry.trackedReviewUrl,
+        description: entry.deal.deliverable,
+      })}
     </main>
     ${intentTrackerScriptHtml()}
   </body>
@@ -1806,7 +1899,7 @@ function sponsorDealRoomMirrorEntry() {
     purpose: "GitHub Pages discovery mirror for direct sponsor pilot offers while the live site keeps downloads free and collects no payment on-site.",
     deals: dealRoom.deals.map((deal) => ({
       ...deal,
-      trackedUrl: `${trackedSponsorUrl("sponsor-deal-room", `deal-${deal.id}`)}#sponsor-inquiry`,
+      trackedUrl: `${trackedSponsorUrl(deal.id === "starter-fit-review" ? "sponsor-starter-review" : "sponsor-deal-room", `deal-${deal.id}`)}#sponsor-inquiry`,
     })),
     verticals: dealRoom.verticals.map((vertical) => ({
       title: vertical.title,
@@ -1816,6 +1909,35 @@ function sponsorDealRoomMirrorEntry() {
     })),
     requiredReview: dealRoom.requiredReview,
     moneyGate: dealRoom.moneyGate,
+  };
+}
+
+function sponsorStarterReviewMirrorEntry() {
+  const dealRoom = sponsorDealRoomPayload(generatedAtIso);
+  const deal = dealRoom.deals.find((item) => item.id === "starter-fit-review") || dealRoom.deals[0];
+  return {
+    name: "PrintableTools Lab USD 49 Starter Sponsor Review Mirror",
+    generatedAt: generatedAtIso,
+    directory: pagesUrl("sponsor-starter-review"),
+    livePage: siteUrl("sponsor-starter-review"),
+    trackedReviewUrl: `${trackedSponsorUrl("sponsor-starter-review", "github-pages-starter-review")}#sponsor-inquiry`,
+    trackedInquiryUrl: `${trackedSponsorUrl("sponsor-starter-review", "github-pages-starter-inquiry")}#sponsor-inquiry`,
+    mediaKit: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
+    dealRoomJson: siteUrl("sponsor-deal-room.json").replace(/\/$/, ""),
+    deal,
+    reviewCovers: [
+      "Product and category fit for PDF, image, QR, classroom, career, or small-business workflows.",
+      "Safe landing URL review before sponsor copy is discussed.",
+      "Best page family recommendation: starter review, deal room, vertical sponsor page, guide pilot, or no placement.",
+      "Public-safe next-step wording for sponsor inquiry, invoice request, or partner distribution test.",
+    ],
+    safeUseRules: [
+      "Use only where sponsor, partner, resource-page, newsletter, or directory submissions are explicitly welcome.",
+      "No payment is collected on the mirror or the live starter review page.",
+      "Sponsor copy must be clearly labeled and manually reviewed before placement.",
+      "Success is a real qualified sponsor inquiry, signed agreement, or settled external payment. Clicks alone are not revenue.",
+    ],
+    successGate: "A qualified sponsor inquiry, signed agreement, or settled external payment for the USD 49 starter review.",
   };
 }
 

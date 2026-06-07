@@ -29,6 +29,9 @@ const priorityMainUrls = [
   siteUrl("tools"),
   siteUrl("free-pdf-tools"),
   siteUrl("share-kit"),
+  siteUrl("sponsor-starter-review"),
+  siteUrl("sponsor-call"),
+  siteUrl("sponsor-deal-room"),
   siteUrl("compress-pdf-to-500kb"),
   siteUrl("compress-pdf-to-1mb"),
   siteUrl("compress-image-to-100kb"),
@@ -38,6 +41,9 @@ const priorityMainUrls = [
 ].filter(unique);
 const githubPagesUrls = [
   `${githubPagesBase}/`,
+  `${githubPagesBase}/sponsor-starter-review/`,
+  `${githubPagesBase}/sponsor-call/`,
+  `${githubPagesBase}/sponsor-deal-room/`,
   ...landingPages.map((page) => `${githubPagesBase}/${page.path}/`),
   ...tools.map((tool) => `${githubPagesBase}/${tool.path}/`),
 ].filter(unique);
