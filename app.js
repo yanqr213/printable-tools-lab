@@ -8056,6 +8056,7 @@ ${paragraphs.join("\n")}
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error("Metrics unavailable");
       const projects = Array.isArray(data.projects) ? data.projects : [];
+      const leadCheck = await loadSponsorLeadCheck();
       const totals = data.totals || {};
       const totalDownloads = (totals.download_pdf || 0) + (totals.download_file || 0);
       const totalGenerations = (totals.generate_pdf || 0) + (totals.generate_file || 0);
@@ -8075,7 +8076,7 @@ ${paragraphs.join("\n")}
           <div class="metric-tile"><strong>${sponsorInvoiceRequests}</strong><span>invoice requests</span></div>
           <div class="metric-tile"><strong>${totalGameIntent}</strong><span>game play signals</span></div>
         </div>
-        ${sponsorSprintHtml(data)}
+        ${sponsorSprintHtml(data, leadCheck)}
         <div class="ops-project-list">
           ${projects.map(projectOpsHtml).join("") || `<div class="panel"><p>No project rows returned yet.</p></div>`}
         </div>
@@ -8099,17 +8100,30 @@ ${paragraphs.join("\n")}
       `;
     } catch (error) {
       target.innerHTML = `
-        ${sponsorSprintHtml({ totals: {}, projects: [] })}
+        ${sponsorSprintHtml({ totals: {}, projects: [] }, null)}
         <div class="panel"><p>Live project metrics are not available yet.</p><p class="help">${escapeHtml(error.message || "Metrics unavailable")}</p></div>
       `;
     }
   }
 
-  function sponsorSprintHtml(data) {
+  async function loadSponsorLeadCheck() {
+    try {
+      const response = await fetch("/api/sponsor-lead", { cache: "no-store" });
+      const data = await response.json();
+      if (!response.ok || !data.ok) throw new Error("Sponsor lead check unavailable");
+      return data;
+    } catch (error) {
+      return { ok: false, dataQuality: "unavailable", dataWarning: error.message || "Sponsor lead check unavailable" };
+    }
+  }
+
+  function sponsorSprintHtml(data, leadCheck) {
     const totals = data.totals || {};
     const sponsorIntent = totals.sponsor_request_intent || 0;
-    const sponsorLeads = data.sponsorLeads || totals.sponsor_lead_submit || 0;
-    const sponsorInvoiceRequests = data.sponsorInvoiceRequests || totals.sponsor_invoice_request || 0;
+    const indexedLeadCount = Number.isFinite(Number(leadCheck?.leadCount)) ? Number(leadCheck.leadCount) : null;
+    const indexedInvoiceCount = Number.isFinite(Number(leadCheck?.invoiceRequestCount)) ? Number(leadCheck.invoiceRequestCount) : null;
+    const sponsorLeads = Math.max(data.sponsorLeads || totals.sponsor_lead_submit || 0, indexedLeadCount || 0);
+    const sponsorInvoiceRequests = Math.max(data.sponsorInvoiceRequests || totals.sponsor_invoice_request || 0, indexedInvoiceCount || 0);
     const pageViews = totals.page_view || 0;
     const downloads = (totals.download_pdf || 0) + (totals.download_file || 0);
     const topSponsorPaths = sponsorPathRows(data).slice(0, 4);
@@ -8134,6 +8148,7 @@ ${paragraphs.join("\n")}
           <div class="metric-tile"><strong>${sponsorDeals[1]?.price || "USD 99-149"}</strong><span>default pilot</span></div>
           <div class="metric-tile"><strong>${sponsorInvoiceRequests ? "Invoice" : sponsorLeads ? "Follow up" : "Outreach"}</strong><span>next mode</span></div>
         </div>
+        ${sponsorLeadCheckHtml(leadCheck)}
         <div class="ops-detail-grid">
           <section>
             <h3>Priority sponsor prospects</h3>
@@ -8154,6 +8169,22 @@ ${paragraphs.join("\n")}
           </section>
         </div>
       </section>
+    `;
+  }
+
+  function sponsorLeadCheckHtml(leadCheck) {
+    if (!leadCheck) return "";
+    const quality = leadCheck.dataQuality || "unknown";
+    const leadCount = Number.isFinite(Number(leadCheck.leadCount)) ? Number(leadCheck.leadCount) : "n/a";
+    const invoiceCount = Number.isFinite(Number(leadCheck.invoiceRequestCount)) ? Number(leadCheck.invoiceRequestCount) : "n/a";
+    const latest = leadCheck.latestCreatedAt || "none";
+    const warning = leadCheck.dataWarning ? `<p class="notice">${escapeHtml(leadCheck.dataWarning)}</p>` : "";
+    return `
+      <div class="notice sponsor-lead-check">
+        <strong>Sponsor lead index check</strong>
+        <p>Private details stay hidden. Public-safe check: ${escapeHtml(String(leadCount))} indexed lead(s), ${escapeHtml(String(invoiceCount))} invoice request(s), latest ${escapeHtml(latest)}, quality ${escapeHtml(quality)}.</p>
+        ${warning}
+      </div>
     `;
   }
 

@@ -475,6 +475,15 @@ async function main() {
   assert(storedSponsorLead.path === "/sponsor/pdf-image-qr-saas/", "Sponsor lead should store the clean sponsor path");
   const sponsorLeadIndex = JSON.parse(store.data.get(`sponsor:lead_index:${storedSponsorLead.createdAt.slice(0, 7)}`));
   assert(sponsorLeadIndex.some((lead) => lead.id === sponsorLeadPayload.id && lead.dealId === "guide-sponsor-pilot" && lead.commitment === "request-invoice"), "Sponsor lead index should include selected deal and commitment attribution");
+  const publicSponsorLeadSummary = await (await sponsorLeadSource.onRequestGet({ env })).json();
+  const publicSponsorLeadSummaryText = JSON.stringify(publicSponsorLeadSummary);
+  assert(publicSponsorLeadSummary.ok && publicSponsorLeadSummary.dataQuality === "lead-index", "Sponsor lead GET should expose a public-safe lead index summary");
+  assert(publicSponsorLeadSummary.leadCount === 1, "Sponsor lead GET should count indexed leads");
+  assert(publicSponsorLeadSummary.invoiceRequestCount === 1, "Sponsor lead GET should count indexed invoice requests");
+  assert(publicSponsorLeadSummary.latestCreatedAt === storedSponsorLead.createdAt, "Sponsor lead GET should expose the latest indexed lead timestamp");
+  assert(!publicSponsorLeadSummaryText.includes("sponsor@example.com"), "Sponsor lead GET should not expose contact email");
+  assert(!publicSponsorLeadSummaryText.includes("Example Partner"), "Sponsor lead GET should not expose company name");
+  assert(!publicSponsorLeadSummaryText.includes("https://example.com"), "Sponsor lead GET should not expose sponsor website");
   const quickDealResponse = await sponsorLeadSource.onRequestPost({
     request: new Request("https://example.test/api/sponsor-lead", {
       method: "POST",

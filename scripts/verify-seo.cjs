@@ -375,7 +375,8 @@ else {
   if (!script.includes("sponsorLeadPublicReplyUrl") || !script.includes("Open public-safe reply")) failures.push("app.js missing public-safe sponsor fallback for failed lead storage.");
   if (!script.includes("renderSponsorLeadSuccess") || !script.includes("Copy invoice/agreement request") || !script.includes("Next step ready")) failures.push("app.js missing sponsor lead success close panel.");
   if (!script.includes("absoluteSponsorUrl")) failures.push("app.js sponsor outreach pitch should copy absolute URLs.");
-  if (!script.includes("sponsorSprintHtml({ totals: {}, projects: [] })")) failures.push("app.js ops monitor should keep sponsor close actions visible when live metrics fail.");
+  if (!script.includes("sponsorSprintHtml({ totals: {}, projects: [] }, null)")) failures.push("app.js ops monitor should keep sponsor close actions visible when live metrics fail.");
+  if (!script.includes("loadSponsorLeadCheck") || !script.includes("Sponsor lead index check") || !script.includes("/api/sponsor-lead")) failures.push("app.js ops monitor should independently check sponsor lead index totals.");
   if (!script.includes("renderSponsorProposalPage") || !script.includes("sponsorProspectProposalUrl") || !script.includes("sponsor_proposal")) failures.push("app.js missing direct sponsor proposal funnel.");
   if (!script.includes("todayToolScore") || !script.includes("Operating actions") || !script.includes("project.nextAction")) failures.push("app.js ops monitor should show detailed project traffic and next actions.");
   if (!script.includes("sponsorInvoiceRequestCopy(prospect, deal, vertical, proposalUrl)")) failures.push("app.js ops sponsor cards should copy a real invoice request.");
@@ -412,6 +413,7 @@ else {
   if (!sponsorLeadScript.includes("body.deal")) failures.push("Sponsor lead API should accept deal-param attribution from outreach links.");
   if (!sponsorLeadScript.includes("fallbackPublicReplyUrl") || !sponsorLeadScript.includes("sponsor-partner-inquiry.yml")) failures.push("Sponsor lead API missing public-safe fallback reply URL.");
   if (!sponsorLeadScript.includes("dryRunFallback")) failures.push("Sponsor lead API missing no-write fallback validation path.");
+  if (!sponsorLeadScript.includes("publicLeadSummary") || !sponsorLeadScript.includes("privateFields") || !sponsorLeadScript.includes("not exposed")) failures.push("Sponsor lead API should expose only public-safe lead summary counts.");
 }
 if (!fs.existsSync(sponsorProspectScriptFile)) failures.push("Missing sponsor prospect queue generator.");
 else {

@@ -139,12 +139,34 @@ export async function onRequestPost({ request, env }) {
   }
 }
 
-export function onRequestGet() {
-  return json({
-    ok: true,
-    service: "PrintableTools Lab sponsor lead intake",
-    publicMetricsOnly: true,
-  });
+export async function onRequestGet({ env }) {
+  if (!env.PTL_EVENTS) return json({ ok: false, error: "Lead store unavailable" }, 503);
+  const month = new Date().toISOString().slice(0, 7);
+  try {
+    const rows = arrayOrEmpty(safeJson(await env.PTL_EVENTS.get(`sponsor:lead_index:${month}`), []));
+    return json({
+      ok: true,
+      service: "PrintableTools Lab sponsor lead intake",
+      publicMetricsOnly: true,
+      dataQuality: "lead-index",
+      month,
+      ...publicLeadSummary(rows),
+      privateFields: "not exposed",
+    });
+  } catch (error) {
+    return json({
+      ok: true,
+      service: "PrintableTools Lab sponsor lead intake",
+      publicMetricsOnly: true,
+      dataQuality: "unavailable",
+      dataWarning: "Lead index read failed, so public lead totals are unavailable. Use the private export workflow for an authoritative check.",
+      month,
+      leadCount: null,
+      invoiceRequestCount: null,
+      latestCreatedAt: "",
+      privateFields: "not exposed",
+    });
+  }
 }
 
 function normalizeLead(body, request) {
@@ -508,6 +530,36 @@ function sponsorLeadPublicReplyUrl(lead) {
 
 function arrayOrEmpty(value) {
   return Array.isArray(value) ? value : [];
+}
+
+function publicLeadSummary(rows) {
+  const summary = {
+    leadCount: rows.length,
+    invoiceRequestCount: 0,
+    readyThisMonthCount: 0,
+    starterReviewCount: 0,
+    latestCreatedAt: "",
+    commitments: {},
+    deals: {},
+    sources: {},
+    verticals: {},
+  };
+  for (const row of rows) {
+    const commitment = cleanKey(row?.commitment, 40) || "unknown";
+    const dealId = cleanKey(row?.dealId, 80) || "unknown";
+    const source = cleanSource(row?.source || row?.utmSource || "direct");
+    const vertical = cleanKey(row?.vertical, 80) || "unknown";
+    addCount(summary.commitments, commitment);
+    addCount(summary.deals, dealId);
+    addCount(summary.sources, source);
+    addCount(summary.verticals, vertical);
+    if (commitment === "request-invoice" || commitment === "ready-this-month") summary.invoiceRequestCount += 1;
+    if (commitment === "ready-this-month") summary.readyThisMonthCount += 1;
+    if (dealId === "starter-fit-review") summary.starterReviewCount += 1;
+    const createdAt = cleanText(row?.createdAt, 40);
+    if (createdAt && createdAt > summary.latestCreatedAt) summary.latestCreatedAt = createdAt;
+  }
+  return summary;
 }
 
 function emptyRollup(month) {
