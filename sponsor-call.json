@@ -1,8 +1,9 @@
 {
   "name": "PrintableTools Lab Sponsor Call",
-  "generatedAt": "2026-06-07T21:16:41.971Z",
+  "generatedAt": "2026-06-07T21:27:36.109Z",
   "canonical": "https://printable-tools-lab.pages.dev/sponsor-call/",
   "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
+  "sponsorStarterReview": "https://printable-tools-lab.pages.dev/sponsor-starter-review/",
   "sponsorDealRoom": "https://printable-tools-lab.pages.dev/sponsor-deal-room/",
   "publicReplyForm": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=sponsor-partner-inquiry.yml&title=%5BSponsor%2FPartner%5D%3A+Sponsor+pilot+review&body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+%0APublic+website+URL%3A+%0AAudience+fit%3A+%0ASelected+pilot+deal%3A+%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-call%2F%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.",
   "mediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
@@ -17,7 +18,7 @@
     {
       "title": "Request a starter fit review",
       "audience": "Early partners who want a quick policy-fit review before discussing copy.",
-      "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=starter-review",
+      "url": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=starter-review",
       "signal": "A business asks for the USD 49 exploratory review or a no-cash partner test."
     },
     {
@@ -28,6 +29,13 @@
     }
   ],
   "discoveryLinks": [
+    {
+      "title": "USD 49 starter sponsor review",
+      "path": "sponsor-starter-review",
+      "url": "https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=discovery",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/",
+      "reason": "Shortest paid pilot entry point for sponsors who want a manual fit review before any visible placement or invoice."
+    },
     {
       "title": "Sponsor deal room",
       "path": "sponsor-deal-room",

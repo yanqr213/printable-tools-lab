@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Sponsor Call Mirror",
-  "generatedAt": "2026-06-07T21:16:42.057Z",
+  "generatedAt": "2026-06-07T21:27:36.196Z",
   "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-call/",
   "livePage": "https://printable-tools-lab.pages.dev/sponsor-call/",
   "liveJson": "https://printable-tools-lab.pages.dev/sponsor-call.json",
@@ -19,7 +19,7 @@
     {
       "title": "Request a starter fit review",
       "audience": "Early partners who want a quick policy-fit review before discussing copy.",
-      "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=github-pages-starter-review",
+      "url": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=github-pages-starter-review",
       "signal": "A business asks for the USD 49 exploratory review or a no-cash partner test."
     },
     {
@@ -30,6 +30,13 @@
     }
   ],
   "discoveryLinks": [
+    {
+      "title": "USD 49 starter sponsor review",
+      "path": "sponsor-starter-review",
+      "url": "https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=discovery",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/",
+      "reason": "Shortest paid pilot entry point for sponsors who want a manual fit review before any visible placement or invoice."
+    },
     {
       "title": "Sponsor deal room",
       "path": "sponsor-deal-room",

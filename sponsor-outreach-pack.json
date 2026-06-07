@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Sponsor Outreach Pack",
-  "generatedAt": "2026-06-07T21:16:41.971Z",
+  "generatedAt": "2026-06-07T21:27:36.109Z",
   "canonical": "https://printable-tools-lab.pages.dev/sponsor-outreach-pack.json",
   "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
   "sponsorDealRoom": {
@@ -18,7 +18,7 @@
         "bestFor": "A sponsor wants to know whether their product is safe and relevant before buying a visible placement.",
         "deliverable": "Manual sponsor-fit review, audience match, recommended page family, and safe next-step copy.",
         "proofNeeded": "Company URL, product category, intended audience, and any placement rules.",
-        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=starter-fit-review&commitment=request-invoice#sponsor-inquiry"
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_starter_review&utm_content=starter-fit-review&commitment=request-invoice#sponsor-inquiry"
       },
       {
         "id": "guide-sponsor-pilot",
@@ -125,7 +125,7 @@
       {
         "title": "Request a starter fit review",
         "audience": "Early partners who want a quick policy-fit review before discussing copy.",
-        "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=starter-review",
+        "url": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=starter-review",
         "signal": "A business asks for the USD 49 exploratory review or a no-cash partner test."
       },
       {
@@ -317,7 +317,7 @@
   "trackedLinks": [
     {
       "category": "Starter fit review",
-      "url": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=starter-fit-review&commitment=request-invoice#sponsor-inquiry",
+      "url": "https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_starter_review&utm_content=starter-fit-review&commitment=request-invoice#sponsor-inquiry",
       "pitch": "A sponsor wants to know whether their product is safe and relevant before buying a visible placement."
     },
     {

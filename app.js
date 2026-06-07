@@ -5114,7 +5114,7 @@
       bestFor: "A sponsor wants to know whether their product is safe and relevant before buying a visible placement.",
       deliverable: "Manual sponsor-fit review, audience match, recommended page family, and safe next-step copy.",
       proofNeeded: "Company URL, product category, intended audience, and any placement rules.",
-      trackedUrl: "/sponsor-deal-room/?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=starter-fit-review&commitment=request-invoice#sponsor-inquiry",
+      trackedUrl: "/sponsor-starter-review/?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_starter_review&utm_content=starter-fit-review&commitment=request-invoice#sponsor-inquiry",
     },
     {
       id: "guide-sponsor-pilot",
@@ -5350,7 +5350,7 @@
     {
       title: "Request a starter fit review",
       audience: "Early partners who want a quick policy-fit review before discussing copy.",
-      url: "/sponsor/?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=starter-review",
+      url: "/sponsor-starter-review/?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=starter-review",
       signal: "A business asks for the USD 49 exploratory review or a no-cash partner test.",
     },
     {
@@ -5375,6 +5375,7 @@
     if (parts[0] === "pdf-tool-finder") return renderPdfToolFinder();
     if (parts[0] === "submit-directory") return renderDirectorySubmissionPack();
     if (parts[0] === "share-kit") return renderShareKit();
+    if (parts[0] === "sponsor-starter-review") return renderSponsorStarterReviewPage();
     if (parts[0] === "sponsor-proposal") return renderSponsorProposalPage();
     if (parts[0] === "sponsor-deal-room") return renderSponsorDealRoomPage();
     if (parts[0] === "sponsor-call") return renderSponsorCallPage();
@@ -7538,6 +7539,71 @@ ${paragraphs.join("\n")}
         <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(mailto)}">Email fallback</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/tools.json">Open tools feed</a> <a class="button ghost" href="/privacy/">Privacy policy</a></p>
       </section>
     `;
+    initSponsorLeadForms(app);
+  }
+
+  function renderSponsorStarterReviewPage() {
+    const deal = sponsorDeals.find((item) => item.id === "starter-fit-review") || sponsorDeals[0];
+    const vertical = sponsorVerticals[0];
+    const reviewUrl = "/sponsor-starter-review/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=canonical#sponsor-inquiry";
+    const publicReplyUrl = sponsorPublicReplyUrl(
+      { name: "Sponsor team", website: "" },
+      deal,
+      vertical,
+      reviewUrl,
+    );
+    setMeta("USD 49 Starter Sponsor Review", "Direct USD 49 starter sponsor review page for policy-fit partners who want a manual fit check before any visible placement or external invoice.");
+    setJsonLd({
+      "@context": "https://schema.org",
+      "@type": "Offer",
+      name: "PrintableTools Lab starter sponsor review",
+      price: "49",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: absoluteSponsorUrl("/sponsor-starter-review/"),
+      description: "Manual sponsor fit review before any visible placement or external invoice.",
+    });
+    app.innerHTML = `
+      <section class="shell page-title section sponsor-hero sponsor-starter-hero">
+        <a href="/sponsor-deal-room/">Sponsor deal room</a>
+        <h1>USD 49 starter sponsor review for PrintableTools Lab</h1>
+        <p>A short manual fit review for sponsors who want to know whether their product is safe, relevant, and worth discussing before any visible placement. No payment is collected on this page; invoice or agreement steps happen externally after policy fit.</p>
+        <p><a class="button" data-sponsor-deal-select ${sponsorDealPrefillAttrs(deal)} data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Start USD 49 review</a> <a class="button secondary" href="/sponsor-deal-room.json">Open deal JSON</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Public-safe reply</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Starter fit review</h2>
+        <div class="grid-3">
+          <article class="panel"><h3>${escapeHtml(deal.title)}</h3><p><strong>${escapeHtml(deal.price)}</strong></p><p>${escapeHtml(deal.bestFor)}</p></article>
+          <article class="panel"><h3>What it covers</h3><p>${escapeHtml(deal.deliverable)}</p><p class="help">Needed: ${escapeHtml(deal.proofNeeded)}</p></article>
+          <article class="panel"><h3>Revenue gate</h3><p>This requests manual review only. Revenue is real only after a signed sponsor agreement or settled external payment is verified.</p></article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>What the USD 49 review covers</h2>
+        <div class="grid-2">
+          <article class="panel"><h3>Product and category fit</h3><p>Checks whether the sponsor belongs near PDF, image, QR, classroom, career, or small-business utility pages without misleading visitors.</p></article>
+          <article class="panel"><h3>Safe landing URL</h3><p>Reviews the public landing page for clear claims, relevant audience fit, and obvious exclusion risks before any copy is discussed.</p></article>
+          <article class="panel"><h3>Best page family</h3><p>Recommends whether the sponsor is better suited to the deal room, a vertical sponsor page, a guide pilot, or no placement.</p></article>
+          <article class="panel"><h3>Next-step copy</h3><p>Returns public-safe next-step wording for a sponsor inquiry, invoice request, or partner distribution test.</p></article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>2-minute intake</h2>
+        <p>Use the quick form below with business email and website. Company name is optional and can be inferred from the public domain. Do not include payment, tax, bank, phone, private identity, passwords, or customer files.</p>
+      </section>
+      ${renderSponsorLeadForm()}
+      <section class="shell section">
+        <h2>Policy limits</h2>
+        <ul>
+          <li>Downloads stay free and cannot require sponsor interaction, ad clicks, accounts, or payment.</li>
+          <li>Sponsor copy must be clearly labeled and separated from generator controls.</li>
+          <li>No gambling, adult, deceptive finance, malware, fake document, misleading upload-service, or unsafe claims.</li>
+          <li>The starter review does not guarantee traffic, placement approval, ranking, or conversion.</li>
+        </ul>
+        <p><a class="button" href="/sponsor-media-kit.json">Open media kit</a> <a class="button secondary" href="/sponsor-deal-room/">Compare all sponsor options</a> <a class="button ghost" href="/privacy/">Privacy policy</a></p>
+      </section>
+    `;
+    applySponsorDealPrefill(app.querySelector("[data-sponsor-lead-form]"), sponsorDealPrefillFromDeal(deal));
     initSponsorLeadForms(app);
   }
 

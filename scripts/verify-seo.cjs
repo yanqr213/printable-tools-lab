@@ -159,10 +159,29 @@ else {
   if (!html.includes("Sponsor call: privacy-friendly file and printable workflows")) failures.push("Sponsor call page missing headline.");
   if (!html.includes("Current sponsor openings")) failures.push("Sponsor call page missing current openings.");
   if (!html.includes("Audience-specific sponsor pages")) failures.push("Sponsor call page missing vertical sponsor links.");
+  if (!html.includes("/sponsor-starter-review/")) failures.push("Sponsor call page missing starter sponsor review path.");
   if (!html.includes("/sponsor-deal-room/")) failures.push("Sponsor call page missing deal room link.");
   if (!html.includes('data-track-event="sponsor_request_intent"')) failures.push("Sponsor call page missing sponsor intent tracking.");
   if (!html.includes("sponsor-call.json")) failures.push("Sponsor call page should reference machine-readable JSON.");
   if (!sitemap.includes(`<loc>${siteUrl("sponsor-call")}</loc>`)) failures.push("Sitemap missing sponsor call page.");
+}
+
+const sponsorStarterReviewFile = path.join(root, "sponsor-starter-review", "index.html");
+if (!fs.existsSync(sponsorStarterReviewFile)) failures.push("Missing starter sponsor review page.");
+else {
+  const html = fs.readFileSync(sponsorStarterReviewFile, "utf8");
+  if (!html.includes("USD 49 starter sponsor review for PrintableTools Lab")) failures.push("Starter sponsor review page missing headline.");
+  if (!html.includes("Starter fit review") || !html.includes("USD 49")) failures.push("Starter sponsor review page missing default deal and price.");
+  if (!html.includes("What the USD 49 review covers")) failures.push("Starter sponsor review page missing review scope.");
+  if (!html.includes("2-minute intake") || !html.includes("two business-safe fields")) failures.push("Starter sponsor review page missing low-friction intake copy.");
+  if (!html.includes('data-sponsor-quick-form') || !html.includes('data-sponsor-lead-form')) failures.push("Starter sponsor review page missing sponsor lead forms.");
+  if (!html.includes('option value="starter-fit-review" selected')) failures.push("Starter sponsor review page should default quick pilot to USD 49 starter fit review.");
+  if (!html.includes('data-sponsor-deal-select') || !html.includes('data-sponsor-commitment="request-invoice"')) failures.push("Starter sponsor review page missing request-invoice prefill.");
+  if (!html.includes("Public-safe reply") || !html.includes("sponsor-partner-inquiry.yml")) failures.push("Starter sponsor review page missing public-safe reply fallback.");
+  if (!html.includes("/sponsor-deal-room.json") || !html.includes("/sponsor-media-kit.json")) failures.push("Starter sponsor review page missing sponsor JSON proof links.");
+  if (!html.includes("No payment is collected on this page") || !html.includes("settled external payment")) failures.push("Starter sponsor review page missing external payment/revenue gate.");
+  if (html.includes('href="/ops/') || html.includes("href='/ops/")) failures.push("Starter sponsor review page should not expose ops monitor.");
+  if (!sitemap.includes(`<loc>${siteUrl("sponsor-starter-review")}</loc>`)) failures.push("Sitemap missing starter sponsor review page.");
 }
 
 const sponsorDealRoomFile = path.join(root, "sponsor-deal-room", "index.html");
@@ -345,6 +364,7 @@ else {
   if (!script.includes("sponsorInvoiceRequestCopy") || !script.includes("Copy invoice request")) failures.push("app.js missing copy-ready sponsor invoice request path.");
   if (!script.includes("submitSponsorQuickLeadForm") || !script.includes("data-sponsor-quick-form")) failures.push("app.js missing fast sponsor invoice review form handler.");
   if (!script.includes("DEFAULT_SPONSOR_DEAL_ID") || !script.includes("starter-fit-review") || !script.includes("Fastest paid pilot path")) failures.push("app.js missing USD 49 starter review default path.");
+  if (!script.includes("renderSponsorStarterReviewPage") || !script.includes("sponsor-starter-review") || !script.includes("Start USD 49 review")) failures.push("app.js missing direct USD 49 starter sponsor review route.");
   if (!script.includes("initSponsorQuickDealPicker") || !script.includes("quickDealId")) failures.push("app.js missing quick sponsor deal picker handling.");
   if (!script.includes("Company or project (optional)") || !script.includes("Public-safe reply form")) failures.push("app.js missing lower-friction sponsor lead capture path.");
   if (!script.includes("sponsorLeadPublicReplyUrl") || !script.includes("Open public-safe reply")) failures.push("app.js missing public-safe sponsor fallback for failed lead storage.");
