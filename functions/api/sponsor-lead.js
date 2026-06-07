@@ -70,8 +70,17 @@ export async function onRequestPost({ request, env }) {
     if (lead.error) return json({ ok: false, error: lead.error }, 400);
     normalizedLead = lead.value;
 
-    const ipHash = await hashIp(request.headers.get("CF-Connecting-IP") || "");
     validation = Boolean(body.validation);
+    if (validation && body.dryRun === true) {
+      return json({
+        ok: true,
+        validation,
+        dryRun: true,
+        normalized: sponsorLeadDryRunPayload(normalizedLead),
+      });
+    }
+
+    const ipHash = await hashIp(request.headers.get("CF-Connecting-IP") || "");
     let rateLimitSkipped = false;
     if (!validation) {
       const rate = await safeRateLimit(env.PTL_EVENTS, ipHash);
@@ -445,6 +454,21 @@ function sponsorLeadFallbackText(lead) {
     "",
     "I will keep payment, tax, bank, phone, private identity, password, and customer-file details outside the website form.",
   ].join("\n");
+}
+
+function sponsorLeadDryRunPayload(lead) {
+  return {
+    company: lead.company,
+    website: lead.website,
+    placement: lead.placement,
+    budgetRange: lead.budgetRange,
+    timeline: lead.timeline,
+    commitment: lead.commitment,
+    dealId: lead.dealId,
+    source: lead.source,
+    path: lead.path,
+    vertical: lead.vertical,
+  };
 }
 
 function arrayOrEmpty(value) {

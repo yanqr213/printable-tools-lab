@@ -313,6 +313,25 @@ async function main() {
   });
   const sponsorLeadPayload = await sponsorLeadResponse.json();
   assert(sponsorLeadResponse.status === 200 && sponsorLeadPayload.ok, "Sponsor lead endpoint should accept valid business inquiries");
+  const dryRunSponsorLeadResponse = await sponsorLeadSource.onRequestPost({
+    request: new Request("https://example.test/api/sponsor-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.18" },
+      body: JSON.stringify(sponsorLeadBody({
+        validation: true,
+        dryRun: true,
+        company: "",
+        contactEmail: "dryrun@example.com",
+        website: "https://dryrun-sponsor.example/path",
+        dealId: "starter-fit-review",
+      })),
+    }),
+    env,
+  });
+  const dryRunSponsorLeadPayload = await dryRunSponsorLeadResponse.json();
+  assert(dryRunSponsorLeadResponse.status === 200 && dryRunSponsorLeadPayload.ok && dryRunSponsorLeadPayload.dryRun, "Sponsor lead endpoint should support validation dry-runs without KV writes");
+  assert(dryRunSponsorLeadPayload.normalized.company === "Dryrun Sponsor", "Sponsor validation dry-run should expose inferred company label");
+  assert(!dryRunSponsorLeadPayload.id, "Sponsor validation dry-run should not create a lead id");
   const invalidSponsorLeadResponse = await sponsorLeadSource.onRequestPost({
     request: new Request("https://example.test/api/sponsor-lead", {
       method: "POST",
