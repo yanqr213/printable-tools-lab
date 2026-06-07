@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Sponsor Opportunities Mirror",
-  "generatedAt": "2026-06-07T22:44:31.186Z",
+  "generatedAt": "2026-06-07T23:01:41.770Z",
   "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-opportunities/",
   "livePage": "https://printable-tools-lab.pages.dev/sponsor-opportunities/",
   "liveJson": "https://printable-tools-lab.pages.dev/sponsor-opportunities.json",
@@ -16,6 +16,7 @@
       "sponsorFit": "PDF APIs, image optimization tools, QR platforms, privacy-friendly document automation, browser utility products, and file-workflow SaaS.",
       "priceHint": "USD 99-149 pilot",
       "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=opportunities-pdf-image-qr-saas",
+      "invoiceReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=board-pdf-image-qr-saas&vertical=pdf-image-qr-saas&commitment=request-invoice#sponsor-inquiry",
       "categories": [
         "PDF APIs",
         "image compression SaaS",
@@ -31,6 +32,7 @@
       "sponsorFit": "Resume builders, ATS tools, job boards, interview prep products, career coaching, and applicant-document utilities.",
       "priceHint": "USD 99-149 pilot",
       "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/resume-career-sponsors/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=opportunities-resume-career-sponsors",
+      "invoiceReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=board-resume-career-sponsors&vertical=resume-career-sponsors&commitment=request-invoice#sponsor-inquiry",
       "categories": [
         "resume software",
         "ATS checkers",
@@ -46,6 +48,7 @@
       "sponsorFit": "Teacher marketplaces, homeschool resources, classroom apps, learning printables, family routine products, and child-safe educational tools.",
       "priceHint": "USD 99-149 pilot",
       "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/classroom-printable-sponsors/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=opportunities-classroom-printable-sponsors",
+      "invoiceReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=board-classroom-printable-sponsors&vertical=classroom-printable-sponsors&commitment=request-invoice#sponsor-inquiry",
       "categories": [
         "teacher resources",
         "homeschool tools",
@@ -61,6 +64,7 @@
       "sponsorFit": "Invoicing apps, bookkeeping tools, POS products, local marketing services, shipping tools, label systems, and small-business operations software.",
       "priceHint": "USD 99-149 pilot",
       "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/small-business-paperwork-sponsors/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=opportunities-small-business-paperwork-sponsors",
+      "invoiceReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=board-small-business-paperwork-sponsors&vertical=small-business-paperwork-sponsors&commitment=request-invoice#sponsor-inquiry",
       "categories": [
         "invoicing software",
         "bookkeeping tools",
@@ -76,6 +80,7 @@
       "sponsorFit": "QR platforms, review-request tools, local SEO products, print shops, signage services, event tools, and small-business marketing software.",
       "priceHint": "USD 49 exploratory or USD 99-149 pilot",
       "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/local-marketing-qr-sponsors/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=opportunities-local-marketing-qr-sponsors",
+      "invoiceReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=board-local-marketing-qr-sponsors&vertical=local-marketing-qr-sponsors&commitment=request-invoice#sponsor-inquiry",
       "categories": [
         "QR code platforms",
         "review-management tools",

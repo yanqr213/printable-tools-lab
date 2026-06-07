@@ -101,3 +101,18 @@
 
 /sponsor-deal-room.json
   Content-Type: application/json; charset=utf-8
+
+/ops/*
+  X-Robots-Tag: noindex, nofollow
+
+/dashboard/*
+  X-Robots-Tag: noindex, nofollow
+
+/sponsor-intent-feed.json
+  Content-Type: application/json; charset=utf-8
+
+/ops/
+  X-Robots-Tag: noindex, nofollow
+
+/dashboard/
+  X-Robots-Tag: noindex, nofollow

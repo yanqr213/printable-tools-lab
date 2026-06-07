@@ -17,6 +17,7 @@ Monetization model: Free tools stay live for search demand and future display ad
 - Share kit: https://printable-tools-lab.pages.dev/share-kit/
 - Sponsor deal room: https://printable-tools-lab.pages.dev/sponsor-deal-room/
 - Machine-readable sponsor deal room: https://printable-tools-lab.pages.dev/sponsor-deal-room.json
+- Machine-readable sponsor intent feed: https://printable-tools-lab.pages.dev/sponsor-intent-feed.json
 - Organic push kit: https://printable-tools-lab.pages.dev/organic-push-kit/
 - Upload error cheatsheet: https://printable-tools-lab.pages.dev/upload-error-cheatsheet/
 - Machine-readable organic push kit: https://printable-tools-lab.pages.dev/organic-push-kit.json

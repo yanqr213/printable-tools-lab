@@ -131,6 +131,18 @@ if (fs.existsSync(headersPath)) {
   if (!headers.includes("/discovery.json")) {
     fs.appendFileSync(headersPath, "\n/discovery.json\n  Content-Type: application/json; charset=utf-8\n");
   }
+  if (!/^\/ops\/\s*$/m.test(headers)) {
+    fs.appendFileSync(headersPath, "\n/ops/\n  X-Robots-Tag: noindex, nofollow\n");
+  }
+  if (!headers.includes("/ops/*")) {
+    fs.appendFileSync(headersPath, "\n/ops/*\n  X-Robots-Tag: noindex, nofollow\n");
+  }
+  if (!/^\/dashboard\/\s*$/m.test(headers)) {
+    fs.appendFileSync(headersPath, "\n/dashboard/\n  X-Robots-Tag: noindex, nofollow\n");
+  }
+  if (!headers.includes("/dashboard/*")) {
+    fs.appendFileSync(headersPath, "\n/dashboard/*\n  X-Robots-Tag: noindex, nofollow\n");
+  }
   if (!headers.includes("/site.webmanifest")) {
     fs.appendFileSync(headersPath, "\n/site.webmanifest\n  Content-Type: application/manifest+json; charset=utf-8\n");
   }
@@ -157,6 +169,9 @@ if (fs.existsSync(headersPath)) {
   }
   if (!headers.includes("/sponsor-opportunities.json")) {
     fs.appendFileSync(headersPath, "\n/sponsor-opportunities.json\n  Content-Type: application/json; charset=utf-8\n");
+  }
+  if (!headers.includes("/sponsor-intent-feed.json")) {
+    fs.appendFileSync(headersPath, "\n/sponsor-intent-feed.json\n  Content-Type: application/json; charset=utf-8\n");
   }
   if (!headers.includes("/sponsor-deal-room.json")) {
     fs.appendFileSync(headersPath, "\n/sponsor-deal-room.json\n  Content-Type: application/json; charset=utf-8\n");
@@ -308,6 +323,33 @@ fs.writeFileSync(path.join(root, "sponsor-call.json"), `${JSON.stringify(sponsor
 const sponsorOpportunitiesJson = sponsorOpportunityPayload(generatedAtIso);
 fs.writeFileSync(path.join(root, "sponsor-opportunities.json"), `${JSON.stringify(sponsorOpportunitiesJson, null, 2)}\n`);
 
+const sponsorIntentFeedJson = {
+  name: "PrintableTools Lab Sponsor Intent Feed",
+  generatedAt: generatedAtIso,
+  canonical: fileUrl("sponsor-intent-feed.json"),
+  purpose: "Public-safe sponsor discovery feed for directories, newsletters, resource pages, and partners. It lists sponsor-fit audiences and invoice-review paths without exposing operations pages, private leads, payment data, or contact details.",
+  sponsorOpportunities: siteUrl("sponsor-opportunities"),
+  sponsorOpportunitiesJson: fileUrl("sponsor-opportunities.json"),
+  sponsorStarterReview: siteUrl("sponsor-starter-review"),
+  invoiceReviewUrl: sponsorOpportunitiesJson.invoiceReviewUrl,
+  mediaKit: fileUrl("sponsor-media-kit.json"),
+  prospectPaths: sponsorOpportunitiesJson.prospectPaths,
+  invoiceReadyDeals: SPONSOR_DEALS
+    .filter((deal) => deal.commitment === "request-invoice")
+    .map((deal) => ({
+      id: deal.id,
+      title: deal.title,
+      price: deal.price,
+      bestFor: deal.bestFor,
+      proofNeeded: deal.proofNeeded,
+      trackedUrl: deal.trackedUrl,
+    })),
+  privacyBoundary: "No sponsor lead emails, company names submitted through forms, payment details, internal metric URLs, or operations routes are exposed in this public feed.",
+  rules: sponsorOpportunitiesJson.rules,
+  successGate: sponsorOpportunitiesJson.successGate,
+};
+fs.writeFileSync(path.join(root, "sponsor-intent-feed.json"), `${JSON.stringify(sponsorIntentFeedJson, null, 2)}\n`);
+
 const sponsorDealRoomJson = sponsorDealRoomPayload(generatedAtIso);
 fs.writeFileSync(path.join(root, "sponsor-deal-room.json"), `${JSON.stringify(sponsorDealRoomJson, null, 2)}\n`);
 
@@ -316,6 +358,12 @@ const sponsorOutreachPackJson = {
   generatedAt: generatedAtIso,
   canonical: fileUrl("sponsor-outreach-pack.json"),
   sponsorPage: siteUrl("sponsor"),
+  sponsorIntentFeed: fileUrl("sponsor-intent-feed.json"),
+  starterReview: {
+    page: siteUrl("sponsor-starter-review"),
+    invoiceReviewUrl: sponsorOpportunitiesJson.invoiceReviewUrl,
+    recommendedNextStep: sponsorOpportunitiesJson.recommendedNextStep,
+  },
   sponsorDealRoom: {
     page: siteUrl("sponsor-deal-room"),
     json: fileUrl("sponsor-deal-room.json"),
@@ -332,8 +380,12 @@ const sponsorOutreachPackJson = {
   sponsorOpportunities: {
     page: siteUrl("sponsor-opportunities"),
     json: fileUrl("sponsor-opportunities.json"),
+    starterReviewUrl: sponsorOpportunitiesJson.starterReviewUrl,
+    invoiceReviewUrl: sponsorOpportunitiesJson.invoiceReviewUrl,
     opportunities: sponsorOpportunitiesJson.opportunities,
+    prospectPaths: sponsorOpportunitiesJson.prospectPaths,
   },
+  prospectPaths: sponsorOpportunitiesJson.prospectPaths,
   verticalSponsorPages: SPONSOR_VERTICALS.map((vertical) => ({
     title: vertical.title,
     audience: vertical.audience,
@@ -359,6 +411,11 @@ const sponsorOutreachPackJson = {
       category: vertical.title,
       url: `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}`,
       pitch: vertical.pitch,
+    })),
+    ...sponsorOpportunitiesJson.prospectPaths.map((pathEntry) => ({
+      category: `${pathEntry.title} invoice review`,
+      url: pathEntry.invoiceReviewUrl,
+      pitch: pathEntry.firstAction,
     })),
   ],
   rules: sponsorMediaKitJson.rules,
@@ -475,6 +532,7 @@ const llms = [
   `- Share kit: ${siteUrl("share-kit")}`,
   `- Sponsor deal room: ${siteUrl("sponsor-deal-room")}`,
   `- Machine-readable sponsor deal room: ${fileUrl("sponsor-deal-room.json")}`,
+  `- Machine-readable sponsor intent feed: ${fileUrl("sponsor-intent-feed.json")}`,
   `- Organic push kit: ${siteUrl("organic-push-kit")}`,
   `- Upload error cheatsheet: ${siteUrl("upload-error-cheatsheet")}`,
   `- Machine-readable organic push kit: ${fileUrl("organic-push-kit.json")}`,
@@ -545,6 +603,7 @@ const discoveryIndex = {
   sponsorCall: fileUrl("sponsor-call.json"),
   sponsorDealRoom: fileUrl("sponsor-deal-room.json"),
   sponsorOpportunities: fileUrl("sponsor-opportunities.json"),
+  sponsorIntentFeed: fileUrl("sponsor-intent-feed.json"),
   sponsorMediaKit: fileUrl("sponsor-media-kit.json"),
   sponsorOutreachPack: fileUrl("sponsor-outreach-pack.json"),
   platformSubmitQueue: fileUrl("platform-submit-queue.json"),
@@ -568,6 +627,7 @@ const discoveryIndex = {
     sponsorDeals: SPONSOR_DEALS,
     sponsorOpportunities: siteUrl("sponsor-opportunities"),
     sponsorOpportunitiesJson: fileUrl("sponsor-opportunities.json"),
+    sponsorIntentFeedJson: fileUrl("sponsor-intent-feed.json"),
     sponsorPage: siteUrl("sponsor"),
     sponsorMediaKit: fileUrl("sponsor-media-kit.json"),
     sponsorOutreachPack: fileUrl("sponsor-outreach-pack.json"),
@@ -706,6 +766,7 @@ const distribution = [
   `- Sponsor deal room campaign: ${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=distribution-pack`,
   `- Sponsor call campaign: ${siteUrl("sponsor-call").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=distribution-pack`,
   `- Sponsor opportunities campaign: ${siteUrl("sponsor-opportunities").replace(/\/$/, "")}?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_opportunities&utm_content=distribution-pack`,
+  `- Sponsor intent feed JSON: ${fileUrl("sponsor-intent-feed.json")}`,
   `- Sponsor inquiry form campaign: ${siteUrl("sponsor").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=distribution-pack#sponsor-inquiry`,
   `- Community campaign: ${siteUrl("").replace(/\/$/, "")}?utm_source=community`,
   `- Organic push kit campaign: ${siteUrl("organic-push-kit").replace(/\/$/, "")}?utm_source=distribution&utm_medium=organic&utm_campaign=organic_push_kit`,
@@ -732,6 +793,7 @@ const distribution = [
   ...SPONSOR_DISCOVERY_LINKS.map((item) => `- ${item.title}: ${item.url} - ${item.reason}`),
   `- Sponsor opportunities board: ${siteUrl("sponsor-opportunities")} - Crawlable board for PDF API, QR, resume, classroom, and small-business sponsor categories.`,
   `- Sponsor opportunities JSON: ${fileUrl("sponsor-opportunities.json")}`,
+  `- Sponsor intent feed JSON: ${fileUrl("sponsor-intent-feed.json")}`,
   `- Sponsor outreach pack JSON: ${fileUrl("sponsor-outreach-pack.json")}`,
   "",
   "Sponsor rules: downloads stay free, placements must be labeled, no misleading upload or finance offers, and no payment, tax, bank, phone, private identity, password, or customer-file details should be sent through the site.",

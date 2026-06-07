@@ -239,14 +239,26 @@ for (const routePath of ["dashboard", "ops"]) {
   if (routePath === "ops" && (!html.includes("/sponsor-starter-review/?utm_source=ops") || !html.includes("Open invoice review form"))) failures.push("Ops monitor should route sponsor close work to the invoice review form.");
 }
 
+const headersFile = path.join(root, "_headers");
+if (!fs.existsSync(headersFile)) failures.push("Missing _headers file.");
+else {
+  const headers = fs.readFileSync(headersFile, "utf8");
+  if (!/\/ops\/\s+X-Robots-Tag: noindex, nofollow/.test(headers)) failures.push("_headers should mark /ops/ noindex and nofollow.");
+  if (!/\/ops\/\*\s+X-Robots-Tag: noindex, nofollow/.test(headers)) failures.push("_headers should mark /ops/* noindex and nofollow.");
+  if (!/\/dashboard\/\s+X-Robots-Tag: noindex, nofollow/.test(headers)) failures.push("_headers should mark /dashboard/ noindex and nofollow.");
+  if (!/\/dashboard\/\*\s+X-Robots-Tag: noindex, nofollow/.test(headers)) failures.push("_headers should mark /dashboard/* noindex and nofollow.");
+}
+
 const sponsorOpportunitiesFile = path.join(root, "sponsor-opportunities", "index.html");
 if (!fs.existsSync(sponsorOpportunitiesFile)) failures.push("Missing sponsor opportunities page.");
 else {
   const html = fs.readFileSync(sponsorOpportunitiesFile, "utf8");
   if (!html.includes("Sponsor opportunities for free PDF, image, and QR workflows")) failures.push("Sponsor opportunities page missing headline.");
   if (!html.includes("Open sponsor audiences")) failures.push("Sponsor opportunities page missing audience board.");
+  if (!html.includes("Sponsor prospect paths")) failures.push("Sponsor opportunities page missing prospect paths.");
   if (!html.includes("Good-fit sponsor categories")) failures.push("Sponsor opportunities page missing categories.");
   if (!html.includes("sponsor-opportunities.json")) failures.push("Sponsor opportunities page missing JSON link.");
+  if (!html.includes("sponsor-intent-feed.json")) failures.push("Sponsor opportunities page missing sponsor intent feed link.");
   if (!html.includes("utm_source=sponsor-opportunities")) failures.push("Sponsor opportunities page missing tracked source.");
   if (!html.includes("Request USD 49 invoice review") || !html.includes("sponsor_starter_review") || !html.includes("commitment=request-invoice")) failures.push("Sponsor opportunities page should lead with the USD 49 invoice review path.");
   if (!html.includes("Views and clicks alone are not revenue")) failures.push("Sponsor opportunities page missing revenue gate.");
@@ -291,8 +303,12 @@ if (!fs.existsSync(sponsorOutreachPackFile)) failures.push("Missing sponsor-outr
 else {
   const data = JSON.parse(fs.readFileSync(sponsorOutreachPackFile, "utf8"));
   if (!data.sponsorDealRoom || data.sponsorDealRoom.page !== siteUrl("sponsor-deal-room")) failures.push("Sponsor outreach pack missing sponsor deal room.");
+  if (data.sponsorIntentFeed !== siteUrl("sponsor-intent-feed.json").replace(/\/$/, "")) failures.push("Sponsor outreach pack missing sponsor intent feed.");
+  if (!String(data.starterReview?.invoiceReviewUrl || "").includes("sponsor-starter-review")) failures.push("Sponsor outreach pack missing starter invoice review URL.");
   if (!Array.isArray(data.templates) || data.templates.length < 3) failures.push("Sponsor outreach pack missing copy templates.");
   if (!Array.isArray(data.verticalSponsorPages) || data.verticalSponsorPages.length < 5) failures.push("Sponsor outreach pack missing vertical sponsor pages.");
+  if (!Array.isArray(data.prospectPaths) || data.prospectPaths.length < SPONSOR_VERTICALS.length) failures.push("Sponsor outreach pack missing prospect paths.");
+  if (JSON.stringify(data).includes("/ops/")) failures.push("Sponsor outreach pack should not expose operations monitor URL.");
   if (!Array.isArray(data.trackedLinks) || data.trackedLinks.length < 10) failures.push("Sponsor outreach pack missing vertical tracked links.");
   if (!String(data.successGate || "").includes("settled payment")) failures.push("Sponsor outreach pack missing settled-payment success gate.");
 }
@@ -313,6 +329,7 @@ const cloudflareDeployScriptFile = path.join(root, "scripts", "deploy-cloudflare
 if (fs.existsSync(cloudflareDeployScriptFile)) {
   const deployScript = fs.readFileSync(cloudflareDeployScriptFile, "utf8");
   if (!deployScript.includes("sponsor-deal-room\\.json")) failures.push("Cloudflare safe deploy allowlist missing sponsor-deal-room.json.");
+  if (!deployScript.includes("sponsor-intent-feed\\.json")) failures.push("Cloudflare safe deploy allowlist missing sponsor-intent-feed.json.");
 }
 
 const sponsorCallJsonFile = path.join(root, "sponsor-call.json");
@@ -331,8 +348,25 @@ else {
   const data = JSON.parse(fs.readFileSync(sponsorOpportunitiesJsonFile, "utf8"));
   if (data.canonical !== siteUrl("sponsor-opportunities")) failures.push("Sponsor opportunities JSON missing canonical URL.");
   if (!Array.isArray(data.opportunities) || data.opportunities.length < SPONSOR_VERTICALS.length) failures.push("Sponsor opportunities JSON missing vertical opportunities.");
+  if (!Array.isArray(data.prospectPaths) || data.prospectPaths.length < SPONSOR_VERTICALS.length) failures.push("Sponsor opportunities JSON missing prospect paths.");
   if (!String(data.inquiryUrl || "").includes("utm_source=sponsor-opportunities")) failures.push("Sponsor opportunities JSON missing tracked inquiry URL.");
+  if (!String(data.invoiceReviewUrl || "").includes("sponsor-starter-review") || !String(data.invoiceReviewUrl || "").includes("commitment=request-invoice")) failures.push("Sponsor opportunities JSON missing invoice review URL.");
+  if (!data.prospectPaths?.every((item) => String(item.invoiceReviewUrl || "").includes("sponsor-starter-review") && String(item.invoiceReviewUrl || "").includes("commitment=request-invoice"))) failures.push("Sponsor opportunities JSON prospect paths missing invoice review URLs.");
+  if (JSON.stringify(data).includes("/ops/")) failures.push("Sponsor opportunities JSON should not expose operations monitor URL.");
   if (!String(data.successGate || "").includes("Views and clicks alone are not revenue")) failures.push("Sponsor opportunities JSON missing revenue gate.");
+}
+
+const sponsorIntentFeedFile = path.join(root, "sponsor-intent-feed.json");
+if (!fs.existsSync(sponsorIntentFeedFile)) failures.push("Missing sponsor-intent-feed.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(sponsorIntentFeedFile, "utf8"));
+  const serialized = JSON.stringify(data);
+  if (data.canonical !== siteUrl("sponsor-intent-feed.json").replace(/\/$/, "")) failures.push("Sponsor intent feed missing canonical URL.");
+  if (!String(data.invoiceReviewUrl || "").includes("sponsor-starter-review") || !String(data.invoiceReviewUrl || "").includes("commitment=request-invoice")) failures.push("Sponsor intent feed missing invoice review URL.");
+  if (!Array.isArray(data.prospectPaths) || data.prospectPaths.length < SPONSOR_VERTICALS.length) failures.push("Sponsor intent feed missing prospect paths.");
+  if (!Array.isArray(data.invoiceReadyDeals) || !data.invoiceReadyDeals.some((deal) => deal.id === "starter-fit-review" && deal.price === "USD 49")) failures.push("Sponsor intent feed missing USD 49 invoice-ready deal.");
+  if (!String(data.privacyBoundary || "").includes("operations routes")) failures.push("Sponsor intent feed missing privacy boundary.");
+  if (serialized.includes("/ops/") || serialized.includes("dashboard")) failures.push("Sponsor intent feed should not expose operations or dashboard URLs.");
 }
 
 for (const toolPath of ["tools/invoice-generator", "tools/price-tag", "tools/flyer-maker", "tools/coupon-maker", "tools/packing-slip", "tools/business-card", "tools/qr-code"]) {
@@ -1140,6 +1174,7 @@ else {
   if (discovery.sponsorCall !== siteUrl("sponsor-call.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor-call.json URL.");
   if (discovery.sponsorDealRoom !== siteUrl("sponsor-deal-room.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor-deal-room.json URL.");
   if (discovery.sponsorOpportunities !== siteUrl("sponsor-opportunities.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor-opportunities.json URL.");
+  if (discovery.sponsorIntentFeed !== siteUrl("sponsor-intent-feed.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor-intent-feed.json URL.");
   if (discovery.sponsorMediaKit !== siteUrl("sponsor-media-kit.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor-media-kit.json URL.");
   if (discovery.sponsorOutreachPack !== siteUrl("sponsor-outreach-pack.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor-outreach-pack.json URL.");
   if (discovery.platformSubmitQueue !== siteUrl("platform-submit-queue.json").replace(/\/$/, "")) failures.push("discovery.json missing platform-submit-queue.json URL.");
@@ -1160,6 +1195,7 @@ else {
   if (!Array.isArray(discovery.distributionAssets?.sponsorDeals) || discovery.distributionAssets.sponsorDeals.length !== SPONSOR_DEALS.length) failures.push("discovery.json missing sponsor deals.");
   if (!discovery.distributionAssets || discovery.distributionAssets.sponsorOpportunities !== siteUrl("sponsor-opportunities")) failures.push("discovery.json missing sponsor opportunities URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.sponsorOpportunitiesJson !== siteUrl("sponsor-opportunities.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor opportunities JSON URL.");
+  if (!discovery.distributionAssets || discovery.distributionAssets.sponsorIntentFeedJson !== siteUrl("sponsor-intent-feed.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor intent feed JSON URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.sponsorPage !== siteUrl("sponsor")) failures.push("discovery.json missing sponsor page URL.");
   if (!discovery.distributionAssets || !Array.isArray(discovery.distributionAssets.sponsorDiscoveryLinks) || !discovery.distributionAssets.sponsorDiscoveryLinks.some((item) => String(item.url || "").includes("utm_source=sponsor-outreach"))) failures.push("discovery.json missing sponsor discovery links.");
   if (!discovery.distributionAssets || !Array.isArray(discovery.distributionAssets.sponsorVerticalPages) || discovery.distributionAssets.sponsorVerticalPages.length < 5) failures.push("discovery.json missing sponsor vertical page list.");

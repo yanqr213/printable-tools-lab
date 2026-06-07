@@ -5248,6 +5248,11 @@
       .join("");
   }
 
+  function sponsorVerticalInvoiceReviewUrl(vertical, content = "prospect") {
+    const suffix = `${content}-${vertical.slug}`;
+    return `/sponsor-starter-review/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=${encodeURIComponent(suffix)}&vertical=${encodeURIComponent(vertical.slug)}&commitment=request-invoice#sponsor-inquiry`;
+  }
+
   const sponsorProspects = [
     {
       id: "pdfco-pdf-api",
@@ -7760,7 +7765,13 @@ ${paragraphs.join("\n")}
         <a href="/sponsor-call/">Sponsor call</a>
         <h1>Sponsor opportunities for free PDF, image, and QR workflows</h1>
         <p>This board lists the current policy-fit sponsor categories for PrintableTools Lab. It is built for partners, resource pages, newsletters, and crawlers that need a concise view of the available audiences without private outreach or payment details.</p>
-        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${starterReviewUrl}">Request USD 49 invoice review</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${inquiryUrl}">Send sponsor inquiry</a> <a class="button ghost" href="/sponsor-opportunities.json">Open opportunities JSON</a> <a class="button ghost" href="/sponsor-media-kit.json">Open media kit</a></p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${starterReviewUrl}">Request USD 49 invoice review</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${inquiryUrl}">Send sponsor inquiry</a> <a class="button ghost" href="/sponsor-opportunities.json">Open opportunities JSON</a> <a class="button ghost" href="/sponsor-intent-feed.json">Open intent feed</a> <a class="button ghost" href="/sponsor-media-kit.json">Open media kit</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Sponsor prospect paths</h2>
+        <div class="grid-3">
+          ${sponsorVerticals.map((vertical) => `<article class="panel"><h3>${escapeHtml(vertical.title)}</h3><p>${escapeHtml(vertical.sponsorFit)}</p><p><strong>Request USD 49 invoice review</strong></p><p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${sponsorVerticalInvoiceReviewUrl(vertical)}">Request invoice review for this audience</a></p></article>`).join("")}
+        </div>
       </section>
       <section class="shell section">
         <h2>Open sponsor audiences</h2>

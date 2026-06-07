@@ -1,0 +1,137 @@
+{
+  "name": "PrintableTools Lab Sponsor Intent Feed",
+  "generatedAt": "2026-06-07T23:01:41.678Z",
+  "canonical": "https://printable-tools-lab.pages.dev/sponsor-intent-feed.json",
+  "purpose": "Public-safe sponsor discovery feed for directories, newsletters, resource pages, and partners. It lists sponsor-fit audiences and invoice-review paths without exposing operations pages, private leads, payment data, or contact details.",
+  "sponsorOpportunities": "https://printable-tools-lab.pages.dev/sponsor-opportunities/",
+  "sponsorOpportunitiesJson": "https://printable-tools-lab.pages.dev/sponsor-opportunities.json",
+  "sponsorStarterReview": "https://printable-tools-lab.pages.dev/sponsor-starter-review/",
+  "invoiceReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=board-hero&commitment=request-invoice#sponsor-inquiry",
+  "mediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+  "prospectPaths": [
+    {
+      "slug": "pdf-image-qr-saas",
+      "title": "PDF, Image, and QR SaaS Sponsorship",
+      "audience": "Visitors fixing PDF size limits, converting images, making static QR codes, and choosing no-upload browser utilities.",
+      "sponsorFit": "PDF APIs, image optimization tools, QR platforms, privacy-friendly document automation, browser utility products, and file-workflow SaaS.",
+      "bestFitCategories": [
+        "PDF APIs",
+        "image compression SaaS",
+        "QR code platforms",
+        "document automation",
+        "privacy-friendly browser utilities"
+      ],
+      "verticalPageUrl": "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas/",
+      "trackedVerticalUrl": "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=pdf_image_qr_saas&utm_content=prospect-path",
+      "invoiceReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=prospect-pdf-image-qr-saas&vertical=pdf-image-qr-saas&commitment=request-invoice#sponsor-inquiry",
+      "firstAction": "Request USD 49 invoice review",
+      "proofNeeded": "Company URL, product category, intended audience, safe landing page, and placement exclusions."
+    },
+    {
+      "slug": "resume-career-sponsors",
+      "title": "Resume and Career Tool Sponsorship",
+      "audience": "Job seekers creating resume PDFs, checking ATS keywords, fixing resume upload size limits, and preparing application documents.",
+      "sponsorFit": "Resume builders, ATS tools, job boards, interview prep products, career coaching, and applicant-document utilities.",
+      "bestFitCategories": [
+        "resume software",
+        "ATS checkers",
+        "job boards",
+        "career coaching",
+        "interview prep"
+      ],
+      "verticalPageUrl": "https://printable-tools-lab.pages.dev/sponsor/resume-career-sponsors/",
+      "trackedVerticalUrl": "https://printable-tools-lab.pages.dev/sponsor/resume-career-sponsors?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=resume_career_sponsors&utm_content=prospect-path",
+      "invoiceReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=prospect-resume-career-sponsors&vertical=resume-career-sponsors&commitment=request-invoice#sponsor-inquiry",
+      "firstAction": "Request USD 49 invoice review",
+      "proofNeeded": "Company URL, product category, intended audience, safe landing page, and placement exclusions."
+    },
+    {
+      "slug": "classroom-printable-sponsors",
+      "title": "Classroom Printable Sponsorship",
+      "audience": "Teachers, homeschool families, and parents making free printable learning, planning, and classroom-management PDFs.",
+      "sponsorFit": "Teacher marketplaces, homeschool resources, classroom apps, learning printables, family routine products, and child-safe educational tools.",
+      "bestFitCategories": [
+        "teacher resources",
+        "homeschool tools",
+        "classroom apps",
+        "learning printables",
+        "family routine products"
+      ],
+      "verticalPageUrl": "https://printable-tools-lab.pages.dev/sponsor/classroom-printable-sponsors/",
+      "trackedVerticalUrl": "https://printable-tools-lab.pages.dev/sponsor/classroom-printable-sponsors?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=classroom_printable_sponsors&utm_content=prospect-path",
+      "invoiceReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=prospect-classroom-printable-sponsors&vertical=classroom-printable-sponsors&commitment=request-invoice#sponsor-inquiry",
+      "firstAction": "Request USD 49 invoice review",
+      "proofNeeded": "Company URL, product category, intended audience, safe landing page, and placement exclusions."
+    },
+    {
+      "slug": "small-business-paperwork-sponsors",
+      "title": "Small Business Paperwork Sponsorship",
+      "audience": "Freelancers, local sellers, home-service operators, and small teams creating simple business PDFs and print assets.",
+      "sponsorFit": "Invoicing apps, bookkeeping tools, POS products, local marketing services, shipping tools, label systems, and small-business operations software.",
+      "bestFitCategories": [
+        "invoicing software",
+        "bookkeeping tools",
+        "POS products",
+        "shipping tools",
+        "local marketing services"
+      ],
+      "verticalPageUrl": "https://printable-tools-lab.pages.dev/sponsor/small-business-paperwork-sponsors/",
+      "trackedVerticalUrl": "https://printable-tools-lab.pages.dev/sponsor/small-business-paperwork-sponsors?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=small_business_paperwork_sponsors&utm_content=prospect-path",
+      "invoiceReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=prospect-small-business-paperwork-sponsors&vertical=small-business-paperwork-sponsors&commitment=request-invoice#sponsor-inquiry",
+      "firstAction": "Request USD 49 invoice review",
+      "proofNeeded": "Company URL, product category, intended audience, safe landing page, and placement exclusions."
+    },
+    {
+      "slug": "local-marketing-qr-sponsors",
+      "title": "Local Marketing and QR Sponsorship",
+      "audience": "Local services, shops, event organizers, and small teams creating QR codes, flyers, coupons, signs, and printable promotion assets.",
+      "sponsorFit": "QR platforms, review-request tools, local SEO products, print shops, signage services, event tools, and small-business marketing software.",
+      "bestFitCategories": [
+        "QR code platforms",
+        "review-management tools",
+        "local SEO products",
+        "print shops",
+        "event marketing tools"
+      ],
+      "verticalPageUrl": "https://printable-tools-lab.pages.dev/sponsor/local-marketing-qr-sponsors/",
+      "trackedVerticalUrl": "https://printable-tools-lab.pages.dev/sponsor/local-marketing-qr-sponsors?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=local_marketing_qr_sponsors&utm_content=prospect-path",
+      "invoiceReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=prospect-local-marketing-qr-sponsors&vertical=local-marketing-qr-sponsors&commitment=request-invoice#sponsor-inquiry",
+      "firstAction": "Request USD 49 invoice review",
+      "proofNeeded": "Company URL, product category, intended audience, safe landing page, and placement exclusions."
+    }
+  ],
+  "invoiceReadyDeals": [
+    {
+      "id": "starter-fit-review",
+      "title": "Starter fit review",
+      "price": "USD 49",
+      "bestFor": "A sponsor wants to know whether their product is safe and relevant before buying a visible placement.",
+      "proofNeeded": "Company URL, product category, intended audience, and any placement rules.",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_starter_review&utm_content=starter-fit-review&commitment=request-invoice#sponsor-inquiry"
+    },
+    {
+      "id": "guide-sponsor-pilot",
+      "title": "Guide sponsor pilot",
+      "price": "USD 99-149",
+      "bestFor": "A PDF, image, QR, career, classroom, or small-business product wants one clearly labeled pilot mention.",
+      "proofNeeded": "Campaign fit, sponsor copy draft, safe landing URL, and category exclusions.",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=guide-sponsor-pilot&commitment=request-invoice#sponsor-inquiry"
+    },
+    {
+      "id": "vertical-category-pilot",
+      "title": "Vertical category pilot",
+      "price": "USD 149-250",
+      "bestFor": "A partner cares about one audience such as QR/local marketing, resume/career, classroom, or small-business paperwork.",
+      "proofNeeded": "Target vertical, audience fit, sponsor category, and safe public landing URL.",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=vertical-category-pilot&commitment=request-invoice#sponsor-inquiry"
+    }
+  ],
+  "privacyBoundary": "No sponsor lead emails, company names submitted through forms, payment details, internal metric URLs, or operations routes are exposed in this public feed.",
+  "rules": [
+    "Use this board only for policy-fit sponsor and partner discovery.",
+    "Downloads stay free and cannot require ad clicks, sponsor interaction, accounts, or payment.",
+    "Sponsor copy must be clearly labeled and manually reviewed before placement.",
+    "Do not send payment, tax, bank, phone, private identity, passwords, or customer files through this site."
+  ],
+  "successGate": "A real qualified sponsor inquiry, signed agreement, or settled external payment. Views and clicks alone are not revenue."
+}

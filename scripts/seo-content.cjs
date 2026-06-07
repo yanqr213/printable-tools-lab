@@ -5163,17 +5163,49 @@ const SPONSOR_DISCOVERY_LINKS = [
   },
 ];
 
+function sponsorInvoiceReviewUrl({ source = "sponsor-opportunities", medium = "organic", content = "board", verticalSlug = "" } = {}) {
+  const url = new URL(siteUrl("sponsor-starter-review"));
+  url.searchParams.set("utm_source", source);
+  url.searchParams.set("utm_medium", medium);
+  url.searchParams.set("utm_campaign", "sponsor_starter_review");
+  url.searchParams.set("utm_content", content);
+  if (verticalSlug) url.searchParams.set("vertical", verticalSlug);
+  url.searchParams.set("commitment", "request-invoice");
+  url.hash = "sponsor-inquiry";
+  return url.toString();
+}
+
+function sponsorProspectPathEntry(vertical, source = "sponsor-opportunities") {
+  return {
+    slug: vertical.slug,
+    title: vertical.title,
+    audience: vertical.audience,
+    sponsorFit: vertical.sponsorFit,
+    bestFitCategories: vertical.sponsorCategories,
+    verticalPageUrl: siteUrl(`sponsor/${vertical.slug}`),
+    trackedVerticalUrl: `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=${encodeURIComponent(source)}&utm_medium=organic&utm_campaign=${encodeURIComponent(vertical.campaign)}&utm_content=prospect-path`,
+    invoiceReviewUrl: sponsorInvoiceReviewUrl({ source, content: `prospect-${vertical.slug}`, verticalSlug: vertical.slug }),
+    firstAction: "Request USD 49 invoice review",
+    proofNeeded: "Company URL, product category, intended audience, safe landing page, and placement exclusions.",
+  };
+}
+
 function sponsorOpportunityPayload(generatedAt = new Date().toISOString()) {
   const trackedInquiryUrl = `${siteUrl("sponsor").replace(/\/$/, "")}?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_opportunities&utm_content=board#sponsor-inquiry`;
+  const starterReviewUrl = sponsorInvoiceReviewUrl({ source: "sponsor-opportunities", content: "board-hero" });
   return {
     name: "PrintableTools Lab Sponsor Opportunities",
     generatedAt,
     canonical: siteUrl("sponsor-opportunities"),
     sponsorPage: siteUrl("sponsor"),
     sponsorCall: siteUrl("sponsor-call"),
+    sponsorStarterReview: siteUrl("sponsor-starter-review"),
     mediaKit: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
     inquiryUrl: trackedInquiryUrl,
-    publicReplyUrl: sponsorPublicReplyUrl({ proposalUrl: trackedInquiryUrl }),
+    starterReviewUrl,
+    invoiceReviewUrl: starterReviewUrl,
+    recommendedNextStep: "Request the USD 49 starter invoice review before any visible sponsor placement is discussed.",
+    publicReplyUrl: sponsorPublicReplyUrl({ proposalUrl: starterReviewUrl }),
     opportunities: SPONSOR_VERTICALS.map((vertical) => ({
       slug: vertical.slug,
       title: vertical.title,
@@ -5181,8 +5213,10 @@ function sponsorOpportunityPayload(generatedAt = new Date().toISOString()) {
       sponsorFit: vertical.sponsorFit,
       priceHint: vertical.priceHint,
       trackedUrl: `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=${encodeURIComponent(vertical.campaign)}&utm_content=board`,
+      invoiceReviewUrl: sponsorInvoiceReviewUrl({ source: "sponsor-opportunities", content: `board-${vertical.slug}`, verticalSlug: vertical.slug }),
       categories: vertical.sponsorCategories,
     })),
+    prospectPaths: SPONSOR_VERTICALS.map((vertical) => sponsorProspectPathEntry(vertical)),
     placements: SPONSOR_PLACEMENTS,
     rules: [
       "Use this board only for policy-fit sponsor and partner discovery.",
@@ -6223,7 +6257,13 @@ function sponsorOpportunitiesHtml() {
         <a href="/sponsor-call/">Sponsor call</a>
         <h1>Sponsor opportunities for free PDF, image, and QR workflows</h1>
         <p>This board lists the current policy-fit sponsor categories for PrintableTools Lab. It is built for partners, resource pages, newsletters, and crawlers that need a concise view of the available audiences without private outreach or payment details.</p>
-        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(starterReviewUrl)}">Request USD 49 invoice review</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(board.inquiryUrl)}">Send sponsor inquiry</a> <a class="button ghost" href="/sponsor-opportunities.json">Open opportunities JSON</a> <a class="button ghost" href="/sponsor-media-kit.json">Open media kit</a></p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(starterReviewUrl)}">Request USD 49 invoice review</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(board.inquiryUrl)}">Send sponsor inquiry</a> <a class="button ghost" href="/sponsor-opportunities.json">Open opportunities JSON</a> <a class="button ghost" href="/sponsor-intent-feed.json">Open intent feed</a> <a class="button ghost" href="/sponsor-media-kit.json">Open media kit</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Sponsor prospect paths</h2>
+        <div class="grid-3">
+          ${board.prospectPaths.map((item) => `<article class="panel"><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.sponsorFit)}</p><p><strong>${escapeHtml(item.firstAction)}</strong></p><p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(item.invoiceReviewUrl)}">Request invoice review for this audience</a></p></article>`).join("\n")}
+        </div>
       </section>
       <section class="shell section">
         <h2>Open sponsor audiences</h2>
