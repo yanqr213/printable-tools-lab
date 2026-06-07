@@ -106,7 +106,7 @@ function main() {
     copyTrackedFiles(deployFiles, deployDir);
     assertNoForbiddenFiles(deployDir);
     console.log(`Prepared ${deployFiles.length} public deploy file(s).`);
-    const wranglerArgs = ["wrangler", "pages", "deploy", deployDir, "--project-name", projectName, "--commit-dirty=true"];
+    const wranglerArgs = ["wrangler", "pages", "deploy", deployDir, "--project-name", projectName, "--branch", "main", "--commit-dirty=true"];
     run("npx.cmd", wranglerArgs);
   } finally {
     fs.rmSync(deployDir, { recursive: true, force: true });
