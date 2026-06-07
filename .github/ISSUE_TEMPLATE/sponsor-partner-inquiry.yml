@@ -6,7 +6,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for the interest. This is a public GitHub issue form, so include only public-safe company and product details. Do not include private payment, tax, bank, phone, customer, identity, or confidential file information.
+        Thanks for the interest. The fastest paid pilot path is the USD 49 starter sponsor review: https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=github&utm_medium=issue_template&utm_campaign=sponsor_starter_review&utm_content=issue-top#sponsor-inquiry
+
+        This is a public GitHub issue form, so include only public-safe company and product details. Do not include private payment, tax, bank, phone, customer, identity, or confidential file information.
 
   - type: dropdown
     id: placement_interest
@@ -14,6 +16,7 @@ body:
       label: Placement interest
       description: Pick the closest public-safe inquiry type.
       options:
+        - Starter fit review
         - Media kit review
         - Directory visibility
         - Content sponsorship
@@ -61,8 +64,8 @@ body:
       label: Budget range
       description: Pick the closest starting point. Final acceptance depends on fit and safety review.
       options:
-        - Exploratory
         - Under USD 250
+        - Exploratory
         - USD 250 to USD 500
         - Partner or no-cash test
         - Other
@@ -96,7 +99,7 @@ body:
     attributes:
       label: Selected pilot deal
       description: Public-safe deal label, if known.
-      placeholder: Guide sponsor pilot / Starter fit review / Vertical category pilot
+      placeholder: Starter fit review / Guide sponsor pilot / Vertical category pilot
     validations:
       required: false
 

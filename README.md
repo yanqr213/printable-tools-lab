@@ -10,6 +10,8 @@ PrintableTools Lab is a no-signup utility site for practical browser files: chec
 
 PrintableTools Lab is accepting a small number of policy-fit sponsor and partner inquiries while keeping tools free and no-signup.
 
+- Fastest paid pilot path: https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=github&utm_medium=readme&utm_campaign=sponsor_starter_review&utm_content=readme-top#sponsor-inquiry
+- Starter sponsor review: USD 49 manual fit review before any visible placement or external invoice.
 - Sponsor opportunities: https://printable-tools-lab.pages.dev/sponsor-opportunities/
 - Sponsor call: https://printable-tools-lab.pages.dev/sponsor-call/
 - Inquiry form: https://printable-tools-lab.pages.dev/sponsor/
@@ -17,7 +19,7 @@ PrintableTools Lab is accepting a small number of policy-fit sponsor and partner
 - Public sponsor and partner notes: [PARTNERS.md](PARTNERS.md)
 - Public GitHub issue form: https://github.com/yanqr213/printable-tools-lab/issues/new/choose
 
-Revenue is not counted until there is a real qualified sponsor inquiry, signed agreement, approved platform balance, or settled external payment.
+Sponsor fit must be policy-safe, clearly labeled, and useful to the relevant free-tool audience. Revenue is not counted until there is a real qualified sponsor inquiry, signed agreement, approved platform balance, or settled external payment.
 
 ## Free PDF tool directory
 

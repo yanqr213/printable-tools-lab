@@ -4,10 +4,12 @@ PrintableTools Lab is a free, no-signup browser utility site for PDF, image, QR,
 
 Start here:
 
+- Fastest paid pilot path: https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=github&utm_medium=partners&utm_campaign=sponsor_starter_review&utm_content=partners-top#sponsor-inquiry
+- USD 49 starter sponsor review: manual fit review for a public product page before any visible placement or external invoice.
 - Sponsor opportunities: https://printable-tools-lab.pages.dev/sponsor-opportunities/
 - Sponsor call: https://printable-tools-lab.pages.dev/sponsor-call/
 - Inquiry form: https://printable-tools-lab.pages.dev/sponsor/
-- Media kit JSON: https://printable-tools-lab.pages.dev/media-kit.json
+- Media kit JSON: https://printable-tools-lab.pages.dev/sponsor-media-kit.json
 - GitHub Pages mirror: https://yanqr213.github.io/printable-tools-lab/sponsor-opportunities/
 - Public GitHub issue option: https://github.com/yanqr213/printable-tools-lab/issues/new/choose
 
@@ -29,7 +31,7 @@ Current low-risk pilot anchors:
 - USD 99 to USD 149 labeled guide sponsorship pilot on a policy-fit page or directory.
 - Partner distribution swap where both sides publish clear, labeled, no-payment discovery links.
 
-Pricing is a starting point for small pilots, not a guarantee of acceptance. A placement must be useful to the relevant tool audience and must not weaken the site's free-download promise.
+The USD 49 starter review is the preferred first step because it can be reviewed manually before any sponsor copy or payment link is discussed. Pricing is a starting point for small pilots, not a guarantee of acceptance. A placement must be useful to the relevant tool audience and must not weaken the site's free-download promise.
 
 ## Safety Rules
 

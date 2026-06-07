@@ -441,6 +441,24 @@ if (!fs.existsSync(sponsorIssueTemplateFile)) failures.push("Missing sponsor pub
 else {
   const issueTemplate = fs.readFileSync(sponsorIssueTemplateFile, "utf8");
   if (!issueTemplate.includes("requested_next_step") || !issueTemplate.includes("Request pilot invoice review") || !issueTemplate.includes("proposal_url") || !issueTemplate.includes("selected_deal")) failures.push("Sponsor public issue template missing invoice review fallback fields.");
+  if (!issueTemplate.includes("sponsor-starter-review") || !issueTemplate.includes("Starter fit review") || !issueTemplate.includes("Under USD 250")) failures.push("Sponsor public issue template should prioritize the USD 49 starter review path.");
+  if (!issueTemplate.includes("private payment") || !issueTemplate.includes("confidential file")) failures.push("Sponsor public issue template missing public safety warning.");
+}
+
+const readmeFile = path.join(root, "README.md");
+if (!fs.existsSync(readmeFile)) failures.push("Missing README.md.");
+else {
+  const readme = fs.readFileSync(readmeFile, "utf8");
+  if (!readme.includes("sponsor-starter-review") || !readme.includes("USD 49")) failures.push("README should expose the USD 49 sponsor starter review path.");
+}
+
+const partnersFile = path.join(root, "PARTNERS.md");
+if (!fs.existsSync(partnersFile)) failures.push("Missing PARTNERS.md.");
+else {
+  const partners = fs.readFileSync(partnersFile, "utf8");
+  if (!partners.includes("sponsor-starter-review") || !partners.includes("USD 49 starter sponsor review")) failures.push("PARTNERS.md should expose the starter sponsor review path.");
+  if (partners.includes("pages.dev/media-kit.json")) failures.push("PARTNERS.md should link sponsor-media-kit.json, not a missing media-kit.json path.");
+  if (!partners.includes("sponsor-media-kit.json")) failures.push("PARTNERS.md missing sponsor media kit JSON link.");
 }
 const packageJson = readJsonFile(path.join(root, "package.json"), {});
 if (packageJson.scripts?.["sponsor:prospects"] !== "node scripts/generate-sponsor-prospect-queue.cjs") failures.push("package.json missing sponsor:prospects command.");
