@@ -1,0 +1,80 @@
+name: Sponsor or partner inquiry
+description: Public-safe sponsor, partner, or distribution inquiry for PrintableTools Lab.
+title: "[Sponsor/Partner]: "
+labels: ["sponsor", "partner", "business-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the interest. This is a public GitHub issue form, so include only public-safe company and product details. Do not include private payment, tax, bank, phone, customer, identity, or confidential file information.
+
+  - type: dropdown
+    id: placement_interest
+    attributes:
+      label: Placement interest
+      description: Pick the closest public-safe inquiry type.
+      options:
+        - Media kit review
+        - Directory visibility
+        - Content sponsorship
+        - Partner distribution
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: audience_fit
+    attributes:
+      label: Audience fit
+      description: Pick the audience that best matches the public product or offer.
+      options:
+        - PDF, image, or QR SaaS
+        - Local QR marketing
+        - Resume or career
+        - Classroom or education
+        - Small business paperwork
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: public_website_url
+    attributes:
+      label: Public website URL
+      description: Use a public product, company, or landing page URL. Do not include private contact details.
+      placeholder: https://example.com
+    validations:
+      required: true
+
+  - type: textarea
+    id: public_fit_note
+    attributes:
+      label: Public-safe audience fit note
+      description: Briefly explain why the product or offer is useful to PrintableTools Lab visitors.
+      placeholder: Example: Our tool helps small businesses prepare labeled invoice PDFs without collecting customer files.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: budget_range
+    attributes:
+      label: Budget range
+      description: Pick the closest starting point. Final acceptance depends on fit and safety review.
+      options:
+        - Exploratory
+        - Under USD 250
+        - USD 250 to USD 500
+        - Partner or no-cash test
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: public_safety_confirmations
+    attributes:
+      label: Public safety confirmations
+      options:
+        - label: I understand this issue is public, and I will not include private payment, tax, bank, phone, customer, identity, or confidential file data.
+          required: true
+        - label: I understand PrintableTools Lab downloads stay free and placements must be clearly labeled.
+          required: true
