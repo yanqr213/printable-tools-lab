@@ -146,6 +146,7 @@ else {
   if (!html.includes('data-sponsor-quick-deal') || !html.includes("2-minute pilot invoice review")) failures.push("Sponsor page missing explicit quick pilot deal selector.");
   if (!html.includes("Fastest paid pilot path") || !html.includes("Use USD 49 starter review")) failures.push("Sponsor page missing fastest paid pilot path.");
   if (!html.includes('/sponsor-starter-review/?utm_source=sponsor-page') || !html.includes("Start USD 49 review")) failures.push("Sponsor page hero should point to the USD 49 starter review.");
+  if (!html.includes("Open public invoice request") || !html.includes("data-sponsor-public-invoice-request")) failures.push("Sponsor page missing public invoice request CTA.");
   if (!html.includes('option value="starter-fit-review" selected')) failures.push("Sponsor page should default quick pilot to USD 49 starter fit review.");
   if (!html.includes("two business-safe fields") || !html.includes("Company or project (optional)")) failures.push("Sponsor page quick invoice form should require only email and website.");
   if (!html.includes("Public-safe reply form") || !hasPrefilledSponsorReplyUrl(html)) failures.push("Sponsor page missing prefilled public-safe reply fallback.");
@@ -185,6 +186,7 @@ else {
   if (!html.includes("Starter fit review") || !html.includes("USD 49")) failures.push("Starter sponsor review page missing default deal and price.");
   if (!html.includes("What the USD 49 review covers")) failures.push("Starter sponsor review page missing review scope.");
   if (!html.includes("2-minute pilot invoice review") || !html.includes("fast form needs only business email and website")) failures.push("Starter sponsor review page missing low-friction intake copy.");
+  if (!html.includes("Open public invoice request") || !html.includes("data-sponsor-public-invoice-request")) failures.push("Starter sponsor review page missing public invoice request CTA.");
   if (html.indexOf('data-sponsor-quick-form') > html.indexOf("<h2>Starter fit review</h2>")) failures.push("Starter sponsor review page should place the quick sponsor form before explanatory deal cards.");
   if (!html.includes('data-sponsor-quick-form') || !html.includes('data-sponsor-lead-form')) failures.push("Starter sponsor review page missing sponsor lead forms.");
   if (!html.includes('option value="starter-fit-review" selected')) failures.push("Starter sponsor review page should default quick pilot to USD 49 starter fit review.");
@@ -413,6 +415,7 @@ else {
   if (!script.includes("submitSponsorQuickLeadForm") || !script.includes("data-sponsor-quick-form")) failures.push("app.js missing fast sponsor invoice review form handler.");
   if (!script.includes("DEFAULT_SPONSOR_DEAL_ID") || !script.includes("starter-fit-review") || !script.includes("Fastest paid pilot path")) failures.push("app.js missing USD 49 starter review default path.");
   if (!script.includes("renderSponsorStarterReviewPage") || !script.includes("sponsor-starter-review") || !script.includes("Start USD 49 review")) failures.push("app.js missing direct USD 49 starter sponsor review route.");
+  if (!script.includes("data-sponsor-public-invoice-request") || !script.includes("Open public invoice request")) failures.push("app.js missing public invoice request CTA.");
   if (!script.includes("initSponsorQuickDealPicker") || !script.includes("quickDealId")) failures.push("app.js missing quick sponsor deal picker handling.");
   if (!script.includes("Company or project (optional)") || !script.includes("Public-safe reply form")) failures.push("app.js missing lower-friction sponsor lead capture path.");
   if (!script.includes("sponsorLeadPublicReplyUrl") || !script.includes("Open public-safe reply")) failures.push("app.js missing public-safe sponsor fallback for failed lead storage.");

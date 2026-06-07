@@ -7480,7 +7480,7 @@ ${paragraphs.join("\n")}
         <a href="/free-pdf-tools/">Free tools</a>
         <h1>Sponsor PrintableTools Lab</h1>
         <p>PrintableTools Lab is a free no-signup browser utility site for PDF compression, image conversion, QR codes, business documents, career PDFs, upload-limit fixes, and printable planners. This page captures responsible sponsorship and partner inquiries without enabling ads or collecting payment on-site.</p>
-        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor-starter-review/?utm_source=sponsor-page&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=hero#sponsor-inquiry">Start USD 49 review</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Send sponsor inquiry</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor-deal-room/?utm_source=sponsor-page&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=hero">Open deal room</a></p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor-starter-review/?utm_source=sponsor-page&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=hero#sponsor-inquiry">Start USD 49 review</a> <a class="button secondary" data-sponsor-public-invoice-request data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open public invoice request</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor-deal-room/?utm_source=sponsor-page&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=hero">Open deal room</a></p>
       </section>
       ${renderSponsorLeadForm()}
       <section class="shell section">
@@ -7565,7 +7565,7 @@ ${paragraphs.join("\n")}
         <a href="/sponsor-deal-room/">Sponsor deal room</a>
         <h1>USD 49 starter sponsor review for PrintableTools Lab</h1>
         <p>A short manual fit review for sponsors who want to know whether their product is safe, relevant, and worth discussing before any visible placement. No payment is collected on this page; invoice or agreement steps happen externally after policy fit.</p>
-        <p><a class="button" data-sponsor-deal-select ${sponsorDealPrefillAttrs(deal)} data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Start USD 49 review</a> <a class="button secondary" href="/sponsor-deal-room.json">Open deal JSON</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Public-safe reply</a></p>
+        <p><a class="button" data-sponsor-deal-select ${sponsorDealPrefillAttrs(deal)} data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Start USD 49 review</a> <a class="button secondary" data-sponsor-public-invoice-request data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open public invoice request</a> <a class="button ghost" href="/sponsor-deal-room.json">Open deal JSON</a></p>
       </section>
       ${renderSponsorLeadForm()}
       <section class="shell section">
@@ -7857,8 +7857,8 @@ ${paragraphs.join("\n")}
             <p>Share only business-safe details. The inquiry is stored for follow-up review, while public dashboards show only aggregate lead counts.</p>
             <div class="notice sponsor-close-path">
               <strong>Fastest paid pilot path</strong>
-              <p>Start with the USD 49 starter fit review. The fast form needs only business email and website; company can be inferred from the public domain. This is the lowest-friction path to a real external sponsor agreement.</p>
-              <p><a class="button" data-sponsor-deal-select ${sponsorDealPrefillAttrs(defaultDeal)} data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Use USD 49 starter review</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Public-safe reply</a></p>
+              <p>Start with the USD 49 starter fit review. The fast form needs only business email and website; the public invoice request opens a prefilled GitHub issue when a partner wants a verifiable request without using site storage.</p>
+              <p><a class="button" data-sponsor-deal-select ${sponsorDealPrefillAttrs(defaultDeal)} data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Use USD 49 starter review</a> <a class="button secondary" data-sponsor-public-invoice-request data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open public invoice request</a></p>
             </div>
             <ul>
               <li>Best fit: relevant PDF, image, QR, productivity, classroom, career, or small-business tools.</li>
@@ -7867,8 +7867,8 @@ ${paragraphs.join("\n")}
             </ul>
             <div class="notice sponsor-public-reply">
               <strong>Prefer a public-safe reply?</strong>
-              <p>Open the GitHub sponsor reply form with only public company, website, fit, and deal context. It is a backup path for partners who do not want to use the site form.</p>
-              <p><a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Public-safe reply form</a></p>
+              <p>Public-safe reply form: open a prefilled USD 49 invoice-review issue with only public company, website, fit, and deal context. Do not include payment, tax, bank, phone, identity, password, or customer-file details.</p>
+              <p><a class="button ghost" data-sponsor-public-invoice-request data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open public invoice request</a></p>
             </div>
           </div>
           <form class="panel form-grid sponsor-quick-form" data-sponsor-quick-form>
