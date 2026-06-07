@@ -12886,6 +12886,49 @@ ${paragraphs.join("\n")}
     if (fallback) fallback.remove();
   }
 
+  function clearSponsorLeadSuccess(form) {
+    const success = form.querySelector("[data-sponsor-lead-success]");
+    if (success) success.remove();
+  }
+
+  function renderSponsorLeadSuccess(form, values, response = {}) {
+    const deal = sponsorDeals.find((item) => item.id === values.dealId) || sponsorDeals.find((item) => item.id === values.quickDealId) || sponsorDeals.find((item) => item.id === DEFAULT_SPONSOR_DEAL_ID) || sponsorDeals[0];
+    const vertical = sponsorVerticals.find((item) => item.slug === values.vertical) || sponsorVerticals.find((item) => item.campaign === values.utmCampaign) || sponsorVerticals[0];
+    const dealPath = sponsorProspectDealUrl({ id: values.utmContent || values.dealId || "direct-sponsor" }, deal, vertical);
+    const invoiceText = sponsorInvoiceRequestCopy(
+      {
+        id: values.utmContent || values.dealId || "direct-sponsor",
+        name: values.company || "Sponsor team",
+        website: values.website || "",
+        vertical: vertical.slug,
+        category: "Sponsor inquiry",
+        fitReason: values.audienceFit || deal.bestFor,
+      },
+      deal,
+      vertical,
+      values.path || dealPath,
+    );
+    const replyUrl = response.fallbackPublicReplyUrl || sponsorLeadPublicReplyUrl(values);
+    let panel = form.querySelector("[data-sponsor-lead-success]");
+    if (!panel) {
+      panel = document.createElement("div");
+      panel.className = "notice sponsor-lead-success";
+      panel.dataset.sponsorLeadSuccess = "true";
+      const status = form.querySelector("[data-sponsor-lead-status]");
+      if (status && status.parentNode) status.parentNode.insertBefore(panel, status.nextSibling);
+      else form.appendChild(panel);
+    }
+    panel.innerHTML = `
+      <p><strong>Next step ready.</strong> Your inquiry ID is ${escapeHtml(response.id || "pending-review")}. Copy the invoice/agreement request below if you want the fastest manual follow-up.</p>
+      <textarea class="request-copy-output sponsor-lead-success-output" readonly>${escapeHtml(invoiceText)}</textarea>
+      <div class="actions">
+        <button class="button" type="button" data-copy-text="${escapeHtml(invoiceText)}">Copy invoice/agreement request</button>
+        <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(dealPath)}">Review deal path</a>
+        <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(replyUrl)}" target="_blank" rel="noreferrer">Open public-safe reply</a>
+      </div>
+    `;
+  }
+
   function renderSponsorLeadFallback(form, values, subject = "PrintableTools Lab sponsor inquiry", publicReplyUrl = "") {
     const text = typeof values === "string" ? values : sponsorLeadFallbackText(values);
     if (!text.trim()) return;
@@ -12979,6 +13022,7 @@ ${paragraphs.join("\n")}
     Object.assign(values, getSponsorAttribution());
     setStatus("Sending sponsor inquiry...", "pending");
     clearSponsorLeadFallback(form);
+    clearSponsorLeadSuccess(form);
     if (submit) submit.disabled = true;
     try {
       const response = await fetch("/api/sponsor-lead", {
@@ -13004,6 +13048,7 @@ ${paragraphs.join("\n")}
         setStatus("Inquiry received. Sponsorship fit will be reviewed manually before any placement is discussed.", "success");
       }
       clearSponsorLeadFallback(form);
+      renderSponsorLeadSuccess(form, values, data);
       form.reset();
     } catch (error) {
       if (!error.skipFallback) renderSponsorLeadFallback(form, values, "PrintableTools Lab sponsor inquiry");
@@ -13039,6 +13084,7 @@ ${paragraphs.join("\n")}
     };
     setStatus("Sending fast invoice review request...", "pending");
     clearSponsorLeadFallback(form);
+    clearSponsorLeadSuccess(form);
     if (submit) submit.disabled = true;
     try {
       const response = await fetch("/api/sponsor-lead", {
@@ -13060,6 +13106,7 @@ ${paragraphs.join("\n")}
       track("sponsor_request_intent", { tool: "sponsor" });
       setStatus("Invoice review request received. Fit will be checked manually before any external invoice or agreement is sent.", "success");
       clearSponsorLeadFallback(form);
+      renderSponsorLeadSuccess(form, payload, data);
       form.reset();
     } catch (error) {
       if (!error.skipFallback) renderSponsorLeadFallback(form, payload, "PrintableTools Lab sponsor invoice review");

@@ -592,6 +592,17 @@ main {
   font-weight: 750;
 }
 
+.sponsor-lead-success {
+  display: grid;
+  gap: 10px;
+  border-color: rgba(47, 111, 63, 0.28);
+  background: #f3fbf5;
+}
+
+.sponsor-lead-success p {
+  margin: 0;
+}
+
 .audit-request-output {
   min-height: 360px;
   resize: vertical;
