@@ -5218,6 +5218,7 @@
     ].includes(parts[0])) return renderRetiredPaidExperiment(parts[0]);
     if (landingPagesBySlug[parts[0]]) return renderLandingPage(parts[0]);
     if (parts[0] === "dashboard") return renderDashboard();
+    if (parts[0] === "ops") return renderOpsMonitor();
     if (pages[parts[0]]) return renderStaticPage(parts[0]);
     return renderNotFound();
   }
@@ -7611,6 +7612,182 @@ ${paragraphs.join("\n")}
       }
     });
     loadRemoteMetrics();
+  }
+
+  function renderOpsMonitor() {
+    setMeta("Project Operations Monitor", "Noindex operations monitor for project traffic, source, path, tool, game, and monetization signals.");
+    app.innerHTML = `
+      <section class="shell dashboard ops-monitor">
+        <div class="section-head">
+          <div>
+            <h1>Project operations monitor</h1>
+            <p>Aggregate traffic and monetization signals for the active money projects. This page shows counts only, not private sponsor lead details.</p>
+          </div>
+          <div class="actions">
+            <a class="button secondary" href="/api/ops-metrics" target="_blank" rel="noreferrer">Open JSON</a>
+            <button class="button" id="refreshOpsMetrics" type="button">Refresh</button>
+          </div>
+        </div>
+        <div id="opsMetrics" class="metric-remote">Loading project metrics...</div>
+      </section>
+    `;
+    document.getElementById("refreshOpsMetrics").addEventListener("click", loadOpsMetrics);
+    loadOpsMetrics();
+  }
+
+  async function loadOpsMetrics() {
+    const target = document.getElementById("opsMetrics");
+    if (!target) return;
+    target.innerHTML = `<p class="help">Loading live project metrics...</p>`;
+    try {
+      const response = await fetch("/api/ops-metrics", { cache: "no-store" });
+      const data = await response.json();
+      if (!response.ok || !data.ok) throw new Error("Metrics unavailable");
+      const projects = Array.isArray(data.projects) ? data.projects : [];
+      const totals = data.totals || {};
+      const totalDownloads = (totals.download_pdf || 0) + (totals.download_file || 0);
+      const totalGenerations = (totals.generate_pdf || 0) + (totals.generate_file || 0);
+      const totalGameIntent = (totals.game_play_intent || 0) + (totals.game_fullscreen_open || 0) + (totals.game_embed_open || 0);
+      target.innerHTML = `
+        <div class="metric-grid ops-summary-grid">
+          <div class="metric-tile"><strong>${totals.page_view || 0}</strong><span>all page views</span></div>
+          <div class="metric-tile"><strong>${data.todayTotals?.page_view || 0}</strong><span>today views</span></div>
+          <div class="metric-tile"><strong>${totalDownloads}</strong><span>tool downloads</span></div>
+          <div class="metric-tile"><strong>${totalGenerations}</strong><span>tool generations</span></div>
+          <div class="metric-tile"><strong>${data.sponsorLeads || 0}</strong><span>sponsor leads</span></div>
+          <div class="metric-tile"><strong>${totalGameIntent}</strong><span>game play signals</span></div>
+        </div>
+        <div class="ops-project-list">
+          ${projects.map(projectOpsHtml).join("") || `<div class="panel"><p>No project rows returned yet.</p></div>`}
+        </div>
+        <div class="panel">
+          <h2>Global source mix</h2>
+          ${opsTable(["Source", "Views", "Downloads", "Depth", "Sponsor intent", "Game intent"], activeRows(data.sources || [], sourceScore).slice(0, 12).map((row) => [
+            row.source,
+            row.page_view || 0,
+            (row.download_pdf || 0) + (row.download_file || 0),
+            (row.free_tool_depth || 0) + (row.guide_depth || 0),
+            row.sponsor_request_intent || 0,
+            (row.game_play_intent || 0) + (row.game_fullscreen_open || 0) + (row.game_embed_open || 0),
+          ]))}
+        </div>
+        <p class="help">Revenue is still counted only after a platform balance, sponsor agreement, or settled payment is verified. Views and clicks are operating signals, not money.</p>
+      `;
+    } catch (error) {
+      target.innerHTML = `<div class="panel"><p>Live project metrics are not available yet.</p><p class="help">${escapeHtml(error.message || "Metrics unavailable")}</p></div>`;
+    }
+  }
+
+  function projectOpsHtml(project) {
+    const summary = project.summary || {};
+    const totals = project.totals || {};
+    const isGameProject = project.id === "pocket-arcade-shelf";
+    const primarySignal = isGameProject ? (summary.gamePlayIntent || 0) : (summary.sponsorLeads || 0);
+    const primaryLabel = isGameProject ? "play intent" : "sponsor leads";
+    const sourceRows = activeRows(project.sources || [], sourceScore).slice(0, 10);
+    const pathRows = activeRows(project.paths || [], (row) => (row.page_view || 0) + (row.today_page_view || 0) * 2).slice(0, 10);
+    const toolRows = activeRows(project.tools || [], toolScore).slice(0, 12);
+    return `
+      <article class="panel ops-project">
+        <div class="ops-project-head">
+          <div>
+            <p class="eyebrow">${escapeHtml(project.id || "project")}</p>
+            <h2>${escapeHtml(project.name || "Project")}</h2>
+            <p>${escapeHtml(project.goal || "")}</p>
+          </div>
+          <a class="button secondary" href="${escapeHtml(project.url || "#")}" target="_blank" rel="noreferrer">Open project</a>
+        </div>
+        <div class="metric-grid compact ops-project-grid">
+          <div class="metric-tile"><strong>${summary.pageViews || 0}</strong><span>views</span></div>
+          <div class="metric-tile"><strong>${summary.todayPageViews || 0}</strong><span>today views</span></div>
+          <div class="metric-tile"><strong>${primarySignal}</strong><span>${escapeHtml(primaryLabel)}</span></div>
+          <div class="metric-tile"><strong>${summary.downloads || 0}</strong><span>downloads</span></div>
+          <div class="metric-tile"><strong>${summary.generations || 0}</strong><span>generations</span></div>
+          <div class="metric-tile"><strong>${summary.commercialIntent || summary.gameFullscreenOpen || 0}</strong><span>${isGameProject ? "fullscreen opens" : "commercial intent"}</span></div>
+        </div>
+        <div class="ops-detail-grid">
+          <section>
+            <h3>Sources</h3>
+            ${opsTable(["Source", "Views", "Intent"], sourceRows.map((row) => [
+              row.source,
+              row.page_view || 0,
+              (row.sponsor_request_intent || 0) + (row.game_play_intent || 0) + (row.game_fullscreen_open || 0) + (row.game_embed_open || 0),
+            ]))}
+          </section>
+          <section>
+            <h3>Pages</h3>
+            ${opsTable(["Path", "Views", "Today"], pathRows.map((row) => [
+              row.path,
+              row.page_view || 0,
+              row.today_page_view || 0,
+            ]))}
+          </section>
+          <section>
+            <h3>${isGameProject ? "Games" : "Tools and offers"}</h3>
+            ${opsTable([isGameProject ? "Game" : "Tool", "Views/actions", "Downloads"], toolRows.map((row) => [
+              row.tool,
+              toolScore(row),
+              (row.download_pdf || 0) + (row.download_file || 0),
+            ]))}
+          </section>
+          <section>
+            <h3>Event totals</h3>
+            ${opsTable(["Event", "Total", "Today"], eventRows(totals, project.todayTotals || {}))}
+          </section>
+        </div>
+      </article>
+    `;
+  }
+
+  function eventRows(totals, todayTotals) {
+    const names = [
+      ["page_view", "Page views"],
+      ["download_pdf", "PDF downloads"],
+      ["download_file", "File downloads"],
+      ["free_tool_depth", "Free-tool depth"],
+      ["sponsor_request_intent", "Sponsor intent"],
+      ["sponsor_lead_submit", "Sponsor leads"],
+      ["game_play_intent", "Game play intent"],
+      ["game_fullscreen_open", "Fullscreen opens"],
+      ["game_embed_open", "Embed opens"],
+    ];
+    return names
+      .filter(([key]) => (totals[key] || 0) || (todayTotals[key] || 0))
+      .map(([key, label]) => [label, totals[key] || 0, todayTotals[key] || 0]);
+  }
+
+  function activeRows(rows, scoreFn) {
+    return rows
+      .slice()
+      .filter((row) => scoreFn(row) > 0)
+      .sort((a, b) => scoreFn(b) - scoreFn(a) || String(a.tool || a.source || a.path).localeCompare(String(b.tool || b.source || b.path)));
+  }
+
+  function sourceScore(row) {
+    return (row.page_view || 0)
+      + ((row.download_pdf || 0) + (row.download_file || 0)) * 4
+      + ((row.free_tool_depth || 0) + (row.guide_depth || 0)) * 3
+      + (row.sponsor_request_intent || 0) * 5
+      + ((row.game_play_intent || 0) + (row.game_fullscreen_open || 0) + (row.game_embed_open || 0)) * 4;
+  }
+
+  function toolScore(row) {
+    return ((row.download_pdf || 0) + (row.download_file || 0)) * 4
+      + ((row.generate_pdf || 0) + (row.generate_file || 0)) * 2
+      + (row.free_tool_depth || 0) * 3
+      + (row.limit_hit || 0)
+      + (row.seller_checkout_intent || 0) * 4
+      + (row.service_request_intent || 0) * 4
+      + (row.audit_request_intent || 0) * 4
+      + (row.sponsor_request_intent || 0) * 5
+      + ((row.game_play_intent || 0) + (row.game_fullscreen_open || 0) + (row.game_embed_open || 0)) * 4;
+  }
+
+  function opsTable(headers, rows) {
+    const body = rows.length
+      ? rows.map((row) => `<tr>${row.map((cell) => `<td>${escapeHtml(cell)}</td>`).join("")}</tr>`).join("")
+      : `<tr><td colspan="${headers.length}">No signal yet.</td></tr>`;
+    return `<div class="preview-stage compact-table"><table class="event-table"><thead><tr>${headers.map((header) => `<th>${escapeHtml(header)}</th>`).join("")}</tr></thead><tbody>${body}</tbody></table></div>`;
   }
 
   function renderNotFound() {

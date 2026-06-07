@@ -4,8 +4,9 @@ const path = require("path");
 const root = path.resolve(__dirname, "..");
 
 async function main() {
-  const eventSource = loadFunction("functions/api/event.js", ["onRequestPost", "onRequestGet"]);
+  const eventSource = loadFunction("functions/api/event.js", ["onRequestPost", "onRequestGet", "onRequestOptions"]);
   const metricsSource = loadFunction("functions/api/metrics.js", ["onRequestGet"]);
+  const opsMetricsSource = loadFunction("functions/api/ops-metrics.js", ["onRequestGet"]);
   const sponsorLeadSource = loadFunction("functions/api/sponsor-lead.js", ["onRequestPost", "onRequestGet"]);
   const store = new MemoryStore();
   const env = { PTL_EVENTS: store };
@@ -20,6 +21,9 @@ async function main() {
   });
   const eventPayload = await eventResponse.json();
   assert(eventResponse.status === 200 && eventPayload.ok, "Event collector should accept supported events");
+  const optionsResponse = eventSource.onRequestOptions();
+  assert(optionsResponse.status === 200, "Event collector should accept CORS preflight");
+  assert(optionsResponse.headers.get("Access-Control-Allow-Origin") === "*", "Event collector should expose cross-project CORS headers");
 
   const metricsResponse = await metricsSource.onRequestGet({ env });
   const metricsPayload = await metricsResponse.json();
@@ -31,6 +35,27 @@ async function main() {
   assert(invoice.download_pdf === 1, "Metrics should count per-tool downloads");
   const noSignupTools = metricsPayload.sources.find((row) => row.source === "nosignuptools");
   assert(noSignupTools.download_pdf === 1, "Metrics should count per-source downloads");
+  const opsMetricsPayload = await (await opsMetricsSource.onRequestGet({ env })).json();
+  const printableProject = opsMetricsPayload.projects.find((row) => row.id === "printable-tools-lab");
+  const gameProject = opsMetricsPayload.projects.find((row) => row.id === "pocket-arcade-shelf");
+  assert(printableProject, "Metrics should include PrintableTools Lab project row");
+  assert(gameProject, "Metrics should include Pocket Arcade Shelf project row");
+  assert(printableProject.summary.downloads === 1, "PrintableTools Lab project should count project downloads");
+
+  const gameIntentResponse = await eventSource.onRequestPost({
+    request: new Request("https://printable-tools-lab.pages.dev/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Origin": "https://pocket-arcade-shelf.pages.dev" },
+      body: JSON.stringify({ project: "pocket-arcade-shelf", name: "game_play_intent", tool: "spell-sigil-duel", path: "/game/spell-sigil-duel.html", source: "embed" }),
+    }),
+    env,
+  });
+  assert(gameIntentResponse.status === 200, "Event collector should accept Pocket Arcade Shelf game events");
+  const gameMetrics = await (await opsMetricsSource.onRequestGet({ env })).json();
+  const updatedGameProject = gameMetrics.projects.find((row) => row.id === "pocket-arcade-shelf");
+  const spellGame = updatedGameProject.tools.find((row) => row.tool === "spell-sigil-duel");
+  assert(updatedGameProject.summary.gamePlayIntent === 1, "Project metrics should count game play intent");
+  assert(spellGame.game_play_intent === 1, "Project metrics should count per-game play intent");
   for (const tool of ["multi-image-pdf", "compress-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "compress-image", "compress-image-to-kb", "resize-image", "convert-image", "remove-background", "crop-image", "rotate-image", "watermark-image", "add-text-image", "signature-png", "passport-photo", "qr-code", "wifi-qr-code", "vcard-qr-code", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf", "text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf", "receipt-generator", "timesheet-generator", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker", "packing-slip", "work-order", "inventory-sheet", "resume-builder", "ats-resume-checker", "certificate-generator", "todo-list"]) {
     assert(metricsPayload.tools.some((row) => row.tool === tool), `Metrics should include ${tool}`);
   }

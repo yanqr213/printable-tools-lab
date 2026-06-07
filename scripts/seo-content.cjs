@@ -5395,6 +5395,13 @@ const pages = [
     html: `<section class="shell section"><h1>Local validation dashboard</h1><p>This page shows local browser validation events after the app loads.</p></section>`,
   },
   {
+    path: "ops",
+    title: "Project Operations Monitor",
+    description: "Noindex operations monitor for project-level traffic, source, path, tool, game, and monetization signals.",
+    index: false,
+    html: `<section class="shell section"><h1>Project operations monitor</h1><p>This page loads aggregate project metrics after the app loads.</p></section>`,
+  },
+  {
     path: "about",
     title: "About PrintableTools Lab",
     description: "PrintableTools Lab makes quick, practical PDF generators and image tools for families, small businesses, teachers, tutors, and home organizers.",
@@ -5799,7 +5806,7 @@ function sponsorPageHtml() {
         <p>PrintableTools Lab is a free no-signup browser utility site for PDF compression, image conversion, QR codes, business documents, career PDFs, upload-limit fixes, and printable planners. This page captures responsible sponsorship and partner inquiries without enabling ads or collecting payment on-site.</p>
         <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Send sponsor inquiry</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/dashboard/">View live metrics</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/submit-directory/">Review media facts</a></p>
       </section>
-      ${sponsorLeadFormHtml()}
+${sponsorLeadFormHtml()}
       <section class="shell section">
         <h2>What can be sponsored</h2>
         <div class="grid-3">
@@ -5975,7 +5982,7 @@ function sponsorVerticalPageHtml(vertical) {
           <article class="panel"><h3>Revenue gate</h3><p>Clicks and form fills are validation. Revenue counts only after a signed agreement or settled external payment.</p></article>
         </div>
       </section>
-      ${sponsorLeadFormHtml()}
+${sponsorLeadFormHtml()}
       <section class="shell section">
         <h2>Relevant tool inventory</h2>
         <div class="cluster-links">

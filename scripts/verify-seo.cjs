@@ -341,6 +341,7 @@ else {
   if (robots.includes("Sitemap: https://printable-tools-lab.pages.dev/llms.txt")) failures.push("robots.txt should not list llms.txt as a sitemap.");
   if (robots.includes("Sitemap: https://printable-tools-lab.pages.dev/tools.json")) failures.push("robots.txt should not list tools.json as a sitemap.");
   if (!robots.includes("Disallow: /dashboard/")) failures.push("robots.txt should disallow dashboard.");
+  if (!robots.includes("Disallow: /ops/")) failures.push("robots.txt should disallow ops monitor.");
   if (!robots.includes("Disallow: /reports/")) failures.push("robots.txt should disallow reports.");
 }
 

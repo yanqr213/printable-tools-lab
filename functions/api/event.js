@@ -17,6 +17,9 @@ const ALLOWED_EVENTS = new Set([
   "service_request_intent",
   "audit_request_intent",
   "sponsor_request_intent",
+  "game_play_intent",
+  "game_fullscreen_open",
+  "game_embed_open",
 ]);
 
 const ALLOWED_SOURCES = new Set([
@@ -41,6 +44,9 @@ const ALLOWED_SOURCES = new Set([
   "directory",
   "community",
   "referral",
+  "embed",
+  "publisher",
+  "platform-review",
 ]);
 
 const ALLOWED_TOOLS = new Set([
@@ -115,6 +121,32 @@ const ALLOWED_TOOLS = new Set([
   "custom-local-print-pack",
   "market-table-print-audit",
   "sponsor",
+  "pocket-arcade-shelf",
+  "game-portal",
+  "spell-sigil-duel",
+  "ember-crypt-rogue",
+  "turbo-diner-shift",
+  "cascade-mini-golf",
+  "prism-pinball-heist",
+  "penalty-fever-arena",
+  "pixel-potion-clicker",
+  "skyhook-obby-rush",
+  "orbital-bubble-forge",
+  "crystal-current-match",
+  "signal-rail-sprint",
+  "starfall-salvage",
+  "lumen-grove-keeper",
+  "echo-archive-mystery",
+  "neon-drift-outlaw",
+  "verdant-gridworks",
+  "void-glyph-cards",
+  "shadow-vault-tactics",
+  "rune-forge-atelier",
+]);
+
+const ALLOWED_PROJECTS = new Set([
+  "printable-tools-lab",
+  "pocket-arcade-shelf",
 ]);
 
 export async function onRequestPost({ request, env }) {
@@ -126,16 +158,27 @@ export async function onRequestPost({ request, env }) {
     const tool = cleanTool(body.tool || "site");
     const source = cleanSource(body.source || "direct");
     const path = cleanPath(body.path || "/");
+    const project = cleanProject(body.project || inferProject(request));
     const day = new Date().toISOString().slice(0, 10);
     const keys = [
       `day:${day}:event:${name}`,
       `day:${day}:tool:${tool}:event:${name}`,
       `day:${day}:source:${source}:event:${name}`,
+      `day:${day}:project:${project}:event:${name}`,
+      `day:${day}:project:${project}:tool:${tool}:event:${name}`,
+      `day:${day}:project:${project}:source:${source}:event:${name}`,
       `total:event:${name}`,
       `total:tool:${tool}:event:${name}`,
       `total:source:${source}:event:${name}`,
+      `total:project:${project}:event:${name}`,
+      `total:project:${project}:tool:${tool}:event:${name}`,
+      `total:project:${project}:source:${source}:event:${name}`,
     ];
-    if (name === "page_view") keys.push(`day:${day}:path:${path}:views`);
+    if (name === "page_view") {
+      keys.push(`day:${day}:path:${path}:views`);
+      keys.push(`day:${day}:project:${project}:path:${path}:views`);
+      keys.push(`total:project:${project}:path:${path}:views`);
+    }
     await Promise.all(keys.map((key) => increment(env.PTL_EVENTS, key)));
     return json({ ok: true });
   } catch (error) {
@@ -176,12 +219,23 @@ function canonicalSource(source) {
   if (source === "short_video") return "short-video";
   if (source === "game_platform") return "game-platform";
   if (source === "sponsor-call") return "sponsor-outreach";
+  if (source === "publisher-embed") return "embed";
   return source;
 }
 
 function cleanTool(value) {
   const tool = cleanKey(value || "site", 64);
   return ALLOWED_TOOLS.has(tool) ? tool : "site";
+}
+
+function cleanProject(value) {
+  const project = cleanKey(value || "printable-tools-lab", 64);
+  return ALLOWED_PROJECTS.has(project) ? project : "printable-tools-lab";
+}
+
+function inferProject(request) {
+  const origin = request.headers.get("origin") || request.headers.get("referer") || "";
+  return /pocket-arcade-shelf/i.test(origin) ? "pocket-arcade-shelf" : "printable-tools-lab";
 }
 
 function cleanPath(value) {
@@ -196,6 +250,13 @@ function json(payload, status = 200) {
       "Content-Type": "application/json; charset=utf-8",
       "Cache-Control": "no-store",
       "X-Content-Type-Options": "nosniff",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
     },
   });
+}
+
+export function onRequestOptions() {
+  return json({ ok: true });
 }

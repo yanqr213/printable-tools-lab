@@ -56,6 +56,7 @@ const robots = [
   "User-agent: *",
   "Allow: /",
   "Disallow: /dashboard/",
+  "Disallow: /ops/",
   "Disallow: /roadmap/",
   "Disallow: /launch-kit/",
   "Disallow: /reports/",

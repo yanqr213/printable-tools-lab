@@ -1,7 +1,9 @@
 const EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "guide_depth", "limit_hit", "ai_ideas", "ai_ideas_apply", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit"];
-const SOURCE_EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "guide_depth", "seller_sample_download", "seller_checkout_intent", "service_request_intent", "audit_request_intent", "sponsor_request_intent"];
+const SOURCE_EVENTS = ["page_view", "download_pdf", "download_file", "free_tool_depth", "guide_depth", "seller_sample_download", "seller_checkout_intent", "service_request_intent", "audit_request_intent", "sponsor_request_intent"];
 const TOOL_EVENTS = ["generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "limit_hit", "seller_sample_download", "seller_checkout_intent", "service_request_intent", "audit_request_intent"];
-const TOOLS = [
+const PRINTABLE_TOOL_EVENTS = [...TOOL_EVENTS, "sponsor_request_intent", "sponsor_lead_submit"];
+const GAME_EVENTS = ["page_view", "game_play_intent", "game_fullscreen_open", "game_embed_open"];
+const PRINTABLE_TOOLS = [
   "invoice-generator",
   "estimate-generator",
   "purchase-order",
@@ -106,7 +108,7 @@ export async function onRequestGet({ env }) {
     Promise.all(EVENTS.map(async (event) => [event, await count(`day:${today}:event:${event}`)])),
     count("total:sponsor_leads"),
     count(`day:${today}:sponsor_leads`),
-    Promise.all(TOOLS.map(async (tool) => {
+    Promise.all(PRINTABLE_TOOLS.map(async (tool) => {
       const eventEntries = await Promise.all(
         TOOL_EVENTS.map(async (event) => [
           event,
