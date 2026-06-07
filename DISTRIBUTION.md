@@ -35,6 +35,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - GitHub issue campaign: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=github-issue&utm_medium=organic&utm_campaign=zero_cost_push
 - Public Gist campaign: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=gist&utm_medium=organic&utm_campaign=zero_cost_push
 - Sponsor call campaign: https://printable-tools-lab.pages.dev/sponsor-call?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=distribution-pack
+- Sponsor opportunities campaign: https://printable-tools-lab.pages.dev/sponsor-opportunities?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_opportunities&utm_content=distribution-pack
 - Sponsor inquiry form campaign: https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=distribution-pack#sponsor-inquiry
 - Community campaign: https://printable-tools-lab.pages.dev?utm_source=community
 - Organic push kit campaign: https://printable-tools-lab.pages.dev/organic-push-kit?utm_source=distribution&utm_medium=organic&utm_campaign=organic_push_kit
@@ -59,6 +60,8 @@ Use these only where sponsor, partnership, directory, newsletter, or resource-pa
 - Sponsor inquiry form: https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=inquiry-form#sponsor-inquiry - Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries.
 - Sponsor call JSON: https://printable-tools-lab.pages.dev/sponsor-call.json - Machine-readable sponsor openings, reply path, vertical pages, and success gate.
 - Sponsor media kit JSON: https://printable-tools-lab.pages.dev/sponsor-media-kit.json - Public facts, placement rules, vertical fits, and safety constraints for partners.
+- Sponsor opportunities board: https://printable-tools-lab.pages.dev/sponsor-opportunities/ - Crawlable board for PDF API, QR, resume, classroom, and small-business sponsor categories.
+- Sponsor opportunities JSON: https://printable-tools-lab.pages.dev/sponsor-opportunities.json
 - Sponsor outreach pack JSON: https://printable-tools-lab.pages.dev/sponsor-outreach-pack.json
 
 Sponsor rules: downloads stay free, placements must be labeled, no misleading upload or finance offers, and no payment, tax, bank, phone, private identity, password, or customer-file details should be sent through the site.

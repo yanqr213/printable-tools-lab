@@ -1,0 +1,116 @@
+{
+  "name": "PrintableTools Lab Sponsor Opportunities",
+  "generatedAt": "2026-06-07T06:39:00.205Z",
+  "canonical": "https://printable-tools-lab.pages.dev/sponsor-opportunities/",
+  "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
+  "sponsorCall": "https://printable-tools-lab.pages.dev/sponsor-call/",
+  "mediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+  "inquiryUrl": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_opportunities&utm_content=board#sponsor-inquiry",
+  "opportunities": [
+    {
+      "slug": "pdf-image-qr-saas",
+      "title": "PDF, Image, and QR SaaS Sponsorship",
+      "audience": "Visitors fixing PDF size limits, converting images, making static QR codes, and choosing no-upload browser utilities.",
+      "sponsorFit": "PDF APIs, image optimization tools, QR platforms, privacy-friendly document automation, browser utility products, and file-workflow SaaS.",
+      "priceHint": "USD 99-149 pilot",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=pdf_image_qr_saas&utm_content=board",
+      "categories": [
+        "PDF APIs",
+        "image compression SaaS",
+        "QR code platforms",
+        "document automation",
+        "privacy-friendly browser utilities"
+      ]
+    },
+    {
+      "slug": "resume-career-sponsors",
+      "title": "Resume and Career Tool Sponsorship",
+      "audience": "Job seekers creating resume PDFs, checking ATS keywords, fixing resume upload size limits, and preparing application documents.",
+      "sponsorFit": "Resume builders, ATS tools, job boards, interview prep products, career coaching, and applicant-document utilities.",
+      "priceHint": "USD 99-149 pilot",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/resume-career-sponsors?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=resume_career_sponsors&utm_content=board",
+      "categories": [
+        "resume software",
+        "ATS checkers",
+        "job boards",
+        "career coaching",
+        "interview prep"
+      ]
+    },
+    {
+      "slug": "classroom-printable-sponsors",
+      "title": "Classroom Printable Sponsorship",
+      "audience": "Teachers, homeschool families, and parents making free printable learning, planning, and classroom-management PDFs.",
+      "sponsorFit": "Teacher marketplaces, homeschool resources, classroom apps, learning printables, family routine products, and child-safe educational tools.",
+      "priceHint": "USD 99-149 pilot",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/classroom-printable-sponsors?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=classroom_printable_sponsors&utm_content=board",
+      "categories": [
+        "teacher resources",
+        "homeschool tools",
+        "classroom apps",
+        "learning printables",
+        "family routine products"
+      ]
+    },
+    {
+      "slug": "small-business-paperwork-sponsors",
+      "title": "Small Business Paperwork Sponsorship",
+      "audience": "Freelancers, local sellers, home-service operators, and small teams creating simple business PDFs and print assets.",
+      "sponsorFit": "Invoicing apps, bookkeeping tools, POS products, local marketing services, shipping tools, label systems, and small-business operations software.",
+      "priceHint": "USD 99-149 pilot",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/small-business-paperwork-sponsors?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=small_business_paperwork_sponsors&utm_content=board",
+      "categories": [
+        "invoicing software",
+        "bookkeeping tools",
+        "POS products",
+        "shipping tools",
+        "local marketing services"
+      ]
+    },
+    {
+      "slug": "local-marketing-qr-sponsors",
+      "title": "Local Marketing and QR Sponsorship",
+      "audience": "Local services, shops, event organizers, and small teams creating QR codes, flyers, coupons, signs, and printable promotion assets.",
+      "sponsorFit": "QR platforms, review-request tools, local SEO products, print shops, signage services, event tools, and small-business marketing software.",
+      "priceHint": "USD 49 exploratory or USD 99-149 pilot",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/local-marketing-qr-sponsors?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=local_marketing_qr_sponsors&utm_content=board",
+      "categories": [
+        "QR code platforms",
+        "review-management tools",
+        "local SEO products",
+        "print shops",
+        "event marketing tools"
+      ]
+    }
+  ],
+  "placements": [
+    {
+      "id": "starter-review",
+      "name": "Starter media review",
+      "price": "USD 49 exploratory",
+      "fit": "A sponsor or partner wants a quick manual fit review before discussing placement.",
+      "deliverable": "Policy-fit check, suggested placement type, and a public-safe follow-up note."
+    },
+    {
+      "id": "guide-sponsorship",
+      "name": "Guide sponsorship pilot",
+      "price": "USD 99-149 pilot",
+      "fit": "Useful products for privacy-friendly PDF, image, QR, career, classroom, or small-business workflows.",
+      "deliverable": "Clearly labeled sponsor mention on one relevant guide or resource page after approval."
+    },
+    {
+      "id": "partner-distribution",
+      "name": "Partner distribution swap",
+      "price": "No-cash mutual test",
+      "fit": "Directories, newsletters, or communities that can send relevant visitors to free tools.",
+      "deliverable": "Tracked partner link and review of whether traffic creates depth, download, or lead signal."
+    }
+  ],
+  "rules": [
+    "Use this board only for policy-fit sponsor and partner discovery.",
+    "Downloads stay free and cannot require ad clicks, sponsor interaction, accounts, or payment.",
+    "Sponsor copy must be clearly labeled and manually reviewed before placement.",
+    "Do not send payment, tax, bank, phone, private identity, passwords, or customer files through this site."
+  ],
+  "successGate": "A real qualified sponsor inquiry, signed agreement, or settled external payment. Views and clicks alone are not revenue."
+}

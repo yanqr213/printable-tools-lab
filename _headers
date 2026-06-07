@@ -95,3 +95,6 @@
 
 /sponsor-call.json
   Content-Type: application/json; charset=utf-8
+
+/sponsor-opportunities.json
+  Content-Type: application/json; charset=utf-8

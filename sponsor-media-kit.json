@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Sponsor Media Kit",
-  "generatedAt": "2026-06-07T06:23:43.110Z",
+  "generatedAt": "2026-06-07T06:39:00.205Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
   "metricsDashboard": "https://printable-tools-lab.pages.dev/dashboard/",
@@ -10,7 +10,7 @@
     "tools": 66,
     "guides": 95,
     "landingPages": 92,
-    "indexableRoutes": 278,
+    "indexableRoutes": 279,
     "exports": "Free browser exports; no signup required for core tools.",
     "ads": "Ads disabled during validation. Downloads must never be gated by sponsor or ad interaction."
   },

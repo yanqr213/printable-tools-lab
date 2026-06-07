@@ -5028,6 +5028,36 @@ const SPONSOR_DISCOVERY_LINKS = [
   },
 ];
 
+function sponsorOpportunityPayload(generatedAt = new Date().toISOString()) {
+  const trackedInquiryUrl = `${siteUrl("sponsor").replace(/\/$/, "")}?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_opportunities&utm_content=board#sponsor-inquiry`;
+  return {
+    name: "PrintableTools Lab Sponsor Opportunities",
+    generatedAt,
+    canonical: siteUrl("sponsor-opportunities"),
+    sponsorPage: siteUrl("sponsor"),
+    sponsorCall: siteUrl("sponsor-call"),
+    mediaKit: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
+    inquiryUrl: trackedInquiryUrl,
+    opportunities: SPONSOR_VERTICALS.map((vertical) => ({
+      slug: vertical.slug,
+      title: vertical.title,
+      audience: vertical.audience,
+      sponsorFit: vertical.sponsorFit,
+      priceHint: vertical.priceHint,
+      trackedUrl: `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=${encodeURIComponent(vertical.campaign)}&utm_content=board`,
+      categories: vertical.sponsorCategories,
+    })),
+    placements: SPONSOR_PLACEMENTS,
+    rules: [
+      "Use this board only for policy-fit sponsor and partner discovery.",
+      "Downloads stay free and cannot require ad clicks, sponsor interaction, accounts, or payment.",
+      "Sponsor copy must be clearly labeled and manually reviewed before placement.",
+      "Do not send payment, tax, bank, phone, private identity, passwords, or customer files through this site.",
+    ],
+    successGate: "A real qualified sponsor inquiry, signed agreement, or settled external payment. Views and clicks alone are not revenue.",
+  };
+}
+
 function sponsorMediaKitPayload(generatedAt = new Date().toISOString()) {
   return {
     name: "PrintableTools Lab Sponsor Media Kit",
@@ -5262,6 +5292,12 @@ const pages = [
     title: "Sponsor Call for PrintableTools Lab",
     description: "Public sponsor call for privacy-friendly PDF, image, QR, resume, classroom, and small-business workflow partners to request a labeled pilot placement.",
     html: sponsorCallHtml(),
+  },
+  {
+    path: "sponsor-opportunities",
+    title: "Sponsor Opportunities for PrintableTools Lab",
+    description: "Crawlable sponsor opportunity board for PDF API, QR marketing, resume, classroom, and small-business workflow partners interested in labeled pilot placements.",
+    html: sponsorOpportunitiesHtml(),
   },
   ...SPONSOR_VERTICALS.map((vertical) => ({
     path: `sponsor/${vertical.slug}`,
@@ -5862,6 +5898,54 @@ function sponsorCallHtml() {
           url: siteUrl("sponsor-call"),
           description: "Public sponsor call for privacy-friendly file and printable workflow partners.",
           about: ["sponsorship", "PDF tools", "QR tools", "small business paperwork", "classroom printables"],
+        })}
+      </section>`;
+}
+
+function sponsorOpportunitiesHtml() {
+  const board = sponsorOpportunityPayload();
+  return `
+      <section class="shell page-title section sponsor-hero">
+        <a href="/sponsor-call/">Sponsor call</a>
+        <h1>Sponsor opportunities for free PDF, image, and QR workflows</h1>
+        <p>This board lists the current policy-fit sponsor categories for PrintableTools Lab. It is built for partners, resource pages, newsletters, and crawlers that need a concise view of the available audiences without private outreach or payment details.</p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(board.inquiryUrl)}">Send sponsor inquiry</a> <a class="button secondary" href="/sponsor-opportunities.json">Open opportunities JSON</a> <a class="button ghost" href="/sponsor-media-kit.json">Open media kit</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Open sponsor audiences</h2>
+        <div class="grid-3">
+          ${board.opportunities.map((item) => `<article class="panel"><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.audience)}</p><p><strong>${escapeHtml(item.priceHint)}</strong></p><p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(item.trackedUrl)}">Open tracked fit page</a></p></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Good-fit sponsor categories</h2>
+        <div class="grid-2">
+          ${board.opportunities.map((item) => `<article class="panel"><h3>${escapeHtml(item.title)}</h3><ul>${item.categories.map((category) => `<li>${escapeHtml(category)}</li>`).join("")}</ul></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Placement options</h2>
+        <div class="grid-3">
+          ${board.placements.map((item) => `<article class="panel"><h3>${escapeHtml(item.name)}</h3><p><strong>${escapeHtml(item.price)}</strong></p><p>${escapeHtml(item.deliverable)}</p></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Safety and revenue gate</h2>
+        <ul>
+          ${board.rules.map((rule) => `<li>${escapeHtml(rule)}</li>`).join("\n")}
+        </ul>
+        <p>${escapeHtml(board.successGate)}</p>
+        ${jsonLdHtml({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "PrintableTools Lab Sponsor Opportunities",
+          url: siteUrl("sponsor-opportunities"),
+          itemListElement: board.opportunities.map((item, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: item.title,
+            url: item.trackedUrl,
+          })),
         })}
       </section>`;
 }
@@ -8278,4 +8362,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY, SPONSOR_PLACEMENTS, SPONSOR_OUTREACH_TARGETS, SPONSOR_OUTREACH_TEMPLATES, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, SPONSOR_DISCOVERY_LINKS, sponsorMediaKitPayload, sponsorCallPayload };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY, SPONSOR_PLACEMENTS, SPONSOR_OUTREACH_TARGETS, SPONSOR_OUTREACH_TEMPLATES, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, SPONSOR_DISCOVERY_LINKS, sponsorMediaKitPayload, sponsorCallPayload, sponsorOpportunityPayload };

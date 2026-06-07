@@ -154,6 +154,19 @@ else {
   if (!sitemap.includes(`<loc>${siteUrl("sponsor-call")}</loc>`)) failures.push("Sitemap missing sponsor call page.");
 }
 
+const sponsorOpportunitiesFile = path.join(root, "sponsor-opportunities", "index.html");
+if (!fs.existsSync(sponsorOpportunitiesFile)) failures.push("Missing sponsor opportunities page.");
+else {
+  const html = fs.readFileSync(sponsorOpportunitiesFile, "utf8");
+  if (!html.includes("Sponsor opportunities for free PDF, image, and QR workflows")) failures.push("Sponsor opportunities page missing headline.");
+  if (!html.includes("Open sponsor audiences")) failures.push("Sponsor opportunities page missing audience board.");
+  if (!html.includes("Good-fit sponsor categories")) failures.push("Sponsor opportunities page missing categories.");
+  if (!html.includes("sponsor-opportunities.json")) failures.push("Sponsor opportunities page missing JSON link.");
+  if (!html.includes("utm_source=sponsor-opportunities")) failures.push("Sponsor opportunities page missing tracked source.");
+  if (!html.includes("Views and clicks alone are not revenue")) failures.push("Sponsor opportunities page missing revenue gate.");
+  if (!sitemap.includes(`<loc>${siteUrl("sponsor-opportunities")}</loc>`)) failures.push("Sitemap missing sponsor opportunities page.");
+}
+
 for (const vertical of SPONSOR_VERTICALS) {
   const file = path.join(root, "sponsor", vertical.slug, "index.html");
   const label = `Sponsor vertical ${vertical.slug}`;
@@ -201,6 +214,16 @@ else {
   if (!Array.isArray(data.verticalSponsorPages) || data.verticalSponsorPages.length < 5) failures.push("Sponsor call JSON missing vertical sponsor pages.");
   if (!String(data.replyPath || "").includes("sponsor inquiry form")) failures.push("Sponsor call JSON missing reply path.");
   if (!String(data.successGate || "").includes("settled external payment")) failures.push("Sponsor call JSON missing success gate.");
+}
+
+const sponsorOpportunitiesJsonFile = path.join(root, "sponsor-opportunities.json");
+if (!fs.existsSync(sponsorOpportunitiesJsonFile)) failures.push("Missing sponsor-opportunities.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(sponsorOpportunitiesJsonFile, "utf8"));
+  if (data.canonical !== siteUrl("sponsor-opportunities")) failures.push("Sponsor opportunities JSON missing canonical URL.");
+  if (!Array.isArray(data.opportunities) || data.opportunities.length < SPONSOR_VERTICALS.length) failures.push("Sponsor opportunities JSON missing vertical opportunities.");
+  if (!String(data.inquiryUrl || "").includes("utm_source=sponsor-opportunities")) failures.push("Sponsor opportunities JSON missing tracked inquiry URL.");
+  if (!String(data.successGate || "").includes("Views and clicks alone are not revenue")) failures.push("Sponsor opportunities JSON missing revenue gate.");
 }
 
 for (const toolPath of ["tools/invoice-generator", "tools/price-tag", "tools/flyer-maker", "tools/coupon-maker", "tools/packing-slip", "tools/business-card", "tools/qr-code"]) {
@@ -911,6 +934,7 @@ else {
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("submit-directory"))) failures.push("discovery.json missing directory submission pack.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("share-kit"))) failures.push("discovery.json missing share kit page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("sponsor-call"))) failures.push("discovery.json missing sponsor call page.");
+  if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("sponsor-opportunities"))) failures.push("discovery.json missing sponsor opportunities page.");
   if (!Array.isArray(discovery.highIntentEntryPoints) || !discovery.highIntentEntryPoints.some((url) => url === siteUrl("sponsor"))) failures.push("discovery.json missing sponsor page.");
   if (Array.isArray(discovery.highIntentEntryPoints) && discovery.highIntentEntryPoints.some((url) => url === siteUrl(LOCAL_SELLER_STARTER_KIT.slug))) failures.push("discovery.json should not list digital product page as a high-intent entry point.");
   if (Array.isArray(discovery.highIntentEntryPoints) && discovery.highIntentEntryPoints.some((url) => url === siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug))) failures.push("discovery.json should not list paid service page as a high-intent entry point.");
@@ -928,6 +952,7 @@ else {
   if (discovery.organicPushKit !== siteUrl("organic-push-kit.json").replace(/\/$/, "")) failures.push("discovery.json missing organic-push-kit.json URL.");
   if (discovery.uploadErrorCheatsheet !== siteUrl("upload-error-cheatsheet.json").replace(/\/$/, "")) failures.push("discovery.json missing upload-error-cheatsheet.json URL.");
   if (discovery.sponsorCall !== siteUrl("sponsor-call.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor-call.json URL.");
+  if (discovery.sponsorOpportunities !== siteUrl("sponsor-opportunities.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor-opportunities.json URL.");
   if (discovery.sponsorMediaKit !== siteUrl("sponsor-media-kit.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor-media-kit.json URL.");
   if (discovery.sponsorOutreachPack !== siteUrl("sponsor-outreach-pack.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor-outreach-pack.json URL.");
   if (discovery.platformSubmitQueue !== siteUrl("platform-submit-queue.json").replace(/\/$/, "")) failures.push("discovery.json missing platform-submit-queue.json URL.");
@@ -943,6 +968,8 @@ else {
   if (!discovery.distributionAssets || discovery.distributionAssets.uploadErrorCheatsheetJson !== siteUrl("upload-error-cheatsheet.json").replace(/\/$/, "")) failures.push("discovery.json missing upload error cheatsheet JSON URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.sponsorCall !== siteUrl("sponsor-call")) failures.push("discovery.json missing sponsor call URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.sponsorCallJson !== siteUrl("sponsor-call.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor call JSON URL.");
+  if (!discovery.distributionAssets || discovery.distributionAssets.sponsorOpportunities !== siteUrl("sponsor-opportunities")) failures.push("discovery.json missing sponsor opportunities URL.");
+  if (!discovery.distributionAssets || discovery.distributionAssets.sponsorOpportunitiesJson !== siteUrl("sponsor-opportunities.json").replace(/\/$/, "")) failures.push("discovery.json missing sponsor opportunities JSON URL.");
   if (!discovery.distributionAssets || discovery.distributionAssets.sponsorPage !== siteUrl("sponsor")) failures.push("discovery.json missing sponsor page URL.");
   if (!discovery.distributionAssets || !Array.isArray(discovery.distributionAssets.sponsorDiscoveryLinks) || !discovery.distributionAssets.sponsorDiscoveryLinks.some((item) => String(item.url || "").includes("utm_source=sponsor-outreach"))) failures.push("discovery.json missing sponsor discovery links.");
   if (!discovery.distributionAssets || !Array.isArray(discovery.distributionAssets.sponsorVerticalPages) || discovery.distributionAssets.sponsorVerticalPages.length < 5) failures.push("discovery.json missing sponsor vertical page list.");
@@ -1023,6 +1050,8 @@ else {
   if (!html.includes("https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/")) failures.push("GitHub Pages discovery page missing upload error cheatsheet mirror URL.");
   if (!html.includes("Sponsor call mirror")) failures.push("GitHub Pages discovery page missing sponsor call mirror link.");
   if (!html.includes("https://yanqr213.github.io/printable-tools-lab/sponsor-call/")) failures.push("GitHub Pages discovery page missing sponsor call mirror URL.");
+  if (!html.includes("Sponsor opportunities mirror")) failures.push("GitHub Pages discovery page missing sponsor opportunities mirror link.");
+  if (!html.includes("https://yanqr213.github.io/printable-tools-lab/sponsor-opportunities/")) failures.push("GitHub Pages discovery page missing sponsor opportunities mirror URL.");
   if (!html.includes("utm_source=github-pages")) failures.push("GitHub Pages discovery page missing tracked github-pages source links.");
   if (!html.includes(siteUrl("free-invoice-generator-no-signup"))) failures.push("GitHub Pages discovery page missing no-signup invoice landing link.");
   if (html.includes(`https://yanqr213.github.io/printable-tools-lab/${MARKET_TABLE_PRINT_AUDIT.slug}/`)) failures.push("GitHub Pages discovery page should not promote retired market table print audit link.");
@@ -1052,6 +1081,9 @@ else {
   if (!data.sponsorCall || data.sponsorCall.directory !== "https://yanqr213.github.io/printable-tools-lab/sponsor-call/") failures.push("GitHub Pages discovery tools.json missing sponsor call mirror.");
   if (!Array.isArray(data.sponsorCall?.discoveryLinks) || data.sponsorCall.discoveryLinks.length !== SPONSOR_DISCOVERY_LINKS.length) failures.push("GitHub Pages discovery tools.json missing sponsor discovery links.");
   if (!String(data.sponsorCall?.trackedSponsorCallUrl || "").includes("utm_source=sponsor-outreach")) failures.push("GitHub Pages discovery tools.json missing tracked sponsor-call URL.");
+  if (!data.sponsorOpportunities || data.sponsorOpportunities.directory !== "https://yanqr213.github.io/printable-tools-lab/sponsor-opportunities/") failures.push("GitHub Pages discovery tools.json missing sponsor opportunities mirror.");
+  if (!Array.isArray(data.sponsorOpportunities?.opportunities) || data.sponsorOpportunities.opportunities.length < SPONSOR_VERTICALS.length) failures.push("GitHub Pages discovery tools.json missing sponsor opportunities.");
+  if (!String(data.sponsorOpportunities?.trackedInquiryUrl || "").includes("utm_source=sponsor-outreach")) failures.push("GitHub Pages discovery tools.json missing tracked sponsor opportunities inquiry URL.");
   if (!data.gameSubmissionPack?.games?.some((game) => game.name === "Neon Lane Dash" && String(game.gameSnacksZipUrl || "").includes("neon-lane-dash-gamesnacks.zip"))) failures.push("GitHub Pages discovery tools.json missing Neon GameSnacks package.");
   if (data.digitalProducts) failures.push("GitHub Pages discovery tools.json should not include retired digitalProducts.");
   if (data.paidServices) failures.push("GitHub Pages discovery tools.json should not include retired paidServices.");
@@ -1132,6 +1164,29 @@ else {
   if (!Array.isArray(data.verticalPages) || data.verticalPages.length !== SPONSOR_VERTICALS.length) failures.push("GitHub Pages sponsor-call.json missing vertical pages.");
   if (!String(data.trackedSponsorCallUrl || "").includes("utm_source=sponsor-outreach")) failures.push("GitHub Pages sponsor-call.json missing tracked sponsor-call URL.");
   if (!String(data.successGate || "").includes("qualified sponsor")) failures.push("GitHub Pages sponsor-call.json missing sponsor success gate.");
+}
+
+const docsSponsorOpportunitiesFile = path.join(root, "docs", "sponsor-opportunities", "index.html");
+if (!fs.existsSync(docsSponsorOpportunitiesFile)) failures.push("Missing GitHub Pages sponsor opportunities mirror page.");
+else {
+  const html = fs.readFileSync(docsSponsorOpportunitiesFile, "utf8");
+  if (!html.includes("Sponsor opportunities")) failures.push("GitHub Pages sponsor opportunities missing heading.");
+  if (!html.includes(siteUrl("sponsor-opportunities"))) failures.push("GitHub Pages sponsor opportunities missing live page URL.");
+  if (!html.includes("Open sponsor audiences")) failures.push("GitHub Pages sponsor opportunities missing audience table.");
+  if (!html.includes("utm_source=sponsor-outreach")) failures.push("GitHub Pages sponsor opportunities missing sponsor outreach tracking.");
+  if (!html.includes("sponsor-opportunities.json")) failures.push("GitHub Pages sponsor opportunities missing mirror JSON link.");
+  requireGithubPagesIntentTracking(html, "GitHub Pages sponsor opportunities mirror");
+}
+
+const docsSponsorOpportunitiesJsonFile = path.join(root, "docs", "sponsor-opportunities.json");
+if (!fs.existsSync(docsSponsorOpportunitiesJsonFile)) failures.push("Missing GitHub Pages sponsor-opportunities.json.");
+else {
+  const data = JSON.parse(fs.readFileSync(docsSponsorOpportunitiesJsonFile, "utf8"));
+  if (data.directory !== "https://yanqr213.github.io/printable-tools-lab/sponsor-opportunities/") failures.push("GitHub Pages sponsor-opportunities.json missing directory URL.");
+  if (data.liveJson !== siteUrl("sponsor-opportunities.json").replace(/\/$/, "")) failures.push("GitHub Pages sponsor-opportunities.json missing live JSON URL.");
+  if (!Array.isArray(data.opportunities) || data.opportunities.length < SPONSOR_VERTICALS.length) failures.push("GitHub Pages sponsor-opportunities.json missing opportunities.");
+  if (!String(data.trackedInquiryUrl || "").includes("utm_source=sponsor-outreach")) failures.push("GitHub Pages sponsor-opportunities.json missing tracked inquiry URL.");
+  if (!String(data.successGate || "").includes("qualified sponsor")) failures.push("GitHub Pages sponsor-opportunities.json missing success gate.");
 }
 
 const docsProductsFile = path.join(root, "docs", "products.json");

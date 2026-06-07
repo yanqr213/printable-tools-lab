@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENTS, SPONSOR_DISCOVERY_LINKS, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, sponsorCallPayload, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, serviceOrderPipeline, serviceOutreachQueue, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, siteUrl, tools, guides, landingPages } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENTS, SPONSOR_DISCOVERY_LINKS, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, sponsorCallPayload, sponsorOpportunityPayload, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, serviceOrderPipeline, serviceOutreachQueue, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, siteUrl, tools, guides, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
@@ -80,6 +80,13 @@ const discoveryRoutes = [
     url: pagesUrl("sponsor-call"),
     mainUrl: siteUrl("sponsor-call"),
   },
+  {
+    path: "sponsor-opportunities",
+    title: "Sponsor opportunities",
+    description: "GitHub Pages mirror for PrintableTools Lab sponsor opportunity board with tracked partner inquiry links for PDF API, QR, resume, classroom, and small-business workflow sponsors.",
+    url: pagesUrl("sponsor-opportunities"),
+    mainUrl: siteUrl("sponsor-opportunities"),
+  },
   ...gameDiscoveryRoutes,
 ];
 
@@ -156,6 +163,7 @@ const html = `<!doctype html>
         <li><a href="${pagesUrl("organic-push-kit")}">Organic push kit mirror</a> for copy-ready, low-risk free-tool distribution tasks with tracked links and success signals.</li>
         <li><a href="${pagesUrl("upload-error-cheatsheet")}">Upload error cheatsheet mirror</a> for exact PDF, image, resume, and email attachment rejection messages with direct fixes.</li>
         <li><a href="${pagesUrl("sponsor-call")}">Sponsor call mirror</a> for policy-fit partners who need the public sponsor call, media kit, and tracked inquiry path.</li>
+        <li><a href="${pagesUrl("sponsor-opportunities")}">Sponsor opportunities mirror</a> for PDF API, QR, resume, classroom, and small-business sponsor categories.</li>
         <li><a href="${trackedSiteUrl("tools", "all-tools")}">All free generators</a> for browsing every tool.</li>
         <li><a href="${pagesUrl("guides")}">Printable guide mirrors</a> for original help pages around PDF, image, QR, and printable workflows.</li>
         <li><a href="${trackedSiteUrl("free-pdf-tools", "free-tool-depth-directory")}">Free PDF, image, and QR tools directory</a> for continuing to another useful browser tool.</li>
@@ -215,6 +223,7 @@ writeGuideDiscoveryPages();
 writeOrganicPushKitDiscoveryPage();
 writeUploadErrorCheatsheetDiscoveryPage();
 writeSponsorCallDiscoveryPage();
+writeSponsorOpportunitiesDiscoveryPage();
 writeGameDiscoveryPages();
 
 fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
@@ -261,11 +270,13 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
   organicPushKit: organicPushKitEntry(),
   uploadErrorCheatsheet: uploadErrorCheatsheetEntry(),
   sponsorCall: sponsorCallMirrorEntry(),
+  sponsorOpportunities: sponsorOpportunitiesMirrorEntry(),
 }, null, 2)}\n`);
 
 fs.writeFileSync(path.join(docsDir, "organic-push-kit.json"), `${JSON.stringify(organicPushKitEntry(), null, 2)}\n`);
 fs.writeFileSync(path.join(docsDir, "upload-error-cheatsheet.json"), `${JSON.stringify(uploadErrorCheatsheetEntry(), null, 2)}\n`);
 fs.writeFileSync(path.join(docsDir, "sponsor-call.json"), `${JSON.stringify(sponsorCallMirrorEntry(), null, 2)}\n`);
+fs.writeFileSync(path.join(docsDir, "sponsor-opportunities.json"), `${JSON.stringify(sponsorOpportunitiesMirrorEntry(), null, 2)}\n`);
 
 const githubPagesGameSubmissionFeed = {
   name: "HTML5 Game Submission Feed",
@@ -492,6 +503,12 @@ function writeSponsorCallDiscoveryPage() {
   fs.writeFileSync(path.join(dir, "index.html"), sponsorCallMirrorHtml());
 }
 
+function writeSponsorOpportunitiesDiscoveryPage() {
+  const dir = path.join(docsDir, "sponsor-opportunities");
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, "index.html"), sponsorOpportunitiesMirrorHtml());
+}
+
 function copyPublicFile(relativePath) {
   const cleanPath = String(relativePath || "").replace(/^\/+/, "");
   if (!cleanPath) return;
@@ -702,6 +719,78 @@ function sponsorCallMirrorHtml() {
         <li><a href="${siteUrl("sponsor-outreach-pack.json").replace(/\/$/, "")}">Live sponsor outreach pack JSON</a></li>
       </ul>
       ${jsonLdHtml(itemListSchema("Sponsor call mirror", entry.discoveryLinks.map((item) => ({ title: item.title, url: item.url }))))}
+    </main>
+    ${intentTrackerScriptHtml()}
+  </body>
+</html>
+`;
+}
+
+function sponsorOpportunitiesMirrorHtml() {
+  const entry = sponsorOpportunitiesMirrorEntry();
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sponsor opportunities - PrintableTools Lab Directory</title>
+    <meta name="description" content="GitHub Pages mirror for PrintableTools Lab sponsor opportunity board with tracked partner inquiry links for PDF API, QR, resume, classroom, and small-business workflow sponsors.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="${pagesUrl("sponsor-opportunities")}">
+    <style>
+      :root { color-scheme: light; --ink: #17313b; --muted: #5b6f78; --line: #dce8ec; --teal: #176b87; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Arial, sans-serif; color: var(--ink); background: #f7fbfc; line-height: 1.55; }
+      main { width: min(960px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 56px; }
+      h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin: 0 0 14px; }
+      p { color: var(--muted); max-width: 780px; }
+      a { color: var(--teal); font-weight: 700; }
+      .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .button.secondary { background: var(--ink); }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+      table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); }
+      th, td { text-align: left; vertical-align: top; padding: 10px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+      .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; margin: 18px 0; }
+      ul { padding-left: 20px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="${pagesBase}">PrintableTools Lab discovery directory</a></p>
+      <h1>Sponsor opportunities</h1>
+      <p>This GitHub Pages mirror lists current policy-fit sponsor categories for PrintableTools Lab. It gives partners, resource pages, newsletters, and crawlers a concise board without private outreach data or on-site payment collection.</p>
+      <p class="actions">
+        <a class="button" href="${escapeHtml(entry.trackedInquiryUrl)}">Open inquiry form</a>
+        <a class="button secondary" href="${escapeHtml(entry.livePage)}">Open live opportunity board</a>
+      </p>
+      <section class="card">
+        <h2>Safety rules</h2>
+        <ul>
+          ${entry.safeUseRules.map((rule) => `<li>${escapeHtml(rule)}</li>`).join("\n")}
+        </ul>
+      </section>
+      <h2>Open sponsor audiences</h2>
+      <table>
+        <thead><tr><th>Audience</th><th>Tracked page</th><th>Fit</th></tr></thead>
+        <tbody>
+          ${entry.opportunities.map((item) => `<tr><td>${escapeHtml(item.title)}<br><strong>${escapeHtml(item.priceHint)}</strong></td><td><a href="${escapeHtml(item.trackedUrl)}">${escapeHtml(item.trackedUrl)}</a></td><td>${escapeHtml(item.sponsorFit)}</td></tr>`).join("\n")}
+        </tbody>
+      </table>
+      <h2>Placement options</h2>
+      <table>
+        <thead><tr><th>Placement</th><th>Price anchor</th><th>Deliverable</th></tr></thead>
+        <tbody>
+          ${entry.placements.map((item) => `<tr><td>${escapeHtml(item.name)}</td><td>${escapeHtml(item.price)}</td><td>${escapeHtml(item.deliverable)}</td></tr>`).join("\n")}
+        </tbody>
+      </table>
+      <h2>Machine-readable feeds</h2>
+      <ul>
+        <li><a href="${pagesAssetUrl("sponsor-opportunities.json")}">GitHub Pages sponsor-opportunities JSON</a></li>
+        <li><a href="${siteUrl("sponsor-opportunities.json").replace(/\/$/, "")}">Live sponsor-opportunities JSON</a></li>
+        <li><a href="${siteUrl("sponsor-media-kit.json").replace(/\/$/, "")}">Live sponsor media kit JSON</a></li>
+        <li><a href="${pagesUrl("sponsor-call")}">Sponsor call mirror</a></li>
+      </ul>
+      ${jsonLdHtml(itemListSchema("Sponsor opportunities mirror", entry.opportunities.map((item) => ({ title: item.title, url: item.trackedUrl }))))}
     </main>
     ${intentTrackerScriptHtml()}
   </body>
@@ -1618,6 +1707,28 @@ function sponsorCallMirrorEntry() {
       "Success is a real qualified sponsor inquiry, signed agreement, or settled external payment. Clicks alone are not revenue.",
     ],
     successGate: call.successGate,
+  };
+}
+
+function sponsorOpportunitiesMirrorEntry() {
+  const board = sponsorOpportunityPayload(generatedAtIso);
+  return {
+    name: "PrintableTools Lab Sponsor Opportunities Mirror",
+    generatedAt: generatedAtIso,
+    directory: pagesUrl("sponsor-opportunities"),
+    livePage: siteUrl("sponsor-opportunities"),
+    liveJson: siteUrl("sponsor-opportunities.json").replace(/\/$/, ""),
+    trackedInquiryUrl: `${trackedSponsorUrl("sponsor", "github-pages-opportunities-form")}#sponsor-inquiry`,
+    mediaKit: board.mediaKit,
+    sponsorCallMirror: pagesUrl("sponsor-call"),
+    purpose: "GitHub Pages discovery mirror for sponsor categories and partner inquiry paths while the live site keeps downloads free and collects no payment on-site.",
+    opportunities: board.opportunities.map((item) => ({
+      ...item,
+      trackedUrl: trackedSponsorUrl(`sponsor/${item.slug}`, `opportunities-${item.slug}`),
+    })),
+    placements: board.placements,
+    safeUseRules: board.rules,
+    successGate: board.successGate,
   };
 }
 

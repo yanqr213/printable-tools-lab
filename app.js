@@ -5204,6 +5204,7 @@
     if (parts[0] === "submit-directory") return renderDirectorySubmissionPack();
     if (parts[0] === "share-kit") return renderShareKit();
     if (parts[0] === "sponsor-call") return renderSponsorCallPage();
+    if (parts[0] === "sponsor-opportunities") return renderSponsorOpportunitiesPage();
     if (parts[0] === "sponsor" && parts[1]) {
       const vertical = sponsorVerticals.find((item) => item.slug === parts[1]);
       if (vertical) return renderSponsorVerticalPage(vertical);
@@ -7391,6 +7392,47 @@ ${paragraphs.join("\n")}
           <li>Revenue counts only after a qualified inquiry, signed agreement, or settled external payment is verified.</li>
           <li>Do not submit private payment, tax, phone, bank, identity, password, or customer-file details.</li>
         </ul>
+      </section>
+    `;
+  }
+
+  function renderSponsorOpportunitiesPage() {
+    const inquiryUrl = "/sponsor/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_opportunities&utm_content=board#sponsor-inquiry";
+    setMeta("Sponsor Opportunities for PrintableTools Lab", "Crawlable sponsor opportunity board for PDF API, QR marketing, resume, classroom, and small-business workflow partners interested in labeled pilot placements.");
+    app.innerHTML = `
+      <section class="shell page-title section sponsor-hero">
+        <a href="/sponsor-call/">Sponsor call</a>
+        <h1>Sponsor opportunities for free PDF, image, and QR workflows</h1>
+        <p>This board lists the current policy-fit sponsor categories for PrintableTools Lab. It is built for partners, resource pages, newsletters, and crawlers that need a concise view of the available audiences without private outreach or payment details.</p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${inquiryUrl}">Send sponsor inquiry</a> <a class="button secondary" href="/sponsor-opportunities.json">Open opportunities JSON</a> <a class="button ghost" href="/sponsor-media-kit.json">Open media kit</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Open sponsor audiences</h2>
+        <div class="grid-3">
+          ${sponsorVerticals.map((vertical) => `<article class="panel"><h3>${escapeHtml(vertical.title)}</h3><p>${escapeHtml(vertical.audience)}</p><p><strong>${escapeHtml(vertical.priceHint)}</strong></p><p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor/${escapeHtml(vertical.slug)}/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=${escapeHtml(vertical.campaign)}&utm_content=board">Open tracked fit page</a></p></article>`).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Good-fit sponsor categories</h2>
+        <div class="grid-2">
+          ${sponsorVerticals.map((vertical) => `<article class="panel"><h3>${escapeHtml(vertical.title)}</h3><ul>${vertical.sponsorCategories.map((category) => `<li>${escapeHtml(category)}</li>`).join("")}</ul></article>`).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Placement options</h2>
+        <div class="grid-3">
+          ${sponsorPlacements.map((item) => `<article class="panel"><h3>${escapeHtml(item.name)}</h3><p><strong>${escapeHtml(item.price)}</strong></p><p>${escapeHtml(item.deliverable)}</p></article>`).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Safety and revenue gate</h2>
+        <ul>
+          <li>Use this board only for policy-fit sponsor and partner discovery.</li>
+          <li>Downloads stay free and cannot require ad clicks, sponsor interaction, accounts, or payment.</li>
+          <li>Sponsor copy must be clearly labeled and manually reviewed before placement.</li>
+          <li>Do not send payment, tax, bank, phone, private identity, passwords, or customer files through this site.</li>
+        </ul>
+        <p>A real qualified sponsor inquiry, signed agreement, or settled external payment is required. Views and clicks alone are not revenue.</p>
       </section>
     `;
   }
