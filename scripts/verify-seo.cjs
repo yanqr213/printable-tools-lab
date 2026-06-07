@@ -335,6 +335,7 @@ const metricsFunctionFile = path.join(root, "functions", "api", "metrics.js");
 const sponsorLeadFunctionFile = path.join(root, "functions", "api", "sponsor-lead.js");
 const sponsorProspectScriptFile = path.join(root, "scripts", "generate-sponsor-prospect-queue.cjs");
 const sponsorOutreachLogScriptFile = path.join(root, "scripts", "sponsor-outreach-log.cjs");
+const sponsorContactProbeScriptFile = path.join(root, "scripts", "probe-sponsor-contact-routes.cjs");
 if (!fs.existsSync(eventFunctionFile)) failures.push("Missing event API function.");
 else if (!fs.readFileSync(eventFunctionFile, "utf8").includes('"sponsor-outreach"')) failures.push("Event API missing sponsor-outreach source tracking.");
 if (!fs.existsSync(metricsFunctionFile)) failures.push("Missing metrics API function.");
@@ -366,6 +367,12 @@ else {
   if (!logScript.includes("publicReplyUrl") || !logScript.includes("publicReplyAvailable")) failures.push("Sponsor outreach log script missing public-safe reply fallback tracking.");
   if (!logScript.includes("publicReplyFallbackReady") || !logScript.includes("contactFormMessage") || !logScript.includes("contactFormProposalUrl")) failures.push("Sponsor outreach log script missing public reply fallback execution fields.");
 }
+if (!fs.existsSync(sponsorContactProbeScriptFile)) failures.push("Missing sponsor contact route probe script.");
+else {
+  const contactProbeScript = fs.readFileSync(sponsorContactProbeScriptFile, "utf8");
+  if (!contactProbeScript.includes("sponsor-contact-route-probe.json") || !contactProbeScript.includes("contactFormMessage") || !contactProbeScript.includes("routeStatus")) failures.push("Sponsor contact probe missing route status report fields.");
+  if (!contactProbeScript.includes("never submits forms") || !contactProbeScript.includes("fetchWithTimeout")) failures.push("Sponsor contact probe must remain read-only and timeout bounded.");
+}
 const sponsorIssueTemplateFile = path.join(root, ".github", "ISSUE_TEMPLATE", "sponsor-partner-inquiry.yml");
 if (!fs.existsSync(sponsorIssueTemplateFile)) failures.push("Missing sponsor public issue template.");
 else {
@@ -375,6 +382,7 @@ else {
 const packageJson = readJsonFile(path.join(root, "package.json"), {});
 if (packageJson.scripts?.["sponsor:prospects"] !== "node scripts/generate-sponsor-prospect-queue.cjs") failures.push("package.json missing sponsor:prospects command.");
 if (packageJson.scripts?.["sponsor:outreach-log"] !== "node scripts/sponsor-outreach-log.cjs") failures.push("package.json missing sponsor:outreach-log command.");
+if (packageJson.scripts?.["sponsor:contact-probe"] !== "node scripts/probe-sponsor-contact-routes.cjs") failures.push("package.json missing sponsor:contact-probe command.");
 
 const externalGrowthScripts = [
   "scripts/github-discovery.cjs",

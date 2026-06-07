@@ -36,6 +36,7 @@
     "sponsor:leads": "node scripts/export-sponsor-leads.cjs",
     "sponsor:prospects": "node scripts/generate-sponsor-prospect-queue.cjs",
     "sponsor:outreach-log": "node scripts/sponsor-outreach-log.cjs",
+    "sponsor:contact-probe": "node scripts/probe-sponsor-contact-routes.cjs",
     "operate": "node scripts/operate.cjs",
     "validate:ops": "node scripts/validation-report.cjs",
     "deploy:cloudflare:safe": "node scripts/deploy-cloudflare-safe.cjs",

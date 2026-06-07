@@ -27,7 +27,7 @@ const prospects = [
     vertical: "pdf-image-qr-saas",
     category: "Document conversion API",
     website: "https://cloudmersive.com/",
-    contactUrl: "https://cloudmersive.com/contact",
+    contactUrl: "https://cloudmersive.com/contact-sales",
     evidenceUrl: "https://cloudmersive.com/convert-api",
     fitReason: "Cloudmersive offers file conversion and document APIs, adjacent to PrintableTools Lab's PDF and image conversion intent.",
     offer: "Starter media review or guide sponsorship pilot for developer-facing file workflow pages.",
@@ -39,7 +39,7 @@ const prospects = [
     vertical: "local-marketing-qr-sponsors",
     category: "QR code platform",
     website: "https://www.uniqode.com/",
-    contactUrl: "https://www.uniqode.com/contact-us",
+    contactUrl: "https://www.uniqode.com/contact-sales",
     evidenceUrl: "https://www.uniqode.com/qr-code-generator",
     fitReason: "Uniqode sells QR code and offline-to-online marketing tools, matching QR, WiFi QR, contact QR, flyer, and coupon workflows.",
     offer: "Local marketing and QR sponsorship pilot.",
@@ -63,7 +63,7 @@ const prospects = [
     vertical: "resume-career-sponsors",
     category: "ATS resume checker",
     website: "https://www.jobscan.co/",
-    contactUrl: "https://www.jobscan.co/contact",
+    contactUrl: "https://www.jobscan.co/partners",
     evidenceUrl: "https://www.jobscan.co/resume-scanner",
     fitReason: "Jobscan's ATS and resume optimization product fits visitors using resume builder, ATS checker, and resume upload-size pages.",
     offer: "Resume and career tool sponsorship pilot.",
@@ -75,7 +75,7 @@ const prospects = [
     vertical: "resume-career-sponsors",
     category: "Career and resume software",
     website: "https://www.tealhq.com/",
-    contactUrl: "https://www.tealhq.com/contact",
+    contactUrl: "https://www.tealhq.com/contact-us",
     evidenceUrl: "https://www.tealhq.com/resume-builder",
     fitReason: "Teal offers job-search and resume tools, matching job seekers creating application PDFs and ATS-friendly documents.",
     offer: "Guide sponsorship pilot near resume and cover-letter workflows.",
@@ -168,7 +168,7 @@ function prospectRow(prospect, verticals, index) {
   const verticalTrackedUrl = `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}&utm_content=${encodeURIComponent(prospect.id)}`;
   const dealRoomUrl = `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}&commitment=${encodeURIComponent(commitment)}#sponsor-inquiry`;
   const proposalUrl = `${siteUrl("sponsor-proposal").replace(/\/$/, "")}?prospect=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}&utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_proposal&utm_content=${encodeURIComponent(prospect.id)}&commitment=${encodeURIComponent(commitment)}#sponsor-inquiry`;
-  const contactFormProposalUrl = `${siteUrl("sponsor-proposal").replace(/\/$/, "")}?prospect=${encodeURIComponent(prospect.id)}#sponsor-inquiry`;
+  const contactFormProposalUrl = `${siteUrl("sponsor-proposal").replace(/\/$/, "")}?prospect=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}#sponsor-inquiry`;
   const publicReplyUrl = sponsorPublicReplyUrl({
     prospectName: prospect.name,
     website: prospect.website,
