@@ -332,6 +332,25 @@ async function main() {
   assert(dryRunSponsorLeadResponse.status === 200 && dryRunSponsorLeadPayload.ok && dryRunSponsorLeadPayload.dryRun, "Sponsor lead endpoint should support validation dry-runs without KV writes");
   assert(dryRunSponsorLeadPayload.normalized.company === "Dryrun Sponsor", "Sponsor validation dry-run should expose inferred company label");
   assert(!dryRunSponsorLeadPayload.id, "Sponsor validation dry-run should not create a lead id");
+  const dryRunFallbackResponse = await sponsorLeadSource.onRequestPost({
+    request: new Request("https://example.test/api/sponsor-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.19" },
+      body: JSON.stringify(sponsorLeadBody({
+        validation: true,
+        dryRunFallback: true,
+        company: "Fallback Dryrun Partner",
+        contactEmail: "fallback-dryrun@example.com",
+        website: "https://fallback-dryrun.example/path",
+        dealId: "starter-fit-review",
+      })),
+    }),
+    env,
+  });
+  const dryRunFallbackPayload = await dryRunFallbackResponse.json();
+  assert(dryRunFallbackResponse.status === 503 && dryRunFallbackPayload.dryRunFallback, "Sponsor lead endpoint should support validation fallback dry-runs without KV writes");
+  assert(dryRunFallbackPayload.fallbackRequired, "Sponsor fallback dry-run should expose fallback-required behavior");
+  assert(String(dryRunFallbackPayload.fallbackPublicReplyUrl || "").includes("sponsor-partner-inquiry.yml"), "Sponsor fallback dry-run should include a public-safe reply URL");
   const invalidSponsorLeadResponse = await sponsorLeadSource.onRequestPost({
     request: new Request("https://example.test/api/sponsor-lead", {
       method: "POST",

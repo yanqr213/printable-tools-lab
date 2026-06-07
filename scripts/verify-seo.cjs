@@ -370,6 +370,7 @@ else {
   if (!sponsorLeadScript.includes("COMMITMENT_LEVELS") || !sponsorLeadScript.includes("sponsor_invoice_request")) failures.push("Sponsor lead API missing invoice request commitment tracking.");
   if (!sponsorLeadScript.includes("body.deal")) failures.push("Sponsor lead API should accept deal-param attribution from outreach links.");
   if (!sponsorLeadScript.includes("fallbackPublicReplyUrl") || !sponsorLeadScript.includes("sponsor-partner-inquiry.yml")) failures.push("Sponsor lead API missing public-safe fallback reply URL.");
+  if (!sponsorLeadScript.includes("dryRunFallback")) failures.push("Sponsor lead API missing no-write fallback validation path.");
 }
 if (!fs.existsSync(sponsorProspectScriptFile)) failures.push("Missing sponsor prospect queue generator.");
 else {

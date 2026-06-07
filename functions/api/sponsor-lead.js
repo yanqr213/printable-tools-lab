@@ -71,6 +71,18 @@ export async function onRequestPost({ request, env }) {
     normalizedLead = lead.value;
 
     validation = Boolean(body.validation);
+    if (validation && body.dryRunFallback === true) {
+      return json({
+        ok: false,
+        validation,
+        dryRunFallback: true,
+        error: "Sponsor lead storage is temporarily limited. Use the public-safe reply form or copy the backup request.",
+        fallbackRequired: true,
+        fallbackSubject: "PrintableTools Lab sponsor invoice review",
+        fallbackBody: sponsorLeadFallbackText(normalizedLead),
+        fallbackPublicReplyUrl: sponsorLeadPublicReplyUrl(normalizedLead),
+      }, 503);
+    }
     if (validation && body.dryRun === true) {
       return json({
         ok: true,
