@@ -162,9 +162,10 @@ function prospectRow(prospect, verticals, index) {
   const vertical = verticals[prospect.vertical];
   if (!vertical) throw new Error(`Unknown sponsor vertical: ${prospect.vertical}`);
   const suggestedDeal = SPONSOR_DEALS.find((deal) => deal.id === prospect.dealId) || SPONSOR_DEALS.find((deal) => deal.id === "guide-sponsor-pilot") || SPONSOR_DEALS[0];
+  const commitment = sponsorDealCommitment(suggestedDeal);
   const verticalTrackedUrl = `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}&utm_content=${encodeURIComponent(prospect.id)}`;
-  const dealRoomUrl = `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}#sponsor-inquiry`;
-  const proposalUrl = `${siteUrl("sponsor-proposal").replace(/\/$/, "")}?prospect=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}&utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_proposal&utm_content=${encodeURIComponent(prospect.id)}#sponsor-inquiry`;
+  const dealRoomUrl = `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}&commitment=${encodeURIComponent(commitment)}#sponsor-inquiry`;
+  const proposalUrl = `${siteUrl("sponsor-proposal").replace(/\/$/, "")}?prospect=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}&utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_proposal&utm_content=${encodeURIComponent(prospect.id)}&commitment=${encodeURIComponent(commitment)}#sponsor-inquiry`;
   const subject = `${suggestedDeal.title} for ${vertical.title}`;
   const body = [
     `Hi ${prospect.name} team,`,
@@ -176,6 +177,8 @@ function prospectRow(prospect, verticals, index) {
     `I opened a short partner-specific sponsor proposal for this audience: ${proposalUrl}`,
     "",
     `The best starting option is "${suggestedDeal.title}" (${suggestedDeal.price}): ${suggestedDeal.deliverable}`,
+    "",
+    commitment === "request-invoice" ? "If there is a fit, the form opens on Request pilot invoice so the next step is explicit while still requiring manual review." : "The form opens on a question/fit-review step because this is a non-cash exploratory path.",
     "",
     `The transparent deal-room fallback is here: ${dealRoomUrl}`,
     "",
@@ -200,6 +203,7 @@ function prospectRow(prospect, verticals, index) {
     suggestedDealTitle: suggestedDeal.title,
     suggestedDealPrice: suggestedDeal.price,
     suggestedDealDeliverable: suggestedDeal.deliverable,
+    requestedCommitment: commitment,
     proposalUrl,
     dealRoomUrl,
     verticalTrackedUrl,
@@ -211,8 +215,12 @@ function prospectRow(prospect, verticals, index) {
   };
 }
 
+function sponsorDealCommitment(deal) {
+  return deal?.commitment || (String(deal?.price || "").toLowerCase().includes("no-cash") ? "question-only" : "request-invoice");
+}
+
 function toCsv(rows) {
-  const headers = ["priority", "id", "name", "vertical", "category", "website", "contactUrl", "evidenceUrl", "offer", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "proposalUrl", "dealRoomUrl", "verticalTrackedUrl", "trackedUrl", "subject", "status", "successSignal"];
+  const headers = ["priority", "id", "name", "vertical", "category", "website", "contactUrl", "evidenceUrl", "offer", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "requestedCommitment", "proposalUrl", "dealRoomUrl", "verticalTrackedUrl", "trackedUrl", "subject", "status", "successSignal"];
   return [
     headers,
     ...rows.map((row) => headers.map((header) => row[header] || "")),

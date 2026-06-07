@@ -4837,10 +4837,11 @@ const SPONSOR_DEALS = [
     budgetRange: "under-250",
     placement: "media-kit-review",
     timeline: "this-week",
+    commitment: "request-invoice",
     bestFor: "A sponsor wants to know whether their product is safe and relevant before buying a visible placement.",
     deliverable: "Manual sponsor-fit review, audience match, recommended page family, and safe next-step copy.",
     proofNeeded: "Company URL, product category, intended audience, and any placement rules.",
-    trackedUrl: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=starter-fit-review#sponsor-inquiry`,
+    trackedUrl: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=starter-fit-review&commitment=request-invoice#sponsor-inquiry`,
   },
   {
     id: "guide-sponsor-pilot",
@@ -4849,10 +4850,11 @@ const SPONSOR_DEALS = [
     budgetRange: "250-500",
     placement: "content-sponsorship",
     timeline: "this-month",
+    commitment: "request-invoice",
     bestFor: "A PDF, image, QR, career, classroom, or small-business product wants one clearly labeled pilot mention.",
     deliverable: "One manually approved, clearly labeled sponsor mention on a relevant guide or resource page.",
     proofNeeded: "Campaign fit, sponsor copy draft, safe landing URL, and category exclusions.",
-    trackedUrl: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=guide-sponsor-pilot#sponsor-inquiry`,
+    trackedUrl: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=guide-sponsor-pilot&commitment=request-invoice#sponsor-inquiry`,
   },
   {
     id: "vertical-category-pilot",
@@ -4861,10 +4863,11 @@ const SPONSOR_DEALS = [
     budgetRange: "250-500",
     placement: "directory-visibility",
     timeline: "this-month",
+    commitment: "request-invoice",
     bestFor: "A partner cares about one audience such as QR/local marketing, resume/career, classroom, or small-business paperwork.",
     deliverable: "Tracked vertical sponsor page, fit review, and one approved contextual placement candidate.",
     proofNeeded: "Target vertical, audience fit, sponsor category, and safe public landing URL.",
-    trackedUrl: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=vertical-category-pilot#sponsor-inquiry`,
+    trackedUrl: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=vertical-category-pilot&commitment=request-invoice#sponsor-inquiry`,
   },
   {
     id: "partner-distribution-test",
@@ -4873,10 +4876,11 @@ const SPONSOR_DEALS = [
     budgetRange: "exploratory",
     placement: "partner-distribution",
     timeline: "exploratory",
+    commitment: "question-only",
     bestFor: "A newsletter, directory, resource page, or community wants to test relevant traffic before a paid placement.",
     deliverable: "Tracked partner link, source attribution, and review against page views, depth, downloads, or lead signal.",
     proofNeeded: "Partner page, expected audience, planned link context, and review window.",
-    trackedUrl: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=partner-distribution-test#sponsor-inquiry`,
+    trackedUrl: `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=partner-distribution-test&commitment=question-only#sponsor-inquiry`,
   },
 ];
 
@@ -4886,8 +4890,13 @@ function sponsorDealPrefillAttrs(deal) {
     `data-sponsor-placement="${escapeHtml(deal.placement)}"`,
     `data-sponsor-budget-range="${escapeHtml(deal.budgetRange)}"`,
     `data-sponsor-timeline="${escapeHtml(deal.timeline)}"`,
+    `data-sponsor-commitment="${escapeHtml(sponsorDealCommitment(deal))}"`,
     `data-sponsor-notes="${escapeHtml(`${deal.title} (${deal.price}): ${deal.deliverable} Needed: ${deal.proofNeeded}`)}"`,
   ].join(" ");
+}
+
+function sponsorDealCommitment(deal) {
+  return deal?.commitment || (String(deal?.price || "").toLowerCase().includes("no-cash") ? "question-only" : "request-invoice");
 }
 
 const SPONSOR_OUTREACH_TARGETS = [
@@ -6234,7 +6243,7 @@ function sponsorLeadFormHtml() {
               <span>Notes</span>
               <textarea name="notes" maxlength="1000" placeholder="Placement requirements, policy notes, geography, campaign idea, or useful public context."></textarea>
             </label>
-            <p class="notice" data-sponsor-deal-status>Choose a deal above to prefill placement, budget, and timeline.</p>
+            <p class="notice" data-sponsor-deal-status>Choose a deal above to prefill placement, budget, timeline, and next step.</p>
             <label class="check-row">
               <input name="consent" type="checkbox" required>
               <span>I am sending a business inquiry and will not include payment, tax, private identity, passwords, or customer files.</span>

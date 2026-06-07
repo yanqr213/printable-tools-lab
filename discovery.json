@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-07T10:38:23.212Z",
+  "generatedAt": "2026-06-07T10:52:52.151Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -204,10 +204,11 @@
         "budgetRange": "under-250",
         "placement": "media-kit-review",
         "timeline": "this-week",
+        "commitment": "request-invoice",
         "bestFor": "A sponsor wants to know whether their product is safe and relevant before buying a visible placement.",
         "deliverable": "Manual sponsor-fit review, audience match, recommended page family, and safe next-step copy.",
         "proofNeeded": "Company URL, product category, intended audience, and any placement rules.",
-        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=starter-fit-review#sponsor-inquiry"
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=starter-fit-review&commitment=request-invoice#sponsor-inquiry"
       },
       {
         "id": "guide-sponsor-pilot",
@@ -216,10 +217,11 @@
         "budgetRange": "250-500",
         "placement": "content-sponsorship",
         "timeline": "this-month",
+        "commitment": "request-invoice",
         "bestFor": "A PDF, image, QR, career, classroom, or small-business product wants one clearly labeled pilot mention.",
         "deliverable": "One manually approved, clearly labeled sponsor mention on a relevant guide or resource page.",
         "proofNeeded": "Campaign fit, sponsor copy draft, safe landing URL, and category exclusions.",
-        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=guide-sponsor-pilot#sponsor-inquiry"
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=guide-sponsor-pilot&commitment=request-invoice#sponsor-inquiry"
       },
       {
         "id": "vertical-category-pilot",
@@ -228,10 +230,11 @@
         "budgetRange": "250-500",
         "placement": "directory-visibility",
         "timeline": "this-month",
+        "commitment": "request-invoice",
         "bestFor": "A partner cares about one audience such as QR/local marketing, resume/career, classroom, or small-business paperwork.",
         "deliverable": "Tracked vertical sponsor page, fit review, and one approved contextual placement candidate.",
         "proofNeeded": "Target vertical, audience fit, sponsor category, and safe public landing URL.",
-        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=vertical-category-pilot#sponsor-inquiry"
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=vertical-category-pilot&commitment=request-invoice#sponsor-inquiry"
       },
       {
         "id": "partner-distribution-test",
@@ -240,10 +243,11 @@
         "budgetRange": "exploratory",
         "placement": "partner-distribution",
         "timeline": "exploratory",
+        "commitment": "question-only",
         "bestFor": "A newsletter, directory, resource page, or community wants to test relevant traffic before a paid placement.",
         "deliverable": "Tracked partner link, source attribution, and review against page views, depth, downloads, or lead signal.",
         "proofNeeded": "Partner page, expected audience, planned link context, and review window.",
-        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=partner-distribution-test#sponsor-inquiry"
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=partner-distribution-test&commitment=question-only#sponsor-inquiry"
       }
     ],
     "sponsorOpportunities": "https://printable-tools-lab.pages.dev/sponsor-opportunities/",

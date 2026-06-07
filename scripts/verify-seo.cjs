@@ -172,6 +172,8 @@ else {
   if (!html.includes('name="dealId"')) failures.push("Sponsor deal room form missing selected deal field.");
   if (!html.includes('name="commitment"')) failures.push("Sponsor deal room form missing commitment next-step field.");
   if (!html.includes("data-sponsor-budget-range")) failures.push("Sponsor deal room missing budget prefill data.");
+  if (!html.includes('data-sponsor-commitment="request-invoice"')) failures.push("Sponsor deal room missing request-invoice deal prefill data.");
+  if (!html.includes("commitment=request-invoice")) failures.push("Sponsor deal room deal links should prefill invoice requests.");
   if (!html.includes('data-track-event="sponsor_request_intent"')) failures.push("Sponsor deal room missing sponsor intent tracking.");
   if (!SPONSOR_DEALS.every((deal) => html.includes(deal.title) && html.includes(deal.price))) failures.push("Sponsor deal room missing one or more deal offers.");
   if (!html.includes("Revenue is real only after a sponsor agreement or settled external payment")) failures.push("Sponsor deal room missing revenue gate.");
@@ -309,6 +311,7 @@ else {
   if (!script.includes("utmCampaign") || !script.includes("vertical")) failures.push("app.js missing sponsor attribution fields.");
   if (!script.includes('window.location.hash.startsWith("#/")')) failures.push("app.js should keep ordinary anchor hashes from overriding routed pages.");
   if (!script.includes('params.get("deal")') || !script.includes("Sponsor close cockpit") || !script.includes("data-copy-text")) failures.push("app.js missing sponsor close cockpit or deal-param prefill.");
+  if (!script.includes('params.get("commitment")') || !script.includes("sponsorCommitment")) failures.push("app.js missing sponsor invoice-request prefill from deal links.");
   if (!script.includes("absoluteSponsorUrl")) failures.push("app.js sponsor outreach pitch should copy absolute URLs.");
   if (!script.includes("sponsorSprintHtml({ totals: {}, projects: [] })")) failures.push("app.js ops monitor should keep sponsor close actions visible when live metrics fail.");
   if (!script.includes("renderSponsorProposalPage") || !script.includes("sponsorProspectProposalUrl") || !script.includes("sponsor_proposal")) failures.push("app.js missing direct sponsor proposal funnel.");
@@ -343,6 +346,7 @@ else {
   if (!prospectScript.includes("sponsor-prospect-queue.json") || !prospectScript.includes("utm_content")) failures.push("Sponsor prospect generator missing private queue outputs or per-prospect tracking.");
   if (!prospectScript.includes("SPONSOR_DEALS") || !prospectScript.includes("proposalUrl") || !prospectScript.includes("dealRoomUrl") || !prospectScript.includes("suggestedDealPrice")) failures.push("Sponsor prospect generator missing proposal and deal-room offer targeting.");
   if (!prospectScript.includes("&deal=")) failures.push("Sponsor prospect generator missing explicit deal parameter for prefilled inquiries.");
+  if (!prospectScript.includes("requestedCommitment") || !prospectScript.includes("&commitment=")) failures.push("Sponsor prospect generator missing invoice request commitment links.");
   if (!prospectScript.includes("sponsor-proposal") || !prospectScript.includes("sponsor_proposal")) failures.push("Sponsor prospect generator missing direct proposal outreach URLs.");
 }
 if (!fs.existsSync(sponsorOutreachLogScriptFile)) failures.push("Missing sponsor outreach log script.");
