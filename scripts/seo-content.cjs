@@ -5988,7 +5988,7 @@ function sponsorPageHtml() {
         <a href="/free-pdf-tools/">Free tools</a>
         <h1>Sponsor PrintableTools Lab</h1>
         <p>PrintableTools Lab is a free no-signup browser utility site for PDF compression, image conversion, QR codes, business documents, career PDFs, upload-limit fixes, and printable planners. This page captures responsible sponsorship and partner inquiries without enabling ads or collecting payment on-site.</p>
-        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor-deal-room/?utm_source=sponsor-page&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=hero">Open deal room</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Send sponsor inquiry</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor-media-kit.json">Open media kit</a></p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor-starter-review/?utm_source=sponsor-page&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=hero#sponsor-inquiry">Start USD 49 review</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Send sponsor inquiry</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor-deal-room/?utm_source=sponsor-page&utm_medium=organic&utm_campaign=sponsor_deal_room&utm_content=hero">Open deal room</a></p>
       </section>
 ${sponsorLeadFormHtml()}
       <section class="shell section">
@@ -6071,6 +6071,7 @@ function sponsorStarterReviewHtml() {
         <p>A short manual fit review for sponsors who want to know whether their product is safe, relevant, and worth discussing before any visible placement. No payment is collected on this page; invoice or agreement steps happen externally after policy fit.</p>
         <p><a class="button" data-sponsor-deal-select ${sponsorDealPrefillAttrs(deal)} data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Start USD 49 review</a> <a class="button secondary" href="/sponsor-deal-room.json">Open deal JSON</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Public-safe reply</a></p>
       </section>
+${sponsorLeadFormHtml()}
       <section class="shell section">
         <h2>Starter fit review</h2>
         <div class="grid-3">
@@ -6088,11 +6089,6 @@ function sponsorStarterReviewHtml() {
           <article class="panel"><h3>Next-step copy</h3><p>Returns public-safe next-step wording for a sponsor inquiry, invoice request, or partner distribution test.</p></article>
         </div>
       </section>
-      <section class="shell section">
-        <h2>2-minute intake</h2>
-        <p>Use the quick form below with business email and website. Company name is optional and can be inferred from the public domain. Do not include payment, tax, bank, phone, private identity, passwords, or customer files.</p>
-      </section>
-${sponsorLeadFormHtml()}
       <section class="shell section">
         <h2>Policy limits</h2>
         <ul>
@@ -6333,7 +6329,7 @@ function sponsorLeadFormHtml() {
             <p>Share only business-safe details. The inquiry is stored for follow-up review, while public dashboards show only aggregate lead counts.</p>
             <div class="notice sponsor-close-path">
               <strong>Fastest paid pilot path</strong>
-              <p>Start with the USD 49 starter fit review, send business email plus website, and ask for manual invoice review. This is the lowest-friction path to a real external sponsor agreement.</p>
+              <p>Start with the USD 49 starter fit review. The fast form needs only business email and website; company can be inferred from the public domain. This is the lowest-friction path to a real external sponsor agreement.</p>
               <p><a class="button" data-sponsor-deal-select ${sponsorDealPrefillAttrs(defaultDeal)} data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Use USD 49 starter review</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Public-safe reply</a></p>
             </div>
             <ul>
