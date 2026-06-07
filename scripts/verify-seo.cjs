@@ -338,14 +338,15 @@ if (!fs.existsSync(sponsorProspectScriptFile)) failures.push("Missing sponsor pr
 else {
   const prospectScript = fs.readFileSync(sponsorProspectScriptFile, "utf8");
   if (!prospectScript.includes("sponsor-prospect-queue.json") || !prospectScript.includes("utm_content")) failures.push("Sponsor prospect generator missing private queue outputs or per-prospect tracking.");
-  if (!prospectScript.includes("SPONSOR_DEALS") || !prospectScript.includes("dealRoomUrl") || !prospectScript.includes("suggestedDealPrice")) failures.push("Sponsor prospect generator missing deal-room offer targeting.");
+  if (!prospectScript.includes("SPONSOR_DEALS") || !prospectScript.includes("proposalUrl") || !prospectScript.includes("dealRoomUrl") || !prospectScript.includes("suggestedDealPrice")) failures.push("Sponsor prospect generator missing proposal and deal-room offer targeting.");
   if (!prospectScript.includes("&deal=")) failures.push("Sponsor prospect generator missing explicit deal parameter for prefilled inquiries.");
+  if (!prospectScript.includes("sponsor-proposal") || !prospectScript.includes("sponsor_proposal")) failures.push("Sponsor prospect generator missing direct proposal outreach URLs.");
 }
 if (!fs.existsSync(sponsorOutreachLogScriptFile)) failures.push("Missing sponsor outreach log script.");
 else {
   const logScript = fs.readFileSync(sponsorOutreachLogScriptFile, "utf8");
   if (!logScript.includes("sponsor-outreach-log.json") || !logScript.includes("needsReplyEmail") || !logScript.includes("settled")) failures.push("Sponsor outreach log script missing status/evidence tracking.");
-  if (!logScript.includes("dealRoomUrl") || !logScript.includes("suggestedDealTitle")) failures.push("Sponsor outreach log script missing deal-room follow-up fields.");
+  if (!logScript.includes("proposalUrl") || !logScript.includes("dealRoomUrl") || !logScript.includes("suggestedDealTitle")) failures.push("Sponsor outreach log script missing proposal and deal-room follow-up fields.");
 }
 const packageJson = readJsonFile(path.join(root, "package.json"), {});
 if (packageJson.scripts?.["sponsor:prospects"] !== "node scripts/generate-sponsor-prospect-queue.cjs") failures.push("package.json missing sponsor:prospects command.");

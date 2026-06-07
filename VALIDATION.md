@@ -1,21 +1,21 @@
 # Validation Gates
 
-Last generated: 2026-06-07T07:33:25.793Z
+Last generated: 2026-06-07T09:58:53.626Z
 
 ## Current Automated Status
 
-- Product ready: no.
+- Product ready: yes.
 - Tools live in inventory: 66.
 - Guide pages live in inventory: 95.
 - High-intent landing pages: 92.
-- Indexable routes: 279.
+- Indexable routes: 280.
 - Custom domain configured: no.
 - Live downloads: 2.
 - Live generations: 0.
 - Free-tool depth intent events: 0.
-- Commercial intent events: 1.
+- Commercial intent events: 2.
 - Sponsor leads captured: 0.
-- Sponsor outreach queued/sent/settled: 0/0/0.
+- Sponsor outreach queued/sent/settled: 10/0/0.
 - Search impressions: 0.
 - Search clicks: 0.
 - External discovery ready: yes.
@@ -24,8 +24,7 @@ Last generated: 2026-06-07T07:33:25.793Z
 
 ## Product Gate
 
-- Missing discovery asset: sponsorProspectQueue.
-- Missing discovery asset: sponsorOutreachLog.
+- 66 tools, 95 guides, 92 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
 
 ## Search Console Gate
 
@@ -35,12 +34,12 @@ Last generated: 2026-06-07T07:33:25.793Z
 
 ## External Discovery Gate
 
-- GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.
+- GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.
 - GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.
 - GitHub Pages discovery directory is live with 92 landing page link(s), 66 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).
-- GitHub Pages discovery sitemap has 261 URL(s), including 66 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 261.
+- GitHub Pages discovery sitemap has 262 URL(s), including 66 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 262.
 - IndexNow key file is reachable from the site root.
-- IndexNow latest report accepted 259 URL(s) for github-pages.
+- IndexNow latest report accepted 262 URL(s) for github-pages.
 - Directory monitor shows 3 listed, 6 pending, and 1 error directory target(s).
 
 ## Monetization Gate
@@ -58,7 +57,6 @@ Last generated: 2026-06-07T07:33:25.793Z
 
 ## Next Actions
 
-- Fix product readiness failures before adding more tools.
 - Watch the newly listed directories for real referrals and depth events before adding another same-category submission.
 - Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.
 - When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.

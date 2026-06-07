@@ -55,6 +55,7 @@ function normalizeLogRow(prospect, existing = {}) {
     suggestedDealId: prospect.suggestedDealId || "",
     suggestedDealTitle: prospect.suggestedDealTitle || "",
     suggestedDealPrice: prospect.suggestedDealPrice || "",
+    proposalUrl: prospect.proposalUrl || prospect.trackedUrl || "",
     dealRoomUrl: prospect.dealRoomUrl || prospect.trackedUrl,
     verticalTrackedUrl: prospect.verticalTrackedUrl || "",
     trackedUrl: prospect.trackedUrl,
@@ -67,14 +68,14 @@ function normalizeLogRow(prospect, existing = {}) {
     settledAt: existing.settledAt || "",
     evidenceUrl: existing.evidenceUrl || "",
     evidenceNote: existing.evidenceNote || "Needs a real reply email or public contact form submission before marking sent.",
-    nextAction: existing.nextAction || "Open contactUrl, submit the prepared deal-room pitch only if a legitimate reply email is available, then record timestamp and evidence.",
+    nextAction: existing.nextAction || "Open contactUrl, submit the prepared proposal pitch only if a legitimate reply email is available, then record timestamp and evidence.",
     successSignal: prospect.successSignal || "qualified sponsor inquiry, signed agreement, or settled external payment",
     body: prospect.body,
   };
 }
 
 function toCsv(rows) {
-  const headers = ["id", "name", "vertical", "contactUrl", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "dealRoomUrl", "verticalTrackedUrl", "trackedUrl", "status", "needsReplyEmail", "submittedAt", "replyAt", "qualifiedAt", "settledAt", "evidenceUrl", "evidenceNote", "nextAction"];
+  const headers = ["id", "name", "vertical", "contactUrl", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "proposalUrl", "dealRoomUrl", "verticalTrackedUrl", "trackedUrl", "status", "needsReplyEmail", "submittedAt", "replyAt", "qualifiedAt", "settledAt", "evidenceUrl", "evidenceNote", "nextAction"];
   return [
     headers,
     ...rows.map((row) => headers.map((header) => row[header] || "")),
@@ -96,6 +97,7 @@ function nextBatchMarkdown(rows) {
       `- Status: ${row.status}`,
       `- Contact: ${row.contactUrl}`,
       `- Recommended deal: ${row.suggestedDealTitle} (${row.suggestedDealPrice})`,
+      `- Proposal URL: ${row.proposalUrl}`,
       `- Deal room URL: ${row.dealRoomUrl}`,
       `- Vertical fit URL: ${row.verticalTrackedUrl}`,
       `- Needs reply email: ${row.needsReplyEmail ? "yes" : "no"}`,

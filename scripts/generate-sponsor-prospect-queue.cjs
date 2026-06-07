@@ -145,14 +145,17 @@ function main() {
       "Do not scrape private emails or use purchased lead lists.",
       "Stop contacting a prospect after an opt-out or negative reply.",
       "Do not claim guaranteed traffic, guaranteed conversions, or existing revenue.",
-      "Use the dealRoomUrl as the first-touch URL so sponsor intent lands on published pilot pricing.",
+      "Use the proposalUrl as the first-touch URL so sponsor intent lands on a partner-specific, noindex proposal page.",
+      "Keep dealRoomUrl available as the transparent pricing and inquiry fallback.",
       "Revenue is real only after a signed agreement or settled external payment.",
     ],
     rows,
   }, null, 2)}\n`);
   fs.writeFileSync(path.join(reportsDir, "sponsor-prospect-queue.csv"), toCsv(rows));
-  fs.writeFileSync(path.join(reportsDir, "sponsor-outreach-batch.md"), toMarkdown(rows));
-  console.log(`Generated ${rows.length} sponsor prospect row(s) in reports/sponsor-prospect-queue.* and reports/sponsor-outreach-batch.md`);
+  const markdown = toMarkdown(rows);
+  fs.writeFileSync(path.join(reportsDir, "sponsor-outreach-batch.md"), markdown);
+  fs.writeFileSync(path.join(reportsDir, "sponsor-proposal-outreach-batch.md"), markdown);
+  console.log(`Generated ${rows.length} sponsor prospect row(s) in reports/sponsor-prospect-queue.*, reports/sponsor-outreach-batch.md, and reports/sponsor-proposal-outreach-batch.md`);
 }
 
 function prospectRow(prospect, verticals, index) {
@@ -161,6 +164,7 @@ function prospectRow(prospect, verticals, index) {
   const suggestedDeal = SPONSOR_DEALS.find((deal) => deal.id === prospect.dealId) || SPONSOR_DEALS.find((deal) => deal.id === "guide-sponsor-pilot") || SPONSOR_DEALS[0];
   const verticalTrackedUrl = `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}&utm_content=${encodeURIComponent(prospect.id)}`;
   const dealRoomUrl = `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}#sponsor-inquiry`;
+  const proposalUrl = `${siteUrl("sponsor-proposal").replace(/\/$/, "")}?prospect=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}&utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_proposal&utm_content=${encodeURIComponent(prospect.id)}#sponsor-inquiry`;
   const subject = `${suggestedDeal.title} for ${vertical.title}`;
   const body = [
     `Hi ${prospect.name} team,`,
@@ -169,9 +173,11 @@ function prospectRow(prospect, verticals, index) {
     "",
     `Your product looks relevant because ${prospect.fitReason}`,
     "",
-    `I am opening a small, clearly labeled sponsor pilot for this audience: ${dealRoomUrl}`,
+    `I opened a short partner-specific sponsor proposal for this audience: ${proposalUrl}`,
     "",
     `The best starting option is "${suggestedDeal.title}" (${suggestedDeal.price}): ${suggestedDeal.deliverable}`,
+    "",
+    `The transparent deal-room fallback is here: ${dealRoomUrl}`,
     "",
     `For vertical context, this is the audience fit page: ${verticalTrackedUrl}`,
     "",
@@ -194,9 +200,10 @@ function prospectRow(prospect, verticals, index) {
     suggestedDealTitle: suggestedDeal.title,
     suggestedDealPrice: suggestedDeal.price,
     suggestedDealDeliverable: suggestedDeal.deliverable,
+    proposalUrl,
     dealRoomUrl,
     verticalTrackedUrl,
-    trackedUrl: dealRoomUrl,
+    trackedUrl: proposalUrl,
     subject,
     body,
     status: "ready_to_send",
@@ -205,7 +212,7 @@ function prospectRow(prospect, verticals, index) {
 }
 
 function toCsv(rows) {
-  const headers = ["priority", "id", "name", "vertical", "category", "website", "contactUrl", "evidenceUrl", "offer", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "dealRoomUrl", "verticalTrackedUrl", "trackedUrl", "subject", "status", "successSignal"];
+  const headers = ["priority", "id", "name", "vertical", "category", "website", "contactUrl", "evidenceUrl", "offer", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "proposalUrl", "dealRoomUrl", "verticalTrackedUrl", "trackedUrl", "subject", "status", "successSignal"];
   return [
     headers,
     ...rows.map((row) => headers.map((header) => row[header] || "")),
@@ -227,6 +234,7 @@ function toMarkdown(rows) {
       `- Contact: ${row.contactUrl}`,
       `- Evidence: ${row.evidenceUrl}`,
       `- Recommended deal: ${row.suggestedDealTitle} (${row.suggestedDealPrice})`,
+      `- Proposal URL: ${row.proposalUrl}`,
       `- Deal room URL: ${row.dealRoomUrl}`,
       `- Vertical fit URL: ${row.verticalTrackedUrl}`,
       `- Subject: ${row.subject}`,

@@ -97,6 +97,8 @@ function sponsorProspectQueueReady(data) {
     && rows.every((row) => row.status === "ready_to_send"
       && /^https:\/\//.test(row.contactUrl || "")
       && String(row.trackedUrl || "").includes("utm_source=sponsor-outreach")
+      && String(row.trackedUrl || "").includes("/sponsor-proposal")
+      && String(row.proposalUrl || "").includes("/sponsor-proposal")
       && String(row.trackedUrl || "").includes("utm_content="));
 }
 
@@ -105,6 +107,7 @@ function sponsorOutreachLogReady(data) {
   return rows.length >= 10
     && rows.every((row) => row.status
       && /^https:\/\//.test(row.contactUrl || "")
+      && String(row.proposalUrl || "").includes("/sponsor-proposal")
       && String(row.trackedUrl || "").includes("utm_source=sponsor-outreach"));
 }
 

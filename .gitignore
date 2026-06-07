@@ -17,5 +17,6 @@ reports/sponsor-leads-*.csv
 reports/sponsor-leads-*.json
 reports/sponsor-prospect-queue.*
 reports/sponsor-outreach-batch.md
+reports/sponsor-proposal-outreach-batch.md
 reports/sponsor-outreach-log.*
 reports/sponsor-next-submission-batch.md
