@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-07T10:34:58.373Z",
+  "generatedAt": "2026-06-07T21:14:05.521Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 92,
     "indexableRoutes": 280,
     "sitemapLocCount": 280,
-    "generatedToolInventoryAt": "2026-06-07T10:26:51.151Z",
+    "generatedToolInventoryAt": "2026-06-07T21:13:28.172Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -66,7 +66,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 34986,
+        "bytes": 36383,
         "json": null
       },
       "/sitemap.xml": {
@@ -116,7 +116,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-07T10:26:51.151Z",
+          "generatedAt": "2026-06-07T21:05:12.434Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -998,11 +998,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 60465,
+        "bytes": 61726,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-07T10:26:51.151Z",
+          "generatedAt": "2026-06-07T21:05:12.434Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1205,10 +1205,11 @@
                 "budgetRange": "under-250",
                 "placement": "media-kit-review",
                 "timeline": "this-week",
+                "commitment": "request-invoice",
                 "bestFor": "A sponsor wants to know whether their product is safe and relevant before buying a visible placement.",
                 "deliverable": "Manual sponsor-fit review, audience match, recommended page family, and safe next-step copy.",
                 "proofNeeded": "Company URL, product category, intended audience, and any placement rules.",
-                "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=starter-fit-review#sponsor-inquiry"
+                "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=starter-fit-review&commitment=request-invoice#sponsor-inquiry"
               },
               {
                 "id": "guide-sponsor-pilot",
@@ -1217,10 +1218,11 @@
                 "budgetRange": "250-500",
                 "placement": "content-sponsorship",
                 "timeline": "this-month",
+                "commitment": "request-invoice",
                 "bestFor": "A PDF, image, QR, career, classroom, or small-business product wants one clearly labeled pilot mention.",
                 "deliverable": "One manually approved, clearly labeled sponsor mention on a relevant guide or resource page.",
                 "proofNeeded": "Campaign fit, sponsor copy draft, safe landing URL, and category exclusions.",
-                "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=guide-sponsor-pilot#sponsor-inquiry"
+                "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=guide-sponsor-pilot&commitment=request-invoice#sponsor-inquiry"
               },
               {
                 "id": "vertical-category-pilot",
@@ -1229,10 +1231,11 @@
                 "budgetRange": "250-500",
                 "placement": "directory-visibility",
                 "timeline": "this-month",
+                "commitment": "request-invoice",
                 "bestFor": "A partner cares about one audience such as QR/local marketing, resume/career, classroom, or small-business paperwork.",
                 "deliverable": "Tracked vertical sponsor page, fit review, and one approved contextual placement candidate.",
                 "proofNeeded": "Target vertical, audience fit, sponsor category, and safe public landing URL.",
-                "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=vertical-category-pilot#sponsor-inquiry"
+                "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=vertical-category-pilot&commitment=request-invoice#sponsor-inquiry"
               },
               {
                 "id": "partner-distribution-test",
@@ -1241,10 +1244,11 @@
                 "budgetRange": "exploratory",
                 "placement": "partner-distribution",
                 "timeline": "exploratory",
+                "commitment": "question-only",
                 "bestFor": "A newsletter, directory, resource page, or community wants to test relevant traffic before a paid placement.",
                 "deliverable": "Tracked partner link, source attribution, and review against page views, depth, downloads, or lead signal.",
                 "proofNeeded": "Partner page, expected audience, planned link context, and review window.",
-                "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=partner-distribution-test#sponsor-inquiry"
+                "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=partner-distribution-test&commitment=question-only#sponsor-inquiry"
               }
             ],
             "sponsorOpportunities": "https://printable-tools-lab.pages.dev/sponsor-opportunities/",
@@ -1273,6 +1277,13 @@
                 "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=inquiry-form#sponsor-inquiry",
                 "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor/",
                 "reason": "Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries."
+              },
+              {
+                "title": "Public sponsor reply form",
+                "path": "github-sponsor-issue",
+                "url": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=sponsor-partner-inquiry.yml&title=%5BSponsor%2FPartner%5D%3A+Sponsor+pilot+review&body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+%0APublic+website+URL%3A+%0AAudience+fit%3A+%0ASelected+pilot+deal%3A+%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-deal-room%2F%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.",
+                "canonicalUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=sponsor-partner-inquiry.yml",
+                "reason": "Public-safe GitHub issue fallback for partners who cannot use email; no private payment, tax, bank, phone, customer, identity, password, or file data."
               },
               {
                 "title": "Sponsor call JSON",
@@ -2036,10 +2047,10 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 42284,
+        "bytes": 43277,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-07T10:26:51.151Z",
+          "generatedAt": "2026-06-07T21:05:12.434Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -2545,6 +2556,13 @@
                 "reason": "Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries."
               },
               {
+                "title": "Public sponsor reply form",
+                "path": "github-sponsor-issue",
+                "url": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=sponsor-partner-inquiry.yml&title=%5BSponsor%2FPartner%5D%3A+Sponsor+pilot+review&body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+%0APublic+website+URL%3A+%0AAudience+fit%3A+%0ASelected+pilot+deal%3A+%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-deal-room%2F%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.",
+                "canonicalUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=sponsor-partner-inquiry.yml",
+                "reason": "Public-safe GitHub issue fallback for partners who cannot use email; no private payment, tax, bank, phone, customer, identity, password, or file data."
+              },
+              {
                 "title": "Sponsor call JSON",
                 "path": "sponsor-call.json",
                 "url": "https://printable-tools-lab.pages.dev/sponsor-call.json",
@@ -2652,10 +2670,12 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 23241,
+        "bytes": 29339,
         "json": {
           "ok": true,
           "today": "2026-06-07",
+          "dataQuality": "degraded-baseline",
+          "dataWarning": "KV rollup read failed, so this response uses the last verified baseline and may lag live activity.",
           "totals": {
             "page_view": 494,
             "generate_pdf": 0,
@@ -2716,7 +2736,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "estimate-generator",
@@ -2729,7 +2752,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "purchase-order",
@@ -2742,7 +2768,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "bill-of-sale",
@@ -2755,7 +2784,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "business-card",
@@ -2768,7 +2800,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "address-labels",
@@ -2781,7 +2816,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "price-tag",
@@ -2794,7 +2832,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "flyer-maker",
@@ -2807,7 +2848,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "barcode-labels",
@@ -2820,7 +2864,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "coupon-maker",
@@ -2833,7 +2880,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "packing-slip",
@@ -2846,7 +2896,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "work-order",
@@ -2859,7 +2912,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "inventory-sheet",
@@ -2872,7 +2928,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "resume-builder",
@@ -2885,7 +2944,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "ats-resume-checker",
@@ -2898,7 +2960,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "cover-letter",
@@ -2911,7 +2976,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "resignation-letter",
@@ -2924,7 +2992,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "monthly-calendar",
@@ -2937,7 +3008,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "meal-planner",
@@ -2950,7 +3024,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "image-to-pdf",
@@ -2963,7 +3040,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "multi-image-pdf",
@@ -2976,7 +3056,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "compress-pdf",
@@ -2989,7 +3072,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "pdf-to-images",
@@ -3002,7 +3088,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "pdf-to-text",
@@ -3015,7 +3104,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "pdf-to-word",
@@ -3028,7 +3120,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "compress-image",
@@ -3041,7 +3136,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "compress-image-to-kb",
@@ -3054,7 +3152,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "resize-image",
@@ -3067,7 +3168,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "convert-image",
@@ -3080,7 +3184,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "remove-background",
@@ -3093,7 +3200,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "crop-image",
@@ -3106,7 +3216,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "rotate-image",
@@ -3119,7 +3232,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "watermark-image",
@@ -3132,7 +3248,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "add-text-image",
@@ -3145,7 +3264,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "signature-png",
@@ -3158,7 +3280,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "passport-photo",
@@ -3171,7 +3296,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "qr-code",
@@ -3184,7 +3312,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "wifi-qr-code",
@@ -3197,7 +3328,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "vcard-qr-code",
@@ -3210,7 +3344,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "merge-pdf",
@@ -3223,7 +3360,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "split-pdf",
@@ -3236,7 +3376,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "pdf-page-numbers",
@@ -3249,7 +3392,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "rotate-pdf",
@@ -3262,7 +3408,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "remove-pdf-pages",
@@ -3275,7 +3424,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "reorder-pdf-pages",
@@ -3288,7 +3440,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "watermark-pdf",
@@ -3301,7 +3456,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "stamp-pdf",
@@ -3314,7 +3472,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "sign-pdf",
@@ -3327,7 +3488,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "text-to-pdf",
@@ -3340,7 +3504,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "markdown-to-pdf",
@@ -3353,7 +3520,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "csv-to-pdf",
@@ -3366,7 +3536,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "json-to-pdf",
@@ -3379,7 +3552,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "sign-in-sheet",
@@ -3392,7 +3568,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "graph-paper",
@@ -3405,7 +3584,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "packing-list",
@@ -3418,7 +3600,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "receipt-generator",
@@ -3431,7 +3616,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "timesheet-generator",
@@ -3444,7 +3632,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "certificate-generator",
@@ -3457,7 +3648,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "todo-list",
@@ -3470,7 +3664,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "rent-receipt",
@@ -3483,7 +3680,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "name-tracing",
@@ -3496,7 +3696,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "chore-chart",
@@ -3509,7 +3712,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "reward-chart",
@@ -3522,7 +3728,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "flashcards",
@@ -3535,7 +3744,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "weekly-planner",
@@ -3548,7 +3760,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "habit-tracker",
@@ -3561,7 +3776,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "local-seller-starter-kit",
@@ -3574,7 +3792,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "custom-local-print-pack",
@@ -3587,7 +3808,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "market-table-print-audit",
@@ -3600,7 +3824,10 @@
               "seller_sample_download": 0,
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
-              "audit_request_intent": 0
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
             },
             {
               "tool": "sponsor",
@@ -3622,7 +3849,7 @@
           "sources": [
             {
               "source": "direct",
-              "page_view": 283,
+              "page_view": 494,
               "download_pdf": 0,
               "download_file": 0,
               "free_tool_depth": 0,
@@ -3632,11 +3859,12 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
               "source": "google",
-              "page_view": 3,
+              "page_view": 0,
               "download_pdf": 0,
               "download_file": 0,
               "free_tool_depth": 0,
@@ -3646,11 +3874,12 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
               "source": "bing",
-              "page_view": 14,
+              "page_view": 0,
               "download_pdf": 0,
               "download_file": 0,
               "free_tool_depth": 0,
@@ -3660,11 +3889,12 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
               "source": "github",
-              "page_view": 4,
+              "page_view": 0,
               "download_pdf": 0,
               "download_file": 0,
               "free_tool_depth": 0,
@@ -3674,25 +3904,12 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
               "source": "github-pages",
-              "page_view": 6,
-              "download_pdf": 1,
-              "download_file": 0,
-              "free_tool_depth": 0,
-              "guide_depth": 0,
-              "seller_sample_download": 0,
-              "seller_checkout_intent": 0,
-              "service_request_intent": 0,
-              "audit_request_intent": 0,
-              "sponsor_request_intent": 0,
-              "sponsor_invoice_request": 0
-            },
-            {
-              "source": "github-issue",
-              "page_view": 91,
+              "page_view": 0,
               "download_pdf": 0,
               "download_file": 0,
               "free_tool_depth": 0,
@@ -3702,6 +3919,22 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
+            },
+            {
+              "source": "github-issue",
+              "page_view": 0,
+              "download_pdf": 0,
+              "download_file": 0,
+              "free_tool_depth": 0,
+              "guide_depth": 0,
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "service_request_intent": 0,
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
@@ -3716,6 +3949,7 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
@@ -3730,6 +3964,7 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
@@ -3744,6 +3979,7 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
@@ -3758,6 +3994,7 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
@@ -3772,6 +4009,7 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
@@ -3786,11 +4024,12 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
               "source": "nologin",
-              "page_view": 1,
+              "page_view": 0,
               "download_pdf": 0,
               "download_file": 0,
               "free_tool_depth": 0,
@@ -3800,6 +4039,7 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
@@ -3814,6 +4054,7 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
@@ -3828,11 +4069,12 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
               "source": "short-video",
-              "page_view": 23,
+              "page_view": 0,
               "download_pdf": 0,
               "download_file": 0,
               "free_tool_depth": 0,
@@ -3842,6 +4084,7 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
@@ -3856,11 +4099,12 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
               "source": "sponsor-outreach",
-              "page_view": 19,
+              "page_view": 0,
               "download_pdf": 0,
               "download_file": 0,
               "free_tool_depth": 0,
@@ -3869,7 +4113,8 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 1,
+              "sponsor_request_intent": 2,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
@@ -3883,12 +4128,13 @@
               "seller_checkout_intent": 0,
               "service_request_intent": 0,
               "audit_request_intent": 0,
-              "sponsor_request_intent": 1,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
               "source": "community",
-              "page_view": 41,
+              "page_view": 0,
               "download_pdf": 0,
               "download_file": 0,
               "free_tool_depth": 0,
@@ -3898,11 +4144,12 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             },
             {
               "source": "referral",
-              "page_view": 49,
+              "page_view": 0,
               "download_pdf": 0,
               "download_file": 0,
               "free_tool_depth": 0,
@@ -3912,6 +4159,7 @@
               "service_request_intent": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
               "sponsor_invoice_request": 0
             }
           ]
@@ -3978,7 +4226,10 @@
           "seller_sample_download": 0,
           "seller_checkout_intent": 0,
           "service_request_intent": 0,
-          "audit_request_intent": 0
+          "audit_request_intent": 0,
+          "sponsor_request_intent": 0,
+          "sponsor_lead_submit": 0,
+          "sponsor_invoice_request": 0
         },
         {
           "tool": "estimate-generator",
@@ -3991,7 +4242,10 @@
           "seller_sample_download": 0,
           "seller_checkout_intent": 0,
           "service_request_intent": 0,
-          "audit_request_intent": 0
+          "audit_request_intent": 0,
+          "sponsor_request_intent": 0,
+          "sponsor_lead_submit": 0,
+          "sponsor_invoice_request": 0
         },
         {
           "tool": "purchase-order",
@@ -4004,7 +4258,10 @@
           "seller_sample_download": 0,
           "seller_checkout_intent": 0,
           "service_request_intent": 0,
-          "audit_request_intent": 0
+          "audit_request_intent": 0,
+          "sponsor_request_intent": 0,
+          "sponsor_lead_submit": 0,
+          "sponsor_invoice_request": 0
         },
         {
           "tool": "bill-of-sale",
@@ -4017,7 +4274,10 @@
           "seller_sample_download": 0,
           "seller_checkout_intent": 0,
           "service_request_intent": 0,
-          "audit_request_intent": 0
+          "audit_request_intent": 0,
+          "sponsor_request_intent": 0,
+          "sponsor_lead_submit": 0,
+          "sponsor_invoice_request": 0
         },
         {
           "tool": "business-card",
@@ -4030,7 +4290,10 @@
           "seller_sample_download": 0,
           "seller_checkout_intent": 0,
           "service_request_intent": 0,
-          "audit_request_intent": 0
+          "audit_request_intent": 0,
+          "sponsor_request_intent": 0,
+          "sponsor_lead_submit": 0,
+          "sponsor_invoice_request": 0
         },
         {
           "tool": "address-labels",
@@ -4043,7 +4306,10 @@
           "seller_sample_download": 0,
           "seller_checkout_intent": 0,
           "service_request_intent": 0,
-          "audit_request_intent": 0
+          "audit_request_intent": 0,
+          "sponsor_request_intent": 0,
+          "sponsor_lead_submit": 0,
+          "sponsor_invoice_request": 0
         },
         {
           "tool": "price-tag",
@@ -4056,7 +4322,10 @@
           "seller_sample_download": 0,
           "seller_checkout_intent": 0,
           "service_request_intent": 0,
-          "audit_request_intent": 0
+          "audit_request_intent": 0,
+          "sponsor_request_intent": 0,
+          "sponsor_lead_submit": 0,
+          "sponsor_invoice_request": 0
         },
         {
           "tool": "flyer-maker",
@@ -4069,7 +4338,10 @@
           "seller_sample_download": 0,
           "seller_checkout_intent": 0,
           "service_request_intent": 0,
-          "audit_request_intent": 0
+          "audit_request_intent": 0,
+          "sponsor_request_intent": 0,
+          "sponsor_lead_submit": 0,
+          "sponsor_invoice_request": 0
         }
       ]
     }
@@ -4083,21 +4355,35 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
+      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF size targets, image KB targets, PDF-to-Word, ATS checks, background removal, text overlays, QR codes, PDF edits, paperwork, labels, resumes, and printables.",
       "topics": [
-        "pdf-tools",
+        "background-remover",
+        "compress-image-to-100kb",
+        "compress-pdf",
+        "compress-pdf-to-1mb",
+        "compress-pdf-to-500kb",
+        "free-tools",
+        "image-compressor",
+        "image-converter",
+        "image-resizer",
+        "image-to-pdf",
         "image-tools",
-        "qr-code",
+        "invoice-generator",
         "no-signup",
-        "browser-tools",
-        "free-tools"
+        "passport-photo",
+        "pdf-generator",
+        "pdf-to-jpg",
+        "pdf-to-word",
+        "pdf-tools",
+        "qr-code",
+        "resume-checker"
       ],
-      "error": "GitHub API fallback used: GitHub API 403",
       "discoveryRelease": {
         "tag": "free-pdf-tools",
         "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
         "name": "Free PDF, Image, and QR Tools Without Signup"
-      }
+      },
+      "error": ""
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
@@ -4245,7 +4531,7 @@
         "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
       ],
       "externalDiscovery": [
-        "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 92 landing page link(s), 66 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).",
         "GitHub Pages discovery sitemap has 262 URL(s), including 66 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 262.",

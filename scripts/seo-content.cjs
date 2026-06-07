@@ -4884,6 +4884,8 @@ const SPONSOR_DEALS = [
   },
 ];
 
+const DEFAULT_SPONSOR_DEAL_ID = "starter-fit-review";
+
 function sponsorDealPrefillAttrs(deal) {
   return [
     `data-sponsor-deal-id="${escapeHtml(deal.id)}"`,
@@ -4902,7 +4904,7 @@ function sponsorDealCommitment(deal) {
 function sponsorQuickDealOptions() {
   return SPONSOR_DEALS
     .filter((deal) => sponsorDealCommitment(deal) === "request-invoice")
-    .map((deal) => `<option value="${escapeHtml(deal.id)}"${deal.id === "guide-sponsor-pilot" ? " selected" : ""}>${escapeHtml(deal.title)} - ${escapeHtml(deal.price)}</option>`)
+    .map((deal) => `<option value="${escapeHtml(deal.id)}"${deal.id === DEFAULT_SPONSOR_DEAL_ID ? " selected" : ""}>${escapeHtml(deal.title)} - ${escapeHtml(deal.price)}</option>`)
     .join("\n");
 }
 
@@ -6236,7 +6238,7 @@ ${sponsorLeadFormHtml()}
 }
 
 function sponsorLeadFormHtml() {
-  const defaultDeal = SPONSOR_DEALS.find((deal) => deal.id === "guide-sponsor-pilot") || SPONSOR_DEALS[0];
+  const defaultDeal = SPONSOR_DEALS.find((deal) => deal.id === DEFAULT_SPONSOR_DEAL_ID) || SPONSOR_DEALS[0];
   const defaultVertical = SPONSOR_VERTICALS[0];
   const publicReplyUrl = sponsorPublicReplyUrl({
     prospectName: "Sponsor team",
@@ -6251,6 +6253,11 @@ function sponsorLeadFormHtml() {
           <div>
             <h2>Sponsorship inquiry form</h2>
             <p>Share only business-safe details. The inquiry is stored for follow-up review, while public dashboards show only aggregate lead counts.</p>
+            <div class="notice sponsor-close-path">
+              <strong>Fastest paid pilot path</strong>
+              <p>Start with the USD 49 starter fit review, send business email plus website, and ask for manual invoice review. This is the lowest-friction path to a real external sponsor agreement.</p>
+              <p><a class="button" data-sponsor-deal-select ${sponsorDealPrefillAttrs(defaultDeal)} data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Use USD 49 starter review</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Public-safe reply</a></p>
+            </div>
             <ul>
               <li>Best fit: relevant PDF, image, QR, productivity, classroom, career, or small-business tools.</li>
               <li>Not accepted: gambling, adult, deceptive finance, malware, fake document, or misleading upload-service offers.</li>
@@ -6288,7 +6295,7 @@ function sponsorLeadFormHtml() {
             <div class="actions">
               <button class="button" type="submit" data-track-event="sponsor_request_intent" data-track-tool="sponsor">Request pilot invoice review</button>
             </div>
-            <p class="notice compact-notice" data-sponsor-quick-summary>Selected pilot: Guide sponsor pilot - USD 99-149. No payment is collected here.</p>
+            <p class="notice compact-notice" data-sponsor-quick-summary>Selected pilot: Starter fit review - USD 49. No payment is collected here.</p>
             <p class="help sponsor-lead-status" data-sponsor-lead-status role="status" aria-live="polite">No payment is collected here. Fit is reviewed manually first.</p>
           </form>
           <form class="panel form-grid sponsor-lead-form" data-sponsor-lead-form>

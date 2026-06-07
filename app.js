@@ -5156,6 +5156,8 @@
       trackedUrl: "/sponsor-deal-room/?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=partner-distribution-test&commitment=question-only#sponsor-inquiry",
     },
   ];
+
+  const DEFAULT_SPONSOR_DEAL_ID = "starter-fit-review";
   const sponsorVerticals = [
     {
       slug: "pdf-image-qr-saas",
@@ -5242,7 +5244,7 @@
   function sponsorQuickDealOptions() {
     return sponsorDeals
       .filter((deal) => sponsorDealCommitment(deal) === "request-invoice")
-      .map((deal) => `<option value="${escapeHtml(deal.id)}"${deal.id === "guide-sponsor-pilot" ? " selected" : ""}>${escapeHtml(deal.title)} - ${escapeHtml(deal.price)}</option>`)
+      .map((deal) => `<option value="${escapeHtml(deal.id)}"${deal.id === DEFAULT_SPONSOR_DEAL_ID ? " selected" : ""}>${escapeHtml(deal.title)} - ${escapeHtml(deal.price)}</option>`)
       .join("");
   }
 
@@ -7772,7 +7774,7 @@ ${paragraphs.join("\n")}
   }
 
   function renderSponsorLeadForm() {
-    const defaultDeal = sponsorDeals.find((deal) => deal.id === "guide-sponsor-pilot") || sponsorDeals[0];
+    const defaultDeal = sponsorDeals.find((deal) => deal.id === DEFAULT_SPONSOR_DEAL_ID) || sponsorDeals[0];
     const defaultVertical = sponsorVerticals[0];
     const publicReplyUrl = sponsorPublicReplyUrl(
       { name: "Sponsor team", website: "" },
@@ -7786,6 +7788,11 @@ ${paragraphs.join("\n")}
           <div>
             <h2>Sponsorship inquiry form</h2>
             <p>Share only business-safe details. The inquiry is stored for follow-up review, while public dashboards show only aggregate lead counts.</p>
+            <div class="notice sponsor-close-path">
+              <strong>Fastest paid pilot path</strong>
+              <p>Start with the USD 49 starter fit review, send business email plus website, and ask for manual invoice review. This is the lowest-friction path to a real external sponsor agreement.</p>
+              <p><a class="button" data-sponsor-deal-select ${sponsorDealPrefillAttrs(defaultDeal)} data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Use USD 49 starter review</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Public-safe reply</a></p>
+            </div>
             <ul>
               <li>Best fit: relevant PDF, image, QR, productivity, classroom, career, or small-business tools.</li>
               <li>Not accepted: gambling, adult, deceptive finance, malware, fake document, or misleading upload-service offers.</li>
@@ -7823,7 +7830,7 @@ ${paragraphs.join("\n")}
             <div class="actions">
               <button class="button" type="submit" data-track-event="sponsor_request_intent" data-track-tool="sponsor">Request pilot invoice review</button>
             </div>
-            <p class="notice compact-notice" data-sponsor-quick-summary>Selected pilot: Guide sponsor pilot - USD 99-149. No payment is collected here.</p>
+            <p class="notice compact-notice" data-sponsor-quick-summary>Selected pilot: Starter fit review - USD 49. No payment is collected here.</p>
             <p class="help sponsor-lead-status" data-sponsor-lead-status role="status" aria-live="polite">No payment is collected here. Fit is reviewed manually first.</p>
           </form>
           <form class="panel form-grid sponsor-lead-form" data-sponsor-lead-form>
@@ -12673,7 +12680,7 @@ ${paragraphs.join("\n")}
     root.querySelectorAll("[data-sponsor-quick-form]").forEach((form) => {
       if (form.dataset.boundSponsorQuickLead === "true") return;
       form.dataset.boundSponsorQuickLead = "true";
-      applySponsorDealPrefill(form, sponsorDealPrefillFromUrl() || loadSponsorDealPrefill() || sponsorDealPrefillFromDeal(sponsorDeals.find((deal) => deal.id === "guide-sponsor-pilot") || sponsorDeals[0]));
+      applySponsorDealPrefill(form, sponsorDealPrefillFromUrl() || loadSponsorDealPrefill() || sponsorDealPrefillFromDeal(sponsorDeals.find((deal) => deal.id === DEFAULT_SPONSOR_DEAL_ID) || sponsorDeals[0]));
       initSponsorQuickDealPicker(form);
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -12762,7 +12769,7 @@ ${paragraphs.join("\n")}
       const deal = sponsorDeals.find((item) => item.id === picker.value);
       if (deal) applySponsorDealPrefill(form, sponsorDealPrefillFromDeal(deal));
     });
-    if (!picker.value) picker.value = form.elements.dealId?.value || "guide-sponsor-pilot";
+    if (!picker.value) picker.value = form.elements.dealId?.value || DEFAULT_SPONSOR_DEAL_ID;
     const selectedDeal = sponsorDeals.find((item) => item.id === picker.value);
     if (selectedDeal) applySponsorDealPrefill(form, sponsorDealPrefillFromDeal(selectedDeal));
     updateSponsorQuickSummary(form);
@@ -12845,7 +12852,7 @@ ${paragraphs.join("\n")}
   }
 
   function sponsorLeadPublicReplyUrl(values) {
-    const deal = sponsorDeals.find((item) => item.id === values.dealId) || sponsorDeals.find((item) => item.id === values.quickDealId) || sponsorDeals.find((item) => item.id === "guide-sponsor-pilot") || sponsorDeals[0];
+    const deal = sponsorDeals.find((item) => item.id === values.dealId) || sponsorDeals.find((item) => item.id === values.quickDealId) || sponsorDeals.find((item) => item.id === DEFAULT_SPONSOR_DEAL_ID) || sponsorDeals[0];
     const vertical = sponsorVerticals.find((item) => item.slug === values.vertical) || sponsorVerticals.find((item) => item.campaign === values.utmCampaign) || sponsorVerticals[0];
     const proposalPath = values.path || deal?.trackedUrl || "/sponsor-deal-room/";
     return sponsorPublicReplyUrl(
@@ -12910,7 +12917,7 @@ ${paragraphs.join("\n")}
 
   async function submitSponsorQuickLeadForm(form) {
     const values = getFormValues(form);
-    const deal = sponsorDeals.find((item) => item.id === values.quickDealId) || sponsorDeals.find((item) => item.id === values.dealId) || sponsorDeals.find((item) => item.id === "guide-sponsor-pilot") || sponsorDeals[0];
+    const deal = sponsorDeals.find((item) => item.id === values.quickDealId) || sponsorDeals.find((item) => item.id === values.dealId) || sponsorDeals.find((item) => item.id === DEFAULT_SPONSOR_DEAL_ID) || sponsorDeals[0];
     const status = form.querySelector("[data-sponsor-lead-status]");
     const submit = form.querySelector("button[type='submit']");
     const setStatus = (message, kind = "") => {

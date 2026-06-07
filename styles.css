@@ -562,6 +562,18 @@ main {
   margin-top: 14px;
 }
 
+.sponsor-close-path {
+  display: grid;
+  gap: 9px;
+  margin-top: 14px;
+  border-color: rgba(23, 107, 135, 0.32);
+  background: #f3faf8;
+}
+
+.sponsor-close-path p {
+  margin: 0;
+}
+
 .sponsor-public-reply p {
   margin: 0;
 }
