@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENTS, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, serviceOrderPipeline, serviceOutreachQueue, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, siteUrl, tools, guides, landingPages } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENTS, SPONSOR_DISCOVERY_LINKS, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, sponsorCallPayload, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, serviceOrderPipeline, serviceOutreachQueue, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, siteUrl, tools, guides, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
@@ -72,6 +72,13 @@ const discoveryRoutes = [
     description: "GitHub Pages mirror for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup fixes.",
     url: pagesUrl("upload-error-cheatsheet"),
     mainUrl: siteUrl("upload-error-cheatsheet"),
+  },
+  {
+    path: "sponsor-call",
+    title: "Sponsor call",
+    description: "GitHub Pages mirror for PrintableTools Lab sponsor and partner discovery, with tracked sponsor-call links, public media kit, and no on-site payment collection.",
+    url: pagesUrl("sponsor-call"),
+    mainUrl: siteUrl("sponsor-call"),
   },
   ...gameDiscoveryRoutes,
 ];
@@ -148,6 +155,7 @@ const html = `<!doctype html>
         <li><a href="${trackedSiteUrl("upload-limit-fixer", "upload-limit-fixer")}">Upload limit fixer</a> for choosing the right no-upload tool when a website rejects a file by size, format, or dimensions.</li>
         <li><a href="${pagesUrl("organic-push-kit")}">Organic push kit mirror</a> for copy-ready, low-risk free-tool distribution tasks with tracked links and success signals.</li>
         <li><a href="${pagesUrl("upload-error-cheatsheet")}">Upload error cheatsheet mirror</a> for exact PDF, image, resume, and email attachment rejection messages with direct fixes.</li>
+        <li><a href="${pagesUrl("sponsor-call")}">Sponsor call mirror</a> for policy-fit partners who need the public sponsor call, media kit, and tracked inquiry path.</li>
         <li><a href="${trackedSiteUrl("tools", "all-tools")}">All free generators</a> for browsing every tool.</li>
         <li><a href="${pagesUrl("guides")}">Printable guide mirrors</a> for original help pages around PDF, image, QR, and printable workflows.</li>
         <li><a href="${trackedSiteUrl("free-pdf-tools", "free-tool-depth-directory")}">Free PDF, image, and QR tools directory</a> for continuing to another useful browser tool.</li>
@@ -206,6 +214,7 @@ for (const tool of allDiscoveryTools) {
 writeGuideDiscoveryPages();
 writeOrganicPushKitDiscoveryPage();
 writeUploadErrorCheatsheetDiscoveryPage();
+writeSponsorCallDiscoveryPage();
 writeGameDiscoveryPages();
 
 fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
@@ -251,10 +260,12 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
   },
   organicPushKit: organicPushKitEntry(),
   uploadErrorCheatsheet: uploadErrorCheatsheetEntry(),
+  sponsorCall: sponsorCallMirrorEntry(),
 }, null, 2)}\n`);
 
 fs.writeFileSync(path.join(docsDir, "organic-push-kit.json"), `${JSON.stringify(organicPushKitEntry(), null, 2)}\n`);
 fs.writeFileSync(path.join(docsDir, "upload-error-cheatsheet.json"), `${JSON.stringify(uploadErrorCheatsheetEntry(), null, 2)}\n`);
+fs.writeFileSync(path.join(docsDir, "sponsor-call.json"), `${JSON.stringify(sponsorCallMirrorEntry(), null, 2)}\n`);
 
 const githubPagesGameSubmissionFeed = {
   name: "HTML5 Game Submission Feed",
@@ -475,6 +486,12 @@ function writeOrganicPushKitDiscoveryPage() {
   fs.writeFileSync(path.join(dir, "index.html"), organicPushKitHtml());
 }
 
+function writeSponsorCallDiscoveryPage() {
+  const dir = path.join(docsDir, "sponsor-call");
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, "index.html"), sponsorCallMirrorHtml());
+}
+
 function copyPublicFile(relativePath) {
   const cleanPath = String(relativePath || "").replace(/^\/+/, "");
   if (!cleanPath) return;
@@ -606,6 +623,85 @@ function organicPushKitHtml() {
         <li><a href="${siteUrl("discovery.json").replace(/\/$/, "")}">Live discovery index</a></li>
       </ul>
       ${jsonLdHtml(itemListSchema("Organic push kit mirror", entry.tasks.map((task) => ({ title: task.title, url: task.trackedUrl }))))}
+    </main>
+    ${intentTrackerScriptHtml()}
+  </body>
+</html>
+`;
+}
+
+function sponsorCallMirrorHtml() {
+  const entry = sponsorCallMirrorEntry();
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sponsor call - PrintableTools Lab Directory</title>
+    <meta name="description" content="GitHub Pages mirror for PrintableTools Lab sponsor and partner discovery, with tracked sponsor-call links, public media kit, and no on-site payment collection.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="${pagesUrl("sponsor-call")}">
+    <style>
+      :root { color-scheme: light; --ink: #17313b; --muted: #5b6f78; --line: #dce8ec; --teal: #176b87; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Arial, sans-serif; color: var(--ink); background: #f7fbfc; line-height: 1.55; }
+      main { width: min(960px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 56px; }
+      h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; margin: 0 0 14px; }
+      p { color: var(--muted); max-width: 780px; }
+      a { color: var(--teal); font-weight: 700; }
+      .button { display: inline-flex; min-height: 40px; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--teal); color: #fff; text-decoration: none; }
+      .button.secondary { background: var(--ink); }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+      table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); }
+      th, td { text-align: left; vertical-align: top; padding: 10px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+      .card { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 8px; margin: 18px 0; }
+      ul { padding-left: 20px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="${pagesBase}">PrintableTools Lab discovery directory</a></p>
+      <h1>Sponsor call</h1>
+      <p>This GitHub Pages mirror points policy-fit sponsors and partners to the live PrintableTools Lab sponsor call. It is a crawlable discovery surface only: no payment is collected here, every placement requires manual review, and revenue is real only after a qualified inquiry, signed agreement, or settled external payment is verified.</p>
+      <p class="actions">
+        <a class="button" href="${escapeHtml(entry.trackedSponsorCallUrl)}">Open live sponsor call</a>
+        <a class="button secondary" href="${escapeHtml(entry.trackedSponsorFormUrl)}">Open inquiry form</a>
+      </p>
+      <section class="card">
+        <h2>Safety rules</h2>
+        <ul>
+          ${entry.safeUseRules.map((rule) => `<li>${escapeHtml(rule)}</li>`).join("\n")}
+        </ul>
+      </section>
+      <h2>Current sponsor openings</h2>
+      <table>
+        <thead><tr><th>Opening</th><th>Audience</th><th>Tracked path</th></tr></thead>
+        <tbody>
+          ${entry.actions.map((action) => `<tr><td>${escapeHtml(action.title)}</td><td>${escapeHtml(action.audience)}</td><td><a href="${escapeHtml(action.url)}">${escapeHtml(action.url)}</a></td></tr>`).join("\n")}
+        </tbody>
+      </table>
+      <h2>Sponsor discovery links</h2>
+      <table>
+        <thead><tr><th>Link</th><th>URL</th><th>Reason</th></tr></thead>
+        <tbody>
+          ${entry.discoveryLinks.map((item) => `<tr><td>${escapeHtml(item.title)}</td><td><a href="${escapeHtml(item.url)}">${escapeHtml(item.url)}</a></td><td>${escapeHtml(item.reason)}</td></tr>`).join("\n")}
+        </tbody>
+      </table>
+      <h2>Vertical sponsor pages</h2>
+      <table>
+        <thead><tr><th>Audience</th><th>Tracked page</th><th>Fit</th></tr></thead>
+        <tbody>
+          ${entry.verticalPages.map((item) => `<tr><td>${escapeHtml(item.title)}</td><td><a href="${escapeHtml(item.trackedUrl)}">${escapeHtml(item.trackedUrl)}</a></td><td>${escapeHtml(item.sponsorFit)}</td></tr>`).join("\n")}
+        </tbody>
+      </table>
+      <h2>Machine-readable feeds</h2>
+      <ul>
+        <li><a href="${pagesAssetUrl("sponsor-call.json")}">GitHub Pages sponsor-call JSON</a></li>
+        <li><a href="${siteUrl("sponsor-call.json").replace(/\/$/, "")}">Live sponsor-call JSON</a></li>
+        <li><a href="${siteUrl("sponsor-media-kit.json").replace(/\/$/, "")}">Live sponsor media kit JSON</a></li>
+        <li><a href="${siteUrl("sponsor-outreach-pack.json").replace(/\/$/, "")}">Live sponsor outreach pack JSON</a></li>
+      </ul>
+      ${jsonLdHtml(itemListSchema("Sponsor call mirror", entry.discoveryLinks.map((item) => ({ title: item.title, url: item.url }))))}
     </main>
     ${intentTrackerScriptHtml()}
   </body>
@@ -1479,6 +1575,59 @@ function uploadErrorCheatsheetEntry() {
       "Do not ask for ad clicks, ad views, artificial engagement, or private file examples.",
     ],
   };
+}
+
+function sponsorCallMirrorEntry() {
+  const call = sponsorCallPayload(generatedAtIso);
+  const trackedSponsorCallUrl = trackedSponsorUrl("sponsor-call", "github-pages-mirror");
+  const trackedSponsorFormUrl = `${trackedSponsorUrl("sponsor", "github-pages-form")}#sponsor-inquiry`;
+  return {
+    name: "PrintableTools Lab Sponsor Call Mirror",
+    generatedAt: generatedAtIso,
+    directory: pagesUrl("sponsor-call"),
+    livePage: siteUrl("sponsor-call"),
+    liveJson: siteUrl("sponsor-call.json").replace(/\/$/, ""),
+    trackedSponsorCallUrl,
+    trackedSponsorFormUrl,
+    mediaKit: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
+    outreachPack: siteUrl("sponsor-outreach-pack.json").replace(/\/$/, ""),
+    purpose: "GitHub Pages discovery mirror for policy-fit sponsor and partner inquiries while the live site keeps downloads free and collects no payment on-site.",
+    actions: call.actions.map((action) => ({
+      ...action,
+      url: action.url.replace("utm_source=sponsor-call", "utm_source=sponsor-outreach").replace("utm_content=", "utm_content=github-pages-"),
+    })),
+    discoveryLinks: SPONSOR_DISCOVERY_LINKS.map((item) => ({
+      ...item,
+      url: item.path === "sponsor-call"
+        ? trackedSponsorCallUrl
+        : item.path === "sponsor"
+          ? trackedSponsorFormUrl
+          : item.url,
+    })),
+    verticalPages: SPONSOR_VERTICALS.map((vertical) => ({
+      title: vertical.title,
+      trackedUrl: trackedSponsorUrl(`sponsor/${vertical.slug}`, vertical.campaign),
+      sponsorFit: vertical.sponsorFit,
+      priceHint: vertical.priceHint,
+    })),
+    safeUseRules: [
+      "Use only where sponsor, partner, resource-page, newsletter, or directory submissions are explicitly welcome.",
+      "Downloads stay free and cannot require ad clicks, sponsor interaction, accounts, or payment.",
+      "Sponsor copy must be clearly labeled and manually reviewed before placement.",
+      "Do not send payment, tax, bank, phone, private identity, passwords, or customer files through this site.",
+      "Success is a real qualified sponsor inquiry, signed agreement, or settled external payment. Clicks alone are not revenue.",
+    ],
+    successGate: call.successGate,
+  };
+}
+
+function trackedSponsorUrl(routePath, content) {
+  const url = new URL(siteUrl(routePath));
+  url.searchParams.set("utm_source", "sponsor-outreach");
+  url.searchParams.set("utm_medium", "organic");
+  url.searchParams.set("utm_campaign", "sponsor_call");
+  if (content) url.searchParams.set("utm_content", slugify(content).slice(0, 64));
+  return url.toString();
 }
 
 function auditLeadMagnetEntry() {

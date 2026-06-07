@@ -1,5 +1,5 @@
-const EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "guide_depth", "limit_hit", "ai_ideas", "ai_ideas_apply", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_request_intent", "audit_request_intent"];
-const SOURCE_EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "guide_depth", "seller_sample_download", "seller_checkout_intent", "service_request_intent", "audit_request_intent"];
+const EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "guide_depth", "limit_hit", "ai_ideas", "ai_ideas_apply", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit"];
+const SOURCE_EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "guide_depth", "seller_sample_download", "seller_checkout_intent", "service_request_intent", "audit_request_intent", "sponsor_request_intent"];
 const TOOL_EVENTS = ["generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "limit_hit", "seller_sample_download", "seller_checkout_intent", "service_request_intent", "audit_request_intent"];
 const TOOLS = [
   "invoice-generator",
@@ -71,6 +71,7 @@ const TOOLS = [
   "local-seller-starter-kit",
   "custom-local-print-pack",
   "market-table-print-audit",
+  "sponsor",
 ];
 const SOURCES = [
   "direct",
@@ -90,19 +91,21 @@ const SOURCES = [
   "share-kit",
   "short-video",
   "game-platform",
+  "sponsor-outreach",
   "directory",
   "community",
   "referral",
-  "unknown",
 ];
 
 export async function onRequestGet({ env }) {
   if (!env.PTL_EVENTS) return json({ ok: false, error: "Metrics store unavailable" }, 503);
   const today = new Date().toISOString().slice(0, 10);
   const count = async (key) => Number(await env.PTL_EVENTS.get(key)) || 0;
-  const [totalEntries, todayEntries, tools, sources] = await Promise.all([
+  const [totalEntries, todayEntries, sponsorLeads, todaySponsorLeads, tools, sources] = await Promise.all([
     Promise.all(EVENTS.map(async (event) => [event, await count(`total:event:${event}`)])),
     Promise.all(EVENTS.map(async (event) => [event, await count(`day:${today}:event:${event}`)])),
+    count("total:sponsor_leads"),
+    count(`day:${today}:sponsor_leads`),
     Promise.all(TOOLS.map(async (tool) => {
       const eventEntries = await Promise.all(
         TOOL_EVENTS.map(async (event) => [
@@ -110,7 +113,10 @@ export async function onRequestGet({ env }) {
           await count(`total:tool:${tool}:event:${event}`),
         ]),
       );
-      return { tool, ...Object.fromEntries(eventEntries) };
+      const row = { tool, ...Object.fromEntries(eventEntries) };
+      if (tool === "sponsor") row.sponsor_request_intent = await count(`total:tool:${tool}:event:sponsor_request_intent`);
+      if (tool === "sponsor") row.sponsor_lead_submit = await count(`total:tool:${tool}:event:sponsor_lead_submit`);
+      return row;
     })),
     Promise.all(SOURCES.map(async (source) => {
       const totalSourceEntries = await Promise.all(SOURCE_EVENTS.map(async (event) => [
@@ -120,11 +126,24 @@ export async function onRequestGet({ env }) {
       return { source, ...Object.fromEntries(totalSourceEntries) };
     })),
   ]);
+  const totals = Object.fromEntries(totalEntries);
   return json({
     ok: true,
     today,
-    totals: Object.fromEntries(totalEntries),
+    totals,
     todayTotals: Object.fromEntries(todayEntries),
+    totalDownloads: (totals.download_pdf || 0) + (totals.download_file || 0),
+    totalGenerations: (totals.generate_pdf || 0) + (totals.generate_file || 0),
+    freeToolDepthIntent: (totals.free_tool_depth || 0) + (totals.guide_depth || 0),
+    sponsorLeads,
+    todaySponsorLeads,
+    commercialIntent:
+      (totals.seller_checkout_intent || 0)
+      + (totals.seller_checkout_click || 0)
+      + (totals.service_request_intent || 0)
+      + (totals.audit_request_intent || 0)
+      + (totals.sponsor_request_intent || 0)
+      + (totals.sponsor_lead_submit || 0),
     tools,
     sources,
   });

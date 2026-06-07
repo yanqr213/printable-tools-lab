@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, siteUrl } = require("./seo-content.cjs");
+const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, SPONSOR_DISCOVERY_LINKS, siteUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const token = githubToken();
@@ -73,6 +73,8 @@ function renderIssueBody() {
     "",
     `- Product: ${siteUrl("")}`,
     `- Share kit: ${siteUrl("share-kit")}`,
+    `- Public sponsor call: ${siteUrl("sponsor-call")}`,
+    `- Sponsor media kit: ${siteUrl("sponsor-media-kit.json").replace(/\/$/, "")}`,
     `- HTML5 platform submit cockpit: ${siteUrl("platform-submit-cockpit")}`,
     `- HTML5 portal submission pack: ${siteUrl("portal-submission-pack")}`,
     `- Zero-cost monetization map: ${siteUrl("zero-cost-monetization-map")}`,
@@ -93,6 +95,13 @@ function renderIssueBody() {
     `- Upload limit fixer: ${trackedToolUrl("upload-limit-fixer", "github-issue")}`,
     `- Upload error cheatsheet: ${trackedToolUrl("upload-error-cheatsheet", "github-issue")}`,
     "- Ad-safety rule: do not ask for ad interactions, ad impressions, fake upvotes, or gated downloads.",
+    "",
+    "## Sponsor and partner discovery",
+    "",
+    "The sponsor path is a public, no-payment intake surface for policy-fit partners. It is validation until a qualified inquiry, signed agreement, or settled external payment is verified.",
+    "",
+    ...SPONSOR_DISCOVERY_LINKS.map((item) => `- [${item.title}](${item.url}) - ${item.reason}`),
+    "- Sponsor safety rule: downloads stay free, sponsor copy must be labeled, and private payout, tax, bank, phone, identity, password, or customer-file details stay outside the site.",
     "",
     "## Platform-ad game route",
     "",

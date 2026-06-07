@@ -207,6 +207,7 @@ function delay(ms) {
     "/guides/free-certificate-generator-pdf/",
     "/guides/printable-to-do-list-generator/",
     "/submit-directory/",
+    "/sponsor/",
     "/privacy/",
     "/dashboard/",
   ];
@@ -364,6 +365,65 @@ function delay(ms) {
   if (!cheatsheetResponse || !cheatsheetResponse.ok()) throw new Error("upload-error-cheatsheet.json route failed");
   const cheatsheetJson = await page.evaluate(() => JSON.parse(document.body.innerText));
   if (!Array.isArray(cheatsheetJson.entries) || cheatsheetJson.entries.length < 12) throw new Error("upload-error-cheatsheet.json missing entries");
+
+  await page.goto(`${base}/sponsor/`, { waitUntil: "networkidle" });
+  const sponsorText = await page.locator("main").innerText();
+  for (const phrase of ["Sponsor PrintableTools Lab", "What can be sponsored", "Sponsor pages by audience", "Placement rules", "Inquiry checklist"]) {
+    if (!sponsorText.includes(phrase)) throw new Error(`Sponsor page is missing ${phrase}`);
+  }
+  const sponsorLinkCount = await page.locator('main a[data-track-event="sponsor_request_intent"][data-track-tool="sponsor"]').count();
+  if (sponsorLinkCount < 3) throw new Error("Sponsor page is missing tracked sponsor intent links.");
+  const sponsorForm = page.locator('[data-sponsor-lead-form]').first();
+  if (!(await sponsorForm.count())) throw new Error("Sponsor page is missing lead capture form.");
+  await sponsorForm.locator('input[name="company"]').fill("Smoke Test Partner");
+  await sponsorForm.locator('input[name="contactEmail"]').fill("smoke@example.com");
+  await sponsorForm.locator('input[name="website"]').fill("https://example.com");
+  await sponsorForm.locator('select[name="placement"]').selectOption("content-sponsorship");
+  await sponsorForm.locator('select[name="budgetRange"]').selectOption("250-500");
+  await sponsorForm.locator('select[name="timeline"]').selectOption("this-month");
+  await sponsorForm.locator('textarea[name="audienceFit"]').fill("Privacy-friendly utility users who need PDF and image tools.");
+  await sponsorForm.locator('textarea[name="notes"]').fill("Smoke test note.");
+  await sponsorForm.locator('input[name="consent"]').check();
+  await sponsorForm.locator('button[type="submit"]').click();
+  await page.locator('[data-sponsor-lead-status][data-status="success"]').waitFor({ timeout: 5000 });
+  const sponsorMediaKitResponse = await page.goto(`${base}/sponsor-media-kit.json`, { waitUntil: "networkidle" });
+  if (!sponsorMediaKitResponse || !sponsorMediaKitResponse.ok()) throw new Error("sponsor-media-kit.json route failed");
+  const sponsorMediaKit = await page.evaluate(() => JSON.parse(document.body.innerText));
+  if (!Array.isArray(sponsorMediaKit.placements) || sponsorMediaKit.placements.length < 3) throw new Error("Sponsor media kit missing placements");
+  if (!String(sponsorMediaKit.moneyGate || "").includes("settled payment")) throw new Error("Sponsor media kit missing money gate");
+  const sponsorOutreachResponse = await page.goto(`${base}/sponsor-outreach-pack.json`, { waitUntil: "networkidle" });
+  if (!sponsorOutreachResponse || !sponsorOutreachResponse.ok()) throw new Error("sponsor-outreach-pack.json route failed");
+  const sponsorOutreachPack = await page.evaluate(() => JSON.parse(document.body.innerText));
+  if (!Array.isArray(sponsorOutreachPack.templates) || sponsorOutreachPack.templates.length < 3) throw new Error("Sponsor outreach pack missing templates");
+  if (!Array.isArray(sponsorOutreachPack.verticalSponsorPages) || sponsorOutreachPack.verticalSponsorPages.length < 5) throw new Error("Sponsor outreach pack missing vertical pages");
+  if (!Array.isArray(sponsorOutreachPack.trackedLinks) || sponsorOutreachPack.trackedLinks.length < 10) throw new Error("Sponsor outreach pack missing vertical tracked links");
+  await page.goto(`${base}/sponsor-call/`, { waitUntil: "networkidle" });
+  const sponsorCallText = await page.locator("main").innerText();
+  for (const phrase of ["Sponsor call", "Current sponsor openings", "Audience-specific sponsor pages", "Rules before any placement"]) {
+    if (!sponsorCallText.includes(phrase)) throw new Error(`Sponsor call page is missing ${phrase}`);
+  }
+  const sponsorCallResponse = await page.goto(`${base}/sponsor-call.json`, { waitUntil: "networkidle" });
+  if (!sponsorCallResponse || !sponsorCallResponse.ok()) throw new Error("sponsor-call.json route failed");
+  const sponsorCallJson = await page.evaluate(() => JSON.parse(document.body.innerText));
+  if (!Array.isArray(sponsorCallJson.actions) || sponsorCallJson.actions.length < 3) throw new Error("Sponsor call JSON missing actions");
+  await page.goto(`${base}/sponsor/pdf-image-qr-saas/?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=pdf_image_qr_saas&utm_content=smoke`, { waitUntil: "networkidle" });
+  const sponsorVerticalText = await page.locator("main").innerText();
+  for (const phrase of ["PDF, Image, and QR SaaS Sponsorship", "Audience fit", "Pilot offer", "Good-fit sponsor categories"]) {
+    if (!sponsorVerticalText.includes(phrase)) throw new Error(`Sponsor vertical page is missing ${phrase}`);
+  }
+  const sponsorVerticalForm = page.locator('[data-sponsor-lead-form]').first();
+  if (!(await sponsorVerticalForm.count())) throw new Error("Sponsor vertical page is missing lead capture form.");
+  await sponsorVerticalForm.locator('input[name="company"]').fill("Smoke SaaS Partner");
+  await sponsorVerticalForm.locator('input[name="contactEmail"]').fill("saas-smoke@example.com");
+  await sponsorVerticalForm.locator('input[name="website"]').fill("https://example.com/saas");
+  await sponsorVerticalForm.locator('select[name="placement"]').selectOption("content-sponsorship");
+  await sponsorVerticalForm.locator('select[name="budgetRange"]').selectOption("250-500");
+  await sponsorVerticalForm.locator('select[name="timeline"]').selectOption("this-month");
+  await sponsorVerticalForm.locator('textarea[name="audienceFit"]').fill("PDF, image, and QR SaaS users who need no-upload file workflows.");
+  await sponsorVerticalForm.locator('textarea[name="notes"]').fill("Smoke attribution test.");
+  await sponsorVerticalForm.locator('input[name="consent"]').check();
+  await sponsorVerticalForm.locator('button[type="submit"]').click();
+  await page.locator('[data-sponsor-lead-status][data-status="success"]').waitFor({ timeout: 5000 });
 
   const onePagePdf = await samplePdf("First document");
   const secondPagePdf = await samplePdf("Second document");

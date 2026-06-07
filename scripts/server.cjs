@@ -19,15 +19,52 @@ const types = {
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, `http://localhost:${port}`);
   if (url.pathname === "/api/metrics") {
+    const totals = { page_view: 0, generate_pdf: 0, download_pdf: 0, generate_file: 0, download_file: 0, free_tool_depth: 0, guide_depth: 0, limit_hit: 0, ai_ideas: 0, ai_ideas_apply: 0, seller_sample_download: 0, seller_checkout_intent: 0, seller_checkout_click: 0, service_request_intent: 0, audit_request_intent: 0, sponsor_request_intent: 0, sponsor_lead_submit: 0 };
     res.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" });
     res.end(JSON.stringify({
       ok: true,
       today: new Date().toISOString().slice(0, 10),
-      totals: { page_view: 0, generate_pdf: 0, download_pdf: 0, generate_file: 0, download_file: 0, limit_hit: 0, ai_ideas: 0, ai_ideas_apply: 0, seller_sample_download: 0, seller_checkout_intent: 0, seller_checkout_click: 0, service_request_intent: 0, audit_request_intent: 0 },
-      todayTotals: { page_view: 0, generate_pdf: 0, download_pdf: 0, generate_file: 0, download_file: 0, limit_hit: 0, ai_ideas: 0, ai_ideas_apply: 0, seller_sample_download: 0, seller_checkout_intent: 0, seller_checkout_click: 0, service_request_intent: 0, audit_request_intent: 0 },
+      totals,
+      todayTotals: totals,
+      totalDownloads: 0,
+      totalGenerations: 0,
+      freeToolDepthIntent: 0,
+      sponsorLeads: 0,
+      todaySponsorLeads: 0,
+      commercialIntent: 0,
       tools: [],
       sources: [],
     }));
+    return;
+  }
+  if (url.pathname === "/api/sponsor-lead" && req.method === "POST") {
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk;
+      if (body.length > 10000) req.destroy();
+    });
+    req.on("end", () => {
+      try {
+        const data = JSON.parse(body || "{}");
+        if (!data.company || !data.contactEmail || !data.website || !data.audienceFit || !data.consent) {
+          res.writeHead(400, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" });
+          res.end(JSON.stringify({ ok: false, error: "Missing required sponsor inquiry fields." }));
+          return;
+        }
+        if (data.path && String(data.path).startsWith("/sponsor/pdf-image-qr-saas/")) {
+          if (data.utmCampaign !== "pdf_image_qr_saas" || data.vertical !== "pdf-image-qr-saas") {
+            res.writeHead(400, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" });
+            res.end(JSON.stringify({ ok: false, error: "Missing sponsor attribution fields." }));
+            return;
+          }
+        }
+        res.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" });
+        res.end(JSON.stringify({ ok: true, id: "local-sponsor-lead", validation: true }));
+      } catch {
+        res.writeHead(400, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" });
+        res.end(JSON.stringify({ ok: false, error: "Sponsor inquiry rejected" }));
+      }
+    });
     return;
   }
 

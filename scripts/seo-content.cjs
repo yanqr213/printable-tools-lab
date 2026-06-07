@@ -4805,6 +4805,302 @@ const keywordClusters = [
   },
 ];
 
+const SPONSOR_PLACEMENTS = [
+  {
+    id: "starter-review",
+    name: "Starter media review",
+    price: "USD 49 exploratory",
+    fit: "A sponsor or partner wants a quick manual fit review before discussing placement.",
+    deliverable: "Policy-fit check, suggested placement type, and a public-safe follow-up note.",
+  },
+  {
+    id: "guide-sponsorship",
+    name: "Guide sponsorship pilot",
+    price: "USD 99-149 pilot",
+    fit: "Useful products for privacy-friendly PDF, image, QR, career, classroom, or small-business workflows.",
+    deliverable: "Clearly labeled sponsor mention on one relevant guide or resource page after approval.",
+  },
+  {
+    id: "partner-distribution",
+    name: "Partner distribution swap",
+    price: "No-cash mutual test",
+    fit: "Directories, newsletters, or communities that can send relevant visitors to free tools.",
+    deliverable: "Tracked partner link and review of whether traffic creates depth, download, or lead signal.",
+  },
+];
+
+const SPONSOR_OUTREACH_TARGETS = [
+  {
+    category: "PDF, image, and QR SaaS",
+    why: "Adjacent products may want privacy-friendly utility traffic without gating free downloads.",
+    pitch: "Offer a labeled guide sponsorship or partner resource link around no-upload file workflows.",
+  },
+  {
+    category: "Career and resume products",
+    why: "Resume, ATS, cover-letter, and PDF-size searches carry job-application intent.",
+    pitch: "Offer a labeled resource placement near resume, ATS, and PDF upload-limit content.",
+  },
+  {
+    category: "Teacher, homeschool, and classroom resources",
+    why: "Worksheet, flashcard, name-tracing, and classroom printable pages match education audiences.",
+    pitch: "Offer content sponsorship on classroom-printable guides with strict child-safety review.",
+  },
+  {
+    category: "Small-business paperwork tools",
+    why: "Invoices, receipts, price tags, flyers, QR signs, and packing slips attract local seller intent.",
+    pitch: "Offer a sponsor pilot around paperwork templates, QR signage, or local promotion workflows.",
+  },
+  {
+    category: "Free-tool directories and newsletters",
+    why: "A no-signup free utility collection can be useful editorial inventory for directory audiences.",
+    pitch: "Offer a reciprocal or no-cash traffic-quality test using tracked links.",
+  },
+];
+
+const SPONSOR_VERTICALS = [
+  {
+    slug: "pdf-image-qr-saas",
+    title: "PDF, Image, and QR SaaS Sponsorship",
+    description: "Sponsor pilot page for SaaS products that help people compress files, convert images, generate QR codes, automate documents, or manage privacy-friendly file workflows.",
+    audience: "Visitors fixing PDF size limits, converting images, making static QR codes, and choosing no-upload browser utilities.",
+    sponsorFit: "PDF APIs, image optimization tools, QR platforms, privacy-friendly document automation, browser utility products, and file-workflow SaaS.",
+    pitch: "Reach people who already have a file, upload, conversion, or QR job in progress.",
+    campaign: "pdf_image_qr_saas",
+    primaryPlacementId: "guide-sponsorship",
+    priceHint: "USD 99-149 pilot",
+    links: [
+      ["Compress PDF", "tools/compress-pdf"],
+      ["Compress image to KB", "tools/compress-image-to-kb"],
+      ["Convert image format", "tools/convert-image"],
+      ["Free QR code generator", "tools/qr-code"],
+      ["Upload limit fixer", "upload-limit-fixer"],
+    ],
+    sponsorCategories: ["PDF APIs", "image compression SaaS", "QR code platforms", "document automation", "privacy-friendly browser utilities"],
+  },
+  {
+    slug: "resume-career-sponsors",
+    title: "Resume and Career Tool Sponsorship",
+    description: "Sponsor pilot page for career products that help job seekers with resumes, ATS checks, cover letters, applications, PDF upload limits, and interview preparation.",
+    audience: "Job seekers creating resume PDFs, checking ATS keywords, fixing resume upload size limits, and preparing application documents.",
+    sponsorFit: "Resume builders, ATS tools, job boards, interview prep products, career coaching, and applicant-document utilities.",
+    pitch: "Reach visitors at the moment they are preparing or fixing job-application documents.",
+    campaign: "resume_career_sponsors",
+    primaryPlacementId: "guide-sponsorship",
+    priceHint: "USD 99-149 pilot",
+    links: [
+      ["Resume builder", "tools/resume-builder"],
+      ["ATS resume checker", "tools/ats-resume-checker"],
+      ["Cover letter generator", "tools/cover-letter"],
+      ["Resume PDF too large", "resume-pdf-too-large"],
+      ["ATS resume keyword guide", "guides/ats-resume-keyword-match"],
+    ],
+    sponsorCategories: ["resume software", "ATS checkers", "job boards", "career coaching", "interview prep"],
+  },
+  {
+    slug: "classroom-printable-sponsors",
+    title: "Classroom Printable Sponsorship",
+    description: "Sponsor pilot page for education, homeschool, teacher-resource, and classroom products that fit worksheets, flashcards, tracing pages, planners, and routine charts.",
+    audience: "Teachers, homeschool families, and parents making free printable learning, planning, and classroom-management PDFs.",
+    sponsorFit: "Teacher marketplaces, homeschool resources, classroom apps, learning printables, family routine products, and child-safe educational tools.",
+    pitch: "Reach classroom and homeschool visitors while keeping child-safety and ad-safety review strict.",
+    campaign: "classroom_printable_sponsors",
+    primaryPlacementId: "guide-sponsorship",
+    priceHint: "USD 99-149 pilot",
+    links: [
+      ["Name tracing worksheet", "tools/name-tracing"],
+      ["Flashcard generator", "tools/flashcards"],
+      ["Chore chart", "tools/chore-chart"],
+      ["Weekly planner", "tools/weekly-planner"],
+      ["Classroom label ideas", "guides/classroom-label-generator-ideas"],
+    ],
+    sponsorCategories: ["teacher resources", "homeschool tools", "classroom apps", "learning printables", "family routine products"],
+  },
+  {
+    slug: "small-business-paperwork-sponsors",
+    title: "Small Business Paperwork Sponsorship",
+    description: "Sponsor pilot page for products that help freelancers, local sellers, and small businesses with invoices, receipts, quotes, labels, QR signs, flyers, and operations paperwork.",
+    audience: "Freelancers, local sellers, home-service operators, and small teams creating simple business PDFs and print assets.",
+    sponsorFit: "Invoicing apps, bookkeeping tools, POS products, local marketing services, shipping tools, label systems, and small-business operations software.",
+    pitch: "Reach small-business visitors while they are making paperwork or local promotion files.",
+    campaign: "small_business_paperwork_sponsors",
+    primaryPlacementId: "guide-sponsorship",
+    priceHint: "USD 99-149 pilot",
+    links: [
+      ["Invoice generator", "tools/invoice-generator"],
+      ["Receipt generator", "tools/receipt-generator"],
+      ["Packing slip generator", "tools/packing-slip"],
+      ["Business card generator", "tools/business-card"],
+      ["Price tag generator", "tools/price-tag"],
+    ],
+    sponsorCategories: ["invoicing software", "bookkeeping tools", "POS products", "shipping tools", "local marketing services"],
+  },
+  {
+    slug: "local-marketing-qr-sponsors",
+    title: "Local Marketing and QR Sponsorship",
+    description: "Sponsor pilot page for QR, signage, local promotion, review-management, and small-business marketing products that fit printable flyers, coupons, price tags, and WiFi/contact QR tools.",
+    audience: "Local services, shops, event organizers, and small teams creating QR codes, flyers, coupons, signs, and printable promotion assets.",
+    sponsorFit: "QR platforms, review-request tools, local SEO products, print shops, signage services, event tools, and small-business marketing software.",
+    pitch: "Reach visitors making offline-to-online assets for local promotion.",
+    campaign: "local_marketing_qr_sponsors",
+    primaryPlacementId: "starter-review",
+    priceHint: "USD 49 exploratory or USD 99-149 pilot",
+    links: [
+      ["Free QR code generator", "tools/qr-code"],
+      ["WiFi QR code generator", "tools/wifi-qr-code"],
+      ["Contact QR code generator", "tools/vcard-qr-code"],
+      ["Flyer maker", "tools/flyer-maker"],
+      ["Coupon maker", "tools/coupon-maker"],
+    ],
+    sponsorCategories: ["QR code platforms", "review-management tools", "local SEO products", "print shops", "event marketing tools"],
+  },
+];
+
+const SPONSOR_OUTREACH_TEMPLATES = [
+  {
+    id: "sponsor-fit-email",
+    channel: "Email or contact form",
+    subject: "Small sponsorship pilot for free PDF, image, and QR utility traffic",
+    body: "Hi, I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, document, career, classroom, and small-business workflows. I am opening a small sponsor/partner pilot with clearly labeled placements and strict rules: downloads stay free, sponsor copy is separated from generator controls, and no misleading upload or finance offers are accepted. If your product is relevant to privacy-friendly file or document workflows, I can send the media kit and fit checklist.",
+  },
+  {
+    id: "directory-partner-message",
+    channel: "Directory or newsletter pitch",
+    subject: "Free no-signup PDF/image/QR tools for your utility audience",
+    body: "PrintableTools Lab has 66 free browser tools, 95 guides, and high-intent pages for upload limits, PDF compression, image conversion, QR codes, invoices, resumes, labels, and printables. I am looking for low-risk partner distribution tests where success is measured by actual tool depth, downloads, or sponsor leads rather than vanity traffic.",
+  },
+  {
+    id: "resource-page-follow-up",
+    channel: "Follow-up after relevant discussion",
+    subject: "Resource fit: no-upload file tools",
+    body: "This may be useful for your audience: PrintableTools Lab keeps core exports free and local-first where possible. Sponsor and partner requests are reviewed manually, with no payment collected on the site and no private payout or tax details requested.",
+  },
+];
+
+const SPONSOR_CALL_ACTIONS = [
+  {
+    title: "Sponsor a relevant guide",
+    audience: "PDF, image, QR, resume, classroom, or small-business workflow products.",
+    url: `${siteUrl("sponsor").replace(/\/$/, "")}?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=guide-sponsor`,
+    signal: "A qualified sponsor lead submits audience fit and budget range through the site form.",
+  },
+  {
+    title: "Request a starter fit review",
+    audience: "Early partners who want a quick policy-fit review before discussing copy.",
+    url: `${siteUrl("sponsor").replace(/\/$/, "")}?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=starter-review`,
+    signal: "A business asks for the USD 49 exploratory review or a no-cash partner test.",
+  },
+  {
+    title: "Use a vertical sponsor page",
+    audience: "Partners who care about one audience: QR/local marketing, resume, classroom, small business, or file workflow SaaS.",
+    url: `${siteUrl("sponsor/pdf-image-qr-saas").replace(/\/$/, "")}?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=vertical-pages`,
+    signal: "A sponsor lead arrives with sponsor-call attribution and a vertical path.",
+  },
+];
+
+const SPONSOR_DISCOVERY_LINKS = [
+  {
+    title: "Public sponsor call",
+    path: "sponsor-call",
+    url: `${siteUrl("sponsor-call").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=public-call`,
+    canonicalUrl: siteUrl("sponsor-call"),
+    reason: "Open invitation for policy-fit sponsors and partners to use the sponsor form instead of private outreach.",
+  },
+  {
+    title: "Sponsor inquiry form",
+    path: "sponsor",
+    url: `${siteUrl("sponsor").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=inquiry-form#sponsor-inquiry`,
+    canonicalUrl: siteUrl("sponsor"),
+    reason: "Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries.",
+  },
+  {
+    title: "Sponsor call JSON",
+    path: "sponsor-call.json",
+    url: siteUrl("sponsor-call.json").replace(/\/$/, ""),
+    canonicalUrl: siteUrl("sponsor-call.json").replace(/\/$/, ""),
+    reason: "Machine-readable sponsor openings, reply path, vertical pages, and success gate.",
+  },
+  {
+    title: "Sponsor media kit JSON",
+    path: "sponsor-media-kit.json",
+    url: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
+    canonicalUrl: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
+    reason: "Public facts, placement rules, vertical fits, and safety constraints for partners.",
+  },
+];
+
+function sponsorMediaKitPayload(generatedAt = new Date().toISOString()) {
+  return {
+    name: "PrintableTools Lab Sponsor Media Kit",
+    generatedAt,
+    site: siteUrl(""),
+    sponsorPage: siteUrl("sponsor"),
+    metricsDashboard: siteUrl("dashboard"),
+    toolsJson: siteUrl("tools.json").replace(/\/$/, ""),
+    directoryPack: siteUrl("submit-directory"),
+    facts: {
+      tools: tools.length,
+      guides: guides.length,
+      landingPages: landingPages.length,
+      indexableRoutes: routes.filter((route) => route.index !== false).length,
+      exports: "Free browser exports; no signup required for core tools.",
+      ads: "Ads disabled during validation. Downloads must never be gated by sponsor or ad interaction.",
+    },
+    placements: SPONSOR_PLACEMENTS,
+    outreachTargets: SPONSOR_OUTREACH_TARGETS,
+    outreachTemplates: SPONSOR_OUTREACH_TEMPLATES,
+    verticalSponsorPages: SPONSOR_VERTICALS.map(sponsorVerticalEntry),
+    rules: [
+      "Sponsor copy must be clearly labeled.",
+      "Downloads stay free and cannot require an ad click, sponsor interaction, account, or payment.",
+      "No gambling, adult, deceptive finance, malware, fake document, or misleading upload-service offers.",
+      "No guaranteed traffic, guaranteed compression, legal/tax advice, or official acceptance claims.",
+      "Payment, tax, bank, phone, private identity, and payout details stay outside PrintableTools Lab.",
+    ],
+    moneyGate: "Revenue is real only when an external payment provider or sponsor agreement shows settled payment. Sponsor leads and clicks are validation, not revenue.",
+  };
+}
+
+function sponsorCallPayload(generatedAt = new Date().toISOString()) {
+  return {
+    name: "PrintableTools Lab Sponsor Call",
+    generatedAt,
+    canonical: siteUrl("sponsor-call"),
+    sponsorPage: siteUrl("sponsor"),
+    mediaKit: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
+    outreachPack: siteUrl("sponsor-outreach-pack.json").replace(/\/$/, ""),
+    actions: SPONSOR_CALL_ACTIONS,
+    discoveryLinks: SPONSOR_DISCOVERY_LINKS,
+    verticalSponsorPages: SPONSOR_VERTICALS.map(sponsorVerticalEntry),
+    publicFacts: {
+      tools: tools.length,
+      guides: guides.length,
+      landingPages: landingPages.length,
+      exports: "Free no-signup browser exports.",
+    },
+    replyPath: "Use the sponsor inquiry form. Do not send payment, tax, phone, bank, private identity, passwords, or customer files.",
+    successGate: "The call works only when a qualified sponsor inquiry, signed agreement, or settled external payment is verified.",
+  };
+}
+
+function sponsorVerticalEntry(vertical) {
+  return {
+    slug: vertical.slug,
+    title: vertical.title,
+    url: siteUrl(`sponsor/${vertical.slug}`),
+    trackedUrl: sponsorVerticalTrackedUrl(vertical),
+    audience: vertical.audience,
+    sponsorFit: vertical.sponsorFit,
+    pitch: vertical.pitch,
+    priceHint: vertical.priceHint,
+    sponsorCategories: vertical.sponsorCategories,
+  };
+}
+
+function sponsorVerticalTrackedUrl(vertical) {
+  return `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}`;
+}
+
+
 const pages = [
   {
     path: "",
@@ -4956,6 +5252,24 @@ const pages = [
     html: shareKitHtml(),
   },
   {
+    path: "sponsor",
+    title: "Sponsor PrintableTools Lab",
+    description: "Sponsor and partner inquiry page for PrintableTools Lab, a free no-signup browser PDF, image, QR, and document utility site with ad-safe placement rules.",
+    html: sponsorPageHtml(),
+  },
+  {
+    path: "sponsor-call",
+    title: "Sponsor Call for PrintableTools Lab",
+    description: "Public sponsor call for privacy-friendly PDF, image, QR, resume, classroom, and small-business workflow partners to request a labeled pilot placement.",
+    html: sponsorCallHtml(),
+  },
+  ...SPONSOR_VERTICALS.map((vertical) => ({
+    path: `sponsor/${vertical.slug}`,
+    title: vertical.title,
+    description: vertical.description,
+    html: sponsorVerticalPageHtml(vertical),
+  })),
+  {
     path: "organic-push-kit",
     title: "Organic Push Kit",
     description: "Copy-ready low-risk organic distribution tasks, tracked links, trigger rules, and validation signals for growing free-tool traffic before display ads.",
@@ -5054,7 +5368,7 @@ const pages = [
     path: "privacy",
     title: "Privacy Policy",
     description: "Privacy policy for PrintableTools Lab.",
-    html: `<article class="article-shell article"><h1>Privacy Policy</h1><p>PrintableTools Lab generates PDFs in your browser. Ordinary PDF generation does not require an account and keeps form text on your device.</p><p>If you choose the optional AI idea helper, the current tool type and short form text are sent to the site's AI service only to return printable suggestions. Do not enter sensitive personal information.</p><p>The site stores local generation counts and validation events in your browser. The site's anonymous event counter may also store a normalized source label such as direct, google, github, gist, directory, share-kit, or referral. It does not store full referrer URLs in that counter.</p></article>`,
+    html: `<article class="article-shell article"><h1>Privacy Policy</h1><p>PrintableTools Lab generates PDFs in your browser. Ordinary PDF generation does not require an account and keeps form text on your device.</p><p>If you choose the optional AI idea helper, the current tool type and short form text are sent to the site's AI service only to return printable suggestions. Do not enter sensitive personal information.</p><p>The site stores local generation counts and validation events in your browser. The site's anonymous event counter may also store a normalized source label such as direct, google, github, gist, directory, share-kit, or referral. It does not store full referrer URLs in that counter.</p><p>If you submit the sponsor inquiry form, the company name, business email, website, placement interest, budget range, timeline, audience-fit note, and public-safe notes are sent to the site API for manual follow-up review. Public dashboards expose only aggregate sponsor lead counts, not contact details.</p></article>`,
   },
   {
     path: "terms",
@@ -5425,6 +5739,262 @@ function pdfToolFinderHtml() {
       </section>`;
 }
 
+function sponsorPageHtml() {
+  const sponsorEmail = "partners@printable-tools-lab.pages.dev";
+  const subject = encodeURIComponent("PrintableTools Lab sponsor inquiry");
+  const body = encodeURIComponent([
+    "Hi PrintableTools Lab,",
+    "",
+    "I am interested in a sponsorship or partner placement.",
+    "",
+    "Company / project:",
+    "Website:",
+    "Audience fit:",
+    "Preferred placement: media kit review / directory mention / content sponsorship / other",
+    "Notes:",
+    "",
+    "I understand that downloads must stay free, ads cannot gate files, and approval depends on fit.",
+  ].join("\n"));
+  const mailto = `mailto:${sponsorEmail}?subject=${subject}&body=${body}`;
+  return `
+      <section class="shell page-title section sponsor-hero">
+        <a href="/free-pdf-tools/">Free tools</a>
+        <h1>Sponsor PrintableTools Lab</h1>
+        <p>PrintableTools Lab is a free no-signup browser utility site for PDF compression, image conversion, QR codes, business documents, career PDFs, upload-limit fixes, and printable planners. This page captures responsible sponsorship and partner inquiries without enabling ads or collecting payment on-site.</p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Send sponsor inquiry</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/dashboard/">View live metrics</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/submit-directory/">Review media facts</a></p>
+      </section>
+      ${sponsorLeadFormHtml()}
+      <section class="shell section">
+        <h2>What can be sponsored</h2>
+        <div class="grid-3">
+          <article class="panel"><h3>Tool-directory visibility</h3><p>Contextual mentions around free PDF, image, QR, document, and upload-limit workflows after fit review.</p></article>
+          <article class="panel"><h3>Content sponsorship</h3><p>Useful guide or resource sponsorship for privacy-friendly file workflows, small-business paperwork, career documents, or classroom printables.</p></article>
+          <article class="panel"><h3>Partner distribution</h3><p>Directory, newsletter, or community partnerships that send users to free tools without gated downloads.</p></article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Current public facts</h2>
+        <div class="metric-grid">
+          <div class="metric-tile"><strong>${tools.length}</strong><span>free tools</span></div>
+          <div class="metric-tile"><strong>${guides.length}</strong><span>guides</span></div>
+          <div class="metric-tile"><strong>${landingPages.length}</strong><span>landing pages</span></div>
+          <div class="metric-tile"><strong>free</strong><span>no signup exports</span></div>
+        </div>
+        <p class="help">Live usage counters are available on the dashboard. Search visibility and ad-network eligibility are still validation gates, so this is an early partner inquiry surface rather than a guaranteed media buy.</p>
+      </section>
+      <section class="shell section">
+        <h2>Early sponsor pilots</h2>
+        <div class="grid-3">
+          ${SPONSOR_PLACEMENTS.map((item) => `<article class="panel"><h3>${escapeHtml(item.name)}</h3><p><strong>${escapeHtml(item.price)}</strong></p><p>${escapeHtml(item.fit)}</p><p>${escapeHtml(item.deliverable)}</p></article>`).join("\n")}
+        </div>
+        <p class="help">Prices are early validation anchors, not guaranteed inventory. Every placement still requires fit review and a separate external payment or agreement before any sponsor copy goes live.</p>
+      </section>
+      <section class="shell section">
+        <h2>Sponsor pages by audience</h2>
+        <p>These vertical pages make outreach clearer for partners who care about one audience instead of the whole tool library.</p>
+        <div class="grid-3">
+          ${SPONSOR_VERTICALS.map((vertical) => `<article class="panel"><h3>${escapeHtml(vertical.title)}</h3><p>${escapeHtml(vertical.pitch)}</p><p><strong>${escapeHtml(vertical.priceHint)}</strong></p><p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor/${escapeHtml(vertical.slug)}/">Open sponsor fit page</a></p></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Media kit and outreach pack</h2>
+        <p>The machine-readable media kit gives partners the current facts, placement rules, suggested sponsor categories, and copy-safe outreach templates.</p>
+        <p><a class="button" href="/sponsor-media-kit.json">Open sponsor media kit JSON</a> <a class="button secondary" href="/sponsor-outreach-pack.json">Open outreach pack JSON</a> <a class="button ghost" href="/dashboard/">Check live signals</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Placement rules</h2>
+        <ul>
+          <li>Downloads stay free and cannot require an ad click, sponsor interaction, account, or payment.</li>
+          <li>Sponsor copy must be clearly labeled and separated from generator controls.</li>
+          <li>No gambling, adult, deceptive finance, malware, fake document, or misleading upload-service offers.</li>
+          <li>No claim of guaranteed traffic, guaranteed compression, legal/tax advice, or official government acceptance.</li>
+          <li>Payment, tax, bank, phone, and identity details stay in external official provider dashboards only.</li>
+        </ul>
+      </section>
+      <section class="shell section">
+        <h2>Inquiry checklist</h2>
+        <p>Use the form above for a public-safe note with the company URL, audience fit, intended placement, and any policy requirements. Do not include private payment details, tax IDs, passwords, or customer files.</p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(mailto)}">Email fallback</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/tools.json">Open tools feed</a> <a class="button ghost" href="/privacy/">Privacy policy</a></p>
+        ${jsonLdHtml({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Sponsor PrintableTools Lab",
+          url: siteUrl("sponsor"),
+          description: "Sponsor and partner inquiry page for PrintableTools Lab.",
+          about: ["PDF tools", "image tools", "QR tools", "browser utilities", "sponsorship"],
+        })}
+      </section>`;
+}
+
+function sponsorCallHtml() {
+  return `
+      <section class="shell page-title section sponsor-hero">
+        <a href="/sponsor/">Sponsor page</a>
+        <h1>Sponsor call: privacy-friendly file and printable workflows</h1>
+        <p>PrintableTools Lab is accepting a small number of manually reviewed sponsor and partner inquiries for free no-signup PDF, image, QR, resume, classroom, and small-business workflows. This public call is designed so partners can respond through the sponsor form instead of private outreach email.</p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor/?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=primary-cta#sponsor-inquiry">Send sponsor inquiry</a> <a class="button secondary" href="/sponsor-call.json">Open sponsor call JSON</a> <a class="button ghost" href="/sponsor-media-kit.json">Open media kit</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Current sponsor openings</h2>
+        <div class="grid-3">
+          ${SPONSOR_CALL_ACTIONS.map((item) => `<article class="panel"><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.audience)}</p><p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(item.url)}">Open tracked path</a></p><p class="help">${escapeHtml(item.signal)}</p></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Audience-specific sponsor pages</h2>
+        <div class="grid-3">
+          ${SPONSOR_VERTICALS.map((vertical) => `<article class="panel"><h3>${escapeHtml(vertical.title)}</h3><p>${escapeHtml(vertical.pitch)}</p><p><strong>${escapeHtml(vertical.priceHint)}</strong></p><p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor/${escapeHtml(vertical.slug)}/?utm_source=sponsor-call&utm_medium=organic&utm_campaign=${escapeHtml(vertical.campaign)}">Open fit page</a></p></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Rules before any placement</h2>
+        <ul>
+          <li>Downloads stay free and cannot require ad clicks, sponsor interactions, accounts, or payment.</li>
+          <li>Sponsor copy must be clearly labeled and separated from generator controls.</li>
+          <li>No gambling, adult, deceptive finance, malware, fake document, or misleading upload-service offers.</li>
+          <li>Revenue counts only after a qualified inquiry, signed agreement, or settled external payment is verified.</li>
+          <li>Do not submit private payment, tax, phone, bank, identity, password, or customer-file details.</li>
+        </ul>
+        ${jsonLdHtml({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "PrintableTools Lab Sponsor Call",
+          url: siteUrl("sponsor-call"),
+          description: "Public sponsor call for privacy-friendly file and printable workflow partners.",
+          about: ["sponsorship", "PDF tools", "QR tools", "small business paperwork", "classroom printables"],
+        })}
+      </section>`;
+}
+
+function sponsorVerticalPageHtml(vertical) {
+  const placement = SPONSOR_PLACEMENTS.find((item) => item.id === vertical.primaryPlacementId) || SPONSOR_PLACEMENTS[0];
+  const trackedUrl = sponsorVerticalTrackedUrl(vertical);
+  return `
+      <section class="shell page-title section sponsor-hero">
+        <a href="/sponsor/">All sponsor options</a>
+        <h1>${escapeHtml(vertical.title)}</h1>
+        <p>${escapeHtml(vertical.description)}</p>
+        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Send sponsor inquiry</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(trackedUrl)}">Copy tracked landing link</a> <a class="button ghost" href="/sponsor-media-kit.json">Open media kit</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Audience fit</h2>
+        <div class="grid-2">
+          <article class="panel"><h3>Who this reaches</h3><p>${escapeHtml(vertical.audience)}</p></article>
+          <article class="panel"><h3>Best sponsor fit</h3><p>${escapeHtml(vertical.sponsorFit)}</p></article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Pilot offer</h2>
+        <div class="grid-3">
+          <article class="panel"><h3>${escapeHtml(placement.name)}</h3><p><strong>${escapeHtml(vertical.priceHint)}</strong></p><p>${escapeHtml(placement.deliverable)}</p></article>
+          <article class="panel"><h3>Manual approval</h3><p>Every inquiry is reviewed for relevance, policy fit, and visitor safety before sponsor copy is discussed.</p></article>
+          <article class="panel"><h3>Revenue gate</h3><p>Clicks and form fills are validation. Revenue counts only after a signed agreement or settled external payment.</p></article>
+        </div>
+      </section>
+      ${sponsorLeadFormHtml()}
+      <section class="shell section">
+        <h2>Relevant tool inventory</h2>
+        <div class="cluster-links">
+          ${vertical.links.map(([label, pathName]) => `<a data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/${escapeHtml(pathName)}/">${escapeHtml(label)}</a>`).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Good-fit sponsor categories</h2>
+        <ul>
+          ${vertical.sponsorCategories.map((category) => `<li>${escapeHtml(category)}</li>`).join("\n")}
+        </ul>
+        <p class="help">Not accepted: gambling, adult, deceptive finance, malware, fake document, misleading upload-service offers, or any placement that gates free downloads.</p>
+        ${jsonLdHtml({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: vertical.title,
+          url: siteUrl(`sponsor/${vertical.slug}`),
+          description: vertical.description,
+          about: vertical.sponsorCategories,
+        })}
+      </section>`;
+}
+
+function sponsorLeadFormHtml() {
+  return `
+      <section id="sponsor-inquiry" class="shell section">
+        <div class="grid-2">
+          <div>
+            <h2>Sponsorship inquiry form</h2>
+            <p>Share only business-safe details. The inquiry is stored for follow-up review, while public dashboards show only aggregate lead counts.</p>
+            <ul>
+              <li>Best fit: relevant PDF, image, QR, productivity, classroom, career, or small-business tools.</li>
+              <li>Not accepted: gambling, adult, deceptive finance, malware, fake document, or misleading upload-service offers.</li>
+              <li>Payment, tax, bank, phone, and private identity details stay outside this form.</li>
+            </ul>
+          </div>
+          <form class="panel form-grid sponsor-lead-form" data-sponsor-lead-form>
+            <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <label class="field">
+              <span>Company or project</span>
+              <input name="company" maxlength="90" autocomplete="organization" required>
+            </label>
+            <label class="field">
+              <span>Business email</span>
+              <input name="contactEmail" type="email" maxlength="140" autocomplete="email" required>
+            </label>
+            <label class="field">
+              <span>Website</span>
+              <input name="website" type="url" maxlength="220" placeholder="https://example.com" autocomplete="url" required>
+            </label>
+            <div class="grid-2 compact-form-grid">
+              <label class="field">
+                <span>Placement interest</span>
+                <select name="placement">
+                  <option value="media-kit-review">Media kit review</option>
+                  <option value="directory-visibility">Directory visibility</option>
+                  <option value="content-sponsorship">Content sponsorship</option>
+                  <option value="partner-distribution">Partner distribution</option>
+                  <option value="other">Other</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Budget range</span>
+                <select name="budgetRange">
+                  <option value="exploratory">Exploratory</option>
+                  <option value="under-250">Under USD 250</option>
+                  <option value="250-500">USD 250-500</option>
+                  <option value="500-1000">USD 500-1000</option>
+                  <option value="1000-plus">USD 1000+</option>
+                </select>
+              </label>
+            </div>
+            <label class="field">
+              <span>Timeline</span>
+              <select name="timeline">
+                <option value="exploratory">Exploratory</option>
+                <option value="this-week">This week</option>
+                <option value="this-month">This month</option>
+                <option value="later">Later</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Audience fit</span>
+              <textarea name="audienceFit" maxlength="420" required placeholder="Why your product or partnership helps free PDF, image, QR, classroom, career, or small-business tool users."></textarea>
+            </label>
+            <label class="field">
+              <span>Notes</span>
+              <textarea name="notes" maxlength="1000" placeholder="Placement requirements, policy notes, geography, campaign idea, or useful public context."></textarea>
+            </label>
+            <label class="check-row">
+              <input name="consent" type="checkbox" required>
+              <span>I am sending a business inquiry and will not include payment, tax, private identity, passwords, or customer files.</span>
+            </label>
+            <div class="actions">
+              <button class="button" type="submit" data-track-event="sponsor_request_intent" data-track-tool="sponsor">Send inquiry</button>
+              <a class="button ghost" href="/privacy/">Privacy policy</a>
+            </div>
+            <p class="help sponsor-lead-status" data-sponsor-lead-status role="status" aria-live="polite">No payment is collected here. Approved sponsorships are reviewed manually for fit.</p>
+          </form>
+        </div>
+      </section>`;
+}
+
 function directorySubmissionHtml() {
   const primaryTools = [
     "image-to-pdf",
@@ -5636,6 +6206,16 @@ function shareKitHtml() {
         <h2>Ad-safe free-tool distribution</h2>
         <p>The current monetization path is free-tool traffic first, then responsible display ads after review. Share useful tool links, measure downloads and search exposure, and keep ads separate from generator controls.</p>
         <p><a class="button" href="/free-pdf-tools/">Browse free tools</a> <a class="button secondary" href="/organic-push-kit/">Open organic push kit</a> <a class="button ghost" href="/upload-error-cheatsheet/">Open upload error cheatsheet</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Sponsor and partner discovery</h2>
+        <p>PrintableTools Lab is also accepting a small number of manually reviewed sponsor and partner inquiries. Downloads stay free, placements must be labeled, and the site does not collect payment or private payout details.</p>
+        <table class="event-table">
+          <thead><tr><th>Partner path</th><th>Tracked URL</th><th>Fit</th></tr></thead>
+          <tbody>
+            ${SPONSOR_DISCOVERY_LINKS.map((item) => `<tr><td>${escapeHtml(item.title)}</td><td><a href="${escapeHtml(item.url)}">${escapeHtml(item.url)}</a></td><td>${escapeHtml(item.reason)}</td></tr>`).join("\n")}
+          </tbody>
+        </table>
       </section>
       <section class="shell section">
         <h2>Upload error cheatsheet</h2>
@@ -7698,4 +8278,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY, SPONSOR_PLACEMENTS, SPONSOR_OUTREACH_TARGETS, SPONSOR_OUTREACH_TEMPLATES, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, SPONSOR_DISCOVERY_LINKS, sponsorMediaKitPayload, sponsorCallPayload };

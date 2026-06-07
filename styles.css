@@ -516,6 +516,39 @@ main {
   min-height: 0;
 }
 
+.check-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.check-row input {
+  width: auto;
+  min-height: 0;
+  margin-top: 4px;
+}
+
+.compact-form-grid {
+  gap: 12px;
+}
+
+.sponsor-lead-status {
+  margin: 0;
+}
+
+.sponsor-lead-status[data-status="success"] {
+  color: #2f6f3f;
+  font-weight: 750;
+}
+
+.sponsor-lead-status[data-status="error"] {
+  color: #8a2d18;
+  font-weight: 750;
+}
+
 .audit-request-output {
   min-height: 360px;
   resize: vertical;

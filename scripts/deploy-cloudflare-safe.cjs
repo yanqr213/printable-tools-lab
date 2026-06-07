@@ -1,7 +1,7 @@
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
-const { execFileSync, spawnSync } = require("child_process");
+const { execFileSync } = require("child_process");
 
 const root = path.resolve(__dirname, "..");
 const projectName = process.env.CLOUDFLARE_PAGES_PROJECT || "printable-tools-lab";
@@ -40,6 +40,9 @@ const allowedPublicFilePatterns = [
   /^tools\.json$/,
   /^discovery\.json$/,
   /^share-kit\.json$/,
+  /^sponsor-media-kit\.json$/,
+  /^sponsor-outreach-pack\.json$/,
+  /^sponsor-call\.json$/,
   /^organic-push-kit\.json$/,
   /^upload-error-cheatsheet\.json$/,
   /^platform-submit-queue\.json$/,
@@ -63,6 +66,7 @@ const allowedPublicFilePatterns = [
   /^terms\/index\.html$/,
   /^about\/index\.html$/,
   /^license\/index\.html$/,
+  /^sponsor\/[a-z0-9-]+\/index\.html$/,
 ];
 const forbiddenContentPatterns = [
   ["github", "_pat_", "[A-Za-z0-9_]{20,}"],
@@ -93,7 +97,8 @@ function main() {
   run("npm.cmd", ["run", "verify:adsense"]);
 
   const trackedFiles = gitTrackedFiles();
-  const deployFiles = publicDeployFiles(trackedFiles);
+  const generatedFiles = generatedPublicFiles();
+  const deployFiles = publicDeployFiles([...trackedFiles, ...generatedFiles]);
   assertNoForbiddenPaths(deployFiles);
   const deployDir = fs.mkdtempSync(path.join(os.tmpdir(), "ptl-cloudflare-deploy-"));
   try {
@@ -101,27 +106,42 @@ function main() {
     assertNoForbiddenFiles(deployDir);
     console.log(`Prepared ${deployFiles.length} public deploy file(s).`);
     const wranglerArgs = ["wrangler", "pages", "deploy", deployDir, "--project-name", projectName, "--commit-dirty=true"];
-    const result = spawnSync("npx.cmd", wranglerArgs, {
-      cwd: root,
-      env: process.env,
-      encoding: "utf8",
-      stdio: "inherit",
-      shell: process.platform === "win32",
-    });
-    if (result.error) throw result.error;
-    if (result.status !== 0) process.exit(result.status || 1);
+    run("npx.cmd", wranglerArgs);
   } finally {
     fs.rmSync(deployDir, { recursive: true, force: true });
   }
 }
 
 function run(command, args) {
-  execFileSync(command, args, { cwd: root, stdio: "inherit", shell: process.platform === "win32" });
+  execFileSync(resolveCommand(command), resolveArgs(command, args), {
+    cwd: root,
+    stdio: "inherit",
+    shell: false,
+  });
+}
+
+function resolveCommand(command) {
+  if (process.platform === "win32" && command.endsWith(".cmd")) return "powershell.exe";
+  if (process.platform !== "win32" && command.endsWith(".cmd")) return command.slice(0, -4);
+  return command;
+}
+
+function resolveArgs(command, args) {
+  if (process.platform !== "win32" || !command.endsWith(".cmd")) return args;
+  return [
+    "-NoProfile",
+    "-NonInteractive",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-Command",
+    `$ErrorActionPreference = 'Stop'; & ${command} @args`,
+    ...args,
+  ];
 }
 
 function publicDeployFiles(files) {
-  const deployFiles = files.filter((file) => allowedPublicFilePatterns.some((pattern) => pattern.test(file)));
-  const missingRequired = ["index.html", "app.js", "styles.css", "_redirects", "_headers", "sitemap.xml", "robots.txt", "functions/api/event.js", "functions/api/metrics.js"]
+  const deployFiles = uniqueFiles(files).filter((file) => allowedPublicFilePatterns.some((pattern) => pattern.test(file)));
+  const missingRequired = ["index.html", "app.js", "styles.css", "_redirects", "_headers", "sitemap.xml", "robots.txt", "functions/api/event.js", "functions/api/metrics.js", "functions/api/sponsor-lead.js"]
     .filter((file) => !deployFiles.includes(file));
   if (missingRequired.length) {
     throw new Error(`Public deploy file list is missing required file(s): ${missingRequired.join(", ")}`);
@@ -131,6 +151,38 @@ function publicDeployFiles(files) {
     throw new Error(`Refusing to include non-public file(s): ${accidentallyPublic.slice(0, 12).join(", ")}`);
   }
   return deployFiles;
+}
+
+function generatedPublicFiles() {
+  return listWorkspaceFiles(root)
+    .filter((file) => allowedPublicFilePatterns.some((pattern) => pattern.test(file)))
+    .filter((file) => !forbiddenPathPrefixes.some((prefix) => file === prefix.replace(/\/$/, "") || file.startsWith(prefix)));
+}
+
+function listWorkspaceFiles(dir, prefix = "") {
+  const fullDir = prefix ? path.join(dir, prefix) : dir;
+  let entries;
+  try {
+    entries = fs.readdirSync(fullDir, { withFileTypes: true });
+  } catch {
+    return [];
+  }
+  const files = [];
+  for (const entry of entries) {
+    const relative = prefix ? `${prefix}/${entry.name}` : entry.name;
+    const normalized = relative.replace(/\\/g, "/");
+    if (forbiddenPathPrefixes.some((item) => normalized === item.replace(/\/$/, "") || normalized.startsWith(item))) continue;
+    if (entry.isDirectory()) {
+      files.push(...listWorkspaceFiles(dir, normalized));
+    } else if (entry.isFile()) {
+      files.push(normalized);
+    }
+  }
+  return files;
+}
+
+function uniqueFiles(files) {
+  return Array.from(new Set(files.map((file) => file.replace(/\\/g, "/")).filter(Boolean))).sort();
 }
 
 function gitTrackedFiles() {

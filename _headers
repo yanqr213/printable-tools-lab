@@ -86,3 +86,12 @@
 
 /organic-push-kit.json
   Content-Type: application/json; charset=utf-8
+
+/sponsor-media-kit.json
+  Content-Type: application/json; charset=utf-8
+
+/sponsor-outreach-pack.json
+  Content-Type: application/json; charset=utf-8
+
+/sponsor-call.json
+  Content-Type: application/json; charset=utf-8

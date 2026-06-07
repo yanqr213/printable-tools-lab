@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
 const { strToU8, zipSync } = require("fflate");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, SPONSOR_PLACEMENTS, SPONSOR_OUTREACH_TARGETS, SPONSOR_OUTREACH_TEMPLATES, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, SPONSOR_DISCOVERY_LINKS, sponsorMediaKitPayload, sponsorCallPayload } = require("./seo-content.cjs");
 const { serviceDeliveryInputExample, zipServiceDelivery } = require("./service-delivery-kit.cjs");
 
 const root = path.resolve(__dirname, "..");
@@ -81,6 +81,7 @@ const manifest = {
   shortcuts: [
     { name: "Free file tools", short_name: "File tools", url: "/free-pdf-tools/" },
     { name: "File tool finder", short_name: "Finder", url: "/pdf-tool-finder/" },
+    { name: "Sponsor", short_name: "Sponsor", url: "/sponsor/" },
     { name: "Upload limit fixer", short_name: "Upload fix", url: "/upload-limit-fixer/" },
     { name: "ATS Resume Checker", short_name: "ATS Check", url: "/tools/ats-resume-checker/" },
     { name: "Compress PDF", short_name: "PDF ZIP", url: "/tools/compress-pdf/" },
@@ -136,6 +137,15 @@ if (fs.existsSync(headersPath)) {
   }
   if (!headers.includes("/upload-error-cheatsheet.json")) {
     fs.appendFileSync(headersPath, "\n/upload-error-cheatsheet.json\n  Content-Type: application/json; charset=utf-8\n");
+  }
+  if (!headers.includes("/sponsor-media-kit.json")) {
+    fs.appendFileSync(headersPath, "\n/sponsor-media-kit.json\n  Content-Type: application/json; charset=utf-8\n");
+  }
+  if (!headers.includes("/sponsor-outreach-pack.json")) {
+    fs.appendFileSync(headersPath, "\n/sponsor-outreach-pack.json\n  Content-Type: application/json; charset=utf-8\n");
+  }
+  if (!headers.includes("/sponsor-call.json")) {
+    fs.appendFileSync(headersPath, "\n/sponsor-call.json\n  Content-Type: application/json; charset=utf-8\n");
   }
   if (!headers.includes("/organic-push-kit.json")) {
     fs.appendFileSync(headersPath, "\n/organic-push-kit.json\n  Content-Type: application/json; charset=utf-8\n");
@@ -225,6 +235,14 @@ const shareKitJson = {
     json: fileUrl("upload-error-cheatsheet.json"),
     entries: UPLOAD_ERROR_CHEATSHEET.map(uploadErrorEntry),
   },
+  sponsorDiscovery: {
+    sponsorCall: siteUrl("sponsor-call"),
+    sponsorCallJson: fileUrl("sponsor-call.json"),
+    mediaKit: fileUrl("sponsor-media-kit.json"),
+    outreachPack: fileUrl("sponsor-outreach-pack.json"),
+    links: SPONSOR_DISCOVERY_LINKS,
+    successGate: "Commercial discovery is working only when a qualified sponsor lead, signed agreement, or settled external payment is verified. Clicks alone are not revenue.",
+  },
   zeroDomainGameExperiment: ZERO_DOMAIN_GAME_EXPERIMENT,
   zeroDomainGameExperiments: ZERO_DOMAIN_GAME_EXPERIMENTS,
   externalDiscovery: {
@@ -264,6 +282,52 @@ const uploadErrorCheatsheetJson = {
   ],
 };
 fs.writeFileSync(path.join(root, "upload-error-cheatsheet.json"), `${JSON.stringify(uploadErrorCheatsheetJson, null, 2)}\n`);
+
+const sponsorMediaKitJson = sponsorMediaKitPayload(generatedAtIso);
+fs.writeFileSync(path.join(root, "sponsor-media-kit.json"), `${JSON.stringify(sponsorMediaKitJson, null, 2)}\n`);
+
+const sponsorCallJson = sponsorCallPayload(generatedAtIso);
+fs.writeFileSync(path.join(root, "sponsor-call.json"), `${JSON.stringify(sponsorCallJson, null, 2)}\n`);
+
+const sponsorOutreachPackJson = {
+  name: "PrintableTools Lab Sponsor Outreach Pack",
+  generatedAt: generatedAtIso,
+  canonical: fileUrl("sponsor-outreach-pack.json"),
+  sponsorPage: siteUrl("sponsor"),
+  mediaKit: fileUrl("sponsor-media-kit.json"),
+  placements: SPONSOR_PLACEMENTS,
+  targets: SPONSOR_OUTREACH_TARGETS,
+  sponsorCall: {
+    page: siteUrl("sponsor-call"),
+    json: fileUrl("sponsor-call.json"),
+    actions: SPONSOR_CALL_ACTIONS,
+  },
+  verticalSponsorPages: SPONSOR_VERTICALS.map((vertical) => ({
+    title: vertical.title,
+    audience: vertical.audience,
+    sponsorFit: vertical.sponsorFit,
+    priceHint: vertical.priceHint,
+    url: siteUrl(`sponsor/${vertical.slug}`),
+    trackedUrl: `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}`,
+    categories: vertical.sponsorCategories,
+  })),
+  templates: SPONSOR_OUTREACH_TEMPLATES,
+  trackedLinks: [
+    ...SPONSOR_OUTREACH_TARGETS.map((target) => ({
+      category: target.category,
+      url: `${siteUrl("sponsor").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_pilot&utm_content=${encodeURIComponent(target.category.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""))}`,
+      pitch: target.pitch,
+    })),
+    ...SPONSOR_VERTICALS.map((vertical) => ({
+      category: vertical.title,
+      url: `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}`,
+      pitch: vertical.pitch,
+    })),
+  ],
+  rules: sponsorMediaKitJson.rules,
+  successGate: "Success is a real qualified sponsor lead, a signed agreement, or settled payment in an external provider. Clicks and validation submissions are not revenue.",
+};
+fs.writeFileSync(path.join(root, "sponsor-outreach-pack.json"), `${JSON.stringify(sponsorOutreachPackJson, null, 2)}\n`);
 
 const platformSubmitQueueJson = {
   name: "HTML5 Platform Submit Queue",
@@ -439,13 +503,16 @@ const discoveryIndex = {
   shareKit: fileUrl("share-kit.json"),
   organicPushKit: fileUrl("organic-push-kit.json"),
   uploadErrorCheatsheet: fileUrl("upload-error-cheatsheet.json"),
+  sponsorCall: fileUrl("sponsor-call.json"),
+  sponsorMediaKit: fileUrl("sponsor-media-kit.json"),
+  sponsorOutreachPack: fileUrl("sponsor-outreach-pack.json"),
   platformSubmitQueue: fileUrl("platform-submit-queue.json"),
   platformSubmitCockpit: fileUrl("platform-submit-cockpit.json"),
   platformOutreachTracker: fileUrl("platform-outreach-tracker.json"),
   portalSubmissionPack: fileUrl("portal-submission-pack.json"),
   gameSubmissionFeed: fileUrl("game-submission-feed.json"),
   zeroCostMonetizationMap: fileUrl("zero-cost-monetization-map.json"),
-  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("upload-limit-fixer"), siteUrl("organic-push-kit"), siteUrl("upload-error-cheatsheet"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("upload-limit-fixer"), siteUrl("organic-push-kit"), siteUrl("upload-error-cheatsheet"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl("sponsor-call"), siteUrl("sponsor"), ...SPONSOR_VERTICALS.map((vertical) => siteUrl(`sponsor/${vertical.slug}`)), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   distributionAssets: {
     shareKit: siteUrl("share-kit"),
     shareKitJson: fileUrl("share-kit.json"),
@@ -453,6 +520,18 @@ const discoveryIndex = {
     organicPushKitJson: fileUrl("organic-push-kit.json"),
     uploadErrorCheatsheet: siteUrl("upload-error-cheatsheet"),
     uploadErrorCheatsheetJson: fileUrl("upload-error-cheatsheet.json"),
+    sponsorCall: siteUrl("sponsor-call"),
+    sponsorCallJson: fileUrl("sponsor-call.json"),
+    sponsorPage: siteUrl("sponsor"),
+    sponsorMediaKit: fileUrl("sponsor-media-kit.json"),
+    sponsorOutreachPack: fileUrl("sponsor-outreach-pack.json"),
+    sponsorDiscoveryLinks: SPONSOR_DISCOVERY_LINKS,
+    sponsorVerticalPages: SPONSOR_VERTICALS.map((vertical) => ({
+      title: vertical.title,
+      url: siteUrl(`sponsor/${vertical.slug}`),
+      trackedUrl: `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}`,
+      sponsorFit: vertical.sponsorFit,
+    })),
     platformSubmitQueue: siteUrl("platform-submit-queue"),
     platformSubmitQueueJson: fileUrl("platform-submit-queue.json"),
     platformSubmitCockpit: siteUrl("platform-submit-cockpit"),
@@ -578,6 +657,8 @@ const distribution = [
   `- GitHub campaign: ${siteUrl("").replace(/\/$/, "")}?utm_source=github`,
   `- GitHub issue campaign: ${siteUrl("upload-limit-fixer").replace(/\/$/, "")}?utm_source=github-issue&utm_medium=organic&utm_campaign=zero_cost_push`,
   `- Public Gist campaign: ${siteUrl("upload-limit-fixer").replace(/\/$/, "")}?utm_source=gist&utm_medium=organic&utm_campaign=zero_cost_push`,
+  `- Sponsor call campaign: ${siteUrl("sponsor-call").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=distribution-pack`,
+  `- Sponsor inquiry form campaign: ${siteUrl("sponsor").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=distribution-pack#sponsor-inquiry`,
   `- Community campaign: ${siteUrl("").replace(/\/$/, "")}?utm_source=community`,
   `- Organic push kit campaign: ${siteUrl("organic-push-kit").replace(/\/$/, "")}?utm_source=distribution&utm_medium=organic&utm_campaign=organic_push_kit`,
   "",
@@ -592,6 +673,15 @@ const distribution = [
   `- Share kit JSON: ${fileUrl("share-kit.json")}`,
   "",
   "Rule: downloads stay free, ads are disabled until review, and future ads must never block file generation or downloads.",
+  "",
+  "## Sponsor and partner discovery",
+  "",
+  "Use these only where sponsor, partnership, directory, newsletter, or resource-page submissions are explicitly welcome. This is not a payment page; every inquiry still needs manual fit review and a separate external agreement or payment record before revenue is real.",
+  "",
+  ...SPONSOR_DISCOVERY_LINKS.map((item) => `- ${item.title}: ${item.url} - ${item.reason}`),
+  `- Sponsor outreach pack JSON: ${fileUrl("sponsor-outreach-pack.json")}`,
+  "",
+  "Sponsor rules: downloads stay free, placements must be labeled, no misleading upload or finance offers, and no payment, tax, bank, phone, private identity, password, or customer-file details should be sent through the site.",
   "",
   "## Organic push tasks",
   "",

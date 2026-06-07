@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-06T01:48:41.354Z",
+  "generatedAt": "2026-06-07T06:23:43.110Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -9,6 +9,9 @@
   "shareKit": "https://printable-tools-lab.pages.dev/share-kit.json",
   "organicPushKit": "https://printable-tools-lab.pages.dev/organic-push-kit.json",
   "uploadErrorCheatsheet": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",
+  "sponsorCall": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+  "sponsorMediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+  "sponsorOutreachPack": "https://printable-tools-lab.pages.dev/sponsor-outreach-pack.json",
   "platformSubmitQueue": "https://printable-tools-lab.pages.dev/platform-submit-queue.json",
   "platformSubmitCockpit": "https://printable-tools-lab.pages.dev/platform-submit-cockpit.json",
   "platformOutreachTracker": "https://printable-tools-lab.pages.dev/platform-outreach-tracker.json",
@@ -23,6 +26,13 @@
     "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
     "https://printable-tools-lab.pages.dev/submit-directory/",
     "https://printable-tools-lab.pages.dev/share-kit/",
+    "https://printable-tools-lab.pages.dev/sponsor-call/",
+    "https://printable-tools-lab.pages.dev/sponsor/",
+    "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas/",
+    "https://printable-tools-lab.pages.dev/sponsor/resume-career-sponsors/",
+    "https://printable-tools-lab.pages.dev/sponsor/classroom-printable-sponsors/",
+    "https://printable-tools-lab.pages.dev/sponsor/small-business-paperwork-sponsors/",
+    "https://printable-tools-lab.pages.dev/sponsor/local-marketing-qr-sponsors/",
     "https://printable-tools-lab.pages.dev/platform-submit-queue/",
     "https://printable-tools-lab.pages.dev/platform-submit-cockpit/",
     "https://printable-tools-lab.pages.dev/platform-outreach-tracker/",
@@ -178,6 +188,73 @@
     "organicPushKitJson": "https://printable-tools-lab.pages.dev/organic-push-kit.json",
     "uploadErrorCheatsheet": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
     "uploadErrorCheatsheetJson": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",
+    "sponsorCall": "https://printable-tools-lab.pages.dev/sponsor-call/",
+    "sponsorCallJson": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+    "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
+    "sponsorMediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+    "sponsorOutreachPack": "https://printable-tools-lab.pages.dev/sponsor-outreach-pack.json",
+    "sponsorDiscoveryLinks": [
+      {
+        "title": "Public sponsor call",
+        "path": "sponsor-call",
+        "url": "https://printable-tools-lab.pages.dev/sponsor-call?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=public-call",
+        "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-call/",
+        "reason": "Open invitation for policy-fit sponsors and partners to use the sponsor form instead of private outreach."
+      },
+      {
+        "title": "Sponsor inquiry form",
+        "path": "sponsor",
+        "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=inquiry-form#sponsor-inquiry",
+        "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor/",
+        "reason": "Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries."
+      },
+      {
+        "title": "Sponsor call JSON",
+        "path": "sponsor-call.json",
+        "url": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+        "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+        "reason": "Machine-readable sponsor openings, reply path, vertical pages, and success gate."
+      },
+      {
+        "title": "Sponsor media kit JSON",
+        "path": "sponsor-media-kit.json",
+        "url": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+        "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+        "reason": "Public facts, placement rules, vertical fits, and safety constraints for partners."
+      }
+    ],
+    "sponsorVerticalPages": [
+      {
+        "title": "PDF, Image, and QR SaaS Sponsorship",
+        "url": "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=pdf_image_qr_saas",
+        "sponsorFit": "PDF APIs, image optimization tools, QR platforms, privacy-friendly document automation, browser utility products, and file-workflow SaaS."
+      },
+      {
+        "title": "Resume and Career Tool Sponsorship",
+        "url": "https://printable-tools-lab.pages.dev/sponsor/resume-career-sponsors/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/resume-career-sponsors?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=resume_career_sponsors",
+        "sponsorFit": "Resume builders, ATS tools, job boards, interview prep products, career coaching, and applicant-document utilities."
+      },
+      {
+        "title": "Classroom Printable Sponsorship",
+        "url": "https://printable-tools-lab.pages.dev/sponsor/classroom-printable-sponsors/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/classroom-printable-sponsors?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=classroom_printable_sponsors",
+        "sponsorFit": "Teacher marketplaces, homeschool resources, classroom apps, learning printables, family routine products, and child-safe educational tools."
+      },
+      {
+        "title": "Small Business Paperwork Sponsorship",
+        "url": "https://printable-tools-lab.pages.dev/sponsor/small-business-paperwork-sponsors/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/small-business-paperwork-sponsors?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=small_business_paperwork_sponsors",
+        "sponsorFit": "Invoicing apps, bookkeeping tools, POS products, local marketing services, shipping tools, label systems, and small-business operations software."
+      },
+      {
+        "title": "Local Marketing and QR Sponsorship",
+        "url": "https://printable-tools-lab.pages.dev/sponsor/local-marketing-qr-sponsors/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/local-marketing-qr-sponsors?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=local_marketing_qr_sponsors",
+        "sponsorFit": "QR platforms, review-request tools, local SEO products, print shops, signage services, event tools, and small-business marketing software."
+      }
+    ],
     "platformSubmitQueue": "https://printable-tools-lab.pages.dev/platform-submit-queue/",
     "platformSubmitQueueJson": "https://printable-tools-lab.pages.dev/platform-submit-queue.json",
     "platformSubmitCockpit": "https://printable-tools-lab.pages.dev/platform-submit-cockpit/",
@@ -289,7 +366,7 @@
       }
     ],
     "publicGist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-    "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/eb874c63e907b69755fe316b60f2a6f28936a5f1/PrintableTools-Lab-zero-cost-share-kit.md",
+    "publicGistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/520d4e5531452010ae48e5928c1ea0c33c754f3b/PrintableTools-Lab-zero-cost-share-kit.md",
     "publicGrowthIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1",
     "zeroDomainGame": "https://upload-limit-panic.pages.dev/",
     "zeroDomainGameRepo": "https://github.com/yanqr213/upload-limit-panic",

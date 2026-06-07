@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, siteUrl } = require("./seo-content.cjs");
+const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, SPONSOR_DISCOVERY_LINKS, siteUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const token = githubToken();
@@ -96,6 +96,8 @@ function renderGistBody(videos) {
     `- Tool finder: ${siteUrl("pdf-tool-finder")}`,
     `- Upload limit fixer: ${trackedToolUrl("upload-limit-fixer", "gist")}`,
     `- Upload error cheatsheet: ${trackedToolUrl("upload-error-cheatsheet", "gist")}`,
+    `- Public sponsor call: ${trackedSponsorUrl("sponsor-call", "public-call")}`,
+    `- Sponsor media kit JSON: ${siteUrl("sponsor-media-kit.json").replace(/\/$/, "")}`,
     "- Ad-safety rule: downloads stay free, and future ads must never block tool use or file downloads.",
     "",
     "## Current Platform-Ad Game Route",
@@ -127,6 +129,14 @@ function renderGistBody(videos) {
     "## High-Intent Links",
     "",
     ...featured.map((item) => `- [${item.title}](${item.url}) - ${item.reason}`),
+    "",
+    "## Sponsor And Partner Discovery",
+    "",
+    "PrintableTools Lab is accepting a small number of manually reviewed sponsor and partner inquiries for relevant PDF, image, QR, resume, classroom, and small-business workflow products.",
+    "",
+    ...SPONSOR_DISCOVERY_LINKS.map((item) => `- [${item.title}](${item.url}) - ${item.reason}`),
+    "- Rule: downloads stay free, sponsor copy must be clearly labeled, and no payment, tax, bank, phone, private identity, passwords, or customer files are collected through the site.",
+    "- Success gate: a real qualified sponsor inquiry, signed agreement, or settled external payment. Clicks alone are not revenue.",
     "",
     "## Ready-to-upload MP4 Assets",
     "",
@@ -184,6 +194,10 @@ function freeToolPath() {
 
 function trackedToolUrl(pathName, source) {
   return `${siteUrl(pathName).replace(/\/$/, "")}?utm_source=${encodeURIComponent(source)}&utm_medium=organic&utm_campaign=free_tool_depth`;
+}
+
+function trackedSponsorUrl(pathName, content) {
+  return `${siteUrl(pathName).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=${encodeURIComponent(content)}`;
 }
 
 function readCampaignVideos() {

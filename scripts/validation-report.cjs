@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { routes, siteUrl, landingPages, tools, guides, ZERO_DOMAIN_GAME_EXPERIMENTS } = require("./seo-content.cjs");
+const { routes, siteUrl, landingPages, tools, guides, ZERO_DOMAIN_GAME_EXPERIMENTS, SPONSOR_VERTICALS } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const siteBase = (process.env.PUBLIC_SITE_URL || "https://printable-tools-lab.pages.dev").replace(/\/+$/, "");
@@ -45,6 +45,8 @@ function readLocalState() {
   const opensearch = readText("opensearch.xml");
   const discoveryJson = readJson("discovery.json", {});
   const shareKit = readJson("share-kit.json", {});
+  const sponsorProspects = readJson("reports/sponsor-prospect-queue.json", {});
+  const sponsorOutreachLog = readJson("reports/sponsor-outreach-log.json", {});
   const adsTxt = readText("ads.txt").trim();
   const config = readText("site-config.js");
   const indexableRoutes = routes.filter((route) => route.index !== false).length;
@@ -69,7 +71,14 @@ function readLocalState() {
       distributionPack: fs.existsSync(path.join(root, "DISTRIBUTION.md")),
       webManifest: manifest.name === "PrintableTools Lab" && Array.isArray(manifest.shortcuts),
       opensearch: opensearch.includes("<OpenSearchDescription") && opensearch.includes("PrintableTools Lab"),
+      sponsorMediaKit: fs.existsSync(path.join(root, "sponsor-media-kit.json")),
+      sponsorOutreachPack: fs.existsSync(path.join(root, "sponsor-outreach-pack.json")),
+      sponsorCall: fs.existsSync(path.join(root, "sponsor-call.json")) && fs.existsSync(path.join(root, "sponsor-call", "index.html")),
+      sponsorVerticalPages: SPONSOR_VERTICALS.every((vertical) => fs.existsSync(path.join(root, "sponsor", vertical.slug, "index.html"))),
+      sponsorProspectQueue: sponsorProspectQueueReady(sponsorProspects),
+      sponsorOutreachLog: sponsorOutreachLogReady(sponsorOutreachLog),
     },
+    sponsorOutreach: sponsorOutreachSummary(sponsorOutreachLog),
     ads: {
       enabled: readBool(config, "enableAds"),
       publisherConfigured: /^ca-pub-\d{10,30}$/.test(readString(config, "adsenseClientId")),
@@ -77,6 +86,38 @@ function readLocalState() {
       contentSlotConfigured: /^\d{4,30}$/.test(readString(config, "adsenseContentSlot")),
       adsTxtStatus: adsTxt.startsWith("google.com, pub-") ? "configured" : adsTxt ? "placeholder" : "missing",
     },
+  };
+}
+
+function sponsorProspectQueueReady(data) {
+  const rows = Array.isArray(data.rows) ? data.rows : [];
+  const verticals = new Set(rows.map((row) => row.vertical));
+  return rows.length >= 10
+    && verticals.size >= 5
+    && rows.every((row) => row.status === "ready_to_send"
+      && /^https:\/\//.test(row.contactUrl || "")
+      && String(row.trackedUrl || "").includes("utm_source=sponsor-outreach")
+      && String(row.trackedUrl || "").includes("utm_content="));
+}
+
+function sponsorOutreachLogReady(data) {
+  const rows = Array.isArray(data.rows) ? data.rows : [];
+  return rows.length >= 10
+    && rows.every((row) => row.status
+      && /^https:\/\//.test(row.contactUrl || "")
+      && String(row.trackedUrl || "").includes("utm_source=sponsor-outreach"));
+}
+
+function sponsorOutreachSummary(data) {
+  const rows = Array.isArray(data.rows) ? data.rows : [];
+  return {
+    count: rows.length,
+    queued: rows.filter((row) => row.status === "queued").length,
+    sent: rows.filter((row) => row.status === "sent").length,
+    replied: rows.filter((row) => row.status === "replied").length,
+    qualified: rows.filter((row) => row.status === "qualified").length,
+    settled: rows.filter((row) => row.status === "settled").length,
+    blockedByReplyEmail: rows.filter((row) => row.needsReplyEmail && row.status === "queued").length,
   };
 }
 
@@ -96,6 +137,8 @@ async function readLiveState() {
       totalDownloads: totalDownloads(metrics.totals || {}),
       totalGenerations: totalGenerations(metrics.totals || {}),
       freeToolDepthIntent: freeToolDepthIntent(metrics.totals || {}),
+      commercialIntent: commercialIntent(metrics.totals || {}),
+      sponsorLeads: Number(metrics.sponsorLeads || metrics.totals?.sponsor_lead_submit || 0),
       topTools: (metrics.tools || [])
         .slice()
         .sort((a, b) => toolScore(b) - toolScore(a))
@@ -479,17 +522,26 @@ function buildNextActions(gates, local, live, searchConsole, discovery, director
   const downloads = totalDownloads(totals);
   const generations = totalGenerations(totals);
   const depthIntent = freeToolDepthIntent(totals);
+  const commercial = commercialIntent(totals);
+  const sponsorLeads = live.metrics?.sponsorLeads || 0;
   const actions = [];
   if (!gates.productReady) actions.push("Fix product readiness failures before adding more tools.");
   if (!gates.searchVisible && (directories?.listedCount || 0) < 2) actions.push("Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.");
   else if (!gates.searchVisible) actions.push("Watch the newly listed directories for real referrals and depth events before adding another same-category submission.");
   if (!discovery.github.discoveryRelease?.url) actions.push("Create or refresh the GitHub discovery release with high-intent tool links.");
+  if (discovery.githubPages.sitemapOk && discovery.githubPages.sitemapUrlCount < discovery.githubPages.expectedUrlCount) {
+    actions.push(`Sync the generated docs/ discovery mirror to GitHub Pages; live sitemap has ${discovery.githubPages.sitemapUrlCount} URL(s), expected ${discovery.githubPages.expectedUrlCount}.`);
+  }
   if (!discovery.indexNow.keyFileReachable) actions.push("Fix IndexNow key verification or keep it documented as a non-Google fallback.");
   if (!local.customDomainConfigured) actions.push("Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.");
   if (!local.ads.publisherConfigured) actions.push("When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.");
   if (local.ads.publisherConfigured && !local.ads.enabled && gates.searchVisible) actions.push("Apply/continue AdSense review, then enable ads only after approval and placement verification.");
   if (downloads < 100 && generations < 300) actions.push("Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.");
   if (depthIntent === 0) actions.push("Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces.");
+  if (commercial === 0) actions.push("Keep the sponsorship and partner inquiry page visible as a no-payment commercial-intent surface while ad-network setup waits.");
+  else if (sponsorLeads > 0) actions.push("Review sponsor lead details in private KV/export workflow and reply only to policy-fit business inquiries.");
+  else if ((local.sponsorOutreach?.sent || 0) === 0) actions.push("Submit the first sponsor outreach batch using reports/sponsor-next-submission-batch.md, but mark rows sent only after real public-form submission evidence exists.");
+  else actions.push("Drive partner traffic to the sponsor form until at least one qualified lead is captured, not just a CTA click.");
   if (searchConsole.performance?.rows?.length) actions.push("Improve titles and intros for queries with impressions but weak CTR.");
   if (!actions.length) actions.push("Maintain the weekly operating loop and compare Search Console plus download trends.");
   return actions;
@@ -500,6 +552,8 @@ function renderValidationMarkdown(report) {
   const downloads = totalDownloads(totals);
   const generations = totalGenerations(totals);
   const depthIntent = freeToolDepthIntent(totals);
+  const commercial = commercialIntent(totals);
+  const sponsorLeads = report.live.metrics?.sponsorLeads || 0;
   const perf = report.searchConsole.performance;
   const sitemap = Array.isArray(report.searchConsole.sitemaps?.sitemap) ? report.searchConsole.sitemaps.sitemap[0] : null;
   const githubPagesSitemap = Array.isArray(report.searchConsole.githubPagesSitemaps?.sitemap) ? report.searchConsole.githubPagesSitemaps.sitemap[0] : null;
@@ -519,6 +573,9 @@ function renderValidationMarkdown(report) {
     `- Live downloads: ${downloads}.`,
     `- Live generations: ${generations}.`,
     `- Free-tool depth intent events: ${depthIntent}.`,
+    `- Commercial intent events: ${commercial}.`,
+    `- Sponsor leads captured: ${sponsorLeads}.`,
+    `- Sponsor outreach queued/sent/settled: ${report.local.sponsorOutreach.queued}/${report.local.sponsorOutreach.sent}/${report.local.sponsorOutreach.settled}.`,
     `- Search impressions: ${perf?.totals?.impressions || 0}.`,
     `- Search clicks: ${perf?.totals?.clicks || 0}.`,
     `- External discovery ready: ${yesNo(report.gates.externalDiscoveryReady)}.`,
@@ -566,9 +623,10 @@ function renderValidationMarkdown(report) {
 
 function printSummary(report) {
   const totals = report.live.metrics?.totals || {};
+  const sponsorLeads = report.live.metrics?.sponsorLeads || 0;
   console.log(`Validation report written to ${path.relative(root, reportPath)} and VALIDATION.md`);
   console.log(`Product ready: ${yesNo(report.gates.productReady)} | Tools: ${report.local.toolCount} | Guides: ${report.local.guideCount} | Landing pages: ${report.local.landingPageCount}`);
-  console.log(`Downloads: ${totalDownloads(totals)} | Generations: ${totalGenerations(totals)} | Free-tool depth intent: ${freeToolDepthIntent(totals)} | Search visible: ${yesNo(report.gates.searchVisible)} | External discovery: ${yesNo(report.gates.externalDiscoveryReady)} | AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}`);
+  console.log(`Downloads: ${totalDownloads(totals)} | Generations: ${totalGenerations(totals)} | Free-tool depth intent: ${freeToolDepthIntent(totals)} | Commercial intent: ${commercialIntent(totals)} | Sponsor leads: ${sponsorLeads} | Search visible: ${yesNo(report.gates.searchVisible)} | External discovery: ${yesNo(report.gates.externalDiscoveryReady)} | AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}`);
 }
 
 function totalDownloads(totals) {
@@ -582,6 +640,15 @@ function totalGenerations(totals) {
 function freeToolDepthIntent(totals) {
   return (totals.free_tool_depth || 0)
     + (totals.guide_depth || 0);
+}
+
+function commercialIntent(totals) {
+  return (totals.seller_checkout_intent || 0)
+    + (totals.seller_checkout_click || 0)
+    + (totals.service_request_intent || 0)
+    + (totals.audit_request_intent || 0)
+    + (totals.sponsor_request_intent || 0)
+    + (totals.sponsor_lead_submit || 0);
 }
 
 function toolScore(row) {

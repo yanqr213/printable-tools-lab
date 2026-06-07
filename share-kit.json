@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Share Kit",
-  "generatedAt": "2026-06-06T01:48:41.354Z",
+  "generatedAt": "2026-06-07T06:23:43.110Z",
   "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
   "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
   "featuredLinks": [
@@ -476,6 +476,43 @@
       }
     ]
   },
+  "sponsorDiscovery": {
+    "sponsorCall": "https://printable-tools-lab.pages.dev/sponsor-call/",
+    "sponsorCallJson": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+    "mediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+    "outreachPack": "https://printable-tools-lab.pages.dev/sponsor-outreach-pack.json",
+    "links": [
+      {
+        "title": "Public sponsor call",
+        "path": "sponsor-call",
+        "url": "https://printable-tools-lab.pages.dev/sponsor-call?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=public-call",
+        "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-call/",
+        "reason": "Open invitation for policy-fit sponsors and partners to use the sponsor form instead of private outreach."
+      },
+      {
+        "title": "Sponsor inquiry form",
+        "path": "sponsor",
+        "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=inquiry-form#sponsor-inquiry",
+        "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor/",
+        "reason": "Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries."
+      },
+      {
+        "title": "Sponsor call JSON",
+        "path": "sponsor-call.json",
+        "url": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+        "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+        "reason": "Machine-readable sponsor openings, reply path, vertical pages, and success gate."
+      },
+      {
+        "title": "Sponsor media kit JSON",
+        "path": "sponsor-media-kit.json",
+        "url": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+        "canonicalUrl": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+        "reason": "Public facts, placement rules, vertical fits, and safety constraints for partners."
+      }
+    ],
+    "successGate": "Commercial discovery is working only when a qualified sponsor lead, signed agreement, or settled external payment is verified. Clicks alone are not revenue."
+  },
   "zeroDomainGameExperiment": {
     "name": "Upload Limit Panic",
     "url": "https://upload-limit-panic.pages.dev/",
@@ -537,7 +574,7 @@
   ],
   "externalDiscovery": {
     "gist": "https://gist.github.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb",
-    "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/eb874c63e907b69755fe316b60f2a6f28936a5f1/PrintableTools-Lab-zero-cost-share-kit.md",
+    "gistRaw": "https://gist.githubusercontent.com/yanqr213/fd9cbd597802dd7343fcfa1834e0beeb/raw/520d4e5531452010ae48e5928c1ea0c33c754f3b/PrintableTools-Lab-zero-cost-share-kit.md",
     "githubIssue": "https://github.com/yanqr213/printable-tools-lab/issues/1"
   },
   "rules": [

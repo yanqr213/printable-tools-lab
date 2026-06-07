@@ -1,5 +1,5 @@
 const { execFileSync } = require("child_process");
-const { HIGH_INTENT_TOOL_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, siteUrl, tools, SITE_SUMMARY } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, SPONSOR_DISCOVERY_LINKS, siteUrl, tools, SITE_SUMMARY } = require("./seo-content.cjs");
 
 const token = githubToken();
 if (!token) {
@@ -133,6 +133,8 @@ function releaseBody() {
     `- [PDF, image, and QR tool finder](${siteUrl("pdf-tool-finder")})`,
     `- [Zero-budget share kit](${siteUrl("share-kit")})`,
     `- [Machine-readable share-kit.json](${siteUrl("share-kit.json").replace(/\/$/, "")})`,
+    `- [Public sponsor call](${siteUrl("sponsor-call")})`,
+    `- [Sponsor media kit JSON](${siteUrl("sponsor-media-kit.json").replace(/\/$/, "")})`,
     ...externalDiscoveryLinks(),
     `- [HTML5 platform submit cockpit](${siteUrl("platform-submit-cockpit")})`,
     `- [HTML5 portal submission pack](${siteUrl("portal-submission-pack")})`,
@@ -154,6 +156,12 @@ function releaseBody() {
     "Share-kit copy angles:",
     "",
     ...SHARE_KIT_POSTS.map((post) => `- ${post.title}: ${post.hook}`),
+    "",
+    "Sponsor and partner discovery:",
+    "",
+    ...SPONSOR_DISCOVERY_LINKS.map((item) => `- [${item.title}](${item.url}): ${item.reason}`),
+    "- Sponsor rule: downloads stay free, placements must be labeled, and payment/tax/bank/private identity details stay outside PrintableTools Lab.",
+    "- Sponsor success gate: a qualified lead, signed agreement, or settled external payment; clicks alone are not revenue.",
     "",
     "Platform-ad game route:",
     "",

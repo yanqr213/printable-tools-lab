@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-06T01:49:28.626Z
+Last generated: 2026-06-07T06:19:42.197Z
 
 ## Current Automated Status
 
@@ -8,11 +8,14 @@ Last generated: 2026-06-06T01:49:28.626Z
 - Tools live in inventory: 66.
 - Guide pages live in inventory: 95.
 - High-intent landing pages: 92.
-- Indexable routes: 271.
+- Indexable routes: 278.
 - Custom domain configured: no.
 - Live downloads: 2.
 - Live generations: 0.
 - Free-tool depth intent events: 0.
+- Commercial intent events: 1.
+- Sponsor leads captured: 0.
+- Sponsor outreach queued/sent/settled: 10/0/0.
 - Search impressions: 0.
 - Search clicks: 0.
 - External discovery ready: yes.
@@ -31,12 +34,12 @@ Last generated: 2026-06-06T01:49:28.626Z
 
 ## External Discovery Gate
 
-- GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.
+- GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.
 - GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.
 - GitHub Pages discovery directory is live with 92 landing page link(s), 66 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).
-- GitHub Pages discovery sitemap has 259 URL(s), including 66 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 259.
+- GitHub Pages discovery sitemap has 260 URL(s), including 66 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 260.
 - IndexNow key file is reachable from the site root.
-- IndexNow latest report accepted 259 URL(s) for github-pages.
+- IndexNow latest report accepted 260 URL(s) for github-pages.
 - Directory monitor shows 3 listed, 6 pending, and 1 error directory target(s).
 
 ## Monetization Gate
@@ -59,6 +62,7 @@ Last generated: 2026-06-06T01:49:28.626Z
 - When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.
 - Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.
 - Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces.
+- Submit the first sponsor outreach batch using reports/sponsor-next-submission-batch.md, but mark rows sent only after real public-form submission evidence exists.
 
 ## Commands
 

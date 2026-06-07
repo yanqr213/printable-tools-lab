@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync, spawnSync } = require("child_process");
-const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, siteUrl } = require("./seo-content.cjs");
+const { SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ZERO_DOMAIN_GAME_EXPERIMENT, SPONSOR_DISCOVERY_LINKS, siteUrl } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const reportDir = path.join(root, "reports");
@@ -44,6 +44,7 @@ function main() {
     rules: SHARE_KIT_RULES,
     zeroDomainGameExperiment: ZERO_DOMAIN_GAME_EXPERIMENT,
     freeToolPath: freeToolPath(),
+    sponsorDiscovery: sponsorDiscovery(),
     externalDiscovery: readExternalDiscovery(),
     actions: {
       gistDiscovery,
@@ -69,6 +70,12 @@ function main() {
         angle: "Free no-signup browser file tools",
         url: `${siteUrl("share-kit").replace(/\/$/, "")}?utm_source=directory&utm_medium=organic`,
         rule: "Use directory submission rules and do not resubmit duplicate listings.",
+      },
+      {
+        target: "One sponsor-fit partner reply",
+        angle: "Public sponsor call for privacy-friendly file and printable workflows",
+        url: `${siteUrl("sponsor-call").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=share-kit-push`,
+        rule: "Use only where sponsor or partner submissions are explicitly welcome; do not send private payment, tax, bank, phone, or identity details.",
       },
     ],
   };
@@ -102,6 +109,18 @@ function freeToolPath() {
     uploadLimitFixerUrl: `${siteUrl("upload-limit-fixer").replace(/\/$/, "")}?utm_source=share-kit-push&utm_medium=organic&utm_campaign=free_tool_depth`,
     uploadErrorCheatsheetUrl: `${siteUrl("upload-error-cheatsheet").replace(/\/$/, "")}?utm_source=share-kit-push&utm_medium=organic&utm_campaign=free_tool_depth`,
     adSafetyRule: "Downloads stay free; future ads must never block tool use or file downloads.",
+  };
+}
+
+function sponsorDiscovery() {
+  return {
+    sponsorCallUrl: `${siteUrl("sponsor-call").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=share-kit-push`,
+    sponsorFormUrl: `${siteUrl("sponsor").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=share-kit-push#sponsor-inquiry`,
+    sponsorCallJsonUrl: siteUrl("sponsor-call.json").replace(/\/$/, ""),
+    mediaKitUrl: siteUrl("sponsor-media-kit.json").replace(/\/$/, ""),
+    outreachPackUrl: siteUrl("sponsor-outreach-pack.json").replace(/\/$/, ""),
+    links: SPONSOR_DISCOVERY_LINKS,
+    successGate: "A real qualified sponsor lead, signed agreement, or settled external payment. Clicks alone are not revenue.",
   };
 }
 

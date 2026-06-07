@@ -20,13 +20,14 @@ async function main() {
     if (!report.rawUrl || !report.rawUrl.includes("gist.githubusercontent.com/")) failures.push("Gist report missing rawUrl.");
     if (report.public !== true) failures.push("Gist must be public.");
     if (report.videoAssetCount < 6) failures.push("Gist report should include 6 video assets.");
-    const freeHelpPublished = Boolean(report.freeHelpPath?.auditUrl || report.freeHelpPath?.freeToolDirectoryUrl);
-    const freeHelpNeedles = ["Free Market Table Print Audit", "market_table_audit", "Free file tools directory", "future ads must never block"];
+    const freeHelpPath = report.freeHelpPath || report.freeToolPath || {};
+    const freeHelpPublished = Boolean(freeHelpPath.auditUrl || freeHelpPath.freeToolDirectoryUrl);
+    const freeHelpNeedles = ["Free file tools directory", "future ads must never block"];
+    const sponsorNeedles = ["Sponsor And Partner Discovery", "sponsor-call", "utm_source=sponsor-outreach", "qualified sponsor inquiry"];
     if (!freeHelpPublished && !githubPublishSkipped("gistDiscovery")) failures.push("Gist report missing free-help path. Run npm.cmd run gist-discovery.");
-    if (freeHelpPublished && !String(report.freeHelpPath?.auditUrl || "").includes("market_table_audit")) failures.push("Gist report missing free-help audit URL.");
-    if (freeHelpPublished && !String(report.freeHelpPath?.freeToolDirectoryUrl || "").includes("free_tool_depth")) failures.push("Gist report missing free-tool depth URL.");
-    await verifyUrl(report.htmlUrl, ...["PrintableTools Lab zero-cost share kit", "ptl-pdf-under-1mb.mp4", "portal-submission-pack", ...(freeHelpPublished ? freeHelpNeedles : [])]);
-    await verifyUrl(report.rawUrl, ...["Compress PDF to 1MB", "utm_source=gist", "Expanded backup portals", ...(freeHelpPublished ? freeHelpNeedles : [])]);
+    if (freeHelpPublished && !String(freeHelpPath.freeToolDirectoryUrl || "").includes("free_tool_depth")) failures.push("Gist report missing free-tool depth URL.");
+    await verifyUrl(report.htmlUrl, ...["PrintableTools Lab zero-cost share kit", "ptl-pdf-under-1mb.mp4", "portal-submission-pack", ...sponsorNeedles, ...(freeHelpPublished ? freeHelpNeedles : [])]);
+    await verifyUrl(report.rawUrl, ...["Compress PDF to 1MB", "utm_source=gist", "Expanded backup portals", ...sponsorNeedles, ...(freeHelpPublished ? freeHelpNeedles : [])]);
   }
 
   if (failures.length) {

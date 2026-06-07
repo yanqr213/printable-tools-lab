@@ -1,0 +1,238 @@
+{
+  "name": "PrintableTools Lab Sponsor Outreach Pack",
+  "generatedAt": "2026-06-07T06:23:43.110Z",
+  "canonical": "https://printable-tools-lab.pages.dev/sponsor-outreach-pack.json",
+  "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
+  "mediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
+  "placements": [
+    {
+      "id": "starter-review",
+      "name": "Starter media review",
+      "price": "USD 49 exploratory",
+      "fit": "A sponsor or partner wants a quick manual fit review before discussing placement.",
+      "deliverable": "Policy-fit check, suggested placement type, and a public-safe follow-up note."
+    },
+    {
+      "id": "guide-sponsorship",
+      "name": "Guide sponsorship pilot",
+      "price": "USD 99-149 pilot",
+      "fit": "Useful products for privacy-friendly PDF, image, QR, career, classroom, or small-business workflows.",
+      "deliverable": "Clearly labeled sponsor mention on one relevant guide or resource page after approval."
+    },
+    {
+      "id": "partner-distribution",
+      "name": "Partner distribution swap",
+      "price": "No-cash mutual test",
+      "fit": "Directories, newsletters, or communities that can send relevant visitors to free tools.",
+      "deliverable": "Tracked partner link and review of whether traffic creates depth, download, or lead signal."
+    }
+  ],
+  "targets": [
+    {
+      "category": "PDF, image, and QR SaaS",
+      "why": "Adjacent products may want privacy-friendly utility traffic without gating free downloads.",
+      "pitch": "Offer a labeled guide sponsorship or partner resource link around no-upload file workflows."
+    },
+    {
+      "category": "Career and resume products",
+      "why": "Resume, ATS, cover-letter, and PDF-size searches carry job-application intent.",
+      "pitch": "Offer a labeled resource placement near resume, ATS, and PDF upload-limit content."
+    },
+    {
+      "category": "Teacher, homeschool, and classroom resources",
+      "why": "Worksheet, flashcard, name-tracing, and classroom printable pages match education audiences.",
+      "pitch": "Offer content sponsorship on classroom-printable guides with strict child-safety review."
+    },
+    {
+      "category": "Small-business paperwork tools",
+      "why": "Invoices, receipts, price tags, flyers, QR signs, and packing slips attract local seller intent.",
+      "pitch": "Offer a sponsor pilot around paperwork templates, QR signage, or local promotion workflows."
+    },
+    {
+      "category": "Free-tool directories and newsletters",
+      "why": "A no-signup free utility collection can be useful editorial inventory for directory audiences.",
+      "pitch": "Offer a reciprocal or no-cash traffic-quality test using tracked links."
+    }
+  ],
+  "sponsorCall": {
+    "page": "https://printable-tools-lab.pages.dev/sponsor-call/",
+    "json": "https://printable-tools-lab.pages.dev/sponsor-call.json",
+    "actions": [
+      {
+        "title": "Sponsor a relevant guide",
+        "audience": "PDF, image, QR, resume, classroom, or small-business workflow products.",
+        "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=guide-sponsor",
+        "signal": "A qualified sponsor lead submits audience fit and budget range through the site form."
+      },
+      {
+        "title": "Request a starter fit review",
+        "audience": "Early partners who want a quick policy-fit review before discussing copy.",
+        "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=starter-review",
+        "signal": "A business asks for the USD 49 exploratory review or a no-cash partner test."
+      },
+      {
+        "title": "Use a vertical sponsor page",
+        "audience": "Partners who care about one audience: QR/local marketing, resume, classroom, small business, or file workflow SaaS.",
+        "url": "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas?utm_source=sponsor-call&utm_medium=organic&utm_campaign=sponsor_call&utm_content=vertical-pages",
+        "signal": "A sponsor lead arrives with sponsor-call attribution and a vertical path."
+      }
+    ]
+  },
+  "verticalSponsorPages": [
+    {
+      "title": "PDF, Image, and QR SaaS Sponsorship",
+      "audience": "Visitors fixing PDF size limits, converting images, making static QR codes, and choosing no-upload browser utilities.",
+      "sponsorFit": "PDF APIs, image optimization tools, QR platforms, privacy-friendly document automation, browser utility products, and file-workflow SaaS.",
+      "priceHint": "USD 99-149 pilot",
+      "url": "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=pdf_image_qr_saas",
+      "categories": [
+        "PDF APIs",
+        "image compression SaaS",
+        "QR code platforms",
+        "document automation",
+        "privacy-friendly browser utilities"
+      ]
+    },
+    {
+      "title": "Resume and Career Tool Sponsorship",
+      "audience": "Job seekers creating resume PDFs, checking ATS keywords, fixing resume upload size limits, and preparing application documents.",
+      "sponsorFit": "Resume builders, ATS tools, job boards, interview prep products, career coaching, and applicant-document utilities.",
+      "priceHint": "USD 99-149 pilot",
+      "url": "https://printable-tools-lab.pages.dev/sponsor/resume-career-sponsors/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/resume-career-sponsors?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=resume_career_sponsors",
+      "categories": [
+        "resume software",
+        "ATS checkers",
+        "job boards",
+        "career coaching",
+        "interview prep"
+      ]
+    },
+    {
+      "title": "Classroom Printable Sponsorship",
+      "audience": "Teachers, homeschool families, and parents making free printable learning, planning, and classroom-management PDFs.",
+      "sponsorFit": "Teacher marketplaces, homeschool resources, classroom apps, learning printables, family routine products, and child-safe educational tools.",
+      "priceHint": "USD 99-149 pilot",
+      "url": "https://printable-tools-lab.pages.dev/sponsor/classroom-printable-sponsors/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/classroom-printable-sponsors?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=classroom_printable_sponsors",
+      "categories": [
+        "teacher resources",
+        "homeschool tools",
+        "classroom apps",
+        "learning printables",
+        "family routine products"
+      ]
+    },
+    {
+      "title": "Small Business Paperwork Sponsorship",
+      "audience": "Freelancers, local sellers, home-service operators, and small teams creating simple business PDFs and print assets.",
+      "sponsorFit": "Invoicing apps, bookkeeping tools, POS products, local marketing services, shipping tools, label systems, and small-business operations software.",
+      "priceHint": "USD 99-149 pilot",
+      "url": "https://printable-tools-lab.pages.dev/sponsor/small-business-paperwork-sponsors/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/small-business-paperwork-sponsors?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=small_business_paperwork_sponsors",
+      "categories": [
+        "invoicing software",
+        "bookkeeping tools",
+        "POS products",
+        "shipping tools",
+        "local marketing services"
+      ]
+    },
+    {
+      "title": "Local Marketing and QR Sponsorship",
+      "audience": "Local services, shops, event organizers, and small teams creating QR codes, flyers, coupons, signs, and printable promotion assets.",
+      "sponsorFit": "QR platforms, review-request tools, local SEO products, print shops, signage services, event tools, and small-business marketing software.",
+      "priceHint": "USD 49 exploratory or USD 99-149 pilot",
+      "url": "https://printable-tools-lab.pages.dev/sponsor/local-marketing-qr-sponsors/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/sponsor/local-marketing-qr-sponsors?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=local_marketing_qr_sponsors",
+      "categories": [
+        "QR code platforms",
+        "review-management tools",
+        "local SEO products",
+        "print shops",
+        "event marketing tools"
+      ]
+    }
+  ],
+  "templates": [
+    {
+      "id": "sponsor-fit-email",
+      "channel": "Email or contact form",
+      "subject": "Small sponsorship pilot for free PDF, image, and QR utility traffic",
+      "body": "Hi, I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, document, career, classroom, and small-business workflows. I am opening a small sponsor/partner pilot with clearly labeled placements and strict rules: downloads stay free, sponsor copy is separated from generator controls, and no misleading upload or finance offers are accepted. If your product is relevant to privacy-friendly file or document workflows, I can send the media kit and fit checklist."
+    },
+    {
+      "id": "directory-partner-message",
+      "channel": "Directory or newsletter pitch",
+      "subject": "Free no-signup PDF/image/QR tools for your utility audience",
+      "body": "PrintableTools Lab has 66 free browser tools, 95 guides, and high-intent pages for upload limits, PDF compression, image conversion, QR codes, invoices, resumes, labels, and printables. I am looking for low-risk partner distribution tests where success is measured by actual tool depth, downloads, or sponsor leads rather than vanity traffic."
+    },
+    {
+      "id": "resource-page-follow-up",
+      "channel": "Follow-up after relevant discussion",
+      "subject": "Resource fit: no-upload file tools",
+      "body": "This may be useful for your audience: PrintableTools Lab keeps core exports free and local-first where possible. Sponsor and partner requests are reviewed manually, with no payment collected on the site and no private payout or tax details requested."
+    }
+  ],
+  "trackedLinks": [
+    {
+      "category": "PDF, image, and QR SaaS",
+      "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_pilot&utm_content=pdf-image-and-qr-saas",
+      "pitch": "Offer a labeled guide sponsorship or partner resource link around no-upload file workflows."
+    },
+    {
+      "category": "Career and resume products",
+      "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_pilot&utm_content=career-and-resume-products",
+      "pitch": "Offer a labeled resource placement near resume, ATS, and PDF upload-limit content."
+    },
+    {
+      "category": "Teacher, homeschool, and classroom resources",
+      "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_pilot&utm_content=teacher-homeschool-and-classroom-resources",
+      "pitch": "Offer content sponsorship on classroom-printable guides with strict child-safety review."
+    },
+    {
+      "category": "Small-business paperwork tools",
+      "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_pilot&utm_content=small-business-paperwork-tools",
+      "pitch": "Offer a sponsor pilot around paperwork templates, QR signage, or local promotion workflows."
+    },
+    {
+      "category": "Free-tool directories and newsletters",
+      "url": "https://printable-tools-lab.pages.dev/sponsor?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_pilot&utm_content=free-tool-directories-and-newsletters",
+      "pitch": "Offer a reciprocal or no-cash traffic-quality test using tracked links."
+    },
+    {
+      "category": "PDF, Image, and QR SaaS Sponsorship",
+      "url": "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=pdf_image_qr_saas",
+      "pitch": "Reach people who already have a file, upload, conversion, or QR job in progress."
+    },
+    {
+      "category": "Resume and Career Tool Sponsorship",
+      "url": "https://printable-tools-lab.pages.dev/sponsor/resume-career-sponsors?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=resume_career_sponsors",
+      "pitch": "Reach visitors at the moment they are preparing or fixing job-application documents."
+    },
+    {
+      "category": "Classroom Printable Sponsorship",
+      "url": "https://printable-tools-lab.pages.dev/sponsor/classroom-printable-sponsors?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=classroom_printable_sponsors",
+      "pitch": "Reach classroom and homeschool visitors while keeping child-safety and ad-safety review strict."
+    },
+    {
+      "category": "Small Business Paperwork Sponsorship",
+      "url": "https://printable-tools-lab.pages.dev/sponsor/small-business-paperwork-sponsors?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=small_business_paperwork_sponsors",
+      "pitch": "Reach small-business visitors while they are making paperwork or local promotion files."
+    },
+    {
+      "category": "Local Marketing and QR Sponsorship",
+      "url": "https://printable-tools-lab.pages.dev/sponsor/local-marketing-qr-sponsors?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=local_marketing_qr_sponsors",
+      "pitch": "Reach visitors making offline-to-online assets for local promotion."
+    }
+  ],
+  "rules": [
+    "Sponsor copy must be clearly labeled.",
+    "Downloads stay free and cannot require an ad click, sponsor interaction, account, or payment.",
+    "No gambling, adult, deceptive finance, malware, fake document, or misleading upload-service offers.",
+    "No guaranteed traffic, guaranteed compression, legal/tax advice, or official acceptance claims.",
+    "Payment, tax, bank, phone, private identity, and payout details stay outside PrintableTools Lab."
+  ],
+  "successGate": "Success is a real qualified sponsor lead, a signed agreement, or settled payment in an external provider. Clicks and validation submissions are not revenue."
+}

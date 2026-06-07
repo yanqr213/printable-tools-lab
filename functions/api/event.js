@@ -16,6 +16,7 @@ const ALLOWED_EVENTS = new Set([
   "seller_checkout_click",
   "service_request_intent",
   "audit_request_intent",
+  "sponsor_request_intent",
 ]);
 
 const ALLOWED_SOURCES = new Set([
@@ -36,10 +37,10 @@ const ALLOWED_SOURCES = new Set([
   "share-kit",
   "short-video",
   "game-platform",
+  "sponsor-outreach",
   "directory",
   "community",
   "referral",
-  "unknown",
 ]);
 
 const ALLOWED_TOOLS = new Set([
@@ -113,6 +114,7 @@ const ALLOWED_TOOLS = new Set([
   "local-seller-starter-kit",
   "custom-local-print-pack",
   "market-table-print-audit",
+  "sponsor",
 ]);
 
 export async function onRequestPost({ request, env }) {
@@ -173,6 +175,7 @@ function canonicalSource(source) {
   if (source === "sharekit") return "share-kit";
   if (source === "short_video") return "short-video";
   if (source === "game_platform") return "game-platform";
+  if (source === "sponsor-call") return "sponsor-outreach";
   return source;
 }
 

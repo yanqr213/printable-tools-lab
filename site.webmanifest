@@ -37,6 +37,11 @@
       "url": "/pdf-tool-finder/"
     },
     {
+      "name": "Sponsor",
+      "short_name": "Sponsor",
+      "url": "/sponsor/"
+    },
+    {
       "name": "Upload limit fixer",
       "short_name": "Upload fix",
       "url": "/upload-limit-fixer/"

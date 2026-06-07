@@ -6,6 +6,7 @@ const root = path.resolve(__dirname, "..");
 async function main() {
   const eventSource = loadFunction("functions/api/event.js", ["onRequestPost", "onRequestGet"]);
   const metricsSource = loadFunction("functions/api/metrics.js", ["onRequestGet"]);
+  const sponsorLeadSource = loadFunction("functions/api/sponsor-lead.js", ["onRequestPost", "onRequestGet"]);
   const store = new MemoryStore();
   const env = { PTL_EVENTS: store };
 
@@ -25,7 +26,7 @@ async function main() {
   assert(metricsPayload.ok, "Metrics endpoint should respond");
   assert(store.getCount <= 1000, `Metrics endpoint should stay under Cloudflare KV read limits, got ${store.getCount}`);
   assert(metricsPayload.totals.download_pdf === 1, "Metrics should count downloads");
-  assert(metricsPayload.tools.length === 69, "Metrics should include every active tool plus monetization funnel rows");
+  assert(metricsPayload.tools.length === 70, "Metrics should include every active tool plus monetization funnel rows");
   const invoice = metricsPayload.tools.find((row) => row.tool === "invoice-generator");
   assert(invoice.download_pdf === 1, "Metrics should count per-tool downloads");
   const noSignupTools = metricsPayload.sources.find((row) => row.source === "nosignuptools");
@@ -214,6 +215,85 @@ async function main() {
     env,
   });
   assert(sellerDownloadResponse.status === 200, "Event collector should accept seller sample download events");
+  const sponsorIntentResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "sponsor_request_intent", tool: "sponsor", path: "/sponsor/", source: "directory" }),
+    }),
+    env,
+  });
+  assert(sponsorIntentResponse.status === 200, "Event collector should accept sponsor request intent events");
+  const sponsorCallIntentResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "sponsor_request_intent", tool: "sponsor", path: "/sponsor-call/", source: "sponsor-call" }),
+    }),
+    env,
+  });
+  assert(sponsorCallIntentResponse.status === 200, "Event collector should canonicalize sponsor-call source");
+  const sponsorLeadResponse = await sponsorLeadSource.onRequestPost({
+    request: new Request("https://example.test/api/sponsor-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.10" },
+      body: JSON.stringify({
+        company: "Example Partner",
+        contactEmail: "sponsor@example.com",
+        website: "https://example.com",
+        placement: "content-sponsorship",
+        budgetRange: "250-500",
+        timeline: "this-month",
+        audienceFit: "Privacy-friendly PDF and image tool users.",
+        notes: "Interested in a clearly labeled guide sponsorship.",
+        consent: true,
+        source: "sponsor-call",
+        path: "/sponsor/pdf-image-qr-saas/",
+        utmSource: "sponsor-call",
+        utmMedium: "manual",
+        utmCampaign: "pdf_image_qr_saas",
+        utmContent: "fit-email",
+        vertical: "pdf-image-qr-saas",
+      }),
+    }),
+    env,
+  });
+  const sponsorLeadPayload = await sponsorLeadResponse.json();
+  assert(sponsorLeadResponse.status === 200 && sponsorLeadPayload.ok, "Sponsor lead endpoint should accept valid business inquiries");
+  const invalidSponsorLeadResponse = await sponsorLeadSource.onRequestPost({
+    request: new Request("https://example.test/api/sponsor-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.11" },
+      body: JSON.stringify({
+        company: "Bad Email",
+        contactEmail: "not-an-email",
+        website: "https://example.com",
+        audienceFit: "Privacy-friendly PDF and image tool users.",
+        consent: true,
+      }),
+    }),
+    env,
+  });
+  assert(invalidSponsorLeadResponse.status === 400, "Sponsor lead endpoint should reject invalid email addresses");
+  const validationSponsorLeadResponse = await sponsorLeadSource.onRequestPost({
+    request: new Request("https://example.test/api/sponsor-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.12" },
+      body: JSON.stringify({
+        company: "Validation Partner",
+        contactEmail: "validation@example.com",
+        website: "https://example.org",
+        placement: "media-kit-review",
+        budgetRange: "exploratory",
+        timeline: "exploratory",
+        audienceFit: "Validation path for sponsor intake.",
+        consent: true,
+        validation: true,
+      }),
+    }),
+    env,
+  });
+  assert(validationSponsorLeadResponse.status === 200, "Sponsor lead endpoint should accept isolated validation inquiries");
   const sellerMetrics = await (await metricsSource.onRequestGet({ env })).json();
   const sellerKit = sellerMetrics.tools.find((row) => row.tool === "local-seller-starter-kit");
   assert(sellerKit.seller_checkout_intent === 1, "Metrics should count seller checkout intent");
@@ -225,6 +305,22 @@ async function main() {
   assert(sellerMetrics.totals.seller_checkout_intent === 1, "Metrics should count total seller checkout intent");
   assert(sellerMetrics.totals.service_request_intent === 3, "Metrics should count total service request intent");
   assert(sellerMetrics.totals.audit_request_intent === 3, "Metrics should count total audit request intent");
+  const sponsor = sellerMetrics.tools.find((row) => row.tool === "sponsor");
+  assert(sponsor.sponsor_request_intent === 2, "Metrics should count sponsor intent");
+  assert(sponsor.sponsor_lead_submit === 1, "Metrics should count sponsor lead submissions");
+  assert(sellerMetrics.totals.sponsor_request_intent === 2, "Metrics should count total sponsor intent");
+  assert(sellerMetrics.totals.sponsor_lead_submit === 1, "Metrics should count total sponsor lead submissions");
+  assert(sellerMetrics.sponsorLeads === 1, "Metrics should expose real sponsor lead count");
+  assert(sellerMetrics.commercialIntent === 10, "Commercial intent should include sponsor lead submissions");
+  assert(store.data.has(`sponsor:lead:${sponsorLeadPayload.id}`), "Sponsor lead should be stored privately in KV");
+  const storedSponsorLead = JSON.parse(store.data.get(`sponsor:lead:${sponsorLeadPayload.id}`));
+  assert(storedSponsorLead.source === "sponsor-outreach", "Sponsor lead should canonicalize sponsor-call into sponsor-outreach source metrics");
+  assert(storedSponsorLead.utmSource === "sponsor-call", "Sponsor lead should preserve original sponsor-call UTM attribution");
+  assert(storedSponsorLead.utmCampaign === "pdf_image_qr_saas", "Sponsor lead should store UTM campaign attribution");
+  assert(storedSponsorLead.vertical === "pdf-image-qr-saas", "Sponsor lead should store sponsor vertical attribution");
+  assert(storedSponsorLead.path === "/sponsor/pdf-image-qr-saas/", "Sponsor lead should store the clean sponsor path");
+  assert([...store.data.keys()].some((key) => key.startsWith("sponsor:validation:")), "Validation sponsor lead should use isolated KV keys");
+  assert(Number(store.data.get("total:sponsor_lead_tests")) === 1, "Validation sponsor lead should count only validation tests");
   const githubPages = sellerMetrics.sources.find((row) => row.source === "github-pages");
   assert(githubPages.page_view === 1, "Metrics should count GitHub Pages page views by source");
   assert(githubPages.seller_checkout_intent === 1, "Metrics should count seller intent by source");
@@ -235,6 +331,10 @@ async function main() {
   const direct = sellerMetrics.sources.find((row) => row.source === "direct");
   assert(direct.service_request_intent === 1, "Metrics should count copied service intent by source");
   assert(direct.audit_request_intent === 1, "Metrics should count copied audit intent by source");
+  const directory = sellerMetrics.sources.find((row) => row.source === "directory");
+  assert(directory.sponsor_request_intent === 1, "Metrics should count sponsor clicks by source");
+  const sponsorOutreach = sellerMetrics.sources.find((row) => row.source === "sponsor-outreach");
+  assert(sponsorOutreach.sponsor_request_intent === 2, "Metrics should count sponsor-call and lead submissions by outreach source");
   console.log("Event metrics test passed.");
 }
 

@@ -18,10 +18,10 @@ async function main() {
     const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
     if (!report.issueUrl || !report.issueUrl.includes("/issues/")) failures.push("Issue report missing issueUrl.");
     if (report.state !== "open") failures.push("Issue must be open.");
-    const freeHelpPublished = Boolean(report.freeHelpPath?.auditUrl || report.freeHelpPath?.freeToolDirectoryUrl);
+    const freeHelpPath = report.freeHelpPath || report.freeToolPath || {};
+    const freeHelpPublished = Boolean(freeHelpPath.auditUrl || freeHelpPath.freeToolDirectoryUrl);
     if (!freeHelpPublished && !githubPublishSkipped("githubIssueDiscovery")) failures.push("Issue report missing free-help path. Run npm.cmd run github-issue-discovery.");
-    if (freeHelpPublished && !String(report.freeHelpPath?.auditUrl || "").includes("market_table_audit")) failures.push("Issue report missing free-help audit URL.");
-    if (freeHelpPublished && !String(report.freeHelpPath?.freeToolDirectoryUrl || "").includes("free_tool_depth")) failures.push("Issue report missing free-tool depth URL.");
+    if (freeHelpPublished && !String(freeHelpPath.freeToolDirectoryUrl || "").includes("free_tool_depth")) failures.push("Issue report missing free-tool depth URL.");
     await verifyIssuePage(report.issueUrl, freeHelpPublished);
   }
 
@@ -40,8 +40,9 @@ async function verifyIssuePage(url, freeHelpPublished) {
       failures.push(`Issue page returned ${response.status}.`);
       return;
     }
-    const freeHelpNeedles = freeHelpPublished ? ["Free Market Table Print Audit", "market_table_audit", "free_tool_depth", "future ads must never block"] : [];
-    for (const needle of ["Growth log", "ptl-pdf-under-1mb.mp4", "utm_source=github-issue", "Public Gist mirror", "portal-submission-pack", "Expanded backup portals", ...freeHelpNeedles]) {
+    const freeHelpNeedles = freeHelpPublished ? ["free_tool_depth", "future ads must never block"] : [];
+    const sponsorNeedles = ["Sponsor and partner discovery", "sponsor-call", "utm_source=sponsor-outreach", "qualified inquiry"];
+    for (const needle of ["Growth log", "ptl-pdf-under-1mb.mp4", "utm_source=github-issue", "Public Gist mirror", "portal-submission-pack", "Expanded backup portals", ...sponsorNeedles, ...freeHelpNeedles]) {
       if (!text.includes(needle)) failures.push(`Issue page missing ${needle}.`);
     }
   } catch (error) {
