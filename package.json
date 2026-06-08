@@ -33,6 +33,7 @@
     "verify:github-issue-discovery": "node scripts/verify-github-issue-discovery.cjs",
     "verify:sponsor-close": "node scripts/verify-sponsor-close-path.cjs",
     "monitor:directories": "node scripts/directory-monitor.cjs",
+    "submit:techtools-upload-backlog": "node scripts/submit-techtools-upload-error-backlog.cjs",
     "indexnow": "node scripts/indexnow.cjs",
     "sponsor:leads": "node scripts/export-sponsor-leads.cjs",
     "service:leads": "node scripts/export-service-leads.cjs",

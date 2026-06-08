@@ -8674,6 +8674,9 @@ function directorySubmissionHtml() {
     ["TechTools Passport Photo 50KB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=181", "Passport photo 50KB listing that opens the image compressor with the pre-download $9 upload fix request ready."],
     ["TechTools PDF Under 500KB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=182", "Strict PDF 500KB listing that opens the compressor with the pre-download $9 upload fix request ready."],
     ["TechTools Image Under 500KB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=183", "Image 500KB listing that opens the image compressor with the pre-download $9 upload fix request ready."],
+    ["TechTools Image Dimensions 600x600 Upload Fix", "https://printable-tools-lab.pages.dev/image-dimensions-600x600/?utm_source=techtools&utm_medium=directory&utm_campaign=image_dimensions_600x600_fix_2026_06&utm_content=image_dimensions_600x600_landing", "Pending retry after TechTools hourly API rate limit; use npm.cmd run submit:techtools-upload-backlog."],
+    ["TechTools PDF Not Accepted JPG Required Fix", "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_not_accepted_jpg_required_fix_2026_06&utm_content=pdf_to_jpg_required_landing", "Pending retry after TechTools hourly API rate limit; use npm.cmd run submit:techtools-upload-backlog."],
+    ["TechTools Email Attachment Too Large PDF Fix", "https://printable-tools-lab.pages.dev/email-attachment-too-large/?utm_source=techtools&utm_medium=directory&utm_campaign=email_attachment_too_large_fix_2026_06&utm_content=email_attachment_too_large_landing", "Pending retry after TechTools hourly API rate limit; use npm.cmd run submit:techtools-upload-backlog."],
     ["NoSignupTools Upload Limit Fixer", "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab", "Pending public API submission for a no-signup upload error matcher."],
     ["NoSignupTools Upload Error Cheatsheet", "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab", "Pending public API submission for exact upload-error fix routing."],
     ["FreeNoSignup Upload Limit Fixer", "https://freenosignup.com/?s=Upload+Limit+Fixer", "Pending Google Form submission for the free upload error matcher."],
@@ -8708,7 +8711,10 @@ function directorySubmissionHtml() {
         <h2>External listings and submissions</h2>
         <p>These public directory entries and pending submissions are discovery signals, not revenue proof. They are listed here so reviewers can verify external visibility without accessing internal operations pages.</p>
         <div class="grid-2">
-          ${liveDirectoryListings.map(([title, url, note]) => `<article class="panel"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(note)}</p><a class="button secondary" href="${escapeHtml(url)}" rel="nofollow">Open listing</a></article>`).join("\n")}
+          ${liveDirectoryListings.map(([title, url, note]) => {
+            const pending = /pending/i.test(note);
+            return `<article class="panel"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(note)}</p><a class="button secondary" href="${escapeHtml(url)}" rel="nofollow">${pending ? "Open pending URL" : "Open listing"}</a></article>`;
+          }).join("\n")}
         </div>
       </section>
       <section class="shell section">

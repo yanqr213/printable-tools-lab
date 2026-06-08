@@ -6398,6 +6398,16 @@
       ["TechTools Compress PDF to 1MB", "https://techtools.cz/tools/launchpad/?tool=174", "High-intent listing for the common PDF under 1MB upload-error path that leads to the download-time $9 upload fix request."],
       ["TechTools PDF Under 1MB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=175", "Tool-level 1MB PDF listing that opens the compressor with the pre-download $9 upload fix request ready."],
       ["TechTools Photo Under 100KB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=176", "Tool-level photo 100KB listing that opens the image compressor with the pre-download $9 upload fix request ready."],
+      ["TechTools Image Under 2MB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=177", "Tool-level image 2MB listing that opens the image compressor with the pre-download $9 upload fix request ready."],
+      ["TechTools JPG Under 200KB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=178", "Tool-level JPG 200KB listing that opens the image compressor with the pre-download $9 upload fix request ready."],
+      ["TechTools Resume PDF Too Large Upload Fix", "https://techtools.cz/tools/launchpad/?tool=179", "Resume PDF 1MB listing that opens the PDF compressor with the pre-download $9 upload fix request ready."],
+      ["TechTools PNG Screenshot Too Large Upload Fix", "https://techtools.cz/tools/launchpad/?tool=180", "PNG screenshot 500KB listing that opens the image compressor with the pre-download $9 upload fix request ready."],
+      ["TechTools Passport Photo 50KB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=181", "Passport photo 50KB listing that opens the image compressor with the pre-download $9 upload fix request ready."],
+      ["TechTools PDF Under 500KB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=182", "Strict PDF 500KB listing that opens the compressor with the pre-download $9 upload fix request ready."],
+      ["TechTools Image Under 500KB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=183", "Image 500KB listing that opens the image compressor with the pre-download $9 upload fix request ready."],
+      ["TechTools Image Dimensions 600x600 Upload Fix", "https://printable-tools-lab.pages.dev/image-dimensions-600x600/?utm_source=techtools&utm_medium=directory&utm_campaign=image_dimensions_600x600_fix_2026_06&utm_content=image_dimensions_600x600_landing", "Pending retry after TechTools hourly API rate limit; use npm.cmd run submit:techtools-upload-backlog."],
+      ["TechTools PDF Not Accepted JPG Required Fix", "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_not_accepted_jpg_required_fix_2026_06&utm_content=pdf_to_jpg_required_landing", "Pending retry after TechTools hourly API rate limit; use npm.cmd run submit:techtools-upload-backlog."],
+      ["TechTools Email Attachment Too Large PDF Fix", "https://printable-tools-lab.pages.dev/email-attachment-too-large/?utm_source=techtools&utm_medium=directory&utm_campaign=email_attachment_too_large_fix_2026_06&utm_content=email_attachment_too_large_landing", "Pending retry after TechTools hourly API rate limit; use npm.cmd run submit:techtools-upload-backlog."],
       ["NoSignupTools Upload Limit Fixer", "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab", "Pending public API submission for a no-signup upload error matcher."],
       ["NoSignupTools Upload Error Cheatsheet", "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab", "Pending public API submission for exact upload-error fix routing."],
       ["FreeNoSignup Upload Limit Fixer", "https://freenosignup.com/?s=Upload+Limit+Fixer", "Pending Google Form submission for the free upload error matcher."],
@@ -6444,7 +6454,10 @@
         <h2>External listings and submissions</h2>
         <p>These public directory entries and pending submissions are discovery signals, not revenue proof. They are listed here so reviewers can verify external visibility without accessing internal operations pages.</p>
         <div class="grid-2">
-          ${liveDirectoryListings.map(([title, url, note]) => `<article class="panel"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(note)}</p><a class="button secondary" href="${escapeHtml(url)}" rel="nofollow">Open listing</a></article>`).join("")}
+          ${liveDirectoryListings.map(([title, url, note]) => {
+            const pending = /pending/i.test(note);
+            return `<article class="panel"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(note)}</p><a class="button secondary" href="${escapeHtml(url)}" rel="nofollow">${pending ? "Open pending URL" : "Open listing"}</a></article>`;
+          }).join("")}
         </div>
       </section>
       <section class="shell section">
@@ -15512,12 +15525,13 @@ ${paragraphs.join("\n")}
     const replyUrl = publicReplyUrl || (typeof values === "string" ? "" : serviceLeadFallbackUrl(values));
     const noContactFallback = options.reason === "no-contact";
     const intro = noContactFallback
-      ? "No contact was added here, so nothing private is stored on this site. Add a reply contact above and send again for the private $9 follow-up path, or open the public-safe GitHub request below if public contact is acceptable."
+      ? "No contact was added here, so nothing private is stored on this site. To get the private $9 follow-up path, add one reply email or public handle above and send again. Use the public-safe GitHub request only if public contact is acceptable."
       : "Lead storage is temporarily limited, so open the public-safe GitHub request or copy this text before leaving the page.";
     panel.innerHTML = `
       <p><strong>${noContactFallback ? "Public-safe request ready." : "Backup request ready."}</strong> ${escapeHtml(intro)}</p>
       <textarea class="request-copy-output service-lead-fallback-output" readonly>${escapeHtml(text)}</textarea>
       <div class="actions">
+        ${noContactFallback ? `<button class="button secondary" type="button" data-service-lead-focus-contact>Add reply contact</button>` : ""}
         ${replyUrl ? `<a class="button" data-track-event="${escapeHtml(serviceLeadTrackEvent(serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(serviceType))}" href="${escapeHtml(replyUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>` : ""}
         <button class="button" type="button" data-copy-text="${escapeHtml(text)}">${noContactFallback ? "Copy public-safe request" : "Copy backup request"}</button>
       </div>
@@ -15548,7 +15562,7 @@ ${paragraphs.join("\n")}
       const publicValues = { ...values, contact: "" };
       renderServiceLeadFallback(form, publicValues, "", { reason: "no-contact" });
       track(serviceLeadTrackEvent(values.serviceType), { tool: serviceLeadTrackTool(values.serviceType), fallback: "public-safe-no-contact" });
-      setStatus("Add a reply contact and send again for private $9 follow-up, or use the public-safe request below if public contact is acceptable.", "error");
+      setStatus("Use Add reply contact, then send again for private $9 follow-up. The public-safe request below is only for public contact.", "error");
       return;
     }
     setStatus("Sending request...", "pending");
@@ -16317,6 +16331,22 @@ ${paragraphs.join("\n")}
   }
 
   document.addEventListener("click", (event) => {
+    const serviceLeadFocus = event.target.closest("[data-service-lead-focus-contact]");
+    if (serviceLeadFocus) {
+      event.preventDefault();
+      const form = serviceLeadFocus.closest("[data-service-lead-form]");
+      const contact = form ? form.querySelector('input[name="contact"]') : null;
+      const status = form ? form.querySelector("[data-service-lead-status]") : null;
+      if (status) {
+        status.textContent = "Add one reply email or public handle, then press Send again for the private $9 follow-up path.";
+        status.dataset.status = "pending";
+      }
+      if (contact) {
+        contact.scrollIntoView({ behavior: "smooth", block: "center" });
+        contact.focus({ preventScroll: true });
+      }
+      return;
+    }
     const copyButton = event.target.closest("[data-copy-text]");
     if (copyButton) {
       event.preventDefault();

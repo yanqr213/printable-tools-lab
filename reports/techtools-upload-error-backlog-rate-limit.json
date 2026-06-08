@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-06-08T17:47:24.246Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "ok": false,
+  "rateLimited": true,
+  "retryAfter": "Wait 1 hour",
+  "blockedAt": "Image Dimensions 600x600 Upload Fix by PrintableTools Lab",
+  "remaining": [
+    "Image Dimensions 600x600 Upload Fix by PrintableTools Lab",
+    "PDF Not Accepted JPG Required Fix by PrintableTools Lab",
+    "Email Attachment Too Large PDF Fix by PrintableTools Lab"
+  ]
+}

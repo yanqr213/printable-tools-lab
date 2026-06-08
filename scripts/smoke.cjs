@@ -284,9 +284,12 @@ function delay(ms) {
   const noContactFallback = lowercaseImageKbFixForm.locator("[data-service-lead-fallback]").first();
   await noContactFallback.waitFor({ state: "visible", timeout: 5000 });
   const noContactFallbackText = await noContactFallback.innerText();
-  if (!noContactFallbackText.includes("Public-safe request ready.") || !noContactFallbackText.includes("private $9 follow-up path") || !noContactFallbackText.includes("Copy public-safe request")) {
+  if (!noContactFallbackText.includes("Public-safe request ready.") || !noContactFallbackText.includes("private $9 follow-up path") || !noContactFallbackText.includes("Add reply contact") || !noContactFallbackText.includes("Copy public-safe request")) {
     throw new Error(`No-contact service fallback copy is missing: ${noContactFallbackText}`);
   }
+  await noContactFallback.locator("[data-service-lead-focus-contact]").click();
+  const focusedContactName = await page.evaluate(() => document.activeElement && document.activeElement.getAttribute("name"));
+  if (focusedContactName !== "contact") throw new Error(`Add reply contact did not focus the contact field, focused ${focusedContactName || "nothing"}`);
   const noContactFallbackBody = await noContactFallback.locator(".service-lead-fallback-output").inputValue();
   if (!noContactFallbackBody.includes("image or photo under 100 KB") || noContactFallbackBody.includes("you@example.com")) {
     throw new Error(`No-contact public request body is not target-aware or public-safe: ${noContactFallbackBody}`);
