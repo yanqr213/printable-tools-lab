@@ -1800,7 +1800,10 @@ for (const [pagePath, headline, toolFragment] of [
   if (!html.includes(headline)) failures.push(`Photo upload landing page missing headline: ${pagePath}`);
   if (!html.includes(toolFragment)) failures.push(`Photo upload landing page missing prefilled tool link: ${pagePath}`);
   if (!sitemap.includes(`<loc>${siteUrl(pagePath)}</loc>`)) failures.push(`Sitemap missing photo upload landing page: ${pagePath}`);
-  if (["file-must-be-less-than-1mb", "pdf-must-be-under-500kb", "photo-must-be-under-100kb", "invalid-file-type-jpg-png", "image-dimensions-600x600", "pdf-not-accepted-jpg-required", "image-must-be-less-than-2mb", "image-must-be-under-500kb", "jpg-must-be-under-200kb", "png-screenshot-too-large", "resume-pdf-too-large", "email-attachment-too-large"].includes(pagePath) && !html.includes("data-upload-limit-helper")) failures.push(`Upload-error landing page missing matcher: ${pagePath}`);
+  if (["file-must-be-less-than-1mb", "pdf-must-be-under-500kb", "photo-must-be-under-100kb", "invalid-file-type-jpg-png", "image-dimensions-600x600", "pdf-not-accepted-jpg-required", "image-must-be-less-than-2mb", "image-must-be-under-500kb", "jpg-must-be-under-200kb", "png-screenshot-too-large", "resume-pdf-too-large", "email-attachment-too-large"].includes(pagePath)) {
+    if (!html.includes("data-upload-limit-helper")) failures.push(`Upload-error landing page missing matcher: ${pagePath}`);
+    if (!html.includes('href="#invoice-request"') || !html.includes('id="invoice-request"') || !html.includes("Request the $9 invoice link in 30 seconds") || !html.includes("data-service-invoice-submit") || !html.includes(`data-utm-content="${pagePath}-invoice"`)) failures.push(`Upload-error landing page missing direct $9 invoice request path: ${pagePath}`);
+  }
 }
 
 const docsIndexFile = path.join(root, "docs", "index.html");

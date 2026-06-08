@@ -10081,21 +10081,25 @@ function landingPageHtml(page) {
   const uploadShortcutsHtml = page.path === "upload-limit-fixer"
     ? `\n${uploadLimitShortcutsHtml("Fast upload limit shortcuts", "If the error message names a file size, start with the matching target page instead of browsing every tool.")}`
     : "";
+  const uploadFixMicroSummary = page.uploadErrorMatcher
+    ? `I need a $9 Upload Limit Fix Plan for the ${page.headline} workflow: best free tool, target settings, fallback steps, and a review checklist. No file upload, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.`
+    : "";
   const uploadLimitMicroLeadHtml = page.uploadErrorMatcher ? `
-      <section class="shell section service-micro-intent-section">
+      <section class="shell section service-micro-intent-section" id="invoice-request">
         <div class="grid-2">
           <div>
-            <h2>Need a $9 fix plan for this exact upload error?</h2>
-            <p>Use this if you tried the free tool and still need a public-safe step plan. Do not upload the file; send only the error text and target rule.</p>
+            <h2>Need a $9 upload fix plan?</h2>
+            <p>Request the $9 invoice link in 30 seconds if the free tool is not enough. Add one reply contact only; the public-safe request already says no file upload.</p>
           </div>
           ${uploadLimitFixPlanInlineLeadFormHtml({
             pathName: page.path,
             utmSource: "landing-page",
-            utmContent: `${page.path}-micro`,
-            submitLabel: "Send $9 fix-plan request",
+            utmContent: `${page.path}-invoice`,
+            submitLabel: "Request $9 invoice link",
             className: "upload-limit-fix-plan-micro-lead-form",
             compact: true,
-            requestSummary: `I need a $9 Upload Limit Fix Plan for the ${page.headline} workflow: best free tool, target settings, fallback steps, and a review checklist. No file upload, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.`,
+            primaryInvoiceRequest: true,
+            requestSummary: uploadFixMicroSummary,
           })}
         </div>
       </section>` : "";
@@ -10127,13 +10131,25 @@ function landingPageHtml(page) {
     utmCampaign: page.serviceLead.utmCampaign || "service_request",
     utmContent: `${page.path}-public-request`,
   }) : "";
+  const uploadFixPublicRequestHref = page.uploadErrorMatcher ? serviceInvoiceRequestUrl({
+    serviceType: "upload-limit-fix-plan",
+    pathName: page.path,
+    requestSummary: uploadFixMicroSummary,
+    utmSource: "landing-page",
+    utmMedium: "site",
+    utmCampaign: "upload_limit_fix_plan",
+    utmContent: `${page.path}-hero-invoice`,
+  }) : "";
   const serviceInvoiceRequestText = page.serviceLead?.serviceType === "upload-limit-fix-plan"
     ? "Request $9 invoice link"
     : page.serviceLead?.serviceType === "invoice-followup-copy-pack"
       ? "Request $19 invoice link"
       : "";
-  const secondaryActionHtml = page.serviceLead
-    ? `${serviceInvoiceRequestText ? `<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(serviceInvoiceRequestText)}</a> ` : ""}<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>`
+  const serviceInvoiceRequestHref = page.serviceLead?.serviceType === "upload-limit-fix-plan" ? "#invoice-request" : "#service-request";
+  const secondaryActionHtml = page.uploadErrorMatcher
+    ? `<a class="button secondary" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="#invoice-request">Request $9 invoice link</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(uploadFixPublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>`
+    : page.serviceLead
+    ? `${serviceInvoiceRequestText ? `<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(serviceInvoiceRequestHref)}">${escapeHtml(serviceInvoiceRequestText)}</a> ` : ""}<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>`
     : `<a class="button secondary" href="/pdf-tool-finder/">Compare tools</a>`;
   return `
       <section class="shell page-title section">

@@ -7063,6 +7063,9 @@
     const page = landingPagesBySlug[slug];
     const tool = tools[page.tool];
     const related = page.related.map((id) => tools[id]).filter(Boolean);
+    const uploadFixMicroSummary = page.uploadErrorMatcher
+      ? `I need a $9 Upload Limit Fix Plan for the ${page.headline} workflow: best free tool, target settings, fallback steps, and a review checklist. No file upload, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.`
+      : "";
     const servicePublicRequestHref = page.serviceLead ? serviceLeadFallbackUrl({
       serviceType: page.serviceLead.serviceType,
       businessName: "",
@@ -7074,6 +7077,18 @@
       utmMedium: "site",
       utmCampaign: page.serviceLead.utmCampaign || "service_request",
       utmContent: `${page.slug}-public-request`,
+    }) : "";
+    const uploadFixPublicRequestHref = page.uploadErrorMatcher ? serviceInvoiceRequestUrl({
+      serviceType: "upload-limit-fix-plan",
+      businessName: "",
+      contact: "",
+      needBy: "",
+      requestSummary: uploadFixMicroSummary,
+      path: `/${page.slug}/`,
+      utmSource: "landing-page",
+      utmMedium: "site",
+      utmCampaign: "upload_limit_fix_plan",
+      utmContent: `${page.slug}-hero-invoice`,
     }) : "";
     setMeta(page.title, page.description);
     setJsonLd({
@@ -7091,12 +7106,22 @@
         offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       },
     });
+    const serviceInvoiceAction = page.serviceLead?.serviceType === "upload-limit-fix-plan"
+      ? `<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#invoice-request">Request $9 invoice link</a> `
+      : page.serviceLead?.serviceType === "invoice-followup-copy-pack"
+        ? `<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">Request $19 invoice link</a> `
+        : "";
+    const secondaryAction = page.uploadErrorMatcher
+      ? `<a class="button secondary" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="#invoice-request">Request $9 invoice link</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(uploadFixPublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>`
+      : page.serviceLead
+        ? `${serviceInvoiceAction}<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>`
+        : `<a class="button secondary" href="/pdf-tool-finder/">Compare tools</a>`;
     app.innerHTML = `
       <section class="shell page-title section">
         <a href="/free-pdf-tools/">Free file tools</a>
         <h1>${escapeHtml(page.headline)}</h1>
         <p>${escapeHtml(page.lead)}</p>
-        <p><a class="button" href="${toolUrl(page)}">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> ${page.serviceLead ? `<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>` : `<a class="button secondary" href="/pdf-tool-finder/">Compare tools</a>`}</p>
+        <p><a class="button" href="${toolUrl(page)}">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> ${secondaryAction}</p>
       </section>
       ${page.serviceLead?.serviceType === "invoice-followup-copy-pack" ? `<section class="shell section service-micro-intent-section">
         <div class="grid-2">
@@ -7128,20 +7153,21 @@
         <h2>${escapeHtml(heading)}</h2>
         <p>${escapeHtml(text)}</p>
       </section>`).join("")}
-      ${page.uploadErrorMatcher ? `<section class="shell section service-micro-intent-section">
+      ${page.uploadErrorMatcher ? `<section class="shell section service-micro-intent-section" id="invoice-request">
         <div class="grid-2">
           <div>
-            <h2>Need a $9 fix plan for this exact upload error?</h2>
-            <p>Use this if you tried the free tool and still need a public-safe step plan. Do not upload the file; send only the error text and target rule.</p>
+            <h2>Need a $9 upload fix plan?</h2>
+            <p>Request the $9 invoice link in 30 seconds if the free tool is not enough. Add one reply contact only; the public-safe request already says no file upload.</p>
           </div>
           ${uploadLimitFixPlanInlineLeadForm({
             path: `/${page.slug}/`,
             utmSource: "landing-page",
-            utmContent: `${page.slug}-micro`,
-            submitLabel: "Send $9 fix-plan request",
+            utmContent: `${page.slug}-invoice`,
+            submitLabel: "Request $9 invoice link",
             className: "upload-limit-fix-plan-micro-lead-form",
             compact: true,
-            requestSummary: `I need a $9 Upload Limit Fix Plan for the ${page.headline} workflow: best free tool, target settings, fallback steps, and a review checklist. No file upload, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.`,
+            primaryInvoiceRequest: true,
+            requestSummary: uploadFixMicroSummary,
           })}
         </div>
       </section>` : ""}
