@@ -307,6 +307,8 @@ else {
   if (!Array.isArray(data.placements) || data.placements.length < 3) failures.push("Sponsor media kit missing placement options.");
   if (!Array.isArray(data.outreachTargets) || data.outreachTargets.length < 4) failures.push("Sponsor media kit missing outreach target categories.");
   if (!Array.isArray(data.verticalSponsorPages) || data.verticalSponsorPages.length < 5) failures.push("Sponsor media kit missing vertical sponsor pages.");
+  if (!data.externalDiscoveryProof || Number(data.externalDiscoveryProof.directoryListedCount || 0) < 4) failures.push("Sponsor media kit missing public external discovery proof.");
+  if (JSON.stringify(data.externalDiscoveryProof || {}).includes("/ops/")) failures.push("Sponsor media kit external discovery proof should not expose operations routes.");
   if (Object.prototype.hasOwnProperty.call(data, "metricsDashboard")) failures.push("Sponsor media kit JSON should not expose the direct dashboard URL.");
   if (!String(data.moneyGate || "").includes("settled payment")) failures.push("Sponsor media kit missing revenue money gate.");
 }
@@ -321,6 +323,7 @@ else {
   if (!Array.isArray(data.templates) || data.templates.length < 3) failures.push("Sponsor outreach pack missing copy templates.");
   if (!Array.isArray(data.verticalSponsorPages) || data.verticalSponsorPages.length < 5) failures.push("Sponsor outreach pack missing vertical sponsor pages.");
   if (!Array.isArray(data.prospectPaths) || data.prospectPaths.length < SPONSOR_VERTICALS.length) failures.push("Sponsor outreach pack missing prospect paths.");
+  if (!data.externalDiscoveryProof || Number(data.externalDiscoveryProof.directoryListedCount || 0) < 4) failures.push("Sponsor outreach pack missing public external discovery proof.");
   if (JSON.stringify(data).includes("/ops/")) failures.push("Sponsor outreach pack should not expose operations monitor URL.");
   if (!Array.isArray(data.trackedLinks) || data.trackedLinks.length < 10) failures.push("Sponsor outreach pack missing vertical tracked links.");
   if (!String(data.successGate || "").includes("settled payment")) failures.push("Sponsor outreach pack missing settled-payment success gate.");
@@ -362,6 +365,7 @@ else {
   if (data.canonical !== siteUrl("sponsor-opportunities")) failures.push("Sponsor opportunities JSON missing canonical URL.");
   if (!Array.isArray(data.opportunities) || data.opportunities.length < SPONSOR_VERTICALS.length) failures.push("Sponsor opportunities JSON missing vertical opportunities.");
   if (!Array.isArray(data.prospectPaths) || data.prospectPaths.length < SPONSOR_VERTICALS.length) failures.push("Sponsor opportunities JSON missing prospect paths.");
+  if (!data.externalDiscoveryProof || Number(data.externalDiscoveryProof.directoryListedCount || 0) < 4) failures.push("Sponsor opportunities JSON missing public external discovery proof.");
   if (!String(data.inquiryUrl || "").includes("utm_source=sponsor-opportunities")) failures.push("Sponsor opportunities JSON missing tracked inquiry URL.");
   if (!String(data.invoiceReviewUrl || "").includes("sponsor-starter-review") || !String(data.invoiceReviewUrl || "").includes("commitment=request-invoice")) failures.push("Sponsor opportunities JSON missing invoice review URL.");
   if (!data.prospectPaths?.every((item) => String(item.invoiceReviewUrl || "").includes("sponsor-starter-review") && String(item.invoiceReviewUrl || "").includes("commitment=request-invoice"))) failures.push("Sponsor opportunities JSON prospect paths missing invoice review URLs.");
@@ -377,6 +381,7 @@ else {
   if (data.canonical !== siteUrl("sponsor-intent-feed.json").replace(/\/$/, "")) failures.push("Sponsor intent feed missing canonical URL.");
   if (!String(data.invoiceReviewUrl || "").includes("sponsor-starter-review") || !String(data.invoiceReviewUrl || "").includes("commitment=request-invoice")) failures.push("Sponsor intent feed missing invoice review URL.");
   if (!Array.isArray(data.prospectPaths) || data.prospectPaths.length < SPONSOR_VERTICALS.length) failures.push("Sponsor intent feed missing prospect paths.");
+  if (!data.externalDiscoveryProof || Number(data.externalDiscoveryProof.directoryListedCount || 0) < 4) failures.push("Sponsor intent feed missing public external discovery proof.");
   if (!Array.isArray(data.invoiceReadyDeals) || !data.invoiceReadyDeals.some((deal) => deal.id === "starter-fit-review" && deal.price === "USD 49")) failures.push("Sponsor intent feed missing USD 49 invoice-ready deal.");
   if (!String(data.privacyBoundary || "").includes("operations routes")) failures.push("Sponsor intent feed missing privacy boundary.");
   if (serialized.includes("/ops/") || serialized.includes("dashboard")) failures.push("Sponsor intent feed should not expose operations or dashboard URLs.");
@@ -433,6 +438,7 @@ else {
   if (!script.includes("loadSponsorLeadCheck") || !script.includes("Sponsor lead index check") || !script.includes("/api/sponsor-lead")) failures.push("app.js ops monitor should independently check sponsor lead index totals.");
   if (!script.includes("loadSponsorPublicReplies") || !script.includes("Public-safe sponsor reply evidence") || !script.includes("/api/sponsor-public-replies")) failures.push("app.js ops monitor should independently check public sponsor reply evidence.");
   if (!script.includes("renderSponsorProposalPage") || !script.includes("sponsorProspectProposalUrl") || !script.includes("sponsor_proposal")) failures.push("app.js missing direct sponsor proposal funnel.");
+  if (!script.includes("sponsorExternalDiscoveryProofLine") || !script.includes("Public discovery proof") || !script.includes("External discovery proof")) failures.push("app.js sponsor proposal should show public external discovery proof.");
   if (!script.includes("applySponsorProspectPrefill") || !script.includes("sponsorProspectQuickNotes") || !script.includes("sponsorProspectValidation")) failures.push("app.js sponsor proposal should prefill prospect-aware invoice review forms.");
   if (!script.includes("applySponsorPublicInvoiceLinks") || !script.includes("Fast invoice-review path") || !script.includes("Open public invoice issue")) failures.push("app.js sponsor proposal and ops cockpit should expose prospect-specific public invoice issue actions.");
   if (!script.includes('utmContent: clean(params.get("utm_content")) || clean(params.get("prospect"))')) failures.push("app.js sponsor attribution should keep proposal prospect IDs on quick invoice requests.");
@@ -497,6 +503,7 @@ else {
   if (!prospectScript.includes("sponsorPublicReplyUrl") || !prospectScript.includes("publicReplyUrl")) failures.push("Sponsor prospect generator missing public-safe reply fallback URLs.");
   if (!prospectScript.includes("contactFormMessage") || !prospectScript.includes("contactFormProposalUrl")) failures.push("Sponsor prospect generator missing short public contact form execution copy.");
   if (!prospectScript.includes("validationSignal") || !prospectScript.includes("invoice-generator has") || !prospectScript.includes("sponsor leads/invoice requests")) failures.push("Sponsor prospect generator should include current validation signals in outreach copy.");
+  if (!prospectScript.includes("directory-monitor.json") || !prospectScript.includes("externalDiscoveryProof") || !prospectScript.includes("External discovery proof")) failures.push("Sponsor prospect generator should include public external discovery proof in outreach copy.");
 }
 if (!fs.existsSync(sponsorOutreachLogScriptFile)) failures.push("Missing sponsor outreach log script.");
 else {
@@ -922,6 +929,7 @@ else {
   if (!data.sponsorDiscovery || data.sponsorDiscovery.sponsorCall !== siteUrl("sponsor-call")) failures.push("share-kit.json missing sponsor call discovery.");
   if (!Array.isArray(data.sponsorDiscovery?.links) || !data.sponsorDiscovery.links.some((item) => String(item.url || "").includes("utm_source=sponsor-outreach"))) failures.push("share-kit.json missing tracked sponsor discovery links.");
   if (!Array.isArray(data.sponsorDiscovery?.links) || !data.sponsorDiscovery.links.some((item) => item.title === "Public USD 49 invoice request" && String(item.url || "").includes("commitment%3Drequest-invoice") && String(item.url || "").includes("body=Public-safe+sponsor+reply"))) failures.push("share-kit.json missing public USD 49 invoice request link.");
+  if (!data.sponsorDiscovery?.externalDiscoveryProof || Number(data.sponsorDiscovery.externalDiscoveryProof.directoryListedCount || 0) < 4) failures.push("share-kit.json missing sponsor external discovery proof.");
   if (!String(data.sponsorDiscovery?.successGate || "").includes("qualified sponsor lead")) failures.push("share-kit.json missing sponsor discovery success gate.");
   if (!data.featuredLinks.some((item) => item.url && item.url.includes("utm_source=share-kit"))) failures.push("share-kit.json missing tracked share-kit URLs.");
   if (data.serviceSalesPack || data.serviceSalesPack?.trackedLinks?.some((item) => String(item.url || "").includes("service_sales_pack"))) failures.push("share-kit.json should not promote service sales pack tracked URLs.");

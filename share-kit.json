@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Share Kit",
-  "generatedAt": "2026-06-08T01:14:15.621Z",
+  "generatedAt": "2026-06-08T01:36:11.088Z",
   "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
   "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
   "featuredLinks": [
@@ -534,6 +534,44 @@
         "reason": "Public facts, placement rules, vertical fits, and safety constraints for partners."
       }
     ],
+    "externalDiscoveryProof": {
+      "generatedAt": "2026-06-08T01:19:56.733Z",
+      "directoryListedCount": 4,
+      "directoryPendingCount": 5,
+      "directoryErrorCount": 1,
+      "listedDirectories": [
+        {
+          "name": "TechTools Launchpad site listing",
+          "evidenceUrl": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
+          "submittedAt": "2026-06-06",
+          "reviewWindow": "auto-approved API listing"
+        },
+        {
+          "name": "TechTools Launchpad upload-limit listing",
+          "evidenceUrl": "https://techtools.cz/launchpad-api/tools/162",
+          "submittedAt": "2026-06-06",
+          "reviewWindow": "auto-approved API listing for the high-intent upload-limit entry"
+        },
+        {
+          "name": "NoLogin.tools",
+          "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev",
+          "submittedAt": "2026-06-03",
+          "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev"
+        },
+        {
+          "name": "NoLogin.tools upload-limit listing",
+          "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer",
+          "submittedAt": "2026-06-06",
+          "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-upload-limit-fixer"
+        }
+      ],
+      "indexNowAcceptedTargets": [
+        "github-pages"
+      ],
+      "indexNowSubmittedUrls": 263,
+      "publicProofLine": "External discovery proof: 4 public directory listing(s) are live; 5 more listing(s) remain pending; IndexNow accepted 1 target(s). These are discovery signals, not revenue.",
+      "moneyBoundary": "Directory listings, IndexNow submissions, clicks, and views are discovery signals only. Revenue is real only after a signed sponsor agreement or settled external payment."
+    },
     "successGate": "Commercial discovery is working only when a qualified sponsor lead, signed agreement, or settled external payment is verified. Clicks alone are not revenue."
   },
   "zeroDomainGameExperiment": {

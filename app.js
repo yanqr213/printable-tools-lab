@@ -5253,6 +5253,37 @@
     return `/sponsor-starter-review/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=${encodeURIComponent(suffix)}&vertical=${encodeURIComponent(vertical.slug)}&commitment=request-invoice#sponsor-inquiry`;
   }
 
+  const sponsorExternalDiscoveryProof = {
+    directoryListedCount: 4,
+    directoryPendingCount: 5,
+    indexNowAcceptedTargets: ["github-pages"],
+    listedDirectories: [
+      { name: "TechTools Launchpad site listing", evidenceUrl: "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent" },
+      { name: "TechTools Launchpad upload-limit listing", evidenceUrl: "https://techtools.cz/launchpad-api/tools/162" },
+      { name: "NoLogin.tools", evidenceUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev" },
+      { name: "NoLogin.tools upload-limit listing", evidenceUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer" },
+    ],
+  };
+
+  function sponsorExternalDiscoveryProofLine() {
+    const listedCount = sponsorExternalDiscoveryProof.directoryListedCount || sponsorExternalDiscoveryProof.listedDirectories.length;
+    const pendingCount = sponsorExternalDiscoveryProof.directoryPendingCount || 0;
+    const acceptedTargets = sponsorExternalDiscoveryProof.indexNowAcceptedTargets || [];
+    return `External discovery proof: ${listedCount} public directory listing(s) are live; ${pendingCount} more listing(s) remain pending; IndexNow accepted ${acceptedTargets.length} target(s). These are discovery signals, not revenue.`;
+  }
+
+  function sponsorExternalDiscoveryProofHtml() {
+    const links = sponsorExternalDiscoveryProof.listedDirectories
+      .map((item) => `<a href="${escapeHtml(item.evidenceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(item.name)}</a>`)
+      .join(" ");
+    return `
+      <section class="shell section sponsor-proof">
+        <h2>Public discovery proof</h2>
+        <p>${escapeHtml(sponsorExternalDiscoveryProofLine())}</p>
+        <p class="help">Live evidence: ${links}. Directory listings, IndexNow submissions, clicks, and views are discovery signals only. Revenue is real only after a signed sponsor agreement or settled external payment.</p>
+      </section>`;
+  }
+
   const sponsorProspects = [
     {
       id: "pdfco-pdf-api",
@@ -7539,6 +7570,7 @@ ${paragraphs.join("\n")}
         </div>
         <p class="help">Aggregate usage signals are reviewed internally before any sponsor fit review. Search visibility and ad-network eligibility are still validation gates, so this is an early partner inquiry surface rather than a guaranteed media buy.</p>
       </section>
+      ${sponsorExternalDiscoveryProofHtml()}
       <section class="shell section">
         <h2>Early sponsor pilots</h2>
         <div class="grid-3">
@@ -7614,6 +7646,7 @@ ${paragraphs.join("\n")}
           <article class="panel"><h3>Revenue gate</h3><p>This requests manual review only. Revenue is real only after a signed sponsor agreement or settled external payment is verified.</p></article>
         </div>
       </section>
+      ${sponsorExternalDiscoveryProofHtml()}
       <section class="shell section">
         <h2>What the USD 49 review covers</h2>
         <div class="grid-2">
@@ -7669,6 +7702,7 @@ ${paragraphs.join("\n")}
           ${sponsorVerticals.map((vertical) => `<article class="panel"><h3>${escapeHtml(vertical.title)}</h3><p>${escapeHtml(vertical.sponsorFit)}</p><p><strong>${escapeHtml(vertical.priceHint)}</strong></p><p><a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor/${escapeHtml(vertical.slug)}/?utm_source=sponsor-deal-room&utm_medium=organic&utm_campaign=${escapeHtml(vertical.campaign)}&utm_content=vertical-card">Open vertical fit</a></p></article>`).join("")}
         </div>
       </section>
+      ${sponsorExternalDiscoveryProofHtml()}
       <section class="shell section">
         <h2>What happens before money counts</h2>
         <div class="grid-3">
@@ -7727,6 +7761,7 @@ ${paragraphs.join("\n")}
         </div>
         ${prospect.validationSignal ? `<div class="notice compact-notice"><strong>Current validation signal:</strong> ${escapeHtml(prospect.validationSignal)}</div>` : ""}
       </section>
+      ${sponsorExternalDiscoveryProofHtml()}
       <section class="shell section">
         <h2>Recommended pilot</h2>
         <div class="grid-3">
@@ -7777,6 +7812,7 @@ ${paragraphs.join("\n")}
           ${sponsorCallActions.map((item) => `<article class="panel"><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.audience)}</p><p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(item.url)}">Open tracked path</a></p><p class="help">${escapeHtml(item.signal)}</p></article>`).join("")}
         </div>
       </section>
+      ${sponsorExternalDiscoveryProofHtml()}
       <section class="shell section">
         <h2>Audience-specific sponsor pages</h2>
         <div class="grid-3">
@@ -7825,6 +7861,7 @@ ${paragraphs.join("\n")}
           ${sponsorVerticals.map((vertical) => `<article class="panel"><h3>${escapeHtml(vertical.title)}</h3><ul>${vertical.sponsorCategories.map((category) => `<li>${escapeHtml(category)}</li>`).join("")}</ul></article>`).join("")}
         </div>
       </section>
+      ${sponsorExternalDiscoveryProofHtml()}
       <section class="shell section">
         <h2>Placement options</h2>
         <div class="grid-3">
@@ -7862,6 +7899,7 @@ ${paragraphs.join("\n")}
           <article class="panel"><h3>Best sponsor fit</h3><p>${escapeHtml(vertical.sponsorFit)}</p></article>
         </div>
       </section>
+      ${sponsorExternalDiscoveryProofHtml()}
       <section class="shell section">
         <h2>Pilot offer</h2>
         <div class="grid-3">
@@ -8397,6 +8435,8 @@ ${paragraphs.join("\n")}
       "",
       prospect.validationSignal ? `Current validation signal: ${prospect.validationSignal}` : "",
       prospect.validationSignal ? "" : "",
+      sponsorExternalDiscoveryProofLine(),
+      "",
       `I am opening a small, clearly labeled sponsor pilot for this audience: ${absoluteDealUrl}`,
       "",
       `The best starting option is "${deal.title}" (${deal.price}): ${deal.deliverable}`,
@@ -8441,6 +8481,7 @@ ${paragraphs.join("\n")}
       `We are interested in the ${deal.title} (${deal.price}) for ${vertical.title}.`,
       `Company/prospect: ${prospect.name}`,
       `Pilot link: ${absoluteDealUrl}`,
+      sponsorExternalDiscoveryProofLine(),
       "",
       "Please review fit and send the external invoice/agreement if this sponsor placement is policy-safe.",
       "We will keep payment, tax, bank, phone, and private customer details outside the website form.",

@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
 const { strToU8, zipSync } = require("fflate");
-const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, SPONSOR_PLACEMENTS, SPONSOR_DEALS, SPONSOR_OUTREACH_TARGETS, SPONSOR_OUTREACH_TEMPLATES, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, SPONSOR_DISCOVERY_LINKS, sponsorMediaKitPayload, sponsorCallPayload, sponsorOpportunityPayload, sponsorDealRoomPayload } = require("./seo-content.cjs");
+const { routes, renderRoute, siteUrl, tools, guides, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, SPONSOR_PLACEMENTS, SPONSOR_DEALS, SPONSOR_OUTREACH_TARGETS, SPONSOR_OUTREACH_TEMPLATES, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, SPONSOR_DISCOVERY_LINKS, sponsorExternalDiscoveryProof, sponsorMediaKitPayload, sponsorCallPayload, sponsorOpportunityPayload, sponsorDealRoomPayload } = require("./seo-content.cjs");
 const { serviceDeliveryInputExample, zipServiceDelivery } = require("./service-delivery-kit.cjs");
 
 const root = path.resolve(__dirname, "..");
@@ -13,6 +13,7 @@ const lastmod = generatedAtIso.slice(0, 10);
 const campaignAssets = readCampaignAssets();
 const gistDiscovery = readGistDiscovery();
 const issueDiscovery = readIssueDiscovery();
+const externalDiscoveryProof = sponsorExternalDiscoveryProof();
 
 function pageHtml(route) {
   const rendered = renderRoute(route);
@@ -272,6 +273,7 @@ const shareKitJson = {
     mediaKit: fileUrl("sponsor-media-kit.json"),
     outreachPack: fileUrl("sponsor-outreach-pack.json"),
     links: SPONSOR_DISCOVERY_LINKS,
+    externalDiscoveryProof,
     successGate: "Commercial discovery is working only when a qualified sponsor lead, signed agreement, or settled external payment is verified. Clicks alone are not revenue.",
   },
   zeroDomainGameExperiment: ZERO_DOMAIN_GAME_EXPERIMENT,
@@ -333,6 +335,7 @@ const sponsorIntentFeedJson = {
   sponsorStarterReview: siteUrl("sponsor-starter-review"),
   invoiceReviewUrl: sponsorOpportunitiesJson.invoiceReviewUrl,
   mediaKit: fileUrl("sponsor-media-kit.json"),
+  externalDiscoveryProof,
   prospectPaths: sponsorOpportunitiesJson.prospectPaths,
   invoiceReadyDeals: SPONSOR_DEALS
     .filter((deal) => deal.commitment === "request-invoice")
@@ -370,6 +373,7 @@ const sponsorOutreachPackJson = {
     deals: SPONSOR_DEALS,
   },
   mediaKit: fileUrl("sponsor-media-kit.json"),
+  externalDiscoveryProof,
   placements: SPONSOR_PLACEMENTS,
   targets: SPONSOR_OUTREACH_TARGETS,
   sponsorCall: {

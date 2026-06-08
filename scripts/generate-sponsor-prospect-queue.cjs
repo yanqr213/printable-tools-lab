@@ -7,6 +7,8 @@ const root = path.resolve(__dirname, "..");
 const reportsDir = path.join(root, "reports");
 const generatedAt = new Date().toISOString();
 const validationReport = readJson(path.join(reportsDir, "validation-report.json"), null);
+const directoryReport = readJson(path.join(reportsDir, "directory-monitor.json"), null);
+const indexNowReport = readJson(path.join(reportsDir, "indexnow-report.json"), null);
 
 const prospects = [
   {
@@ -167,6 +169,7 @@ function prospectRow(prospect, verticals, index) {
   const suggestedDeal = SPONSOR_DEALS.find((deal) => deal.id === prospect.dealId) || SPONSOR_DEALS.find((deal) => deal.id === "guide-sponsor-pilot") || SPONSOR_DEALS[0];
   const commitment = sponsorDealCommitment(suggestedDeal);
   const validationSignal = sponsorValidationSignal(prospect, validationReport);
+  const externalDiscoveryProof = sponsorExternalDiscoveryProof(directoryReport, indexNowReport);
   const verticalTrackedUrl = `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}&utm_content=${encodeURIComponent(prospect.id)}`;
   const invoiceReviewUrl = `${siteUrl("sponsor-starter-review").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_starter_review&utm_content=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}&commitment=request-invoice#sponsor-inquiry`;
   const dealRoomUrl = `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}&commitment=${encodeURIComponent(commitment)}#sponsor-inquiry`;
@@ -184,6 +187,7 @@ function prospectRow(prospect, verticals, index) {
   const contactFormMessage = [
     `Hi ${prospect.name} team - I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, resume, classroom, and small-business document workflows.`,
     `Your product looks relevant to this audience. ${validationSignal}`,
+    externalDiscoveryProof,
     `Fast invoice review URL: ${invoiceReviewUrl}`,
     `Sponsor proposal: ${contactFormProposalUrl}`,
     `Public-safe reply form: ${publicReplyUrl}`,
@@ -197,6 +201,8 @@ function prospectRow(prospect, verticals, index) {
     `Your product looks relevant because ${prospect.fitReason}`,
     "",
     `Current validation signal: ${validationSignal}`,
+    "",
+    externalDiscoveryProof,
     "",
     `I opened a short partner-specific sponsor proposal for this audience: ${proposalUrl}`,
     "",
@@ -228,6 +234,7 @@ function prospectRow(prospect, verticals, index) {
     fitReason: prospect.fitReason,
     offer: prospect.offer,
     validationSignal,
+    externalDiscoveryProof,
     suggestedDealId: suggestedDeal.id,
     suggestedDealTitle: suggestedDeal.title,
     suggestedDealPrice: suggestedDeal.price,
@@ -262,6 +269,18 @@ function sponsorValidationSignal(prospect, report) {
   return `Current validation snapshot: sitewide sponsor intent is ${sponsorIntent}, sponsor leads/invoice requests are ${sponsorLeads}/${sponsorInvoices}, and any pilot is still early-stage.`;
 }
 
+function sponsorExternalDiscoveryProof(directoryReport, indexNowReport) {
+  const listed = (Array.isArray(directoryReport?.results) ? directoryReport.results : [])
+    .filter((item) => item && item.status === "listed" && item.name)
+    .map((item) => item.name);
+  const listedCount = Number(directoryReport?.listedCount || listed.length || 0);
+  const pendingCount = Number(directoryReport?.pendingCount || 0);
+  const acceptedTargets = Array.isArray(indexNowReport?.acceptedTargets) ? indexNowReport.acceptedTargets.length : 0;
+  if (!listedCount) return "External discovery proof is still pending; clicks, views, and submissions are not revenue.";
+  const names = listed.slice(0, 4).join(", ");
+  return `External discovery proof: ${listedCount} public directory listing(s) are live (${names}); ${pendingCount} more listing(s) remain pending; IndexNow accepted ${acceptedTargets} target(s). These are discovery signals, not revenue.`;
+}
+
 function readJson(file, fallback) {
   try {
     return JSON.parse(fs.readFileSync(file, "utf8"));
@@ -275,7 +294,7 @@ function sponsorDealCommitment(deal) {
 }
 
 function toCsv(rows) {
-  const headers = ["priority", "id", "name", "vertical", "category", "website", "contactUrl", "evidenceUrl", "offer", "validationSignal", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "requestedCommitment", "invoiceReviewUrl", "proposalUrl", "contactFormProposalUrl", "dealRoomUrl", "publicReplyUrl", "verticalTrackedUrl", "trackedUrl", "subject", "contactFormMessage", "status", "successSignal"];
+  const headers = ["priority", "id", "name", "vertical", "category", "website", "contactUrl", "evidenceUrl", "offer", "validationSignal", "externalDiscoveryProof", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "requestedCommitment", "invoiceReviewUrl", "proposalUrl", "contactFormProposalUrl", "dealRoomUrl", "publicReplyUrl", "verticalTrackedUrl", "trackedUrl", "subject", "contactFormMessage", "status", "successSignal"];
   return [
     headers,
     ...rows.map((row) => headers.map((header) => row[header] || "")),
@@ -297,6 +316,7 @@ function toMarkdown(rows) {
       `- Contact: ${row.contactUrl}`,
       `- Evidence: ${row.evidenceUrl}`,
       `- Validation signal: ${row.validationSignal}`,
+      `- External discovery: ${row.externalDiscoveryProof}`,
       `- Recommended deal: ${row.suggestedDealTitle} (${row.suggestedDealPrice})`,
       `- Fast invoice review URL: ${row.invoiceReviewUrl}`,
       `- Proposal URL: ${row.proposalUrl}`,

@@ -5195,9 +5195,58 @@ function sponsorProspectPathEntry(vertical, source = "sponsor-opportunities") {
   };
 }
 
+function sponsorExternalDiscoveryProof() {
+  const directoryReport = readPublicJsonReport("directory-monitor.json", {});
+  const indexNowReport = readPublicJsonReport("indexnow-report.json", {});
+  const listedDirectories = (Array.isArray(directoryReport.results) ? directoryReport.results : [])
+    .filter((item) => item && item.status === "listed")
+    .map((item) => ({
+      name: item.name || "",
+      evidenceUrl: item.evidenceUrl || item.url || "",
+      submittedAt: item.submittedAt || "",
+      reviewWindow: item.reviewWindow || "",
+    }))
+    .filter((item) => item.name && item.evidenceUrl);
+  const acceptedTargets = Array.isArray(indexNowReport.acceptedTargets) ? indexNowReport.acceptedTargets : [];
+  const indexNowSubmittedUrls = (Array.isArray(indexNowReport.results) ? indexNowReport.results : [])
+    .reduce((sum, item) => sum + Number(item.submittedUrls || 0), 0);
+  const listedCount = Number(directoryReport.listedCount || listedDirectories.length || 0);
+  const pendingCount = Number(directoryReport.pendingCount || 0);
+  const proofLine = listedCount
+    ? `External discovery proof: ${listedCount} public directory listing(s) are live; ${pendingCount} more listing(s) remain pending; IndexNow accepted ${acceptedTargets.length} target(s). These are discovery signals, not revenue.`
+    : "External discovery proof is still pending; clicks, views, and submissions are not revenue.";
+  return {
+    generatedAt: directoryReport.generatedAt || indexNowReport.generatedAt || "",
+    directoryListedCount: listedCount,
+    directoryPendingCount: pendingCount,
+    directoryErrorCount: Number(directoryReport.errorCount || 0),
+    listedDirectories,
+    indexNowAcceptedTargets: acceptedTargets,
+    indexNowSubmittedUrls,
+    publicProofLine: proofLine,
+    moneyBoundary: "Directory listings, IndexNow submissions, clicks, and views are discovery signals only. Revenue is real only after a signed sponsor agreement or settled external payment.",
+  };
+}
+
+function sponsorExternalDiscoveryProofHtml() {
+  const proof = sponsorExternalDiscoveryProof();
+  if (!proof.directoryListedCount) return "";
+  const names = proof.listedDirectories.slice(0, 4).map((item) => item.name).join(", ");
+  const links = proof.listedDirectories.slice(0, 4)
+    .map((item) => `<a href="${escapeHtml(item.evidenceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(item.name)}</a>`)
+    .join(" ");
+  return `
+      <section class="shell section sponsor-proof">
+        <h2>Public discovery proof</h2>
+        <p>${escapeHtml(proof.publicProofLine)}</p>
+        <p class="help">Live evidence: ${links || escapeHtml(names)}. ${escapeHtml(proof.moneyBoundary)}</p>
+      </section>`;
+}
+
 function sponsorOpportunityPayload(generatedAt = new Date().toISOString()) {
   const trackedInquiryUrl = `${siteUrl("sponsor").replace(/\/$/, "")}?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_opportunities&utm_content=board#sponsor-inquiry`;
   const starterReviewUrl = sponsorInvoiceReviewUrl({ source: "sponsor-opportunities", content: "board-hero" });
+  const externalDiscoveryProof = sponsorExternalDiscoveryProof();
   return {
     name: "PrintableTools Lab Sponsor Opportunities",
     generatedAt,
@@ -5211,6 +5260,7 @@ function sponsorOpportunityPayload(generatedAt = new Date().toISOString()) {
     invoiceReviewUrl: starterReviewUrl,
     recommendedNextStep: "Request the USD 49 starter invoice review before any visible sponsor placement is discussed.",
     publicReplyUrl: sponsorPublicReplyUrl({ proposalUrl: starterReviewUrl }),
+    externalDiscoveryProof,
     opportunities: SPONSOR_VERTICALS.map((vertical) => ({
       slug: vertical.slug,
       title: vertical.title,
@@ -5235,6 +5285,7 @@ function sponsorOpportunityPayload(generatedAt = new Date().toISOString()) {
 
 function sponsorDealRoomPayload(generatedAt = new Date().toISOString()) {
   const inquiryUrl = `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=direct#sponsor-inquiry`;
+  const externalDiscoveryProof = sponsorExternalDiscoveryProof();
   return {
     name: "PrintableTools Lab Sponsor Deal Room",
     generatedAt,
@@ -5242,6 +5293,7 @@ function sponsorDealRoomPayload(generatedAt = new Date().toISOString()) {
     inquiryUrl,
     starterReviewPage: siteUrl("sponsor-starter-review"),
     publicReplyUrl: sponsorPublicReplyUrl({ proposalUrl: inquiryUrl }),
+    externalDiscoveryProof,
     deals: SPONSOR_DEALS,
     verticals: SPONSOR_VERTICALS.map(sponsorVerticalEntry),
     requiredReview: [
@@ -5255,6 +5307,7 @@ function sponsorDealRoomPayload(generatedAt = new Date().toISOString()) {
 }
 
 function sponsorMediaKitPayload(generatedAt = new Date().toISOString()) {
+  const externalDiscoveryProof = sponsorExternalDiscoveryProof();
   return {
     name: "PrintableTools Lab Sponsor Media Kit",
     generatedAt,
@@ -5273,6 +5326,7 @@ function sponsorMediaKitPayload(generatedAt = new Date().toISOString()) {
       exports: "Free browser exports; no signup required for core tools.",
       ads: "Ads disabled during validation. Downloads must never be gated by sponsor or ad interaction.",
     },
+    externalDiscoveryProof,
     placements: SPONSOR_PLACEMENTS,
     dealRoomOffers: SPONSOR_DEALS,
     outreachTargets: SPONSOR_OUTREACH_TARGETS,
@@ -5290,6 +5344,7 @@ function sponsorMediaKitPayload(generatedAt = new Date().toISOString()) {
 }
 
 function sponsorCallPayload(generatedAt = new Date().toISOString()) {
+  const externalDiscoveryProof = sponsorExternalDiscoveryProof();
   return {
     name: "PrintableTools Lab Sponsor Call",
     generatedAt,
@@ -5303,12 +5358,14 @@ function sponsorCallPayload(generatedAt = new Date().toISOString()) {
     outreachPack: siteUrl("sponsor-outreach-pack.json").replace(/\/$/, ""),
     actions: SPONSOR_CALL_ACTIONS,
     discoveryLinks: SPONSOR_DISCOVERY_LINKS,
+    externalDiscoveryProof,
     verticalSponsorPages: SPONSOR_VERTICALS.map(sponsorVerticalEntry),
     publicFacts: {
       tools: tools.length,
       guides: guides.length,
       landingPages: landingPages.length,
       exports: "Free no-signup browser exports.",
+      externalDiscovery: externalDiscoveryProof.publicProofLine,
     },
     replyPath: "Use the sponsor inquiry form. Do not send payment, tax, phone, bank, private identity, passwords, or customer files.",
     successGate: "The call works only when a qualified sponsor inquiry, signed agreement, or settled external payment is verified.",
@@ -5501,7 +5558,7 @@ const pages = [
     title: "Sponsor Proposal",
     description: "Noindex sponsor proposal page for one policy-fit partner, with a recommended pilot deal and prefilled inquiry path.",
     index: false,
-    html: `<section class="shell section"><h1>Sponsor proposal</h1><p>This direct proposal page loads a partner-specific sponsor fit, recommended deal, and prefilled inquiry form after the app loads.</p><p><a class="button" data-sponsor-public-invoice-request href="${escapeHtml(sponsorPublicReplyUrl({ proposalUrl: siteUrl("sponsor-proposal"), dealTitle: "Starter fit review", dealPrice: "USD 49" }))}" target="_blank" rel="noreferrer">Open public invoice request</a></p><p class="help">Use only public company, website, audience-fit, and deal context in the issue. Payment, tax, bank, phone, identity, password, and customer-file details stay outside the public request.</p></section>`,
+    html: `<section class="shell section"><h1>Sponsor proposal</h1><p>This direct proposal page loads a partner-specific sponsor fit, recommended deal, and prefilled inquiry form after the app loads.</p><p><a class="button" data-sponsor-public-invoice-request href="${escapeHtml(sponsorPublicReplyUrl({ proposalUrl: siteUrl("sponsor-proposal"), dealTitle: "Starter fit review", dealPrice: "USD 49" }))}" target="_blank" rel="noreferrer">Open public invoice request</a></p><p class="help">Use only public company, website, audience-fit, and deal context in the issue. Payment, tax, bank, phone, identity, password, and customer-file details stay outside the public request.</p></section>${sponsorExternalDiscoveryProofHtml()}`,
   },
   {
     path: "sponsor-deal-room",
@@ -5918,6 +5975,15 @@ function readOpsValidationSnapshot() {
   }
 }
 
+function readPublicJsonReport(fileName, fallback) {
+  const reportPath = path.join(__dirname, "..", "reports", fileName);
+  try {
+    return JSON.parse(fs.readFileSync(reportPath, "utf8"));
+  } catch {
+    return fallback;
+  }
+}
+
 function opsMetricTile(value, label) {
   return `<div class="metric-tile"><strong>${escapeHtml(value)}</strong><span>${escapeHtml(label)}</span></div>`;
 }
@@ -6283,6 +6349,7 @@ ${sponsorLeadFormHtml()}
         </div>
         <p class="help">Aggregate usage signals are reviewed internally before any sponsor fit review. Search visibility and ad-network eligibility are still validation gates, so this is an early partner inquiry surface rather than a guaranteed media buy.</p>
       </section>
+${sponsorExternalDiscoveryProofHtml()}
       <section class="shell section">
         <h2>Early sponsor pilots</h2>
         <div class="grid-3">
@@ -6354,6 +6421,7 @@ ${sponsorLeadFormHtml()}
           <article class="panel"><h3>Revenue gate</h3><p>This requests manual review only. Revenue is real only after a signed sponsor agreement or settled external payment is verified.</p></article>
         </div>
       </section>
+${sponsorExternalDiscoveryProofHtml()}
       <section class="shell section">
         <h2>What the USD 49 review covers</h2>
         <div class="grid-2">
@@ -6417,6 +6485,7 @@ function sponsorDealRoomHtml() {
           ${SPONSOR_VERTICALS.map((vertical) => `<article class="panel"><h3>${escapeHtml(vertical.title)}</h3><p>${escapeHtml(vertical.sponsorFit)}</p><p><strong>${escapeHtml(vertical.priceHint)}</strong></p><p><a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="/sponsor/${escapeHtml(vertical.slug)}/?utm_source=sponsor-deal-room&utm_medium=organic&utm_campaign=${escapeHtml(vertical.campaign)}&utm_content=vertical-card">Open vertical fit</a></p></article>`).join("\n")}
         </div>
       </section>
+${sponsorExternalDiscoveryProofHtml()}
       <section class="shell section">
         <h2>What happens before money counts</h2>
         <div class="grid-3">
@@ -6463,6 +6532,7 @@ function sponsorCallHtml() {
           ${SPONSOR_CALL_ACTIONS.map((item) => `<article class="panel"><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.audience)}</p><p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(item.url)}">Open tracked path</a></p><p class="help">${escapeHtml(item.signal)}</p></article>`).join("\n")}
         </div>
       </section>
+${sponsorExternalDiscoveryProofHtml()}
       <section class="shell section">
         <h2>Audience-specific sponsor pages</h2>
         <div class="grid-3">
@@ -6517,6 +6587,7 @@ function sponsorOpportunitiesHtml() {
           ${board.opportunities.map((item) => `<article class="panel"><h3>${escapeHtml(item.title)}</h3><ul>${item.categories.map((category) => `<li>${escapeHtml(category)}</li>`).join("")}</ul></article>`).join("\n")}
         </div>
       </section>
+${sponsorExternalDiscoveryProofHtml()}
       <section class="shell section">
         <h2>Placement options</h2>
         <div class="grid-3">
@@ -6561,6 +6632,7 @@ function sponsorVerticalPageHtml(vertical) {
           <article class="panel"><h3>Best sponsor fit</h3><p>${escapeHtml(vertical.sponsorFit)}</p></article>
         </div>
       </section>
+${sponsorExternalDiscoveryProofHtml()}
       <section class="shell section">
         <h2>Pilot offer</h2>
         <div class="grid-3">
@@ -9014,4 +9086,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY, SPONSOR_PLACEMENTS, SPONSOR_DEALS, SPONSOR_OUTREACH_TARGETS, SPONSOR_OUTREACH_TEMPLATES, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, SPONSOR_DISCOVERY_LINKS, sponsorPublicReplyUrl, sponsorMediaKitPayload, sponsorCallPayload, sponsorOpportunityPayload, sponsorDealRoomPayload };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY, SPONSOR_PLACEMENTS, SPONSOR_DEALS, SPONSOR_OUTREACH_TARGETS, SPONSOR_OUTREACH_TEMPLATES, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, SPONSOR_DISCOVERY_LINKS, sponsorPublicReplyUrl, sponsorExternalDiscoveryProof, sponsorMediaKitPayload, sponsorCallPayload, sponsorOpportunityPayload, sponsorDealRoomPayload };
