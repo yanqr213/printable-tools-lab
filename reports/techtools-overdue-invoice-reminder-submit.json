@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-08T07:58:02.690Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Overdue Invoice Reminder Email by PrintableTools Lab",
+    "url": "https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email/?utm_source=techtools&utm_medium=directory&utm_campaign=overdue_invoice_2026_06&utm_content=overdue_invoice_reminder_email",
+    "tagline": "Free no-signup overdue invoice reminder email for freelancers and service businesses.",
+    "description": "Write a first overdue invoice reminder email in the browser without uploading private invoice numbers, client names, bank details, tax IDs, or customer data. The page leads with a free wording tool and offers an optional USD 19 Invoice Follow-up Copy Pack fit check for people who want a reminder sequence polished in their own tone. It is wording-only, not legal, tax, accounting, collections, or financial advice.",
+    "category": "business",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-08 overdue invoice reminder path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 171,
+      "name": "Overdue Invoice Reminder Email by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email/?utm_source=techtools&utm_medium=directory&utm_campaign=overdue_invoice_2026_06&utm_content=overdue_invoice_reminder_email",
+      "tagline": "Free no-signup overdue invoice reminder email for freelancers and service businesses.",
+      "description": "Write a first overdue invoice reminder email in the browser without uploading private invoice numbers, client names, bank details, tax IDs, or customer data. The page leads with a free wording tool and offers an optional USD 19 Invoice Follow-up Copy Pack fit check for people who want a reminder sequence polished in their own tone. It is wording-only, not legal, tax, accounting, collections, or financial advice.",
+      "category": "business",
+      "category_label": "Business & Finance",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-08 overdue invoice reminder path",
+      "launch_date": "2026-06-08",
+      "created_at": "2026-06-08T07:58:03Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=171"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=171"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=171",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/171"
+}

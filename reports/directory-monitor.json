@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-08T05:49:33.332Z",
+  "generatedAt": "2026-06-08T08:00:27.933Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 7,
+  "listedCount": 8,
   "pendingCount": 6,
   "errorCount": 1,
   "results": [
@@ -49,14 +49,14 @@
           "url": "https://listai.cc/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 318923,
+          "bytes": 318851,
           "matched": false
         },
         {
           "url": "https://listai.cc/",
           "ok": true,
           "status": 200,
-          "bytes": 318923,
+          "bytes": 318851,
           "matched": false
         }
       ]
@@ -78,7 +78,7 @@
           "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
           "ok": true,
           "status": 200,
-          "bytes": 88148,
+          "bytes": 88339,
           "matched": true
         }
       ]
@@ -167,6 +167,28 @@
           "ok": true,
           "status": 200,
           "bytes": 1230,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad overdue invoice reminder listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=171",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/171",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Overdue Invoice Reminder Email"
+      ],
+      "submittedAt": "2026-06-08",
+      "reviewWindow": "auto-approved API listing for the overdue invoice reminder service-lead path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/171",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/171",
+          "ok": true,
+          "status": 200,
+          "bytes": 1316,
           "matched": true
         }
       ]
@@ -365,24 +387,27 @@
       "checked": [
         {
           "url": "https://github.com/js-org/js.org/pull/11512",
-          "ok": true,
-          "status": 200,
-          "bytes": 299264,
-          "matched": true
+          "ok": false,
+          "status": 0,
+          "bytes": 0,
+          "matched": false,
+          "error": "fetch failed"
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/pulls/11512",
           "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "status": 0,
+          "bytes": 0,
+          "matched": false,
+          "error": "fetch failed"
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs",
           "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "status": 0,
+          "bytes": 0,
+          "matched": false,
+          "error": "fetch failed"
         }
       ]
     }

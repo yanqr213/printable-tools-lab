@@ -932,6 +932,7 @@ else {
   if (!html.includes("Free no-signup browser PDF, image, and QR tools")) failures.push("Directory submission pack missing tagline.");
   if (!html.includes("/assets/images/app-icon-512.png")) failures.push("Directory submission pack missing icon asset link.");
   if (!html.includes("/assets/images/free-pdf-tools-screenshot.png")) failures.push("Directory submission pack missing screenshot asset link.");
+  if (!html.includes("TechTools Overdue Invoice Reminder Email") || !html.includes("https://techtools.cz/tools/launchpad/?tool=171")) failures.push("Directory submission pack missing overdue invoice reminder live listing.");
   if (!html.includes(siteUrl("submit-directory"))) failures.push("Directory submission pack missing canonical.");
   if (!sitemap.includes(`<loc>${siteUrl("submit-directory")}</loc>`)) failures.push("Sitemap missing directory submission pack.");
 }
@@ -1338,6 +1339,7 @@ else {
   if (!distribution.includes("Sponsor and partner discovery")) failures.push("DISTRIBUTION.md missing sponsor discovery section.");
   if (!distribution.includes("sponsor-call")) failures.push("DISTRIBUTION.md missing sponsor call link.");
   if (!distribution.includes("utm_source=sponsor-outreach")) failures.push("DISTRIBUTION.md missing sponsor outreach tracking.");
+  if (!distribution.includes("TechTools Overdue Invoice Reminder listing") || !distribution.includes("overdue_invoice_2026_06")) failures.push("DISTRIBUTION.md missing overdue invoice reminder directory listing.");
   if (!distribution.includes("free_tool_depth")) failures.push("DISTRIBUTION.md missing free-tool depth tracking campaign.");
   if (distribution.includes("Paid service sales pack")) failures.push("DISTRIBUTION.md should not promote paid service sales pack in the main distribution pack.");
   if (distribution.includes("service_sales_pack")) failures.push("DISTRIBUTION.md should not promote service sales tracking campaign.");

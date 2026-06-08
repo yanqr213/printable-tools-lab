@@ -64,6 +64,14 @@ const directories = [
     reviewWindow: "auto-approved API listing for the invoice follow-up email generator path",
   },
   {
+    name: "TechTools Launchpad overdue invoice reminder listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=171",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/171",
+    expected: [siteHost, "Overdue Invoice Reminder Email"],
+    submittedAt: "2026-06-08",
+    reviewWindow: "auto-approved API listing for the overdue invoice reminder service-lead path",
+  },
+  {
     name: "NoSignupTools",
     url: "https://nosignuptools.com/",
     searchUrl: "https://nosignuptools.com/?q=PrintableTools+Lab",
