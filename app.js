@@ -5966,6 +5966,14 @@
       requestSummary,
       path: pathName,
     });
+    const invoiceRequestUrl = serviceInvoiceRequestUrl({
+      serviceType: "upload-limit-fix-plan",
+      businessName: "Compress image to KB workflow",
+      contact: "",
+      needBy: "",
+      requestSummary,
+      path: pathName,
+    });
     return `
           <div class="tool-upload-fix-panel" data-compress-pdf-upload-fix-panel>
             <p class="eyebrow">Optional paid help</p>
@@ -6054,7 +6062,8 @@
                 <span>I will not upload or paste the actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details.</span>
               </label>
               <div class="actions">
-                <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Send $9 image target request</button>
+                <button class="button" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $9 invoice link</button>
+                <button class="button secondary" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Send $9 image target request</button>
                 <a class="button ghost" data-service-lead-fallback-link data-compress-image-kb-tool-public-request data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
               </div>
               <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send only the public error text and target rule. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
@@ -15762,7 +15771,7 @@ ${paragraphs.join("\n")}
       status.dataset.status = kind;
     };
     const invoiceLinkRequest = Boolean(submitter?.matches?.("[data-service-invoice-submit]"));
-    const values = serviceLeadPayload(form, { invoiceLinkRequest });
+    const values = serviceLeadPayload(form, { invoiceLinkRequest: invoiceLinkRequest || form.dataset.uploadErrorInvoiceRequest === "true" });
     clearServiceLeadFallback(form);
     clearServiceLeadSuccess(form);
     updateServiceLeadFallbackLink(form);
@@ -16374,7 +16383,7 @@ ${paragraphs.join("\n")}
   }
 
   function initUploadErrorFixPlanRows(root = document) {
-    root.querySelectorAll("[data-upload-error-fix-plan]").forEach((link) => {
+    root.querySelectorAll("[data-upload-error-fix-plan], [data-upload-error-invoice-request]").forEach((link) => {
       if (link.dataset.uploadErrorFixPlanReady === "true") return;
       link.dataset.uploadErrorFixPlanReady = "true";
       link.addEventListener("click", (event) => {
@@ -16385,12 +16394,13 @@ ${paragraphs.join("\n")}
         if (!row || !form) return;
         event.preventDefault();
         event.stopPropagation();
-        track(link.dataset.trackEvent || "service_request_intent", { tool: link.dataset.trackTool || "upload-limit-fix-plan" });
+        const isInvoiceRequest = Boolean(link.matches("[data-upload-error-invoice-request]"));
+        track("service_request_intent", { tool: link.dataset.trackTool || "upload-limit-fix-plan" });
         if (quickPanel) {
           quickPanel.hidden = false;
           const copy = quickPanel.querySelector("[data-upload-error-quick-copy]");
           if (copy) {
-            copy.textContent = `Selected: ${row.dataset.uploadErrorText || "upload error"}. Enter a contact and get target settings, fallback steps, and a review checklist.`;
+            copy.textContent = `Selected: ${row.dataset.uploadErrorText || "upload error"}. Enter one reply contact to ${isInvoiceRequest ? "request the $9 invoice link" : "get target settings, fallback steps, and a review checklist"}.`;
           }
         }
         const summary = form.querySelector("[data-upload-fix-plan-summary]");
@@ -16402,6 +16412,7 @@ ${paragraphs.join("\n")}
             row.dataset.uploadErrorResponse || "",
           );
         }
+        form.dataset.uploadErrorInvoiceRequest = isInvoiceRequest ? "true" : "false";
         updateServiceLeadFallbackLink(form);
         const status = form.querySelector("[data-upload-fix-plan-prefill-status]");
         if (status) {

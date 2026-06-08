@@ -8835,11 +8835,6 @@ function uploadErrorCheatsheetHtml() {
     pathName: "/upload-error-cheatsheet/",
     requestSummary: rowFixPlanSummary(item),
   });
-  const rowInvoiceRequestHref = (item) => serviceInvoiceRequestUrl({
-    serviceType: "upload-limit-fix-plan",
-    pathName: "/upload-error-cheatsheet/",
-    requestSummary: rowFixPlanSummary(item),
-  });
   return `
       <section class="shell page-title section">
         <a href="/upload-limit-fixer/">Upload limit fixer</a>
@@ -8853,7 +8848,7 @@ function uploadErrorCheatsheetHtml() {
         <table class="event-table">
           <thead><tr><th>Error text</th><th>Use this link</th><th>Response</th><th>Optional plan</th></tr></thead>
           <tbody>
-            ${UPLOAD_ERROR_CHEATSHEET.map((item) => `<tr data-upload-error-row data-upload-error-text="${escapeHtml(item.errorText)}" data-upload-error-format="${escapeHtml(item.format)}" data-upload-error-target="${escapeHtml(item.target)}" data-upload-error-response="${escapeHtml(item.response)}"><td>${escapeHtml(item.errorText)}</td><td><a href="/${escapeHtml(item.landingPath)}/">${escapeHtml(item.format)} ${escapeHtml(item.target)}</a></td><td>${escapeHtml(item.response)}</td><td><a class="button secondary table-action" data-upload-error-invoice-request data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(rowInvoiceRequestHref(item))}" target="_blank" rel="noreferrer">Request $9 invoice link</a><br><a class="table-secondary-link" data-upload-error-fix-plan data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(rowFixPlanHref(item))}" target="_blank" rel="noreferrer">Open public-safe request</a></td></tr>`).join("\n")}
+            ${UPLOAD_ERROR_CHEATSHEET.map((item) => `<tr data-upload-error-row data-upload-error-text="${escapeHtml(item.errorText)}" data-upload-error-format="${escapeHtml(item.format)}" data-upload-error-target="${escapeHtml(item.target)}" data-upload-error-response="${escapeHtml(item.response)}"><td>${escapeHtml(item.errorText)}</td><td><a href="/${escapeHtml(item.landingPath)}/">${escapeHtml(item.format)} ${escapeHtml(item.target)}</a></td><td>${escapeHtml(item.response)}</td><td><a class="button secondary table-action" data-upload-error-invoice-request data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="#upload-error-quick-request">Request $9 invoice link</a><br><a class="table-secondary-link" data-upload-error-fix-plan data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(rowFixPlanHref(item))}" target="_blank" rel="noreferrer">Open public-safe request</a></td></tr>`).join("\n")}
           </tbody>
         </table>
       </section>
