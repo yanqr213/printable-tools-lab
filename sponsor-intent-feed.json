@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Sponsor Intent Feed",
-  "generatedAt": "2026-06-08T18:45:50.099Z",
+  "generatedAt": "2026-06-08T20:16:16.901Z",
   "canonical": "https://printable-tools-lab.pages.dev/sponsor-intent-feed.json",
   "purpose": "Public-safe sponsor discovery feed for directories, newsletters, resource pages, and partners. It lists sponsor-fit audiences and invoice-review paths without exposing operations pages, private leads, payment data, or contact details.",
   "sponsorOpportunities": "https://printable-tools-lab.pages.dev/sponsor-opportunities/",
@@ -9,7 +9,7 @@
   "invoiceReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=board-hero&commitment=request-invoice#sponsor-inquiry",
   "mediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
   "externalDiscoveryProof": {
-    "generatedAt": "2026-06-08T18:42:28.585Z",
+    "generatedAt": "2026-06-08T20:13:14.700Z",
     "directoryListedCount": 26,
     "directoryPendingCount": 11,
     "directoryErrorCount": 1,
@@ -174,8 +174,8 @@
     "indexNowAcceptedTargets": [
       "github-pages"
     ],
-    "indexNowSubmittedUrls": 263,
-    "publicProofLine": "External discovery proof: 26 public directory listing(s) are live; 11 more listing(s) remain pending; IndexNow accepted 1 target(s). These are discovery signals, not revenue.",
+    "indexNowSubmittedUrls": 273,
+    "publicProofLine": "External discovery proof: 26 public directory listing(s) are live; 11 more listing(s) remain pending; IndexNow accepted 273 URL(s) across 1 target(s). These are discovery signals, not revenue.",
     "moneyBoundary": "Directory listings, IndexNow submissions, clicks, and views are discovery signals only. Revenue is real only after a signed sponsor agreement or settled external payment."
   },
   "prospectPaths": [

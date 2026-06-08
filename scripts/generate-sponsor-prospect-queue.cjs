@@ -276,9 +276,12 @@ function sponsorExternalDiscoveryProof(directoryReport, indexNowReport) {
   const listedCount = Number(directoryReport?.listedCount || listed.length || 0);
   const pendingCount = Number(directoryReport?.pendingCount || 0);
   const acceptedTargets = Array.isArray(indexNowReport?.acceptedTargets) ? indexNowReport.acceptedTargets.length : 0;
+  const submittedUrls = Array.isArray(indexNowReport?.results)
+    ? indexNowReport.results.reduce((sum, result) => sum + (result?.accepted ? Number(result.submittedUrls || 0) : 0), 0)
+    : 0;
   if (!listedCount) return "External discovery proof is still pending; clicks, views, and submissions are not revenue.";
   const names = listed.slice(0, 4).join(", ");
-  return `External discovery proof: ${listedCount} public directory listing(s) are live (${names}); ${pendingCount} more listing(s) remain pending; IndexNow accepted ${acceptedTargets} target(s). These are discovery signals, not revenue.`;
+  return `External discovery proof: ${listedCount} public directory listing(s) are live (${names}); ${pendingCount} more listing(s) remain pending; IndexNow accepted ${submittedUrls} URL(s) across ${acceptedTargets} target(s). These are discovery signals, not revenue.`;
 }
 
 function readJson(file, fallback) {

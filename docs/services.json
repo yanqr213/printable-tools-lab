@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Paid Services Mirror",
-  "generatedAt": "2026-06-08T06:19:22.392Z",
+  "generatedAt": "2026-06-08T20:16:17.038Z",
   "directory": "https://yanqr213.github.io/printable-tools-lab/",
   "liveJson": "https://printable-tools-lab.pages.dev/services.json",
   "services": [
@@ -517,6 +517,206 @@
         "Work starts only after a real external checkout or invoice is paid and verified."
       ],
       "successGate": "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this invoice follow-up service."
+    },
+    {
+      "id": "upload-limit-fix-plan",
+      "name": "Upload Limit Fix Plan",
+      "description": "A $9 public-safe fix plan for one upload error: which free tool to use, target settings, fallback steps, and a review checklist.",
+      "url": "https://yanqr213.github.io/printable-tools-lab/upload-limit-fix-plan/",
+      "mainSiteFallbackUrl": "https://printable-tools-lab.pages.dev/upload-limit-fix-plan/",
+      "githubPagesServiceUrl": "https://yanqr213.github.io/printable-tools-lab/upload-limit-fix-plan/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/upload-limit-fix-plan/",
+      "priceUsd": 9,
+      "currency": "USD",
+      "requestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=upload-limit-fix-plan-service.yml&title=Service+request%3A+Upload+Limit+Fix+Plan&body=I+want+a+free+fit+check+for+the+Upload+Limit+Fix+Plan+%28%249+USD+only+if+it+fits%29.%0A%0APublic-safe+upload+error+text%3A%0AFile+type%3A+PDF+%2F+JPG+%2F+PNG+%2F+screenshot+%2F+resume+%2F+passport+photo+%2F+other%0ATarget+rule+from+the+portal%3A+file+size+%2F+dimensions+%2F+accepted+format+%2F+page+count%0AWhat+the+file+is+for%2C+in+broad+terms%3A%0AWhat+have+you+already+tried%3F%0ANeed-by+time+or+deadline%3A%0AIf+it+fits%2C+preferred+external+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+invoice+%2F+other%0ABest+contact+method%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+review+fit+first%3B+send+a+real+external+checkout+or+invoice+link+only+if+the+service+is+useful+and+available.%0ADo+not+include+or+attach+the+actual+file%2C+ID+photo%2C+resume%2C+private+form%2C+portal+login%2C+account+details%2C+tax+IDs%2C+bank+details%2C+card+data%2C+or+private+identity+details.&labels=service-request%2Cbusiness-review",
+      "issueFormUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=upload-limit-fix-plan-service.yml",
+      "requestEmailUrl": "",
+      "requestTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/upload-limit-fix-plan-request.txt",
+      "discoveryRequestTemplateUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/upload-limit-fix-plan-request.txt",
+      "paymentReplyTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/upload-limit-fix-plan-payment-reply.txt",
+      "discoveryPaymentReplyTemplateUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/upload-limit-fix-plan-payment-reply.txt",
+      "fulfillmentChecklistUrl": "https://printable-tools-lab.pages.dev/assets/services/upload-limit-fix-plan-fulfillment-checklist.txt",
+      "discoveryFulfillmentChecklistUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/upload-limit-fix-plan-fulfillment-checklist.txt",
+      "orderPipelineUrl": "https://printable-tools-lab.pages.dev/assets/services/upload-limit-fix-plan-order-pipeline.json",
+      "discoveryOrderPipelineUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/upload-limit-fix-plan-order-pipeline.json",
+      "orderPipeline": [
+        {
+          "id": "intent_received",
+          "ownerAction": "A buyer submits the structured issue form, prefilled issue, email, or brief text.",
+          "buyerAction": "Provide public-safe service details only.",
+          "moneyRule": "Not revenue."
+        },
+        {
+          "id": "fit_confirmed",
+          "ownerAction": "Confirm the request is within the simple upload-error fix-plan scope and details are public-safe.",
+          "buyerAction": "Confirm they want a troubleshooting plan only and will run the tools on their own file.",
+          "moneyRule": "Not revenue."
+        },
+        {
+          "id": "checkout_sent",
+          "ownerAction": "Send one real external Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link.",
+          "buyerAction": "Pay only through the external provider.",
+          "moneyRule": "Not revenue until the provider confirms payment."
+        },
+        {
+          "id": "paid_order_verified",
+          "ownerAction": "Verify paid order, payout balance, or settled payment in the provider dashboard.",
+          "buyerAction": "No extra sensitive data required.",
+          "moneyRule": "This is the first status that can count as revenue."
+        },
+        {
+          "id": "in_progress",
+          "ownerAction": "Prepare the recommended tool route, target settings, fallback steps, and review-before-upload checklist.",
+          "buyerAction": "Answer scope clarifications only if needed.",
+          "moneyRule": "Revenue already verified externally."
+        },
+        {
+          "id": "delivered",
+          "ownerAction": "Send the fix plan through the agreed channel with run-locally and review-before-upload reminders.",
+          "buyerAction": "Run the steps locally, keep the original file, and review the output before uploading.",
+          "moneyRule": "Revenue already verified externally."
+        },
+        {
+          "id": "revision_done",
+          "ownerAction": "Complete the included lightweight typo or fit revision if requested.",
+          "buyerAction": "Confirm the revision request is within scope.",
+          "moneyRule": "No extra revenue unless a separate new paid scope is created."
+        },
+        {
+          "id": "closed",
+          "ownerAction": "Log the non-sensitive outcome in OPERATIONS.md and leave private payment details in the provider only.",
+          "buyerAction": "Use the plan in their own local upload workflow.",
+          "moneyRule": "Final counted revenue must match the external provider record."
+        }
+      ],
+      "outreachQueueUrl": "https://printable-tools-lab.pages.dev/assets/services/upload-limit-fix-plan-outreach-queue.json",
+      "discoveryOutreachQueueUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/upload-limit-fix-plan-outreach-queue.json",
+      "outreachBatchUrl": "https://printable-tools-lab.pages.dev/assets/services/upload-limit-fix-plan-outreach-batch.txt",
+      "discoveryOutreachBatchUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/upload-limit-fix-plan-outreach-batch.txt",
+      "outreachQueue": [
+        {
+          "id": "upload-limit-inbound-lead-01",
+          "day": 1,
+          "channel": "inbound-service-lead",
+          "audience": "people who used upload-limit pages and submitted the $9 fix-plan request",
+          "findWhere": "Use only the operations lead monitor and public-safe service request issues. Do not identify anonymous visitors or ask for the blocked file.",
+          "qualification": "They explicitly asked for help choosing settings for one upload error and supplied only public-safe error text or target rules.",
+          "opener": "Thanks for the upload fix request. This fits a small $9 plan if you want the recommended free tool, target settings, fallback steps, and review checklist. No payment is collected on the site; I can confirm scope first, then send one external checkout or invoice link if useful.",
+          "cta": "Please confirm the file type, target rule, and that you will not send the actual file or portal login details.",
+          "trackedUrl": "https://yanqr213.github.io/printable-tools-lab/upload-limit-fix-plan/?utm_source=upload-limit-inbound&utm_medium=manual&utm_campaign=upload_limit_fix_plan",
+          "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/upload-limit-fix-plan-request.txt?utm_source=upload-limit-inbound&utm_medium=manual&utm_campaign=upload_limit_fix_plan",
+          "stopRule": "Use only after the person submits a request or replies. Never ask for the private file, ID photo, resume, portal login, or payment details.",
+          "status": "ready_manual_reply"
+        },
+        {
+          "id": "community-upload-error-reply-01",
+          "day": 1,
+          "channel": "helpful-community-reply",
+          "audience": "public posts where someone asks how to fix a PDF, image, resume, passport photo, or portal upload-size error",
+          "findWhere": "Public Q&A, freelancer, student, job-search, maker, and support communities that allow helpful resource replies.",
+          "qualification": "The person is actively blocked by file size, file format, or dimensions and is asking for steps, not official acceptance, legal, immigration, or employment advice.",
+          "opener": "For a file-size error, I would start from the exact message: PDF under 1MB goes to the PDF compressor target, image under 100KB goes to the image-to-KB tool, and dimension errors go to resize/crop first. I made a free upload-limit fixer for the common cases, plus a small $9 fix plan if someone wants settings and fallback steps written for their exact public-safe error.",
+          "cta": "Share the free upload-limit fixer first; mention the paid plan only when custom step-by-step settings are relevant or requested.",
+          "trackedUrl": "https://yanqr213.github.io/printable-tools-lab/upload-limit-fix-plan/?utm_source=community-reply&utm_medium=organic&utm_campaign=upload_limit_fix_plan",
+          "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/upload-limit-fixer/?utm_source=community-reply&utm_medium=organic&utm_campaign=upload_limit_fix_plan",
+          "stopRule": "Lead with free help. Do not request files, account details, ID photos, resumes, private forms, or official portal credentials.",
+          "status": "ready_manual_reply"
+        },
+        {
+          "id": "freelancer-admin-public-profile-01",
+          "day": 2,
+          "channel": "public-social-dm",
+          "audience": "virtual assistants, freelancer admins, career helpers, and document-prep creators with public business profiles",
+          "findWhere": "Public profiles where the person offers admin help, job-application support, resume help, document prep, or marketplace listing support and invites business messages.",
+          "qualification": "They may send clients to a no-upload fixer or request small troubleshooting plans without sharing client files.",
+          "opener": "Hi, I am testing a tiny $9 Upload Limit Fix Plan for people stuck on PDF/image upload errors. The buyer sends only public-safe error text and target rules; I send the recommended free tool, settings, fallback steps, and review checklist. No file upload or private portal details.",
+          "cta": "Would the free upload-limit fixer or the short request brief be useful for your clients?",
+          "trackedUrl": "https://yanqr213.github.io/printable-tools-lab/upload-limit-fix-plan/?utm_source=admin-profile-dm&utm_medium=manual&utm_campaign=upload_limit_fix_plan",
+          "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/upload-limit-fix-plan-request.txt?utm_source=admin-profile-dm&utm_medium=manual&utm_campaign=upload_limit_fix_plan",
+          "stopRule": "Use only public business profiles that invite messages. Send at most one initial message unless they reply.",
+          "status": "ready_manual_send"
+        },
+        {
+          "id": "resource-page-submit-01",
+          "day": 3,
+          "channel": "resource-page-contact",
+          "audience": "student, freelancer, job-search, marketplace-seller, and admin resource pages that accept useful free tool suggestions",
+          "findWhere": "Public contact or resource-submission pages that invite relevant tools.",
+          "qualification": "The page already lists file compression, document submission, resume, marketplace, or application resources.",
+          "opener": "Hi, I built a free Upload Limit Fixer that routes common PDF/image/file-size errors to no-signup browser tools. There is also an optional $9 troubleshooting plan for users who want public-safe settings and fallback steps without sharing the actual file.",
+          "cta": "Would this fit your resource page?",
+          "trackedUrl": "https://yanqr213.github.io/printable-tools-lab/upload-limit-fixer/?utm_source=resource-page&utm_medium=organic&utm_campaign=upload_limit_fix_plan",
+          "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/upload-limit-fix-plan/?utm_source=resource-page&utm_medium=organic&utm_campaign=upload_limit_fix_plan",
+          "stopRule": "Submit only where resource suggestions are welcome. Do not use fake reviews, paid placement disguised as free, or forms requiring private identity/payout data.",
+          "status": "ready_manual_submit"
+        },
+        {
+          "id": "warm-reply-followup-01",
+          "day": 4,
+          "channel": "reply-followup-only",
+          "audience": "people who replied positively or asked for price, scope, timeline, or next step",
+          "findWhere": "Only previous conversations where the recipient asked for the brief, price, delivery, or checkout.",
+          "qualification": "They asked a question, requested the brief, or confirmed the fix plan might help.",
+          "opener": "Subject: Upload Limit Fix Plan - fit confirmed, payment link before work starts\n\nThanks for sending the public-safe upload error details. This looks like it may fit the small fix-plan scope.\n\nScope after payment:\n- one best-fit free tool recommendation\n- target settings for size, format, dimensions, or page count\n- fallback path if the first pass still fails\n- review-before-upload checklist\n\nPrice: $9 USD\nTarget delivery is same business day after real payment and complete public-safe upload-error details.\n\nNext step:\n1. I will send one real external checkout or invoice link from Gumroad, Payhip, Ko-fi, Stripe, or an invoice provider.\n2. Please pay only through that external provider. Do not send or attach the actual file, card, bank, payout, tax, identity, portal login, resume, ID photo, or private form details in GitHub or email.\n3. After the provider shows the order as paid, I will mark the request as paid_order_verified and prepare the fix plan.\n\nBefore I send the checkout link, please confirm:\n- You need a troubleshooting plan only; you will run the free tools on your own device.\n- You will review the final file before uploading it to the destination website.\n- No private files, ID photos, resumes, portal credentials, tax IDs, bank details, or account details are included.\n\nRevenue is counted only after the external provider shows a paid order, payout balance, or settled payment.",
+          "cta": "Please confirm the scope bullets, then I can send the external checkout link.",
+          "trackedUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=upload-limit-fix-plan-service.yml",
+          "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/upload-limit-fix-plan-payment-reply.txt?utm_source=warm-followup&utm_medium=manual&utm_campaign=upload_limit_fix_plan",
+          "stopRule": "Use this only after a real reply. Do not send payment language to cold contacts.",
+          "status": "reply_only"
+        },
+        {
+          "id": "manual-log-closeout-01",
+          "day": 4,
+          "channel": "operations-log",
+          "audience": "internal tracking",
+          "findWhere": "OPERATIONS.md service-order log section.",
+          "qualification": "After each sent message, reply, request, checkout, paid order, delivery, or closeout.",
+          "opener": "Log date, channel, public-safe source, contact count, reply count, request URL, checkout state, paid amount, and next action. Do not log private buyer/file/payment details.",
+          "cta": "Update status: sent, replied, intent_received, fit_confirmed, checkout_sent, paid_order_verified, delivered, revision_done, or closed.",
+          "trackedUrl": "https://yanqr213.github.io/printable-tools-lab/services.json",
+          "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/services.json",
+          "stopRule": "Never store payout, card, tax, identity, portal credential, phone, private file, client, invoice number, or private address data in the repository.",
+          "status": "required_after_action"
+        }
+      ],
+      "sampleDeliveryUrl": "https://printable-tools-lab.pages.dev/assets/services/upload-limit-fix-plan-sample-delivery.zip",
+      "discoverySampleDeliveryUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/upload-limit-fix-plan-sample-delivery.zip",
+      "deliveryInputExampleUrl": "https://printable-tools-lab.pages.dev/assets/services/upload-limit-fix-plan-delivery-input.example.json",
+      "discoveryDeliveryInputExampleUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/upload-limit-fix-plan-delivery-input.example.json",
+      "deliveryReportUrl": "https://printable-tools-lab.pages.dev/assets/services/upload-limit-fix-plan-sample-delivery.json",
+      "discoveryDeliveryReportUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/upload-limit-fix-plan-sample-delivery.json/",
+      "privateDeliveryCommand": "npm.cmd run service:delivery -- --input path/to/paid-order.json",
+      "turnaround": "Target delivery is same business day after real payment and complete public-safe upload-error details.",
+      "deliverables": [
+        "one best-fit free tool recommendation",
+        "target settings for size, format, dimensions, or page count",
+        "fallback path if the first pass still fails",
+        "review-before-upload checklist"
+      ],
+      "buyerInputs": [
+        "public-safe upload error text",
+        "file type: PDF, JPG, PNG, screenshot, resume, passport-style photo, or other",
+        "target file size, dimensions, accepted format, or portal rule",
+        "what the file is for in broad terms, without private content",
+        "need-by time or submission deadline"
+      ],
+      "relatedTools": [
+        "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
+        "https://printable-tools-lab.pages.dev/tools/compress-pdf/",
+        "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/",
+        "https://printable-tools-lab.pages.dev/tools/resize-image/",
+        "https://printable-tools-lab.pages.dev/tools/convert-image/",
+        "https://printable-tools-lab.pages.dev/tools/pdf-to-images/",
+        "https://printable-tools-lab.pages.dev/tools/image-to-pdf/"
+      ],
+      "riskControls": [
+        "The service provides a public-safe troubleshooting plan only; the buyer runs the tools on their own device.",
+        "Do not upload, email, paste, or attach the actual blocked PDF, image, ID photo, resume, private form, or portal account details.",
+        "The buyer must review the final file before uploading it to the destination website.",
+        "The plan cannot guarantee that a third-party portal, school, employer, marketplace, email provider, or government website will accept the file.",
+        "No legal, immigration, employment, tax, accounting, medical, or official document acceptance advice is included."
+      ],
+      "successGate": "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this upload limit fix plan."
     }
   ],
   "leadMagnets": [

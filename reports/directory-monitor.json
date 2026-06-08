@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-08T18:42:28.585Z",
+  "generatedAt": "2026-06-08T20:13:14.700Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 26,
   "pendingCount": 11,
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 117848,
+          "bytes": 117945,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 117848,
+          "bytes": 117945,
           "matched": false
         }
       ]
@@ -49,14 +49,14 @@
           "url": "https://listai.cc/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 318805,
+          "bytes": 318931,
           "matched": false
         },
         {
           "url": "https://listai.cc/",
           "ok": true,
           "status": 200,
-          "bytes": 318805,
+          "bytes": 318931,
           "matched": false
         }
       ]
@@ -777,7 +777,7 @@
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev",
           "ok": true,
           "status": 200,
-          "bytes": 45055,
+          "bytes": 44824,
           "matched": true
         }
       ]
@@ -806,7 +806,7 @@
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer",
           "ok": true,
           "status": 200,
-          "bytes": 46133,
+          "bytes": 45902,
           "matched": true
         }
       ]
@@ -835,7 +835,7 @@
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet",
           "ok": true,
           "status": 200,
-          "bytes": 45243,
+          "bytes": 45012,
           "matched": true
         }
       ]
@@ -864,7 +864,7 @@
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-invoice-followup-email",
           "ok": true,
           "status": 200,
-          "bytes": 45323,
+          "bytes": 45093,
           "matched": true
         }
       ]
@@ -893,7 +893,7 @@
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-overdue-invoice-reminder-email",
           "ok": true,
           "status": 200,
-          "bytes": 45387,
+          "bytes": 45157,
           "matched": true
         }
       ]
@@ -939,34 +939,49 @@
       "reviewWindow": "maintainer review",
       "status": "error",
       "evidenceUrl": "https://github.com/js-org/js.org/pull/11512",
-      "apiAvailable": false,
-      "checksAvailable": false,
-      "templateOk": null,
-      "checksOk": null,
-      "checks": [],
-      "prState": "unknown",
-      "mergeable": null,
+      "apiAvailable": true,
+      "checksAvailable": true,
+      "templateOk": true,
+      "checksOk": true,
+      "checks": [
+        {
+          "name": "PR description",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:58Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353230"
+        },
+        {
+          "name": "cnames_active.js",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:57Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353223"
+        }
+      ],
+      "prState": "closed",
+      "mergeable": true,
       "checked": [
         {
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 299229,
+          "bytes": 298763,
           "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/pulls/11512",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 16307,
+          "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 18122,
+          "matched": true
         }
       ]
     }

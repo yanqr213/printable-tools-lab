@@ -5547,7 +5547,8 @@
     const listedCount = sponsorExternalDiscoveryProof.directoryListedCount || sponsorExternalDiscoveryProof.listedDirectories.length;
     const pendingCount = sponsorExternalDiscoveryProof.directoryPendingCount || 0;
     const acceptedTargets = sponsorExternalDiscoveryProof.indexNowAcceptedTargets || [];
-    return `External discovery proof: ${listedCount} public directory listing(s) are live; ${pendingCount} more listing(s) remain pending; IndexNow accepted ${acceptedTargets.length} target(s). These are discovery signals, not revenue.`;
+    const submittedUrls = Number(sponsorExternalDiscoveryProof.indexNowSubmittedUrls || 0);
+    return `External discovery proof: ${listedCount} public directory listing(s) are live; ${pendingCount} more listing(s) remain pending; IndexNow accepted ${submittedUrls} URL(s) across ${acceptedTargets.length} target(s). These are discovery signals, not revenue.`;
   }
 
   function sponsorExternalDiscoveryProofHtml() {

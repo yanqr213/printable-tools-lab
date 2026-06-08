@@ -6232,7 +6232,7 @@ function sponsorExternalDiscoveryProof() {
   const listedCount = Number(directoryReport.listedCount || listedDirectories.length || 0);
   const pendingCount = Number(directoryReport.pendingCount || 0);
   const proofLine = listedCount
-    ? `External discovery proof: ${listedCount} public directory listing(s) are live; ${pendingCount} more listing(s) remain pending; IndexNow accepted ${acceptedTargets.length} target(s). These are discovery signals, not revenue.`
+    ? `External discovery proof: ${listedCount} public directory listing(s) are live; ${pendingCount} more listing(s) remain pending; IndexNow accepted ${indexNowSubmittedUrls} URL(s) across ${acceptedTargets.length} target(s). These are discovery signals, not revenue.`
     : "External discovery proof is still pending; clicks, views, and submissions are not revenue.";
   return {
     generatedAt: directoryReport.generatedAt || indexNowReport.generatedAt || "",
