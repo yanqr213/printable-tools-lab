@@ -95,6 +95,11 @@ if (!fs.existsSync(homeFile)) failures.push("Missing homepage.");
 else {
   const html = fs.readFileSync(homeFile, "utf8");
   requireUploadLimitShortcuts(html, "Homepage");
+  if (!html.includes("Request $19 follow-up copy") || !html.includes("Made an invoice? Get the follow-up sequence written for $19.")) failures.push("Homepage missing above-fold invoice follow-up service offer.");
+  if (!html.includes('data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack"')) failures.push("Homepage invoice follow-up offer missing service intent tracking.");
+  if (!html.includes("/invoice-followup-copy-pack/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=hero#service-request")) failures.push("Homepage hero should route to invoice follow-up service fit check.");
+  if (!html.includes("/invoice-followup-copy-pack/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=close-band#service-request")) failures.push("Homepage close band should route to invoice follow-up service fit check.");
+  if (!html.includes("Payment happens only through a real external checkout or invoice after fit is confirmed.")) failures.push("Homepage paid service offer missing external-payment safety gate.");
 }
 
 const docsSellerIndexFile = path.join(root, "docs", "index.html");

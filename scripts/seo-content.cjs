@@ -5943,6 +5943,7 @@ const pages = [
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
+            <a class="button secondary" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="/invoice-followup-copy-pack/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=hero#service-request">Request $19 follow-up copy</a>
             <a class="button ghost" href="/upload-limit-fixer/">Fix upload limits</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
@@ -5958,6 +5959,7 @@ const pages = [
           </picture>
         </div>
       </section>
+      ${homeInvoiceFollowupCloseHtml()}
       <section class="shell section">
         <h2>Popular file and printable searches</h2>
         <div class="grid-2">
@@ -6272,6 +6274,21 @@ const pages = [
     html: `<article class="article-shell article"><h1>Launch Kit</h1><p>Use this page to coordinate the first distribution push. Share the homepage and tool links, then measure downloads and Search Console impressions.</p></article>`,
   },
 ];
+
+function homeInvoiceFollowupCloseHtml() {
+  return `<section class="shell section service-upgrade-cta" aria-label="Invoice follow-up copy service">
+        <div>
+          <p class="eyebrow">Quick paid help</p>
+          <h2>Made an invoice? Get the follow-up sequence written for $19.</h2>
+          <p>The free invoice generator stays free. If you want editable reminder, due-today, first-overdue, thank-you, and next-invoice wording for one workflow, send the 30-second fit check before any external checkout or invoice is sent.</p>
+        </div>
+        <div class="free-tool-depth-actions">
+          <a class="button" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="/invoice-followup-copy-pack/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=close-band#service-request">Send 30-second fit check</a>
+          <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="invoice-followup-email" href="/tools/invoice-followup-email/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_tool&utm_content=close-band">Write one free follow-up first</a>
+          <p class="help">Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
+        </div>
+      </section>`;
+}
 
 const GUIDE_HINTS_FOR_LINKS = {
   "invoice-generator": ["invoice"],
