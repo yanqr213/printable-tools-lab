@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-08T23:44:01.391Z",
+  "generatedAt": "2026-06-08T23:47:53.647Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 26,
-  "pendingCount": 18,
+  "pendingCount": 19,
   "errorCount": 1,
   "results": [
     {
@@ -1015,6 +1015,35 @@
       ]
     },
     {
+      "name": "NoLogin.tools compress image to KB listing",
+      "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-compress-image-to-kb",
+      "searchUrl": "https://nologin.tools/?q=Compress+Image+to+KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress Image to KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-tools-compress-image-to-kb",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nologin.tools/?q=Compress+Image+to+KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 188305,
+          "matched": false
+        },
+        {
+          "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-compress-image-to-kb",
+          "ok": false,
+          "status": 404,
+          "bytes": 10724,
+          "matched": false
+        }
+      ]
+    },
+    {
       "name": "NoLogin.tools image dimensions 600x600 upload fix listing",
       "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-image-dimensions-600x600",
       "searchUrl": "https://nologin.tools/?q=Image+Dimensions+600x600+Upload+Fix",
@@ -1118,14 +1147,14 @@
           "url": "https://nosubscription.org/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 135862,
+          "bytes": 142136,
           "matched": false
         },
         {
           "url": "https://nosubscription.org/",
           "ok": true,
           "status": 200,
-          "bytes": 135862,
+          "bytes": 142136,
           "matched": false
         }
       ]
@@ -1169,7 +1198,7 @@
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 298705,
+          "bytes": 298706,
           "matched": true
         },
         {

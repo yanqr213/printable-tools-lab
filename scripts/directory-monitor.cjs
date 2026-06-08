@@ -328,6 +328,14 @@ const directories = [
     reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev-overdue-invoice-reminder-email",
   },
   {
+    name: "NoLogin.tools compress image to KB listing",
+    url: "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-compress-image-to-kb",
+    searchUrl: "https://nologin.tools/?q=Compress+Image+to+KB",
+    expected: [siteHost, "Compress Image to KB"],
+    submittedAt: "2026-06-09",
+    reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev-tools-compress-image-to-kb",
+  },
+  {
     name: "NoLogin.tools image dimensions 600x600 upload fix listing",
     url: "https://nologin.tools/tool/printable-tools-lab-pages-dev-image-dimensions-600x600",
     searchUrl: "https://nologin.tools/?q=Image+Dimensions+600x600+Upload+Fix",

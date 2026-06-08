@@ -15,6 +15,23 @@ const tags = [
 
 const backlog = [
   {
+    report: "nologin-compress-image-to-kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-compress-image-to-kb",
+    payload: {
+      name: "Compress Image to KB",
+      url: "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?utm_source=nologin&utm_medium=directory&utm_campaign=compress_image_kb_invoice_first_2026_06&utm_content=compress_image_kb_tool",
+      description: "Free no-signup image-to-KB compressor for portals, profile photos, forms, and applications that reject photos over a target size. It runs in the browser without server upload and includes an optional USD 9 public-safe upload fix-plan invoice request for exact settings and fallback steps.",
+      pledge: true,
+      coreTask: "Compress an image or photo toward a target KB size without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
+  {
     report: "nologin-image-dimensions-600x600-submit.json",
     reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-image-dimensions-600x600",
     payload: {
