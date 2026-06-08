@@ -112,6 +112,22 @@ const directories = [
     reviewWindow: "auto-approved API listing for the tool-level photo 100KB upload fix path",
   },
   {
+    name: "TechTools Launchpad image under 2MB upload fix listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=177",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/177",
+    expected: [siteHost, "Image Under 2MB Upload Fix"],
+    submittedAt: "2026-06-09",
+    reviewWindow: "auto-approved API listing for the tool-level image 2MB upload fix path",
+  },
+  {
+    name: "TechTools Launchpad JPG under 200KB upload fix listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=178",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/178",
+    expected: [siteHost, "JPG Under 200KB Upload Fix"],
+    submittedAt: "2026-06-09",
+    reviewWindow: "auto-approved API listing for the tool-level JPG 200KB upload fix path",
+  },
+  {
     name: "NoSignupTools",
     url: "https://nosignuptools.com/",
     searchUrl: "https://nosignuptools.com/?q=PrintableTools+Lab",

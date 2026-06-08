@@ -1,0 +1,42 @@
+﻿{
+    "generatedAt":  "2026-06-08T16:43:06.6773925Z",
+    "endpoint":  "https://techtools.cz/launchpad-api/tools",
+    "status":  201,
+    "ok":  true,
+    "payload":  {
+                    "name":  "Image Under 2MB Upload Fix by PrintableTools Lab",
+                    "url":  "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=2048\u0026utm_source=techtools\u0026utm_medium=directory\u0026utm_campaign=image_2mb_tool_fix_2026_06\u0026utm_content=compress_image_kb_tool_target_2mb",
+                    "tagline":  "No-signup image-to-2MB compressor with a public-safe $9 upload fix request.",
+                    "description":  "PrintableTools Lab Image Under 2MB Upload Fix opens the browser image-to-KB compressor with a 2048KB target for image must be less than 2MB, portal image size limit, marketplace photo, application upload, and profile image rejection errors. Images stay in the browser for ordinary compression. Before download, visitors can send a public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist without uploading the private image.",
+                    "category":  "utilities",
+                    "maker_name":  "PrintableTools Lab",
+                    "maker_url":  "https://printable-tools-lab.pages.dev/",
+                    "logo_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                    "submitted_by":  "Codex traffic acquisition run 2026-06-09 image 2MB upload fix path"
+                },
+    "response":  {
+                     "success":  true,
+                     "message":  "Tool submitted successfully! It is now live.",
+                     "data":  {
+                                  "id":  177,
+                                  "name":  "Image Under 2MB Upload Fix by PrintableTools Lab",
+                                  "url":  "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetkb=2048\u0026utm_source=techtools\u0026utm_medium=directory\u0026utm_campaign=image_2mb_tool_fix_2026_06\u0026utm_content=compress_image_kb_tool_target_2mb",
+                                  "tagline":  "No-signup image-to-2MB compressor with a public-safe $9 upload fix request.",
+                                  "description":  "PrintableTools Lab Image Under 2MB Upload Fix opens the browser image-to-KB compressor with a 2048KB target for image must be less than 2MB, portal image size limit, marketplace photo, application upload, and profile image rejection errors. Images stay in the browser for ordinary compression. Before download, visitors can send a public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist without uploading the private image.",
+                                  "category":  "utilities",
+                                  "category_label":  "Utilities",
+                                  "maker_name":  "PrintableTools Lab",
+                                  "maker_url":  "https://printable-tools-lab.pages.dev/",
+                                  "logo_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                                  "upvotes":  0,
+                                  "featured":  false,
+                                  "submitted_by":  "Codex traffic acquisition run 2026-06-09 image 2MB upload fix path",
+                                  "launch_date":  "2026-06-08",
+                                  "created_at":  "2026-06-08T16:41:44Z",
+                                  "share_url":  "https://techtools.cz/tools/launchpad/?tool=177"
+                              },
+                     "share_url":  "https://techtools.cz/tools/launchpad/?tool=177"
+                 },
+    "shareUrl":  "https://techtools.cz/tools/launchpad/?tool=177",
+    "evidenceApiUrl":  "https://techtools.cz/launchpad-api/tools/177"
+}

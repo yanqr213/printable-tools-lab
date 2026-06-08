@@ -8667,6 +8667,8 @@ function directorySubmissionHtml() {
     ["TechTools Compress PDF to 1MB", "https://techtools.cz/tools/launchpad/?tool=174", "High-intent listing for the common PDF under 1MB upload-error path that leads to the download-time $9 upload fix request."],
     ["TechTools PDF Under 1MB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=175", "Tool-level 1MB PDF listing that opens the compressor with the pre-download $9 upload fix request ready."],
     ["TechTools Photo Under 100KB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=176", "Tool-level photo 100KB listing that opens the image compressor with the pre-download $9 upload fix request ready."],
+    ["TechTools Image Under 2MB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=177", "Tool-level image 2MB listing that opens the image compressor with the pre-download $9 upload fix request ready."],
+    ["TechTools JPG Under 200KB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=178", "Tool-level JPG 200KB listing that opens the image compressor with the pre-download $9 upload fix request ready."],
     ["NoSignupTools Upload Limit Fixer", "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab", "Pending public API submission for a no-signup upload error matcher."],
     ["NoSignupTools Upload Error Cheatsheet", "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab", "Pending public API submission for exact upload-error fix routing."],
     ["FreeNoSignup Upload Limit Fixer", "https://freenosignup.com/?s=Upload+Limit+Fixer", "Pending Google Form submission for the free upload error matcher."],

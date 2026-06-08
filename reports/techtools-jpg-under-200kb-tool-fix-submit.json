@@ -1,0 +1,42 @@
+﻿{
+    "generatedAt":  "2026-06-08T16:43:06.6804814Z",
+    "endpoint":  "https://techtools.cz/launchpad-api/tools",
+    "status":  201,
+    "ok":  true,
+    "payload":  {
+                    "name":  "JPG Under 200KB Upload Fix by PrintableTools Lab",
+                    "url":  "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=200\u0026utm_source=techtools\u0026utm_medium=directory\u0026utm_campaign=jpg_200kb_tool_fix_2026_06\u0026utm_content=compress_image_kb_tool_target_200kb",
+                    "tagline":  "No-signup JPG-to-200KB compressor with a public-safe $9 upload fix request.",
+                    "description":  "PrintableTools Lab JPG Under 200KB Upload Fix opens the browser image-to-KB compressor with the 200KB target selected for JPG must be under 200KB, job application photo, school form, marketplace listing, and portal upload rejection errors. Images stay in the browser for ordinary compression. Before download, visitors can send a public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist without uploading the private JPG.",
+                    "category":  "utilities",
+                    "maker_name":  "PrintableTools Lab",
+                    "maker_url":  "https://printable-tools-lab.pages.dev/",
+                    "logo_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                    "submitted_by":  "Codex traffic acquisition run 2026-06-09 JPG 200KB upload fix path"
+                },
+    "response":  {
+                     "success":  true,
+                     "message":  "Tool submitted successfully! It is now live.",
+                     "data":  {
+                                  "id":  178,
+                                  "name":  "JPG Under 200KB Upload Fix by PrintableTools Lab",
+                                  "url":  "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetkb=200\u0026utm_source=techtools\u0026utm_medium=directory\u0026utm_campaign=jpg_200kb_tool_fix_2026_06\u0026utm_content=compress_image_kb_tool_target_200kb",
+                                  "tagline":  "No-signup JPG-to-200KB compressor with a public-safe $9 upload fix request.",
+                                  "description":  "PrintableTools Lab JPG Under 200KB Upload Fix opens the browser image-to-KB compressor with the 200KB target selected for JPG must be under 200KB, job application photo, school form, marketplace listing, and portal upload rejection errors. Images stay in the browser for ordinary compression. Before download, visitors can send a public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist without uploading the private JPG.",
+                                  "category":  "utilities",
+                                  "category_label":  "Utilities",
+                                  "maker_name":  "PrintableTools Lab",
+                                  "maker_url":  "https://printable-tools-lab.pages.dev/",
+                                  "logo_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                                  "upvotes":  0,
+                                  "featured":  false,
+                                  "submitted_by":  "Codex traffic acquisition run 2026-06-09 JPG 200KB upload fix path",
+                                  "launch_date":  "2026-06-08",
+                                  "created_at":  "2026-06-08T16:41:45Z",
+                                  "share_url":  "https://techtools.cz/tools/launchpad/?tool=178"
+                              },
+                     "share_url":  "https://techtools.cz/tools/launchpad/?tool=178"
+                 },
+    "shareUrl":  "https://techtools.cz/tools/launchpad/?tool=178",
+    "evidenceApiUrl":  "https://techtools.cz/launchpad-api/tools/178"
+}
