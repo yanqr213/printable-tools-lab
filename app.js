@@ -6097,6 +6097,7 @@
     const className = options.className || "upload-limit-fix-plan-lead-form";
     const compact = Boolean(options.compact);
     const primaryInvoiceRequest = Boolean(options.primaryInvoiceRequest);
+    const oneFieldInvoiceRequest = Boolean(options.oneFieldInvoiceRequest || (compact && primaryInvoiceRequest));
     const requestSummary = options.requestSummary || uploadLimitFixPlanRequestSummary();
     const fallbackUrl = serviceLeadFallbackUrl({
       serviceType: "upload-limit-fix-plan",
@@ -6127,6 +6128,17 @@
             <input name="needBy" maxlength="80" placeholder="Today, tomorrow morning, or before the portal deadline">
           </label>`;
     const extraNote = options.extraNote ? `\n          <p class="notice compact-notice">${escapeHtml(options.extraNote)}</p>` : "";
+    const consentField = oneFieldInvoiceRequest
+      ? `<input type="hidden" name="consent" value="on">
+          <p class="help compact-consent-note">By sending, you confirm no actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details are included.</p>`
+      : `<label class="check-row">
+            <input name="consent" type="checkbox" checked required>
+            <span>I will not upload or paste the actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details.</span>
+          </label>`;
+    const primaryInvoiceButtons = [
+      `<button class="button" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">${escapeHtml(submitLabel)}</button>`,
+      oneFieldInvoiceRequest ? "" : `<button class="button secondary" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Send $9 fix-plan request</button>`,
+    ].filter(Boolean).join("\n            ");
     return `<form class="panel form-grid service-lead-form ${escapeHtml(className)}" data-service-lead-form data-upload-fix-plan-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
           <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
@@ -6141,14 +6153,10 @@
             <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
           </label>
           ${needByField}
-          <label class="check-row">
-            <input name="consent" type="checkbox" checked required>
-            <span>I will not upload or paste the actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details.</span>
-          </label>
+          ${consentField}
           <div class="actions">
             ${primaryInvoiceRequest
-              ? `<button class="button" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">${escapeHtml(submitLabel)}</button>
-            <button class="button secondary" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Send $9 fix-plan request</button>`
+              ? primaryInvoiceButtons
               : `<button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">${escapeHtml(submitLabel)}</button>
             <button class="button secondary" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $9 invoice link</button>`}
             <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
@@ -15827,7 +15835,7 @@ ${paragraphs.join("\n")}
     return {
       ...values,
       serviceType,
-      consent: Boolean(form.querySelector("input[name='consent']")?.checked),
+      consent: serviceLeadConsentAccepted(form, values),
       path: values.path || form.dataset.leadPath || getCurrentRoutePath(),
       source: getTrafficSource(),
       utmSource: fieldOrDataOrParam("utmSource", "utmSource", "utm_source"),
@@ -15837,6 +15845,12 @@ ${paragraphs.join("\n")}
       ...(requestedNextStep ? { requestedNextStep } : {}),
       ...(invoiceLinkRequest ? { invoiceLinkRequest: true } : {}),
     };
+  }
+
+  function serviceLeadConsentAccepted(form, values = {}) {
+    const consentInput = form.querySelector("input[name='consent']");
+    if (consentInput?.type === "checkbox") return Boolean(consentInput.checked);
+    return values.consent === true || values.consent === "true" || values.consent === "yes" || values.consent === "on";
   }
 
   function updateServiceLeadFallbackLink(form) {
