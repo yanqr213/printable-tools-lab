@@ -1,0 +1,21 @@
+{
+  "service": "Upload Limit Fix Plan",
+  "generatedAt": "2026-06-08T13:45:40.404Z",
+  "sampleOnly": true,
+  "sampleDelivery": {
+    "path": "assets/services/upload-limit-fix-plan-sample-delivery.zip",
+    "url": "https://printable-tools-lab.pages.dev/assets/services/upload-limit-fix-plan-sample-delivery.zip",
+    "sizeBytes": 2925,
+    "sha256": "97005ec3bb36cef24bd40175af1fbf7ece92f91245137de5fee81f6e7970c7d1"
+  },
+  "deliveryInputExample": {
+    "path": "assets/services/upload-limit-fix-plan-delivery-input.example.json",
+    "url": "https://printable-tools-lab.pages.dev/assets/services/upload-limit-fix-plan-delivery-input.example.json",
+    "sizeBytes": 660,
+    "sha256": "cd2a0a3d9e69d86a5a54326fca66dfd8e9feedcf41c009a6a2afc1f6765af5f7"
+  },
+  "privateDeliveryCommand": "npm.cmd run service:delivery -- --input path/to/paid-order.json",
+  "privateDeliveryOutput": "paid-deliverables/service-orders/<order-id>.zip",
+  "moneyGate": "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this upload limit fix plan.",
+  "buyerReviewRequired": true
+}

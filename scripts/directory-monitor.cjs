@@ -112,6 +112,14 @@ const directories = [
     reviewWindow: "24-48 hour manual review after public API success response",
   },
   {
+    name: "NoSignupTools upload error cheatsheet listing",
+    url: "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Upload+Error+Cheatsheet",
+    expected: [siteHost, "Upload Error Cheatsheet"],
+    submittedAt: "2026-06-08",
+    reviewWindow: "24-48 hour manual review after public API success response",
+  },
+  {
     name: "FreeNoSignup",
     url: "https://freenosignup.com/",
     searchUrl: "https://freenosignup.com/?s=PrintableTools+Lab",

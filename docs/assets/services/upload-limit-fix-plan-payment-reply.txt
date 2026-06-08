@@ -1,0 +1,24 @@
+Subject: Upload Limit Fix Plan - fit confirmed, payment link before work starts
+
+Thanks for sending the public-safe upload error details. This looks like it may fit the small fix-plan scope.
+
+Scope after payment:
+- one best-fit free tool recommendation
+- target settings for size, format, dimensions, or page count
+- fallback path if the first pass still fails
+- review-before-upload checklist
+
+Price: $9 USD
+Target delivery is same business day after real payment and complete public-safe upload-error details.
+
+Next step:
+1. I will send one real external checkout or invoice link from Gumroad, Payhip, Ko-fi, Stripe, or an invoice provider.
+2. Please pay only through that external provider. Do not send or attach the actual file, card, bank, payout, tax, identity, portal login, resume, ID photo, or private form details in GitHub or email.
+3. After the provider shows the order as paid, I will mark the request as paid_order_verified and prepare the fix plan.
+
+Before I send the checkout link, please confirm:
+- You need a troubleshooting plan only; you will run the free tools on your own device.
+- You will review the final file before uploading it to the destination website.
+- No private files, ID photos, resumes, portal credentials, tax IDs, bank details, or account details are included.
+
+Revenue is counted only after the external provider shows a paid order, payout balance, or settled payment.

@@ -1,0 +1,31 @@
+# Upload Limit Fix Plan Fulfillment Checklist
+
+Use this only after a real external payment provider shows a paid order. Do not start custom work from a request, page view, email, or brief download alone.
+
+## Intake
+
+- Confirm request source URL, date, and public-safe contact method.
+- Confirm buyer sent only upload error text, file type, target rule, broad use case, prior attempts, and deadline.
+- Confirm no actual file, ID photo, resume, private form, portal login, account credential, tax ID, bank detail, card data, or identity document was collected.
+- Confirm buyer understands the plan is troubleshooting guidance only and does not guarantee third-party portal acceptance.
+
+## Payment Gate
+
+- Send one real external checkout or invoice link only after fit is confirmed.
+- Wait until the provider shows paid_order_verified, paid order, payout balance, or settled payment.
+- Log the order source and provider status in OPERATIONS.md without exposing private buyer, file, portal, or payment details.
+
+## Build
+
+- Identify the best matching free tool and direct URL.
+- Write target settings for size, dimensions, file type, quality, or page count.
+- Add fallback steps if the first output still fails.
+- Add a review-before-upload checklist.
+- Keep the plan general enough to avoid private file inspection or official acceptance claims.
+
+## Delivery
+
+- Deliver the steps through the buyer's agreed channel.
+- Remind the buyer to run tools locally, keep the original file, and review the final output before uploading.
+- Offer one lightweight clarification if the same public-safe error still appears.
+- Mark the pipeline delivered, then revision_done or closed after the buyer response.

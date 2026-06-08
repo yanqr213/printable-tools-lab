@@ -1,0 +1,94 @@
+{
+  "id": "upload-limit-fix-plan-order-pipeline",
+  "serviceId": "upload-limit-fix-plan",
+  "serviceName": "Upload Limit Fix Plan",
+  "priceUsd": 9,
+  "currency": "USD",
+  "generatedFor": "Manual service requests that can become paid orders without collecting payment on the site.",
+  "issueFormUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=upload-limit-fix-plan-service.yml",
+  "requestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=upload-limit-fix-plan-service.yml&title=Service+request%3A+Upload+Limit+Fix+Plan&body=I+want+a+free+fit+check+for+the+Upload+Limit+Fix+Plan+%28%249+USD+only+if+it+fits%29.%0A%0APublic-safe+upload+error+text%3A%0AFile+type%3A+PDF+%2F+JPG+%2F+PNG+%2F+screenshot+%2F+resume+%2F+passport+photo+%2F+other%0ATarget+rule+from+the+portal%3A+file+size+%2F+dimensions+%2F+accepted+format+%2F+page+count%0AWhat+the+file+is+for%2C+in+broad+terms%3A%0AWhat+have+you+already+tried%3F%0ANeed-by+time+or+deadline%3A%0AIf+it+fits%2C+preferred+external+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+invoice+%2F+other%0ABest+contact+method%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+review+fit+first%3B+send+a+real+external+checkout+or+invoice+link+only+if+the+service+is+useful+and+available.%0ADo+not+include+or+attach+the+actual+file%2C+ID+photo%2C+resume%2C+private+form%2C+portal+login%2C+account+details%2C+tax+IDs%2C+bank+details%2C+card+data%2C+or+private+identity+details.&labels=service-request%2Cbusiness-review",
+  "requestTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/upload-limit-fix-plan-request.txt",
+  "paymentReplyTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/upload-limit-fix-plan-payment-reply.txt",
+  "fulfillmentChecklistUrl": "https://printable-tools-lab.pages.dev/assets/services/upload-limit-fix-plan-fulfillment-checklist.txt",
+  "publicSafeFields": [
+    "public-safe upload error text",
+    "file type without attaching the file",
+    "target size, dimensions, accepted format, or portal rule",
+    "what has already been tried",
+    "broad use case and public-safe reply preference",
+    "need-by date or timeline",
+    "preferred external checkout provider",
+    "notes that do not include private payment or identity data"
+  ],
+  "forbiddenFields": [
+    "card numbers",
+    "bank details",
+    "payout details",
+    "tax identifiers",
+    "identity documents",
+    "invoice numbers",
+    "client private data",
+    "actual uploaded files",
+    "portal login details",
+    "platform credentials",
+    "private account passwords"
+  ],
+  "statuses": [
+    {
+      "id": "intent_received",
+      "ownerAction": "A buyer submits the structured issue form, prefilled issue, email, or brief text.",
+      "buyerAction": "Provide public-safe service details only.",
+      "moneyRule": "Not revenue."
+    },
+    {
+      "id": "fit_confirmed",
+      "ownerAction": "Confirm the request is within the simple upload-error fix-plan scope and details are public-safe.",
+      "buyerAction": "Confirm they want a troubleshooting plan only and will run the tools on their own file.",
+      "moneyRule": "Not revenue."
+    },
+    {
+      "id": "checkout_sent",
+      "ownerAction": "Send one real external Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link.",
+      "buyerAction": "Pay only through the external provider.",
+      "moneyRule": "Not revenue until the provider confirms payment."
+    },
+    {
+      "id": "paid_order_verified",
+      "ownerAction": "Verify paid order, payout balance, or settled payment in the provider dashboard.",
+      "buyerAction": "No extra sensitive data required.",
+      "moneyRule": "This is the first status that can count as revenue."
+    },
+    {
+      "id": "in_progress",
+      "ownerAction": "Prepare the recommended tool route, target settings, fallback steps, and review-before-upload checklist.",
+      "buyerAction": "Answer scope clarifications only if needed.",
+      "moneyRule": "Revenue already verified externally."
+    },
+    {
+      "id": "delivered",
+      "ownerAction": "Send the fix plan through the agreed channel with run-locally and review-before-upload reminders.",
+      "buyerAction": "Run the steps locally, keep the original file, and review the output before uploading.",
+      "moneyRule": "Revenue already verified externally."
+    },
+    {
+      "id": "revision_done",
+      "ownerAction": "Complete the included lightweight typo or fit revision if requested.",
+      "buyerAction": "Confirm the revision request is within scope.",
+      "moneyRule": "No extra revenue unless a separate new paid scope is created."
+    },
+    {
+      "id": "closed",
+      "ownerAction": "Log the non-sensitive outcome in OPERATIONS.md and leave private payment details in the provider only.",
+      "buyerAction": "Use the plan in their own local upload workflow.",
+      "moneyRule": "Final counted revenue must match the external provider record."
+    }
+  ],
+  "moneyGate": "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this upload limit fix plan.",
+  "riskControls": [
+    "The service provides a public-safe troubleshooting plan only; the buyer runs the tools on their own device.",
+    "Do not upload, email, paste, or attach the actual blocked PDF, image, ID photo, resume, private form, or portal account details.",
+    "The buyer must review the final file before uploading it to the destination website.",
+    "The plan cannot guarantee that a third-party portal, school, employer, marketplace, email provider, or government website will accept the file.",
+    "No legal, immigration, employment, tax, accounting, medical, or official document acceptance advice is included."
+  ]
+}

@@ -6204,6 +6204,22 @@
       ["Tagline", "Free no-signup browser PDF, image, and QR tools"],
       ["Short description", "Create practical PDFs, image files, and static QR codes in the browser, including image compression, image resizing, image format conversion, QR codes, WiFi QR signs, contact QR codes, image-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, resumes, certificates, and printable tools."],
     ];
+    const liveDirectoryListings = [
+      ["TechTools Launchpad", "https://techtools.cz/tools/launchpad/?tool=161", "Homepage listing for the free no-signup tool collection."],
+      ["TechTools Upload Limit Fixer", "https://techtools.cz/tools/launchpad/?tool=162", "High-intent listing for file-size and format upload errors."],
+      ["TechTools Invoice Generator", "https://techtools.cz/tools/launchpad/?tool=168", "Service-lead path for small-seller invoice PDF visitors."],
+      ["TechTools Invoice Follow-up Copy Pack", "https://techtools.cz/tools/launchpad/?tool=169", "Direct discovery listing for the $19 invoice follow-up copy service."],
+      ["TechTools Invoice Follow-up Email Generator", "https://techtools.cz/tools/launchpad/?tool=170", "Free-tool discovery listing for invoice reminder visitors before the $19 service CTA."],
+      ["TechTools Overdue Invoice Reminder Email", "https://techtools.cz/tools/launchpad/?tool=171", "High-intent overdue invoice reminder listing that points to a service-lead landing page."],
+      ["TechTools Upload Limit Fix Plan", "https://techtools.cz/tools/launchpad/?tool=172", "Direct discovery listing for the $9 upload-limit troubleshooting service path."],
+      ["TechTools Upload Error Cheatsheet", "https://techtools.cz/tools/launchpad/?tool=173", "High-intent listing for exact PDF, image, resume, and portal upload errors."],
+      ["NoSignupTools Upload Limit Fixer", "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab", "Pending public API submission for a no-signup upload error matcher."],
+      ["NoSignupTools Upload Error Cheatsheet", "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab", "Pending public API submission for exact upload-error fix routing."],
+      ["FreeNoSignup Upload Limit Fixer", "https://freenosignup.com/?s=Upload+Limit+Fixer", "Pending Google Form submission for the free upload error matcher."],
+      ["NoLogin.tools", "https://nologin.tools/tool/printable-tools-lab-pages-dev", "Privacy-friendly no-login tool listing."],
+      ["NoLogin.tools Upload Limit Fixer", "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer", "No-login listing for upload-limit fixes."],
+      ["NoLogin.tools Upload Error Cheatsheet", "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet", "Pending no-login submission for exact upload-error fix routing."],
+    ];
     setMeta("PrintableTools Lab Directory Submission Pack", "Copy-ready directory submission details, screenshots, core links, and compliance notes for listing PrintableTools Lab as a free no-signup PDF, image, and QR tool site.");
     setJsonLd({
       "@context": "https://schema.org",
@@ -6236,6 +6252,13 @@
           <article class="panel"><h3>No signup</h3><p>Core file tools open directly in the browser and do not require an account before export.</p></article>
           <article class="panel"><h3>Free export</h3><p>The validation version keeps PDF, image, and QR downloads free and avoids surprise checkout screens.</p></article>
           <article class="panel"><h3>Ad-safe</h3><p>Ads are disabled during validation and downloads are not gated behind ad interactions or ad impressions.</p></article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>External listings and submissions</h2>
+        <p>These public directory entries and pending submissions are discovery signals, not revenue proof. They are listed here so reviewers can verify external visibility without accessing internal operations pages.</p>
+        <div class="grid-2">
+          ${liveDirectoryListings.map(([title, url, note]) => `<article class="panel"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(note)}</p><a class="button secondary" href="${escapeHtml(url)}" rel="nofollow">Open listing</a></article>`).join("")}
         </div>
       </section>
       <section class="shell section">

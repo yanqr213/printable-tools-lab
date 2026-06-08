@@ -1,0 +1,35 @@
+﻿{
+    "generatedAt":  "2026-06-08T13:34:06.6938758Z",
+    "directory":  "NoSignupTools",
+    "endpoint":  "https://nosignuptools.com/api/submit",
+    "status":  200,
+    "ok":  true,
+    "preSubmitEvidence":  {
+                              "expectedReviewUrlStatus":  404,
+                              "searchMatchedExistingListing":  false
+                          },
+    "payload":  {
+                    "name":  "Upload Error Cheatsheet by PrintableTools Lab",
+                    "slug":  "upload-error-cheatsheet-by-printabletools-lab",
+                    "url":  "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/?utm_source=nosignuptools\u0026utm_medium=directory\u0026utm_campaign=upload_error_cheatsheet_2026_06\u0026utm_content=upload_error_cheatsheet",
+                    "icon_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                    "category":  "productivity",
+                    "short_description":  "Free no-signup cheatsheet that maps exact PDF, image, resume, and portal upload errors to browser tools.",
+                    "long_description":  "A free browser-based upload error cheatsheet for people blocked by messages such as PDF must be under 1MB, image under 500KB, JPG under 200KB, PNG screenshot too large, invalid JPG or PNG file type, image dimensions must be 600 x 600 px, PDF not accepted JPG required, resume PDF too large, and email attachment too large. It routes each public-safe error text to the matching no-signup PDF or image tool and includes an optional USD 9 manual fix-plan request only after a public-safe fit check. It does not require an account, server file upload, private document, ID photo, resume, portal login, payment, tax, bank, or account details.",
+                    "screenshots":  [
+                                        "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+                                    ],
+                    "tag_ids":  [
+                                    3,
+                                    5
+                                ],
+                    "submitter_name":  "PrintableTools Lab",
+                    "submitter_email":  null
+                },
+    "response":  {
+                     "success":  true
+                 },
+    "reviewStatus":  "pending_manual_review",
+    "reviewWindow":  "24-48 hours",
+    "expectedReviewUrl":  "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab"
+}

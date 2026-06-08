@@ -1,0 +1,131 @@
+Upload Limit Fix Plan Manual Outreach Batch
+
+Use this batch only for relevant public-safe contacts. Do not scrape, spam, repeat-send, or collect payment/private identity details.
+
+Primary service page: https://yanqr213.github.io/printable-tools-lab/upload-limit-fix-plan/
+Request brief: https://yanqr213.github.io/printable-tools-lab/assets/services/upload-limit-fix-plan-request.txt
+Structured request form: https://github.com/yanqr213/printable-tools-lab/issues/new?template=upload-limit-fix-plan-service.yml
+Money gate: Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this upload limit fix plan.
+
+Daily cap: no more than 10 relevant cold contacts per day unless people are replying first.
+
+## 1. upload-limit-inbound-lead-01
+Day: 1
+Channel: inbound-service-lead
+Audience: people who used upload-limit pages and submitted the $9 fix-plan request
+Find where: Use only the operations lead monitor and public-safe service request issues. Do not identify anonymous visitors or ask for the blocked file.
+Qualification: They explicitly asked for help choosing settings for one upload error and supplied only public-safe error text or target rules.
+
+Message:
+Thanks for the upload fix request. This fits a small $9 plan if you want the recommended free tool, target settings, fallback steps, and review checklist. No payment is collected on the site; I can confirm scope first, then send one external checkout or invoice link if useful.
+
+CTA: Please confirm the file type, target rule, and that you will not send the actual file or portal login details.
+Tracked URL: https://yanqr213.github.io/printable-tools-lab/upload-limit-fix-plan/?utm_source=upload-limit-inbound&utm_medium=manual&utm_campaign=upload_limit_fix_plan
+Fallback URL: https://yanqr213.github.io/printable-tools-lab/assets/services/upload-limit-fix-plan-request.txt?utm_source=upload-limit-inbound&utm_medium=manual&utm_campaign=upload_limit_fix_plan
+Stop rule: Use only after the person submits a request or replies. Never ask for the private file, ID photo, resume, portal login, or payment details.
+Status: ready_manual_reply
+
+## 2. community-upload-error-reply-01
+Day: 1
+Channel: helpful-community-reply
+Audience: public posts where someone asks how to fix a PDF, image, resume, passport photo, or portal upload-size error
+Find where: Public Q&A, freelancer, student, job-search, maker, and support communities that allow helpful resource replies.
+Qualification: The person is actively blocked by file size, file format, or dimensions and is asking for steps, not official acceptance, legal, immigration, or employment advice.
+
+Message:
+For a file-size error, I would start from the exact message: PDF under 1MB goes to the PDF compressor target, image under 100KB goes to the image-to-KB tool, and dimension errors go to resize/crop first. I made a free upload-limit fixer for the common cases, plus a small $9 fix plan if someone wants settings and fallback steps written for their exact public-safe error.
+
+CTA: Share the free upload-limit fixer first; mention the paid plan only when custom step-by-step settings are relevant or requested.
+Tracked URL: https://yanqr213.github.io/printable-tools-lab/upload-limit-fix-plan/?utm_source=community-reply&utm_medium=organic&utm_campaign=upload_limit_fix_plan
+Fallback URL: https://yanqr213.github.io/printable-tools-lab/upload-limit-fixer/?utm_source=community-reply&utm_medium=organic&utm_campaign=upload_limit_fix_plan
+Stop rule: Lead with free help. Do not request files, account details, ID photos, resumes, private forms, or official portal credentials.
+Status: ready_manual_reply
+
+## 3. freelancer-admin-public-profile-01
+Day: 2
+Channel: public-social-dm
+Audience: virtual assistants, freelancer admins, career helpers, and document-prep creators with public business profiles
+Find where: Public profiles where the person offers admin help, job-application support, resume help, document prep, or marketplace listing support and invites business messages.
+Qualification: They may send clients to a no-upload fixer or request small troubleshooting plans without sharing client files.
+
+Message:
+Hi, I am testing a tiny $9 Upload Limit Fix Plan for people stuck on PDF/image upload errors. The buyer sends only public-safe error text and target rules; I send the recommended free tool, settings, fallback steps, and review checklist. No file upload or private portal details.
+
+CTA: Would the free upload-limit fixer or the short request brief be useful for your clients?
+Tracked URL: https://yanqr213.github.io/printable-tools-lab/upload-limit-fix-plan/?utm_source=admin-profile-dm&utm_medium=manual&utm_campaign=upload_limit_fix_plan
+Fallback URL: https://yanqr213.github.io/printable-tools-lab/assets/services/upload-limit-fix-plan-request.txt?utm_source=admin-profile-dm&utm_medium=manual&utm_campaign=upload_limit_fix_plan
+Stop rule: Use only public business profiles that invite messages. Send at most one initial message unless they reply.
+Status: ready_manual_send
+
+## 4. resource-page-submit-01
+Day: 3
+Channel: resource-page-contact
+Audience: student, freelancer, job-search, marketplace-seller, and admin resource pages that accept useful free tool suggestions
+Find where: Public contact or resource-submission pages that invite relevant tools.
+Qualification: The page already lists file compression, document submission, resume, marketplace, or application resources.
+
+Message:
+Hi, I built a free Upload Limit Fixer that routes common PDF/image/file-size errors to no-signup browser tools. There is also an optional $9 troubleshooting plan for users who want public-safe settings and fallback steps without sharing the actual file.
+
+CTA: Would this fit your resource page?
+Tracked URL: https://yanqr213.github.io/printable-tools-lab/upload-limit-fixer/?utm_source=resource-page&utm_medium=organic&utm_campaign=upload_limit_fix_plan
+Fallback URL: https://yanqr213.github.io/printable-tools-lab/upload-limit-fix-plan/?utm_source=resource-page&utm_medium=organic&utm_campaign=upload_limit_fix_plan
+Stop rule: Submit only where resource suggestions are welcome. Do not use fake reviews, paid placement disguised as free, or forms requiring private identity/payout data.
+Status: ready_manual_submit
+
+## 5. warm-reply-followup-01
+Day: 4
+Channel: reply-followup-only
+Audience: people who replied positively or asked for price, scope, timeline, or next step
+Find where: Only previous conversations where the recipient asked for the brief, price, delivery, or checkout.
+Qualification: They asked a question, requested the brief, or confirmed the fix plan might help.
+
+Message:
+Subject: Upload Limit Fix Plan - fit confirmed, payment link before work starts
+
+Thanks for sending the public-safe upload error details. This looks like it may fit the small fix-plan scope.
+
+Scope after payment:
+- one best-fit free tool recommendation
+- target settings for size, format, dimensions, or page count
+- fallback path if the first pass still fails
+- review-before-upload checklist
+
+Price: $9 USD
+Target delivery is same business day after real payment and complete public-safe upload-error details.
+
+Next step:
+1. I will send one real external checkout or invoice link from Gumroad, Payhip, Ko-fi, Stripe, or an invoice provider.
+2. Please pay only through that external provider. Do not send or attach the actual file, card, bank, payout, tax, identity, portal login, resume, ID photo, or private form details in GitHub or email.
+3. After the provider shows the order as paid, I will mark the request as paid_order_verified and prepare the fix plan.
+
+Before I send the checkout link, please confirm:
+- You need a troubleshooting plan only; you will run the free tools on your own device.
+- You will review the final file before uploading it to the destination website.
+- No private files, ID photos, resumes, portal credentials, tax IDs, bank details, or account details are included.
+
+Revenue is counted only after the external provider shows a paid order, payout balance, or settled payment.
+
+CTA: Please confirm the scope bullets, then I can send the external checkout link.
+Tracked URL: https://github.com/yanqr213/printable-tools-lab/issues/new?template=upload-limit-fix-plan-service.yml
+Fallback URL: https://yanqr213.github.io/printable-tools-lab/assets/services/upload-limit-fix-plan-payment-reply.txt?utm_source=warm-followup&utm_medium=manual&utm_campaign=upload_limit_fix_plan
+Stop rule: Use this only after a real reply. Do not send payment language to cold contacts.
+Status: reply_only
+
+## 6. manual-log-closeout-01
+Day: 4
+Channel: operations-log
+Audience: internal tracking
+Find where: OPERATIONS.md service-order log section.
+Qualification: After each sent message, reply, request, checkout, paid order, delivery, or closeout.
+
+Message:
+Log date, channel, public-safe source, contact count, reply count, request URL, checkout state, paid amount, and next action. Do not log private buyer/file/payment details.
+
+CTA: Update status: sent, replied, intent_received, fit_confirmed, checkout_sent, paid_order_verified, delivered, revision_done, or closed.
+Tracked URL: https://yanqr213.github.io/printable-tools-lab/services.json
+Fallback URL: https://yanqr213.github.io/printable-tools-lab/services.json
+Stop rule: Never store payout, card, tax, identity, portal credential, phone, private file, client, invoice number, or private address data in the repository.
+Status: required_after_action
+
+After every action, log only non-sensitive status in OPERATIONS.md. Revenue remains zero until an external provider proves a paid order.

@@ -1,0 +1,16 @@
+{
+  "serviceId": "upload-limit-fix-plan",
+  "orderId": "sample-upload-limit-fix-001",
+  "paymentStatus": "sample_only_not_revenue",
+  "paidOrderVerified": false,
+  "businessName": "Sample Upload Limit Case",
+  "uploadErrorText": "PDF must be less than 1 MB",
+  "fileType": "PDF resume",
+  "targetRule": "PDF under 1MB, PDF format required",
+  "priorAttempts": "Tried one lower quality export; still too large",
+  "broadUseCase": "job application portal",
+  "needByDate": "2026-06-10",
+  "publicContact": "hello@example.com",
+  "deliveryNotes": "Sample only. A real delivery should be generated only after paid_order_verified.",
+  "buyerReviewRequired": true
+}
