@@ -6674,7 +6674,7 @@ ${opsServicePublicRequestSnapshotHtml(servicePublicRequests)}
           </section>
           <section class="panel">
             <h2>Path breakdown</h2>
-            <p class="help">Path-level rows refresh from /api/ops-metrics in the live app. Monitored examples include /, /free-pdf-tools/, /sponsor/, /sponsor-call/, /tools/invoice-generator/, /play.html, /embed.html, and game pages.</p>
+            <p class="help">Path-level funnel rows refresh from /api/ops-metrics in the live app. Monitored buyer paths include /invoice-followup-copy-pack/, /polite-payment-reminder-email/, /freelance-invoice-follow-up-email/, /overdue-invoice-reminder-email/, /tools/invoice-followup-email/, and /tools/invoice-generator/.</p>
           </section>
           <section class="panel">
             <h2>Operating actions</h2>

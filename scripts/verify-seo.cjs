@@ -255,7 +255,7 @@ for (const routePath of ["dashboard", "ops"]) {
   if (!html.includes('content="noindex,follow"')) failures.push(`${routePath} should be noindex.`);
   if (sitemap.includes(`<loc>${siteUrl(routePath)}</loc>`)) failures.push(`Sitemap should not include noindex internal route: ${routePath}.`);
   if (routePath === "ops" && (!html.includes("/sponsor-starter-review/?utm_source=ops") || !html.includes("Open invoice review form"))) failures.push("Ops monitor should route sponsor close work to the invoice review form.");
-  if (routePath === "ops" && (!html.includes("/api/ops-metrics") || !html.includes("Project detail rows") || !html.includes("Source breakdown") || !html.includes("Tool and game signal snapshot") || !html.includes("Path breakdown"))) failures.push("Ops monitor should render detailed project traffic sections and live metrics access.");
+  if (routePath === "ops" && (!html.includes("/api/ops-metrics") || !html.includes("Project detail rows") || !html.includes("Source breakdown") || !html.includes("Tool and game signal snapshot") || !html.includes("Path breakdown") || !html.includes("/polite-payment-reminder-email/") || !html.includes("/freelance-invoice-follow-up-email/"))) failures.push("Ops monitor should render detailed project traffic sections and high-intent path funnel access.");
   if (routePath === "ops" && (!html.includes("Public-safe sponsor reply evidence") || !html.includes("public invoice issues"))) failures.push("Ops monitor should surface public-safe sponsor reply evidence.");
   if (routePath === "ops" && (!html.includes("Next sponsor submissions") || !html.includes("Open email draft") || !html.includes("Copy message"))) failures.push("Ops monitor should expose an internal next sponsor submission queue.");
   if (routePath === "ops" && (!html.includes("External payment link readiness") || !html.includes("Copy config command") || !html.includes("sellerKitCheckoutUrl") || !html.includes("serviceCheckoutUrl"))) failures.push("Ops monitor should expose internal checkout activation readiness.");
@@ -521,7 +521,7 @@ else {
   if (!script.includes("applySponsorProspectPrefill") || !script.includes("sponsorProspectQuickNotes") || !script.includes("sponsorProspectValidation")) failures.push("app.js sponsor proposal should prefill prospect-aware invoice review forms.");
   if (!script.includes("applySponsorPublicInvoiceLinks") || !script.includes("Fast invoice-review path") || !script.includes("Open public invoice issue")) failures.push("app.js sponsor proposal and ops cockpit should expose prospect-specific public invoice issue actions.");
   if (!script.includes('utmContent: clean(params.get("utm_content")) || clean(params.get("prospect"))')) failures.push("app.js sponsor attribution should keep proposal prospect IDs on quick invoice requests.");
-  if (!script.includes("todayToolScore") || !script.includes("Operating actions") || !script.includes("project.nextAction")) failures.push("app.js ops monitor should show detailed project traffic and next actions.");
+  if (!script.includes("todayToolScore") || !script.includes("pathIntentScore") || !script.includes("Operating actions") || !script.includes("project.nextAction")) failures.push("app.js ops monitor should show detailed project traffic, path intent, and next actions.");
   if (!script.includes("sponsorInvoiceRequestCopy(prospect, deal, vertical, proposalUrl)")) failures.push("app.js ops sponsor cards should copy a real invoice request.");
   if (!script.includes("renderLocalSellerStarterKit") || !script.includes("Request checkout link")) failures.push("app.js missing restored seller kit checkout-request path.");
   if (!script.includes("renderCustomLocalPrintPackService") || !script.includes("Request free fit check") || !script.includes("customLocalPrintPackRequestCopy")) failures.push("app.js missing restored custom print pack service request path.");
@@ -560,7 +560,7 @@ const opsMetricsFunctionFile = path.join(root, "functions", "api", "ops-metrics.
 if (!fs.existsSync(opsMetricsFunctionFile)) failures.push("Missing ops metrics API function.");
 else {
   const opsMetricsScript = fs.readFileSync(opsMetricsFunctionFile, "utf8");
-  if (!opsMetricsScript.includes("nextActions") || !opsMetricsScript.includes("row[`today_${event}`]") || !opsMetricsScript.includes("projectNextAction")) failures.push("Ops metrics API should expose project next actions and today source/tool fields.");
+  if (!opsMetricsScript.includes("nextActions") || !opsMetricsScript.includes("pathRows") || !opsMetricsScript.includes("countPathEvent") || !opsMetricsScript.includes("/polite-payment-reminder-email/") || !opsMetricsScript.includes("row[`today_${event}`]") || !opsMetricsScript.includes("projectNextAction")) failures.push("Ops metrics API should expose project next actions and today source/tool/path fields.");
 }
 const directoryMonitorFile = path.join(root, "scripts", "directory-monitor.cjs");
 if (!fs.existsSync(directoryMonitorFile)) failures.push("Missing directory monitor script.");

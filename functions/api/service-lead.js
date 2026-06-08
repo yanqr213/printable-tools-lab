@@ -271,10 +271,12 @@ async function appendMetricRollup(store, lead, day, event, tool) {
   addCount(projectTotal.events, event);
   addNestedCount(projectTotal.tools, tool, event);
   if (lead.source) addNestedCount(projectTotal.sources, lead.source, event);
+  if (lead.path) addPathEventCount(projectTotal.paths, lead.path, event);
   const projectToday = ensureNested(dayBucket.projects, "printable-tools-lab");
   addCount(projectToday.events, event);
   addNestedCount(projectToday.tools, tool, event);
   if (lead.source) addNestedCount(projectToday.sources, lead.source, event);
+  if (lead.path) addPathEventCount(projectToday.paths, lead.path, event);
   rollup.updatedAt = new Date().toISOString();
   await store.put(key, JSON.stringify(rollup));
 }
@@ -534,6 +536,15 @@ function addCount(container, key) {
 function addNestedCount(container, outerKey, innerKey) {
   if (!container[outerKey]) container[outerKey] = {};
   addCount(container[outerKey], innerKey);
+}
+
+function addPathEventCount(container, path, event) {
+  const current = container[path];
+  if (!current || typeof current !== "object" || Array.isArray(current)) {
+    container[path] = {};
+    if (Number(current)) container[path].page_view = Number(current);
+  }
+  addCount(container[path], event);
 }
 
 function json(payload, status = 200) {

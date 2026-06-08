@@ -9911,7 +9911,7 @@ ${paragraphs.join("\n")}
     const primarySignal = isGameProject ? (summary.gamePlayIntent || 0) : (summary.sponsorLeads || 0);
     const primaryLabel = isGameProject ? "play intent" : "sponsor leads";
     const sourceRows = activeRows(project.sources || [], sourceScore).slice(0, 10);
-    const pathRows = activeRows(project.paths || [], (row) => (row.page_view || 0) + (row.today_page_view || 0) * 2).slice(0, 10);
+    const pathRows = projectPathRows(project.paths || []).slice(0, 12);
     const toolRows = activeRows(project.tools || [], toolScore).slice(0, 12);
     return `
       <article class="panel ops-project">
@@ -9948,10 +9948,12 @@ ${paragraphs.join("\n")}
           </section>
           <section>
             <h3>Pages</h3>
-            ${opsTable(["Path", "Views", "Today"], pathRows.map((row) => [
+            ${opsTable(["Path", "Views", "Today", "Leads", "Intent"], pathRows.map((row) => [
               row.path,
               row.page_view || 0,
               row.today_page_view || 0,
+              (row.service_request_intent || 0) + (row.audit_request_intent || 0) + (row.sponsor_lead_submit || 0) + (row.sponsor_invoice_request || 0),
+              pathIntentScore(row),
             ]))}
           </section>
           <section>
@@ -9997,6 +9999,13 @@ ${paragraphs.join("\n")}
       .sort((a, b) => scoreFn(b) - scoreFn(a) || String(a.tool || a.source || a.path).localeCompare(String(b.tool || b.source || b.path)));
   }
 
+  function projectPathRows(rows) {
+    return rows
+      .slice()
+      .filter((row) => pathRowScore(row) > 0 || priorityPathRank(row.path) < 999)
+      .sort((a, b) => pathRowScore(b) - pathRowScore(a) || priorityPathRank(a.path) - priorityPathRank(b.path) || String(a.path).localeCompare(String(b.path)));
+  }
+
   function sourceScore(row) {
     return (row.page_view || 0)
       + ((row.download_pdf || 0) + (row.download_file || 0)) * 4
@@ -10015,6 +10024,43 @@ ${paragraphs.join("\n")}
       + (row.audit_request_intent || 0) * 4
       + (row.sponsor_request_intent || 0) * 5
       + ((row.game_play_intent || 0) + (row.game_fullscreen_open || 0) + (row.game_embed_open || 0)) * 4;
+  }
+
+  function pathIntentScore(row) {
+    return (row.seller_checkout_intent || 0)
+      + (row.seller_checkout_click || 0)
+      + (row.service_checkout_click || 0)
+      + (row.service_request_intent || 0)
+      + (row.audit_request_intent || 0)
+      + (row.sponsor_request_intent || 0)
+      + (row.sponsor_lead_submit || 0)
+      + (row.sponsor_invoice_request || 0)
+      + (row.game_play_intent || 0)
+      + (row.game_fullscreen_open || 0)
+      + (row.game_embed_open || 0);
+  }
+
+  function pathRowScore(row) {
+    return (row.page_view || 0)
+      + (row.today_page_view || 0) * 2
+      + ((row.download_pdf || 0) + (row.download_file || 0)) * 4
+      + ((row.today_download_pdf || 0) + (row.today_download_file || 0)) * 6
+      + pathIntentScore(row) * 5;
+  }
+
+  function priorityPathRank(path) {
+    const priorityPaths = [
+      "/invoice-followup-copy-pack/",
+      "/polite-payment-reminder-email/",
+      "/freelance-invoice-follow-up-email/",
+      "/overdue-invoice-reminder-email/",
+      "/tools/invoice-followup-email/",
+      "/tools/invoice-generator/",
+      "/sponsor-starter-review/",
+      "/sponsor/",
+    ];
+    const rank = priorityPaths.indexOf(String(path || ""));
+    return rank === -1 ? 999 : rank;
   }
 
   function todayToolScore(row) {

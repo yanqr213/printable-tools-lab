@@ -120,6 +120,7 @@ const ALLOWED_TOOLS = new Set([
   "habit-tracker",
   "local-seller-starter-kit",
   "custom-local-print-pack",
+  "invoice-followup-copy-pack",
   "market-table-print-audit",
   "sponsor",
   "pocket-arcade-shelf",
@@ -190,14 +191,12 @@ async function appendRollup(store, event) {
   addCount(projectTotal.events, event.name);
   addNestedCount(projectTotal.tools, event.tool, event.name);
   addNestedCount(projectTotal.sources, event.source, event.name);
+  addPathEventCount(projectTotal.paths, event.path, event.name);
   const projectToday = ensureNested(dayBucket.projects, event.project);
   addCount(projectToday.events, event.name);
   addNestedCount(projectToday.tools, event.tool, event.name);
   addNestedCount(projectToday.sources, event.source, event.name);
-  if (event.name === "page_view") {
-    addCount(projectTotal.paths, event.path);
-    addCount(projectToday.paths, event.path);
-  }
+  addPathEventCount(projectToday.paths, event.path, event.name);
   rollup.updatedAt = new Date().toISOString();
   await store.put(key, JSON.stringify(rollup));
 }
@@ -228,6 +227,15 @@ function addCount(container, key) {
 function addNestedCount(container, outerKey, innerKey) {
   if (!container[outerKey]) container[outerKey] = {};
   addCount(container[outerKey], innerKey);
+}
+
+function addPathEventCount(container, path, event) {
+  const current = container[path];
+  if (!current || typeof current !== "object" || Array.isArray(current)) {
+    container[path] = {};
+    if (Number(current)) container[path].page_view = Number(current);
+  }
+  addCount(container[path], event);
 }
 
 function safeJson(text, fallback) {

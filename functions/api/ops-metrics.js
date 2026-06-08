@@ -5,6 +5,7 @@ const GAME_EVENTS = ["page_view", "game_play_intent", "game_fullscreen_open", "g
 const SOURCES = ["direct", "google", "bing", "github", "github-pages", "github-issue", "gist", "zearches", "listai", "techtools", "nosignuptools", "freenosignup", "nologin", "nosubscription", "share-kit", "download_success", "short-video", "game-platform", "sponsor-outreach", "directory", "community", "referral", "embed", "publisher", "platform-review"];
 const PRINTABLE_TOOLS = ["site", "sponsor", "compress-pdf", "compress-image", "compress-image-to-kb", "invoice-generator", "receipt-generator", "qr-code", "wifi-qr-code", "ats-resume-checker", "resume-builder", "pdf-to-word", "local-seller-starter-kit", "custom-local-print-pack", "invoice-followup-copy-pack", "market-table-print-audit"];
 const GAME_TOOLS = ["pocket-arcade-shelf", "game-portal", "spell-sigil-duel", "ember-crypt-rogue", "turbo-diner-shift", "cascade-mini-golf", "prism-pinball-heist", "penalty-fever-arena", "pixel-potion-clicker", "skyhook-obby-rush", "orbital-bubble-forge", "crystal-current-match", "signal-rail-sprint", "starfall-salvage", "lumen-grove-keeper", "echo-archive-mystery", "neon-drift-outlaw", "verdant-gridworks", "void-glyph-cards", "shadow-vault-tactics", "rune-forge-atelier"];
+const PATH_EVENTS = ["page_view", "download_pdf", "download_file", "generate_pdf", "generate_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "seller_checkout_click", "service_checkout_click", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request", "game_play_intent", "game_fullscreen_open", "game_embed_open"];
 
 const PROJECTS = [
   {
@@ -16,7 +17,7 @@ const PROJECTS = [
     events: PRINTABLE_EVENTS,
     sourceEvents: PRINTABLE_SOURCE_EVENTS,
     tools: PRINTABLE_TOOLS,
-    paths: ["/", "/free-pdf-tools/", "/pdf-tool-finder/", "/sponsor/", "/sponsor-call/", "/sponsor-opportunities/", "/tools/compress-pdf/", "/tools/invoice-generator/", "/tools/qr-code/", "/upload-limit-fixer/"],
+    paths: ["/", "/invoice-followup-copy-pack/", "/polite-payment-reminder-email/", "/freelance-invoice-follow-up-email/", "/overdue-invoice-reminder-email/", "/tools/invoice-followup-email/", "/tools/invoice-generator/", "/free-pdf-tools/", "/pdf-tool-finder/", "/sponsor/", "/sponsor-call/", "/sponsor-opportunities/", "/tools/compress-pdf/", "/tools/qr-code/", "/upload-limit-fixer/", "/custom-local-print-pack/", "/market-table-print-audit/", "/local-seller-starter-kit/"],
   },
   {
     id: "pocket-arcade-shelf",
@@ -63,7 +64,9 @@ const LEGACY_BASELINE = {
           "sponsor-outreach": { sponsor_request_intent: 2 },
         },
         paths: {
-          "/": 494,
+          "/": {
+            page_view: 494,
+          },
         },
       },
     },
@@ -95,7 +98,9 @@ const LEGACY_BASELINE = {
             "sponsor-outreach": { sponsor_request_intent: 2 },
           },
           paths: {
-            "/": 92,
+            "/": {
+              page_view: 92,
+            },
           },
         },
       },
@@ -173,11 +178,7 @@ function projectMetrics(project, today, combined) {
     summary,
     nextAction: projectNextAction(project, summary),
     sources: sourceRows(SOURCES, project.sourceEvents, sourcesBucket, todaySourcesBucket),
-    paths: project.paths.map((path) => ({
-      path,
-      page_view: countFrom(pathsBucket, path),
-      today_page_view: countFrom(todayPathsBucket, path),
-    })),
+    paths: pathRows(project.paths, PATH_EVENTS, pathsBucket, todayPathsBucket),
     tools: project.tools.map((tool) => {
       const row = { tool };
       for (const event of project.events) {
@@ -195,6 +196,20 @@ function sourceRows(sources, events, totalsBucket, todayBucket) {
     for (const event of events) {
       row[event] = countNested(totalsBucket, source, event);
       row[`today_${event}`] = countNested(todayBucket, source, event);
+    }
+    return row;
+  });
+}
+
+function pathRows(seedPaths, events, totalsBucket, todayBucket) {
+  const keys = new Set(seedPaths);
+  for (const path of Object.keys(totalsBucket || {})) keys.add(path);
+  for (const path of Object.keys(todayBucket || {})) keys.add(path);
+  return Array.from(keys).map((path) => {
+    const row = { path };
+    for (const event of events) {
+      row[event] = countPathEvent(totalsBucket, path, event);
+      row[`today_${event}`] = countPathEvent(todayBucket, path, event);
     }
     return row;
   });
@@ -256,7 +271,7 @@ function mergeBucket(target, source) {
   mergeNestedCounts(target.tools, source.tools);
   mergeNestedCounts(target.sources, source.sources);
   mergeProjectBuckets(target.projects, source.projects);
-  mergeCounts(target.paths, source.paths);
+  mergePathCounts(target.paths, source.paths);
 }
 
 function mergeProjectBuckets(target, source) {
@@ -279,6 +294,18 @@ function mergeNestedCounts(target, source) {
   }
 }
 
+function mergePathCounts(target, source) {
+  for (const [path, value] of Object.entries(source || {})) {
+    if (isObject(value)) {
+      if (!isObject(target[path])) target[path] = {};
+      mergeCounts(target[path], value);
+    } else {
+      if (!isObject(target[path])) target[path] = {};
+      target[path].page_view = (Number(target[path].page_view) || 0) + (Number(value) || 0);
+    }
+  }
+}
+
 function entriesFromEvents(events, source) {
   return Object.fromEntries(events.map((event) => [event, countFrom(source, event)]));
 }
@@ -289,6 +316,12 @@ function countFrom(container, key) {
 
 function countNested(container, outerKey, innerKey) {
   return Number(container?.[outerKey]?.[innerKey]) || 0;
+}
+
+function countPathEvent(container, path, event) {
+  const value = container?.[path];
+  if (isObject(value)) return Number(value[event]) || 0;
+  return event === "page_view" ? Number(value) || 0 : 0;
 }
 
 function safeJson(text, fallback) {

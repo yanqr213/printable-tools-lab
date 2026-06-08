@@ -30,6 +30,7 @@ async function main() {
   assert(initialRollup.totals.events.download_pdf === 1, "Event rollup should count total events");
   assert(initialRollup.totals.tools["invoice-generator"].download_pdf === 1, "Event rollup should count per-tool events");
   assert(initialRollup.totals.sources.nosignuptools.download_pdf === 1, "Event rollup should count per-source events");
+  assert(initialRollup.totals.projects["printable-tools-lab"].paths["/tools/invoice-generator/"].download_pdf === 1, "Event rollup should count per-path download events for ops funnels");
   assert(store.putCount === 1, "Event collector should use one KV write per regular event");
   const limitedStore = new MemoryStore({ failWritesWith: "KV put() limit exceeded for the day." });
   const limitedEventResponse = await eventSource.onRequestPost({
@@ -82,6 +83,10 @@ async function main() {
   assert(printableProject.summary.downloads === 1, "PrintableTools Lab project should count project downloads");
   assert(printableProject.summary.todayDownloads === 1, "PrintableTools Lab project should expose today's downloads");
   assert(printableProject.nextAction && printableProject.nextAction.includes("Downloads"), "PrintableTools Lab project should expose an ops next action");
+  const opsInvoicePath = printableProject.paths.find((row) => row.path === "/tools/invoice-generator/");
+  assert(opsInvoicePath.download_pdf === 1 && opsInvoicePath.today_download_pdf === 1, "Project ops metrics should expose path-level download funnels");
+  const opsPolitePath = printableProject.paths.find((row) => row.path === "/polite-payment-reminder-email/");
+  assert(opsPolitePath && opsPolitePath.service_request_intent === 0, "Project ops metrics should include high-intent invoice reminder paths before first signal");
   const opsNoSignupSource = opsMetricsPayload.sources.find((row) => row.source === "nosignuptools");
   assert(opsNoSignupSource.download_pdf === 1, "Ops metrics should expose global source totals");
   assert(opsNoSignupSource.today_download_pdf === 1, "Ops metrics should expose global source today totals");
@@ -318,6 +323,15 @@ async function main() {
     env,
   });
   assert(serviceCopyIntentResponse.status === 200, "Event collector should accept copied service request intent events");
+  const invoiceFollowupIntentResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "service_request_intent", tool: "invoice-followup-copy-pack", path: "/polite-payment-reminder-email/", source: "google" }),
+    }),
+    env,
+  });
+  assert(invoiceFollowupIntentResponse.status === 200, "Event collector should accept invoice follow-up service intent events");
   const auditIntentResponse = await eventSource.onRequestPost({
     request: new Request("https://example.test/api/event", {
       method: "POST",
@@ -518,13 +532,15 @@ async function main() {
   assert(sellerKit.seller_sample_download === 1, "Metrics should count seller sample downloads");
   const service = sellerMetrics.tools.find((row) => row.tool === "custom-local-print-pack");
   const audit = sellerMetrics.tools.find((row) => row.tool === "market-table-print-audit");
+  const invoiceFollowupServiceIntent = sellerMetrics.tools.find((row) => row.tool === "invoice-followup-copy-pack");
   assert(service.service_request_intent === 3, "Metrics should count service request, beacon, and copy intent");
+  assert(invoiceFollowupServiceIntent.service_request_intent === 1, "Metrics should count invoice follow-up service request intent on the paid service tool row");
   assert(service.service_checkout_click === 1, "Metrics should count service checkout clicks");
   assert(audit.audit_request_intent === 3, "Metrics should count audit request, beacon, and copy intent");
   assert(sellerMetrics.totals.seller_checkout_intent === 1, "Metrics should count total seller checkout intent");
   assert(sellerMetrics.totals.seller_checkout_click === 1, "Metrics should count total seller checkout clicks");
   assert(sellerMetrics.totals.service_checkout_click === 1, "Metrics should count total service checkout clicks");
-  assert(sellerMetrics.totals.service_request_intent === 3, "Metrics should count total service request intent");
+  assert(sellerMetrics.totals.service_request_intent === 4, "Metrics should count total service request intent");
   assert(sellerMetrics.totals.audit_request_intent === 3, "Metrics should count total audit request intent");
   const sponsor = sellerMetrics.tools.find((row) => row.tool === "sponsor");
   assert(sponsor.sponsor_request_intent === 2, "Metrics should count sponsor intent");
@@ -535,7 +551,7 @@ async function main() {
   assert(sellerMetrics.totals.sponsor_invoice_request === 1, "Metrics should count total sponsor invoice requests");
   assert(sellerMetrics.sponsorLeads === 1, "Metrics should expose real sponsor lead count");
   assert(sellerMetrics.sponsorInvoiceRequests === 1, "Metrics should expose sponsor invoice request count");
-  assert(sellerMetrics.commercialIntent === 13, "Commercial intent should include checkout clicks and sponsor invoice requests");
+  assert(sellerMetrics.commercialIntent === 14, "Commercial intent should include checkout clicks, service intent, and sponsor invoice requests");
   assert(store.data.has(`sponsor:lead:${sponsorLeadPayload.id}`), "Sponsor lead should be stored privately in KV");
   const storedSponsorLead = JSON.parse(store.data.get(`sponsor:lead:${sponsorLeadPayload.id}`));
   assert(storedSponsorLead.source === "sponsor-outreach", "Sponsor lead should canonicalize sponsor-call into sponsor-outreach source metrics");
@@ -724,6 +740,7 @@ async function main() {
   assert(servicePrintableProject.summary.commercialIntent === 4, "Ops metrics should count service lead submissions in commercial intent");
   assert(servicePrintableProject.tools.find((row) => row.tool === "custom-local-print-pack").service_request_intent === 1, "Ops metrics should count the custom service lead tool row");
   assert(servicePrintableProject.tools.find((row) => row.tool === "invoice-followup-copy-pack").service_request_intent === 1, "Ops metrics should count the invoice follow-up service lead tool row");
+  assert(servicePrintableProject.paths.find((row) => row.path === "/tools/invoice-generator/").service_request_intent === 1, "Ops metrics should count invoice follow-up leads by source path");
   const serviceLeadWriteLimitedStore = new MemoryStore({ failWritesWith: "KV put() limit exceeded for the day." });
   const serviceLeadWriteLimitedResponse = await serviceLeadSource.onRequestPost({
     request: new Request("https://example.test/api/service-lead", {

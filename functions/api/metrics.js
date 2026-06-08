@@ -236,7 +236,7 @@ function mergeBucket(target, source) {
   mergeNestedCounts(target.tools, source.tools);
   mergeNestedCounts(target.sources, source.sources);
   mergeProjectBuckets(target.projects, source.projects);
-  mergeCounts(target.paths, source.paths);
+  mergePathCounts(target.paths, source.paths);
 }
 
 function mergeProjectBuckets(target, source) {
@@ -256,6 +256,18 @@ function mergeNestedCounts(target, source) {
   for (const [outerKey, values] of Object.entries(source || {})) {
     if (!target[outerKey]) target[outerKey] = {};
     mergeCounts(target[outerKey], values);
+  }
+}
+
+function mergePathCounts(target, source) {
+  for (const [path, value] of Object.entries(source || {})) {
+    if (isObject(value)) {
+      if (!isObject(target[path])) target[path] = {};
+      mergeCounts(target[path], value);
+    } else {
+      if (!isObject(target[path])) target[path] = {};
+      target[path].page_view = (Number(target[path].page_view) || 0) + (Number(value) || 0);
+    }
   }
 }
 
