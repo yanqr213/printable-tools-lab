@@ -623,13 +623,21 @@ function serviceLeadFallbackUrl(serviceTypeOrOptions, pathName) {
   return url.toString();
 }
 
-function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, pathName, defaultSummary = "" }) {
+function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, pathName, defaultSummary = "", utmSource = "landing-page", utmMedium = "site", utmCampaign, utmContent }) {
   const eventName = serviceLeadTrackEvent(serviceType);
   const tool = serviceLeadTrackTool(serviceType);
+  const slugPath = String(pathName || serviceType).replace(/^\/+|\/+$/g, "");
+  const sourcePath = `/${slugPath}/`;
+  const content = utmContent || `${slugPath}-service-request`;
+  const campaign = utmCampaign || serviceLeadCampaign(serviceType);
   const fallbackUrl = serviceLeadFallbackUrl({
     serviceType,
-    pathName: pathName || serviceType,
+    pathName: sourcePath,
     requestSummary: defaultSummary,
+    utmSource,
+    utmMedium,
+    utmCampaign: campaign,
+    utmContent: content,
   });
   return `<section class="shell section service-lead-section" id="service-request">
         <div class="grid-2">
@@ -642,9 +650,13 @@ function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, path
               <li>Do not send payment, tax, bank, identity, password, customer-list, or private file data.</li>
             </ul>
           </div>
-          <form class="panel form-grid service-lead-form" data-service-lead-form data-service-type="${escapeHtml(serviceType)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+          <form class="panel form-grid service-lead-form" data-service-lead-form data-service-type="${escapeHtml(serviceType)}" data-lead-path="${escapeHtml(sourcePath)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(campaign)}" data-utm-content="${escapeHtml(content)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="serviceType" value="${escapeHtml(serviceType)}">
+            <input type="hidden" name="utmSource" value="${escapeHtml(utmSource)}">
+            <input type="hidden" name="utmMedium" value="${escapeHtml(utmMedium)}">
+            <input type="hidden" name="utmCampaign" value="${escapeHtml(campaign)}">
+            <input type="hidden" name="utmContent" value="${escapeHtml(content)}">
             <label class="field">
               <span>Email or public contact link</span>
               <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
@@ -673,6 +685,14 @@ function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, path
           </form>
         </div>
       </section>`;
+}
+
+function serviceLeadCampaign(serviceType) {
+  if (serviceType === "upload-limit-fix-plan") return "upload_limit_fix_plan";
+  if (serviceType === "invoice-followup-copy-pack") return "invoice_followup_service";
+  if (serviceType === "market-table-print-audit") return "market_table_audit";
+  if (serviceType === "local-seller-starter-kit") return "seller_kit";
+  return "service_request";
 }
 
 function marketTableAuditRequestCopy(audit = MARKET_TABLE_PRINT_AUDIT) {
@@ -3734,6 +3754,7 @@ const landingPages = [
       ["Best for scanned PDFs", "The compressor rebuilds image-based pages locally, so it is strongest for scanned forms, photo-heavy documents, and PDFs that are already mostly images."],
       ["Honest limits", "Very small PDF targets can flatten selectable text, lower image quality, or still miss the exact limit on long documents. Review the downloaded PDF before submitting it anywhere important."],
     ],
+    serviceLead: uploadLimitLandingServiceLead("PDF size reducer"),
     targetLinks: [
       ["Compress PDF to 500KB", "compress-pdf-to-500kb", "For strict form, school, government-style, and exam upload limits."],
       ["Compress PDF to 1MB", "compress-pdf-to-1mb", "For common job, school, email, and portal PDF limits."],
@@ -3755,6 +3776,7 @@ const landingPages = [
       ["Local target-size workflow", "The browser renders selected pages into smaller JPEG-backed PDF pages and tries stronger compression passes when a target size is selected."],
       ["Honest limit", "A 500KB target can be too small for long or text-heavy PDFs. The tool tries to get close, but the result may flatten selectable text and can lose detail."],
     ],
+    serviceLead: uploadLimitLandingServiceLead("compress PDF to 500KB"),
     relatedTools: ["tools/compress-pdf?targetSize=1mb", "tools/pdf-to-images", "tools/compress-image-to-kb"],
   },
   {
@@ -3770,6 +3792,7 @@ const landingPages = [
       ["Local target-size workflow", "The PDF stays in the browser. The tool renders selected pages into an image-based PDF and tries more aggressive compression when needed."],
       ["Best fit", "This works best for scanned PDFs, receipts, photo-heavy documents, and quick uploads. Keep the original if selectable text, links, or accessibility matter."],
     ],
+    serviceLead: uploadLimitLandingServiceLead("compress PDF to 1MB"),
     relatedTools: ["tools/compress-pdf?targetSize=500kb", "tools/pdf-to-images", "tools/resize-image"],
   },
   {
@@ -3785,6 +3808,7 @@ const landingPages = [
       ["Local target-size workflow", "The selected PDF is rendered and rebuilt locally. No ordinary compression step uploads the document to PrintableTools Lab."],
       ["Quality tradeoff", "2MB is friendlier than 500KB or 1MB, but complex PDFs can still flatten text and links. Review the output before submitting."],
     ],
+    serviceLead: uploadLimitLandingServiceLead("compress PDF to 2MB"),
     relatedTools: ["tools/compress-pdf?targetSize=1mb", "tools/pdf-to-images", "tools/merge-pdf"],
   },
   {
@@ -3800,6 +3824,7 @@ const landingPages = [
       ["Local target-size workflow", "The browser rebuilds selected pages into a smaller image-based PDF and keeps the source file local during ordinary use."],
       ["Practical limit", "This tool is best for image-heavy PDFs. Text-first PDFs may be better handled by keeping the original or exporting selected pages."],
     ],
+    serviceLead: uploadLimitLandingServiceLead("compress PDF to 5MB"),
     relatedTools: ["tools/compress-pdf?targetSize=2mb", "tools/pdf-to-images", "tools/split-pdf"],
   },
   {
@@ -6836,6 +6861,18 @@ function uploadLimitFixPlanInlineLeadFormHtml(options = {}) {
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No file upload. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
           <p class="help" data-upload-fix-plan-prefill-status hidden>Request note updated from the upload error matcher.</p>
         </form>`;
+}
+
+function uploadLimitLandingServiceLead(workflow) {
+  return {
+    serviceType: "upload-limit-fix-plan",
+    title: "Need a $9 upload fix plan?",
+    cta: "Send $9 upload fix request",
+    intro: "Use the free no-upload tool first, or send this public-safe fit check if the receiving portal keeps rejecting the file.",
+    placeholder: `I need a $9 Upload Limit Fix Plan for ${workflow}. The public-safe error is: [paste exact upload message]. File type and target rule: [PDF/image/JPG/PNG, size limit, dimensions, or portal rule]. No actual file, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.`,
+    defaultSummary: `I need a $9 Upload Limit Fix Plan for ${workflow}: best free tool, target settings, fallback steps, and a review-before-upload checklist. No file upload, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.`,
+    utmCampaign: "upload_limit_fix_plan",
+  };
 }
 
 function uploadErrorQuickRequestPanelHtml(requestSummary) {
@@ -9951,6 +9988,10 @@ function landingPageHtml(page) {
     serviceType: page.serviceLead.serviceType,
     pathName: page.path,
     requestSummary: page.serviceLead.defaultSummary || "",
+    utmSource: "landing-page",
+    utmMedium: "site",
+    utmCampaign: page.serviceLead.utmCampaign || "service_request",
+    utmContent: `${page.path}-public-request`,
   }) : "";
   const secondaryActionHtml = page.serviceLead
     ? `<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>`

@@ -956,6 +956,7 @@ for (const [pagePath, targetSize, headlineSize] of [["compress-pdf-to-500kb", "5
   const html = fs.readFileSync(file, "utf8");
   if (!html.includes(`Compress PDF to ${headlineSize} without uploading`)) failures.push(`Target-size PDF landing page missing headline: ${pagePath}`);
   if (!html.includes(`/tools/compress-pdf/?targetSize=${targetSize}`)) failures.push(`Target-size PDF landing page missing prefilled tool link: ${pagePath}`);
+  if (!html.includes("Need a $9 upload fix plan?") || !html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes('data-track-tool="upload-limit-fix-plan"') || !html.includes('data-utm-campaign="upload_limit_fix_plan"') || !html.includes("Open public-safe request")) failures.push(`Target-size PDF landing page missing $9 upload fix request path: ${pagePath}`);
   if (!sitemap.includes(`<loc>${siteUrl(pagePath)}</loc>`)) failures.push(`Sitemap missing target-size PDF landing page: ${pagePath}`);
 }
 
@@ -965,6 +966,7 @@ else {
   const html = fs.readFileSync(pdfSizeHubFile, "utf8");
   if (!html.includes("PDF size reducer without uploading")) failures.push("PDF size hub page missing headline.");
   if (!html.includes("/tools/compress-pdf/")) failures.push("PDF size hub page missing PDF compressor link.");
+  if (!html.includes("Need a $9 upload fix plan?") || !html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes('data-utm-campaign="upload_limit_fix_plan"') || !html.includes("Open public-safe request")) failures.push("PDF size hub page missing $9 upload fix request path.");
   for (const pagePath of ["compress-pdf-to-500kb", "compress-pdf-to-1mb", "compress-pdf-to-2mb", "compress-pdf-to-5mb"]) {
     if (!html.includes(`/${pagePath}/`)) failures.push(`PDF size hub page missing target link: ${pagePath}`);
   }

@@ -2520,6 +2520,7 @@
         ["Best for scanned PDFs", "The compressor rebuilds image-based pages locally, so it is strongest for scanned forms, photo-heavy documents, and PDFs that are already mostly images."],
         ["Honest limits", "Very small PDF targets can flatten selectable text, lower image quality, or still miss the exact limit on long documents. Review the downloaded PDF before submitting it anywhere important."],
       ],
+      serviceLead: uploadLimitLandingServiceLead("PDF size reducer"),
       targetLinks: [
         ["Compress PDF to 500KB", "compress-pdf-to-500kb", "For strict form, school, government-style, and exam upload limits."],
         ["Compress PDF to 1MB", "compress-pdf-to-1mb", "For common job, school, email, and portal PDF limits."],
@@ -2542,6 +2543,7 @@
         ["Local target-size workflow", "The browser renders selected pages into smaller JPEG-backed PDF pages and tries stronger compression passes when a target size is selected."],
         ["Honest limit", "A 500KB target can be too small for long or text-heavy PDFs. The tool tries to get close, but the result may flatten selectable text and can lose detail."],
       ],
+      serviceLead: uploadLimitLandingServiceLead("compress PDF to 500KB"),
       related: ["compress-pdf", "pdf-to-images", "compress-image-to-kb"],
     },
     {
@@ -2558,6 +2560,7 @@
         ["Local target-size workflow", "The PDF stays in the browser. The tool renders selected pages into an image-based PDF and tries more aggressive compression when needed."],
         ["Best fit", "This works best for scanned PDFs, receipts, photo-heavy documents, and quick uploads. Keep the original if selectable text, links, or accessibility matter."],
       ],
+      serviceLead: uploadLimitLandingServiceLead("compress PDF to 1MB"),
       related: ["compress-pdf", "pdf-to-images", "resize-image"],
     },
     {
@@ -2574,6 +2577,7 @@
         ["Local target-size workflow", "The selected PDF is rendered and rebuilt locally. No ordinary compression step uploads the document to PrintableTools Lab."],
         ["Quality tradeoff", "2MB is friendlier than 500KB or 1MB, but complex PDFs can still flatten text and links. Review the output before submitting."],
       ],
+      serviceLead: uploadLimitLandingServiceLead("compress PDF to 2MB"),
       related: ["compress-pdf", "pdf-to-images", "merge-pdf"],
     },
     {
@@ -2590,6 +2594,7 @@
         ["Local target-size workflow", "The browser rebuilds selected pages into a smaller image-based PDF and keeps the source file local during ordinary use."],
         ["Practical limit", "This tool is best for image-heavy PDFs. Text-first PDFs may be better handled by keeping the original or exporting selected pages."],
       ],
+      serviceLead: uploadLimitLandingServiceLead("compress PDF to 5MB"),
       related: ["compress-pdf", "pdf-to-images", "split-pdf"],
     },
     {
@@ -6860,7 +6865,7 @@
       path: `/${page.slug}/`,
       utmSource: "landing-page",
       utmMedium: "site",
-      utmCampaign: "invoice_followup_service",
+      utmCampaign: page.serviceLead.utmCampaign || "service_request",
       utmContent: `${page.slug}-public-request`,
     }) : "";
     setMeta(page.title, page.description);
@@ -6950,6 +6955,18 @@
 
   function toolUrl(page) {
     return `/tools/${page.tool}/${page.toolQuery ? `?${page.toolQuery}` : ""}`;
+  }
+
+  function uploadLimitLandingServiceLead(workflow) {
+    return {
+      serviceType: "upload-limit-fix-plan",
+      title: "Need a $9 upload fix plan?",
+      cta: "Send $9 upload fix request",
+      intro: "Use the free no-upload tool first, or send this public-safe fit check if the receiving portal keeps rejecting the file.",
+      placeholder: `I need a $9 Upload Limit Fix Plan for ${workflow}. The public-safe error is: [paste exact upload message]. File type and target rule: [PDF/image/JPG/PNG, size limit, dimensions, or portal rule]. No actual file, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.`,
+      defaultSummary: `I need a $9 Upload Limit Fix Plan for ${workflow}: best free tool, target settings, fallback steps, and a review-before-upload checklist. No file upload, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.`,
+      utmCampaign: "upload_limit_fix_plan",
+    };
   }
 
   function guideCard(guide) {
@@ -7616,13 +7633,22 @@
     const intro = options.intro || "Send one public-safe note and a reply contact. Fit is reviewed manually before any external checkout or invoice is sent.";
     const placeholder = options.placeholder || "Tell us what you sell, what print pieces you need, and any date that matters.";
     const defaultSummary = options.defaultSummary || "";
+    const pathName = `/${options.pathName || serviceType}/`;
+    const utmSource = options.utmSource || "landing-page";
+    const utmMedium = options.utmMedium || "site";
+    const utmCampaign = options.utmCampaign || serviceLeadCampaign(serviceType);
+    const utmContent = options.utmContent || `${options.pathName || serviceType}-service-request`;
     const fallbackUrl = options.fallbackUrl || serviceLeadFallbackUrl({
       serviceType,
       businessName: "",
       contact: "",
       needBy: "",
-      requestSummary: "",
-      path: `/${options.pathName || serviceType}/`,
+      requestSummary: defaultSummary,
+      path: pathName,
+      utmSource,
+      utmMedium,
+      utmCampaign,
+      utmContent,
     });
     return `
       <section class="shell section service-lead-section" id="service-request">
@@ -7636,9 +7662,13 @@
               <li>Do not send payment, tax, bank, identity, password, customer-list, or private file data.</li>
             </ul>
           </div>
-          <form class="panel form-grid service-lead-form" data-service-lead-form data-service-type="${escapeHtml(serviceType)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+          <form class="panel form-grid service-lead-form" data-service-lead-form data-service-type="${escapeHtml(serviceType)}" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="serviceType" value="${escapeHtml(serviceType)}">
+            <input type="hidden" name="utmSource" value="${escapeHtml(utmSource)}">
+            <input type="hidden" name="utmMedium" value="${escapeHtml(utmMedium)}">
+            <input type="hidden" name="utmCampaign" value="${escapeHtml(utmCampaign)}">
+            <input type="hidden" name="utmContent" value="${escapeHtml(utmContent)}">
             <label class="field">
               <span>Email or public contact link</span>
               <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
@@ -7667,6 +7697,14 @@
           </form>
         </div>
       </section>`;
+  }
+
+  function serviceLeadCampaign(serviceType) {
+    if (serviceType === "upload-limit-fix-plan") return "upload_limit_fix_plan";
+    if (serviceType === "invoice-followup-copy-pack") return "invoice_followup_service";
+    if (serviceType === "market-table-print-audit") return "market_table_audit";
+    if (serviceType === "local-seller-starter-kit") return "seller_kit";
+    return "service_request";
   }
 
   function serviceLeadTrackEvent(serviceType) {

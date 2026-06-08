@@ -267,6 +267,11 @@ function delay(ms) {
     const landingHref = `/tools/compress-pdf/?targetSize=${targetSize}`;
     const landingLinkCount = await page.locator(`main a[href="${landingHref}"]`).count();
     if (!landingLinkCount) throw new Error(`Target-size PDF landing page is missing prefilled tool link ${landingHref}`);
+    const uploadFixForm = page.locator('[data-service-type="upload-limit-fix-plan"][data-utm-source="landing-page"][data-utm-campaign="upload_limit_fix_plan"]').first();
+    if (!(await uploadFixForm.count())) throw new Error(`${pageSlug} missing upload fix-plan lead form`);
+    const publicRequest = page.locator('[data-service-lead-fallback-link][data-track-tool="upload-limit-fix-plan"]').first();
+    const publicRequestHref = await publicRequest.getAttribute("href");
+    if (!publicRequestHref || !publicRequestHref.includes("github.com") || !publicRequestHref.includes("Upload+Limit+Fix+Plan") || !publicRequestHref.includes("compress+PDF")) throw new Error(`${pageSlug} upload fix-plan public request is not prefilled`);
     await page.goto(`${base}${landingHref}`, { waitUntil: "networkidle" });
     const selectedTarget = await page.locator("#targetSize").inputValue();
     if (selectedTarget !== targetSize) throw new Error(`PDF target-size tool did not preselect ${targetSize}, got ${selectedTarget}`);
