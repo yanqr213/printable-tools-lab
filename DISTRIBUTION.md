@@ -42,9 +42,9 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - TechTools Passport Photo 50KB Upload Fix listing: https://printable-tools-lab.pages.dev/tools/compress-image-to-kb?targetKb=50&utm_source=techtools&utm_medium=directory&utm_campaign=passport_photo_50kb_fix_2026_06&utm_content=compress_image_kb_passport_50kb_fix
 - TechTools PDF Under 500KB Upload Fix listing: https://printable-tools-lab.pages.dev/tools/compress-pdf?targetSize=500kb&utm_source=techtools&utm_medium=directory&utm_campaign=pdf_500kb_tool_fix_2026_06&utm_content=compress_pdf_tool_target_500kb
 - TechTools Image Under 500KB Upload Fix listing: https://printable-tools-lab.pages.dev/tools/compress-image-to-kb?targetKb=500&utm_source=techtools&utm_medium=directory&utm_campaign=image_500kb_tool_fix_2026_06&utm_content=compress_image_kb_tool_target_500kb
-- TechTools Image Dimensions 600x600 Upload Fix pending retry: https://printable-tools-lab.pages.dev/image-dimensions-600x600?utm_source=techtools&utm_medium=directory&utm_campaign=image_dimensions_600x600_fix_2026_06&utm_content=image_dimensions_600x600_landing
-- TechTools PDF Not Accepted JPG Required Fix pending retry: https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_not_accepted_jpg_required_fix_2026_06&utm_content=pdf_to_jpg_required_landing
-- TechTools Email Attachment Too Large PDF Fix pending retry: https://printable-tools-lab.pages.dev/email-attachment-too-large?utm_source=techtools&utm_medium=directory&utm_campaign=email_attachment_too_large_fix_2026_06&utm_content=email_attachment_too_large_landing
+- TechTools Image Dimensions 600x600 Upload Fix listing: https://techtools.cz/tools/launchpad/?tool=184
+- TechTools PDF Not Accepted JPG Required Fix listing: https://techtools.cz/tools/launchpad/?tool=185
+- TechTools Email Attachment Too Large PDF Fix listing: https://techtools.cz/tools/launchpad/?tool=186
 - NoSignupTools Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_limit_2026_06&utm_content=upload_limit_fixer
 - NoSignupTools Upload Error Cheatsheet listing: https://printable-tools-lab.pages.dev/upload-error-cheatsheet?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_error_cheatsheet_2026_06&utm_content=upload_error_cheatsheet
 - FreeNoSignup Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=freenosignup
@@ -349,9 +349,9 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - TechTools Passport Photo 50KB Upload Fix listing; submitted on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=181
 - TechTools PDF Under 500KB Upload Fix listing; submitted on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=182
 - TechTools Image Under 500KB Upload Fix listing; submitted on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=183
-- TechTools Image Dimensions 600x600 Upload Fix listing; pending retry after hourly API rate limit, run npm.cmd run submit:techtools-upload-backlog
-- TechTools PDF Not Accepted JPG Required Fix listing; pending retry after hourly API rate limit, run npm.cmd run submit:techtools-upload-backlog
-- TechTools Email Attachment Too Large PDF Fix listing; pending retry after hourly API rate limit, run npm.cmd run submit:techtools-upload-backlog
+- TechTools Image Dimensions 600x600 Upload Fix listing; submitted on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=184
+- TechTools PDF Not Accepted JPG Required Fix listing; submitted on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=185
+- TechTools Email Attachment Too Large PDF Fix listing; submitted on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=186
 - NoSignupTools Upload Limit Fixer submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
 - NoSignupTools Upload Error Cheatsheet submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
 - FreeNoSignup Upload Limit Fixer submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review

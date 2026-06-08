@@ -400,6 +400,15 @@ if (fs.existsSync(cloudflareDeployScriptFile)) {
   if (!deployScript.includes("functions/api/service-lead.js")) failures.push("Cloudflare safe deploy required files missing service lead function.");
 }
 
+const indexNowScriptFile = path.join(root, "scripts", "indexnow.cjs");
+if (!fs.existsSync(indexNowScriptFile)) failures.push("Missing IndexNow submission script.");
+else {
+  const indexNowScript = fs.readFileSync(indexNowScriptFile, "utf8");
+  for (const route of ["upload-error-cheatsheet", "upload-limit-fix-plan", "invoice-followup-copy-pack", "image-dimensions-600x600", "pdf-not-accepted-jpg-required", "email-attachment-too-large"]) {
+    if (!indexNowScript.includes(`siteUrl("${route}")`)) failures.push(`IndexNow priority list missing ${route}.`);
+  }
+}
+
 const sponsorCallJsonFile = path.join(root, "sponsor-call.json");
 if (!fs.existsSync(sponsorCallJsonFile)) failures.push("Missing sponsor-call.json.");
 else {
@@ -1163,9 +1172,9 @@ else {
   if (!html.includes("TechTools Passport Photo 50KB Upload Fix") || !html.includes("https://techtools.cz/tools/launchpad/?tool=181")) failures.push("Directory submission pack missing passport photo 50KB upload fix live listing.");
   if (!html.includes("TechTools PDF Under 500KB Upload Fix") || !html.includes("https://techtools.cz/tools/launchpad/?tool=182")) failures.push("Directory submission pack missing PDF under 500KB upload fix live listing.");
   if (!html.includes("TechTools Image Under 500KB Upload Fix") || !html.includes("https://techtools.cz/tools/launchpad/?tool=183")) failures.push("Directory submission pack missing image under 500KB upload fix live listing.");
-  if (!html.includes("TechTools Image Dimensions 600x600 Upload Fix") || !html.includes("image_dimensions_600x600_fix_2026_06") || !html.includes("Pending retry after TechTools hourly API rate limit")) failures.push("Directory submission pack missing pending TechTools image dimensions retry entry.");
-  if (!html.includes("TechTools PDF Not Accepted JPG Required Fix") || !html.includes("pdf_not_accepted_jpg_required_fix_2026_06") || !html.includes("Pending retry after TechTools hourly API rate limit")) failures.push("Directory submission pack missing pending TechTools PDF-to-JPG retry entry.");
-  if (!html.includes("TechTools Email Attachment Too Large PDF Fix") || !html.includes("email_attachment_too_large_fix_2026_06") || !html.includes("Pending retry after TechTools hourly API rate limit")) failures.push("Directory submission pack missing pending TechTools email attachment retry entry.");
+  if (!html.includes("TechTools Image Dimensions 600x600 Upload Fix") || !html.includes("https://techtools.cz/tools/launchpad/?tool=184")) failures.push("Directory submission pack missing TechTools image dimensions live listing.");
+  if (!html.includes("TechTools PDF Not Accepted JPG Required Fix") || !html.includes("https://techtools.cz/tools/launchpad/?tool=185")) failures.push("Directory submission pack missing TechTools PDF-to-JPG live listing.");
+  if (!html.includes("TechTools Email Attachment Too Large PDF Fix") || !html.includes("https://techtools.cz/tools/launchpad/?tool=186")) failures.push("Directory submission pack missing TechTools email attachment live listing.");
   if (!html.includes("NoLogin.tools Upload Error Cheatsheet") || !html.includes("https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet")) failures.push("Directory submission pack missing NoLogin upload error cheatsheet submission.");
   if (!html.includes("NoSignupTools Upload Limit Fixer") || !html.includes("https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools upload limit fixer submission.");
   if (!html.includes("NoSignupTools Upload Error Cheatsheet") || !html.includes("https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools upload error cheatsheet submission.");
@@ -1631,9 +1640,9 @@ else {
   if (!distribution.includes("TechTools Passport Photo 50KB Upload Fix listing") || !distribution.includes("passport_photo_50kb_fix_2026_06")) failures.push("DISTRIBUTION.md missing passport photo 50KB upload fix directory listing.");
   if (!distribution.includes("TechTools PDF Under 500KB Upload Fix listing") || !distribution.includes("pdf_500kb_tool_fix_2026_06")) failures.push("DISTRIBUTION.md missing PDF 500KB upload fix directory listing.");
   if (!distribution.includes("TechTools Image Under 500KB Upload Fix listing") || !distribution.includes("image_500kb_tool_fix_2026_06")) failures.push("DISTRIBUTION.md missing image 500KB upload fix directory listing.");
-  if (!distribution.includes("TechTools Image Dimensions 600x600 Upload Fix pending retry") || !distribution.includes("image_dimensions_600x600_fix_2026_06")) failures.push("DISTRIBUTION.md missing pending TechTools image dimensions retry listing.");
-  if (!distribution.includes("TechTools PDF Not Accepted JPG Required Fix pending retry") || !distribution.includes("pdf_not_accepted_jpg_required_fix_2026_06")) failures.push("DISTRIBUTION.md missing pending TechTools PDF-to-JPG retry listing.");
-  if (!distribution.includes("TechTools Email Attachment Too Large PDF Fix pending retry") || !distribution.includes("email_attachment_too_large_fix_2026_06")) failures.push("DISTRIBUTION.md missing pending TechTools email attachment retry listing.");
+  if (!distribution.includes("TechTools Image Dimensions 600x600 Upload Fix listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=184")) failures.push("DISTRIBUTION.md missing TechTools image dimensions live listing.");
+  if (!distribution.includes("TechTools PDF Not Accepted JPG Required Fix listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=185")) failures.push("DISTRIBUTION.md missing TechTools PDF-to-JPG live listing.");
+  if (!distribution.includes("TechTools Email Attachment Too Large PDF Fix listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=186")) failures.push("DISTRIBUTION.md missing TechTools email attachment live listing.");
   if (!distribution.includes("NoLogin.tools Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing NoLogin upload error cheatsheet submission.");
   if (!distribution.includes("NoSignupTools Upload Limit Fixer listing") || !distribution.includes("upload_limit_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools upload limit fixer submission.");
   if (!distribution.includes("NoSignupTools Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools upload error cheatsheet submission.");
