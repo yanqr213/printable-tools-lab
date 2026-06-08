@@ -288,6 +288,13 @@ function delay(ms) {
       throw new Error(`Compress PDF pre-download public-safe request has an unexpected href for ${targetSize}: ${targetPanelPublicRequestHref || "missing"}`);
     }
   }
+  await page.goto(`${base}/tools/compress-pdf/?targetsize=1mb&utm_source=techtools&utm_medium=directory&utm_campaign=pdf_1mb_tool_fix_2026_06&utm_content=compress_pdf_tool_target_1mb`, { waitUntil: "networkidle" });
+  const lowercaseSelectedTarget = await page.locator("#targetSize").inputValue();
+  if (lowercaseSelectedTarget !== "1mb") throw new Error(`Lowercase targetsize query did not preselect 1mb, got ${lowercaseSelectedTarget}`);
+  const lowercaseTargetPanelForm = page.locator('[data-compress-pdf-tool-fix-form][data-service-type="upload-limit-fix-plan"][data-utm-source="compress-pdf-tool"][data-utm-campaign="upload_limit_fix_plan"]').first();
+  if (!(await lowercaseTargetPanelForm.count())) throw new Error("Lowercase targetsize query is missing the pre-download $9 upload target request form.");
+  const lowercaseTargetPanelSummary = await lowercaseTargetPanelForm.locator("[data-compress-pdf-tool-fix-summary]").inputValue();
+  if (!lowercaseTargetPanelSummary.includes("PDF under 1 MB")) throw new Error(`Lowercase targetsize request summary is not target-aware: ${lowercaseTargetPanelSummary}`);
 
   await page.goto(`${base}/upload-limit-fixer/`, { waitUntil: "networkidle" });
   const uploadLimitText = await page.locator("main").innerText();

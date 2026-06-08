@@ -33,6 +33,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - TechTools Upload Limit Fix Plan listing: https://printable-tools-lab.pages.dev/upload-limit-fix-plan?utm_source=techtools&utm_medium=directory&utm_campaign=upload_limit_fix_plan_2026_06&utm_content=upload_limit_fix_plan
 - TechTools Upload Error Cheatsheet listing: https://printable-tools-lab.pages.dev/upload-error-cheatsheet?utm_source=techtools&utm_medium=directory&utm_campaign=upload_error_cheatsheet_2026_06&utm_content=upload_error_cheatsheet
 - TechTools Compress PDF to 1MB listing: https://printable-tools-lab.pages.dev/compress-pdf-to-1mb?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_1mb_2026_06&utm_content=compress_pdf_to_1mb
+- TechTools PDF Under 1MB Upload Fix listing: https://printable-tools-lab.pages.dev/tools/compress-pdf?targetSize=1mb&utm_source=techtools&utm_medium=directory&utm_campaign=pdf_1mb_tool_fix_2026_06&utm_content=compress_pdf_tool_target_1mb
 - NoSignupTools Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_limit_2026_06&utm_content=upload_limit_fixer
 - NoSignupTools Upload Error Cheatsheet listing: https://printable-tools-lab.pages.dev/upload-error-cheatsheet?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_error_cheatsheet_2026_06&utm_content=upload_error_cheatsheet
 - FreeNoSignup Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=freenosignup
@@ -328,6 +329,7 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - TechTools Upload Limit Fix Plan service listing; submitted on 2026-06-08 and live at https://techtools.cz/tools/launchpad/?tool=172
 - TechTools Upload Error Cheatsheet listing; submitted on 2026-06-08 and live at https://techtools.cz/tools/launchpad/?tool=173
 - TechTools Compress PDF to 1MB listing; submitted on 2026-06-08 and live at https://techtools.cz/tools/launchpad/?tool=174
+- TechTools PDF Under 1MB Upload Fix listing; submitted on 2026-06-08 and live at https://techtools.cz/tools/launchpad/?tool=175
 - NoSignupTools Upload Limit Fixer submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
 - NoSignupTools Upload Error Cheatsheet submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
 - FreeNoSignup Upload Limit Fixer submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review

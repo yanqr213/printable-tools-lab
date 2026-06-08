@@ -96,6 +96,14 @@ const directories = [
     reviewWindow: "auto-approved API listing for the high-intent PDF 1MB upload-error path",
   },
   {
+    name: "TechTools Launchpad PDF under 1MB upload fix listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=175",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/175",
+    expected: [siteHost, "PDF Under 1MB Upload Fix"],
+    submittedAt: "2026-06-08",
+    reviewWindow: "auto-approved API listing for the tool-level pre-download upload fix path",
+  },
+  {
     name: "NoSignupTools",
     url: "https://nosignuptools.com/",
     searchUrl: "https://nosignuptools.com/?q=PrintableTools+Lab",

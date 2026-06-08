@@ -6327,6 +6327,7 @@
       ["TechTools Upload Limit Fix Plan", "https://techtools.cz/tools/launchpad/?tool=172", "Direct discovery listing for the $9 upload-limit troubleshooting service path."],
       ["TechTools Upload Error Cheatsheet", "https://techtools.cz/tools/launchpad/?tool=173", "High-intent listing for exact PDF, image, resume, and portal upload errors."],
       ["TechTools Compress PDF to 1MB", "https://techtools.cz/tools/launchpad/?tool=174", "High-intent listing for the common PDF under 1MB upload-error path that leads to the download-time $9 upload fix request."],
+      ["TechTools PDF Under 1MB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=175", "Tool-level 1MB PDF listing that opens the compressor with the pre-download $9 upload fix request ready."],
       ["NoSignupTools Upload Limit Fixer", "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab", "Pending public API submission for a no-signup upload error matcher."],
       ["NoSignupTools Upload Error Cheatsheet", "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab", "Pending public API submission for exact upload-error fix routing."],
       ["FreeNoSignup Upload Limit Fixer", "https://freenosignup.com/?s=Upload+Limit+Fixer", "Pending Google Form submission for the free upload error matcher."],
@@ -10940,7 +10941,7 @@ ${paragraphs.join("\n")}
     }
     if (tool.id === "compress-pdf") {
       const params = new URLSearchParams(window.location.search || "");
-      const targetSize = String(params.get("targetSize") || "").toLowerCase();
+      const targetSize = String(params.get("targetSize") || params.get("targetsize") || params.get("target_size") || "").toLowerCase();
       if (["500kb", "1mb", "2mb", "5mb"].includes(targetSize)) {
         values.targetSize = targetSize;
         values.mode = targetSize === "5mb" ? "balanced" : "small";

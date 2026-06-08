@@ -1,0 +1,42 @@
+﻿{
+    "generatedAt":  "2026-06-08T15:44:28.4319449Z",
+    "endpoint":  "https://techtools.cz/launchpad-api/tools",
+    "status":  201,
+    "ok":  true,
+    "payload":  {
+                    "name":  "PDF Under 1MB Upload Fix by PrintableTools Lab",
+                    "url":  "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=1mb\u0026utm_source=techtools\u0026utm_medium=directory\u0026utm_campaign=pdf_1mb_tool_fix_2026_06\u0026utm_content=compress_pdf_tool_target_1mb",
+                    "tagline":  "No-signup PDF 1MB compressor with a public-safe $9 upload fix request before download.",
+                    "description":  "PrintableTools Lab PDF Under 1MB Upload Fix opens the browser PDF compressor with the 1MB target already selected for job portals, school forms, email attachments, admin portals, and PDF must be under 1MB errors. Files stay in the browser for ordinary compression. Before download, visitors can send a public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist without uploading the private PDF.",
+                    "category":  "utilities",
+                    "maker_name":  "PrintableTools Lab",
+                    "maker_url":  "https://printable-tools-lab.pages.dev/",
+                    "logo_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                    "submitted_by":  "Codex traffic acquisition run 2026-06-08 pre-download PDF upload fix path"
+                },
+    "response":  {
+                     "success":  true,
+                     "message":  "Tool submitted successfully! It is now live.",
+                     "data":  {
+                                  "id":  175,
+                                  "name":  "PDF Under 1MB Upload Fix by PrintableTools Lab",
+                                  "url":  "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetsize=1mb\u0026utm_source=techtools\u0026utm_medium=directory\u0026utm_campaign=pdf_1mb_tool_fix_2026_06\u0026utm_content=compress_pdf_tool_target_1mb",
+                                  "tagline":  "No-signup PDF 1MB compressor with a public-safe $9 upload fix request before download.",
+                                  "description":  "PrintableTools Lab PDF Under 1MB Upload Fix opens the browser PDF compressor with the 1MB target already selected for job portals, school forms, email attachments, admin portals, and PDF must be under 1MB errors. Files stay in the browser for ordinary compression. Before download, visitors can send a public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist without uploading the private PDF.",
+                                  "category":  "utilities",
+                                  "category_label":  "Utilities",
+                                  "maker_name":  "PrintableTools Lab",
+                                  "maker_url":  "https://printable-tools-lab.pages.dev/",
+                                  "logo_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                                  "upvotes":  0,
+                                  "featured":  false,
+                                  "submitted_by":  "Codex traffic acquisition run 2026-06-08 pre-download PDF upload fix path",
+                                  "launch_date":  "2026-06-08",
+                                  "created_at":  "2026-06-08T15:44:28Z",
+                                  "share_url":  "https://techtools.cz/tools/launchpad/?tool=175"
+                              },
+                     "share_url":  "https://techtools.cz/tools/launchpad/?tool=175"
+                 },
+    "shareUrl":  "https://techtools.cz/tools/launchpad/?tool=175",
+    "evidenceApiUrl":  "https://techtools.cz/launchpad-api/tools/175"
+}

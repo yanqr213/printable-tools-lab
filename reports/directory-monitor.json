@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-08T14:49:46.639Z",
+  "generatedAt": "2026-06-08T15:46:28.507Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 13,
-  "pendingCount": 12,
+  "listedCount": 15,
+  "pendingCount": 11,
   "errorCount": 1,
   "results": [
     {
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 117806,
+          "bytes": 117825,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 117806,
+          "bytes": 117825,
           "matched": false
         }
       ]
@@ -78,7 +78,7 @@
           "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
           "ok": true,
           "status": 200,
-          "bytes": 89351,
+          "bytes": 89957,
           "matched": true
         }
       ]
@@ -255,6 +255,28 @@
           "ok": true,
           "status": 200,
           "bytes": 1308,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad PDF under 1MB upload fix listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=175",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/175",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "PDF Under 1MB Upload Fix"
+      ],
+      "submittedAt": "2026-06-08",
+      "reviewWindow": "auto-approved API listing for the tool-level pre-download upload fix path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/175",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/175",
+          "ok": true,
+          "status": 200,
+          "bytes": 1347,
           "matched": true
         }
       ]
@@ -557,8 +579,8 @@
       ],
       "submittedAt": "2026-06-08",
       "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-upload-error-cheatsheet",
-      "status": "pending",
-      "evidenceUrl": "",
+      "status": "listed",
+      "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet",
       "checked": [
         {
           "url": "https://nologin.tools/?q=Upload+Error+Cheatsheet",
@@ -569,10 +591,10 @@
         },
         {
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet",
-          "ok": false,
-          "status": 404,
-          "bytes": 10724,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 45243,
+          "matched": true
         }
       ]
     },
@@ -687,7 +709,7 @@
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 299262,
+          "bytes": 299261,
           "matched": true
         },
         {

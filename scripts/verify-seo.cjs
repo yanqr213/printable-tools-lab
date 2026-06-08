@@ -597,6 +597,12 @@ else {
   const report = fs.readFileSync(techtoolsPdf1mbReportFile, "utf8");
   if (!report.includes("https://techtools.cz/tools/launchpad/?tool=174") || !report.includes("pdf_1mb_2026_06")) failures.push("TechTools compress PDF to 1MB submission report missing live evidence.");
 }
+const techtoolsPdf1mbToolFixReportFile = path.join(root, "reports", "techtools-pdf-under-1mb-tool-fix-submit.json");
+if (!fs.existsSync(techtoolsPdf1mbToolFixReportFile)) failures.push("Missing TechTools PDF under 1MB tool-fix submission evidence report.");
+else {
+  const report = fs.readFileSync(techtoolsPdf1mbToolFixReportFile, "utf8");
+  if (!report.includes("https://techtools.cz/tools/launchpad/?tool=175") || !report.includes("pdf_1mb_tool_fix_2026_06") || !report.includes("compress_pdf_tool_target_1mb")) failures.push("TechTools PDF under 1MB tool-fix submission report missing live evidence.");
+}
 const sponsorPublicRepliesFunctionFile = path.join(root, "functions", "api", "sponsor-public-replies.js");
 if (!fs.existsSync(sponsorPublicRepliesFunctionFile)) failures.push("Missing sponsor public replies API function.");
 else {
@@ -1014,6 +1020,7 @@ else {
   if (!html.includes("TechTools Upload Limit Fix Plan") || !html.includes("https://techtools.cz/tools/launchpad/?tool=172")) failures.push("Directory submission pack missing upload limit fix plan live listing.");
   if (!html.includes("TechTools Upload Error Cheatsheet") || !html.includes("https://techtools.cz/tools/launchpad/?tool=173")) failures.push("Directory submission pack missing upload error cheatsheet live listing.");
   if (!html.includes("TechTools Compress PDF to 1MB") || !html.includes("https://techtools.cz/tools/launchpad/?tool=174")) failures.push("Directory submission pack missing compress PDF to 1MB live listing.");
+  if (!html.includes("TechTools PDF Under 1MB Upload Fix") || !html.includes("https://techtools.cz/tools/launchpad/?tool=175")) failures.push("Directory submission pack missing PDF under 1MB upload fix live listing.");
   if (!html.includes("NoLogin.tools Upload Error Cheatsheet") || !html.includes("https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet")) failures.push("Directory submission pack missing NoLogin upload error cheatsheet submission.");
   if (!html.includes("NoSignupTools Upload Limit Fixer") || !html.includes("https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools upload limit fixer submission.");
   if (!html.includes("NoSignupTools Upload Error Cheatsheet") || !html.includes("https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools upload error cheatsheet submission.");
