@@ -7259,9 +7259,6 @@
     const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
     const serviceType = values.serviceType || "custom-local-print-pack";
     const titlePrefix = serviceType === "market-table-print-audit" ? "Audit request" : serviceType === "local-seller-starter-kit" ? "Seller kit request" : "Service request";
-    if (serviceType === "invoice-followup-copy-pack") url.searchParams.set("template", "invoice-followup-copy-pack-service.yml");
-    if (serviceType === "custom-local-print-pack") url.searchParams.set("template", "custom-local-print-pack-service.yml");
-    if (serviceType === "market-table-print-audit") url.searchParams.set("template", "market-table-print-audit.yml");
     url.searchParams.set("title", `${titlePrefix}: ${serviceLeadTitle(serviceType)}`);
     url.searchParams.set("body", serviceLeadPublicIssueText(values));
     url.searchParams.set("labels", "service-request,business-review");

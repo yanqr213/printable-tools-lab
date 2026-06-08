@@ -494,8 +494,10 @@ function serviceLeadTrackTool(serviceType) {
   return CUSTOM_LOCAL_PRINT_PACK_SERVICE.id;
 }
 
-function serviceLeadFallbackText(serviceType, pathName) {
+function serviceLeadFallbackText(serviceType, pathName, options = {}) {
   const sourcePath = pathName === "/" ? "" : (pathName || serviceType);
+  const requestSummary = String(options.requestSummary || "").trim();
+  const requestedNextStep = String(options.requestedNextStep || "").trim() || "Request service fit review";
   return [
     "Public-safe service request.",
     "",
@@ -504,21 +506,22 @@ function serviceLeadFallbackText(serviceType, pathName) {
     "Public contact: add only if you want it visible in a public GitHub issue",
     "Need-by / timeline:",
     `Source path: ${siteUrl(sourcePath)}`,
+    `Requested next step: ${requestedNextStep}`,
     "",
     "Request note:",
-    "",
+    requestSummary,
     "Do not include payment, tax, bank, phone, identity, password, customer-list, or private file data in this public issue.",
   ].join("\n");
 }
 
-function serviceLeadFallbackUrl(serviceType, pathName) {
+function serviceLeadFallbackUrl(serviceTypeOrOptions, pathName) {
+  const input = typeof serviceTypeOrOptions === "object" && serviceTypeOrOptions ? serviceTypeOrOptions : {};
+  const serviceType = input.serviceType || serviceTypeOrOptions;
+  const sourcePath = input.pathName || input.path || pathName;
   const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
   const titlePrefix = serviceType === "market-table-print-audit" ? "Audit request" : serviceType === "local-seller-starter-kit" ? "Seller kit request" : "Service request";
-  if (serviceType === "invoice-followup-copy-pack") url.searchParams.set("template", "invoice-followup-copy-pack-service.yml");
-  if (serviceType === "custom-local-print-pack") url.searchParams.set("template", "custom-local-print-pack-service.yml");
-  if (serviceType === "market-table-print-audit") url.searchParams.set("template", "market-table-print-audit.yml");
   url.searchParams.set("title", `${titlePrefix}: ${serviceLeadTitle(serviceType)}`);
-  url.searchParams.set("body", serviceLeadFallbackText(serviceType, pathName));
+  url.searchParams.set("body", serviceLeadFallbackText(serviceType, sourcePath, input));
   url.searchParams.set("labels", "service-request,business-review");
   return url.toString();
 }
@@ -526,7 +529,11 @@ function serviceLeadFallbackUrl(serviceType, pathName) {
 function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, pathName, defaultSummary = "" }) {
   const eventName = serviceLeadTrackEvent(serviceType);
   const tool = serviceLeadTrackTool(serviceType);
-  const fallbackUrl = serviceLeadFallbackUrl(serviceType, pathName || serviceType);
+  const fallbackUrl = serviceLeadFallbackUrl({
+    serviceType,
+    pathName: pathName || serviceType,
+    requestSummary: defaultSummary,
+  });
   return `<section class="shell section service-lead-section" id="service-request">
         <div class="grid-2">
           <div>
@@ -6401,7 +6408,11 @@ function invoiceFollowupInlineLeadFormHtml(options = {}) {
   const submitLabel = options.submitLabel || "Send invoice fit check";
   const className = options.className || "invoice-inline-lead-form";
   const requestSummary = "I need a $19 invoice follow-up copy pack for one workflow: polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording. No private invoice numbers, client names, bank details, tax IDs, legal dispute details, or customer lists included.";
-  const fallbackUrl = serviceLeadFallbackUrl("invoice-followup-copy-pack", pathName);
+  const fallbackUrl = serviceLeadFallbackUrl({
+    serviceType: "invoice-followup-copy-pack",
+    pathName,
+    requestSummary,
+  });
   return `<form class="panel form-grid service-lead-form ${escapeHtml(className)}" data-service-lead-form data-service-type="invoice-followup-copy-pack" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
           <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="serviceType" value="invoice-followup-copy-pack">
@@ -8403,10 +8414,19 @@ function checkoutCopy(product) {
   ].join("\n");
 }
 
+function invoiceFollowupHeroRequestSummary(service = INVOICE_FOLLOWUP_COPY_PACK_SERVICE) {
+  if (service.id !== INVOICE_FOLLOWUP_COPY_PACK_SERVICE.id) return "";
+  return "I need a $19 invoice follow-up copy pack for one workflow: polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording. No private invoice numbers, client names, bank details, tax IDs, legal dispute details, or customer lists included.";
+}
+
 function paidServiceHtml(service, options = {}) {
   const checkoutConfigured = Boolean(service.checkoutUrl);
   const emailUrl = serviceRequestEmailUrl(service);
-  const publicFitCheckUrl = serviceLeadFallbackUrl(service.id, service.slug);
+  const publicFitCheckUrl = serviceLeadFallbackUrl({
+    serviceType: service.id,
+    pathName: service.slug,
+    requestSummary: options.formDefaultSummary || invoiceFollowupHeroRequestSummary(service),
+  });
   const primaryServiceUrl = checkoutConfigured ? service.checkoutUrl : "#service-request";
   const primaryServiceText = checkoutConfigured ? `Buy for $${service.priceUsd}` : "Request free fit check";
   const primaryServiceEvent = checkoutConfigured ? "service_checkout_click" : "service_request_intent";
@@ -9242,7 +9262,11 @@ function landingPageHtml(page) {
     ? `\n${uploadLimitShortcutsHtml("Fast upload limit shortcuts", "If the error message names a file size, start with the matching target page instead of browsing every tool.")}`
     : "";
   const serviceLeadHtml = page.serviceLead ? `\n${serviceLeadFormHtml({ ...page.serviceLead, pathName: page.path })}` : "";
-  const servicePublicRequestHref = page.serviceLead ? serviceLeadFallbackUrl(page.serviceLead.serviceType, page.path) : "";
+  const servicePublicRequestHref = page.serviceLead ? serviceLeadFallbackUrl({
+    serviceType: page.serviceLead.serviceType,
+    pathName: page.path,
+    requestSummary: page.serviceLead.defaultSummary || "",
+  }) : "";
   const secondaryActionHtml = page.serviceLead
     ? `<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>`
     : `<a class="button secondary" href="/pdf-tool-finder/">Compare tools</a>`;

@@ -474,6 +474,7 @@ for (const page of [
     if (!html.includes(page.summary)) failures.push(`${page.pathName} missing prefilled fit-check request text.`);
     if (!html.includes("Open public-safe request") || !html.includes('data-service-lead-fallback-link')) failures.push(`${page.pathName} missing public-safe request CTA.`);
     if (!html.includes(`Source+path%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2F${page.sourcePath}%2F`)) failures.push(`${page.pathName} backup request should preserve landing page source path.`);
+    if (!html.includes("Request+note%3A") || !html.includes(page.summary.replace(/ /g, "+"))) failures.push(`${page.pathName} public-safe request should prefill the request note.`);
     if (html.includes("/ops/") || html.includes("market-table-print-audit") || html.includes("custom-local-print-pack")) failures.push(`${page.pathName} should stay focused and not expose ops or print-pack CTAs.`);
   }
   if (!sitemap.includes(`<loc>${siteUrl(page.pathName)}</loc>`)) failures.push(`Sitemap missing high-intent invoice follow-up landing page: ${page.pathName}`);
@@ -1278,7 +1279,7 @@ else {
     if (html.includes(retiredInvoiceCopy)) failures.push(`Invoice follow-up route should not include custom print-pack request copy: ${retiredInvoiceCopy}`);
   }
   if (!html.includes("real external checkout") || !html.includes("No payment is collected")) failures.push("Invoice follow-up route missing external-payment gate.");
-  if (!html.includes("invoice-followup-copy-pack-service.yml") || !html.includes("service-request%2Cbusiness-review")) failures.push("Invoice follow-up route missing public-safe service request issue fallback.");
+  if (!html.includes("Request+note%3A") || !html.includes("I+need+a+%2419+invoice+follow-up+copy+pack") || !html.includes("service-request%2Cbusiness-review")) failures.push("Invoice follow-up route missing complete public-safe service request issue fallback.");
   if (!html.includes("not legal, tax, accounting, debt-collection, or financial advice")) failures.push("Invoice follow-up route missing advice-risk boundary.");
   if (!sitemap.includes(`<loc>${siteUrl(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug)}</loc>`)) failures.push("Sitemap should include invoice follow-up service route.");
 }
