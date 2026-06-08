@@ -658,8 +658,8 @@ function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, path
             <input type="hidden" name="utmCampaign" value="${escapeHtml(campaign)}">
             <input type="hidden" name="utmContent" value="${escapeHtml(content)}">
             <label class="field">
-              <span>Email or public contact link</span>
-              <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
+              <span>Reply email, @handle, or public contact URL</span>
+              <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com, @publichandle, or https://example.com/contact" required>
             </label>
             <label class="field">
               <span>Business or project (optional)</span>
@@ -6790,8 +6790,8 @@ function invoiceFollowupInlineLeadFormHtml(options = {}) {
           <input type="hidden" name="utmContent" value="${escapeHtml(utmContent)}">
           ${requestSummaryField}
           <label class="field">
-            <span>Email or public contact link</span>
-            <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
+            <span>Reply email, @handle, or public contact URL</span>
+            <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com, @publichandle, or https://example.com/contact" required>
           </label>
           <label class="field">
             <span>Need-by date (optional)</span>
@@ -6850,8 +6850,8 @@ function uploadLimitFixPlanInlineLeadFormHtml(options = {}) {
           <input type="hidden" name="utmContent" value="${escapeHtml(utmContent)}">
           ${requestSummaryField}${extraNote}
           <label class="field">
-            <span>Email or public contact link</span>
-            <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
+            <span>Reply email, @handle, or public contact URL</span>
+            <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com, @publichandle, or https://example.com/contact" required>
           </label>
           ${needByField}
           <label class="check-row">

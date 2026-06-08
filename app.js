@@ -7921,7 +7921,7 @@
       "",
       `Service: ${serviceLeadTitle(values.serviceType)}`,
       `Business or project: ${values.businessName || ""}`,
-      `Public contact or reply email: ${values.contact || ""}`,
+      `Reply email or public contact: ${values.contact || ""}`,
       `Need-by / timeline: ${values.needBy || ""}`,
       `Source path: ${absoluteUrl(values.path || getCurrentRoutePath())}`,
       "",
@@ -15478,6 +15478,7 @@ ${paragraphs.join("\n")}
     const contact = form.querySelector('input[name="contact"]');
     if (!contact) return null;
     contact.dataset.serviceLeadContactInput = "true";
+    applyServiceLeadContactFieldCopy(form);
     const field = contact.closest(".field") || contact.parentElement;
     if (!field) return null;
     let cue = field.querySelector("[data-service-lead-contact-cue]");
@@ -15493,6 +15494,19 @@ ${paragraphs.join("\n")}
     contact.setAttribute("aria-describedby", Array.from(describedBy).join(" "));
     updateServiceLeadContactCue(form);
     return cue;
+  }
+
+  function applyServiceLeadContactFieldCopy(form) {
+    const contact = form.querySelector('input[name="contact"]');
+    if (!contact) return;
+    const field = contact.closest(".field") || contact.parentElement;
+    const labelText = field?.querySelector("span");
+    if (labelText && /email or public contact link/i.test(labelText.textContent || "")) {
+      labelText.textContent = "Reply email, @handle, or public contact URL";
+    }
+    if (!contact.placeholder || /you@example\.com or https:\/\/example\.com\/contact/i.test(contact.placeholder)) {
+      contact.placeholder = "you@example.com, @publichandle, or https://example.com/contact";
+    }
   }
 
   function serviceLeadPriceHint(serviceType) {
@@ -15513,9 +15527,9 @@ ${paragraphs.join("\n")}
     const serviceType = form.dataset.serviceType || form.querySelector("[name='serviceType']")?.value || "custom-local-print-pack";
     const privatePath = serviceLeadPrivatePathLabel(serviceType);
     if (needed) {
-      return `Add one reply email or public handle, then press Send again for the ${privatePath}. No payment is collected here.`;
+      return `Add one reply email, @handle, or public contact URL, then press Send again for the ${privatePath}. No payment is collected here.`;
     }
-    return `One reply email or public handle unlocks the ${privatePath}. No payment is collected here.`;
+    return `One reply email, @handle, or public contact URL unlocks the ${privatePath}. No payment is collected here.`;
   }
 
   function updateServiceLeadContactCue(form) {
@@ -15632,14 +15646,14 @@ ${paragraphs.join("\n")}
     const noContactFallback = options.reason === "no-contact";
     const privatePath = serviceLeadPrivatePathLabel(serviceType);
     const intro = noContactFallback
-      ? `No contact was added here, so nothing private is stored on this site. To get the ${privatePath}, add one reply email or public handle above and send again. Use the public-safe GitHub request only if public contact is acceptable.`
+      ? `The paid request is one field away. Add one reply email, @handle, or public contact URL above, then press Send again for the ${privatePath}. Use the public-safe GitHub request only if public contact is acceptable.`
       : "Lead storage is temporarily limited, so open the public-safe GitHub request or copy this text before leaving the page.";
     panel.innerHTML = `
-      <p><strong>${noContactFallback ? "Public-safe request ready." : "Backup request ready."}</strong> ${escapeHtml(intro)}</p>
+      <p><strong>${noContactFallback ? "One reply contact needed." : "Backup request ready."}</strong> ${escapeHtml(intro)}</p>
       <textarea class="request-copy-output service-lead-fallback-output" readonly>${escapeHtml(text)}</textarea>
       <div class="actions">
-        ${noContactFallback ? `<button class="button secondary" type="button" data-service-lead-focus-contact>Add reply contact</button>` : ""}
-        ${replyUrl ? `<a class="button" data-track-event="${escapeHtml(serviceLeadTrackEvent(serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(serviceType))}" href="${escapeHtml(replyUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>` : ""}
+        ${noContactFallback ? `<button class="button" type="button" data-service-lead-focus-contact>Add reply contact</button>` : ""}
+        ${replyUrl ? `<a class="button ghost" data-track-event="${escapeHtml(serviceLeadTrackEvent(serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(serviceType))}" href="${escapeHtml(replyUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>` : ""}
         <button class="button" type="button" data-copy-text="${escapeHtml(text)}">${noContactFallback ? "Copy public-safe request" : "Copy backup request"}</button>
       </div>
     `;
@@ -15670,7 +15684,7 @@ ${paragraphs.join("\n")}
       renderServiceLeadFallback(form, publicValues, "", { reason: "no-contact" });
       focusServiceLeadContactField(form);
       track(serviceLeadTrackEvent(values.serviceType), { tool: serviceLeadTrackTool(values.serviceType), fallback: "public-safe-no-contact" });
-      setStatus(`Use Add reply contact, then send again for the ${serviceLeadPrivatePathLabel(values.serviceType)}. The public-safe request below is only for public contact.`, "error");
+      setStatus(`Add one reply email, @handle, or public contact URL, then send again for the ${serviceLeadPrivatePathLabel(values.serviceType)}.`, "error");
       return;
     }
     setStatus("Sending request...", "pending");
@@ -16445,7 +16459,7 @@ ${paragraphs.join("\n")}
       const form = serviceLeadFocus.closest("[data-service-lead-form]");
       const status = form ? form.querySelector("[data-service-lead-status]") : null;
       if (status) {
-        status.textContent = `Add one reply email or public handle, then press Send again for the ${serviceLeadPrivatePathLabel(form.dataset.serviceType)}.`;
+        status.textContent = `Add one reply email, @handle, or public contact URL, then press Send again for the ${serviceLeadPrivatePathLabel(form.dataset.serviceType)}.`;
         status.dataset.status = "pending";
       }
       focusServiceLeadContactField(form);

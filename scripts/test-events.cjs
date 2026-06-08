@@ -564,6 +564,10 @@ async function main() {
   assert(sellerMetrics.sponsorLeads === 1, "Metrics should expose real sponsor lead count");
   assert(sellerMetrics.sponsorInvoiceRequests === 1, "Metrics should expose sponsor invoice request count");
   assert(sellerMetrics.commercialIntent === 14, "Commercial intent should include checkout clicks, service intent, and sponsor invoice requests");
+  const sellerOpsMetrics = await (await opsMetricsSource.onRequestGet({ env })).json();
+  const sellerOpsPrintableProject = sellerOpsMetrics.projects.find((row) => row.id === "printable-tools-lab");
+  assert(sellerOpsPrintableProject.summary.serviceRequestIntent === 5, "Ops metrics should expose service and seller request intent separately from sponsor intent");
+  assert(sellerOpsMetrics.nextActions.some((action) => action.includes("Fresh service request intent today") && action.includes("external $9 or $19 checkout")), "Ops next actions should prioritize qualified service payment follow-up when service intent exists");
   assert(store.data.has(`sponsor:lead:${sponsorLeadPayload.id}`), "Sponsor lead should be stored privately in KV");
   const storedSponsorLead = JSON.parse(store.data.get(`sponsor:lead:${sponsorLeadPayload.id}`));
   assert(storedSponsorLead.source === "sponsor-outreach", "Sponsor lead should canonicalize sponsor-call into sponsor-outreach source metrics");
@@ -788,6 +792,9 @@ async function main() {
   const serviceOpsMetrics = await (await opsMetricsSource.onRequestGet({ env: serviceEnv })).json();
   const servicePrintableProject = serviceOpsMetrics.projects.find((row) => row.id === "printable-tools-lab");
   assert(servicePrintableProject.summary.commercialIntent === 4, "Ops metrics should count service lead submissions in commercial intent");
+  assert(servicePrintableProject.summary.serviceRequestIntent === 3, "Ops metrics should separate paid service lead submissions from audit intent");
+  assert(servicePrintableProject.summary.auditRequestIntent === 1, "Ops metrics should separate audit lead submissions from paid service intent");
+  assert(servicePrintableProject.nextAction.includes("one-contact form"), "Ops project next action should prioritize closing service request intent into an external checkout path when no closer sponsor signal exists");
   assert(servicePrintableProject.tools.find((row) => row.tool === "custom-local-print-pack").service_request_intent === 1, "Ops metrics should count the custom service lead tool row");
   assert(servicePrintableProject.tools.find((row) => row.tool === "invoice-followup-copy-pack").service_request_intent === 1, "Ops metrics should count the invoice follow-up service lead tool row");
   assert(servicePrintableProject.paths.find((row) => row.path === "/tools/invoice-generator/").service_request_intent === 1, "Ops metrics should count invoice follow-up leads by source path");

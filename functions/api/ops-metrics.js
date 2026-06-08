@@ -157,6 +157,10 @@ function projectMetrics(project, today, combined) {
     todayDepthIntent: (todayTotals.free_tool_depth || 0) + (todayTotals.guide_depth || 0),
     commercialIntent: commercialIntent(totals),
     todayCommercialIntent: commercialIntent(todayTotals),
+    serviceRequestIntent: (totals.service_request_intent || 0) + (totals.seller_checkout_intent || 0),
+    todayServiceRequestIntent: (todayTotals.service_request_intent || 0) + (todayTotals.seller_checkout_intent || 0),
+    auditRequestIntent: totals.audit_request_intent || 0,
+    todayAuditRequestIntent: todayTotals.audit_request_intent || 0,
     sponsorLeads: project.id === "printable-tools-lab" ? (totals.sponsor_lead_submit || 0) : 0,
     todaySponsorLeads: project.id === "printable-tools-lab" ? (todayTotals.sponsor_lead_submit || 0) : 0,
     sponsorInvoiceRequests: project.id === "printable-tools-lab" ? (totals.sponsor_invoice_request || 0) : 0,
@@ -354,12 +358,17 @@ function opsNextActions(totals, todayTotals, projects) {
   const sponsorLeads = totals.sponsor_lead_submit || 0;
   const sponsorInvoices = totals.sponsor_invoice_request || 0;
   const sponsorIntent = totals.sponsor_request_intent || 0;
+  const serviceIntent = (totals.service_request_intent || 0) + (totals.seller_checkout_intent || 0);
+  const todayServiceIntent = (todayTotals.service_request_intent || 0) + (todayTotals.seller_checkout_intent || 0);
+  const auditIntent = totals.audit_request_intent || 0;
   const todayViews = todayTotals.page_view || 0;
   const downloads = (totals.download_pdf || 0) + (totals.download_file || 0);
   const gameProject = projects.find((project) => project.id === "pocket-arcade-shelf");
   if (sponsorInvoices > 0) actions.push("Export private sponsor leads and send only a real external invoice or agreement after policy review.");
   else if (sponsorLeads > 0) actions.push("Reply to qualified sponsor leads with the selected pilot deal and do not count revenue until agreement or settled payment.");
-  else if (sponsorIntent > 0) actions.push("Sponsor clicks exist without lead capture; send the starter review proposal to the highest-fit sponsor prospects.");
+  if (serviceIntent > 0) actions.push(`${todayServiceIntent > 0 ? "Fresh service request intent today" : "Service request intent exists"}; keep the one-reply-contact path primary, then send the matching external $9 or $19 checkout only after a qualified reply.`);
+  else if (auditIntent > 0) actions.push("Audit intent exists; reply with the free audit first, then offer the external $29 custom print pack only after fit is clear.");
+  if (sponsorInvoices === 0 && sponsorLeads === 0 && sponsorIntent > 0) actions.push("Sponsor clicks exist without lead capture; send the starter review proposal to the highest-fit sponsor prospects.");
   else if (downloads > 0 || todayViews >= 50) actions.push("Traffic exists; push one sponsor vertical tied to the warmest PDF, QR, resume, or paperwork path.");
   if (gameProject?.summary?.gamePlayIntent > 0) actions.push("Game play intent exists; continue platform submission and monitor embed/fullscreen rows for revenue-share readiness.");
   if (!actions.length) actions.push("Keep distribution running and watch for the first download, sponsor intent, game play, or search signal.");
@@ -374,6 +383,8 @@ function projectNextAction(project, summary) {
   }
   if (summary.todaySponsorInvoiceRequests || summary.sponsorInvoiceRequests) return "Invoice request present: export private sponsor lead details and move only external agreement or settled payment into revenue.";
   if (summary.todaySponsorLeads || summary.sponsorLeads) return "Sponsor lead present: review fit, reply with the selected deal, and keep unsafe categories out.";
+  if (summary.todayServiceRequestIntent || summary.serviceRequestIntent) return "Service request intent exists: keep the one-contact form primary and send the external $9 or $19 checkout only after a qualified reply.";
+  if (summary.todayAuditRequestIntent || summary.auditRequestIntent) return "Audit intent exists: deliver the free audit path, then offer the external $29 setup only after fit is clear.";
   if (summary.todayCommercialIntent || summary.commercialIntent) return "Commercial intent exists: route warm sponsor clicks into the USD 49 starter review path.";
   if (summary.todayDownloads || summary.downloads) return "Downloads exist: pitch sponsors around the warmest utility family while search and ad gates mature.";
   if (summary.todayPageViews || summary.pageViews) return "Traffic exists but conversion is thin: test one targeted sponsor proposal against the warmest page family.";

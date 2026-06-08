@@ -83,13 +83,10 @@
           <input type="hidden" name="utmContent" value="service-page-micro">
           <input type="hidden" name="requestSummary" value="I need a $9 Upload Limit Fix Plan for one rejected file upload: best free tool, target settings, fallback steps, and a review checklist. No file upload, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included." data-upload-fix-plan-summary>
           <label class="field">
-            <span>Email or public contact link</span>
-            <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
+            <span>Reply email, @handle, or public contact URL</span>
+            <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com, @publichandle, or https://example.com/contact" required>
           </label>
-          <label class="field">
-            <span>Need-by time (optional)</span>
-            <input name="needBy" maxlength="80" placeholder="Today, tomorrow morning, or before the portal deadline">
-          </label>
+          <input type="hidden" name="needBy" value="">
           <label class="check-row">
             <input name="consent" type="checkbox" checked required>
             <span>I will not upload or paste the actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details.</span>
@@ -114,12 +111,16 @@
               <li>Do not send payment, tax, bank, identity, password, customer-list, or private file data.</li>
             </ul>
           </div>
-          <form class="panel form-grid service-lead-form" data-service-lead-form data-service-type="upload-limit-fix-plan" data-service-fallback-url="https://github.com/yanqr213/printable-tools-lab/issues/new?title=Service+request%3A+Upload+Limit+Fix+Plan&amp;body=Public-safe+service+request.%0A%0AService%3A+Upload+Limit+Fix+Plan%0ABusiness+or+project%3A%0APublic+contact%3A+add+only+if+you+want+it+visible+in+a+public+GitHub+issue%0ANeed-by+%2F+timeline%3A%0ASource+path%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fupload-limit-fix-plan%2F%0ARequested+next+step%3A+Request+service+fit+review%0A%0ARequest+note%3A%0AI+need+a+%249+Upload+Limit+Fix+Plan+for+one+rejected+file+upload%3A+best+free+tool%2C+target+settings%2C+fallback+steps%2C+and+a+review+checklist.+No+file+upload%2C+private+document%2C+ID+photo%2C+resume%2C+portal+login%2C+bank+details%2C+tax+IDs%2C+or+private+account+data+included.%0ADo+not+include+payment%2C+tax%2C+bank%2C+phone%2C+identity%2C+password%2C+customer-list%2C+or+private+file+data+in+this+public+issue.&amp;labels=service-request%2Cbusiness-review">
+          <form class="panel form-grid service-lead-form" data-service-lead-form data-service-type="upload-limit-fix-plan" data-lead-path="/upload-limit-fix-plan/" data-utm-source="landing-page" data-utm-medium="site" data-utm-campaign="upload_limit_fix_plan" data-utm-content="upload-limit-fix-plan-service-request" data-service-fallback-url="https://github.com/yanqr213/printable-tools-lab/issues/new?title=Service+request%3A+Upload+Limit+Fix+Plan&amp;body=Public-safe+service+request.%0A%0AService%3A+Upload+Limit+Fix+Plan%0ABusiness+or+project%3A%0APublic+contact%3A+add+only+if+you+want+it+visible+in+a+public+GitHub+issue%0ANeed-by+%2F+timeline%3A%0ASource+path%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fupload-limit-fix-plan%2F%0ARequested+next+step%3A+Request+service+fit+review%0A%0ARequest+note%3A%0AI+need+a+%249+Upload+Limit+Fix+Plan+for+one+rejected+file+upload%3A+best+free+tool%2C+target+settings%2C+fallback+steps%2C+and+a+review+checklist.+No+file+upload%2C+private+document%2C+ID+photo%2C+resume%2C+portal+login%2C+bank+details%2C+tax+IDs%2C+or+private+account+data+included.%0ADo+not+include+payment%2C+tax%2C+bank%2C+phone%2C+identity%2C+password%2C+customer-list%2C+or+private+file+data+in+this+public+issue.&amp;labels=service-request%2Cbusiness-review">
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
+            <input type="hidden" name="utmSource" value="landing-page">
+            <input type="hidden" name="utmMedium" value="site">
+            <input type="hidden" name="utmCampaign" value="upload_limit_fix_plan">
+            <input type="hidden" name="utmContent" value="upload-limit-fix-plan-service-request">
             <label class="field">
-              <span>Email or public contact link</span>
-              <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
+              <span>Reply email, @handle, or public contact URL</span>
+              <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com, @publichandle, or https://example.com/contact" required>
             </label>
             <label class="field">
               <span>Business or project (optional)</span>
