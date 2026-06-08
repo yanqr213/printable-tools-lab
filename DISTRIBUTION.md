@@ -62,6 +62,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - NoLogin.tools Overdue Invoice Reminder listing: https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email?utm_source=nologin&utm_medium=directory&utm_campaign=overdue_invoice_2026_06&utm_content=overdue_invoice_reminder_email
 - NoLogin.tools Image Dimensions 600x600 Upload Fix listing: https://printable-tools-lab.pages.dev/image-dimensions-600x600?utm_source=nologin&utm_medium=directory&utm_campaign=image_dimensions_600x600_fix_2026_06&utm_content=image_dimensions_600x600_landing
 - NoLogin.tools PDF Not Accepted JPG Required Fix listing: https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required?utm_source=nologin&utm_medium=directory&utm_campaign=pdf_not_accepted_jpg_required_fix_2026_06&utm_content=pdf_to_jpg_required_landing
+- NoLogin.tools Email Attachment Too Large Fix listing: https://printable-tools-lab.pages.dev/email-attachment-too-large?utm_source=nologin&utm_medium=directory&utm_campaign=email_attachment_too_large_fix_2026_06&utm_content=email_attachment_too_large_landing
 - NoSubscription.org tracked upload-limit URL: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nosubscription&utm_medium=directory&utm_campaign=zero_cost_push
 - Share kit campaign: https://printable-tools-lab.pages.dev/share-kit?utm_source=share-kit&utm_medium=organic
 - Short-video campaign: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push
@@ -368,14 +369,14 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - FreeNoSignup Upload Error Cheatsheet submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
 - NoSignupTools Overdue Invoice Reminder Email submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
 - FreeNoSignup Overdue Invoice Reminder Email submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
-- NoLogin.tools free no-login/privacy tool submission; submitted on 2026-06-03 and awaiting human review
-- NoLogin.tools Upload Limit Fixer high-intent submission; submitted on 2026-06-06 with slug printable-tools-lab-pages-dev-upload-limit-fixer and awaiting human review
-- NoLogin.tools Upload Error Cheatsheet submission; submitted on 2026-06-08 with slug printable-tools-lab-pages-dev-upload-error-cheatsheet and awaiting human review
-- NoLogin.tools Invoice Follow-up Email Generator submission; submitted on 2026-06-08 with slug printable-tools-lab-pages-dev-tools-invoice-followup-email and awaiting human review
-- NoLogin.tools Overdue Invoice Reminder Email submission; submitted on 2026-06-08 with slug printable-tools-lab-pages-dev-overdue-invoice-reminder-email and awaiting human review
+- NoLogin.tools free no-login/privacy tool submission; submitted on 2026-06-03 and monitoring confirms live at https://nologin.tools/tool/printable-tools-lab-pages-dev
+- NoLogin.tools Upload Limit Fixer high-intent submission; submitted on 2026-06-06 and monitoring confirms live at https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer
+- NoLogin.tools Upload Error Cheatsheet submission; submitted on 2026-06-08 and monitoring confirms live at https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet
+- NoLogin.tools Invoice Follow-up Email Generator submission; submitted on 2026-06-08 and monitoring confirms live at https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-invoice-followup-email
+- NoLogin.tools Overdue Invoice Reminder Email submission; submitted on 2026-06-08 and monitoring confirms live at https://nologin.tools/tool/printable-tools-lab-pages-dev-overdue-invoice-reminder-email
 - NoLogin.tools Image Dimensions 600x600 Upload Fix submission; submitted on 2026-06-09 with slug printable-tools-lab-pages-dev-image-dimensions-600x600 and awaiting human review
 - NoLogin.tools PDF Not Accepted JPG Required Fix submission; submitted on 2026-06-09 with slug printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required and awaiting human review
-- NoLogin.tools Email Attachment Too Large Fix submission; rate-limited on 2026-06-09 by the public API daily limit and pending retry after the 24 hour window
+- NoLogin.tools Email Attachment Too Large Fix submission; submitted on 2026-06-09 with slug printable-tools-lab-pages-dev-email-attachment-too-large and awaiting human review
 - NoSubscription.org free/open-source track; submitted on 2026-06-03 and awaiting slow review
 - FOSSHUNTER/open-source directories only when a normal public submit flow is available; do not bypass Cloudflare challenges or submit to directories that prohibit future ads/analytics
 - Reddit communities only when rules allow self-promotion and the tool directly solves a request

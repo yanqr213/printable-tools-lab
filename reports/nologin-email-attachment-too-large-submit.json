@@ -1,0 +1,60 @@
+{
+  "generatedAt": "2026-06-08T22:28:28.872Z",
+  "endpoint": "https://nologin.tools/api/submit",
+  "status": 201,
+  "ok": true,
+  "preSubmitCheck": {
+    "checkedAt": "2026-06-08T22:28:27.177Z",
+    "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-email-attachment-too-large",
+    "ok": false,
+    "status": 404,
+    "matched": false,
+    "bytes": 10717
+  },
+  "payload": {
+    "name": "Email Attachment Too Large Fix",
+    "url": "https://printable-tools-lab.pages.dev/email-attachment-too-large/?utm_source=nologin&utm_medium=directory&utm_campaign=email_attachment_too_large_fix_2026_06&utm_content=email_attachment_too_large_landing",
+    "description": "Free no-signup PDF and image attachment-size fix for Gmail, Outlook, webmail, and inbox size errors. It points to browser-based PDF compression and image-to-KB tools. Optional USD 9 fit checks use public-safe error text only.",
+    "pledge": true,
+    "coreTask": "Reduce a PDF or image attachment before emailing it without creating an account.",
+    "submitterEmail": "",
+    "repoUrl": "",
+    "twitterUrl": "",
+    "githubUrl": "",
+    "discordUrl": "",
+    "tags": [
+      {
+        "key": "category",
+        "value": "Productivity"
+      },
+      {
+        "key": "data",
+        "value": "Client-Side Only"
+      },
+      {
+        "key": "privacy",
+        "value": "Privacy Focused"
+      },
+      {
+        "key": "type",
+        "value": "Web App"
+      },
+      {
+        "key": "pricing",
+        "value": "Free"
+      }
+    ]
+  },
+  "response": {
+    "ok": true,
+    "data": {
+      "slug": "printable-tools-lab-pages-dev-email-attachment-too-large"
+    }
+  },
+  "reviewUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-email-attachment-too-large",
+  "postSubmitCheck": {
+    "checkedAt": "2026-06-08T22:28:28.648Z",
+    "status": 404,
+    "result": "accepted_by_api_pending_public_review"
+  }
+}

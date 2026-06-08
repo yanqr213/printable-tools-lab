@@ -344,6 +344,14 @@ const directories = [
     reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required",
   },
   {
+    name: "NoLogin.tools email attachment too large fix listing",
+    url: "https://nologin.tools/tool/printable-tools-lab-pages-dev-email-attachment-too-large",
+    searchUrl: "https://nologin.tools/?q=Email+Attachment+Too+Large+Fix",
+    expected: [siteHost, "Email Attachment Too Large Fix"],
+    submittedAt: "2026-06-09",
+    reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev-email-attachment-too-large",
+  },
+  {
     name: "NoSubscription.org",
     url: "https://nosubscription.org/",
     searchUrl: "https://nosubscription.org/?s=PrintableTools+Lab",
