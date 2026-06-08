@@ -80,6 +80,14 @@ const directories = [
     reviewWindow: "24-48 hours",
   },
   {
+    name: "NoSignupTools overdue invoice reminder listing",
+    url: "https://nosignuptools.com/tools/overdue-invoice-reminder-email-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Overdue+Invoice+Reminder+Email",
+    expected: [siteHost, "Overdue Invoice Reminder Email"],
+    submittedAt: "2026-06-08",
+    reviewWindow: "24-48 hour manual review after public API success response",
+  },
+  {
     name: "FreeNoSignup",
     url: "https://freenosignup.com/",
     searchUrl: "https://freenosignup.com/?s=PrintableTools+Lab",
