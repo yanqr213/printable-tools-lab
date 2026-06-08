@@ -6284,7 +6284,13 @@ function homeInvoiceFollowupCloseHtml() {
           <p>The free invoice generator stays free. If you want editable reminder, due-today, first-overdue, thank-you, and next-invoice wording for one workflow, send the 30-second fit check before any external checkout or invoice is sent.</p>
         </div>
         <div class="home-service-lead-panel">
-          ${homeInvoiceFollowupLeadFormHtml()}
+          ${invoiceFollowupInlineLeadFormHtml({
+            pathName: "/",
+            utmSource: "home",
+            utmContent: "homepage-inline",
+            submitLabel: "Send homepage fit check",
+            className: "home-invoice-lead-form",
+          })}
           <div class="actions">
             <a class="button secondary" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="/invoice-followup-copy-pack/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=inline-secondary#service-request">Open full $19 service page</a>
             <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="invoice-followup-email" href="/tools/invoice-followup-email/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_tool&utm_content=close-band">Write one free follow-up first</a>
@@ -6293,16 +6299,23 @@ function homeInvoiceFollowupCloseHtml() {
       </section>`;
 }
 
-function homeInvoiceFollowupLeadFormHtml() {
+function invoiceFollowupInlineLeadFormHtml(options = {}) {
+  const pathName = options.pathName || "/";
+  const utmSource = options.utmSource || "tool_cta";
+  const utmMedium = options.utmMedium || "site";
+  const utmCampaign = options.utmCampaign || "invoice_followup_service";
+  const utmContent = options.utmContent || "invoice-inline";
+  const submitLabel = options.submitLabel || "Send invoice fit check";
+  const className = options.className || "invoice-inline-lead-form";
   const requestSummary = "I need a $19 invoice follow-up copy pack for one workflow: polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording. No private invoice numbers, client names, bank details, tax IDs, legal dispute details, or customer lists included.";
-  const fallbackUrl = serviceLeadFallbackUrl("invoice-followup-copy-pack", "/");
-  return `<form class="panel form-grid service-lead-form home-invoice-lead-form" data-service-lead-form data-service-type="invoice-followup-copy-pack" data-lead-path="/" data-utm-source="home" data-utm-medium="site" data-utm-campaign="invoice_followup_service" data-utm-content="homepage-inline" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+  const fallbackUrl = serviceLeadFallbackUrl("invoice-followup-copy-pack", pathName);
+  return `<form class="panel form-grid service-lead-form ${escapeHtml(className)}" data-service-lead-form data-service-type="invoice-followup-copy-pack" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
           <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="serviceType" value="invoice-followup-copy-pack">
-          <input type="hidden" name="utmSource" value="home">
-          <input type="hidden" name="utmMedium" value="site">
-          <input type="hidden" name="utmCampaign" value="invoice_followup_service">
-          <input type="hidden" name="utmContent" value="homepage-inline">
+          <input type="hidden" name="utmSource" value="${escapeHtml(utmSource)}">
+          <input type="hidden" name="utmMedium" value="${escapeHtml(utmMedium)}">
+          <input type="hidden" name="utmCampaign" value="${escapeHtml(utmCampaign)}">
+          <input type="hidden" name="utmContent" value="${escapeHtml(utmContent)}">
           <label class="field">
             <span>Email or public contact link</span>
             <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
@@ -6320,7 +6333,7 @@ function homeInvoiceFollowupLeadFormHtml() {
             <span>I will keep payment, tax, identity, passwords, customer lists, and private invoice details outside this form.</span>
           </label>
           <div class="actions">
-            <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack">Send homepage fit check</button>
+            <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack">${escapeHtml(submitLabel)}</button>
             <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open GitHub backup</a>
           </div>
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send this public-safe fit check. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
@@ -7399,6 +7412,13 @@ function serviceUpgradeCtaHtml(tool) {
     const serviceHref = `/${INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug}/?utm_source=tool_cta&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=${encodeURIComponent(toolSlug)}#service-request`;
     const invoiceHref = `/tools/invoice-generator/?utm_source=tool_cta&utm_medium=site&utm_campaign=invoice_followup_tool&utm_content=${encodeURIComponent(toolSlug)}`;
     const followupHref = `/tools/invoice-followup-email/?utm_source=tool_cta&utm_medium=site&utm_campaign=invoice_followup_tool&utm_content=${encodeURIComponent(toolSlug)}`;
+    const inlineForm = invoiceFollowupInlineLeadFormHtml({
+      pathName: `/${tool.path}/`,
+      utmSource: "tool_cta",
+      utmContent: `${toolSlug}-inline`,
+      submitLabel: "Send invoice fit check",
+      className: "tool-invoice-lead-form",
+    });
     const localSellerActions = tool.path === "tools/invoice-generator"
       ? [
         `<a class="button secondary" data-track-event="service_request_intent" data-track-tool="${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.id)}" href="/${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}/?utm_source=tool_cta&utm_medium=site&utm_campaign=service_request&utm_content=${encodeURIComponent(toolSlug)}">Start free fit check</a>`,
@@ -7419,8 +7439,11 @@ function serviceUpgradeCtaHtml(tool) {
           <h2>Want the full invoice follow-up sequence written for you?</h2>
           <p>The free invoice tools stay free. Send a free fit check for the $${INVOICE_FOLLOWUP_COPY_PACK_SERVICE.priceUsd} ${escapeHtml(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.name)} if you want a polished reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice note prepared for one workflow.</p>
         </div>
-        <div class="free-tool-depth-actions">
+        <div class="home-service-lead-panel">
+          ${inlineForm}
+          <div class="actions">
           ${invoiceActions}
+          </div>
         </div>
       </section>`;
   }

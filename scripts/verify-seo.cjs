@@ -417,6 +417,7 @@ for (const toolPath of ["tools/invoice-generator", "tools/price-tag", "tools/fly
   if (!html.includes("Future ads must stay separated from generator controls")) failures.push(`Missing ad-safety warning on funnel CTA: ${toolPath}`);
   if (!html.includes("Payment happens only through a real external checkout or invoice")) failures.push(`Local tool service CTA missing external-payment gate: ${toolPath}`);
   if (toolPath === "tools/invoice-generator") {
+    if (!html.includes("tool-invoice-lead-form") || !html.includes('data-lead-path="/tools/invoice-generator/"') || !html.includes('data-utm-content="invoice-generator-inline"') || !html.includes("Send invoice fit check")) failures.push("Invoice generator missing inline invoice follow-up fit-check form.");
     if (!html.includes("invoice-sponsor-close-cta") || !html.includes("Sponsor the free invoice workflow")) failures.push("Invoice generator missing sponsor close CTA.");
     if (!html.includes("utm_source=invoice_tool") || !html.includes("vertical=small-business-paperwork-sponsors") || !html.includes("commitment=request-invoice")) failures.push("Invoice sponsor close CTA missing tracked invoice sponsor review path.");
     if (!html.includes('data-track-event="sponsor_request_intent"') || !html.includes('data-track-tool="invoice-generator"')) failures.push("Invoice sponsor close CTA missing sponsor intent tracking.");

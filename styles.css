@@ -446,12 +446,14 @@ main {
   gap: 12px;
 }
 
-.home-invoice-lead-form {
+.home-invoice-lead-form,
+.tool-invoice-lead-form {
   align-self: stretch;
   background: #fff;
 }
 
-.home-invoice-lead-form textarea {
+.home-invoice-lead-form textarea,
+.tool-invoice-lead-form textarea {
   min-height: 118px;
 }
 
