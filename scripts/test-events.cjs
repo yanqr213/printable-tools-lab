@@ -64,7 +64,8 @@ async function main() {
   assert(metricsPayload.ok, "Metrics endpoint should respond");
   assert(store.getCount <= 1000, `Metrics endpoint should stay under Cloudflare KV read limits, got ${store.getCount}`);
   assert(metricsPayload.totals.download_pdf === 1, "Metrics should count downloads");
-  assert(metricsPayload.tools.length === 71, "Metrics should include every active tool plus monetization funnel rows");
+  assert(metricsPayload.tools.length === 72, "Metrics should include every active tool plus monetization funnel rows");
+  assert(metricsPayload.tools.some((row) => row.tool === "upload-limit-fix-plan"), "Metrics should include the upload limit fix plan funnel row");
   const invoice = metricsPayload.tools.find((row) => row.tool === "invoice-generator");
   assert(invoice.download_pdf === 1, "Metrics should count per-tool downloads");
   const noSignupTools = metricsPayload.sources.find((row) => row.source === "nosignuptools");

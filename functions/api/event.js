@@ -121,6 +121,7 @@ const ALLOWED_TOOLS = new Set([
   "local-seller-starter-kit",
   "custom-local-print-pack",
   "invoice-followup-copy-pack",
+  "upload-limit-fix-plan",
   "market-table-print-audit",
   "sponsor",
   "pocket-arcade-shelf",

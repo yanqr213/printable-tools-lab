@@ -72,6 +72,7 @@ const PRINTABLE_TOOLS = [
   "local-seller-starter-kit",
   "custom-local-print-pack",
   "invoice-followup-copy-pack",
+  "upload-limit-fix-plan",
   "market-table-print-audit",
   "sponsor",
 ];

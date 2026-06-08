@@ -33,6 +33,7 @@ const priorityMainUrls = [
   siteUrl("sponsor-call"),
   siteUrl("sponsor-deal-room"),
   siteUrl("invoice-followup-copy-pack"),
+  siteUrl("upload-limit-fix-plan"),
   siteUrl("tools/invoice-followup-email"),
   siteUrl("overdue-invoice-reminder-email"),
   siteUrl("polite-payment-reminder-email"),

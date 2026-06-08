@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENTS, SPONSOR_DISCOVERY_LINKS, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, sponsorCallPayload, sponsorOpportunityPayload, sponsorDealRoomPayload, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, serviceOrderPipeline, serviceOutreachQueue, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, siteUrl, tools, guides, landingPages } = require("./seo-content.cjs");
+const { HIGH_INTENT_TOOL_PATHS, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, UPLOAD_LIMIT_FIX_PLAN_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, ZERO_DOMAIN_GAME_EXPERIMENTS, SPONSOR_DISCOVERY_LINKS, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, sponsorCallPayload, sponsorOpportunityPayload, sponsorDealRoomPayload, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, serviceOrderPipeline, serviceOutreachQueue, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, siteUrl, tools, guides, landingPages } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const docsDir = path.join(root, "docs");
@@ -1275,8 +1275,25 @@ function auditLeadMagnetHtml() {
 }
 
 function serviceHtml(service) {
+  const isUploadLimitFix = service.id === "upload-limit-fix-plan";
   const isInvoiceFollowup = service.id === "invoice-followup-copy-pack";
-  const serviceFieldCopy = isInvoiceFollowup ? {
+  const serviceFieldCopy = isUploadLimitFix ? {
+    businessLabel: "Public-safe project label",
+    businessPlaceholder: "Job portal resume upload",
+    sellsLabel: "Upload error text",
+    sellsPlaceholder: "File must be less than 1 MB, or image dimensions must be 600 x 600 px",
+    itemsLabel: "File type and target rule",
+    itemsPlaceholder: "PDF resume, target under 1MB. Portal accepts PDF only. I do not need to share the actual resume.",
+    contactLabel: "What have you already tried?",
+    contactPlaceholder: "Tried reducing image quality once; still over the limit.",
+    styleLabel: "Blocked file type",
+    styleOptions: ["PDF", "JPG", "PNG", "screenshot", "resume PDF", "passport photo", "other"],
+    dateLabel: "Need-by time or deadline",
+    datePlaceholder: "Tomorrow morning or before the application deadline",
+    preferencePlaceholder: "Public email, website contact page, or GitHub issue reply",
+    notesPlaceholder: "Do not attach the file, ID photo, resume, private form, account login, tax ID, bank details, or portal credentials.",
+    deliverableDescription: "Editable troubleshooting steps the buyer runs on their own device.",
+  } : isInvoiceFollowup ? {
     businessLabel: "Business, client-work, or project name",
     businessPlaceholder: "Freelance design project",
     sellsLabel: "What kind of invoice follow-up do you need?",
@@ -1340,13 +1357,13 @@ function serviceHtml(service) {
   const actionLinks = [
     `<a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestUrl)}">Request free fit check</a>`,
     `<a class="button secondary" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(service.issueFormUrl)}">Open structured request form</a>`,
-    isInvoiceFollowup ? `<a class="button secondary" href="${pagesUrl("tools/invoice-generator")}">Open free invoice generator</a>` : `<a class="button secondary" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(MARKET_TABLE_PRINT_AUDIT.id)}" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Start with free audit</a>`,
+    isUploadLimitFix ? `<a class="button secondary" href="${pagesUrl("upload-limit-fixer")}">Open free upload limit fixer</a>` : isInvoiceFollowup ? `<a class="button secondary" href="${pagesUrl("tools/invoice-generator")}">Open free invoice generator</a>` : `<a class="button secondary" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(MARKET_TABLE_PRINT_AUDIT.id)}" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Start with free audit</a>`,
     `<a class="button secondary" href="${requestTemplateUrl}" download>Download service brief</a>`,
     requestEmailUrl ? `<a data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestEmailUrl)}">Email service request</a>` : "",
     `<a href="${orderPipelineUrl}">Open order pipeline</a>`,
     `<a href="${outreachBatchUrl}">Open outreach batch</a>`,
     `<a href="${sampleDeliveryUrl}">Download sample delivery</a>`,
-    isInvoiceFollowup ? "" : `<a href="${pagesUrl(LOCAL_SELLER_STARTER_KIT.slug)}">See the $${LOCAL_SELLER_STARTER_KIT.priceUsd} template kit</a>`,
+    isInvoiceFollowup || isUploadLimitFix ? "" : `<a href="${pagesUrl(LOCAL_SELLER_STARTER_KIT.slug)}">See the $${LOCAL_SELLER_STARTER_KIT.priceUsd} template kit</a>`,
   ].filter(Boolean).join("\n        ");
   return `<!doctype html>
 <html lang="en">
@@ -1448,8 +1465,23 @@ function serviceHtml(service) {
           return label + (/[?:]$/.test(label) ? " " : ": ") + (value || "");
         }
         function update() {
+          var isUploadLimitFix = "${escapeScript(service.id)}" === "upload-limit-fix-plan";
           var isInvoiceFollowup = "${escapeScript(service.id)}" === "invoice-followup-copy-pack";
-          var body = isInvoiceFollowup ? [
+          var body = isUploadLimitFix ? [
+            "I want a free fit check for the ${escapeScript(service.name)} ($${service.priceUsd} ${escapeScript(service.currency)} only if it fits).",
+            "",
+            line("Public-safe project label", read("business")),
+            line("Upload error text", read("sells")),
+            line("File type and target rule", read("items")),
+            line("What have you already tried?", read("contact")),
+            line("Blocked file type: PDF / JPG / PNG / screenshot / resume PDF / passport photo / other", read("style")),
+            line("Need-by time or deadline", read("date")),
+            line("If it fits, preferred external checkout provider: Gumroad / Payhip / Ko-fi / Stripe / Invoice provider / No preference", read("checkout")),
+            line("Best public-safe contact method", read("preference")),
+            line("Notes", read("notes")),
+            "",
+            "No payment is collected by this request. Please review fit first; send a real external checkout or invoice link only if the service is useful and available. Do not attach or include the actual file, ID photo, resume, private form, portal login, account details, tax IDs, bank details, card data, or private identity details."
+          ].join("\\n") : isInvoiceFollowup ? [
             "I want a free fit check for the ${escapeScript(service.name)} ($${service.priceUsd} ${escapeScript(service.currency)} only if it fits).",
             "",
             line("Business or project name", read("business")),

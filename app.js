@@ -5643,6 +5643,7 @@
     if (parts[0] === "local-seller-starter-kit") return renderLocalSellerStarterKit();
     if (parts[0] === "custom-local-print-pack") return renderCustomLocalPrintPackService();
     if (parts[0] === "invoice-followup-copy-pack") return renderInvoiceFollowupCopyPackService();
+    if (parts[0] === "upload-limit-fix-plan") return renderUploadLimitFixPlanService();
     if (parts[0] === "market-table-print-audit") return renderMarketTablePrintAudit();
     if (parts[0] === "custom-local-print-pack-sales-pack") return renderServiceSalesPack();
     if (landingPagesBySlug[parts[0]]) return renderLandingPage(parts[0]);
@@ -5859,6 +5860,60 @@
             <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
           </div>
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send this public-safe fit check. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
+        </form>`;
+  }
+
+  function uploadLimitFixPlanRequestSummary() {
+    return "I need a $9 Upload Limit Fix Plan for one rejected file upload: best free tool, target settings, fallback steps, and a review checklist. No file upload, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.";
+  }
+
+  function uploadLimitFixPlanInlineLeadForm(options = {}) {
+    const pathName = options.path || "/upload-limit-fixer/";
+    const utmSource = options.utmSource || "upload-limit";
+    const utmMedium = options.utmMedium || "site";
+    const utmCampaign = options.utmCampaign || "upload_limit_fix_plan";
+    const utmContent = options.utmContent || "upload-limit-inline";
+    const submitLabel = options.submitLabel || "Send $9 fix-plan request";
+    const className = options.className || "upload-limit-fix-plan-lead-form";
+    const compact = Boolean(options.compact);
+    const requestSummary = options.requestSummary || uploadLimitFixPlanRequestSummary();
+    const fallbackUrl = serviceLeadFallbackUrl({
+      serviceType: "upload-limit-fix-plan",
+      businessName: "",
+      contact: "",
+      needBy: "",
+      requestSummary,
+      path: pathName,
+    });
+    return `<form class="panel form-grid service-lead-form ${escapeHtml(className)}" data-service-lead-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+          <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
+          <input type="hidden" name="utmSource" value="${escapeHtml(utmSource)}">
+          <input type="hidden" name="utmMedium" value="${escapeHtml(utmMedium)}">
+          <input type="hidden" name="utmCampaign" value="${escapeHtml(utmCampaign)}">
+          <input type="hidden" name="utmContent" value="${escapeHtml(utmContent)}">
+          ${compact ? `<input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}">` : ""}
+          <label class="field">
+            <span>Email or public contact link</span>
+            <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
+          </label>
+          ${compact ? "" : `<label class="field">
+            <span>Upload error and target rule</span>
+            <textarea name="requestSummary" maxlength="1000" required>${escapeHtml(requestSummary)}</textarea>
+          </label>`}
+          <label class="field">
+            <span>Need-by time (optional)</span>
+            <input name="needBy" maxlength="80" placeholder="Today, tomorrow morning, or before the portal deadline">
+          </label>
+          <label class="check-row">
+            <input name="consent" type="checkbox" ${compact ? "checked " : ""}required>
+            <span>I will not upload or paste the actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details.</span>
+          </label>
+          <div class="actions">
+            <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">${escapeHtml(submitLabel)}</button>
+            <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
+          </div>
+          <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No file upload. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
         </form>`;
   }
 
@@ -6564,6 +6619,105 @@
       </section>
     `;
   }
+
+  function renderUploadLimitFixPlanService() {
+    const checkoutUrl = CONFIG.serviceCheckoutUrl || "";
+    const checkoutConfigured = Boolean(checkoutUrl);
+    const primaryServiceHref = checkoutConfigured ? checkoutUrl : "#service-request";
+    const primaryServiceTarget = checkoutConfigured ? ' target="_blank" rel="noreferrer"' : "";
+    const requestSummary = uploadLimitFixPlanRequestSummary();
+    const publicRequestHref = serviceLeadFallbackUrl({
+      serviceType: "upload-limit-fix-plan",
+      businessName: "",
+      contact: "",
+      needBy: "",
+      requestSummary,
+      path: "/upload-limit-fix-plan/",
+      utmSource: "service-page",
+      utmMedium: "site",
+      utmCampaign: "upload_limit_fix_plan",
+      utmContent: "hero-public-request",
+    });
+    setMeta("Upload Limit Fix Plan", "Request a $9 public-safe fix plan for one rejected PDF, image, photo, resume, or portal file upload.");
+    setJsonLd({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "Upload Limit Fix Plan",
+      description: "A public-safe upload error troubleshooting plan with free tool recommendation, target settings, fallback steps, and review checklist.",
+      offers: { "@type": "Offer", price: "9", priceCurrency: "USD", availability: checkoutConfigured ? "https://schema.org/InStock" : "https://schema.org/PreOrder", url: checkoutUrl || absoluteUrl("/upload-limit-fix-plan/") },
+    });
+    const deliverables = [
+      "one best-fit free tool recommendation",
+      "target settings for size, format, dimensions, or page count",
+      "fallback path if the first pass still fails",
+      "review-before-upload checklist",
+    ];
+    app.innerHTML = `
+      <section class="shell page-title section product-hero">
+        <a href="/upload-limit-fixer/">Upload limit fixer</a>
+        <h1>Upload Limit Fix Plan</h1>
+        <p>A $9 public-safe plan for one rejected PDF, image, photo, resume, screenshot, or portal file upload: which free no-upload tool to use, the target settings to try, fallback steps, and a review checklist. Do not upload or send the actual file.</p>
+        <div class="hero-actions">
+          <a class="button" data-track-event="${checkoutConfigured ? "service_checkout_click" : "service_request_intent"}" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(primaryServiceHref)}"${primaryServiceTarget}>${checkoutConfigured ? "Buy fix plan for $9" : "Request upload fix fit check"}</a>
+          <a class="button secondary" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(publicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>
+          <a class="button secondary" href="/upload-limit-fixer/">Open free upload limit fixer</a>
+          <button class="button ghost" type="button" data-copy-text="${escapeHtml(uploadLimitFixPlanRequestCopy())}" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Copy request brief</button>
+        </div>
+        <p class="notice">${checkoutConfigured ? "Checkout is configured through an external payment provider. Revenue is still proven only after that provider shows a paid or settled order." : "Payment starts only after fit is confirmed and a real external checkout or invoice link is paid. This is a troubleshooting plan only and does not require the actual file."}</p>
+        <div class="hero-proof" aria-label="Upload fix service readiness">
+          <div class="proof-tile"><strong>$9</strong><span>fix plan price</span></div>
+          <div class="proof-tile"><strong>4</strong><span>plan parts</span></div>
+          <div class="proof-tile"><strong>no file</strong><span>public-safe intake</span></div>
+        </div>
+      </section>
+      <section class="shell section service-micro-intent-section">
+        <div class="grid-2">
+          <div>
+            <h2>Send the shortest $9 fix-plan request</h2>
+            <p>Use this if the free chooser is not enough. Add only a reply contact; the public-safe request already says no file upload.</p>
+          </div>
+          ${uploadLimitFixPlanInlineLeadForm({
+            path: "/upload-limit-fix-plan/",
+            utmSource: "service-page",
+            utmContent: "service-page-micro",
+            submitLabel: "Send $9 fix-plan request",
+            className: "upload-limit-fix-plan-micro-lead-form",
+            compact: true,
+            requestSummary,
+          })}
+        </div>
+      </section>
+      ${renderServiceLeadForm({
+        serviceType: "upload-limit-fix-plan",
+        title: "Request a public-safe upload fix fit check",
+        cta: "Send upload fix fit check",
+        intro: "Send a reply contact and one public-safe note about the upload error, target rule, and file type. If it fits, the $9 plan starts only through an external checkout or invoice.",
+        placeholder: "The portal says my PDF must be less than 1MB. I need a no-upload plan for what tool and settings to try. No file attached.",
+        defaultSummary: requestSummary,
+      })}
+      <section class="shell section">
+        <h2>What you get</h2>
+        <div class="grid-3">
+          ${deliverables.map((item) => `<article class="panel"><h3>${escapeHtml(item)}</h3><p>Delivered as editable steps you run on your own device.</p></article>`).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Details needed</h2>
+        <ul>
+          <li>Public-safe upload error text.</li>
+          <li>File type: PDF, JPG, PNG, screenshot, resume PDF, passport photo, or other.</li>
+          <li>Target size, dimensions, format, or page-count rule from the destination site.</li>
+          <li>What you already tried, without attaching the file.</li>
+          <li>Need-by time or deadline.</li>
+        </ul>
+      </section>
+      <section class="shell section">
+        <h2>Safety boundary</h2>
+        <p>Do not upload, email, paste, or attach the actual PDF, image, ID photo, resume, private form, portal login, account details, tax IDs, bank details, card data, or private identity details. The plan cannot guarantee that a third-party portal will accept the final file.</p>
+      </section>
+    `;
+  }
+
   function renderLandingPage(slug) {
     const page = landingPagesBySlug[slug];
     const tool = tools[page.tool];
@@ -6633,6 +6787,23 @@
         <h2>${escapeHtml(heading)}</h2>
         <p>${escapeHtml(text)}</p>
       </section>`).join("")}
+      ${page.uploadErrorMatcher ? `<section class="shell section service-micro-intent-section">
+        <div class="grid-2">
+          <div>
+            <h2>Need a $9 fix plan for this exact upload error?</h2>
+            <p>Use this if you tried the free tool and still need a public-safe step plan. Do not upload the file; send only the error text and target rule.</p>
+          </div>
+          ${uploadLimitFixPlanInlineLeadForm({
+            path: `/${page.slug}/`,
+            utmSource: "landing-page",
+            utmContent: `${page.slug}-micro`,
+            submitLabel: "Send $9 fix-plan request",
+            className: "upload-limit-fix-plan-micro-lead-form",
+            compact: true,
+            requestSummary: `I need a $9 Upload Limit Fix Plan for the ${page.headline} workflow: best free tool, target settings, fallback steps, and a review checklist. No file upload, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.`,
+          })}
+        </div>
+      </section>` : ""}
       ${page.uploadErrorMatcher ? renderUploadLimitMatcher() : ""}
       ${page.targetLinks ? `
       <section class="shell section">
@@ -6688,6 +6859,22 @@
         </table>
         <div class="grid-3">
           ${uploadLimitShortcuts.map(([label, href, description, trackTool]) => `<article class="tool-card"><h3>${escapeHtml(label)}</h3><p>${escapeHtml(description)}</p><a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(trackTool)}" href="${escapeHtml(href)}">Open fixer</a></article>`).join("")}
+        </div>
+        <div class="grid-2 service-micro-intent-section">
+          <div>
+            <p class="eyebrow">Optional paid help</p>
+            <h3>Still blocked? Get a $9 upload fix plan.</h3>
+            <p>Send one public-safe request for the recommended free tool, target settings, fallback steps, and a review checklist. No file upload or private document details.</p>
+            <p><a class="button secondary" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="/upload-limit-fix-plan/?utm_source=upload-limit&utm_medium=site&utm_campaign=upload_limit_fix_plan&utm_content=shortcuts#service-request">Open full $9 service page</a></p>
+          </div>
+          ${uploadLimitFixPlanInlineLeadForm({
+            path: "/upload-limit-fixer/",
+            utmSource: "upload-limit",
+            utmContent: "shortcut-inline",
+            submitLabel: "Send $9 fix-plan request",
+            className: "upload-limit-fix-plan-micro-lead-form",
+            compact: true,
+          })}
         </div>
       </section>
     `;
@@ -7171,6 +7358,22 @@
     ].join("\n");
   }
 
+  function uploadLimitFixPlanRequestCopy() {
+    return [
+      "I want a free fit check for the Upload Limit Fix Plan ($9 USD if it fits).",
+      "",
+      "Public-safe upload error text:",
+      "File type: PDF / JPG / PNG / screenshot / resume / passport photo / other",
+      "Target rule from the portal: file size / dimensions / accepted format / page count",
+      "What the file is for, in broad terms:",
+      "What have you already tried?",
+      "Need-by time or deadline:",
+      "",
+      "No payment is collected by this request. Please review fit first; send a real external checkout or invoice link only if the service is useful and available.",
+      "Do not include or attach the actual file, ID photo, resume, private form, portal login, account details, tax IDs, bank details, card data, or private identity details.",
+    ].join("\n");
+  }
+
   function marketTableAuditChecks() {
     return [
       "Do shoppers see a clear price for each item or service?",
@@ -7279,6 +7482,7 @@
   }
 
   function serviceLeadTrackTool(serviceType) {
+    if (serviceType === "upload-limit-fix-plan") return "upload-limit-fix-plan";
     if (serviceType === "invoice-followup-copy-pack") return "invoice-followup-copy-pack";
     if (serviceType === "market-table-print-audit") return "market-table-print-audit";
     if (serviceType === "local-seller-starter-kit") return "local-seller-starter-kit";
@@ -7286,6 +7490,7 @@
   }
 
   function serviceLeadTitle(serviceType) {
+    if (serviceType === "upload-limit-fix-plan") return "Upload Limit Fix Plan";
     if (serviceType === "invoice-followup-copy-pack") return "Invoice Follow-up Copy Pack";
     if (serviceType === "market-table-print-audit") return "Free Market Table Print Audit";
     if (serviceType === "local-seller-starter-kit") return "Local Seller Starter Kit";
@@ -9288,9 +9493,11 @@ ${paragraphs.join("\n")}
     const serviceTypes = serviceLeadCheck?.serviceTypes || {};
     const invoiceFollowupRequests = numberSignal(serviceTypes["invoice-followup-copy-pack"]);
     const localPrintRequests = numberSignal(serviceTypes["custom-local-print-pack"]);
+    const uploadLimitFixRequests = numberSignal(serviceTypes["upload-limit-fix-plan"]);
     const publicSourceUrl = servicePublicRequests?.sourceUrl || "/api/service-public-requests";
     const publicLocalPrintRequests = numberSignal(servicePublicRequests?.customLocalPrintRequestCount);
     const publicInvoiceFollowupRequests = numberSignal(servicePublicRequests?.invoiceFollowupRequestCount);
+    const publicUploadLimitFixRequests = numberSignal(servicePublicRequests?.uploadLimitFixPlanRequestCount);
     const publicAuditRequests = numberSignal(servicePublicRequests?.auditRequestCount);
     const publicSellerRequests = numberSignal(servicePublicRequests?.sellerKitRequestCount);
     const publicPaidServiceRequests = numberSignal(servicePublicRequests?.paidServiceRequestCount);
@@ -9326,6 +9533,20 @@ ${paragraphs.join("\n")}
         command: publicInvoiceFollowupRequests && !invoiceFollowupRequests ? "npm.cmd run service:public-requests" : "npm.cmd run service:leads",
         copy: serviceLeadPaymentReplyCopy({ serviceType: "invoice-followup-copy-pack", path: "/invoice-followup-copy-pack/" }),
         link: publicInvoiceFollowupRequests && !invoiceFollowupRequests ? publicSourceUrl : "/api/service-lead",
+      },
+      {
+        lane: "$9 upload fix plan",
+        signal: `${uploadLimitFixRequests} lead(s), ${publicUploadLimitFixRequests} public issue(s), ${serviceIntent} shared service intent`,
+        state: uploadLimitFixRequests ? "lead captured" : publicUploadLimitFixRequests ? "public request" : "waiting",
+        nextAction: uploadLimitFixRequests
+          ? "Export upload fix leads, confirm public-safe scope, then send the external checkout or invoice reply."
+          : publicUploadLimitFixRequests
+            ? "Review public upload-fix request issues, confirm no files or private details were included, then send the external checkout or invoice reply."
+            : "Keep the $9 request form on upload-limit pages and reply as soon as a qualified upload-error lead arrives.",
+        proofGate: "paid_order_verified from external provider",
+        command: publicUploadLimitFixRequests && !uploadLimitFixRequests ? "npm.cmd run service:public-requests" : "npm.cmd run service:leads",
+        copy: serviceLeadPaymentReplyCopy({ serviceType: "upload-limit-fix-plan", path: "/upload-limit-fix-plan/" }),
+        link: publicUploadLimitFixRequests && !uploadLimitFixRequests ? publicSourceUrl : "/api/service-lead",
       },
       {
         lane: "Free audit to $29 upgrade",
@@ -9474,6 +9695,26 @@ ${paragraphs.join("\n")}
         "After the provider shows paid_order_verified, the copy pack can be prepared and delivered. Revenue is counted only from the external provider's paid or settled order record.",
       ].join("\n");
     }
+    if (serviceType === "upload-limit-fix-plan") {
+      return [
+        "Subject: Upload Limit Fix Plan - fit confirmed, external payment before work starts",
+        "",
+        "Thanks for sending the public-safe upload error request. This looks like it may fit the small fix-plan scope.",
+        "",
+        "Scope after payment:",
+        "- one best-fit free tool recommendation",
+        "- target settings for size, format, dimensions, or page count",
+        "- fallback path if the first pass still fails",
+        "- review-before-upload checklist",
+        "",
+        "Price: $9 USD",
+        `Request source: ${sourcePath}`,
+        "",
+        "Next step: I will send one real external checkout or invoice link. Please pay only through that external provider. Do not send or attach the actual file, card, bank, payout, tax, identity, portal login, resume, ID photo, private form, or account details through the website, GitHub, or email.",
+        "",
+        "After the provider shows paid_order_verified, the fix plan can be prepared and delivered. Revenue is counted only from the external provider's paid or settled order record.",
+      ].join("\n");
+    }
     return [
       "Subject: Custom Local Print Pack Setup - fit confirmed, external payment before work starts",
       "",
@@ -9536,6 +9777,17 @@ ${paragraphs.join("\n")}
         checkoutClicks: totals.service_checkout_click || 0,
         requestIntent: totals.service_request_intent || 0,
         copy: invoiceFollowupRequestCopy(),
+      },
+      {
+        sku: "Upload Limit Fix Plan",
+        price: "$9 USD",
+        configured: Boolean(CONFIG.serviceCheckoutUrl),
+        configKey: "serviceCheckoutUrl",
+        command: "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/upload-limit-fix-plan",
+        publicPage: "/upload-limit-fix-plan/",
+        checkoutClicks: totals.service_checkout_click || 0,
+        requestIntent: totals.service_request_intent || 0,
+        copy: uploadLimitFixPlanCheckoutListingCopy(),
       },
       {
         sku: "Audit upgrade checkout",
@@ -9622,6 +9874,22 @@ ${paragraphs.join("\n")}
       ...customLocalPrintPackDeliverables().map((item) => `- ${item}`),
       "",
       "Buyer safety: Do not send tax, bank, card, password, private identity, customer-list, or private file data through the website form.",
+    ].join("\n");
+  }
+
+  function uploadLimitFixPlanCheckoutListingCopy() {
+    return [
+      "Product name: Upload Limit Fix Plan",
+      "Price: $9 USD",
+      "Short description: A public-safe plan for one rejected PDF, image, photo, resume, or portal file upload.",
+      "Delivery note: Buyer sends public-safe upload error text, file type, target rule, and timeline only. Delivery target is same business day after paid_order_verified and complete public-safe details.",
+      "Deliverables:",
+      "- one best-fit free tool recommendation",
+      "- target settings for size, format, dimensions, or page count",
+      "- fallback path if the first pass still fails",
+      "- review-before-upload checklist",
+      "",
+      "Buyer safety: Do not send or attach the actual file, ID photo, resume, private form, portal login, tax ID, bank detail, card data, or private account details through the website form.",
     ].join("\n");
   }
 

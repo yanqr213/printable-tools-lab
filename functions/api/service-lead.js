@@ -1,6 +1,7 @@
 const SERVICE_TYPES = new Set([
   "custom-local-print-pack",
   "invoice-followup-copy-pack",
+  "upload-limit-fix-plan",
   "market-table-print-audit",
   "local-seller-starter-kit",
 ]);
@@ -19,6 +20,13 @@ const SERVICE_META = {
     tool: "invoice-followup-copy-pack",
     fallbackTitle: "[Service request]: Invoice Follow-up Copy Pack",
     fallbackTemplate: "invoice-followup-copy-pack-service.yml",
+  },
+  "upload-limit-fix-plan": {
+    label: "Upload Limit Fix Plan",
+    event: "service_request_intent",
+    tool: "upload-limit-fix-plan",
+    fallbackTitle: "[Service request]: Upload Limit Fix Plan",
+    fallbackTemplate: "upload-limit-fix-plan-service.yml",
   },
   "market-table-print-audit": {
     label: "Free Market Table Print Audit",
@@ -501,7 +509,7 @@ function publicLeadSummary(rows) {
     addCount(summary.sources, source);
     addCount(summary.campaigns, campaign);
     addCount(summary.paths, path);
-    if (serviceType === "custom-local-print-pack" || serviceType === "invoice-followup-copy-pack") summary.serviceRequestCount += 1;
+    if (["custom-local-print-pack", "invoice-followup-copy-pack", "upload-limit-fix-plan"].includes(serviceType)) summary.serviceRequestCount += 1;
     if (serviceType === "market-table-print-audit") summary.auditRequestCount += 1;
     if (serviceType === "local-seller-starter-kit") summary.sellerKitRequestCount += 1;
     const createdAt = cleanText(row?.createdAt, 40);

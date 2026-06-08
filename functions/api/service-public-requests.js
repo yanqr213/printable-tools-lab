@@ -8,6 +8,7 @@ const DEFAULT_REPO = "yanqr213/printable-tools-lab";
 const SERVICE_LABELS = {
   "custom-local-print-pack": "Custom Local Print Pack Setup",
   "invoice-followup-copy-pack": "Invoice Follow-up Copy Pack",
+  "upload-limit-fix-plan": "Upload Limit Fix Plan",
   "market-table-print-audit": "Free Market Table Print Audit",
   "local-seller-starter-kit": "Local Seller Starter Kit",
   unknown: "Unknown service request",
@@ -109,7 +110,8 @@ function issueToRow(issue) {
     requestedNextStep: cleanText(requestedNextStep, 120),
     sourcePath: cleanText(sourcePath, 220),
     invoiceFollowupRequest: serviceType === "invoice-followup-copy-pack",
-    paidServiceRequest: ["custom-local-print-pack", "invoice-followup-copy-pack", "local-seller-starter-kit"].includes(serviceType),
+    uploadLimitFixPlanRequest: serviceType === "upload-limit-fix-plan",
+    paidServiceRequest: ["custom-local-print-pack", "invoice-followup-copy-pack", "upload-limit-fix-plan", "local-seller-starter-kit"].includes(serviceType),
     readyForReview: issue.state === "open" && serviceType !== "unknown",
     publicSafetyWarningPresent: /Do not include (?:payment|invoice numbers|private payment)/i.test(body),
   };
@@ -139,7 +141,8 @@ function htmlIssueRows(repo, html, labelGroup = PRIMARY_LABELS) {
       requestedNextStep: "",
       sourcePath: "",
       invoiceFollowupRequest: serviceType === "invoice-followup-copy-pack",
-      paidServiceRequest: ["custom-local-print-pack", "invoice-followup-copy-pack", "local-seller-starter-kit"].includes(serviceType),
+      uploadLimitFixPlanRequest: serviceType === "upload-limit-fix-plan",
+      paidServiceRequest: ["custom-local-print-pack", "invoice-followup-copy-pack", "upload-limit-fix-plan", "local-seller-starter-kit"].includes(serviceType),
       readyForReview: false,
       publicSafetyWarningPresent: false,
     });
@@ -166,6 +169,7 @@ function summarizeRows(repo, generatedAt, dataQuality, rows, warning) {
     closedCount: sorted.filter((row) => row.state === "closed").length,
     paidServiceRequestCount: sorted.filter((row) => row.paidServiceRequest).length,
     invoiceFollowupRequestCount: sorted.filter((row) => row.serviceType === "invoice-followup-copy-pack").length,
+    uploadLimitFixPlanRequestCount: sorted.filter((row) => row.serviceType === "upload-limit-fix-plan").length,
     customLocalPrintRequestCount: sorted.filter((row) => row.serviceType === "custom-local-print-pack").length,
     auditRequestCount: sorted.filter((row) => row.serviceType === "market-table-print-audit").length,
     sellerKitRequestCount: sorted.filter((row) => row.serviceType === "local-seller-starter-kit").length,
@@ -195,6 +199,7 @@ function unavailableReport(repo, generatedAt, error) {
     closedCount: 0,
     paidServiceRequestCount: 0,
     invoiceFollowupRequestCount: 0,
+    uploadLimitFixPlanRequestCount: 0,
     customLocalPrintRequestCount: 0,
     auditRequestCount: 0,
     sellerKitRequestCount: 0,
@@ -216,6 +221,7 @@ function sourceSearchQuery() {
 function serviceTypeFromText(value) {
   const text = String(value || "").toLowerCase();
   if (/invoice[\s-]*follow|follow[\s-]*up copy/.test(text)) return "invoice-followup-copy-pack";
+  if (/upload[\s-]*limit|fix[\s-]*plan|file upload/.test(text)) return "upload-limit-fix-plan";
   if (/custom local print|local print pack/.test(text)) return "custom-local-print-pack";
   if (/market table print audit|free market table/.test(text)) return "market-table-print-audit";
   if (/local seller starter|seller kit/.test(text)) return "local-seller-starter-kit";

@@ -2,6 +2,24 @@ const crypto = require("crypto");
 const { strToU8, zipSync } = require("fflate");
 
 function serviceDeliveryInputExample(service) {
+  if (service.id === "upload-limit-fix-plan") {
+    return {
+      serviceId: service.id,
+      orderId: "sample-upload-limit-fix-001",
+      paymentStatus: "sample_only_not_revenue",
+      paidOrderVerified: false,
+      businessName: "Sample Upload Limit Case",
+      uploadErrorText: "PDF must be less than 1 MB",
+      fileType: "PDF resume",
+      targetRule: "PDF under 1MB, PDF format required",
+      priorAttempts: "Tried one lower quality export; still too large",
+      broadUseCase: "job application portal",
+      needByDate: "2026-06-10",
+      publicContact: "hello@example.com",
+      deliveryNotes: "Sample only. A real delivery should be generated only after paid_order_verified.",
+      buyerReviewRequired: true
+    };
+  }
   if (service.id === "invoice-followup-copy-pack") {
     return {
       serviceId: service.id,
@@ -59,8 +77,13 @@ function validateServiceDeliveryInput(input, options = {}) {
   const value = input && typeof input === "object" ? input : {};
   if (!value.serviceId) errors.push("serviceId is required.");
   if (!value.businessName) errors.push("businessName is required.");
+  const isUploadLimitFix = value.serviceId === "upload-limit-fix-plan";
   const isInvoiceFollowup = value.serviceId === "invoice-followup-copy-pack";
-  if (isInvoiceFollowup) {
+  if (isUploadLimitFix) {
+    if (!value.uploadErrorText) errors.push("uploadErrorText is required for upload limit fix plans.");
+    if (!value.fileType) errors.push("fileType is required for upload limit fix plans.");
+    if (!value.targetRule) errors.push("targetRule is required for upload limit fix plans.");
+  } else if (isInvoiceFollowup) {
     if (!value.invoiceStatus) errors.push("invoiceStatus is required for invoice follow-up copy.");
     if (!value.followupNeed) errors.push("followupNeed is required for invoice follow-up copy.");
   } else {
@@ -74,14 +97,16 @@ function validateServiceDeliveryInput(input, options = {}) {
   if (looksSensitive(value)) {
     errors.push("Input appears to contain private payment, tax, identity, password, or credential details. Remove them before generating.");
   }
-  if (!isInvoiceFollowup) {
+  if (!isInvoiceFollowup && !isUploadLimitFix) {
     for (const item of Array.isArray(value.items) ? value.items : []) {
       if (!item || !item.name || !item.price) errors.push("Every item must include name and price.");
     }
   }
-  if (!value.buyerReviewRequired) warnings.push(isInvoiceFollowup
-    ? "Set buyerReviewRequired=true so the buyer confirms message accuracy, tone, and local rules before sending."
-    : "Set buyerReviewRequired=true so the buyer confirms copy, prices, and QR target before printing.");
+  if (!value.buyerReviewRequired) warnings.push(isUploadLimitFix
+    ? "Set buyerReviewRequired=true so the buyer confirms the output before uploading it to the destination site."
+    : isInvoiceFollowup
+      ? "Set buyerReviewRequired=true so the buyer confirms message accuracy, tone, and local rules before sending."
+      : "Set buyerReviewRequired=true so the buyer confirms copy, prices, and QR target before printing.");
   return { ok: errors.length === 0, errors, warnings };
 }
 
@@ -94,6 +119,7 @@ function serviceDeliveryFiles(input, options = {}) {
   }
 
   if (input.serviceId === "invoice-followup-copy-pack") return invoiceFollowupDeliveryFiles(input, options);
+  if (input.serviceId === "upload-limit-fix-plan") return uploadLimitFixPlanDeliveryFiles(input, options);
 
   const orderId = cleanId(input.orderId || input.businessName || "custom-local-print-pack-order");
   const prefix = options.sample ? "custom-local-print-pack-sample" : `custom-local-print-pack-${orderId}`;
@@ -350,6 +376,108 @@ function invoiceFollowupDeliveryFiles(input, options = {}) {
   };
 }
 
+function uploadLimitFixPlanDeliveryFiles(input, options = {}) {
+  const validation = validateServiceDeliveryInput(input, options);
+  if (!validation.ok) {
+    const error = new Error(validation.errors.join(" "));
+    error.validation = validation;
+    throw error;
+  }
+  const orderId = cleanId(input.orderId || input.businessName || "upload-limit-fix-plan-order");
+  const prefix = options.sample ? "upload-limit-fix-plan-sample" : `upload-limit-fix-plan-${orderId}`;
+  const businessName = cleanText(input.businessName);
+  const uploadErrorText = cleanText(input.uploadErrorText);
+  const fileType = cleanText(input.fileType);
+  const targetRule = cleanText(input.targetRule);
+  const priorAttempts = cleanText(input.priorAttempts || "not specified");
+  const broadUseCase = cleanText(input.broadUseCase || "file upload");
+  const needByDate = cleanText(input.needByDate || "");
+  const recommendation = uploadLimitRecommendation(uploadErrorText, fileType, targetRule);
+  const reviewNote = "Buyer must run the steps on their own device, keep the original file, and review the output before uploading it to the destination site.";
+  const adviceRule = "This is a troubleshooting plan only. It does not guarantee portal, school, employer, marketplace, email, or government acceptance.";
+  const revenueRule = options.sample
+    ? "This public sample is not revenue. Real revenue is counted only after an external provider shows a paid order, payout balance, or settled payment."
+    : "Revenue for this delivery can be counted only if the matching external payment provider record shows paid_order_verified.";
+
+  return {
+    [`${prefix}/README.md`]: [
+      `# ${businessName} - Upload Limit Fix Plan`,
+      "",
+      `Upload error: ${uploadErrorText}`,
+      `File type: ${fileType}`,
+      `Target rule: ${targetRule}`,
+      `Use case: ${broadUseCase}`,
+      `Needed by: ${needByDate || "not specified"}`,
+      "",
+      "## Included files",
+      "",
+      "- recommended-tool.md",
+      "- target-settings.md",
+      "- fallback-steps.md",
+      "- review-before-upload.md",
+      "- service-order-status.json",
+      "",
+      reviewNote,
+      adviceRule,
+      "",
+      revenueRule,
+    ].join("\n"),
+    [`${prefix}/recommended-tool.md`]: [
+      "# Recommended Tool",
+      "",
+      `Start with: ${recommendation.toolName}`,
+      `URL path: ${recommendation.path}`,
+      `Why: ${recommendation.why}`,
+      "",
+      "Do not upload the source file to this service. Run the free tool locally in your browser and keep the original file untouched.",
+    ].join("\n"),
+    [`${prefix}/target-settings.md`]: [
+      "# Target Settings",
+      "",
+      `Portal rule: ${targetRule}`,
+      `Suggested first target: ${recommendation.target}`,
+      `Output format: ${recommendation.outputFormat}`,
+      "",
+      `Prior attempts noted: ${priorAttempts}`,
+      "",
+      "Use the exact target from the destination site when it is available. If the output is still rejected, use the fallback steps before changing the source document.",
+    ].join("\n"),
+    [`${prefix}/fallback-steps.md`]: [
+      "# Fallback Steps",
+      "",
+      ...recommendation.fallbackSteps.map((step, index) => `${index + 1}. ${step}`),
+      "",
+      "Stop if the final file becomes unreadable. Keep the original file and make a fresh copy before trying stronger compression.",
+    ].join("\n"),
+    [`${prefix}/review-before-upload.md`]: [
+      "# Review Before Upload",
+      "",
+      reviewNote,
+      adviceRule,
+      "",
+      "- Confirm the file opens on your device.",
+      "- Confirm the file size, dimensions, and format match the destination rule.",
+      "- Confirm names, dates, faces, signatures, text, and important details remain readable.",
+      "- Confirm you are uploading the intended new copy, not the original or a failed draft.",
+      "- If the destination still rejects it, copy the public-safe error text and compare it with the target rule again.",
+    ].join("\n"),
+    [`${prefix}/service-order-status.json`]: JSON.stringify({
+      serviceId: input.serviceId,
+      orderId,
+      businessName,
+      uploadErrorText,
+      fileType,
+      targetRule,
+      paymentStatus: input.paymentStatus || (options.sample ? "sample_only_not_revenue" : ""),
+      paidOrderVerified: Boolean(input.paidOrderVerified),
+      generatedAt: new Date().toISOString(),
+      sample: Boolean(options.sample),
+      buyerReviewRequired: true,
+      revenueRule,
+    }, null, 2),
+  };
+}
+
 function zipServiceDelivery(input, options = {}) {
   const files = serviceDeliveryFiles(input, options);
   return Buffer.from(zipSync(Object.fromEntries(Object.entries(files).map(([name, content]) => [name, strToU8(`${content}\n`)])), { level: 9 }));
@@ -371,6 +499,64 @@ function normalizeItems(items) {
 function offerFromItems(items) {
   if (items.length >= 2) return `Bundle ${items[0].name} + ${items[1].name} for a simple market-day offer`;
   return `Ask about today's ${items[0]?.name || "featured item"} offer`;
+}
+
+function uploadLimitRecommendation(errorText, fileType, targetRule) {
+  const haystack = `${errorText} ${fileType} ${targetRule}`.toLowerCase();
+  if (/pdf/.test(haystack) && /500\s?kb/.test(haystack)) {
+    return {
+      toolName: "Compress PDF to 500KB",
+      path: "/tools/compress-pdf/?targetSize=500kb",
+      target: "500KB PDF target",
+      outputFormat: "PDF",
+      why: "The error mentions a strict PDF size limit.",
+      fallbackSteps: [
+        "Try the 500KB PDF target on a copy of the file.",
+        "If the result is unreadable, split the PDF or reduce source images before compressing again.",
+        "If the portal allows images instead, convert the required page to JPG or PNG and compress that image.",
+      ],
+    };
+  }
+  if (/pdf/.test(haystack)) {
+    return {
+      toolName: "Compress PDF",
+      path: "/tools/compress-pdf/?targetSize=1mb",
+      target: /5\s?mb/.test(haystack) ? "5MB PDF target" : /2\s?mb/.test(haystack) ? "2MB PDF target" : "1MB PDF target",
+      outputFormat: "PDF",
+      why: "The blocked upload appears to be a PDF size issue.",
+      fallbackSteps: [
+        "Use the closest PDF target named by the portal.",
+        "If the output is still too large, try a stricter target once and compare readability.",
+        "For scanned PDFs, compress the source images or split pages before rebuilding the final PDF.",
+      ],
+    };
+  }
+  if (/dimension|pixel|px|600|square|passport/.test(haystack)) {
+    return {
+      toolName: "Resize or crop image",
+      path: "/tools/resize-image/",
+      target: "Exact pixel dimensions from the portal",
+      outputFormat: /png/.test(haystack) ? "PNG" : "JPG or PNG",
+      why: "The error mentions image dimensions or an ID-style photo rule.",
+      fallbackSteps: [
+        "Resize or crop to the exact width and height first.",
+        "Then compress the resized output only if the portal also has a KB limit.",
+        "Review faces, text, and edges after resizing.",
+      ],
+    };
+  }
+  return {
+    toolName: "Compress image to KB",
+    path: "/tools/compress-image-to-kb/",
+    target: /100\s?kb/.test(haystack) ? "100KB image target" : /200\s?kb/.test(haystack) ? "200KB image target" : /500\s?kb/.test(haystack) ? "500KB image target" : "closest KB target from the portal",
+    outputFormat: /png/.test(haystack) ? "PNG or WebP if accepted" : "JPG or WebP if accepted",
+    why: "The blocked upload appears to be an image size or screenshot size issue.",
+    fallbackSteps: [
+      "Choose the KB target named by the portal.",
+      "If the file is still too large, resize the image to a smaller width before compressing again.",
+      "If the portal requires JPG or PNG, convert to that format after checking the final size.",
+    ],
+  };
 }
 
 function csv(rows) {

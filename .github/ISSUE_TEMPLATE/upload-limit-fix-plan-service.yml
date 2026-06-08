@@ -1,0 +1,93 @@
+name: Upload Limit Fix Plan request
+description: Public-safe request for the $9 upload limit fix plan.
+title: "[Service request]: Upload Limit Fix Plan"
+labels: ["service-request", "business-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this public issue only for non-sensitive service-fit details. Payment starts only after fit is confirmed and a real external checkout or invoice link is paid.
+
+        Do not attach the actual file, ID photo, resume, private form, portal login, account details, bank details, card data, tax IDs, identity documents, passwords, or private customer data.
+
+  - type: input
+    id: project_label
+    attributes:
+      label: Public-safe project label
+      placeholder: Example: Job portal resume upload
+    validations:
+      required: true
+
+  - type: textarea
+    id: upload_error
+    attributes:
+      label: Upload error text
+      description: Paste only the public-safe error message, not the file.
+      placeholder: PDF must be less than 1 MB.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: file_type
+    attributes:
+      label: File type
+      options:
+        - PDF
+        - JPG
+        - PNG
+        - screenshot
+        - resume PDF
+        - passport photo
+        - other
+    validations:
+      required: true
+
+  - type: textarea
+    id: target_rule
+    attributes:
+      label: Target rule from the portal
+      description: Include public-safe size, dimension, format, or page-count rules only.
+      placeholder: PDF under 1MB, PDF format required, one file only.
+    validations:
+      required: true
+
+  - type: textarea
+    id: already_tried
+    attributes:
+      label: What have you already tried?
+      placeholder: Tried exporting at lower quality; still over the limit.
+    validations:
+      required: false
+
+  - type: input
+    id: timeline
+    attributes:
+      label: Need-by time or deadline
+      placeholder: Today, tomorrow morning, before the application deadline
+    validations:
+      required: false
+
+  - type: dropdown
+    id: checkout_provider
+    attributes:
+      label: Preferred external checkout or invoice provider
+      description: No payment is collected in this issue.
+      options:
+        - Gumroad
+        - Payhip
+        - Ko-fi
+        - Stripe
+        - Invoice link
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Public safety confirmations
+      options:
+        - label: I understand this public issue does not collect payment and the $9 service starts only after a real external checkout or invoice is paid.
+          required: true
+        - label: I did not attach or include the actual file, ID photo, resume, private form, portal login, account details, bank details, card data, tax IDs, identity documents, passwords, or private customer data.
+          required: true

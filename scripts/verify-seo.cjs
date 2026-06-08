@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { routes, siteUrl, landingPages, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, INVOICE_FOLLOWUP_COPY_PACK_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, HIGH_INTENT_TOOL_PATHS, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, SPONSOR_DISCOVERY_LINKS, SPONSOR_VERTICALS, SPONSOR_DEALS, tools, guides } = require("./seo-content.cjs");
+const { routes, siteUrl, landingPages, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, INVOICE_FOLLOWUP_COPY_PACK_SERVICE, UPLOAD_LIMIT_FIX_PLAN_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, HIGH_INTENT_TOOL_PATHS, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, SPONSOR_DISCOVERY_LINKS, SPONSOR_VERTICALS, SPONSOR_DEALS, tools, guides } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const failures = [];
@@ -49,6 +49,7 @@ function requireUploadLimitShortcuts(html, label) {
   if (!html.includes("Upload error text") || !html.includes("Local text match only") || !html.includes("data-upload-limit-helper")) failures.push(`${label} missing upload error matcher.`);
   if (!html.includes("PDF must be less than 1 MB") || !html.includes("Invalid file type. Please upload JPG or PNG")) failures.push(`${label} missing upload matcher examples.`);
   if (!html.includes('data-track-event="free_tool_depth"')) failures.push(`${label} missing upload limit depth tracking.`);
+  if (!html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("Send $9 fix-plan request") || !html.includes("/upload-limit-fix-plan/?utm_source=upload-limit") || !html.includes("No file upload")) failures.push(`${label} missing $9 upload fix plan service request path.`);
   for (const pathName of UPLOAD_LIMIT_SHORTCUT_PATHS) {
     if (!html.includes(pathName)) failures.push(`${label} missing upload limit shortcut: ${pathName}`);
   }
@@ -95,6 +96,7 @@ if (!fs.existsSync(homeFile)) failures.push("Missing homepage.");
 else {
   const html = fs.readFileSync(homeFile, "utf8");
   requireUploadLimitShortcuts(html, "Homepage");
+  if (!html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("Send $9 fix-plan request") || !html.includes("/upload-limit-fix-plan/?utm_source=upload-limit")) failures.push("Homepage upload-limit shortcuts missing $9 upload fix plan request form.");
   if (!html.includes("Request $19 follow-up copy") || !html.includes("Made an invoice? Get the follow-up sequence written for $19.")) failures.push("Homepage missing above-fold invoice follow-up service offer.");
   if (!html.includes('data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack"')) failures.push("Homepage invoice follow-up offer missing service intent tracking.");
   if (!html.includes("/invoice-followup-copy-pack/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=hero#service-request")) failures.push("Homepage hero should route to invoice follow-up service fit check.");
@@ -487,6 +489,7 @@ if (!fs.existsSync(appScriptFile)) failures.push("Missing app.js.");
 else {
   const script = fs.readFileSync(appScriptFile, "utf8");
   if (!script.includes("download-after-action")) failures.push("Missing download success after-action funnel.");
+  if (!script.includes('parts[0] === "upload-limit-fix-plan"') || !script.includes("renderUploadLimitFixPlanService") || !script.includes('data-service-type="upload-limit-fix-plan"')) failures.push("app.js missing upload limit fix plan route and service lead form.");
   if (!script.includes("utm_source=download_success")) failures.push("Missing download success campaign tracking.");
   if (!script.includes("free_tool_depth")) failures.push("Missing download success free-tool depth campaign.");
   if (!script.includes('data-track-event="free_tool_depth"')) failures.push("Missing download success free-tool depth event tracking.");
@@ -593,7 +596,7 @@ else {
   const servicePublicRequestScript = fs.readFileSync(servicePublicRequestsFunctionFile, "utf8");
   if (!servicePublicRequestScript.includes("publicMetricsOnly") || !servicePublicRequestScript.includes("privateFields") || !servicePublicRequestScript.includes("GitHub issues API")) failures.push("Service public request API should expose only public-safe GitHub issue evidence.");
   if (!servicePublicRequestScript.includes("service-request") || !servicePublicRequestScript.includes("business-review")) failures.push("Service public request API should use public-safe service request labels.");
-  if (!servicePublicRequestScript.includes("invoiceFollowupRequestCount") || !servicePublicRequestScript.includes("paidServiceRequestCount")) failures.push("Service public request API should summarize invoice follow-up and paid service request issues.");
+  if (!servicePublicRequestScript.includes("invoiceFollowupRequestCount") || !servicePublicRequestScript.includes("uploadLimitFixPlanRequestCount") || !servicePublicRequestScript.includes("paidServiceRequestCount")) failures.push("Service public request API should summarize invoice follow-up, upload fix plan, and paid service request issues.");
   if (!servicePublicRequestScript.includes("Do not treat zero as confirmed")) failures.push("Service public request API should warn when evidence is unavailable.");
 }
 const servicePublicRequestScriptFile = path.join(root, "scripts", "service-public-request-evidence.cjs");
@@ -619,9 +622,10 @@ else {
   if (!serviceLeadScript.includes("service:lead:") || !serviceLeadScript.includes("service:lead_index")) failures.push("Service lead API should persist private leads and a public-safe index.");
   if (!serviceLeadScript.includes("service_request_intent") || !serviceLeadScript.includes("audit_request_intent") || !serviceLeadScript.includes("seller_checkout_intent")) failures.push("Service lead API should roll submitted leads into existing commercial intent metrics.");
   if (!serviceLeadScript.includes("invoice-followup-copy-pack") || !serviceLeadScript.includes("Invoice Follow-up Copy Pack")) failures.push("Service lead API missing invoice follow-up service type.");
+  if (!serviceLeadScript.includes("upload-limit-fix-plan") || !serviceLeadScript.includes("Upload Limit Fix Plan")) failures.push("Service lead API missing upload limit fix plan service type.");
   if (!serviceLeadScript.includes("publicLeadSummary") || !serviceLeadScript.includes("privateFields") || !serviceLeadScript.includes("not exposed")) failures.push("Service lead API should expose only public-safe summary counts.");
   if (!serviceLeadScript.includes("fallbackPublicReplyUrl") || !serviceLeadScript.includes("Public-safe service request")) failures.push("Service lead API should provide a public-safe GitHub fallback.");
-  if (!serviceLeadScript.includes('fallbackTemplate: "invoice-followup-copy-pack-service.yml"') || !serviceLeadScript.includes('url.searchParams.set("labels", "service-request,business-review")')) failures.push("Service lead API should route invoice follow-up fallback issues to the public service request workflow.");
+  if (!serviceLeadScript.includes('fallbackTemplate: "invoice-followup-copy-pack-service.yml"') || !serviceLeadScript.includes('fallbackTemplate: "upload-limit-fix-plan-service.yml"') || !serviceLeadScript.includes('url.searchParams.set("labels", "service-request,business-review")')) failures.push("Service lead API should route invoice and upload fix fallback issues to the public service request workflow.");
 }
 if (!fs.existsSync(sponsorProspectScriptFile)) failures.push("Missing sponsor prospect queue generator.");
 else {
@@ -670,6 +674,15 @@ else {
   if (!issueTemplate.includes("Invoice Follow-up Copy Pack") || !issueTemplate.includes("service-request") || !issueTemplate.includes("business-review")) failures.push("Invoice follow-up service issue template missing service request labels.");
   if (!issueTemplate.includes("invoice_status") || !issueTemplate.includes("payment_wording") || !issueTemplate.includes("checkout_provider")) failures.push("Invoice follow-up service issue template missing invoice-specific fit-check fields.");
   if (!issueTemplate.includes("invoice numbers") || !issueTemplate.includes("bank") || !issueTemplate.includes("client private")) failures.push("Invoice follow-up service issue template missing public safety warnings.");
+}
+
+const uploadLimitFixPlanIssueTemplateFile = path.join(root, ".github", "ISSUE_TEMPLATE", "upload-limit-fix-plan-service.yml");
+if (!fs.existsSync(uploadLimitFixPlanIssueTemplateFile)) failures.push("Missing upload limit fix plan service issue template.");
+else {
+  const issueTemplate = fs.readFileSync(uploadLimitFixPlanIssueTemplateFile, "utf8");
+  if (!issueTemplate.includes("Upload Limit Fix Plan") || !issueTemplate.includes("service-request") || !issueTemplate.includes("business-review")) failures.push("Upload limit fix plan issue template missing service request labels.");
+  if (!issueTemplate.includes("upload_error") || !issueTemplate.includes("file_type") || !issueTemplate.includes("target_rule") || !issueTemplate.includes("checkout_provider")) failures.push("Upload limit fix plan issue template missing upload-specific fit-check fields.");
+  if (!issueTemplate.includes("actual file") || !issueTemplate.includes("portal login") || !issueTemplate.includes("bank details")) failures.push("Upload limit fix plan issue template missing public safety warnings.");
 }
 
 const readmeFile = path.join(root, "README.md");
@@ -1287,6 +1300,20 @@ else {
   if (!sitemap.includes(`<loc>${siteUrl(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug)}</loc>`)) failures.push("Sitemap should include invoice follow-up service route.");
 }
 
+const uploadLimitFixPlanRouteFile = path.join(root, UPLOAD_LIMIT_FIX_PLAN_SERVICE.slug, "index.html");
+if (!fs.existsSync(uploadLimitFixPlanRouteFile)) failures.push("Missing upload limit fix plan service route.");
+else {
+  const html = fs.readFileSync(uploadLimitFixPlanRouteFile, "utf8");
+  if (!html.includes(UPLOAD_LIMIT_FIX_PLAN_SERVICE.name) || !html.includes("Request a public-safe upload fix fit check") || !html.includes(`$${UPLOAD_LIMIT_FIX_PLAN_SERVICE.priceUsd}`)) failures.push("Upload limit fix plan route missing low-friction paid service CTA.");
+  if (!html.includes("Send the shortest $9 fix-plan request") || !html.includes("upload-limit-fix-plan-micro-lead-form") || !html.includes("Send $9 fix-plan request")) failures.push("Upload limit fix plan route missing shortest paid request form.");
+  if (!html.includes("Open public-safe request") || !html.includes('data-service-lead-fallback-link')) failures.push("Upload limit fix plan route missing public-safe request CTA.");
+  if (!html.includes('data-service-lead-form') || !html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("Send upload fix fit check")) failures.push("Upload limit fix plan route missing service lead form.");
+  if (!html.includes("Upload error text") || !html.includes("File type and target rule") || !html.includes("Blocked file type")) failures.push("Upload limit fix plan route request builder should use upload-specific fields.");
+  if (!html.includes("No file upload") || !html.includes("Do not include or attach the actual file") || (!html.includes("cannot guarantee") && !html.includes("does not guarantee"))) failures.push("Upload limit fix plan route missing no-file safety boundary.");
+  if (!html.includes("Request+note%3A") || !html.includes("I+need+a+%249+Upload+Limit+Fix+Plan") || !html.includes("service-request%2Cbusiness-review")) failures.push("Upload limit fix plan route missing complete public-safe service request issue fallback.");
+  if (!sitemap.includes(`<loc>${siteUrl(UPLOAD_LIMIT_FIX_PLAN_SERVICE.slug)}</loc>`)) failures.push("Sitemap should include upload limit fix plan service route.");
+}
+
 const invoiceFollowupDocsRouteFile = path.join(root, "docs", INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug, "index.html");
 if (!fs.existsSync(invoiceFollowupDocsRouteFile)) failures.push("Missing invoice follow-up copy pack docs mirror route.");
 else {
@@ -1294,6 +1321,16 @@ else {
   if (!html.includes("What kind of invoice follow-up do you need?") || !html.includes("Invoice status and public-safe context") || !html.includes("Preferred tone")) failures.push("Invoice follow-up docs mirror should use invoice-specific request fields.");
   for (const retiredInvoiceCopy of ["Cookies, market boxes", "QR sign link", "Start with free audit", "See the $9 template kit"]) {
     if (html.includes(retiredInvoiceCopy)) failures.push(`Invoice follow-up docs mirror should not include custom print-pack request copy: ${retiredInvoiceCopy}`);
+  }
+}
+
+const uploadLimitFixPlanDocsRouteFile = path.join(root, "docs", UPLOAD_LIMIT_FIX_PLAN_SERVICE.slug, "index.html");
+if (!fs.existsSync(uploadLimitFixPlanDocsRouteFile)) failures.push("Missing upload limit fix plan docs mirror route.");
+else {
+  const html = fs.readFileSync(uploadLimitFixPlanDocsRouteFile, "utf8");
+  if (!html.includes("Upload error text") || !html.includes("File type and target rule") || !html.includes("Blocked file type")) failures.push("Upload limit fix plan docs mirror should use upload-specific request fields.");
+  for (const retiredUploadCopy of ["Cookies, market boxes", "QR sign link"]) {
+    if (html.includes(retiredUploadCopy)) failures.push(`Upload limit fix plan docs mirror should not include unrelated service request copy: ${retiredUploadCopy}`);
   }
 }
 
@@ -1332,6 +1369,16 @@ const requiredServiceArtifacts = [
   CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicSampleDeliveryPath,
   CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryInputExamplePath,
   CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryReportPath,
+  UPLOAD_LIMIT_FIX_PLAN_SERVICE.publicRequestPath,
+  UPLOAD_LIMIT_FIX_PLAN_SERVICE.publicPaymentReplyPath,
+  UPLOAD_LIMIT_FIX_PLAN_SERVICE.publicFulfillmentChecklistPath,
+  UPLOAD_LIMIT_FIX_PLAN_SERVICE.publicOrderPipelinePath,
+  UPLOAD_LIMIT_FIX_PLAN_SERVICE.publicOutreachQueuePath,
+  UPLOAD_LIMIT_FIX_PLAN_SERVICE.publicOutreachBatchPath,
+  UPLOAD_LIMIT_FIX_PLAN_SERVICE.publicSampleDeliveryPath,
+  UPLOAD_LIMIT_FIX_PLAN_SERVICE.publicDeliveryInputExamplePath,
+  UPLOAD_LIMIT_FIX_PLAN_SERVICE.publicDeliveryReportPath,
+  UPLOAD_LIMIT_FIX_PLAN_SERVICE.issueTemplatePath,
   INVOICE_FOLLOWUP_COPY_PACK_SERVICE.issueTemplatePath,
   MARKET_TABLE_PRINT_AUDIT.publicRequestPath,
   MARKET_TABLE_PRINT_AUDIT.publicChecklistPath,
@@ -1749,19 +1796,21 @@ for (const productPath of [
 
 const docsServicesFile = path.join(root, "docs", "services.json");
 if (!fs.existsSync(docsServicesFile)) failures.push("Missing GitHub Pages services.json.");
-for (const servicePath of [
-  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug}/index.html`,
-  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicRequestPath}`,
-  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicPaymentReplyPath}`,
-  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicFulfillmentChecklistPath}`,
-  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOrderPipelinePath}`,
-  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachQueuePath}`,
-  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicOutreachBatchPath}`,
-  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicSampleDeliveryPath}`,
-  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryInputExamplePath}`,
-  `docs/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryReportPath}`,
-]) {
-  if (!fs.existsSync(path.join(root, ...servicePath.split("/")))) failures.push(`Missing GitHub Pages service artifact: ${servicePath}`);
+for (const service of [CUSTOM_LOCAL_PRINT_PACK_SERVICE, UPLOAD_LIMIT_FIX_PLAN_SERVICE]) {
+  for (const servicePath of [
+    `docs/${service.slug}/index.html`,
+    `docs/${service.publicRequestPath}`,
+    `docs/${service.publicPaymentReplyPath}`,
+    `docs/${service.publicFulfillmentChecklistPath}`,
+    `docs/${service.publicOrderPipelinePath}`,
+    `docs/${service.publicOutreachQueuePath}`,
+    `docs/${service.publicOutreachBatchPath}`,
+    `docs/${service.publicSampleDeliveryPath}`,
+    `docs/${service.publicDeliveryInputExamplePath}`,
+    `docs/${service.publicDeliveryReportPath}`,
+  ]) {
+    if (!fs.existsSync(path.join(root, ...servicePath.split("/")))) failures.push(`Missing GitHub Pages service artifact: ${servicePath}`);
+  }
 }
 
 const docsAuditLeadMagnetFile = path.join(root, "docs", MARKET_TABLE_PRINT_AUDIT.slug, "index.html");

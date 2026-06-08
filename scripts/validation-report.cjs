@@ -161,6 +161,7 @@ function servicePublicRequestEvidenceReady(data) {
     && typeof data === "object"
     && typeof data.publicRequestCount === "number"
     && typeof data.invoiceFollowupRequestCount === "number"
+    && typeof data.uploadLimitFixPlanRequestCount === "number"
     && String(data.sourceUrl || "").includes("github.com/")
     && data.publicMetricsOnly === true;
 }
@@ -173,6 +174,7 @@ function servicePublicRequestSummary(data) {
     openCount: Number(data?.openCount) || 0,
     paidServiceRequestCount: Number(data?.paidServiceRequestCount) || 0,
     invoiceFollowupRequestCount: Number(data?.invoiceFollowupRequestCount) || 0,
+    uploadLimitFixPlanRequestCount: Number(data?.uploadLimitFixPlanRequestCount) || 0,
     customLocalPrintRequestCount: Number(data?.customLocalPrintRequestCount) || 0,
     auditRequestCount: Number(data?.auditRequestCount) || 0,
     sellerKitRequestCount: Number(data?.sellerKitRequestCount) || 0,
@@ -208,7 +210,9 @@ function closeReadinessSummary(config, sponsorPublicReplies = {}, servicePublicR
   const paymentReplyTemplatesReady = fs.existsSync(path.join(root, "assets", "services", "custom-local-print-pack-payment-reply.txt"))
     && fs.existsSync(path.join(root, "assets", "services", "custom-local-print-pack-fulfillment-checklist.txt"))
     && fs.existsSync(path.join(root, "assets", "services", "invoice-followup-copy-pack-payment-reply.txt"))
-    && fs.existsSync(path.join(root, "assets", "services", "invoice-followup-copy-pack-fulfillment-checklist.txt"));
+    && fs.existsSync(path.join(root, "assets", "services", "invoice-followup-copy-pack-fulfillment-checklist.txt"))
+    && fs.existsSync(path.join(root, "assets", "services", "upload-limit-fix-plan-payment-reply.txt"))
+    && fs.existsSync(path.join(root, "assets", "services", "upload-limit-fix-plan-fulfillment-checklist.txt"));
   const serviceExportReady = fs.existsSync(path.join(root, "scripts", "export-service-leads.cjs"));
   const sponsorExportReady = fs.existsSync(path.join(root, "scripts", "export-sponsor-leads.cjs"));
   const checkout = checkoutReadinessSummary(config);
@@ -216,6 +220,7 @@ function closeReadinessSummary(config, sponsorPublicReplies = {}, servicePublicR
     activeCloseLanes: [
       "custom-local-print-pack",
       "invoice-followup-copy-pack",
+      "upload-limit-fix-plan",
       "market-table-print-audit-upgrade",
       "local-seller-starter-kit",
       "sponsor-invoice-review",
@@ -226,6 +231,7 @@ function closeReadinessSummary(config, sponsorPublicReplies = {}, servicePublicR
     publicInvoiceIssueCount: Number(sponsorPublicReplies?.invoiceRequestCount) || 0,
     publicServiceRequestCount: Number(servicePublicRequests?.publicRequestCount) || 0,
     publicInvoiceFollowupRequestCount: Number(servicePublicRequests?.invoiceFollowupRequestCount) || 0,
+    publicUploadLimitFixPlanRequestCount: Number(servicePublicRequests?.uploadLimitFixPlanRequestCount) || 0,
     directCheckoutConfigured: checkout.readyForDirectPayment,
     readyForManualClose: serviceExportReady && sponsorExportReady && paymentReplyTemplatesReady,
     nextCommands: [
@@ -233,6 +239,7 @@ function closeReadinessSummary(config, sponsorPublicReplies = {}, servicePublicR
       "npm.cmd run sponsor:leads",
       "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/custom-local-print-pack",
       "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/invoice-followup-copy-pack",
+      "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/upload-limit-fix-plan",
     ],
     moneyGate: "Lead close work is operational only. Revenue is proven only after an external paid/settled order, platform balance, or signed sponsor agreement.",
   };
@@ -663,7 +670,8 @@ function buildNextActions(gates, local, live, searchConsole, discovery, director
   if (depthIntent === 0) actions.push("Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces.");
   if (local.closeReadiness?.readyForManualClose) actions.push("Use the internal lead-to-payment close cockpit after every service, seller-kit, audit, or sponsor lead: export, confirm fit, copy the payment reply, and count revenue only after external proof.");
   if (!checkout.readyForDirectPayment) actions.push("Create one real external payment-provider product for the $29 service or $9 kit, then run configure:checkout with the public checkout URL only.");
-  if ((servicePublicRequests.invoiceFollowupRequestCount || 0) > 0) actions.push("Review public-safe GitHub invoice follow-up service request issues, confirm fit, then send only an external $19 checkout or invoice link.");
+  if ((servicePublicRequests.uploadLimitFixPlanRequestCount || 0) > 0) actions.push("Review public-safe GitHub upload fix plan request issues, confirm no files/private details are included, then send only an external $9 checkout or invoice link.");
+  else if ((servicePublicRequests.invoiceFollowupRequestCount || 0) > 0) actions.push("Review public-safe GitHub invoice follow-up service request issues, confirm fit, then send only an external $19 checkout or invoice link.");
   else if ((servicePublicRequests.paidServiceRequestCount || 0) > 0) actions.push("Review public-safe GitHub service request issues and move qualified buyers to an external checkout or invoice link.");
   if (commercial === 0) actions.push("Keep the sponsorship and partner inquiry page visible as a no-payment commercial-intent surface while ad-network setup waits.");
   if (sponsorInvoiceRequests > 0) actions.push("Export the invoice-request sponsor lead, verify policy fit, and send only an external invoice or agreement; do not collect payment details in this site.");
@@ -713,6 +721,7 @@ function renderValidationMarkdown(report) {
     `- Sponsor invoice requests: ${sponsorInvoiceRequests}.`,
     `- Public-safe service request issues: ${servicePublicRequests.publicRequestCount || 0}.`,
     `- Public-safe invoice follow-up request issues: ${servicePublicRequests.invoiceFollowupRequestCount || 0}.`,
+    `- Public-safe upload fix plan request issues: ${servicePublicRequests.uploadLimitFixPlanRequestCount || 0}.`,
     `- Public-safe sponsor replies: ${publicReplies.publicReplyCount || 0}.`,
     `- Public-safe invoice issue requests: ${publicReplies.invoiceRequestCount || 0}.`,
     `- Sponsor outreach queued/sent/settled: ${report.local.sponsorOutreach.queued}/${report.local.sponsorOutreach.sent}/${report.local.sponsorOutreach.settled}.`,
@@ -771,7 +780,7 @@ function printSummary(report) {
   const servicePublicRequests = report.local.servicePublicRequests || {};
   console.log(`Validation report written to ${path.relative(root, reportPath)} and VALIDATION.md`);
   console.log(`Product ready: ${yesNo(report.gates.productReady)} | Tools: ${report.local.toolCount} | Guides: ${report.local.guideCount} | Landing pages: ${report.local.landingPageCount}`);
-  console.log(`Downloads: ${totalDownloads(totals)} | Generations: ${totalGenerations(totals)} | Free-tool depth intent: ${freeToolDepthIntent(totals)} | Commercial intent: ${commercialIntent(totals)} | Sponsor leads: ${sponsorLeads} | Sponsor invoice requests: ${sponsorInvoiceRequests} | Public service issues: ${servicePublicRequests.publicRequestCount || 0} | Public invoice follow-up issues: ${servicePublicRequests.invoiceFollowupRequestCount || 0} | Public replies: ${publicReplies.publicReplyCount || 0} | Public invoice issues: ${publicReplies.invoiceRequestCount || 0} | Search visible: ${yesNo(report.gates.searchVisible)} | External discovery: ${yesNo(report.gates.externalDiscoveryReady)} | AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}`);
+  console.log(`Downloads: ${totalDownloads(totals)} | Generations: ${totalGenerations(totals)} | Free-tool depth intent: ${freeToolDepthIntent(totals)} | Commercial intent: ${commercialIntent(totals)} | Sponsor leads: ${sponsorLeads} | Sponsor invoice requests: ${sponsorInvoiceRequests} | Public service issues: ${servicePublicRequests.publicRequestCount || 0} | Public invoice follow-up issues: ${servicePublicRequests.invoiceFollowupRequestCount || 0} | Public upload fix issues: ${servicePublicRequests.uploadLimitFixPlanRequestCount || 0} | Public replies: ${publicReplies.publicReplyCount || 0} | Public invoice issues: ${publicReplies.invoiceRequestCount || 0} | Search visible: ${yesNo(report.gates.searchVisible)} | External discovery: ${yesNo(report.gates.externalDiscoveryReady)} | AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}`);
 }
 
 function totalDownloads(totals) {
