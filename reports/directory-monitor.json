@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-08T08:33:16.516Z",
+  "generatedAt": "2026-06-08T12:19:16.890Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 8,
-  "pendingCount": 9,
+  "listedCount": 11,
+  "pendingCount": 8,
   "errorCount": 1,
   "results": [
     {
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 117840,
+          "bytes": 117735,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 117840,
+          "bytes": 117735,
           "matched": false
         }
       ]
@@ -78,7 +78,7 @@
           "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
           "ok": true,
           "status": 200,
-          "bytes": 88339,
+          "bytes": 88700,
           "matched": true
         }
       ]
@@ -194,6 +194,28 @@
       ]
     },
     {
+      "name": "TechTools Launchpad upload limit fix plan service listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=172",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/172",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Upload Limit Fix Plan"
+      ],
+      "submittedAt": "2026-06-08",
+      "reviewWindow": "auto-approved API listing for the $9 upload fix plan service path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/172",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/172",
+          "ok": true,
+          "status": 200,
+          "bytes": 1379,
+          "matched": true
+        }
+      ]
+    },
+    {
       "name": "NoSignupTools",
       "url": "https://nosignuptools.com/",
       "searchUrl": "https://nosignuptools.com/?q=PrintableTools+Lab",
@@ -246,6 +268,35 @@
           "ok": false,
           "status": 404,
           "bytes": 20124,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools upload limit fixer listing",
+      "url": "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Upload+Limit+Fixer",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Upload Limit Fixer"
+      ],
+      "submittedAt": "2026-06-08",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Upload+Limit+Fixer",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20088,
           "matched": false
         }
       ]
@@ -331,7 +382,7 @@
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev",
           "ok": true,
           "status": 200,
-          "bytes": 45059,
+          "bytes": 45055,
           "matched": true
         }
       ]
@@ -360,7 +411,7 @@
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer",
           "ok": true,
           "status": 200,
-          "bytes": 46137,
+          "bytes": 46133,
           "matched": true
         }
       ]
@@ -375,8 +426,8 @@
       ],
       "submittedAt": "2026-06-08",
       "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-tools-invoice-followup-email",
-      "status": "pending",
-      "evidenceUrl": "",
+      "status": "listed",
+      "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-invoice-followup-email",
       "checked": [
         {
           "url": "https://nologin.tools/?q=Invoice+Follow-up+Email+Generator",
@@ -387,10 +438,10 @@
         },
         {
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-invoice-followup-email",
-          "ok": false,
-          "status": 404,
-          "bytes": 10724,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 45323,
+          "matched": true
         }
       ]
     },
@@ -404,8 +455,8 @@
       ],
       "submittedAt": "2026-06-08",
       "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-overdue-invoice-reminder-email",
-      "status": "pending",
-      "evidenceUrl": "",
+      "status": "listed",
+      "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-overdue-invoice-reminder-email",
       "checked": [
         {
           "url": "https://nologin.tools/?q=Overdue+Invoice+Reminder+Email",
@@ -416,10 +467,10 @@
         },
         {
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-overdue-invoice-reminder-email",
-          "ok": false,
-          "status": 404,
-          "bytes": 10724,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 45387,
+          "matched": true
         }
       ]
     },
@@ -464,34 +515,49 @@
       "reviewWindow": "maintainer review",
       "status": "error",
       "evidenceUrl": "https://github.com/js-org/js.org/pull/11512",
-      "apiAvailable": false,
-      "checksAvailable": false,
-      "templateOk": null,
-      "checksOk": null,
-      "checks": [],
-      "prState": "unknown",
-      "mergeable": null,
+      "apiAvailable": true,
+      "checksAvailable": true,
+      "templateOk": true,
+      "checksOk": true,
+      "checks": [
+        {
+          "name": "PR description",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:58Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353230"
+        },
+        {
+          "name": "cnames_active.js",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:57Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353223"
+        }
+      ],
+      "prState": "closed",
+      "mergeable": true,
       "checked": [
         {
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 299256,
+          "bytes": 299274,
           "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/pulls/11512",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 16307,
+          "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 18122,
+          "matched": true
         }
       ]
     }

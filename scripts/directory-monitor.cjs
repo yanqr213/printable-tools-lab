@@ -96,6 +96,14 @@ const directories = [
     reviewWindow: "24-48 hour manual review after public API success response",
   },
   {
+    name: "NoSignupTools upload limit fixer listing",
+    url: "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Upload+Limit+Fixer",
+    expected: [siteHost, "Upload Limit Fixer"],
+    submittedAt: "2026-06-08",
+    reviewWindow: "24-48 hour manual review after public API success response",
+  },
+  {
     name: "FreeNoSignup",
     url: "https://freenosignup.com/",
     searchUrl: "https://freenosignup.com/?s=PrintableTools+Lab",

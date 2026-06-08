@@ -1,0 +1,35 @@
+﻿{
+    "generatedAt":  "2026-06-08T12:15:07.6160874Z",
+    "directory":  "NoSignupTools",
+    "endpoint":  "https://nosignuptools.com/api/submit",
+    "status":  200,
+    "ok":  true,
+    "preSubmitEvidence":  {
+                              "expectedReviewUrlStatus":  404,
+                              "searchMatchedExistingListing":  false
+                          },
+    "payload":  {
+                    "name":  "Upload Limit Fixer by PrintableTools Lab",
+                    "slug":  "upload-limit-fixer-by-printabletools-lab",
+                    "url":  "https://printable-tools-lab.pages.dev/upload-limit-fixer/?utm_source=nosignuptools\u0026utm_medium=directory\u0026utm_campaign=upload_limit_2026_06\u0026utm_content=upload_limit_fixer",
+                    "icon_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                    "category":  "productivity",
+                    "short_description":  "Free no-signup upload error matcher for PDF, image, photo, and file-size limits.",
+                    "long_description":  "A free browser-based upload limit fixer that maps common rejected upload messages to the right no-upload PDF/image tool. It helps with PDF under 1MB or 500KB, image under KB/MB targets, wrong file type, PDF-to-JPG, photo dimensions, screenshots, resume PDFs, and email attachment limits. It requires no account, no file upload to a server, no private document, ID photo, portal login, payment, tax, or account data. Optional USD 9 manual fix-plan requests are separate and only after a public-safe fit check.",
+                    "screenshots":  [
+                                        "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+                                    ],
+                    "tag_ids":  [
+                                    3,
+                                    5
+                                ],
+                    "submitter_name":  "PrintableTools Lab",
+                    "submitter_email":  null
+                },
+    "response":  {
+                     "success":  true
+                 },
+    "reviewStatus":  "pending_manual_review",
+    "reviewWindow":  "24-48 hours",
+    "expectedReviewUrl":  "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab"
+}

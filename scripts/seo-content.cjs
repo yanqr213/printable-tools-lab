@@ -8603,6 +8603,7 @@ function directorySubmissionHtml() {
     ["TechTools Invoice Follow-up Email Generator", "https://techtools.cz/tools/launchpad/?tool=170", "Free-tool discovery listing for invoice reminder visitors before the $19 service CTA."],
     ["TechTools Overdue Invoice Reminder Email", "https://techtools.cz/tools/launchpad/?tool=171", "High-intent overdue invoice reminder listing that points to a service-lead landing page."],
     ["TechTools Upload Limit Fix Plan", "https://techtools.cz/tools/launchpad/?tool=172", "Direct discovery listing for the $9 upload-limit troubleshooting service path."],
+    ["NoSignupTools Upload Limit Fixer", "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab", "Pending public API submission for a no-signup upload error matcher."],
     ["NoLogin.tools", "https://nologin.tools/tool/printable-tools-lab-pages-dev", "Privacy-friendly no-login tool listing."],
     ["NoLogin.tools Upload Limit Fixer", "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer", "No-login listing for upload-limit fixes."],
   ];
@@ -8629,8 +8630,8 @@ function directorySubmissionHtml() {
         </div>
       </section>
       <section class="shell section">
-        <h2>Live external listings</h2>
-        <p>These public directory entries are discovery signals, not revenue proof. They are listed here so reviewers can verify external visibility without accessing internal operations pages.</p>
+        <h2>External listings and submissions</h2>
+        <p>These public directory entries and pending submissions are discovery signals, not revenue proof. They are listed here so reviewers can verify external visibility without accessing internal operations pages.</p>
         <div class="grid-2">
           ${liveDirectoryListings.map(([title, url, note]) => `<article class="panel"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(note)}</p><a class="button secondary" href="${escapeHtml(url)}" rel="nofollow">Open listing</a></article>`).join("\n")}
         </div>
