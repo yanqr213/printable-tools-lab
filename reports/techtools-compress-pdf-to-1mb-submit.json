@@ -1,0 +1,42 @@
+﻿{
+    "generatedAt":  "2026-06-08T14:45:25.7151626Z",
+    "endpoint":  "https://techtools.cz/launchpad-api/tools",
+    "status":  201,
+    "ok":  true,
+    "payload":  {
+                    "name":  "Compress PDF to 1MB by PrintableTools Lab",
+                    "url":  "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb/?utm_source=techtools\u0026utm_medium=directory\u0026utm_campaign=pdf_1mb_2026_06\u0026utm_content=compress_pdf_to_1mb",
+                    "tagline":  "Free no-signup PDF compressor for common 1MB upload limits.",
+                    "description":  "PrintableTools Lab Compress PDF to 1MB is a free no-signup browser page for people blocked by PDF must be under 1MB, job portal, school, email, admin, and form upload limits. It opens the no-upload PDF compressor with the 1MB target selected, keeps files in the browser, and reminds users to review readability before submitting. After a download, users who still have a messy portal rule can open a public-safe $9 Upload Limit Fix Plan request without uploading the private file.",
+                    "category":  "utilities",
+                    "maker_name":  "PrintableTools Lab",
+                    "maker_url":  "https://printable-tools-lab.pages.dev/",
+                    "logo_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                    "submitted_by":  "Codex traffic acquisition run 2026-06-08 compress pdf to 1mb high-intent path"
+                },
+    "response":  {
+                     "success":  true,
+                     "message":  "Tool submitted successfully! It is now live.",
+                     "data":  {
+                                  "id":  174,
+                                  "name":  "Compress PDF to 1MB by PrintableTools Lab",
+                                  "url":  "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb/?utm_source=techtools\u0026utm_medium=directory\u0026utm_campaign=pdf_1mb_2026_06\u0026utm_content=compress_pdf_to_1mb",
+                                  "tagline":  "Free no-signup PDF compressor for common 1MB upload limits.",
+                                  "description":  "PrintableTools Lab Compress PDF to 1MB is a free no-signup browser page for people blocked by PDF must be under 1MB, job portal, school, email, admin, and form upload limits. It opens the no-upload PDF compressor with the 1MB target selected, keeps files in the browser, and reminds users to review readability before submitting. After a download, users who still have a messy portal rule can open a public-safe $9 Upload Limit Fix Plan request without uploading the private file.",
+                                  "category":  "utilities",
+                                  "category_label":  "Utilities",
+                                  "maker_name":  "PrintableTools Lab",
+                                  "maker_url":  "https://printable-tools-lab.pages.dev/",
+                                  "logo_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                                  "upvotes":  0,
+                                  "featured":  false,
+                                  "submitted_by":  "Codex traffic acquisition run 2026-06-08 compress pdf to 1mb high-intent path",
+                                  "launch_date":  "2026-06-08",
+                                  "created_at":  "2026-06-08T14:45:25Z",
+                                  "share_url":  "https://techtools.cz/tools/launchpad/?tool=174"
+                              },
+                     "share_url":  "https://techtools.cz/tools/launchpad/?tool=174"
+                 },
+    "shareUrl":  "https://techtools.cz/tools/launchpad/?tool=174",
+    "evidenceApiUrl":  "https://techtools.cz/launchpad-api/tools/174"
+}

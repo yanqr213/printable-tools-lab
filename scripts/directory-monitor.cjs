@@ -88,6 +88,14 @@ const directories = [
     reviewWindow: "auto-approved API listing for the upload error cheatsheet path",
   },
   {
+    name: "TechTools Launchpad compress PDF to 1MB listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=174",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/174",
+    expected: [siteHost, "Compress PDF to 1MB"],
+    submittedAt: "2026-06-08",
+    reviewWindow: "auto-approved API listing for the high-intent PDF 1MB upload-error path",
+  },
+  {
     name: "NoSignupTools",
     url: "https://nosignuptools.com/",
     searchUrl: "https://nosignuptools.com/?q=PrintableTools+Lab",
