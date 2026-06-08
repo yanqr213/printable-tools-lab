@@ -6652,6 +6652,7 @@
       const values = getFormValues(form);
       renderCanvas(tool, canvas, values);
       if (typeof tool.afterDraw === "function") tool.afterDraw(values);
+      initServiceLeadForms(document);
     };
 
     initializeSignaturePads(tool, form, draw);
@@ -8130,6 +8131,60 @@ ${paragraphs.join("\n")}
         <div class="actions">
           <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="${escapeHtml(serviceTool)}">${escapeHtml(buttonText)}</button>
           <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="${escapeHtml(serviceTool)}" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open GitHub backup</a>
+        </div>
+        <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send a public-safe fit check here. Payment still happens only through a real external checkout or invoice after fit is confirmed.</p>
+      </form>
+    `;
+  }
+
+  function renderInvoiceFollowupOutputServiceLeadForm(values, message) {
+    const sourcePath = "/tools/invoice-followup-email/";
+    const serviceType = "invoice-followup-copy-pack";
+    const toolId = "invoice-followup-email";
+    const statusLabel = invoiceFollowupStatusLabel(values.invoiceStatus);
+    const businessName = sanitizePrintable(values.projectLabel || values.clientLabel || "Invoice follow-up email");
+    const messageExcerpt = sanitizePrintable(message).slice(0, 520);
+    const defaultSummary = [
+      "I used the free invoice follow-up email generator and want a free fit check for the $19 Invoice Follow-up Copy Pack.",
+      `Status: ${statusLabel}.`,
+      `Tone: ${sanitizePrintable(values.tone || "friendly")}.`,
+      `Payment wording: ${sanitizePrintable(values.paymentWording || "use the existing payment method")}.`,
+      "Generated draft excerpt to refine:",
+      messageExcerpt,
+    ].join("\n");
+    const fallbackUrl = serviceLeadFallbackUrl({
+      serviceType,
+      businessName,
+      contact: "",
+      needBy: "",
+      requestSummary: defaultSummary,
+      path: sourcePath,
+    });
+    return `
+      <form class="download-service-lead-form tool-output-service-lead-form" data-service-lead-form data-service-type="${escapeHtml(serviceType)}" data-lead-path="${escapeHtml(sourcePath)}" data-utm-source="tool_output" data-utm-medium="site" data-utm-campaign="invoice_followup_service" data-utm-content="${escapeHtml(toolId)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+        <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="serviceType" value="${escapeHtml(serviceType)}">
+        <input type="hidden" name="businessName" value="${escapeHtml(businessName)}">
+        <input type="hidden" name="needBy" value="">
+        <input type="hidden" name="utmSource" value="tool_output">
+        <input type="hidden" name="utmMedium" value="site">
+        <input type="hidden" name="utmCampaign" value="invoice_followup_service">
+        <input type="hidden" name="utmContent" value="${escapeHtml(toolId)}">
+        <label class="field">
+          <span>Reply email or public contact</span>
+          <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or @publichandle" required>
+        </label>
+        <label class="field">
+          <span>What should the $19 follow-up sequence improve?</span>
+          <textarea name="requestSummary" maxlength="1000" required>${escapeHtml(defaultSummary)}</textarea>
+        </label>
+        <label class="check-row">
+          <input name="consent" type="checkbox" required>
+          <span>I will keep payment, tax, identity, passwords, customer lists, and private files outside this request.</span>
+        </label>
+        <div class="actions">
+          <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack">Send invoice fit check</button>
+          <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open GitHub backup</a>
         </div>
         <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send a public-safe fit check here. Payment still happens only through a real external checkout or invoice after fit is confirmed.</p>
       </form>
@@ -14140,6 +14195,11 @@ ${paragraphs.join("\n")}
       <div class="actions">
         <button class="button secondary" type="button" data-copy-text="${escapeHtml(message)}" data-track-event="free_tool_depth" data-track-tool="invoice-followup-email">Copy email</button>
         <a class="button" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="/invoice-followup-copy-pack/?utm_source=tool_output&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=invoice-followup-email#service-request">Get the $19 full sequence</a>
+      </div>
+      <div class="tool-output-service-lead">
+        <strong>Want the full $19 sequence?</strong>
+        <p class="help">Send a 30-second free fit check from this generated draft. No payment is collected here.</p>
+        ${renderInvoiceFollowupOutputServiceLeadForm(values, message)}
       </div>
     `;
   }
