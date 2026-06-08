@@ -1340,6 +1340,7 @@ else {
   if (!distribution.includes("sponsor-call")) failures.push("DISTRIBUTION.md missing sponsor call link.");
   if (!distribution.includes("utm_source=sponsor-outreach")) failures.push("DISTRIBUTION.md missing sponsor outreach tracking.");
   if (!distribution.includes("TechTools Overdue Invoice Reminder listing") || !distribution.includes("overdue_invoice_2026_06")) failures.push("DISTRIBUTION.md missing overdue invoice reminder directory listing.");
+  if (!distribution.includes("NoLogin.tools Overdue Invoice Reminder listing") || !distribution.includes("utm_source=nologin")) failures.push("DISTRIBUTION.md missing NoLogin overdue invoice reminder submission.");
   if (!distribution.includes("free_tool_depth")) failures.push("DISTRIBUTION.md missing free-tool depth tracking campaign.");
   if (distribution.includes("Paid service sales pack")) failures.push("DISTRIBUTION.md should not promote paid service sales pack in the main distribution pack.");
   if (distribution.includes("service_sales_pack")) failures.push("DISTRIBUTION.md should not promote service sales tracking campaign.");

@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-06-08T08:06:51.062Z",
+  "endpoint": "https://nologin.tools/api/submit",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Overdue Invoice Reminder Email",
+    "url": "https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email/?utm_source=nologin&utm_medium=directory&utm_campaign=overdue_invoice_2026_06&utm_content=overdue_invoice_reminder_email",
+    "description": "Free no-signup overdue invoice reminder email generator for freelancers and service businesses. Write a first overdue invoice follow-up in the browser without uploading invoice numbers, client names, bank details, tax IDs, card data, or private customer information.",
+    "pledge": true,
+    "coreTask": "Generate a first overdue invoice reminder email without creating an account.",
+    "submitterEmail": "",
+    "repoUrl": "",
+    "twitterUrl": "",
+    "githubUrl": "",
+    "discordUrl": "",
+    "tags": [
+      {
+        "key": "category",
+        "value": "Productivity"
+      },
+      {
+        "key": "data",
+        "value": "Client-Side Only"
+      },
+      {
+        "key": "privacy",
+        "value": "Privacy Focused"
+      },
+      {
+        "key": "type",
+        "value": "Web App"
+      },
+      {
+        "key": "pricing",
+        "value": "Free"
+      }
+    ]
+  },
+  "response": {
+    "ok": true,
+    "data": {
+      "slug": "printable-tools-lab-pages-dev-overdue-invoice-reminder-email"
+    }
+  },
+  "reviewUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-overdue-invoice-reminder-email",
+  "postSubmitCheck": {
+    "checkedAt": "2026-06-08T08:06:52.785Z",
+    "status": 404,
+    "result": "accepted_by_api_pending_public_review"
+  }
+}

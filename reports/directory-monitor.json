@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-08T08:00:27.933Z",
+  "generatedAt": "2026-06-08T08:07:56.102Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 8,
-  "pendingCount": 6,
+  "pendingCount": 7,
   "errorCount": 1,
   "results": [
     {
@@ -56,7 +56,7 @@
           "url": "https://listai.cc/",
           "ok": true,
           "status": 200,
-          "bytes": 318851,
+          "bytes": 318923,
           "matched": false
         }
       ]
@@ -337,6 +337,35 @@
       ]
     },
     {
+      "name": "NoLogin.tools overdue invoice reminder listing",
+      "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-overdue-invoice-reminder-email",
+      "searchUrl": "https://nologin.tools/?q=Overdue+Invoice+Reminder+Email",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Overdue Invoice Reminder Email"
+      ],
+      "submittedAt": "2026-06-08",
+      "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-overdue-invoice-reminder-email",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nologin.tools/?q=Overdue+Invoice+Reminder+Email",
+          "ok": true,
+          "status": 200,
+          "bytes": 188305,
+          "matched": false
+        },
+        {
+          "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-overdue-invoice-reminder-email",
+          "ok": false,
+          "status": 404,
+          "bytes": 10724,
+          "matched": false
+        }
+      ]
+    },
+    {
       "name": "NoSubscription.org",
       "url": "https://nosubscription.org/",
       "searchUrl": "https://nosubscription.org/?s=PrintableTools+Lab",
@@ -377,37 +406,49 @@
       "reviewWindow": "maintainer review",
       "status": "error",
       "evidenceUrl": "https://github.com/js-org/js.org/pull/11512",
-      "apiAvailable": false,
-      "checksAvailable": false,
-      "templateOk": null,
-      "checksOk": null,
-      "checks": [],
-      "prState": "unknown",
-      "mergeable": null,
+      "apiAvailable": true,
+      "checksAvailable": true,
+      "templateOk": true,
+      "checksOk": true,
+      "checks": [
+        {
+          "name": "PR description",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:58Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353230"
+        },
+        {
+          "name": "cnames_active.js",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:57Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353223"
+        }
+      ],
+      "prState": "closed",
+      "mergeable": true,
       "checked": [
         {
           "url": "https://github.com/js-org/js.org/pull/11512",
-          "ok": false,
-          "status": 0,
-          "bytes": 0,
-          "matched": false,
-          "error": "fetch failed"
+          "ok": true,
+          "status": 200,
+          "bytes": 299265,
+          "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/pulls/11512",
-          "ok": false,
-          "status": 0,
-          "bytes": 0,
-          "matched": false,
-          "error": "fetch failed"
+          "ok": true,
+          "status": 200,
+          "bytes": 16307,
+          "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs",
-          "ok": false,
-          "status": 0,
-          "bytes": 0,
-          "matched": false,
-          "error": "fetch failed"
+          "ok": true,
+          "status": 200,
+          "bytes": 18122,
+          "matched": true
         }
       ]
     }

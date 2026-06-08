@@ -112,6 +112,14 @@ const directories = [
     reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev-tools-invoice-followup-email",
   },
   {
+    name: "NoLogin.tools overdue invoice reminder listing",
+    url: "https://nologin.tools/tool/printable-tools-lab-pages-dev-overdue-invoice-reminder-email",
+    searchUrl: "https://nologin.tools/?q=Overdue+Invoice+Reminder+Email",
+    expected: [siteHost, "Overdue Invoice Reminder Email"],
+    submittedAt: "2026-06-08",
+    reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev-overdue-invoice-reminder-email",
+  },
+  {
     name: "NoSubscription.org",
     url: "https://nosubscription.org/",
     searchUrl: "https://nosubscription.org/?s=PrintableTools+Lab",
