@@ -1,0 +1,60 @@
+{
+  "generatedAt": "2026-06-08T21:13:41.770Z",
+  "endpoint": "https://nologin.tools/api/submit",
+  "status": 201,
+  "ok": true,
+  "preSubmitCheck": {
+    "checkedAt": "2026-06-08T21:13:40.794Z",
+    "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required",
+    "ok": false,
+    "status": 404,
+    "matched": false,
+    "bytes": 10717
+  },
+  "payload": {
+    "name": "PDF Not Accepted JPG Required Fix",
+    "url": "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/?utm_source=nologin&utm_medium=directory&utm_campaign=pdf_not_accepted_jpg_required_fix_2026_06&utm_content=pdf_to_jpg_required_landing",
+    "description": "Free no-signup PDF to JPG or PNG upload fix for portals that reject a PDF but accept an image. It points to local browser conversion and image compression pages. Optional USD 9 fit checks use public-safe error text only.",
+    "pledge": true,
+    "coreTask": "Convert PDF pages to JPG or PNG locally when an upload form requires an image.",
+    "submitterEmail": "",
+    "repoUrl": "",
+    "twitterUrl": "",
+    "githubUrl": "",
+    "discordUrl": "",
+    "tags": [
+      {
+        "key": "category",
+        "value": "Productivity"
+      },
+      {
+        "key": "data",
+        "value": "Client-Side Only"
+      },
+      {
+        "key": "privacy",
+        "value": "Privacy Focused"
+      },
+      {
+        "key": "type",
+        "value": "Web App"
+      },
+      {
+        "key": "pricing",
+        "value": "Free"
+      }
+    ]
+  },
+  "response": {
+    "ok": true,
+    "data": {
+      "slug": "printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required"
+    }
+  },
+  "reviewUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required",
+  "postSubmitCheck": {
+    "checkedAt": "2026-06-08T21:13:41.651Z",
+    "status": 404,
+    "result": "accepted_by_api_pending_public_review"
+  }
+}

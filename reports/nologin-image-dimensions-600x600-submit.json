@@ -1,0 +1,60 @@
+{
+  "generatedAt": "2026-06-08T21:13:37.783Z",
+  "endpoint": "https://nologin.tools/api/submit",
+  "status": 201,
+  "ok": true,
+  "preSubmitCheck": {
+    "checkedAt": "2026-06-08T21:13:35.987Z",
+    "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-image-dimensions-600x600",
+    "ok": false,
+    "status": 404,
+    "matched": false,
+    "bytes": 10717
+  },
+  "payload": {
+    "name": "Image Dimensions 600x600 Upload Fix",
+    "url": "https://printable-tools-lab.pages.dev/image-dimensions-600x600/?utm_source=nologin&utm_medium=directory&utm_campaign=image_dimensions_600x600_fix_2026_06&utm_content=image_dimensions_600x600_landing",
+    "description": "Free no-signup 600 x 600 image resize and crop fix for profile photos, school forms, marketplace listings, and application portals. It points to browser-based resize, crop, and compress tools. Optional USD 9 fit checks use public-safe error text only.",
+    "pledge": true,
+    "coreTask": "Resize or crop an image to 600 x 600 pixels without creating an account.",
+    "submitterEmail": "",
+    "repoUrl": "",
+    "twitterUrl": "",
+    "githubUrl": "",
+    "discordUrl": "",
+    "tags": [
+      {
+        "key": "category",
+        "value": "Productivity"
+      },
+      {
+        "key": "data",
+        "value": "Client-Side Only"
+      },
+      {
+        "key": "privacy",
+        "value": "Privacy Focused"
+      },
+      {
+        "key": "type",
+        "value": "Web App"
+      },
+      {
+        "key": "pricing",
+        "value": "Free"
+      }
+    ]
+  },
+  "response": {
+    "ok": true,
+    "data": {
+      "slug": "printable-tools-lab-pages-dev-image-dimensions-600x600"
+    }
+  },
+  "reviewUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-image-dimensions-600x600",
+  "postSubmitCheck": {
+    "checkedAt": "2026-06-08T21:13:37.543Z",
+    "status": 404,
+    "result": "accepted_by_api_pending_public_review"
+  }
+}

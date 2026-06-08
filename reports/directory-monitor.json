@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-08T20:13:14.700Z",
+  "generatedAt": "2026-06-08T21:41:57.091Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 26,
-  "pendingCount": 11,
+  "pendingCount": 13,
   "errorCount": 1,
   "results": [
     {
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 117945,
+          "bytes": 117895,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 117945,
+          "bytes": 117895,
           "matched": false
         }
       ]
@@ -49,14 +49,14 @@
           "url": "https://listai.cc/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 318931,
+          "bytes": 318665,
           "matched": false
         },
         {
           "url": "https://listai.cc/",
           "ok": true,
           "status": 200,
-          "bytes": 318931,
+          "bytes": 318665,
           "matched": false
         }
       ]
@@ -899,6 +899,64 @@
       ]
     },
     {
+      "name": "NoLogin.tools image dimensions 600x600 upload fix listing",
+      "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-image-dimensions-600x600",
+      "searchUrl": "https://nologin.tools/?q=Image+Dimensions+600x600+Upload+Fix",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Image Dimensions 600x600 Upload Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-image-dimensions-600x600",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nologin.tools/?q=Image+Dimensions+600x600+Upload+Fix",
+          "ok": true,
+          "status": 200,
+          "bytes": 188305,
+          "matched": false
+        },
+        {
+          "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-image-dimensions-600x600",
+          "ok": false,
+          "status": 404,
+          "bytes": 10724,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoLogin.tools PDF not accepted JPG required upload fix listing",
+      "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required",
+      "searchUrl": "https://nologin.tools/?q=PDF+Not+Accepted+JPG+Required+Fix",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "PDF Not Accepted JPG Required Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nologin.tools/?q=PDF+Not+Accepted+JPG+Required+Fix",
+          "ok": true,
+          "status": 200,
+          "bytes": 188305,
+          "matched": false
+        },
+        {
+          "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required",
+          "ok": false,
+          "status": 404,
+          "bytes": 10724,
+          "matched": false
+        }
+      ]
+    },
+    {
       "name": "NoSubscription.org",
       "url": "https://nosubscription.org/",
       "searchUrl": "https://nosubscription.org/?s=PrintableTools+Lab",
@@ -966,7 +1024,7 @@
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 298763,
+          "bytes": 298707,
           "matched": true
         },
         {

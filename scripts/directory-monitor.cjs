@@ -296,6 +296,22 @@ const directories = [
     reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev-overdue-invoice-reminder-email",
   },
   {
+    name: "NoLogin.tools image dimensions 600x600 upload fix listing",
+    url: "https://nologin.tools/tool/printable-tools-lab-pages-dev-image-dimensions-600x600",
+    searchUrl: "https://nologin.tools/?q=Image+Dimensions+600x600+Upload+Fix",
+    expected: [siteHost, "Image Dimensions 600x600 Upload Fix"],
+    submittedAt: "2026-06-09",
+    reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev-image-dimensions-600x600",
+  },
+  {
+    name: "NoLogin.tools PDF not accepted JPG required upload fix listing",
+    url: "https://nologin.tools/tool/printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required",
+    searchUrl: "https://nologin.tools/?q=PDF+Not+Accepted+JPG+Required+Fix",
+    expected: [siteHost, "PDF Not Accepted JPG Required Fix"],
+    submittedAt: "2026-06-09",
+    reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required",
+  },
+  {
     name: "NoSubscription.org",
     url: "https://nosubscription.org/",
     searchUrl: "https://nosubscription.org/?s=PrintableTools+Lab",
