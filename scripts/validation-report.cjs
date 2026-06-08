@@ -176,13 +176,16 @@ function checkoutReadinessSummary(config) {
 
 function closeReadinessSummary(config, sponsorPublicReplies = {}) {
   const paymentReplyTemplatesReady = fs.existsSync(path.join(root, "assets", "services", "custom-local-print-pack-payment-reply.txt"))
-    && fs.existsSync(path.join(root, "assets", "services", "custom-local-print-pack-fulfillment-checklist.txt"));
+    && fs.existsSync(path.join(root, "assets", "services", "custom-local-print-pack-fulfillment-checklist.txt"))
+    && fs.existsSync(path.join(root, "assets", "services", "invoice-followup-copy-pack-payment-reply.txt"))
+    && fs.existsSync(path.join(root, "assets", "services", "invoice-followup-copy-pack-fulfillment-checklist.txt"));
   const serviceExportReady = fs.existsSync(path.join(root, "scripts", "export-service-leads.cjs"));
   const sponsorExportReady = fs.existsSync(path.join(root, "scripts", "export-sponsor-leads.cjs"));
   const checkout = checkoutReadinessSummary(config);
   return {
     activeCloseLanes: [
       "custom-local-print-pack",
+      "invoice-followup-copy-pack",
       "market-table-print-audit-upgrade",
       "local-seller-starter-kit",
       "sponsor-invoice-review",
@@ -197,6 +200,7 @@ function closeReadinessSummary(config, sponsorPublicReplies = {}) {
       "npm.cmd run service:leads",
       "npm.cmd run sponsor:leads",
       "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/custom-local-print-pack",
+      "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/invoice-followup-copy-pack",
     ],
     moneyGate: "Lead close work is operational only. Revenue is proven only after an external paid/settled order, platform balance, or signed sponsor agreement.",
   };

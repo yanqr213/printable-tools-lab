@@ -48,6 +48,14 @@ const directories = [
     reviewWindow: "auto-approved API listing for the invoice-to-service lead path",
   },
   {
+    name: "TechTools Launchpad invoice follow-up service listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=169",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/169",
+    expected: [siteHost, "Invoice Follow-up Copy Pack"],
+    submittedAt: "2026-06-08",
+    reviewWindow: "auto-approved API listing for the invoice follow-up service path",
+  },
+  {
     name: "NoSignupTools",
     url: "https://nosignuptools.com/",
     searchUrl: "https://nosignuptools.com/?q=PrintableTools+Lab",

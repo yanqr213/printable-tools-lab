@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-08T04:54:14.327Z
+Last generated: 2026-06-08T05:02:13.471Z
 
 ## Current Automated Status
 
@@ -23,7 +23,7 @@ Last generated: 2026-06-08T04:54:14.327Z
 - Sponsor outreach queued/sent/settled: 10/0/0.
 - Search impressions: 0.
 - Search clicks: 0.
-- External discovery ready: no.
+- External discovery ready: yes.
 - Ads enabled: no.
 - AdSense apply-ready: no.
 
@@ -42,10 +42,10 @@ Last generated: 2026-06-08T04:54:14.327Z
 - GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.
 - GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.
 - GitHub Pages discovery directory is live with 92 landing page link(s), 66 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).
-- GitHub Pages discovery sitemap has 266 URL(s), including 66 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 267.
+- GitHub Pages discovery sitemap has 267 URL(s), including 66 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 267.
 - IndexNow key file is reachable from the site root.
 - IndexNow latest report accepted 263 URL(s) for github-pages.
-- Directory monitor shows 5 listed, 5 pending, and 1 error directory target(s).
+- Directory monitor shows 6 listed, 5 pending, and 1 error directory target(s).
 
 ## Monetization Gate
 
@@ -63,7 +63,6 @@ Last generated: 2026-06-08T04:54:14.327Z
 ## Next Actions
 
 - Watch the newly listed directories for real referrals and depth events before adding another same-category submission.
-- Sync the generated docs/ discovery mirror to GitHub Pages; live sitemap has 266 URL(s), expected 267.
 - Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.
 - When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.
 - Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.

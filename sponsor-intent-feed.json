@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Sponsor Intent Feed",
-  "generatedAt": "2026-06-08T04:54:22.447Z",
+  "generatedAt": "2026-06-08T05:02:30.133Z",
   "canonical": "https://printable-tools-lab.pages.dev/sponsor-intent-feed.json",
   "purpose": "Public-safe sponsor discovery feed for directories, newsletters, resource pages, and partners. It lists sponsor-fit audiences and invoice-review paths without exposing operations pages, private leads, payment data, or contact details.",
   "sponsorOpportunities": "https://printable-tools-lab.pages.dev/sponsor-opportunities/",
@@ -9,8 +9,8 @@
   "invoiceReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=board-hero&commitment=request-invoice#sponsor-inquiry",
   "mediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
   "externalDiscoveryProof": {
-    "generatedAt": "2026-06-08T04:14:53.151Z",
-    "directoryListedCount": 5,
+    "generatedAt": "2026-06-08T05:01:55.930Z",
+    "directoryListedCount": 6,
     "directoryPendingCount": 5,
     "directoryErrorCount": 1,
     "listedDirectories": [
@@ -33,6 +33,12 @@
         "reviewWindow": "auto-approved API listing for the invoice-to-service lead path"
       },
       {
+        "name": "TechTools Launchpad invoice follow-up service listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/169",
+        "submittedAt": "2026-06-08",
+        "reviewWindow": "auto-approved API listing for the invoice follow-up service path"
+      },
+      {
         "name": "NoLogin.tools",
         "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev",
         "submittedAt": "2026-06-03",
@@ -49,7 +55,7 @@
       "github-pages"
     ],
     "indexNowSubmittedUrls": 263,
-    "publicProofLine": "External discovery proof: 5 public directory listing(s) are live; 5 more listing(s) remain pending; IndexNow accepted 1 target(s). These are discovery signals, not revenue.",
+    "publicProofLine": "External discovery proof: 6 public directory listing(s) are live; 5 more listing(s) remain pending; IndexNow accepted 1 target(s). These are discovery signals, not revenue.",
     "moneyBoundary": "Directory listings, IndexNow submissions, clicks, and views are discovery signals only. Revenue is real only after a signed sponsor agreement or settled external payment."
   },
   "prospectPaths": [

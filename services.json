@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Paid Services",
-  "generatedAt": "2026-06-08T04:54:22.447Z",
+  "generatedAt": "2026-06-08T05:02:30.133Z",
   "canonical": "https://printable-tools-lab.pages.dev/services.json",
   "services": [
     {
@@ -220,11 +220,11 @@
         }
       ],
       "sampleDeliveryUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-sample-delivery.zip",
-      "sampleDeliverySha256": "032d2988e5882107a3dd5e422a75502fd7041f3042b8cb48da4a7a9e699df2bf",
+      "sampleDeliverySha256": "1d2b3810c91ed3e6813fd1b79eae0325a40947e3c7ad32de8033b747ab9adb37",
       "deliveryInputExampleUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-delivery-input.example.json",
       "deliveryInputExampleSha256": "cc7bb204fc8da14ab5a878b0079dc19a8fb0acad8753e7715c6e7a6a7db32956",
       "deliveryReportUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-sample-delivery.json",
-      "deliveryReportSha256": "22270fa772a2c72e6490bc15f77a87d6f68db645b1ccbe040ff895f5c156d319",
+      "deliveryReportSha256": "9b20d1dfd1e05c64493955fb130dddd2e272a18edadba79db89c694a878c6f6e",
       "privateDeliveryCommand": "npm.cmd run service:delivery -- --input path/to/paid-order.json",
       "turnaround": "Target delivery is 2 business days after real payment and complete buyer details.",
       "deliverables": [
@@ -476,11 +476,11 @@
         }
       ],
       "sampleDeliveryUrl": "https://printable-tools-lab.pages.dev/assets/services/invoice-followup-copy-pack-sample-delivery.zip",
-      "sampleDeliverySha256": "c0a7bd0dc8a6158372b60572eb9b88d158e7a5af98119ed5291345df71faea2f",
+      "sampleDeliverySha256": "db0ba814fc0a3083ca22358299d318388aa092aeae058ceb956319af51180fae",
       "deliveryInputExampleUrl": "https://printable-tools-lab.pages.dev/assets/services/invoice-followup-copy-pack-delivery-input.example.json",
       "deliveryInputExampleSha256": "c8e8e7048653c2b52895210cae348e59d12700b49141c82ea1237a63adc88f0e",
       "deliveryReportUrl": "https://printable-tools-lab.pages.dev/assets/services/invoice-followup-copy-pack-sample-delivery.json",
-      "deliveryReportSha256": "91443a6a1c373c8d1759dfde35d548dc22d20cbf39631c2a214f7f4ee769f19e",
+      "deliveryReportSha256": "26cbe623cceb3f81e82670566110314a12a9f9c9d167a81d211d8494e9222d6e",
       "privateDeliveryCommand": "npm.cmd run service:delivery -- --input path/to/paid-order.json",
       "turnaround": "Target delivery is 1 business day after real payment and complete public-safe details.",
       "deliverables": [

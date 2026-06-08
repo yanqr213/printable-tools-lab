@@ -7733,6 +7733,7 @@ function directorySubmissionHtml() {
     ["TechTools Launchpad", "https://techtools.cz/tools/launchpad/?tool=161", "Homepage listing for the free no-signup tool collection."],
     ["TechTools Upload Limit Fixer", "https://techtools.cz/tools/launchpad/?tool=162", "High-intent listing for file-size and format upload errors."],
     ["TechTools Invoice Generator", "https://techtools.cz/tools/launchpad/?tool=168", "Service-lead path for small-seller invoice PDF visitors."],
+    ["TechTools Invoice Follow-up Copy Pack", "https://techtools.cz/tools/launchpad/?tool=169", "Direct discovery listing for the $19 invoice follow-up copy service."],
     ["NoLogin.tools", "https://nologin.tools/tool/printable-tools-lab-pages-dev", "Privacy-friendly no-login tool listing."],
     ["NoLogin.tools Upload Limit Fixer", "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer", "No-login listing for upload-limit fixes."],
   ];
