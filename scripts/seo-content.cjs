@@ -6955,9 +6955,10 @@ function uploadErrorQuickRequestPanelHtml(requestSummary) {
               utmContent: "cheatsheet-row-quick",
               requestSummary,
               className: "upload-limit-fix-plan-micro-lead-form upload-error-quick-lead-form",
-              submitLabel: "Send selected error request",
-              extraNote: "Shortest path: the selected error is already written. Add one reply email or public handle to unlock the private $9 follow-up path.",
+              submitLabel: "Request $9 invoice link",
+              extraNote: "Shortest path: the selected error is already written. Add one reply email or public handle to get the external $9 invoice link after fit is confirmed.",
               compact: true,
+              primaryInvoiceRequest: true,
             })}
           </div>
         </div>`;
@@ -8063,10 +8064,11 @@ function toolUploadFixServiceCtaHtml(tool) {
             pathName: "/tools/compress-image-to-kb/",
             utmSource: "compress-image-kb-tool",
             utmContent: "compress-image-kb-static-panel",
-            submitLabel: "Send $9 image target request",
+            submitLabel: "Request $9 invoice link",
             className: "upload-limit-fix-plan-micro-lead-form compress-image-kb-tool-fix-form",
             compact: true,
             imageKbToolFixForm: true,
+            primaryInvoiceRequest: true,
             requestSummary: "I need a $9 Upload Limit Fix Plan for the Compress Image to KB tool before submitting to another website. Portal target: image or photo under the required KB limit. No file upload, private document, ID photo, resume, portal login, payment, tax, identity, or account details included.",
           })}
         </div>
@@ -8995,7 +8997,7 @@ function uploadErrorCheatsheetHtml() {
         <a href="/upload-limit-fixer/">Upload limit fixer</a>
         <h1>Upload error cheatsheet</h1>
         <p>A copy-ready reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors. Each row links to a free no-signup browser tool and a specific landing page that explains the fix.</p>
-        <p><a class="button" href="#service-request" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Need a $9 fix plan?</a> <a class="button secondary" data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(serviceInvoiceRequestUrl({ serviceType: "upload-limit-fix-plan", pathName: "/upload-error-cheatsheet/", requestSummary: fixPlanSummary }))}" target="_blank" rel="noreferrer">Request $9 invoice link</a> <a class="button ghost" href="/upload-error-cheatsheet.json">Open JSON feed</a></p>
+        <p><a class="button" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="#service-request">Request $9 invoice link</a> <a class="button secondary" href="#service-request">Use one-contact form</a> <a class="button ghost" href="/upload-error-cheatsheet.json">Open JSON feed</a></p>
       </section>
       <section class="shell section">
         <h2>Common upload errors and direct fixes</h2>
@@ -9023,7 +9025,9 @@ function uploadErrorCheatsheetHtml() {
           utmContent: "cheatsheet-inline",
           requestSummary: fixPlanSummary,
           className: "upload-limit-fix-plan-micro-lead-form upload-error-cheatsheet-fix-plan-form",
-          submitLabel: "Send $9 fix-plan request",
+          submitLabel: "Request $9 invoice link",
+          primaryInvoiceRequest: true,
+          oneFieldInvoiceRequest: true,
         })}
       </section>
       <section class="shell section">

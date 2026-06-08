@@ -6036,6 +6036,14 @@
       requestSummary,
       path: pathName,
     });
+    const invoiceRequestUrl = serviceInvoiceRequestUrl({
+      serviceType: "upload-limit-fix-plan",
+      businessName: "Compress image to KB workflow",
+      contact: "",
+      needBy: "",
+      requestSummary,
+      path: pathName,
+    });
     return `
           <div class="tool-upload-fix-panel" data-compress-image-kb-upload-fix-panel>
             <p class="eyebrow">Optional paid help</p>
@@ -6055,17 +6063,11 @@
                 <span>Reply email or public contact</span>
                 <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or @publichandle" required>
               </label>
-              <label class="field">
-                <span>Portal error text (optional)</span>
-                <input name="needBy" maxlength="80" placeholder="Photo must be under 100KB, deadline today">
-              </label>
-              <label class="check-row">
-                <input name="consent" type="checkbox" checked required>
-                <span>I will not upload or paste the actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details.</span>
-              </label>
+              <input type="hidden" name="needBy" value="">
+              <input type="hidden" name="consent" value="on">
+              <p class="help compact-consent-note">By sending, you confirm no actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details are included.</p>
               <div class="actions">
                 <button class="button" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $9 invoice link</button>
-                <button class="button secondary" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Send $9 image target request</button>
                 <a class="button ghost" data-service-lead-fallback-link data-compress-image-kb-tool-public-request data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
               </div>
               <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send only the public error text and target rule. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
@@ -6183,9 +6185,10 @@
               utmContent: "cheatsheet-row-quick",
               requestSummary,
               className: "upload-limit-fix-plan-micro-lead-form upload-error-quick-lead-form",
-              submitLabel: "Send selected error request",
-              extraNote: "Shortest path: the selected error is already written. Add one reply email or public handle to unlock the private $9 follow-up path.",
+              submitLabel: "Request $9 invoice link",
+              extraNote: "Shortest path: the selected error is already written. Add one reply email or public handle to get the external $9 invoice link after fit is confirmed.",
               compact: true,
+              primaryInvoiceRequest: true,
             })}
           </div>
         </div>`;
@@ -7294,7 +7297,7 @@
         <a href="/upload-limit-fixer/">Upload limit fixer</a>
         <h1>Upload error cheatsheet</h1>
         <p>A copy-ready reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors. Each row links to a free no-signup browser tool and a specific landing page that explains the fix.</p>
-        <p><a class="button" href="#service-request" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Need a $9 fix plan?</a> <a class="button secondary" data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(serviceInvoiceRequestUrl({ serviceType: "upload-limit-fix-plan", requestSummary: fixPlanSummary, path: "/upload-error-cheatsheet/" }))}" target="_blank" rel="noreferrer">Request $9 invoice link</a> <a class="button ghost" href="/upload-error-cheatsheet.json">Open JSON feed</a></p>
+        <p><a class="button" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="#service-request">Request $9 invoice link</a> <a class="button secondary" href="#service-request">Use one-contact form</a> <a class="button ghost" href="/upload-error-cheatsheet.json">Open JSON feed</a></p>
       </section>
       <section class="shell section">
         <h2>Common upload errors and direct fixes</h2>
@@ -7324,8 +7327,10 @@
           utmCampaign: "upload_error_cheatsheet_fix_plan",
           utmContent: "cheatsheet-inline",
           requestSummary: fixPlanSummary,
-          className: "upload-limit-fix-plan-micro-lead-form upload-error-cheatsheet-fix-plan-form",
-          submitLabel: "Send $9 fix-plan request",
+              className: "upload-limit-fix-plan-micro-lead-form upload-error-cheatsheet-fix-plan-form",
+          submitLabel: "Request $9 invoice link",
+          primaryInvoiceRequest: true,
+          oneFieldInvoiceRequest: true,
         })}
       </section>
       <section class="shell section">
