@@ -240,7 +240,8 @@ else {
   if (!html.includes('content="noindex,follow"')) failures.push("Sponsor proposal page should be noindex.");
   if (!html.includes("Sponsor proposal")) failures.push("Sponsor proposal route missing fallback heading.");
   if (!hasPrefilledSponsorReplyUrl(html) || !html.includes("Open public invoice request") || !html.includes("data-sponsor-public-invoice-request")) failures.push("Sponsor proposal route missing prefilled public invoice request fallback.");
-  if (!html.includes("Use 2-minute review form") || !html.includes("#sponsor-quick-form")) failures.push("Sponsor proposal route missing fast review form CTA.");
+  if (!html.includes("Use one-field review form") || !html.includes("#sponsor-quick-form")) failures.push("Sponsor proposal route missing fast review form CTA.");
+  if (!html.includes("sponsor-micro-lead-form") || !html.includes("One-field USD 49 invoice review") || !html.includes("Website (optional)")) failures.push("Sponsor proposal route missing one-field sponsor lead form fallback.");
   if (sitemap.includes(`<loc>${siteUrl("sponsor-proposal")}</loc>`)) failures.push("Sitemap should not include noindex sponsor proposal page.");
 }
 
