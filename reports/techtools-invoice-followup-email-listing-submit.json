@@ -1,0 +1,40 @@
+{
+  "generatedAt": "2026-06-08T05:28:58Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Invoice Follow-up Email Generator by PrintableTools Lab",
+    "url": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/?utm_source=techtools&utm_medium=directory&utm_campaign=invoice_followup_email_2026_06&utm_content=invoice_followup_email_generator",
+    "tagline": "Free no-signup invoice reminder email generator for freelancers and small sellers.",
+    "description": "Write polite due-today, overdue, payment reminder, paid thank-you, and next-invoice emails in the browser without an account. It is built for freelancers, local services, and small sellers who need a copy-ready invoice follow-up message fast, then can request the $19 Invoice Follow-up Copy Pack for a fuller sequence.",
+    "category": "business",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-08 invoice-followup-email generator path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 170,
+      "name": "Invoice Follow-up Email Generator by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/?utm_source=techtools&utm_medium=directory&utm_campaign=invoice_followup_email_2026_06&utm_content=invoice_followup_email_generator",
+      "tagline": "Free no-signup invoice reminder email generator for freelancers and small sellers.",
+      "description": "Write polite due-today, overdue, payment reminder, paid thank-you, and next-invoice emails in the browser without an account. It is built for freelancers, local services, and small sellers who need a copy-ready invoice follow-up message fast, then can request the $19 Invoice Follow-up Copy Pack for a fuller sequence.",
+      "category": "business",
+      "category_label": "Business & Finance",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-08 invoice-followup-email generator path",
+      "launch_date": "2026-06-08",
+      "created_at": "2026-06-08T05:28:58Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=170"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=170"
+  }
+}
