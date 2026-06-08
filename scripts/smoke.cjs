@@ -372,9 +372,10 @@ function delay(ms) {
 
   await page.goto(`${base}/upload-error-cheatsheet/`, { waitUntil: "networkidle" });
   const cheatsheetText = await page.locator("main").innerText();
-  for (const phrase of ["Upload error cheatsheet", "PDF must be under 1MB", "Image must be less than 2MB", "Email attachment too large"]) {
+  for (const phrase of ["Upload error cheatsheet", "PDF must be under 1MB", "Image must be less than 2MB", "Email attachment too large", "Still blocked? Get a $9 upload fix plan.", "Send $9 fix-plan request"]) {
     if (!cheatsheetText.includes(phrase)) throw new Error(`Upload error cheatsheet is missing ${phrase}`);
   }
+  if (!(await page.locator('[data-service-type="upload-limit-fix-plan"][data-utm-source="upload-error-cheatsheet"]').count())) throw new Error("Upload error cheatsheet is missing tracked upload fix-plan request form");
   const cheatsheetResponse = await page.goto(`${base}/upload-error-cheatsheet.json`, { waitUntil: "networkidle" });
   if (!cheatsheetResponse || !cheatsheetResponse.ok()) throw new Error("upload-error-cheatsheet.json route failed");
   const cheatsheetJson = await page.evaluate(() => JSON.parse(document.body.innerText));

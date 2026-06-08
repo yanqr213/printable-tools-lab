@@ -8667,12 +8667,13 @@ function directorySubmissionHtml() {
 }
 
 function uploadErrorCheatsheetHtml() {
+  const fixPlanSummary = "I need a $9 Upload Limit Fix Plan after checking the upload error cheatsheet. Public-safe error text: [paste the exact message]. File type and target rule: [PDF/image/JPG/PNG, size limit, dimensions, or portal rule]. Please send target settings, fallback steps, and a review-before-upload checklist. No actual file, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.";
   return `
       <section class="shell page-title section">
         <a href="/upload-limit-fixer/">Upload limit fixer</a>
         <h1>Upload error cheatsheet</h1>
         <p>A copy-ready reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors. Each row links to a free no-signup browser tool and a specific landing page that explains the fix.</p>
-        <p><a class="button" href="/upload-error-cheatsheet.json">Open JSON feed</a> <a class="button secondary" href="/share-kit/">Open share kit</a></p>
+        <p><a class="button" href="#service-request" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Need a $9 fix plan?</a> <a class="button secondary" href="/upload-error-cheatsheet.json">Open JSON feed</a> <a class="button ghost" href="/share-kit/">Open share kit</a></p>
       </section>
       <section class="shell section">
         <h2>Common upload errors and direct fixes</h2>
@@ -8687,6 +8688,20 @@ function uploadErrorCheatsheetHtml() {
         <h2>Copy block for directories and community replies</h2>
         <p>PrintableTools Lab has a free upload error cheatsheet for common file rejections: PDF under 1MB or 500KB, image under 2MB or 500KB, photo under 100KB, JPG under 200KB, PNG screenshot too large, invalid JPG/PNG file type, 600 x 600 image dimensions, PDF not accepted JPG required, resume PDF too large, and email attachment too large.</p>
         <p><a class="button" href="/upload-limit-fixer/">Open upload limit fixer</a> <a class="button secondary" href="/free-pdf-tools/">Browse all free file tools</a></p>
+      </section>
+      <section class="shell section" id="service-request">
+        <h2>Still blocked? Get a $9 upload fix plan.</h2>
+        <p>Use this when your portal has a mixed rule, repeated rejection, strict deadline, or unclear error message. Send only public-safe details; do not upload the actual file.</p>
+        ${uploadLimitFixPlanInlineLeadFormHtml({
+          pathName: "/upload-error-cheatsheet/",
+          utmSource: "upload-error-cheatsheet",
+          utmMedium: "site",
+          utmCampaign: "upload_error_cheatsheet_fix_plan",
+          utmContent: "cheatsheet-inline",
+          requestSummary: fixPlanSummary,
+          className: "upload-limit-fix-plan-micro-lead-form upload-error-cheatsheet-fix-plan-form",
+          submitLabel: "Send $9 fix-plan request",
+        })}
       </section>
       <section class="shell section">
         <h2>Machine-readable fields</h2>

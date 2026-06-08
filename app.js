@@ -2098,6 +2098,20 @@
     ["Website accepts image but rejects PDF", "/tools/pdf-to-images/", "PDF to JPG", "Convert PDF pages to JPG or PNG when a form wants image files instead of a PDF.", "pdf-to-images"],
     ["Website accepts PDF but I only have photos", "/tools/image-to-pdf/", "Image to PDF", "Turn a photo, scan, screenshot, or receipt image into a PDF locally.", "image-to-pdf"],
   ];
+  const uploadErrorCheatsheetRows = [
+    ["PDF must be under 1MB", "/file-must-be-less-than-1mb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PDF 1MB", "Open the PDF compressor with the 1MB target, compress locally, then review readability before submitting.", "compress-pdf"],
+    ["PDF must be under 500KB", "/pdf-must-be-under-500kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PDF 500KB", "Use the strict 500KB PDF target and keep the original file in case the compressed copy loses detail.", "compress-pdf"],
+    ["Image must be less than 2MB", "/image-must-be-less-than-2mb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Image 2MB", "Use the image-to-KB compressor with a 2048KB custom target.", "compress-image-to-kb"],
+    ["Image must be under 500KB", "/image-must-be-under-500kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Image 500KB", "Use the 500KB image target, then resize if a large phone photo still misses the limit.", "compress-image-to-kb"],
+    ["Photo must be under 100KB", "/photo-must-be-under-100kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Photo 100KB", "Use the 100KB image target and check that the face or document text remains clear.", "compress-image-to-kb"],
+    ["JPG must be under 200KB", "/jpg-must-be-under-200kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "JPG 200KB", "Use the 200KB image target and keep output as JPG if the destination requires it.", "compress-image-to-kb"],
+    ["PNG screenshot too large", "/png-screenshot-too-large/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PNG 500KB", "Crop private areas first, then compress toward 500KB and review small UI text.", "compress-image-to-kb"],
+    ["Invalid file type. Please upload JPG or PNG", "/invalid-file-type-jpg-png/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Image JPG or PNG", "Convert the image format locally, then compress if the converted file is still too large.", "convert-image"],
+    ["Image dimensions must be 600 x 600 px", "/image-dimensions-600x600/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Image 600 x 600", "Resize or crop to 600 x 600 pixels, then compress only if the KB limit still fails.", "resize-image"],
+    ["PDF not accepted, JPG required", "/pdf-not-accepted-jpg-required/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PDF JPG", "Convert PDF pages to JPG/PNG locally and upload the page image the destination expects.", "pdf-to-images"],
+    ["Resume PDF too large", "/resume-pdf-too-large/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PDF 1MB", "Try the 1MB PDF target and confirm all resume text remains readable before applying.", "compress-pdf"],
+    ["Email attachment too large", "/email-attachment-too-large/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PDF or image 5MB", "Compress PDFs toward 5MB or use the image-to-KB tool for photo attachments.", "compress-pdf"],
+  ];
   const uploadLimitMatcherDefault = {
     badge: "Common match",
     title: "PDF under 1MB",
@@ -5078,6 +5092,7 @@
       description: "Copy-ready reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup tool fixes.",
       body: [
         ["p", "Use this reference when a form, job portal, support ticket, marketplace, or email app rejects a file by size, type, or dimensions."],
+        ["p", "If the free row does not solve your exact portal rule, use the $9 Upload Limit Fix Plan request: https://printable-tools-lab.pages.dev/upload-error-cheatsheet/#service-request"],
         ["h2", "Direct fixes"],
         ["ul", [
           "PDF must be under 1MB: https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb/",
@@ -5095,6 +5110,7 @@
         ["h2", "Machine-readable feed"],
         ["p", "JSON: https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json"],
         ["p", "Full upload limit matcher: https://printable-tools-lab.pages.dev/upload-limit-fixer/"],
+        ["p", "Still blocked? Send the shortest $9 fix-plan request: https://printable-tools-lab.pages.dev/upload-error-cheatsheet/#service-request"],
       ],
     },
     "organic-push-kit": {
@@ -5657,6 +5673,7 @@
     if (parts[0] === "upload-limit-fix-plan") return renderUploadLimitFixPlanService();
     if (parts[0] === "market-table-print-audit") return renderMarketTablePrintAudit();
     if (parts[0] === "custom-local-print-pack-sales-pack") return renderServiceSalesPack();
+    if (parts[0] === "upload-error-cheatsheet") return renderUploadErrorCheatsheet();
     if (landingPagesBySlug[parts[0]]) return renderLandingPage(parts[0]);
     if (parts[0] === "dashboard") return renderDashboard();
     if (parts[0] === "ops") return renderOpsMonitor();
@@ -6281,20 +6298,11 @@
       "Do not post private documents, IDs, payment details, or user files in examples.",
       "Use UTM source labels so the live metrics can separate directory, community, video, and social tests.",
     ];
-    const uploadErrorCheatsheet = [
-      ["PDF must be under 1MB", "/file-must-be-less-than-1mb/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Open the PDF compressor with the 1MB target."],
-      ["PDF must be under 500KB", "/pdf-must-be-under-500kb/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Use the strict 500KB PDF target."],
-      ["Image must be less than 2MB", "/image-must-be-less-than-2mb/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Use the image-to-KB compressor with a 2048KB target."],
-      ["Image must be under 500KB", "/image-must-be-under-500kb/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Use the 500KB image target."],
-      ["Photo must be under 100KB", "/photo-must-be-under-100kb/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Use the 100KB image target and review clarity."],
-      ["JPG must be under 200KB", "/jpg-must-be-under-200kb/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Use the 200KB image target and keep output as JPG."],
-      ["PNG screenshot too large", "/png-screenshot-too-large/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Crop private areas, then compress toward 500KB."],
-      ["Invalid file type. Please upload JPG or PNG", "/invalid-file-type-jpg-png/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Convert the image format locally."],
-      ["Image dimensions must be 600 x 600 px", "/image-dimensions-600x600/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Resize or crop to exact dimensions."],
-      ["PDF not accepted, JPG required", "/pdf-not-accepted-jpg-required/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Convert PDF pages to image files locally."],
-      ["Resume PDF too large", "/resume-pdf-too-large/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Try the 1MB PDF target and review readability."],
-      ["Email attachment too large", "/email-attachment-too-large/?utm_source=share-kit&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Compress PDFs toward 5MB or compress image attachments."],
-    ];
+    const uploadErrorCheatsheet = uploadErrorCheatsheetRows.map(([errorText, href, , fix]) => [
+      errorText,
+      href.replace("utm_source=upload-error-cheatsheet", "utm_source=share-kit"),
+      fix,
+    ]);
     const sponsorDiscoveryLinks = [
       ["Public sponsor call", "/sponsor-call/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=share-kit", "Open invitation for policy-fit sponsors and partners to use the sponsor form instead of private outreach."],
       ["Sponsor inquiry form", "/sponsor/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=share-kit#sponsor-inquiry", "Manual intake for labeled guide sponsorship, starter review, and partner distribution inquiries."],
@@ -6922,6 +6930,55 @@
             className: "upload-limit-fix-plan-micro-lead-form",
             compact: true,
           })}
+        </div>
+      </section>
+    `;
+  }
+
+  function renderUploadErrorCheatsheet() {
+    const fixPlanSummary = "I need a $9 Upload Limit Fix Plan after checking the upload error cheatsheet. Public-safe error text: [paste the exact message]. File type and target rule: [PDF/image/JPG/PNG, size limit, dimensions, or portal rule]. Please send target settings, fallback steps, and a review-before-upload checklist. No actual file, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.";
+    setMeta("Upload error cheatsheet", "Copy-ready reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup tool fixes.");
+    app.innerHTML = `
+      <section class="shell page-title section">
+        <a href="/upload-limit-fixer/">Upload limit fixer</a>
+        <h1>Upload error cheatsheet</h1>
+        <p>A copy-ready reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors. Each row links to a free no-signup browser tool and a specific landing page that explains the fix.</p>
+        <p><a class="button" href="#service-request" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Need a $9 fix plan?</a> <a class="button secondary" href="/upload-error-cheatsheet.json">Open JSON feed</a> <a class="button ghost" href="/share-kit/">Open share kit</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Common upload errors and direct fixes</h2>
+        <table class="event-table">
+          <thead><tr><th>Error text</th><th>Use this link</th><th>Response</th></tr></thead>
+          <tbody>
+            ${uploadErrorCheatsheetRows.map(([message, href, label, why, trackTool]) => `<tr><td>${escapeHtml(message)}</td><td><a href="${escapeHtml(href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(trackTool)}">${escapeHtml(label)}</a></td><td>${escapeHtml(why)}</td></tr>`).join("")}
+          </tbody>
+        </table>
+      </section>
+      <section class="shell section">
+        <h2>Copy block for directories and community replies</h2>
+        <p>PrintableTools Lab has a free upload error cheatsheet for common file rejections: PDF under 1MB or 500KB, image under 2MB or 500KB, photo under 100KB, JPG under 200KB, PNG screenshot too large, invalid JPG/PNG file type, 600 x 600 image dimensions, PDF not accepted JPG required, resume PDF too large, and email attachment too large.</p>
+        <p><a class="button" href="/upload-limit-fixer/">Open upload limit fixer</a> <a class="button secondary" href="/free-pdf-tools/">Browse all free file tools</a></p>
+      </section>
+      <section class="shell section" id="service-request">
+        <h2>Still blocked? Get a $9 upload fix plan.</h2>
+        <p>Use this when your portal has a mixed rule, repeated rejection, strict deadline, or unclear error message. Send only public-safe details; do not upload the actual file.</p>
+        ${uploadLimitFixPlanInlineLeadForm({
+          path: "/upload-error-cheatsheet/",
+          utmSource: "upload-error-cheatsheet",
+          utmMedium: "site",
+          utmCampaign: "upload_error_cheatsheet_fix_plan",
+          utmContent: "cheatsheet-inline",
+          requestSummary: fixPlanSummary,
+          className: "upload-limit-fix-plan-micro-lead-form upload-error-cheatsheet-fix-plan-form",
+          submitLabel: "Send $9 fix-plan request",
+        })}
+      </section>
+      <section class="shell section">
+        <h2>Machine-readable fields</h2>
+        <div class="grid-3">
+          <article class="panel"><h3>JSON</h3><p><a href="/upload-error-cheatsheet.json">/upload-error-cheatsheet.json</a></p></article>
+          <article class="panel"><h3>Share kit</h3><p><a href="/share-kit.json">/share-kit.json</a></p></article>
+          <article class="panel"><h3>Discovery index</h3><p><a href="/discovery.json">/discovery.json</a></p></article>
         </div>
       </section>
     `;
