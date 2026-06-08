@@ -224,6 +224,22 @@ const directories = [
     reviewWindow: "24-48 hour manual review after public API success response",
   },
   {
+    name: "NoSignupTools image dimensions 600x600 upload fix listing",
+    url: "https://nosignuptools.com/tools/image-dimensions-600x600-upload-fix-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Image+Dimensions+600x600+Upload+Fix",
+    expected: [siteHost, "Image Dimensions 600x600 Upload Fix"],
+    submittedAt: "2026-06-09",
+    reviewWindow: "24-48 hour manual review after public API success response",
+  },
+  {
+    name: "NoSignupTools PDF not accepted JPG required upload fix listing",
+    url: "https://nosignuptools.com/tools/pdf-not-accepted-jpg-required-fix-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=PDF+Not+Accepted+JPG+Required+Fix",
+    expected: [siteHost, "PDF Not Accepted JPG Required Fix"],
+    submittedAt: "2026-06-09",
+    reviewWindow: "24-48 hour manual review after public API success response",
+  },
+  {
     name: "FreeNoSignup",
     url: "https://freenosignup.com/",
     searchUrl: "https://freenosignup.com/?s=PrintableTools+Lab",

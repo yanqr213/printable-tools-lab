@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-08T21:41:57.091Z",
+  "generatedAt": "2026-06-08T21:47:23.481Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 26,
-  "pendingCount": 13,
+  "pendingCount": 15,
   "errorCount": 1,
   "results": [
     {
@@ -633,7 +633,65 @@
           "url": "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20103,
+          "bytes": 20060,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools image dimensions 600x600 upload fix listing",
+      "url": "https://nosignuptools.com/tools/image-dimensions-600x600-upload-fix-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Image+Dimensions+600x600+Upload+Fix",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Image Dimensions 600x600 Upload Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Image+Dimensions+600x600+Upload+Fix",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/image-dimensions-600x600-upload-fix-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20139,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools PDF not accepted JPG required upload fix listing",
+      "url": "https://nosignuptools.com/tools/pdf-not-accepted-jpg-required-fix-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=PDF+Not+Accepted+JPG+Required+Fix",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "PDF Not Accepted JPG Required Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=PDF+Not+Accepted+JPG+Required+Fix",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/pdf-not-accepted-jpg-required-fix-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20133,
           "matched": false
         }
       ]

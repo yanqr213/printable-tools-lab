@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-08T21:46:01.888Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "PDF Not Accepted JPG Required Fix by PrintableTools Lab",
+    "slug": "pdf-not-accepted-jpg-required-fix-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=pdf_not_accepted_jpg_required_fix_2026_06&utm_content=pdf_to_jpg_required_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup PDF to JPG or PNG fix for upload forms that reject PDFs.",
+    "long_description": "A free browser-based PDF not accepted JPG required fixer for people whose portal rejects a PDF but accepts JPG, JPEG, PNG, or another image upload. It points to local PDF-to-image conversion and image compression tools, requires no account and no server file upload, and includes an optional USD 9 manual upload fix-plan request only after a public-safe fit check."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/pdf-not-accepted-jpg-required-fix-by-printabletools-lab"
+}

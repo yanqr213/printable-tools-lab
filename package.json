@@ -35,6 +35,7 @@
     "monitor:directories": "node scripts/directory-monitor.cjs",
     "submit:techtools-upload-backlog": "node scripts/submit-techtools-upload-error-backlog.cjs",
     "submit:nologin-upload-fix-pages": "node scripts/submit-nologin-upload-fix-pages.cjs",
+    "submit:nosignuptools-upload-fix-pages": "node scripts/submit-nosignuptools-upload-fix-pages.cjs",
     "indexnow": "node scripts/indexnow.cjs",
     "sponsor:leads": "node scripts/export-sponsor-leads.cjs",
     "service:leads": "node scripts/export-service-leads.cjs",
