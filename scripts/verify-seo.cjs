@@ -1058,6 +1058,7 @@ else {
   if (!html.includes("Email attachment too large")) failures.push("Upload error cheatsheet missing email attachment row.");
   if (!html.includes("Still blocked? Get a $9 upload fix plan.") || !html.includes('id="service-request"')) failures.push("Upload error cheatsheet missing direct $9 fix-plan service section.");
   if (!html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("upload_error_cheatsheet_fix_plan") || !html.includes("Send $9 fix-plan request")) failures.push("Upload error cheatsheet missing tracked upload fix-plan lead form.");
+  if (!html.includes("Get $9 plan for this error") || !html.includes("data-upload-error-fix-plan") || !html.includes("data-upload-error-text=\"PDF must be under 1MB\"")) failures.push("Upload error cheatsheet missing row-level $9 fix-plan CTAs.");
   if (!html.includes("/upload-error-cheatsheet.json")) failures.push("Upload error cheatsheet missing JSON link.");
   if (!sitemap.includes(`<loc>${siteUrl("upload-error-cheatsheet")}</loc>`)) failures.push("Sitemap missing upload error cheatsheet.");
 }

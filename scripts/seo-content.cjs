@@ -8671,6 +8671,12 @@ function directorySubmissionHtml() {
 
 function uploadErrorCheatsheetHtml() {
   const fixPlanSummary = "I need a $9 Upload Limit Fix Plan after checking the upload error cheatsheet. Public-safe error text: [paste the exact message]. File type and target rule: [PDF/image/JPG/PNG, size limit, dimensions, or portal rule]. Please send target settings, fallback steps, and a review-before-upload checklist. No actual file, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.";
+  const rowFixPlanSummary = (item) => `I need a $9 Upload Limit Fix Plan after checking the upload error cheatsheet. Public-safe error text: ${item.errorText}. File type and target rule: ${item.format} ${item.target}. Matched free-tool route: ${item.response} Please send target settings, fallback steps, and a review-before-upload checklist. No actual file, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.`;
+  const rowFixPlanHref = (item) => serviceLeadFallbackUrl({
+    serviceType: "upload-limit-fix-plan",
+    pathName: "/upload-error-cheatsheet/",
+    requestSummary: rowFixPlanSummary(item),
+  });
   return `
       <section class="shell page-title section">
         <a href="/upload-limit-fixer/">Upload limit fixer</a>
@@ -8681,9 +8687,9 @@ function uploadErrorCheatsheetHtml() {
       <section class="shell section">
         <h2>Common upload errors and direct fixes</h2>
         <table class="event-table">
-          <thead><tr><th>Error text</th><th>Use this link</th><th>Response</th></tr></thead>
+          <thead><tr><th>Error text</th><th>Use this link</th><th>Response</th><th>Optional plan</th></tr></thead>
           <tbody>
-            ${UPLOAD_ERROR_CHEATSHEET.map((item) => `<tr><td>${escapeHtml(item.errorText)}</td><td><a href="/${escapeHtml(item.landingPath)}/">${escapeHtml(item.format)} ${escapeHtml(item.target)}</a></td><td>${escapeHtml(item.response)}</td></tr>`).join("\n")}
+            ${UPLOAD_ERROR_CHEATSHEET.map((item) => `<tr data-upload-error-row data-upload-error-text="${escapeHtml(item.errorText)}" data-upload-error-format="${escapeHtml(item.format)}" data-upload-error-target="${escapeHtml(item.target)}" data-upload-error-response="${escapeHtml(item.response)}"><td>${escapeHtml(item.errorText)}</td><td><a href="/${escapeHtml(item.landingPath)}/">${escapeHtml(item.format)} ${escapeHtml(item.target)}</a></td><td>${escapeHtml(item.response)}</td><td><a class="button ghost table-action" data-upload-error-fix-plan data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(rowFixPlanHref(item))}" target="_blank" rel="noreferrer">Get $9 plan for this error</a></td></tr>`).join("\n")}
           </tbody>
         </table>
       </section>

@@ -5962,6 +5962,19 @@
     ].join(" ");
   }
 
+  function uploadLimitFixPlanSummaryFromCheatsheetRow(errorText, format, target, response) {
+    const safeError = String(errorText || "").replace(/\s+/g, " ").trim().slice(0, 260);
+    if (!safeError) return uploadLimitFixPlanRequestSummary();
+    const rule = [format, target].filter(Boolean).join(" ");
+    return [
+      "I need a $9 Upload Limit Fix Plan after checking the upload error cheatsheet.",
+      `Public-safe error text: ${safeError}.`,
+      rule ? `File type and target rule: ${rule}.` : "",
+      response ? `Matched free-tool route: ${response}` : "",
+      "Please send target settings, fallback steps, and a review-before-upload checklist. No actual file, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.",
+    ].filter(Boolean).join(" ");
+  }
+
   function toolCard(tool) {
     return `
       <article class="tool-card">
@@ -6961,6 +6974,15 @@
 
   function renderUploadErrorCheatsheet() {
     const fixPlanSummary = "I need a $9 Upload Limit Fix Plan after checking the upload error cheatsheet. Public-safe error text: [paste the exact message]. File type and target rule: [PDF/image/JPG/PNG, size limit, dimensions, or portal rule]. Please send target settings, fallback steps, and a review-before-upload checklist. No actual file, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.";
+    const rowFixPlanSummary = ([message, , label, why]) => uploadLimitFixPlanSummaryFromCheatsheetRow(message, label, "", why);
+    const rowFixPlanHref = (row) => serviceLeadFallbackUrl({
+      serviceType: "upload-limit-fix-plan",
+      businessName: "",
+      contact: "",
+      needBy: "",
+      requestSummary: rowFixPlanSummary(row),
+      path: "/upload-error-cheatsheet/",
+    });
     setMeta("Upload error cheatsheet", "Copy-ready reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup tool fixes.");
     app.innerHTML = `
       <section class="shell page-title section">
@@ -6972,9 +6994,12 @@
       <section class="shell section">
         <h2>Common upload errors and direct fixes</h2>
         <table class="event-table">
-          <thead><tr><th>Error text</th><th>Use this link</th><th>Response</th></tr></thead>
+          <thead><tr><th>Error text</th><th>Use this link</th><th>Response</th><th>Optional plan</th></tr></thead>
           <tbody>
-            ${uploadErrorCheatsheetRows.map(([message, href, label, why, trackTool]) => `<tr><td>${escapeHtml(message)}</td><td><a href="${escapeHtml(href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(trackTool)}">${escapeHtml(label)}</a></td><td>${escapeHtml(why)}</td></tr>`).join("")}
+            ${uploadErrorCheatsheetRows.map((row) => {
+              const [message, href, label, why, trackTool] = row;
+              return `<tr data-upload-error-row data-upload-error-text="${escapeHtml(message)}" data-upload-error-format="${escapeHtml(label)}" data-upload-error-response="${escapeHtml(why)}"><td>${escapeHtml(message)}</td><td><a href="${escapeHtml(href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(trackTool)}">${escapeHtml(label)}</a></td><td>${escapeHtml(why)}</td><td><a class="button ghost table-action" data-upload-error-fix-plan data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(rowFixPlanHref(row))}" target="_blank" rel="noreferrer">Get $9 plan for this error</a></td></tr>`;
+            }).join("")}
           </tbody>
         </table>
       </section>
@@ -15712,6 +15737,7 @@ ${paragraphs.join("\n")}
     void root;
   }
   function initUploadLimitHelpers(root = document) {
+    initUploadErrorFixPlanRows(root);
     root.querySelectorAll("[data-upload-limit-helper]").forEach((helper) => {
       if (helper.dataset.uploadLimitReady === "true") return;
       helper.dataset.uploadLimitReady = "true";
@@ -15743,6 +15769,41 @@ ${paragraphs.join("\n")}
         });
       });
       update();
+    });
+  }
+
+  function initUploadErrorFixPlanRows(root = document) {
+    root.querySelectorAll("[data-upload-error-fix-plan]").forEach((link) => {
+      if (link.dataset.uploadErrorFixPlanReady === "true") return;
+      link.dataset.uploadErrorFixPlanReady = "true";
+      link.addEventListener("click", (event) => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        const row = link.closest("[data-upload-error-row]");
+        const form = document.querySelector("[data-upload-fix-plan-form]");
+        if (!row || !form) return;
+        event.preventDefault();
+        event.stopPropagation();
+        track(link.dataset.trackEvent || "service_request_intent", { tool: link.dataset.trackTool || "upload-limit-fix-plan" });
+        const summary = form.querySelector("[data-upload-fix-plan-summary]");
+        if (summary) {
+          summary.value = uploadLimitFixPlanSummaryFromCheatsheetRow(
+            row.dataset.uploadErrorText || "",
+            row.dataset.uploadErrorFormat || "",
+            row.dataset.uploadErrorTarget || "",
+            row.dataset.uploadErrorResponse || "",
+          );
+        }
+        updateServiceLeadFallbackLink(form);
+        const status = form.querySelector("[data-upload-fix-plan-prefill-status]");
+        if (status) {
+          status.hidden = false;
+          status.textContent = `Request note updated for: ${row.dataset.uploadErrorText || "selected upload error"}.`;
+        }
+        window.history.pushState({}, "", `${window.location.pathname}${window.location.search}#service-request`);
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+        const contact = form.querySelector('input[name="contact"]');
+        if (contact) contact.focus({ preventScroll: true });
+      });
     });
   }
 

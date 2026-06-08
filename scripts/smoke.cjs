@@ -376,6 +376,14 @@ function delay(ms) {
     if (!cheatsheetText.includes(phrase)) throw new Error(`Upload error cheatsheet is missing ${phrase}`);
   }
   if (!(await page.locator('[data-service-type="upload-limit-fix-plan"][data-utm-source="upload-error-cheatsheet"]').count())) throw new Error("Upload error cheatsheet is missing tracked upload fix-plan request form");
+  const rowFixPlanCta = page.locator('[data-upload-error-row][data-upload-error-text="PDF must be under 1MB"] [data-upload-error-fix-plan][data-track-event="service_request_intent"][data-track-tool="upload-limit-fix-plan"]').first();
+  if (!(await rowFixPlanCta.count())) throw new Error("Upload error cheatsheet is missing row-level $9 fix-plan CTA.");
+  await rowFixPlanCta.click();
+  await page.waitForURL(/#service-request$/);
+  const rowFixSummary = await page.locator('[data-service-type="upload-limit-fix-plan"][data-utm-source="upload-error-cheatsheet"] [data-upload-fix-plan-summary]').first().inputValue();
+  if (!rowFixSummary.includes("Public-safe error text: PDF must be under 1MB") || !rowFixSummary.includes("PDF 1MB")) {
+    throw new Error("Upload error cheatsheet row-level $9 CTA did not prefill the selected error.");
+  }
   const cheatsheetResponse = await page.goto(`${base}/upload-error-cheatsheet.json`, { waitUntil: "networkidle" });
   if (!cheatsheetResponse || !cheatsheetResponse.ok()) throw new Error("upload-error-cheatsheet.json route failed");
   const cheatsheetJson = await page.evaluate(() => JSON.parse(document.body.innerText));

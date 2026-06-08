@@ -1165,6 +1165,13 @@ canvas.preview-canvas {
   color: var(--teal-dark);
 }
 
+.event-table .table-action {
+  min-height: 34px;
+  padding: 7px 10px;
+  font-size: 0.82rem;
+  white-space: normal;
+}
+
 .pdf-file-preview {
   width: 100%;
 }
