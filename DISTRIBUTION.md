@@ -49,6 +49,8 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - NoSignupTools Upload Error Cheatsheet listing: https://printable-tools-lab.pages.dev/upload-error-cheatsheet?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_error_cheatsheet_2026_06&utm_content=upload_error_cheatsheet
 - NoSignupTools Image Dimensions 600x600 Upload Fix listing: https://printable-tools-lab.pages.dev/image-dimensions-600x600?utm_source=nosignuptools&utm_medium=directory&utm_campaign=image_dimensions_600x600_fix_2026_06&utm_content=image_dimensions_600x600_landing
 - NoSignupTools PDF Not Accepted JPG Required Fix listing: https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required?utm_source=nosignuptools&utm_medium=directory&utm_campaign=pdf_not_accepted_jpg_required_fix_2026_06&utm_content=pdf_to_jpg_required_landing
+- NoSignupTools Compress Image to KB listing: https://printable-tools-lab.pages.dev/tools/compress-image-to-kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=compress_image_kb_invoice_first_2026_06&utm_content=compress_image_kb_tool
+- NoSignupTools Email Attachment Too Large Fix listing: https://printable-tools-lab.pages.dev/email-attachment-too-large?utm_source=nosignuptools&utm_medium=directory&utm_campaign=email_attachment_too_large_fix_2026_06&utm_content=email_attachment_too_large_landing
 - FreeNoSignup Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=freenosignup
 - FreeNoSignup Upload Error Cheatsheet listing: https://printable-tools-lab.pages.dev/upload-error-cheatsheet?utm_source=freenosignup&utm_medium=directory&utm_campaign=upload_error_cheatsheet_2026_06&utm_content=upload_error_cheatsheet
 - NoSignupTools Overdue Invoice Reminder listing: https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email?utm_source=nosignuptools&utm_medium=directory&utm_campaign=overdue_invoice_2026_06&utm_content=overdue_invoice_reminder_email
@@ -358,11 +360,13 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - TechTools Email Attachment Too Large PDF Fix listing; submitted on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=186
 - NoSignupTools Upload Limit Fixer submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
 - NoSignupTools Upload Error Cheatsheet submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
+- NoSignupTools Image Dimensions 600x600 Upload Fix submission; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
+- NoSignupTools PDF Not Accepted JPG Required Fix submission; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
+- NoSignupTools Compress Image to KB submission; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
+- NoSignupTools Email Attachment Too Large Fix submission; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
 - FreeNoSignup Upload Limit Fixer submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
 - FreeNoSignup Upload Error Cheatsheet submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
 - NoSignupTools Overdue Invoice Reminder Email submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
-- NoSignupTools Image Dimensions 600x600 Upload Fix submission; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
-- NoSignupTools PDF Not Accepted JPG Required Fix submission; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
 - FreeNoSignup Overdue Invoice Reminder Email submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
 - NoLogin.tools free no-login/privacy tool submission; submitted on 2026-06-03 and awaiting human review
 - NoLogin.tools Upload Limit Fixer high-intent submission; submitted on 2026-06-06 with slug printable-tools-lab-pages-dev-upload-limit-fixer and awaiting human review

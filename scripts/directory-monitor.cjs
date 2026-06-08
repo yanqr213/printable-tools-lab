@@ -240,6 +240,22 @@ const directories = [
     reviewWindow: "24-48 hour manual review after public API success response",
   },
   {
+    name: "NoSignupTools compress image to KB listing",
+    url: "https://nosignuptools.com/tools/compress-image-to-kb-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Compress+Image+to+KB",
+    expected: [siteHost, "Compress Image to KB"],
+    submittedAt: "2026-06-09",
+    reviewWindow: "24-48 hour manual review after public API success response",
+  },
+  {
+    name: "NoSignupTools email attachment too large fix listing",
+    url: "https://nosignuptools.com/tools/email-attachment-too-large-fix-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Email+Attachment+Too+Large+Fix",
+    expected: [siteHost, "Email Attachment Too Large Fix"],
+    submittedAt: "2026-06-09",
+    reviewWindow: "24-48 hour manual review after public API success response",
+  },
+  {
     name: "FreeNoSignup",
     url: "https://freenosignup.com/",
     searchUrl: "https://freenosignup.com/?s=PrintableTools+Lab",

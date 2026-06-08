@@ -42,6 +42,34 @@ const backlog = [
       long_description: "A free browser-based PDF not accepted JPG required fixer for people whose portal rejects a PDF but accepts JPG, JPEG, PNG, or another image upload. It points to local PDF-to-image conversion and image compression tools, requires no account and no server file upload, and includes an optional USD 9 manual upload fix-plan request only after a public-safe fit check.",
     },
   },
+  {
+    report: "nosignuptools-compress-image-to-kb-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/compress-image-to-kb-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Compress+Image+to+KB",
+    payload: {
+      ...common,
+      name: "Compress Image to KB by PrintableTools Lab",
+      slug: "compress-image-to-kb-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=compress_image_kb_invoice_first_2026_06&utm_content=compress_image_kb_tool",
+      category: "productivity",
+      short_description: "Free no-signup image-to-KB compressor with an optional one-contact USD 9 upload fix-plan request.",
+      long_description: "A free browser-based image-to-KB compressor for people whose forms, portals, profiles, or applications reject photos over a target size. It works without an account or server upload and now exposes a one-contact optional USD 9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist after fit is confirmed.",
+    },
+  },
+  {
+    report: "nosignuptools-email-attachment-too-large-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/email-attachment-too-large-fix-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Email+Attachment+Too+Large+Fix",
+    payload: {
+      ...common,
+      name: "Email Attachment Too Large Fix by PrintableTools Lab",
+      slug: "email-attachment-too-large-fix-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/email-attachment-too-large/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=email_attachment_too_large_fix_2026_06&utm_content=email_attachment_too_large_landing",
+      category: "productivity",
+      short_description: "Free no-signup PDF and image attachment-size fix for email upload limits.",
+      long_description: "A free browser-based email attachment too large fixer for Gmail, Outlook, webmail, and inbox size errors. It points to PDF compression and image-to-KB tools without an account or server upload and includes an optional USD 9 Upload Limit Fix Plan request for public-safe target settings, fallback steps, and a review-before-upload checklist after fit is confirmed.",
+    },
+  },
 ];
 
 async function main() {

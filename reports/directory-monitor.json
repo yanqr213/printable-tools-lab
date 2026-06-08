@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-08T21:47:23.481Z",
+  "generatedAt": "2026-06-08T22:02:20.669Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 26,
-  "pendingCount": 15,
+  "pendingCount": 17,
   "errorCount": 1,
   "results": [
     {
@@ -633,7 +633,7 @@
           "url": "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20060,
+          "bytes": 20103,
           "matched": false
         }
       ]
@@ -692,6 +692,64 @@
           "ok": false,
           "status": 404,
           "bytes": 20133,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools compress image to KB listing",
+      "url": "https://nosignuptools.com/tools/compress-image-to-kb-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Compress+Image+to+KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress Image to KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Compress+Image+to+KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/compress-image-to-kb-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20094,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools email attachment too large fix listing",
+      "url": "https://nosignuptools.com/tools/email-attachment-too-large-fix-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Email+Attachment+Too+Large+Fix",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Email Attachment Too Large Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Email+Attachment+Too+Large+Fix",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/email-attachment-too-large-fix-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20124,
           "matched": false
         }
       ]
