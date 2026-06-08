@@ -7229,13 +7229,21 @@
       requestSummary: rowFixPlanSummary(row),
       path: "/upload-error-cheatsheet/",
     });
+    const rowInvoiceRequestHref = (row) => serviceInvoiceRequestUrl({
+      serviceType: "upload-limit-fix-plan",
+      businessName: "",
+      contact: "",
+      needBy: "",
+      requestSummary: rowFixPlanSummary(row),
+      path: "/upload-error-cheatsheet/",
+    });
     setMeta("Upload error cheatsheet", "Copy-ready reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup tool fixes.");
     app.innerHTML = `
       <section class="shell page-title section">
         <a href="/upload-limit-fixer/">Upload limit fixer</a>
         <h1>Upload error cheatsheet</h1>
         <p>A copy-ready reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors. Each row links to a free no-signup browser tool and a specific landing page that explains the fix.</p>
-        <p><a class="button" href="#service-request" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Need a $9 fix plan?</a> <a class="button secondary" href="/upload-error-cheatsheet.json">Open JSON feed</a> <a class="button ghost" href="/share-kit/">Open share kit</a></p>
+        <p><a class="button" href="#service-request" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Need a $9 fix plan?</a> <a class="button secondary" data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(serviceInvoiceRequestUrl({ serviceType: "upload-limit-fix-plan", requestSummary: fixPlanSummary, path: "/upload-error-cheatsheet/" }))}" target="_blank" rel="noreferrer">Request $9 invoice link</a> <a class="button ghost" href="/upload-error-cheatsheet.json">Open JSON feed</a></p>
       </section>
       <section class="shell section">
         <h2>Common upload errors and direct fixes</h2>
@@ -7245,7 +7253,7 @@
           <tbody>
             ${uploadErrorCheatsheetRows.map((row) => {
               const [message, href, label, why, trackTool] = row;
-              return `<tr data-upload-error-row data-upload-error-text="${escapeHtml(message)}" data-upload-error-format="${escapeHtml(label)}" data-upload-error-response="${escapeHtml(why)}"><td>${escapeHtml(message)}</td><td><a href="${escapeHtml(href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(trackTool)}">${escapeHtml(label)}</a></td><td>${escapeHtml(why)}</td><td><a class="button ghost table-action" data-upload-error-fix-plan data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(rowFixPlanHref(row))}" target="_blank" rel="noreferrer">Get $9 plan for this error</a></td></tr>`;
+              return `<tr data-upload-error-row data-upload-error-text="${escapeHtml(message)}" data-upload-error-format="${escapeHtml(label)}" data-upload-error-response="${escapeHtml(why)}"><td>${escapeHtml(message)}</td><td><a href="${escapeHtml(href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(trackTool)}">${escapeHtml(label)}</a></td><td>${escapeHtml(why)}</td><td><a class="button secondary table-action" data-upload-error-invoice-request data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(rowInvoiceRequestHref(row))}" target="_blank" rel="noreferrer">Request $9 invoice link</a><br><a class="table-secondary-link" data-upload-error-fix-plan data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(rowFixPlanHref(row))}" target="_blank" rel="noreferrer">Open public-safe request</a></td></tr>`;
             }).join("")}
           </tbody>
         </table>
@@ -7938,6 +7946,7 @@
     return serviceLeadFallbackUrl({
       ...values,
       serviceType,
+      requestedNextStep: `Request external ${serviceLeadPriceHint(serviceType) || ""} checkout or invoice link after fit is confirmed`,
       requestSummary: [
         values.requestSummary || "",
         "",
@@ -7973,6 +7982,7 @@
       "Public contact: add only if you want it visible in a public GitHub issue",
       `Need-by / timeline: ${values.needBy || ""}`,
       `Source path: ${absoluteUrl(values.path || getCurrentRoutePath())}`,
+      `Requested next step: ${values.requestedNextStep || "Request service fit review"}`,
       "",
       "Request note:",
       values.requestSummary || "",
@@ -9096,6 +9106,14 @@ ${paragraphs.join("\n")}
       requestSummary: defaultSummary,
       path: sourcePath,
     });
+    const invoiceRequestUrl = serviceInvoiceRequestUrl({
+      serviceType: "upload-limit-fix-plan",
+      businessName: "",
+      contact: "",
+      needBy: "",
+      requestSummary: defaultSummary,
+      path: sourcePath,
+    });
     return `
       <form class="download-service-lead-form download-upload-fix-lead-form" data-service-lead-form data-upload-fix-plan-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(sourcePath)}" data-utm-source="download_success" data-utm-medium="site" data-utm-campaign="upload_limit_fix_plan" data-utm-content="${escapeHtml(toolId)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
         <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -9117,6 +9135,7 @@ ${paragraphs.join("\n")}
         </label>
         <div class="actions">
           <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Send $9 upload check request</button>
+          <a class="button secondary" data-download-upload-fix-invoice-request data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Request $9 invoice link</a>
           <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
         </div>
         <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send a public-safe upload check here. Payment still happens only through a real external checkout or invoice after fit is confirmed.</p>
@@ -9153,6 +9172,14 @@ ${paragraphs.join("\n")}
       requestSummary: defaultSummary,
       path: sourcePath,
     });
+    const invoiceRequestUrl = serviceInvoiceRequestUrl({
+      serviceType,
+      businessName,
+      contact: "",
+      needBy: "",
+      requestSummary: defaultSummary,
+      path: sourcePath,
+    });
     return `
       <form class="download-service-lead-form tool-output-service-lead-form" data-service-lead-form data-service-type="${escapeHtml(serviceType)}" data-lead-path="${escapeHtml(sourcePath)}" data-utm-source="tool_output" data-utm-medium="site" data-utm-campaign="invoice_followup_service" data-utm-content="${escapeHtml(toolId)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
         <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -9174,6 +9201,7 @@ ${paragraphs.join("\n")}
         </label>
         <div class="actions">
           <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack">Send $19 sequence request</button>
+          <a class="button secondary" data-invoice-followup-output-invoice-request data-track-event="service_invoice_request" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Request $19 invoice link</a>
           <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
         </div>
         <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send a public-safe fit check here. Payment still happens only through a real external checkout or invoice after fit is confirmed.</p>
