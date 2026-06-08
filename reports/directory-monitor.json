@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-08T01:19:56.733Z",
+  "generatedAt": "2026-06-08T04:06:37.700Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 4,
+  "listedCount": 5,
   "pendingCount": 5,
   "errorCount": 1,
   "results": [
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 117912,
+          "bytes": 117840,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 117912,
+          "bytes": 117840,
           "matched": false
         }
       ]
@@ -49,14 +49,14 @@
           "url": "https://listai.cc/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 318555,
+          "bytes": 318840,
           "matched": false
         },
         {
           "url": "https://listai.cc/",
           "ok": true,
           "status": 200,
-          "bytes": 318555,
+          "bytes": 318840,
           "matched": false
         }
       ]
@@ -78,7 +78,7 @@
           "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
           "ok": true,
           "status": 200,
-          "bytes": 86935,
+          "bytes": 87255,
           "matched": true
         }
       ]
@@ -101,6 +101,28 @@
           "ok": true,
           "status": 200,
           "bytes": 1298,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad invoice listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=168",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/168",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Invoice Generator"
+      ],
+      "submittedAt": "2026-06-08",
+      "reviewWindow": "auto-approved API listing for the invoice-to-service lead path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/168",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/168",
+          "ok": true,
+          "status": 200,
+          "bytes": 1261,
           "matched": true
         }
       ]
@@ -185,7 +207,7 @@
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev",
           "ok": true,
           "status": 200,
-          "bytes": 45060,
+          "bytes": 45059,
           "matched": true
         }
       ]
@@ -214,7 +236,7 @@
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer",
           "ok": true,
           "status": 200,
-          "bytes": 46266,
+          "bytes": 46137,
           "matched": true
         }
       ]
@@ -260,13 +282,28 @@
       "reviewWindow": "maintainer review",
       "status": "error",
       "evidenceUrl": "https://github.com/js-org/js.org/pull/11512",
-      "apiAvailable": false,
-      "checksAvailable": false,
-      "templateOk": null,
-      "checksOk": null,
-      "checks": [],
-      "prState": "unknown",
-      "mergeable": null,
+      "apiAvailable": true,
+      "checksAvailable": true,
+      "templateOk": true,
+      "checksOk": true,
+      "checks": [
+        {
+          "name": "PR description",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:58Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353230"
+        },
+        {
+          "name": "cnames_active.js",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:57Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353223"
+        }
+      ],
+      "prState": "closed",
+      "mergeable": true,
       "checked": [
         {
           "url": "https://github.com/js-org/js.org/pull/11512",
@@ -277,17 +314,17 @@
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/pulls/11512",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 16307,
+          "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 18122,
+          "matched": true
         }
       ]
     }

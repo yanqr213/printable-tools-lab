@@ -26,6 +26,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - Directory campaign: https://printable-tools-lab.pages.dev?utm_source=directory
 - TechTools Launchpad tracked directory pack: https://printable-tools-lab.pages.dev/submit-directory?utm_source=techtools&utm_medium=directory&utm_campaign=launchpad_2026_06
 - TechTools Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=techtools&utm_medium=directory&utm_campaign=upload_limit_2026_06&utm_content=upload_limit_fixer
+- TechTools Invoice Generator listing: https://printable-tools-lab.pages.dev/tools/invoice-generator?utm_source=techtools&utm_medium=directory&utm_campaign=invoice_service_2026_06&utm_content=invoice_generator
 - NoLogin.tools tracked upload-limit URL: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nologin&utm_medium=directory&utm_campaign=zero_cost_push
 - NoLogin.tools Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nologin&utm_medium=directory&utm_campaign=upload_limit_2026_06&utm_content=upload_limit_fixer
 - NoSubscription.org tracked upload-limit URL: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nosubscription&utm_medium=directory&utm_campaign=zero_cost_push
@@ -298,6 +299,7 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - ListAi.cc free no-account AI tool directory submission; submitted on 2026-06-01 and awaiting review
 - TechTools Launchpad no-login API listing; submitted on 2026-06-06 and live at https://techtools.cz/tools/launchpad/?tool=161
 - TechTools Upload Limit Fixer high-intent listing; submitted on 2026-06-06 and live at https://techtools.cz/tools/launchpad/?tool=162
+- TechTools Invoice Generator service-lead listing; submitted on 2026-06-08 and live at https://techtools.cz/tools/launchpad/?tool=168
 - NoLogin.tools free no-login/privacy tool submission; submitted on 2026-06-03 and awaiting human review
 - NoLogin.tools Upload Limit Fixer high-intent submission; submitted on 2026-06-06 with slug printable-tools-lab-pages-dev-upload-limit-fixer and awaiting human review
 - NoSubscription.org free/open-source track; submitted on 2026-06-03 and awaiting slow review

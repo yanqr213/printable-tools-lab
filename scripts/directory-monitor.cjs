@@ -40,6 +40,14 @@ const directories = [
     reviewWindow: "auto-approved API listing for the high-intent upload-limit entry",
   },
   {
+    name: "TechTools Launchpad invoice listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=168",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/168",
+    expected: [siteHost, "Invoice Generator"],
+    submittedAt: "2026-06-08",
+    reviewWindow: "auto-approved API listing for the invoice-to-service lead path",
+  },
+  {
     name: "NoSignupTools",
     url: "https://nosignuptools.com/",
     searchUrl: "https://nosignuptools.com/?q=PrintableTools+Lab",

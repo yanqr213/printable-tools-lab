@@ -7316,6 +7316,13 @@ function directorySubmissionHtml() {
     ["Tagline", "Free no-signup browser PDF, image, and QR tools"],
     ["Short description", "Create practical PDFs, image files, and static QR codes in the browser, including image compression, resizing, cropping, rotation, watermarking, QR codes, WiFi QR signs, contact QR codes, image-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, resumes, certificates, and printable tools."],
   ];
+  const liveDirectoryListings = [
+    ["TechTools Launchpad", "https://techtools.cz/tools/launchpad/?tool=161", "Homepage listing for the free no-signup tool collection."],
+    ["TechTools Upload Limit Fixer", "https://techtools.cz/tools/launchpad/?tool=162", "High-intent listing for file-size and format upload errors."],
+    ["TechTools Invoice Generator", "https://techtools.cz/tools/launchpad/?tool=168", "Service-lead path for small-seller invoice PDF visitors."],
+    ["NoLogin.tools", "https://nologin.tools/tool/printable-tools-lab-pages-dev", "Privacy-friendly no-login tool listing."],
+    ["NoLogin.tools Upload Limit Fixer", "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer", "No-login listing for upload-limit fixes."],
+  ];
   return `
       <section class="shell page-title section">
         <a href="/free-pdf-tools/">Free file tools</a>
@@ -7336,6 +7343,13 @@ function directorySubmissionHtml() {
           <article class="panel"><h3>No signup</h3><p>Core file tools open directly in the browser and do not require an account before export.</p></article>
           <article class="panel"><h3>Free export</h3><p>The validation version keeps PDF, image, and QR downloads free and avoids surprise checkout screens.</p></article>
           <article class="panel"><h3>Ad-safe</h3><p>Ads are disabled during validation and downloads are not gated behind ad interactions or ad impressions.</p></article>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Live external listings</h2>
+        <p>These public directory entries are discovery signals, not revenue proof. They are listed here so reviewers can verify external visibility without accessing internal operations pages.</p>
+        <div class="grid-2">
+          ${liveDirectoryListings.map(([title, url, note]) => `<article class="panel"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(note)}</p><a class="button secondary" href="${escapeHtml(url)}" rel="nofollow">Open listing</a></article>`).join("\n")}
         </div>
       </section>
       <section class="shell section">

@@ -1,0 +1,40 @@
+{
+  "generatedAt": "2026-06-08T04:05:09.508Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Invoice Generator by PrintableTools Lab",
+    "url": "https://printable-tools-lab.pages.dev/tools/invoice-generator/?utm_source=techtools&utm_medium=directory&utm_campaign=invoice_service_2026_06&utm_content=invoice_generator",
+    "tagline": "Free no-signup printable invoice PDF generator for small sellers and local services.",
+    "description": "Create a simple printable invoice PDF in the browser without signing up. PrintableTools Lab's invoice generator is useful for local sellers, freelancers, small services, pop-up shops, and market tables that need a clean invoice file quickly. After download, users can request a custom local print pack if they want printable invoices, price tags, flyers, labels, and QR signs set up for their business.",
+    "category": "business",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-08 invoice-service lead path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 168,
+      "name": "Invoice Generator by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/tools/invoice-generator/?utm_source=techtools&utm_medium=directory&utm_campaign=invoice_service_2026_06&utm_content=invoice_generator",
+      "tagline": "Free no-signup printable invoice PDF generator for small sellers and local services.",
+      "description": "Create a simple printable invoice PDF in the browser without signing up. PrintableTools Lab's invoice generator is useful for local sellers, freelancers, small services, pop-up shops, and market tables that need a clean invoice file quickly. After download, users can request a custom local print pack if they want printable invoices, price tags, flyers, labels, and QR signs set up for their business.",
+      "category": "business",
+      "category_label": "Business & Finance",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-08 invoice-service lead path",
+      "launch_date": "2026-06-08",
+      "created_at": "2026-06-08T04:05:09Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=168"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=168"
+  }
+}
