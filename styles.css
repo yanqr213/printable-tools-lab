@@ -801,6 +801,20 @@ canvas.preview-canvas {
   background: rgba(255, 255, 255, 0.72);
 }
 
+.download-service-close {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid rgba(23, 107, 135, 0.16);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.download-service-close p,
+.download-service-close strong {
+  margin: 0;
+}
+
 .download-after-actions {
   display: flex;
   flex-wrap: wrap;

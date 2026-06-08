@@ -49,6 +49,9 @@
   const LOCAL_SELLER_FUNNEL_TOOL_IDS = new Set([
     "invoice-generator",
     "estimate-generator",
+    "purchase-order",
+    "bill-of-sale",
+    "rent-receipt",
     "receipt-generator",
     "timesheet-generator",
     "business-card",
@@ -7861,6 +7864,8 @@ ${paragraphs.join("\n")}
     const content = encodeURIComponent(tool.id);
     const uploadHref = `/upload-limit-fixer/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     const finderHref = `/free-pdf-tools/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
+    const serviceHref = `/custom-local-print-pack/?utm_source=download_success&utm_medium=site&utm_campaign=service_request&utm_content=${content}#service-request`;
+    const auditHref = `/market-table-print-audit/?utm_source=download_success&utm_medium=site&utm_campaign=audit_request&utm_content=${content}#service-request`;
     const sponsorHref = `/sponsor-starter-review/?utm_source=download_success&utm_medium=site&utm_campaign=sponsor_starter_review&utm_content=${content}&vertical=small-business-paperwork-sponsors&commitment=request-invoice#sponsor-inquiry`;
     const invoiceSponsorAction = tool.id === "invoice-generator"
       ? `<a class="button" data-track-event="sponsor_request_intent" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(sponsorHref)}">Request USD 49 invoice review</a>`
@@ -7872,7 +7877,14 @@ ${paragraphs.join("\n")}
           <strong>Need another business PDF, label, QR code, or image fix?</strong>
           <p class="help">Try another free browser tool, or use the upload limit fixer if another site rejects a PDF, image, or photo size.</p>
         </div>
+        <div class="download-service-close">
+          <p class="eyebrow">Optional done-for-you help</p>
+          <strong>Want this turned into a local print pack?</strong>
+          <p class="help">Request the $29 Custom Local Print Pack Setup, or start with a free Market Table Print Audit. Payment starts only after fit is confirmed and a real external checkout or invoice is paid.</p>
+        </div>
         <div class="download-after-actions">
+          <a class="button" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="${escapeHtml(serviceHref)}">Request $29 setup</a>
+          <a class="button secondary" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${escapeHtml(auditHref)}">Free print audit first</a>
           ${invoiceSponsorAction}
           <a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(uploadHref)}">Fix upload limits</a>
           <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(finderHref)}">Browse more free tools</a>

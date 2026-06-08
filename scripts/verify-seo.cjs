@@ -425,6 +425,10 @@ else {
   if (!script.includes("free_tool_depth")) failures.push("Missing download success free-tool depth campaign.");
   if (!script.includes('data-track-event="free_tool_depth"')) failures.push("Missing download success free-tool depth event tracking.");
   if (!script.includes("Browse more free tools")) failures.push("Missing download success free-tool browse CTA.");
+  if (!script.includes("download-service-close") || !script.includes("Want this turned into a local print pack?")) failures.push("Missing download success service close CTA.");
+  if (!script.includes("/custom-local-print-pack/?utm_source=download_success") || !script.includes("/market-table-print-audit/?utm_source=download_success")) failures.push("Missing download success service/audit tracked paths.");
+  if (!script.includes('data-track-event="service_request_intent"') || !script.includes('data-track-event="audit_request_intent"')) failures.push("Missing download success service/audit intent tracking.");
+  if (!script.includes("Payment starts only after fit is confirmed and a real external checkout or invoice is paid")) failures.push("Missing download success external-payment gate.");
   if (!script.includes("Future ads must stay separated from generator controls")) failures.push("Missing download success ad-safety warning.");
   if (!script.includes("renderInvoiceSponsorCloseCta") || !script.includes("invoice-sponsor-close-cta") || !script.includes("utm_source=download_success") || !script.includes("small-business-paperwork-sponsors")) failures.push("app.js missing invoice-specific sponsor close CTA on tool/download success.");
   if (!script.includes("utmCampaign") || !script.includes("vertical")) failures.push("app.js missing sponsor attribution fields.");
