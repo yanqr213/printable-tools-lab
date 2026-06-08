@@ -6,6 +6,7 @@ const { SPONSOR_DEALS, SPONSOR_VERTICALS, siteUrl, sponsorPublicReplyUrl } = req
 const root = path.resolve(__dirname, "..");
 const reportsDir = path.join(root, "reports");
 const generatedAt = new Date().toISOString();
+const validationReport = readJson(path.join(reportsDir, "validation-report.json"), null);
 
 const prospects = [
   {
@@ -88,7 +89,7 @@ const prospects = [
     website: "https://www.invoiceninja.com/",
     contactUrl: "https://www.invoiceninja.com/contact/",
     evidenceUrl: "https://www.invoiceninja.com/",
-    fitReason: "Invoice Ninja sells invoicing and small-business payment workflow software, fitting invoice, estimate, receipt, and client paperwork pages.",
+    fitReason: "Invoice Ninja sells invoicing and small-business payment workflow software, fitting invoice, estimate, receipt, and client paperwork pages. The current validation snapshot shows invoice-generator as the warmest business tool with 2 PDF downloads and 2 sponsor-intent clicks sitewide, but 0 sponsor leads and 0 invoice requests so far.",
     offer: "Small business paperwork sponsorship pilot.",
     dealId: "vertical-category-pilot",
   },
@@ -100,7 +101,7 @@ const prospects = [
     website: "https://www.zoho.com/invoice/",
     contactUrl: "https://www.zoho.com/contactus.html",
     evidenceUrl: "https://www.zoho.com/invoice/",
-    fitReason: "Zoho Invoice targets small businesses that need invoices, estimates, payments, and client records.",
+    fitReason: "Zoho Invoice targets small businesses that need invoices, estimates, payments, and client records. The current validation snapshot shows invoice-generator as the warmest business tool with 2 PDF downloads and 2 sponsor-intent clicks sitewide, but 0 sponsor leads and 0 invoice requests so far.",
     offer: "Guide sponsorship around free invoice and small-business paperwork pages.",
     dealId: "guide-sponsor-pilot",
   },
@@ -165,6 +166,7 @@ function prospectRow(prospect, verticals, index) {
   if (!vertical) throw new Error(`Unknown sponsor vertical: ${prospect.vertical}`);
   const suggestedDeal = SPONSOR_DEALS.find((deal) => deal.id === prospect.dealId) || SPONSOR_DEALS.find((deal) => deal.id === "guide-sponsor-pilot") || SPONSOR_DEALS[0];
   const commitment = sponsorDealCommitment(suggestedDeal);
+  const validationSignal = sponsorValidationSignal(prospect, validationReport);
   const verticalTrackedUrl = `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}&utm_content=${encodeURIComponent(prospect.id)}`;
   const invoiceReviewUrl = `${siteUrl("sponsor-starter-review").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_starter_review&utm_content=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}&commitment=request-invoice#sponsor-inquiry`;
   const dealRoomUrl = `${siteUrl("sponsor-deal-room").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=${encodeURIComponent(prospect.id)}&deal=${encodeURIComponent(suggestedDeal.id)}&vertical=${encodeURIComponent(vertical.slug)}&commitment=${encodeURIComponent(commitment)}#sponsor-inquiry`;
@@ -181,7 +183,7 @@ function prospectRow(prospect, verticals, index) {
   const subject = `${suggestedDeal.title} for ${vertical.title}`;
   const contactFormMessage = [
     `Hi ${prospect.name} team - I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, resume, classroom, and small-business document workflows.`,
-    `Your product looks relevant to this audience.`,
+    `Your product looks relevant to this audience. ${validationSignal}`,
     `Fast invoice review URL: ${invoiceReviewUrl}`,
     `Sponsor proposal: ${contactFormProposalUrl}`,
     `Public-safe reply form: ${publicReplyUrl}`,
@@ -193,6 +195,8 @@ function prospectRow(prospect, verticals, index) {
     "I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, resume, classroom, and small-business document workflows.",
     "",
     `Your product looks relevant because ${prospect.fitReason}`,
+    "",
+    `Current validation signal: ${validationSignal}`,
     "",
     `I opened a short partner-specific sponsor proposal for this audience: ${proposalUrl}`,
     "",
@@ -223,6 +227,7 @@ function prospectRow(prospect, verticals, index) {
     evidenceUrl: prospect.evidenceUrl,
     fitReason: prospect.fitReason,
     offer: prospect.offer,
+    validationSignal,
     suggestedDealId: suggestedDeal.id,
     suggestedDealTitle: suggestedDeal.title,
     suggestedDealPrice: suggestedDeal.price,
@@ -243,12 +248,34 @@ function prospectRow(prospect, verticals, index) {
   };
 }
 
+function sponsorValidationSignal(prospect, report) {
+  const metrics = report?.live?.metrics || {};
+  const totals = metrics.totals || {};
+  const invoiceTool = (metrics.topTools || []).find((row) => row.tool === "invoice-generator") || {};
+  const invoiceDownloads = Number(invoiceTool.download_pdf || 0) + Number(invoiceTool.download_file || 0);
+  const sponsorIntent = Number(totals.sponsor_request_intent || metrics.commercialIntent || 0);
+  const sponsorLeads = Number(metrics.sponsorLeads || totals.sponsor_lead_submit || 0);
+  const sponsorInvoices = Number(metrics.sponsorInvoiceRequests || totals.sponsor_invoice_request || 0);
+  if (prospect.vertical === "small-business-paperwork-sponsors") {
+    return `Current validation snapshot: invoice-generator has ${invoiceDownloads} PDF downloads, sitewide sponsor intent is ${sponsorIntent}, and sponsor leads/invoice requests are still ${sponsorLeads}/${sponsorInvoices}.`;
+  }
+  return `Current validation snapshot: sitewide sponsor intent is ${sponsorIntent}, sponsor leads/invoice requests are ${sponsorLeads}/${sponsorInvoices}, and any pilot is still early-stage.`;
+}
+
+function readJson(file, fallback) {
+  try {
+    return JSON.parse(fs.readFileSync(file, "utf8"));
+  } catch {
+    return fallback;
+  }
+}
+
 function sponsorDealCommitment(deal) {
   return deal?.commitment || (String(deal?.price || "").toLowerCase().includes("no-cash") ? "question-only" : "request-invoice");
 }
 
 function toCsv(rows) {
-  const headers = ["priority", "id", "name", "vertical", "category", "website", "contactUrl", "evidenceUrl", "offer", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "requestedCommitment", "invoiceReviewUrl", "proposalUrl", "contactFormProposalUrl", "dealRoomUrl", "publicReplyUrl", "verticalTrackedUrl", "trackedUrl", "subject", "contactFormMessage", "status", "successSignal"];
+  const headers = ["priority", "id", "name", "vertical", "category", "website", "contactUrl", "evidenceUrl", "offer", "validationSignal", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "requestedCommitment", "invoiceReviewUrl", "proposalUrl", "contactFormProposalUrl", "dealRoomUrl", "publicReplyUrl", "verticalTrackedUrl", "trackedUrl", "subject", "contactFormMessage", "status", "successSignal"];
   return [
     headers,
     ...rows.map((row) => headers.map((header) => row[header] || "")),
@@ -269,6 +296,7 @@ function toMarkdown(rows) {
       `- Vertical: ${row.vertical}`,
       `- Contact: ${row.contactUrl}`,
       `- Evidence: ${row.evidenceUrl}`,
+      `- Validation signal: ${row.validationSignal}`,
       `- Recommended deal: ${row.suggestedDealTitle} (${row.suggestedDealPrice})`,
       `- Fast invoice review URL: ${row.invoiceReviewUrl}`,
       `- Proposal URL: ${row.proposalUrl}`,

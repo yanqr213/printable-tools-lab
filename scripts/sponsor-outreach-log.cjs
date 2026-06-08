@@ -106,6 +106,7 @@ function normalizeLogRow(prospect, existing = {}, probe = {}) {
     suggestedDealId: prospect.suggestedDealId || "",
     suggestedDealTitle: prospect.suggestedDealTitle || "",
     suggestedDealPrice: prospect.suggestedDealPrice || "",
+    validationSignal: prospect.validationSignal || "",
     invoiceReviewUrl: prospect.invoiceReviewUrl || "",
     proposalUrl: prospect.proposalUrl || prospect.trackedUrl || "",
     contactFormProposalUrl: prospect.contactFormProposalUrl || prospect.proposalUrl || prospect.trackedUrl || "",
@@ -131,7 +132,7 @@ function normalizeLogRow(prospect, existing = {}, probe = {}) {
 }
 
 function toCsv(rows) {
-  const headers = ["priority", "id", "name", "vertical", "contactUrl", "bestContactUrl", "contactRouteStatus", "contactRouteScore", "contactRouteEvidence", "contactRouteBlockers", "contactRouteRequiredFields", "contactRoutePublicSafeFields", "contactRouteSubmissionBlockers", "requiresAuthorizedSender", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "invoiceReviewUrl", "proposalUrl", "contactFormProposalUrl", "dealRoomUrl", "publicReplyUrl", "verticalTrackedUrl", "trackedUrl", "status", "needsReplyEmail", "publicReplyAvailable", "submittedAt", "replyAt", "qualifiedAt", "settledAt", "evidenceUrl", "evidenceNote", "nextAction", "contactFormMessage"];
+  const headers = ["priority", "id", "name", "vertical", "contactUrl", "bestContactUrl", "contactRouteStatus", "contactRouteScore", "contactRouteEvidence", "contactRouteBlockers", "contactRouteRequiredFields", "contactRoutePublicSafeFields", "contactRouteSubmissionBlockers", "requiresAuthorizedSender", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "validationSignal", "invoiceReviewUrl", "proposalUrl", "contactFormProposalUrl", "dealRoomUrl", "publicReplyUrl", "verticalTrackedUrl", "trackedUrl", "status", "needsReplyEmail", "publicReplyAvailable", "submittedAt", "replyAt", "qualifiedAt", "settledAt", "evidenceUrl", "evidenceNote", "nextAction", "contactFormMessage"];
   return [
     headers,
     ...rows.map((row) => headers.map((header) => Array.isArray(row[header]) ? row[header].join("; ") : row[header] || "")),
@@ -163,6 +164,7 @@ function nextBatchMarkdown(rows) {
       `- Submission blockers: ${row.contactRouteSubmissionBlockers.join("; ") || "none"}`,
       `- Requires authorized sender: ${row.requiresAuthorizedSender ? "yes" : "no"}`,
       `- Recommended deal: ${row.suggestedDealTitle} (${row.suggestedDealPrice})`,
+      `- Validation signal: ${row.validationSignal || "none"}`,
       `- Fast invoice review URL: ${row.invoiceReviewUrl}`,
       `- Proposal URL: ${row.proposalUrl}`,
       `- Short contact-form proposal URL: ${row.contactFormProposalUrl}`,

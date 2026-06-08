@@ -478,6 +478,7 @@ else {
   if (!prospectScript.includes("sponsor-proposal") || !prospectScript.includes("sponsor_proposal")) failures.push("Sponsor prospect generator missing direct proposal outreach URLs.");
   if (!prospectScript.includes("sponsorPublicReplyUrl") || !prospectScript.includes("publicReplyUrl")) failures.push("Sponsor prospect generator missing public-safe reply fallback URLs.");
   if (!prospectScript.includes("contactFormMessage") || !prospectScript.includes("contactFormProposalUrl")) failures.push("Sponsor prospect generator missing short public contact form execution copy.");
+  if (!prospectScript.includes("validationSignal") || !prospectScript.includes("invoice-generator has") || !prospectScript.includes("sponsor leads/invoice requests")) failures.push("Sponsor prospect generator should include current validation signals in outreach copy.");
 }
 if (!fs.existsSync(sponsorOutreachLogScriptFile)) failures.push("Missing sponsor outreach log script.");
 else {
@@ -488,6 +489,7 @@ else {
   if (!logScript.includes("publicReplyFallbackReady") || !logScript.includes("contactFormMessage") || !logScript.includes("contactFormProposalUrl")) failures.push("Sponsor outreach log script missing public reply fallback execution fields.");
   if (!logScript.includes("sponsor-contact-route-probe.json") || !logScript.includes("bestContactUrl") || !logScript.includes("contactRouteStatus") || !logScript.includes("contactRouteReady")) failures.push("Sponsor outreach log script missing contact-probe prioritization fields.");
   if (!logScript.includes("requiresAuthorizedSender") || !logScript.includes("contactRouteSubmissionBlockers")) failures.push("Sponsor outreach log script missing authorized-sender submission blockers.");
+  if (!logScript.includes("validationSignal")) failures.push("Sponsor outreach log should preserve current validation signals for submission batches.");
 }
 if (!fs.existsSync(sponsorContactProbeScriptFile)) failures.push("Missing sponsor contact route probe script.");
 else {

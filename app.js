@@ -5315,6 +5315,7 @@
       category: "Invoicing software",
       contactUrl: "https://www.invoiceninja.com/contact/",
       fitReason: "Invoice Ninja sells invoicing and small-business payment workflow software, fitting invoice, estimate, receipt, and client paperwork pages.",
+      validationSignal: "Current validation snapshot: invoice-generator has 2 PDF downloads, sitewide sponsor intent is 2, and sponsor leads/invoice requests are still 0/0.",
       dealId: "vertical-category-pilot",
     },
     {
@@ -5324,6 +5325,7 @@
       category: "Small-business invoicing",
       contactUrl: "https://www.zoho.com/contactus.html",
       fitReason: "Zoho Invoice targets small businesses that need invoices, estimates, payments, and client records.",
+      validationSignal: "Current validation snapshot: invoice-generator has 2 PDF downloads, sitewide sponsor intent is 2, and sponsor leads/invoice requests are still 0/0.",
       dealId: "guide-sponsor-pilot",
     },
     {
@@ -7707,6 +7709,7 @@ ${paragraphs.join("\n")}
           <article class="panel"><h3>Audience match</h3><p>${escapeHtml(prospect.fitReason)}</p></article>
           <article class="panel"><h3>Relevant vertical</h3><p><strong>${escapeHtml(vertical.title)}</strong></p><p>${escapeHtml(vertical.audience)}</p></article>
         </div>
+        ${prospect.validationSignal ? `<div class="notice compact-notice"><strong>Current validation signal:</strong> ${escapeHtml(prospect.validationSignal)}</div>` : ""}
       </section>
       <section class="shell section">
         <h2>Recommended pilot</h2>
@@ -8334,6 +8337,8 @@ ${paragraphs.join("\n")}
       "",
       `Your product looks relevant because ${prospect.fitReason}`,
       "",
+      prospect.validationSignal ? `Current validation signal: ${prospect.validationSignal}` : "",
+      prospect.validationSignal ? "" : "",
       `I am opening a small, clearly labeled sponsor pilot for this audience: ${absoluteDealUrl}`,
       "",
       `The best starting option is "${deal.title}" (${deal.price}): ${deal.deliverable}`,
