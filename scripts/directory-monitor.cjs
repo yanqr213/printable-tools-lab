@@ -72,6 +72,14 @@ const directories = [
     reviewWindow: "auto-approved API listing for the overdue invoice reminder service-lead path",
   },
   {
+    name: "TechTools Launchpad upload limit fix plan service listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=172",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/172",
+    expected: [siteHost, "Upload Limit Fix Plan"],
+    submittedAt: "2026-06-08",
+    reviewWindow: "auto-approved API listing for the $9 upload fix plan service path",
+  },
+  {
     name: "NoSignupTools",
     url: "https://nosignuptools.com/",
     searchUrl: "https://nosignuptools.com/?q=PrintableTools+Lab",

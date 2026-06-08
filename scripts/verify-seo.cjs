@@ -576,6 +576,7 @@ else {
   const directoryMonitorScript = fs.readFileSync(directoryMonitorFile, "utf8");
   if (!directoryMonitorScript.includes("NoSignupTools overdue invoice reminder listing") || !directoryMonitorScript.includes("Overdue+Invoice+Reminder+Email")) failures.push("Directory monitor missing NoSignupTools overdue invoice reminder submission tracking.");
   if (!directoryMonitorScript.includes("FreeNoSignup overdue invoice reminder listing") || !directoryMonitorScript.includes("Overdue+Invoice+Reminder+Email")) failures.push("Directory monitor missing FreeNoSignup overdue invoice reminder submission tracking.");
+  if (!directoryMonitorScript.includes("TechTools Launchpad upload limit fix plan service listing") || !directoryMonitorScript.includes("Upload Limit Fix Plan")) failures.push("Directory monitor missing TechTools upload limit fix plan service listing tracking.");
   if (!directoryMonitorScript.includes("expected.every")) failures.push("Directory monitor should require all expected listing markers to avoid search-query echo false positives.");
 }
 const sponsorPublicRepliesFunctionFile = path.join(root, "functions", "api", "sponsor-public-replies.js");
@@ -990,6 +991,7 @@ else {
   if (!html.includes("/assets/images/app-icon-512.png")) failures.push("Directory submission pack missing icon asset link.");
   if (!html.includes("/assets/images/free-pdf-tools-screenshot.png")) failures.push("Directory submission pack missing screenshot asset link.");
   if (!html.includes("TechTools Overdue Invoice Reminder Email") || !html.includes("https://techtools.cz/tools/launchpad/?tool=171")) failures.push("Directory submission pack missing overdue invoice reminder live listing.");
+  if (!html.includes("TechTools Upload Limit Fix Plan") || !html.includes("https://techtools.cz/tools/launchpad/?tool=172")) failures.push("Directory submission pack missing upload limit fix plan live listing.");
   if (!html.includes(siteUrl("submit-directory"))) failures.push("Directory submission pack missing canonical.");
   if (!sitemap.includes(`<loc>${siteUrl("submit-directory")}</loc>`)) failures.push("Sitemap missing directory submission pack.");
 }
@@ -1433,6 +1435,7 @@ else {
   if (!distribution.includes("sponsor-call")) failures.push("DISTRIBUTION.md missing sponsor call link.");
   if (!distribution.includes("utm_source=sponsor-outreach")) failures.push("DISTRIBUTION.md missing sponsor outreach tracking.");
   if (!distribution.includes("TechTools Overdue Invoice Reminder listing") || !distribution.includes("overdue_invoice_2026_06")) failures.push("DISTRIBUTION.md missing overdue invoice reminder directory listing.");
+  if (!distribution.includes("TechTools Upload Limit Fix Plan listing") || !distribution.includes("upload_limit_fix_plan_2026_06")) failures.push("DISTRIBUTION.md missing upload limit fix plan directory listing.");
   if (!distribution.includes("NoSignupTools Overdue Invoice Reminder listing") || !distribution.includes("utm_source=nosignuptools")) failures.push("DISTRIBUTION.md missing NoSignupTools overdue invoice reminder submission.");
   if (!distribution.includes("FreeNoSignup Overdue Invoice Reminder listing") || !distribution.includes("utm_source=freenosignup")) failures.push("DISTRIBUTION.md missing FreeNoSignup overdue invoice reminder submission.");
   if (!distribution.includes("NoLogin.tools Overdue Invoice Reminder listing") || !distribution.includes("utm_source=nologin")) failures.push("DISTRIBUTION.md missing NoLogin overdue invoice reminder submission.");

@@ -8597,6 +8597,7 @@ function directorySubmissionHtml() {
     ["TechTools Invoice Follow-up Copy Pack", "https://techtools.cz/tools/launchpad/?tool=169", "Direct discovery listing for the $19 invoice follow-up copy service."],
     ["TechTools Invoice Follow-up Email Generator", "https://techtools.cz/tools/launchpad/?tool=170", "Free-tool discovery listing for invoice reminder visitors before the $19 service CTA."],
     ["TechTools Overdue Invoice Reminder Email", "https://techtools.cz/tools/launchpad/?tool=171", "High-intent overdue invoice reminder listing that points to a service-lead landing page."],
+    ["TechTools Upload Limit Fix Plan", "https://techtools.cz/tools/launchpad/?tool=172", "Direct discovery listing for the $9 upload-limit troubleshooting service path."],
     ["NoLogin.tools", "https://nologin.tools/tool/printable-tools-lab-pages-dev", "Privacy-friendly no-login tool listing."],
     ["NoLogin.tools Upload Limit Fixer", "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer", "No-login listing for upload-limit fixes."],
   ];
