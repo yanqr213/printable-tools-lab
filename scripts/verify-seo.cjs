@@ -98,7 +98,7 @@ else {
   if (!html.includes("Request $19 follow-up copy") || !html.includes("Made an invoice? Get the follow-up sequence written for $19.")) failures.push("Homepage missing above-fold invoice follow-up service offer.");
   if (!html.includes('data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack"')) failures.push("Homepage invoice follow-up offer missing service intent tracking.");
   if (!html.includes("/invoice-followup-copy-pack/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=hero#service-request")) failures.push("Homepage hero should route to invoice follow-up service fit check.");
-  if (!html.includes('class="panel form-grid service-lead-form home-invoice-lead-form"') || !html.includes('data-lead-path="/"') || !html.includes('data-utm-content="homepage-inline"') || !html.includes("Send homepage fit check")) failures.push("Homepage missing inline invoice follow-up fit-check form.");
+  if (!html.includes('home-invoice-lead-form invoice-micro-lead-form') || !html.includes('data-lead-path="/"') || !html.includes('data-utm-content="homepage-inline"') || !html.includes('name="requestSummary"') || !html.includes("Send $19 sequence request")) failures.push("Homepage missing one-field invoice follow-up paid request form.");
   if (!html.includes("/invoice-followup-copy-pack/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=inline-secondary#service-request")) failures.push("Homepage close band should keep a full invoice follow-up service page link.");
   if (!html.includes("Payment happens only through a real external checkout or invoice after fit is confirmed.")) failures.push("Homepage paid service offer missing external-payment safety gate.");
 }
@@ -418,7 +418,7 @@ for (const toolPath of ["tools/invoice-generator", "tools/price-tag", "tools/fly
   if (!html.includes("Future ads must stay separated from generator controls")) failures.push(`Missing ad-safety warning on funnel CTA: ${toolPath}`);
   if (!html.includes("Payment happens only through a real external checkout or invoice")) failures.push(`Local tool service CTA missing external-payment gate: ${toolPath}`);
   if (toolPath === "tools/invoice-generator") {
-    if (!html.includes("tool-invoice-lead-form") || !html.includes('data-lead-path="/tools/invoice-generator/"') || !html.includes('data-utm-content="invoice-generator-inline"') || !html.includes("Send invoice fit check")) failures.push("Invoice generator missing inline invoice follow-up fit-check form.");
+    if (!html.includes("tool-invoice-lead-form invoice-micro-lead-form") || !html.includes('data-lead-path="/tools/invoice-generator/"') || !html.includes('data-utm-content="invoice-generator-inline"') || !html.includes('name="requestSummary"') || !html.includes("Send $19 sequence request")) failures.push("Invoice generator missing one-field invoice follow-up paid request form.");
     if (!html.includes("invoice-sponsor-close-cta") || !html.includes("Sponsor the free invoice workflow")) failures.push("Invoice generator missing sponsor close CTA.");
     if (!html.includes("utm_source=invoice_tool") || !html.includes("vertical=small-business-paperwork-sponsors") || !html.includes("commitment=request-invoice")) failures.push("Invoice sponsor close CTA missing tracked invoice sponsor review path.");
     if (!html.includes('data-track-event="sponsor_request_intent"') || !html.includes('data-track-tool="invoice-generator"')) failures.push("Invoice sponsor close CTA missing sponsor intent tracking.");

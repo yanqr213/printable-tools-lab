@@ -6381,15 +6381,16 @@ function homeInvoiceFollowupCloseHtml() {
         <div>
           <p class="eyebrow">Quick paid help</p>
           <h2>Made an invoice? Get the follow-up sequence written for $19.</h2>
-          <p>The free invoice generator stays free. If you want editable reminder, due-today, first-overdue, thank-you, and next-invoice wording for one workflow, send the 30-second fit check before any external checkout or invoice is sent.</p>
+          <p>The free invoice generator stays free. If you want editable reminder, due-today, first-overdue, thank-you, and next-invoice wording for one workflow, send the one-field $19 request before any external checkout or invoice is sent.</p>
         </div>
         <div class="home-service-lead-panel">
           ${invoiceFollowupInlineLeadFormHtml({
             pathName: "/",
             utmSource: "home",
             utmContent: "homepage-inline",
-            submitLabel: "Send homepage fit check",
-            className: "home-invoice-lead-form",
+            submitLabel: "Send $19 sequence request",
+            className: "home-invoice-lead-form invoice-micro-lead-form",
+            compact: true,
           })}
           <div class="actions">
             <a class="button secondary" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="/invoice-followup-copy-pack/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=inline-secondary#service-request">Open full $19 service page</a>
@@ -7536,8 +7537,9 @@ function serviceUpgradeCtaHtml(tool) {
       pathName: `/${tool.path}/`,
       utmSource: "tool_cta",
       utmContent: `${toolSlug}-inline`,
-      submitLabel: "Send invoice fit check",
-      className: "tool-invoice-lead-form",
+      submitLabel: "Send $19 sequence request",
+      className: "tool-invoice-lead-form invoice-micro-lead-form",
+      compact: true,
     });
     const localSellerActions = tool.path === "tools/invoice-generator"
       ? [
