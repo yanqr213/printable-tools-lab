@@ -8,6 +8,7 @@ const contactProbePath = path.join(reportsDir, "sponsor-contact-route-probe.json
 const logPath = path.join(reportsDir, "sponsor-outreach-log.json");
 const csvPath = path.join(reportsDir, "sponsor-outreach-log.csv");
 const nextBatchPath = path.join(reportsDir, "sponsor-next-submission-batch.md");
+const executionBatchPath = path.join(reportsDir, "sponsor-execution-batch.json");
 const now = new Date().toISOString();
 
 main();
@@ -25,6 +26,7 @@ function main() {
   const rows = queue.rows
     .map((prospect) => normalizeLogRow(prospect, existingById.get(prospect.id), contactProbeById.get(prospect.id)))
     .sort((a, b) => outreachPriorityScore(b) - outreachPriorityScore(a) || Number(a.priority || 999) - Number(b.priority || 999));
+  const executeNow = executionBatchRows(rows);
   const log = {
     name: "PrintableTools Lab Sponsor Outreach Log",
     generatedAt: now,
@@ -40,6 +42,7 @@ function main() {
     contactRouteReview: rows.filter((row) => row.contactRouteStatus === "review" && row.status === "queued").length,
     contactRouteBlocked: rows.filter((row) => row.contactRouteStatus === "blocked" && row.status === "queued").length,
     requiresAuthorizedSender: rows.filter((row) => row.requiresAuthorizedSender && row.status === "queued").length,
+    executionReady: executeNow.filter((row) => row.executionMode !== "hold").length,
     rules: [
       "Use public contact, partner, or sales forms only.",
       "Do not submit fake identity, phone, payment, tax, or bank details.",
@@ -51,13 +54,21 @@ function main() {
       "Change status to sent only after a real form submission or email send with timestamped evidence.",
       "Change status to settled only after an external provider or signed agreement confirms settled payment.",
     ],
+    executeNow,
     rows,
   };
   fs.mkdirSync(reportsDir, { recursive: true });
   fs.writeFileSync(logPath, `${JSON.stringify(log, null, 2)}\n`);
   fs.writeFileSync(csvPath, toCsv(rows));
-  fs.writeFileSync(nextBatchPath, nextBatchMarkdown(rows));
-  console.log(`Sponsor outreach log ready: ${log.count} row(s), ${log.queued} queued, ${log.sent} sent, ${log.settled} settled.`);
+  fs.writeFileSync(nextBatchPath, nextBatchMarkdown(rows, executeNow));
+  fs.writeFileSync(executionBatchPath, `${JSON.stringify({
+    name: "PrintableTools Lab Sponsor 30-Minute Execution Batch",
+    generatedAt: now,
+    count: executeNow.length,
+    rows: executeNow,
+    proofGate: "A row becomes sent only after a real manual submission or legitimate email send has timestamped evidence. Revenue is still zero until a signed agreement or settled external payment exists.",
+  }, null, 2)}\n`);
+  console.log(`Sponsor outreach log ready: ${log.count} row(s), ${log.queued} queued, ${log.sent} sent, ${log.settled} settled, ${log.executionReady} execution-ready.`);
 }
 
 function normalizeLogRow(prospect, existing = {}, probe = {}) {
@@ -93,6 +104,10 @@ function normalizeLogRow(prospect, existing = {}, probe = {}) {
   const contactFormMessage = prospect.contactFormMessage || "";
   const body = prospect.body || contactFormMessage;
   const mailtoUrl = publicEmails.length ? mailtoDraft(publicEmails[0], subject, body) : "";
+  const executionMode = executionModeFor({ mailtoUrl, requiresAuthorizedSender, contactRouteStatus });
+  const executionStep = executionStepFor({ executionMode, contactRouteStatus });
+  const doNotSendUntil = doNotSendUntilFor({ executionMode, contactRouteStatus, contactRouteSubmissionBlockers });
+  const evidenceChecklist = evidenceChecklistFor({ executionMode, contactRouteStatus });
   const copyFirstAction = mailtoUrl
     ? "Open email draft"
     : requiresAuthorizedSender
@@ -118,6 +133,12 @@ function normalizeLogRow(prospect, existing = {}, probe = {}) {
     contactRoutePublicSafeFields,
     contactRouteSubmissionBlockers,
     requiresAuthorizedSender,
+    executionMode,
+    executionStep,
+    doNotSendUntil,
+    evidenceChecklist,
+    sentGate: "Change status to sent only after a real form submission, public-safe issue reply, or legitimate email send with timestamped evidence.",
+    estimatedMinutes: executionMode === "email_draft" ? 8 : executionMode === "contact_route" ? 12 : executionMode === "prepare" ? 10 : 0,
     suggestedDealId: prospect.suggestedDealId || "",
     suggestedDealTitle: prospect.suggestedDealTitle || "",
     suggestedDealPrice: prospect.suggestedDealPrice || "",
@@ -154,7 +175,7 @@ function toCsv(rows) {
   ].map((row) => row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(",")).join("\n") + "\n";
 }
 
-function nextBatchMarkdown(rows) {
+function nextBatchMarkdown(rows, executeNow = executionBatchRows(rows)) {
   const queued = rows.filter((row) => row.status === "queued").slice(0, 5);
   return [
     "# Sponsor Next Submission Batch",
@@ -164,6 +185,18 @@ function nextBatchMarkdown(rows) {
     "Do not mark a row sent until a real public form submission or email send has happened.",
     "If a private reply email is unavailable, use contactFormMessage with publicReplyUrl only where the partner's public contact route allows safe sponsor or partnership notes.",
     "Do not include private payment, tax, phone, bank, customer, identity, password, or file data.",
+    "",
+    "## 30-minute execution queue",
+    "",
+    ...executeNow.map((row, index) => [
+      `${index + 1}. ${row.name} - ${row.executionMode}`,
+      `   First step: ${row.executionStep}`,
+      `   Open: ${row.openUrl || row.bestContactUrl || row.contactUrl}`,
+      `   Copy: ${row.messageToCopyLabel}`,
+      `   Do not send until: ${row.doNotSendUntil}`,
+      `   Evidence: ${row.evidenceChecklist.join("; ")}`,
+      "",
+    ].join("\n")),
     "",
     ...queued.map((row, index) => [
       `## ${index + 1}. ${row.name}`,
@@ -180,6 +213,10 @@ function nextBatchMarkdown(rows) {
       `- Public-safe fields: ${row.contactRoutePublicSafeFields.join("; ") || "none"}`,
       `- Submission blockers: ${row.contactRouteSubmissionBlockers.join("; ") || "none"}`,
       `- Requires authorized sender: ${row.requiresAuthorizedSender ? "yes" : "no"}`,
+      `- Execution mode: ${row.executionMode}`,
+      `- Execution step: ${row.executionStep}`,
+      `- Do not send until: ${row.doNotSendUntil}`,
+      `- Evidence checklist: ${row.evidenceChecklist.join("; ")}`,
       `- Recommended deal: ${row.suggestedDealTitle} (${row.suggestedDealPrice})`,
       `- Validation signal: ${row.validationSignal || "none"}`,
       `- Fast invoice review URL: ${row.invoiceReviewUrl}`,
@@ -211,6 +248,75 @@ function nextBatchMarkdown(rows) {
   ].join("\n");
 }
 
+function executionBatchRows(rows) {
+  return rows
+    .filter((row) => row.status === "queued")
+    .sort((a, b) => executionPriorityScore(b) - executionPriorityScore(a) || Number(a.priority || 999) - Number(b.priority || 999))
+    .slice(0, 5)
+    .map((row, index) => ({
+      rank: index + 1,
+      id: row.id,
+      name: row.name,
+      vertical: row.vertical,
+      status: row.status,
+      contactRouteStatus: row.contactRouteStatus,
+      contactRouteScore: row.contactRouteScore,
+      executionMode: row.executionMode,
+      copyFirstAction: row.copyFirstAction,
+      executionStep: row.executionStep,
+      doNotSendUntil: row.doNotSendUntil,
+      evidenceChecklist: row.evidenceChecklist,
+      sentGate: row.sentGate,
+      estimatedMinutes: row.estimatedMinutes,
+      openUrl: row.mailtoUrl || row.bestContactUrl || row.contactUrl,
+      bestContactUrl: row.bestContactUrl,
+      mailtoUrl: row.mailtoUrl,
+      proposalUrl: row.proposalUrl,
+      invoiceReviewUrl: row.invoiceReviewUrl,
+      publicReplyUrl: row.publicReplyUrl,
+      messageToCopyLabel: row.mailtoUrl ? "long outreach note in the email draft" : "short public contact form message",
+      messageToCopy: row.mailtoUrl ? row.body : row.contactFormMessage,
+      validationSignal: row.validationSignal,
+      nextAction: row.nextAction,
+    }));
+}
+
+function executionModeFor({ mailtoUrl, requiresAuthorizedSender, contactRouteStatus }) {
+  if (mailtoUrl) return "email_draft";
+  if (requiresAuthorizedSender) return "prepare";
+  if (contactRouteStatus === "blocked") return "hold";
+  return "contact_route";
+}
+
+function executionStepFor({ executionMode, contactRouteStatus }) {
+  if (executionMode === "email_draft") return "Open the email draft, review every copied line, send only from a truthful sender, then record timestamped evidence.";
+  if (executionMode === "prepare") return "Prepare the proposal URL and message only; do not submit until required sender fields and consent can be provided truthfully.";
+  if (executionMode === "hold") return "Hold this row until a valid public sponsor, partner, sales, or media contact route is found.";
+  if (contactRouteStatus === "ready") return "Open bestContactUrl, confirm it accepts partner or sponsorship notes, paste the short message, then record timestamped evidence.";
+  return "Review the route first, confirm partner or sponsor notes are welcome, paste the short message only if allowed, then record timestamped evidence.";
+}
+
+function doNotSendUntilFor({ executionMode, contactRouteStatus, contactRouteSubmissionBlockers }) {
+  if (executionMode === "email_draft") return "The public email is a legitimate business, partner, sales, or media route and the sender identity is truthful.";
+  if (executionMode === "prepare") return `Truthful required sender fields and consent are available (${contactRouteSubmissionBlockers.join("; ") || "authorized sender requirements"}).`;
+  if (executionMode === "hold") return "A valid public sponsor, partner, sales, or media contact route is discovered.";
+  if (contactRouteStatus === "ready") return "The contact page visibly accepts sponsor, partner, sales, or marketing notes.";
+  return "Manual review confirms the route accepts public-safe sponsor or partnership notes.";
+}
+
+function evidenceChecklistFor({ executionMode, contactRouteStatus }) {
+  const base = [
+    "submittedAt timestamp",
+    "bestContactUrl or public email used",
+    "proposalUrl or invoiceReviewUrl included",
+    "no private payment, tax, bank, phone, customer, identity, password, or file data submitted",
+  ];
+  if (executionMode === "hold") return ["route discovery evidence before any send attempt", ...base];
+  if (executionMode === "prepare") return ["truthful sender fields available before send", ...base];
+  if (contactRouteStatus === "review") return ["route-fit note confirming sponsorship or partnership notes are allowed", ...base];
+  return base;
+}
+
 function outreachPriorityScore(row) {
   let score = 0;
   if (row.status === "queued") score += 100;
@@ -220,6 +326,16 @@ function outreachPriorityScore(row) {
   score += Math.max(-20, Math.min(40, Number(row.contactRouteScore || 0)));
   if (row.requiresAuthorizedSender) score -= 25;
   if (row.publicReplyAvailable) score += 8;
+  return score;
+}
+
+function executionPriorityScore(row) {
+  let score = outreachPriorityScore(row);
+  if (row.executionMode === "email_draft") score += 35;
+  else if (row.executionMode === "contact_route") score += 20;
+  else if (row.executionMode === "prepare") score -= 10;
+  else if (row.executionMode === "hold") score -= 60;
+  if (String(row.vertical || "").includes("small-business-paperwork")) score += 10;
   return score;
 }
 

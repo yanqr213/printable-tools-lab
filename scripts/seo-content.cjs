@@ -6720,10 +6720,11 @@ function opsServicePublicRequestSnapshotHtml(servicePublicRequests) {
 }
 
 function opsSponsorNextSubmissionRows(rows) {
-  return (Array.isArray(rows) ? rows : [])
+  const queued = (Array.isArray(rows) ? rows : [])
     .filter((row) => row.status === "queued")
     .sort((a, b) => opsSubmissionScore(b) - opsSubmissionScore(a) || Number(a.priority || 999) - Number(b.priority || 999))
     .slice(0, 5);
+  return queued.length ? queued : opsSponsorFallbackSubmissionRows();
 }
 
 function opsSubmissionScore(row) {
@@ -6765,6 +6766,105 @@ function opsSponsorNextSubmissionHtml(rows) {
                 ${rows.map(opsSponsorSubmissionCardHtml).join("\n")}
               </div>
             </div>`;
+}
+
+function opsSponsorFallbackSubmissionRows() {
+  return [
+    opsSponsorFallbackSubmissionRow({
+      id: "invoice-ninja-small-business",
+      name: "Invoice Ninja",
+      verticalSlug: "small-business-paperwork-sponsors",
+      dealId: "vertical-category-pilot",
+      category: "Invoicing software",
+      bestContactUrl: "https://www.invoiceninja.com/contact/",
+      mailtoUrl: "mailto:contact@invoiceninja.com",
+      executionMode: "email_draft",
+      copyFirstAction: "Open email draft",
+      action: "Open the email draft, review every copied line, send only from a truthful sender, then record timestamped evidence.",
+      gate: "The public email is a legitimate business, partner, sales, or media route and the sender identity is truthful.",
+    }),
+    opsSponsorFallbackSubmissionRow({
+      id: "zoho-invoice-small-business",
+      name: "Zoho Invoice",
+      verticalSlug: "small-business-paperwork-sponsors",
+      dealId: "guide-sponsor-pilot",
+      category: "Small-business invoicing",
+      bestContactUrl: "https://www.zoho.com/partners",
+      executionMode: "contact_route",
+      copyFirstAction: "Open contact route",
+      action: "Review the route first, confirm partner or sponsor notes are welcome, paste the short message only if allowed, then record timestamped evidence.",
+      gate: "Manual review confirms the route accepts public-safe sponsor or partnership notes.",
+    }),
+    opsSponsorFallbackSubmissionRow({
+      id: "qrcodechimp-qr-marketing",
+      name: "QRCodeChimp",
+      verticalSlug: "local-marketing-qr-sponsors",
+      dealId: "guide-sponsor-pilot",
+      category: "QR code marketing",
+      bestContactUrl: "https://www.qrcodechimp.com/contact",
+      mailtoUrl: "mailto:support@qrcodechimp.com",
+      executionMode: "email_draft",
+      copyFirstAction: "Open email draft",
+      action: "Open the email draft, review every copied line, send only from a truthful sender, then record timestamped evidence.",
+      gate: "The public email is a legitimate business, partner, sales, or media route and the sender identity is truthful.",
+    }),
+  ];
+}
+
+function opsSponsorFallbackSubmissionRow({ id, name, verticalSlug, dealId, category, bestContactUrl, mailtoUrl = "", executionMode, copyFirstAction, action, gate }) {
+  const vertical = SPONSOR_VERTICALS.find((item) => item.slug === verticalSlug) || SPONSOR_VERTICALS[0];
+  const deal = SPONSOR_DEALS.find((item) => item.id === dealId) || SPONSOR_DEALS.find((item) => item.id === DEFAULT_SPONSOR_DEAL_ID) || SPONSOR_DEALS[0];
+  const proposalUrl = `${siteUrl("sponsor-proposal").replace(/\/$/, "")}?prospect=${encodeURIComponent(id)}&deal=${encodeURIComponent(deal.id)}&vertical=${encodeURIComponent(vertical.slug)}&utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_proposal&utm_content=${encodeURIComponent(id)}&commitment=${encodeURIComponent(sponsorDealCommitment(deal))}#sponsor-inquiry`;
+  const contactFormProposalUrl = `${siteUrl("sponsor-proposal").replace(/\/$/, "")}?prospect=${encodeURIComponent(id)}&deal=${encodeURIComponent(deal.id)}&vertical=${encodeURIComponent(vertical.slug)}#sponsor-inquiry`;
+  const invoiceReviewUrl = `${siteUrl("sponsor-starter-review").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_starter_review&utm_content=${encodeURIComponent(id)}&deal=${encodeURIComponent(deal.id)}&vertical=${encodeURIComponent(vertical.slug)}&commitment=request-invoice#sponsor-inquiry`;
+  const publicReplyUrl = sponsorPublicReplyUrl({
+    prospectName: name,
+    verticalTitle: vertical.title,
+    dealTitle: deal.title,
+    dealPrice: deal.price,
+    proposalUrl,
+  });
+  const message = [
+    `Hi ${name} team - I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, resume, classroom, and small-business document workflows.`,
+    "Your product looks relevant to this audience.",
+    `Fast invoice review URL: ${invoiceReviewUrl}`,
+    `Sponsor proposal: ${contactFormProposalUrl}`,
+    `Public-safe reply form: ${publicReplyUrl}`,
+    "Please keep private payment, tax, bank, phone, customer, identity, password, or file data out of the public reply.",
+  ].join(" ");
+  return {
+    id,
+    name,
+    status: "queued",
+    vertical: vertical.slug,
+    contactRouteStatus: "review",
+    contactRouteScore: executionMode === "email_draft" ? 28 : 20,
+    copyFirstAction,
+    bestContactUrl,
+    mailtoUrl,
+    suggestedDealTitle: deal.title,
+    suggestedDealPrice: deal.price,
+    proposalUrl,
+    contactFormProposalUrl,
+    invoiceReviewUrl,
+    publicReplyUrl,
+    contactFormMessage: message,
+    body: message,
+    executionMode,
+    executionStep: action,
+    doNotSendUntil: gate,
+    evidenceChecklist: [
+      "route-fit note confirming sponsorship or partnership notes are allowed",
+      "submittedAt timestamp",
+      "bestContactUrl or public email used",
+      "proposalUrl or invoiceReviewUrl included",
+      "no private payment, tax, bank, phone, customer, identity, password, or file data submitted",
+    ],
+    nextAction: action,
+    requiresAuthorizedSender: executionMode === "prepare",
+    contactRouteSubmissionBlockers: [],
+    category,
+  };
 }
 
 function opsCheckoutActivationRows(totals = {}) {
@@ -7068,6 +7168,8 @@ function opsSponsorSubmissionCardHtml(row) {
   const firstAction = row.copyFirstAction || (row.mailtoUrl ? "Open email draft" : row.requiresAuthorizedSender ? "Prepare only" : "Open contact route");
   const blockerText = row.requiresAuthorizedSender ? `Sender required: ${(row.contactRouteSubmissionBlockers || []).join("; ") || "authorized sender fields"}` : "No required sender blocker detected by probe.";
   const message = row.contactFormMessage || row.body || "";
+  const evidenceChecklist = Array.isArray(row.evidenceChecklist) && row.evidenceChecklist.length ? row.evidenceChecklist : ["submittedAt timestamp", "bestContactUrl or public email used", "proposalUrl or invoiceReviewUrl included"];
+  const evidenceCopy = opsSponsorEvidenceCopy(row, evidenceChecklist);
   const buttons = [
     `<a class="button secondary" href="${escapeHtml(row.bestContactUrl || row.contactUrl || "#")}" target="_blank" rel="noreferrer">Open route</a>`,
     row.mailtoUrl ? `<a class="button" href="${escapeHtml(row.mailtoUrl)}">Open email draft</a>` : "",
@@ -7075,19 +7177,38 @@ function opsSponsorSubmissionCardHtml(row) {
     `<a class="button ghost" href="${escapeHtml(row.invoiceReviewUrl || "#")}" target="_blank" rel="noreferrer">Invoice URL</a>`,
     row.publicReplyUrl ? `<a class="button ghost" href="${escapeHtml(row.publicReplyUrl)}" target="_blank" rel="noreferrer">Public reply</a>` : "",
     `<button class="button ghost" type="button" data-copy-text="${escapeHtml(message)}">Copy message</button>`,
+    `<button class="button ghost" type="button" data-copy-text="${escapeHtml(evidenceCopy)}">Copy evidence note</button>`,
   ].filter(Boolean).join("\n                    ");
   return `<article class="ops-action-card sponsor-submission-card">
                   <div>
-                    <p class="eyebrow">${escapeHtml(row.contactRouteStatus || "queued")} / ${escapeHtml(firstAction)}</p>
+                    <p class="eyebrow">${escapeHtml(row.contactRouteStatus || "queued")} / ${escapeHtml(firstAction)} / ${escapeHtml(row.executionMode || "contact_route")}</p>
                     <h4>${escapeHtml(row.name || "Sponsor prospect")}</h4>
                     <p><strong>${escapeHtml(row.suggestedDealTitle || "Sponsor pilot")}</strong> ${escapeHtml(row.suggestedDealPrice || "")}</p>
                     <p>${escapeHtml(blockerText)}</p>
+                    <p><strong>30-minute action:</strong> ${escapeHtml(row.executionStep || row.nextAction || "")}</p>
+                    <p class="help"><strong>Do not send until:</strong> ${escapeHtml(row.doNotSendUntil || "Manual review confirms this is a legitimate public sponsor or partner route.")}</p>
+                    <p class="help"><strong>Evidence:</strong> ${escapeHtml(evidenceChecklist.join("; "))}</p>
                     <p class="help">${escapeHtml(row.nextAction || "")}</p>
                   </div>
                   <div class="ops-action-buttons">
                     ${buttons}
                   </div>
                 </article>`;
+}
+
+function opsSponsorEvidenceCopy(row, evidenceChecklist) {
+  return [
+    `Prospect: ${row.name || "Sponsor prospect"}`,
+    `Execution mode: ${row.executionMode || "contact_route"}`,
+    `Status before action: ${row.contactRouteStatus || "queued"} / ${row.copyFirstAction || ""}`,
+    `Open URL: ${row.mailtoUrl || row.bestContactUrl || row.contactUrl || ""}`,
+    `Proposal URL: ${row.contactFormProposalUrl || row.proposalUrl || ""}`,
+    `Invoice review URL: ${row.invoiceReviewUrl || ""}`,
+    "Evidence to record after a real manual send:",
+    ...evidenceChecklist.map((item) => `- ${item}`),
+    "",
+    "Sent only after a real manual submission or legitimate email send. Revenue remains $0 until a signed agreement or settled external payment exists.",
+  ].join("\n");
 }
 
 function readOpsValidationSnapshot() {

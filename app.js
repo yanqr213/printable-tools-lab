@@ -9815,23 +9815,84 @@ ${paragraphs.join("\n")}
     const publicReplyUrl = sponsorPublicReplyUrl(prospect, deal, vertical, proposalUrl);
     const pitch = sponsorProspectPitch(prospect, deal, vertical, proposalUrl);
     const mailtoUrl = row.publicEmail ? sponsorMailtoDraft(row.publicEmail, `${deal.title} for ${vertical.title}`, pitch) : "";
+    const executionMode = sponsorOpsExecutionMode(row);
+    const executionStep = sponsorOpsExecutionStep(row, executionMode);
+    const doNotSendUntil = sponsorOpsDoNotSendUntil(row, executionMode);
+    const evidenceChecklist = sponsorOpsEvidenceChecklist(row, executionMode);
+    const invoiceUrl = sponsorVerticalInvoiceReviewUrl(vertical, row.prospectId);
+    const evidenceCopy = sponsorOpsEvidenceCopy(row, proposalUrl, invoiceUrl, executionMode, evidenceChecklist);
     return `
       <article class="ops-action-card sponsor-submission-card">
         <div>
-          <p class="eyebrow">${escapeHtml(row.contactRouteStatus)} / ${escapeHtml(row.firstAction)}</p>
+          <p class="eyebrow">${escapeHtml(row.contactRouteStatus)} / ${escapeHtml(row.firstAction)} / ${escapeHtml(executionMode)}</p>
           <h4>${escapeHtml(row.name)}</h4>
           <p><strong>${escapeHtml(deal.title)}:</strong> ${escapeHtml(deal.price)} · ${escapeHtml(row.category)}</p>
+          <p><strong>30-minute action:</strong> ${escapeHtml(executionStep)}</p>
+          <p class="help"><strong>Do not send until:</strong> ${escapeHtml(doNotSendUntil)}</p>
+          <p class="help"><strong>Evidence:</strong> ${escapeHtml(evidenceChecklist.join("; "))}</p>
           <p class="help">${escapeHtml(row.note)}</p>
         </div>
         <div class="ops-action-buttons">
           <a class="button secondary" href="${escapeHtml(row.bestContactUrl)}" target="_blank" rel="noreferrer">Open route</a>
           ${mailtoUrl ? `<a class="button" href="${escapeHtml(mailtoUrl)}">Open email draft</a>` : ""}
           <a class="button secondary" href="${escapeHtml(proposalUrl)}" target="_blank" rel="noreferrer">Short proposal</a>
-          <a class="button ghost" href="${escapeHtml(sponsorVerticalInvoiceReviewUrl(vertical, row.prospectId))}" target="_blank" rel="noreferrer">Invoice URL</a>
+          <a class="button ghost" href="${escapeHtml(invoiceUrl)}" target="_blank" rel="noreferrer">Invoice URL</a>
           <a class="button ghost" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Public reply</a>
           <button class="button ghost" type="button" data-copy-text="${escapeHtml(pitch)}">Copy message</button>
+          <button class="button ghost" type="button" data-copy-text="${escapeHtml(evidenceCopy)}">Copy evidence note</button>
         </div>
       </article>`;
+  }
+
+  function sponsorOpsExecutionMode(row) {
+    if (row.publicEmail) return "email_draft";
+    if (row.firstAction === "Prepare only") return "prepare";
+    if (row.contactRouteStatus === "blocked") return "hold";
+    return "contact_route";
+  }
+
+  function sponsorOpsExecutionStep(row, mode) {
+    if (mode === "email_draft") return "Open the email draft, review the copied note, send only from a truthful sender, then record timestamped evidence.";
+    if (mode === "prepare") return "Prepare the proposal and invoice URLs only; do not submit until required sender fields and consent can be provided truthfully.";
+    if (mode === "hold") return "Do not contact yet; keep the row queued until a valid public sponsor, partner, sales, or media route is found.";
+    if (row.contactRouteStatus === "ready") return "Open the best route, confirm it accepts partner or sponsorship notes, paste the short message, then record evidence.";
+    return "Review the route first, confirm partner or sponsorship notes are welcome, paste the short message only if allowed, then record evidence.";
+  }
+
+  function sponsorOpsDoNotSendUntil(row, mode) {
+    if (mode === "email_draft") return "The public email is a legitimate business, partner, sales, or media route and the sender identity is truthful.";
+    if (mode === "prepare") return "A truthful business email, sender name, required phone if any, and any consent checkbox can be provided.";
+    if (mode === "hold") return "A valid public sponsor, partner, sales, or media contact route is discovered.";
+    if (row.contactRouteStatus === "ready") return "The page visibly accepts sponsor, partner, sales, or marketing notes.";
+    return "Manual review confirms the route accepts public-safe sponsor or partnership notes.";
+  }
+
+  function sponsorOpsEvidenceChecklist(row, mode) {
+    const checklist = [
+      "submittedAt timestamp",
+      row.publicEmail ? `public email used: ${row.publicEmail}` : `bestContactUrl used: ${row.bestContactUrl}`,
+      "proposalUrl or invoiceReviewUrl included",
+      "no private payment, tax, bank, phone, customer, identity, password, or file data submitted",
+    ];
+    if (mode === "prepare") checklist.unshift("truthful sender fields available before send");
+    if (mode === "contact_route" && row.contactRouteStatus === "review") checklist.unshift("route-fit note confirms sponsor or partner notes are allowed");
+    if (mode === "hold") checklist.unshift("route discovery evidence before any send attempt");
+    return checklist;
+  }
+
+  function sponsorOpsEvidenceCopy(row, proposalUrl, invoiceUrl, mode, evidenceChecklist) {
+    return [
+      `Prospect: ${row.name}`,
+      `Execution mode: ${mode}`,
+      `Status before action: ${row.contactRouteStatus} / ${row.firstAction}`,
+      `Open URL: ${row.publicEmail || row.bestContactUrl}`,
+      `Proposal URL: ${absoluteSponsorUrl(proposalUrl)}`,
+      `Invoice review URL: ${absoluteSponsorUrl(invoiceUrl)}`,
+      "Evidence to record after a real manual send:",
+      ...evidenceChecklist.map((item) => `- ${item}`),
+      "",
+      "Sent only after a real manual submission or legitimate email send. Revenue remains $0 until a signed agreement or settled external payment exists.",
+    ].join("\n");
   }
 
   function sponsorMailtoDraft(email, subject, body) {
