@@ -262,7 +262,7 @@ for (const routePath of ["dashboard", "ops"]) {
   if (routePath === "ops" && (!html.includes("/api/ops-metrics") || !html.includes("Project detail rows") || !html.includes("Source breakdown") || !html.includes("Tool and game signal snapshot") || !html.includes("Path breakdown") || !html.includes("/polite-payment-reminder-email/") || !html.includes("/freelance-invoice-follow-up-email/"))) failures.push("Ops monitor should render detailed project traffic sections and high-intent path funnel access.");
   if (routePath === "ops" && (!html.includes("Public-safe sponsor reply evidence") || !html.includes("public invoice issues"))) failures.push("Ops monitor should surface public-safe sponsor reply evidence.");
   if (routePath === "ops" && (!html.includes("Next sponsor submissions") || !html.includes("Open email draft") || !html.includes("Copy message"))) failures.push("Ops monitor should expose an internal next sponsor submission queue.");
-  if (routePath === "ops" && (!html.includes("External payment link readiness") || !html.includes("Copy config command") || !html.includes("sellerKitCheckoutUrl") || !html.includes("serviceCheckoutUrl"))) failures.push("Ops monitor should expose internal checkout activation readiness.");
+  if (routePath === "ops" && (!html.includes("External payment link readiness") || !html.includes("Copy config command") || !html.includes("sellerKitCheckoutUrl") || !html.includes("customPrintPackCheckoutUrl") || !html.includes("invoiceFollowupCheckoutUrl") || !html.includes("uploadLimitFixPlanCheckoutUrl"))) failures.push("Ops monitor should expose internal per-SKU checkout activation readiness.");
   if (routePath === "ops" && (!html.includes("Lead-to-payment close cockpit") || !html.includes("Copy payment reply") || !html.includes("Copy export command") || !html.includes("paid_order_verified from external provider"))) failures.push("Ops monitor should expose internal lead-to-payment close actions.");
 }
 
@@ -535,7 +535,7 @@ else {
   if (!script.includes("renderCustomLocalPrintPackService") || !script.includes("Request free fit check") || !script.includes("customLocalPrintPackRequestCopy")) failures.push("app.js missing restored custom print pack service request path.");
   if (!script.includes("renderInvoiceFollowupCopyPackService") || !script.includes("Invoice Follow-up Copy Pack") || !script.includes("invoiceFollowupRequestCopy")) failures.push("app.js missing invoice follow-up service request path.");
   if (!script.includes("renderMarketTablePrintAudit") || !script.includes("Request free audit") || !script.includes("marketTableAuditRequestCopy")) failures.push("app.js missing restored free audit lead magnet path.");
-  if (!script.includes("serviceCheckoutUrl") || !script.includes("service_checkout_click") || !script.includes("Buy setup for $29")) failures.push("app.js missing direct external service checkout support.");
+  if (!script.includes("serviceCheckoutUrlFor") || !script.includes("invoiceFollowupCheckoutUrl") || !script.includes("uploadLimitFixPlanCheckoutUrl") || !script.includes("service_checkout_click") || !script.includes("Buy setup for $29")) failures.push("app.js missing per-SKU external service checkout support.");
   if (!script.includes("checkoutActivationHtml") || !script.includes("External payment link readiness") || !script.includes("Copy config command")) failures.push("app.js ops monitor missing checkout activation panel.");
   if (!script.includes("leadToPaymentCloseHtml") || !script.includes("Lead-to-payment close cockpit") || !script.includes("serviceLeadPaymentReplyCopy") || !script.includes("Copy payment reply")) failures.push("app.js ops monitor missing lead-to-payment close cockpit.");
   if (!script.includes("initServiceLeadForms") || !script.includes("submitServiceLeadForm") || !script.includes("/api/service-lead") || !script.includes("Service lead index check")) failures.push("app.js missing low-friction service lead capture and ops index check.");
@@ -824,7 +824,7 @@ if (!fs.existsSync(siteConfigFile)) failures.push("Missing site-config.js.");
 else {
   const siteConfig = fs.readFileSync(siteConfigFile, "utf8");
   if (!siteConfig.includes("sellerKitCheckoutUrl")) failures.push("site-config.js missing sellerKitCheckoutUrl.");
-  if (!siteConfig.includes("serviceCheckoutUrl") || !siteConfig.includes("auditUpgradeCheckoutUrl")) failures.push("site-config.js missing service checkout URL slots.");
+  if (!siteConfig.includes("serviceCheckoutUrl") || !siteConfig.includes("customPrintPackCheckoutUrl") || !siteConfig.includes("invoiceFollowupCheckoutUrl") || !siteConfig.includes("uploadLimitFixPlanCheckoutUrl") || !siteConfig.includes("auditUpgradeCheckoutUrl")) failures.push("site-config.js missing per-SKU service checkout URL slots.");
 }
 
 const checkoutConfigScriptFile = path.join(root, "scripts", "configure-checkout.cjs");

@@ -73,7 +73,7 @@ const CUSTOM_LOCAL_PRINT_PACK_SERVICE = {
   description: "A lightweight service offer for buyers who like the free generators but do not want to assemble the first local-selling print pack themselves. The buyer sends product, service, or event details; the seller returns editable starter content that can be pasted into the PrintableTools Lab generators and printed.",
   priceUsd: 29,
   currency: "USD",
-  checkoutUrl: configuredServiceCheckoutUrl(),
+  checkoutUrl: configuredServiceCheckoutUrl("custom-local-print-pack"),
   contactEmail: configuredContactEmail(),
   publicRequestPath: "assets/services/custom-local-print-pack-request.txt",
   publicPaymentReplyPath: "assets/services/custom-local-print-pack-payment-reply.txt",
@@ -129,7 +129,7 @@ const INVOICE_FOLLOWUP_COPY_PACK_SERVICE = {
   description: "A tiny done-for-you service for people who just made an invoice and need professional follow-up words without asking for legal, tax, collection, or accounting advice. The buyer sends public-safe context, preferred tone, due date, and invoice status; the seller returns editable reminder copy they can review and send themselves.",
   priceUsd: 19,
   currency: "USD",
-  checkoutUrl: configuredServiceCheckoutUrl(),
+  checkoutUrl: configuredServiceCheckoutUrl("invoice-followup-copy-pack"),
   contactEmail: configuredContactEmail(),
   publicRequestPath: "assets/services/invoice-followup-copy-pack-request.txt",
   publicPaymentReplyPath: "assets/services/invoice-followup-copy-pack-payment-reply.txt",
@@ -185,7 +185,7 @@ const UPLOAD_LIMIT_FIX_PLAN_SERVICE = {
   description: "A tiny manual service for people blocked by a file upload error and unsure which no-upload tool or settings to use. The buyer sends only public-safe error text, file type, target size or dimensions, and deadline; the response is a step-by-step plan they can run on their own file.",
   priceUsd: 9,
   currency: "USD",
-  checkoutUrl: configuredServiceCheckoutUrl(),
+  checkoutUrl: configuredServiceCheckoutUrl("upload-limit-fix-plan"),
   contactEmail: configuredContactEmail(),
   publicRequestPath: "assets/services/upload-limit-fix-plan-request.txt",
   publicPaymentReplyPath: "assets/services/upload-limit-fix-plan-payment-reply.txt",
@@ -410,24 +410,46 @@ function configuredCheckoutUrl() {
   return match ? match[1].trim() : "";
 }
 
-function configuredServiceCheckoutUrl() {
-  const envUrl = (process.env.PUBLIC_CUSTOM_PRINT_PACK_CHECKOUT_URL || process.env.PUBLIC_SERVICE_CHECKOUT_URL || "").trim();
+function configuredServiceCheckoutUrl(serviceId = "") {
+  const envByService = {
+    "custom-local-print-pack": process.env.PUBLIC_CUSTOM_LOCAL_PRINT_PACK_CHECKOUT_URL || process.env.PUBLIC_CUSTOM_PRINT_PACK_CHECKOUT_URL || "",
+    "invoice-followup-copy-pack": process.env.PUBLIC_INVOICE_FOLLOWUP_COPY_PACK_CHECKOUT_URL || process.env.PUBLIC_INVOICE_FOLLOWUP_CHECKOUT_URL || "",
+    "upload-limit-fix-plan": process.env.PUBLIC_UPLOAD_LIMIT_FIX_PLAN_CHECKOUT_URL || process.env.PUBLIC_UPLOAD_FIX_PLAN_CHECKOUT_URL || "",
+  };
+  const envUrl = (envByService[serviceId] || process.env.PUBLIC_SERVICE_CHECKOUT_URL || "").trim();
   if (envUrl) return envUrl;
   const configPath = path.join(__dirname, "..", "site-config.js");
   if (!fs.existsSync(configPath)) return "";
   const source = fs.readFileSync(configPath, "utf8");
-  const match = source.match(/serviceCheckoutUrl:\s*"([^"]*)"/);
-  return match ? match[1].trim() : "";
+  const keyByService = {
+    "custom-local-print-pack": "customPrintPackCheckoutUrl",
+    "invoice-followup-copy-pack": "invoiceFollowupCheckoutUrl",
+    "upload-limit-fix-plan": "uploadLimitFixPlanCheckoutUrl",
+  };
+  const serviceKey = keyByService[serviceId];
+  if (serviceKey) {
+    const serviceMatch = source.match(new RegExp(`${serviceKey}:\\s*"([^"]*)"`));
+    if (serviceMatch && serviceMatch[1].trim()) return serviceMatch[1].trim();
+  }
+  if (serviceId === "custom-local-print-pack" || !serviceId) {
+    const legacyCustomMatch = source.match(/customPrintPackCheckoutUrl:\s*"([^"]*)"/);
+    if (legacyCustomMatch && legacyCustomMatch[1].trim()) return legacyCustomMatch[1].trim();
+    const match = source.match(/serviceCheckoutUrl:\s*"([^"]*)"/);
+    return match ? match[1].trim() : "";
+  }
+  return "";
 }
 
 function configuredAuditUpgradeCheckoutUrl() {
-  const envUrl = (process.env.PUBLIC_AUDIT_UPGRADE_CHECKOUT_URL || process.env.PUBLIC_CUSTOM_PRINT_PACK_CHECKOUT_URL || process.env.PUBLIC_SERVICE_CHECKOUT_URL || "").trim();
+  const envUrl = (process.env.PUBLIC_AUDIT_UPGRADE_CHECKOUT_URL || process.env.PUBLIC_CUSTOM_LOCAL_PRINT_PACK_CHECKOUT_URL || process.env.PUBLIC_CUSTOM_PRINT_PACK_CHECKOUT_URL || process.env.PUBLIC_SERVICE_CHECKOUT_URL || "").trim();
   if (envUrl) return envUrl;
   const configPath = path.join(__dirname, "..", "site-config.js");
   if (!fs.existsSync(configPath)) return "";
   const source = fs.readFileSync(configPath, "utf8");
   const upgradeMatch = source.match(/auditUpgradeCheckoutUrl:\s*"([^"]*)"/);
   if (upgradeMatch && upgradeMatch[1].trim()) return upgradeMatch[1].trim();
+  const customMatch = source.match(/customPrintPackCheckoutUrl:\s*"([^"]*)"/);
+  if (customMatch && customMatch[1].trim()) return customMatch[1].trim();
   const serviceMatch = source.match(/serviceCheckoutUrl:\s*"([^"]*)"/);
   return serviceMatch ? serviceMatch[1].trim() : "";
 }
@@ -7249,8 +7271,8 @@ function opsCheckoutActivationRows(totals = {}) {
       sku: CUSTOM_LOCAL_PRINT_PACK_SERVICE.name,
       price: `$${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} ${CUSTOM_LOCAL_PRINT_PACK_SERVICE.currency}`,
       configured: Boolean(CUSTOM_LOCAL_PRINT_PACK_SERVICE.checkoutUrl),
-      configKey: "serviceCheckoutUrl",
-      command: "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/custom-local-print-pack",
+      configKey: "customPrintPackCheckoutUrl",
+      command: "npm.cmd run configure:checkout -- --custom-print-pack-url https://your-payment-provider.example/custom-local-print-pack",
       publicPage: `/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug}/`,
       checkoutClicks: totals.service_checkout_click || 0,
       requestIntent: totals.service_request_intent || 0,
@@ -7260,8 +7282,8 @@ function opsCheckoutActivationRows(totals = {}) {
       sku: INVOICE_FOLLOWUP_COPY_PACK_SERVICE.name,
       price: `$${INVOICE_FOLLOWUP_COPY_PACK_SERVICE.priceUsd} ${INVOICE_FOLLOWUP_COPY_PACK_SERVICE.currency}`,
       configured: Boolean(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.checkoutUrl),
-      configKey: "serviceCheckoutUrl",
-      command: "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/invoice-followup-copy-pack",
+      configKey: "invoiceFollowupCheckoutUrl",
+      command: "npm.cmd run configure:checkout -- --invoice-followup-url https://your-payment-provider.example/invoice-followup-copy-pack",
       publicPage: `/${INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug}/`,
       checkoutClicks: totals.service_checkout_click || 0,
       requestIntent: totals.service_request_intent || 0,
@@ -7271,8 +7293,8 @@ function opsCheckoutActivationRows(totals = {}) {
       sku: UPLOAD_LIMIT_FIX_PLAN_SERVICE.name,
       price: `$${UPLOAD_LIMIT_FIX_PLAN_SERVICE.priceUsd} ${UPLOAD_LIMIT_FIX_PLAN_SERVICE.currency}`,
       configured: Boolean(UPLOAD_LIMIT_FIX_PLAN_SERVICE.checkoutUrl),
-      configKey: "serviceCheckoutUrl",
-      command: "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/upload-limit-fix-plan",
+      configKey: "uploadLimitFixPlanCheckoutUrl",
+      command: "npm.cmd run configure:checkout -- --upload-limit-fix-plan-url https://your-payment-provider.example/upload-limit-fix-plan",
       publicPage: `/${UPLOAD_LIMIT_FIX_PLAN_SERVICE.slug}/`,
       checkoutClicks: totals.service_checkout_click || 0,
       requestIntent: totals.service_request_intent || 0,
@@ -9152,12 +9174,18 @@ function customLocalPrintPackServiceHtml() {
       <script>
         (function () {
           var config = window.PTL_CONFIG || {};
-          var checkoutUrl = config.serviceCheckoutUrl || config.customPrintPackCheckoutUrl || "";
+          var serviceId = "${escapeHtml(service.id)}";
+          var checkoutByService = {
+            "custom-local-print-pack": config.customPrintPackCheckoutUrl || config.serviceCheckoutUrl || "",
+            "invoice-followup-copy-pack": config.invoiceFollowupCheckoutUrl || "",
+            "upload-limit-fix-plan": config.uploadLimitFixPlanCheckoutUrl || ""
+          };
+          var checkoutUrl = checkoutByService[serviceId] || "";
           var button = document.querySelector("[data-service-checkout]");
           var status = document.querySelector("[data-service-checkout-status]");
           if (!checkoutUrl || !button) return;
           button.href = checkoutUrl;
-          button.textContent = "Buy setup for $${service.priceUsd}";
+          button.textContent = "Buy for $${service.priceUsd}";
           button.dataset.trackEvent = "service_checkout_click";
           if (status) status.textContent = "Checkout is configured through the external payment provider linked above. Revenue is still proven only after that provider shows a paid or settled order.";
         }());
@@ -9232,7 +9260,7 @@ function marketTablePrintAuditHtml() {
       <script>
         (function () {
           var config = window.PTL_CONFIG || {};
-          var checkoutUrl = config.auditUpgradeCheckoutUrl || config.serviceCheckoutUrl || config.customPrintPackCheckoutUrl || "";
+          var checkoutUrl = config.auditUpgradeCheckoutUrl || config.customPrintPackCheckoutUrl || config.serviceCheckoutUrl || "";
           var button = document.querySelector("[data-audit-upgrade-checkout]");
           if (!checkoutUrl || !button) return;
           button.href = checkoutUrl;

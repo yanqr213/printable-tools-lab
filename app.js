@@ -14,6 +14,9 @@
     adsenseToolSlot: "",
     adsenseContentSlot: "",
     sellerKitCheckoutUrl: "",
+    customPrintPackCheckoutUrl: "",
+    invoiceFollowupCheckoutUrl: "",
+    uploadLimitFixPlanCheckoutUrl: "",
     serviceCheckoutUrl: "",
     auditUpgradeCheckoutUrl: "",
     contactEmail: "",
@@ -6364,7 +6367,7 @@
   }
 
   function renderLocalSellerStarterKit() {
-    const checkoutUrl = CONFIG.sellerKitCheckoutUrl || CONFIG.checkoutUrl || "";
+    const checkoutUrl = sellerKitCheckoutUrl();
     const checkoutConfigured = Boolean(checkoutUrl);
     setMeta("Local Seller Starter Kit", "Request the $9 editable local seller starter kit sample and checkout link for price tags, coupon copy, QR sign wording, packing slips, and launch checklists.");
     setJsonLd({
@@ -6410,8 +6413,27 @@
     `;
   }
 
+  function sellerKitCheckoutUrl() {
+    return CONFIG.sellerKitCheckoutUrl || CONFIG.checkoutUrl || "";
+  }
+
+  function serviceCheckoutUrlFor(serviceType) {
+    const key = String(serviceType || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9_-]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+    if (key === "custom-local-print-pack") return CONFIG.customPrintPackCheckoutUrl || CONFIG.serviceCheckoutUrl || "";
+    if (key === "invoice-followup-copy-pack") return CONFIG.invoiceFollowupCheckoutUrl || "";
+    if (key === "upload-limit-fix-plan") return CONFIG.uploadLimitFixPlanCheckoutUrl || "";
+    return CONFIG.serviceCheckoutUrl || "";
+  }
+
+  function auditUpgradeCheckoutUrl() {
+    return CONFIG.auditUpgradeCheckoutUrl || serviceCheckoutUrlFor("custom-local-print-pack") || "";
+  }
+
   function renderCustomLocalPrintPackService() {
-    const checkoutUrl = CONFIG.serviceCheckoutUrl || CONFIG.customPrintPackCheckoutUrl || "";
+    const checkoutUrl = serviceCheckoutUrlFor("custom-local-print-pack");
     const checkoutConfigured = Boolean(checkoutUrl);
     const primaryServiceHref = checkoutConfigured ? checkoutUrl : "#service-request";
     const primaryServiceTarget = checkoutConfigured ? ' target="_blank" rel="noreferrer"' : "";
@@ -6472,7 +6494,7 @@
   }
 
   function renderInvoiceFollowupCopyPackService() {
-    const checkoutUrl = CONFIG.serviceCheckoutUrl || "";
+    const checkoutUrl = serviceCheckoutUrlFor("invoice-followup-copy-pack");
     const checkoutConfigured = Boolean(checkoutUrl);
     const primaryServiceHref = checkoutConfigured ? checkoutUrl : "#service-request";
     const primaryServiceTarget = checkoutConfigured ? ' target="_blank" rel="noreferrer"' : "";
@@ -6569,7 +6591,7 @@
 
   function renderMarketTablePrintAudit() {
     const auditUrl = "https://github.com/yanqr213/printable-tools-lab/issues/new?template=market-table-print-audit.yml";
-    const upgradeCheckoutUrl = CONFIG.auditUpgradeCheckoutUrl || CONFIG.serviceCheckoutUrl || CONFIG.customPrintPackCheckoutUrl || "";
+    const upgradeCheckoutUrl = auditUpgradeCheckoutUrl();
     const upgradeConfigured = Boolean(upgradeCheckoutUrl);
     setMeta("Free Market Table Print Audit", "Request a free public-safe print audit before deciding whether the $29 Custom Local Print Pack Setup is useful.");
     app.innerHTML = `
@@ -6621,7 +6643,7 @@
   }
 
   function renderUploadLimitFixPlanService() {
-    const checkoutUrl = CONFIG.serviceCheckoutUrl || "";
+    const checkoutUrl = serviceCheckoutUrlFor("upload-limit-fix-plan");
     const checkoutConfigured = Boolean(checkoutUrl);
     const primaryServiceHref = checkoutConfigured ? checkoutUrl : "#service-request";
     const primaryServiceTarget = checkoutConfigured ? ' target="_blank" rel="noreferrer"' : "";
@@ -9748,7 +9770,7 @@ ${paragraphs.join("\n")}
       {
         sku: "Local Seller Starter Kit",
         price: "$9 USD",
-        configured: Boolean(CONFIG.sellerKitCheckoutUrl || CONFIG.checkoutUrl),
+        configured: Boolean(sellerKitCheckoutUrl()),
         configKey: "sellerKitCheckoutUrl",
         command: "npm.cmd run configure:checkout -- --seller-kit-url https://your-payment-provider.example/local-seller-starter-kit",
         publicPage: "/local-seller-starter-kit/",
@@ -9759,9 +9781,9 @@ ${paragraphs.join("\n")}
       {
         sku: "Custom Local Print Pack Setup",
         price: "$29 USD",
-        configured: Boolean(CONFIG.serviceCheckoutUrl || CONFIG.customPrintPackCheckoutUrl),
-        configKey: "serviceCheckoutUrl",
-        command: "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/custom-local-print-pack",
+        configured: Boolean(serviceCheckoutUrlFor("custom-local-print-pack")),
+        configKey: "customPrintPackCheckoutUrl",
+        command: "npm.cmd run configure:checkout -- --custom-print-pack-url https://your-payment-provider.example/custom-local-print-pack",
         publicPage: "/custom-local-print-pack/",
         checkoutClicks: totals.service_checkout_click || 0,
         requestIntent: totals.service_request_intent || 0,
@@ -9770,9 +9792,9 @@ ${paragraphs.join("\n")}
       {
         sku: "Invoice Follow-up Copy Pack",
         price: "$19 USD",
-        configured: Boolean(CONFIG.serviceCheckoutUrl),
-        configKey: "serviceCheckoutUrl",
-        command: "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/invoice-followup-copy-pack",
+        configured: Boolean(serviceCheckoutUrlFor("invoice-followup-copy-pack")),
+        configKey: "invoiceFollowupCheckoutUrl",
+        command: "npm.cmd run configure:checkout -- --invoice-followup-url https://your-payment-provider.example/invoice-followup-copy-pack",
         publicPage: "/invoice-followup-copy-pack/",
         checkoutClicks: totals.service_checkout_click || 0,
         requestIntent: totals.service_request_intent || 0,
@@ -9781,9 +9803,9 @@ ${paragraphs.join("\n")}
       {
         sku: "Upload Limit Fix Plan",
         price: "$9 USD",
-        configured: Boolean(CONFIG.serviceCheckoutUrl),
-        configKey: "serviceCheckoutUrl",
-        command: "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/upload-limit-fix-plan",
+        configured: Boolean(serviceCheckoutUrlFor("upload-limit-fix-plan")),
+        configKey: "uploadLimitFixPlanCheckoutUrl",
+        command: "npm.cmd run configure:checkout -- --upload-limit-fix-plan-url https://your-payment-provider.example/upload-limit-fix-plan",
         publicPage: "/upload-limit-fix-plan/",
         checkoutClicks: totals.service_checkout_click || 0,
         requestIntent: totals.service_request_intent || 0,
@@ -9792,7 +9814,7 @@ ${paragraphs.join("\n")}
       {
         sku: "Audit upgrade checkout",
         price: "$29 USD",
-        configured: Boolean(CONFIG.auditUpgradeCheckoutUrl || CONFIG.serviceCheckoutUrl || CONFIG.customPrintPackCheckoutUrl),
+        configured: Boolean(auditUpgradeCheckoutUrl()),
         configKey: "auditUpgradeCheckoutUrl",
         command: "npm.cmd run configure:checkout -- --audit-upgrade-url https://your-payment-provider.example/custom-local-print-pack",
         publicPage: "/market-table-print-audit/",

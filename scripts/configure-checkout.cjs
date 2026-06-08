@@ -20,28 +20,59 @@ const serviceCheckoutUrl = disable ? "" : normalizeCheckoutUrl(
     || "",
   "service checkout URL",
 );
+const customPrintPackCheckoutUrl = disable ? "" : normalizeCheckoutUrl(
+  args["custom-print-pack-url"]
+    || args["custom-local-print-pack-url"]
+    || process.env.PUBLIC_CUSTOM_LOCAL_PRINT_PACK_CHECKOUT_URL
+    || process.env.PUBLIC_CUSTOM_PRINT_PACK_CHECKOUT_URL
+    || "",
+  "custom print pack checkout URL",
+);
+const invoiceFollowupCheckoutUrl = disable ? "" : normalizeCheckoutUrl(
+  args["invoice-followup-url"]
+    || args["invoice-followup-copy-pack-url"]
+    || process.env.PUBLIC_INVOICE_FOLLOWUP_CHECKOUT_URL
+    || process.env.PUBLIC_INVOICE_FOLLOWUP_COPY_PACK_CHECKOUT_URL
+    || "",
+  "invoice follow-up checkout URL",
+);
+const uploadLimitFixPlanCheckoutUrl = disable ? "" : normalizeCheckoutUrl(
+  args["upload-limit-fix-plan-url"]
+    || args["upload-fix-plan-url"]
+    || process.env.PUBLIC_UPLOAD_LIMIT_FIX_PLAN_CHECKOUT_URL
+    || process.env.PUBLIC_UPLOAD_FIX_PLAN_CHECKOUT_URL
+    || "",
+  "upload limit fix plan checkout URL",
+);
 const auditUpgradeCheckoutUrl = disable ? "" : normalizeCheckoutUrl(
   args["audit-upgrade-url"]
     || process.env.PUBLIC_AUDIT_UPGRADE_CHECKOUT_URL
+    || customPrintPackCheckoutUrl
     || serviceCheckoutUrl
     || "",
   "audit upgrade checkout URL",
 );
 
-if (!disable && !sellerKitCheckoutUrl && !serviceCheckoutUrl && !auditUpgradeCheckoutUrl) {
-  throw new Error("Provide --seller-kit-url, --service-url, --audit-upgrade-url, PUBLIC_SELLER_KIT_CHECKOUT_URL, or PUBLIC_SERVICE_CHECKOUT_URL.");
+if (!disable && !sellerKitCheckoutUrl && !serviceCheckoutUrl && !customPrintPackCheckoutUrl && !invoiceFollowupCheckoutUrl && !uploadLimitFixPlanCheckoutUrl && !auditUpgradeCheckoutUrl) {
+  throw new Error("Provide --seller-kit-url, --service-url, --custom-print-pack-url, --invoice-followup-url, --upload-limit-fix-plan-url, --audit-upgrade-url, or the matching PUBLIC_* checkout URL.");
 }
 
 const existing = readConfig();
 writeConfig({
   ...existing,
-  sellerKitCheckoutUrl,
-  serviceCheckoutUrl,
-  auditUpgradeCheckoutUrl,
+  sellerKitCheckoutUrl: disable || sellerKitCheckoutUrl ? sellerKitCheckoutUrl : existing.sellerKitCheckoutUrl,
+  serviceCheckoutUrl: disable || serviceCheckoutUrl ? serviceCheckoutUrl : existing.serviceCheckoutUrl,
+  customPrintPackCheckoutUrl: disable || customPrintPackCheckoutUrl ? customPrintPackCheckoutUrl : existing.customPrintPackCheckoutUrl,
+  invoiceFollowupCheckoutUrl: disable || invoiceFollowupCheckoutUrl ? invoiceFollowupCheckoutUrl : existing.invoiceFollowupCheckoutUrl,
+  uploadLimitFixPlanCheckoutUrl: disable || uploadLimitFixPlanCheckoutUrl ? uploadLimitFixPlanCheckoutUrl : existing.uploadLimitFixPlanCheckoutUrl,
+  auditUpgradeCheckoutUrl: disable || auditUpgradeCheckoutUrl ? auditUpgradeCheckoutUrl : existing.auditUpgradeCheckoutUrl,
 });
 
 console.log(sellerKitCheckoutUrl ? "Seller kit checkout URL configured." : "Seller kit checkout disabled.");
 console.log(serviceCheckoutUrl ? "Service checkout URL configured." : "Service checkout disabled.");
+console.log(customPrintPackCheckoutUrl ? "Custom print pack checkout URL configured." : "Custom print pack checkout disabled.");
+console.log(invoiceFollowupCheckoutUrl ? "Invoice follow-up checkout URL configured." : "Invoice follow-up checkout disabled.");
+console.log(uploadLimitFixPlanCheckoutUrl ? "Upload limit fix plan checkout URL configured." : "Upload limit fix plan checkout disabled.");
 console.log(auditUpgradeCheckoutUrl ? "Audit upgrade checkout URL configured." : "Audit upgrade checkout disabled.");
 console.log("Next: run npm.cmd run build:routes, verify, commit, and deploy.");
 
@@ -88,6 +119,9 @@ function readConfig() {
     adsenseToolSlot: readString(source, "adsenseToolSlot"),
     adsenseContentSlot: readString(source, "adsenseContentSlot"),
     sellerKitCheckoutUrl: readString(source, "sellerKitCheckoutUrl"),
+    customPrintPackCheckoutUrl: readString(source, "customPrintPackCheckoutUrl"),
+    invoiceFollowupCheckoutUrl: readString(source, "invoiceFollowupCheckoutUrl"),
+    uploadLimitFixPlanCheckoutUrl: readString(source, "uploadLimitFixPlanCheckoutUrl"),
     serviceCheckoutUrl: readString(source, "serviceCheckoutUrl"),
     auditUpgradeCheckoutUrl: readString(source, "auditUpgradeCheckoutUrl"),
     contactEmail: readString(source, "contactEmail"),
@@ -116,6 +150,9 @@ function writeConfig(config) {
     `  adsenseToolSlot: ${JSON.stringify(config.adsenseToolSlot || "")},`,
     `  adsenseContentSlot: ${JSON.stringify(config.adsenseContentSlot || "")},`,
     `  sellerKitCheckoutUrl: ${JSON.stringify(config.sellerKitCheckoutUrl || "")},`,
+    `  customPrintPackCheckoutUrl: ${JSON.stringify(config.customPrintPackCheckoutUrl || "")},`,
+    `  invoiceFollowupCheckoutUrl: ${JSON.stringify(config.invoiceFollowupCheckoutUrl || "")},`,
+    `  uploadLimitFixPlanCheckoutUrl: ${JSON.stringify(config.uploadLimitFixPlanCheckoutUrl || "")},`,
     `  serviceCheckoutUrl: ${JSON.stringify(config.serviceCheckoutUrl || "")},`,
     `  auditUpgradeCheckoutUrl: ${JSON.stringify(config.auditUpgradeCheckoutUrl || "")},`,
     `  contactEmail: ${JSON.stringify(config.contactEmail || "")},`,

@@ -187,19 +187,37 @@ function servicePublicRequestSummary(data) {
 
 function checkoutReadinessSummary(config) {
   const sellerKitCheckoutConfigured = Boolean(readString(config, "sellerKitCheckoutUrl"));
-  const serviceCheckoutConfigured = Boolean(readString(config, "serviceCheckoutUrl"));
-  const auditUpgradeCheckoutConfigured = Boolean(readString(config, "auditUpgradeCheckoutUrl") || readString(config, "serviceCheckoutUrl"));
-  const configuredCount = [sellerKitCheckoutConfigured, serviceCheckoutConfigured, auditUpgradeCheckoutConfigured].filter(Boolean).length;
+  const customPrintPackCheckoutConfigured = Boolean(readString(config, "customPrintPackCheckoutUrl") || readString(config, "serviceCheckoutUrl"));
+  const invoiceFollowupCheckoutConfigured = Boolean(readString(config, "invoiceFollowupCheckoutUrl"));
+  const uploadLimitFixPlanCheckoutConfigured = Boolean(readString(config, "uploadLimitFixPlanCheckoutUrl"));
+  const auditUpgradeCheckoutConfigured = Boolean(readString(config, "auditUpgradeCheckoutUrl") || readString(config, "customPrintPackCheckoutUrl") || readString(config, "serviceCheckoutUrl"));
+  const configuredCount = [
+    sellerKitCheckoutConfigured,
+    customPrintPackCheckoutConfigured,
+    invoiceFollowupCheckoutConfigured,
+    uploadLimitFixPlanCheckoutConfigured,
+    auditUpgradeCheckoutConfigured,
+  ].filter(Boolean).length;
   return {
     sellerKitCheckoutConfigured,
-    serviceCheckoutConfigured,
+    serviceCheckoutConfigured: customPrintPackCheckoutConfigured,
+    customPrintPackCheckoutConfigured,
+    invoiceFollowupCheckoutConfigured,
+    uploadLimitFixPlanCheckoutConfigured,
     auditUpgradeCheckoutConfigured,
     configuredCount,
-    requiredCount: 3,
+    requiredCount: 5,
     readyForDirectPayment: configuredCount > 0,
+    readyForSkuDirectPayment: sellerKitCheckoutConfigured
+      && customPrintPackCheckoutConfigured
+      && invoiceFollowupCheckoutConfigured
+      && uploadLimitFixPlanCheckoutConfigured
+      && auditUpgradeCheckoutConfigured,
     missing: [
       sellerKitCheckoutConfigured ? "" : "sellerKitCheckoutUrl",
-      serviceCheckoutConfigured ? "" : "serviceCheckoutUrl",
+      customPrintPackCheckoutConfigured ? "" : "customPrintPackCheckoutUrl",
+      invoiceFollowupCheckoutConfigured ? "" : "invoiceFollowupCheckoutUrl",
+      uploadLimitFixPlanCheckoutConfigured ? "" : "uploadLimitFixPlanCheckoutUrl",
       auditUpgradeCheckoutConfigured ? "" : "auditUpgradeCheckoutUrl",
     ].filter(Boolean),
     note: "Only public checkout URLs belong in site-config.js. Do not store payment credentials, payout details, tax IDs, bank data, card data, or private customer lists in this repo.",
@@ -237,9 +255,9 @@ function closeReadinessSummary(config, sponsorPublicReplies = {}, servicePublicR
     nextCommands: [
       "npm.cmd run service:leads",
       "npm.cmd run sponsor:leads",
-      "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/custom-local-print-pack",
-      "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/invoice-followup-copy-pack",
-      "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/upload-limit-fix-plan",
+      "npm.cmd run configure:checkout -- --custom-print-pack-url https://your-payment-provider.example/custom-local-print-pack",
+      "npm.cmd run configure:checkout -- --invoice-followup-url https://your-payment-provider.example/invoice-followup-copy-pack",
+      "npm.cmd run configure:checkout -- --upload-limit-fix-plan-url https://your-payment-provider.example/upload-limit-fix-plan",
     ],
     moneyGate: "Lead close work is operational only. Revenue is proven only after an external paid/settled order, platform balance, or signed sponsor agreement.",
   };
@@ -669,7 +687,7 @@ function buildNextActions(gates, local, live, searchConsole, discovery, director
   if (downloads < 100 && generations < 300) actions.push("Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.");
   if (depthIntent === 0) actions.push("Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces.");
   if (local.closeReadiness?.readyForManualClose) actions.push("Use the internal lead-to-payment close cockpit after every service, seller-kit, audit, or sponsor lead: export, confirm fit, copy the payment reply, and count revenue only after external proof.");
-  if (!checkout.readyForDirectPayment) actions.push("Create one real external payment-provider product for the $29 service or $9 kit, then run configure:checkout with the public checkout URL only.");
+  if (!checkout.readyForSkuDirectPayment) actions.push("Create real external payment-provider products for the $9 upload fix plan, $19 invoice follow-up copy pack, and $29 custom print pack, then configure only their public checkout URLs in the matching per-SKU slots.");
   if ((servicePublicRequests.uploadLimitFixPlanRequestCount || 0) > 0) actions.push("Review public-safe GitHub upload fix plan request issues, confirm no files/private details are included, then send only an external $9 checkout or invoice link.");
   else if ((servicePublicRequests.invoiceFollowupRequestCount || 0) > 0) actions.push("Review public-safe GitHub invoice follow-up service request issues, confirm fit, then send only an external $19 checkout or invoice link.");
   else if ((servicePublicRequests.paidServiceRequestCount || 0) > 0) actions.push("Review public-safe GitHub service request issues and move qualified buyers to an external checkout or invoice link.");
