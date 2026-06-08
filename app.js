@@ -6943,7 +6943,10 @@
                 <span class="tag">${escapeHtml(match.badge)}</span>
                 <h3>${escapeHtml(match.title)}</h3>
                 <p>${escapeHtml(match.why)}</p>
-                <a class="button" data-upload-limit-tool-link href="${escapeHtml(match.href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(match.trackTool)}">${escapeHtml(match.label)}</a>
+                <div class="actions">
+                  <a class="button" data-upload-limit-tool-link href="${escapeHtml(match.href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(match.trackTool)}">${escapeHtml(match.label)}</a>
+                  <a class="button secondary" data-upload-fix-plan-jump data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="#service-request">Need a $9 fix plan?</a>
+                </div>
               </article>`;
   }
 
@@ -15680,6 +15683,23 @@ ${paragraphs.join("\n")}
         track(link.dataset.trackEvent || "free_tool_depth", { tool: link.dataset.trackTool || "site" });
         window.history.pushState({}, "", url.pathname + url.search + url.hash);
         route();
+      });
+    });
+    helper.querySelectorAll("[data-upload-fix-plan-jump]").forEach((link) => {
+      if (link.dataset.uploadFixPlanJumpReady === "true") return;
+      link.dataset.uploadFixPlanJumpReady = "true";
+      link.addEventListener("click", (event) => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        event.stopPropagation();
+        track(link.dataset.trackEvent || "service_request_intent", { tool: link.dataset.trackTool || "upload-limit-fix-plan" });
+        const section = helper.closest("section") || document;
+        const form = section.querySelector("[data-upload-fix-plan-form]") || document.querySelector("[data-upload-fix-plan-form]");
+        if (!form) return;
+        window.history.pushState({}, "", `${window.location.pathname}${window.location.search}#service-request`);
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+        const contact = form.querySelector('input[name="contact"]');
+        if (contact) contact.focus({ preventScroll: true });
       });
     });
   }

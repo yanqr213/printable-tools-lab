@@ -48,6 +48,7 @@ function requireUploadLimitShortcuts(html, label) {
   if (!html.includes("Upload message") || !html.includes("PDF must be under 1MB") || !html.includes("Wrong image dimensions")) failures.push(`${label} missing upload limit decision table.`);
   if (!html.includes("Upload error text") || !html.includes("Local text match only") || !html.includes("data-upload-limit-helper")) failures.push(`${label} missing upload error matcher.`);
   if (!html.includes("data-upload-limit-tool-link")) failures.push(`${label} missing stable upload matcher tool-link marker.`);
+  if (!html.includes("data-upload-fix-plan-jump") || !html.includes("Need a $9 fix plan?")) failures.push(`${label} missing direct upload matcher $9 fix-plan CTA.`);
   if (!html.includes("PDF must be less than 1 MB") || !html.includes("Invalid file type. Please upload JPG or PNG")) failures.push(`${label} missing upload matcher examples.`);
   if (!html.includes('data-track-event="free_tool_depth"')) failures.push(`${label} missing upload limit depth tracking.`);
   if (!html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("Send $9 fix-plan request") || !html.includes("/upload-limit-fix-plan/?utm_source=upload-limit") || !html.includes("No file upload")) failures.push(`${label} missing $9 upload fix plan service request path.`);

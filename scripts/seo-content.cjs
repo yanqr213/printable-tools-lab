@@ -11076,7 +11076,10 @@ function uploadLimitRecommendationHtml(match) {
                 <span class="tag">${escapeHtml(match.badge)}</span>
                 <h3>${escapeHtml(match.title)}</h3>
                 <p>${escapeHtml(match.why)}</p>
-                <a class="button" data-upload-limit-tool-link href="${escapeHtml(match.href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(match.trackTool)}">${escapeHtml(match.label)}</a>
+                <div class="actions">
+                  <a class="button" data-upload-limit-tool-link href="${escapeHtml(match.href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(match.trackTool)}">${escapeHtml(match.label)}</a>
+                  <a class="button secondary" data-upload-fix-plan-jump data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="#service-request">Need a $9 fix plan?</a>
+                </div>
               </article>`;
 }
 

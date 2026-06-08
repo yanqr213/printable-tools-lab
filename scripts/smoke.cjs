@@ -298,6 +298,12 @@ function delay(ms) {
   }
   const prefillStatusVisible = await page.locator("[data-upload-fix-plan-prefill-status]").first().isVisible();
   if (!prefillStatusVisible) throw new Error("Upload limit matcher did not show the $9 fix-plan prefill status.");
+  const fixPlanJump = page.locator('[data-upload-limit-result] a[data-upload-fix-plan-jump][href="#service-request"][data-track-event="service_request_intent"][data-track-tool="upload-limit-fix-plan"]').first();
+  if (!(await fixPlanJump.count())) throw new Error("Upload limit matcher is missing the direct $9 fix-plan CTA.");
+  await fixPlanJump.click();
+  await page.waitForURL(/#service-request$/);
+  const jumpedFixSummary = await page.locator("[data-upload-fix-plan-form] [data-upload-fix-plan-summary]").first().inputValue();
+  if (!jumpedFixSummary.includes("Public-safe error text: PDF must be less than 1 MB")) throw new Error("Upload limit $9 CTA did not preserve the prefilled fix-plan request summary.");
   const uploadLimitRoutes = [
     ["/tools/compress-pdf/?targetSize=1mb", "#targetSize", "1mb"],
     ["/tools/compress-image-to-kb/?targetKb=100", "#targetKb", "100"],
