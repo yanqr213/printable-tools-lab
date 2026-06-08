@@ -274,6 +274,28 @@ function delay(ms) {
   if (!(await lowercaseImageKbFixForm.count())) throw new Error("Lowercase targetkb query is missing the pre-download $9 image upload target request form.");
   const lowercaseImageKbSummary = await lowercaseImageKbFixForm.locator("[data-compress-image-kb-tool-fix-summary]").inputValue();
   if (!lowercaseImageKbSummary.includes("image or photo under 100 KB")) throw new Error(`Lowercase targetkb request summary is not target-aware: ${lowercaseImageKbSummary}`);
+  const imageKbFormNoValidate = await lowercaseImageKbFixForm.evaluate((form) => form.noValidate && form.hasAttribute("novalidate"));
+  if (!imageKbFormNoValidate) throw new Error("Service lead form should bypass browser required validation so no-contact public fallback can render.");
+  await lowercaseImageKbFixForm.locator('button[type="submit"]').click();
+  const noContactFallback = lowercaseImageKbFixForm.locator("[data-service-lead-fallback]").first();
+  await noContactFallback.waitFor({ state: "visible", timeout: 5000 });
+  const noContactFallbackText = await noContactFallback.innerText();
+  if (!noContactFallbackText.includes("Public-safe request ready.") || !noContactFallbackText.includes("No contact was added here") || !noContactFallbackText.includes("Copy public-safe request")) {
+    throw new Error(`No-contact service fallback copy is missing: ${noContactFallbackText}`);
+  }
+  const noContactFallbackBody = await noContactFallback.locator(".service-lead-fallback-output").inputValue();
+  if (!noContactFallbackBody.includes("image or photo under 100 KB") || noContactFallbackBody.includes("you@example.com")) {
+    throw new Error(`No-contact public request body is not target-aware or public-safe: ${noContactFallbackBody}`);
+  }
+  const noContactPublicRequestHref = await noContactFallback.locator('a:has-text("Open public-safe request")').getAttribute("href");
+  if (!noContactPublicRequestHref || !noContactPublicRequestHref.includes("github.com") || !noContactPublicRequestHref.includes(encodeURIComponent("image or photo under 100 KB").replace(/%20/g, "+"))) {
+    throw new Error(`No-contact public-safe request link is not prefilled for 100KB target: ${noContactPublicRequestHref || "missing"}`);
+  }
+  const noContactIntent = await page.evaluate(() => {
+    const events = JSON.parse(localStorage.getItem("ptl_events") || "[]");
+    return events.some((event) => event.name === "service_request_intent" && event.data?.tool === "upload-limit-fix-plan" && event.data?.fallback === "public-safe-no-contact");
+  });
+  if (!noContactIntent) throw new Error("No-contact public fallback did not record a service_request_intent event.");
 
   for (const [targetSize, pageSlug] of [["500kb", "compress-pdf-to-500kb"], ["1mb", "compress-pdf-to-1mb"], ["2mb", "compress-pdf-to-2mb"], ["5mb", "compress-pdf-to-5mb"]]) {
     await page.goto(`${base}/${pageSlug}/`, { waitUntil: "networkidle" });

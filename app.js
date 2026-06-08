@@ -15386,6 +15386,8 @@ ${paragraphs.join("\n")}
     root.querySelectorAll("[data-service-lead-form]").forEach((form) => {
       if (form.dataset.boundServiceLead === "true") return;
       form.dataset.boundServiceLead = "true";
+      form.setAttribute("novalidate", "");
+      form.noValidate = true;
       updateServiceLeadFallbackLink(form);
       form.addEventListener("input", () => updateServiceLeadFallbackLink(form));
       form.addEventListener("submit", async (event) => {
@@ -15431,6 +15433,14 @@ ${paragraphs.join("\n")}
     form.dataset.serviceFallbackUrl = fallbackUrl;
   }
 
+  function serviceLeadContactValue(values = {}) {
+    return String(values.contact || values.contactEmail || values.email || values.publicContact || "").trim();
+  }
+
+  function serviceLeadRequestSummaryValue(values = {}) {
+    return String(values.requestSummary || values.details || values.notes || values.message || "").replace(/\s+/g, " ").trim();
+  }
+
   function renderServiceLeadSuccess(form, values, response = {}) {
     const serviceType = values.serviceType || form.dataset.serviceType || "custom-local-print-pack";
     const copy = serviceLeadFallbackText(values);
@@ -15457,7 +15467,7 @@ ${paragraphs.join("\n")}
     `;
   }
 
-  function renderServiceLeadFallback(form, values, publicReplyUrl = "") {
+  function renderServiceLeadFallback(form, values, publicReplyUrl = "", options = {}) {
     const serviceType = values.serviceType || form.dataset.serviceType || "custom-local-print-pack";
     const text = typeof values === "string" ? values : serviceLeadFallbackText(values);
     if (!text.trim()) return;
@@ -15471,12 +15481,16 @@ ${paragraphs.join("\n")}
       else form.appendChild(panel);
     }
     const replyUrl = publicReplyUrl || (typeof values === "string" ? "" : serviceLeadFallbackUrl(values));
+    const noContactFallback = options.reason === "no-contact";
+    const intro = noContactFallback
+      ? "No contact was added here, so nothing private is stored on this site. Open the public-safe GitHub request below; add contact only inside GitHub if you want it visible publicly."
+      : "Lead storage is temporarily limited, so open the public-safe GitHub request or copy this text before leaving the page.";
     panel.innerHTML = `
-      <p><strong>Backup request ready.</strong> Lead storage is temporarily limited, so open the public-safe GitHub request or copy this text before leaving the page.</p>
+      <p><strong>${noContactFallback ? "Public-safe request ready." : "Backup request ready."}</strong> ${escapeHtml(intro)}</p>
       <textarea class="request-copy-output service-lead-fallback-output" readonly>${escapeHtml(text)}</textarea>
       <div class="actions">
         ${replyUrl ? `<a class="button" data-track-event="${escapeHtml(serviceLeadTrackEvent(serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(serviceType))}" href="${escapeHtml(replyUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>` : ""}
-        <button class="button" type="button" data-copy-text="${escapeHtml(text)}">Copy backup request</button>
+        <button class="button" type="button" data-copy-text="${escapeHtml(text)}">${noContactFallback ? "Copy public-safe request" : "Copy backup request"}</button>
       </div>
     `;
   }
@@ -15490,10 +15504,25 @@ ${paragraphs.join("\n")}
       status.dataset.status = kind;
     };
     const values = serviceLeadPayload(form);
-    setStatus("Sending request...", "pending");
     clearServiceLeadFallback(form);
     clearServiceLeadSuccess(form);
     updateServiceLeadFallbackLink(form);
+    if (serviceLeadRequestSummaryValue(values).length < 12) {
+      setStatus("Add one short public-safe note about what you need before sending or opening the public request.", "error");
+      return;
+    }
+    if (!values.consent) {
+      setStatus("Confirm that this request avoids payment, tax, identity, passwords, customer lists, and private file details.", "error");
+      return;
+    }
+    if (!serviceLeadContactValue(values)) {
+      const publicValues = { ...values, contact: "" };
+      renderServiceLeadFallback(form, publicValues, "", { reason: "no-contact" });
+      track(serviceLeadTrackEvent(values.serviceType), { tool: serviceLeadTrackTool(values.serviceType), fallback: "public-safe-no-contact" });
+      setStatus("No contact added here. Use the public-safe request below; add contact only inside GitHub if you want it visible publicly.", "error");
+      return;
+    }
+    setStatus("Sending request...", "pending");
     if (submit) submit.disabled = true;
     try {
       const response = await fetch("/api/service-lead", {
