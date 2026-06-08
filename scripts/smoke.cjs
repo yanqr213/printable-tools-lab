@@ -275,6 +275,18 @@ function delay(ms) {
     await page.goto(`${base}${landingHref}`, { waitUntil: "networkidle" });
     const selectedTarget = await page.locator("#targetSize").inputValue();
     if (selectedTarget !== targetSize) throw new Error(`PDF target-size tool did not preselect ${targetSize}, got ${selectedTarget}`);
+    const targetPanelForm = page.locator('[data-compress-pdf-tool-fix-form][data-service-type="upload-limit-fix-plan"][data-utm-source="compress-pdf-tool"][data-utm-campaign="upload_limit_fix_plan"]').first();
+    if (!(await targetPanelForm.count())) throw new Error(`PDF target-size tool is missing the pre-download $9 upload target request form for ${targetSize}`);
+    const targetPanelSummary = await targetPanelForm.locator("[data-compress-pdf-tool-fix-summary]").inputValue();
+    const expectedTargetLabel = targetSize === "500kb" ? "500 KB" : targetSize === "1mb" ? "1 MB" : targetSize === "2mb" ? "2 MB" : "5 MB";
+    if (!targetPanelSummary.includes("$9 Upload Limit Fix Plan") || !targetPanelSummary.includes(`PDF under ${expectedTargetLabel}`)) {
+      throw new Error(`Compress PDF pre-download request summary is not target-aware for ${targetSize}: ${targetPanelSummary}`);
+    }
+    const targetPanelPublicRequest = page.locator('[data-compress-pdf-tool-public-request][data-track-event="service_request_intent"][data-track-tool="upload-limit-fix-plan"]').first();
+    const targetPanelPublicRequestHref = await targetPanelPublicRequest.getAttribute("href");
+    if (!targetPanelPublicRequestHref || !targetPanelPublicRequestHref.includes("github.com") || !targetPanelPublicRequestHref.includes(encodeURIComponent(`PDF under ${expectedTargetLabel}`).replace(/%20/g, "+"))) {
+      throw new Error(`Compress PDF pre-download public-safe request has an unexpected href for ${targetSize}: ${targetPanelPublicRequestHref || "missing"}`);
+    }
   }
 
   await page.goto(`${base}/upload-limit-fixer/`, { waitUntil: "networkidle" });
@@ -757,6 +769,17 @@ function delay(ms) {
       if (!previewText.includes("word-source.pdf") || !previewText.includes("convert selectable text from 1 of 2 pages") || !previewText.includes("DOCX file")) throw new Error(`PDF-to-Word preview is incomplete: ${previewText}`);
     }
     if (route === "/tools/compress-pdf/") {
+      const targetPanelForm = page.locator('[data-compress-pdf-tool-fix-form][data-service-type="upload-limit-fix-plan"][data-utm-source="compress-pdf-tool"][data-utm-campaign="upload_limit_fix_plan"]').first();
+      if (!(await targetPanelForm.count())) throw new Error("Compress PDF tool is missing the pre-download $9 upload target request form.");
+      const targetPanelSummary = await targetPanelForm.locator("[data-compress-pdf-tool-fix-summary]").inputValue();
+      if (!targetPanelSummary.includes("$9 Upload Limit Fix Plan") || !targetPanelSummary.includes("PDF under the selected target")) {
+        throw new Error(`Compress PDF pre-download request summary is not present: ${targetPanelSummary}`);
+      }
+      const targetPanelPublicRequest = page.locator('[data-compress-pdf-tool-public-request][data-track-event="service_request_intent"][data-track-tool="upload-limit-fix-plan"]').first();
+      const targetPanelPublicRequestHref = await targetPanelPublicRequest.getAttribute("href");
+      if (!targetPanelPublicRequestHref || !targetPanelPublicRequestHref.includes("github.com") || !targetPanelPublicRequestHref.includes("Upload+Limit+Fix+Plan")) {
+        throw new Error(`Compress PDF pre-download public-safe request has an unexpected href: ${targetPanelPublicRequestHref || "missing"}`);
+      }
       await page.setInputFiles("input[type=file]", { name: "large-scan.pdf", mimeType: "application/pdf", buffer: twoPagePdf });
       await page.selectOption("#mode", "small");
       await page.fill("#pageRange", "1");

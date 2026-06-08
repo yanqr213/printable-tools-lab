@@ -5915,6 +5915,65 @@
     return "I need a $9 Upload Limit Fix Plan for one rejected file upload: best free tool, target settings, fallback steps, and a review checklist. No file upload, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.";
   }
 
+  function renderPdfToolUploadFixRequest(tool, initialValues = {}) {
+    if (!tool || tool.id !== "compress-pdf") return "";
+    const pathName = "/tools/compress-pdf/";
+    const requestSummary = uploadLimitCompressPdfToolSummary(initialValues.targetSize || "none");
+    const fallbackUrl = serviceLeadFallbackUrl({
+      serviceType: "upload-limit-fix-plan",
+      businessName: "Compress PDF target-size workflow",
+      contact: "",
+      needBy: "",
+      requestSummary,
+      path: pathName,
+    });
+    return `
+          <div class="tool-upload-fix-panel" data-compress-pdf-upload-fix-panel>
+            <p class="eyebrow">Optional paid help</p>
+            <strong>Portal still rejecting this PDF?</strong>
+            <p class="help">Send a public-safe $9 request for exact target settings, fallback steps, and a review-before-upload checklist. Do not upload the file.</p>
+            <form class="download-service-lead-form tool-upload-fix-lead-form" data-service-lead-form data-upload-fix-plan-form data-compress-pdf-tool-fix-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="compress-pdf-tool" data-utm-medium="site" data-utm-campaign="upload_limit_fix_plan" data-utm-content="compress-pdf-target-panel" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+              <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
+              <input type="hidden" name="businessName" value="Compress PDF target-size workflow">
+              <input type="hidden" name="utmSource" value="compress-pdf-tool">
+              <input type="hidden" name="utmMedium" value="site">
+              <input type="hidden" name="utmCampaign" value="upload_limit_fix_plan">
+              <input type="hidden" name="utmContent" value="compress-pdf-target-panel">
+              <input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}" data-upload-fix-plan-summary data-compress-pdf-tool-fix-summary>
+              <label class="field">
+                <span>Reply email or public contact</span>
+                <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or @publichandle" required>
+              </label>
+              <label class="field">
+                <span>Portal error text (optional)</span>
+                <input name="needBy" maxlength="80" placeholder="PDF must be under 1MB, deadline today">
+              </label>
+              <label class="check-row">
+                <input name="consent" type="checkbox" checked required>
+                <span>I will not upload or paste the actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details.</span>
+              </label>
+              <div class="actions">
+                <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Send $9 target request</button>
+                <a class="button ghost" data-service-lead-fallback-link data-compress-pdf-tool-public-request data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
+              </div>
+              <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send only the public error text and target rule. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
+            </form>
+          </div>`;
+  }
+
+  function uploadLimitCompressPdfToolSummary(targetSize) {
+    const target = pdfTargetLabel(targetSize || "none");
+    const targetRule = target ? `Portal target: PDF under ${target}.` : "Portal target: PDF under the receiving site's size limit.";
+    return [
+      "I need a $9 Upload Limit Fix Plan for the Compress PDF tool before submitting to another website.",
+      targetRule,
+      "Please send exact free-tool settings, fallback steps if the compressed PDF is still too large, and a review-before-upload checklist.",
+      "Public-safe details only: file type, target rule, upload error text, deadline if any.",
+      "No actual file, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.",
+    ].join(" ");
+  }
+
   function uploadLimitFixPlanInlineLeadForm(options = {}) {
     const pathName = options.path || "/upload-limit-fixer/";
     const utmSource = options.utmSource || "upload-limit";
@@ -7328,6 +7387,7 @@
             </div>
             <p class="help">Files are read in this browser for ordinary processing. They are not uploaded to PrintableTools Lab.</p>
           </form>
+          ${renderPdfToolUploadFixRequest(tool, initialValues)}
           <div id="limitNotice" class="notice" hidden></div>
         </aside>
         <div class="preview-wrap">
@@ -7859,8 +7919,20 @@
     pdfToolState.set(tool.id, []);
     currentToolState = { tool, form };
 
+    const updateCompressPdfToolFixRequest = () => {
+      if (tool.id !== "compress-pdf") return;
+      const fixForm = document.querySelector("[data-compress-pdf-tool-fix-form]");
+      if (!fixForm) return;
+      const values = getFormValues(form);
+      const summary = uploadLimitCompressPdfToolSummary(values.targetSize || "none");
+      const summaryField = fixForm.querySelector("[data-compress-pdf-tool-fix-summary]");
+      if (summaryField) summaryField.value = summary;
+      updateServiceLeadFallbackLink(fixForm);
+    };
+
     const renderPreview = () => {
       preview.innerHTML = pdfUtilityPreviewHtml(tool, getPdfFiles(tool.id), getFormValues(form));
+      updateCompressPdfToolFixRequest();
     };
 
     form.addEventListener("change", async (event) => {

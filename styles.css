@@ -835,6 +835,24 @@ canvas.preview-canvas {
   border-color: rgba(37, 94, 103, 0.22);
 }
 
+.tool-upload-fix-panel {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(23, 107, 135, 0.14);
+}
+
+.tool-upload-fix-panel p,
+.tool-upload-fix-panel strong {
+  margin: 0;
+}
+
+.tool-upload-fix-lead-form {
+  border-color: rgba(37, 94, 103, 0.22);
+  background: #f7fbf8;
+}
+
 .download-service-close p,
 .download-service-close strong {
   margin: 0;
