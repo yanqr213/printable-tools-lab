@@ -8291,7 +8291,7 @@ ${paragraphs.join("\n")}
       : `<a class="button" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="${escapeHtml(serviceHref)}">Start free fit check</a>`;
     const serviceHeadline = isInvoiceFollowupTool(tool.id) ? "Need words to follow up on this invoice?" : "Want a practical local print pack?";
     const serviceHelp = isInvoiceFollowupTool(tool.id)
-      ? "Send a 30-second free fit check for a $19 Invoice Follow-up Copy Pack: polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording. Payment starts only after fit is confirmed and a real external checkout or invoice is paid."
+      ? "Send a one-field $19 Invoice Follow-up Copy Pack request for polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording. Payment starts only after fit is confirmed and a real external checkout or invoice is paid."
       : "Send a 30-second free fit check for the $29 Custom Local Print Pack Setup, or start with a free Market Table Print Audit. Payment starts only after fit is confirmed and a real external checkout or invoice is paid.";
     const auditAction = tool.id === "invoice-followup-email"
       ? ""
@@ -8330,10 +8330,10 @@ ${paragraphs.join("\n")}
     const serviceTool = isInvoice ? "invoice-followup-copy-pack" : "custom-local-print-pack";
     const campaign = isInvoice ? "invoice_followup_service" : "service_request";
     const defaultSummary = isInvoice
-      ? `I just downloaded ${tool.shortTitle || tool.title || toolId} and want a free fit check for the $19 invoice follow-up copy pack.`
+      ? `I just downloaded ${tool.shortTitle || tool.title || toolId} and want the $19 Invoice Follow-up Copy Pack: polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording. No private invoice numbers, client names, bank details, tax IDs, legal dispute details, or customer lists included.`
       : `I just downloaded ${tool.shortTitle || tool.title || toolId} and want a free fit check for the $29 local print pack.`;
     const fieldLabel = isInvoice ? "What invoice follow-up copy do you need?" : "What should be assembled?";
-    const buttonText = isInvoice ? "Send invoice fit check" : "Send free fit check";
+    const buttonText = isInvoice ? "Send $19 sequence request" : "Send free fit check";
     const fallbackUrl = serviceLeadFallbackUrl({
       serviceType,
       businessName: "",
@@ -8352,16 +8352,17 @@ ${paragraphs.join("\n")}
         <input type="hidden" name="utmMedium" value="site">
         <input type="hidden" name="utmCampaign" value="${escapeHtml(campaign)}">
         <input type="hidden" name="utmContent" value="${escapeHtml(toolId)}">
+        ${isInvoice ? `<input type="hidden" name="requestSummary" value="${escapeHtml(defaultSummary)}">` : ""}
         <label class="field">
           <span>Reply email or public contact</span>
           <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or @publichandle" required>
         </label>
-        <label class="field">
+        ${isInvoice ? "" : `<label class="field">
           <span>${escapeHtml(fieldLabel)}</span>
           <textarea name="requestSummary" maxlength="1000" required>${escapeHtml(defaultSummary)}</textarea>
-        </label>
+        </label>`}
         <label class="check-row">
-          <input name="consent" type="checkbox" required>
+          <input name="consent" type="checkbox" ${isInvoice ? "checked " : ""}required>
           <span>I will keep payment, tax, identity, passwords, customer lists, and private files outside this request.</span>
         </label>
         <div class="actions">
@@ -8381,7 +8382,7 @@ ${paragraphs.join("\n")}
     const businessName = sanitizePrintable(values.projectLabel || values.clientLabel || "Invoice follow-up email");
     const messageExcerpt = sanitizePrintable(message).slice(0, 520);
     const defaultSummary = [
-      "I used the free invoice follow-up email generator and want a free fit check for the $19 Invoice Follow-up Copy Pack.",
+      "I used the free invoice follow-up email generator and want the $19 Invoice Follow-up Copy Pack.",
       `Status: ${statusLabel}.`,
       `Tone: ${sanitizePrintable(values.tone || "friendly")}.`,
       `Payment wording: ${sanitizePrintable(values.paymentWording || "use the existing payment method")}.`,
@@ -8406,20 +8407,17 @@ ${paragraphs.join("\n")}
         <input type="hidden" name="utmMedium" value="site">
         <input type="hidden" name="utmCampaign" value="invoice_followup_service">
         <input type="hidden" name="utmContent" value="${escapeHtml(toolId)}">
+        <input type="hidden" name="requestSummary" value="${escapeHtml(defaultSummary)}">
         <label class="field">
           <span>Reply email or public contact</span>
           <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or @publichandle" required>
         </label>
-        <label class="field">
-          <span>What should the $19 follow-up sequence improve?</span>
-          <textarea name="requestSummary" maxlength="1000" required>${escapeHtml(defaultSummary)}</textarea>
-        </label>
         <label class="check-row">
-          <input name="consent" type="checkbox" required>
+          <input name="consent" type="checkbox" checked required>
           <span>I will keep payment, tax, identity, passwords, customer lists, and private files outside this request.</span>
         </label>
         <div class="actions">
-          <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack">Send invoice fit check</button>
+          <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack">Send $19 sequence request</button>
           <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
         </div>
         <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send a public-safe fit check here. Payment still happens only through a real external checkout or invoice after fit is confirmed.</p>
