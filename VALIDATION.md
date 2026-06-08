@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-08T05:38:38.515Z
+Last generated: 2026-06-08T05:51:51.599Z
 
 ## Current Automated Status
 
@@ -45,7 +45,7 @@ Last generated: 2026-06-08T05:38:38.515Z
 - GitHub Pages discovery sitemap has 269 URL(s), including 67 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 269.
 - IndexNow key file is reachable from the site root.
 - IndexNow latest report accepted 263 URL(s) for github-pages.
-- Directory monitor shows 7 listed, 5 pending, and 1 error directory target(s).
+- Directory monitor shows 7 listed, 6 pending, and 1 error directory target(s).
 
 ## Monetization Gate
 

@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Sponsor Media Kit",
-  "generatedAt": "2026-06-08T05:38:06.193Z",
+  "generatedAt": "2026-06-08T05:50:56.148Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
   "sponsorStarterReview": "https://printable-tools-lab.pages.dev/sponsor-starter-review/",
@@ -17,9 +17,9 @@
     "ads": "Ads disabled during validation. Downloads must never be gated by sponsor or ad interaction."
   },
   "externalDiscoveryProof": {
-    "generatedAt": "2026-06-08T05:30:27.157Z",
+    "generatedAt": "2026-06-08T05:49:33.332Z",
     "directoryListedCount": 7,
-    "directoryPendingCount": 5,
+    "directoryPendingCount": 6,
     "directoryErrorCount": 1,
     "listedDirectories": [
       {
@@ -69,7 +69,7 @@
       "github-pages"
     ],
     "indexNowSubmittedUrls": 263,
-    "publicProofLine": "External discovery proof: 7 public directory listing(s) are live; 5 more listing(s) remain pending; IndexNow accepted 1 target(s). These are discovery signals, not revenue.",
+    "publicProofLine": "External discovery proof: 7 public directory listing(s) are live; 6 more listing(s) remain pending; IndexNow accepted 1 target(s). These are discovery signals, not revenue.",
     "moneyBoundary": "Directory listings, IndexNow submissions, clicks, and views are discovery signals only. Revenue is real only after a signed sponsor agreement or settled external payment."
   },
   "placements": [

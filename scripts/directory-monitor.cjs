@@ -96,6 +96,14 @@ const directories = [
     reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev-upload-limit-fixer",
   },
   {
+    name: "NoLogin.tools invoice follow-up email generator listing",
+    url: "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-invoice-followup-email",
+    searchUrl: "https://nologin.tools/?q=Invoice+Follow-up+Email+Generator",
+    expected: [siteHost, "Invoice Follow-up Email Generator"],
+    submittedAt: "2026-06-08",
+    reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev-tools-invoice-followup-email",
+  },
+  {
     name: "NoSubscription.org",
     url: "https://nosubscription.org/",
     searchUrl: "https://nosubscription.org/?s=PrintableTools+Lab",
