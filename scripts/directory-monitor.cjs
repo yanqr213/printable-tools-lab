@@ -120,6 +120,14 @@ const directories = [
     reviewWindow: "3-5 business day manual review after public Google Form confirmation",
   },
   {
+    name: "FreeNoSignup upload limit fixer listing",
+    url: "https://freenosignup.com/",
+    searchUrl: "https://freenosignup.com/?s=Upload+Limit+Fixer",
+    expected: [siteHost, "Upload Limit Fixer"],
+    submittedAt: "2026-06-08",
+    reviewWindow: "3-5 business day manual review after public Google Form confirmation",
+  },
+  {
     name: "NoLogin.tools",
     url: "https://nologin.tools/tool/printable-tools-lab-pages-dev",
     searchUrl: "https://nologin.tools/?q=PrintableTools+Lab",

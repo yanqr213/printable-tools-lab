@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-08T12:27:20.000Z",
+  "directory": "FreeNoSignup",
+  "submitPage": "https://freenosignup.com/submit/",
+  "formResponseUrl": "https://docs.google.com/forms/d/e/1FAIpQLScZ3rCt9k2vlaHcT7d1ABmgtezWN-fZLcH_YcxJdexm8aOzRg/formResponse",
+  "status": 200,
+  "ok": true,
+  "confirmationMatched": true,
+  "confirmationEvidence": {
+    "pageUrl": "https://docs.google.com/forms/d/e/1FAIpQLScZ3rCt9k2vlaHcT7d1ABmgtezWN-fZLcH_YcxJdexm8aOzRg/formResponse?embedded=true",
+    "snapshotText": "您的回复已记录。",
+    "submissionMethod": "Playwright browser form fill"
+  },
+  "preSubmitEvidence": {
+    "searchUrl": "https://freenosignup.com/?s=Upload+Limit+Fixer",
+    "searchMatchedSite": false,
+    "searchMatchedTitleOnly": true
+  },
+  "mappedEntryIds": {
+    "toolName": "entry.269597412",
+    "toolUrl": "entry.201672753",
+    "category": "entry.1927966242",
+    "description": "entry.88575082",
+    "keyFeatures": "entry.1466984240",
+    "submitterName": "entry.1476070271",
+    "additionalNotes": "entry.183902111",
+    "submitterEmail": "entry.1308873964"
+  },
+  "payload": {
+    "toolName": "Upload Limit Fixer by PrintableTools Lab",
+    "toolUrl": "https://printable-tools-lab.pages.dev/upload-limit-fixer/?utm_source=freenosignup",
+    "category": "Productivity",
+    "description": "Free no-signup upload error matcher for PDF, image, photo, and file-size limits. It maps common rejected-upload messages to the right browser-based PDF/image tool, including PDF under 1MB or 500KB, image under KB/MB targets, wrong file type, PDF-to-JPG, photo dimensions, screenshots, resume PDFs, and email attachment limits. Optional manual fix-plan requests are separate; the free tool works without registration.",
+    "keyFeatures": "No signup. No file upload to a server. Browser-based upload error matching. PDF and image size target suggestions. Public-safe notes only. Free tool works before any optional service request.",
+    "submitterName": "PrintableTools Lab",
+    "additionalNotes": "Specific free tool page submission. The broad PrintableTools Lab homepage was submitted earlier; this entry is for the free Upload Limit Fixer workflow and is not a paid-only product. It does not ask for private files, portal logins, payment details, tax details, or account data.",
+    "submitterEmail": null
+  },
+  "responseEvidenceSnippet": "FreeNoSignup Google Form response page displayed the recorded-response confirmation.",
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "3-5 business days"
+}

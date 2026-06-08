@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-08T12:19:16.890Z",
+  "generatedAt": "2026-06-08T12:29:28.950Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 11,
-  "pendingCount": 8,
+  "pendingCount": 9,
   "errorCount": 1,
   "results": [
     {
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 117735,
+          "bytes": 117747,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 117735,
+          "bytes": 117747,
           "matched": false
         }
       ]
@@ -359,6 +359,35 @@
       ]
     },
     {
+      "name": "FreeNoSignup upload limit fixer listing",
+      "url": "https://freenosignup.com/",
+      "searchUrl": "https://freenosignup.com/?s=Upload+Limit+Fixer",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Upload Limit Fixer"
+      ],
+      "submittedAt": "2026-06-08",
+      "reviewWindow": "3-5 business day manual review after public Google Form confirmation",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://freenosignup.com/?s=Upload+Limit+Fixer",
+          "ok": true,
+          "status": 200,
+          "bytes": 274060,
+          "matched": false
+        },
+        {
+          "url": "https://freenosignup.com/",
+          "ok": true,
+          "status": 200,
+          "bytes": 274000,
+          "matched": false
+        }
+      ]
+    },
+    {
       "name": "NoLogin.tools",
       "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev",
       "searchUrl": "https://nologin.tools/?q=PrintableTools+Lab",
@@ -542,7 +571,7 @@
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 299274,
+          "bytes": 299273,
           "matched": true
         },
         {

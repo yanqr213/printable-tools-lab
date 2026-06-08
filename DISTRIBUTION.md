@@ -32,6 +32,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - TechTools Overdue Invoice Reminder listing: https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email?utm_source=techtools&utm_medium=directory&utm_campaign=overdue_invoice_2026_06&utm_content=overdue_invoice_reminder_email
 - TechTools Upload Limit Fix Plan listing: https://printable-tools-lab.pages.dev/upload-limit-fix-plan?utm_source=techtools&utm_medium=directory&utm_campaign=upload_limit_fix_plan_2026_06&utm_content=upload_limit_fix_plan
 - NoSignupTools Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_limit_2026_06&utm_content=upload_limit_fixer
+- FreeNoSignup Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=freenosignup
 - NoSignupTools Overdue Invoice Reminder listing: https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email?utm_source=nosignuptools&utm_medium=directory&utm_campaign=overdue_invoice_2026_06&utm_content=overdue_invoice_reminder_email
 - FreeNoSignup Overdue Invoice Reminder listing: https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email?utm_source=freenosignup&utm_medium=directory&utm_campaign=overdue_invoice_2026_06&utm_content=overdue_invoice_reminder_email
 - NoLogin.tools tracked upload-limit URL: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nologin&utm_medium=directory&utm_campaign=zero_cost_push
@@ -321,6 +322,7 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - TechTools Overdue Invoice Reminder Email listing; submitted on 2026-06-08 and live at https://techtools.cz/tools/launchpad/?tool=171
 - TechTools Upload Limit Fix Plan service listing; submitted on 2026-06-08 and live at https://techtools.cz/tools/launchpad/?tool=172
 - NoSignupTools Upload Limit Fixer submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
+- FreeNoSignup Upload Limit Fixer submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
 - NoSignupTools Overdue Invoice Reminder Email submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
 - FreeNoSignup Overdue Invoice Reminder Email submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
 - NoLogin.tools free no-login/privacy tool submission; submitted on 2026-06-03 and awaiting human review
