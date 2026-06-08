@@ -5974,6 +5974,68 @@
     ].join(" ");
   }
 
+  function renderImageKbToolUploadFixRequest(tool, initialValues = {}) {
+    if (!tool || tool.id !== "compress-image-to-kb") return "";
+    const pathName = "/tools/compress-image-to-kb/";
+    const requestSummary = uploadLimitImageKbToolSummary(initialValues);
+    const fallbackUrl = serviceLeadFallbackUrl({
+      serviceType: "upload-limit-fix-plan",
+      businessName: "Compress image to KB workflow",
+      contact: "",
+      needBy: "",
+      requestSummary,
+      path: pathName,
+    });
+    return `
+          <div class="tool-upload-fix-panel" data-compress-image-kb-upload-fix-panel>
+            <p class="eyebrow">Optional paid help</p>
+            <strong>Portal still rejecting this image or photo?</strong>
+            <p class="help">Send a public-safe $9 request for exact KB settings, fallback steps, and a review-before-upload checklist. Do not upload the image.</p>
+            <form class="download-service-lead-form tool-upload-fix-lead-form" data-service-lead-form data-upload-fix-plan-form data-compress-image-kb-tool-fix-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="compress-image-kb-tool" data-utm-medium="site" data-utm-campaign="upload_limit_fix_plan" data-utm-content="compress-image-kb-target-panel" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+              <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
+              <input type="hidden" name="businessName" value="Compress image to KB workflow">
+              <input type="hidden" name="utmSource" value="compress-image-kb-tool">
+              <input type="hidden" name="utmMedium" value="site">
+              <input type="hidden" name="utmCampaign" value="upload_limit_fix_plan">
+              <input type="hidden" name="utmContent" value="compress-image-kb-target-panel">
+              <input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}" data-upload-fix-plan-summary data-compress-image-kb-tool-fix-summary>
+              <label class="field">
+                <span>Reply email or public contact</span>
+                <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or @publichandle" required>
+              </label>
+              <label class="field">
+                <span>Portal error text (optional)</span>
+                <input name="needBy" maxlength="80" placeholder="Photo must be under 100KB, deadline today">
+              </label>
+              <label class="check-row">
+                <input name="consent" type="checkbox" checked required>
+                <span>I will not upload or paste the actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details.</span>
+              </label>
+              <div class="actions">
+                <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Send $9 image target request</button>
+                <a class="button ghost" data-service-lead-fallback-link data-compress-image-kb-tool-public-request data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
+              </div>
+              <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send only the public error text and target rule. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
+            </form>
+          </div>`;
+  }
+
+  function uploadLimitImageKbToolSummary(values = {}) {
+    const target = imageKbTargetLabel(values);
+    return [
+      "I need a $9 Upload Limit Fix Plan for the Compress Image to KB tool before submitting to another website.",
+      `Portal target: image or photo under ${target}.`,
+      "Please send exact free-tool settings, fallback steps if the compressed image is still too large, and a review-before-upload checklist.",
+      "Public-safe details only: file type, target rule, upload error text, deadline if any.",
+      "No actual file, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.",
+    ].join(" ");
+  }
+
+  function imageKbTargetLabel(values = {}) {
+    return `${targetKbValue(values)} KB`;
+  }
+
   function uploadLimitFixPlanInlineLeadForm(options = {}) {
     const pathName = options.path || "/upload-limit-fixer/";
     const utmSource = options.utmSource || "upload-limit";
@@ -6328,6 +6390,7 @@
       ["TechTools Upload Error Cheatsheet", "https://techtools.cz/tools/launchpad/?tool=173", "High-intent listing for exact PDF, image, resume, and portal upload errors."],
       ["TechTools Compress PDF to 1MB", "https://techtools.cz/tools/launchpad/?tool=174", "High-intent listing for the common PDF under 1MB upload-error path that leads to the download-time $9 upload fix request."],
       ["TechTools PDF Under 1MB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=175", "Tool-level 1MB PDF listing that opens the compressor with the pre-download $9 upload fix request ready."],
+      ["TechTools Photo Under 100KB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=176", "Tool-level photo 100KB listing that opens the image compressor with the pre-download $9 upload fix request ready."],
       ["NoSignupTools Upload Limit Fixer", "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab", "Pending public API submission for a no-signup upload error matcher."],
       ["NoSignupTools Upload Error Cheatsheet", "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab", "Pending public API submission for exact upload-error fix routing."],
       ["FreeNoSignup Upload Limit Fixer", "https://freenosignup.com/?s=Upload+Limit+Fixer", "Pending Google Form submission for the free upload error matcher."],
@@ -7440,6 +7503,7 @@
             </div>
             <p class="help">Images are processed locally in this browser. They are not uploaded to PrintableTools Lab.</p>
           </form>
+          ${renderImageKbToolUploadFixRequest(tool, initialValues)}
           <div id="limitNotice" class="notice" hidden></div>
         </aside>
         <div class="preview-wrap">
@@ -7843,9 +7907,21 @@
     const notice = document.getElementById("limitNotice");
     currentToolState = { tool, form, canvas };
 
+    const updateImageKbToolFixRequest = () => {
+      if (tool.id !== "compress-image-to-kb") return;
+      const fixForm = document.querySelector("[data-compress-image-kb-tool-fix-form]");
+      if (!fixForm) return;
+      const values = getFormValues(form);
+      const summary = uploadLimitImageKbToolSummary(values);
+      const summaryField = fixForm.querySelector("[data-compress-image-kb-tool-fix-summary]");
+      if (summaryField) summaryField.value = summary;
+      updateServiceLeadFallbackLink(fixForm);
+    };
+
     const draw = () => {
       const values = getFormValues(form);
       renderCanvas(tool, canvas, values);
+      updateImageKbToolFixRequest();
     };
 
     form.addEventListener("input", draw);
@@ -10917,7 +10993,7 @@ ${paragraphs.join("\n")}
     const values = { ...tool.defaultValues };
     if (tool.id === "compress-image-to-kb") {
       const params = new URLSearchParams(window.location.search || "");
-      const targetKb = params.get("targetKb");
+      const targetKb = params.get("targetKb") || params.get("targetkb") || params.get("target_kb");
       if (["50", "100", "200", "500"].includes(targetKb)) values.targetKb = targetKb;
       else if (targetKb && /^\d{1,4}$/.test(targetKb)) {
         values.targetKb = "custom";

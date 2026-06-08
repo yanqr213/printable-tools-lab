@@ -104,6 +104,14 @@ const directories = [
     reviewWindow: "auto-approved API listing for the tool-level pre-download upload fix path",
   },
   {
+    name: "TechTools Launchpad photo under 100KB upload fix listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=176",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/176",
+    expected: [siteHost, "Photo Under 100KB Upload Fix"],
+    submittedAt: "2026-06-08",
+    reviewWindow: "auto-approved API listing for the tool-level photo 100KB upload fix path",
+  },
+  {
     name: "NoSignupTools",
     url: "https://nosignuptools.com/",
     searchUrl: "https://nosignuptools.com/?q=PrintableTools+Lab",

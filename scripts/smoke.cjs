@@ -260,7 +260,20 @@ function delay(ms) {
     await page.goto(`${base}${landingHref}`, { waitUntil: "networkidle" });
     const selectedTarget = await page.locator("#targetKb").inputValue();
     if (selectedTarget !== targetKb) throw new Error(`Target-KB tool did not preselect ${targetKb}KB, got ${selectedTarget}`);
+    const imageKbFixForm = page.locator('[data-compress-image-kb-tool-fix-form][data-service-type="upload-limit-fix-plan"][data-utm-source="compress-image-kb-tool"][data-utm-campaign="upload_limit_fix_plan"]').first();
+    if (!(await imageKbFixForm.count())) throw new Error(`Image target-KB tool is missing the pre-download $9 upload target request form for ${targetKb}KB`);
+    const imageKbFixSummary = await imageKbFixForm.locator("[data-compress-image-kb-tool-fix-summary]").inputValue();
+    if (!imageKbFixSummary.includes("$9 Upload Limit Fix Plan") || !imageKbFixSummary.includes(`image or photo under ${targetKb} KB`)) {
+      throw new Error(`Image target-KB request summary is not target-aware for ${targetKb}KB: ${imageKbFixSummary}`);
+    }
   }
+  await page.goto(`${base}/tools/compress-image-to-kb/?targetkb=100&utm_source=techtools&utm_medium=directory&utm_campaign=photo_100kb_tool_fix_2026_06&utm_content=compress_image_kb_tool_target_100kb`, { waitUntil: "networkidle" });
+  const lowercaseKbSelectedTarget = await page.locator("#targetKb").inputValue();
+  if (lowercaseKbSelectedTarget !== "100") throw new Error(`Lowercase targetkb query did not preselect 100KB, got ${lowercaseKbSelectedTarget}`);
+  const lowercaseImageKbFixForm = page.locator('[data-compress-image-kb-tool-fix-form][data-service-type="upload-limit-fix-plan"][data-utm-source="compress-image-kb-tool"][data-utm-campaign="upload_limit_fix_plan"]').first();
+  if (!(await lowercaseImageKbFixForm.count())) throw new Error("Lowercase targetkb query is missing the pre-download $9 image upload target request form.");
+  const lowercaseImageKbSummary = await lowercaseImageKbFixForm.locator("[data-compress-image-kb-tool-fix-summary]").inputValue();
+  if (!lowercaseImageKbSummary.includes("image or photo under 100 KB")) throw new Error(`Lowercase targetkb request summary is not target-aware: ${lowercaseImageKbSummary}`);
 
   for (const [targetSize, pageSlug] of [["500kb", "compress-pdf-to-500kb"], ["1mb", "compress-pdf-to-1mb"], ["2mb", "compress-pdf-to-2mb"], ["5mb", "compress-pdf-to-5mb"]]) {
     await page.goto(`${base}/${pageSlug}/`, { waitUntil: "networkidle" });

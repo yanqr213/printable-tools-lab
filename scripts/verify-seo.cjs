@@ -510,6 +510,7 @@ else {
   if (!script.includes("Future ads must stay separated from generator controls")) failures.push("Missing download success ad-safety warning.");
   if (!script.includes("UPLOAD_FIX_FUNNEL_TOOL_IDS") || !script.includes("renderDownloadUploadFixAfterAction") || !script.includes("download-upload-fix-lead-form") || !script.includes("Send $9 upload check request") || !script.includes("Open public-safe $9 request") || !script.includes("data-download-upload-fix-public-request") || !script.includes("I just downloaded") || !script.includes('data-utm-campaign="upload_limit_fix_plan"')) failures.push("Missing download success upload-limit fix-plan close CTA.");
   if (!script.includes("renderPdfToolUploadFixRequest") || !script.includes("data-compress-pdf-tool-fix-form") || !script.includes('data-utm-source="compress-pdf-tool"') || !script.includes("Send $9 target request") || !script.includes("uploadLimitCompressPdfToolSummary") || !script.includes("Portal target: PDF under") || !script.includes("pdfTargetLabel(targetSize")) failures.push("Compress PDF tool missing pre-download upload-limit fix-plan request path.");
+  if (!script.includes("renderImageKbToolUploadFixRequest") || !script.includes("data-compress-image-kb-tool-fix-form") || !script.includes('data-utm-source="compress-image-kb-tool"') || !script.includes("Send $9 image target request") || !script.includes("uploadLimitImageKbToolSummary") || !script.includes("Portal target: image or photo under") || !script.includes('params.get("targetkb")')) failures.push("Compress image-to-KB tool missing pre-download upload-limit fix-plan request path.");
   if (!script.includes("renderInvoiceSponsorCloseCta") || !script.includes("invoice-sponsor-close-cta") || !script.includes("utm_source=download_success") || !script.includes("small-business-paperwork-sponsors")) failures.push("app.js missing invoice-specific sponsor close CTA on tool/download success.");
   if (!script.includes("utmCampaign") || !script.includes("vertical")) failures.push("app.js missing sponsor attribution fields.");
   if (!script.includes('window.location.hash.startsWith("#/")')) failures.push("app.js should keep ordinary anchor hashes from overriding routed pages.");
@@ -588,6 +589,7 @@ else {
   if (!directoryMonitorScript.includes("TechTools Launchpad upload limit fix plan service listing") || !directoryMonitorScript.includes("Upload Limit Fix Plan")) failures.push("Directory monitor missing TechTools upload limit fix plan service listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad upload error cheatsheet listing") || !directoryMonitorScript.includes("Upload Error Cheatsheet")) failures.push("Directory monitor missing TechTools upload error cheatsheet listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad compress PDF to 1MB listing") || !directoryMonitorScript.includes("Compress PDF to 1MB")) failures.push("Directory monitor missing TechTools compress PDF to 1MB listing tracking.");
+  if (!directoryMonitorScript.includes("TechTools Launchpad photo under 100KB upload fix listing") || !directoryMonitorScript.includes("Photo Under 100KB Upload Fix")) failures.push("Directory monitor missing TechTools photo under 100KB upload fix listing tracking.");
   if (!directoryMonitorScript.includes("NoLogin.tools upload error cheatsheet listing") || !directoryMonitorScript.includes("Upload+Error+Cheatsheet")) failures.push("Directory monitor missing NoLogin upload error cheatsheet submission tracking.");
   if (!directoryMonitorScript.includes("expected.every")) failures.push("Directory monitor should require all expected listing markers to avoid search-query echo false positives.");
 }
@@ -602,6 +604,12 @@ if (!fs.existsSync(techtoolsPdf1mbToolFixReportFile)) failures.push("Missing Tec
 else {
   const report = fs.readFileSync(techtoolsPdf1mbToolFixReportFile, "utf8");
   if (!report.includes("https://techtools.cz/tools/launchpad/?tool=175") || !report.includes("pdf_1mb_tool_fix_2026_06") || !report.includes("compress_pdf_tool_target_1mb")) failures.push("TechTools PDF under 1MB tool-fix submission report missing live evidence.");
+}
+const techtoolsPhoto100kbToolFixReportFile = path.join(root, "reports", "techtools-photo-under-100kb-tool-fix-submit.json");
+if (!fs.existsSync(techtoolsPhoto100kbToolFixReportFile)) failures.push("Missing TechTools photo under 100KB tool-fix submission evidence report.");
+else {
+  const report = fs.readFileSync(techtoolsPhoto100kbToolFixReportFile, "utf8");
+  if (!report.includes("https://techtools.cz/tools/launchpad/?tool=176") || !report.includes("photo_100kb_tool_fix_2026_06") || !report.includes("compress_image_kb_tool_target_100kb")) failures.push("TechTools photo under 100KB tool-fix submission report missing live evidence.");
 }
 const sponsorPublicRepliesFunctionFile = path.join(root, "functions", "api", "sponsor-public-replies.js");
 if (!fs.existsSync(sponsorPublicRepliesFunctionFile)) failures.push("Missing sponsor public replies API function.");
@@ -1021,6 +1029,7 @@ else {
   if (!html.includes("TechTools Upload Error Cheatsheet") || !html.includes("https://techtools.cz/tools/launchpad/?tool=173")) failures.push("Directory submission pack missing upload error cheatsheet live listing.");
   if (!html.includes("TechTools Compress PDF to 1MB") || !html.includes("https://techtools.cz/tools/launchpad/?tool=174")) failures.push("Directory submission pack missing compress PDF to 1MB live listing.");
   if (!html.includes("TechTools PDF Under 1MB Upload Fix") || !html.includes("https://techtools.cz/tools/launchpad/?tool=175")) failures.push("Directory submission pack missing PDF under 1MB upload fix live listing.");
+  if (!html.includes("TechTools Photo Under 100KB Upload Fix") || !html.includes("https://techtools.cz/tools/launchpad/?tool=176")) failures.push("Directory submission pack missing photo under 100KB upload fix live listing.");
   if (!html.includes("NoLogin.tools Upload Error Cheatsheet") || !html.includes("https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet")) failures.push("Directory submission pack missing NoLogin upload error cheatsheet submission.");
   if (!html.includes("NoSignupTools Upload Limit Fixer") || !html.includes("https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools upload limit fixer submission.");
   if (!html.includes("NoSignupTools Upload Error Cheatsheet") || !html.includes("https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools upload error cheatsheet submission.");
@@ -1477,6 +1486,7 @@ else {
   if (!distribution.includes("TechTools Upload Limit Fix Plan listing") || !distribution.includes("upload_limit_fix_plan_2026_06")) failures.push("DISTRIBUTION.md missing upload limit fix plan directory listing.");
   if (!distribution.includes("TechTools Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing upload error cheatsheet directory listing.");
   if (!distribution.includes("TechTools Compress PDF to 1MB listing") || !distribution.includes("pdf_1mb_2026_06")) failures.push("DISTRIBUTION.md missing compress PDF to 1MB directory listing.");
+  if (!distribution.includes("TechTools Photo Under 100KB Upload Fix listing") || !distribution.includes("photo_100kb_tool_fix_2026_06")) failures.push("DISTRIBUTION.md missing photo 100KB upload fix directory listing.");
   if (!distribution.includes("NoLogin.tools Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing NoLogin upload error cheatsheet submission.");
   if (!distribution.includes("NoSignupTools Upload Limit Fixer listing") || !distribution.includes("upload_limit_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools upload limit fixer submission.");
   if (!distribution.includes("NoSignupTools Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools upload error cheatsheet submission.");
