@@ -38,6 +38,7 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - FreeNoSignup Overdue Invoice Reminder listing: https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email?utm_source=freenosignup&utm_medium=directory&utm_campaign=overdue_invoice_2026_06&utm_content=overdue_invoice_reminder_email
 - NoLogin.tools tracked upload-limit URL: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nologin&utm_medium=directory&utm_campaign=zero_cost_push
 - NoLogin.tools Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nologin&utm_medium=directory&utm_campaign=upload_limit_2026_06&utm_content=upload_limit_fixer
+- NoLogin.tools Upload Error Cheatsheet listing: https://printable-tools-lab.pages.dev/upload-error-cheatsheet?utm_source=nologin&utm_medium=directory&utm_campaign=upload_error_cheatsheet_2026_06&utm_content=upload_error_cheatsheet
 - NoLogin.tools Invoice Follow-up Email Generator listing: https://printable-tools-lab.pages.dev/tools/invoice-followup-email?utm_source=nologin&utm_medium=directory&utm_campaign=invoice_followup_email_2026_06&utm_content=invoice_followup_email_generator
 - NoLogin.tools Overdue Invoice Reminder listing: https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email?utm_source=nologin&utm_medium=directory&utm_campaign=overdue_invoice_2026_06&utm_content=overdue_invoice_reminder_email
 - NoSubscription.org tracked upload-limit URL: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nosubscription&utm_medium=directory&utm_campaign=zero_cost_push
@@ -329,6 +330,7 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - FreeNoSignup Overdue Invoice Reminder Email submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
 - NoLogin.tools free no-login/privacy tool submission; submitted on 2026-06-03 and awaiting human review
 - NoLogin.tools Upload Limit Fixer high-intent submission; submitted on 2026-06-06 with slug printable-tools-lab-pages-dev-upload-limit-fixer and awaiting human review
+- NoLogin.tools Upload Error Cheatsheet submission; submitted on 2026-06-08 with slug printable-tools-lab-pages-dev-upload-error-cheatsheet and awaiting human review
 - NoLogin.tools Invoice Follow-up Email Generator submission; submitted on 2026-06-08 with slug printable-tools-lab-pages-dev-tools-invoice-followup-email and awaiting human review
 - NoLogin.tools Overdue Invoice Reminder Email submission; submitted on 2026-06-08 with slug printable-tools-lab-pages-dev-overdue-invoice-reminder-email and awaiting human review
 - NoSubscription.org free/open-source track; submitted on 2026-06-03 and awaiting slow review

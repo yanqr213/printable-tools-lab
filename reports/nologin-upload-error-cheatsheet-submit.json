@@ -1,0 +1,56 @@
+﻿{
+    "generatedAt":  "2026-06-08T13:25:06Z",
+    "endpoint":  "https://nologin.tools/api/submit",
+    "status":  201,
+    "ok":  true,
+    "priorAttempt":  {
+                         "status":  400,
+                         "result":  "validation_failed_description_max_500_characters"
+                     },
+    "payload":  {
+                    "name":  "Upload Error Cheatsheet",
+                    "url":  "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/?utm_source=nologin\u0026utm_medium=directory\u0026utm_campaign=upload_error_cheatsheet_2026_06\u0026utm_content=upload_error_cheatsheet",
+                    "description":  "Free no-signup upload error cheatsheet for PDF, image, JPG, PNG, resume, and email attachment rejection messages. It maps exact errors like PDF under 1MB, image under 2MB, invalid JPG/PNG, and resume PDF too large to direct browser-based fixer pages. Optional USD 9 fit checks use public-safe error text only.",
+                    "pledge":  true,
+                    "coreTask":  "Find the right free PDF or image fixer from an exact upload error message without creating an account.",
+                    "submitterEmail":  "",
+                    "repoUrl":  "",
+                    "twitterUrl":  "",
+                    "githubUrl":  "",
+                    "discordUrl":  "",
+                    "tags":  [
+                                 {
+                                     "key":  "category",
+                                     "value":  "Productivity"
+                                 },
+                                 {
+                                     "key":  "data",
+                                     "value":  "Client-Side Only"
+                                 },
+                                 {
+                                     "key":  "privacy",
+                                     "value":  "Privacy Focused"
+                                 },
+                                 {
+                                     "key":  "type",
+                                     "value":  "Web App"
+                                 },
+                                 {
+                                     "key":  "pricing",
+                                     "value":  "Free"
+                                 }
+                             ]
+                },
+    "response":  {
+                     "ok":  true,
+                     "data":  {
+                                  "slug":  "printable-tools-lab-pages-dev-upload-error-cheatsheet"
+                              }
+                 },
+    "reviewUrl":  "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet",
+    "postSubmitCheck":  {
+                            "checkedAt":  "2026-06-08T13:25:06Z",
+                            "status":  404,
+                            "result":  "accepted_by_api_pending_public_review"
+                        }
+}

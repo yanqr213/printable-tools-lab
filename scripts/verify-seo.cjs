@@ -583,6 +583,7 @@ else {
   if (!directoryMonitorScript.includes("FreeNoSignup upload limit fixer listing") || !directoryMonitorScript.includes("Upload+Limit+Fixer")) failures.push("Directory monitor missing FreeNoSignup upload limit fixer submission tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad upload limit fix plan service listing") || !directoryMonitorScript.includes("Upload Limit Fix Plan")) failures.push("Directory monitor missing TechTools upload limit fix plan service listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad upload error cheatsheet listing") || !directoryMonitorScript.includes("Upload Error Cheatsheet")) failures.push("Directory monitor missing TechTools upload error cheatsheet listing tracking.");
+  if (!directoryMonitorScript.includes("NoLogin.tools upload error cheatsheet listing") || !directoryMonitorScript.includes("Upload+Error+Cheatsheet")) failures.push("Directory monitor missing NoLogin upload error cheatsheet submission tracking.");
   if (!directoryMonitorScript.includes("expected.every")) failures.push("Directory monitor should require all expected listing markers to avoid search-query echo false positives.");
 }
 const sponsorPublicRepliesFunctionFile = path.join(root, "functions", "api", "sponsor-public-replies.js");
@@ -999,6 +1000,7 @@ else {
   if (!html.includes("TechTools Overdue Invoice Reminder Email") || !html.includes("https://techtools.cz/tools/launchpad/?tool=171")) failures.push("Directory submission pack missing overdue invoice reminder live listing.");
   if (!html.includes("TechTools Upload Limit Fix Plan") || !html.includes("https://techtools.cz/tools/launchpad/?tool=172")) failures.push("Directory submission pack missing upload limit fix plan live listing.");
   if (!html.includes("TechTools Upload Error Cheatsheet") || !html.includes("https://techtools.cz/tools/launchpad/?tool=173")) failures.push("Directory submission pack missing upload error cheatsheet live listing.");
+  if (!html.includes("NoLogin.tools Upload Error Cheatsheet") || !html.includes("https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet")) failures.push("Directory submission pack missing NoLogin upload error cheatsheet submission.");
   if (!html.includes("NoSignupTools Upload Limit Fixer") || !html.includes("https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools upload limit fixer submission.");
   if (!html.includes("FreeNoSignup Upload Limit Fixer") || !html.includes("https://freenosignup.com/?s=Upload+Limit+Fixer")) failures.push("Directory submission pack missing FreeNoSignup upload limit fixer submission.");
   if (!html.includes(siteUrl("submit-directory"))) failures.push("Directory submission pack missing canonical.");
@@ -1449,6 +1451,7 @@ else {
   if (!distribution.includes("TechTools Overdue Invoice Reminder listing") || !distribution.includes("overdue_invoice_2026_06")) failures.push("DISTRIBUTION.md missing overdue invoice reminder directory listing.");
   if (!distribution.includes("TechTools Upload Limit Fix Plan listing") || !distribution.includes("upload_limit_fix_plan_2026_06")) failures.push("DISTRIBUTION.md missing upload limit fix plan directory listing.");
   if (!distribution.includes("TechTools Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing upload error cheatsheet directory listing.");
+  if (!distribution.includes("NoLogin.tools Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing NoLogin upload error cheatsheet submission.");
   if (!distribution.includes("NoSignupTools Upload Limit Fixer listing") || !distribution.includes("upload_limit_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools upload limit fixer submission.");
   if (!distribution.includes("FreeNoSignup Upload Limit Fixer listing") || !distribution.includes("utm_source=freenosignup")) failures.push("DISTRIBUTION.md missing FreeNoSignup upload limit fixer submission.");
   if (!distribution.includes("NoSignupTools Overdue Invoice Reminder listing") || !distribution.includes("utm_source=nosignuptools")) failures.push("DISTRIBUTION.md missing NoSignupTools overdue invoice reminder submission.");

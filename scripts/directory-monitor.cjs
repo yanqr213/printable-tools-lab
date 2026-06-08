@@ -152,6 +152,14 @@ const directories = [
     reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev-upload-limit-fixer",
   },
   {
+    name: "NoLogin.tools upload error cheatsheet listing",
+    url: "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet",
+    searchUrl: "https://nologin.tools/?q=Upload+Error+Cheatsheet",
+    expected: [siteHost, "Upload Error Cheatsheet"],
+    submittedAt: "2026-06-08",
+    reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev-upload-error-cheatsheet",
+  },
+  {
     name: "NoLogin.tools invoice follow-up email generator listing",
     url: "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-invoice-followup-email",
     searchUrl: "https://nologin.tools/?q=Invoice+Follow-up+Email+Generator",
