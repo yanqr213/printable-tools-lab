@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-08T16:45:30.973Z",
+  "generatedAt": "2026-06-08T17:11:36.010Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 18,
+  "listedCount": 21,
   "pendingCount": 11,
   "errorCount": 1,
   "results": [
@@ -78,7 +78,7 @@
           "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
           "ok": true,
           "status": 200,
-          "bytes": 91609,
+          "bytes": 93137,
           "matched": true
         }
       ]
@@ -343,6 +343,72 @@
           "ok": true,
           "status": 200,
           "bytes": 1374,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad resume PDF too large upload fix listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=179",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/179",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Resume PDF Too Large Upload Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the resume PDF upload fix path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/179",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/179",
+          "ok": true,
+          "status": 200,
+          "bytes": 1324,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad PNG screenshot too large upload fix listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=180",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/180",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "PNG Screenshot Too Large Upload Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the PNG screenshot upload fix path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/180",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/180",
+          "ok": true,
+          "status": 200,
+          "bytes": 1399,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad passport photo 50KB upload fix listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=181",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/181",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Passport Photo 50KB Upload Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the passport photo 50KB upload fix path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/181",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/181",
+          "ok": true,
+          "status": 200,
+          "bytes": 1386,
           "matched": true
         }
       ]
@@ -763,34 +829,49 @@
       "reviewWindow": "maintainer review",
       "status": "error",
       "evidenceUrl": "https://github.com/js-org/js.org/pull/11512",
-      "apiAvailable": false,
-      "checksAvailable": false,
-      "templateOk": null,
-      "checksOk": null,
-      "checks": [],
-      "prState": "unknown",
-      "mergeable": null,
+      "apiAvailable": true,
+      "checksAvailable": true,
+      "templateOk": true,
+      "checksOk": true,
+      "checks": [
+        {
+          "name": "PR description",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:58Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353230"
+        },
+        {
+          "name": "cnames_active.js",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:57Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353223"
+        }
+      ],
+      "prState": "closed",
+      "mergeable": true,
       "checked": [
         {
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 299192,
+          "bytes": 299188,
           "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/pulls/11512",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 16307,
+          "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 18122,
+          "matched": true
         }
       ]
     }

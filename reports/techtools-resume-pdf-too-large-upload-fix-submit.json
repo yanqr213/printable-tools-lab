@@ -1,0 +1,42 @@
+﻿{
+    "generatedAt":  "2026-06-08T17:08:39.0936034Z",
+    "endpoint":  "https://techtools.cz/launchpad-api/tools",
+    "status":  201,
+    "ok":  true,
+    "payload":  {
+                    "url":  "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=1mb\u0026utm_source=techtools\u0026utm_medium=directory\u0026utm_campaign=resume_pdf_too_large_fix_2026_06\u0026utm_content=compress_pdf_resume_1mb_fix",
+                    "submitted_by":  "Codex traffic acquisition run 2026-06-09 resume PDF upload fix path",
+                    "description":  "PrintableTools Lab Resume PDF Too Large Upload Fix opens the browser PDF compressor with a 1MB target for job application, ATS, career portal, and resume upload rejection errors. Files stay in the browser for ordinary compression. Before download, visitors can send a public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist without uploading the private resume.",
+                    "maker_url":  "https://printable-tools-lab.pages.dev/",
+                    "category":  "productivity",
+                    "name":  "Resume PDF Too Large Upload Fix by PrintableTools Lab",
+                    "logo_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                    "tagline":  "No-signup resume PDF-to-1MB compressor with a public-safe $9 upload fix request.",
+                    "maker_name":  "PrintableTools Lab"
+                },
+    "response":  {
+                     "success":  true,
+                     "message":  "Tool submitted successfully! It is now live.",
+                     "data":  {
+                                  "id":  179,
+                                  "name":  "Resume PDF Too Large Upload Fix by PrintableTools Lab",
+                                  "url":  "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetsize=1mb\u0026utm_source=techtools\u0026utm_medium=directory\u0026utm_campaign=resume_pdf_too_large_fix_2026_06\u0026utm_content=compress_pdf_resume_1mb_fix",
+                                  "tagline":  "No-signup resume PDF-to-1MB compressor with a public-safe $9 upload fix request.",
+                                  "description":  "PrintableTools Lab Resume PDF Too Large Upload Fix opens the browser PDF compressor with a 1MB target for job application, ATS, career portal, and resume upload rejection errors. Files stay in the browser for ordinary compression. Before download, visitors can send a public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist without uploading the private resume.",
+                                  "category":  "productivity",
+                                  "category_label":  "Productivity",
+                                  "maker_name":  "PrintableTools Lab",
+                                  "maker_url":  "https://printable-tools-lab.pages.dev/",
+                                  "logo_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                                  "upvotes":  0,
+                                  "featured":  false,
+                                  "submitted_by":  "Codex traffic acquisition run 2026-06-09 resume PDF upload fix path",
+                                  "launch_date":  "2026-06-08",
+                                  "created_at":  "2026-06-08T17:08:39Z",
+                                  "share_url":  "https://techtools.cz/tools/launchpad/?tool=179"
+                              },
+                     "share_url":  "https://techtools.cz/tools/launchpad/?tool=179"
+                 },
+    "shareUrl":  "https://techtools.cz/tools/launchpad/?tool=179",
+    "evidenceApiUrl":  "https://techtools.cz/launchpad-api/tools/179"
+}
