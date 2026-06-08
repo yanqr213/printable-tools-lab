@@ -2311,6 +2311,7 @@ const SHARE_KIT_FEATURED_LINKS = [
   ["Remove background without upload", "remove-background-no-upload", "Simple transparent PNG workflow for product photos, logos, and signatures."],
   ["Free QR code generator", "free-qr-code-generator-no-signup", "Fast static QR code for signs, menus, flyers, and labels."],
   ["Free invoice generator", "free-invoice-generator-no-signup", "Small-business PDF document with no signup and no hidden export fee."],
+  ["Invoice follow-up email generator", "tools/invoice-followup-email", "High-intent freelancer workflow with a free email generator and optional $19 wording pack fit check."],
 ];
 
 const SHARE_KIT_POSTS = [
@@ -2369,6 +2370,26 @@ const SHARE_KIT_POSTS = [
     body: "PrintableTools Lab helps users create and edit practical files locally: compress PDFs to target sizes, compress images to KB limits, convert PDF pages to JPG, resize and convert images, make static QR codes, and generate invoices, receipts, labels, business cards, and other everyday PDFs.",
     cta: "List as a free productivity and file utility tool.",
     linkPath: "submit-directory",
+  },
+  {
+    channel: "community",
+    title: "Invoice follow-up wording helper",
+    hook: "Need polite wording after sending an invoice?",
+    body: "The free invoice follow-up email generator drafts reminder, due-today, overdue, thank-you, and next-invoice wording in the browser. There is also an optional $19 copy pack fit check for people who want one workflow drafted in their own tone; it is wording-only and not legal, tax, accounting, collections, or financial advice.",
+    cta: "Open the invoice follow-up generator",
+    linkPath: "tools/invoice-followup-email",
+    campaign: "invoice_followup_service",
+    content: "share-kit-community",
+  },
+  {
+    channel: "directory",
+    title: "Invoice reminder resource listing",
+    hook: "Free invoice generator plus optional follow-up wording pack.",
+    body: "PrintableTools Lab has a free no-signup invoice generator and a free invoice follow-up email generator for freelancers and small service teams. The optional $19 Invoice Follow-up Copy Pack is manually reviewed, payment happens only through an external provider after fit is confirmed, and no private invoice, bank, tax, card, or client details are requested on-site.",
+    cta: "List as an invoice communication resource",
+    linkPath: "invoice-followup-copy-pack",
+    campaign: "invoice_followup_service",
+    content: "share-kit-directory",
   },
   {
     channel: "game-platform",
@@ -2484,6 +2505,30 @@ const ORGANIC_PUSH_TASKS = [
     copy: "If the site gives a file-size or format error, this free upload-limit fixer maps the message to the right no-signup PDF or image tool: {url}",
     successSignal: "free_tool_depth visits increase and at least one visitor opens a fixer tool or downloads a processed file.",
     riskRule: "Answer the specific upload problem only; do not ask for ad clicks, payments, or private files.",
+  },
+  {
+    id: "community-invoice-followup-copy",
+    channel: "community",
+    title: "Helpful reply for polite invoice follow-up wording",
+    trigger: "Use only when a freelancer, consultant, or small service owner asks how to write a polite invoice reminder, due-today note, overdue follow-up, paid thank-you, or next-invoice message.",
+    linkPath: "tools/invoice-followup-email",
+    utmSource: "community",
+    campaign: "invoice_followup_service",
+    copy: "For wording only, this free invoice follow-up email generator can draft a polite reminder, due-today note, overdue follow-up, paid thank-you, or next-invoice message: {url}. There is an optional $19 copy pack fit check if someone wants one workflow drafted in their own tone; it is not legal, tax, accounting, collections, or financial advice.",
+    successSignal: "invoice_followup_service UTM visits appear and at least one visitor submits a service fit check or opens the invoice generator path.",
+    riskRule: "Lead with the free generator, avoid regulated advice, and do not ask for invoice numbers, client names, bank, tax, card, or private payment details.",
+  },
+  {
+    id: "directory-invoice-followup-resource",
+    channel: "directory",
+    title: "Directory listing for invoice follow-up wording resource",
+    trigger: "Use on directories or resource pages that accept freelancer, invoice, admin-template, small-business, or business-writing resources.",
+    linkPath: "invoice-followup-copy-pack",
+    utmSource: "directory",
+    campaign: "invoice_followup_service",
+    copy: "PrintableTools Lab offers a free no-signup invoice generator, a free invoice follow-up email generator, and an optional USD 19 Invoice Follow-up Copy Pack for editable reminder, due-today, overdue, thank-you, and next-invoice wording. Listing URL: {url}",
+    successSignal: "A directory referral or resource-page UTM visit appears, followed by a service_request_intent or service lead.",
+    riskRule: "Submit only where resource listings are welcome; do not claim payment recovery, legal compliance, tax/accounting outcomes, or guaranteed collections.",
   },
 ];
 
@@ -9100,8 +9145,12 @@ function shareKitPosts() {
 
 function trackedSharePostUrl(post) {
   const base = post.absoluteUrl || siteUrl(post.linkPath).replace(/\/$/, "");
-  const separator = base.includes("?") ? "&" : "?";
-  return `${base}${separator}utm_source=${post.channel}&utm_medium=organic`;
+  const url = new URL(base);
+  url.searchParams.set("utm_source", post.channel);
+  url.searchParams.set("utm_medium", "organic");
+  if (post.campaign) url.searchParams.set("utm_campaign", post.campaign);
+  if (post.content) url.searchParams.set("utm_content", post.content);
+  return url.toString();
 }
 
 function landingPageHtml(page) {

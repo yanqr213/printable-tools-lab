@@ -947,6 +947,9 @@ else {
   if (!html.includes("Sponsor and partner discovery")) failures.push("Share kit missing sponsor discovery section.");
   if (!html.includes("sponsor-call")) failures.push("Share kit missing sponsor call link.");
   if (!html.includes("utm_source=sponsor-outreach")) failures.push("Share kit missing tracked sponsor outreach source.");
+  if (!html.includes("Invoice follow-up email generator")) failures.push("Share kit missing invoice follow-up priority link.");
+  if (!html.includes("Invoice follow-up wording helper")) failures.push("Share kit missing invoice follow-up copy-ready post.");
+  if (!html.includes("invoice_followup_service")) failures.push("Share kit missing invoice follow-up tracking campaign.");
   if (!html.includes("/organic-push-kit/")) failures.push("Share kit missing organic push kit link.");
   if (!html.includes("Upload error cheatsheet")) failures.push("Share kit missing upload error cheatsheet section.");
   if (!html.includes("/upload-error-cheatsheet.json")) failures.push("Share kit missing upload error cheatsheet JSON link.");
@@ -999,7 +1002,10 @@ else {
   if (!html.includes("Today queue")) failures.push("Organic push kit missing task queue.");
   if (!html.includes("Helpful reply for PDF under 1MB questions")) failures.push("Organic push kit missing PDF task.");
   if (!html.includes("Directory listing for free no-signup file tools")) failures.push("Organic push kit missing directory task.");
+  if (!html.includes("Helpful reply for polite invoice follow-up wording")) failures.push("Organic push kit missing invoice follow-up community task.");
+  if (!html.includes("Directory listing for invoice follow-up wording resource")) failures.push("Organic push kit missing invoice follow-up directory task.");
   if (!html.includes("utm_campaign=upload_error_cheatsheet")) failures.push("Organic push kit missing upload-error tracking.");
+  if (!html.includes("utm_campaign=invoice_followup_service")) failures.push("Organic push kit missing invoice follow-up tracking.");
   if (!html.includes("/organic-push-kit.json")) failures.push("Organic push kit missing JSON link.");
   if (!sitemap.includes(`<loc>${siteUrl("organic-push-kit")}</loc>`)) failures.push("Sitemap missing organic push kit.");
 }
@@ -1011,6 +1017,8 @@ else {
   if (!Array.isArray(data.tasks) || data.tasks.length < 8) failures.push("organic-push-kit.json missing tasks.");
   if (!data.tasks?.some((item) => item.id === "community-pdf-1mb" && String(item.trackedUrl || "").includes("utm_source=community"))) failures.push("organic-push-kit.json missing community PDF task.");
   if (!data.tasks?.some((item) => item.id === "directory-free-file-tools" && String(item.copy || "").includes("PrintableTools Lab is a free no-signup"))) failures.push("organic-push-kit.json missing directory copy.");
+  if (!data.tasks?.some((item) => item.id === "community-invoice-followup-copy" && String(item.trackedUrl || "").includes("utm_campaign=invoice_followup_service"))) failures.push("organic-push-kit.json missing invoice follow-up community task.");
+  if (!data.tasks?.some((item) => item.id === "directory-invoice-followup-resource" && String(item.copy || "").includes("USD 19 Invoice Follow-up Copy Pack"))) failures.push("organic-push-kit.json missing invoice follow-up directory copy.");
   if (!String(data.successGate || "").includes("live metrics")) failures.push("organic-push-kit.json missing live metrics success gate.");
 }
 
@@ -1040,6 +1048,9 @@ else {
   if (!data.sponsorDiscovery?.externalDiscoveryProof || Number(data.sponsorDiscovery.externalDiscoveryProof.directoryListedCount || 0) < 4) failures.push("share-kit.json missing sponsor external discovery proof.");
   if (!String(data.sponsorDiscovery?.successGate || "").includes("qualified sponsor lead")) failures.push("share-kit.json missing sponsor discovery success gate.");
   if (!data.featuredLinks.some((item) => item.url && item.url.includes("utm_source=share-kit"))) failures.push("share-kit.json missing tracked share-kit URLs.");
+  if (!data.featuredLinks.some((item) => item.title === "Invoice follow-up email generator" && String(item.url || "").includes("utm_source=share-kit"))) failures.push("share-kit.json missing tracked invoice follow-up featured link.");
+  if (!data.posts.some((item) => item.title === "Invoice follow-up wording helper" && String(item.url || "").includes("utm_source=community"))) failures.push("share-kit.json missing invoice follow-up community post.");
+  if (!data.organicPushKit?.tasks?.some((item) => item.id === "community-invoice-followup-copy" && String(item.copy || "").includes("optional $19 copy pack"))) failures.push("share-kit.json missing invoice follow-up organic task.");
   if (!data.localSellerService || data.localSellerService.servicePage !== siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)) failures.push("share-kit.json missing restored local seller service page.");
   if (!String(data.localSellerService?.moneyGate || "").includes("external provider")) failures.push("share-kit.json restored service missing external-provider money gate.");
   if (data.serviceSalesPack?.trackedLinks?.some((item) => String(item.url || "").includes("service_sales_pack"))) failures.push("share-kit.json should keep service sales pack out of broad share-kit tracking.");
@@ -1534,6 +1545,8 @@ else {
   if (!html.includes("Today queue")) failures.push("GitHub Pages organic push kit missing task queue.");
   if (!html.includes("Helpful reply for PDF under 1MB questions")) failures.push("GitHub Pages organic push kit missing PDF task.");
   if (!html.includes("Directory listing for free no-signup file tools")) failures.push("GitHub Pages organic push kit missing directory task.");
+  if (!html.includes("Helpful reply for polite invoice follow-up wording")) failures.push("GitHub Pages organic push kit missing invoice follow-up community task.");
+  if (!html.includes("Directory listing for invoice follow-up wording resource")) failures.push("GitHub Pages organic push kit missing invoice follow-up directory task.");
   if (!html.includes("utm_source=github-pages")) failures.push("GitHub Pages organic push kit missing tracked links.");
   if (!html.includes("organic-push-kit.json")) failures.push("GitHub Pages organic push kit missing mirror JSON link.");
   requireGithubPagesIntentTracking(html, "GitHub Pages organic push kit mirror");
@@ -1547,6 +1560,8 @@ else {
   if (data.liveJson !== siteUrl("organic-push-kit.json").replace(/\/$/, "")) failures.push("GitHub Pages organic-push-kit.json missing live JSON URL.");
   if (!Array.isArray(data.tasks) || data.tasks.length !== ORGANIC_PUSH_TASKS.length) failures.push("GitHub Pages organic-push-kit.json missing tasks.");
   if (!data.tasks?.some((item) => item.id === "community-pdf-1mb" && String(item.trackedUrl || "").includes("utm_source=github-pages"))) failures.push("GitHub Pages organic-push-kit.json missing tracked GitHub Pages URL.");
+  if (!data.tasks?.some((item) => item.id === "community-invoice-followup-copy" && String(item.trackedUrl || "").includes("utm_campaign=invoice_followup_service"))) failures.push("GitHub Pages organic-push-kit.json missing invoice follow-up community task.");
+  if (!data.tasks?.some((item) => item.id === "directory-invoice-followup-resource" && String(item.copy || "").includes("USD 19 Invoice Follow-up Copy Pack"))) failures.push("GitHub Pages organic-push-kit.json missing invoice follow-up directory copy.");
   if (!String(data.successGate || "").includes("live metrics")) failures.push("GitHub Pages organic-push-kit.json missing live metrics success gate.");
 }
 

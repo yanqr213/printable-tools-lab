@@ -1600,8 +1600,12 @@ function fileUrl(fileName) {
 
 function trackedSharePostUrl(post) {
   const base = post.absoluteUrl || siteUrl(post.linkPath).replace(/\/$/, "");
-  const separator = base.includes("?") ? "&" : "?";
-  return `${base}${separator}utm_source=${post.channel}&utm_medium=organic`;
+  const tracked = new URL(base);
+  tracked.searchParams.set("utm_source", post.channel);
+  tracked.searchParams.set("utm_medium", "organic");
+  if (post.campaign) tracked.searchParams.set("utm_campaign", post.campaign);
+  if (post.content) tracked.searchParams.set("utm_content", post.content);
+  return tracked.toString();
 }
 
 function gameSubmissionFeedEntry(game) {

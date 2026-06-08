@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Share Kit",
-  "generatedAt": "2026-06-08T06:19:22.278Z",
+  "generatedAt": "2026-06-08T07:51:00.717Z",
   "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
   "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
   "featuredLinks": [
@@ -81,6 +81,12 @@
       "url": "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup?utm_source=share-kit&utm_medium=organic",
       "canonicalUrl": "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
       "reason": "Small-business PDF document with no signup and no hidden export fee."
+    },
+    {
+      "title": "Invoice follow-up email generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email?utm_source=share-kit&utm_medium=organic",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/",
+      "reason": "High-intent freelancer workflow with a free email generator and optional $19 wording pack fit check."
     }
   ],
   "posts": [
@@ -146,6 +152,28 @@
       "cta": "List as a free productivity and file utility tool.",
       "linkPath": "submit-directory",
       "url": "https://printable-tools-lab.pages.dev/submit-directory?utm_source=directory&utm_medium=organic"
+    },
+    {
+      "channel": "community",
+      "title": "Invoice follow-up wording helper",
+      "hook": "Need polite wording after sending an invoice?",
+      "body": "The free invoice follow-up email generator drafts reminder, due-today, overdue, thank-you, and next-invoice wording in the browser. There is also an optional $19 copy pack fit check for people who want one workflow drafted in their own tone; it is wording-only and not legal, tax, accounting, collections, or financial advice.",
+      "cta": "Open the invoice follow-up generator",
+      "linkPath": "tools/invoice-followup-email",
+      "campaign": "invoice_followup_service",
+      "content": "share-kit-community",
+      "url": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email?utm_source=community&utm_medium=organic&utm_campaign=invoice_followup_service&utm_content=share-kit-community"
+    },
+    {
+      "channel": "directory",
+      "title": "Invoice reminder resource listing",
+      "hook": "Free invoice generator plus optional follow-up wording pack.",
+      "body": "PrintableTools Lab has a free no-signup invoice generator and a free invoice follow-up email generator for freelancers and small service teams. The optional $19 Invoice Follow-up Copy Pack is manually reviewed, payment happens only through an external provider after fit is confirmed, and no private invoice, bank, tax, card, or client details are requested on-site.",
+      "cta": "List as an invoice communication resource",
+      "linkPath": "invoice-followup-copy-pack",
+      "campaign": "invoice_followup_service",
+      "content": "share-kit-directory",
+      "url": "https://printable-tools-lab.pages.dev/invoice-followup-copy-pack?utm_source=directory&utm_medium=organic&utm_campaign=invoice_followup_service&utm_content=share-kit-directory"
     },
     {
       "channel": "game-platform",
@@ -347,6 +375,26 @@
         "copy": "If the site gives a file-size or format error, this free upload-limit fixer maps the message to the right no-signup PDF or image tool: https://printable-tools-lab.pages.dev/upload-limit-fixer/?utm_source=community&utm_medium=organic&utm_campaign=free_tool_depth&utm_content=free-tool-depth-upload-limit",
         "successSignal": "free_tool_depth visits increase and at least one visitor opens a fixer tool or downloads a processed file.",
         "riskRule": "Answer the specific upload problem only; do not ask for ad clicks, payments, or private files."
+      },
+      {
+        "id": "community-invoice-followup-copy",
+        "channel": "community",
+        "title": "Helpful reply for polite invoice follow-up wording",
+        "trigger": "Use only when a freelancer, consultant, or small service owner asks how to write a polite invoice reminder, due-today note, overdue follow-up, paid thank-you, or next-invoice message.",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/?utm_source=community&utm_medium=organic&utm_campaign=invoice_followup_service&utm_content=community-invoice-followup-copy",
+        "copy": "For wording only, this free invoice follow-up email generator can draft a polite reminder, due-today note, overdue follow-up, paid thank-you, or next-invoice message: https://printable-tools-lab.pages.dev/tools/invoice-followup-email/?utm_source=community&utm_medium=organic&utm_campaign=invoice_followup_service&utm_content=community-invoice-followup-copy. There is an optional $19 copy pack fit check if someone wants one workflow drafted in their own tone; it is not legal, tax, accounting, collections, or financial advice.",
+        "successSignal": "invoice_followup_service UTM visits appear and at least one visitor submits a service fit check or opens the invoice generator path.",
+        "riskRule": "Lead with the free generator, avoid regulated advice, and do not ask for invoice numbers, client names, bank, tax, card, or private payment details."
+      },
+      {
+        "id": "directory-invoice-followup-resource",
+        "channel": "directory",
+        "title": "Directory listing for invoice follow-up wording resource",
+        "trigger": "Use on directories or resource pages that accept freelancer, invoice, admin-template, small-business, or business-writing resources.",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/invoice-followup-copy-pack/?utm_source=directory&utm_medium=organic&utm_campaign=invoice_followup_service&utm_content=directory-invoice-followup-resource",
+        "copy": "PrintableTools Lab offers a free no-signup invoice generator, a free invoice follow-up email generator, and an optional USD 19 Invoice Follow-up Copy Pack for editable reminder, due-today, overdue, thank-you, and next-invoice wording. Listing URL: https://printable-tools-lab.pages.dev/invoice-followup-copy-pack/?utm_source=directory&utm_medium=organic&utm_campaign=invoice_followup_service&utm_content=directory-invoice-followup-resource",
+        "successSignal": "A directory referral or resource-page UTM visit appears, followed by a service_request_intent or service lead.",
+        "riskRule": "Submit only where resource listings are welcome; do not claim payment recovery, legal compliance, tax/accounting outcomes, or guaranteed collections."
       }
     ]
   },
@@ -535,7 +583,7 @@
       }
     ],
     "externalDiscoveryProof": {
-      "generatedAt": "2026-06-08T05:49:33.332Z",
+      "generatedAt": "2026-06-08T06:23:48.769Z",
       "directoryListedCount": 7,
       "directoryPendingCount": 6,
       "directoryErrorCount": 1,
