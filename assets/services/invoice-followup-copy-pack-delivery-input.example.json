@@ -1,0 +1,20 @@
+{
+  "serviceId": "invoice-followup-copy-pack",
+  "orderId": "sample-invoice-followup-001",
+  "paymentStatus": "sample_only_not_revenue",
+  "paidOrderVerified": false,
+  "businessName": "Sample Freelance Studio",
+  "invoiceStatus": "sent, due soon",
+  "preferredTone": "friendly, concise, professional",
+  "followupNeed": "one polite reminder now and one firmer overdue follow-up if payment is late",
+  "paymentWording": "Pay through the secure link already shared on the invoice",
+  "needByDate": "2026-06-10",
+  "publicContact": "hello@example.com",
+  "avoidClaims": [
+    "legal threats",
+    "late-fee language not already agreed",
+    "tax or accounting advice"
+  ],
+  "deliveryNotes": "Sample only. A real delivery should be generated only after paid_order_verified.",
+  "buyerReviewRequired": true
+}

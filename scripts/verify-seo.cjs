@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { routes, siteUrl, landingPages, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, HIGH_INTENT_TOOL_PATHS, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, SPONSOR_DISCOVERY_LINKS, SPONSOR_VERTICALS, SPONSOR_DEALS, tools, guides } = require("./seo-content.cjs");
+const { routes, siteUrl, landingPages, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, INVOICE_FOLLOWUP_COPY_PACK_SERVICE, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, HIGH_INTENT_TOOL_PATHS, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, SPONSOR_DISCOVERY_LINKS, SPONSOR_VERTICALS, SPONSOR_DEALS, tools, guides } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const failures = [];
@@ -425,11 +425,11 @@ else {
   if (!script.includes("free_tool_depth")) failures.push("Missing download success free-tool depth campaign.");
   if (!script.includes('data-track-event="free_tool_depth"')) failures.push("Missing download success free-tool depth event tracking.");
   if (!script.includes("Browse more free tools")) failures.push("Missing download success free-tool browse CTA.");
-  if (!script.includes("download-service-close") || !script.includes("Want a practical local print pack?") || !script.includes("30-second free fit check")) failures.push("Missing download success low-friction service close CTA.");
-  if (!script.includes("/custom-local-print-pack/?utm_source=download_success") || !script.includes("/market-table-print-audit/?utm_source=download_success")) failures.push("Missing download success service/audit tracked paths.");
+  if (!script.includes("download-service-close") || !script.includes("Want a practical local print pack?") || !script.includes("Need words to follow up on this invoice?") || !script.includes("30-second free fit check")) failures.push("Missing download success low-friction service close CTA.");
+  if (!script.includes("/custom-local-print-pack/?utm_source=download_success") || !script.includes("/invoice-followup-copy-pack/?utm_source=download_success") || !script.includes("/market-table-print-audit/?utm_source=download_success")) failures.push("Missing download success service/audit tracked paths.");
   if (!script.includes('data-track-event="service_request_intent"') || !script.includes('data-track-event="audit_request_intent"')) failures.push("Missing download success service/audit intent tracking.");
   if (!script.includes("Payment starts only after fit is confirmed and a real external checkout or invoice is paid")) failures.push("Missing download success external-payment gate.");
-  if (!script.includes("renderDownloadServiceLeadForm") || !script.includes("download-service-lead-form") || !script.includes("Send free fit check") || !script.includes("free fit check for the $29 local print pack")) failures.push("Missing inline low-friction service lead form after download success.");
+  if (!script.includes("renderDownloadServiceLeadForm") || !script.includes("download-service-lead-form") || !script.includes("Send free fit check") || !script.includes("Send invoice fit check") || !script.includes("free fit check for the $19 invoice follow-up copy pack") || !script.includes("free fit check for the $29 local print pack")) failures.push("Missing inline low-friction service lead form after download success.");
   if (!script.includes('data-utm-source="download_success"') || !script.includes("form.dataset.leadPath") || !script.includes("fieldOrDataOrParam")) failures.push("Download success service lead form missing attribution preservation.");
   if (!script.includes("Future ads must stay separated from generator controls")) failures.push("Missing download success ad-safety warning.");
   if (!script.includes("renderInvoiceSponsorCloseCta") || !script.includes("invoice-sponsor-close-cta") || !script.includes("utm_source=download_success") || !script.includes("small-business-paperwork-sponsors")) failures.push("app.js missing invoice-specific sponsor close CTA on tool/download success.");
@@ -460,6 +460,7 @@ else {
   if (!script.includes("sponsorInvoiceRequestCopy(prospect, deal, vertical, proposalUrl)")) failures.push("app.js ops sponsor cards should copy a real invoice request.");
   if (!script.includes("renderLocalSellerStarterKit") || !script.includes("Request checkout link")) failures.push("app.js missing restored seller kit checkout-request path.");
   if (!script.includes("renderCustomLocalPrintPackService") || !script.includes("Request free fit check") || !script.includes("customLocalPrintPackRequestCopy")) failures.push("app.js missing restored custom print pack service request path.");
+  if (!script.includes("renderInvoiceFollowupCopyPackService") || !script.includes("Invoice Follow-up Copy Pack") || !script.includes("invoiceFollowupRequestCopy")) failures.push("app.js missing invoice follow-up service request path.");
   if (!script.includes("renderMarketTablePrintAudit") || !script.includes("Request free audit") || !script.includes("marketTableAuditRequestCopy")) failures.push("app.js missing restored free audit lead magnet path.");
   if (!script.includes("serviceCheckoutUrl") || !script.includes("service_checkout_click") || !script.includes("Buy setup for $29")) failures.push("app.js missing direct external service checkout support.");
   if (!script.includes("checkoutActivationHtml") || !script.includes("External payment link readiness") || !script.includes("Copy config command")) failures.push("app.js ops monitor missing checkout activation panel.");
@@ -523,6 +524,7 @@ else {
   const serviceLeadScript = fs.readFileSync(serviceLeadFunctionFile, "utf8");
   if (!serviceLeadScript.includes("service:lead:") || !serviceLeadScript.includes("service:lead_index")) failures.push("Service lead API should persist private leads and a public-safe index.");
   if (!serviceLeadScript.includes("service_request_intent") || !serviceLeadScript.includes("audit_request_intent") || !serviceLeadScript.includes("seller_checkout_intent")) failures.push("Service lead API should roll submitted leads into existing commercial intent metrics.");
+  if (!serviceLeadScript.includes("invoice-followup-copy-pack") || !serviceLeadScript.includes("Invoice Follow-up Copy Pack")) failures.push("Service lead API missing invoice follow-up service type.");
   if (!serviceLeadScript.includes("publicLeadSummary") || !serviceLeadScript.includes("privateFields") || !serviceLeadScript.includes("not exposed")) failures.push("Service lead API should expose only public-safe summary counts.");
   if (!serviceLeadScript.includes("fallbackPublicReplyUrl") || !serviceLeadScript.includes("Public-safe service request")) failures.push("Service lead API should provide a public-safe GitHub fallback.");
 }
@@ -1150,6 +1152,31 @@ else {
   if (!html.includes("real external checkout") || !html.includes("No payment is collected")) failures.push("Service route missing external-payment gate.");
   if (!html.includes("Copy generated service request") && !html.includes("Copy request brief")) failures.push("Service route missing copy-ready request.");
   if (!sitemap.includes(`<loc>${siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}</loc>`)) failures.push("Sitemap should include restored service route.");
+}
+
+const invoiceFollowupRouteFile = path.join(root, INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug, "index.html");
+if (!fs.existsSync(invoiceFollowupRouteFile)) failures.push("Missing invoice follow-up copy pack service route.");
+else {
+  const html = fs.readFileSync(invoiceFollowupRouteFile, "utf8");
+  if (!html.includes(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.name) || !html.includes("Request a free invoice follow-up fit check") || !html.includes(`$${INVOICE_FOLLOWUP_COPY_PACK_SERVICE.priceUsd}`)) failures.push("Invoice follow-up route missing low-friction paid service CTA.");
+  if (!html.includes('data-service-lead-form') || !html.includes('data-service-type="invoice-followup-copy-pack"') || !html.includes("Send invoice fit check")) failures.push("Invoice follow-up route missing service lead form.");
+  if (!html.includes("What kind of invoice follow-up do you need?") || !html.includes("Invoice status and public-safe context") || !html.includes("Preferred tone")) failures.push("Invoice follow-up route request builder should use invoice-specific fields.");
+  for (const retiredInvoiceCopy of ["Cookies, market boxes", "QR sign link", "Start with free audit"]) {
+    if (html.includes(retiredInvoiceCopy)) failures.push(`Invoice follow-up route should not include custom print-pack request copy: ${retiredInvoiceCopy}`);
+  }
+  if (!html.includes("real external checkout") || !html.includes("No payment is collected")) failures.push("Invoice follow-up route missing external-payment gate.");
+  if (!html.includes("not legal, tax, accounting, debt-collection, or financial advice")) failures.push("Invoice follow-up route missing advice-risk boundary.");
+  if (!sitemap.includes(`<loc>${siteUrl(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug)}</loc>`)) failures.push("Sitemap should include invoice follow-up service route.");
+}
+
+const invoiceFollowupDocsRouteFile = path.join(root, "docs", INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug, "index.html");
+if (!fs.existsSync(invoiceFollowupDocsRouteFile)) failures.push("Missing invoice follow-up copy pack docs mirror route.");
+else {
+  const html = fs.readFileSync(invoiceFollowupDocsRouteFile, "utf8");
+  if (!html.includes("What kind of invoice follow-up do you need?") || !html.includes("Invoice status and public-safe context") || !html.includes("Preferred tone")) failures.push("Invoice follow-up docs mirror should use invoice-specific request fields.");
+  for (const retiredInvoiceCopy of ["Cookies, market boxes", "QR sign link", "Start with free audit", "See the $9 template kit"]) {
+    if (html.includes(retiredInvoiceCopy)) failures.push(`Invoice follow-up docs mirror should not include custom print-pack request copy: ${retiredInvoiceCopy}`);
+  }
 }
 
 const auditRouteFile = path.join(root, MARKET_TABLE_PRINT_AUDIT.slug, "index.html");

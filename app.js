@@ -5503,6 +5503,7 @@
     if (parts[0] === "sponsor") return renderSponsorPage();
     if (parts[0] === "local-seller-starter-kit") return renderLocalSellerStarterKit();
     if (parts[0] === "custom-local-print-pack") return renderCustomLocalPrintPackService();
+    if (parts[0] === "invoice-followup-copy-pack") return renderInvoiceFollowupCopyPackService();
     if (parts[0] === "market-table-print-audit") return renderMarketTablePrintAudit();
     if (parts[0] === "custom-local-print-pack-sales-pack") return renderServiceSalesPack();
     if (landingPagesBySlug[parts[0]]) return renderLandingPage(parts[0]);
@@ -6199,6 +6200,73 @@
     `;
   }
 
+  function renderInvoiceFollowupCopyPackService() {
+    const checkoutUrl = CONFIG.serviceCheckoutUrl || "";
+    const checkoutConfigured = Boolean(checkoutUrl);
+    const primaryServiceHref = checkoutConfigured ? checkoutUrl : "#service-request";
+    const primaryServiceTarget = checkoutConfigured ? ' target="_blank" rel="noreferrer"' : "";
+    setMeta("Invoice Follow-up Copy Pack", "Request a $19 manual copy pack for polite invoice reminders, due-today notes, overdue follow-ups, paid thank-yous, and next-invoice wording.");
+    setJsonLd({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "Invoice Follow-up Copy Pack",
+      description: "A manual invoice follow-up copy pack for freelancers and small teams.",
+      offers: { "@type": "Offer", price: "19", priceCurrency: "USD", availability: checkoutConfigured ? "https://schema.org/InStock" : "https://schema.org/PreOrder", url: checkoutUrl || absoluteUrl("/invoice-followup-copy-pack/") },
+    });
+    const deliverables = [
+      "polite payment reminder email",
+      "due-today payment note",
+      "first overdue follow-up",
+      "paid thank-you message",
+      "next-invoice or recurring-work note",
+    ];
+    app.innerHTML = `
+      <section class="shell page-title section product-hero">
+        <a href="/tools/invoice-generator/">Free invoice generator</a>
+        <h1>Invoice Follow-up Copy Pack</h1>
+        <p>A $19 done-for-you copy pack for freelancers and small teams who just made an invoice and need professional follow-up wording: polite reminders, due-today notes, first overdue messages, paid thank-yous, and next-invoice copy.</p>
+        <div class="hero-actions">
+          <a class="button" data-track-event="${checkoutConfigured ? "service_checkout_click" : "service_request_intent"}" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(primaryServiceHref)}"${primaryServiceTarget}>${checkoutConfigured ? "Buy copy pack for $19" : "Request invoice fit check"}</a>
+          <a class="button secondary" href="/tools/invoice-generator/">Open free invoice generator</a>
+          <button class="button ghost" type="button" data-copy-text="${escapeHtml(invoiceFollowupRequestCopy())}" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack">Copy request brief</button>
+        </div>
+        <p class="notice">${checkoutConfigured ? "Checkout is configured through an external payment provider. Revenue is still proven only after that provider shows a paid or settled order." : "Payment starts only after fit is confirmed and a real external checkout or invoice link is paid. This is editable wording only, not legal, tax, accounting, debt-collection, or financial advice."}</p>
+        <div class="hero-proof" aria-label="Invoice follow-up service readiness">
+          <div class="proof-tile"><strong>$19</strong><span>copy pack price</span></div>
+          <div class="proof-tile"><strong>5</strong><span>message blocks</span></div>
+          <div class="proof-tile"><strong>1 day</strong><span>target turnaround</span></div>
+        </div>
+      </section>
+      ${renderServiceLeadForm({
+        serviceType: "invoice-followup-copy-pack",
+        title: "Request a free invoice follow-up fit check",
+        cta: "Send invoice fit check",
+        intro: "Send a reply contact and one public-safe note about the invoice status and tone you need. If it fits, the $19 copy pack starts only through an external checkout or invoice.",
+        placeholder: "I sent an invoice for a freelance project and need a friendly reminder plus a firmer overdue follow-up. No private invoice or client details included.",
+      })}
+      <section class="shell section">
+        <h2>What you get</h2>
+        <div class="grid-3">
+          ${deliverables.map((item) => `<article class="panel"><h3>${escapeHtml(item)}</h3><p>Delivered as editable wording you review before sending to your own client.</p></article>`).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Details needed</h2>
+        <ul>
+          <li>Business or project name.</li>
+          <li>Invoice status: draft, sent, due today, overdue, paid, or recurring.</li>
+          <li>Preferred tone: friendly, firm, concise, or warm.</li>
+          <li>Payment wording to mention without private account details.</li>
+          <li>Need-by date or follow-up timeline.</li>
+        </ul>
+      </section>
+      <section class="shell section">
+        <h2>Money gate</h2>
+        <p>Requests and clicks are not revenue. Count revenue only after an external provider shows paid order, payout balance, or settled payment for this invoice follow-up service.</p>
+      </section>
+    `;
+  }
+
   function renderMarketTablePrintAudit() {
     const auditUrl = "https://github.com/yanqr213/printable-tools-lab/issues/new?template=market-table-print-audit.yml";
     const upgradeCheckoutUrl = CONFIG.auditUpgradeCheckoutUrl || CONFIG.serviceCheckoutUrl || CONFIG.customPrintPackCheckoutUrl || "";
@@ -6763,6 +6831,22 @@
     ].join("\n");
   }
 
+  function invoiceFollowupRequestCopy() {
+    return [
+      "I want a free fit check for the Invoice Follow-up Copy Pack ($19 USD if it fits).",
+      "",
+      "Business or project name:",
+      "Invoice status: draft / sent / due today / overdue / paid / recurring",
+      "Preferred tone: friendly / firm / concise / warm",
+      "Follow-up copy needed:",
+      "Payment wording to mention, without private account details:",
+      "Need-by date or timeline:",
+      "",
+      "No payment is collected by this request. Please review fit first; send a real external checkout or invoice link only if the service is useful and available.",
+      "Do not include invoice numbers, bank details, card data, tax IDs, client private data, private customer lists, or legal dispute details.",
+    ].join("\n");
+  }
+
   function marketTableAuditChecks() {
     return [
       "Do shoppers see a clear price for each item or service?",
@@ -6870,12 +6954,14 @@
   }
 
   function serviceLeadTrackTool(serviceType) {
+    if (serviceType === "invoice-followup-copy-pack") return "invoice-followup-copy-pack";
     if (serviceType === "market-table-print-audit") return "market-table-print-audit";
     if (serviceType === "local-seller-starter-kit") return "local-seller-starter-kit";
     return "custom-local-print-pack";
   }
 
   function serviceLeadTitle(serviceType) {
+    if (serviceType === "invoice-followup-copy-pack") return "Invoice Follow-up Copy Pack";
     if (serviceType === "market-table-print-audit") return "Free Market Table Print Audit";
     if (serviceType === "local-seller-starter-kit") return "Local Seller Starter Kit";
     return "Custom Local Print Pack Setup";
@@ -7866,11 +7952,22 @@ ${paragraphs.join("\n")}
     const uploadHref = `/upload-limit-fixer/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     const finderHref = `/free-pdf-tools/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     const serviceHref = `/custom-local-print-pack/?utm_source=download_success&utm_medium=site&utm_campaign=service_request&utm_content=${content}#service-request`;
+    const invoiceFollowupHref = `/invoice-followup-copy-pack/?utm_source=download_success&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=${content}#service-request`;
     const auditHref = `/market-table-print-audit/?utm_source=download_success&utm_medium=site&utm_campaign=audit_request&utm_content=${content}#service-request`;
     const sponsorHref = `/sponsor-starter-review/?utm_source=download_success&utm_medium=site&utm_campaign=sponsor_starter_review&utm_content=${content}&vertical=small-business-paperwork-sponsors&commitment=request-invoice#sponsor-inquiry`;
     const invoiceSponsorAction = tool.id === "invoice-generator"
       ? `<a class="button" data-track-event="sponsor_request_intent" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(sponsorHref)}">Request USD 49 invoice review</a>`
       : "";
+    const invoiceFollowupAction = tool.id === "invoice-generator"
+      ? `<a class="button" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(invoiceFollowupHref)}">Get $19 follow-up copy</a>`
+      : "";
+    const serviceAction = tool.id === "invoice-generator"
+      ? invoiceFollowupAction
+      : `<a class="button" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="${escapeHtml(serviceHref)}">Start free fit check</a>`;
+    const serviceHeadline = tool.id === "invoice-generator" ? "Need words to follow up on this invoice?" : "Want a practical local print pack?";
+    const serviceHelp = tool.id === "invoice-generator"
+      ? "Send a 30-second free fit check for a $19 Invoice Follow-up Copy Pack: polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording. Payment starts only after fit is confirmed and a real external checkout or invoice is paid."
+      : "Send a 30-second free fit check for the $29 Custom Local Print Pack Setup, or start with a free Market Table Print Audit. Payment starts only after fit is confirmed and a real external checkout or invoice is paid.";
     return `
       <div class="download-after-action" aria-label="Next step after download">
         <div>
@@ -7880,12 +7977,12 @@ ${paragraphs.join("\n")}
         </div>
         <div class="download-service-close">
           <p class="eyebrow">Optional done-for-you help</p>
-          <strong>Want a practical local print pack?</strong>
-          <p class="help">Send a 30-second free fit check for the $29 Custom Local Print Pack Setup, or start with a free Market Table Print Audit. Payment starts only after fit is confirmed and a real external checkout or invoice is paid.</p>
+          <strong>${escapeHtml(serviceHeadline)}</strong>
+          <p class="help">${escapeHtml(serviceHelp)}</p>
         </div>
         ${renderDownloadServiceLeadForm(tool)}
         <div class="download-after-actions">
-          <a class="button" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="${escapeHtml(serviceHref)}">Request $29 setup</a>
+          ${serviceAction}
           <a class="button secondary" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${escapeHtml(auditHref)}">Free print audit first</a>
           ${invoiceSponsorAction}
           <a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(uploadHref)}">Fix upload limits</a>
@@ -7900,39 +7997,48 @@ ${paragraphs.join("\n")}
     if (!tool || !LOCAL_SELLER_FUNNEL_TOOL_IDS.has(tool.id)) return "";
     const toolId = tool.id || "download";
     const sourcePath = `/tools/${toolId}/`;
+    const isInvoice = toolId === "invoice-generator";
+    const serviceType = isInvoice ? "invoice-followup-copy-pack" : "custom-local-print-pack";
+    const serviceTool = isInvoice ? "invoice-followup-copy-pack" : "custom-local-print-pack";
+    const campaign = isInvoice ? "invoice_followup_service" : "service_request";
+    const defaultSummary = isInvoice
+      ? `I just downloaded ${tool.shortTitle || tool.title || toolId} and want a free fit check for the $19 invoice follow-up copy pack.`
+      : `I just downloaded ${tool.shortTitle || tool.title || toolId} and want a free fit check for the $29 local print pack.`;
+    const fieldLabel = isInvoice ? "What invoice follow-up copy do you need?" : "What should be assembled?";
+    const buttonText = isInvoice ? "Send invoice fit check" : "Send free fit check";
     const fallbackUrl = serviceLeadFallbackUrl({
-      serviceType: "custom-local-print-pack",
+      serviceType,
       businessName: "",
       contact: "",
       needBy: "",
-      requestSummary: `I just downloaded ${tool.shortTitle || tool.title || toolId} and want a free fit check for the $29 local print pack.`,
+      requestSummary: defaultSummary,
       path: sourcePath,
     });
     return `
-      <form class="download-service-lead-form" data-service-lead-form data-service-type="custom-local-print-pack" data-lead-path="${escapeHtml(sourcePath)}" data-utm-source="download_success" data-utm-medium="site" data-utm-campaign="service_request" data-utm-content="${escapeHtml(toolId)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+      <form class="download-service-lead-form" data-service-lead-form data-service-type="${escapeHtml(serviceType)}" data-lead-path="${escapeHtml(sourcePath)}" data-utm-source="download_success" data-utm-medium="site" data-utm-campaign="${escapeHtml(campaign)}" data-utm-content="${escapeHtml(toolId)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
         <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <input type="hidden" name="serviceType" value="custom-local-print-pack">
+        <input type="hidden" name="serviceType" value="${escapeHtml(serviceType)}">
         <input type="hidden" name="businessName" value="Downloaded ${escapeHtml(tool.shortTitle || tool.title || toolId)}">
         <input type="hidden" name="needBy" value="">
         <input type="hidden" name="utmSource" value="download_success">
         <input type="hidden" name="utmMedium" value="site">
-        <input type="hidden" name="utmCampaign" value="service_request">
+        <input type="hidden" name="utmCampaign" value="${escapeHtml(campaign)}">
         <input type="hidden" name="utmContent" value="${escapeHtml(toolId)}">
         <label class="field">
           <span>Reply email or public contact</span>
           <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or @publichandle" required>
         </label>
         <label class="field">
-          <span>What should be assembled?</span>
-          <textarea name="requestSummary" maxlength="1000" required>I just downloaded ${escapeHtml(tool.shortTitle || tool.title || toolId)} and want a free fit check for the $29 local print pack.</textarea>
+          <span>${escapeHtml(fieldLabel)}</span>
+          <textarea name="requestSummary" maxlength="1000" required>${escapeHtml(defaultSummary)}</textarea>
         </label>
         <label class="check-row">
           <input name="consent" type="checkbox" required>
           <span>I will keep payment, tax, identity, passwords, customer lists, and private files outside this request.</span>
         </label>
         <div class="actions">
-          <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Send free fit check</button>
-          <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open GitHub backup</a>
+          <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="${escapeHtml(serviceTool)}">${escapeHtml(buttonText)}</button>
+          <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="${escapeHtml(serviceTool)}" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open GitHub backup</a>
         </div>
         <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send a public-safe fit check here. Payment still happens only through a real external checkout or invoice after fit is confirmed.</p>
       </form>
@@ -8755,6 +8861,9 @@ ${paragraphs.join("\n")}
     const serviceRequests = numberSignal(serviceLeadCheck?.serviceRequestCount);
     const auditRequests = numberSignal(serviceLeadCheck?.auditRequestCount);
     const sellerRequests = numberSignal(serviceLeadCheck?.sellerKitRequestCount);
+    const serviceTypes = serviceLeadCheck?.serviceTypes || {};
+    const invoiceFollowupRequests = numberSignal(serviceTypes["invoice-followup-copy-pack"]);
+    const localPrintRequests = numberSignal(serviceTypes["custom-local-print-pack"]);
     const serviceIntent = numberSignal(totals.service_request_intent);
     const auditIntent = numberSignal(totals.audit_request_intent);
     const sellerIntent = numberSignal(totals.seller_checkout_intent);
@@ -8762,14 +8871,26 @@ ${paragraphs.join("\n")}
     return [
       {
         lane: "$29 service setup",
-        signal: `${serviceRequests} lead(s), ${serviceIntent} request intent`,
-        state: serviceRequests ? "lead captured" : serviceIntent ? "intent only" : "waiting",
-        nextAction: serviceRequests
+        signal: `${localPrintRequests} lead(s), ${serviceIntent} request intent`,
+        state: localPrintRequests ? "lead captured" : serviceIntent ? "intent only" : "waiting",
+        nextAction: localPrintRequests
           ? "Export service leads, confirm fit, then send the external checkout or invoice reply."
           : "Keep the request form live and use the payment reply as soon as a qualified service lead arrives.",
         proofGate: "paid_order_verified from external provider",
         command: "npm.cmd run service:leads",
         copy: serviceLeadPaymentReplyCopy({ serviceType: "custom-local-print-pack", path: "/custom-local-print-pack/" }),
+        link: "/api/service-lead",
+      },
+      {
+        lane: "$19 invoice follow-up copy",
+        signal: `${invoiceFollowupRequests} lead(s), ${serviceIntent} shared service intent`,
+        state: invoiceFollowupRequests ? "lead captured" : "waiting",
+        nextAction: invoiceFollowupRequests
+          ? "Export service leads, confirm the invoice copy scope, then send the external checkout or invoice reply."
+          : "Keep the invoice download form live and use this reply as soon as a qualified invoice follow-up lead arrives.",
+        proofGate: "paid_order_verified from external provider",
+        command: "npm.cmd run service:leads",
+        copy: serviceLeadPaymentReplyCopy({ serviceType: "invoice-followup-copy-pack", path: "/invoice-followup-copy-pack/" }),
         link: "/api/service-lead",
       },
       {
@@ -8893,6 +9014,27 @@ ${paragraphs.join("\n")}
         "Please keep payment, tax, bank, card, identity, password, customer-list, private address, and private file details outside the website form.",
       ].join("\n");
     }
+    if (serviceType === "invoice-followup-copy-pack") {
+      return [
+        "Subject: Invoice Follow-up Copy Pack - fit confirmed, external payment before work starts",
+        "",
+        "Thanks for sending the public-safe invoice follow-up request. This looks like it may fit the simple copy-pack scope.",
+        "",
+        "Scope after payment:",
+        "- one polite payment reminder email",
+        "- one due-today payment note",
+        "- one first overdue follow-up",
+        "- one paid thank-you message",
+        "- one next-invoice or recurring-work note",
+        "",
+        "Price: $19 USD",
+        `Request source: ${sourcePath}`,
+        "",
+        "Next step: I will send one real external checkout or invoice link. Please pay only through that external provider. Do not send card, bank, payout, tax, identity, private invoice numbers, client private data, customer lists, or legal dispute details through the website, GitHub, or email.",
+        "",
+        "After the provider shows paid_order_verified, the copy pack can be prepared and delivered. Revenue is counted only from the external provider's paid or settled order record.",
+      ].join("\n");
+    }
     return [
       "Subject: Custom Local Print Pack Setup - fit confirmed, external payment before work starts",
       "",
@@ -8944,6 +9086,17 @@ ${paragraphs.join("\n")}
         checkoutClicks: totals.service_checkout_click || 0,
         requestIntent: totals.service_request_intent || 0,
         copy: customLocalPrintPackCheckoutListingCopy(),
+      },
+      {
+        sku: "Invoice Follow-up Copy Pack",
+        price: "$19 USD",
+        configured: Boolean(CONFIG.serviceCheckoutUrl),
+        configKey: "serviceCheckoutUrl",
+        command: "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/invoice-followup-copy-pack",
+        publicPage: "/invoice-followup-copy-pack/",
+        checkoutClicks: totals.service_checkout_click || 0,
+        requestIntent: totals.service_request_intent || 0,
+        copy: invoiceFollowupRequestCopy(),
       },
       {
         sku: "Audit upgrade checkout",

@@ -6,7 +6,7 @@ const {
   zipServiceDelivery,
   sha256Buffer,
 } = require("./service-delivery-kit.cjs");
-const { CUSTOM_LOCAL_PRINT_PACK_SERVICE } = require("./seo-content.cjs");
+const { CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES } = require("./seo-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 
@@ -14,10 +14,11 @@ main();
 
 function main() {
   const args = parseArgs(process.argv.slice(2));
+  const service = PAID_SERVICES.find((item) => item.id === args.service) || CUSTOM_LOCAL_PRINT_PACK_SERVICE;
   if (args["write-template"]) {
     const target = path.resolve(root, args["write-template"]);
     fs.mkdirSync(path.dirname(target), { recursive: true });
-    fs.writeFileSync(target, `${JSON.stringify(serviceDeliveryInputExample(CUSTOM_LOCAL_PRINT_PACK_SERVICE), null, 2)}\n`);
+    fs.writeFileSync(target, `${JSON.stringify(serviceDeliveryInputExample(service), null, 2)}\n`);
     console.log(`Wrote service delivery input template to ${path.relative(root, target)}`);
     return;
   }
@@ -54,7 +55,7 @@ function main() {
     paidOrderVerified: Boolean(input.paidOrderVerified || input.paymentStatus === "paid_order_verified"),
     buyerReviewRequired: true,
     gitIgnoredExpected: path.relative(root, zipPath).startsWith(`paid-deliverables${path.sep}`),
-    moneyGate: CUSTOM_LOCAL_PRINT_PACK_SERVICE.successGate,
+    moneyGate: (PAID_SERVICES.find((item) => item.id === input.serviceId) || CUSTOM_LOCAL_PRINT_PACK_SERVICE).successGate,
     warnings: validation.warnings,
   };
   fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`);

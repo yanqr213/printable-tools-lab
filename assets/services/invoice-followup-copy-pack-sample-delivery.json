@@ -1,0 +1,21 @@
+{
+  "service": "Invoice Follow-up Copy Pack",
+  "generatedAt": "2026-06-08T04:54:22.447Z",
+  "sampleOnly": true,
+  "sampleDelivery": {
+    "path": "assets/services/invoice-followup-copy-pack-sample-delivery.zip",
+    "url": "https://printable-tools-lab.pages.dev/assets/services/invoice-followup-copy-pack-sample-delivery.zip",
+    "sizeBytes": 3714,
+    "sha256": "c0a7bd0dc8a6158372b60572eb9b88d158e7a5af98119ed5291345df71faea2f"
+  },
+  "deliveryInputExample": {
+    "path": "assets/services/invoice-followup-copy-pack-delivery-input.example.json",
+    "url": "https://printable-tools-lab.pages.dev/assets/services/invoice-followup-copy-pack-delivery-input.example.json",
+    "sizeBytes": 806,
+    "sha256": "c8e8e7048653c2b52895210cae348e59d12700b49141c82ea1237a63adc88f0e"
+  },
+  "privateDeliveryCommand": "npm.cmd run service:delivery -- --input path/to/paid-order.json",
+  "privateDeliveryOutput": "paid-deliverables/service-orders/<order-id>.zip",
+  "moneyGate": "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this invoice follow-up service.",
+  "buyerReviewRequired": true
+}

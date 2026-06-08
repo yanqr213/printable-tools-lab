@@ -120,7 +120,62 @@ const CUSTOM_LOCAL_PRINT_PACK_SERVICE = {
   successGate: "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this service.",
 };
 
-const PAID_SERVICES = [CUSTOM_LOCAL_PRINT_PACK_SERVICE];
+const INVOICE_FOLLOWUP_COPY_PACK_SERVICE = {
+  id: "invoice-followup-copy-pack",
+  slug: "invoice-followup-copy-pack",
+  name: "Invoice Follow-up Copy Pack",
+  headline: "Invoice Follow-up Copy Pack for freelancers and small teams",
+  shortDescription: "A $19 manual copy pack request for one invoice workflow: polite payment reminder, due-today note, overdue follow-up, paid thank-you, and next-invoice wording.",
+  description: "A tiny done-for-you service for people who just made an invoice and need professional follow-up words without asking for legal, tax, collection, or accounting advice. The buyer sends public-safe context, preferred tone, due date, and invoice status; the seller returns editable reminder copy they can review and send themselves.",
+  priceUsd: 19,
+  currency: "USD",
+  checkoutUrl: configuredServiceCheckoutUrl(),
+  contactEmail: configuredContactEmail(),
+  publicRequestPath: "assets/services/invoice-followup-copy-pack-request.txt",
+  publicPaymentReplyPath: "assets/services/invoice-followup-copy-pack-payment-reply.txt",
+  publicFulfillmentChecklistPath: "assets/services/invoice-followup-copy-pack-fulfillment-checklist.txt",
+  publicOrderPipelinePath: "assets/services/invoice-followup-copy-pack-order-pipeline.json",
+  publicOutreachQueuePath: "assets/services/invoice-followup-copy-pack-outreach-queue.json",
+  publicOutreachBatchPath: "assets/services/invoice-followup-copy-pack-outreach-batch.txt",
+  publicSampleDeliveryPath: "assets/services/invoice-followup-copy-pack-sample-delivery.zip",
+  publicDeliveryInputExamplePath: "assets/services/invoice-followup-copy-pack-delivery-input.example.json",
+  publicDeliveryReportPath: "assets/services/invoice-followup-copy-pack-sample-delivery.json",
+  issueTemplatePath: "",
+  issueFormUrl: "https://github.com/yanqr213/printable-tools-lab/issues/new",
+  turnaround: "Target delivery is 1 business day after real payment and complete public-safe details.",
+  deliverables: [
+    "one polite payment reminder email",
+    "one due-today payment note",
+    "one first overdue follow-up",
+    "one paid thank-you message",
+    "one next-invoice or recurring-work note",
+  ],
+  buyerInputs: [
+    "public-safe business or project name",
+    "invoice status: draft, sent, due today, overdue, or paid",
+    "preferred tone: friendly, firm, concise, or warm",
+    "payment method wording that does not include private account details",
+    "need-by date or follow-up timeline",
+  ],
+  relatedTools: [
+    "tools/invoice-generator",
+    "tools/estimate-generator",
+    "tools/receipt-generator",
+    "tools/work-order",
+    "tools/timesheet-generator",
+    "tools/qr-code",
+  ],
+  riskControls: [
+    "The service provides editable communication copy only, not legal, tax, accounting, debt-collection, or financial advice.",
+    "Do not send invoice numbers, customer private data, bank details, card data, tax IDs, identity documents, or full client lists.",
+    "The buyer must review every message for accuracy, tone, jurisdiction, and client relationship before sending.",
+    "The service does not contact the buyer's client, collect payments, or guarantee payment outcomes.",
+    "Work starts only after a real external checkout or invoice is paid and verified.",
+  ],
+  successGate: "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this invoice follow-up service.",
+};
+
+const PAID_SERVICES = [CUSTOM_LOCAL_PRINT_PACK_SERVICE, INVOICE_FOLLOWUP_COPY_PACK_SERVICE];
 
 const MARKET_TABLE_PRINT_AUDIT = {
   id: "market-table-print-audit",
@@ -363,6 +418,24 @@ function productCheckoutRequestUrl(product, sampleUrl = siteUrl(product.publicSa
 }
 
 function serviceRequestCopy(service) {
+  if (service.id === INVOICE_FOLLOWUP_COPY_PACK_SERVICE.id) {
+    return [
+      `I want a free fit check for the ${service.name} ($${service.priceUsd} ${service.currency} only if it fits).`,
+      "",
+      "Business or project name:",
+      "Invoice status: draft / sent / due today / overdue / paid / recurring",
+      "Preferred tone: friendly / firm / concise / warm",
+      "What kind of follow-up do you need?",
+      "Payment method wording to mention, without private account details:",
+      "Need-by date or follow-up timeline:",
+      "If it fits, preferred external checkout provider: Gumroad / Payhip / Ko-fi / Stripe / invoice / other",
+      "Best contact method:",
+      "Notes:",
+      "",
+      "No payment is collected by this request. Please review fit first; send a real external checkout or invoice link only if the service is useful and available.",
+      "Do not include invoice numbers, bank details, card data, tax IDs, client private data, private customer lists, or legal dispute details.",
+    ].join("\n");
+  }
   return [
     `I want a free fit check for the ${service.name} ($${service.priceUsd} ${service.currency} only if it fits).`,
     "",
@@ -399,6 +472,7 @@ function serviceRequestUrl(service) {
 }
 
 function serviceLeadTitle(serviceType) {
+  if (serviceType === "invoice-followup-copy-pack") return INVOICE_FOLLOWUP_COPY_PACK_SERVICE.name;
   if (serviceType === "market-table-print-audit") return MARKET_TABLE_PRINT_AUDIT.name;
   if (serviceType === "local-seller-starter-kit") return LOCAL_SELLER_STARTER_KIT.name;
   return CUSTOM_LOCAL_PRINT_PACK_SERVICE.name;
@@ -411,6 +485,7 @@ function serviceLeadTrackEvent(serviceType) {
 }
 
 function serviceLeadTrackTool(serviceType) {
+  if (serviceType === "invoice-followup-copy-pack") return INVOICE_FOLLOWUP_COPY_PACK_SERVICE.id;
   if (serviceType === "market-table-print-audit") return MARKET_TABLE_PRINT_AUDIT.id;
   if (serviceType === "local-seller-starter-kit") return LOCAL_SELLER_STARTER_KIT.id;
   return CUSTOM_LOCAL_PRINT_PACK_SERVICE.id;
@@ -639,6 +714,38 @@ function marketTableAuditRequestBuilderHtml(audit = MARKET_TABLE_PRINT_AUDIT) {
 function serviceRequestBuilderHtml(service = CUSTOM_LOCAL_PRINT_PACK_SERVICE) {
   const requestUrl = serviceRequestUrl(service);
   const emailUrl = serviceRequestEmailUrl(service);
+  const isInvoiceFollowup = service.id === INVOICE_FOLLOWUP_COPY_PACK_SERVICE.id;
+  const serviceFieldCopy = isInvoiceFollowup ? {
+    businessLabel: "Business, client-work, or project name",
+    businessPlaceholder: "Freelance design project",
+    sellsLabel: "What kind of invoice follow-up do you need?",
+    sellsPlaceholder: "Friendly reminder for a sent invoice plus a firmer first overdue follow-up",
+    itemsLabel: "Invoice status and public-safe context",
+    itemsPlaceholder: "Invoice sent last week; due this Friday; client usually pays by bank transfer. No private invoice or client details included.",
+    contactLabel: "Payment wording to mention without private details",
+    contactPlaceholder: "Please use the payment link or invoice portal already sent.",
+    styleLabel: "Preferred tone",
+    styleOptions: ["friendly", "firm", "concise", "warm"],
+    dateLabel: "Need-by date or follow-up timeline",
+    datePlaceholder: "Tomorrow morning or before the due date",
+    preferencePlaceholder: "Public email, website contact page, or GitHub issue reply",
+    notesPlaceholder: "Avoid invoice numbers, client names, bank details, tax IDs, legal dispute details, and private customer data.",
+  } : {
+    businessLabel: "Business, booth, event, or service name",
+    businessPlaceholder: "Sunny Table Bakes",
+    sellsLabel: "What do you sell or promote?",
+    sellsPlaceholder: "Cookies, market boxes, and weekend pickup orders",
+    itemsLabel: "Up to 12 items or services with prices",
+    itemsPlaceholder: "Chocolate chip cookie bag - $6\nBrownie box - $10\nMarket bundle - 2 for $15",
+    contactLabel: "QR sign link or public-safe contact method",
+    contactPlaceholder: "Public shop link, booking page, or contact page",
+    styleLabel: "Preferred style",
+    styleOptions: ["clean", "cute", "bold", "minimal", "local", "premium", "practical"],
+    dateLabel: "Need-by date",
+    datePlaceholder: "June 22 market",
+    preferencePlaceholder: "Reply in GitHub issue, public email, or public website contact page",
+    notesPlaceholder: "Avoid private customer details, tax IDs, account logins, payment data, and private addresses.",
+  };
   const requestCopyActions = [
     `<button class="button secondary" type="button" data-service-request-copy data-track-tool="${escapeHtml(service.id)}">Copy generated service request</button>`,
     `<a class="button" data-service-request-open data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestUrl)}">Open generated GitHub request</a>`,
@@ -650,36 +757,30 @@ function serviceRequestBuilderHtml(service = CUSTOM_LOCAL_PRINT_PACK_SERVICE) {
         <div class="grid-2" data-service-request-builder data-service-request-title="Service request: ${escapeHtml(service.name)}">
           <form class="panel form-grid" data-service-request-form>
             <div class="field">
-              <label for="service-business">Business, booth, event, or service name</label>
-              <input id="service-business" name="business" autocomplete="organization" placeholder="Sunny Table Bakes">
+              <label for="service-business">${escapeHtml(serviceFieldCopy.businessLabel)}</label>
+              <input id="service-business" name="business" autocomplete="organization" placeholder="${escapeHtml(serviceFieldCopy.businessPlaceholder)}">
             </div>
             <div class="field">
-              <label for="service-sells">What do you sell or promote?</label>
-              <textarea id="service-sells" name="sells" placeholder="Cookies, market boxes, and weekend pickup orders"></textarea>
+              <label for="service-sells">${escapeHtml(serviceFieldCopy.sellsLabel)}</label>
+              <textarea id="service-sells" name="sells" placeholder="${escapeHtml(serviceFieldCopy.sellsPlaceholder)}"></textarea>
             </div>
             <div class="field">
-              <label for="service-items">Up to 12 items or services with prices</label>
-              <textarea id="service-items" name="items" placeholder="Chocolate chip cookie bag - $6&#10;Brownie box - $10&#10;Market bundle - 2 for $15"></textarea>
+              <label for="service-items">${escapeHtml(serviceFieldCopy.itemsLabel)}</label>
+              <textarea id="service-items" name="items" placeholder="${escapeHtml(serviceFieldCopy.itemsPlaceholder)}"></textarea>
             </div>
             <div class="field">
-              <label for="service-contact">QR sign link or public-safe contact method</label>
-              <input id="service-contact" name="contact" inputmode="url" placeholder="Public shop link, booking page, or contact page">
+              <label for="service-contact">${escapeHtml(serviceFieldCopy.contactLabel)}</label>
+              <input id="service-contact" name="contact" placeholder="${escapeHtml(serviceFieldCopy.contactPlaceholder)}">
             </div>
             <div class="field">
-              <label for="service-style">Preferred style</label>
+              <label for="service-style">${escapeHtml(serviceFieldCopy.styleLabel)}</label>
               <select id="service-style" name="style">
-                <option>clean</option>
-                <option>cute</option>
-                <option>bold</option>
-                <option>minimal</option>
-                <option>local</option>
-                <option>premium</option>
-                <option>practical</option>
+                ${serviceFieldCopy.styleOptions.map((option) => `<option>${escapeHtml(option)}</option>`).join("\n                ")}
               </select>
             </div>
             <div class="field">
-              <label for="service-date">Need-by date</label>
-              <input id="service-date" name="date" placeholder="June 22 market">
+              <label for="service-date">${escapeHtml(serviceFieldCopy.dateLabel)}</label>
+              <input id="service-date" name="date" placeholder="${escapeHtml(serviceFieldCopy.datePlaceholder)}">
             </div>
             <div class="field">
               <label for="service-checkout">If it fits, preferred external checkout provider</label>
@@ -694,7 +795,7 @@ function serviceRequestBuilderHtml(service = CUSTOM_LOCAL_PRINT_PACK_SERVICE) {
             </div>
             <div class="field">
               <label for="service-preference">Best public-safe contact method</label>
-              <input id="service-preference" name="preference" placeholder="Reply in GitHub issue, public email, or public website contact page">
+              <input id="service-preference" name="preference" placeholder="${escapeHtml(serviceFieldCopy.preferencePlaceholder)}">
             </div>
             <div class="field">
               <label for="service-region">Country or region (optional)</label>
@@ -702,7 +803,7 @@ function serviceRequestBuilderHtml(service = CUSTOM_LOCAL_PRINT_PACK_SERVICE) {
             </div>
             <div class="field">
               <label for="service-notes">Notes</label>
-              <textarea id="service-notes" name="notes" placeholder="Avoid private customer details, tax IDs, account logins, payment data, and private addresses."></textarea>
+              <textarea id="service-notes" name="notes" placeholder="${escapeHtml(serviceFieldCopy.notesPlaceholder)}"></textarea>
             </div>
           </form>
           <article class="panel form-grid">
@@ -719,6 +820,31 @@ function serviceRequestBuilderHtml(service = CUSTOM_LOCAL_PRINT_PACK_SERVICE) {
 }
 
 function servicePaymentReplyCopy(service) {
+  if (service.id === INVOICE_FOLLOWUP_COPY_PACK_SERVICE.id) {
+    return [
+      `Subject: ${service.name} - fit confirmed, payment link before work starts`,
+      "",
+      "Thanks for sending the public-safe invoice follow-up request. This looks like it may fit the simple copy-pack scope.",
+      "",
+      "Scope after payment:",
+      ...service.deliverables.map((item) => `- ${item}`),
+      "",
+      `Price: $${service.priceUsd} ${service.currency}`,
+      service.turnaround,
+      "",
+      "Next step:",
+      "1. I will send one real external checkout or invoice link from Gumroad, Payhip, Ko-fi, Stripe, or an invoice provider.",
+      "2. Please pay only through that external provider. Do not post card, bank, payout, tax, identity, customer, or private invoice details in GitHub or email.",
+      "3. After the provider shows the order as paid, I will mark the request as paid_order_verified and prepare the copy pack.",
+      "",
+      "Before I send the checkout link, please confirm:",
+      "- The request is for editable wording only, not legal, tax, accounting, debt-collection, or financial advice.",
+      "- You will review the final copy for accuracy, tone, client relationship, and local rules before sending it.",
+      "- No private invoice numbers, client private data, bank details, tax IDs, or full customer lists are included.",
+      "",
+      "Revenue is counted only after the external provider shows a paid order, payout balance, or settled payment.",
+    ].join("\n");
+  }
   return [
     `Subject: ${service.name} - fit confirmed, payment link before work starts`,
     "",
@@ -746,6 +872,42 @@ function servicePaymentReplyCopy(service) {
 }
 
 function serviceFulfillmentChecklistCopy(service) {
+  if (service.id === INVOICE_FOLLOWUP_COPY_PACK_SERVICE.id) {
+    return [
+      `# ${service.name} Fulfillment Checklist`,
+      "",
+      "Use this only after a real external payment provider shows a paid order. Do not start custom work from a request, page view, email, or brief download alone.",
+      "",
+      "## Intake",
+      "",
+      "- Confirm request source URL, date, and public-safe contact method.",
+      "- Confirm buyer sent invoice status, preferred tone, needed follow-up type, payment wording constraints, and timeline.",
+      "- Confirm no invoice numbers, bank details, card data, tax IDs, identity documents, client private data, full customer lists, or legal dispute details were collected.",
+      "- Confirm buyer understands this is editable communication copy only, not legal, tax, accounting, collection, or financial advice.",
+      "",
+      "## Payment Gate",
+      "",
+      "- Send one real external checkout or invoice link only after fit is confirmed.",
+      "- Wait until the provider shows paid_order_verified, paid order, payout balance, or settled payment.",
+      "- Log the order source and provider status in OPERATIONS.md without exposing private buyer, client, invoice, or payment details.",
+      "",
+      "## Build",
+      "",
+      "- Draft one polite payment reminder email.",
+      "- Draft one due-today payment note.",
+      "- Draft one first overdue follow-up.",
+      "- Draft one paid thank-you message.",
+      "- Draft one next-invoice or recurring-work note.",
+      "- Keep copy editable and free of legal threats, debt-collection claims, or guaranteed payment promises.",
+      "",
+      "## Delivery",
+      "",
+      "- Deliver text blocks through the buyer's agreed channel.",
+      "- Include a note that the buyer must review accuracy, tone, client relationship, and local rules before sending.",
+      "- Offer one lightweight revision for tone, typos, or fit.",
+      "- Mark the pipeline delivered, then revision_done or closed after the buyer response.",
+    ].join("\n");
+  }
   return [
     `# ${service.name} Fulfillment Checklist`,
     "",
@@ -785,6 +947,7 @@ function serviceFulfillmentChecklistCopy(service) {
 
 function serviceOrderPipeline(service) {
   const assetUrl = (relativePath) => siteUrl(relativePath).replace(/\/$/, "");
+  const isInvoiceFollowup = service.id === INVOICE_FOLLOWUP_COPY_PACK_SERVICE.id;
   return {
     id: `${service.id}-order-pipeline`,
     serviceId: service.id,
@@ -798,11 +961,11 @@ function serviceOrderPipeline(service) {
     paymentReplyTemplateUrl: assetUrl(service.publicPaymentReplyPath),
     fulfillmentChecklistUrl: assetUrl(service.publicFulfillmentChecklistPath),
     publicSafeFields: [
-      "business, booth, event, or service name",
-      "what the buyer sells or promotes",
-      "up to 12 items or services with prices",
-      "public QR/contact link or public-safe reply preference",
-      "style preference",
+      isInvoiceFollowup ? "business or project name" : "business, booth, event, or service name",
+      isInvoiceFollowup ? "invoice status without invoice numbers or client private data" : "what the buyer sells or promotes",
+      isInvoiceFollowup ? "preferred tone and follow-up type" : "up to 12 items or services with prices",
+      isInvoiceFollowup ? "payment method wording without private account details" : "public QR/contact link or public-safe reply preference",
+      isInvoiceFollowup ? "public-safe reply preference" : "style preference",
       "need-by date",
       "preferred external checkout provider",
       "notes that do not include private payment or identity data",
@@ -813,6 +976,8 @@ function serviceOrderPipeline(service) {
       "payout details",
       "tax identifiers",
       "identity documents",
+      "invoice numbers",
+      "client private data",
       "platform credentials",
       "private account passwords",
     ],
@@ -825,8 +990,8 @@ function serviceOrderPipeline(service) {
       },
       {
         id: "fit_confirmed",
-        ownerAction: "Confirm the request is within the simple $29 scope and details are complete enough.",
-        buyerAction: "Confirm scope and that the QR/contact link can be printed publicly.",
+        ownerAction: isInvoiceFollowup ? "Confirm the request is within the simple invoice follow-up copy scope and details are public-safe." : "Confirm the request is within the simple $29 scope and details are complete enough.",
+        buyerAction: isInvoiceFollowup ? "Confirm the messages are for buyer review and self-send only, not legal, tax, accounting, debt-collection, or financial advice." : "Confirm scope and that the QR/contact link can be printed publicly.",
         moneyRule: "Not revenue.",
       },
       {
@@ -843,14 +1008,14 @@ function serviceOrderPipeline(service) {
       },
       {
         id: "in_progress",
-        ownerAction: "Prepare the editable starter CSV, flyer copy, QR sign wording, coupon ideas, packing notes, and launch checklist.",
+        ownerAction: isInvoiceFollowup ? "Prepare the editable reminder, due-today, overdue, thank-you, and next-invoice wording blocks." : "Prepare the editable starter CSV, flyer copy, QR sign wording, coupon ideas, packing notes, and launch checklist.",
         buyerAction: "Answer scope clarifications only if needed.",
         moneyRule: "Revenue already verified externally.",
       },
       {
         id: "delivered",
-        ownerAction: "Send the pack through the agreed channel with review and QR-test reminders.",
-        buyerAction: "Review all copy, prices, QR links, and claims before printing.",
+        ownerAction: isInvoiceFollowup ? "Send the copy pack through the agreed channel with review-before-sending reminders." : "Send the pack through the agreed channel with review and QR-test reminders.",
+        buyerAction: isInvoiceFollowup ? "Review all copy for accuracy, tone, client relationship, and local rules before sending." : "Review all copy, prices, QR links, and claims before printing.",
         moneyRule: "Revenue already verified externally.",
       },
       {
@@ -862,7 +1027,7 @@ function serviceOrderPipeline(service) {
       {
         id: "closed",
         ownerAction: "Log the non-sensitive outcome in OPERATIONS.md and leave private payment details in the provider only.",
-        buyerAction: "Use the editable pack in their own business or event workflow.",
+        buyerAction: isInvoiceFollowup ? "Use the editable wording in their own invoice follow-up workflow." : "Use the editable pack in their own business or event workflow.",
         moneyRule: "Final counted revenue must match the external provider record.",
       },
     ],
@@ -871,7 +1036,211 @@ function serviceOrderPipeline(service) {
   };
 }
 
+function serviceGithubPagesUrl(pathName) {
+  const githubPagesBase = "https://yanqr213.github.io/printable-tools-lab/";
+  return `${githubPagesBase}${pathName.replace(/^\/+/, "")}`;
+}
+
+function invoiceFollowupOutreachQueue(service) {
+  const serviceUrl = serviceGithubPagesUrl(`${service.slug}/`);
+  const requestBriefUrl = serviceGithubPagesUrl(service.publicRequestPath);
+  const issueFormUrl = service.issueFormUrl;
+  const paymentReplyTemplateUrl = serviceGithubPagesUrl(service.publicPaymentReplyPath);
+  const fulfillmentChecklistUrl = serviceGithubPagesUrl(service.publicFulfillmentChecklistPath);
+  const orderPipelineUrl = serviceGithubPagesUrl(service.publicOrderPipelinePath);
+  const campaign = "invoice_followup_service";
+  const tracked = (url, source, medium = "manual") => `${url}${url.includes("?") ? "&" : "?"}utm_source=${source}&utm_medium=${medium}&utm_campaign=${campaign}`;
+  const batch = [
+    {
+      id: "invoice-generator-inbound-lead-01",
+      day: 1,
+      channel: "inbound-service-lead",
+      audience: "people who used the invoice generator and submitted a free fit-check request",
+      findWhere: "Use the operations lead monitor and public-safe service request issues only. Do not identify anonymous download visitors or try to contact site users without a submitted request.",
+      qualification: "They explicitly asked for help writing polite invoice follow-up wording and supplied only public-safe context.",
+      opener: "Thanks for the invoice follow-up request. This fits a small copy pack if you need editable wording for a polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice message. No payment is collected on the site; I can confirm scope first, then send one external checkout or invoice link if it is useful.",
+      cta: "Please confirm the invoice status, tone, and whether this is wording-only rather than legal, tax, accounting, collections, or financial advice.",
+      trackedUrl: tracked(serviceUrl, "invoice-generator-inbound"),
+      fallbackUrl: tracked(requestBriefUrl, "invoice-generator-inbound"),
+      stopRule: "Use only after the person submits a request or replies. Do not ask for private invoice numbers, client data, bank details, tax IDs, or payment credentials.",
+      status: "ready_manual_reply",
+    },
+    {
+      id: "freelancer-public-profile-01",
+      day: 1,
+      channel: "public-social-dm",
+      audience: "freelancers and consultants with public business profiles who mention client work, invoices, retainers, or late payments",
+      findWhere: "Public LinkedIn, X, Bluesky, Indie Hackers, portfolio, or business profile pages where the person invites business messages.",
+      qualification: "They publicly sell client services and appear to need simple, professional invoice follow-up wording rather than billing software, legal advice, or collections help.",
+      opener: "Hi, I saw that you do client work and thought a small invoice follow-up wording pack may be useful. I have a $19 copy pack for one workflow: polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording. It is editable copy only, not legal, tax, accounting, or collections advice, and payment happens only through a real external checkout after fit is confirmed.",
+      cta: "Want the short fit-check brief?",
+      trackedUrl: tracked(serviceUrl, "freelancer-dm"),
+      fallbackUrl: tracked(requestBriefUrl, "freelancer-dm"),
+      stopRule: "Do not contact private personal profiles. Send at most one initial message unless they reply.",
+      status: "ready_manual_send",
+    },
+    {
+      id: "small-agency-public-profile-01",
+      day: 1,
+      channel: "public-business-email",
+      audience: "small studios, solo agencies, and service teams with public business contact emails",
+      findWhere: "Public agency or studio websites with a general contact email for business inquiries.",
+      qualification: "They sell project or retainer work and may want reusable, polite client follow-up wording for sent invoices.",
+      opener: "Hi, I am testing a small $19 Invoice Follow-up Copy Pack for service businesses that want editable wording for reminders, due-today notes, first overdue follow-ups, paid thank-yous, and next-invoice messages. It is wording-only and the buyer reviews everything before sending. No payment is taken on the site; I confirm fit first, then send one external checkout or invoice link.",
+      cta: "Would the one-page request brief be useful?",
+      trackedUrl: tracked(serviceUrl, "small-agency-email"),
+      fallbackUrl: tracked(requestBriefUrl, "small-agency-email"),
+      stopRule: "Use public business emails only. Do not add contacts to a list or send repeated follow-ups without a reply.",
+      status: "ready_manual_send",
+    },
+    {
+      id: "creator-service-profile-01",
+      day: 2,
+      channel: "public-social-dm",
+      audience: "creators, editors, designers, coaches, and tutors with public service offers",
+      findWhere: "Public profiles or service pages where business inquiries are welcome and invoices or client payments are relevant.",
+      qualification: "They sell a service and may need a polite message sequence after sending an invoice or payment request.",
+      opener: "Hi, if you ever need simple wording after sending an invoice, I have a small $19 pack that drafts a friendly reminder, due-today note, overdue follow-up, thank-you, and next-invoice message. It is editable communication copy only, and I do not collect payment or private invoice details on the site.",
+      cta: "I can send the free fit-check brief if helpful.",
+      trackedUrl: tracked(serviceUrl, "creator-service-dm"),
+      fallbackUrl: tracked(requestBriefUrl, "creator-service-dm"),
+      stopRule: "Skip accounts that do not invite business messages. Do not ask for client names, invoice IDs, or private payment details.",
+      status: "ready_manual_send",
+    },
+    {
+      id: "community-help-reply-01",
+      day: 2,
+      channel: "helpful-community-reply",
+      audience: "public posts where someone asks how to politely follow up on an unpaid, due, or recently paid invoice",
+      findWhere: "Relevant public communities, forums, founder groups, freelancer groups, and Q&A threads that allow helpful resource replies.",
+      qualification: "The person is actively asking for wording, tone, or a simple follow-up sequence. They are not asking for legal, tax, accounting, collections, or financial advice.",
+      opener: "For wording, I would keep the first follow-up short: acknowledge the invoice, restate the due date or status, give the payment path, and keep the relationship friendly. I made a free invoice generator, plus a small $19 wording pack if someone wants the follow-up sequence drafted for their own tone.",
+      cta: "Share the free generator first; mention the paid copy pack only if custom wording is relevant or requested.",
+      trackedUrl: tracked(serviceUrl, "community-reply", "organic"),
+      fallbackUrl: tracked(serviceGithubPagesUrl("tools/invoice-generator/"), "community-reply", "organic"),
+      stopRule: "Lead with free help. Do not diagnose legal rights, interest, penalties, debt collection, taxes, or accounting treatment.",
+      status: "ready_manual_reply",
+    },
+    {
+      id: "invoice-template-resource-page-01",
+      day: 3,
+      channel: "resource-page-contact",
+      audience: "free invoice template, freelancer resource, and small-business toolkit pages that accept useful resource suggestions",
+      findWhere: "Public contact forms or resource-submission pages that invite relevant tools or templates.",
+      qualification: "The page already links to invoice, freelancer, client communication, or small-business admin resources and accepts external suggestions without paid placement.",
+      opener: "Hi, I built a free browser invoice generator and a small optional $19 Invoice Follow-up Copy Pack for people who need editable reminder wording after making an invoice. The service is copy-only, does not collect payment on-site, and avoids legal, tax, accounting, collections, and financial advice.",
+      cta: "Would this fit your invoice or freelancer resources page?",
+      trackedUrl: tracked(serviceUrl, "invoice-resource-page", "organic"),
+      fallbackUrl: tracked(serviceGithubPagesUrl("tools/invoice-generator/"), "invoice-resource-page", "organic"),
+      stopRule: "Submit only where resource suggestions are welcome. Do not use fake reviews, paid placement disguised as free, or forms requiring private identity/payout data.",
+      status: "ready_manual_submit",
+    },
+    {
+      id: "bookkeeper-admin-resource-01",
+      day: 3,
+      channel: "public-business-email",
+      audience: "bookkeepers, virtual assistants, and admin consultants who share public small-business workflow resources",
+      findWhere: "Public business websites or resource pages with a general contact email.",
+      qualification: "They help clients with admin workflows and may share wording resources, but the message must avoid accounting, tax, and collections claims.",
+      opener: "Hi, I am testing a small wording-only resource for freelancers and service teams: a $19 Invoice Follow-up Copy Pack with editable reminder, due-today, overdue, thank-you, and next-invoice messages. It is not bookkeeping, tax, accounting, legal, or collections advice; buyers review the copy themselves before sending.",
+      cta: "Is there a resource page where this kind of wording pack would fit?",
+      trackedUrl: tracked(serviceUrl, "admin-resource-email"),
+      fallbackUrl: tracked(requestBriefUrl, "admin-resource-email"),
+      stopRule: "Use only public business/resource emails. Do not imply professional accounting, tax, legal, or collections outcomes.",
+      status: "ready_manual_send",
+    },
+    {
+      id: "freelancer-directory-listing-01",
+      day: 4,
+      channel: "service-directory-listing",
+      audience: "free or low-friction directories that allow freelancer tools, admin templates, or business writing services",
+      findWhere: "Directory submission forms that accept tool or micro-service listings and do not require false business data.",
+      qualification: "The directory allows simple service listings and the category can be described as business writing, freelancer admin templates, or invoice communication copy.",
+      opener: "Invoice Follow-up Copy Pack is a $19 wording-only micro-service for freelancers and small service teams that need editable payment reminder, due-today, overdue follow-up, paid thank-you, and next-invoice copy after creating an invoice.",
+      cta: "Use the GitHub Pages service link as the public listing URL until the Cloudflare deployment is refreshed.",
+      trackedUrl: tracked(serviceUrl, "freelancer-directory", "organic"),
+      fallbackUrl: tracked(requestBriefUrl, "freelancer-directory", "organic"),
+      stopRule: "Do not submit to directories requiring fake address, phone, reviews, paid placement disguised as free, or private payout information.",
+      status: "ready_manual_submit",
+    },
+    {
+      id: "warm-reply-followup-01",
+      day: 5,
+      channel: "reply-followup-only",
+      audience: "people who replied positively or asked for price, scope, timeline, or next step",
+      findWhere: "Only previous conversations where the recipient asked for the brief, price, delivery, or checkout.",
+      qualification: "They asked a question, requested the brief, or confirmed the wording pack might help.",
+      opener: servicePaymentReplyCopy(service),
+      cta: "Please confirm the scope bullets, then I can send the external checkout link.",
+      trackedUrl: issueFormUrl,
+      fallbackUrl: tracked(paymentReplyTemplateUrl, "warm-followup"),
+      stopRule: "Use this only after a real reply. Do not send payment language to cold contacts.",
+      status: "reply_only",
+    },
+    {
+      id: "manual-log-closeout-01",
+      day: 5,
+      channel: "operations-log",
+      audience: "internal tracking",
+      findWhere: "OPERATIONS.md service-order log section.",
+      qualification: "After each sent message, reply, request, checkout, paid order, delivery, or closeout.",
+      opener: "Log date, channel, public-safe source, contact count, reply count, request URL, checkout state, paid amount, and next action. Do not log private buyer/payment details.",
+      cta: "Update status: sent, replied, intent_received, fit_confirmed, checkout_sent, paid_order_verified, delivered, revision_done, or closed.",
+      trackedUrl: serviceGithubPagesUrl("services.json"),
+      fallbackUrl: serviceGithubPagesUrl("services.json"),
+      stopRule: "Never store payout, card, tax, identity, platform credential, phone, client, invoice number, or private address data in the repository.",
+      status: "required_after_action",
+    },
+  ];
+  return {
+    id: `${service.id}-outreach-queue`,
+    serviceId: service.id,
+    serviceName: service.name,
+    priceUsd: service.priceUsd,
+    currency: service.currency,
+    purpose: "Manual, low-risk outreach queue for finding qualified freelancers or service teams who may need simple invoice follow-up wording.",
+    primaryServiceUrl: serviceUrl,
+    requestBriefUrl,
+    issueFormUrl,
+    paymentReplyTemplateUrl,
+    fulfillmentChecklistUrl,
+    orderPipelineUrl,
+    batchSize: batch.length,
+    dailyCap: "Send or reply to no more than 10 relevant public-safe contacts per day unless people are responding first.",
+    qualificationRules: [
+      "Use public business/profile/contact pages only.",
+      "Message only when the person appears to have a real freelancer, agency, service-business, or invoice-follow-up wording need.",
+      "Lead with helpful free tools or the short request brief before asking for payment.",
+      "Send payment language only after the person replies or confirms fit.",
+      "Count revenue only after an external provider shows paid_order_verified, a paid order, payout balance, or settled payment.",
+    ],
+    forbiddenActions: [
+      "Do not scrape private contact lists.",
+      "Do not spam communities, repeat-send, or use fake engagement.",
+      "Do not contact private personal profiles or minors.",
+      "Do not collect invoice numbers, customer private data, card, bank, payout, tax, identity, credential, password, or private account details.",
+      "Do not promise guaranteed payment, legal compliance, tax results, accounting outcomes, collections outcomes, or financial results.",
+    ],
+    metricsToLog: [
+      "date",
+      "queue item id",
+      "channel",
+      "public-safe source",
+      "sent count",
+      "reply count",
+      "intent_received count",
+      "fit_confirmed count",
+      "checkout_sent count",
+      "paid_order_verified amount",
+      "next action",
+    ],
+    batch,
+    moneyGate: service.successGate,
+  };
+}
+
 function serviceOutreachQueue(service) {
+  if (service.id === INVOICE_FOLLOWUP_COPY_PACK_SERVICE.id) return invoiceFollowupOutreachQueue(service);
   const serviceUrl = SERVICE_SALES_PACK.githubPagesServiceUrl;
   const requestBriefUrl = SERVICE_SALES_PACK.githubPagesRequestBriefUrl;
   const issueFormUrl = service.issueFormUrl;
@@ -5723,6 +6092,21 @@ const pages = [
     html: customLocalPrintPackServiceHtml(),
   },
   {
+    path: INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug,
+    title: INVOICE_FOLLOWUP_COPY_PACK_SERVICE.name,
+    description: INVOICE_FOLLOWUP_COPY_PACK_SERVICE.shortDescription,
+    html: paidServiceHtml(INVOICE_FOLLOWUP_COPY_PACK_SERVICE, {
+      crumb: "Invoice generator",
+      crumbHref: "/tools/invoice-generator/",
+      formTitle: "Request a free invoice follow-up fit check",
+      formCta: "Send invoice fit check",
+      formIntro: "Send a reply contact and one public-safe note about the invoice status and tone you need. If it fits, the $19 copy pack starts only through an external checkout or invoice.",
+      formPlaceholder: "I sent an invoice for a freelance project and need a friendly reminder plus a firmer overdue follow-up. No private invoice or client details included.",
+      secondaryHref: "/tools/invoice-generator/",
+      secondaryText: "Open free invoice generator",
+    }),
+  },
+  {
     path: MARKET_TABLE_PRINT_AUDIT.slug,
     title: MARKET_TABLE_PRINT_AUDIT.name,
     description: MARKET_TABLE_PRINT_AUDIT.shortDescription,
@@ -6150,6 +6534,17 @@ function opsCheckoutActivationRows(totals = {}) {
       copy: serviceCheckoutCopy(CUSTOM_LOCAL_PRINT_PACK_SERVICE),
     },
     {
+      sku: INVOICE_FOLLOWUP_COPY_PACK_SERVICE.name,
+      price: `$${INVOICE_FOLLOWUP_COPY_PACK_SERVICE.priceUsd} ${INVOICE_FOLLOWUP_COPY_PACK_SERVICE.currency}`,
+      configured: Boolean(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.checkoutUrl),
+      configKey: "serviceCheckoutUrl",
+      command: "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/invoice-followup-copy-pack",
+      publicPage: `/${INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug}/`,
+      checkoutClicks: totals.service_checkout_click || 0,
+      requestIntent: totals.service_request_intent || 0,
+      copy: serviceCheckoutCopy(INVOICE_FOLLOWUP_COPY_PACK_SERVICE),
+    },
+    {
       sku: "Audit upgrade checkout",
       price: `$${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} ${CUSTOM_LOCAL_PRINT_PACK_SERVICE.currency}`,
       configured: Boolean(auditUpgradeUrl),
@@ -6213,6 +6608,9 @@ function opsCheckoutActivationHtml(totals = {}) {
 }
 
 function opsLeadToPaymentCloseRows({ totals = {}, sponsorLeads = 0, sponsorInvoiceRequests = 0, serviceLeadJson = {}, publicReplies = {} } = {}) {
+  const serviceTypes = serviceLeadJson.serviceTypes || {};
+  const localPrintRequests = numberSignal(serviceTypes[CUSTOM_LOCAL_PRINT_PACK_SERVICE.id]);
+  const invoiceFollowupRequests = numberSignal(serviceTypes[INVOICE_FOLLOWUP_COPY_PACK_SERVICE.id]);
   const serviceRequests = numberSignal(serviceLeadJson.serviceRequestCount);
   const auditRequests = numberSignal(serviceLeadJson.auditRequestCount);
   const sellerRequests = numberSignal(serviceLeadJson.sellerKitRequestCount);
@@ -6220,14 +6618,26 @@ function opsLeadToPaymentCloseRows({ totals = {}, sponsorLeads = 0, sponsorInvoi
   return [
     {
       lane: "$29 service setup",
-      signal: `${serviceRequests} lead(s), ${numberSignal(totals.service_request_intent)} request intent`,
-      state: serviceRequests ? "lead captured" : numberSignal(totals.service_request_intent) ? "intent only" : "waiting",
-      nextAction: serviceRequests
+      signal: `${localPrintRequests} lead(s), ${numberSignal(totals.service_request_intent)} shared request intent`,
+      state: localPrintRequests ? "lead captured" : numberSignal(totals.service_request_intent) ? "intent only" : "waiting",
+      nextAction: localPrintRequests
         ? "Export service leads, confirm fit, then send the external checkout or invoice reply."
         : "Keep the request form live and use the payment reply as soon as a qualified service lead arrives.",
       proofGate: "paid_order_verified from external provider",
       command: "npm.cmd run service:leads",
       copy: opsServicePaymentReplyCopy("custom-local-print-pack"),
+      link: "/api/service-lead",
+    },
+    {
+      lane: "$19 invoice follow-up copy",
+      signal: `${invoiceFollowupRequests} lead(s), ${serviceRequests} total service lead(s)`,
+      state: invoiceFollowupRequests ? "lead captured" : "waiting",
+      nextAction: invoiceFollowupRequests
+        ? "Export service leads, confirm the invoice copy scope, then send the external checkout or invoice reply."
+        : "Keep the invoice download form live and use this reply as soon as a qualified invoice follow-up lead arrives.",
+      proofGate: "paid_order_verified from external provider",
+      command: "npm.cmd run service:leads",
+      copy: opsServicePaymentReplyCopy("invoice-followup-copy-pack"),
       link: "/api/service-lead",
     },
     {
@@ -6344,6 +6754,9 @@ function opsServicePaymentReplyCopy(serviceType = "custom-local-print-pack") {
       "",
       "Please keep payment, tax, bank, card, identity, password, customer-list, private address, and private file details outside the website form.",
     ].join("\n");
+  }
+  if (serviceType === "invoice-followup-copy-pack") {
+    return servicePaymentReplyCopy(INVOICE_FOLLOWUP_COPY_PACK_SERVICE);
   }
   return servicePaymentReplyCopy(CUSTOM_LOCAL_PRINT_PACK_SERVICE);
 }
@@ -7685,6 +8098,78 @@ function checkoutCopy(product) {
     ...(productCheckoutEmailUrl(product) ? [`Email request link: ${productCheckoutEmailUrl(product)}`] : []),
     "Delivery note: Buyer receives editable CSV, Markdown, HTML, and text templates for their own local-selling workflow.",
   ].join("\n");
+}
+
+function paidServiceHtml(service, options = {}) {
+  const checkoutConfigured = Boolean(service.checkoutUrl);
+  const emailUrl = serviceRequestEmailUrl(service);
+  const primaryServiceUrl = checkoutConfigured ? service.checkoutUrl : "#service-request";
+  const primaryServiceText = checkoutConfigured ? `Buy for $${service.priceUsd}` : "Request free fit check";
+  const primaryServiceEvent = checkoutConfigured ? "service_checkout_click" : "service_request_intent";
+  const orderAssets = [
+    ["Request brief", `/${service.publicRequestPath}`],
+    ["Payment-before-work reply", `/${service.publicPaymentReplyPath}`],
+    ["Fulfillment checklist", `/${service.publicFulfillmentChecklistPath}`],
+    ["Order pipeline JSON", `/${service.publicOrderPipelinePath}`],
+    ["Sample delivery ZIP", `/${service.publicSampleDeliveryPath}`],
+    ["Delivery input example", `/${service.publicDeliveryInputExamplePath}`],
+    ["Sample delivery report", `/${service.publicDeliveryReportPath}`],
+  ];
+  const actions = [
+    `<a class="button" data-service-checkout data-track-event="${escapeHtml(primaryServiceEvent)}" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(primaryServiceUrl)}">${escapeHtml(primaryServiceText)}</a>`,
+    options.secondaryHref ? `<a class="button secondary" href="${escapeHtml(options.secondaryHref)}">${escapeHtml(options.secondaryText || "Open related free tool")}</a>` : "",
+    `<a class="button secondary" href="/${escapeHtml(service.publicRequestPath)}" download>Download request brief</a>`,
+    emailUrl ? `<a class="button ghost" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(emailUrl)}">Email service request</a>` : "",
+    `<a class="button ghost" href="/${escapeHtml(service.publicOrderPipelinePath)}">Open order pipeline</a>`,
+  ].filter(Boolean).join("\n          ");
+  return `
+      <section class="shell page-title section product-hero">
+        <a href="${escapeHtml(options.crumbHref || "/free-pdf-tools/")}">${escapeHtml(options.crumb || "Free tools")}</a>
+        <h1>${escapeHtml(service.headline)}</h1>
+        <p>${escapeHtml(service.description)}</p>
+        <div class="hero-actions">
+          ${actions}
+        </div>
+        <p class="notice">${checkoutConfigured ? "Checkout is configured through an external payment provider. Revenue is still proven only after that provider shows a paid or settled order." : "Manual checkout pending: this page captures fit-check requests only. No payment is collected here until a real external checkout or invoice link is sent and paid."}</p>
+        <div class="hero-proof" aria-label="Service readiness">
+          <div class="proof-tile"><strong>$${service.priceUsd}</strong><span>service price</span></div>
+          <div class="proof-tile"><strong>${service.deliverables.length}</strong><span>deliverables</span></div>
+          <div class="proof-tile"><strong>external</strong><span>payment only</span></div>
+        </div>
+      </section>
+      ${serviceLeadFormHtml({
+        serviceType: service.id,
+        title: options.formTitle || "Request a free fit check",
+        cta: options.formCta || "Send free fit check",
+        intro: options.formIntro || `Send a reply contact and one public-safe brief. Fit is checked manually; if it is useful, the $${service.priceUsd} service starts only through an external checkout or invoice.`,
+        placeholder: options.formPlaceholder || "Tell us what you need without private payment, identity, customer, or file details.",
+        pathName: service.slug,
+      })}
+      <section class="shell section">
+        <h2>What gets delivered</h2>
+        <div class="grid-3">
+          ${service.deliverables.map((item) => `<article class="panel"><h3>${escapeHtml(item)}</h3><p>Delivered as editable copy the buyer can review before using.</p></article>`).join("\n")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Buyer details needed</h2>
+        <ul>${service.buyerInputs.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+      </section>
+      <section class="shell section">
+        <h2>Order pipeline assets</h2>
+        <p>Use these when a request arrives: confirm fit, send a real external checkout link, wait for paid_order_verified, then build and deliver the copy pack.</p>
+        <table class="event-table">
+          <thead><tr><th>Asset</th><th>URL</th></tr></thead>
+          <tbody>${orderAssets.map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("\n")}</tbody>
+        </table>
+      </section>
+      ${serviceRequestBuilderHtml(service)}
+      <section class="shell section">
+        <h2>Risk controls</h2>
+        <ul>${service.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+        <p><strong>Money gate:</strong> ${escapeHtml(service.successGate)}</p>
+        ${jsonLdHtml(serviceSchema(service))}
+      </section>`;
 }
 
 function customLocalPrintPackServiceHtml() {
@@ -9620,4 +10105,4 @@ function escapeScript(value) {
   return String(value).replace(/</g, "\\u003c");
 }
 
-module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY, SPONSOR_PLACEMENTS, SPONSOR_DEALS, SPONSOR_OUTREACH_TARGETS, SPONSOR_OUTREACH_TEMPLATES, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, SPONSOR_DISCOVERY_LINKS, sponsorPublicReplyUrl, sponsorExternalDiscoveryProof, sponsorMediaKitPayload, sponsorCallPayload, sponsorOpportunityPayload, sponsorDealRoomPayload };
+module.exports = { routes, renderRoute, siteUrl, tools, guides, keywordClusters, landingPages, SITE_SUMMARY, DIGITAL_PRODUCTS, LOCAL_SELLER_STARTER_KIT, CUSTOM_LOCAL_PRINT_PACK_SERVICE, INVOICE_FOLLOWUP_COPY_PACK_SERVICE, PAID_SERVICES, MARKET_TABLE_PRINT_AUDIT, SERVICE_SALES_PACK, productCheckoutRequestUrl, productCheckoutRequestCopy, productCheckoutEmailUrl, serviceRequestUrl, serviceRequestCopy, serviceRequestEmailUrl, marketTableAuditRequestUrl, marketTableAuditRequestCopy, marketTableAuditChecklist, servicePaymentReplyCopy, serviceFulfillmentChecklistCopy, serviceOrderPipeline, serviceOutreachQueue, serviceOutreachBatchCopy, ZERO_DOMAIN_GAME_EXPERIMENT, ZERO_DOMAIN_GAME_EXPERIMENTS, PLATFORM_SUBMIT_QUEUE, ZERO_DOMAIN_PLATFORM_STRATEGY, PLATFORM_OUTREACH_TRACKER, PLATFORM_SUBMIT_COCKPIT, PORTAL_SUBMISSION_PACK, ZERO_COST_MONETIZATION_MAP, HIGH_INTENT_TOOL_PATHS, HIGH_INTENT_LANDING_PATHS, SHARE_KIT_FEATURED_LINKS, SHARE_KIT_POSTS, SHARE_KIT_RULES, ORGANIC_PUSH_TASKS, UPLOAD_ERROR_CHEATSHEET, CAMPAIGN_VIDEO_ASSETS, GIST_DISCOVERY, ISSUE_DISCOVERY, SPONSOR_PLACEMENTS, SPONSOR_DEALS, SPONSOR_OUTREACH_TARGETS, SPONSOR_OUTREACH_TEMPLATES, SPONSOR_VERTICALS, SPONSOR_CALL_ACTIONS, SPONSOR_DISCOVERY_LINKS, sponsorPublicReplyUrl, sponsorExternalDiscoveryProof, sponsorMediaKitPayload, sponsorCallPayload, sponsorOpportunityPayload, sponsorDealRoomPayload };

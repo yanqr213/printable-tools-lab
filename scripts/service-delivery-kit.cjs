@@ -2,6 +2,28 @@ const crypto = require("crypto");
 const { strToU8, zipSync } = require("fflate");
 
 function serviceDeliveryInputExample(service) {
+  if (service.id === "invoice-followup-copy-pack") {
+    return {
+      serviceId: service.id,
+      orderId: "sample-invoice-followup-001",
+      paymentStatus: "sample_only_not_revenue",
+      paidOrderVerified: false,
+      businessName: "Sample Freelance Studio",
+      invoiceStatus: "sent, due soon",
+      preferredTone: "friendly, concise, professional",
+      followupNeed: "one polite reminder now and one firmer overdue follow-up if payment is late",
+      paymentWording: "Pay through the secure link already shared on the invoice",
+      needByDate: "2026-06-10",
+      publicContact: "hello@example.com",
+      avoidClaims: [
+        "legal threats",
+        "late-fee language not already agreed",
+        "tax or accounting advice"
+      ],
+      deliveryNotes: "Sample only. A real delivery should be generated only after paid_order_verified.",
+      buyerReviewRequired: true
+    };
+  }
   return {
     serviceId: service.id,
     orderId: "sample-market-table-001",
@@ -37,19 +59,29 @@ function validateServiceDeliveryInput(input, options = {}) {
   const value = input && typeof input === "object" ? input : {};
   if (!value.serviceId) errors.push("serviceId is required.");
   if (!value.businessName) errors.push("businessName is required.");
-  if (!value.qrTarget) errors.push("qrTarget is required.");
-  if (!Array.isArray(value.items) || value.items.length < 1) errors.push("At least one item is required.");
-  if (Array.isArray(value.items) && value.items.length > 12) errors.push("The $29 scope allows up to 12 items/services.");
+  const isInvoiceFollowup = value.serviceId === "invoice-followup-copy-pack";
+  if (isInvoiceFollowup) {
+    if (!value.invoiceStatus) errors.push("invoiceStatus is required for invoice follow-up copy.");
+    if (!value.followupNeed) errors.push("followupNeed is required for invoice follow-up copy.");
+  } else {
+    if (!value.qrTarget) errors.push("qrTarget is required.");
+    if (!Array.isArray(value.items) || value.items.length < 1) errors.push("At least one item is required.");
+    if (Array.isArray(value.items) && value.items.length > 12) errors.push("The $29 scope allows up to 12 items/services.");
+  }
   if (!sample && value.paymentStatus !== "paid_order_verified" && value.paidOrderVerified !== true) {
     errors.push("Live delivery generation requires paymentStatus=paid_order_verified or paidOrderVerified=true.");
   }
   if (looksSensitive(value)) {
     errors.push("Input appears to contain private payment, tax, identity, password, or credential details. Remove them before generating.");
   }
-  for (const item of Array.isArray(value.items) ? value.items : []) {
-    if (!item || !item.name || !item.price) errors.push("Every item must include name and price.");
+  if (!isInvoiceFollowup) {
+    for (const item of Array.isArray(value.items) ? value.items : []) {
+      if (!item || !item.name || !item.price) errors.push("Every item must include name and price.");
+    }
   }
-  if (!value.buyerReviewRequired) warnings.push("Set buyerReviewRequired=true so the buyer confirms copy, prices, and QR target before printing.");
+  if (!value.buyerReviewRequired) warnings.push(isInvoiceFollowup
+    ? "Set buyerReviewRequired=true so the buyer confirms message accuracy, tone, and local rules before sending."
+    : "Set buyerReviewRequired=true so the buyer confirms copy, prices, and QR target before printing.");
   return { ok: errors.length === 0, errors, warnings };
 }
 
@@ -60,6 +92,8 @@ function serviceDeliveryFiles(input, options = {}) {
     error.validation = validation;
     throw error;
   }
+
+  if (input.serviceId === "invoice-followup-copy-pack") return invoiceFollowupDeliveryFiles(input, options);
 
   const orderId = cleanId(input.orderId || input.businessName || "custom-local-print-pack-order");
   const prefix = options.sample ? "custom-local-print-pack-sample" : `custom-local-print-pack-${orderId}`;
@@ -177,6 +211,139 @@ function serviceDeliveryFiles(input, options = {}) {
       generatedAt: new Date().toISOString(),
       sample: Boolean(options.sample),
       itemCount: items.length,
+      buyerReviewRequired: true,
+      revenueRule,
+    }, null, 2),
+  };
+}
+
+function invoiceFollowupDeliveryFiles(input, options = {}) {
+  const validation = validateServiceDeliveryInput(input, options);
+  if (!validation.ok) {
+    const error = new Error(validation.errors.join(" "));
+    error.validation = validation;
+    throw error;
+  }
+  const orderId = cleanId(input.orderId || input.businessName || "invoice-followup-copy-pack-order");
+  const prefix = options.sample ? "invoice-followup-copy-pack-sample" : `invoice-followup-copy-pack-${orderId}`;
+  const businessName = cleanText(input.businessName);
+  const invoiceStatus = cleanText(input.invoiceStatus || "sent");
+  const preferredTone = cleanText(input.preferredTone || "friendly and concise");
+  const followupNeed = cleanText(input.followupNeed || "polite invoice follow-up");
+  const paymentWording = cleanText(input.paymentWording || "Please use the payment method listed on the invoice.");
+  const needByDate = cleanText(input.needByDate || "");
+  const avoidClaims = Array.isArray(input.avoidClaims) ? input.avoidClaims.map(cleanText).filter(Boolean) : [];
+  const reviewNote = "Buyer must review every message for accuracy, tone, client relationship, and applicable local rules before sending.";
+  const adviceRule = "This is editable communication copy only, not legal, tax, accounting, debt-collection, or financial advice.";
+  const revenueRule = options.sample
+    ? "This public sample is not revenue. Real revenue is counted only after an external provider shows a paid order, payout balance, or settled payment."
+    : "Revenue for this delivery can be counted only if the matching external payment provider record shows paid_order_verified.";
+
+  return {
+    [`${prefix}/README.md`]: [
+      `# ${businessName} - Invoice Follow-up Copy Pack`,
+      "",
+      `Invoice status: ${invoiceStatus}`,
+      `Preferred tone: ${preferredTone}`,
+      `Needed by: ${needByDate || "not specified"}`,
+      "",
+      "## Included files",
+      "",
+      "- polite-payment-reminder.md",
+      "- due-today-note.md",
+      "- first-overdue-follow-up.md",
+      "- paid-thank-you.md",
+      "- next-invoice-note.md",
+      "- review-before-sending.md",
+      "- service-order-status.json",
+      "",
+      reviewNote,
+      adviceRule,
+      "",
+      revenueRule,
+    ].join("\n"),
+    [`${prefix}/polite-payment-reminder.md`]: [
+      `Subject: Friendly reminder: invoice from ${businessName}`,
+      "",
+      "Hi [Client name],",
+      "",
+      `I hope you are doing well. I wanted to send a quick reminder about the invoice for [project/service]. ${paymentWording}`,
+      "",
+      "Please let me know if you need anything else from me to process it.",
+      "",
+      "Thanks,",
+      `[${businessName}]`,
+    ].join("\n"),
+    [`${prefix}/due-today-note.md`]: [
+      `Subject: Invoice due today - ${businessName}`,
+      "",
+      "Hi [Client name],",
+      "",
+      `Just a quick note that the invoice for [project/service] is due today. ${paymentWording}`,
+      "",
+      "Thank you for taking care of it.",
+      "",
+      `[${businessName}]`,
+    ].join("\n"),
+    [`${prefix}/first-overdue-follow-up.md`]: [
+      `Subject: Follow-up on overdue invoice from ${businessName}`,
+      "",
+      "Hi [Client name],",
+      "",
+      "I am following up because the invoice for [project/service] now appears overdue on my side.",
+      "",
+      `${paymentWording} If payment has already been sent, please disregard this note or let me know so I can update my records.`,
+      "",
+      "Thanks,",
+      `[${businessName}]`,
+    ].join("\n"),
+    [`${prefix}/paid-thank-you.md`]: [
+      `Subject: Payment received - thank you`,
+      "",
+      "Hi [Client name],",
+      "",
+      "Thank you, I received the payment for [project/service]. I appreciate it.",
+      "",
+      "I look forward to working with you again.",
+      "",
+      `[${businessName}]`,
+    ].join("\n"),
+    [`${prefix}/next-invoice-note.md`]: [
+      `Subject: Next invoice / recurring work note`,
+      "",
+      "Hi [Client name],",
+      "",
+      "Thanks again for the recent work together. For the next invoice or recurring work cycle, I will keep the scope, timing, and payment details clear before starting.",
+      "",
+      "Please let me know if anything needs to change for the next round.",
+      "",
+      `[${businessName}]`,
+    ].join("\n"),
+    [`${prefix}/review-before-sending.md`]: [
+      "# Review Before Sending",
+      "",
+      reviewNote,
+      adviceRule,
+      "",
+      "- Replace placeholders before sending.",
+      "- Confirm payment wording matches the invoice and does not expose private account details.",
+      "- Remove any late-fee, legal, or collection language that was not already agreed and reviewed by the buyer.",
+      "- Do not include private invoice numbers, client private data, bank details, tax IDs, or account credentials.",
+      "",
+      "## Buyer-requested avoid list",
+      ...(avoidClaims.length ? avoidClaims.map((item) => `- ${item}`) : ["- No avoid list was provided."]),
+    ].join("\n"),
+    [`${prefix}/service-order-status.json`]: JSON.stringify({
+      serviceId: input.serviceId,
+      orderId,
+      businessName,
+      invoiceStatus,
+      preferredTone,
+      followupNeed,
+      paymentStatus: input.paymentStatus || (options.sample ? "sample_only_not_revenue" : ""),
+      paidOrderVerified: Boolean(input.paidOrderVerified),
+      generatedAt: new Date().toISOString(),
+      sample: Boolean(options.sample),
       buyerReviewRequired: true,
       revenueRule,
     }, null, 2),

@@ -1,0 +1,196 @@
+Invoice Follow-up Copy Pack Manual Outreach Batch
+
+Use this batch only for relevant public-safe contacts. Do not scrape, spam, repeat-send, or collect payment/private identity details.
+
+Primary service page: https://yanqr213.github.io/printable-tools-lab/invoice-followup-copy-pack/
+Request brief: https://yanqr213.github.io/printable-tools-lab/assets/services/invoice-followup-copy-pack-request.txt
+Structured request form: https://github.com/yanqr213/printable-tools-lab/issues/new
+Money gate: Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this invoice follow-up service.
+
+Daily cap: no more than 10 relevant cold contacts per day unless people are replying first.
+
+## 1. invoice-generator-inbound-lead-01
+Day: 1
+Channel: inbound-service-lead
+Audience: people who used the invoice generator and submitted a free fit-check request
+Find where: Use the operations lead monitor and public-safe service request issues only. Do not identify anonymous download visitors or try to contact site users without a submitted request.
+Qualification: They explicitly asked for help writing polite invoice follow-up wording and supplied only public-safe context.
+
+Message:
+Thanks for the invoice follow-up request. This fits a small copy pack if you need editable wording for a polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice message. No payment is collected on the site; I can confirm scope first, then send one external checkout or invoice link if it is useful.
+
+CTA: Please confirm the invoice status, tone, and whether this is wording-only rather than legal, tax, accounting, collections, or financial advice.
+Tracked URL: https://yanqr213.github.io/printable-tools-lab/invoice-followup-copy-pack/?utm_source=invoice-generator-inbound&utm_medium=manual&utm_campaign=invoice_followup_service
+Fallback URL: https://yanqr213.github.io/printable-tools-lab/assets/services/invoice-followup-copy-pack-request.txt?utm_source=invoice-generator-inbound&utm_medium=manual&utm_campaign=invoice_followup_service
+Stop rule: Use only after the person submits a request or replies. Do not ask for private invoice numbers, client data, bank details, tax IDs, or payment credentials.
+Status: ready_manual_reply
+
+## 2. freelancer-public-profile-01
+Day: 1
+Channel: public-social-dm
+Audience: freelancers and consultants with public business profiles who mention client work, invoices, retainers, or late payments
+Find where: Public LinkedIn, X, Bluesky, Indie Hackers, portfolio, or business profile pages where the person invites business messages.
+Qualification: They publicly sell client services and appear to need simple, professional invoice follow-up wording rather than billing software, legal advice, or collections help.
+
+Message:
+Hi, I saw that you do client work and thought a small invoice follow-up wording pack may be useful. I have a $19 copy pack for one workflow: polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording. It is editable copy only, not legal, tax, accounting, or collections advice, and payment happens only through a real external checkout after fit is confirmed.
+
+CTA: Want the short fit-check brief?
+Tracked URL: https://yanqr213.github.io/printable-tools-lab/invoice-followup-copy-pack/?utm_source=freelancer-dm&utm_medium=manual&utm_campaign=invoice_followup_service
+Fallback URL: https://yanqr213.github.io/printable-tools-lab/assets/services/invoice-followup-copy-pack-request.txt?utm_source=freelancer-dm&utm_medium=manual&utm_campaign=invoice_followup_service
+Stop rule: Do not contact private personal profiles. Send at most one initial message unless they reply.
+Status: ready_manual_send
+
+## 3. small-agency-public-profile-01
+Day: 1
+Channel: public-business-email
+Audience: small studios, solo agencies, and service teams with public business contact emails
+Find where: Public agency or studio websites with a general contact email for business inquiries.
+Qualification: They sell project or retainer work and may want reusable, polite client follow-up wording for sent invoices.
+
+Message:
+Hi, I am testing a small $19 Invoice Follow-up Copy Pack for service businesses that want editable wording for reminders, due-today notes, first overdue follow-ups, paid thank-yous, and next-invoice messages. It is wording-only and the buyer reviews everything before sending. No payment is taken on the site; I confirm fit first, then send one external checkout or invoice link.
+
+CTA: Would the one-page request brief be useful?
+Tracked URL: https://yanqr213.github.io/printable-tools-lab/invoice-followup-copy-pack/?utm_source=small-agency-email&utm_medium=manual&utm_campaign=invoice_followup_service
+Fallback URL: https://yanqr213.github.io/printable-tools-lab/assets/services/invoice-followup-copy-pack-request.txt?utm_source=small-agency-email&utm_medium=manual&utm_campaign=invoice_followup_service
+Stop rule: Use public business emails only. Do not add contacts to a list or send repeated follow-ups without a reply.
+Status: ready_manual_send
+
+## 4. creator-service-profile-01
+Day: 2
+Channel: public-social-dm
+Audience: creators, editors, designers, coaches, and tutors with public service offers
+Find where: Public profiles or service pages where business inquiries are welcome and invoices or client payments are relevant.
+Qualification: They sell a service and may need a polite message sequence after sending an invoice or payment request.
+
+Message:
+Hi, if you ever need simple wording after sending an invoice, I have a small $19 pack that drafts a friendly reminder, due-today note, overdue follow-up, thank-you, and next-invoice message. It is editable communication copy only, and I do not collect payment or private invoice details on the site.
+
+CTA: I can send the free fit-check brief if helpful.
+Tracked URL: https://yanqr213.github.io/printable-tools-lab/invoice-followup-copy-pack/?utm_source=creator-service-dm&utm_medium=manual&utm_campaign=invoice_followup_service
+Fallback URL: https://yanqr213.github.io/printable-tools-lab/assets/services/invoice-followup-copy-pack-request.txt?utm_source=creator-service-dm&utm_medium=manual&utm_campaign=invoice_followup_service
+Stop rule: Skip accounts that do not invite business messages. Do not ask for client names, invoice IDs, or private payment details.
+Status: ready_manual_send
+
+## 5. community-help-reply-01
+Day: 2
+Channel: helpful-community-reply
+Audience: public posts where someone asks how to politely follow up on an unpaid, due, or recently paid invoice
+Find where: Relevant public communities, forums, founder groups, freelancer groups, and Q&A threads that allow helpful resource replies.
+Qualification: The person is actively asking for wording, tone, or a simple follow-up sequence. They are not asking for legal, tax, accounting, collections, or financial advice.
+
+Message:
+For wording, I would keep the first follow-up short: acknowledge the invoice, restate the due date or status, give the payment path, and keep the relationship friendly. I made a free invoice generator, plus a small $19 wording pack if someone wants the follow-up sequence drafted for their own tone.
+
+CTA: Share the free generator first; mention the paid copy pack only if custom wording is relevant or requested.
+Tracked URL: https://yanqr213.github.io/printable-tools-lab/invoice-followup-copy-pack/?utm_source=community-reply&utm_medium=organic&utm_campaign=invoice_followup_service
+Fallback URL: https://yanqr213.github.io/printable-tools-lab/tools/invoice-generator/?utm_source=community-reply&utm_medium=organic&utm_campaign=invoice_followup_service
+Stop rule: Lead with free help. Do not diagnose legal rights, interest, penalties, debt collection, taxes, or accounting treatment.
+Status: ready_manual_reply
+
+## 6. invoice-template-resource-page-01
+Day: 3
+Channel: resource-page-contact
+Audience: free invoice template, freelancer resource, and small-business toolkit pages that accept useful resource suggestions
+Find where: Public contact forms or resource-submission pages that invite relevant tools or templates.
+Qualification: The page already links to invoice, freelancer, client communication, or small-business admin resources and accepts external suggestions without paid placement.
+
+Message:
+Hi, I built a free browser invoice generator and a small optional $19 Invoice Follow-up Copy Pack for people who need editable reminder wording after making an invoice. The service is copy-only, does not collect payment on-site, and avoids legal, tax, accounting, collections, and financial advice.
+
+CTA: Would this fit your invoice or freelancer resources page?
+Tracked URL: https://yanqr213.github.io/printable-tools-lab/invoice-followup-copy-pack/?utm_source=invoice-resource-page&utm_medium=organic&utm_campaign=invoice_followup_service
+Fallback URL: https://yanqr213.github.io/printable-tools-lab/tools/invoice-generator/?utm_source=invoice-resource-page&utm_medium=organic&utm_campaign=invoice_followup_service
+Stop rule: Submit only where resource suggestions are welcome. Do not use fake reviews, paid placement disguised as free, or forms requiring private identity/payout data.
+Status: ready_manual_submit
+
+## 7. bookkeeper-admin-resource-01
+Day: 3
+Channel: public-business-email
+Audience: bookkeepers, virtual assistants, and admin consultants who share public small-business workflow resources
+Find where: Public business websites or resource pages with a general contact email.
+Qualification: They help clients with admin workflows and may share wording resources, but the message must avoid accounting, tax, and collections claims.
+
+Message:
+Hi, I am testing a small wording-only resource for freelancers and service teams: a $19 Invoice Follow-up Copy Pack with editable reminder, due-today, overdue, thank-you, and next-invoice messages. It is not bookkeeping, tax, accounting, legal, or collections advice; buyers review the copy themselves before sending.
+
+CTA: Is there a resource page where this kind of wording pack would fit?
+Tracked URL: https://yanqr213.github.io/printable-tools-lab/invoice-followup-copy-pack/?utm_source=admin-resource-email&utm_medium=manual&utm_campaign=invoice_followup_service
+Fallback URL: https://yanqr213.github.io/printable-tools-lab/assets/services/invoice-followup-copy-pack-request.txt?utm_source=admin-resource-email&utm_medium=manual&utm_campaign=invoice_followup_service
+Stop rule: Use only public business/resource emails. Do not imply professional accounting, tax, legal, or collections outcomes.
+Status: ready_manual_send
+
+## 8. freelancer-directory-listing-01
+Day: 4
+Channel: service-directory-listing
+Audience: free or low-friction directories that allow freelancer tools, admin templates, or business writing services
+Find where: Directory submission forms that accept tool or micro-service listings and do not require false business data.
+Qualification: The directory allows simple service listings and the category can be described as business writing, freelancer admin templates, or invoice communication copy.
+
+Message:
+Invoice Follow-up Copy Pack is a $19 wording-only micro-service for freelancers and small service teams that need editable payment reminder, due-today, overdue follow-up, paid thank-you, and next-invoice copy after creating an invoice.
+
+CTA: Use the GitHub Pages service link as the public listing URL until the Cloudflare deployment is refreshed.
+Tracked URL: https://yanqr213.github.io/printable-tools-lab/invoice-followup-copy-pack/?utm_source=freelancer-directory&utm_medium=organic&utm_campaign=invoice_followup_service
+Fallback URL: https://yanqr213.github.io/printable-tools-lab/assets/services/invoice-followup-copy-pack-request.txt?utm_source=freelancer-directory&utm_medium=organic&utm_campaign=invoice_followup_service
+Stop rule: Do not submit to directories requiring fake address, phone, reviews, paid placement disguised as free, or private payout information.
+Status: ready_manual_submit
+
+## 9. warm-reply-followup-01
+Day: 5
+Channel: reply-followup-only
+Audience: people who replied positively or asked for price, scope, timeline, or next step
+Find where: Only previous conversations where the recipient asked for the brief, price, delivery, or checkout.
+Qualification: They asked a question, requested the brief, or confirmed the wording pack might help.
+
+Message:
+Subject: Invoice Follow-up Copy Pack - fit confirmed, payment link before work starts
+
+Thanks for sending the public-safe invoice follow-up request. This looks like it may fit the simple copy-pack scope.
+
+Scope after payment:
+- one polite payment reminder email
+- one due-today payment note
+- one first overdue follow-up
+- one paid thank-you message
+- one next-invoice or recurring-work note
+
+Price: $19 USD
+Target delivery is 1 business day after real payment and complete public-safe details.
+
+Next step:
+1. I will send one real external checkout or invoice link from Gumroad, Payhip, Ko-fi, Stripe, or an invoice provider.
+2. Please pay only through that external provider. Do not post card, bank, payout, tax, identity, customer, or private invoice details in GitHub or email.
+3. After the provider shows the order as paid, I will mark the request as paid_order_verified and prepare the copy pack.
+
+Before I send the checkout link, please confirm:
+- The request is for editable wording only, not legal, tax, accounting, debt-collection, or financial advice.
+- You will review the final copy for accuracy, tone, client relationship, and local rules before sending it.
+- No private invoice numbers, client private data, bank details, tax IDs, or full customer lists are included.
+
+Revenue is counted only after the external provider shows a paid order, payout balance, or settled payment.
+
+CTA: Please confirm the scope bullets, then I can send the external checkout link.
+Tracked URL: https://github.com/yanqr213/printable-tools-lab/issues/new
+Fallback URL: https://yanqr213.github.io/printable-tools-lab/assets/services/invoice-followup-copy-pack-payment-reply.txt?utm_source=warm-followup&utm_medium=manual&utm_campaign=invoice_followup_service
+Stop rule: Use this only after a real reply. Do not send payment language to cold contacts.
+Status: reply_only
+
+## 10. manual-log-closeout-01
+Day: 5
+Channel: operations-log
+Audience: internal tracking
+Find where: OPERATIONS.md service-order log section.
+Qualification: After each sent message, reply, request, checkout, paid order, delivery, or closeout.
+
+Message:
+Log date, channel, public-safe source, contact count, reply count, request URL, checkout state, paid amount, and next action. Do not log private buyer/payment details.
+
+CTA: Update status: sent, replied, intent_received, fit_confirmed, checkout_sent, paid_order_verified, delivered, revision_done, or closed.
+Tracked URL: https://yanqr213.github.io/printable-tools-lab/services.json
+Fallback URL: https://yanqr213.github.io/printable-tools-lab/services.json
+Stop rule: Never store payout, card, tax, identity, platform credential, phone, client, invoice number, or private address data in the repository.
+Status: required_after_action
+
+After every action, log only non-sensitive status in OPERATIONS.md. Revenue remains zero until an external provider proves a paid order.

@@ -62,7 +62,7 @@ async function main() {
   assert(metricsPayload.ok, "Metrics endpoint should respond");
   assert(store.getCount <= 1000, `Metrics endpoint should stay under Cloudflare KV read limits, got ${store.getCount}`);
   assert(metricsPayload.totals.download_pdf === 1, "Metrics should count downloads");
-  assert(metricsPayload.tools.length === 70, "Metrics should include every active tool plus monetization funnel rows");
+  assert(metricsPayload.tools.length === 71, "Metrics should include every active tool plus monetization funnel rows");
   const invoice = metricsPayload.tools.find((row) => row.tool === "invoice-generator");
   assert(invoice.download_pdf === 1, "Metrics should count per-tool downloads");
   const noSignupTools = metricsPayload.sources.find((row) => row.source === "nosignuptools");
@@ -611,6 +611,24 @@ async function main() {
   });
   const customServicePayload = await customServiceResponse.json();
   assert(customServiceResponse.status === 200 && customServicePayload.ok, "Service lead endpoint should accept valid custom setup requests");
+  const invoiceFollowupServiceResponse = await serviceLeadSource.onRequestPost({
+    request: new Request("https://example.test/api/service-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.34" },
+      body: JSON.stringify(serviceLeadBody({
+        serviceType: "invoice-followup-copy-pack",
+        source: "download_success",
+        path: "/tools/invoice-generator/",
+        requestSummary: "Please draft a friendly invoice reminder and first overdue follow-up without private invoice or client details.",
+        utmSource: "download_success",
+        utmCampaign: "invoice_followup_service",
+        utmContent: "invoice-generator",
+      })),
+    }),
+    env: serviceEnv,
+  });
+  const invoiceFollowupServicePayload = await invoiceFollowupServiceResponse.json();
+  assert(invoiceFollowupServiceResponse.status === 200 && invoiceFollowupServicePayload.ok, "Service lead endpoint should accept invoice follow-up copy requests");
   const auditServiceResponse = await serviceLeadSource.onRequestPost({
     request: new Request("https://example.test/api/service-lead", {
       method: "POST",
@@ -642,36 +660,45 @@ async function main() {
   const sellerKitServicePayload = await sellerKitServiceResponse.json();
   assert(sellerKitServiceResponse.status === 200 && sellerKitServicePayload.ok, "Service lead endpoint should accept seller kit checkout requests");
   assert(serviceStore.data.has(`service:lead:${customServicePayload.id}`), "Service lead should be stored privately in KV");
+  assert(serviceStore.data.has(`service:lead:${invoiceFollowupServicePayload.id}`), "Invoice follow-up service lead should be stored privately in KV");
   assert(serviceStore.data.has(`service:lead:${auditServicePayload.id}`), "Audit lead should be stored privately in KV");
   assert(serviceStore.data.has(`service:lead:${sellerKitServicePayload.id}`), "Seller kit lead should be stored privately in KV");
   const storedServiceLead = JSON.parse(serviceStore.data.get(`service:lead:${customServicePayload.id}`));
   assert(storedServiceLead.contact === "buyer@example.com", "Service lead should store normalized private contact");
   assert(storedServiceLead.serviceType === "custom-local-print-pack", "Service lead should persist service type");
   assert(storedServiceLead.utmCampaign === "service_request", "Service lead should preserve UTM campaign attribution");
+  const storedInvoiceFollowupLead = JSON.parse(serviceStore.data.get(`service:lead:${invoiceFollowupServicePayload.id}`));
+  assert(storedInvoiceFollowupLead.serviceType === "invoice-followup-copy-pack", "Invoice follow-up lead should persist service type");
+  assert(storedInvoiceFollowupLead.utmCampaign === "invoice_followup_service", "Invoice follow-up lead should preserve campaign attribution");
   const serviceLeadIndex = JSON.parse(serviceStore.data.get(`service:lead_index:${storedServiceLead.createdAt.slice(0, 7)}`));
-  assert(serviceLeadIndex.length === 3, "Service lead index should include custom service, audit, and seller kit rows");
+  assert(serviceLeadIndex.length === 4, "Service lead index should include custom service, invoice follow-up, audit, and seller kit rows");
   const publicServiceLeadSummary = await (await serviceLeadSource.onRequestGet({ env: serviceEnv })).json();
   const publicServiceLeadSummaryText = JSON.stringify(publicServiceLeadSummary);
   assert(publicServiceLeadSummary.ok && publicServiceLeadSummary.dataQuality === "lead-index", "Service lead GET should expose a public-safe lead index summary");
-  assert(publicServiceLeadSummary.leadCount === 3, "Service lead GET should count indexed service leads");
-  assert(publicServiceLeadSummary.serviceRequestCount === 1, "Service lead GET should count paid setup requests");
+  assert(publicServiceLeadSummary.leadCount === 4, "Service lead GET should count indexed service leads");
+  assert(publicServiceLeadSummary.serviceRequestCount === 2, "Service lead GET should count paid setup and invoice follow-up requests");
   assert(publicServiceLeadSummary.auditRequestCount === 1, "Service lead GET should count audit requests");
   assert(publicServiceLeadSummary.sellerKitRequestCount === 1, "Service lead GET should count seller kit requests");
+  assert(publicServiceLeadSummary.serviceTypes["custom-local-print-pack"] === 1, "Service lead GET should count custom service type");
+  assert(publicServiceLeadSummary.serviceTypes["invoice-followup-copy-pack"] === 1, "Service lead GET should count invoice follow-up service type");
   assert(!publicServiceLeadSummaryText.includes("buyer@example.com"), "Service lead GET should not expose private contact");
   assert(!publicServiceLeadSummaryText.includes("Example Market Booth"), "Service lead GET should not expose business name");
   assert(!publicServiceLeadSummaryText.includes("Please assemble"), "Service lead GET should not expose request notes");
   const serviceMetrics = await (await metricsSource.onRequestGet({ env: serviceEnv })).json();
   const serviceMetricsService = serviceMetrics.tools.find((row) => row.tool === "custom-local-print-pack");
+  const serviceMetricsInvoiceFollowup = serviceMetrics.tools.find((row) => row.tool === "invoice-followup-copy-pack");
   const serviceMetricsAudit = serviceMetrics.tools.find((row) => row.tool === "market-table-print-audit");
   const serviceMetricsSeller = serviceMetrics.tools.find((row) => row.tool === "local-seller-starter-kit");
   assert(serviceMetricsService.service_request_intent === 1, "Metrics should count service lead submissions as service request intent");
+  assert(serviceMetricsInvoiceFollowup.service_request_intent === 1, "Metrics should count invoice follow-up submissions as service request intent");
   assert(serviceMetricsAudit.audit_request_intent === 1, "Metrics should count audit lead submissions as audit request intent");
   assert(serviceMetricsSeller.seller_checkout_intent === 1, "Metrics should count seller kit lead submissions as checkout intent");
-  assert(serviceMetrics.commercialIntent === 3, "Commercial intent should include service, audit, and seller lead submissions");
+  assert(serviceMetrics.commercialIntent === 4, "Commercial intent should include service, invoice follow-up, audit, and seller lead submissions");
   const serviceOpsMetrics = await (await opsMetricsSource.onRequestGet({ env: serviceEnv })).json();
   const servicePrintableProject = serviceOpsMetrics.projects.find((row) => row.id === "printable-tools-lab");
-  assert(servicePrintableProject.summary.commercialIntent === 3, "Ops metrics should count service lead submissions in commercial intent");
+  assert(servicePrintableProject.summary.commercialIntent === 4, "Ops metrics should count service lead submissions in commercial intent");
   assert(servicePrintableProject.tools.find((row) => row.tool === "custom-local-print-pack").service_request_intent === 1, "Ops metrics should count the custom service lead tool row");
+  assert(servicePrintableProject.tools.find((row) => row.tool === "invoice-followup-copy-pack").service_request_intent === 1, "Ops metrics should count the invoice follow-up service lead tool row");
   const serviceLeadWriteLimitedStore = new MemoryStore({ failWritesWith: "KV put() limit exceeded for the day." });
   const serviceLeadWriteLimitedResponse = await serviceLeadSource.onRequestPost({
     request: new Request("https://example.test/api/service-lead", {

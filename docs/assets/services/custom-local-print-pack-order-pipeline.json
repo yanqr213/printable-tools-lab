@@ -26,6 +26,8 @@
     "payout details",
     "tax identifiers",
     "identity documents",
+    "invoice numbers",
+    "client private data",
     "platform credentials",
     "private account passwords"
   ],

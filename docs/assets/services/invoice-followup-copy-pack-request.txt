@@ -1,0 +1,14 @@
+I want a free fit check for the Invoice Follow-up Copy Pack ($19 USD only if it fits).
+
+Business or project name:
+Invoice status: draft / sent / due today / overdue / paid / recurring
+Preferred tone: friendly / firm / concise / warm
+What kind of follow-up do you need?
+Payment method wording to mention, without private account details:
+Need-by date or follow-up timeline:
+If it fits, preferred external checkout provider: Gumroad / Payhip / Ko-fi / Stripe / invoice / other
+Best contact method:
+Notes:
+
+No payment is collected by this request. Please review fit first; send a real external checkout or invoice link only if the service is useful and available.
+Do not include invoice numbers, bank details, card data, tax IDs, client private data, private customer lists, or legal dispute details.

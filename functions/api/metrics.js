@@ -71,6 +71,7 @@ const PRINTABLE_TOOLS = [
   "habit-tracker",
   "local-seller-starter-kit",
   "custom-local-print-pack",
+  "invoice-followup-copy-pack",
   "market-table-print-audit",
   "sponsor",
 ];
@@ -90,6 +91,7 @@ const SOURCES = [
   "nologin",
   "nosubscription",
   "share-kit",
+  "download_success",
   "short-video",
   "game-platform",
   "sponsor-outreach",

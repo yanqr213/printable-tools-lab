@@ -1,0 +1,92 @@
+{
+  "id": "invoice-followup-copy-pack-order-pipeline",
+  "serviceId": "invoice-followup-copy-pack",
+  "serviceName": "Invoice Follow-up Copy Pack",
+  "priceUsd": 19,
+  "currency": "USD",
+  "generatedFor": "Manual service requests that can become paid orders without collecting payment on the site.",
+  "issueFormUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new",
+  "requestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=Service+request%3A+Invoice+Follow-up+Copy+Pack&body=I+want+a+free+fit+check+for+the+Invoice+Follow-up+Copy+Pack+%28%2419+USD+only+if+it+fits%29.%0A%0ABusiness+or+project+name%3A%0AInvoice+status%3A+draft+%2F+sent+%2F+due+today+%2F+overdue+%2F+paid+%2F+recurring%0APreferred+tone%3A+friendly+%2F+firm+%2F+concise+%2F+warm%0AWhat+kind+of+follow-up+do+you+need%3F%0APayment+method+wording+to+mention%2C+without+private+account+details%3A%0ANeed-by+date+or+follow-up+timeline%3A%0AIf+it+fits%2C+preferred+external+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+invoice+%2F+other%0ABest+contact+method%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+review+fit+first%3B+send+a+real+external+checkout+or+invoice+link+only+if+the+service+is+useful+and+available.%0ADo+not+include+invoice+numbers%2C+bank+details%2C+card+data%2C+tax+IDs%2C+client+private+data%2C+private+customer+lists%2C+or+legal+dispute+details.",
+  "requestTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/invoice-followup-copy-pack-request.txt",
+  "paymentReplyTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/invoice-followup-copy-pack-payment-reply.txt",
+  "fulfillmentChecklistUrl": "https://printable-tools-lab.pages.dev/assets/services/invoice-followup-copy-pack-fulfillment-checklist.txt",
+  "publicSafeFields": [
+    "business or project name",
+    "invoice status without invoice numbers or client private data",
+    "preferred tone and follow-up type",
+    "payment method wording without private account details",
+    "public-safe reply preference",
+    "need-by date",
+    "preferred external checkout provider",
+    "notes that do not include private payment or identity data"
+  ],
+  "forbiddenFields": [
+    "card numbers",
+    "bank details",
+    "payout details",
+    "tax identifiers",
+    "identity documents",
+    "invoice numbers",
+    "client private data",
+    "platform credentials",
+    "private account passwords"
+  ],
+  "statuses": [
+    {
+      "id": "intent_received",
+      "ownerAction": "A buyer submits the structured issue form, prefilled issue, email, or brief text.",
+      "buyerAction": "Provide public-safe service details only.",
+      "moneyRule": "Not revenue."
+    },
+    {
+      "id": "fit_confirmed",
+      "ownerAction": "Confirm the request is within the simple invoice follow-up copy scope and details are public-safe.",
+      "buyerAction": "Confirm the messages are for buyer review and self-send only, not legal, tax, accounting, debt-collection, or financial advice.",
+      "moneyRule": "Not revenue."
+    },
+    {
+      "id": "checkout_sent",
+      "ownerAction": "Send one real external Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link.",
+      "buyerAction": "Pay only through the external provider.",
+      "moneyRule": "Not revenue until the provider confirms payment."
+    },
+    {
+      "id": "paid_order_verified",
+      "ownerAction": "Verify paid order, payout balance, or settled payment in the provider dashboard.",
+      "buyerAction": "No extra sensitive data required.",
+      "moneyRule": "This is the first status that can count as revenue."
+    },
+    {
+      "id": "in_progress",
+      "ownerAction": "Prepare the editable reminder, due-today, overdue, thank-you, and next-invoice wording blocks.",
+      "buyerAction": "Answer scope clarifications only if needed.",
+      "moneyRule": "Revenue already verified externally."
+    },
+    {
+      "id": "delivered",
+      "ownerAction": "Send the copy pack through the agreed channel with review-before-sending reminders.",
+      "buyerAction": "Review all copy for accuracy, tone, client relationship, and local rules before sending.",
+      "moneyRule": "Revenue already verified externally."
+    },
+    {
+      "id": "revision_done",
+      "ownerAction": "Complete the included lightweight typo or fit revision if requested.",
+      "buyerAction": "Confirm the revision request is within scope.",
+      "moneyRule": "No extra revenue unless a separate new paid scope is created."
+    },
+    {
+      "id": "closed",
+      "ownerAction": "Log the non-sensitive outcome in OPERATIONS.md and leave private payment details in the provider only.",
+      "buyerAction": "Use the editable wording in their own invoice follow-up workflow.",
+      "moneyRule": "Final counted revenue must match the external provider record."
+    }
+  ],
+  "moneyGate": "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this invoice follow-up service.",
+  "riskControls": [
+    "The service provides editable communication copy only, not legal, tax, accounting, debt-collection, or financial advice.",
+    "Do not send invoice numbers, customer private data, bank details, card data, tax IDs, identity documents, or full client lists.",
+    "The buyer must review every message for accuracy, tone, jurisdiction, and client relationship before sending.",
+    "The service does not contact the buyer's client, collect payments, or guarantee payment outcomes.",
+    "Work starts only after a real external checkout or invoice is paid and verified."
+  ]
+}

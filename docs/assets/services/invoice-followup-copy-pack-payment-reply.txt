@@ -1,0 +1,25 @@
+Subject: Invoice Follow-up Copy Pack - fit confirmed, payment link before work starts
+
+Thanks for sending the public-safe invoice follow-up request. This looks like it may fit the simple copy-pack scope.
+
+Scope after payment:
+- one polite payment reminder email
+- one due-today payment note
+- one first overdue follow-up
+- one paid thank-you message
+- one next-invoice or recurring-work note
+
+Price: $19 USD
+Target delivery is 1 business day after real payment and complete public-safe details.
+
+Next step:
+1. I will send one real external checkout or invoice link from Gumroad, Payhip, Ko-fi, Stripe, or an invoice provider.
+2. Please pay only through that external provider. Do not post card, bank, payout, tax, identity, customer, or private invoice details in GitHub or email.
+3. After the provider shows the order as paid, I will mark the request as paid_order_verified and prepare the copy pack.
+
+Before I send the checkout link, please confirm:
+- The request is for editable wording only, not legal, tax, accounting, debt-collection, or financial advice.
+- You will review the final copy for accuracy, tone, client relationship, and local rules before sending it.
+- No private invoice numbers, client private data, bank details, tax IDs, or full customer lists are included.
+
+Revenue is counted only after the external provider shows a paid order, payout balance, or settled payment.

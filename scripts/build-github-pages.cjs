@@ -1273,6 +1273,40 @@ function auditLeadMagnetHtml() {
 }
 
 function serviceHtml(service) {
+  const isInvoiceFollowup = service.id === "invoice-followup-copy-pack";
+  const serviceFieldCopy = isInvoiceFollowup ? {
+    businessLabel: "Business, client-work, or project name",
+    businessPlaceholder: "Freelance design project",
+    sellsLabel: "What kind of invoice follow-up do you need?",
+    sellsPlaceholder: "Friendly reminder for a sent invoice plus a firmer first overdue follow-up",
+    itemsLabel: "Invoice status and public-safe context",
+    itemsPlaceholder: "Invoice sent last week; due this Friday; client usually pays by bank transfer. No private invoice or client details included.",
+    contactLabel: "Payment wording to mention without private details",
+    contactPlaceholder: "Please use the payment link or invoice portal already sent.",
+    styleLabel: "Preferred tone",
+    styleOptions: ["friendly", "firm", "concise", "warm"],
+    dateLabel: "Need-by date or follow-up timeline",
+    datePlaceholder: "Tomorrow morning or before the due date",
+    preferencePlaceholder: "Public email, website contact page, or GitHub issue reply",
+    notesPlaceholder: "Avoid invoice numbers, client names, bank details, tax IDs, legal dispute details, and private customer data.",
+    deliverableDescription: "Editable communication copy the buyer reviews before sending to their own client.",
+  } : {
+    businessLabel: "Business, booth, event, or service name",
+    businessPlaceholder: "Sunny Table Bakes",
+    sellsLabel: "What do you sell or promote?",
+    sellsPlaceholder: "Cookies, market boxes, and weekend pickup orders",
+    itemsLabel: "Up to 12 items or services with prices",
+    itemsPlaceholder: "Chocolate chip cookie bag - $6\nBrownie box - $10\nMarket bundle - 2 for $15",
+    contactLabel: "QR sign link or public-safe contact method",
+    contactPlaceholder: "Public shop link, booking page, or contact page",
+    styleLabel: "Preferred style",
+    styleOptions: ["clean", "cute", "bold", "minimal", "local", "premium", "practical"],
+    dateLabel: "Need-by date",
+    datePlaceholder: "June 22 market",
+    preferencePlaceholder: "Reply in GitHub issue, public email, or public website contact page",
+    notesPlaceholder: "Avoid private customer details, tax IDs, account logins, payment data, and private addresses.",
+    deliverableDescription: "Editable starter content for one local seller, small service, booth, event, or simple offer.",
+  };
   const requestTemplateUrl = pagesAssetUrl(service.publicRequestPath);
   const paymentReplyUrl = pagesAssetUrl(service.publicPaymentReplyPath);
   const fulfillmentChecklistUrl = pagesAssetUrl(service.publicFulfillmentChecklistPath);
@@ -1304,13 +1338,13 @@ function serviceHtml(service) {
   const actionLinks = [
     `<a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestUrl)}">Request free fit check</a>`,
     `<a class="button secondary" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(service.issueFormUrl)}">Open structured request form</a>`,
-    `<a class="button secondary" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(MARKET_TABLE_PRINT_AUDIT.id)}" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Start with free audit</a>`,
+    isInvoiceFollowup ? `<a class="button secondary" href="${pagesUrl("tools/invoice-generator")}">Open free invoice generator</a>` : `<a class="button secondary" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(MARKET_TABLE_PRINT_AUDIT.id)}" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Start with free audit</a>`,
     `<a class="button secondary" href="${requestTemplateUrl}" download>Download service brief</a>`,
     requestEmailUrl ? `<a data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestEmailUrl)}">Email service request</a>` : "",
     `<a href="${orderPipelineUrl}">Open order pipeline</a>`,
     `<a href="${outreachBatchUrl}">Open outreach batch</a>`,
     `<a href="${sampleDeliveryUrl}">Download sample delivery</a>`,
-    `<a href="${pagesUrl(LOCAL_SELLER_STARTER_KIT.slug)}">See the $${LOCAL_SELLER_STARTER_KIT.priceUsd} template kit</a>`,
+    isInvoiceFollowup ? "" : `<a href="${pagesUrl(LOCAL_SELLER_STARTER_KIT.slug)}">See the $${LOCAL_SELLER_STARTER_KIT.priceUsd} template kit</a>`,
   ].filter(Boolean).join("\n        ");
   return `<!doctype html>
 <html lang="en">
@@ -1357,16 +1391,16 @@ function serviceHtml(service) {
       <p>Fill the public-safe fields once, then copy the generated request or open it as a prefilled GitHub issue. Checkout is not connected on this mirror; money is counted only after a real external checkout is paid.</p>
       <div class="grid" data-service-request-builder data-service-request-title="Service request: ${escapeHtml(service.name)}">
         <form class="card form-grid" data-service-request-form>
-          <div class="field"><label for="service-business">Business, booth, event, or service name</label><input id="service-business" name="business" autocomplete="organization" placeholder="Sunny Table Bakes"></div>
-          <div class="field"><label for="service-sells">What do you sell or promote?</label><textarea id="service-sells" name="sells" placeholder="Cookies, market boxes, and weekend pickup orders"></textarea></div>
-          <div class="field"><label for="service-items">Up to 12 items or services with prices</label><textarea id="service-items" name="items" placeholder="Chocolate chip cookie bag - $6&#10;Brownie box - $10&#10;Market bundle - 2 for $15"></textarea></div>
-          <div class="field"><label for="service-contact">QR sign link or public-safe contact method</label><input id="service-contact" name="contact" inputmode="url" placeholder="Public shop link, booking page, or contact page"></div>
-          <div class="field"><label for="service-style">Preferred style</label><select id="service-style" name="style"><option>clean</option><option>cute</option><option>bold</option><option>minimal</option><option>local</option><option>premium</option><option>practical</option></select></div>
-          <div class="field"><label for="service-date">Need-by date</label><input id="service-date" name="date" placeholder="June 22 market"></div>
+          <div class="field"><label for="service-business">${escapeHtml(serviceFieldCopy.businessLabel)}</label><input id="service-business" name="business" autocomplete="organization" placeholder="${escapeHtml(serviceFieldCopy.businessPlaceholder)}"></div>
+          <div class="field"><label for="service-sells">${escapeHtml(serviceFieldCopy.sellsLabel)}</label><textarea id="service-sells" name="sells" placeholder="${escapeHtml(serviceFieldCopy.sellsPlaceholder)}"></textarea></div>
+          <div class="field"><label for="service-items">${escapeHtml(serviceFieldCopy.itemsLabel)}</label><textarea id="service-items" name="items" placeholder="${escapeHtml(serviceFieldCopy.itemsPlaceholder)}"></textarea></div>
+          <div class="field"><label for="service-contact">${escapeHtml(serviceFieldCopy.contactLabel)}</label><input id="service-contact" name="contact" placeholder="${escapeHtml(serviceFieldCopy.contactPlaceholder)}"></div>
+          <div class="field"><label for="service-style">${escapeHtml(serviceFieldCopy.styleLabel)}</label><select id="service-style" name="style">${serviceFieldCopy.styleOptions.map((option) => `<option>${escapeHtml(option)}</option>`).join("")}</select></div>
+          <div class="field"><label for="service-date">${escapeHtml(serviceFieldCopy.dateLabel)}</label><input id="service-date" name="date" placeholder="${escapeHtml(serviceFieldCopy.datePlaceholder)}"></div>
           <div class="field"><label for="service-checkout">If it fits, preferred external checkout provider</label><select id="service-checkout" name="checkout"><option>No preference</option><option>Gumroad</option><option>Payhip</option><option>Ko-fi</option><option>Stripe</option><option>Invoice provider</option></select></div>
-          <div class="field"><label for="service-preference">Best public-safe contact method</label><input id="service-preference" name="preference" placeholder="Reply in GitHub issue, public email, or public website contact page"></div>
+          <div class="field"><label for="service-preference">Best public-safe contact method</label><input id="service-preference" name="preference" placeholder="${escapeHtml(serviceFieldCopy.preferencePlaceholder)}"></div>
           <div class="field"><label for="service-region">Country or region (optional)</label><input id="service-region" name="region" placeholder="Optional"></div>
-          <div class="field"><label for="service-notes">Notes</label><textarea id="service-notes" name="notes" placeholder="Avoid private customer details, tax IDs, account logins, payment data, and private addresses."></textarea></div>
+          <div class="field"><label for="service-notes">Notes</label><textarea id="service-notes" name="notes" placeholder="${escapeHtml(serviceFieldCopy.notesPlaceholder)}"></textarea></div>
         </form>
         <article class="card form-grid">
           <h3>Generated request</h3>
@@ -1386,7 +1420,7 @@ function serviceHtml(service) {
       <ol>${pipeline.statuses.map((status) => `<li><strong>${escapeHtml(status.id)}</strong>: ${escapeHtml(status.moneyRule)}</li>`).join("")}</ol>
       <h2>Deliverables</h2>
       <div class="grid">
-        ${service.deliverables.map((item) => `<article class="card"><h3>${escapeHtml(item)}</h3><p>Editable starter content for one local seller, small service, booth, event, or simple offer.</p></article>`).join("\n")}
+        ${service.deliverables.map((item) => `<article class="card"><h3>${escapeHtml(item)}</h3><p>${escapeHtml(serviceFieldCopy.deliverableDescription)}</p></article>`).join("\n")}
       </div>
       <h2>Risk controls</h2>
       <ul>${service.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
@@ -1412,7 +1446,22 @@ function serviceHtml(service) {
           return label + (/[?:]$/.test(label) ? " " : ": ") + (value || "");
         }
         function update() {
-          var body = [
+          var isInvoiceFollowup = "${escapeScript(service.id)}" === "invoice-followup-copy-pack";
+          var body = isInvoiceFollowup ? [
+            "I want a free fit check for the ${escapeScript(service.name)} ($${service.priceUsd} ${escapeScript(service.currency)} only if it fits).",
+            "",
+            line("Business or project name", read("business")),
+            line("Invoice status: draft / sent / due today / overdue / paid / recurring", read("items")),
+            line("Preferred tone: friendly / firm / concise / warm", read("style")),
+            line("What kind of follow-up do you need?", read("sells")),
+            line("Payment method wording to mention, without private account details", read("contact")),
+            line("Need-by date or follow-up timeline", read("date")),
+            line("If it fits, preferred external checkout provider: Gumroad / Payhip / Ko-fi / Stripe / Invoice provider / No preference", read("checkout")),
+            line("Best public-safe contact method", read("preference")),
+            line("Notes", read("notes")),
+            "",
+            "No payment is collected by this request. Please review fit first; send a real external checkout or invoice link only if the service is useful and available. Do not include invoice numbers, bank details, card data, tax IDs, client private data, private customer lists, legal dispute details, or private payment details."
+          ].join("\\n") : [
             "I want a free fit check for the ${escapeScript(service.name)} ($${service.priceUsd} ${escapeScript(service.currency)} only if it fits).",
             "",
             line("Business, booth, event, or service name", read("business")),

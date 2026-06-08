@@ -1,0 +1,32 @@
+# Invoice Follow-up Copy Pack Fulfillment Checklist
+
+Use this only after a real external payment provider shows a paid order. Do not start custom work from a request, page view, email, or brief download alone.
+
+## Intake
+
+- Confirm request source URL, date, and public-safe contact method.
+- Confirm buyer sent invoice status, preferred tone, needed follow-up type, payment wording constraints, and timeline.
+- Confirm no invoice numbers, bank details, card data, tax IDs, identity documents, client private data, full customer lists, or legal dispute details were collected.
+- Confirm buyer understands this is editable communication copy only, not legal, tax, accounting, collection, or financial advice.
+
+## Payment Gate
+
+- Send one real external checkout or invoice link only after fit is confirmed.
+- Wait until the provider shows paid_order_verified, paid order, payout balance, or settled payment.
+- Log the order source and provider status in OPERATIONS.md without exposing private buyer, client, invoice, or payment details.
+
+## Build
+
+- Draft one polite payment reminder email.
+- Draft one due-today payment note.
+- Draft one first overdue follow-up.
+- Draft one paid thank-you message.
+- Draft one next-invoice or recurring-work note.
+- Keep copy editable and free of legal threats, debt-collection claims, or guaranteed payment promises.
+
+## Delivery
+
+- Deliver text blocks through the buyer's agreed channel.
+- Include a note that the buyer must review accuracy, tone, client relationship, and local rules before sending.
+- Offer one lightweight revision for tone, typos, or fit.
+- Mark the pipeline delivered, then revision_done or closed after the buyer response.
