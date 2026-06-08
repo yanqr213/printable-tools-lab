@@ -441,6 +441,20 @@ main {
   text-align: right;
 }
 
+.home-service-lead-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.home-invoice-lead-form {
+  align-self: stretch;
+  background: #fff;
+}
+
+.home-invoice-lead-form textarea {
+  min-height: 118px;
+}
+
 .meta {
   display: flex;
   flex-wrap: wrap;
