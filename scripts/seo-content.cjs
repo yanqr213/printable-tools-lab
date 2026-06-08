@@ -5501,7 +5501,7 @@ const pages = [
     title: "Sponsor Proposal",
     description: "Noindex sponsor proposal page for one policy-fit partner, with a recommended pilot deal and prefilled inquiry path.",
     index: false,
-    html: `<section class="shell section"><h1>Sponsor proposal</h1><p>This direct proposal page loads a partner-specific sponsor fit, recommended deal, and prefilled inquiry form after the app loads.</p><p><a class="button ghost" href="${escapeHtml(sponsorPublicReplyUrl({ proposalUrl: siteUrl("sponsor-proposal") }))}" target="_blank" rel="noreferrer">Open public-safe GitHub reply form</a></p></section>`,
+    html: `<section class="shell section"><h1>Sponsor proposal</h1><p>This direct proposal page loads a partner-specific sponsor fit, recommended deal, and prefilled inquiry form after the app loads.</p><p><a class="button" data-sponsor-public-invoice-request href="${escapeHtml(sponsorPublicReplyUrl({ proposalUrl: siteUrl("sponsor-proposal"), dealTitle: "Starter fit review", dealPrice: "USD 49" }))}" target="_blank" rel="noreferrer">Open public invoice request</a></p><p class="help">Use only public company, website, audience-fit, and deal context in the issue. Payment, tax, bank, phone, identity, password, and customer-file details stay outside the public request.</p></section>`,
   },
   {
     path: "sponsor-deal-room",
@@ -5767,6 +5767,15 @@ function opsMonitorStaticHtml() {
   const sponsorOutreach = report?.local?.sponsorOutreach || {};
   const publicReplies = report?.local?.sponsorPublicReplies || {};
   const starterReviewUrl = "/sponsor-starter-review/?utm_source=ops&utm_medium=internal&utm_campaign=sponsor_close&utm_content=static-ops&commitment=request-invoice#sponsor-inquiry";
+  const defaultDeal = SPONSOR_DEALS.find((deal) => deal.id === DEFAULT_SPONSOR_DEAL_ID) || SPONSOR_DEALS[0];
+  const defaultVertical = SPONSOR_VERTICALS[0];
+  const publicInvoiceRequestUrl = sponsorPublicReplyUrl({
+    prospectName: "Sponsor team",
+    verticalTitle: defaultVertical?.title || "",
+    dealTitle: defaultDeal?.title || "Starter fit review",
+    dealPrice: defaultDeal?.price || "USD 49",
+    proposalUrl: `${siteUrl("sponsor-starter-review").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_close&utm_content=static-public-invoice&commitment=request-invoice#sponsor-inquiry`,
+  });
   const projectRows = [
     [
       "PrintableTools Lab",
@@ -5805,6 +5814,7 @@ function opsMonitorStaticHtml() {
           <div class="actions">
             <a class="button secondary" href="/api/ops-metrics" target="_blank" rel="noreferrer">Open JSON</a>
             <a class="button" href="${escapeHtml(starterReviewUrl)}">Open invoice review form</a>
+            <a class="button ghost" data-sponsor-public-invoice-request href="${escapeHtml(publicInvoiceRequestUrl)}" target="_blank" rel="noreferrer">Open public invoice issue</a>
           </div>
         </div>
         <div class="notice compact-notice">
@@ -5830,7 +5840,10 @@ function opsMonitorStaticHtml() {
                 <h2>Sponsor close cockpit</h2>
                 <p>${escapeHtml(opsSponsorSnapshotAction(sponsorLeads, totals.sponsor_request_intent || 0, totals.page_view || 0, totalDownloads, sponsorInvoiceRequests))}</p>
               </div>
-              <a class="button" href="${escapeHtml(starterReviewUrl)}">Open invoice review form</a>
+              <div class="actions">
+                <a class="button" href="${escapeHtml(starterReviewUrl)}">Open invoice review form</a>
+                <a class="button ghost" data-sponsor-public-invoice-request href="${escapeHtml(publicInvoiceRequestUrl)}" target="_blank" rel="noreferrer">Open public invoice issue</a>
+              </div>
             </div>
             <div class="metric-grid compact ops-project-grid">
               ${opsMetricTile(totals.sponsor_request_intent || 0, "sponsor intent")}
@@ -5888,12 +5901,11 @@ ${opsPublicReplySnapshotHtml(publicReplies)}
 
 function opsPublicReplySnapshotHtml(publicReplies) {
   const sourceUrl = publicReplies?.sourceUrl || "https://github.com/yanqr213/printable-tools-lab/issues?q=is%3Aissue%20label%3Asponsor%20label%3Apartner%20label%3Abusiness-review";
-  const warning = publicReplies?.dataWarning ? `<p class="notice">${escapeHtml(publicReplies.dataWarning)}</p>` : "";
+  const warning = publicReplies?.dataWarning ? `\n              <p class="notice">${escapeHtml(publicReplies.dataWarning)}</p>` : "";
   return `            <div class="notice sponsor-lead-check">
               <strong>Public-safe sponsor reply evidence</strong>
               <p>${escapeHtml(publicReplies?.publicReplyCount || 0)} public GitHub sponsor reply issue(s), ${escapeHtml(publicReplies?.invoiceRequestCount || 0)} public invoice request issue(s), ${escapeHtml(publicReplies?.readyForReviewCount || 0)} ready for manual review. Quality ${escapeHtml(publicReplies?.dataQuality || "missing")}.</p>
-              <p><a href="${escapeHtml(sourceUrl)}" target="_blank" rel="noreferrer">Open public evidence search</a></p>
-              ${warning}
+              <p><a href="${escapeHtml(sourceUrl)}" target="_blank" rel="noreferrer">Open public evidence search</a></p>${warning}
             </div>`;
 }
 

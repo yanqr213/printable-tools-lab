@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-08T00:59:41.424Z",
+  "generatedAt": "2026-06-08T01:11:55.358Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 92,
     "indexableRoutes": 281,
     "sitemapLocCount": 281,
-    "generatedToolInventoryAt": "2026-06-08T00:58:34.769Z",
+    "generatedToolInventoryAt": "2026-06-08T01:10:57.699Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -41,7 +41,7 @@
     },
     "sponsorPublicReplies": {
       "available": true,
-      "dataQuality": "github-issues-html-fallback",
+      "dataQuality": "github-issues-api",
       "publicReplyCount": 0,
       "openCount": 0,
       "invoiceRequestCount": 0,
@@ -49,7 +49,7 @@
       "proposalLinkedCount": 0,
       "latestUpdatedAt": "",
       "sourceUrl": "https://github.com/yanqr213/printable-tools-lab/issues?q=is%3Aissue%20label%3Asponsor%20label%3Apartner%20label%3Abusiness-review",
-      "dataWarning": "API unavailable; HTML fallback used. GitHub issues API 403: API rate limit exceeded for unauthenticated requests."
+      "dataWarning": ""
     },
     "ads": {
       "enabled": false,
@@ -129,7 +129,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-08T00:57:07.066Z",
+          "generatedAt": "2026-06-08T01:00:19.589Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -1015,7 +1015,7 @@
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-08T00:57:07.066Z",
+          "generatedAt": "2026-06-08T01:00:19.589Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -2072,7 +2072,7 @@
         "bytes": 44086,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-08T00:57:07.066Z",
+          "generatedAt": "2026-06-08T01:00:19.589Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -4384,21 +4384,35 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
+      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF size targets, image KB targets, PDF-to-Word, ATS checks, background removal, text overlays, QR codes, PDF edits, paperwork, labels, resumes, and printables.",
       "topics": [
-        "pdf-tools",
+        "background-remover",
+        "compress-image-to-100kb",
+        "compress-pdf",
+        "compress-pdf-to-1mb",
+        "compress-pdf-to-500kb",
+        "free-tools",
+        "image-compressor",
+        "image-converter",
+        "image-resizer",
+        "image-to-pdf",
         "image-tools",
-        "qr-code",
+        "invoice-generator",
         "no-signup",
-        "browser-tools",
-        "free-tools"
+        "passport-photo",
+        "pdf-generator",
+        "pdf-to-jpg",
+        "pdf-to-word",
+        "pdf-tools",
+        "qr-code",
+        "resume-checker"
       ],
-      "error": "GitHub API fallback used: GitHub API 403",
       "discoveryRelease": {
         "tag": "free-pdf-tools",
         "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
         "name": "Free PDF, Image, and QR Tools Without Signup"
-      }
+      },
+      "error": ""
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
@@ -4546,7 +4560,7 @@
         "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
       ],
       "externalDiscovery": [
-        "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 92 landing page link(s), 66 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).",
         "GitHub Pages discovery sitemap has 263 URL(s), including 66 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 263.",

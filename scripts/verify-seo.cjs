@@ -232,7 +232,7 @@ else {
   const html = fs.readFileSync(sponsorProposalFile, "utf8");
   if (!html.includes('content="noindex,follow"')) failures.push("Sponsor proposal page should be noindex.");
   if (!html.includes("Sponsor proposal")) failures.push("Sponsor proposal route missing fallback heading.");
-  if (!hasPrefilledSponsorReplyUrl(html) || !html.includes("public-safe GitHub reply form")) failures.push("Sponsor proposal route missing prefilled public-safe reply fallback.");
+  if (!hasPrefilledSponsorReplyUrl(html) || !html.includes("Open public invoice request") || !html.includes("data-sponsor-public-invoice-request")) failures.push("Sponsor proposal route missing prefilled public invoice request fallback.");
   if (sitemap.includes(`<loc>${siteUrl("sponsor-proposal")}</loc>`)) failures.push("Sitemap should not include noindex sponsor proposal page.");
 }
 
@@ -434,6 +434,7 @@ else {
   if (!script.includes("loadSponsorPublicReplies") || !script.includes("Public-safe sponsor reply evidence") || !script.includes("/api/sponsor-public-replies")) failures.push("app.js ops monitor should independently check public sponsor reply evidence.");
   if (!script.includes("renderSponsorProposalPage") || !script.includes("sponsorProspectProposalUrl") || !script.includes("sponsor_proposal")) failures.push("app.js missing direct sponsor proposal funnel.");
   if (!script.includes("applySponsorProspectPrefill") || !script.includes("sponsorProspectQuickNotes") || !script.includes("sponsorProspectValidation")) failures.push("app.js sponsor proposal should prefill prospect-aware invoice review forms.");
+  if (!script.includes("applySponsorPublicInvoiceLinks") || !script.includes("Fast invoice-review path") || !script.includes("Open public invoice issue")) failures.push("app.js sponsor proposal and ops cockpit should expose prospect-specific public invoice issue actions.");
   if (!script.includes('utmContent: clean(params.get("utm_content")) || clean(params.get("prospect"))')) failures.push("app.js sponsor attribution should keep proposal prospect IDs on quick invoice requests.");
   if (!script.includes("todayToolScore") || !script.includes("Operating actions") || !script.includes("project.nextAction")) failures.push("app.js ops monitor should show detailed project traffic and next actions.");
   if (!script.includes("sponsorInvoiceRequestCopy(prospect, deal, vertical, proposalUrl)")) failures.push("app.js ops sponsor cards should copy a real invoice request.");

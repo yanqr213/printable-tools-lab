@@ -7709,7 +7709,14 @@ ${paragraphs.join("\n")}
         <a href="/sponsor-deal-room/">Sponsor deal room</a>
         <h1>${escapeHtml(prospect.name)} sponsor proposal</h1>
         <p>A direct, business-safe proposal for a small, clearly labeled sponsor pilot with PrintableTools Lab. Downloads stay free, sponsor copy is manually reviewed, and revenue is counted only after a signed agreement or settled external payment.</p>
-        <p><a class="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Start inquiry</a> <button class="button secondary" type="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" data-copy-text="${escapeHtml(invoiceRequest)}">Copy invoice request</button> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(dealUrl)}">Open deal room path</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Public reply form</a> <button class="button ghost" type="button" data-copy-text="${escapeHtml(pitch)}">Copy outreach note</button></p>
+        <p><a class="button" data-sponsor-public-invoice-request data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open public invoice request</a> <button class="button secondary" type="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" data-copy-text="${escapeHtml(invoiceRequest)}">Copy invoice request</button> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Start inquiry</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(dealUrl)}">Open deal room path</a> <button class="button ghost" type="button" data-copy-text="${escapeHtml(pitch)}">Copy outreach note</button></p>
+      </section>
+      <section class="shell section">
+        <div class="notice sponsor-public-reply">
+          <strong>Fast invoice-review path</strong>
+          <p>This prefilled GitHub issue records a public-safe invoice review request for ${escapeHtml(prospect.name)} and ${escapeHtml(deal.title)}. It asks for fit review only; payment, tax, bank, phone, identity, password, and customer-file details stay outside the public issue.</p>
+          <p><a class="button" data-sponsor-public-invoice-request data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open public invoice request</a> <button class="button secondary" type="button" data-copy-text="${escapeHtml(invoiceRequest)}">Copy invoice/agreement request</button></p>
+        </div>
       </section>
       <section class="shell section">
         <h2>Why this is a fit</h2>
@@ -7725,7 +7732,7 @@ ${paragraphs.join("\n")}
         <div class="grid-3">
           <article class="panel"><h3>${escapeHtml(deal.title)}</h3><p><strong>${escapeHtml(deal.price)}</strong></p><p>${escapeHtml(deal.bestFor)}</p></article>
           <article class="panel"><h3>Deliverable</h3><p>${escapeHtml(deal.deliverable)}</p></article>
-          <article class="panel"><h3>Review needed</h3><p>${escapeHtml(deal.proofNeeded)}</p><p><button class="button ghost" type="button" data-copy-text="${escapeHtml(invoiceRequest)}">Copy invoice request</button></p></article>
+          <article class="panel"><h3>Review needed</h3><p>${escapeHtml(deal.proofNeeded)}</p><p><a class="button ghost" data-sponsor-public-invoice-request data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open public invoice request</a></p></article>
         </div>
       </section>
       <section class="shell section">
@@ -7747,6 +7754,7 @@ ${paragraphs.join("\n")}
         <p><a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open public-safe GitHub reply form</a></p>
       </section>
     `;
+    applySponsorPublicInvoiceLinks(app, publicReplyUrl);
     initSponsorLeadForms(app);
     app.querySelectorAll("[data-sponsor-quick-form], [data-sponsor-lead-form]").forEach((form) => {
       applySponsorProspectPrefill(form, prospect, deal, vertical);
@@ -8312,6 +8320,7 @@ ${paragraphs.join("\n")}
     const proposalUrl = sponsorProspectProposalUrl(prospect, deal, vertical);
     const pitch = sponsorProspectPitch(prospect, deal, vertical, proposalUrl);
     const invoiceRequest = sponsorInvoiceRequestCopy(prospect, deal, vertical, proposalUrl);
+    const publicReplyUrl = sponsorPublicReplyUrl(prospect, deal, vertical, proposalUrl);
     return `
       <article class="ops-action-card">
         <div>
@@ -8323,6 +8332,7 @@ ${paragraphs.join("\n")}
         <div class="ops-action-buttons">
           <a class="button secondary" href="${escapeHtml(prospect.contactUrl)}" target="_blank" rel="noreferrer">Contact</a>
           <a class="button secondary" href="${escapeHtml(proposalUrl)}" target="_blank" rel="noreferrer">Proposal</a>
+          <a class="button" data-sponsor-public-invoice-request href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open public invoice issue</a>
           <a class="button ghost" href="${escapeHtml(dealUrl)}" target="_blank" rel="noreferrer">Deal link</a>
           <button class="button ghost" type="button" data-copy-text="${escapeHtml(invoiceRequest)}">Copy invoice request</button>
           <button class="button ghost" type="button" data-copy-text="${escapeHtml(pitch)}">Copy pitch</button>
@@ -12985,6 +12995,13 @@ ${paragraphs.join("\n")}
     if (quickSummary && prospect.name && prospect.website) {
       quickSummary.textContent = `Selected pilot: ${deal.title} - ${deal.price}. ${prospect.name} and ${prospect.website} are prefilled; add a business email to request invoice review.`;
     }
+  }
+
+  function applySponsorPublicInvoiceLinks(root, publicReplyUrl) {
+    if (!root || !publicReplyUrl) return;
+    root.querySelectorAll("[data-sponsor-public-invoice-request]").forEach((link) => {
+      link.href = publicReplyUrl;
+    });
   }
 
   function sponsorProspectAudienceFit(prospect, deal, vertical) {
