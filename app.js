@@ -8100,6 +8100,7 @@ ${paragraphs.join("\n")}
       if (!response.ok || !data.ok) throw new Error("Metrics unavailable");
       const projects = Array.isArray(data.projects) ? data.projects : [];
       const leadCheck = await loadSponsorLeadCheck();
+      const publicReplies = await loadSponsorPublicReplies();
       const totals = data.totals || {};
       const totalDownloads = (totals.download_pdf || 0) + (totals.download_file || 0);
       const totalGenerations = (totals.generate_pdf || 0) + (totals.generate_file || 0);
@@ -8119,7 +8120,7 @@ ${paragraphs.join("\n")}
           <div class="metric-tile"><strong>${sponsorInvoiceRequests}</strong><span>invoice requests</span></div>
           <div class="metric-tile"><strong>${totalGameIntent}</strong><span>game play signals</span></div>
         </div>
-        ${sponsorSprintHtml(data, leadCheck)}
+        ${sponsorSprintHtml(data, leadCheck, publicReplies)}
         <div class="ops-project-list">
           ${projects.map(projectOpsHtml).join("") || `<div class="panel"><p>No project rows returned yet.</p></div>`}
         </div>
@@ -8143,7 +8144,7 @@ ${paragraphs.join("\n")}
       `;
     } catch (error) {
       target.innerHTML = `
-        ${sponsorSprintHtml({ totals: {}, projects: [] }, null)}
+        ${sponsorSprintHtml({ totals: {}, projects: [] }, null, null)}
         <div class="panel"><p>Live project metrics are not available yet.</p><p class="help">${escapeHtml(error.message || "Metrics unavailable")}</p></div>
       `;
     }
@@ -8160,7 +8161,18 @@ ${paragraphs.join("\n")}
     }
   }
 
-  function sponsorSprintHtml(data, leadCheck) {
+  async function loadSponsorPublicReplies() {
+    try {
+      const response = await fetch("/api/sponsor-public-replies", { cache: "no-store" });
+      const data = await response.json();
+      if (!response.ok || !data.ok) throw new Error("Sponsor public replies unavailable");
+      return data;
+    } catch (error) {
+      return { ok: false, available: false, dataQuality: "unavailable", dataWarning: error.message || "Sponsor public replies unavailable", publicReplyCount: 0, invoiceRequestCount: 0, readyForReviewCount: 0 };
+    }
+  }
+
+  function sponsorSprintHtml(data, leadCheck, publicReplies) {
     const totals = data.totals || {};
     const sponsorIntent = totals.sponsor_request_intent || 0;
     const indexedLeadCount = Number.isFinite(Number(leadCheck?.leadCount)) ? Number(leadCheck.leadCount) : null;
@@ -8171,7 +8183,9 @@ ${paragraphs.join("\n")}
     const downloads = (totals.download_pdf || 0) + (totals.download_file || 0);
     const topSponsorPaths = sponsorPathRows(data).slice(0, 4);
     const prospectRows = rankedSponsorProspects(data).slice(0, 4);
-    const action = sponsorNextAction(sponsorLeads, sponsorIntent, pageViews, downloads, sponsorInvoiceRequests);
+    const publicReplyCount = Number(publicReplies?.publicReplyCount) || 0;
+    const publicInvoiceIssues = Number(publicReplies?.invoiceRequestCount) || 0;
+    const action = sponsorNextAction(sponsorLeads, sponsorIntent, pageViews, downloads, sponsorInvoiceRequests, publicInvoiceIssues, publicReplyCount);
     return `
       <section class="panel ops-sponsor-sprint" aria-label="Sponsor revenue sprint">
         <div class="ops-project-head">
@@ -8186,12 +8200,15 @@ ${paragraphs.join("\n")}
           <div class="metric-tile"><strong>${sponsorIntent}</strong><span>sponsor intent</span></div>
           <div class="metric-tile"><strong>${sponsorLeads}</strong><span>sponsor leads</span></div>
           <div class="metric-tile"><strong>${sponsorInvoiceRequests}</strong><span>invoice requests</span></div>
+          <div class="metric-tile"><strong>${publicReplyCount}</strong><span>public replies</span></div>
+          <div class="metric-tile"><strong>${publicInvoiceIssues}</strong><span>public invoice issues</span></div>
           <div class="metric-tile"><strong>${prospectRows.length}</strong><span>priority prospects</span></div>
           <div class="metric-tile"><strong>${topSponsorPaths.length}</strong><span>warm sponsor pages</span></div>
           <div class="metric-tile"><strong>${sponsorDeals[1]?.price || "USD 99-149"}</strong><span>default pilot</span></div>
           <div class="metric-tile"><strong>${sponsorInvoiceRequests ? "Invoice" : sponsorLeads ? "Follow up" : "Outreach"}</strong><span>next mode</span></div>
         </div>
         ${sponsorLeadCheckHtml(leadCheck)}
+        ${sponsorPublicRepliesHtml(publicReplies)}
         <div class="ops-detail-grid">
           <section>
             <h3>Priority sponsor prospects</h3>
@@ -8231,9 +8248,29 @@ ${paragraphs.join("\n")}
     `;
   }
 
-  function sponsorNextAction(sponsorLeads, sponsorIntent, pageViews, downloads, sponsorInvoiceRequests = 0) {
+  function sponsorPublicRepliesHtml(publicReplies) {
+    if (!publicReplies) return "";
+    const quality = publicReplies.dataQuality || "unknown";
+    const replyCount = Number.isFinite(Number(publicReplies.publicReplyCount)) ? Number(publicReplies.publicReplyCount) : "n/a";
+    const invoiceCount = Number.isFinite(Number(publicReplies.invoiceRequestCount)) ? Number(publicReplies.invoiceRequestCount) : "n/a";
+    const reviewCount = Number.isFinite(Number(publicReplies.readyForReviewCount)) ? Number(publicReplies.readyForReviewCount) : "n/a";
+    const warning = publicReplies.dataWarning ? `<p class="notice">${escapeHtml(publicReplies.dataWarning)}</p>` : "";
+    const sourceUrl = publicReplies.sourceUrl || "https://github.com/yanqr213/printable-tools-lab/issues?q=is%3Aissue%20label%3Asponsor%20label%3Apartner%20label%3Abusiness-review";
+    return `
+      <div class="notice sponsor-lead-check">
+        <strong>Public-safe sponsor reply evidence</strong>
+        <p>Public GitHub issue check: ${escapeHtml(String(replyCount))} reply issue(s), ${escapeHtml(String(invoiceCount))} invoice request issue(s), ${escapeHtml(String(reviewCount))} ready for manual review, quality ${escapeHtml(quality)}.</p>
+        <p><a href="${escapeHtml(sourceUrl)}" target="_blank" rel="noreferrer">Open public evidence search</a></p>
+        ${warning}
+      </div>
+    `;
+  }
+
+  function sponsorNextAction(sponsorLeads, sponsorIntent, pageViews, downloads, sponsorInvoiceRequests = 0, publicInvoiceIssues = 0, publicReplyCount = 0) {
     if (sponsorInvoiceRequests > 0) return "A sponsor requested an invoice or this-month pilot. Export the private lead, verify policy fit, and send only an external invoice or agreement.";
     if (sponsorLeads > 0) return "Export the sponsor lead, reply with the selected deal, and move only signed agreement or settled external payment into revenue.";
+    if (publicInvoiceIssues > 0) return "A public-safe GitHub sponsor issue asks for invoice review. Confirm fit, then use only an external invoice or agreement before counting revenue.";
+    if (publicReplyCount > 0) return "Public-safe GitHub sponsor replies exist. Triage them and move only qualified partners toward the invoice review path.";
     if (sponsorIntent > 0) return "There is sponsor intent without a lead. Send the deal-room link to four matched prospects and keep the inquiry form prefilled.";
     if (pageViews >= 100 || downloads > 0) return "Traffic exists but sponsor intent is thin. Push one vertical sponsor pitch tied to the warmest PDF, QR, resume, or paperwork audience.";
     return "Keep free-tool distribution running while sending a small sponsor pilot pitch to the first two highest-fit prospects.";

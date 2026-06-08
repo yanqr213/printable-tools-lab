@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-08T00:41:02.188Z",
+  "generatedAt": "2026-06-08T00:59:41.424Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 92,
     "indexableRoutes": 281,
     "sitemapLocCount": 281,
-    "generatedToolInventoryAt": "2026-06-08T00:39:20.434Z",
+    "generatedToolInventoryAt": "2026-06-08T00:58:34.769Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -27,7 +27,8 @@
       "sponsorCall": true,
       "sponsorVerticalPages": true,
       "sponsorProspectQueue": true,
-      "sponsorOutreachLog": true
+      "sponsorOutreachLog": true,
+      "sponsorPublicReplyEvidence": true
     },
     "sponsorOutreach": {
       "count": 10,
@@ -37,6 +38,18 @@
       "qualified": 0,
       "settled": 0,
       "blockedByReplyEmail": 10
+    },
+    "sponsorPublicReplies": {
+      "available": true,
+      "dataQuality": "github-issues-html-fallback",
+      "publicReplyCount": 0,
+      "openCount": 0,
+      "invoiceRequestCount": 0,
+      "readyForReviewCount": 0,
+      "proposalLinkedCount": 0,
+      "latestUpdatedAt": "",
+      "sourceUrl": "https://github.com/yanqr213/printable-tools-lab/issues?q=is%3Aissue%20label%3Asponsor%20label%3Apartner%20label%3Abusiness-review",
+      "dataWarning": "API unavailable; HTML fallback used. GitHub issues API 403: API rate limit exceeded for unauthenticated requests."
     },
     "ads": {
       "enabled": false,
@@ -116,7 +129,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-08T00:39:20.434Z",
+          "generatedAt": "2026-06-08T00:57:07.066Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -1002,7 +1015,7 @@
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-08T00:39:20.434Z",
+          "generatedAt": "2026-06-08T00:57:07.066Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -2059,7 +2072,7 @@
         "bytes": 44086,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-08T00:39:20.434Z",
+          "generatedAt": "2026-06-08T00:57:07.066Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [

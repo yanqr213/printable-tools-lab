@@ -47,6 +47,7 @@ function readLocalState() {
   const shareKit = readJson("share-kit.json", {});
   const sponsorProspects = readJson("reports/sponsor-prospect-queue.json", {});
   const sponsorOutreachLog = readJson("reports/sponsor-outreach-log.json", {});
+  const sponsorPublicReplies = readJson("reports/sponsor-public-reply-evidence.json", {});
   const adsTxt = readText("ads.txt").trim();
   const config = readText("site-config.js");
   const indexableRoutes = routes.filter((route) => route.index !== false).length;
@@ -77,8 +78,10 @@ function readLocalState() {
       sponsorVerticalPages: SPONSOR_VERTICALS.every((vertical) => fs.existsSync(path.join(root, "sponsor", vertical.slug, "index.html"))),
       sponsorProspectQueue: sponsorProspectQueueReady(sponsorProspects),
       sponsorOutreachLog: sponsorOutreachLogReady(sponsorOutreachLog),
+      sponsorPublicReplyEvidence: sponsorPublicReplyEvidenceReady(sponsorPublicReplies),
     },
     sponsorOutreach: sponsorOutreachSummary(sponsorOutreachLog),
+    sponsorPublicReplies: sponsorPublicReplySummary(sponsorPublicReplies),
     ads: {
       enabled: readBool(config, "enableAds"),
       publisherConfigured: /^ca-pub-\d{10,30}$/.test(readString(config, "adsenseClientId")),
@@ -121,6 +124,30 @@ function sponsorOutreachSummary(data) {
     qualified: rows.filter((row) => row.status === "qualified").length,
     settled: rows.filter((row) => row.status === "settled").length,
     blockedByReplyEmail: rows.filter((row) => row.needsReplyEmail && row.status === "queued").length,
+  };
+}
+
+function sponsorPublicReplyEvidenceReady(data) {
+  return data
+    && typeof data === "object"
+    && typeof data.publicReplyCount === "number"
+    && typeof data.invoiceRequestCount === "number"
+    && String(data.sourceUrl || "").includes("github.com/")
+    && data.publicMetricsOnly === true;
+}
+
+function sponsorPublicReplySummary(data) {
+  return {
+    available: Boolean(data?.available),
+    dataQuality: data?.dataQuality || "missing",
+    publicReplyCount: Number(data?.publicReplyCount) || 0,
+    openCount: Number(data?.openCount) || 0,
+    invoiceRequestCount: Number(data?.invoiceRequestCount) || 0,
+    readyForReviewCount: Number(data?.readyForReviewCount) || 0,
+    proposalLinkedCount: Number(data?.proposalLinkedCount) || 0,
+    latestUpdatedAt: data?.latestUpdatedAt || "",
+    sourceUrl: data?.sourceUrl || "",
+    dataWarning: data?.dataWarning || "",
   };
 }
 
@@ -529,6 +556,7 @@ function buildNextActions(gates, local, live, searchConsole, discovery, director
   const commercial = commercialIntent(totals);
   const sponsorLeads = live.metrics?.sponsorLeads || 0;
   const sponsorInvoiceRequests = live.metrics?.sponsorInvoiceRequests || 0;
+  const publicReplies = local.sponsorPublicReplies || {};
   const actions = [];
   if (!gates.productReady) actions.push("Fix product readiness failures before adding more tools.");
   if (!gates.searchVisible && (directories?.listedCount || 0) < 2) actions.push("Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.");
@@ -546,6 +574,8 @@ function buildNextActions(gates, local, live, searchConsole, discovery, director
   if (commercial === 0) actions.push("Keep the sponsorship and partner inquiry page visible as a no-payment commercial-intent surface while ad-network setup waits.");
   if (sponsorInvoiceRequests > 0) actions.push("Export the invoice-request sponsor lead, verify policy fit, and send only an external invoice or agreement; do not collect payment details in this site.");
   else if (sponsorLeads > 0) actions.push("Review sponsor lead details in private KV/export workflow and reply only to policy-fit business inquiries.");
+  else if ((publicReplies.invoiceRequestCount || 0) > 0) actions.push("Review public-safe GitHub sponsor invoice issue evidence, confirm fit, and move only external agreement or settled payment into revenue.");
+  else if ((publicReplies.publicReplyCount || 0) > 0) actions.push("Triage public-safe GitHub sponsor replies and ask only policy-fit prospects to use the external invoice/agreement path.");
   else if ((local.sponsorOutreach?.sent || 0) === 0) actions.push("Submit the first sponsor outreach batch using reports/sponsor-next-submission-batch.md, but mark rows sent only after real public-form submission evidence exists.");
   else actions.push("Drive partner traffic to the sponsor form until at least one qualified lead is captured, not just a CTA click.");
   if (searchConsole.performance?.rows?.length) actions.push("Improve titles and intros for queries with impressions but weak CTR.");
@@ -561,6 +591,7 @@ function renderValidationMarkdown(report) {
   const commercial = commercialIntent(totals);
   const sponsorLeads = report.live.metrics?.sponsorLeads || 0;
   const sponsorInvoiceRequests = report.live.metrics?.sponsorInvoiceRequests || 0;
+  const publicReplies = report.local.sponsorPublicReplies || {};
   const perf = report.searchConsole.performance;
   const sitemap = Array.isArray(report.searchConsole.sitemaps?.sitemap) ? report.searchConsole.sitemaps.sitemap[0] : null;
   const githubPagesSitemap = Array.isArray(report.searchConsole.githubPagesSitemaps?.sitemap) ? report.searchConsole.githubPagesSitemaps.sitemap[0] : null;
@@ -583,6 +614,8 @@ function renderValidationMarkdown(report) {
     `- Commercial intent events: ${commercial}.`,
     `- Sponsor leads captured: ${sponsorLeads}.`,
     `- Sponsor invoice requests: ${sponsorInvoiceRequests}.`,
+    `- Public-safe sponsor replies: ${publicReplies.publicReplyCount || 0}.`,
+    `- Public-safe invoice issue requests: ${publicReplies.invoiceRequestCount || 0}.`,
     `- Sponsor outreach queued/sent/settled: ${report.local.sponsorOutreach.queued}/${report.local.sponsorOutreach.sent}/${report.local.sponsorOutreach.settled}.`,
     `- Search impressions: ${perf?.totals?.impressions || 0}.`,
     `- Search clicks: ${perf?.totals?.clicks || 0}.`,
@@ -622,6 +655,7 @@ function renderValidationMarkdown(report) {
     "",
     "```powershell",
     "npm.cmd run validate:ops",
+    "npm.cmd run sponsor:public-replies",
     "npm.cmd run verify:seo",
     "npm.cmd run verify:adsense",
     "```",
@@ -633,9 +667,10 @@ function printSummary(report) {
   const totals = report.live.metrics?.totals || {};
   const sponsorLeads = report.live.metrics?.sponsorLeads || 0;
   const sponsorInvoiceRequests = report.live.metrics?.sponsorInvoiceRequests || 0;
+  const publicReplies = report.local.sponsorPublicReplies || {};
   console.log(`Validation report written to ${path.relative(root, reportPath)} and VALIDATION.md`);
   console.log(`Product ready: ${yesNo(report.gates.productReady)} | Tools: ${report.local.toolCount} | Guides: ${report.local.guideCount} | Landing pages: ${report.local.landingPageCount}`);
-  console.log(`Downloads: ${totalDownloads(totals)} | Generations: ${totalGenerations(totals)} | Free-tool depth intent: ${freeToolDepthIntent(totals)} | Commercial intent: ${commercialIntent(totals)} | Sponsor leads: ${sponsorLeads} | Sponsor invoice requests: ${sponsorInvoiceRequests} | Search visible: ${yesNo(report.gates.searchVisible)} | External discovery: ${yesNo(report.gates.externalDiscoveryReady)} | AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}`);
+  console.log(`Downloads: ${totalDownloads(totals)} | Generations: ${totalGenerations(totals)} | Free-tool depth intent: ${freeToolDepthIntent(totals)} | Commercial intent: ${commercialIntent(totals)} | Sponsor leads: ${sponsorLeads} | Sponsor invoice requests: ${sponsorInvoiceRequests} | Public replies: ${publicReplies.publicReplyCount || 0} | Public invoice issues: ${publicReplies.invoiceRequestCount || 0} | Search visible: ${yesNo(report.gates.searchVisible)} | External discovery: ${yesNo(report.gates.externalDiscoveryReady)} | AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}`);
 }
 
 function totalDownloads(totals) {

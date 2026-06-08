@@ -8,6 +8,7 @@ async function main() {
   const metricsSource = loadFunction("functions/api/metrics.js", ["onRequestGet"]);
   const opsMetricsSource = loadFunction("functions/api/ops-metrics.js", ["onRequestGet"]);
   const sponsorLeadSource = loadFunction("functions/api/sponsor-lead.js", ["onRequestPost", "onRequestGet"]);
+  const sponsorPublicRepliesSource = loadFunction("functions/api/sponsor-public-replies.js", ["onRequestGet"]);
   const store = new MemoryStore();
   const env = { PTL_EVENTS: store, PTL_METRICS_BASELINE: "off" };
 
@@ -87,6 +88,29 @@ async function main() {
   const opsNoSignupProjectSource = printableProject.sources.find((row) => row.source === "nosignuptools");
   assert(opsNoSignupProjectSource.today_download_pdf === 1, "Project ops metrics should expose today's per-source downloads");
   assert(Array.isArray(opsMetricsPayload.nextActions) && opsMetricsPayload.nextActions.length, "Ops metrics should expose operating next actions");
+  const mockedFetch = globalThis.fetch;
+  globalThis.fetch = async (url) => {
+    assert(String(url).includes("api.github.com/repos/yanqr213/printable-tools-lab/issues"), "Public replies API should query GitHub issues");
+    return new Response(JSON.stringify([
+      {
+        number: 42,
+        state: "open",
+        title: "[Sponsor/Partner]: Example Partner",
+        html_url: "https://github.com/yanqr213/printable-tools-lab/issues/42",
+        created_at: "2026-06-08T00:00:00Z",
+        updated_at: "2026-06-08T00:05:00Z",
+        labels: [{ name: "sponsor" }, { name: "partner" }, { name: "business-review" }],
+        body: "Public-safe sponsor reply.\n\nCompany / project: Example Partner\nPublic website URL: https://example.com\nAudience fit: PDF sponsorship\nSelected pilot deal: Starter fit review (USD 49)\nProposal or deal URL: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=example-partner&deal=starter-fit-review&vertical=pdf-image-qr-saas&utm_content=example-partner&commitment=request-invoice#sponsor-inquiry\n\nRequested next step: Request pilot invoice review\n\nDo not include private payment, tax, bank, phone, customer, identity, password, or confidential file data in this public issue.",
+      },
+    ]), { status: 200, headers: { "Content-Type": "application/json" } });
+  };
+  const publicReplies = await (await sponsorPublicRepliesSource.onRequestGet({ env: {} })).json();
+  globalThis.fetch = mockedFetch;
+  assert(publicReplies.ok && publicReplies.publicMetricsOnly, "Public replies API should expose a public-safe summary");
+  assert(publicReplies.publicReplyCount === 1, "Public replies API should count sponsor issue replies");
+  assert(publicReplies.invoiceRequestCount === 1, "Public replies API should detect public invoice issue requests");
+  assert(publicReplies.rows[0].prospect === "example-partner", "Public replies API should preserve proposal attribution");
+  assert(!JSON.stringify(publicReplies).includes("sponsor@example.com"), "Public replies API should not expose private lead details");
 
   const gameIntentResponse = await eventSource.onRequestPost({
     request: new Request("https://printable-tools-lab.pages.dev/api/event", {

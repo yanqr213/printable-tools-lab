@@ -249,6 +249,7 @@ for (const routePath of ["dashboard", "ops"]) {
   if (sitemap.includes(`<loc>${siteUrl(routePath)}</loc>`)) failures.push(`Sitemap should not include noindex internal route: ${routePath}.`);
   if (routePath === "ops" && (!html.includes("/sponsor-starter-review/?utm_source=ops") || !html.includes("Open invoice review form"))) failures.push("Ops monitor should route sponsor close work to the invoice review form.");
   if (routePath === "ops" && (!html.includes("/api/ops-metrics") || !html.includes("Project detail rows") || !html.includes("Source breakdown") || !html.includes("Tool and game signal snapshot") || !html.includes("Path breakdown"))) failures.push("Ops monitor should render detailed project traffic sections and live metrics access.");
+  if (routePath === "ops" && (!html.includes("Public-safe sponsor reply evidence") || !html.includes("public invoice issues"))) failures.push("Ops monitor should surface public-safe sponsor reply evidence.");
 }
 
 const headersFile = path.join(root, "_headers");
@@ -428,8 +429,9 @@ else {
   if (!script.includes("sponsorLeadPublicReplyUrl") || !script.includes("Open public-safe reply")) failures.push("app.js missing public-safe sponsor fallback for failed lead storage.");
   if (!script.includes("renderSponsorLeadSuccess") || !script.includes("Copy invoice/agreement request") || !script.includes("Next step ready")) failures.push("app.js missing sponsor lead success close panel.");
   if (!script.includes("absoluteSponsorUrl")) failures.push("app.js sponsor outreach pitch should copy absolute URLs.");
-  if (!script.includes("sponsorSprintHtml({ totals: {}, projects: [] }, null)")) failures.push("app.js ops monitor should keep sponsor close actions visible when live metrics fail.");
+  if (!script.includes("sponsorSprintHtml({ totals: {}, projects: [] }, null, null)")) failures.push("app.js ops monitor should keep sponsor close actions visible when live metrics fail.");
   if (!script.includes("loadSponsorLeadCheck") || !script.includes("Sponsor lead index check") || !script.includes("/api/sponsor-lead")) failures.push("app.js ops monitor should independently check sponsor lead index totals.");
+  if (!script.includes("loadSponsorPublicReplies") || !script.includes("Public-safe sponsor reply evidence") || !script.includes("/api/sponsor-public-replies")) failures.push("app.js ops monitor should independently check public sponsor reply evidence.");
   if (!script.includes("renderSponsorProposalPage") || !script.includes("sponsorProspectProposalUrl") || !script.includes("sponsor_proposal")) failures.push("app.js missing direct sponsor proposal funnel.");
   if (!script.includes("applySponsorProspectPrefill") || !script.includes("sponsorProspectQuickNotes") || !script.includes("sponsorProspectValidation")) failures.push("app.js sponsor proposal should prefill prospect-aware invoice review forms.");
   if (!script.includes('utmContent: clean(params.get("utm_content")) || clean(params.get("prospect"))')) failures.push("app.js sponsor attribution should keep proposal prospect IDs on quick invoice requests.");
@@ -458,6 +460,19 @@ if (!fs.existsSync(opsMetricsFunctionFile)) failures.push("Missing ops metrics A
 else {
   const opsMetricsScript = fs.readFileSync(opsMetricsFunctionFile, "utf8");
   if (!opsMetricsScript.includes("nextActions") || !opsMetricsScript.includes("row[`today_${event}`]") || !opsMetricsScript.includes("projectNextAction")) failures.push("Ops metrics API should expose project next actions and today source/tool fields.");
+}
+const sponsorPublicRepliesFunctionFile = path.join(root, "functions", "api", "sponsor-public-replies.js");
+if (!fs.existsSync(sponsorPublicRepliesFunctionFile)) failures.push("Missing sponsor public replies API function.");
+else {
+  const publicRepliesScript = fs.readFileSync(sponsorPublicRepliesFunctionFile, "utf8");
+  if (!publicRepliesScript.includes("publicMetricsOnly") || !publicRepliesScript.includes("privateFields") || !publicRepliesScript.includes("GitHub issues API")) failures.push("Sponsor public replies API should expose only public-safe GitHub issue evidence.");
+  if (!publicRepliesScript.includes("Do not treat zero as confirmed")) failures.push("Sponsor public replies API should warn when evidence is unavailable.");
+}
+const sponsorPublicReplyScriptFile = path.join(root, "scripts", "sponsor-public-reply-evidence.cjs");
+if (!fs.existsSync(sponsorPublicReplyScriptFile)) failures.push("Missing sponsor public reply evidence script.");
+else {
+  const publicReplyScript = fs.readFileSync(sponsorPublicReplyScriptFile, "utf8");
+  if (!publicReplyScript.includes("sponsor-public-reply-evidence.json") || !publicReplyScript.includes("publicMetricsOnly")) failures.push("Sponsor public reply evidence script should write a public-safe report.");
 }
 if (!fs.existsSync(sponsorLeadFunctionFile)) failures.push("Missing sponsor lead API function.");
 else {

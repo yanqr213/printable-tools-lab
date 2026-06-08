@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-08T00:41:02.188Z
+Last generated: 2026-06-08T00:59:41.424Z
 
 ## Current Automated Status
 
@@ -16,6 +16,8 @@ Last generated: 2026-06-08T00:41:02.188Z
 - Commercial intent events: 2.
 - Sponsor leads captured: 0.
 - Sponsor invoice requests: 0.
+- Public-safe sponsor replies: 0.
+- Public-safe invoice issue requests: 0.
 - Sponsor outreach queued/sent/settled: 10/0/0.
 - Search impressions: 0.
 - Search clicks: 0.
@@ -69,6 +71,7 @@ Last generated: 2026-06-08T00:41:02.188Z
 
 ```powershell
 npm.cmd run validate:ops
+npm.cmd run sponsor:public-replies
 npm.cmd run verify:seo
 npm.cmd run verify:adsense
 ```

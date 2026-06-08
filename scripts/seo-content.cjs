@@ -5765,6 +5765,7 @@ function opsMonitorStaticHtml() {
   const sponsorInvoiceRequests = Number(metrics.sponsorInvoiceRequests ?? apiMetrics.sponsorInvoiceRequests ?? totals.sponsor_invoice_request ?? 0) || 0;
   const generatedAt = report?.generatedAt || "No validation snapshot yet";
   const sponsorOutreach = report?.local?.sponsorOutreach || {};
+  const publicReplies = report?.local?.sponsorPublicReplies || {};
   const starterReviewUrl = "/sponsor-starter-review/?utm_source=ops&utm_medium=internal&utm_campaign=sponsor_close&utm_content=static-ops&commitment=request-invoice#sponsor-inquiry";
   const projectRows = [
     [
@@ -5817,6 +5818,8 @@ function opsMonitorStaticHtml() {
           ${opsMetricTile(commercialIntent, "commercial intent")}
           ${opsMetricTile(sponsorLeads, "sponsor leads")}
           ${opsMetricTile(sponsorInvoiceRequests, "invoice requests")}
+          ${opsMetricTile(publicReplies.publicReplyCount || 0, "public sponsor replies")}
+          ${opsMetricTile(publicReplies.invoiceRequestCount || 0, "public invoice issues")}
           ${opsMetricTile(`${sponsorOutreach.queued || 0}/${sponsorOutreach.sent || 0}/${sponsorOutreach.settled || 0}`, "outreach queued/sent/settled")}
         </div>
         <div id="opsMetrics" class="metric-remote">
@@ -5833,8 +5836,11 @@ function opsMonitorStaticHtml() {
               ${opsMetricTile(totals.sponsor_request_intent || 0, "sponsor intent")}
               ${opsMetricTile(sponsorLeads, "sponsor leads")}
               ${opsMetricTile(sponsorInvoiceRequests, "invoice requests")}
+              ${opsMetricTile(publicReplies.publicReplyCount || 0, "public replies")}
+              ${opsMetricTile(publicReplies.readyForReviewCount || 0, "public replies to review")}
               ${opsMetricTile(SPONSOR_DEALS.find((deal) => deal.id === DEFAULT_SPONSOR_DEAL_ID)?.price || "USD 49", "starter review")}
             </div>
+${opsPublicReplySnapshotHtml(publicReplies)}
           </section>
           <section class="panel ops-project">
             <div class="ops-project-head">
@@ -5878,6 +5884,17 @@ function opsMonitorStaticHtml() {
         </div>
         <p class="help">Revenue is still counted only after a platform balance, sponsor agreement, or settled payment is verified. Views and clicks are operating signals, not money.</p>
       </section>`;
+}
+
+function opsPublicReplySnapshotHtml(publicReplies) {
+  const sourceUrl = publicReplies?.sourceUrl || "https://github.com/yanqr213/printable-tools-lab/issues?q=is%3Aissue%20label%3Asponsor%20label%3Apartner%20label%3Abusiness-review";
+  const warning = publicReplies?.dataWarning ? `<p class="notice">${escapeHtml(publicReplies.dataWarning)}</p>` : "";
+  return `            <div class="notice sponsor-lead-check">
+              <strong>Public-safe sponsor reply evidence</strong>
+              <p>${escapeHtml(publicReplies?.publicReplyCount || 0)} public GitHub sponsor reply issue(s), ${escapeHtml(publicReplies?.invoiceRequestCount || 0)} public invoice request issue(s), ${escapeHtml(publicReplies?.readyForReviewCount || 0)} ready for manual review. Quality ${escapeHtml(publicReplies?.dataQuality || "missing")}.</p>
+              <p><a href="${escapeHtml(sourceUrl)}" target="_blank" rel="noreferrer">Open public evidence search</a></p>
+              ${warning}
+            </div>`;
 }
 
 function readOpsValidationSnapshot() {
