@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Paid Services",
-  "generatedAt": "2026-06-08T04:12:37.907Z",
+  "generatedAt": "2026-06-08T04:26:21.733Z",
   "canonical": "https://printable-tools-lab.pages.dev/services.json",
   "services": [
     {
@@ -12,17 +12,17 @@
       "githubPagesServiceUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
       "priceUsd": 29,
       "currency": "USD",
-      "requestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=Service+request%3A+Custom+Local+Print+Pack+Setup&body=I+want+to+request+the+Custom+Local+Print+Pack+Setup+for+%2429+USD.%0A%0ABusiness%2C+booth%2C+event%2C+or+service+name%3A%0AWhat+do+you+sell+or+promote%3F%0AUp+to+12+items%2Fservices+with+prices%3A%0ALink+or+contact+method+for+QR+sign+wording%3A%0APreferred+style%3A+clean+%2F+cute+%2F+bold+%2F+minimal+%2F+local+%2F+premium+%2F+practical%0ANeed-by+date%3A%0APreferred+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+other%0ABest+contact+method%3A%0ACountry+or+region+%28optional%29%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+reply+with+a+real+external+checkout+link+and+details+checklist+only+if+the+service+is+available.",
+      "requestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=Service+request%3A+Custom+Local+Print+Pack+Setup&body=I+want+a+free+fit+check+for+the+Custom+Local+Print+Pack+Setup+%28%2429+USD+only+if+it+fits%29.%0A%0ABusiness%2C+booth%2C+event%2C+or+service+name%3A%0AWhat+do+you+sell+or+promote%3F%0AUp+to+12+items%2Fservices+with+prices%3A%0ALink+or+contact+method+for+QR+sign+wording%3A%0APreferred+style%3A+clean+%2F+cute+%2F+bold+%2F+minimal+%2F+local+%2F+premium+%2F+practical%0ANeed-by+date%3A%0AIf+it+fits%2C+preferred+external+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+invoice+%2F+other%0ABest+contact+method%3A%0ACountry+or+region+%28optional%29%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+review+fit+first%3B+send+a+real+external+checkout+or+invoice+link+only+if+the+service+is+useful+and+available.",
       "issueFormUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml",
       "requestEmailUrl": "",
       "requestTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-request.txt",
-      "requestTemplateSha256": "d383f549dbef656b90a1821bcced41737eb5e330ed9f8fc6f02367d7bbb27fca",
+      "requestTemplateSha256": "9c4adc3627f97730c8473d8da208d68a97277210573739878d243b61cc9f8255",
       "paymentReplyTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-payment-reply.txt",
       "paymentReplyTemplateSha256": "c18ecc8e1fcdf41c00b6f51ebae8120b9d68c4718735f4260e8512ce43b85928",
       "fulfillmentChecklistUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-fulfillment-checklist.txt",
       "fulfillmentChecklistSha256": "888719ae6c46a9537f0e258488dc7cfe08a272806adac74cea7fd008a8c4f202",
       "orderPipelineUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-order-pipeline.json",
-      "orderPipelineSha256": "fc64672a03bf5dc81a11d7adf00b9a1de554387dcf5fd71b02a7b0fb17c74c53",
+      "orderPipelineSha256": "639635892103dacb4a89720060cf93a4ea7ae466ba916514c9361ed9204e6558",
       "orderPipeline": [
         {
           "id": "intent_received",
@@ -220,11 +220,11 @@
         }
       ],
       "sampleDeliveryUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-sample-delivery.zip",
-      "sampleDeliverySha256": "000232d092bd486406562bc8cd67bf276e48e397c9bfc06eb1f7d521826901d6",
+      "sampleDeliverySha256": "843d7f84d93b3f1763fde1eef6615a0462da52472c17762fe648ad0771b5d9dd",
       "deliveryInputExampleUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-delivery-input.example.json",
       "deliveryInputExampleSha256": "cc7bb204fc8da14ab5a878b0079dc19a8fb0acad8753e7715c6e7a6a7db32956",
       "deliveryReportUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-sample-delivery.json",
-      "deliveryReportSha256": "c0abd28a35661425db6f00b7ddc8cf76db3cdab40005ffdb348c8055d273bad8",
+      "deliveryReportSha256": "1961dcdddd6df984ec1b37df361f7219e8d8e24adbe315e11c57844898f6e4f0",
       "privateDeliveryCommand": "npm.cmd run service:delivery -- --input path/to/paid-order.json",
       "turnaround": "Target delivery is 2 business days after real payment and complete buyer details.",
       "deliverables": [

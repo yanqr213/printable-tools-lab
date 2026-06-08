@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-08T04:12:30.108Z",
+  "generatedAt": "2026-06-08T04:27:39.562Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 92,
     "indexableRoutes": 284,
     "sitemapLocCount": 284,
-    "generatedToolInventoryAt": "2026-06-08T04:12:00.601Z",
+    "generatedToolInventoryAt": "2026-06-08T04:26:21.733Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -163,7 +163,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-08T04:09:13.659Z",
+          "generatedAt": "2026-06-08T04:26:21.733Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -1049,7 +1049,7 @@
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-08T04:09:13.659Z",
+          "generatedAt": "2026-06-08T04:26:21.733Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -2117,7 +2117,7 @@
         "bytes": 46916,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-08T04:09:13.659Z",
+          "generatedAt": "2026-06-08T04:26:21.733Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -2652,7 +2652,7 @@
               }
             ],
             "externalDiscoveryProof": {
-              "generatedAt": "2026-06-08T04:06:37.700Z",
+              "generatedAt": "2026-06-08T04:14:53.151Z",
               "directoryListedCount": 5,
               "directoryPendingCount": 5,
               "directoryErrorCount": 1,
@@ -4706,35 +4706,21 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF size targets, image KB targets, PDF-to-Word, ATS checks, background removal, text overlays, QR codes, PDF edits, paperwork, labels, resumes, and printables.",
+      "description": "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
       "topics": [
-        "background-remover",
-        "compress-image-to-100kb",
-        "compress-pdf",
-        "compress-pdf-to-1mb",
-        "compress-pdf-to-500kb",
-        "free-tools",
-        "image-compressor",
-        "image-converter",
-        "image-resizer",
-        "image-to-pdf",
-        "image-tools",
-        "invoice-generator",
-        "no-signup",
-        "passport-photo",
-        "pdf-generator",
-        "pdf-to-jpg",
-        "pdf-to-word",
         "pdf-tools",
+        "image-tools",
         "qr-code",
-        "resume-checker"
+        "no-signup",
+        "browser-tools",
+        "free-tools"
       ],
+      "error": "GitHub API fallback used: GitHub API 403",
       "discoveryRelease": {
         "tag": "free-pdf-tools",
         "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
         "name": "Free PDF, Image, and QR Tools Without Signup"
-      },
-      "error": ""
+      }
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
@@ -4807,7 +4793,7 @@
   },
   "directories": {
     "available": true,
-    "generatedAt": "2026-06-08T04:06:37.700Z",
+    "generatedAt": "2026-06-08T04:14:53.151Z",
     "listedCount": 5,
     "pendingCount": 5,
     "errorCount": 1,
@@ -4886,7 +4872,7 @@
         "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
       ],
       "externalDiscovery": [
-        "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 92 landing page link(s), 66 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).",
         "GitHub Pages discovery sitemap has 266 URL(s), including 66 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 266.",

@@ -364,7 +364,7 @@ function productCheckoutRequestUrl(product, sampleUrl = siteUrl(product.publicSa
 
 function serviceRequestCopy(service) {
   return [
-    `I want to request the ${service.name} for $${service.priceUsd} ${service.currency}.`,
+    `I want a free fit check for the ${service.name} ($${service.priceUsd} ${service.currency} only if it fits).`,
     "",
     "Business, booth, event, or service name:",
     "What do you sell or promote?",
@@ -372,12 +372,12 @@ function serviceRequestCopy(service) {
     "Link or contact method for QR sign wording:",
     "Preferred style: clean / cute / bold / minimal / local / premium / practical",
     "Need-by date:",
-    "Preferred checkout provider: Gumroad / Payhip / Ko-fi / Stripe / other",
+    "If it fits, preferred external checkout provider: Gumroad / Payhip / Ko-fi / Stripe / invoice / other",
     "Best contact method:",
     "Country or region (optional):",
     "Notes:",
     "",
-    "No payment is collected by this request. Please reply with a real external checkout link and details checklist only if the service is available.",
+    "No payment is collected by this request. Please review fit first; send a real external checkout or invoice link only if the service is useful and available.",
   ].join("\n");
 }
 
@@ -682,7 +682,7 @@ function serviceRequestBuilderHtml(service = CUSTOM_LOCAL_PRINT_PACK_SERVICE) {
               <input id="service-date" name="date" placeholder="June 22 market">
             </div>
             <div class="field">
-              <label for="service-checkout">Preferred checkout provider</label>
+              <label for="service-checkout">If it fits, preferred external checkout provider</label>
               <select id="service-checkout" name="checkout">
                 <option>No preference</option>
                 <option>Gumroad</option>
@@ -6849,10 +6849,10 @@ function serviceUpgradeCtaHtml(tool) {
         <div>
           <p class="eyebrow">Optional done-for-you help</p>
           <h2>Want the first local seller print pack assembled?</h2>
-          <p>The free generators stay free. If you want a practical starter pack prepared from your item list, the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} ${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.name)} can create price tag rows, flyer copy, QR sign wording, coupon ideas, pickup notes, and a print checklist.</p>
+          <p>The free generators stay free. Send a free fit check for the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} ${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.name)} if you want price tag rows, flyer copy, QR sign wording, coupon ideas, pickup notes, and a print checklist prepared from your item list.</p>
         </div>
         <div class="free-tool-depth-actions">
-          <a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.id)}" href="${escapeHtml(serviceHref)}">Request $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup</a>
+          <a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.id)}" href="${escapeHtml(serviceHref)}">Start free fit check</a>
           <a class="button secondary" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(MARKET_TABLE_PRINT_AUDIT.id)}" href="${escapeHtml(auditHref)}">Free print audit first</a>
           <p class="help">Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
         </div>
@@ -7690,11 +7690,10 @@ function checkoutCopy(product) {
 function customLocalPrintPackServiceHtml() {
   const service = CUSTOM_LOCAL_PRINT_PACK_SERVICE;
   const checkoutConfigured = Boolean(service.checkoutUrl);
-  const requestUrl = serviceRequestUrl(service);
   const emailUrl = serviceRequestEmailUrl(service);
   const pipeline = serviceOrderPipeline(service);
-  const primaryServiceUrl = checkoutConfigured ? service.checkoutUrl : requestUrl;
-  const primaryServiceText = checkoutConfigured ? `Buy setup for $${service.priceUsd}` : "Request service checkout";
+  const primaryServiceUrl = checkoutConfigured ? service.checkoutUrl : "#service-request";
+  const primaryServiceText = checkoutConfigured ? `Buy setup for $${service.priceUsd}` : "Request free fit check";
   const primaryServiceEvent = checkoutConfigured ? "service_checkout_click" : "service_request_intent";
   const orderAssets = [
     ["Structured request form", service.issueFormUrl],
@@ -7734,10 +7733,10 @@ function customLocalPrintPackServiceHtml() {
       </section>
       ${serviceLeadFormHtml({
         serviceType: "custom-local-print-pack",
-        title: `Request the $${service.priceUsd} setup`,
-        cta: "Send setup request",
-        intro: "Send a reply contact and one public-safe brief. Fit is checked manually, then any payment happens only through an external checkout or invoice.",
-        placeholder: "I sell handmade candles at a Saturday market. I need price tags, QR sign wording, a flyer line, and a pickup note before next weekend.",
+        title: "Request a free setup fit check",
+        cta: "Send free fit check",
+        intro: `Send a reply contact and one public-safe brief. Fit is checked manually; if it is useful, the $${service.priceUsd} setup starts only through an external checkout or invoice.`,
+        placeholder: "I sell handmade candles at a Saturday market. I need a quick fit check for price tags, QR sign wording, a flyer line, and a pickup note before next weekend.",
         pathName: service.slug,
       })}
       <section class="shell section">

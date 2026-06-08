@@ -1302,7 +1302,7 @@ function serviceHtml(service) {
     ["Sample delivery report", deliveryReportUrl],
   ].map(([label, url]) => `<tr><th>${escapeHtml(label)}</th><td><a href="${escapeHtml(url)}">${escapeHtml(url)}</a></td></tr>`).join("\n");
   const actionLinks = [
-    `<a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestUrl)}">Request service checkout</a>`,
+    `<a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestUrl)}">Request free fit check</a>`,
     `<a class="button secondary" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(service.issueFormUrl)}">Open structured request form</a>`,
     `<a class="button secondary" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(MARKET_TABLE_PRINT_AUDIT.id)}" href="${pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug)}">Start with free audit</a>`,
     `<a class="button secondary" href="${requestTemplateUrl}" download>Download service brief</a>`,
@@ -1363,7 +1363,7 @@ function serviceHtml(service) {
           <div class="field"><label for="service-contact">QR sign link or public-safe contact method</label><input id="service-contact" name="contact" inputmode="url" placeholder="Public shop link, booking page, or contact page"></div>
           <div class="field"><label for="service-style">Preferred style</label><select id="service-style" name="style"><option>clean</option><option>cute</option><option>bold</option><option>minimal</option><option>local</option><option>premium</option><option>practical</option></select></div>
           <div class="field"><label for="service-date">Need-by date</label><input id="service-date" name="date" placeholder="June 22 market"></div>
-          <div class="field"><label for="service-checkout">Preferred checkout provider</label><select id="service-checkout" name="checkout"><option>No preference</option><option>Gumroad</option><option>Payhip</option><option>Ko-fi</option><option>Stripe</option><option>Invoice provider</option></select></div>
+          <div class="field"><label for="service-checkout">If it fits, preferred external checkout provider</label><select id="service-checkout" name="checkout"><option>No preference</option><option>Gumroad</option><option>Payhip</option><option>Ko-fi</option><option>Stripe</option><option>Invoice provider</option></select></div>
           <div class="field"><label for="service-preference">Best public-safe contact method</label><input id="service-preference" name="preference" placeholder="Reply in GitHub issue, public email, or public website contact page"></div>
           <div class="field"><label for="service-region">Country or region (optional)</label><input id="service-region" name="region" placeholder="Optional"></div>
           <div class="field"><label for="service-notes">Notes</label><textarea id="service-notes" name="notes" placeholder="Avoid private customer details, tax IDs, account logins, payment data, and private addresses."></textarea></div>
@@ -1413,7 +1413,7 @@ function serviceHtml(service) {
         }
         function update() {
           var body = [
-            "I want to request the ${escapeScript(service.name)} for $${service.priceUsd} ${escapeScript(service.currency)}.",
+            "I want a free fit check for the ${escapeScript(service.name)} ($${service.priceUsd} ${escapeScript(service.currency)} only if it fits).",
             "",
             line("Business, booth, event, or service name", read("business")),
             line("What do you sell or promote?", read("sells")),
@@ -1421,12 +1421,12 @@ function serviceHtml(service) {
             line("Link or contact method for QR sign wording", read("contact")),
             line("Preferred style: clean / cute / bold / minimal / local / premium / practical", read("style")),
             line("Need-by date", read("date")),
-            line("Preferred checkout provider: Gumroad / Payhip / Ko-fi / Stripe / Invoice provider / No preference", read("checkout")),
+            line("If it fits, preferred external checkout provider: Gumroad / Payhip / Ko-fi / Stripe / Invoice provider / No preference", read("checkout")),
             line("Best public-safe contact method", read("preference")),
             line("Country or region (optional)", read("region")),
             line("Notes", read("notes")),
             "",
-            "No payment is collected by this request. Please reply with a real external checkout link and details checklist only if the service is available. Do not include card, bank, payout, tax, identity, credential, password, private address, customer-list, or private account details."
+            "No payment is collected by this request. Please review fit first; send a real external checkout or invoice link only if the service is useful and available. Do not include card, bank, payout, tax, identity, credential, password, private address, customer-list, or private account details."
           ].join("\\n");
           output.value = body;
           if (openLink) {

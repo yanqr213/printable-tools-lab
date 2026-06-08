@@ -6139,9 +6139,10 @@
   }
 
   function renderCustomLocalPrintPackService() {
-    const requestUrl = "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml";
     const checkoutUrl = CONFIG.serviceCheckoutUrl || CONFIG.customPrintPackCheckoutUrl || "";
     const checkoutConfigured = Boolean(checkoutUrl);
+    const primaryServiceHref = checkoutConfigured ? checkoutUrl : "#service-request";
+    const primaryServiceTarget = checkoutConfigured ? ' target="_blank" rel="noreferrer"' : "";
     setMeta("Custom Local Print Pack Setup", "Request a $29 done-for-you printable setup for price tags, flyer copy, QR sign wording, coupon ideas, packing notes, and a launch checklist.");
     setJsonLd({
       "@context": "https://schema.org",
@@ -6156,7 +6157,7 @@
         <h1>Custom Local Print Pack Setup</h1>
         <p>A $29 done-for-you setup for local sellers who want one simple printable pack assembled from their own items, prices, and contact link: price tag rows, flyer copy, QR sign wording, coupon ideas, packing or pickup notes, and a launch checklist.</p>
         <div class="hero-actions">
-          <a class="button" data-track-event="${checkoutConfigured ? "service_checkout_click" : "service_request_intent"}" data-track-tool="custom-local-print-pack" href="${escapeHtml(checkoutUrl || requestUrl)}" target="_blank" rel="noreferrer">${checkoutConfigured ? "Buy setup for $29" : "Request $29 setup"}</a>
+          <a class="button" data-track-event="${checkoutConfigured ? "service_checkout_click" : "service_request_intent"}" data-track-tool="custom-local-print-pack" href="${escapeHtml(primaryServiceHref)}"${primaryServiceTarget}>${checkoutConfigured ? "Buy setup for $29" : "Request free fit check"}</a>
           <a class="button secondary" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="/market-table-print-audit/?utm_source=service-page&utm_medium=site&utm_campaign=audit_request">Start with free audit</a>
           <button class="button ghost" type="button" data-copy-text="${escapeHtml(customLocalPrintPackRequestCopy())}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Copy request brief</button>
         </div>
@@ -6169,10 +6170,10 @@
       </section>
       ${renderServiceLeadForm({
         serviceType: "custom-local-print-pack",
-        title: "Request the $29 setup",
-        cta: "Send setup request",
-        intro: "Send a reply contact and one public-safe brief. Fit is checked manually, then any payment happens only through an external checkout or invoice.",
-        placeholder: "I sell handmade candles at a Saturday market. I need price tags, QR sign wording, a flyer line, and a pickup note before next weekend.",
+        title: "Request a free setup fit check",
+        cta: "Send free fit check",
+        intro: "Send a reply contact and one public-safe brief. Fit is checked manually; if it is useful, the $29 setup starts only through an external checkout or invoice.",
+        placeholder: "I sell handmade candles at a Saturday market. I need a quick fit check for price tags, QR sign wording, a flyer line, and a pickup note before next weekend.",
       })}
       <section class="shell section">
         <h2>What you get</h2>
@@ -6710,10 +6711,10 @@
         <div>
           <p class="eyebrow">Optional done-for-you help</p>
           <h2>Want the first local seller print pack assembled?</h2>
-          <p>The free generators stay free. If you want a practical starter pack prepared from your item list, the $29 Custom Local Print Pack Setup can create price tag rows, flyer copy, QR sign wording, coupon ideas, pickup notes, and a print checklist.</p>
+          <p>The free generators stay free. Send a free fit check for the $29 Custom Local Print Pack Setup if you want price tag rows, flyer copy, QR sign wording, coupon ideas, pickup notes, and a print checklist prepared from your item list.</p>
         </div>
         <div class="free-tool-depth-actions">
-          <a class="button" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="/custom-local-print-pack/?utm_source=tool_cta&utm_medium=site&utm_campaign=service_request&utm_content=${content}">Request $29 setup</a>
+          <a class="button" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="/custom-local-print-pack/?utm_source=tool_cta&utm_medium=site&utm_campaign=service_request&utm_content=${content}">Start free fit check</a>
           <a class="button secondary" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="/market-table-print-audit/?utm_source=tool_cta&utm_medium=site&utm_campaign=audit_request&utm_content=${content}">Free print audit first</a>
           <p class="help">Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
         </div>
@@ -6749,16 +6750,16 @@
 
   function customLocalPrintPackRequestCopy() {
     return [
-      "I want to request the Custom Local Print Pack Setup for $29 USD.",
+      "I want a free fit check for the Custom Local Print Pack Setup ($29 USD if it fits).",
       "",
       "Business/event/service name:",
       "Items or services with prices:",
       "Link or contact method for QR sign:",
       "Preferred style:",
       "Words, claims, or offers to avoid:",
-      "Preferred checkout provider:",
+      "If it fits, preferred external checkout provider:",
       "",
-      "No payment is collected by this request. Please reply with a real external checkout or invoice link only if the service fits.",
+      "No payment is collected by this request. Please review fit first; send a real external checkout or invoice link only if the service is useful and available.",
     ].join("\n");
   }
 
@@ -7879,8 +7880,8 @@ ${paragraphs.join("\n")}
         </div>
         <div class="download-service-close">
           <p class="eyebrow">Optional done-for-you help</p>
-          <strong>Want this turned into a local print pack?</strong>
-          <p class="help">Request the $29 Custom Local Print Pack Setup, or start with a free Market Table Print Audit. Payment starts only after fit is confirmed and a real external checkout or invoice is paid.</p>
+          <strong>Want a practical local print pack?</strong>
+          <p class="help">Send a 30-second free fit check for the $29 Custom Local Print Pack Setup, or start with a free Market Table Print Audit. Payment starts only after fit is confirmed and a real external checkout or invoice is paid.</p>
         </div>
         ${renderDownloadServiceLeadForm(tool)}
         <div class="download-after-actions">
@@ -7904,7 +7905,7 @@ ${paragraphs.join("\n")}
       businessName: "",
       contact: "",
       needBy: "",
-      requestSummary: `I just downloaded ${tool.shortTitle || tool.title || toolId} and want a quick $29 local print pack review.`,
+      requestSummary: `I just downloaded ${tool.shortTitle || tool.title || toolId} and want a free fit check for the $29 local print pack.`,
       path: sourcePath,
     });
     return `
@@ -7923,17 +7924,17 @@ ${paragraphs.join("\n")}
         </label>
         <label class="field">
           <span>What should be assembled?</span>
-          <textarea name="requestSummary" maxlength="1000" required>I just downloaded ${escapeHtml(tool.shortTitle || tool.title || toolId)} and want a quick $29 local print pack review.</textarea>
+          <textarea name="requestSummary" maxlength="1000" required>I just downloaded ${escapeHtml(tool.shortTitle || tool.title || toolId)} and want a free fit check for the $29 local print pack.</textarea>
         </label>
         <label class="check-row">
           <input name="consent" type="checkbox" required>
           <span>I will keep payment, tax, identity, passwords, customer lists, and private files outside this request.</span>
         </label>
         <div class="actions">
-          <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Send $29 setup request</button>
+          <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Send free fit check</button>
           <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open GitHub backup</a>
         </div>
-        <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send a public-safe request here. Payment still happens only through a real external checkout or invoice after fit is confirmed.</p>
+        <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send a public-safe fit check here. Payment still happens only through a real external checkout or invoice after fit is confirmed.</p>
       </form>
     `;
   }

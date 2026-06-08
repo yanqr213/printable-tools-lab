@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Sponsor Intent Feed",
-  "generatedAt": "2026-06-08T04:12:37.907Z",
+  "generatedAt": "2026-06-08T04:26:21.733Z",
   "canonical": "https://printable-tools-lab.pages.dev/sponsor-intent-feed.json",
   "purpose": "Public-safe sponsor discovery feed for directories, newsletters, resource pages, and partners. It lists sponsor-fit audiences and invoice-review paths without exposing operations pages, private leads, payment data, or contact details.",
   "sponsorOpportunities": "https://printable-tools-lab.pages.dev/sponsor-opportunities/",
@@ -9,7 +9,7 @@
   "invoiceReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-opportunities&utm_medium=organic&utm_campaign=sponsor_starter_review&utm_content=board-hero&commitment=request-invoice#sponsor-inquiry",
   "mediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
   "externalDiscoveryProof": {
-    "generatedAt": "2026-06-08T04:06:37.700Z",
+    "generatedAt": "2026-06-08T04:14:53.151Z",
     "directoryListedCount": 5,
     "directoryPendingCount": 5,
     "directoryErrorCount": 1,
