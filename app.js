@@ -15895,7 +15895,12 @@ ${paragraphs.join("\n")}
     const params = new URLSearchParams(window.location.search || "");
     const fieldOrDataOrParam = (field, data, param) => values[field] || form.dataset[data] || params.get(param) || "";
     const serviceType = values.serviceType || form.dataset.serviceType || "custom-local-print-pack";
-    const invoiceLinkRequest = Boolean(options.invoiceLinkRequest || values.invoiceLinkRequest === "true");
+    const invoiceLinkRequest = Boolean(
+      options.invoiceLinkRequest ||
+      values.invoiceLinkRequest === "true" ||
+      form.dataset.servicePrimaryInvoiceRequest === "true" ||
+      form.dataset.uploadErrorInvoiceRequest === "true"
+    );
     const requestedNextStep = invoiceLinkRequest
       ? serviceLeadInvoiceNextStep(serviceType)
       : String(values.requestedNextStep || "").trim();
@@ -16011,8 +16016,12 @@ ${paragraphs.join("\n")}
       status.textContent = message;
       status.dataset.status = kind;
     };
-    const invoiceLinkRequest = Boolean(submitter?.matches?.("[data-service-invoice-submit]"));
-    const values = serviceLeadPayload(form, { invoiceLinkRequest: invoiceLinkRequest || form.dataset.uploadErrorInvoiceRequest === "true" });
+    const invoiceLinkRequest = Boolean(
+      submitter?.matches?.("[data-service-invoice-submit]") ||
+      form.dataset.servicePrimaryInvoiceRequest === "true" ||
+      form.dataset.uploadErrorInvoiceRequest === "true"
+    );
+    const values = serviceLeadPayload(form, { invoiceLinkRequest });
     clearServiceLeadFallback(form);
     clearServiceLeadSuccess(form);
     updateServiceLeadFallbackLink(form);

@@ -337,6 +337,32 @@ function delay(ms) {
     const publicRequest = page.locator('[data-service-lead-fallback-link][data-track-event="service_invoice_request"][data-track-tool="upload-limit-fix-plan"]:has-text("Open public-safe $9 invoice request")').first();
     const publicRequestHref = await publicRequest.getAttribute("href");
     if (!publicRequestHref || !publicRequestHref.includes("github.com") || !publicRequestHref.includes("Invoice+request%3A+Upload+Limit+Fix+Plan") || !publicRequestHref.includes("Public-safe+invoice+request") || !publicRequestHref.includes("compress+PDF")) throw new Error(`${pageSlug} upload fix-plan public invoice request is not prefilled`);
+    if (pageSlug === "compress-pdf-to-500kb") {
+      let capturedLead = null;
+      const leadRoute = async (route) => {
+        capturedLead = JSON.parse(route.request().postData() || "{}");
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json; charset=utf-8",
+          body: JSON.stringify({ ok: true, id: "smoke-upload-fix-invoice" }),
+        });
+      };
+      await page.route("**/api/service-lead", leadRoute);
+      try {
+        await uploadFixForm.locator('input[name="contact"]').fill("smoke@example.com");
+        await uploadFixForm.locator('input[name="consent"]').check();
+        await uploadFixForm.locator('button[type="submit"][data-track-event="service_request_intent"]').first().click();
+        for (let attempt = 0; attempt < 50 && !capturedLead; attempt += 1) await delay(100);
+      } finally {
+        await page.unroute("**/api/service-lead", leadRoute);
+      }
+      if (!capturedLead) throw new Error("Primary invoice upload-fix form did not submit a service lead payload.");
+      if (capturedLead.invoiceLinkRequest !== true) throw new Error(`Primary invoice upload-fix form was not recorded as an invoice request: ${JSON.stringify(capturedLead)}`);
+      if (!String(capturedLead.requestedNextStep || "").includes("external $9 checkout or invoice link")) throw new Error(`Primary invoice upload-fix form did not request the $9 invoice path: ${JSON.stringify(capturedLead)}`);
+      if (capturedLead.utmSource !== "landing-page" || capturedLead.utmCampaign !== "upload_limit_fix_plan" || capturedLead.serviceType !== "upload-limit-fix-plan") {
+        throw new Error(`Primary invoice upload-fix form lost attribution: ${JSON.stringify(capturedLead)}`);
+      }
+    }
     await page.goto(`${base}${landingHref}`, { waitUntil: "networkidle" });
     const selectedTarget = await page.locator("#targetSize").inputValue();
     if (selectedTarget !== targetSize) throw new Error(`PDF target-size tool did not preselect ${targetSize}, got ${selectedTarget}`);
