@@ -8607,6 +8607,7 @@ function directorySubmissionHtml() {
     ["NoSignupTools Upload Limit Fixer", "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab", "Pending public API submission for a no-signup upload error matcher."],
     ["NoSignupTools Upload Error Cheatsheet", "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab", "Pending public API submission for exact upload-error fix routing."],
     ["FreeNoSignup Upload Limit Fixer", "https://freenosignup.com/?s=Upload+Limit+Fixer", "Pending Google Form submission for the free upload error matcher."],
+    ["FreeNoSignup Upload Error Cheatsheet", "https://freenosignup.com/?s=Upload+Error+Cheatsheet", "Pending Google Form submission for exact upload-error fix routing."],
     ["NoLogin.tools", "https://nologin.tools/tool/printable-tools-lab-pages-dev", "Privacy-friendly no-login tool listing."],
     ["NoLogin.tools Upload Limit Fixer", "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer", "No-login listing for upload-limit fixes."],
     ["NoLogin.tools Upload Error Cheatsheet", "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet", "Pending no-login submission for exact upload-error fix routing."],

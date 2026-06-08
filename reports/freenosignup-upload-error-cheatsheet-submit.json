@@ -1,0 +1,41 @@
+﻿{
+    "generatedAt":  "2026-06-08T13:53:57.9674337Z",
+    "directory":  "FreeNoSignup",
+    "submitPage":  "https://freenosignup.com/submit/",
+    "formResponseUrl":  "https://docs.google.com/forms/d/e/1FAIpQLScZ3rCt9k2vlaHcT7d1ABmgtezWN-fZLcH_YcxJdexm8aOzRg/formResponse",
+    "status":  200,
+    "ok":  true,
+    "confirmationMatched":  true,
+    "confirmationEvidence":  {
+                                 "pageUrl":  "https://docs.google.com/forms/d/e/1FAIpQLScZ3rCt9k2vlaHcT7d1ABmgtezWN-fZLcH_YcxJdexm8aOzRg/formResponse?embedded=true",
+                                 "snapshotText":  ".iPj4P { background-color: #5746e3 !important; } freenosignup.com Tool Submission var DOCS_timing={}; DOCS_timing[\u0027pls\u0027]=new Date().getTime(); DOCS_timing[\u0027sl\u0027]=DOCS_timing[\u0027pls\u0027]; _docs_webfonts_json = \"{}\" window.WIZ_g",
+                                 "submissionMethod":  "Google Forms formResponse POST with previously mapped public fields"
+                             },
+    "preSubmitEvidence":  {
+                              "searchUrl":  "https://freenosignup.com/?s=Upload+Error+Cheatsheet",
+                              "searchMatchedSite":  false
+                          },
+    "mappedEntryIds":  {
+                           "toolName":  "entry.269597412",
+                           "toolUrl":  "entry.201672753",
+                           "category":  "entry.1927966242",
+                           "description":  "entry.88575082",
+                           "keyFeatures":  "entry.1466984240",
+                           "submitterName":  "entry.1476070271",
+                           "additionalNotes":  "entry.183902111",
+                           "submitterEmail":  "entry.1308873964"
+                       },
+    "payload":  {
+                    "toolName":  "Upload Error Cheatsheet by PrintableTools Lab",
+                    "toolUrl":  "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/?utm_source=freenosignup\u0026utm_medium=directory\u0026utm_campaign=upload_error_cheatsheet_2026_06\u0026utm_content=upload_error_cheatsheet",
+                    "category":  "Productivity",
+                    "description":  "Free no-signup upload error cheatsheet for PDF, image, resume, and portal upload messages. It maps exact errors like PDF must be under 1MB, image under 500KB, JPG under 200KB, PNG screenshot too large, invalid JPG or PNG file type, 600 x 600 image dimensions, PDF not accepted JPG required, resume PDF too large, and email attachment too large to the matching browser-based tool. Optional manual fix-plan requests are separate; the free cheatsheet works without registration.",
+                    "keyFeatures":  "No signup. No file upload to a server. Exact upload-error wording. Browser-based PDF and image tool routing. Public-safe notes only. Free cheatsheet works before any optional service request.",
+                    "submitterName":  "PrintableTools Lab",
+                    "additionalNotes":  "Specific free resource submission for upload-error troubleshooting. The entry is not a paid-only product and does not ask for private files, ID photos, resumes, portal logins, payment details, tax details, bank details, or account data.",
+                    "submitterEmail":  ""
+                },
+    "responseEvidenceSnippet":  "FreeNoSignup Google Form response endpoint returned a successful response page.",
+    "reviewStatus":  "pending_manual_review",
+    "reviewWindow":  "3-5 business days"
+}
