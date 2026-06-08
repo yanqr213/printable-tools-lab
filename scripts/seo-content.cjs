@@ -6407,7 +6407,8 @@ function invoiceFollowupInlineLeadFormHtml(options = {}) {
   const utmContent = options.utmContent || "invoice-inline";
   const submitLabel = options.submitLabel || "Send invoice fit check";
   const className = options.className || "invoice-inline-lead-form";
-  const requestSummary = "I need a $19 invoice follow-up copy pack for one workflow: polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording. No private invoice numbers, client names, bank details, tax IDs, legal dispute details, or customer lists included.";
+  const compact = Boolean(options.compact);
+  const requestSummary = options.requestSummary || "I need a $19 invoice follow-up copy pack for one workflow: polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording. No private invoice numbers, client names, bank details, tax IDs, legal dispute details, or customer lists included.";
   const fallbackUrl = serviceLeadFallbackUrl({
     serviceType: "invoice-followup-copy-pack",
     pathName,
@@ -6420,20 +6421,21 @@ function invoiceFollowupInlineLeadFormHtml(options = {}) {
           <input type="hidden" name="utmMedium" value="${escapeHtml(utmMedium)}">
           <input type="hidden" name="utmCampaign" value="${escapeHtml(utmCampaign)}">
           <input type="hidden" name="utmContent" value="${escapeHtml(utmContent)}">
+          ${compact ? `<input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}">` : ""}
           <label class="field">
             <span>Email or public contact link</span>
             <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
           </label>
-          <label class="field">
+          ${compact ? "" : `<label class="field">
             <span>Invoice follow-up needed</span>
             <textarea name="requestSummary" maxlength="1000" required>${escapeHtml(requestSummary)}</textarea>
-          </label>
+          </label>`}
           <label class="field">
             <span>Need-by date (optional)</span>
             <input name="needBy" maxlength="80" placeholder="Today, this week, or before the due date">
           </label>
           <label class="check-row">
-            <input name="consent" type="checkbox" required>
+            <input name="consent" type="checkbox" ${compact ? "checked " : ""}required>
             <span>I will keep payment, tax, identity, passwords, customer lists, and private invoice details outside this form.</span>
           </label>
           <div class="actions">
@@ -8462,6 +8464,23 @@ function paidServiceHtml(service, options = {}) {
           <div class="proof-tile"><strong>external</strong><span>payment only</span></div>
         </div>
       </section>
+      ${service.id === INVOICE_FOLLOWUP_COPY_PACK_SERVICE.id ? `<section class="shell section service-micro-intent-section">
+        <div class="grid-2">
+          <div>
+            <h2>Send the shortest $19 request</h2>
+            <p>Use this if you already know you want the sequence. Add only a reply contact; the public-safe request is already written.</p>
+          </div>
+          ${invoiceFollowupInlineLeadFormHtml({
+            pathName: service.slug,
+            utmSource: "service-page",
+            utmContent: "service-page-micro",
+            submitLabel: "Send $19 sequence request",
+            className: "invoice-micro-lead-form",
+            compact: true,
+            requestSummary: invoiceFollowupHeroRequestSummary(service),
+          })}
+        </div>
+      </section>` : ""}
       ${serviceLeadFormHtml({
         serviceType: service.id,
         title: options.formTitle || "Request a free fit check",
@@ -9262,6 +9281,24 @@ function landingPageHtml(page) {
     ? `\n${uploadLimitShortcutsHtml("Fast upload limit shortcuts", "If the error message names a file size, start with the matching target page instead of browsing every tool.")}`
     : "";
   const serviceLeadHtml = page.serviceLead ? `\n${serviceLeadFormHtml({ ...page.serviceLead, pathName: page.path })}` : "";
+  const serviceMicroLeadHtml = page.serviceLead?.serviceType === "invoice-followup-copy-pack" ? `
+      <section class="shell section service-micro-intent-section">
+        <div class="grid-2">
+          <div>
+            <h2>Send a 30-second $19 sequence request</h2>
+            <p>Use this if the free draft is not enough. Add one reply contact; the invoice follow-up request is already written from this page.</p>
+          </div>
+          ${invoiceFollowupInlineLeadFormHtml({
+            pathName: page.path,
+            utmSource: "landing-page",
+            utmContent: `${page.path}-micro`,
+            submitLabel: "Send $19 sequence request",
+            className: "invoice-micro-lead-form",
+            compact: true,
+            requestSummary: page.serviceLead.defaultSummary || "",
+          })}
+        </div>
+      </section>` : "";
   const servicePublicRequestHref = page.serviceLead ? serviceLeadFallbackUrl({
     serviceType: page.serviceLead.serviceType,
     pathName: page.path,
@@ -9285,7 +9322,7 @@ function landingPageHtml(page) {
           <article class="panel"><h3>Ad-safe</h3><p>Downloads are not gated behind ad interactions or ad impressions. Ads remain disabled until policy review and search visibility are ready.</p></article>
         </div>
       </section>
-      ${sectionHtml}${uploadMatcherHtml}${targetLinksHtml}${uploadShortcutsHtml}${serviceLeadHtml}
+      ${serviceMicroLeadHtml}${sectionHtml}${uploadMatcherHtml}${targetLinksHtml}${uploadShortcutsHtml}${serviceLeadHtml}
       <section class="shell section">
         <h2>Related free tools</h2>
         <div class="grid-3">

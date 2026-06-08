@@ -5819,7 +5819,8 @@
     const utmContent = options.utmContent || "invoice-inline";
     const submitLabel = options.submitLabel || "Send invoice fit check";
     const className = options.className || "invoice-inline-lead-form";
-    const requestSummary = "I need a $19 invoice follow-up copy pack for one workflow: polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording. No private invoice numbers, client names, bank details, tax IDs, legal dispute details, or customer lists included.";
+    const compact = Boolean(options.compact);
+    const requestSummary = options.requestSummary || "I need a $19 invoice follow-up copy pack for one workflow: polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording. No private invoice numbers, client names, bank details, tax IDs, legal dispute details, or customer lists included.";
     const fallbackUrl = serviceLeadFallbackUrl({
       serviceType: "invoice-followup-copy-pack",
       businessName: "",
@@ -5835,20 +5836,21 @@
           <input type="hidden" name="utmMedium" value="${escapeHtml(utmMedium)}">
           <input type="hidden" name="utmCampaign" value="${escapeHtml(utmCampaign)}">
           <input type="hidden" name="utmContent" value="${escapeHtml(utmContent)}">
+          ${compact ? `<input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}">` : ""}
           <label class="field">
             <span>Email or public contact link</span>
             <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
           </label>
-          <label class="field">
+          ${compact ? "" : `<label class="field">
             <span>Invoice follow-up needed</span>
             <textarea name="requestSummary" maxlength="1000" required>${escapeHtml(requestSummary)}</textarea>
-          </label>
+          </label>`}
           <label class="field">
             <span>Need-by date (optional)</span>
             <input name="needBy" maxlength="80" placeholder="Today, this week, or before the due date">
           </label>
           <label class="check-row">
-            <input name="consent" type="checkbox" required>
+            <input name="consent" type="checkbox" ${compact ? "checked " : ""}required>
             <span>I will keep payment, tax, identity, passwords, customer lists, and private invoice details outside this form.</span>
           </label>
           <div class="actions">
@@ -6463,6 +6465,22 @@
           <div class="proof-tile"><strong>1 day</strong><span>target turnaround</span></div>
         </div>
       </section>
+      <section class="shell section service-micro-intent-section">
+        <div class="grid-2">
+          <div>
+            <h2>Send the shortest $19 request</h2>
+            <p>Use this if you already know you want the sequence. Add only a reply contact; the public-safe request is already written.</p>
+          </div>
+          ${invoiceFollowupInlineLeadForm({
+            path: "/invoice-followup-copy-pack/",
+            utmSource: "service-page",
+            utmContent: "service-page-micro",
+            submitLabel: "Send $19 sequence request",
+            className: "invoice-micro-lead-form",
+            compact: true,
+          })}
+        </div>
+      </section>
       ${renderServiceLeadForm({
         serviceType: "invoice-followup-copy-pack",
         title: "Request a free invoice follow-up fit check",
@@ -6584,6 +6602,23 @@
         <p>${escapeHtml(page.lead)}</p>
         <p><a class="button" href="${toolUrl(page)}">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> ${page.serviceLead ? `<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>` : `<a class="button secondary" href="/pdf-tool-finder/">Compare tools</a>`}</p>
       </section>
+      ${page.serviceLead?.serviceType === "invoice-followup-copy-pack" ? `<section class="shell section service-micro-intent-section">
+        <div class="grid-2">
+          <div>
+            <h2>Send a 30-second $19 sequence request</h2>
+            <p>Use this if the free draft is not enough. Add one reply contact; the invoice follow-up request is already written from this page.</p>
+          </div>
+          ${invoiceFollowupInlineLeadForm({
+            path: `/${page.slug}/`,
+            utmSource: "landing-page",
+            utmContent: `${page.slug}-micro`,
+            submitLabel: "Send $19 sequence request",
+            className: "invoice-micro-lead-form",
+            compact: true,
+            requestSummary: page.serviceLead.defaultSummary || "",
+          })}
+        </div>
+      </section>` : ""}
       <section class="shell section">
         <h2>Why this matches the search</h2>
         <div class="grid-3">
