@@ -1240,6 +1240,13 @@ else {
   if (!sitemap.includes(`<loc>${siteUrl("upload-error-cheatsheet")}</loc>`)) failures.push("Sitemap missing upload error cheatsheet.");
 }
 
+const compressImageKbToolFile = path.join(root, "tools", "compress-image-to-kb", "index.html");
+if (!fs.existsSync(compressImageKbToolFile)) failures.push("Missing compress image-to-KB tool page.");
+else {
+  const html = fs.readFileSync(compressImageKbToolFile, "utf8");
+  if (!html.includes('data-compress-image-kb-tool-fix-form') || !html.includes("Request $9 invoice link") || !html.includes("data-service-invoice-submit") || !html.includes('data-utm-source="compress-image-kb-tool"')) failures.push("Compress image-to-KB static route missing visible $9 invoice-link request form.");
+}
+
 const uploadErrorCheatsheetJsonFile = path.join(root, "upload-error-cheatsheet.json");
 if (!fs.existsSync(uploadErrorCheatsheetJsonFile)) failures.push("Missing upload-error-cheatsheet.json.");
 else {

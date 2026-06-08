@@ -6863,6 +6863,7 @@ function uploadLimitFixPlanInlineLeadFormHtml(options = {}) {
   const submitLabel = options.submitLabel || "Send $9 fix-plan request";
   const className = options.className || "upload-limit-fix-plan-lead-form";
   const compact = Boolean(options.compact);
+  const imageKbToolFixFormAttr = options.imageKbToolFixForm ? " data-compress-image-kb-tool-fix-form" : "";
   const requestSummary = options.requestSummary || uploadLimitFixPlanRequestSummary();
   const fallbackUrl = serviceLeadFallbackUrl({
     serviceType: "upload-limit-fix-plan",
@@ -6887,7 +6888,7 @@ function uploadLimitFixPlanInlineLeadFormHtml(options = {}) {
             <input name="needBy" maxlength="80" placeholder="Today, tomorrow morning, or before the portal deadline">
           </label>`;
   const extraNote = options.extraNote ? `\n          <p class="notice compact-notice">${escapeHtml(options.extraNote)}</p>` : "";
-  return `<form class="panel form-grid service-lead-form ${escapeHtml(className)}" data-service-lead-form data-upload-fix-plan-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+  return `<form class="panel form-grid service-lead-form ${escapeHtml(className)}" data-service-lead-form data-upload-fix-plan-form${imageKbToolFixFormAttr} data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
           <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
           <input type="hidden" name="utmSource" value="${escapeHtml(utmSource)}">
@@ -7889,6 +7890,7 @@ function toolHtml(tool) {
         <p><a class="button" href="/${tool.path}/">Open generator</a></p>
       </section>
 ${freeToolDepthCtaHtml(tool)}${invoiceSponsorCloseCtaHtml(tool)}
+${toolUploadFixServiceCtaHtml(tool)}
       <section class="shell section">
         <h2>How to use this free ${noun}</h2>
         <ol>
@@ -7916,6 +7918,30 @@ ${freeToolDepthCtaHtml(tool)}${invoiceSponsorCloseCtaHtml(tool)}
         ${jsonLdHtml(faqSchema(details.faq))}
       </section>
       ${serviceUpgradeCtaHtml(tool)}`;
+}
+
+function toolUploadFixServiceCtaHtml(tool) {
+  if (tool.path !== "tools/compress-image-to-kb") return "";
+  return `
+      <section class="shell section service-micro-intent-section">
+        <div class="grid-2">
+          <div>
+            <p class="eyebrow">Optional paid help</p>
+            <h2>Need the image under an exact KB limit today?</h2>
+            <p>Use the free no-upload compressor first. If a portal still rejects the file, send one public-safe reply contact for a $9 Upload Limit Fix Plan with target settings and fallback steps.</p>
+          </div>
+          ${uploadLimitFixPlanInlineLeadFormHtml({
+            pathName: "/tools/compress-image-to-kb/",
+            utmSource: "compress-image-kb-tool",
+            utmContent: "compress-image-kb-static-panel",
+            submitLabel: "Send $9 image target request",
+            className: "upload-limit-fix-plan-micro-lead-form compress-image-kb-tool-fix-form",
+            compact: true,
+            imageKbToolFixForm: true,
+            requestSummary: "I need a $9 Upload Limit Fix Plan for the Compress Image to KB tool before submitting to another website. Portal target: image or photo under the required KB limit. No file upload, private document, ID photo, resume, portal login, payment, tax, identity, or account details included.",
+          })}
+        </div>
+      </section>`;
 }
 
 function invoiceSponsorCloseCtaHtml(tool) {
