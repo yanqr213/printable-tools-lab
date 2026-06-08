@@ -47,9 +47,11 @@ function requireUploadLimitShortcuts(html, label) {
   if (!html.includes("Fast upload limit shortcuts")) failures.push(`${label} missing upload limit shortcut section.`);
   if (!html.includes("Upload message") || !html.includes("PDF must be under 1MB") || !html.includes("Wrong image dimensions")) failures.push(`${label} missing upload limit decision table.`);
   if (!html.includes("Upload error text") || !html.includes("Local text match only") || !html.includes("data-upload-limit-helper")) failures.push(`${label} missing upload error matcher.`);
+  if (!html.includes("data-upload-limit-tool-link")) failures.push(`${label} missing stable upload matcher tool-link marker.`);
   if (!html.includes("PDF must be less than 1 MB") || !html.includes("Invalid file type. Please upload JPG or PNG")) failures.push(`${label} missing upload matcher examples.`);
   if (!html.includes('data-track-event="free_tool_depth"')) failures.push(`${label} missing upload limit depth tracking.`);
   if (!html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("Send $9 fix-plan request") || !html.includes("/upload-limit-fix-plan/?utm_source=upload-limit") || !html.includes("No file upload")) failures.push(`${label} missing $9 upload fix plan service request path.`);
+  if (!html.includes("data-upload-fix-plan-form") || !html.includes("data-upload-fix-plan-summary") || !html.includes("Request note updated from the upload error matcher.")) failures.push(`${label} missing upload matcher paid-request prefill path.`);
   for (const pathName of UPLOAD_LIMIT_SHORTCUT_PATHS) {
     if (!html.includes(pathName)) failures.push(`${label} missing upload limit shortcut: ${pathName}`);
   }
@@ -1308,6 +1310,7 @@ else {
   const html = fs.readFileSync(uploadLimitFixPlanRouteFile, "utf8");
   if (!html.includes(UPLOAD_LIMIT_FIX_PLAN_SERVICE.name) || !html.includes("Request a public-safe upload fix fit check") || !html.includes(`$${UPLOAD_LIMIT_FIX_PLAN_SERVICE.priceUsd}`)) failures.push("Upload limit fix plan route missing low-friction paid service CTA.");
   if (!html.includes("Send the shortest $9 fix-plan request") || !html.includes("upload-limit-fix-plan-micro-lead-form") || !html.includes("Send $9 fix-plan request")) failures.push("Upload limit fix plan route missing shortest paid request form.");
+  if (!html.includes("data-upload-fix-plan-form") || !html.includes("data-upload-fix-plan-summary")) failures.push("Upload limit fix plan route missing upload fix paid-request prefill markers.");
   if (!html.includes("Open public-safe request") || !html.includes('data-service-lead-fallback-link')) failures.push("Upload limit fix plan route missing public-safe request CTA.");
   if (!html.includes('data-service-lead-form') || !html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("Send upload fix fit check")) failures.push("Upload limit fix plan route missing service lead form.");
   if (!html.includes("Upload error text") || !html.includes("File type and target rule") || !html.includes("Blocked file type")) failures.push("Upload limit fix plan route request builder should use upload-specific fields.");

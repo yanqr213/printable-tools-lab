@@ -291,18 +291,26 @@ function delay(ms) {
     const recommendation = page.locator(`[data-upload-limit-result] a[href="${expectedHref}"][data-track-tool="${expectedTool}"]`);
     if (!(await recommendation.count())) throw new Error(`Upload limit matcher did not recommend ${expectedHref} for ${message}`);
   }
+  await page.fill("[data-upload-limit-input]", "PDF must be less than 1 MB");
+  const prefilledFixSummary = await page.locator("[data-upload-fix-plan-form] [data-upload-fix-plan-summary]").first().inputValue();
+  if (!prefilledFixSummary.includes("Public-safe error text: PDF must be less than 1 MB") || !prefilledFixSummary.includes("PDF under 1MB -> Open PDF compressor")) {
+    throw new Error("Upload limit matcher did not prefill the $9 fix-plan request summary.");
+  }
+  const prefillStatusVisible = await page.locator("[data-upload-fix-plan-prefill-status]").first().isVisible();
+  if (!prefillStatusVisible) throw new Error("Upload limit matcher did not show the $9 fix-plan prefill status.");
   const uploadLimitRoutes = [
     ["/tools/compress-pdf/?targetSize=1mb", "#targetSize", "1mb"],
     ["/tools/compress-image-to-kb/?targetKb=100", "#targetKb", "100"],
   ];
   for (const [href, selector, expectedValue] of uploadLimitRoutes) {
-    const trackedLink = page.locator(`main a[href="${href}"][data-track-event="free_tool_depth"]`).first();
+    const trackedLink = page.locator(`[data-upload-limit-result] a[href="${href}"][data-upload-limit-tool-link][data-track-event="free_tool_depth"]`).first();
     if (!(await trackedLink.count())) throw new Error(`Upload limit fixer is missing tracked decision link ${href}`);
     await trackedLink.click();
-    await page.waitForLoadState("networkidle");
+    await page.waitForSelector(selector, { state: "visible", timeout: 10000 });
     const selectedValue = await page.locator(selector).inputValue();
     if (selectedValue !== expectedValue) throw new Error(`Upload limit decision ${href} did not preselect ${expectedValue}, got ${selectedValue}`);
     await page.goto(`${base}/upload-limit-fixer/`, { waitUntil: "networkidle" });
+    await page.fill("[data-upload-limit-input]", "Photo must be under 100 KB");
   }
 
   const uploadErrorLandingRoutes = [
@@ -322,7 +330,7 @@ function delay(ms) {
     const toolLink = page.locator(`main a[href="${href}"]`).first();
     if (!(await toolLink.count())) throw new Error(`Upload-error landing page missing primary link ${href}`);
     await toolLink.click();
-    await page.waitForLoadState("networkidle");
+    await page.waitForSelector(selector, { state: "visible", timeout: 10000 });
     const selectedValue = await page.locator(selector).inputValue();
     if (selectedValue !== expectedValue) throw new Error(`Upload-error landing ${landingPath} did not preselect ${expectedValue}, got ${selectedValue}`);
   }

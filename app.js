@@ -5834,6 +5834,12 @@
       requestSummary,
       path: pathName,
     });
+    const requestSummaryField = compact
+      ? `<input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}">`
+      : `<label class="field">
+            <span>Invoice follow-up needed</span>
+            <textarea name="requestSummary" maxlength="1000" required>${escapeHtml(requestSummary)}</textarea>
+          </label>`;
     return `<form class="panel form-grid service-lead-form ${escapeHtml(className)}" data-service-lead-form data-service-type="invoice-followup-copy-pack" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
           <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="serviceType" value="invoice-followup-copy-pack">
@@ -5841,15 +5847,11 @@
           <input type="hidden" name="utmMedium" value="${escapeHtml(utmMedium)}">
           <input type="hidden" name="utmCampaign" value="${escapeHtml(utmCampaign)}">
           <input type="hidden" name="utmContent" value="${escapeHtml(utmContent)}">
-          ${compact ? `<input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}">` : ""}
+          ${requestSummaryField}
           <label class="field">
             <span>Email or public contact link</span>
             <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
           </label>
-          ${compact ? "" : `<label class="field">
-            <span>Invoice follow-up needed</span>
-            <textarea name="requestSummary" maxlength="1000" required>${escapeHtml(requestSummary)}</textarea>
-          </label>`}
           <label class="field">
             <span>Need-by date (optional)</span>
             <input name="needBy" maxlength="80" placeholder="Today, this week, or before the due date">
@@ -5888,22 +5890,24 @@
       requestSummary,
       path: pathName,
     });
-    return `<form class="panel form-grid service-lead-form ${escapeHtml(className)}" data-service-lead-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+    const requestSummaryField = compact
+      ? `<input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}" data-upload-fix-plan-summary>`
+      : `<label class="field">
+            <span>Upload error and target rule</span>
+            <textarea name="requestSummary" maxlength="1000" required data-upload-fix-plan-summary>${escapeHtml(requestSummary)}</textarea>
+          </label>`;
+    return `<form class="panel form-grid service-lead-form ${escapeHtml(className)}" data-service-lead-form data-upload-fix-plan-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
           <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
           <input type="hidden" name="utmSource" value="${escapeHtml(utmSource)}">
           <input type="hidden" name="utmMedium" value="${escapeHtml(utmMedium)}">
           <input type="hidden" name="utmCampaign" value="${escapeHtml(utmCampaign)}">
           <input type="hidden" name="utmContent" value="${escapeHtml(utmContent)}">
-          ${compact ? `<input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}">` : ""}
+          ${requestSummaryField}
           <label class="field">
             <span>Email or public contact link</span>
             <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
           </label>
-          ${compact ? "" : `<label class="field">
-            <span>Upload error and target rule</span>
-            <textarea name="requestSummary" maxlength="1000" required>${escapeHtml(requestSummary)}</textarea>
-          </label>`}
           <label class="field">
             <span>Need-by time (optional)</span>
             <input name="needBy" maxlength="80" placeholder="Today, tomorrow morning, or before the portal deadline">
@@ -5917,7 +5921,20 @@
             <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
           </div>
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No file upload. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
+          <p class="help" data-upload-fix-plan-prefill-status hidden>Request note updated from the upload error matcher.</p>
         </form>`;
+  }
+
+  function uploadLimitFixPlanSummaryFromMatch(message, match) {
+    const safeMessage = String(message || "").replace(/\s+/g, " ").trim().slice(0, 260);
+    if (!safeMessage) return uploadLimitFixPlanRequestSummary();
+    return [
+      "I need a $9 Upload Limit Fix Plan for one rejected file upload.",
+      `Public-safe error text: ${safeMessage}`,
+      `Matched free-tool route: ${match.title} -> ${match.label} (${match.href})`,
+      `Why this route: ${match.why}`,
+      "Please send target settings, fallback steps, and a review-before-upload checklist. No file upload, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.",
+    ].join(" ");
   }
 
   function toolCard(tool) {
@@ -6926,7 +6943,7 @@
                 <span class="tag">${escapeHtml(match.badge)}</span>
                 <h3>${escapeHtml(match.title)}</h3>
                 <p>${escapeHtml(match.why)}</p>
-                <a class="button" href="${escapeHtml(match.href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(match.trackTool)}">${escapeHtml(match.label)}</a>
+                <a class="button" data-upload-limit-tool-link href="${escapeHtml(match.href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(match.trackTool)}">${escapeHtml(match.label)}</a>
               </article>`;
   }
 
@@ -15610,7 +15627,16 @@ ${paragraphs.join("\n")}
       const result = helper.querySelector("[data-upload-limit-result]");
       const update = () => {
         if (!result) return;
-        result.innerHTML = renderUploadLimitRecommendation(matchUploadLimitMessage(input ? input.value : ""));
+        const message = input ? input.value : "";
+        const match = matchUploadLimitMessage(message);
+        if (helper.dataset.uploadLimitLastMessage === message) {
+          updateUploadFixPlanFromMatcher(helper, message, match);
+          return;
+        }
+        helper.dataset.uploadLimitLastMessage = message;
+        result.innerHTML = renderUploadLimitRecommendation(match);
+        bindUploadLimitToolLinks(helper);
+        updateUploadFixPlanFromMatcher(helper, message, match);
       };
       if (input) {
         input.addEventListener("input", update);
@@ -15625,6 +15651,36 @@ ${paragraphs.join("\n")}
         });
       });
       update();
+    });
+  }
+
+  function updateUploadFixPlanFromMatcher(helper, message, match) {
+    const section = helper.closest("section") || document;
+    const form = section.querySelector("[data-upload-fix-plan-form]");
+    if (!form) return;
+    const summary = form.querySelector("[data-upload-fix-plan-summary]");
+    if (!summary) return;
+    const nextSummary = uploadLimitFixPlanSummaryFromMatch(message, match || uploadLimitMatcherDefault);
+    summary.value = nextSummary;
+    const status = form.querySelector("[data-upload-fix-plan-prefill-status]");
+    if (status) status.hidden = !String(message || "").trim();
+    updateServiceLeadFallbackLink(form);
+  }
+
+  function bindUploadLimitToolLinks(helper) {
+    helper.querySelectorAll("[data-upload-limit-tool-link]").forEach((link) => {
+      if (link.dataset.uploadLimitLinkReady === "true") return;
+      link.dataset.uploadLimitLinkReady = "true";
+      link.addEventListener("click", (event) => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        const url = new URL(link.href, window.location.href);
+        if (url.origin !== window.location.origin || !url.pathname.startsWith("/")) return;
+        event.preventDefault();
+        event.stopPropagation();
+        track(link.dataset.trackEvent || "free_tool_depth", { tool: link.dataset.trackTool || "site" });
+        window.history.pushState({}, "", url.pathname + url.search + url.hash);
+        route();
+      });
     });
   }
 

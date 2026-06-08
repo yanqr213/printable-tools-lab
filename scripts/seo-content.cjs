@@ -6750,6 +6750,12 @@ function invoiceFollowupInlineLeadFormHtml(options = {}) {
     pathName,
     requestSummary,
   });
+  const requestSummaryField = compact
+    ? `<input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}">`
+    : `<label class="field">
+            <span>Invoice follow-up needed</span>
+            <textarea name="requestSummary" maxlength="1000" required>${escapeHtml(requestSummary)}</textarea>
+          </label>`;
   return `<form class="panel form-grid service-lead-form ${escapeHtml(className)}" data-service-lead-form data-service-type="invoice-followup-copy-pack" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
           <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="serviceType" value="invoice-followup-copy-pack">
@@ -6757,15 +6763,11 @@ function invoiceFollowupInlineLeadFormHtml(options = {}) {
           <input type="hidden" name="utmMedium" value="${escapeHtml(utmMedium)}">
           <input type="hidden" name="utmCampaign" value="${escapeHtml(utmCampaign)}">
           <input type="hidden" name="utmContent" value="${escapeHtml(utmContent)}">
-          ${compact ? `<input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}">` : ""}
+          ${requestSummaryField}
           <label class="field">
             <span>Email or public contact link</span>
             <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
           </label>
-          ${compact ? "" : `<label class="field">
-            <span>Invoice follow-up needed</span>
-            <textarea name="requestSummary" maxlength="1000" required>${escapeHtml(requestSummary)}</textarea>
-          </label>`}
           <label class="field">
             <span>Need-by date (optional)</span>
             <input name="needBy" maxlength="80" placeholder="Today, this week, or before the due date">
@@ -6801,22 +6803,24 @@ function uploadLimitFixPlanInlineLeadFormHtml(options = {}) {
     pathName,
     requestSummary,
   });
-  return `<form class="panel form-grid service-lead-form ${escapeHtml(className)}" data-service-lead-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+  const requestSummaryField = compact
+    ? `<input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}" data-upload-fix-plan-summary>`
+    : `<label class="field">
+            <span>Upload error and target rule</span>
+            <textarea name="requestSummary" maxlength="1000" required data-upload-fix-plan-summary>${escapeHtml(requestSummary)}</textarea>
+          </label>`;
+  return `<form class="panel form-grid service-lead-form ${escapeHtml(className)}" data-service-lead-form data-upload-fix-plan-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
           <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
           <input type="hidden" name="utmSource" value="${escapeHtml(utmSource)}">
           <input type="hidden" name="utmMedium" value="${escapeHtml(utmMedium)}">
           <input type="hidden" name="utmCampaign" value="${escapeHtml(utmCampaign)}">
           <input type="hidden" name="utmContent" value="${escapeHtml(utmContent)}">
-          ${compact ? `<input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}">` : ""}
+          ${requestSummaryField}
           <label class="field">
             <span>Email or public contact link</span>
             <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
           </label>
-          ${compact ? "" : `<label class="field">
-            <span>Upload error and target rule</span>
-            <textarea name="requestSummary" maxlength="1000" required>${escapeHtml(requestSummary)}</textarea>
-          </label>`}
           <label class="field">
             <span>Need-by time (optional)</span>
             <input name="needBy" maxlength="80" placeholder="Today, tomorrow morning, or before the portal deadline">
@@ -6830,6 +6834,7 @@ function uploadLimitFixPlanInlineLeadFormHtml(options = {}) {
             <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
           </div>
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No file upload. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
+          <p class="help" data-upload-fix-plan-prefill-status hidden>Request note updated from the upload error matcher.</p>
         </form>`;
 }
 
@@ -11069,7 +11074,7 @@ function uploadLimitRecommendationHtml(match) {
                 <span class="tag">${escapeHtml(match.badge)}</span>
                 <h3>${escapeHtml(match.title)}</h3>
                 <p>${escapeHtml(match.why)}</p>
-                <a class="button" href="${escapeHtml(match.href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(match.trackTool)}">${escapeHtml(match.label)}</a>
+                <a class="button" data-upload-limit-tool-link href="${escapeHtml(match.href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(match.trackTool)}">${escapeHtml(match.label)}</a>
               </article>`;
 }
 
