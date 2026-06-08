@@ -1510,7 +1510,8 @@ if (!fs.existsSync(uploadLimitFixPlanRouteFile)) failures.push("Missing upload l
 else {
   const html = fs.readFileSync(uploadLimitFixPlanRouteFile, "utf8");
   if (!html.includes(UPLOAD_LIMIT_FIX_PLAN_SERVICE.name) || !html.includes("Request a public-safe upload fix fit check") || !html.includes(`$${UPLOAD_LIMIT_FIX_PLAN_SERVICE.priceUsd}`)) failures.push("Upload limit fix plan route missing low-friction paid service CTA.");
-  if (!html.includes("Send the shortest $9 fix-plan request") || !html.includes("upload-limit-fix-plan-micro-lead-form") || !html.includes("Send $9 fix-plan request")) failures.push("Upload limit fix plan route missing shortest paid request form.");
+  if (!html.includes('href="#invoice-request"') || !html.includes('id="invoice-request"') || !html.includes("Request the $9 invoice link in 30 seconds")) failures.push("Upload limit fix plan route should route the hero CTA to the one-contact invoice request form.");
+  if (!html.includes("upload-limit-fix-plan-micro-lead-form") || !html.includes("service-page-invoice") || !html.includes(">Request $9 invoice link</button>") || !html.includes("Send $9 fix-plan request")) failures.push("Upload limit fix plan route missing primary one-contact invoice request form.");
   if (!html.includes("Request $9 invoice link") || !html.includes("data-service-invoice-submit") || !html.includes("data-invoice-fallback-url")) failures.push("Upload limit fix plan route missing explicit external invoice request CTA.");
   if (!html.includes("data-upload-fix-plan-form") || !html.includes("data-upload-fix-plan-summary")) failures.push("Upload limit fix plan route missing upload fix paid-request prefill markers.");
   if (!html.includes("Open public-safe request") || !html.includes('data-service-lead-fallback-link')) failures.push("Upload limit fix plan route missing public-safe request CTA.");

@@ -6864,6 +6864,7 @@ function uploadLimitFixPlanInlineLeadFormHtml(options = {}) {
   const className = options.className || "upload-limit-fix-plan-lead-form";
   const compact = Boolean(options.compact);
   const imageKbToolFixFormAttr = options.imageKbToolFixForm ? " data-compress-image-kb-tool-fix-form" : "";
+  const primaryInvoiceRequest = Boolean(options.primaryInvoiceRequest);
   const requestSummary = options.requestSummary || uploadLimitFixPlanRequestSummary();
   const fallbackUrl = serviceLeadFallbackUrl({
     serviceType: "upload-limit-fix-plan",
@@ -6906,8 +6907,11 @@ function uploadLimitFixPlanInlineLeadFormHtml(options = {}) {
             <span>I will not upload or paste the actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details.</span>
           </label>
           <div class="actions">
-            <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">${escapeHtml(submitLabel)}</button>
-            <button class="button secondary" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $9 invoice link</button>
+            ${primaryInvoiceRequest
+              ? `<button class="button" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">${escapeHtml(submitLabel)}</button>
+            <button class="button secondary" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Send $9 fix-plan request</button>`
+              : `<button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">${escapeHtml(submitLabel)}</button>
+            <button class="button secondary" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $9 invoice link</button>`}
             <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
           </div>
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No file upload. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
@@ -9201,8 +9205,8 @@ function paidServiceHtml(service, options = {}) {
     pathName: service.slug,
     requestSummary: heroRequestSummary,
   });
-  const primaryServiceUrl = checkoutConfigured ? service.checkoutUrl : "#service-request";
-  const primaryServiceText = checkoutConfigured ? `Buy for $${service.priceUsd}` : "Request free fit check";
+  const primaryServiceUrl = checkoutConfigured ? service.checkoutUrl : service.id === UPLOAD_LIMIT_FIX_PLAN_SERVICE.id ? "#invoice-request" : "#service-request";
+  const primaryServiceText = checkoutConfigured ? `Buy for $${service.priceUsd}` : service.id === UPLOAD_LIMIT_FIX_PLAN_SERVICE.id ? "Request $9 invoice link" : "Request free fit check";
   const primaryServiceEvent = checkoutConfigured ? "service_checkout_click" : "service_request_intent";
   const orderAssets = [
     ["Request brief", `/${service.publicRequestPath}`],
@@ -9253,19 +9257,20 @@ function paidServiceHtml(service, options = {}) {
             requestSummary: invoiceFollowupHeroRequestSummary(service),
           })}
         </div>
-      </section>` : service.id === UPLOAD_LIMIT_FIX_PLAN_SERVICE.id ? `<section class="shell section service-micro-intent-section">
+      </section>` : service.id === UPLOAD_LIMIT_FIX_PLAN_SERVICE.id ? `<section class="shell section service-micro-intent-section" id="invoice-request">
         <div class="grid-2">
           <div>
-            <h2>Send the shortest $9 fix-plan request</h2>
-            <p>Use this if the free chooser is not enough. Add only a reply contact; the public-safe request already says no file upload.</p>
+            <h2>Request the $9 invoice link in 30 seconds</h2>
+            <p>Use this if the free chooser is not enough and you want the paid path. Add one reply contact only; the public-safe request already says no file upload.</p>
           </div>
           ${uploadLimitFixPlanInlineLeadFormHtml({
             pathName: service.slug,
             utmSource: "service-page",
-            utmContent: "service-page-micro",
-            submitLabel: "Send $9 fix-plan request",
+            utmContent: "service-page-invoice",
+            submitLabel: "Request $9 invoice link",
             className: "upload-limit-fix-plan-micro-lead-form",
             compact: true,
+            primaryInvoiceRequest: true,
             requestSummary: heroRequestSummary,
           })}
         </div>
