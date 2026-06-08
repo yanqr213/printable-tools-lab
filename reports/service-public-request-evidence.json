@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-08T06:17:57.932Z",
+  "generatedAt": "2026-06-08T23:43:33.402Z",
   "repo": "yanqr213/printable-tools-lab",
   "sourceUrl": "https://github.com/yanqr213/printable-tools-lab/issues?q=is%3Aissue%20label%3Abusiness-review%20label%3Aservice-request%20OR%20label%3Aaudit-request",
   "available": true,
@@ -12,6 +12,7 @@
   "closedCount": 0,
   "paidServiceRequestCount": 0,
   "invoiceFollowupRequestCount": 0,
+  "uploadLimitFixPlanRequestCount": 0,
   "customLocalPrintRequestCount": 0,
   "auditRequestCount": 0,
   "sellerKitRequestCount": 0,
