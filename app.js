@@ -48,6 +48,7 @@
 
   const LOCAL_SELLER_FUNNEL_TOOL_IDS = new Set([
     "invoice-generator",
+    "invoice-followup-email",
     "estimate-generator",
     "purchase-order",
     "bill-of-sale",
@@ -75,6 +76,7 @@
 
   const AI_FIELD_ALLOWLIST = {
     "invoice-generator": ["items", "due", "notes"],
+    "invoice-followup-email": ["clientLabel", "invoiceStatus", "tone", "paymentWording", "context"],
     "estimate-generator": ["items", "due", "notes"],
     "purchase-order": ["items", "due", "notes"],
     "bill-of-sale": ["items", "due", "notes"],
@@ -276,6 +278,36 @@
         { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
       ],
       draw: drawInvoice,
+    },
+    "invoice-followup-email": {
+      id: "invoice-followup-email",
+      icon: "PAY",
+      title: "Invoice Follow-up Email Generator",
+      shortTitle: "Invoice follow-up",
+      description: "Write a polite invoice reminder, due-today note, overdue follow-up, paid thank-you, or next-invoice email without uploading private invoice details.",
+      keywords: ["invoice follow up email", "payment reminder email", "overdue invoice reminder", "freelance invoice wording"],
+      defaultValues: {
+        clientLabel: "Client",
+        projectLabel: "recent project",
+        invoiceStatus: "sent",
+        tone: "friendly",
+        dueTiming: "due this Friday",
+        paymentWording: "Please use the payment link or invoice portal already sent.",
+        context: "Thanks again for the work together. I wanted to keep the invoice easy to find.",
+        paper: "letter",
+      },
+      fields: [
+        { id: "clientLabel", label: "Client label", type: "text", maxLength: 60, help: "Use a generic label if you do not want to type a real client name." },
+        { id: "projectLabel", label: "Project or service label", type: "text", maxLength: 80 },
+        { id: "invoiceStatus", label: "Follow-up type", type: "select", options: [["sent", "Polite reminder"], ["due-today", "Due today"], ["overdue", "First overdue follow-up"], ["paid", "Paid thank-you"], ["next-invoice", "Next invoice note"]] },
+        { id: "tone", label: "Tone", type: "select", options: [["friendly", "Friendly"], ["firm", "Firm"], ["concise", "Concise"], ["warm", "Warm"]] },
+        { id: "dueTiming", label: "Timing line", type: "text", maxLength: 80, help: "Example: due this Friday, sent last week, paid yesterday." },
+        { id: "paymentWording", label: "Payment wording", type: "textarea", maxLength: 220, help: "Avoid private bank, card, invoice number, tax, or client details." },
+        { id: "context", label: "Optional context", type: "textarea", maxLength: 260 },
+        { id: "paper", label: "Paper size", type: "select", options: [["letter", "US Letter"], ["a4", "A4"]] },
+      ],
+      draw: drawInvoiceFollowupEmail,
+      afterDraw: renderInvoiceFollowupEmailOutput,
     },
     "estimate-generator": {
       id: "estimate-generator",
@@ -1966,6 +1998,8 @@
       links: [
         ["Invoice generator", "/tools/invoice-generator/"],
         ["Free invoice generator without signup", "/free-invoice-generator-no-signup/"],
+        ["Invoice follow-up email generator", "/tools/invoice-followup-email/"],
+        ["Free invoice follow-up email template", "/invoice-follow-up-email-template/"],
         ["Estimate generator", "/tools/estimate-generator/"],
         ["Purchase order generator", "/tools/purchase-order/"],
         ["Packing slip generator", "/tools/packing-slip/"],
@@ -2019,7 +2053,7 @@
     {
       title: "Free business PDF tools",
       description: "Create simple paperwork for freelance jobs, small services, deposits, work orders, packing slips, inventory counts, timesheets, private sales, rent payments, and vendor orders without opening a full accounting app.",
-      links: ["invoice-generator", "estimate-generator", "purchase-order", "receipt-generator", "timesheet-generator", "bill-of-sale", "rent-receipt", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels"],
+      links: ["invoice-generator", "invoice-followup-email", "estimate-generator", "purchase-order", "receipt-generator", "timesheet-generator", "bill-of-sale", "rent-receipt", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels"],
     },
     {
       title: "Free career PDF tools",
@@ -2309,7 +2343,22 @@
         ["What the invoice includes", "Business and client details, invoice number, date, payment terms, line items, currency, totals, and a footer note. It is a simple record format, not tax or accounting advice."],
         ["Best fit", "Use it for freelance services, consulting work, small one-off jobs, deposits, creative work, or quick client records when full accounting software is unnecessary."],
       ],
-      related: ["estimate-generator", "receipt-generator", "timesheet-generator"],
+      related: ["invoice-followup-email", "estimate-generator", "receipt-generator"],
+    },
+    {
+      slug: "invoice-follow-up-email-template",
+      title: "Free Invoice Follow-up Email Template",
+      headline: "Free invoice follow-up email template",
+      description: "Write and download a polite invoice reminder, due-today note, overdue follow-up, paid thank-you, or next-invoice email without uploading private invoice details.",
+      lead: "Use this when an invoice has been sent and you need a professional reminder or thank-you note without turning it into legal, tax, accounting, or collections advice.",
+      tool: "invoice-followup-email",
+      intent: "invoice follow-up email, payment reminder wording, overdue invoice reminder",
+      sections: [
+        ["Why this page exists", "People who generate invoices often need the next message more than another PDF. This page gives a quick, editable follow-up email while keeping private invoice numbers, bank details, tax IDs, and client data out of the tool."],
+        ["What it drafts", "A polite reminder, due-today note, first overdue follow-up, paid thank-you, or next-invoice message with tone and timing fields the sender can review."],
+        ["Best fit", "Use it for freelancers, consultants, local services, or small teams who need relationship-safe wording after sending an invoice."],
+      ],
+      related: ["invoice-generator", "estimate-generator", "receipt-generator"],
     },
     {
       slug: "jpg-to-pdf-no-upload",
@@ -3651,6 +3700,11 @@
       why: "Use an invoice before payment is due.",
     },
     {
+      need: "Write a payment reminder or overdue invoice follow-up",
+      tool: "invoice-followup-email",
+      why: "Best for copy-ready reminder wording after sending an invoice.",
+    },
+    {
       need: "Show proof after money was paid",
       tool: "receipt-generator",
       why: "Use a receipt after payment happens.",
@@ -4024,6 +4078,18 @@
         ["ul", ["Business name and contact line.", "Client name.", "Invoice number and date.", "Line items with quantity and rate.", "Payment terms and a short footer note."]],
         ["h2", "Keep records outside the tool"],
         ["p", "This generator does not store invoices. Download the PDF and keep your own copy with your bookkeeping or client folder."],
+      ],
+    },
+    {
+      slug: "invoice-follow-up-email-template",
+      title: "Free invoice follow-up email template",
+      description: "Write a polite invoice reminder or overdue follow-up without uploading private invoice data.",
+      tool: "invoice-followup-email",
+      content: [
+        ["h2", "Keep the reminder relationship-safe"],
+        ["p", "A good first invoice follow-up is short, calm, and specific. It should mention the invoice status, give the payment path, and ask for an update without making legal or collections claims."],
+        ["h2", "Avoid private details"],
+        ["p", "Use generic client labels in the tool. Do not paste invoice numbers, bank details, tax IDs, private client data, or legal dispute details."],
       ],
     },
     {
@@ -5010,6 +5076,7 @@
 
   const toolOrder = [
     "invoice-generator",
+    "invoice-followup-email",
     "estimate-generator",
     "purchase-order",
     "bill-of-sale",
@@ -6475,6 +6542,7 @@
             <p class="help">The free version creates one clean one-page PDF. Daily limits are stored locally in this browser.</p>
           </form>
           <div id="aiIdeasPanel" class="ai-panel" hidden></div>
+          <div id="toolOutputPanel" class="ai-panel tool-output-panel" hidden></div>
           <div id="limitNotice" class="notice" hidden></div>
         </aside>
         <div class="preview-wrap">
@@ -6583,6 +6651,7 @@
     const draw = () => {
       const values = getFormValues(form);
       renderCanvas(tool, canvas, values);
+      if (typeof tool.afterDraw === "function") tool.afterDraw(values);
     };
 
     initializeSignaturePads(tool, form, draw);
@@ -6774,6 +6843,24 @@
   function renderServiceUpgradeCta(tool) {
     if (!tool || !LOCAL_SELLER_FUNNEL_TOOL_IDS.has(tool.id)) return "";
     const content = encodeURIComponent(tool.id);
+    if (isInvoiceFollowupTool(tool.id)) {
+      return `
+      <section class="shell section service-upgrade-cta" aria-label="Optional invoice follow-up help">
+        <div>
+          <p class="eyebrow">Optional done-for-you help</p>
+          <h2>Want the full invoice follow-up sequence written for you?</h2>
+          <p>The free generator drafts one message. Send a free fit check for the $19 Invoice Follow-up Copy Pack if you want a polished reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice note prepared for one workflow.</p>
+        </div>
+        <div class="free-tool-depth-actions">
+          <a class="button" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="/invoice-followup-copy-pack/?utm_source=tool_cta&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=${content}#service-request">Start invoice fit check</a>
+          <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="/tools/invoice-generator/?utm_source=tool_cta&utm_medium=site&utm_campaign=invoice_followup_tool&utm_content=${content}">Create an invoice first</a>
+          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="/custom-local-print-pack/?utm_source=tool_cta&utm_medium=site&utm_campaign=service_request&utm_content=${content}">Start free fit check</a>
+          <a class="button ghost" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="/market-table-print-audit/?utm_source=tool_cta&utm_medium=site&utm_campaign=audit_request&utm_content=${content}">Free print audit first</a>
+          <p class="help">Also selling locally? The optional $29 print-pack setup can turn invoice, receipt, price tag, flyer, QR, coupon, and packing-slip details into a first printable seller pack.</p>
+          <p class="help">Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
+        </div>
+      </section>`;
+    }
     return `
       <section class="shell section service-upgrade-cta" aria-label="Optional done-for-you setup">
         <div>
@@ -6787,6 +6874,10 @@
           <p class="help">Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
         </div>
       </section>`;
+  }
+
+  function isInvoiceFollowupTool(toolId) {
+    return toolId === "invoice-generator" || toolId === "invoice-followup-email";
   }
 
   function renderServiceUpgradeTools() {
@@ -7958,14 +8049,14 @@ ${paragraphs.join("\n")}
     const invoiceSponsorAction = tool.id === "invoice-generator"
       ? `<a class="button" data-track-event="sponsor_request_intent" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(sponsorHref)}">Request USD 49 invoice review</a>`
       : "";
-    const invoiceFollowupAction = tool.id === "invoice-generator"
+    const invoiceFollowupAction = isInvoiceFollowupTool(tool.id)
       ? `<a class="button" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(invoiceFollowupHref)}">Get $19 follow-up copy</a>`
       : "";
-    const serviceAction = tool.id === "invoice-generator"
+    const serviceAction = isInvoiceFollowupTool(tool.id)
       ? invoiceFollowupAction
       : `<a class="button" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="${escapeHtml(serviceHref)}">Start free fit check</a>`;
-    const serviceHeadline = tool.id === "invoice-generator" ? "Need words to follow up on this invoice?" : "Want a practical local print pack?";
-    const serviceHelp = tool.id === "invoice-generator"
+    const serviceHeadline = isInvoiceFollowupTool(tool.id) ? "Need words to follow up on this invoice?" : "Want a practical local print pack?";
+    const serviceHelp = isInvoiceFollowupTool(tool.id)
       ? "Send a 30-second free fit check for a $19 Invoice Follow-up Copy Pack: polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording. Payment starts only after fit is confirmed and a real external checkout or invoice is paid."
       : "Send a 30-second free fit check for the $29 Custom Local Print Pack Setup, or start with a free Market Table Print Audit. Payment starts only after fit is confirmed and a real external checkout or invoice is paid.";
     return `
@@ -7997,7 +8088,7 @@ ${paragraphs.join("\n")}
     if (!tool || !LOCAL_SELLER_FUNNEL_TOOL_IDS.has(tool.id)) return "";
     const toolId = tool.id || "download";
     const sourcePath = `/tools/${toolId}/`;
-    const isInvoice = toolId === "invoice-generator";
+    const isInvoice = isInvoiceFollowupTool(toolId);
     const serviceType = isInvoice ? "invoice-followup-copy-pack" : "custom-local-print-pack";
     const serviceTool = isInvoice ? "invoice-followup-copy-pack" : "custom-local-print-pack";
     const campaign = isInvoice ? "invoice_followup_service" : "service_request";
@@ -8068,7 +8159,7 @@ ${paragraphs.join("\n")}
 
   function getRelatedTools(currentId) {
     const groups = [
-      ["invoice-generator", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt", "receipt-generator", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"],
+      ["invoice-generator", "invoice-followup-email", "estimate-generator", "purchase-order", "bill-of-sale", "rent-receipt", "receipt-generator", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"],
       ["resume-builder", "ats-resume-checker", "cover-letter", "resignation-letter"],
       ["monthly-calendar", "meal-planner", "weekly-planner", "habit-tracker"],
       ["name-tracing", "chore-chart", "reward-chart", "flashcards"],
@@ -10184,6 +10275,100 @@ ${paragraphs.join("\n")}
       footer: "Generated locally with PrintableTools Lab. Review before sending.",
       defaultNote: "Thank you for your business.",
     });
+  }
+
+  function drawInvoiceFollowupEmail(ctx, paper, values) {
+    const margin = 78;
+    const message = invoiceFollowupEmailText(values);
+    const statusLabel = invoiceFollowupStatusLabel(values.invoiceStatus);
+    drawBusinessFrame(ctx, paper, "#176b87");
+    drawTextFit(ctx, "INVOICE FOLLOW-UP EMAIL", margin, 104, paper.width - margin * 2, 46, { align: "left", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, statusLabel, paper.width - margin, 104, 380, 24, { align: "right", weight: "800", color: "#176b87" });
+    drawTextFit(ctx, `${sanitizePrintable(values.tone || "friendly")} tone`, paper.width - margin, 140, 380, 20, { align: "right", weight: "600", color: "#5b6f78" });
+
+    ctx.save();
+    ctx.fillStyle = "#edf7f6";
+    roundRect(ctx, margin, 190, paper.width - margin * 2, 128, 8, true, false);
+    ctx.restore();
+    drawTextFit(ctx, `For: ${sanitizePrintable(values.clientLabel || "Client")}`, margin + 26, 232, paper.width - margin * 2 - 52, 24, { align: "left", weight: "900", color: "#17313b" });
+    drawTextFit(ctx, `Project: ${sanitizePrintable(values.projectLabel || "recent project")}`, margin + 26, 270, paper.width - margin * 2 - 52, 21, { align: "left", weight: "600", color: "#5b6f78" });
+
+    const emailY = 380;
+    ctx.save();
+    ctx.fillStyle = "#ffffff";
+    roundRect(ctx, margin, emailY, paper.width - margin * 2, paper.height - emailY - 148, 8, true, false);
+    ctx.strokeStyle = "rgba(23,49,59,0.16)";
+    ctx.lineWidth = 2;
+    roundRect(ctx, margin, emailY, paper.width - margin * 2, paper.height - emailY - 148, 8, false, true);
+    ctx.restore();
+    drawWrappedText(ctx, message, margin + 34, emailY + 54, paper.width - margin * 2 - 68, 31, "#17313b", "23px Arial", 22);
+    drawFooterNote(ctx, paper, "Editable wording only. Not legal, tax, accounting, collections, or financial advice.");
+  }
+
+  function invoiceFollowupEmailText(values) {
+    const client = sanitizePrintable(values.clientLabel || "Client");
+    const project = sanitizePrintable(values.projectLabel || "recent project");
+    const timing = sanitizePrintable(values.dueTiming || "due soon");
+    const payment = sanitizePrintable(values.paymentWording || "Please use the payment link or invoice portal already sent.");
+    const context = sanitizePrintable(values.context || "");
+    const status = values.invoiceStatus || "sent";
+    const tone = values.tone || "friendly";
+    const greeting = tone === "concise" ? `Hi ${client},` : `Hi ${client},`;
+    const signoff = tone === "warm" ? "Thanks again," : tone === "firm" ? "Thank you," : "Thanks,";
+    const bodyByStatus = {
+      sent: [
+        `I wanted to gently follow up on the invoice for ${project}.`,
+        `My note shows it is ${timing}, so I am keeping the details easy to find.`,
+        payment,
+      ],
+      "due-today": [
+        `A quick note that the invoice for ${project} is ${timing}.`,
+        "If it is already in process, please disregard this reminder.",
+        payment,
+      ],
+      overdue: [
+        `I am following up because the invoice for ${project} appears to be ${timing}.`,
+        "Could you let me know whether anything else is needed from my side to help complete it?",
+        payment,
+      ],
+      paid: [
+        `Thank you for taking care of the invoice for ${project}.`,
+        "I appreciate the prompt update and enjoyed working together.",
+        "I will keep the records on my side updated.",
+      ],
+      "next-invoice": [
+        `For the next invoice connected to ${project}, I will keep the same simple format unless you prefer a different wording or schedule.`,
+        `The current timing note I have is: ${timing}.`,
+        payment,
+      ],
+    };
+    const toneLine = tone === "firm"
+      ? "I appreciate a quick update when you have a moment."
+      : tone === "warm"
+        ? "I appreciate your help and hope the week is going smoothly."
+        : tone === "concise"
+          ? "Please send a quick update when convenient."
+          : "No rush if it is already queued; a quick update would be helpful.";
+    return [
+      greeting,
+      "",
+      context,
+      ...(bodyByStatus[status] || bodyByStatus.sent),
+      toneLine,
+      "",
+      signoff,
+    ].filter((line, index, lines) => line || lines[index - 1]).join("\n").trim();
+  }
+
+  function invoiceFollowupStatusLabel(value) {
+    const labels = {
+      sent: "Polite reminder",
+      "due-today": "Due today",
+      overdue: "First overdue",
+      paid: "Paid thank-you",
+      "next-invoice": "Next invoice",
+    };
+    return labels[value] || "Polite reminder";
   }
 
   function drawEstimate(ctx, paper, values) {
@@ -13941,6 +14126,22 @@ ${paragraphs.join("\n")}
       utmContent: clean(params.get("utm_content")) || clean(params.get("prospect")),
       vertical: clean(params.get("vertical")) || (parts[0] === "sponsor" && parts[1] ? clean(parts[1]) : ""),
     };
+  }
+
+  function renderInvoiceFollowupEmailOutput(values) {
+    const panel = document.getElementById("toolOutputPanel");
+    if (!panel) return;
+    const message = invoiceFollowupEmailText(values);
+    panel.hidden = false;
+    panel.innerHTML = `
+      <strong>Copy-ready email</strong>
+      <p class="help">Review tone, dates, payment wording, and local rules before sending.</p>
+      <pre>${escapeHtml(message)}</pre>
+      <div class="actions">
+        <button class="button secondary" type="button" data-copy-text="${escapeHtml(message)}" data-track-event="free_tool_depth" data-track-tool="invoice-followup-email">Copy email</button>
+        <a class="button" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="/invoice-followup-copy-pack/?utm_source=tool_output&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=invoice-followup-email#service-request">Get the $19 full sequence</a>
+      </div>
+    `;
   }
 
   function initSponsorLeadForms(root = document) {

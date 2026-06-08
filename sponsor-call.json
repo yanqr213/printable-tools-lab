@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Sponsor Call",
-  "generatedAt": "2026-06-08T05:02:30.133Z",
+  "generatedAt": "2026-06-08T05:23:44.897Z",
   "canonical": "https://printable-tools-lab.pages.dev/sponsor-call/",
   "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
   "sponsorStarterReview": "https://printable-tools-lab.pages.dev/sponsor-starter-review/",
@@ -81,7 +81,7 @@
     }
   ],
   "externalDiscoveryProof": {
-    "generatedAt": "2026-06-08T05:01:55.930Z",
+    "generatedAt": "2026-06-08T05:21:48.733Z",
     "directoryListedCount": 6,
     "directoryPendingCount": 5,
     "directoryErrorCount": 1,
@@ -218,9 +218,9 @@
     }
   ],
   "publicFacts": {
-    "tools": 66,
+    "tools": 67,
     "guides": 95,
-    "landingPages": 92,
+    "landingPages": 93,
     "exports": "Free no-signup browser exports.",
     "externalDiscovery": "External discovery proof: 6 public directory listing(s) are live; 5 more listing(s) remain pending; IndexNow accepted 1 target(s). These are discovery signals, not revenue."
   },

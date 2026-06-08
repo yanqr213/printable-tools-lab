@@ -72,6 +72,7 @@ Monetization model: Free tools stay live for search demand and future display ad
 - [Weekly Planner Generator](https://printable-tools-lab.pages.dev/tools/weekly-planner/): Make a free printable weekly planner PDF for family schedules, class planning, errands, and meal notes.
 - [Habit Tracker Generator](https://printable-tools-lab.pages.dev/tools/habit-tracker/): Create a free printable habit tracker PDF for daily routines, reading goals, wellness habits, or classroom practice.
 - [Invoice Generator](https://printable-tools-lab.pages.dev/tools/invoice-generator/): Create a clean free invoice PDF for freelance work, small business services, consulting, or one-off projects.
+- [Invoice Follow-up Email Generator](https://printable-tools-lab.pages.dev/tools/invoice-followup-email/): Write a polite invoice reminder, due-today note, overdue follow-up, paid thank-you, or next-invoice email without uploading private invoice details.
 - [Estimate Generator](https://printable-tools-lab.pages.dev/tools/estimate-generator/): Create a free estimate PDF for freelance work, home services, consulting, repairs, or small business quotes.
 - [Purchase Order Generator](https://printable-tools-lab.pages.dev/tools/purchase-order/): Make a free purchase order PDF for supplies, services, small vendors, internal approvals, or project records.
 - [Bill of Sale Generator](https://printable-tools-lab.pages.dev/tools/bill-of-sale/): Create a simple bill of sale PDF for a private item sale, equipment transfer, furniture sale, or vehicle record draft.
@@ -148,6 +149,7 @@ Monetization model: Free tools stay live for search demand and future display ad
 - [Resume PDF Too Large Fix](https://printable-tools-lab.pages.dev/resume-pdf-too-large/): resume PDF too large, compress resume PDF, job application PDF upload limit
 - [Email Attachment Too Large Fix](https://printable-tools-lab.pages.dev/email-attachment-too-large/): email attachment too large, compress PDF for email, reduce image before email
 - [Free Invoice Generator Without Signup](https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/): invoice PDF now, no account, no hidden export fee
+- [Free Invoice Follow-up Email Template](https://printable-tools-lab.pages.dev/invoice-follow-up-email-template/): invoice follow-up email, payment reminder wording, overdue invoice reminder
 - [JPG to PDF Without Uploading](https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/): private image conversion, no upload, fast PDF
 - [Multiple Images to PDF Without Uploading](https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/): combine images into one PDF without upload
 - [Compress PDF Without Uploading](https://printable-tools-lab.pages.dev/compress-pdf-no-upload/): compress PDF, reduce PDF size, no upload

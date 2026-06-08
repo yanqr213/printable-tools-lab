@@ -152,6 +152,7 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - PNG Screenshot Too Large Fix: https://printable-tools-lab.pages.dev/png-screenshot-too-large/
 - Resume PDF Too Large Fix: https://printable-tools-lab.pages.dev/resume-pdf-too-large/
 - Email Attachment Too Large Fix: https://printable-tools-lab.pages.dev/email-attachment-too-large/
+- Free Invoice Follow-up Email Template: https://printable-tools-lab.pages.dev/invoice-follow-up-email-template/
 - Multiple Images to PDF Without Uploading: https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/
 - Compress PDF Without Uploading: https://printable-tools-lab.pages.dev/compress-pdf-no-upload/
 - PDF Size Reducer Without Uploading: https://printable-tools-lab.pages.dev/pdf-size-reducer/
@@ -262,6 +263,7 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - CSV to PDF Table Converter: https://printable-tools-lab.pages.dev/tools/csv-to-pdf/
 - JSON to PDF Formatter: https://printable-tools-lab.pages.dev/tools/json-to-pdf/
 - Invoice Generator: https://printable-tools-lab.pages.dev/tools/invoice-generator/
+- Invoice Follow-up Email Generator: https://printable-tools-lab.pages.dev/tools/invoice-followup-email/
 - Receipt Generator: https://printable-tools-lab.pages.dev/tools/receipt-generator/
 - Timesheet Generator: https://printable-tools-lab.pages.dev/tools/timesheet-generator/
 - Business Card Generator: https://printable-tools-lab.pages.dev/tools/business-card/

@@ -515,6 +515,7 @@ function evaluateGates(local, live, searchConsole, discovery, directories = null
     && live.checks["/tools/"]?.ok
     && live.checks["/api/metrics"]?.ok;
   const searchVisible = (performanceTotals.impressions || 0) > 0 || indexed > 0;
+  const publicDirectoryDiscoveryReady = (directories?.listedCount || 0) >= 2;
   const adsenseApplyReady = productReady
     && local.customDomainConfigured
     && local.ads.publisherConfigured
@@ -526,7 +527,7 @@ function evaluateGates(local, live, searchConsole, discovery, directories = null
     adsenseApplyReady,
     adsEnabled: local.ads.enabled,
     searchVisible,
-    externalDiscoveryReady: discovery.externalDiscoveryReady,
+    externalDiscoveryReady: discovery.externalDiscoveryReady || publicDirectoryDiscoveryReady,
     continue30Day: ((totals.download_pdf || 0) + (totals.download_file || 0)) >= 100 || ((totals.generate_pdf || 0) + (totals.generate_file || 0)) >= 300 || (performanceTotals.impressions || 0) > 0,
     pivot60Day: !searchVisible && ((totals.download_pdf || 0) + (totals.download_file || 0)) === 0 && ((totals.generate_pdf || 0) + (totals.generate_file || 0)) === 0,
     review90Day: searchVisible && ((totals.download_pdf || 0) + (totals.download_file || 0)) > 0 && !local.ads.enabled,

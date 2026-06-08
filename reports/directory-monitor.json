@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-08T05:01:55.930Z",
+  "generatedAt": "2026-06-08T05:21:48.733Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 6,
   "pendingCount": 5,
@@ -49,7 +49,7 @@
           "url": "https://listai.cc/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 318840,
+          "bytes": 318923,
           "matched": false
         },
         {
@@ -304,34 +304,49 @@
       "reviewWindow": "maintainer review",
       "status": "error",
       "evidenceUrl": "https://github.com/js-org/js.org/pull/11512",
-      "apiAvailable": false,
-      "checksAvailable": false,
-      "templateOk": null,
-      "checksOk": null,
-      "checks": [],
-      "prState": "unknown",
-      "mergeable": null,
+      "apiAvailable": true,
+      "checksAvailable": true,
+      "templateOk": true,
+      "checksOk": true,
+      "checks": [
+        {
+          "name": "PR description",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:58Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353230"
+        },
+        {
+          "name": "cnames_active.js",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:57Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353223"
+        }
+      ],
+      "prState": "closed",
+      "mergeable": true,
       "checked": [
         {
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 299268,
+          "bytes": 299269,
           "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/pulls/11512",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 16307,
+          "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 18122,
+          "matched": true
         }
       ]
     }

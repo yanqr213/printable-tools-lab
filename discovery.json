@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-08T05:02:30.133Z",
+  "generatedAt": "2026-06-08T05:23:44.897Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -59,6 +59,7 @@
     "https://printable-tools-lab.pages.dev/resume-pdf-too-large/",
     "https://printable-tools-lab.pages.dev/email-attachment-too-large/",
     "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
+    "https://printable-tools-lab.pages.dev/invoice-follow-up-email-template/",
     "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/compress-pdf-no-upload/",
@@ -171,6 +172,7 @@
     "https://printable-tools-lab.pages.dev/tools/csv-to-pdf/",
     "https://printable-tools-lab.pages.dev/tools/json-to-pdf/",
     "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
+    "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/",
     "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
     "https://printable-tools-lab.pages.dev/tools/timesheet-generator/",
     "https://printable-tools-lab.pages.dev/tools/business-card/",
@@ -579,6 +581,12 @@
       "url": "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
       "intent": "invoice PDF now, no account, no hidden export fee",
       "tool": "https://printable-tools-lab.pages.dev/tools/invoice-generator/"
+    },
+    {
+      "title": "Free Invoice Follow-up Email Template",
+      "url": "https://printable-tools-lab.pages.dev/invoice-follow-up-email-template/",
+      "intent": "invoice follow-up email, payment reminder wording, overdue invoice reminder",
+      "tool": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/"
     },
     {
       "title": "JPG to PDF Without Uploading",

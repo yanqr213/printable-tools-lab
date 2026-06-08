@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Sponsor Media Kit",
-  "generatedAt": "2026-06-08T05:02:30.133Z",
+  "generatedAt": "2026-06-08T05:23:44.897Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
   "sponsorStarterReview": "https://printable-tools-lab.pages.dev/sponsor-starter-review/",
@@ -9,15 +9,15 @@
   "toolsJson": "https://printable-tools-lab.pages.dev/tools.json",
   "directoryPack": "https://printable-tools-lab.pages.dev/submit-directory/",
   "facts": {
-    "tools": 66,
+    "tools": 67,
     "guides": 95,
-    "landingPages": 92,
-    "indexableRoutes": 285,
+    "landingPages": 93,
+    "indexableRoutes": 287,
     "exports": "Free browser exports; no signup required for core tools.",
     "ads": "Ads disabled during validation. Downloads must never be gated by sponsor or ad interaction."
   },
   "externalDiscoveryProof": {
-    "generatedAt": "2026-06-08T05:01:55.930Z",
+    "generatedAt": "2026-06-08T05:21:48.733Z",
     "directoryListedCount": 6,
     "directoryPendingCount": 5,
     "directoryErrorCount": 1,

@@ -971,6 +971,21 @@ canvas.preview-canvas {
   display: block;
 }
 
+.tool-output-panel pre {
+  max-height: 280px;
+  margin: 0;
+  padding: 12px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: inherit;
+  line-height: 1.45;
+}
+
 .idea-list {
   display: grid;
   gap: 8px;

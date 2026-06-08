@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Paid Services Mirror",
-  "generatedAt": "2026-06-08T05:02:30.248Z",
+  "generatedAt": "2026-06-08T05:23:45.009Z",
   "directory": "https://yanqr213.github.io/printable-tools-lab/",
   "liveJson": "https://printable-tools-lab.pages.dev/services.json",
   "services": [
@@ -502,6 +502,7 @@
       ],
       "relatedTools": [
         "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
+        "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/",
         "https://printable-tools-lab.pages.dev/tools/estimate-generator/",
         "https://printable-tools-lab.pages.dev/tools/receipt-generator/",
         "https://printable-tools-lab.pages.dev/tools/work-order/",

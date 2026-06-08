@@ -2,7 +2,7 @@
   "name": "PrintableTools Lab",
   "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-08T05:02:30.133Z",
+  "generatedAt": "2026-06-08T05:23:44.897Z",
   "tools": [
     {
       "title": "Name Tracing Worksheet Generator",
@@ -45,6 +45,12 @@
       "url": "https://printable-tools-lab.pages.dev/tools/invoice-generator/",
       "description": "Create a clean free invoice PDF for freelance work, small business services, consulting, or one-off projects.",
       "category": "Business paperwork"
+    },
+    {
+      "title": "Invoice Follow-up Email Generator",
+      "url": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/",
+      "description": "Write a polite invoice reminder, due-today note, overdue follow-up, paid thank-you, or next-invoice email without uploading private invoice details.",
+      "category": "Education and family printables"
     },
     {
       "title": "Estimate Generator",

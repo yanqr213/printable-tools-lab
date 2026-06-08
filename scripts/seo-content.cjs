@@ -159,6 +159,7 @@ const INVOICE_FOLLOWUP_COPY_PACK_SERVICE = {
   ],
   relatedTools: [
     "tools/invoice-generator",
+    "tools/invoice-followup-email",
     "tools/estimate-generator",
     "tools/receipt-generator",
     "tools/work-order",
@@ -2685,6 +2686,7 @@ const HIGH_INTENT_TOOL_PATHS = [
   "tools/csv-to-pdf",
   "tools/json-to-pdf",
   "tools/invoice-generator",
+  "tools/invoice-followup-email",
   "tools/receipt-generator",
   "tools/timesheet-generator",
   "tools/business-card",
@@ -2705,6 +2707,7 @@ const HIGH_INTENT_TOOL_PATHS = [
 
 const LOCAL_SELLER_FUNNEL_TOOL_PATHS = [
   "tools/invoice-generator",
+  "tools/invoice-followup-email",
   "tools/estimate-generator",
   "tools/receipt-generator",
   "tools/timesheet-generator",
@@ -3207,7 +3210,22 @@ const landingPages = [
       ["What the invoice includes", "Business and client details, invoice number, date, payment terms, line items, currency, totals, and a footer note. It is a simple record format, not tax or accounting advice."],
       ["Best fit", "Use it for freelance services, consulting work, small one-off jobs, deposits, creative work, or quick client records when full accounting software is unnecessary."],
     ],
-    relatedTools: ["tools/estimate-generator", "tools/receipt-generator", "tools/timesheet-generator"],
+    relatedTools: ["tools/invoice-followup-email", "tools/estimate-generator", "tools/receipt-generator"],
+  },
+  {
+    path: "invoice-follow-up-email-template",
+    title: "Free Invoice Follow-up Email Template",
+    description: "Write and download a polite invoice reminder, due-today note, overdue follow-up, paid thank-you, or next-invoice email without uploading private invoice details.",
+    headline: "Free invoice follow-up email template",
+    lead: "Use this when an invoice has been sent and you need a professional reminder or thank-you note without turning it into legal, tax, accounting, or collections advice.",
+    primaryTool: "tools/invoice-followup-email",
+    intent: "invoice follow-up email, payment reminder wording, overdue invoice reminder",
+    sections: [
+      ["Why this page exists", "People who generate invoices often need the next message more than another PDF. This page gives a quick, editable follow-up email while keeping private invoice numbers, bank details, tax IDs, and client data out of the tool."],
+      ["What it drafts", "A polite reminder, due-today note, first overdue follow-up, paid thank-you, or next-invoice message with tone and timing fields the sender can review."],
+      ["Best fit", "Use it for freelancers, consultants, local services, or small teams who need relationship-safe wording after sending an invoice."],
+    ],
+    relatedTools: ["tools/invoice-generator", "tools/estimate-generator", "tools/receipt-generator"],
   },
   {
     path: "jpg-to-pdf-no-upload",
@@ -4471,6 +4489,15 @@ const tools = [
     body: [
       "Add your business details, client details, invoice number, line items, terms, and notes to download a one-page invoice PDF.",
       "This tool targets users who need a document immediately and do not want an account, template marketplace, or surprise fee at download time.",
+    ],
+  },
+  {
+    path: "tools/invoice-followup-email",
+    title: "Invoice Follow-up Email Generator",
+    description: "Write a polite invoice reminder, due-today note, overdue follow-up, paid thank-you, or next-invoice email without uploading private invoice details.",
+    body: [
+      "Choose the invoice status, tone, timing, and payment wording to generate a copy-ready follow-up email and one-page PDF.",
+      "This free tool is intentionally wording-only. It does not give legal, tax, accounting, debt-collection, or financial advice, and it asks users to keep private invoice details out.",
     ],
   },
   {
@@ -6219,6 +6246,7 @@ const pages = [
 
 const GUIDE_HINTS_FOR_LINKS = {
   "invoice-generator": ["invoice"],
+  "invoice-followup-email": ["invoice"],
   "estimate-generator": ["estimate", "quote"],
   "purchase-order": ["purchase order"],
   "bill-of-sale": ["bill of sale", "private sale"],
@@ -7023,7 +7051,7 @@ function freePdfToolsHtml() {
     {
       title: "Free business PDF tools",
       text: "Create simple paperwork and print assets for freelance jobs, local services, deposits, timesheets, private sales, rent payments, vendor orders, inventory labels, and quick promotions without opening a full design or accounting app.",
-      links: ["invoice-generator", "estimate-generator", "purchase-order", "receipt-generator", "timesheet-generator", "bill-of-sale", "rent-receipt", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels"],
+      links: ["invoice-generator", "invoice-followup-email", "estimate-generator", "purchase-order", "receipt-generator", "timesheet-generator", "bill-of-sale", "rent-receipt", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels"],
     },
     {
       title: "Free career PDF tools",
@@ -7089,7 +7117,7 @@ function pdfToolFinderHtml() {
   const imageTools = ["compress-image", "compress-image-to-kb", "resize-image", "convert-image", "remove-background", "crop-image", "rotate-image", "watermark-image", "add-text-image", "signature-png", "passport-photo", "image-to-pdf", "multi-image-pdf", "pdf-to-images", "pdf-to-text", "pdf-to-word", "qr-code", "wifi-qr-code", "vcard-qr-code"];
   const pdfEditTools = ["compress-pdf", "merge-pdf", "split-pdf", "pdf-page-numbers", "rotate-pdf", "remove-pdf-pages", "reorder-pdf-pages", "watermark-pdf", "stamp-pdf", "sign-pdf"];
   const textDataTools = ["text-to-pdf", "markdown-to-pdf", "csv-to-pdf", "json-to-pdf"];
-  const businessTools = ["invoice-generator", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"];
+  const businessTools = ["invoice-generator", "invoice-followup-email", "estimate-generator", "receipt-generator", "purchase-order", "bill-of-sale", "rent-receipt", "timesheet-generator", "packing-slip", "work-order", "inventory-sheet", "business-card", "address-labels", "barcode-labels", "price-tag", "flyer-maker", "coupon-maker"];
   const personalTools = ["resume-builder", "ats-resume-checker", "cover-letter", "resignation-letter", "certificate-generator", "todo-list", "packing-list", "monthly-calendar", "meal-planner", "sign-in-sheet", "graph-paper"];
   return `
       <section class="shell page-title section">
@@ -7255,6 +7283,27 @@ ${sponsorExternalDiscoveryProofHtml()}
 function serviceUpgradeCtaHtml(tool) {
   if (!LOCAL_SELLER_FUNNEL_TOOL_PATH_SET.has(tool.path)) return "";
   const toolSlug = tool.path.replace(/^tools\//, "");
+  if (tool.path === "tools/invoice-generator" || tool.path === "tools/invoice-followup-email") {
+    const serviceHref = `/${INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug}/?utm_source=tool_cta&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=${encodeURIComponent(toolSlug)}#service-request`;
+    const invoiceHref = `/tools/invoice-generator/?utm_source=tool_cta&utm_medium=site&utm_campaign=invoice_followup_tool&utm_content=${encodeURIComponent(toolSlug)}`;
+    const followupHref = `/tools/invoice-followup-email/?utm_source=tool_cta&utm_medium=site&utm_campaign=invoice_followup_tool&utm_content=${encodeURIComponent(toolSlug)}`;
+    return `
+      <section class="shell section service-upgrade-cta" aria-label="Optional invoice follow-up help">
+        <div>
+          <p class="eyebrow">Optional done-for-you help</p>
+          <h2>Want the full invoice follow-up sequence written for you?</h2>
+          <p>The free invoice tools stay free. Send a free fit check for the $${INVOICE_FOLLOWUP_COPY_PACK_SERVICE.priceUsd} ${escapeHtml(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.name)} if you want a polished reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice note prepared for one workflow.</p>
+        </div>
+        <div class="free-tool-depth-actions">
+          <a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.id)}" href="${escapeHtml(serviceHref)}">Start invoice fit check</a>
+          <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolSlug)}" href="${escapeHtml(tool.path === "tools/invoice-generator" ? followupHref : invoiceHref)}">${tool.path === "tools/invoice-generator" ? "Write follow-up email" : "Create invoice first"}</a>
+          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.id)}" href="/${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}/?utm_source=tool_cta&utm_medium=site&utm_campaign=service_request&utm_content=${encodeURIComponent(toolSlug)}">Start free fit check</a>
+          <a class="button ghost" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(MARKET_TABLE_PRINT_AUDIT.id)}" href="/${escapeHtml(MARKET_TABLE_PRINT_AUDIT.slug)}/?utm_source=tool_cta&utm_medium=site&utm_campaign=audit_request&utm_content=${encodeURIComponent(toolSlug)}">Free print audit first</a>
+          <p class="help">Also selling locally? The optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} print-pack setup can turn invoice, receipt, price tag, flyer, QR, coupon, and packing-slip details into a first printable seller pack.</p>
+          <p class="help">Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
+        </div>
+      </section>`;
+  }
   const serviceHref = `/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug}/?utm_source=tool_cta&utm_medium=site&utm_campaign=service_request&utm_content=${encodeURIComponent(toolSlug)}`;
   const auditHref = `/${MARKET_TABLE_PRINT_AUDIT.slug}/?utm_source=tool_cta&utm_medium=site&utm_campaign=audit_request&utm_content=${encodeURIComponent(toolSlug)}`;
   return `
@@ -9119,6 +9168,20 @@ function toolDetails(tool) {
         { q: "Does this store invoices?", a: "No. Download the PDF and keep your own copy with your bookkeeping records." },
         { q: "Can I add payment instructions?", a: "Yes, use the note field, but only include payment details you are comfortable putting in a document." },
         { q: "Is it accounting software?", a: "No. It is a fast PDF generator for simple invoices, not bookkeeping or tax software." },
+      ],
+    },
+    "invoice-followup-email": {
+      useCases: [
+        { title: "Polite reminder", text: "Draft a short message after an invoice has been sent but before it is overdue." },
+        { title: "First overdue note", text: "Use firmer wording that still asks for an update instead of making legal or collections claims." },
+        { title: "Paid thank-you", text: "Send a brief thank-you after payment while keeping the client relationship warm." },
+      ],
+      privacy: "The wording is generated in your browser. Use generic client labels and keep invoice numbers, private client data, bank details, card data, tax IDs, and legal dispute details out of the fields.",
+      limit: "This is editable communication copy only, not legal, tax, accounting, financial, or debt-collection advice.",
+      faq: [
+        { q: "Can I use this for overdue invoices?", a: "Yes, for a first gentle follow-up. Review the wording yourself and get professional advice for legal, collections, tax, accounting, or financial questions." },
+        { q: "Does this send the email?", a: "No. It creates copy you can review and paste into your own email, invoice portal, or message thread." },
+        { q: "Can I get a custom sequence?", a: "Yes. The optional Invoice Follow-up Copy Pack is a separate $19 fit-check path for one workflow after a real external payment is verified." },
       ],
     },
     "estimate-generator": {
