@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-08T03:12:25.650Z
+Last generated: 2026-06-08T03:26:50.717Z
 
 ## Current Automated Status
 
@@ -15,6 +15,7 @@ Last generated: 2026-06-08T03:12:25.650Z
 - Free-tool depth intent events: 0.
 - Commercial intent events: 2.
 - Checkout links configured: 0/3.
+- Lead-to-payment close cockpit ready: yes.
 - Sponsor leads captured: 0.
 - Sponsor invoice requests: 0.
 - Public-safe sponsor replies: 0.
@@ -38,7 +39,7 @@ Last generated: 2026-06-08T03:12:25.650Z
 
 ## External Discovery Gate
 
-- GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.
+- GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.
 - GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.
 - GitHub Pages discovery directory is live with 92 landing page link(s), 66 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).
 - GitHub Pages discovery sitemap has 266 URL(s), including 66 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 266.
@@ -66,6 +67,7 @@ Last generated: 2026-06-08T03:12:25.650Z
 - When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.
 - Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.
 - Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces.
+- Use the internal lead-to-payment close cockpit after every service, seller-kit, audit, or sponsor lead: export, confirm fit, copy the payment reply, and count revenue only after external proof.
 - Create one real external payment-provider product for the $29 service or $9 kit, then run configure:checkout with the public checkout URL only.
 - Submit the first sponsor outreach batch using reports/sponsor-next-submission-batch.md, but mark rows sent only after real public-form submission evidence exists.
 

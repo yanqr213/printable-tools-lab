@@ -83,6 +83,7 @@ function readLocalState() {
     sponsorOutreach: sponsorOutreachSummary(sponsorOutreachLog),
     sponsorPublicReplies: sponsorPublicReplySummary(sponsorPublicReplies),
     checkout: checkoutReadinessSummary(config),
+    closeReadiness: closeReadinessSummary(config, sponsorPublicReplies),
     ads: {
       enabled: readBool(config, "enableAds"),
       publisherConfigured: /^ca-pub-\d{10,30}$/.test(readString(config, "adsenseClientId")),
@@ -170,6 +171,34 @@ function checkoutReadinessSummary(config) {
       auditUpgradeCheckoutConfigured ? "" : "auditUpgradeCheckoutUrl",
     ].filter(Boolean),
     note: "Only public checkout URLs belong in site-config.js. Do not store payment credentials, payout details, tax IDs, bank data, card data, or private customer lists in this repo.",
+  };
+}
+
+function closeReadinessSummary(config, sponsorPublicReplies = {}) {
+  const paymentReplyTemplatesReady = fs.existsSync(path.join(root, "assets", "services", "custom-local-print-pack-payment-reply.txt"))
+    && fs.existsSync(path.join(root, "assets", "services", "custom-local-print-pack-fulfillment-checklist.txt"));
+  const serviceExportReady = fs.existsSync(path.join(root, "scripts", "export-service-leads.cjs"));
+  const sponsorExportReady = fs.existsSync(path.join(root, "scripts", "export-sponsor-leads.cjs"));
+  const checkout = checkoutReadinessSummary(config);
+  return {
+    activeCloseLanes: [
+      "custom-local-print-pack",
+      "market-table-print-audit-upgrade",
+      "local-seller-starter-kit",
+      "sponsor-invoice-review",
+    ],
+    serviceExportReady,
+    sponsorExportReady,
+    paymentReplyTemplatesReady,
+    publicInvoiceIssueCount: Number(sponsorPublicReplies?.invoiceRequestCount) || 0,
+    directCheckoutConfigured: checkout.readyForDirectPayment,
+    readyForManualClose: serviceExportReady && sponsorExportReady && paymentReplyTemplatesReady,
+    nextCommands: [
+      "npm.cmd run service:leads",
+      "npm.cmd run sponsor:leads",
+      "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/custom-local-print-pack",
+    ],
+    moneyGate: "Lead close work is operational only. Revenue is proven only after an external paid/settled order, platform balance, or signed sponsor agreement.",
   };
 }
 
@@ -594,6 +623,7 @@ function buildNextActions(gates, local, live, searchConsole, discovery, director
   if (local.ads.publisherConfigured && !local.ads.enabled && gates.searchVisible) actions.push("Apply/continue AdSense review, then enable ads only after approval and placement verification.");
   if (downloads < 100 && generations < 300) actions.push("Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.");
   if (depthIntent === 0) actions.push("Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces.");
+  if (local.closeReadiness?.readyForManualClose) actions.push("Use the internal lead-to-payment close cockpit after every service, seller-kit, audit, or sponsor lead: export, confirm fit, copy the payment reply, and count revenue only after external proof.");
   if (!checkout.readyForDirectPayment) actions.push("Create one real external payment-provider product for the $29 service or $9 kit, then run configure:checkout with the public checkout URL only.");
   if (commercial === 0) actions.push("Keep the sponsorship and partner inquiry page visible as a no-payment commercial-intent surface while ad-network setup waits.");
   if (sponsorInvoiceRequests > 0) actions.push("Export the invoice-request sponsor lead, verify policy fit, and send only an external invoice or agreement; do not collect payment details in this site.");
@@ -637,6 +667,7 @@ function renderValidationMarkdown(report) {
     `- Free-tool depth intent events: ${depthIntent}.`,
     `- Commercial intent events: ${commercial}.`,
     `- Checkout links configured: ${report.local.checkout?.configuredCount || 0}/${report.local.checkout?.requiredCount || 3}.`,
+    `- Lead-to-payment close cockpit ready: ${yesNo(report.local.closeReadiness?.readyForManualClose)}.`,
     `- Sponsor leads captured: ${sponsorLeads}.`,
     `- Sponsor invoice requests: ${sponsorInvoiceRequests}.`,
     `- Public-safe sponsor replies: ${publicReplies.publicReplyCount || 0}.`,

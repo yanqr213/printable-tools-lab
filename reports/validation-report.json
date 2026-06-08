@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-08T03:12:25.650Z",
+  "generatedAt": "2026-06-08T03:26:50.717Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 92,
     "indexableRoutes": 284,
     "sitemapLocCount": 284,
-    "generatedToolInventoryAt": "2026-06-08T03:12:10.240Z",
+    "generatedToolInventoryAt": "2026-06-08T03:26:16.164Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -64,6 +64,26 @@
         "auditUpgradeCheckoutUrl"
       ],
       "note": "Only public checkout URLs belong in site-config.js. Do not store payment credentials, payout details, tax IDs, bank data, card data, or private customer lists in this repo."
+    },
+    "closeReadiness": {
+      "activeCloseLanes": [
+        "custom-local-print-pack",
+        "market-table-print-audit-upgrade",
+        "local-seller-starter-kit",
+        "sponsor-invoice-review"
+      ],
+      "serviceExportReady": true,
+      "sponsorExportReady": true,
+      "paymentReplyTemplatesReady": true,
+      "publicInvoiceIssueCount": 0,
+      "directCheckoutConfigured": false,
+      "readyForManualClose": true,
+      "nextCommands": [
+        "npm.cmd run service:leads",
+        "npm.cmd run sponsor:leads",
+        "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/custom-local-print-pack"
+      ],
+      "moneyGate": "Lead close work is operational only. Revenue is proven only after an external paid/settled order, platform balance, or signed sponsor agreement."
     },
     "ads": {
       "enabled": false,
@@ -143,7 +163,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-08T03:04:24.392Z",
+          "generatedAt": "2026-06-08T03:26:16.164Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -1029,7 +1049,7 @@
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-08T03:04:24.392Z",
+          "generatedAt": "2026-06-08T03:26:16.164Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -2097,7 +2117,7 @@
         "bytes": 46635,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-08T03:04:24.392Z",
+          "generatedAt": "2026-06-08T03:26:16.164Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -4680,35 +4700,21 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF size targets, image KB targets, PDF-to-Word, ATS checks, background removal, text overlays, QR codes, PDF edits, paperwork, labels, resumes, and printables.",
+      "description": "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
       "topics": [
-        "background-remover",
-        "compress-image-to-100kb",
-        "compress-pdf",
-        "compress-pdf-to-1mb",
-        "compress-pdf-to-500kb",
-        "free-tools",
-        "image-compressor",
-        "image-converter",
-        "image-resizer",
-        "image-to-pdf",
-        "image-tools",
-        "invoice-generator",
-        "no-signup",
-        "passport-photo",
-        "pdf-generator",
-        "pdf-to-jpg",
-        "pdf-to-word",
         "pdf-tools",
+        "image-tools",
         "qr-code",
-        "resume-checker"
+        "no-signup",
+        "browser-tools",
+        "free-tools"
       ],
+      "error": "GitHub API fallback used: GitHub API 403",
       "discoveryRelease": {
         "tag": "free-pdf-tools",
         "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
         "name": "Free PDF, Image, and QR Tools Without Signup"
-      },
-      "error": ""
+      }
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
@@ -4856,7 +4862,7 @@
         "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
       ],
       "externalDiscovery": [
-        "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 92 landing page link(s), 66 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).",
         "GitHub Pages discovery sitemap has 266 URL(s), including 66 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 266.",
@@ -4872,6 +4878,7 @@
     "When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.",
     "Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.",
     "Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces.",
+    "Use the internal lead-to-payment close cockpit after every service, seller-kit, audit, or sponsor lead: export, confirm fit, copy the payment reply, and count revenue only after external proof.",
     "Create one real external payment-provider product for the $29 service or $9 kit, then run configure:checkout with the public checkout URL only.",
     "Submit the first sponsor outreach batch using reports/sponsor-next-submission-batch.md, but mark rows sent only after real public-form submission evidence exists."
   ]

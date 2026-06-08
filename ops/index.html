@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="notice compact-notice">
-          <strong>Runtime refresh:</strong> the app replaces this snapshot with live project rows from /api/ops-metrics after loading. Snapshot generated: 2026-06-08T03:12:25.650Z.
+          <strong>Runtime refresh:</strong> the app replaces this snapshot with live project rows from /api/ops-metrics after loading. Snapshot generated: 2026-06-08T03:24:52.027Z.
         </div>
         <div class="metric-grid ops-summary-grid">
           <div class="metric-tile"><strong>505</strong><span>all page views</span></div>
@@ -148,6 +148,134 @@ Deliverables:
 Buyer safety: Do not send tax, bank, card, password, private identity, customer-list, or private file data through the website form.">Copy listing copy</button>
                   <button class="button ghost" type="button" data-copy-text="npm.cmd run configure:checkout -- --audit-upgrade-url https://your-payment-provider.example/custom-local-print-pack">Copy config command</button>
                   <a class="button ghost" href="/market-table-print-audit/">Open page</a>
+                </div>
+              </article>
+            </div>
+          </section>
+                    <section class="panel ops-lead-close-cockpit">
+            <div class="ops-project-head">
+              <div>
+                <p class="eyebrow">cash close</p>
+                <h2>Lead-to-payment close cockpit</h2>
+                <p>No captured buyer lead yet. The close runbook is ready for the first qualified service, seller-kit, or sponsor request.</p>
+              </div>
+              <div class="actions">
+                <a class="button secondary" href="/api/service-lead" target="_blank" rel="noreferrer">Open service index</a>
+                <a class="button ghost" href="/api/sponsor-lead" target="_blank" rel="noreferrer">Open sponsor index</a>
+              </div>
+            </div>
+            <div class="metric-grid compact ops-project-grid">
+              <div class="metric-tile"><strong>1/4</strong><span>active close lanes</span></div>
+              <div class="metric-tile"><strong>0</strong><span>needs reply</span></div>
+              <div class="metric-tile"><strong>external only</strong><span>payment channel</span></div>
+              <div class="metric-tile"><strong>paid proof</strong><span>revenue gate</span></div>
+            </div>
+            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Lane</th><th>Signal</th><th>State</th><th>Next cash action</th><th>Proof gate</th></tr></thead><tbody><tr><td>$29 service setup</td><td>0 lead(s), 0 request intent</td><td>waiting</td><td>Keep the request form live and use the payment reply as soon as a qualified service lead arrives.</td><td>paid_order_verified from external provider</td></tr>
+<tr><td>Free audit to $29 upgrade</td><td>0 audit lead(s), 0 audit intent</td><td>waiting</td><td>Use the audit as a low-friction lead magnet before asking for a paid setup.</td><td>separate paid setup order</td></tr>
+<tr><td>$9 seller kit</td><td>0 seller request(s), 0 checkout intent</td><td>waiting</td><td>Connect a real checkout URL before treating clicks as purchase demand.</td><td>paid digital product order</td></tr>
+<tr><td>Sponsor invoice review</td><td>0 invoice request(s), 0 lead(s), 2 intent</td><td>intent only</td><td>Use the starter review path for sponsor clicks until a qualified lead arrives.</td><td>signed sponsor agreement or settled external payment</td></tr></tbody></table></div>
+            <div class="ops-action-list">
+              <article class="ops-action-card lead-close-card">
+                <div>
+                  <p class="eyebrow">waiting</p>
+                  <h4>$29 service setup</h4>
+                  <p>Keep the request form live and use the payment reply as soon as a qualified service lead arrives.</p>
+                  <p class="help">Close proof: paid_order_verified from external provider. Requests, clicks, exports, and copied replies are not revenue.</p>
+                </div>
+                <div class="ops-action-buttons">
+                  <button class="button secondary" type="button" data-copy-text="Subject: Custom Local Print Pack Setup - fit confirmed, payment link before work starts
+
+Thanks for sending the details. This looks like a good fit for the simple local print pack scope.
+
+Scope I will prepare after payment:
+- price tag starter CSV for up to 12 items
+- one small flyer copy draft
+- QR sign wording for one link or contact method
+- three coupon or bundle offer ideas
+- packing slip or pickup note starter rows
+- one-page launch checklist for printing and first outreach
+
+Price: $29 USD
+Target delivery is 2 business days after real payment and complete buyer details.
+
+Next step:
+1. I will send one real external checkout link from Gumroad, Payhip, Ko-fi, Stripe, or an invoice provider.
+2. Please pay only through that external provider. Do not post card, bank, payout, tax, identity, or private account details in GitHub or email.
+3. After the provider shows the order as paid, I will mark the request as paid_order_verified and start the pack.
+
+Before I send the checkout link, please confirm:
+- The item/service list and prices are final enough for a first draft.
+- The QR/contact link is safe to print publicly.
+- You understand the pack is editable starter copy, not legal, tax, accounting, employment, medical, or financial advice.
+- One lightweight revision is included for typos or fit; new branding, logo design, or regulated copy is outside this $29 scope.
+
+Revenue is counted only after the external provider shows a paid order, payout balance, or settled payment.">Copy payment reply</button>
+                  <button class="button ghost" type="button" data-copy-text="npm.cmd run service:leads">Copy export command</button>
+                  <a class="button ghost" href="/api/service-lead" target="_blank" rel="noreferrer">Open lane</a>
+                </div>
+              </article>
+<article class="ops-action-card lead-close-card">
+                <div>
+                  <p class="eyebrow">waiting</p>
+                  <h4>Free audit to $29 upgrade</h4>
+                  <p>Use the audit as a low-friction lead magnet before asking for a paid setup.</p>
+                  <p class="help">Close proof: separate paid setup order. Requests, clicks, exports, and copied replies are not revenue.</p>
+                </div>
+                <div class="ops-action-buttons">
+                  <button class="button secondary" type="button" data-copy-text="Subject: Free Market Table Print Audit next steps
+
+Thanks for sending the public-safe audit details.
+
+I will check whether your current table/sign/price/QR/flyer flow has obvious printable gaps. The audit itself is free and does not count as revenue.
+
+If you want the first pack assembled after the audit, the optional Custom Local Print Pack Setup is $29 USD. That paid setup starts only after fit is confirmed and a real external checkout or invoice is paid.
+Request source: https://printable-tools-lab.pages.dev/market-table-print-audit/
+
+Please keep payment, tax, bank, card, identity, password, customer-list, private address, and private file details outside the website form.">Copy payment reply</button>
+                  <button class="button ghost" type="button" data-copy-text="npm.cmd run service:leads">Copy export command</button>
+                  <a class="button ghost" href="/market-table-print-audit/" target="_blank" rel="noreferrer">Open lane</a>
+                </div>
+              </article>
+<article class="ops-action-card lead-close-card">
+                <div>
+                  <p class="eyebrow">waiting</p>
+                  <h4>$9 seller kit</h4>
+                  <p>Connect a real checkout URL before treating clicks as purchase demand.</p>
+                  <p class="help">Close proof: paid digital product order. Requests, clicks, exports, and copied replies are not revenue.</p>
+                </div>
+                <div class="ops-action-buttons">
+                  <button class="button secondary" type="button" data-copy-text="Subject: Local Seller Starter Kit checkout link
+
+Thanks for requesting the Local Seller Starter Kit.
+
+Price: $9 USD
+Request source: https://printable-tools-lab.pages.dev/local-seller-starter-kit/
+
+Next step: I will send the real external checkout link. Please pay only through that external provider and do not send card, bank, payout, tax, identity, password, or private customer-list details through the website, GitHub, or email.
+
+After the external provider shows a paid order, the editable starter kit files can be delivered. Revenue is counted only from that paid or settled provider record.">Copy payment reply</button>
+                  <button class="button ghost" type="button" data-copy-text="npm.cmd run service:leads">Copy export command</button>
+                  <a class="button ghost" href="/local-seller-starter-kit/" target="_blank" rel="noreferrer">Open lane</a>
+                </div>
+              </article>
+<article class="ops-action-card lead-close-card">
+                <div>
+                  <p class="eyebrow">intent only</p>
+                  <h4>Sponsor invoice review</h4>
+                  <p>Use the starter review path for sponsor clicks until a qualified lead arrives.</p>
+                  <p class="help">Close proof: signed sponsor agreement or settled external payment. Requests, clicks, exports, and copied replies are not revenue.</p>
+                </div>
+                <div class="ops-action-buttons">
+                  <button class="button secondary" type="button" data-copy-text="Hi PrintableTools Lab team,
+
+We are interested in the Starter fit review (USD 49) for PDF, Image, and QR SaaS Sponsorship.
+Company/prospect: Sponsor team
+Pilot link: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=starter-fit-review&amp;commitment=request-invoice#sponsor-inquiry
+
+Please review fit and send the external invoice/agreement if this sponsor placement is policy-safe.
+We will keep payment, tax, bank, phone, and private customer details outside the website form.">Copy payment reply</button>
+                  <button class="button ghost" type="button" data-copy-text="npm.cmd run sponsor:leads">Copy export command</button>
+                  <a class="button ghost" href="/sponsor-starter-review/?utm_source=ops&amp;utm_medium=internal&amp;utm_campaign=lead_close&amp;utm_content=static-close-cockpit&amp;commitment=request-invoice#sponsor-inquiry" target="_blank" rel="noreferrer">Open lane</a>
                 </div>
               </article>
             </div>

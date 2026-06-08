@@ -1,12 +1,12 @@
 {
   "service": "Custom Local Print Pack Setup",
-  "generatedAt": "2026-06-08T03:13:08.088Z",
+  "generatedAt": "2026-06-08T03:26:16.164Z",
   "sampleOnly": true,
   "sampleDelivery": {
     "path": "assets/services/custom-local-print-pack-sample-delivery.zip",
     "url": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-sample-delivery.zip",
     "sizeBytes": 4264,
-    "sha256": "9fd31fec84ba0324d1ff0cca99b1ffb8484b1f4cad6b03ff1b4ed010b6954b8f"
+    "sha256": "0630b97933afdabdfe8d2ec03b2e41738d42c6db48ec89093fb13a54c126dff7"
   },
   "deliveryInputExample": {
     "path": "assets/services/custom-local-print-pack-delivery-input.example.json",

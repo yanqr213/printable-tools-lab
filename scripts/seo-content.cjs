@@ -5931,7 +5931,8 @@ function opsMonitorStaticHtml() {
   const commercialIntent = Number(metrics.commercialIntent ?? apiMetrics.commercialIntent ?? opsCommercialIntent(totals)) || 0;
   const sponsorLeads = Number(metrics.sponsorLeads ?? apiMetrics.sponsorLeads ?? totals.sponsor_lead_submit ?? 0) || 0;
   const sponsorInvoiceRequests = Number(metrics.sponsorInvoiceRequests ?? apiMetrics.sponsorInvoiceRequests ?? totals.sponsor_invoice_request ?? 0) || 0;
-  const serviceLeads = Number(report?.live?.checks?.["/api/service-lead"]?.json?.leadCount ?? 0) || 0;
+  const serviceLeadJson = report?.live?.checks?.["/api/service-lead"]?.json || {};
+  const serviceLeads = Number(serviceLeadJson.leadCount ?? 0) || 0;
   const generatedAt = report?.generatedAt || "No validation snapshot yet";
   const sponsorOutreach = report?.local?.sponsorOutreach || {};
   const publicReplies = report?.local?.sponsorPublicReplies || {};
@@ -6006,6 +6007,7 @@ function opsMonitorStaticHtml() {
         </div>
         <div id="opsMetrics" class="metric-remote">
           ${opsCheckoutActivationHtml(totals)}
+          ${opsLeadToPaymentCloseHtml({ totals, sponsorLeads, sponsorInvoiceRequests, serviceLeadJson, publicReplies })}
           <section class="panel ops-sponsor-sprint">
             <div class="ops-project-head">
               <div>
@@ -6208,6 +6210,158 @@ function opsCheckoutActivationHtml(totals = {}) {
               </article>`).join("\n")}
             </div>
           </section>`;
+}
+
+function opsLeadToPaymentCloseRows({ totals = {}, sponsorLeads = 0, sponsorInvoiceRequests = 0, serviceLeadJson = {}, publicReplies = {} } = {}) {
+  const serviceRequests = numberSignal(serviceLeadJson.serviceRequestCount);
+  const auditRequests = numberSignal(serviceLeadJson.auditRequestCount);
+  const sellerRequests = numberSignal(serviceLeadJson.sellerKitRequestCount);
+  const sponsorInvoices = Math.max(numberSignal(sponsorInvoiceRequests), numberSignal(publicReplies.invoiceRequestCount));
+  return [
+    {
+      lane: "$29 service setup",
+      signal: `${serviceRequests} lead(s), ${numberSignal(totals.service_request_intent)} request intent`,
+      state: serviceRequests ? "lead captured" : numberSignal(totals.service_request_intent) ? "intent only" : "waiting",
+      nextAction: serviceRequests
+        ? "Export service leads, confirm fit, then send the external checkout or invoice reply."
+        : "Keep the request form live and use the payment reply as soon as a qualified service lead arrives.",
+      proofGate: "paid_order_verified from external provider",
+      command: "npm.cmd run service:leads",
+      copy: opsServicePaymentReplyCopy("custom-local-print-pack"),
+      link: "/api/service-lead",
+    },
+    {
+      lane: "Free audit to $29 upgrade",
+      signal: `${auditRequests} audit lead(s), ${numberSignal(totals.audit_request_intent)} audit intent`,
+      state: auditRequests ? "audit follow-up" : numberSignal(totals.audit_request_intent) ? "intent only" : "waiting",
+      nextAction: auditRequests
+        ? "Export the audit lead, send useful free checks, then offer the $29 setup only if they want assembly."
+        : "Use the audit as a low-friction lead magnet before asking for a paid setup.",
+      proofGate: "separate paid setup order",
+      command: "npm.cmd run service:leads",
+      copy: opsServicePaymentReplyCopy("market-table-print-audit"),
+      link: `/${MARKET_TABLE_PRINT_AUDIT.slug}/`,
+    },
+    {
+      lane: "$9 seller kit",
+      signal: `${sellerRequests} seller request(s), ${numberSignal(totals.seller_checkout_intent)} checkout intent`,
+      state: sellerRequests ? "buyer requested" : numberSignal(totals.seller_checkout_intent) ? "intent only" : "waiting",
+      nextAction: sellerRequests
+        ? "Export seller kit requests and reply with the real external checkout link once the product is configured."
+        : "Connect a real checkout URL before treating clicks as purchase demand.",
+      proofGate: "paid digital product order",
+      command: "npm.cmd run service:leads",
+      copy: opsServicePaymentReplyCopy("local-seller-starter-kit"),
+      link: `/${LOCAL_SELLER_STARTER_KIT.slug}/`,
+    },
+    {
+      lane: "Sponsor invoice review",
+      signal: `${sponsorInvoices} invoice request(s), ${numberSignal(sponsorLeads)} lead(s), ${numberSignal(totals.sponsor_request_intent)} intent`,
+      state: sponsorInvoices ? "invoice review" : numberSignal(sponsorLeads) ? "lead captured" : numberSignal(totals.sponsor_request_intent) ? "intent only" : "waiting",
+      nextAction: sponsorInvoices || numberSignal(sponsorLeads)
+        ? "Export sponsor leads, verify policy fit, then send only an external invoice or agreement."
+        : "Use the starter review path for sponsor clicks until a qualified lead arrives.",
+      proofGate: "signed sponsor agreement or settled external payment",
+      command: "npm.cmd run sponsor:leads",
+      copy: opsSponsorInvoiceCloseCopy(),
+      link: "/sponsor-starter-review/?utm_source=ops&utm_medium=internal&utm_campaign=lead_close&utm_content=static-close-cockpit&commitment=request-invoice#sponsor-inquiry",
+    },
+  ];
+}
+
+function opsLeadToPaymentCloseHtml(state = {}) {
+  const rows = opsLeadToPaymentCloseRows(state);
+  const activeRows = rows.filter((row) => row.state !== "waiting");
+  const needsReply = rows.filter((row) => ["lead captured", "buyer requested", "audit follow-up", "invoice review"].includes(row.state)).length;
+  return `          <section class="panel ops-lead-close-cockpit">
+            <div class="ops-project-head">
+              <div>
+                <p class="eyebrow">cash close</p>
+                <h2>Lead-to-payment close cockpit</h2>
+                <p>${needsReply ? "A captured lead or invoice signal exists. Use the matching export and payment reply, then count revenue only after outside proof." : "No captured buyer lead yet. The close runbook is ready for the first qualified service, seller-kit, or sponsor request."}</p>
+              </div>
+              <div class="actions">
+                <a class="button secondary" href="/api/service-lead" target="_blank" rel="noreferrer">Open service index</a>
+                <a class="button ghost" href="/api/sponsor-lead" target="_blank" rel="noreferrer">Open sponsor index</a>
+              </div>
+            </div>
+            <div class="metric-grid compact ops-project-grid">
+              ${opsMetricTile(`${activeRows.length}/${rows.length}`, "active close lanes")}
+              ${opsMetricTile(needsReply, "needs reply")}
+              ${opsMetricTile("external only", "payment channel")}
+              ${opsMetricTile("paid proof", "revenue gate")}
+            </div>
+            ${opsStaticTable(["Lane", "Signal", "State", "Next cash action", "Proof gate"], rows.map((row) => [
+              row.lane,
+              row.signal,
+              row.state,
+              row.nextAction,
+              row.proofGate,
+            ]))}
+            <div class="ops-action-list">
+              ${rows.map((row) => `<article class="ops-action-card lead-close-card">
+                <div>
+                  <p class="eyebrow">${escapeHtml(row.state)}</p>
+                  <h4>${escapeHtml(row.lane)}</h4>
+                  <p>${escapeHtml(row.nextAction)}</p>
+                  <p class="help">Close proof: ${escapeHtml(row.proofGate)}. Requests, clicks, exports, and copied replies are not revenue.</p>
+                </div>
+                <div class="ops-action-buttons">
+                  <button class="button secondary" type="button" data-copy-text="${escapeHtml(row.copy)}">Copy payment reply</button>
+                  <button class="button ghost" type="button" data-copy-text="${escapeHtml(row.command)}">Copy export command</button>
+                  <a class="button ghost" href="${escapeHtml(row.link)}" target="_blank" rel="noreferrer">Open lane</a>
+                </div>
+              </article>`).join("\n")}
+            </div>
+          </section>`;
+}
+
+function opsServicePaymentReplyCopy(serviceType = "custom-local-print-pack") {
+  if (serviceType === "local-seller-starter-kit") {
+    return [
+      "Subject: Local Seller Starter Kit checkout link",
+      "",
+      `Thanks for requesting the ${LOCAL_SELLER_STARTER_KIT.name}.`,
+      "",
+      `Price: $${LOCAL_SELLER_STARTER_KIT.priceUsd} ${LOCAL_SELLER_STARTER_KIT.currency}`,
+      `Request source: ${siteUrl(LOCAL_SELLER_STARTER_KIT.slug)}`,
+      "",
+      "Next step: I will send the real external checkout link. Please pay only through that external provider and do not send card, bank, payout, tax, identity, password, or private customer-list details through the website, GitHub, or email.",
+      "",
+      "After the external provider shows a paid order, the editable starter kit files can be delivered. Revenue is counted only from that paid or settled provider record.",
+    ].join("\n");
+  }
+  if (serviceType === "market-table-print-audit") {
+    return [
+      `Subject: ${MARKET_TABLE_PRINT_AUDIT.name} next steps`,
+      "",
+      "Thanks for sending the public-safe audit details.",
+      "",
+      "I will check whether your current table/sign/price/QR/flyer flow has obvious printable gaps. The audit itself is free and does not count as revenue.",
+      "",
+      `If you want the first pack assembled after the audit, the optional ${CUSTOM_LOCAL_PRINT_PACK_SERVICE.name} is $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} ${CUSTOM_LOCAL_PRINT_PACK_SERVICE.currency}. That paid setup starts only after fit is confirmed and a real external checkout or invoice is paid.`,
+      `Request source: ${siteUrl(MARKET_TABLE_PRINT_AUDIT.slug)}`,
+      "",
+      "Please keep payment, tax, bank, card, identity, password, customer-list, private address, and private file details outside the website form.",
+    ].join("\n");
+  }
+  return servicePaymentReplyCopy(CUSTOM_LOCAL_PRINT_PACK_SERVICE);
+}
+
+function opsSponsorInvoiceCloseCopy() {
+  const deal = SPONSOR_DEALS.find((item) => item.id === DEFAULT_SPONSOR_DEAL_ID) || SPONSOR_DEALS[0];
+  const vertical = SPONSOR_VERTICALS[0] || { title: "PrintableTools Lab sponsor audience" };
+  return sponsorInvoiceRequestCopy(
+    { name: "Sponsor team" },
+    deal,
+    vertical,
+    deal.trackedUrl || siteUrl("sponsor-starter-review"),
+  );
+}
+
+function numberSignal(value) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : 0;
 }
 
 function serviceCheckoutCopy(service) {
