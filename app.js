@@ -5939,7 +5939,7 @@
           </label>
           <div class="actions">
             <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack">${escapeHtml(submitLabel)}</button>
-            <a class="button secondary" data-track-event="service_invoice_request" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Request $19 invoice link</a>
+            <button class="button secondary" type="submit" data-service-invoice-submit data-track-tool="invoice-followup-copy-pack" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $19 invoice link</button>
             <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
           </div>
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send this public-safe fit check. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
@@ -6136,7 +6136,7 @@
           </label>
           <div class="actions">
             <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">${escapeHtml(submitLabel)}</button>
-            <a class="button secondary" data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Request $9 invoice link</a>
+            <button class="button secondary" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $9 invoice link</button>
             <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
           </div>
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No file upload. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
@@ -7852,6 +7852,19 @@
       utmCampaign,
       utmContent,
     });
+    const price = serviceLeadInvoiceRequestPrice(serviceType);
+    const invoiceRequestUrl = price ? serviceInvoiceRequestUrl({
+      serviceType,
+      businessName: "",
+      contact: "",
+      needBy: "",
+      requestSummary: defaultSummary,
+      path: pathName,
+      utmSource,
+      utmMedium,
+      utmCampaign,
+      utmContent,
+    }) : "";
     return `
       <section class="shell section service-lead-section" id="service-request">
         <div class="grid-2">
@@ -7893,6 +7906,7 @@
             </label>
             <div class="actions">
               <button class="button" type="submit" data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}">${escapeHtml(cta)}</button>
+              ${invoiceRequestUrl ? `<button class="button secondary" type="submit" data-service-invoice-submit data-track-tool="${escapeHtml(tool)}" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request ${escapeHtml(price)} invoice link</button>` : ""}
               <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
             </div>
             <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No payment is collected here. A real external checkout or invoice is sent only after fit is confirmed.</p>
@@ -7965,6 +7979,7 @@
       `Reply email or public contact: ${values.contact || ""}`,
       `Need-by / timeline: ${values.needBy || ""}`,
       `Source path: ${absoluteUrl(values.path || getCurrentRoutePath())}`,
+      `Requested next step: ${values.requestedNextStep || "Request service fit review"}`,
       "",
       "Request note:",
       values.requestSummary || "",
@@ -9135,7 +9150,7 @@ ${paragraphs.join("\n")}
         </label>
         <div class="actions">
           <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Send $9 upload check request</button>
-          <a class="button secondary" data-download-upload-fix-invoice-request data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Request $9 invoice link</a>
+          <button class="button secondary" type="submit" data-download-upload-fix-invoice-request data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $9 invoice link</button>
           <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
         </div>
         <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send a public-safe upload check here. Payment still happens only through a real external checkout or invoice after fit is confirmed.</p>
@@ -9201,7 +9216,7 @@ ${paragraphs.join("\n")}
         </label>
         <div class="actions">
           <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack">Send $19 sequence request</button>
-          <a class="button secondary" data-invoice-followup-output-invoice-request data-track-event="service_invoice_request" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Request $19 invoice link</a>
+          <button class="button secondary" type="submit" data-invoice-followup-output-invoice-request data-service-invoice-submit data-track-tool="invoice-followup-copy-pack" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $19 invoice link</button>
           <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
         </div>
         <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send a public-safe fit check here. Payment still happens only through a real external checkout or invoice after fit is confirmed.</p>
@@ -15529,7 +15544,7 @@ ${paragraphs.join("\n")}
       });
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
-        await submitServiceLeadForm(form);
+        await submitServiceLeadForm(form, event.submitter);
       });
     });
   }
@@ -15575,6 +15590,17 @@ ${paragraphs.join("\n")}
     if (serviceType === "custom-local-print-pack") return "$29";
     if (serviceType === "local-seller-starter-kit") return "$9";
     return "";
+  }
+
+  function serviceLeadInvoiceRequestPrice(serviceType) {
+    if (serviceType === "upload-limit-fix-plan") return "$9";
+    if (serviceType === "invoice-followup-copy-pack") return "$19";
+    return "";
+  }
+
+  function serviceLeadInvoiceNextStep(serviceType) {
+    const price = serviceLeadInvoiceRequestPrice(serviceType);
+    return `Request external ${price ? `${price} ` : ""}checkout or invoice link after fit is confirmed`;
   }
 
   function serviceLeadPrivatePathLabel(serviceType) {
@@ -15629,13 +15655,18 @@ ${paragraphs.join("\n")}
     if (success) success.remove();
   }
 
-  function serviceLeadPayload(form) {
+  function serviceLeadPayload(form, options = {}) {
     const values = getFormValues(form);
     const params = new URLSearchParams(window.location.search || "");
     const fieldOrDataOrParam = (field, data, param) => values[field] || form.dataset[data] || params.get(param) || "";
+    const serviceType = values.serviceType || form.dataset.serviceType || "custom-local-print-pack";
+    const invoiceLinkRequest = Boolean(options.invoiceLinkRequest || values.invoiceLinkRequest === "true");
+    const requestedNextStep = invoiceLinkRequest
+      ? serviceLeadInvoiceNextStep(serviceType)
+      : String(values.requestedNextStep || "").trim();
     return {
       ...values,
-      serviceType: values.serviceType || form.dataset.serviceType || "custom-local-print-pack",
+      serviceType,
       consent: Boolean(form.querySelector("input[name='consent']")?.checked),
       path: values.path || form.dataset.leadPath || getCurrentRoutePath(),
       source: getTrafficSource(),
@@ -15643,6 +15674,8 @@ ${paragraphs.join("\n")}
       utmMedium: fieldOrDataOrParam("utmMedium", "utmMedium", "utm_medium"),
       utmCampaign: fieldOrDataOrParam("utmCampaign", "utmCampaign", "utm_campaign"),
       utmContent: fieldOrDataOrParam("utmContent", "utmContent", "utm_content"),
+      ...(requestedNextStep ? { requestedNextStep } : {}),
+      ...(invoiceLinkRequest ? { invoiceLinkRequest: true } : {}),
     };
   }
 
@@ -15665,6 +15698,7 @@ ${paragraphs.join("\n")}
 
   function renderServiceLeadSuccess(form, values, response = {}) {
     const serviceType = values.serviceType || form.dataset.serviceType || "custom-local-print-pack";
+    const invoiceRequest = Boolean(values.invoiceLinkRequest);
     const copy = serviceLeadFallbackText(values);
     const paymentReply = serviceLeadPaymentReplyCopy(values);
     let panel = form.querySelector("[data-service-lead-success]");
@@ -15677,7 +15711,7 @@ ${paragraphs.join("\n")}
       else form.appendChild(panel);
     }
     panel.innerHTML = `
-      <p><strong>Request received.</strong> Your request ID is ${escapeHtml(response.id || "pending-review")}. Fit is reviewed manually; payment still counts only after a real external checkout, invoice, or platform balance proves it.</p>
+      <p><strong>${invoiceRequest ? "Invoice-link request received." : "Request received."}</strong> Your request ID is ${escapeHtml(response.id || "pending-review")}. Fit is reviewed manually; payment still counts only after a real external checkout, invoice, or platform balance proves it.</p>
       <textarea class="request-copy-output service-lead-success-output" readonly>${escapeHtml(copy)}</textarea>
       <p><strong>Payment reply ready.</strong> Use this only after fit is confirmed; it keeps payment on an external provider and keeps private data out of this site.</p>
       <textarea class="request-copy-output service-lead-payment-output" readonly>${escapeHtml(paymentReply)}</textarea>
@@ -15719,7 +15753,7 @@ ${paragraphs.join("\n")}
     `;
   }
 
-  async function submitServiceLeadForm(form) {
+  async function submitServiceLeadForm(form, submitter = null) {
     const status = form.querySelector("[data-service-lead-status]");
     const submit = form.querySelector("button[type='submit']");
     const setStatus = (message, kind = "") => {
@@ -15727,7 +15761,8 @@ ${paragraphs.join("\n")}
       status.textContent = message;
       status.dataset.status = kind;
     };
-    const values = serviceLeadPayload(form);
+    const invoiceLinkRequest = Boolean(submitter?.matches?.("[data-service-invoice-submit]"));
+    const values = serviceLeadPayload(form, { invoiceLinkRequest });
     clearServiceLeadFallback(form);
     clearServiceLeadSuccess(form);
     updateServiceLeadFallbackLink(form);
@@ -15766,8 +15801,8 @@ ${paragraphs.join("\n")}
         apiError.skipFallback = Boolean(data.error);
         throw apiError;
       }
-      track(serviceLeadTrackEvent(values.serviceType), { tool: serviceLeadTrackTool(values.serviceType) });
-      setStatus("Request received. Fit will be reviewed manually before any external checkout or invoice is sent.", "success");
+      if (!values.invoiceLinkRequest) track(serviceLeadTrackEvent(values.serviceType), { tool: serviceLeadTrackTool(values.serviceType) });
+      setStatus(values.invoiceLinkRequest ? "Invoice-link request received. Fit will be reviewed manually before any external checkout or invoice is sent." : "Request received. Fit will be reviewed manually before any external checkout or invoice is sent.", "success");
       clearServiceLeadFallback(form);
       renderServiceLeadSuccess(form, values, data);
       form.reset();

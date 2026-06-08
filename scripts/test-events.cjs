@@ -737,6 +737,26 @@ async function main() {
   });
   const invoiceFollowupServicePayload = await invoiceFollowupServiceResponse.json();
   assert(invoiceFollowupServiceResponse.status === 200 && invoiceFollowupServicePayload.ok, "Service lead endpoint should accept invoice follow-up copy requests");
+  const uploadFixInvoiceRequestResponse = await serviceLeadSource.onRequestPost({
+    request: new Request("https://example.test/api/service-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.35" },
+      body: JSON.stringify(serviceLeadBody({
+        serviceType: "upload-limit-fix-plan",
+        source: "techtools",
+        path: "/upload-error-cheatsheet/",
+        requestSummary: "Please send the best upload fix settings and fallback checklist for a public-safe PDF size error.",
+        requestedNextStep: "Request external $9 checkout or invoice link after fit is confirmed",
+        invoiceLinkRequest: true,
+        utmSource: "techtools",
+        utmCampaign: "upload_limit_fix_plan",
+        utmContent: "upload-error-cheatsheet-invoice-request",
+      })),
+    }),
+    env: serviceEnv,
+  });
+  const uploadFixInvoiceRequestPayload = await uploadFixInvoiceRequestResponse.json();
+  assert(uploadFixInvoiceRequestResponse.status === 200 && uploadFixInvoiceRequestPayload.ok, "Service lead endpoint should accept explicit upload fix invoice-link requests");
   const auditServiceResponse = await serviceLeadSource.onRequestPost({
     request: new Request("https://example.test/api/service-lead", {
       method: "POST",
@@ -769,6 +789,7 @@ async function main() {
   assert(sellerKitServiceResponse.status === 200 && sellerKitServicePayload.ok, "Service lead endpoint should accept seller kit checkout requests");
   assert(serviceStore.data.has(`service:lead:${customServicePayload.id}`), "Service lead should be stored privately in KV");
   assert(serviceStore.data.has(`service:lead:${invoiceFollowupServicePayload.id}`), "Invoice follow-up service lead should be stored privately in KV");
+  assert(serviceStore.data.has(`service:lead:${uploadFixInvoiceRequestPayload.id}`), "Upload fix invoice-link request should be stored privately in KV");
   assert(serviceStore.data.has(`service:lead:${auditServicePayload.id}`), "Audit lead should be stored privately in KV");
   assert(serviceStore.data.has(`service:lead:${sellerKitServicePayload.id}`), "Seller kit lead should be stored privately in KV");
   const storedServiceLead = JSON.parse(serviceStore.data.get(`service:lead:${customServicePayload.id}`));
@@ -778,13 +799,17 @@ async function main() {
   const storedInvoiceFollowupLead = JSON.parse(serviceStore.data.get(`service:lead:${invoiceFollowupServicePayload.id}`));
   assert(storedInvoiceFollowupLead.serviceType === "invoice-followup-copy-pack", "Invoice follow-up lead should persist service type");
   assert(storedInvoiceFollowupLead.utmCampaign === "invoice_followup_service", "Invoice follow-up lead should preserve campaign attribution");
+  const storedUploadFixInvoiceLead = JSON.parse(serviceStore.data.get(`service:lead:${uploadFixInvoiceRequestPayload.id}`));
+  assert(storedUploadFixInvoiceLead.invoiceLinkRequest === true, "Upload fix invoice-link request should persist explicit invoice intent");
+  assert(storedUploadFixInvoiceLead.requestedNextStep.includes("$9"), "Upload fix invoice-link request should persist the external $9 next step");
   const serviceLeadIndex = JSON.parse(serviceStore.data.get(`service:lead_index:${storedServiceLead.createdAt.slice(0, 7)}`));
-  assert(serviceLeadIndex.length === 4, "Service lead index should include custom service, invoice follow-up, audit, and seller kit rows");
+  assert(serviceLeadIndex.length === 5, "Service lead index should include custom service, invoice follow-up, upload invoice, audit, and seller kit rows");
   const publicServiceLeadSummary = await (await serviceLeadSource.onRequestGet({ env: serviceEnv })).json();
   const publicServiceLeadSummaryText = JSON.stringify(publicServiceLeadSummary);
   assert(publicServiceLeadSummary.ok && publicServiceLeadSummary.dataQuality === "lead-index", "Service lead GET should expose a public-safe lead index summary");
-  assert(publicServiceLeadSummary.leadCount === 4, "Service lead GET should count indexed service leads");
-  assert(publicServiceLeadSummary.serviceRequestCount === 2, "Service lead GET should count paid setup and invoice follow-up requests");
+  assert(publicServiceLeadSummary.leadCount === 5, "Service lead GET should count indexed service leads");
+  assert(publicServiceLeadSummary.serviceRequestCount === 3, "Service lead GET should count paid setup, invoice follow-up, and upload fix requests");
+  assert(publicServiceLeadSummary.serviceInvoiceRequestCount === 1, "Service lead GET should count explicit invoice-link requests without exposing private contact");
   assert(publicServiceLeadSummary.auditRequestCount === 1, "Service lead GET should count audit requests");
   assert(publicServiceLeadSummary.sellerKitRequestCount === 1, "Service lead GET should count seller kit requests");
   assert(publicServiceLeadSummary.serviceTypes["custom-local-print-pack"] === 1, "Service lead GET should count custom service type");
@@ -799,18 +824,22 @@ async function main() {
   const serviceMetricsSeller = serviceMetrics.tools.find((row) => row.tool === "local-seller-starter-kit");
   assert(serviceMetricsService.service_request_intent === 1, "Metrics should count service lead submissions as service request intent");
   assert(serviceMetricsInvoiceFollowup.service_request_intent === 1, "Metrics should count invoice follow-up submissions as service request intent");
+  assert(serviceMetrics.tools.find((row) => row.tool === "upload-limit-fix-plan").service_invoice_request === 1, "Metrics should count service lead invoice-link submissions as service invoice requests");
   assert(serviceMetricsAudit.audit_request_intent === 1, "Metrics should count audit lead submissions as audit request intent");
   assert(serviceMetricsSeller.seller_checkout_intent === 1, "Metrics should count seller kit lead submissions as checkout intent");
-  assert(serviceMetrics.commercialIntent === 4, "Commercial intent should include service, invoice follow-up, audit, and seller lead submissions");
+  assert(serviceMetrics.commercialIntent === 5, "Commercial intent should include service, invoice follow-up, invoice-link, audit, and seller lead submissions");
   const serviceOpsMetrics = await (await opsMetricsSource.onRequestGet({ env: serviceEnv })).json();
   const servicePrintableProject = serviceOpsMetrics.projects.find((row) => row.id === "printable-tools-lab");
-  assert(servicePrintableProject.summary.commercialIntent === 4, "Ops metrics should count service lead submissions in commercial intent");
+  assert(servicePrintableProject.summary.commercialIntent === 5, "Ops metrics should count service lead submissions in commercial intent");
   assert(servicePrintableProject.summary.serviceRequestIntent === 3, "Ops metrics should separate paid service lead submissions from audit intent");
+  assert(servicePrintableProject.summary.serviceInvoiceRequests === 1, "Ops metrics should expose invoice-link service lead submissions as close actions");
   assert(servicePrintableProject.summary.auditRequestIntent === 1, "Ops metrics should separate audit lead submissions from paid service intent");
-  assert(servicePrintableProject.nextAction.includes("one-contact form"), "Ops project next action should prioritize closing service request intent into an external checkout path when no closer sponsor signal exists");
+  assert(servicePrintableProject.nextAction.includes("Service invoice request present"), "Ops project next action should prioritize explicit invoice-link requests before softer service intent");
   assert(servicePrintableProject.tools.find((row) => row.tool === "custom-local-print-pack").service_request_intent === 1, "Ops metrics should count the custom service lead tool row");
   assert(servicePrintableProject.tools.find((row) => row.tool === "invoice-followup-copy-pack").service_request_intent === 1, "Ops metrics should count the invoice follow-up service lead tool row");
+  assert(servicePrintableProject.tools.find((row) => row.tool === "upload-limit-fix-plan").service_invoice_request === 1, "Ops metrics should count the upload fix invoice-link tool row");
   assert(servicePrintableProject.paths.find((row) => row.path === "/tools/invoice-generator/").service_request_intent === 1, "Ops metrics should count invoice follow-up leads by source path");
+  assert(servicePrintableProject.paths.find((row) => row.path === "/upload-error-cheatsheet/").service_invoice_request === 1, "Ops metrics should count invoice-link requests by source path");
   const serviceLeadWriteLimitedStore = new MemoryStore({ failWritesWith: "KV put() limit exceeded for the day." });
   const serviceLeadWriteLimitedResponse = await serviceLeadSource.onRequestPost({
     request: new Request("https://example.test/api/service-lead", {

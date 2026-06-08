@@ -195,6 +195,8 @@ function normalizeLead(body, request) {
   const utmCampaign = cleanKey(body.utmCampaign, 80);
   const utmContent = cleanKey(body.utmContent, 80);
   const consent = body.consent === true || body.consent === "yes" || body.consent === "on";
+  const requestedNextStep = cleanText(body.requestedNextStep || body.nextStep, 160);
+  const invoiceLinkRequest = isInvoiceLinkRequest(serviceType, requestedNextStep, body);
 
   if (!contact) return { error: "Email or public contact link is required." };
   if (requestSummary.length < 12) return { error: "Add one short public-safe note about what you need." };
@@ -214,6 +216,8 @@ function normalizeLead(body, request) {
       utmMedium,
       utmCampaign,
       utmContent,
+      requestedNextStep: invoiceLinkRequest ? serviceInvoiceNextStep(serviceType) : requestedNextStep,
+      invoiceLinkRequest,
       userAgent: cleanText(request.headers.get("user-agent") || "", 160),
     },
   };
@@ -258,8 +262,9 @@ async function safeOptionalStoreTask(task) {
 
 async function incrementLeadMetrics(store, lead, now) {
   const meta = SERVICE_META[lead.serviceType] || SERVICE_META["custom-local-print-pack"];
+  const event = lead.invoiceLinkRequest ? "service_invoice_request" : meta.event;
   const day = now.toISOString().slice(0, 10);
-  await appendMetricRollup(store, lead, day, meta.event, meta.tool);
+  await appendMetricRollup(store, lead, day, event, meta.tool);
 }
 
 async function appendMetricRollup(store, lead, day, event, tool) {
@@ -303,6 +308,8 @@ async function appendLeadIndex(store, lead) {
     utmMedium: lead.utmMedium,
     utmCampaign: lead.utmCampaign,
     utmContent: lead.utmContent,
+    requestedNextStep: lead.requestedNextStep || "",
+    invoiceLinkRequest: Boolean(lead.invoiceLinkRequest),
     path: lead.path,
   });
   await store.put(key, JSON.stringify(rows.slice(-200)));
@@ -440,6 +447,7 @@ function serviceLeadFallbackText(lead) {
     `Source: ${lead.source || ""}`,
     `Campaign: ${lead.utmCampaign || ""}`,
     `Content: ${lead.utmContent || ""}`,
+    `Requested next step: ${lead.requestedNextStep || "Request service fit review"}`,
     "",
     "Public-safe request note:",
     lead.requestSummary || "",
@@ -458,6 +466,8 @@ function serviceLeadDryRunPayload(lead) {
     utmMedium: lead.utmMedium,
     utmCampaign: lead.utmCampaign,
     utmContent: lead.utmContent,
+    requestedNextStep: lead.requestedNextStep || "",
+    invoiceLinkRequest: Boolean(lead.invoiceLinkRequest),
   };
 }
 
@@ -474,6 +484,7 @@ function serviceLeadPublicReplyUrl(lead) {
     "Public contact: add only if you want it visible in a public GitHub issue",
     `Need-by / timeline: ${lead.needBy || ""}`,
     `Source path: https://printable-tools-lab.pages.dev${lead.path || "/"}`,
+    `Requested next step: ${lead.requestedNextStep || "Request service fit review"}`,
     "",
     "Request note:",
     lead.requestSummary || "",
@@ -492,6 +503,7 @@ function publicLeadSummary(rows) {
   const summary = {
     leadCount: rows.length,
     serviceRequestCount: 0,
+    serviceInvoiceRequestCount: 0,
     auditRequestCount: 0,
     sellerKitRequestCount: 0,
     latestCreatedAt: "",
@@ -509,6 +521,7 @@ function publicLeadSummary(rows) {
     addCount(summary.sources, source);
     addCount(summary.campaigns, campaign);
     addCount(summary.paths, path);
+    if (row?.invoiceLinkRequest) summary.serviceInvoiceRequestCount += 1;
     if (["custom-local-print-pack", "invoice-followup-copy-pack", "upload-limit-fix-plan"].includes(serviceType)) summary.serviceRequestCount += 1;
     if (serviceType === "market-table-print-audit") summary.auditRequestCount += 1;
     if (serviceType === "local-seller-starter-kit") summary.sellerKitRequestCount += 1;
@@ -516,6 +529,19 @@ function publicLeadSummary(rows) {
     if (createdAt && createdAt > summary.latestCreatedAt) summary.latestCreatedAt = createdAt;
   }
   return summary;
+}
+
+function isInvoiceLinkRequest(serviceType, requestedNextStep, body = {}) {
+  if (!["invoice-followup-copy-pack", "upload-limit-fix-plan"].includes(serviceType)) return false;
+  if (body.invoiceLinkRequest === true || body.invoiceLinkRequest === "true") return true;
+  const text = `${requestedNextStep || ""} ${body.intent || ""} ${body.requestIntent || ""}`.toLowerCase();
+  return text.includes("invoice link") || text.includes("checkout") || text.includes("payment link");
+}
+
+function serviceInvoiceNextStep(serviceType) {
+  if (serviceType === "invoice-followup-copy-pack") return "Request external $19 checkout or invoice link after fit is confirmed";
+  if (serviceType === "upload-limit-fix-plan") return "Request external $9 checkout or invoice link after fit is confirmed";
+  return "Request external checkout or invoice link after fit is confirmed";
 }
 
 function emptyRollup(month) {

@@ -713,7 +713,7 @@ function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, path
             </label>
             <div class="actions">
               <button class="button" type="submit" data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}">${escapeHtml(cta)}</button>
-              ${invoiceRequestUrl ? `<a class="button secondary" data-track-event="service_invoice_request" data-track-tool="${escapeHtml(tool)}" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Request ${escapeHtml(price)} invoice link</a>` : ""}
+              ${invoiceRequestUrl ? `<button class="button secondary" type="submit" data-service-invoice-submit data-track-tool="${escapeHtml(tool)}" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request ${escapeHtml(price)} invoice link</button>` : ""}
               <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
             </div>
             <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No payment is collected here. A real external checkout or invoice is sent only after fit is confirmed.</p>
@@ -6843,7 +6843,7 @@ function invoiceFollowupInlineLeadFormHtml(options = {}) {
           </label>
           <div class="actions">
             <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack">${escapeHtml(submitLabel)}</button>
-            <a class="button secondary" data-track-event="service_invoice_request" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Request $19 invoice link</a>
+            <button class="button secondary" type="submit" data-service-invoice-submit data-track-tool="invoice-followup-copy-pack" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $19 invoice link</button>
             <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
           </div>
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send this public-safe fit check. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
@@ -6906,7 +6906,7 @@ function uploadLimitFixPlanInlineLeadFormHtml(options = {}) {
           </label>
           <div class="actions">
             <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">${escapeHtml(submitLabel)}</button>
-            <a class="button secondary" data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Request $9 invoice link</a>
+            <button class="button secondary" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $9 invoice link</button>
             <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
           </div>
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No file upload. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
@@ -10101,22 +10101,13 @@ function landingPageHtml(page) {
     utmCampaign: page.serviceLead.utmCampaign || "service_request",
     utmContent: `${page.path}-public-request`,
   }) : "";
-  const serviceInvoiceRequestHref = page.serviceLead ? serviceInvoiceRequestUrl({
-    serviceType: page.serviceLead.serviceType,
-    pathName: page.path,
-    requestSummary: page.serviceLead.defaultSummary || "",
-    utmSource: "landing-page",
-    utmMedium: "site",
-    utmCampaign: page.serviceLead.utmCampaign || "service_request",
-    utmContent: `${page.path}-invoice-request`,
-  }) : "";
   const serviceInvoiceRequestText = page.serviceLead?.serviceType === "upload-limit-fix-plan"
     ? "Request $9 invoice link"
     : page.serviceLead?.serviceType === "invoice-followup-copy-pack"
       ? "Request $19 invoice link"
       : "";
   const secondaryActionHtml = page.serviceLead
-    ? `${serviceInvoiceRequestText ? `<a class="button secondary" data-track-event="service_invoice_request" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(serviceInvoiceRequestHref)}" target="_blank" rel="noreferrer">${escapeHtml(serviceInvoiceRequestText)}</a> ` : ""}<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>`
+    ? `${serviceInvoiceRequestText ? `<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(serviceInvoiceRequestText)}</a> ` : ""}<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>`
     : `<a class="button secondary" href="/pdf-tool-finder/">Compare tools</a>`;
   return `
       <section class="shell page-title section">
