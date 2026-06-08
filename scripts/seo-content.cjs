@@ -6838,6 +6838,29 @@ function uploadLimitFixPlanInlineLeadFormHtml(options = {}) {
         </form>`;
 }
 
+function uploadErrorQuickRequestPanelHtml(requestSummary) {
+  return `<div class="upload-error-quick-request" id="upload-error-quick-request" data-upload-error-quick-request hidden>
+          <div class="grid-2 service-micro-intent-section">
+            <div>
+              <p class="eyebrow">Selected error</p>
+              <h3>Get the exact $9 plan for this row.</h3>
+              <p data-upload-error-quick-copy>Choose an error row to prefill a public-safe request.</p>
+            </div>
+            ${uploadLimitFixPlanInlineLeadFormHtml({
+              pathName: "/upload-error-cheatsheet/",
+              utmSource: "upload-error-cheatsheet",
+              utmMedium: "site",
+              utmCampaign: "upload_error_cheatsheet_fix_plan",
+              utmContent: "cheatsheet-row-quick",
+              requestSummary,
+              className: "upload-limit-fix-plan-micro-lead-form upload-error-quick-lead-form",
+              submitLabel: "Send selected error request",
+              compact: true,
+            })}
+          </div>
+        </div>`;
+}
+
 const GUIDE_HINTS_FOR_LINKS = {
   "invoice-generator": ["invoice"],
   "invoice-followup-email": ["invoice"],
@@ -8686,6 +8709,7 @@ function uploadErrorCheatsheetHtml() {
       </section>
       <section class="shell section">
         <h2>Common upload errors and direct fixes</h2>
+        ${uploadErrorQuickRequestPanelHtml(fixPlanSummary)}
         <table class="event-table">
           <thead><tr><th>Error text</th><th>Use this link</th><th>Response</th><th>Optional plan</th></tr></thead>
           <tbody>

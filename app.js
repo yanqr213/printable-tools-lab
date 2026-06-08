@@ -5950,6 +5950,29 @@
         </form>`;
   }
 
+  function uploadErrorQuickRequestPanel(requestSummary) {
+    return `<div class="upload-error-quick-request" id="upload-error-quick-request" data-upload-error-quick-request hidden>
+          <div class="grid-2 service-micro-intent-section">
+            <div>
+              <p class="eyebrow">Selected error</p>
+              <h3>Get the exact $9 plan for this row.</h3>
+              <p data-upload-error-quick-copy>Choose an error row to prefill a public-safe request.</p>
+            </div>
+            ${uploadLimitFixPlanInlineLeadForm({
+              path: "/upload-error-cheatsheet/",
+              utmSource: "upload-error-cheatsheet",
+              utmMedium: "site",
+              utmCampaign: "upload_error_cheatsheet_fix_plan",
+              utmContent: "cheatsheet-row-quick",
+              requestSummary,
+              className: "upload-limit-fix-plan-micro-lead-form upload-error-quick-lead-form",
+              submitLabel: "Send selected error request",
+              compact: true,
+            })}
+          </div>
+        </div>`;
+  }
+
   function uploadLimitFixPlanSummaryFromMatch(message, match) {
     const safeMessage = String(message || "").replace(/\s+/g, " ").trim().slice(0, 260);
     if (!safeMessage) return uploadLimitFixPlanRequestSummary();
@@ -6993,6 +7016,7 @@
       </section>
       <section class="shell section">
         <h2>Common upload errors and direct fixes</h2>
+        ${uploadErrorQuickRequestPanel(fixPlanSummary)}
         <table class="event-table">
           <thead><tr><th>Error text</th><th>Use this link</th><th>Response</th><th>Optional plan</th></tr></thead>
           <tbody>
@@ -15779,11 +15803,19 @@ ${paragraphs.join("\n")}
       link.addEventListener("click", (event) => {
         if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
         const row = link.closest("[data-upload-error-row]");
-        const form = document.querySelector("[data-upload-fix-plan-form]");
+        const quickPanel = document.querySelector("[data-upload-error-quick-request]");
+        const form = (quickPanel && quickPanel.querySelector("[data-upload-fix-plan-form]")) || document.querySelector("[data-upload-fix-plan-form]");
         if (!row || !form) return;
         event.preventDefault();
         event.stopPropagation();
         track(link.dataset.trackEvent || "service_request_intent", { tool: link.dataset.trackTool || "upload-limit-fix-plan" });
+        if (quickPanel) {
+          quickPanel.hidden = false;
+          const copy = quickPanel.querySelector("[data-upload-error-quick-copy]");
+          if (copy) {
+            copy.textContent = `Selected: ${row.dataset.uploadErrorText || "upload error"}. Enter a contact and get target settings, fallback steps, and a review checklist.`;
+          }
+        }
         const summary = form.querySelector("[data-upload-fix-plan-summary]");
         if (summary) {
           summary.value = uploadLimitFixPlanSummaryFromCheatsheetRow(
@@ -15799,8 +15831,9 @@ ${paragraphs.join("\n")}
           status.hidden = false;
           status.textContent = `Request note updated for: ${row.dataset.uploadErrorText || "selected upload error"}.`;
         }
-        window.history.pushState({}, "", `${window.location.pathname}${window.location.search}#service-request`);
-        form.scrollIntoView({ behavior: "smooth", block: "start" });
+        const targetHash = quickPanel ? "#upload-error-quick-request" : "#service-request";
+        window.history.pushState({}, "", `${window.location.pathname}${window.location.search}${targetHash}`);
+        (quickPanel || form).scrollIntoView({ behavior: "smooth", block: "start" });
         const contact = form.querySelector('input[name="contact"]');
         if (contact) contact.focus({ preventScroll: true });
       });

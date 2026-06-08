@@ -848,6 +848,26 @@ canvas.preview-canvas {
   margin: 0;
 }
 
+.upload-error-quick-request[hidden] {
+  display: none;
+}
+
+.upload-error-quick-request {
+  margin: 0 0 16px;
+}
+
+.upload-error-quick-request .service-micro-intent-section {
+  align-items: start;
+  padding: 14px;
+  border: 1px solid rgba(90, 147, 103, 0.28);
+  border-radius: 8px;
+  background: #f7fbf8;
+}
+
+.upload-error-quick-lead-form {
+  background: #fff;
+}
+
 .download-after-actions {
   display: flex;
   flex-wrap: wrap;

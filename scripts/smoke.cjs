@@ -379,8 +379,12 @@ function delay(ms) {
   const rowFixPlanCta = page.locator('[data-upload-error-row][data-upload-error-text="PDF must be under 1MB"] [data-upload-error-fix-plan][data-track-event="service_request_intent"][data-track-tool="upload-limit-fix-plan"]').first();
   if (!(await rowFixPlanCta.count())) throw new Error("Upload error cheatsheet is missing row-level $9 fix-plan CTA.");
   await rowFixPlanCta.click();
-  await page.waitForURL(/#service-request$/);
-  const rowFixSummary = await page.locator('[data-service-type="upload-limit-fix-plan"][data-utm-source="upload-error-cheatsheet"] [data-upload-fix-plan-summary]').first().inputValue();
+  await page.waitForURL(/#upload-error-quick-request$/);
+  const quickRequestVisible = await page.locator("[data-upload-error-quick-request]").first().isVisible();
+  if (!quickRequestVisible) throw new Error("Upload error cheatsheet row-level CTA did not reveal the quick request panel.");
+  const quickCopy = await page.locator("[data-upload-error-quick-copy]").first().innerText();
+  if (!quickCopy.includes("PDF must be under 1MB")) throw new Error("Upload error cheatsheet quick request panel did not name the selected error.");
+  const rowFixSummary = await page.locator('[data-upload-error-quick-request] [data-service-type="upload-limit-fix-plan"][data-utm-source="upload-error-cheatsheet"][data-utm-content="cheatsheet-row-quick"] [data-upload-fix-plan-summary]').first().inputValue();
   if (!rowFixSummary.includes("Public-safe error text: PDF must be under 1MB") || !rowFixSummary.includes("PDF 1MB")) {
     throw new Error("Upload error cheatsheet row-level $9 CTA did not prefill the selected error.");
   }
