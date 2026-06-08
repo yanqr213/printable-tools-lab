@@ -5259,6 +5259,7 @@
       name: "PDF.co",
       vertical: "pdf-image-qr-saas",
       category: "PDF API and document automation",
+      website: "https://pdf.co/",
       contactUrl: "https://pdf.co/contact",
       fitReason: "PDF.co sells PDF and document automation APIs, which fits visitors compressing, converting, and editing PDF files.",
       dealId: "guide-sponsor-pilot",
@@ -5268,6 +5269,7 @@
       name: "Cloudmersive",
       vertical: "pdf-image-qr-saas",
       category: "Document conversion API",
+      website: "https://cloudmersive.com/",
       contactUrl: "https://cloudmersive.com/contact-sales",
       fitReason: "Cloudmersive offers file conversion and document APIs, adjacent to PrintableTools Lab's PDF and image conversion intent.",
       dealId: "starter-fit-review",
@@ -5277,6 +5279,7 @@
       name: "Uniqode",
       vertical: "local-marketing-qr-sponsors",
       category: "QR code platform",
+      website: "https://www.uniqode.com/",
       contactUrl: "https://www.uniqode.com/contact-sales",
       fitReason: "Uniqode sells QR code and offline-to-online marketing tools, matching QR, WiFi QR, contact QR, flyer, and coupon workflows.",
       dealId: "vertical-category-pilot",
@@ -5286,6 +5289,7 @@
       name: "QRCodeChimp",
       vertical: "local-marketing-qr-sponsors",
       category: "QR code marketing",
+      website: "https://www.qrcodechimp.com/",
       contactUrl: "https://www.qrcodechimp.com/contact",
       fitReason: "QRCodeChimp targets business QR code use cases, a close fit for printable QR signs, flyers, coupons, and local service handouts.",
       dealId: "guide-sponsor-pilot",
@@ -5295,6 +5299,7 @@
       name: "Jobscan",
       vertical: "resume-career-sponsors",
       category: "ATS resume checker",
+      website: "https://www.jobscan.co/",
       contactUrl: "https://www.jobscan.co/partners",
       fitReason: "Jobscan's ATS and resume optimization product fits visitors using resume builder, ATS checker, and resume upload-size pages.",
       dealId: "vertical-category-pilot",
@@ -5304,6 +5309,7 @@
       name: "Teal",
       vertical: "resume-career-sponsors",
       category: "Career and resume software",
+      website: "https://www.tealhq.com/",
       contactUrl: "https://www.tealhq.com/contact-us",
       fitReason: "Teal offers job-search and resume tools, matching job seekers creating application PDFs and ATS-friendly documents.",
       dealId: "guide-sponsor-pilot",
@@ -5313,6 +5319,7 @@
       name: "Invoice Ninja",
       vertical: "small-business-paperwork-sponsors",
       category: "Invoicing software",
+      website: "https://www.invoiceninja.com/",
       contactUrl: "https://www.invoiceninja.com/contact/",
       fitReason: "Invoice Ninja sells invoicing and small-business payment workflow software, fitting invoice, estimate, receipt, and client paperwork pages.",
       validationSignal: "Current validation snapshot: invoice-generator has 2 PDF downloads, sitewide sponsor intent is 2, and sponsor leads/invoice requests are still 0/0.",
@@ -5323,6 +5330,7 @@
       name: "Zoho Invoice",
       vertical: "small-business-paperwork-sponsors",
       category: "Small-business invoicing",
+      website: "https://www.zoho.com/invoice/",
       contactUrl: "https://www.zoho.com/contactus.html",
       fitReason: "Zoho Invoice targets small businesses that need invoices, estimates, payments, and client records.",
       validationSignal: "Current validation snapshot: invoice-generator has 2 PDF downloads, sitewide sponsor intent is 2, and sponsor leads/invoice requests are still 0/0.",
@@ -5333,6 +5341,7 @@
       name: "Education.com",
       vertical: "classroom-printable-sponsors",
       category: "Worksheets and learning resources",
+      website: "https://www.education.com/",
       contactUrl: "https://www.education.com/contact-us/",
       fitReason: "Education.com publishes worksheets and learning resources, matching name tracing, flashcards, classroom labels, and printable routine pages.",
       dealId: "vertical-category-pilot",
@@ -5342,6 +5351,7 @@
       name: "Twinkl",
       vertical: "classroom-printable-sponsors",
       category: "Teacher resources",
+      website: "https://www.twinkl.com/",
       contactUrl: "https://www.twinkl.com/contact",
       fitReason: "Twinkl's teacher-resource catalog fits visitors making classroom printables, labels, worksheets, and routine charts.",
       dealId: "guide-sponsor-pilot",
@@ -7624,7 +7634,6 @@ ${paragraphs.join("\n")}
         <p><a class="button" href="/sponsor-media-kit.json">Open media kit</a> <a class="button secondary" href="/sponsor-deal-room/">Compare all sponsor options</a> <a class="button ghost" href="/privacy/">Privacy policy</a></p>
       </section>
     `;
-    applySponsorDealPrefill(app.querySelector("[data-sponsor-lead-form]"), sponsorDealPrefillFromDeal(deal));
     initSponsorLeadForms(app);
   }
 
@@ -7738,8 +7747,10 @@ ${paragraphs.join("\n")}
         <p><a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open public-safe GitHub reply form</a></p>
       </section>
     `;
-    applySponsorDealPrefill(app.querySelector("[data-sponsor-lead-form]"), sponsorDealPrefillFromDeal(deal));
     initSponsorLeadForms(app);
+    app.querySelectorAll("[data-sponsor-quick-form], [data-sponsor-lead-form]").forEach((form) => {
+      applySponsorProspectPrefill(form, prospect, deal, vertical);
+    });
   }
 
   function renderSponsorCallPage() {
@@ -12816,7 +12827,7 @@ ${paragraphs.join("\n")}
       utmSource: clean(params.get("utm_source")),
       utmMedium: clean(params.get("utm_medium")),
       utmCampaign: clean(params.get("utm_campaign")),
-      utmContent: clean(params.get("utm_content")),
+      utmContent: clean(params.get("utm_content")) || clean(params.get("prospect")),
       vertical: clean(params.get("vertical")) || (parts[0] === "sponsor" && parts[1] ? clean(parts[1]) : ""),
     };
   }
@@ -12915,6 +12926,57 @@ ${paragraphs.join("\n")}
     const status = form.querySelector("[data-sponsor-deal-status]");
     if (status) status.textContent = `Selected sponsor path: ${prefill.sponsorDealId}. Placement, budget, timeline, and next step are prefilled.`;
     updateSponsorQuickSummary(form);
+  }
+
+  function applySponsorProspectPrefill(form, prospect, deal, vertical) {
+    if (!form || !prospect) return;
+    form.dataset.sponsorProspectId = prospect.id || "";
+    form.dataset.sponsorProspectName = prospect.name || "";
+    form.dataset.sponsorProspectWebsite = prospect.website || "";
+    form.dataset.sponsorProspectFit = prospect.fitReason || "";
+    form.dataset.sponsorProspectValidation = prospect.validationSignal || "";
+    form.dataset.sponsorProspectVertical = vertical?.slug || prospect.vertical || "";
+    form.dataset.sponsorProspectDeal = deal?.id || prospect.dealId || "";
+    setFormFieldValue(form, "company", prospect.name);
+    setFormFieldValue(form, "website", prospect.website);
+    setFormFieldValue(form, "dealId", deal?.id || prospect.dealId);
+    setFormFieldValue(form, "quickDealId", deal?.id || prospect.dealId);
+    setFormFieldValue(form, "audienceFit", sponsorProspectAudienceFit(prospect, deal, vertical));
+    const notes = form.elements.notes;
+    if (notes && !String(notes.value || "").trim()) notes.value = sponsorProspectReviewNotes(prospect, deal, vertical);
+    const quickSummary = form.querySelector("[data-sponsor-quick-summary]");
+    if (quickSummary && prospect.name && prospect.website) {
+      quickSummary.textContent = `Selected pilot: ${deal.title} - ${deal.price}. ${prospect.name} and ${prospect.website} are prefilled; add a business email to request invoice review.`;
+    }
+  }
+
+  function sponsorProspectAudienceFit(prospect, deal, vertical) {
+    return [
+      `Prospect-specific invoice review request for ${prospect.name || "this sponsor"}.`,
+      prospect.fitReason || deal?.bestFor || "",
+      vertical?.title ? `Audience: ${vertical.title}.` : "",
+      prospect.validationSignal || "",
+    ].filter(Boolean).join(" ");
+  }
+
+  function sponsorProspectReviewNotes(prospect, deal, vertical) {
+    return [
+      deal ? `${deal.title} (${deal.price}). ${deal.deliverable} Needed: ${deal.proofNeeded}` : "",
+      prospect.website ? `Prefilled prospect website: ${prospect.website}` : "",
+      vertical?.title ? `Vertical: ${vertical.title}` : "",
+      prospect.validationSignal ? `Validation: ${prospect.validationSignal}` : "",
+    ].filter(Boolean).join("\n");
+  }
+
+  function sponsorProspectQuickNotes(form, deal) {
+    const existing = String(form.elements.notes?.value || "").trim();
+    const rows = [
+      existing || `${deal.title} (${deal.price}). ${deal.deliverable} Needed: ${deal.proofNeeded}`,
+      form.dataset.sponsorProspectName ? `Prospect: ${form.dataset.sponsorProspectName}` : "",
+      form.dataset.sponsorProspectWebsite ? `Website: ${form.dataset.sponsorProspectWebsite}` : "",
+      form.dataset.sponsorProspectValidation ? `Validation: ${form.dataset.sponsorProspectValidation}` : "",
+    ];
+    return rows.filter(Boolean).join("\n");
   }
 
   function setFormFieldValue(form, name, value) {
@@ -13114,6 +13176,9 @@ ${paragraphs.join("\n")}
   async function submitSponsorQuickLeadForm(form) {
     const values = getFormValues(form);
     const deal = sponsorDeals.find((item) => item.id === values.quickDealId) || sponsorDeals.find((item) => item.id === values.dealId) || sponsorDeals.find((item) => item.id === DEFAULT_SPONSOR_DEAL_ID) || sponsorDeals[0];
+    const prospectFit = form.dataset.sponsorProspectFit || "";
+    const prospectValidation = form.dataset.sponsorProspectValidation || "";
+    const prospectNotes = sponsorProspectQuickNotes(form, deal);
     const status = form.querySelector("[data-sponsor-lead-status]");
     const submit = form.querySelector("button[type='submit']");
     const setStatus = (message, kind = "") => {
@@ -13128,12 +13193,18 @@ ${paragraphs.join("\n")}
       budgetRange: deal.budgetRange,
       timeline: deal.timeline,
       commitment: sponsorDealCommitment(deal),
-      audienceFit: `Fast invoice review request for ${deal.title}; sponsor says their website may fit PrintableTools Lab's free PDF, image, QR, career, classroom, or small-business workflows.`,
-      notes: `${deal.title} (${deal.price}). ${deal.deliverable} Needed: ${deal.proofNeeded}`,
+      audienceFit: [
+        `Fast invoice review request for ${deal.title}.`,
+        prospectFit || "Sponsor says their website may fit PrintableTools Lab's free PDF, image, QR, career, classroom, or small-business workflows.",
+        prospectValidation,
+      ].filter(Boolean).join(" "),
+      notes: prospectNotes || `${deal.title} (${deal.price}). ${deal.deliverable} Needed: ${deal.proofNeeded}`,
       consent: true,
       path: getCurrentRoutePath(),
       source: getTrafficSource(),
       ...getSponsorAttribution(),
+      utmContent: form.dataset.sponsorProspectId || getSponsorAttribution().utmContent || values.utmContent,
+      vertical: form.dataset.sponsorProspectVertical || getSponsorAttribution().vertical || values.vertical,
     };
     setStatus("Sending fast invoice review request...", "pending");
     clearSponsorLeadFallback(form);
