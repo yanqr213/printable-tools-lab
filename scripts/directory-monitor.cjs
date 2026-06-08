@@ -88,6 +88,14 @@ const directories = [
     reviewWindow: "3-5 business days",
   },
   {
+    name: "FreeNoSignup overdue invoice reminder listing",
+    url: "https://freenosignup.com/",
+    searchUrl: "https://freenosignup.com/?s=Overdue+Invoice+Reminder+Email",
+    expected: [siteHost, "Overdue Invoice Reminder Email"],
+    submittedAt: "2026-06-08",
+    reviewWindow: "3-5 business day manual review after public Google Form confirmation",
+  },
+  {
     name: "NoLogin.tools",
     url: "https://nologin.tools/tool/printable-tools-lab-pages-dev",
     searchUrl: "https://nologin.tools/?q=PrintableTools+Lab",
@@ -311,7 +319,7 @@ function githubHeaders() {
 
 function hasExpectedText(text, expected) {
   const haystack = String(text).toLowerCase();
-  return expected.some((needle) => haystack.includes(String(needle).toLowerCase()));
+  return expected.every((needle) => haystack.includes(String(needle).toLowerCase()));
 }
 
 function latestCheckRuns(runs) {

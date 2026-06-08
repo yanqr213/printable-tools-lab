@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-06-08T08:19:39.382Z",
+  "directory": "FreeNoSignup",
+  "submitPage": "https://freenosignup.com/submit/",
+  "formResponseUrl": "https://docs.google.com/forms/d/e/1FAIpQLScZ3rCt9k2vlaHcT7d1ABmgtezWN-fZLcH_YcxJdexm8aOzRg/formResponse",
+  "status": 200,
+  "ok": true,
+  "confirmationMatched": true,
+  "payload": {
+    "toolName": "Overdue Invoice Reminder Email by PrintableTools Lab",
+    "toolUrl": "https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email/?utm_source=freenosignup&utm_medium=directory&utm_campaign=overdue_invoice_2026_06&utm_content=overdue_invoice_reminder_email",
+    "category": "Productivity",
+    "description": "Free no-signup overdue invoice reminder email helper for small businesses and freelancers. It works in the browser, links to a no-upload invoice follow-up email generator, and provides polite copy-ready overdue payment wording. Optional manual copy-pack requests are separate; the free tool works without registration.",
+    "keyFeatures": "No signup. No file upload required. Browser-based overdue invoice wording. Friendly tone preset. Copy-ready reminder text. Privacy-friendly utility page.",
+    "submitterName": "PrintableTools Lab",
+    "additionalNotes": "Specific free tool page submission. The broad PrintableTools Lab homepage was submitted on 2026-06-01; this entry is for the overdue invoice reminder workflow and is not a paid-only product."
+  },
+  "responseEvidenceSnippet": "freenosignup.com Tool Submission response recorded by Google Form.",
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "3-5 business days"
+}
