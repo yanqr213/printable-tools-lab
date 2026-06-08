@@ -524,6 +524,20 @@ main {
   resize: vertical;
 }
 
+.field[data-service-contact-needed="true"] input[name="contact"] {
+  border-color: var(--coral);
+  box-shadow: 0 0 0 3px rgba(231, 111, 81, 0.16);
+}
+
+.service-contact-cue {
+  margin: -2px 0 0;
+}
+
+.service-contact-cue[data-state="needed"] {
+  color: #8a2d18;
+  font-weight: 750;
+}
+
 .check-list {
   display: grid;
   gap: 8px;

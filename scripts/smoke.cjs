@@ -280,6 +280,10 @@ function delay(ms) {
   if (!lowercaseImageKbSummary.includes("image or photo under 100 KB")) throw new Error(`Lowercase targetkb request summary is not target-aware: ${lowercaseImageKbSummary}`);
   const imageKbFormNoValidate = await lowercaseImageKbFixForm.evaluate((form) => form.noValidate && form.hasAttribute("novalidate"));
   if (!imageKbFormNoValidate) throw new Error("Service lead form should bypass browser required validation so no-contact public fallback can render.");
+  const initialContactCue = await lowercaseImageKbFixForm.locator("[data-service-lead-contact-cue]").innerText();
+  if (!initialContactCue.includes("One reply email or public handle") || !initialContactCue.includes("private $9 follow-up path") || !initialContactCue.includes("No payment is collected here")) {
+    throw new Error(`Service lead contact cue is missing the low-friction private follow-up copy: ${initialContactCue}`);
+  }
   await lowercaseImageKbFixForm.locator('button[type="submit"]').click();
   const noContactFallback = lowercaseImageKbFixForm.locator("[data-service-lead-fallback]").first();
   await noContactFallback.waitFor({ state: "visible", timeout: 5000 });
@@ -290,6 +294,25 @@ function delay(ms) {
   await noContactFallback.locator("[data-service-lead-focus-contact]").click();
   const focusedContactName = await page.evaluate(() => document.activeElement && document.activeElement.getAttribute("name"));
   if (focusedContactName !== "contact") throw new Error(`Add reply contact did not focus the contact field, focused ${focusedContactName || "nothing"}`);
+  const contactNeededState = await lowercaseImageKbFixForm.locator("[data-service-lead-contact-cue]").evaluate((cue) => ({
+    text: cue.textContent,
+    state: cue.dataset.state,
+    fieldNeeded: cue.closest(".field")?.dataset.serviceContactNeeded,
+    invalid: cue.closest(".field")?.querySelector('input[name="contact"]')?.getAttribute("aria-invalid"),
+  }));
+  if (contactNeededState.state !== "needed" || contactNeededState.fieldNeeded !== "true" || contactNeededState.invalid !== "true" || !contactNeededState.text.includes("Add one reply email or public handle")) {
+    throw new Error(`No-contact service cue did not mark the reply contact as required: ${JSON.stringify(contactNeededState)}`);
+  }
+  await lowercaseImageKbFixForm.locator('input[name="contact"]').fill("buyer@example.com");
+  const contactReadyState = await lowercaseImageKbFixForm.locator("[data-service-lead-contact-cue]").evaluate((cue) => ({
+    text: cue.textContent,
+    state: cue.dataset.state,
+    fieldNeeded: cue.closest(".field")?.dataset.serviceContactNeeded,
+    invalid: cue.closest(".field")?.querySelector('input[name="contact"]')?.getAttribute("aria-invalid"),
+  }));
+  if (contactReadyState.state !== "ready" || contactReadyState.fieldNeeded !== "false" || contactReadyState.invalid !== null || !contactReadyState.text.includes("One reply email or public handle")) {
+    throw new Error(`Service contact cue did not recover after a valid reply contact: ${JSON.stringify(contactReadyState)}`);
+  }
   const noContactFallbackBody = await noContactFallback.locator(".service-lead-fallback-output").inputValue();
   if (!noContactFallbackBody.includes("image or photo under 100 KB") || noContactFallbackBody.includes("you@example.com")) {
     throw new Error(`No-contact public request body is not target-aware or public-safe: ${noContactFallbackBody}`);

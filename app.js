@@ -15430,13 +15430,88 @@ ${paragraphs.join("\n")}
       form.dataset.boundServiceLead = "true";
       form.setAttribute("novalidate", "");
       form.noValidate = true;
+      ensureServiceLeadContactCue(form);
       updateServiceLeadFallbackLink(form);
-      form.addEventListener("input", () => updateServiceLeadFallbackLink(form));
+      form.addEventListener("input", () => {
+        updateServiceLeadFallbackLink(form);
+        updateServiceLeadContactCue(form);
+      });
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
         await submitServiceLeadForm(form);
       });
     });
+  }
+
+  function ensureServiceLeadContactCue(form) {
+    const contact = form.querySelector('input[name="contact"]');
+    if (!contact) return null;
+    contact.dataset.serviceLeadContactInput = "true";
+    const field = contact.closest(".field") || contact.parentElement;
+    if (!field) return null;
+    let cue = field.querySelector("[data-service-lead-contact-cue]");
+    if (!cue) {
+      cue = document.createElement("p");
+      cue.className = "help service-contact-cue";
+      cue.dataset.serviceLeadContactCue = "true";
+      field.insertBefore(cue, contact.nextSibling);
+    }
+    if (!cue.id) cue.id = `service-contact-cue-${Math.random().toString(36).slice(2, 9)}`;
+    const describedBy = new Set(String(contact.getAttribute("aria-describedby") || "").split(/\s+/).filter(Boolean));
+    describedBy.add(cue.id);
+    contact.setAttribute("aria-describedby", Array.from(describedBy).join(" "));
+    updateServiceLeadContactCue(form);
+    return cue;
+  }
+
+  function serviceLeadPriceHint(serviceType) {
+    if (serviceType === "upload-limit-fix-plan") return "$9";
+    if (serviceType === "invoice-followup-copy-pack") return "$19";
+    if (serviceType === "custom-local-print-pack") return "$29";
+    if (serviceType === "local-seller-starter-kit") return "$9";
+    return "";
+  }
+
+  function serviceLeadPrivatePathLabel(serviceType) {
+    if (serviceType === "upload-limit-fix-plan") return "private $9 follow-up path";
+    const price = serviceLeadPriceHint(serviceType);
+    return price ? `private ${price} follow-up path` : "private follow-up path";
+  }
+
+  function serviceLeadContactCueText(form, needed = false) {
+    const serviceType = form.dataset.serviceType || form.querySelector("[name='serviceType']")?.value || "custom-local-print-pack";
+    const privatePath = serviceLeadPrivatePathLabel(serviceType);
+    if (needed) {
+      return `Add one reply email or public handle, then press Send again for the ${privatePath}. No payment is collected here.`;
+    }
+    return `One reply email or public handle unlocks the ${privatePath}. No payment is collected here.`;
+  }
+
+  function updateServiceLeadContactCue(form) {
+    const contact = form.querySelector('input[name="contact"]');
+    const cue = form.querySelector("[data-service-lead-contact-cue]");
+    if (!contact || !cue) return;
+    const hasContact = Boolean(serviceLeadContactValue({ contact: contact.value }));
+    const needed = form.dataset.serviceContactNeeded === "true" && !hasContact;
+    const field = contact.closest(".field") || contact.parentElement;
+    cue.textContent = serviceLeadContactCueText(form, needed);
+    cue.dataset.state = needed ? "needed" : "ready";
+    if (field) field.dataset.serviceContactNeeded = needed ? "true" : "false";
+    if (needed) contact.setAttribute("aria-invalid", "true");
+    else contact.removeAttribute("aria-invalid");
+    if (hasContact) form.dataset.serviceContactNeeded = "false";
+  }
+
+  function focusServiceLeadContactField(form) {
+    if (!form) return;
+    form.dataset.serviceContactNeeded = "true";
+    ensureServiceLeadContactCue(form);
+    updateServiceLeadContactCue(form);
+    const contact = form.querySelector('input[name="contact"]');
+    if (contact) {
+      contact.scrollIntoView({ behavior: "smooth", block: "center" });
+      contact.focus({ preventScroll: true });
+    }
   }
 
   function clearServiceLeadFallback(form) {
@@ -15524,8 +15599,9 @@ ${paragraphs.join("\n")}
     }
     const replyUrl = publicReplyUrl || (typeof values === "string" ? "" : serviceLeadFallbackUrl(values));
     const noContactFallback = options.reason === "no-contact";
+    const privatePath = serviceLeadPrivatePathLabel(serviceType);
     const intro = noContactFallback
-      ? "No contact was added here, so nothing private is stored on this site. To get the private $9 follow-up path, add one reply email or public handle above and send again. Use the public-safe GitHub request only if public contact is acceptable."
+      ? `No contact was added here, so nothing private is stored on this site. To get the ${privatePath}, add one reply email or public handle above and send again. Use the public-safe GitHub request only if public contact is acceptable.`
       : "Lead storage is temporarily limited, so open the public-safe GitHub request or copy this text before leaving the page.";
     panel.innerHTML = `
       <p><strong>${noContactFallback ? "Public-safe request ready." : "Backup request ready."}</strong> ${escapeHtml(intro)}</p>
@@ -15561,8 +15637,9 @@ ${paragraphs.join("\n")}
     if (!serviceLeadContactValue(values)) {
       const publicValues = { ...values, contact: "" };
       renderServiceLeadFallback(form, publicValues, "", { reason: "no-contact" });
+      focusServiceLeadContactField(form);
       track(serviceLeadTrackEvent(values.serviceType), { tool: serviceLeadTrackTool(values.serviceType), fallback: "public-safe-no-contact" });
-      setStatus("Use Add reply contact, then send again for private $9 follow-up. The public-safe request below is only for public contact.", "error");
+      setStatus(`Use Add reply contact, then send again for the ${serviceLeadPrivatePathLabel(values.serviceType)}. The public-safe request below is only for public contact.`, "error");
       return;
     }
     setStatus("Sending request...", "pending");
@@ -16335,16 +16412,12 @@ ${paragraphs.join("\n")}
     if (serviceLeadFocus) {
       event.preventDefault();
       const form = serviceLeadFocus.closest("[data-service-lead-form]");
-      const contact = form ? form.querySelector('input[name="contact"]') : null;
       const status = form ? form.querySelector("[data-service-lead-status]") : null;
       if (status) {
-        status.textContent = "Add one reply email or public handle, then press Send again for the private $9 follow-up path.";
+        status.textContent = `Add one reply email or public handle, then press Send again for the ${serviceLeadPrivatePathLabel(form.dataset.serviceType)}.`;
         status.dataset.status = "pending";
       }
-      if (contact) {
-        contact.scrollIntoView({ behavior: "smooth", block: "center" });
-        contact.focus({ preventScroll: true });
-      }
+      focusServiceLeadContactField(form);
       return;
     }
     const copyButton = event.target.closest("[data-copy-text]");
