@@ -6845,6 +6845,23 @@
     if (!tool || !LOCAL_SELLER_FUNNEL_TOOL_IDS.has(tool.id)) return "";
     const content = encodeURIComponent(tool.id);
     if (isInvoiceFollowupTool(tool.id)) {
+      const invoiceToolHref = tool.id === "invoice-generator"
+        ? `/tools/invoice-followup-email/?utm_source=tool_cta&utm_medium=site&utm_campaign=invoice_followup_tool&utm_content=${content}`
+        : `/tools/invoice-generator/?utm_source=tool_cta&utm_medium=site&utm_campaign=invoice_followup_tool&utm_content=${content}`;
+      const invoiceToolLabel = tool.id === "invoice-generator" ? "Write follow-up email" : "Create an invoice first";
+      const localSellerActions = tool.id === "invoice-generator"
+        ? [
+          `<a class="button secondary" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="/custom-local-print-pack/?utm_source=tool_cta&utm_medium=site&utm_campaign=service_request&utm_content=${content}">Start free fit check</a>`,
+          `<a class="button ghost" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="/market-table-print-audit/?utm_source=tool_cta&utm_medium=site&utm_campaign=audit_request&utm_content=${content}">Free print audit first</a>`,
+          `<p class="help">Also selling locally? The optional $29 print-pack setup can turn invoice, receipt, price tag, flyer, QR, coupon, and packing-slip details into a first printable seller pack.</p>`,
+        ].join("\n          ")
+        : "";
+      const invoiceActions = [
+        `<a class="button" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="/invoice-followup-copy-pack/?utm_source=tool_cta&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=${content}#service-request">Start invoice fit check</a>`,
+        `<a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(invoiceToolHref)}">${escapeHtml(invoiceToolLabel)}</a>`,
+        localSellerActions,
+        `<p class="help">Payment happens only through a real external checkout or invoice after fit is confirmed.</p>`,
+      ].filter(Boolean).join("\n          ");
       return `
       <section class="shell section service-upgrade-cta" aria-label="Optional invoice follow-up help">
         <div>
@@ -6853,12 +6870,7 @@
           <p>The free generator drafts one message. Send a free fit check for the $19 Invoice Follow-up Copy Pack if you want a polished reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice note prepared for one workflow.</p>
         </div>
         <div class="free-tool-depth-actions">
-          <a class="button" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="/invoice-followup-copy-pack/?utm_source=tool_cta&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=${content}#service-request">Start invoice fit check</a>
-          <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="/tools/invoice-generator/?utm_source=tool_cta&utm_medium=site&utm_campaign=invoice_followup_tool&utm_content=${content}">Create an invoice first</a>
-          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="/custom-local-print-pack/?utm_source=tool_cta&utm_medium=site&utm_campaign=service_request&utm_content=${content}">Start free fit check</a>
-          <a class="button ghost" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="/market-table-print-audit/?utm_source=tool_cta&utm_medium=site&utm_campaign=audit_request&utm_content=${content}">Free print audit first</a>
-          <p class="help">Also selling locally? The optional $29 print-pack setup can turn invoice, receipt, price tag, flyer, QR, coupon, and packing-slip details into a first printable seller pack.</p>
-          <p class="help">Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
+          ${invoiceActions}
         </div>
       </section>`;
     }
@@ -8063,6 +8075,9 @@ ${paragraphs.join("\n")}
     const serviceHelp = isInvoiceFollowupTool(tool.id)
       ? "Send a 30-second free fit check for a $19 Invoice Follow-up Copy Pack: polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording. Payment starts only after fit is confirmed and a real external checkout or invoice is paid."
       : "Send a 30-second free fit check for the $29 Custom Local Print Pack Setup, or start with a free Market Table Print Audit. Payment starts only after fit is confirmed and a real external checkout or invoice is paid.";
+    const auditAction = tool.id === "invoice-followup-email"
+      ? ""
+      : `<a class="button secondary" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${escapeHtml(auditHref)}">Free print audit first</a>`;
     return `
       <div class="download-after-action" aria-label="Next step after download">
         <div>
@@ -8078,7 +8093,7 @@ ${paragraphs.join("\n")}
         ${renderDownloadServiceLeadForm(tool)}
         <div class="download-after-actions">
           ${serviceAction}
-          <a class="button secondary" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${escapeHtml(auditHref)}">Free print audit first</a>
+          ${auditAction}
           ${invoiceSponsorAction}
           <a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(uploadHref)}">Fix upload limits</a>
           <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(finderHref)}">Browse more free tools</a>

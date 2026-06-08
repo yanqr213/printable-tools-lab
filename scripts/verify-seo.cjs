@@ -416,6 +416,16 @@ for (const toolPath of ["tools/invoice-generator", "tools/price-tag", "tools/fly
   }
 }
 
+const invoiceFollowupToolFile = path.join(root, "tools", "invoice-followup-email", "index.html");
+if (!fs.existsSync(invoiceFollowupToolFile)) failures.push("Missing invoice follow-up email generator route.");
+else {
+  const html = fs.readFileSync(invoiceFollowupToolFile, "utf8");
+  if (!html.includes("service-upgrade-cta") || !html.includes(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug) || !html.includes("Start invoice fit check")) failures.push("Invoice follow-up email route missing focused copy-pack service CTA.");
+  if (!html.includes("Create invoice first") || !html.includes("invoice_followup_tool")) failures.push("Invoice follow-up email route missing invoice-only free-tool path.");
+  if (html.includes(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug) || html.includes(MARKET_TABLE_PRINT_AUDIT.slug) || html.includes("Free print audit first")) failures.push("Invoice follow-up email route should not cross-sell local print-pack or print-audit CTAs.");
+  if (!html.includes("Payment happens only through a real external checkout or invoice")) failures.push("Invoice follow-up email route missing external-payment gate.");
+}
+
 const appScriptFile = path.join(root, "app.js");
 if (!fs.existsSync(appScriptFile)) failures.push("Missing app.js.");
 else {

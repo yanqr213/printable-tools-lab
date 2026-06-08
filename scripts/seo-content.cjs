@@ -7321,6 +7321,19 @@ function serviceUpgradeCtaHtml(tool) {
     const serviceHref = `/${INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug}/?utm_source=tool_cta&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=${encodeURIComponent(toolSlug)}#service-request`;
     const invoiceHref = `/tools/invoice-generator/?utm_source=tool_cta&utm_medium=site&utm_campaign=invoice_followup_tool&utm_content=${encodeURIComponent(toolSlug)}`;
     const followupHref = `/tools/invoice-followup-email/?utm_source=tool_cta&utm_medium=site&utm_campaign=invoice_followup_tool&utm_content=${encodeURIComponent(toolSlug)}`;
+    const localSellerActions = tool.path === "tools/invoice-generator"
+      ? [
+        `<a class="button secondary" data-track-event="service_request_intent" data-track-tool="${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.id)}" href="/${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}/?utm_source=tool_cta&utm_medium=site&utm_campaign=service_request&utm_content=${encodeURIComponent(toolSlug)}">Start free fit check</a>`,
+        `<a class="button ghost" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(MARKET_TABLE_PRINT_AUDIT.id)}" href="/${escapeHtml(MARKET_TABLE_PRINT_AUDIT.slug)}/?utm_source=tool_cta&utm_medium=site&utm_campaign=audit_request&utm_content=${encodeURIComponent(toolSlug)}">Free print audit first</a>`,
+        `<p class="help">Also selling locally? The optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} print-pack setup can turn invoice, receipt, price tag, flyer, QR, coupon, and packing-slip details into a first printable seller pack.</p>`,
+      ].join("\n          ")
+      : "";
+    const invoiceActions = [
+      `<a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.id)}" href="${escapeHtml(serviceHref)}">Start invoice fit check</a>`,
+      `<a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolSlug)}" href="${escapeHtml(tool.path === "tools/invoice-generator" ? followupHref : invoiceHref)}">${tool.path === "tools/invoice-generator" ? "Write follow-up email" : "Create invoice first"}</a>`,
+      localSellerActions,
+      `<p class="help">Payment happens only through a real external checkout or invoice after fit is confirmed.</p>`,
+    ].filter(Boolean).join("\n          ");
     return `
       <section class="shell section service-upgrade-cta" aria-label="Optional invoice follow-up help">
         <div>
@@ -7329,12 +7342,7 @@ function serviceUpgradeCtaHtml(tool) {
           <p>The free invoice tools stay free. Send a free fit check for the $${INVOICE_FOLLOWUP_COPY_PACK_SERVICE.priceUsd} ${escapeHtml(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.name)} if you want a polished reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice note prepared for one workflow.</p>
         </div>
         <div class="free-tool-depth-actions">
-          <a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.id)}" href="${escapeHtml(serviceHref)}">Start invoice fit check</a>
-          <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolSlug)}" href="${escapeHtml(tool.path === "tools/invoice-generator" ? followupHref : invoiceHref)}">${tool.path === "tools/invoice-generator" ? "Write follow-up email" : "Create invoice first"}</a>
-          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.id)}" href="/${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}/?utm_source=tool_cta&utm_medium=site&utm_campaign=service_request&utm_content=${encodeURIComponent(toolSlug)}">Start free fit check</a>
-          <a class="button ghost" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(MARKET_TABLE_PRINT_AUDIT.id)}" href="/${escapeHtml(MARKET_TABLE_PRINT_AUDIT.slug)}/?utm_source=tool_cta&utm_medium=site&utm_campaign=audit_request&utm_content=${encodeURIComponent(toolSlug)}">Free print audit first</a>
-          <p class="help">Also selling locally? The optional $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} print-pack setup can turn invoice, receipt, price tag, flyer, QR, coupon, and packing-slip details into a first printable seller pack.</p>
-          <p class="help">Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
+          ${invoiceActions}
         </div>
       </section>`;
   }
