@@ -6,6 +6,17 @@ Live site: https://printable-tools-lab.pages.dev/
 
 PrintableTools Lab is a no-signup utility site for practical browser files: check resume text against job descriptions, compress PDFs, make passport-style photos, compress images, resize images, convert JPG/PNG/WebP formats, remove simple image backgrounds into transparent PNGs, add text to photos, create transparent signature PNGs, create static QR codes, WiFi QR signs, contact QR codes, convert PDF pages to JPG/PNG, extract PDF text, convert selectable PDF text to Word DOCX, merge PDF, split PDF, rotate PDF pages, remove PDF pages, reorder PDF pages, watermark PDFs, stamp PDFs, add typed signature blocks, add page numbers, image-to-PDF conversion, multi-image PDFs, text-to-PDF, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, estimates, purchase orders, sale records, receipts, work orders, packing slips, inventory sheets, labels, business cards, flyers, coupons, price tags, barcode labels, timesheets, resumes, cover letters, resignation letters, certificates, monthly calendars, meal planners, sign-in sheets, graph paper, packing lists, to-do lists, worksheets, chore charts, reward charts, flashcards, weekly planners, and habit trackers.
 
+## Invoice Follow-up Copy Pack
+
+The fastest buyer path is the optional USD 19 Invoice Follow-up Copy Pack for freelancers and small businesses that need client-safe overdue invoice wording without sharing private invoice data.
+
+- Free overdue invoice reminder: https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email/?utm_source=github&utm_medium=readme&utm_campaign=invoice_followup_service&utm_content=readme-top
+- Free invoice follow-up generator: https://printable-tools-lab.pages.dev/tools/invoice-followup-email/?utm_source=github&utm_medium=readme&utm_campaign=invoice_followup_tool&utm_content=readme-top
+- USD 19 copy pack fit check: https://printable-tools-lab.pages.dev/invoice-followup-copy-pack/?utm_source=github&utm_medium=readme&utm_campaign=invoice_followup_service&utm_content=readme-top#service-request
+- Public GitHub request form: https://github.com/yanqr213/printable-tools-lab/issues/new?template=invoice-followup-copy-pack-service.yml
+
+The service starts only after fit is confirmed and a real external checkout or invoice is paid. Public requests must not include invoice numbers, bank details, card data, tax IDs, client private data, customer lists, legal dispute details, passwords, or private account details.
+
 ## Sponsors And Partners
 
 PrintableTools Lab is accepting a small number of policy-fit sponsor and partner inquiries while keeping tools free and no-signup.
