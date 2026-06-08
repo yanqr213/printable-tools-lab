@@ -248,6 +248,7 @@ for (const routePath of ["dashboard", "ops"]) {
   if (!html.includes('content="noindex,follow"')) failures.push(`${routePath} should be noindex.`);
   if (sitemap.includes(`<loc>${siteUrl(routePath)}</loc>`)) failures.push(`Sitemap should not include noindex internal route: ${routePath}.`);
   if (routePath === "ops" && (!html.includes("/sponsor-starter-review/?utm_source=ops") || !html.includes("Open invoice review form"))) failures.push("Ops monitor should route sponsor close work to the invoice review form.");
+  if (routePath === "ops" && (!html.includes("/api/ops-metrics") || !html.includes("Project detail rows") || !html.includes("Source breakdown") || !html.includes("Tool and game signal snapshot") || !html.includes("Path breakdown"))) failures.push("Ops monitor should render detailed project traffic sections and live metrics access.");
 }
 
 const headersFile = path.join(root, "_headers");

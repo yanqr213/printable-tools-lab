@@ -5623,7 +5623,7 @@ const pages = [
     description: "Noindex operations monitor for project-level traffic, sponsor close actions, source, path, tool, game, and monetization signals.",
     index: false,
     chrome: "internal",
-    html: `<section class="shell section"><h1>Project operations monitor</h1><p>This page loads aggregate project metrics and the sponsor close cockpit after the app loads.</p><p><a class="button" href="/sponsor-starter-review/?utm_source=ops&utm_medium=internal&utm_campaign=sponsor_close&utm_content=static-ops&commitment=request-invoice#sponsor-inquiry">Open invoice review form</a></p></section>`,
+    html: opsMonitorStaticHtml(),
   },
   {
     path: "about",
@@ -5749,6 +5749,194 @@ const routes = [
     html: guideHtml(guide),
   })),
 ];
+
+function opsMonitorStaticHtml() {
+  const report = readOpsValidationSnapshot();
+  const metrics = report?.live?.metrics || {};
+  const apiMetrics = report?.live?.checks?.["/api/metrics"]?.json || {};
+  const totals = metrics.totals || apiMetrics.totals || {};
+  const todayTotals = metrics.todayTotals || apiMetrics.todayTotals || {};
+  const sourceRows = opsActiveRows(apiMetrics.sources || [], opsSourceScore).slice(0, 8);
+  const toolRows = opsActiveRows(metrics.topTools || apiMetrics.tools || [], opsToolScore).slice(0, 8);
+  const totalDownloads = Number(metrics.totalDownloads ?? apiMetrics.totalDownloads ?? ((totals.download_pdf || 0) + (totals.download_file || 0))) || 0;
+  const totalGenerations = Number(metrics.totalGenerations ?? apiMetrics.totalGenerations ?? ((totals.generate_pdf || 0) + (totals.generate_file || 0))) || 0;
+  const commercialIntent = Number(metrics.commercialIntent ?? apiMetrics.commercialIntent ?? opsCommercialIntent(totals)) || 0;
+  const sponsorLeads = Number(metrics.sponsorLeads ?? apiMetrics.sponsorLeads ?? totals.sponsor_lead_submit ?? 0) || 0;
+  const sponsorInvoiceRequests = Number(metrics.sponsorInvoiceRequests ?? apiMetrics.sponsorInvoiceRequests ?? totals.sponsor_invoice_request ?? 0) || 0;
+  const generatedAt = report?.generatedAt || "No validation snapshot yet";
+  const sponsorOutreach = report?.local?.sponsorOutreach || {};
+  const starterReviewUrl = "/sponsor-starter-review/?utm_source=ops&utm_medium=internal&utm_campaign=sponsor_close&utm_content=static-ops&commitment=request-invoice#sponsor-inquiry";
+  const projectRows = [
+    [
+      "PrintableTools Lab",
+      "Free browser tools and sponsor funnel",
+      totals.page_view || 0,
+      todayTotals.page_view || 0,
+      totalDownloads,
+      sponsorLeads,
+      sponsorInvoiceRequests,
+      commercialIntent,
+    ],
+    [
+      "Pocket Arcade Shelf",
+      "HTML5 game portal and platform revenue-share route",
+      "Live via /api/ops-metrics",
+      "Live via /api/ops-metrics",
+      "n/a",
+      "n/a",
+      "n/a",
+      "Game play/embed rows",
+    ],
+  ];
+  const nextActions = Array.isArray(report?.nextActions) ? report.nextActions.slice(0, 5) : [
+    "Refresh live project metrics from /api/ops-metrics.",
+    "Route sponsor clicks into the USD 49 starter review path.",
+    "Keep revenue uncounted until a signed sponsor agreement, settled payment, or platform balance exists.",
+  ];
+  return `
+      <section class="shell dashboard ops-monitor">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">internal noindex route</p>
+            <h1>Project operations monitor</h1>
+            <p>Project-level traffic, source, path, tool, game, sponsor, and monetization signals for the active money projects. This route is intentionally not linked from the public site.</p>
+          </div>
+          <div class="actions">
+            <a class="button secondary" href="/api/ops-metrics" target="_blank" rel="noreferrer">Open JSON</a>
+            <a class="button" href="${escapeHtml(starterReviewUrl)}">Open invoice review form</a>
+          </div>
+        </div>
+        <div class="notice compact-notice">
+          <strong>Runtime refresh:</strong> the app replaces this snapshot with live project rows from /api/ops-metrics after loading. Snapshot generated: ${escapeHtml(generatedAt)}.
+        </div>
+        <div class="metric-grid ops-summary-grid">
+          ${opsMetricTile(totals.page_view || 0, "all page views")}
+          ${opsMetricTile(todayTotals.page_view || 0, "today views")}
+          ${opsMetricTile(totalDownloads, "tool downloads")}
+          ${opsMetricTile(totalGenerations, "tool generations")}
+          ${opsMetricTile(commercialIntent, "commercial intent")}
+          ${opsMetricTile(sponsorLeads, "sponsor leads")}
+          ${opsMetricTile(sponsorInvoiceRequests, "invoice requests")}
+          ${opsMetricTile(`${sponsorOutreach.queued || 0}/${sponsorOutreach.sent || 0}/${sponsorOutreach.settled || 0}`, "outreach queued/sent/settled")}
+        </div>
+        <div id="opsMetrics" class="metric-remote">
+          <section class="panel ops-sponsor-sprint">
+            <div class="ops-project-head">
+              <div>
+                <p class="eyebrow">revenue sprint</p>
+                <h2>Sponsor close cockpit</h2>
+                <p>${escapeHtml(opsSponsorSnapshotAction(sponsorLeads, totals.sponsor_request_intent || 0, totals.page_view || 0, totalDownloads, sponsorInvoiceRequests))}</p>
+              </div>
+              <a class="button" href="${escapeHtml(starterReviewUrl)}">Open invoice review form</a>
+            </div>
+            <div class="metric-grid compact ops-project-grid">
+              ${opsMetricTile(totals.sponsor_request_intent || 0, "sponsor intent")}
+              ${opsMetricTile(sponsorLeads, "sponsor leads")}
+              ${opsMetricTile(sponsorInvoiceRequests, "invoice requests")}
+              ${opsMetricTile(SPONSOR_DEALS.find((deal) => deal.id === DEFAULT_SPONSOR_DEAL_ID)?.price || "USD 49", "starter review")}
+            </div>
+          </section>
+          <section class="panel ops-project">
+            <div class="ops-project-head">
+              <div>
+                <p class="eyebrow">project traffic</p>
+                <h2>Project detail rows</h2>
+                <p>Live mode expands this into per-project sources, paths, tools, games, and next actions.</p>
+              </div>
+              <button class="button" id="refreshOpsMetrics" type="button">Refresh</button>
+            </div>
+            ${opsStaticTable(["Project", "Goal", "Views", "Today", "Downloads", "Sponsor leads", "Invoice requests", "Intent"], projectRows)}
+          </section>
+          <section class="panel">
+            <h2>Source breakdown</h2>
+            ${opsStaticTable(["Source", "Views", "Downloads", "Depth", "Sponsor intent"], sourceRows.map((row) => [
+              row.source,
+              row.page_view || 0,
+              (row.download_pdf || 0) + (row.download_file || 0),
+              (row.free_tool_depth || 0) + (row.guide_depth || 0),
+              row.sponsor_request_intent || 0,
+            ]))}
+          </section>
+          <section class="panel">
+            <h2>Tool and game signal snapshot</h2>
+            ${opsStaticTable(["Tool or game", "Downloads", "Generations", "Depth", "Sponsor intent"], toolRows.map((row) => [
+              row.tool,
+              (row.download_pdf || 0) + (row.download_file || 0),
+              (row.generate_pdf || 0) + (row.generate_file || 0),
+              (row.free_tool_depth || 0) + (row.guide_depth || 0),
+              row.sponsor_request_intent || 0,
+            ]))}
+          </section>
+          <section class="panel">
+            <h2>Path breakdown</h2>
+            <p class="help">Path-level rows refresh from /api/ops-metrics in the live app. Monitored examples include /, /free-pdf-tools/, /sponsor/, /sponsor-call/, /tools/invoice-generator/, /play.html, /embed.html, and game pages.</p>
+          </section>
+          <section class="panel">
+            <h2>Operating actions</h2>
+            <ul class="ops-action-summary">${nextActions.map((action) => `<li>${escapeHtml(action)}</li>`).join("")}</ul>
+          </section>
+        </div>
+        <p class="help">Revenue is still counted only after a platform balance, sponsor agreement, or settled payment is verified. Views and clicks are operating signals, not money.</p>
+      </section>`;
+}
+
+function readOpsValidationSnapshot() {
+  const reportPath = path.join(__dirname, "..", "reports", "validation-report.json");
+  try {
+    return JSON.parse(fs.readFileSync(reportPath, "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+function opsMetricTile(value, label) {
+  return `<div class="metric-tile"><strong>${escapeHtml(value)}</strong><span>${escapeHtml(label)}</span></div>`;
+}
+
+function opsStaticTable(headers, rows) {
+  const body = rows.length
+    ? rows.map((row) => `<tr>${row.map((cell) => `<td>${escapeHtml(cell)}</td>`).join("")}</tr>`).join("\n")
+    : `<tr><td colspan="${headers.length}">No signal yet.</td></tr>`;
+  return `<div class="preview-stage compact-table"><table class="event-table"><thead><tr>${headers.map((header) => `<th>${escapeHtml(header)}</th>`).join("")}</tr></thead><tbody>${body}</tbody></table></div>`;
+}
+
+function opsActiveRows(rows, scoreFn) {
+  return (Array.isArray(rows) ? rows : [])
+    .filter((row) => scoreFn(row) > 0)
+    .sort((a, b) => scoreFn(b) - scoreFn(a) || String(a.tool || a.source || "").localeCompare(String(b.tool || b.source || "")));
+}
+
+function opsSourceScore(row) {
+  return (row.page_view || 0)
+    + ((row.download_pdf || 0) + (row.download_file || 0)) * 4
+    + ((row.free_tool_depth || 0) + (row.guide_depth || 0)) * 3
+    + (row.sponsor_request_intent || 0) * 5;
+}
+
+function opsToolScore(row) {
+  return ((row.download_pdf || 0) + (row.download_file || 0)) * 4
+    + ((row.generate_pdf || 0) + (row.generate_file || 0)) * 2
+    + ((row.free_tool_depth || 0) + (row.guide_depth || 0)) * 3
+    + (row.sponsor_request_intent || 0) * 5;
+}
+
+function opsCommercialIntent(totals) {
+  return (totals.seller_checkout_intent || 0)
+    + (totals.seller_checkout_click || 0)
+    + (totals.service_request_intent || 0)
+    + (totals.audit_request_intent || 0)
+    + (totals.sponsor_request_intent || 0)
+    + (totals.sponsor_lead_submit || 0)
+    + (totals.sponsor_invoice_request || 0);
+}
+
+function opsSponsorSnapshotAction(sponsorLeads, sponsorIntent, pageViews, downloads, sponsorInvoiceRequests) {
+  if (sponsorInvoiceRequests > 0) return "Invoice request present: export the private lead, verify policy fit, and send only an external invoice or agreement.";
+  if (sponsorLeads > 0) return "Sponsor lead present: review fit, reply with the selected deal, and keep unsafe categories out.";
+  if (sponsorIntent > 0) return "Sponsor clicks exist without lead capture; send the starter review proposal to the highest-fit sponsor prospects.";
+  if (downloads > 0 || pageViews >= 50) return "Traffic exists; push one sponsor vertical tied to the warmest PDF, QR, resume, or paperwork path.";
+  return "Keep distribution active and watch for the first download, sponsor intent, game play, or search signal.";
+}
 
 function renderRoute(route) {
   return {
