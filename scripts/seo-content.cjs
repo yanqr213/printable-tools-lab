@@ -5823,6 +5823,8 @@ function opsMonitorStaticHtml() {
   const generatedAt = report?.generatedAt || "No validation snapshot yet";
   const sponsorOutreach = report?.local?.sponsorOutreach || {};
   const publicReplies = report?.local?.sponsorPublicReplies || {};
+  const outreachLog = readPublicJsonReport("sponsor-outreach-log.json", { rows: [] });
+  const nextSubmissionRows = opsSponsorNextSubmissionRows(outreachLog.rows || []);
   const starterReviewUrl = "/sponsor-starter-review/?utm_source=ops&utm_medium=internal&utm_campaign=sponsor_close&utm_content=static-ops&commitment=request-invoice#sponsor-inquiry";
   const defaultDeal = SPONSOR_DEALS.find((deal) => deal.id === DEFAULT_SPONSOR_DEAL_ID) || SPONSOR_DEALS[0];
   const defaultVertical = SPONSOR_VERTICALS[0];
@@ -5911,6 +5913,7 @@ function opsMonitorStaticHtml() {
               ${opsMetricTile(SPONSOR_DEALS.find((deal) => deal.id === DEFAULT_SPONSOR_DEAL_ID)?.price || "USD 49", "starter review")}
             </div>
 ${opsPublicReplySnapshotHtml(publicReplies)}
+${opsSponsorNextSubmissionHtml(nextSubmissionRows)}
           </section>
           <section class="panel ops-project">
             <div class="ops-project-head">
@@ -5964,6 +5967,66 @@ function opsPublicReplySnapshotHtml(publicReplies) {
               <p>${escapeHtml(publicReplies?.publicReplyCount || 0)} public GitHub sponsor reply issue(s), ${escapeHtml(publicReplies?.invoiceRequestCount || 0)} public invoice request issue(s), ${escapeHtml(publicReplies?.readyForReviewCount || 0)} ready for manual review. Quality ${escapeHtml(publicReplies?.dataQuality || "missing")}.</p>
               <p><a href="${escapeHtml(sourceUrl)}" target="_blank" rel="noreferrer">Open public evidence search</a></p>${warning}
             </div>`;
+}
+
+function opsSponsorNextSubmissionRows(rows) {
+  return (Array.isArray(rows) ? rows : [])
+    .filter((row) => row.status === "queued")
+    .sort((a, b) => opsSubmissionScore(b) - opsSubmissionScore(a) || Number(a.priority || 999) - Number(b.priority || 999))
+    .slice(0, 5);
+}
+
+function opsSubmissionScore(row) {
+  let score = Number(row.contactRouteScore || 0);
+  if (row.contactRouteStatus === "ready") score += 50;
+  else if (row.contactRouteStatus === "review") score += 20;
+  else if (row.contactRouteStatus === "blocked") score -= 30;
+  if (row.mailtoUrl) score += 25;
+  if (row.publicReplyAvailable) score += 8;
+  if (row.requiresAuthorizedSender) score -= 25;
+  return score;
+}
+
+function opsSponsorNextSubmissionHtml(rows) {
+  if (!rows.length) {
+    return `            <div class="notice sponsor-lead-check">
+              <strong>Next sponsor submissions</strong>
+              <p>No queued sponsor submission rows are available. Regenerate reports with npm run sponsor:outreach-log.</p>
+            </div>`;
+  }
+  return `            <div class="ops-submission-queue">
+              <h3>Next sponsor submissions</h3>
+              <p class="help">Use only with a truthful sender identity. Mark sent only after a real public form submission or legitimate email send with evidence.</p>
+              <div class="ops-action-list">
+                ${rows.map(opsSponsorSubmissionCardHtml).join("\n")}
+              </div>
+            </div>`;
+}
+
+function opsSponsorSubmissionCardHtml(row) {
+  const firstAction = row.copyFirstAction || (row.mailtoUrl ? "Open email draft" : row.requiresAuthorizedSender ? "Prepare only" : "Open contact route");
+  const blockerText = row.requiresAuthorizedSender ? `Sender required: ${(row.contactRouteSubmissionBlockers || []).join("; ") || "authorized sender fields"}` : "No required sender blocker detected by probe.";
+  const message = row.contactFormMessage || row.body || "";
+  const buttons = [
+    `<a class="button secondary" href="${escapeHtml(row.bestContactUrl || row.contactUrl || "#")}" target="_blank" rel="noreferrer">Open route</a>`,
+    row.mailtoUrl ? `<a class="button" href="${escapeHtml(row.mailtoUrl)}">Open email draft</a>` : "",
+    `<a class="button secondary" href="${escapeHtml(row.contactFormProposalUrl || row.proposalUrl || "#")}" target="_blank" rel="noreferrer">Short proposal</a>`,
+    `<a class="button ghost" href="${escapeHtml(row.invoiceReviewUrl || "#")}" target="_blank" rel="noreferrer">Invoice URL</a>`,
+    row.publicReplyUrl ? `<a class="button ghost" href="${escapeHtml(row.publicReplyUrl)}" target="_blank" rel="noreferrer">Public reply</a>` : "",
+    `<button class="button ghost" type="button" data-copy-text="${escapeHtml(message)}">Copy message</button>`,
+  ].filter(Boolean).join("\n                    ");
+  return `<article class="ops-action-card sponsor-submission-card">
+                  <div>
+                    <p class="eyebrow">${escapeHtml(row.contactRouteStatus || "queued")} / ${escapeHtml(firstAction)}</p>
+                    <h4>${escapeHtml(row.name || "Sponsor prospect")}</h4>
+                    <p><strong>${escapeHtml(row.suggestedDealTitle || "Sponsor pilot")}</strong> ${escapeHtml(row.suggestedDealPrice || "")}</p>
+                    <p>${escapeHtml(blockerText)}</p>
+                    <p class="help">${escapeHtml(row.nextAction || "")}</p>
+                  </div>
+                  <div class="ops-action-buttons">
+                    ${buttons}
+                  </div>
+                </article>`;
 }
 
 function readOpsValidationSnapshot() {

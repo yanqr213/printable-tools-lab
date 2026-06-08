@@ -66,6 +66,7 @@ function normalizeLogRow(prospect, existing = {}, probe = {}) {
   const bestContactUrl = probe.bestContactUrl || existing.bestContactUrl || prospect.contactUrl;
   const contactRouteScore = Number.isFinite(Number(probe.score)) ? Number(probe.score) : Number(existing.contactRouteScore || 0);
   const contactRouteEvidence = Array.isArray(probe.evidence) ? probe.evidence : existing.contactRouteEvidence || [];
+  const publicEmails = publicEmailsFromEvidence(contactRouteEvidence);
   const contactRouteBlockers = Array.isArray(probe.blockers) ? probe.blockers : existing.contactRouteBlockers || [];
   const contactRouteRequiredFields = Array.isArray(probe.requiredFields) ? probe.requiredFields : existing.contactRouteRequiredFields || [];
   const contactRoutePublicSafeFields = Array.isArray(probe.publicSafeFields) ? probe.publicSafeFields : existing.contactRoutePublicSafeFields || [];
@@ -88,6 +89,17 @@ function normalizeLogRow(prospect, existing = {}, probe = {}) {
     : publicReplyAvailable
       ? "Open bestContactUrl or contactUrl, submit contactFormMessage only after confirming the route allows a public-safe partner note, and include proposalUrl plus publicReplyUrl."
       : "Open bestContactUrl or contactUrl only if a legitimate reply email or public-safe contact route is available, then record timestamp and evidence.";
+  const subject = prospect.subject || `${prospect.suggestedDealTitle || "Sponsor pilot"} for ${prospect.name}`;
+  const contactFormMessage = prospect.contactFormMessage || "";
+  const body = prospect.body || contactFormMessage;
+  const mailtoUrl = publicEmails.length ? mailtoDraft(publicEmails[0], subject, body) : "";
+  const copyFirstAction = mailtoUrl
+    ? "Open email draft"
+    : requiresAuthorizedSender
+      ? "Prepare only"
+      : contactRouteStatus === "blocked"
+        ? "Skip for now"
+        : "Open contact route";
   return {
     priority: prospect.priority || "",
     id: prospect.id,
@@ -98,6 +110,9 @@ function normalizeLogRow(prospect, existing = {}, probe = {}) {
     contactRouteStatus,
     contactRouteScore,
     contactRouteEvidence,
+    publicEmails,
+    mailtoUrl,
+    copyFirstAction,
     contactRouteBlockers,
     contactRouteRequiredFields,
     contactRoutePublicSafeFields,
@@ -114,7 +129,7 @@ function normalizeLogRow(prospect, existing = {}, probe = {}) {
     publicReplyUrl: prospect.publicReplyUrl || "",
     verticalTrackedUrl: prospect.verticalTrackedUrl || "",
     trackedUrl: prospect.trackedUrl,
-    subject: prospect.subject,
+    subject,
     status: existing.status || "queued",
     needsReplyEmail: existing.needsReplyEmail !== undefined ? Boolean(existing.needsReplyEmail) : true,
     publicReplyAvailable,
@@ -126,13 +141,13 @@ function normalizeLogRow(prospect, existing = {}, probe = {}) {
     evidenceNote: existingEvidenceNote && !(publicReplyAvailable && staleReplyEmailBlocker.test(existingEvidenceNote)) && !(requiresAuthorizedSender && staleAuthorizedSenderEvidence.test(existingEvidenceNote)) ? existingEvidenceNote : defaultEvidenceNote,
     nextAction: existingNextAction && !(publicReplyAvailable && staleReplyEmailBlocker.test(existingNextAction)) && !(contactRouteStatus !== "unknown" && staleContactRouteAction.test(existingNextAction)) ? existingNextAction : defaultNextAction,
     successSignal: prospect.successSignal || "qualified sponsor inquiry, signed agreement, or settled external payment",
-    contactFormMessage: prospect.contactFormMessage || "",
-    body: prospect.body,
+    contactFormMessage,
+    body,
   };
 }
 
 function toCsv(rows) {
-  const headers = ["priority", "id", "name", "vertical", "contactUrl", "bestContactUrl", "contactRouteStatus", "contactRouteScore", "contactRouteEvidence", "contactRouteBlockers", "contactRouteRequiredFields", "contactRoutePublicSafeFields", "contactRouteSubmissionBlockers", "requiresAuthorizedSender", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "validationSignal", "invoiceReviewUrl", "proposalUrl", "contactFormProposalUrl", "dealRoomUrl", "publicReplyUrl", "verticalTrackedUrl", "trackedUrl", "status", "needsReplyEmail", "publicReplyAvailable", "submittedAt", "replyAt", "qualifiedAt", "settledAt", "evidenceUrl", "evidenceNote", "nextAction", "contactFormMessage"];
+  const headers = ["priority", "id", "name", "vertical", "contactUrl", "bestContactUrl", "contactRouteStatus", "contactRouteScore", "contactRouteEvidence", "publicEmails", "mailtoUrl", "copyFirstAction", "contactRouteBlockers", "contactRouteRequiredFields", "contactRoutePublicSafeFields", "contactRouteSubmissionBlockers", "requiresAuthorizedSender", "suggestedDealId", "suggestedDealTitle", "suggestedDealPrice", "validationSignal", "invoiceReviewUrl", "proposalUrl", "contactFormProposalUrl", "dealRoomUrl", "publicReplyUrl", "verticalTrackedUrl", "trackedUrl", "status", "needsReplyEmail", "publicReplyAvailable", "submittedAt", "replyAt", "qualifiedAt", "settledAt", "evidenceUrl", "evidenceNote", "nextAction", "contactFormMessage"];
   return [
     headers,
     ...rows.map((row) => headers.map((header) => Array.isArray(row[header]) ? row[header].join("; ") : row[header] || "")),
@@ -158,6 +173,8 @@ function nextBatchMarkdown(rows) {
       `- Best contact route: ${row.bestContactUrl}`,
       `- Contact route status: ${row.contactRouteStatus} (${row.contactRouteScore})`,
       `- Contact route evidence: ${row.contactRouteEvidence.join("; ") || "none"}`,
+      `- Public email draft: ${row.mailtoUrl || "not available"}`,
+      `- First action: ${row.copyFirstAction}`,
       `- Contact route blockers: ${row.contactRouteBlockers.join("; ") || "none"}`,
       `- Required fields: ${row.contactRouteRequiredFields.join("; ") || "none"}`,
       `- Public-safe fields: ${row.contactRoutePublicSafeFields.join("; ") || "none"}`,
@@ -204,6 +221,26 @@ function outreachPriorityScore(row) {
   if (row.requiresAuthorizedSender) score -= 25;
   if (row.publicReplyAvailable) score += 8;
   return score;
+}
+
+function publicEmailsFromEvidence(evidence) {
+  const emails = [];
+  for (const item of Array.isArray(evidence) ? evidence : []) {
+    const match = String(item || "").match(/public email visible:\s*(.+)$/i);
+    if (!match) continue;
+    match[1].split(/,\s*/).forEach((email) => {
+      const clean = email.trim().toLowerCase();
+      if (/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(clean) && !emails.includes(clean)) emails.push(clean);
+    });
+  }
+  return emails;
+}
+
+function mailtoDraft(email, subject, body) {
+  const params = new URLSearchParams();
+  params.set("subject", subject || "PrintableTools Lab sponsor pilot");
+  params.set("body", body || "");
+  return `mailto:${email}?${params.toString()}`;
 }
 
 function readJson(file, fallback) {

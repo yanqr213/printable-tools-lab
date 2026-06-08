@@ -250,6 +250,7 @@ for (const routePath of ["dashboard", "ops"]) {
   if (routePath === "ops" && (!html.includes("/sponsor-starter-review/?utm_source=ops") || !html.includes("Open invoice review form"))) failures.push("Ops monitor should route sponsor close work to the invoice review form.");
   if (routePath === "ops" && (!html.includes("/api/ops-metrics") || !html.includes("Project detail rows") || !html.includes("Source breakdown") || !html.includes("Tool and game signal snapshot") || !html.includes("Path breakdown"))) failures.push("Ops monitor should render detailed project traffic sections and live metrics access.");
   if (routePath === "ops" && (!html.includes("Public-safe sponsor reply evidence") || !html.includes("public invoice issues"))) failures.push("Ops monitor should surface public-safe sponsor reply evidence.");
+  if (routePath === "ops" && (!html.includes("Next sponsor submissions") || !html.includes("Open email draft") || !html.includes("Copy message"))) failures.push("Ops monitor should expose an internal next sponsor submission queue.");
 }
 
 const headersFile = path.join(root, "_headers");
@@ -437,6 +438,7 @@ else {
   if (!script.includes("sponsorSprintHtml({ totals: {}, projects: [] }, null, null)")) failures.push("app.js ops monitor should keep sponsor close actions visible when live metrics fail.");
   if (!script.includes("loadSponsorLeadCheck") || !script.includes("Sponsor lead index check") || !script.includes("/api/sponsor-lead")) failures.push("app.js ops monitor should independently check sponsor lead index totals.");
   if (!script.includes("loadSponsorPublicReplies") || !script.includes("Public-safe sponsor reply evidence") || !script.includes("/api/sponsor-public-replies")) failures.push("app.js ops monitor should independently check public sponsor reply evidence.");
+  if (!script.includes("sponsorOpsSubmissionQueue") || !script.includes("Next sponsor submissions") || !script.includes("sponsorMailtoDraft")) failures.push("app.js ops monitor should expose internal sponsor submission execution cards.");
   if (!script.includes("renderSponsorProposalPage") || !script.includes("sponsorProspectProposalUrl") || !script.includes("sponsor_proposal")) failures.push("app.js missing direct sponsor proposal funnel.");
   if (!script.includes("sponsorExternalDiscoveryProofLine") || !script.includes("Public discovery proof") || !script.includes("External discovery proof")) failures.push("app.js sponsor proposal should show public external discovery proof.");
   if (!script.includes("applySponsorProspectPrefill") || !script.includes("sponsorProspectQuickNotes") || !script.includes("sponsorProspectValidation")) failures.push("app.js sponsor proposal should prefill prospect-aware invoice review forms.");
@@ -515,6 +517,7 @@ else {
   if (!logScript.includes("sponsor-contact-route-probe.json") || !logScript.includes("bestContactUrl") || !logScript.includes("contactRouteStatus") || !logScript.includes("contactRouteReady")) failures.push("Sponsor outreach log script missing contact-probe prioritization fields.");
   if (!logScript.includes("requiresAuthorizedSender") || !logScript.includes("contactRouteSubmissionBlockers")) failures.push("Sponsor outreach log script missing authorized-sender submission blockers.");
   if (!logScript.includes("validationSignal")) failures.push("Sponsor outreach log should preserve current validation signals for submission batches.");
+  if (!logScript.includes("publicEmails") || !logScript.includes("mailtoDraft") || !logScript.includes("copyFirstAction")) failures.push("Sponsor outreach log should generate execution-ready contact actions.");
 }
 if (!fs.existsSync(sponsorContactProbeScriptFile)) failures.push("Missing sponsor contact route probe script.");
 else {

@@ -5265,6 +5265,69 @@
     ],
   };
 
+  const sponsorOpsSubmissionQueue = [
+    {
+      name: "Cloudmersive",
+      category: "Document conversion API",
+      contactRouteStatus: "ready",
+      firstAction: "Prepare only",
+      bestContactUrl: "https://portal.cloudmersive.com/partnerships",
+      publicEmail: "",
+      prospectId: "cloudmersive-document-api",
+      dealId: "starter-fit-review",
+      vertical: "pdf-image-qr-saas",
+      note: "Route is ready but requires real email, name, phone, and consent checkbox.",
+    },
+    {
+      name: "QRCodeChimp",
+      category: "QR code marketing",
+      contactRouteStatus: "review",
+      firstAction: "Open email draft",
+      bestContactUrl: "https://www.qrcodechimp.com/contact",
+      publicEmail: "support@qrcodechimp.com",
+      prospectId: "qrcodechimp-qr-marketing",
+      dealId: "guide-sponsor-pilot",
+      vertical: "local-marketing-qr-sponsors",
+      note: "Public email visible; confirm sponsorship or partnership relevance before sending.",
+    },
+    {
+      name: "Invoice Ninja",
+      category: "Invoicing software",
+      contactRouteStatus: "review",
+      firstAction: "Open email draft",
+      bestContactUrl: "https://www.invoiceninja.com/contact/",
+      publicEmail: "contact@invoiceninja.com",
+      prospectId: "invoice-ninja-small-business",
+      dealId: "vertical-category-pilot",
+      vertical: "small-business-paperwork-sponsors",
+      note: "Warmest business-paperwork fit; use truthful sender identity and record evidence if sent.",
+    },
+    {
+      name: "Education.com",
+      category: "Worksheets and learning resources",
+      contactRouteStatus: "review",
+      firstAction: "Open email draft",
+      bestContactUrl: "https://www.education.com/support/contact/",
+      publicEmail: "support@education.com",
+      prospectId: "educationcom-worksheets",
+      dealId: "vertical-category-pilot",
+      vertical: "classroom-printable-sponsors",
+      note: "Public email visible, but the route asks for real sender details; send only from a truthful authorized sender.",
+    },
+    {
+      name: "Zoho Invoice",
+      category: "Small-business invoicing",
+      contactRouteStatus: "review",
+      firstAction: "Open contact route",
+      bestContactUrl: "https://www.zoho.com/partners",
+      publicEmail: "",
+      prospectId: "zoho-invoice-small-business",
+      dealId: "guide-sponsor-pilot",
+      vertical: "small-business-paperwork-sponsors",
+      note: "Partner route discovered; use public-safe form message only after confirming route fit.",
+    },
+  ];
+
   function sponsorExternalDiscoveryProofLine() {
     const listedCount = sponsorExternalDiscoveryProof.directoryListedCount || sponsorExternalDiscoveryProof.listedDirectories.length;
     const pendingCount = sponsorExternalDiscoveryProof.directoryPendingCount || 0;
@@ -8274,6 +8337,7 @@ ${paragraphs.join("\n")}
             </div>
           </section>
         </div>
+        ${sponsorOpsSubmissionQueueHtml()}
       </section>
     `;
   }
@@ -8377,6 +8441,60 @@ ${paragraphs.join("\n")}
         </div>
       </article>
     `;
+  }
+
+  function sponsorOpsSubmissionQueueHtml() {
+    return `
+      <div class="ops-submission-queue">
+        <h3>Next sponsor submissions</h3>
+        <p class="help">Use only with a truthful sender identity. Mark sent only after a real public form submission or legitimate email send with evidence.</p>
+        <div class="ops-action-list">
+          ${sponsorOpsSubmissionQueue.map(sponsorOpsSubmissionCard).join("")}
+        </div>
+      </div>`;
+  }
+
+  function sponsorOpsSubmissionCard(row) {
+    const prospect = sponsorProspects.find((item) => item.id === row.prospectId) || {
+      id: row.prospectId,
+      name: row.name,
+      category: row.category,
+      website: "",
+      contactUrl: row.bestContactUrl,
+      fitReason: row.note,
+      vertical: row.vertical,
+      dealId: row.dealId,
+    };
+    const vertical = sponsorVerticals.find((item) => item.slug === row.vertical) || sponsorVerticals[0];
+    const deal = sponsorDeals.find((item) => item.id === row.dealId) || sponsorDeals[1] || sponsorDeals[0];
+    const proposalUrl = sponsorProspectProposalUrl(prospect, deal, vertical);
+    const publicReplyUrl = sponsorPublicReplyUrl(prospect, deal, vertical, proposalUrl);
+    const pitch = sponsorProspectPitch(prospect, deal, vertical, proposalUrl);
+    const mailtoUrl = row.publicEmail ? sponsorMailtoDraft(row.publicEmail, `${deal.title} for ${vertical.title}`, pitch) : "";
+    return `
+      <article class="ops-action-card sponsor-submission-card">
+        <div>
+          <p class="eyebrow">${escapeHtml(row.contactRouteStatus)} / ${escapeHtml(row.firstAction)}</p>
+          <h4>${escapeHtml(row.name)}</h4>
+          <p><strong>${escapeHtml(deal.title)}:</strong> ${escapeHtml(deal.price)} · ${escapeHtml(row.category)}</p>
+          <p class="help">${escapeHtml(row.note)}</p>
+        </div>
+        <div class="ops-action-buttons">
+          <a class="button secondary" href="${escapeHtml(row.bestContactUrl)}" target="_blank" rel="noreferrer">Open route</a>
+          ${mailtoUrl ? `<a class="button" href="${escapeHtml(mailtoUrl)}">Open email draft</a>` : ""}
+          <a class="button secondary" href="${escapeHtml(proposalUrl)}" target="_blank" rel="noreferrer">Short proposal</a>
+          <a class="button ghost" href="${escapeHtml(sponsorVerticalInvoiceReviewUrl(vertical, row.prospectId))}" target="_blank" rel="noreferrer">Invoice URL</a>
+          <a class="button ghost" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Public reply</a>
+          <button class="button ghost" type="button" data-copy-text="${escapeHtml(pitch)}">Copy message</button>
+        </div>
+      </article>`;
+  }
+
+  function sponsorMailtoDraft(email, subject, body) {
+    const params = new URLSearchParams();
+    params.set("subject", subject || "PrintableTools Lab sponsor pilot");
+    params.set("body", body || "");
+    return `mailto:${email}?${params.toString()}`;
   }
 
   function sponsorProspectFromParams(params) {
