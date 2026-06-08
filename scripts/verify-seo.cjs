@@ -429,6 +429,8 @@ else {
   if (!script.includes("/custom-local-print-pack/?utm_source=download_success") || !script.includes("/market-table-print-audit/?utm_source=download_success")) failures.push("Missing download success service/audit tracked paths.");
   if (!script.includes('data-track-event="service_request_intent"') || !script.includes('data-track-event="audit_request_intent"')) failures.push("Missing download success service/audit intent tracking.");
   if (!script.includes("Payment starts only after fit is confirmed and a real external checkout or invoice is paid")) failures.push("Missing download success external-payment gate.");
+  if (!script.includes("renderDownloadServiceLeadForm") || !script.includes("download-service-lead-form") || !script.includes("Send $29 setup request")) failures.push("Missing inline service lead form after download success.");
+  if (!script.includes('data-utm-source="download_success"') || !script.includes("form.dataset.leadPath") || !script.includes("fieldOrDataOrParam")) failures.push("Download success service lead form missing attribution preservation.");
   if (!script.includes("Future ads must stay separated from generator controls")) failures.push("Missing download success ad-safety warning.");
   if (!script.includes("renderInvoiceSponsorCloseCta") || !script.includes("invoice-sponsor-close-cta") || !script.includes("utm_source=download_success") || !script.includes("small-business-paperwork-sponsors")) failures.push("app.js missing invoice-specific sponsor close CTA on tool/download success.");
   if (!script.includes("utmCampaign") || !script.includes("vertical")) failures.push("app.js missing sponsor attribution fields.");

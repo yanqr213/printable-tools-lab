@@ -7882,6 +7882,7 @@ ${paragraphs.join("\n")}
           <strong>Want this turned into a local print pack?</strong>
           <p class="help">Request the $29 Custom Local Print Pack Setup, or start with a free Market Table Print Audit. Payment starts only after fit is confirmed and a real external checkout or invoice is paid.</p>
         </div>
+        ${renderDownloadServiceLeadForm(tool)}
         <div class="download-after-actions">
           <a class="button" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="${escapeHtml(serviceHref)}">Request $29 setup</a>
           <a class="button secondary" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${escapeHtml(auditHref)}">Free print audit first</a>
@@ -7891,6 +7892,49 @@ ${paragraphs.join("\n")}
         </div>
         <p class="help">Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
       </div>
+    `;
+  }
+
+  function renderDownloadServiceLeadForm(tool) {
+    if (!tool || !LOCAL_SELLER_FUNNEL_TOOL_IDS.has(tool.id)) return "";
+    const toolId = tool.id || "download";
+    const sourcePath = `/tools/${toolId}/`;
+    const fallbackUrl = serviceLeadFallbackUrl({
+      serviceType: "custom-local-print-pack",
+      businessName: "",
+      contact: "",
+      needBy: "",
+      requestSummary: `I just downloaded ${tool.shortTitle || tool.title || toolId} and want a quick $29 local print pack review.`,
+      path: sourcePath,
+    });
+    return `
+      <form class="download-service-lead-form" data-service-lead-form data-service-type="custom-local-print-pack" data-lead-path="${escapeHtml(sourcePath)}" data-utm-source="download_success" data-utm-medium="site" data-utm-campaign="service_request" data-utm-content="${escapeHtml(toolId)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+        <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="serviceType" value="custom-local-print-pack">
+        <input type="hidden" name="businessName" value="Downloaded ${escapeHtml(tool.shortTitle || tool.title || toolId)}">
+        <input type="hidden" name="needBy" value="">
+        <input type="hidden" name="utmSource" value="download_success">
+        <input type="hidden" name="utmMedium" value="site">
+        <input type="hidden" name="utmCampaign" value="service_request">
+        <input type="hidden" name="utmContent" value="${escapeHtml(toolId)}">
+        <label class="field">
+          <span>Reply email or public contact</span>
+          <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or @publichandle" required>
+        </label>
+        <label class="field">
+          <span>What should be assembled?</span>
+          <textarea name="requestSummary" maxlength="1000" required>I just downloaded ${escapeHtml(tool.shortTitle || tool.title || toolId)} and want a quick $29 local print pack review.</textarea>
+        </label>
+        <label class="check-row">
+          <input name="consent" type="checkbox" required>
+          <span>I will keep payment, tax, identity, passwords, customer lists, and private files outside this request.</span>
+        </label>
+        <div class="actions">
+          <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Send $29 setup request</button>
+          <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open GitHub backup</a>
+        </div>
+        <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send a public-safe request here. Payment still happens only through a real external checkout or invoice after fit is confirmed.</p>
+      </form>
     `;
   }
 
@@ -7911,6 +7955,7 @@ ${paragraphs.join("\n")}
       </div>
       ${renderAdUnit("tool", "download-complete area, clearly separated from the PDF action")}
     `;
+    initServiceLeadForms(target);
     setTimeout(pushVisibleAds, 0);
   }
 
@@ -13799,16 +13844,17 @@ ${paragraphs.join("\n")}
   function serviceLeadPayload(form) {
     const values = getFormValues(form);
     const params = new URLSearchParams(window.location.search || "");
+    const fieldOrDataOrParam = (field, data, param) => values[field] || form.dataset[data] || params.get(param) || "";
     return {
       ...values,
       serviceType: values.serviceType || form.dataset.serviceType || "custom-local-print-pack",
       consent: Boolean(form.querySelector("input[name='consent']")?.checked),
-      path: getCurrentRoutePath(),
+      path: values.path || form.dataset.leadPath || getCurrentRoutePath(),
       source: getTrafficSource(),
-      utmSource: params.get("utm_source") || "",
-      utmMedium: params.get("utm_medium") || "",
-      utmCampaign: params.get("utm_campaign") || "",
-      utmContent: params.get("utm_content") || "",
+      utmSource: fieldOrDataOrParam("utmSource", "utmSource", "utm_source"),
+      utmMedium: fieldOrDataOrParam("utmMedium", "utmMedium", "utm_medium"),
+      utmCampaign: fieldOrDataOrParam("utmCampaign", "utmCampaign", "utm_campaign"),
+      utmContent: fieldOrDataOrParam("utmContent", "utmContent", "utm_content"),
     };
   }
 
