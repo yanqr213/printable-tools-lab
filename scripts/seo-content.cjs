@@ -623,6 +623,29 @@ function serviceLeadFallbackUrl(serviceTypeOrOptions, pathName) {
   return url.toString();
 }
 
+function serviceInvoiceRequestUrl(serviceTypeOrOptions, pathName) {
+  const input = typeof serviceTypeOrOptions === "object" && serviceTypeOrOptions ? serviceTypeOrOptions : {};
+  const serviceType = input.serviceType || serviceTypeOrOptions;
+  const price = serviceType === "upload-limit-fix-plan"
+    ? "$9"
+    : serviceType === "invoice-followup-copy-pack"
+      ? "$19"
+      : serviceType === "custom-local-print-pack"
+        ? "$29"
+        : "";
+  return serviceLeadFallbackUrl({
+    ...input,
+    serviceType,
+    pathName: input.pathName || input.path || pathName,
+    requestSummary: [
+      input.requestSummary || "",
+      "",
+      `Requested next step: request external ${price} checkout or invoice link after fit is confirmed.`,
+      "Payment must happen only through a real external provider or invoice. This public issue must not include card, bank, payout, tax, identity, password, customer-list, private file, or private account data.",
+    ].filter(Boolean).join("\n").trim(),
+  });
+}
+
 function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, pathName, defaultSummary = "", utmSource = "landing-page", utmMedium = "site", utmCampaign, utmContent }) {
   const eventName = serviceLeadTrackEvent(serviceType);
   const tool = serviceLeadTrackTool(serviceType);
@@ -6775,6 +6798,11 @@ function invoiceFollowupInlineLeadFormHtml(options = {}) {
     pathName,
     requestSummary,
   });
+  const invoiceRequestUrl = serviceInvoiceRequestUrl({
+    serviceType: "invoice-followup-copy-pack",
+    pathName,
+    requestSummary,
+  });
   const requestSummaryField = compact
     ? `<input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}">`
     : `<label class="field">
@@ -6803,6 +6831,7 @@ function invoiceFollowupInlineLeadFormHtml(options = {}) {
           </label>
           <div class="actions">
             <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack">${escapeHtml(submitLabel)}</button>
+            <a class="button secondary" data-track-event="service_invoice_request" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Request $19 invoice link</a>
             <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
           </div>
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send this public-safe fit check. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
@@ -6824,6 +6853,11 @@ function uploadLimitFixPlanInlineLeadFormHtml(options = {}) {
   const compact = Boolean(options.compact);
   const requestSummary = options.requestSummary || uploadLimitFixPlanRequestSummary();
   const fallbackUrl = serviceLeadFallbackUrl({
+    serviceType: "upload-limit-fix-plan",
+    pathName,
+    requestSummary,
+  });
+  const invoiceRequestUrl = serviceInvoiceRequestUrl({
     serviceType: "upload-limit-fix-plan",
     pathName,
     requestSummary,
@@ -6860,6 +6894,7 @@ function uploadLimitFixPlanInlineLeadFormHtml(options = {}) {
           </label>
           <div class="actions">
             <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">${escapeHtml(submitLabel)}</button>
+            <a class="button secondary" data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Request $9 invoice link</a>
             <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
           </div>
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No file upload. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>

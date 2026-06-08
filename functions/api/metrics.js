@@ -1,6 +1,6 @@
-const EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "guide_depth", "limit_hit", "ai_ideas", "ai_ideas_apply", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_checkout_click", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request"];
-const SOURCE_EVENTS = ["page_view", "download_pdf", "download_file", "free_tool_depth", "guide_depth", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_checkout_click", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request"];
-const TOOL_EVENTS = ["generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "limit_hit", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_checkout_click", "service_request_intent", "audit_request_intent"];
+const EVENTS = ["page_view", "generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "guide_depth", "limit_hit", "ai_ideas", "ai_ideas_apply", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_checkout_click", "service_request_intent", "service_invoice_request", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request"];
+const SOURCE_EVENTS = ["page_view", "download_pdf", "download_file", "free_tool_depth", "guide_depth", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_checkout_click", "service_request_intent", "service_invoice_request", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request"];
+const TOOL_EVENTS = ["generate_pdf", "download_pdf", "generate_file", "download_file", "free_tool_depth", "limit_hit", "seller_sample_download", "seller_checkout_intent", "seller_checkout_click", "service_checkout_click", "service_request_intent", "service_invoice_request", "audit_request_intent"];
 const PRINTABLE_TOOL_EVENTS = [...TOOL_EVENTS, "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request"];
 const PRINTABLE_TOOLS = [
   "invoice-generator",
@@ -172,6 +172,7 @@ export async function onRequestGet({ env }) {
       + (totals.seller_checkout_click || 0)
       + (totals.service_checkout_click || 0)
       + (totals.service_request_intent || 0)
+      + (totals.service_invoice_request || 0)
       + (totals.audit_request_intent || 0)
       + (totals.sponsor_request_intent || 0)
       + (totals.sponsor_lead_submit || 0)

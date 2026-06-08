@@ -1,11 +1,11 @@
-const EVENTS = ["page_view", "download_pdf", "download_file", "generate_pdf", "generate_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "seller_checkout_click", "service_checkout_click", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request", "game_play_intent", "game_fullscreen_open", "game_embed_open"];
-const PRINTABLE_EVENTS = ["page_view", "download_pdf", "download_file", "generate_pdf", "generate_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "seller_checkout_click", "service_checkout_click", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request"];
-const PRINTABLE_SOURCE_EVENTS = ["page_view", "download_pdf", "download_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "seller_checkout_click", "service_checkout_click", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request"];
+const EVENTS = ["page_view", "download_pdf", "download_file", "generate_pdf", "generate_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "seller_checkout_click", "service_checkout_click", "service_request_intent", "service_invoice_request", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request", "game_play_intent", "game_fullscreen_open", "game_embed_open"];
+const PRINTABLE_EVENTS = ["page_view", "download_pdf", "download_file", "generate_pdf", "generate_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "seller_checkout_click", "service_checkout_click", "service_request_intent", "service_invoice_request", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request"];
+const PRINTABLE_SOURCE_EVENTS = ["page_view", "download_pdf", "download_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "seller_checkout_click", "service_checkout_click", "service_request_intent", "service_invoice_request", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request"];
 const GAME_EVENTS = ["page_view", "game_play_intent", "game_fullscreen_open", "game_embed_open"];
 const SOURCES = ["direct", "google", "bing", "github", "github-pages", "github-issue", "gist", "zearches", "listai", "techtools", "nosignuptools", "freenosignup", "nologin", "nosubscription", "share-kit", "download_success", "short-video", "game-platform", "sponsor-outreach", "directory", "community", "referral", "embed", "publisher", "platform-review"];
 const PRINTABLE_TOOLS = ["site", "sponsor", "compress-pdf", "compress-image", "compress-image-to-kb", "invoice-generator", "receipt-generator", "qr-code", "wifi-qr-code", "ats-resume-checker", "resume-builder", "pdf-to-word", "local-seller-starter-kit", "custom-local-print-pack", "invoice-followup-copy-pack", "upload-limit-fix-plan", "market-table-print-audit"];
 const GAME_TOOLS = ["pocket-arcade-shelf", "game-portal", "spell-sigil-duel", "ember-crypt-rogue", "turbo-diner-shift", "cascade-mini-golf", "prism-pinball-heist", "penalty-fever-arena", "pixel-potion-clicker", "skyhook-obby-rush", "orbital-bubble-forge", "crystal-current-match", "signal-rail-sprint", "starfall-salvage", "lumen-grove-keeper", "echo-archive-mystery", "neon-drift-outlaw", "verdant-gridworks", "void-glyph-cards", "shadow-vault-tactics", "rune-forge-atelier"];
-const PATH_EVENTS = ["page_view", "download_pdf", "download_file", "generate_pdf", "generate_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "seller_checkout_click", "service_checkout_click", "service_request_intent", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request", "game_play_intent", "game_fullscreen_open", "game_embed_open"];
+const PATH_EVENTS = ["page_view", "download_pdf", "download_file", "generate_pdf", "generate_file", "free_tool_depth", "guide_depth", "seller_checkout_intent", "seller_checkout_click", "service_checkout_click", "service_request_intent", "service_invoice_request", "audit_request_intent", "sponsor_request_intent", "sponsor_lead_submit", "sponsor_invoice_request", "game_play_intent", "game_fullscreen_open", "game_embed_open"];
 
 const PROJECTS = [
   {
@@ -159,6 +159,8 @@ function projectMetrics(project, today, combined) {
     todayCommercialIntent: commercialIntent(todayTotals),
     serviceRequestIntent: (totals.service_request_intent || 0) + (totals.seller_checkout_intent || 0),
     todayServiceRequestIntent: (todayTotals.service_request_intent || 0) + (todayTotals.seller_checkout_intent || 0),
+    serviceInvoiceRequests: totals.service_invoice_request || 0,
+    todayServiceInvoiceRequests: todayTotals.service_invoice_request || 0,
     auditRequestIntent: totals.audit_request_intent || 0,
     todayAuditRequestIntent: todayTotals.audit_request_intent || 0,
     sponsorLeads: project.id === "printable-tools-lab" ? (totals.sponsor_lead_submit || 0) : 0,
@@ -347,6 +349,7 @@ function commercialIntent(totals) {
     + (totals.seller_checkout_click || 0)
     + (totals.service_checkout_click || 0)
     + (totals.service_request_intent || 0)
+    + (totals.service_invoice_request || 0)
     + (totals.audit_request_intent || 0)
     + (totals.sponsor_request_intent || 0)
     + (totals.sponsor_lead_submit || 0)
@@ -358,6 +361,8 @@ function opsNextActions(totals, todayTotals, projects) {
   const sponsorLeads = totals.sponsor_lead_submit || 0;
   const sponsorInvoices = totals.sponsor_invoice_request || 0;
   const sponsorIntent = totals.sponsor_request_intent || 0;
+  const serviceInvoiceRequests = totals.service_invoice_request || 0;
+  const todayServiceInvoiceRequests = todayTotals.service_invoice_request || 0;
   const serviceIntent = (totals.service_request_intent || 0) + (totals.seller_checkout_intent || 0);
   const todayServiceIntent = (todayTotals.service_request_intent || 0) + (todayTotals.seller_checkout_intent || 0);
   const auditIntent = totals.audit_request_intent || 0;
@@ -366,7 +371,8 @@ function opsNextActions(totals, todayTotals, projects) {
   const gameProject = projects.find((project) => project.id === "pocket-arcade-shelf");
   if (sponsorInvoices > 0) actions.push("Export private sponsor leads and send only a real external invoice or agreement after policy review.");
   else if (sponsorLeads > 0) actions.push("Reply to qualified sponsor leads with the selected pilot deal and do not count revenue until agreement or settled payment.");
-  if (serviceIntent > 0) actions.push(`${todayServiceIntent > 0 ? "Fresh service request intent today" : "Service request intent exists"}; keep the one-reply-contact path primary, then send the matching external $9 or $19 checkout only after a qualified reply.`);
+  if (serviceInvoiceRequests > 0) actions.push(`${todayServiceInvoiceRequests > 0 ? "Fresh service invoice request today" : "Service invoice request exists"}; export or open the public request, confirm fit, then send the matching external $9 or $19 checkout link.`);
+  else if (serviceIntent > 0) actions.push(`${todayServiceIntent > 0 ? "Fresh service request intent today" : "Service request intent exists"}; keep the one-reply-contact path primary, then send the matching external $9 or $19 checkout only after a qualified reply.`);
   else if (auditIntent > 0) actions.push("Audit intent exists; reply with the free audit first, then offer the external $29 custom print pack only after fit is clear.");
   if (sponsorInvoices === 0 && sponsorLeads === 0 && sponsorIntent > 0) actions.push("Sponsor clicks exist without lead capture; send the starter review proposal to the highest-fit sponsor prospects.");
   else if (downloads > 0 || todayViews >= 50) actions.push("Traffic exists; push one sponsor vertical tied to the warmest PDF, QR, resume, or paperwork path.");
@@ -383,6 +389,7 @@ function projectNextAction(project, summary) {
   }
   if (summary.todaySponsorInvoiceRequests || summary.sponsorInvoiceRequests) return "Invoice request present: export private sponsor lead details and move only external agreement or settled payment into revenue.";
   if (summary.todaySponsorLeads || summary.sponsorLeads) return "Sponsor lead present: review fit, reply with the selected deal, and keep unsafe categories out.";
+  if (summary.todayServiceInvoiceRequests || summary.serviceInvoiceRequests) return "Service invoice request present: confirm fit and send the matching external $9 or $19 checkout link.";
   if (summary.todayServiceRequestIntent || summary.serviceRequestIntent) return "Service request intent exists: keep the one-contact form primary and send the external $9 or $19 checkout only after a qualified reply.";
   if (summary.todayAuditRequestIntent || summary.auditRequestIntent) return "Audit intent exists: deliver the free audit path, then offer the external $29 setup only after fit is clear.";
   if (summary.todayCommercialIntent || summary.commercialIntent) return "Commercial intent exists: route warm sponsor clicks into the USD 49 starter review path.";

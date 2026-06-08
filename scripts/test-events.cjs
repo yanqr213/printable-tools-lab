@@ -317,6 +317,15 @@ async function main() {
     env,
   });
   assert(serviceCheckoutClickResponse.status === 200, "Event collector should accept service checkout click events");
+  const serviceInvoiceRequestResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "service_invoice_request", tool: "upload-limit-fix-plan", path: "/upload-error-cheatsheet/", source: "techtools" }),
+    }),
+    env,
+  });
+  assert(serviceInvoiceRequestResponse.status === 200, "Event collector should accept service invoice request events");
   const beaconServiceIntentResponse = await eventSource.onRequestPost({
     request: new Request("https://example.test/api/event", {
       method: "POST",
@@ -548,11 +557,14 @@ async function main() {
   assert(service.service_request_intent === 3, "Metrics should count service request, beacon, and copy intent");
   assert(invoiceFollowupServiceIntent.service_request_intent === 1, "Metrics should count invoice follow-up service request intent on the paid service tool row");
   assert(service.service_checkout_click === 1, "Metrics should count service checkout clicks");
+  const uploadFixService = sellerMetrics.tools.find((row) => row.tool === "upload-limit-fix-plan");
+  assert(uploadFixService.service_invoice_request === 1, "Metrics should count upload fix service invoice requests on the paid service tool row");
   assert(audit.audit_request_intent === 3, "Metrics should count audit request, beacon, and copy intent");
   assert(sellerMetrics.totals.seller_checkout_intent === 1, "Metrics should count total seller checkout intent");
   assert(sellerMetrics.totals.seller_checkout_click === 1, "Metrics should count total seller checkout clicks");
   assert(sellerMetrics.totals.service_checkout_click === 1, "Metrics should count total service checkout clicks");
   assert(sellerMetrics.totals.service_request_intent === 4, "Metrics should count total service request intent");
+  assert(sellerMetrics.totals.service_invoice_request === 1, "Metrics should count total service invoice requests");
   assert(sellerMetrics.totals.audit_request_intent === 3, "Metrics should count total audit request intent");
   const sponsor = sellerMetrics.tools.find((row) => row.tool === "sponsor");
   assert(sponsor.sponsor_request_intent === 2, "Metrics should count sponsor intent");
@@ -563,11 +575,12 @@ async function main() {
   assert(sellerMetrics.totals.sponsor_invoice_request === 1, "Metrics should count total sponsor invoice requests");
   assert(sellerMetrics.sponsorLeads === 1, "Metrics should expose real sponsor lead count");
   assert(sellerMetrics.sponsorInvoiceRequests === 1, "Metrics should expose sponsor invoice request count");
-  assert(sellerMetrics.commercialIntent === 14, "Commercial intent should include checkout clicks, service intent, and sponsor invoice requests");
+  assert(sellerMetrics.commercialIntent === 15, "Commercial intent should include checkout clicks, service invoice requests, service intent, and sponsor invoice requests");
   const sellerOpsMetrics = await (await opsMetricsSource.onRequestGet({ env })).json();
   const sellerOpsPrintableProject = sellerOpsMetrics.projects.find((row) => row.id === "printable-tools-lab");
+  assert(sellerOpsPrintableProject.summary.serviceInvoiceRequests === 1, "Ops metrics should expose service invoice requests separately from regular service intent");
   assert(sellerOpsPrintableProject.summary.serviceRequestIntent === 5, "Ops metrics should expose service and seller request intent separately from sponsor intent");
-  assert(sellerOpsMetrics.nextActions.some((action) => action.includes("Fresh service request intent today") && action.includes("external $9 or $19 checkout")), "Ops next actions should prioritize qualified service payment follow-up when service intent exists");
+  assert(sellerOpsMetrics.nextActions.some((action) => action.includes("Fresh service invoice request today") && action.includes("external $9 or $19 checkout link")), "Ops next actions should prioritize explicit service invoice requests when present");
   assert(store.data.has(`sponsor:lead:${sponsorLeadPayload.id}`), "Sponsor lead should be stored privately in KV");
   const storedSponsorLead = JSON.parse(store.data.get(`sponsor:lead:${sponsorLeadPayload.id}`));
   assert(storedSponsorLead.source === "sponsor-outreach", "Sponsor lead should canonicalize sponsor-call into sponsor-outreach source metrics");

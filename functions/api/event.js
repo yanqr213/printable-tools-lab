@@ -16,6 +16,7 @@ const ALLOWED_EVENTS = new Set([
   "seller_checkout_click",
   "service_checkout_click",
   "service_request_intent",
+  "service_invoice_request",
   "audit_request_intent",
   "sponsor_request_intent",
   "game_play_intent",

@@ -603,12 +603,14 @@ else {
   const eventFunction = fs.readFileSync(eventFunctionFile, "utf8");
   if (!eventFunction.includes('"sponsor-outreach"')) failures.push("Event API missing sponsor-outreach source tracking.");
   if (!eventFunction.includes('"service_checkout_click"')) failures.push("Event API missing direct service checkout click tracking.");
+  if (!eventFunction.includes('"service_invoice_request"')) failures.push("Event API missing explicit service invoice request tracking.");
   if (!eventFunction.includes("isQaEvent") || !eventFunction.includes('"qa_event"')) failures.push("Event API should ignore QA validation events before writing public rollups.");
 }
 if (!fs.existsSync(metricsFunctionFile)) failures.push("Missing metrics API function.");
 else {
   const metricsFunction = fs.readFileSync(metricsFunctionFile, "utf8");
   if (!metricsFunction.includes("service_checkout_click")) failures.push("Metrics API missing direct service checkout click totals.");
+  if (!metricsFunction.includes("service_invoice_request")) failures.push("Metrics API missing explicit service invoice request totals.");
   if (!metricsFunction.includes('"sponsor-outreach"')) failures.push("Metrics API missing sponsor-outreach source row.");
 }
 const opsMetricsFunctionFile = path.join(root, "functions", "api", "ops-metrics.js");
@@ -616,6 +618,7 @@ if (!fs.existsSync(opsMetricsFunctionFile)) failures.push("Missing ops metrics A
 else {
   const opsMetricsScript = fs.readFileSync(opsMetricsFunctionFile, "utf8");
   if (!opsMetricsScript.includes("nextActions") || !opsMetricsScript.includes("pathRows") || !opsMetricsScript.includes("countPathEvent") || !opsMetricsScript.includes("/polite-payment-reminder-email/") || !opsMetricsScript.includes("row[`today_${event}`]") || !opsMetricsScript.includes("projectNextAction")) failures.push("Ops metrics API should expose project next actions and today source/tool/path fields.");
+  if (!opsMetricsScript.includes("serviceInvoiceRequests") || !opsMetricsScript.includes("Fresh service invoice request today")) failures.push("Ops metrics API should prioritize explicit service invoice request close actions.");
 }
 const directoryMonitorFile = path.join(root, "scripts", "directory-monitor.cjs");
 if (!fs.existsSync(directoryMonitorFile)) failures.push("Missing directory monitor script.");
@@ -1488,6 +1491,7 @@ else {
   const html = fs.readFileSync(uploadLimitFixPlanRouteFile, "utf8");
   if (!html.includes(UPLOAD_LIMIT_FIX_PLAN_SERVICE.name) || !html.includes("Request a public-safe upload fix fit check") || !html.includes(`$${UPLOAD_LIMIT_FIX_PLAN_SERVICE.priceUsd}`)) failures.push("Upload limit fix plan route missing low-friction paid service CTA.");
   if (!html.includes("Send the shortest $9 fix-plan request") || !html.includes("upload-limit-fix-plan-micro-lead-form") || !html.includes("Send $9 fix-plan request")) failures.push("Upload limit fix plan route missing shortest paid request form.");
+  if (!html.includes("Request $9 invoice link") || !html.includes('data-track-event="service_invoice_request"')) failures.push("Upload limit fix plan route missing explicit external invoice request CTA.");
   if (!html.includes("data-upload-fix-plan-form") || !html.includes("data-upload-fix-plan-summary")) failures.push("Upload limit fix plan route missing upload fix paid-request prefill markers.");
   if (!html.includes("Open public-safe request") || !html.includes('data-service-lead-fallback-link')) failures.push("Upload limit fix plan route missing public-safe request CTA.");
   if (!html.includes('data-service-lead-form') || !html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("Send upload fix fit check")) failures.push("Upload limit fix plan route missing service lead form.");

@@ -5903,6 +5903,14 @@
       requestSummary,
       path: pathName,
     });
+    const invoiceRequestUrl = serviceInvoiceRequestUrl({
+      serviceType: "invoice-followup-copy-pack",
+      businessName: "",
+      contact: "",
+      needBy: "",
+      requestSummary,
+      path: pathName,
+    });
     const requestSummaryField = compact
       ? `<input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}">`
       : `<label class="field">
@@ -5931,6 +5939,7 @@
           </label>
           <div class="actions">
             <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack">${escapeHtml(submitLabel)}</button>
+            <a class="button secondary" data-track-event="service_invoice_request" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Request $19 invoice link</a>
             <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
           </div>
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send this public-safe fit check. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
@@ -6086,6 +6095,14 @@
       requestSummary,
       path: pathName,
     });
+    const invoiceRequestUrl = serviceInvoiceRequestUrl({
+      serviceType: "upload-limit-fix-plan",
+      businessName: "",
+      contact: "",
+      needBy: "",
+      requestSummary,
+      path: pathName,
+    });
     const requestSummaryField = compact
       ? `<input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}" data-upload-fix-plan-summary>`
       : `<label class="field">
@@ -6119,6 +6136,7 @@
           </label>
           <div class="actions">
             <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">${escapeHtml(submitLabel)}</button>
+            <a class="button secondary" data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Request $9 invoice link</a>
             <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
           </div>
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No file upload. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
@@ -7913,6 +7931,20 @@
     url.searchParams.set("body", serviceLeadPublicIssueText(values));
     url.searchParams.set("labels", "service-request,business-review");
     return url.toString();
+  }
+
+  function serviceInvoiceRequestUrl(values = {}) {
+    const serviceType = values.serviceType || "custom-local-print-pack";
+    return serviceLeadFallbackUrl({
+      ...values,
+      serviceType,
+      requestSummary: [
+        values.requestSummary || "",
+        "",
+        `Requested next step: request external ${serviceLeadPriceHint(serviceType) || ""} checkout or invoice link after fit is confirmed.`,
+        "Payment must happen only through a real external provider or invoice. This public issue must not include card, bank, payout, tax, identity, password, customer-list, private file, or private account data.",
+      ].filter(Boolean).join("\n").trim(),
+    });
   }
 
   function serviceLeadFallbackText(values = {}) {
