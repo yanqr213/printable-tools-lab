@@ -5915,6 +5915,10 @@
     return "I need a $9 Upload Limit Fix Plan for one rejected file upload: best free tool, target settings, fallback steps, and a review checklist. No file upload, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.";
   }
 
+  function uploadFixPaidPathNote() {
+    return `<p class="notice compact-notice" data-upload-fix-paid-path><strong>30-second paid path:</strong> add one reply contact, send the public-safe request, then receive a real external $9 checkout or invoice only after fit is confirmed.</p>`;
+  }
+
   function renderPdfToolUploadFixRequest(tool, initialValues = {}) {
     if (!tool || tool.id !== "compress-pdf") return "";
     const pathName = "/tools/compress-pdf/";
@@ -5932,6 +5936,7 @@
             <p class="eyebrow">Optional paid help</p>
             <strong>Portal still rejecting this PDF?</strong>
             <p class="help">Send a public-safe $9 request for exact target settings, fallback steps, and a review-before-upload checklist. Do not upload the file.</p>
+            ${uploadFixPaidPathNote()}
             <form class="download-service-lead-form tool-upload-fix-lead-form" data-service-lead-form data-upload-fix-plan-form data-compress-pdf-tool-fix-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="compress-pdf-tool" data-utm-medium="site" data-utm-campaign="upload_limit_fix_plan" data-utm-content="compress-pdf-target-panel" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
               <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
               <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
@@ -5991,6 +5996,7 @@
             <p class="eyebrow">Optional paid help</p>
             <strong>Portal still rejecting this image or photo?</strong>
             <p class="help">Send a public-safe $9 request for exact KB settings, fallback steps, and a review-before-upload checklist. Do not upload the image.</p>
+            ${uploadFixPaidPathNote()}
             <form class="download-service-lead-form tool-upload-fix-lead-form" data-service-lead-form data-upload-fix-plan-form data-compress-image-kb-tool-fix-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="compress-image-kb-tool" data-utm-medium="site" data-utm-campaign="upload_limit_fix_plan" data-utm-content="compress-image-kb-target-panel" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
               <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
               <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
@@ -6068,6 +6074,7 @@
           <input type="hidden" name="utmCampaign" value="${escapeHtml(utmCampaign)}">
           <input type="hidden" name="utmContent" value="${escapeHtml(utmContent)}">
           ${requestSummaryField}
+          ${uploadFixPaidPathNote()}
           <label class="field">
             <span>Email or public contact link</span>
             <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
@@ -6077,7 +6084,7 @@
             <input name="needBy" maxlength="80" placeholder="Today, tomorrow morning, or before the portal deadline">
           </label>
           <label class="check-row">
-            <input name="consent" type="checkbox" ${compact ? "checked " : ""}required>
+            <input name="consent" type="checkbox" checked required>
             <span>I will not upload or paste the actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details.</span>
           </label>
           <div class="actions">
@@ -15505,7 +15512,7 @@ ${paragraphs.join("\n")}
     const replyUrl = publicReplyUrl || (typeof values === "string" ? "" : serviceLeadFallbackUrl(values));
     const noContactFallback = options.reason === "no-contact";
     const intro = noContactFallback
-      ? "No contact was added here, so nothing private is stored on this site. Open the public-safe GitHub request below; add contact only inside GitHub if you want it visible publicly."
+      ? "No contact was added here, so nothing private is stored on this site. Add a reply contact above and send again for the private $9 follow-up path, or open the public-safe GitHub request below if public contact is acceptable."
       : "Lead storage is temporarily limited, so open the public-safe GitHub request or copy this text before leaving the page.";
     panel.innerHTML = `
       <p><strong>${noContactFallback ? "Public-safe request ready." : "Backup request ready."}</strong> ${escapeHtml(intro)}</p>
@@ -15541,7 +15548,7 @@ ${paragraphs.join("\n")}
       const publicValues = { ...values, contact: "" };
       renderServiceLeadFallback(form, publicValues, "", { reason: "no-contact" });
       track(serviceLeadTrackEvent(values.serviceType), { tool: serviceLeadTrackTool(values.serviceType), fallback: "public-safe-no-contact" });
-      setStatus("No contact added here. Use the public-safe request below; add contact only inside GitHub if you want it visible publicly.", "error");
+      setStatus("Add a reply contact and send again for private $9 follow-up, or use the public-safe request below if public contact is acceptable.", "error");
       return;
     }
     setStatus("Sending request...", "pending");

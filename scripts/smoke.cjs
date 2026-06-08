@@ -262,6 +262,10 @@ function delay(ms) {
     if (selectedTarget !== targetKb) throw new Error(`Target-KB tool did not preselect ${targetKb}KB, got ${selectedTarget}`);
     const imageKbFixForm = page.locator('[data-compress-image-kb-tool-fix-form][data-service-type="upload-limit-fix-plan"][data-utm-source="compress-image-kb-tool"][data-utm-campaign="upload_limit_fix_plan"]').first();
     if (!(await imageKbFixForm.count())) throw new Error(`Image target-KB tool is missing the pre-download $9 upload target request form for ${targetKb}KB`);
+    const imageKbPaidPath = await page.locator("[data-upload-fix-paid-path]").first().innerText();
+    if (!imageKbPaidPath.includes("30-second paid path") || !imageKbPaidPath.includes("external $9 checkout or invoice")) {
+      throw new Error(`Image target-KB request is missing the low-friction paid path note: ${imageKbPaidPath}`);
+    }
     const imageKbFixSummary = await imageKbFixForm.locator("[data-compress-image-kb-tool-fix-summary]").inputValue();
     if (!imageKbFixSummary.includes("$9 Upload Limit Fix Plan") || !imageKbFixSummary.includes(`image or photo under ${targetKb} KB`)) {
       throw new Error(`Image target-KB request summary is not target-aware for ${targetKb}KB: ${imageKbFixSummary}`);
@@ -280,7 +284,7 @@ function delay(ms) {
   const noContactFallback = lowercaseImageKbFixForm.locator("[data-service-lead-fallback]").first();
   await noContactFallback.waitFor({ state: "visible", timeout: 5000 });
   const noContactFallbackText = await noContactFallback.innerText();
-  if (!noContactFallbackText.includes("Public-safe request ready.") || !noContactFallbackText.includes("No contact was added here") || !noContactFallbackText.includes("Copy public-safe request")) {
+  if (!noContactFallbackText.includes("Public-safe request ready.") || !noContactFallbackText.includes("private $9 follow-up path") || !noContactFallbackText.includes("Copy public-safe request")) {
     throw new Error(`No-contact service fallback copy is missing: ${noContactFallbackText}`);
   }
   const noContactFallbackBody = await noContactFallback.locator(".service-lead-fallback-output").inputValue();
