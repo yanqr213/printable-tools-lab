@@ -563,7 +563,7 @@ function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, path
             </label>
             <div class="actions">
               <button class="button" type="submit" data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}">${escapeHtml(cta)}</button>
-              <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open GitHub backup</a>
+              <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
             </div>
             <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No payment is collected here. A real external checkout or invoice is sent only after fit is confirmed.</p>
           </form>
@@ -6193,7 +6193,7 @@ const pages = [
     title: "Sponsor Proposal",
     description: "Noindex sponsor proposal page for one policy-fit partner, with a recommended pilot deal and prefilled inquiry path.",
     index: false,
-    html: `<section class="shell section"><h1>Sponsor proposal</h1><p>This direct proposal page loads a partner-specific sponsor fit, recommended deal, and prefilled inquiry form after the app loads.</p><p><a class="button" data-sponsor-public-invoice-request href="${escapeHtml(sponsorPublicReplyUrl({ proposalUrl: siteUrl("sponsor-proposal"), dealTitle: "Starter fit review", dealPrice: "USD 49" }))}" target="_blank" rel="noreferrer">Open public invoice request</a></p><p class="help">Use only public company, website, audience-fit, and deal context in the issue. Payment, tax, bank, phone, identity, password, and customer-file details stay outside the public request.</p></section>${sponsorExternalDiscoveryProofHtml()}`,
+    html: `<section class="shell section"><h1>Sponsor proposal</h1><p>This direct proposal page loads a partner-specific sponsor fit, recommended deal, and prefilled inquiry form after the app loads.</p><p><a class="button" data-sponsor-public-invoice-request href="${escapeHtml(sponsorPublicReplyUrl({ proposalUrl: siteUrl("sponsor-proposal"), dealTitle: "Starter fit review", dealPrice: "USD 49" }))}" target="_blank" rel="noreferrer">Open public invoice request</a> <a class="button secondary" href="#sponsor-quick-form">Use 2-minute review form</a></p><p class="help">Use only public company, website, audience-fit, and deal context in the issue. Payment, tax, bank, phone, identity, password, and customer-file details stay outside the public request.</p></section>${sponsorExternalDiscoveryProofHtml()}`,
   },
   {
     path: "sponsor-deal-room",
@@ -6427,7 +6427,7 @@ function invoiceFollowupInlineLeadFormHtml(options = {}) {
           </label>
           <div class="actions">
             <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack">${escapeHtml(submitLabel)}</button>
-            <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open GitHub backup</a>
+            <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
           </div>
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send this public-safe fit check. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
         </form>`;
@@ -8406,6 +8406,7 @@ function checkoutCopy(product) {
 function paidServiceHtml(service, options = {}) {
   const checkoutConfigured = Boolean(service.checkoutUrl);
   const emailUrl = serviceRequestEmailUrl(service);
+  const publicFitCheckUrl = serviceLeadFallbackUrl(service.id, service.slug);
   const primaryServiceUrl = checkoutConfigured ? service.checkoutUrl : "#service-request";
   const primaryServiceText = checkoutConfigured ? `Buy for $${service.priceUsd}` : "Request free fit check";
   const primaryServiceEvent = checkoutConfigured ? "service_checkout_click" : "service_request_intent";
@@ -8420,6 +8421,7 @@ function paidServiceHtml(service, options = {}) {
   ];
   const actions = [
     `<a class="button" data-service-checkout data-track-event="${escapeHtml(primaryServiceEvent)}" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(primaryServiceUrl)}">${escapeHtml(primaryServiceText)}</a>`,
+    `<a class="button secondary" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(publicFitCheckUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>`,
     options.secondaryHref ? `<a class="button secondary" href="${escapeHtml(options.secondaryHref)}">${escapeHtml(options.secondaryText || "Open related free tool")}</a>` : "",
     `<a class="button secondary" href="/${escapeHtml(service.publicRequestPath)}" download>Download request brief</a>`,
     emailUrl ? `<a class="button ghost" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(emailUrl)}">Email service request</a>` : "",
@@ -9240,8 +9242,9 @@ function landingPageHtml(page) {
     ? `\n${uploadLimitShortcutsHtml("Fast upload limit shortcuts", "If the error message names a file size, start with the matching target page instead of browsing every tool.")}`
     : "";
   const serviceLeadHtml = page.serviceLead ? `\n${serviceLeadFormHtml({ ...page.serviceLead, pathName: page.path })}` : "";
+  const servicePublicRequestHref = page.serviceLead ? serviceLeadFallbackUrl(page.serviceLead.serviceType, page.path) : "";
   const secondaryActionHtml = page.serviceLead
-    ? `<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a>`
+    ? `<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>`
     : `<a class="button secondary" href="/pdf-tool-finder/">Compare tools</a>`;
   return `
       <section class="shell page-title section">

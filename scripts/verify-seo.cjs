@@ -240,6 +240,7 @@ else {
   if (!html.includes('content="noindex,follow"')) failures.push("Sponsor proposal page should be noindex.");
   if (!html.includes("Sponsor proposal")) failures.push("Sponsor proposal route missing fallback heading.");
   if (!hasPrefilledSponsorReplyUrl(html) || !html.includes("Open public invoice request") || !html.includes("data-sponsor-public-invoice-request")) failures.push("Sponsor proposal route missing prefilled public invoice request fallback.");
+  if (!html.includes("Use 2-minute review form") || !html.includes("#sponsor-quick-form")) failures.push("Sponsor proposal route missing fast review form CTA.");
   if (sitemap.includes(`<loc>${siteUrl("sponsor-proposal")}</loc>`)) failures.push("Sitemap should not include noindex sponsor proposal page.");
 }
 
@@ -471,6 +472,7 @@ for (const page of [
     if (!html.includes(page.headline) || !html.includes("/tools/invoice-followup-email/?invoiceStatus=sent")) failures.push(`${page.pathName} missing focused invoice follow-up copy or prefilled generator link.`);
     if (!html.includes('data-service-type="invoice-followup-copy-pack"') || !html.includes(page.cta) || !html.includes("$19")) failures.push(`${page.pathName} missing $19 invoice follow-up fit-check form.`);
     if (!html.includes(page.summary)) failures.push(`${page.pathName} missing prefilled fit-check request text.`);
+    if (!html.includes("Open public-safe request") || !html.includes('data-service-lead-fallback-link')) failures.push(`${page.pathName} missing public-safe request CTA.`);
     if (!html.includes(`Source+path%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2F${page.sourcePath}%2F`)) failures.push(`${page.pathName} backup request should preserve landing page source path.`);
     if (html.includes("/ops/") || html.includes("market-table-print-audit") || html.includes("custom-local-print-pack")) failures.push(`${page.pathName} should stay focused and not expose ops or print-pack CTAs.`);
   }
@@ -1269,6 +1271,7 @@ if (!fs.existsSync(invoiceFollowupRouteFile)) failures.push("Missing invoice fol
 else {
   const html = fs.readFileSync(invoiceFollowupRouteFile, "utf8");
   if (!html.includes(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.name) || !html.includes("Request a free invoice follow-up fit check") || !html.includes(`$${INVOICE_FOLLOWUP_COPY_PACK_SERVICE.priceUsd}`)) failures.push("Invoice follow-up route missing low-friction paid service CTA.");
+  if (!html.includes("Open public-safe request") || !html.includes('data-service-lead-fallback-link')) failures.push("Invoice follow-up route missing public-safe request CTA.");
   if (!html.includes('data-service-lead-form') || !html.includes('data-service-type="invoice-followup-copy-pack"') || !html.includes("Send invoice fit check")) failures.push("Invoice follow-up route missing service lead form.");
   if (!html.includes("What kind of invoice follow-up do you need?") || !html.includes("Invoice status and public-safe context") || !html.includes("Preferred tone")) failures.push("Invoice follow-up route request builder should use invoice-specific fields.");
   for (const retiredInvoiceCopy of ["Cookies, market boxes", "QR sign link", "Start with free audit"]) {

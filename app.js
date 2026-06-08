@@ -5853,7 +5853,7 @@
           </label>
           <div class="actions">
             <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack">${escapeHtml(submitLabel)}</button>
-            <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open GitHub backup</a>
+            <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
           </div>
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send this public-safe fit check. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
         </form>`;
@@ -6418,6 +6418,18 @@
     const checkoutConfigured = Boolean(checkoutUrl);
     const primaryServiceHref = checkoutConfigured ? checkoutUrl : "#service-request";
     const primaryServiceTarget = checkoutConfigured ? ' target="_blank" rel="noreferrer"' : "";
+    const publicRequestHref = serviceLeadFallbackUrl({
+      serviceType: "invoice-followup-copy-pack",
+      businessName: "",
+      contact: "",
+      needBy: "",
+      requestSummary: "I need a $19 invoice follow-up copy pack for one workflow: polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording. No private invoice numbers, client names, bank details, tax IDs, legal dispute details, or customer lists included.",
+      path: "/invoice-followup-copy-pack/",
+      utmSource: "service-page",
+      utmMedium: "site",
+      utmCampaign: "invoice_followup_service",
+      utmContent: "hero-public-request",
+    });
     setMeta("Invoice Follow-up Copy Pack", "Request a $19 manual copy pack for polite invoice reminders, due-today notes, overdue follow-ups, paid thank-yous, and next-invoice wording.");
     setJsonLd({
       "@context": "https://schema.org",
@@ -6440,6 +6452,7 @@
         <p>A $19 done-for-you copy pack for freelancers and small teams who just made an invoice and need professional follow-up wording: polite reminders, due-today notes, first overdue messages, paid thank-yous, and next-invoice copy.</p>
         <div class="hero-actions">
           <a class="button" data-track-event="${checkoutConfigured ? "service_checkout_click" : "service_request_intent"}" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(primaryServiceHref)}"${primaryServiceTarget}>${checkoutConfigured ? "Buy copy pack for $19" : "Request invoice fit check"}</a>
+          <a class="button secondary" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(publicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>
           <a class="button secondary" href="/tools/invoice-generator/">Open free invoice generator</a>
           <button class="button ghost" type="button" data-copy-text="${escapeHtml(invoiceFollowupRequestCopy())}" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack">Copy request brief</button>
         </div>
@@ -6536,6 +6549,18 @@
     const page = landingPagesBySlug[slug];
     const tool = tools[page.tool];
     const related = page.related.map((id) => tools[id]).filter(Boolean);
+    const servicePublicRequestHref = page.serviceLead ? serviceLeadFallbackUrl({
+      serviceType: page.serviceLead.serviceType,
+      businessName: "",
+      contact: "",
+      needBy: "",
+      requestSummary: page.serviceLead.defaultSummary || "",
+      path: `/${page.slug}/`,
+      utmSource: "landing-page",
+      utmMedium: "site",
+      utmCampaign: "invoice_followup_service",
+      utmContent: `${page.slug}-public-request`,
+    }) : "";
     setMeta(page.title, page.description);
     setJsonLd({
       "@context": "https://schema.org",
@@ -6557,7 +6582,7 @@
         <a href="/free-pdf-tools/">Free file tools</a>
         <h1>${escapeHtml(page.headline)}</h1>
         <p>${escapeHtml(page.lead)}</p>
-        <p><a class="button" href="${toolUrl(page)}">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> ${page.serviceLead ? `<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a>` : `<a class="button secondary" href="/pdf-tool-finder/">Compare tools</a>`}</p>
+        <p><a class="button" href="${toolUrl(page)}">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> ${page.serviceLead ? `<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>` : `<a class="button secondary" href="/pdf-tool-finder/">Compare tools</a>`}</p>
       </section>
       <section class="shell section">
         <h2>Why this matches the search</h2>
@@ -7202,7 +7227,7 @@
             </label>
             <div class="actions">
               <button class="button" type="submit" data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}">${escapeHtml(cta)}</button>
-              <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open GitHub backup</a>
+              <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
             </div>
             <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No payment is collected here. A real external checkout or invoice is sent only after fit is confirmed.</p>
           </form>
@@ -8307,7 +8332,7 @@ ${paragraphs.join("\n")}
         </label>
         <div class="actions">
           <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="${escapeHtml(serviceTool)}">${escapeHtml(buttonText)}</button>
-          <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="${escapeHtml(serviceTool)}" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open GitHub backup</a>
+          <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="${escapeHtml(serviceTool)}" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
         </div>
         <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send a public-safe fit check here. Payment still happens only through a real external checkout or invoice after fit is confirmed.</p>
       </form>
@@ -8361,7 +8386,7 @@ ${paragraphs.join("\n")}
         </label>
         <div class="actions">
           <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack">Send invoice fit check</button>
-          <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open GitHub backup</a>
+          <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
         </div>
         <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send a public-safe fit check here. Payment still happens only through a real external checkout or invoice after fit is confirmed.</p>
       </form>
@@ -8661,7 +8686,7 @@ ${paragraphs.join("\n")}
         <a href="/sponsor-deal-room/">Sponsor deal room</a>
         <h1>${escapeHtml(prospect.name)} sponsor proposal</h1>
         <p>A direct, business-safe proposal for a small, clearly labeled sponsor pilot with PrintableTools Lab. Downloads stay free, sponsor copy is manually reviewed, and revenue is counted only after a signed agreement or settled external payment.</p>
-        <p><a class="button" data-sponsor-public-invoice-request data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open public invoice request</a> <button class="button secondary" type="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" data-copy-text="${escapeHtml(invoiceRequest)}">Copy invoice request</button> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-inquiry">Start inquiry</a> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(dealUrl)}">Open deal room path</a> <button class="button ghost" type="button" data-copy-text="${escapeHtml(pitch)}">Copy outreach note</button></p>
+        <p><a class="button" data-sponsor-public-invoice-request data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open public invoice request</a> <a class="button secondary" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-quick-form">Use 2-minute review form</a> <button class="button secondary" type="button" data-track-event="sponsor_request_intent" data-track-tool="sponsor" data-copy-text="${escapeHtml(invoiceRequest)}">Copy invoice request</button> <a class="button ghost" data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(dealUrl)}">Open deal room path</a> <button class="button ghost" type="button" data-copy-text="${escapeHtml(pitch)}">Copy outreach note</button></p>
       </section>
       <section class="shell section">
         <div class="notice sponsor-public-reply">
@@ -8670,6 +8695,7 @@ ${paragraphs.join("\n")}
           <p><a class="button" data-sponsor-public-invoice-request data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open public invoice request</a> <button class="button secondary" type="button" data-copy-text="${escapeHtml(invoiceRequest)}">Copy invoice/agreement request</button></p>
         </div>
       </section>
+      ${renderSponsorLeadForm()}
       <section class="shell section">
         <h2>Why this is a fit</h2>
         <div class="grid-3">
@@ -8694,7 +8720,6 @@ ${paragraphs.join("\n")}
           ${vertical.links.map(([label, pathName]) => `<a href="/${escapeHtml(pathName)}/?utm_source=sponsor-proposal&utm_medium=proposal&utm_campaign=${escapeHtml(vertical.campaign)}&utm_content=${escapeHtml(prospect.id)}">${escapeHtml(label)}</a>`).join("")}
         </div>
       </section>
-      ${renderSponsorLeadForm()}
       <section class="shell section">
         <h2>Proposal rules</h2>
         <ul>
@@ -14601,7 +14626,7 @@ ${paragraphs.join("\n")}
       <div class="actions">
         <button class="button" type="button" data-copy-text="${escapeHtml(copy)}">Copy request summary</button>
         <button class="button secondary" type="button" data-copy-text="${escapeHtml(paymentReply)}">Copy payment reply</button>
-        <a class="button ghost" data-track-event="${escapeHtml(serviceLeadTrackEvent(serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(serviceType))}" href="${escapeHtml(serviceLeadFallbackUrl(values))}" target="_blank" rel="noreferrer">Open GitHub backup</a>
+        <a class="button ghost" data-track-event="${escapeHtml(serviceLeadTrackEvent(serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(serviceType))}" href="${escapeHtml(serviceLeadFallbackUrl(values))}" target="_blank" rel="noreferrer">Open public-safe request</a>
       </div>
     `;
   }
@@ -14624,7 +14649,7 @@ ${paragraphs.join("\n")}
       <p><strong>Backup request ready.</strong> Lead storage is temporarily limited, so open the public-safe GitHub request or copy this text before leaving the page.</p>
       <textarea class="request-copy-output service-lead-fallback-output" readonly>${escapeHtml(text)}</textarea>
       <div class="actions">
-        ${replyUrl ? `<a class="button" data-track-event="${escapeHtml(serviceLeadTrackEvent(serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(serviceType))}" href="${escapeHtml(replyUrl)}" target="_blank" rel="noreferrer">Open GitHub backup</a>` : ""}
+        ${replyUrl ? `<a class="button" data-track-event="${escapeHtml(serviceLeadTrackEvent(serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(serviceType))}" href="${escapeHtml(replyUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>` : ""}
         <button class="button" type="button" data-copy-text="${escapeHtml(text)}">Copy backup request</button>
       </div>
     `;
