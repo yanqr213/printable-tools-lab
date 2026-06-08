@@ -9,6 +9,8 @@ const logPath = path.join(reportsDir, "sponsor-outreach-log.json");
 const csvPath = path.join(reportsDir, "sponsor-outreach-log.csv");
 const nextBatchPath = path.join(reportsDir, "sponsor-next-submission-batch.md");
 const executionBatchPath = path.join(reportsDir, "sponsor-execution-batch.json");
+const ownerSendPackPath = path.join(reportsDir, "sponsor-owner-send-pack.md");
+const ownerSendPackJsonPath = path.join(reportsDir, "sponsor-owner-send-pack.json");
 const now = new Date().toISOString();
 
 main();
@@ -27,6 +29,7 @@ function main() {
     .map((prospect) => normalizeLogRow(prospect, existingById.get(prospect.id), contactProbeById.get(prospect.id)))
     .sort((a, b) => outreachPriorityScore(b) - outreachPriorityScore(a) || Number(a.priority || 999) - Number(b.priority || 999));
   const executeNow = executionBatchRows(rows);
+  const ownerPack = ownerSendPack(rows, executeNow);
   const log = {
     name: "PrintableTools Lab Sponsor Outreach Log",
     generatedAt: now,
@@ -54,6 +57,7 @@ function main() {
       "Change status to sent only after a real form submission or email send with timestamped evidence.",
       "Change status to settled only after an external provider or signed agreement confirms settled payment.",
     ],
+    ownerSendPackPath: "reports/sponsor-owner-send-pack.md",
     executeNow,
     rows,
   };
@@ -68,6 +72,8 @@ function main() {
     rows: executeNow,
     proofGate: "A row becomes sent only after a real manual submission or legitimate email send has timestamped evidence. Revenue is still zero until a signed agreement or settled external payment exists.",
   }, null, 2)}\n`);
+  fs.writeFileSync(ownerSendPackJsonPath, `${JSON.stringify(ownerPack, null, 2)}\n`);
+  fs.writeFileSync(ownerSendPackPath, ownerSendPackMarkdown(ownerPack));
   console.log(`Sponsor outreach log ready: ${log.count} row(s), ${log.queued} queued, ${log.sent} sent, ${log.settled} settled, ${log.executionReady} execution-ready.`);
 }
 
@@ -242,6 +248,92 @@ function nextBatchMarkdown(rows, executeNow = executionBatchRows(rows)) {
       "",
       "```text",
       row.body,
+      "```",
+      "",
+    ].join("\n")),
+  ].join("\n");
+}
+
+function ownerSendPack(rows, executeNow = executionBatchRows(rows)) {
+  const queued = rows.filter((row) => row.status === "queued");
+  const sent = rows.filter((row) => row.status === "sent");
+  const settled = rows.filter((row) => row.status === "settled");
+  const ready = rows.filter((row) => row.status === "queued" && row.contactRouteStatus === "ready");
+  const review = rows.filter((row) => row.status === "queued" && row.contactRouteStatus === "review");
+  const blocked = rows.filter((row) => row.status === "queued" && row.contactRouteStatus === "blocked");
+  const requiresSender = rows.filter((row) => row.status === "queued" && row.requiresAuthorizedSender);
+  return {
+    name: "PrintableTools Lab Sponsor Owner Send Pack",
+    generatedAt: now,
+    opsUrl: "https://printable-tools-lab.pages.dev/ops/",
+    status: {
+      queued: queued.length,
+      sent: sent.length,
+      settled: settled.length,
+      contactRouteReady: ready.length,
+      contactRouteReview: review.length,
+      contactRouteBlocked: blocked.length,
+      requiresAuthorizedSender: requiresSender.length,
+    },
+    proofGate: "Do not mark sent until a real public contact form submission, public-safe issue reply, or legitimate email send has timestamped evidence. Revenue remains zero until a signed sponsor agreement or settled external payment exists.",
+    rows: executeNow.map((row) => ({
+      rank: row.rank,
+      id: row.id,
+      name: row.name,
+      executionMode: row.executionMode,
+      contactRouteStatus: row.contactRouteStatus,
+      firstAction: row.copyFirstAction,
+      estimatedMinutes: row.estimatedMinutes,
+      openUrl: row.openUrl,
+      bestContactUrl: row.bestContactUrl,
+      proposalUrl: row.proposalUrl,
+      invoiceReviewUrl: row.invoiceReviewUrl,
+      publicReplyUrl: row.publicReplyUrl,
+      messageToCopyLabel: row.messageToCopyLabel,
+      messageToCopy: row.messageToCopy,
+      doNotSendUntil: row.doNotSendUntil,
+      evidenceChecklist: row.evidenceChecklist,
+      sentGate: row.sentGate,
+      nextAction: row.nextAction,
+    })),
+  };
+}
+
+function ownerSendPackMarkdown(pack) {
+  const rows = Array.isArray(pack.rows) ? pack.rows : [];
+  return [
+    "# Sponsor Owner Send Pack",
+    "",
+    `Generated: ${pack.generatedAt}`,
+    `Direct ops URL: ${pack.opsUrl}`,
+    "",
+    "This is a private execution pack for the direct operations route. Do not link it from the public site.",
+    "",
+    `Queue: ${pack.status.queued} queued, ${pack.status.sent} sent, ${pack.status.settled} settled.`,
+    `Routes: ${pack.status.contactRouteReady} ready, ${pack.status.contactRouteReview} review, ${pack.status.contactRouteBlocked} blocked, ${pack.status.requiresAuthorizedSender} requiring authorized sender fields.`,
+    "",
+    `Proof gate: ${pack.proofGate}`,
+    "",
+    ...rows.map((row) => [
+      `## ${row.rank}. ${row.name}`,
+      "",
+      `- Mode: ${row.executionMode}`,
+      `- First action: ${row.firstAction}`,
+      `- Contact route status: ${row.contactRouteStatus}`,
+      `- Estimated time: ${row.estimatedMinutes} minutes`,
+      `- Open: ${row.openUrl || row.bestContactUrl}`,
+      `- Best contact route: ${row.bestContactUrl || "n/a"}`,
+      `- Invoice review URL: ${row.invoiceReviewUrl}`,
+      `- Proposal URL: ${row.proposalUrl}`,
+      `- Public-safe reply URL: ${row.publicReplyUrl}`,
+      `- Do not send until: ${row.doNotSendUntil}`,
+      `- Evidence after a real send: ${row.evidenceChecklist.join("; ")}`,
+      `- Sent gate: ${row.sentGate}`,
+      "",
+      `${row.messageToCopyLabel}:`,
+      "",
+      "```text",
+      row.messageToCopy || "",
       "```",
       "",
     ].join("\n")),

@@ -7179,13 +7179,18 @@ function opsSponsorNextSubmissionRows(rows) {
 }
 
 function opsSubmissionScore(row) {
-  let score = Number(row.contactRouteScore || 0);
+  let score = 100;
+  score += Math.max(-20, Math.min(40, Number(row.contactRouteScore || 0)));
   if (row.contactRouteStatus === "ready") score += 50;
   else if (row.contactRouteStatus === "review") score += 20;
   else if (row.contactRouteStatus === "blocked") score -= 30;
-  if (row.mailtoUrl) score += 25;
-  if (row.publicReplyAvailable) score += 8;
+  if (row.executionMode === "email_draft" || row.mailtoUrl) score += 35;
+  else if (row.executionMode === "contact_route") score += 20;
+  else if (row.executionMode === "prepare") score -= 10;
+  else if (row.executionMode === "hold") score -= 60;
   if (row.requiresAuthorizedSender) score -= 25;
+  if (row.publicReplyAvailable) score += 8;
+  if (String(row.vertical || "").includes("small-business-paperwork")) score += 10;
   return score;
 }
 
@@ -7258,6 +7263,31 @@ function opsSponsorFallbackSubmissionRows() {
       copyFirstAction: "Open email draft",
       action: "Open the email draft, review every copied line, send only from a truthful sender, then record timestamped evidence.",
       gate: "The public email is a legitimate business, partner, sales, or media route and the sender identity is truthful.",
+    }),
+    opsSponsorFallbackSubmissionRow({
+      id: "educationcom-worksheets",
+      name: "Education.com",
+      verticalSlug: "classroom-printable-sponsors",
+      dealId: "vertical-category-pilot",
+      category: "Worksheets and learning resources",
+      bestContactUrl: "https://www.education.com/support/contact/",
+      mailtoUrl: "mailto:support@education.com",
+      executionMode: "email_draft",
+      copyFirstAction: "Open email draft",
+      action: "Open the email draft only after a truthful sender name and business email are available, then record timestamped evidence.",
+      gate: "The public email is a legitimate business, partner, sales, or media route and the sender identity is truthful.",
+    }),
+    opsSponsorFallbackSubmissionRow({
+      id: "twinkl-teacher-resources",
+      name: "Twinkl",
+      verticalSlug: "classroom-printable-sponsors",
+      dealId: "guide-sponsor-pilot",
+      category: "Teacher resources",
+      bestContactUrl: "https://www.twinkl.com/contact",
+      executionMode: "contact_route",
+      copyFirstAction: "Open contact route",
+      action: "Review the route first, confirm partner or sponsor notes are welcome, paste the short message only if allowed, then record timestamped evidence.",
+      gate: "Manual review confirms the route accepts public-safe sponsor or partnership notes.",
     }),
   ];
 }
