@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="notice compact-notice">
-          <strong>Runtime refresh:</strong> the app replaces this snapshot with live project rows from /api/ops-metrics after loading. Snapshot generated: 2026-06-08T03:03:01.974Z.
+          <strong>Runtime refresh:</strong> the app replaces this snapshot with live project rows from /api/ops-metrics after loading. Snapshot generated: 2026-06-08T03:12:25.650Z.
         </div>
         <div class="metric-grid ops-summary-grid">
           <div class="metric-tile"><strong>505</strong><span>all page views</span></div>
@@ -59,6 +59,99 @@
           <div class="metric-tile"><strong>10/0/0</strong><span>outreach queued/sent/settled</span></div>
         </div>
         <div id="opsMetrics" class="metric-remote">
+                    <section class="panel ops-checkout-activation">
+            <div class="ops-project-head">
+              <div>
+                <p class="eyebrow">checkout activation</p>
+                <h2>External payment link readiness</h2>
+                <p>No external checkout URL is configured yet. The public pages collect requests only until a real payment-provider link is connected.</p>
+              </div>
+              <a class="button secondary" href="/custom-local-print-pack/">Open service page</a>
+            </div>
+            <div class="metric-grid compact ops-project-grid">
+              <div class="metric-tile"><strong>0/3</strong><span>configured slots</span></div>
+              <div class="metric-tile"><strong>0</strong><span>checkout clicks</span></div>
+              <div class="metric-tile"><strong>0</strong><span>request intent</span></div>
+              <div class="metric-tile"><strong>settled only</strong><span>revenue proof</span></div>
+            </div>
+            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>SKU</th><th>Price</th><th>Config key</th><th>Status</th><th>Checkout clicks</th><th>Requests</th><th>Page</th></tr></thead><tbody><tr><td>Local Seller Starter Kit</td><td>$9 USD</td><td>sellerKitCheckoutUrl</td><td>missing</td><td>0</td><td>0</td><td>/local-seller-starter-kit/</td></tr>
+<tr><td>Custom Local Print Pack Setup</td><td>$29 USD</td><td>serviceCheckoutUrl</td><td>missing</td><td>0</td><td>0</td><td>/custom-local-print-pack/</td></tr>
+<tr><td>Audit upgrade checkout</td><td>$29 USD</td><td>auditUpgradeCheckoutUrl</td><td>missing</td><td>0</td><td>0</td><td>/market-table-print-audit/</td></tr></tbody></table></div>
+            <div class="ops-action-list">
+              <article class="ops-action-card checkout-activation-card">
+                <div>
+                  <p class="eyebrow">missing checkout</p>
+                  <h4>Local Seller Starter Kit</h4>
+                  <p>$9 USD. Create one real Gumroad, Payhip, Ko-fi, Stripe Payment Link, or invoice product, then paste only the public checkout URL into this repository.</p>
+                  <p class="help">Do not store payout, tax, bank, card, customer-list, or account credential data here. Revenue is proven only by the external provider's paid or settled order record.</p>
+                </div>
+                <div class="ops-action-buttons">
+                  <button class="button secondary" type="button" data-copy-text="Product name: Local Seller Starter Kit
+Price: $9 USD
+Short description: A checkout-ready digital pack of editable local-selling templates: price tags, coupon copy, packing slips, QR sign wording, inventory starters, promo posts, and market-day checklists.
+Upload file: paid-deliverables/local-seller-starter-kit.zip
+Sample file: https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-sample.zip
+Buyer request template: https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-buy-request.txt
+Buyer request link: https://github.com/yanqr213/printable-tools-lab/issues/new?title=Checkout+request%3A+Local+Seller+Starter+Kit&amp;body=I+want+to+buy+the+Local+Seller+Starter+Kit+for+%249+USD.%0A%0ASample+checked%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fassets%2Fdigital-products%2Flocal-seller-starter-kit-sample.zip%0APreferred+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+other%0ABest+contact+method%3A%0ACountry+or+region+%28optional%29%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+reply+with+a+real+external+checkout+link+only+after+the+payment+product+is+ready.
+Delivery note: Buyer receives editable CSV, Markdown, HTML, and text templates for their own local-selling workflow.">Copy listing copy</button>
+                  <button class="button ghost" type="button" data-copy-text="npm.cmd run configure:checkout -- --seller-kit-url https://your-payment-provider.example/local-seller-starter-kit">Copy config command</button>
+                  <a class="button ghost" href="/local-seller-starter-kit/">Open page</a>
+                </div>
+              </article>
+<article class="ops-action-card checkout-activation-card">
+                <div>
+                  <p class="eyebrow">missing checkout</p>
+                  <h4>Custom Local Print Pack Setup</h4>
+                  <p>$29 USD. Create one real Gumroad, Payhip, Ko-fi, Stripe Payment Link, or invoice product, then paste only the public checkout URL into this repository.</p>
+                  <p class="help">Do not store payout, tax, bank, card, customer-list, or account credential data here. Revenue is proven only by the external provider's paid or settled order record.</p>
+                </div>
+                <div class="ops-action-buttons">
+                  <button class="button secondary" type="button" data-copy-text="Product name: Custom Local Print Pack Setup
+Price: $29 USD
+Short description: A $29 done-for-you setup request for one simple printable seller pack: price tags, flyer copy, QR sign text, coupon wording, packing slip starter rows, and a one-page launch checklist.
+Delivery note: Buyer sends public-safe item, price, style, and contact-link details after payment. Delivery target is 2 business days after paid_order_verified and complete buyer details.
+Deliverables:
+- price tag starter CSV for up to 12 items
+- one small flyer copy draft
+- QR sign wording for one link or contact method
+- three coupon or bundle offer ideas
+- packing slip or pickup note starter rows
+- one-page launch checklist for printing and first outreach
+
+Buyer safety: Do not send tax, bank, card, password, private identity, customer-list, or private file data through the website form.">Copy listing copy</button>
+                  <button class="button ghost" type="button" data-copy-text="npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/custom-local-print-pack">Copy config command</button>
+                  <a class="button ghost" href="/custom-local-print-pack/">Open page</a>
+                </div>
+              </article>
+<article class="ops-action-card checkout-activation-card">
+                <div>
+                  <p class="eyebrow">missing checkout</p>
+                  <h4>Audit upgrade checkout</h4>
+                  <p>$29 USD. Create one real Gumroad, Payhip, Ko-fi, Stripe Payment Link, or invoice product, then paste only the public checkout URL into this repository.</p>
+                  <p class="help">Do not store payout, tax, bank, card, customer-list, or account credential data here. Revenue is proven only by the external provider's paid or settled order record.</p>
+                </div>
+                <div class="ops-action-buttons">
+                  <button class="button secondary" type="button" data-copy-text="Upgrade from the Free Market Table Print Audit to the Custom Local Print Pack Setup.
+
+Product name: Custom Local Print Pack Setup
+Price: $29 USD
+Short description: A $29 done-for-you setup request for one simple printable seller pack: price tags, flyer copy, QR sign text, coupon wording, packing slip starter rows, and a one-page launch checklist.
+Delivery note: Buyer sends public-safe item, price, style, and contact-link details after payment. Delivery target is 2 business days after paid_order_verified and complete buyer details.
+Deliverables:
+- price tag starter CSV for up to 12 items
+- one small flyer copy draft
+- QR sign wording for one link or contact method
+- three coupon or bundle offer ideas
+- packing slip or pickup note starter rows
+- one-page launch checklist for printing and first outreach
+
+Buyer safety: Do not send tax, bank, card, password, private identity, customer-list, or private file data through the website form.">Copy listing copy</button>
+                  <button class="button ghost" type="button" data-copy-text="npm.cmd run configure:checkout -- --audit-upgrade-url https://your-payment-provider.example/custom-local-print-pack">Copy config command</button>
+                  <a class="button ghost" href="/market-table-print-audit/">Open page</a>
+                </div>
+              </article>
+            </div>
+          </section>
           <section class="panel ops-sponsor-sprint">
             <div class="ops-project-head">
               <div>

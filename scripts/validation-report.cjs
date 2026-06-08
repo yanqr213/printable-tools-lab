@@ -82,6 +82,7 @@ function readLocalState() {
     },
     sponsorOutreach: sponsorOutreachSummary(sponsorOutreachLog),
     sponsorPublicReplies: sponsorPublicReplySummary(sponsorPublicReplies),
+    checkout: checkoutReadinessSummary(config),
     ads: {
       enabled: readBool(config, "enableAds"),
       publisherConfigured: /^ca-pub-\d{10,30}$/.test(readString(config, "adsenseClientId")),
@@ -148,6 +149,27 @@ function sponsorPublicReplySummary(data) {
     latestUpdatedAt: data?.latestUpdatedAt || "",
     sourceUrl: data?.sourceUrl || "",
     dataWarning: data?.dataWarning || "",
+  };
+}
+
+function checkoutReadinessSummary(config) {
+  const sellerKitCheckoutConfigured = Boolean(readString(config, "sellerKitCheckoutUrl"));
+  const serviceCheckoutConfigured = Boolean(readString(config, "serviceCheckoutUrl"));
+  const auditUpgradeCheckoutConfigured = Boolean(readString(config, "auditUpgradeCheckoutUrl") || readString(config, "serviceCheckoutUrl"));
+  const configuredCount = [sellerKitCheckoutConfigured, serviceCheckoutConfigured, auditUpgradeCheckoutConfigured].filter(Boolean).length;
+  return {
+    sellerKitCheckoutConfigured,
+    serviceCheckoutConfigured,
+    auditUpgradeCheckoutConfigured,
+    configuredCount,
+    requiredCount: 3,
+    readyForDirectPayment: configuredCount > 0,
+    missing: [
+      sellerKitCheckoutConfigured ? "" : "sellerKitCheckoutUrl",
+      serviceCheckoutConfigured ? "" : "serviceCheckoutUrl",
+      auditUpgradeCheckoutConfigured ? "" : "auditUpgradeCheckoutUrl",
+    ].filter(Boolean),
+    note: "Only public checkout URLs belong in site-config.js. Do not store payment credentials, payout details, tax IDs, bank data, card data, or private customer lists in this repo.",
   };
 }
 
@@ -557,6 +579,7 @@ function buildNextActions(gates, local, live, searchConsole, discovery, director
   const sponsorLeads = live.metrics?.sponsorLeads || 0;
   const sponsorInvoiceRequests = live.metrics?.sponsorInvoiceRequests || 0;
   const publicReplies = local.sponsorPublicReplies || {};
+  const checkout = local.checkout || {};
   const actions = [];
   if (!gates.productReady) actions.push("Fix product readiness failures before adding more tools.");
   if (!gates.searchVisible && (directories?.listedCount || 0) < 2) actions.push("Create a small external discovery push using DISTRIBUTION.md; one useful directory/community post is more valuable than resubmitting the sitemap repeatedly.");
@@ -571,6 +594,7 @@ function buildNextActions(gates, local, live, searchConsole, discovery, director
   if (local.ads.publisherConfigured && !local.ads.enabled && gates.searchVisible) actions.push("Apply/continue AdSense review, then enable ads only after approval and placement verification.");
   if (downloads < 100 && generations < 300) actions.push("Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.");
   if (depthIntent === 0) actions.push("Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces.");
+  if (!checkout.readyForDirectPayment) actions.push("Create one real external payment-provider product for the $29 service or $9 kit, then run configure:checkout with the public checkout URL only.");
   if (commercial === 0) actions.push("Keep the sponsorship and partner inquiry page visible as a no-payment commercial-intent surface while ad-network setup waits.");
   if (sponsorInvoiceRequests > 0) actions.push("Export the invoice-request sponsor lead, verify policy fit, and send only an external invoice or agreement; do not collect payment details in this site.");
   else if (sponsorLeads > 0) actions.push("Review sponsor lead details in private KV/export workflow and reply only to policy-fit business inquiries.");
@@ -612,6 +636,7 @@ function renderValidationMarkdown(report) {
     `- Live generations: ${generations}.`,
     `- Free-tool depth intent events: ${depthIntent}.`,
     `- Commercial intent events: ${commercial}.`,
+    `- Checkout links configured: ${report.local.checkout?.configuredCount || 0}/${report.local.checkout?.requiredCount || 3}.`,
     `- Sponsor leads captured: ${sponsorLeads}.`,
     `- Sponsor invoice requests: ${sponsorInvoiceRequests}.`,
     `- Public-safe sponsor replies: ${publicReplies.publicReplyCount || 0}.`,

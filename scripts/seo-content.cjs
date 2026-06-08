@@ -6005,6 +6005,7 @@ function opsMonitorStaticHtml() {
           ${opsMetricTile(`${sponsorOutreach.queued || 0}/${sponsorOutreach.sent || 0}/${sponsorOutreach.settled || 0}`, "outreach queued/sent/settled")}
         </div>
         <div id="opsMetrics" class="metric-remote">
+          ${opsCheckoutActivationHtml(totals)}
           <section class="panel ops-sponsor-sprint">
             <div class="ops-project-head">
               <div>
@@ -6119,6 +6120,107 @@ function opsSponsorNextSubmissionHtml(rows) {
                 ${rows.map(opsSponsorSubmissionCardHtml).join("\n")}
               </div>
             </div>`;
+}
+
+function opsCheckoutActivationRows(totals = {}) {
+  const auditUpgradeUrl = configuredAuditUpgradeCheckoutUrl();
+  return [
+    {
+      sku: LOCAL_SELLER_STARTER_KIT.name,
+      price: `$${LOCAL_SELLER_STARTER_KIT.priceUsd} ${LOCAL_SELLER_STARTER_KIT.currency}`,
+      configured: Boolean(LOCAL_SELLER_STARTER_KIT.checkoutUrl),
+      configKey: "sellerKitCheckoutUrl",
+      command: "npm.cmd run configure:checkout -- --seller-kit-url https://your-payment-provider.example/local-seller-starter-kit",
+      publicPage: `/${LOCAL_SELLER_STARTER_KIT.slug}/`,
+      checkoutClicks: totals.seller_checkout_click || 0,
+      requestIntent: totals.seller_checkout_intent || 0,
+      copy: checkoutCopy(LOCAL_SELLER_STARTER_KIT),
+    },
+    {
+      sku: CUSTOM_LOCAL_PRINT_PACK_SERVICE.name,
+      price: `$${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} ${CUSTOM_LOCAL_PRINT_PACK_SERVICE.currency}`,
+      configured: Boolean(CUSTOM_LOCAL_PRINT_PACK_SERVICE.checkoutUrl),
+      configKey: "serviceCheckoutUrl",
+      command: "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/custom-local-print-pack",
+      publicPage: `/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug}/`,
+      checkoutClicks: totals.service_checkout_click || 0,
+      requestIntent: totals.service_request_intent || 0,
+      copy: serviceCheckoutCopy(CUSTOM_LOCAL_PRINT_PACK_SERVICE),
+    },
+    {
+      sku: "Audit upgrade checkout",
+      price: `$${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} ${CUSTOM_LOCAL_PRINT_PACK_SERVICE.currency}`,
+      configured: Boolean(auditUpgradeUrl),
+      configKey: "auditUpgradeCheckoutUrl",
+      command: "npm.cmd run configure:checkout -- --audit-upgrade-url https://your-payment-provider.example/custom-local-print-pack",
+      publicPage: `/${MARKET_TABLE_PRINT_AUDIT.slug}/`,
+      checkoutClicks: totals.service_checkout_click || 0,
+      requestIntent: totals.audit_request_intent || 0,
+      copy: [
+        "Upgrade from the Free Market Table Print Audit to the Custom Local Print Pack Setup.",
+        "",
+        serviceCheckoutCopy(CUSTOM_LOCAL_PRINT_PACK_SERVICE),
+      ].join("\n"),
+    },
+  ];
+}
+
+function opsCheckoutActivationHtml(totals = {}) {
+  const rows = opsCheckoutActivationRows(totals);
+  const configuredCount = rows.filter((row) => row.configured).length;
+  return `          <section class="panel ops-checkout-activation">
+            <div class="ops-project-head">
+              <div>
+                <p class="eyebrow">checkout activation</p>
+                <h2>External payment link readiness</h2>
+                <p>${configuredCount ? `${configuredCount}/${rows.length} external checkout slot(s) are configured.` : "No external checkout URL is configured yet. The public pages collect requests only until a real payment-provider link is connected."}</p>
+              </div>
+              <a class="button secondary" href="/custom-local-print-pack/">Open service page</a>
+            </div>
+            <div class="metric-grid compact ops-project-grid">
+              ${opsMetricTile(`${configuredCount}/${rows.length}`, "configured slots")}
+              ${opsMetricTile(rows.reduce((sum, row) => sum + Number(row.checkoutClicks || 0), 0), "checkout clicks")}
+              ${opsMetricTile(rows.reduce((sum, row) => sum + Number(row.requestIntent || 0), 0), "request intent")}
+              ${opsMetricTile("settled only", "revenue proof")}
+            </div>
+            ${opsStaticTable(["SKU", "Price", "Config key", "Status", "Checkout clicks", "Requests", "Page"], rows.map((row) => [
+              row.sku,
+              row.price,
+              row.configKey,
+              row.configured ? "configured" : "missing",
+              row.checkoutClicks || 0,
+              row.requestIntent || 0,
+              row.publicPage,
+            ]))}
+            <div class="ops-action-list">
+              ${rows.map((row) => `<article class="ops-action-card checkout-activation-card">
+                <div>
+                  <p class="eyebrow">${escapeHtml(row.configured ? "ready" : "missing checkout")}</p>
+                  <h4>${escapeHtml(row.sku)}</h4>
+                  <p>${escapeHtml(row.price)}. Create one real Gumroad, Payhip, Ko-fi, Stripe Payment Link, or invoice product, then paste only the public checkout URL into this repository.</p>
+                  <p class="help">Do not store payout, tax, bank, card, customer-list, or account credential data here. Revenue is proven only by the external provider's paid or settled order record.</p>
+                </div>
+                <div class="ops-action-buttons">
+                  <button class="button secondary" type="button" data-copy-text="${escapeHtml(row.copy)}">Copy listing copy</button>
+                  <button class="button ghost" type="button" data-copy-text="${escapeHtml(row.command)}">Copy config command</button>
+                  <a class="button ghost" href="${escapeHtml(row.publicPage)}">Open page</a>
+                </div>
+              </article>`).join("\n")}
+            </div>
+          </section>`;
+}
+
+function serviceCheckoutCopy(service) {
+  return [
+    `Product name: ${service.name}`,
+    `Price: $${service.priceUsd} ${service.currency}`,
+    `Short description: ${service.shortDescription}`,
+    "Delivery note: Buyer sends public-safe item, price, style, and contact-link details after payment. Delivery target is 2 business days after paid_order_verified and complete buyer details.",
+    "Deliverables:",
+    ...service.deliverables.map((item) => `- ${item}`),
+    "",
+    "Buyer safety: Do not send tax, bank, card, password, private identity, customer-list, or private file data through the website form.",
+  ].join("\n");
 }
 
 function opsSponsorSubmissionCardHtml(row) {

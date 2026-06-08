@@ -8600,6 +8600,7 @@ ${paragraphs.join("\n")}
           <div class="metric-tile"><strong>${sponsorInvoiceRequests}</strong><span>invoice requests</span></div>
           <div class="metric-tile"><strong>${totalGameIntent}</strong><span>game play signals</span></div>
         </div>
+        ${checkoutActivationHtml(totals)}
         ${sponsorSprintHtml(data, leadCheck, publicReplies)}
         ${serviceLeadCheckHtml(serviceLeadCheck)}
         <div class="ops-project-list">
@@ -8681,6 +8682,118 @@ ${paragraphs.join("\n")}
         ${warning}
       </div>
     `;
+  }
+
+  function checkoutActivationRows(totals = {}) {
+    return [
+      {
+        sku: "Local Seller Starter Kit",
+        price: "$9 USD",
+        configured: Boolean(CONFIG.sellerKitCheckoutUrl || CONFIG.checkoutUrl),
+        configKey: "sellerKitCheckoutUrl",
+        command: "npm.cmd run configure:checkout -- --seller-kit-url https://your-payment-provider.example/local-seller-starter-kit",
+        publicPage: "/local-seller-starter-kit/",
+        checkoutClicks: totals.seller_checkout_click || 0,
+        requestIntent: totals.seller_checkout_intent || 0,
+        copy: localSellerCheckoutListingCopy(),
+      },
+      {
+        sku: "Custom Local Print Pack Setup",
+        price: "$29 USD",
+        configured: Boolean(CONFIG.serviceCheckoutUrl || CONFIG.customPrintPackCheckoutUrl),
+        configKey: "serviceCheckoutUrl",
+        command: "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/custom-local-print-pack",
+        publicPage: "/custom-local-print-pack/",
+        checkoutClicks: totals.service_checkout_click || 0,
+        requestIntent: totals.service_request_intent || 0,
+        copy: customLocalPrintPackCheckoutListingCopy(),
+      },
+      {
+        sku: "Audit upgrade checkout",
+        price: "$29 USD",
+        configured: Boolean(CONFIG.auditUpgradeCheckoutUrl || CONFIG.serviceCheckoutUrl || CONFIG.customPrintPackCheckoutUrl),
+        configKey: "auditUpgradeCheckoutUrl",
+        command: "npm.cmd run configure:checkout -- --audit-upgrade-url https://your-payment-provider.example/custom-local-print-pack",
+        publicPage: "/market-table-print-audit/",
+        checkoutClicks: totals.service_checkout_click || 0,
+        requestIntent: totals.audit_request_intent || 0,
+        copy: `Upgrade from the Free Market Table Print Audit to the Custom Local Print Pack Setup.\n\n${customLocalPrintPackCheckoutListingCopy()}`,
+      },
+    ];
+  }
+
+  function checkoutActivationHtml(totals = {}) {
+    const rows = checkoutActivationRows(totals);
+    const configuredCount = rows.filter((row) => row.configured).length;
+    const checkoutClicks = rows.reduce((sum, row) => sum + Number(row.checkoutClicks || 0), 0);
+    const requestIntent = rows.reduce((sum, row) => sum + Number(row.requestIntent || 0), 0);
+    return `
+      <section class="panel ops-checkout-activation">
+        <div class="ops-project-head">
+          <div>
+            <p class="eyebrow">checkout activation</p>
+            <h2>External payment link readiness</h2>
+            <p>${configuredCount ? `${configuredCount}/${rows.length} external checkout slot(s) are configured.` : "No external checkout URL is configured yet. Public pages collect requests only until a real payment-provider link is connected."}</p>
+          </div>
+          <a class="button secondary" href="/custom-local-print-pack/">Open service page</a>
+        </div>
+        <div class="metric-grid compact ops-project-grid">
+          <div class="metric-tile"><strong>${configuredCount}/${rows.length}</strong><span>configured slots</span></div>
+          <div class="metric-tile"><strong>${checkoutClicks}</strong><span>checkout clicks</span></div>
+          <div class="metric-tile"><strong>${requestIntent}</strong><span>request intent</span></div>
+          <div class="metric-tile"><strong>settled only</strong><span>revenue proof</span></div>
+        </div>
+        ${opsTable(["SKU", "Price", "Config key", "Status", "Checkout clicks", "Requests", "Page"], rows.map((row) => [
+          row.sku,
+          row.price,
+          row.configKey,
+          row.configured ? "configured" : "missing",
+          row.checkoutClicks || 0,
+          row.requestIntent || 0,
+          row.publicPage,
+        ]))}
+        <div class="ops-action-list">
+          ${rows.map((row) => `
+            <article class="ops-action-card checkout-activation-card">
+              <div>
+                <p class="eyebrow">${escapeHtml(row.configured ? "ready" : "missing checkout")}</p>
+                <h4>${escapeHtml(row.sku)}</h4>
+                <p>${escapeHtml(row.price)}. Create one real Gumroad, Payhip, Ko-fi, Stripe Payment Link, or invoice product, then paste only the public checkout URL into this repository.</p>
+                <p class="help">Do not store payout, tax, bank, card, customer-list, or account credential data here. Revenue is proven only by the external provider's paid or settled order record.</p>
+              </div>
+              <div class="ops-action-buttons">
+                <button class="button secondary" type="button" data-copy-text="${escapeHtml(row.copy)}">Copy listing copy</button>
+                <button class="button ghost" type="button" data-copy-text="${escapeHtml(row.command)}">Copy config command</button>
+                <a class="button ghost" href="${escapeHtml(row.publicPage)}">Open page</a>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      </section>
+    `;
+  }
+
+  function localSellerCheckoutListingCopy() {
+    return [
+      "Product name: Local Seller Starter Kit",
+      "Price: $9 USD",
+      "Short description: Editable starter templates for market tables, pop-up sellers, service providers, and first-time local offers: price tags, coupon copy, QR sign wording, pickup notes, packing slip rows, and a launch checklist.",
+      "Delivery note: Buyer receives editable CSV, Markdown, HTML, and text templates for their own local-selling workflow.",
+      "Buyer safety: This is a digital template kit. Do not send payout, tax, bank, card, password, private identity, or customer-list data through the website form.",
+    ].join("\n");
+  }
+
+  function customLocalPrintPackCheckoutListingCopy() {
+    return [
+      "Product name: Custom Local Print Pack Setup",
+      "Price: $29 USD",
+      "Short description: A done-for-you printable starter pack setup for local sellers and small service providers.",
+      "Delivery note: Buyer sends public-safe item, price, style, and contact-link details after payment. Delivery target is 2 business days after paid_order_verified and complete buyer details.",
+      "Deliverables:",
+      ...customLocalPrintPackDeliverables().map((item) => `- ${item}`),
+      "",
+      "Buyer safety: Do not send tax, bank, card, password, private identity, customer-list, or private file data through the website form.",
+    ].join("\n");
   }
 
   function sponsorSprintHtml(data, leadCheck, publicReplies) {

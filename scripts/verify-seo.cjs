@@ -251,6 +251,7 @@ for (const routePath of ["dashboard", "ops"]) {
   if (routePath === "ops" && (!html.includes("/api/ops-metrics") || !html.includes("Project detail rows") || !html.includes("Source breakdown") || !html.includes("Tool and game signal snapshot") || !html.includes("Path breakdown"))) failures.push("Ops monitor should render detailed project traffic sections and live metrics access.");
   if (routePath === "ops" && (!html.includes("Public-safe sponsor reply evidence") || !html.includes("public invoice issues"))) failures.push("Ops monitor should surface public-safe sponsor reply evidence.");
   if (routePath === "ops" && (!html.includes("Next sponsor submissions") || !html.includes("Open email draft") || !html.includes("Copy message"))) failures.push("Ops monitor should expose an internal next sponsor submission queue.");
+  if (routePath === "ops" && (!html.includes("External payment link readiness") || !html.includes("Copy config command") || !html.includes("sellerKitCheckoutUrl") || !html.includes("serviceCheckoutUrl"))) failures.push("Ops monitor should expose internal checkout activation readiness.");
 }
 
 const headersFile = path.join(root, "_headers");
@@ -454,6 +455,7 @@ else {
   if (!script.includes("renderCustomLocalPrintPackService") || !script.includes("Request $29 setup") || !script.includes("customLocalPrintPackRequestCopy")) failures.push("app.js missing restored custom print pack service request path.");
   if (!script.includes("renderMarketTablePrintAudit") || !script.includes("Request free audit") || !script.includes("marketTableAuditRequestCopy")) failures.push("app.js missing restored free audit lead magnet path.");
   if (!script.includes("serviceCheckoutUrl") || !script.includes("service_checkout_click") || !script.includes("Buy setup for $29")) failures.push("app.js missing direct external service checkout support.");
+  if (!script.includes("checkoutActivationHtml") || !script.includes("External payment link readiness") || !script.includes("Copy config command")) failures.push("app.js ops monitor missing checkout activation panel.");
   if (!script.includes("initServiceLeadForms") || !script.includes("submitServiceLeadForm") || !script.includes("/api/service-lead") || !script.includes("Service lead index check")) failures.push("app.js missing low-friction service lead capture and ops index check.");
   if (!script.includes("Payment starts only after fit is confirmed") || !script.includes("real external checkout or invoice") || !script.includes("Requests and clicks are not revenue")) failures.push("app.js restored service path missing real-payment gate.");
   if (script.includes("seller-funnel-cta") || script.includes("seller-help-directory")) failures.push("app.js should use free-tool depth naming, not seller funnel naming.");
