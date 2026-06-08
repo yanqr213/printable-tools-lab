@@ -142,11 +142,11 @@ else {
   if (!html.includes('data-track-event="sponsor_request_intent"')) failures.push("Sponsor page missing sponsor intent tracking.");
   if (!html.includes('data-track-tool="sponsor"')) failures.push("Sponsor page missing sponsor tool tracking.");
   if (!html.includes('data-sponsor-lead-form')) failures.push("Sponsor page missing lead capture form.");
-  if (!html.includes('data-sponsor-quick-form') || !html.includes("Request pilot invoice review")) failures.push("Sponsor page missing fast invoice review form.");
+  if (!html.includes('data-sponsor-quick-form') || !html.includes("Send USD 49 invoice review request")) failures.push("Sponsor page missing fast USD 49 invoice review form.");
   if (!html.includes('data-sponsor-quick-deal') || !html.includes("2-minute pilot invoice review")) failures.push("Sponsor page missing explicit quick pilot deal selector.");
   if (!html.includes("Fastest paid pilot path") || !html.includes("Use USD 49 starter review")) failures.push("Sponsor page missing fastest paid pilot path.");
-  if (!html.includes('/sponsor-starter-review/?utm_source=sponsor-page') || !html.includes("Start USD 49 review")) failures.push("Sponsor page hero should point to the USD 49 starter review.");
-  if (!html.includes("Open public invoice request") || !html.includes("data-sponsor-public-invoice-request")) failures.push("Sponsor page missing public invoice request CTA.");
+  if (!html.includes('/sponsor-starter-review/?utm_source=sponsor-page') || !html.includes("Start USD 49 review form") || !html.includes("#sponsor-quick-form")) failures.push("Sponsor page hero should point to the fast USD 49 starter review form.");
+  if (!html.includes("Open USD 49 invoice request") || !html.includes("data-sponsor-public-invoice-request")) failures.push("Sponsor page missing primary public USD 49 invoice request CTA.");
   if (!html.includes('option value="starter-fit-review" selected')) failures.push("Sponsor page should default quick pilot to USD 49 starter fit review.");
   if (!html.includes("two business-safe fields") || !html.includes("Company or project (optional)")) failures.push("Sponsor page quick invoice form should require only email and website.");
   if (!html.includes("Public-safe reply form") || !hasPrefilledSponsorReplyUrl(html)) failures.push("Sponsor page missing prefilled public-safe reply fallback.");
@@ -185,8 +185,9 @@ else {
   if (!html.includes("USD 49 starter sponsor review for PrintableTools Lab")) failures.push("Starter sponsor review page missing headline.");
   if (!html.includes("Starter fit review") || !html.includes("USD 49")) failures.push("Starter sponsor review page missing default deal and price.");
   if (!html.includes("What the USD 49 review covers")) failures.push("Starter sponsor review page missing review scope.");
-  if (!html.includes("2-minute pilot invoice review") || !html.includes("fast form needs only business email and website")) failures.push("Starter sponsor review page missing low-friction intake copy.");
-  if (!html.includes("Open public invoice request") || !html.includes("data-sponsor-public-invoice-request")) failures.push("Starter sponsor review page missing public invoice request CTA.");
+  if (!html.includes("2-minute pilot invoice review") || !html.includes("private fast form needs only business email and website")) failures.push("Starter sponsor review page missing low-friction intake copy.");
+  if (!html.includes("Open USD 49 invoice request") || !html.includes("data-sponsor-public-invoice-request")) failures.push("Starter sponsor review page missing primary public USD 49 invoice request CTA.");
+  if (!html.includes('id="sponsor-quick-form"') || !html.includes("Send USD 49 invoice review request") || !html.includes("Open public request instead")) failures.push("Starter sponsor review page missing anchored fast USD 49 request form.");
   if (html.indexOf('data-sponsor-quick-form') > html.indexOf("<h2>Starter fit review</h2>")) failures.push("Starter sponsor review page should place the quick sponsor form before explanatory deal cards.");
   if (!html.includes('data-sponsor-quick-form') || !html.includes('data-sponsor-lead-form')) failures.push("Starter sponsor review page missing sponsor lead forms.");
   if (!html.includes('option value="starter-fit-review" selected')) failures.push("Starter sponsor review page should default quick pilot to USD 49 starter fit review.");

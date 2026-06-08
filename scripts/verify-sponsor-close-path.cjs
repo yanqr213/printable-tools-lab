@@ -44,8 +44,9 @@ if (!sponsor.includes("github.com/yanqr213/printable-tools-lab/issues/new?")) fa
 if (!sponsor.includes("body=Public-safe+sponsor+reply")) failures.push("Sponsor page public-safe reply link should prefill the issue body.");
 if (!sponsor.includes("labels=sponsor%2Cpartner%2Cbusiness-review")) failures.push("Sponsor page public-safe reply link should pre-label sponsor issues.");
 if (sponsor.includes("template=sponsor-partner-inquiry.yml")) failures.push("Sponsor page should not route public-safe replies through a YAML issue form.");
+if (!sponsor.includes("Open USD 49 invoice request")) failures.push("Sponsor page missing primary USD 49 invoice request CTA.");
 if (!sponsor.includes("Open public-safe reply")) failures.push("Sponsor page missing public-safe reply CTA.");
-if (!sponsor.includes("Request pilot invoice review")) failures.push("Sponsor page missing fast invoice review CTA.");
+if (!sponsor.includes("Send USD 49 invoice review request")) failures.push("Sponsor page missing fast USD 49 invoice review CTA.");
 if (!sponsor.includes("data-sponsor-quick-form")) failures.push("Sponsor page missing quick sponsor form.");
 
 const issueTemplate = read(".github/ISSUE_TEMPLATE/sponsor-partner-inquiry.yml");
