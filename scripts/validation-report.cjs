@@ -152,7 +152,7 @@ function sponsorPublicReplySummary(data) {
 }
 
 async function readLiveState() {
-  const paths = ["/", "/tools/", "/share-kit/", "/sitemap.xml", "/robots.txt", "/ads.txt", "/llms.txt", "/feed.xml", "/tools.json", "/discovery.json", "/share-kit.json", "/site.webmanifest", "/opensearch.xml", "/api/metrics"];
+  const paths = ["/", "/tools/", "/share-kit/", "/sitemap.xml", "/robots.txt", "/ads.txt", "/llms.txt", "/feed.xml", "/tools.json", "/discovery.json", "/share-kit.json", "/site.webmanifest", "/opensearch.xml", "/api/metrics", "/api/service-lead"];
   const checks = {};
   for (const pathname of paths) {
     checks[pathname] = await liveCheck(pathname);

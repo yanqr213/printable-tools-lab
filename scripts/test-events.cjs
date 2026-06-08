@@ -9,6 +9,7 @@ async function main() {
   const opsMetricsSource = loadFunction("functions/api/ops-metrics.js", ["onRequestGet"]);
   const sponsorLeadSource = loadFunction("functions/api/sponsor-lead.js", ["onRequestPost", "onRequestGet"]);
   const sponsorPublicRepliesSource = loadFunction("functions/api/sponsor-public-replies.js", ["onRequestGet"]);
+  const serviceLeadSource = loadFunction("functions/api/service-lead.js", ["onRequestPost", "onRequestGet"]);
   const store = new MemoryStore();
   const env = { PTL_EVENTS: store, PTL_METRICS_BASELINE: "off" };
 
@@ -567,6 +568,102 @@ async function main() {
   assert(sponsorOutreach.sponsor_request_intent === 1, "Metrics should count sponsor-call intent by outreach source");
   assert(sponsorOutreach.sponsor_lead_submit === 1, "Metrics should count sponsor lead submissions by outreach source");
   assert(sponsorOutreach.sponsor_invoice_request === 1, "Metrics should count sponsor invoice requests by outreach source");
+
+  const serviceStore = new MemoryStore();
+  const serviceEnv = { PTL_EVENTS: serviceStore, PTL_METRICS_BASELINE: "off" };
+  const customServiceResponse = await serviceLeadSource.onRequestPost({
+    request: new Request("https://example.test/api/service-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.30" },
+      body: JSON.stringify(serviceLeadBody({
+        serviceType: "custom-local-print-pack",
+        source: "community",
+        path: "/custom-local-print-pack/",
+        utmSource: "community",
+        utmCampaign: "service_request",
+      })),
+    }),
+    env: serviceEnv,
+  });
+  const customServicePayload = await customServiceResponse.json();
+  assert(customServiceResponse.status === 200 && customServicePayload.ok, "Service lead endpoint should accept valid custom setup requests");
+  const auditServiceResponse = await serviceLeadSource.onRequestPost({
+    request: new Request("https://example.test/api/service-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.31" },
+      body: JSON.stringify(serviceLeadBody({
+        serviceType: "market-table-print-audit",
+        source: "github-pages",
+        path: "/market-table-print-audit/",
+        requestSummary: "Please check whether my table prices and QR sign wording are clear before Saturday.",
+      })),
+    }),
+    env: serviceEnv,
+  });
+  const auditServicePayload = await auditServiceResponse.json();
+  assert(auditServiceResponse.status === 200 && auditServicePayload.ok, "Service lead endpoint should accept free audit requests");
+  const sellerKitServiceResponse = await serviceLeadSource.onRequestPost({
+    request: new Request("https://example.test/api/service-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.32" },
+      body: JSON.stringify(serviceLeadBody({
+        serviceType: "local-seller-starter-kit",
+        source: "direct",
+        path: "/local-seller-starter-kit/",
+        requestSummary: "Please send the checkout link when the local seller starter kit is ready.",
+      })),
+    }),
+    env: serviceEnv,
+  });
+  const sellerKitServicePayload = await sellerKitServiceResponse.json();
+  assert(sellerKitServiceResponse.status === 200 && sellerKitServicePayload.ok, "Service lead endpoint should accept seller kit checkout requests");
+  assert(serviceStore.data.has(`service:lead:${customServicePayload.id}`), "Service lead should be stored privately in KV");
+  assert(serviceStore.data.has(`service:lead:${auditServicePayload.id}`), "Audit lead should be stored privately in KV");
+  assert(serviceStore.data.has(`service:lead:${sellerKitServicePayload.id}`), "Seller kit lead should be stored privately in KV");
+  const storedServiceLead = JSON.parse(serviceStore.data.get(`service:lead:${customServicePayload.id}`));
+  assert(storedServiceLead.contact === "buyer@example.com", "Service lead should store normalized private contact");
+  assert(storedServiceLead.serviceType === "custom-local-print-pack", "Service lead should persist service type");
+  assert(storedServiceLead.utmCampaign === "service_request", "Service lead should preserve UTM campaign attribution");
+  const serviceLeadIndex = JSON.parse(serviceStore.data.get(`service:lead_index:${storedServiceLead.createdAt.slice(0, 7)}`));
+  assert(serviceLeadIndex.length === 3, "Service lead index should include custom service, audit, and seller kit rows");
+  const publicServiceLeadSummary = await (await serviceLeadSource.onRequestGet({ env: serviceEnv })).json();
+  const publicServiceLeadSummaryText = JSON.stringify(publicServiceLeadSummary);
+  assert(publicServiceLeadSummary.ok && publicServiceLeadSummary.dataQuality === "lead-index", "Service lead GET should expose a public-safe lead index summary");
+  assert(publicServiceLeadSummary.leadCount === 3, "Service lead GET should count indexed service leads");
+  assert(publicServiceLeadSummary.serviceRequestCount === 1, "Service lead GET should count paid setup requests");
+  assert(publicServiceLeadSummary.auditRequestCount === 1, "Service lead GET should count audit requests");
+  assert(publicServiceLeadSummary.sellerKitRequestCount === 1, "Service lead GET should count seller kit requests");
+  assert(!publicServiceLeadSummaryText.includes("buyer@example.com"), "Service lead GET should not expose private contact");
+  assert(!publicServiceLeadSummaryText.includes("Example Market Booth"), "Service lead GET should not expose business name");
+  assert(!publicServiceLeadSummaryText.includes("Please assemble"), "Service lead GET should not expose request notes");
+  const serviceMetrics = await (await metricsSource.onRequestGet({ env: serviceEnv })).json();
+  const serviceMetricsService = serviceMetrics.tools.find((row) => row.tool === "custom-local-print-pack");
+  const serviceMetricsAudit = serviceMetrics.tools.find((row) => row.tool === "market-table-print-audit");
+  const serviceMetricsSeller = serviceMetrics.tools.find((row) => row.tool === "local-seller-starter-kit");
+  assert(serviceMetricsService.service_request_intent === 1, "Metrics should count service lead submissions as service request intent");
+  assert(serviceMetricsAudit.audit_request_intent === 1, "Metrics should count audit lead submissions as audit request intent");
+  assert(serviceMetricsSeller.seller_checkout_intent === 1, "Metrics should count seller kit lead submissions as checkout intent");
+  assert(serviceMetrics.commercialIntent === 3, "Commercial intent should include service, audit, and seller lead submissions");
+  const serviceOpsMetrics = await (await opsMetricsSource.onRequestGet({ env: serviceEnv })).json();
+  const servicePrintableProject = serviceOpsMetrics.projects.find((row) => row.id === "printable-tools-lab");
+  assert(servicePrintableProject.summary.commercialIntent === 3, "Ops metrics should count service lead submissions in commercial intent");
+  assert(servicePrintableProject.tools.find((row) => row.tool === "custom-local-print-pack").service_request_intent === 1, "Ops metrics should count the custom service lead tool row");
+  const serviceLeadWriteLimitedStore = new MemoryStore({ failWritesWith: "KV put() limit exceeded for the day." });
+  const serviceLeadWriteLimitedResponse = await serviceLeadSource.onRequestPost({
+    request: new Request("https://example.test/api/service-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.33" },
+      body: JSON.stringify(serviceLeadBody({ businessName: "Fallback Service Buyer", contact: "fallback-service@example.com" })),
+    }),
+    env: { PTL_EVENTS: serviceLeadWriteLimitedStore },
+  });
+  const serviceLeadWriteLimitedPayload = await serviceLeadWriteLimitedResponse.json();
+  assert(serviceLeadWriteLimitedResponse.status === 503, "Service lead endpoint should not claim success when private lead storage is unavailable");
+  assert(serviceLeadWriteLimitedPayload.fallbackRequired, "Service lead endpoint should ask for a backup request when storage is unavailable");
+  assert(serviceLeadWriteLimitedPayload.fallbackBody.includes("Fallback Service Buyer"), "Service lead fallback should include the normalized business name");
+  assert(serviceLeadWriteLimitedPayload.fallbackBody.includes("fallback-service@example.com"), "Service lead fallback should include the normalized contact");
+  assertServicePublicReplyUrl(serviceLeadWriteLimitedPayload.fallbackPublicReplyUrl, "Service lead fallback");
+  assert(!String(serviceLeadWriteLimitedPayload.fallbackPublicReplyUrl || "").includes("fallback-service%40example.com"), "Service lead public fallback URL should not expose private contact");
   console.log("Event metrics test passed.");
 }
 
@@ -627,12 +724,33 @@ function sponsorLeadBody(overrides = {}) {
   };
 }
 
+function serviceLeadBody(overrides = {}) {
+  return {
+    serviceType: "custom-local-print-pack",
+    businessName: "Example Market Booth",
+    contact: "buyer@example.com",
+    requestSummary: "Please assemble a small market table print pack with price tags, QR wording, flyer copy, and pickup notes.",
+    needBy: "this month",
+    source: "direct",
+    path: "/custom-local-print-pack/",
+    consent: true,
+    ...overrides,
+  };
+}
+
 function assertSponsorPublicReplyUrl(value, label) {
   const text = String(value || "");
   assert(text.includes("https://github.com/yanqr213/printable-tools-lab/issues/new?"), `${label} should include a public-safe reply URL`);
   assert(!text.includes("template=sponsor-partner-inquiry.yml"), `${label} should not use the YAML issue form because it cannot reliably preserve the prefilled body`);
   assert(text.includes("body=Public-safe+sponsor+reply"), `${label} should prefill the public-safe issue body`);
   assert(text.includes("labels=sponsor%2Cpartner%2Cbusiness-review"), `${label} should pre-label the sponsor issue`);
+}
+
+function assertServicePublicReplyUrl(value, label) {
+  const text = String(value || "");
+  assert(text.includes("https://github.com/yanqr213/printable-tools-lab/issues/new?"), `${label} should include a public-safe service URL`);
+  assert(text.includes("body=Public-safe+service+request"), `${label} should prefill the public-safe service issue body`);
+  assert(text.includes("labels=service%2Cbusiness-review"), `${label} should pre-label the service issue`);
 }
 
 function assert(condition, message) {

@@ -43,15 +43,16 @@
           </div>
         </div>
         <div class="notice compact-notice">
-          <strong>Runtime refresh:</strong> the app replaces this snapshot with live project rows from /api/ops-metrics after loading. Snapshot generated: 2026-06-08T02:13:40.225Z.
+          <strong>Runtime refresh:</strong> the app replaces this snapshot with live project rows from /api/ops-metrics after loading. Snapshot generated: 2026-06-08T02:45:26.247Z.
         </div>
         <div class="metric-grid ops-summary-grid">
-          <div class="metric-tile"><strong>503</strong><span>all page views</span></div>
-          <div class="metric-tile"><strong>9</strong><span>today views</span></div>
+          <div class="metric-tile"><strong>505</strong><span>all page views</span></div>
+          <div class="metric-tile"><strong>11</strong><span>today views</span></div>
           <div class="metric-tile"><strong>2</strong><span>tool downloads</span></div>
           <div class="metric-tile"><strong>0</strong><span>tool generations</span></div>
           <div class="metric-tile"><strong>2</strong><span>commercial intent</span></div>
           <div class="metric-tile"><strong>0</strong><span>sponsor leads</span></div>
+          <div class="metric-tile"><strong>0</strong><span>service leads</span></div>
           <div class="metric-tile"><strong>0</strong><span>invoice requests</span></div>
           <div class="metric-tile"><strong>0</strong><span>public sponsor replies</span></div>
           <div class="metric-tile"><strong>0</strong><span>public invoice issues</span></div>
@@ -173,6 +174,11 @@
               </div>
             </div>
           </section>
+          <section class="notice sponsor-lead-check service-lead-check">
+            <strong>Service lead index check</strong>
+            <p>Private details stay hidden. Public-safe check: 0 indexed service lead(s). Runtime refresh reads /api/service-lead for service, audit, seller-kit, source, and latest-created counts.</p>
+            <p><a href="/api/service-lead" target="_blank" rel="noreferrer">Open public-safe service lead JSON</a></p>
+          </section>
           <section class="panel ops-project">
             <div class="ops-project-head">
               <div>
@@ -182,12 +188,12 @@
               </div>
               <button class="button" id="refreshOpsMetrics" type="button">Refresh</button>
             </div>
-            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Project</th><th>Goal</th><th>Views</th><th>Today</th><th>Downloads</th><th>Sponsor leads</th><th>Invoice requests</th><th>Intent</th></tr></thead><tbody><tr><td>PrintableTools Lab</td><td>Free browser tools and sponsor funnel</td><td>503</td><td>9</td><td>2</td><td>0</td><td>0</td><td>2</td></tr>
+            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Project</th><th>Goal</th><th>Views</th><th>Today</th><th>Downloads</th><th>Sponsor leads</th><th>Invoice requests</th><th>Intent</th></tr></thead><tbody><tr><td>PrintableTools Lab</td><td>Free browser tools and sponsor funnel</td><td>505</td><td>11</td><td>2</td><td>0</td><td>0</td><td>2</td></tr>
 <tr><td>Pocket Arcade Shelf</td><td>HTML5 game portal and platform revenue-share route</td><td>Live via /api/ops-metrics</td><td>Live via /api/ops-metrics</td><td>n/a</td><td>n/a</td><td>n/a</td><td>Game play/embed rows</td></tr></tbody></table></div>
           </section>
           <section class="panel">
             <h2>Source breakdown</h2>
-            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Source</th><th>Views</th><th>Downloads</th><th>Depth</th><th>Sponsor intent</th></tr></thead><tbody><tr><td>direct</td><td>503</td><td>0</td><td>0</td><td>0</td></tr>
+            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Source</th><th>Views</th><th>Downloads</th><th>Depth</th><th>Sponsor intent</th></tr></thead><tbody><tr><td>direct</td><td>505</td><td>0</td><td>0</td><td>0</td></tr>
 <tr><td>sponsor-outreach</td><td>0</td><td>0</td><td>0</td><td>2</td></tr></tbody></table></div>
           </section>
           <section class="panel">
@@ -200,7 +206,7 @@
           </section>
           <section class="panel">
             <h2>Operating actions</h2>
-            <ul class="ops-action-summary"><li>Watch the newly listed directories for real referrals and depth events before adding another same-category submission.</li><li>Sync the generated docs/ discovery mirror to GitHub Pages; live sitemap has 263 URL(s), expected 266.</li><li>Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.</li><li>When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.</li><li>Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.</li></ul>
+            <ul class="ops-action-summary"><li>Watch the newly listed directories for real referrals and depth events before adding another same-category submission.</li><li>Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.</li><li>When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.</li><li>Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.</li><li>Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces.</li></ul>
           </section>
         </div>
         <p class="help">Revenue is still counted only after a platform balance, sponsor agreement, or settled payment is verified. Views and clicks are operating signals, not money.</p>

@@ -347,6 +347,7 @@ if (fs.existsSync(cloudflareDeployScriptFile)) {
   const deployScript = fs.readFileSync(cloudflareDeployScriptFile, "utf8");
   if (!deployScript.includes("sponsor-deal-room\\.json")) failures.push("Cloudflare safe deploy allowlist missing sponsor-deal-room.json.");
   if (!deployScript.includes("sponsor-intent-feed\\.json")) failures.push("Cloudflare safe deploy allowlist missing sponsor-intent-feed.json.");
+  if (!deployScript.includes("functions/api/service-lead.js")) failures.push("Cloudflare safe deploy required files missing service lead function.");
 }
 
 const sponsorCallJsonFile = path.join(root, "sponsor-call.json");
@@ -452,6 +453,7 @@ else {
   if (!script.includes("renderLocalSellerStarterKit") || !script.includes("Request checkout link")) failures.push("app.js missing restored seller kit checkout-request path.");
   if (!script.includes("renderCustomLocalPrintPackService") || !script.includes("Request $29 setup") || !script.includes("customLocalPrintPackRequestCopy")) failures.push("app.js missing restored custom print pack service request path.");
   if (!script.includes("renderMarketTablePrintAudit") || !script.includes("Request free audit") || !script.includes("marketTableAuditRequestCopy")) failures.push("app.js missing restored free audit lead magnet path.");
+  if (!script.includes("initServiceLeadForms") || !script.includes("submitServiceLeadForm") || !script.includes("/api/service-lead") || !script.includes("Service lead index check")) failures.push("app.js missing low-friction service lead capture and ops index check.");
   if (!script.includes("Payment starts only after fit is confirmed") || !script.includes("real external checkout or invoice") || !script.includes("Requests and clicks are not revenue")) failures.push("app.js restored service path missing real-payment gate.");
   if (script.includes("seller-funnel-cta") || script.includes("seller-help-directory")) failures.push("app.js should use free-tool depth naming, not seller funnel naming.");
 }
@@ -459,6 +461,7 @@ else {
 const eventFunctionFile = path.join(root, "functions", "api", "event.js");
 const metricsFunctionFile = path.join(root, "functions", "api", "metrics.js");
 const sponsorLeadFunctionFile = path.join(root, "functions", "api", "sponsor-lead.js");
+const serviceLeadFunctionFile = path.join(root, "functions", "api", "service-lead.js");
 const sponsorProspectScriptFile = path.join(root, "scripts", "generate-sponsor-prospect-queue.cjs");
 const sponsorOutreachLogScriptFile = path.join(root, "scripts", "sponsor-outreach-log.cjs");
 const sponsorContactProbeScriptFile = path.join(root, "scripts", "probe-sponsor-contact-routes.cjs");
@@ -495,6 +498,14 @@ else {
   if (!sponsorLeadScript.includes("fallbackPublicReplyUrl") || !sponsorLeadScript.includes('url.searchParams.set("body", body)') || !sponsorLeadScript.includes('url.searchParams.set("labels", "sponsor,partner,business-review")') || sponsorLeadScript.includes('url.searchParams.set("template", "sponsor-partner-inquiry.yml")')) failures.push("Sponsor lead API missing prefilled public-safe fallback reply URL.");
   if (!sponsorLeadScript.includes("dryRunFallback")) failures.push("Sponsor lead API missing no-write fallback validation path.");
   if (!sponsorLeadScript.includes("publicLeadSummary") || !sponsorLeadScript.includes("privateFields") || !sponsorLeadScript.includes("not exposed")) failures.push("Sponsor lead API should expose only public-safe lead summary counts.");
+}
+if (!fs.existsSync(serviceLeadFunctionFile)) failures.push("Missing service lead API function.");
+else {
+  const serviceLeadScript = fs.readFileSync(serviceLeadFunctionFile, "utf8");
+  if (!serviceLeadScript.includes("service:lead:") || !serviceLeadScript.includes("service:lead_index")) failures.push("Service lead API should persist private leads and a public-safe index.");
+  if (!serviceLeadScript.includes("service_request_intent") || !serviceLeadScript.includes("audit_request_intent") || !serviceLeadScript.includes("seller_checkout_intent")) failures.push("Service lead API should roll submitted leads into existing commercial intent metrics.");
+  if (!serviceLeadScript.includes("publicLeadSummary") || !serviceLeadScript.includes("privateFields") || !serviceLeadScript.includes("not exposed")) failures.push("Service lead API should expose only public-safe summary counts.");
+  if (!serviceLeadScript.includes("fallbackPublicReplyUrl") || !serviceLeadScript.includes("Public-safe service request")) failures.push("Service lead API should provide a public-safe GitHub fallback.");
 }
 if (!fs.existsSync(sponsorProspectScriptFile)) failures.push("Missing sponsor prospect queue generator.");
 else {
@@ -1098,6 +1109,7 @@ if (!fs.existsSync(productRouteFile)) failures.push("Missing local seller starte
 else {
   const html = fs.readFileSync(productRouteFile, "utf8");
   if (!html.includes("Local Seller Starter Kit") || !html.includes("Request checkout link")) failures.push("Seller kit route missing checkout request path.");
+  if (!html.includes('data-service-lead-form') || !html.includes('data-service-type="local-seller-starter-kit"') || !html.includes("Send checkout request")) failures.push("Seller kit route missing low-friction service lead form.");
   if ((!html.includes("No payment is collected on this site") && !html.includes("no payment is collected here")) || !html.includes("Revenue is proven only after a real payment provider")) failures.push("Seller kit route missing real-payment gate.");
   if (!sitemap.includes(`<loc>${siteUrl(LOCAL_SELLER_STARTER_KIT.slug)}</loc>`)) failures.push("Sitemap should include restored seller kit route.");
 }
@@ -1107,6 +1119,7 @@ if (!fs.existsSync(serviceRouteFile)) failures.push("Missing restored custom pri
 else {
   const html = fs.readFileSync(serviceRouteFile, "utf8");
   if (!html.includes(CUSTOM_LOCAL_PRINT_PACK_SERVICE.name) || (!html.includes(`Request $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup`) && !html.includes("Request service checkout"))) failures.push("Service route missing paid setup request CTA.");
+  if (!html.includes('data-service-lead-form') || !html.includes('data-service-type="custom-local-print-pack"') || !html.includes("Send setup request")) failures.push("Service route missing low-friction service lead form.");
   if (!html.includes("real external checkout") || !html.includes("No payment is collected")) failures.push("Service route missing external-payment gate.");
   if (!html.includes("Copy generated service request") && !html.includes("Copy request brief")) failures.push("Service route missing copy-ready request.");
   if (!sitemap.includes(`<loc>${siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}</loc>`)) failures.push("Sitemap should include restored service route.");
@@ -1117,6 +1130,7 @@ if (!fs.existsSync(auditRouteFile)) failures.push("Missing restored market table
 else {
   const html = fs.readFileSync(auditRouteFile, "utf8");
   if (!html.includes(MARKET_TABLE_PRINT_AUDIT.name) || !html.includes("Request free audit")) failures.push("Audit route missing free audit request CTA.");
+  if (!html.includes('data-service-lead-form') || !html.includes('data-service-type="market-table-print-audit"') || !html.includes("Send audit request")) failures.push("Audit route missing low-friction audit lead form.");
   if (!html.includes(`$${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup`) || !html.includes("does not count as revenue")) failures.push("Audit route missing optional paid upgrade gate.");
   if (!sitemap.includes(`<loc>${siteUrl(MARKET_TABLE_PRINT_AUDIT.slug)}</loc>`)) failures.push("Sitemap should include restored audit route.");
 }

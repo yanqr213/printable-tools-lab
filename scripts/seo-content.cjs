@@ -375,6 +375,97 @@ function serviceRequestUrl(service) {
   return url.toString();
 }
 
+function serviceLeadTitle(serviceType) {
+  if (serviceType === "market-table-print-audit") return MARKET_TABLE_PRINT_AUDIT.name;
+  if (serviceType === "local-seller-starter-kit") return LOCAL_SELLER_STARTER_KIT.name;
+  return CUSTOM_LOCAL_PRINT_PACK_SERVICE.name;
+}
+
+function serviceLeadTrackEvent(serviceType) {
+  if (serviceType === "market-table-print-audit") return "audit_request_intent";
+  if (serviceType === "local-seller-starter-kit") return "seller_checkout_intent";
+  return "service_request_intent";
+}
+
+function serviceLeadTrackTool(serviceType) {
+  if (serviceType === "market-table-print-audit") return MARKET_TABLE_PRINT_AUDIT.id;
+  if (serviceType === "local-seller-starter-kit") return LOCAL_SELLER_STARTER_KIT.id;
+  return CUSTOM_LOCAL_PRINT_PACK_SERVICE.id;
+}
+
+function serviceLeadFallbackText(serviceType, pathName) {
+  return [
+    "Public-safe service request.",
+    "",
+    `Service: ${serviceLeadTitle(serviceType)}`,
+    "Business or project:",
+    "Public contact: add only if you want it visible in a public GitHub issue",
+    "Need-by / timeline:",
+    `Source path: ${siteUrl(pathName || serviceType)}`,
+    "",
+    "Request note:",
+    "",
+    "Do not include payment, tax, bank, phone, identity, password, customer-list, or private file data in this public issue.",
+  ].join("\n");
+}
+
+function serviceLeadFallbackUrl(serviceType, pathName) {
+  const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+  const titlePrefix = serviceType === "market-table-print-audit" ? "Audit request" : serviceType === "local-seller-starter-kit" ? "Seller kit request" : "Service request";
+  url.searchParams.set("title", `${titlePrefix}: ${serviceLeadTitle(serviceType)}`);
+  url.searchParams.set("body", serviceLeadFallbackText(serviceType, pathName));
+  url.searchParams.set("labels", "service,business-review");
+  return url.toString();
+}
+
+function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, pathName }) {
+  const eventName = serviceLeadTrackEvent(serviceType);
+  const tool = serviceLeadTrackTool(serviceType);
+  const fallbackUrl = serviceLeadFallbackUrl(serviceType, pathName || serviceType);
+  return `<section class="shell section service-lead-section" id="service-request">
+        <div class="grid-2">
+          <div>
+            <h2>${escapeHtml(title)}</h2>
+            <p>${escapeHtml(intro)}</p>
+            <ul>
+              <li>No payment is collected here.</li>
+              <li>Use an email, website contact page, or public handle for follow-up.</li>
+              <li>Do not send payment, tax, bank, identity, password, customer-list, or private file data.</li>
+            </ul>
+          </div>
+          <form class="panel form-grid service-lead-form" data-service-lead-form data-service-type="${escapeHtml(serviceType)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+            <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="hidden" name="serviceType" value="${escapeHtml(serviceType)}">
+            <label class="field">
+              <span>Email or public contact link</span>
+              <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
+            </label>
+            <label class="field">
+              <span>Business or project (optional)</span>
+              <input name="businessName" maxlength="90" autocomplete="organization" placeholder="Market booth, service name, or shop">
+            </label>
+            <label class="field">
+              <span>What do you need?</span>
+              <textarea name="requestSummary" maxlength="1000" required placeholder="${escapeHtml(placeholder)}"></textarea>
+            </label>
+            <label class="field">
+              <span>Need-by date (optional)</span>
+              <input name="needBy" maxlength="80" placeholder="Event date, this week, this month">
+            </label>
+            <label class="check-row">
+              <input name="consent" type="checkbox" required>
+              <span>I will keep payment, tax, identity, passwords, customer lists, and private files outside this form.</span>
+            </label>
+            <div class="actions">
+              <button class="button" type="submit" data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}">${escapeHtml(cta)}</button>
+              <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open GitHub backup</a>
+            </div>
+            <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No payment is collected here. A real external checkout or invoice is sent only after fit is confirmed.</p>
+          </form>
+        </div>
+      </section>`;
+}
+
 function marketTableAuditRequestCopy(audit = MARKET_TABLE_PRINT_AUDIT) {
   return [
     "I want a Free Market Table Print Audit.",
@@ -5817,6 +5908,7 @@ function opsMonitorStaticHtml() {
   const commercialIntent = Number(metrics.commercialIntent ?? apiMetrics.commercialIntent ?? opsCommercialIntent(totals)) || 0;
   const sponsorLeads = Number(metrics.sponsorLeads ?? apiMetrics.sponsorLeads ?? totals.sponsor_lead_submit ?? 0) || 0;
   const sponsorInvoiceRequests = Number(metrics.sponsorInvoiceRequests ?? apiMetrics.sponsorInvoiceRequests ?? totals.sponsor_invoice_request ?? 0) || 0;
+  const serviceLeads = Number(report?.live?.checks?.["/api/service-lead"]?.json?.leadCount ?? 0) || 0;
   const generatedAt = report?.generatedAt || "No validation snapshot yet";
   const sponsorOutreach = report?.local?.sponsorOutreach || {};
   const publicReplies = report?.local?.sponsorPublicReplies || {};
@@ -5883,6 +5975,7 @@ function opsMonitorStaticHtml() {
           ${opsMetricTile(totalGenerations, "tool generations")}
           ${opsMetricTile(commercialIntent, "commercial intent")}
           ${opsMetricTile(sponsorLeads, "sponsor leads")}
+          ${opsMetricTile(serviceLeads, "service leads")}
           ${opsMetricTile(sponsorInvoiceRequests, "invoice requests")}
           ${opsMetricTile(publicReplies.publicReplyCount || 0, "public sponsor replies")}
           ${opsMetricTile(publicReplies.invoiceRequestCount || 0, "public invoice issues")}
@@ -5911,6 +6004,11 @@ function opsMonitorStaticHtml() {
             </div>
 ${opsPublicReplySnapshotHtml(publicReplies)}
 ${opsSponsorNextSubmissionHtml(nextSubmissionRows)}
+          </section>
+          <section class="notice sponsor-lead-check service-lead-check">
+            <strong>Service lead index check</strong>
+            <p>Private details stay hidden. Public-safe check: ${serviceLeads} indexed service lead(s). Runtime refresh reads /api/service-lead for service, audit, seller-kit, source, and latest-created counts.</p>
+            <p><a href="/api/service-lead" target="_blank" rel="noreferrer">Open public-safe service lead JSON</a></p>
           </section>
           <section class="panel ops-project">
             <div class="ops-project-head">
@@ -7221,6 +7319,14 @@ function localSellerStarterKitHtml() {
           <div class="proof-tile"><strong>0</strong><span>private payout data stored</span></div>
         </div>
       </section>
+      ${serviceLeadFormHtml({
+        serviceType: "local-seller-starter-kit",
+        title: "Request the checkout link",
+        cta: "Send checkout request",
+        intro: "Send a reply contact and one public-safe note. The kit remains a request path until a real external checkout link is available.",
+        placeholder: "I want the starter kit for a market table, pop-up, service offer, or first local product launch.",
+        pathName: product.slug,
+      })}
       <section class="shell section">
         <h2>What the buyer gets</h2>
         <div class="grid-3">
@@ -7322,6 +7428,14 @@ function customLocalPrintPackServiceHtml() {
           <div class="proof-tile"><strong>2 days</strong><span>target turnaround</span></div>
         </div>
       </section>
+      ${serviceLeadFormHtml({
+        serviceType: "custom-local-print-pack",
+        title: `Request the $${service.priceUsd} setup`,
+        cta: "Send setup request",
+        intro: "Send a reply contact and one public-safe brief. Fit is checked manually, then any payment happens only through an external checkout or invoice.",
+        placeholder: "I sell handmade candles at a Saturday market. I need price tags, QR sign wording, a flyer line, and a pickup note before next weekend.",
+        pathName: service.slug,
+      })}
       <section class="shell section">
         <h2>What gets delivered</h2>
         <div class="grid-3">
@@ -7387,6 +7501,14 @@ function marketTablePrintAuditHtml() {
           <div class="proof-tile"><strong>$${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd}</strong><span>optional upgrade</span></div>
         </div>
       </section>
+      ${serviceLeadFormHtml({
+        serviceType: "market-table-print-audit",
+        title: "Request the free audit",
+        cta: "Send audit request",
+        intro: "Send a public-safe snapshot of what you sell and what feels unfinished. The audit is free; the optional setup stays separate.",
+        placeholder: "I sell cookies at a school event. Prices are not clear and I need a QR/contact sign checked before printing.",
+        pathName: audit.slug,
+      })}
       <section class="shell section">
         <h2>What the audit checks</h2>
         <div class="grid-3">

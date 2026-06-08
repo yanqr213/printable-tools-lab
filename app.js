@@ -5518,6 +5518,7 @@
     app.focus({ preventScroll: true });
     setTimeout(initAuditRequestBuilders, 0);
     setTimeout(initServiceRequestCopies, 0);
+    setTimeout(initServiceLeadForms, 0);
     setTimeout(initUploadLimitHelpers, 0);
     setTimeout(pushVisibleAds, 0);
   }
@@ -6111,6 +6112,13 @@
           <div class="proof-tile"><strong>free</strong><span>tools remain free</span></div>
         </div>
       </section>
+      ${renderServiceLeadForm({
+        serviceType: "local-seller-starter-kit",
+        title: "Request the checkout link",
+        cta: "Send checkout request",
+        intro: "Send a reply contact and one public-safe note. The kit remains a request path until a real external checkout link is available.",
+        placeholder: "I want the starter kit for a market table, pop-up, service offer, or first local product launch.",
+      })}
       <section class="shell section">
         <h2>Best for</h2>
         <div class="grid-3">
@@ -6150,6 +6158,13 @@
           <div class="proof-tile"><strong>2 days</strong><span>target turnaround</span></div>
         </div>
       </section>
+      ${renderServiceLeadForm({
+        serviceType: "custom-local-print-pack",
+        title: "Request the $29 setup",
+        cta: "Send setup request",
+        intro: "Send a reply contact and one public-safe brief. Fit is checked manually, then any payment happens only through an external checkout or invoice.",
+        placeholder: "I sell handmade candles at a Saturday market. I need price tags, QR sign wording, a flyer line, and a pickup note before next weekend.",
+      })}
       <section class="shell section">
         <h2>What you get</h2>
         <div class="grid-3">
@@ -6189,6 +6204,13 @@
         </div>
         <p class="notice">The audit is free and does not collect payment. The optional setup starts only after a real external checkout is paid.</p>
       </section>
+      ${renderServiceLeadForm({
+        serviceType: "market-table-print-audit",
+        title: "Request the free audit",
+        cta: "Send audit request",
+        intro: "Send a public-safe snapshot of what you sell and what feels unfinished. The audit is free; the optional setup stays separate.",
+        placeholder: "I sell cookies at a school event. Prices are not clear and I need a QR/contact sign checked before printing.",
+      })}
       <section class="shell section">
         <h2>Audit checklist</h2>
         <div class="grid-3">
@@ -6766,6 +6788,129 @@
       "No payment is collected by this request. Please reply with a real external checkout link only after the payment product is ready.",
     ].join("\n"));
     return url.toString();
+  }
+
+  function renderServiceLeadForm(options = {}) {
+    const serviceType = options.serviceType || "custom-local-print-pack";
+    const eventName = serviceLeadTrackEvent(serviceType);
+    const tool = serviceLeadTrackTool(serviceType);
+    const title = options.title || "Request manual follow-up";
+    const cta = options.cta || "Send request";
+    const intro = options.intro || "Send one public-safe note and a reply contact. Fit is reviewed manually before any external checkout or invoice is sent.";
+    const placeholder = options.placeholder || "Tell us what you sell, what print pieces you need, and any date that matters.";
+    const fallbackUrl = options.fallbackUrl || serviceLeadFallbackUrl({
+      serviceType,
+      businessName: "",
+      contact: "",
+      needBy: "",
+      requestSummary: "",
+      path: `/${serviceType}/`,
+    });
+    return `
+      <section class="shell section service-lead-section" id="service-request">
+        <div class="grid-2">
+          <div>
+            <h2>${escapeHtml(title)}</h2>
+            <p>${escapeHtml(intro)}</p>
+            <ul>
+              <li>No payment is collected here.</li>
+              <li>Use an email, website contact page, or public handle for follow-up.</li>
+              <li>Do not send payment, tax, bank, identity, password, customer-list, or private file data.</li>
+            </ul>
+          </div>
+          <form class="panel form-grid service-lead-form" data-service-lead-form data-service-type="${escapeHtml(serviceType)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+            <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="hidden" name="serviceType" value="${escapeHtml(serviceType)}">
+            <label class="field">
+              <span>Email or public contact link</span>
+              <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
+            </label>
+            <label class="field">
+              <span>Business or project (optional)</span>
+              <input name="businessName" maxlength="90" autocomplete="organization" placeholder="Market booth, service name, or shop">
+            </label>
+            <label class="field">
+              <span>What do you need?</span>
+              <textarea name="requestSummary" maxlength="1000" required placeholder="${escapeHtml(placeholder)}"></textarea>
+            </label>
+            <label class="field">
+              <span>Need-by date (optional)</span>
+              <input name="needBy" maxlength="80" placeholder="Event date, this week, this month">
+            </label>
+            <label class="check-row">
+              <input name="consent" type="checkbox" required>
+              <span>I will keep payment, tax, identity, passwords, customer lists, and private files outside this form.</span>
+            </label>
+            <div class="actions">
+              <button class="button" type="submit" data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}">${escapeHtml(cta)}</button>
+              <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open GitHub backup</a>
+            </div>
+            <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No payment is collected here. A real external checkout or invoice is sent only after fit is confirmed.</p>
+          </form>
+        </div>
+      </section>`;
+  }
+
+  function serviceLeadTrackEvent(serviceType) {
+    if (serviceType === "market-table-print-audit") return "audit_request_intent";
+    if (serviceType === "local-seller-starter-kit") return "seller_checkout_intent";
+    return "service_request_intent";
+  }
+
+  function serviceLeadTrackTool(serviceType) {
+    if (serviceType === "market-table-print-audit") return "market-table-print-audit";
+    if (serviceType === "local-seller-starter-kit") return "local-seller-starter-kit";
+    return "custom-local-print-pack";
+  }
+
+  function serviceLeadTitle(serviceType) {
+    if (serviceType === "market-table-print-audit") return "Free Market Table Print Audit";
+    if (serviceType === "local-seller-starter-kit") return "Local Seller Starter Kit";
+    return "Custom Local Print Pack Setup";
+  }
+
+  function serviceLeadFallbackUrl(values = {}) {
+    const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+    const serviceType = values.serviceType || "custom-local-print-pack";
+    const titlePrefix = serviceType === "market-table-print-audit" ? "Audit request" : serviceType === "local-seller-starter-kit" ? "Seller kit request" : "Service request";
+    url.searchParams.set("title", `${titlePrefix}: ${serviceLeadTitle(serviceType)}`);
+    url.searchParams.set("body", serviceLeadPublicIssueText(values));
+    url.searchParams.set("labels", "service,business-review");
+    return url.toString();
+  }
+
+  function serviceLeadFallbackText(values = {}) {
+    return [
+      "Public-safe service request.",
+      "",
+      `Service: ${serviceLeadTitle(values.serviceType)}`,
+      `Business or project: ${values.businessName || ""}`,
+      `Public contact or reply email: ${values.contact || ""}`,
+      `Need-by / timeline: ${values.needBy || ""}`,
+      `Source path: ${absoluteUrl(values.path || getCurrentRoutePath())}`,
+      "",
+      "Request note:",
+      values.requestSummary || "",
+      "",
+      "Do not include payment, tax, bank, phone, identity, password, customer-list, or private file data in this public issue.",
+    ].join("\n");
+  }
+
+  function serviceLeadPublicIssueText(values = {}) {
+    return [
+      "Public-safe service request.",
+      "",
+      `Service: ${serviceLeadTitle(values.serviceType)}`,
+      `Business or project: ${values.businessName || ""}`,
+      "Public contact: add only if you want it visible in a public GitHub issue",
+      `Need-by / timeline: ${values.needBy || ""}`,
+      `Source path: ${absoluteUrl(values.path || getCurrentRoutePath())}`,
+      "",
+      "Request note:",
+      values.requestSummary || "",
+      "",
+      "Do not include payment, tax, bank, phone, identity, password, customer-list, or private file data in this public issue.",
+    ].join("\n");
   }
 
   function bindImageUtilityTool(tool) {
@@ -8400,7 +8545,7 @@ ${paragraphs.join("\n")}
         <div class="section-head">
           <div>
             <h1>Project operations monitor</h1>
-            <p>Aggregate traffic and monetization signals for the active money projects. This page shows counts only, not private sponsor lead details.</p>
+            <p>Aggregate traffic and monetization signals for the active money projects. This page shows counts only, not private sponsor or service lead details.</p>
           </div>
           <div class="actions">
             <a class="button secondary" href="/api/ops-metrics" target="_blank" rel="noreferrer">Open JSON</a>
@@ -8425,11 +8570,13 @@ ${paragraphs.join("\n")}
       const projects = Array.isArray(data.projects) ? data.projects : [];
       const leadCheck = await loadSponsorLeadCheck();
       const publicReplies = await loadSponsorPublicReplies();
+      const serviceLeadCheck = await loadServiceLeadCheck();
       const totals = data.totals || {};
       const totalDownloads = (totals.download_pdf || 0) + (totals.download_file || 0);
       const totalGenerations = (totals.generate_pdf || 0) + (totals.generate_file || 0);
       const totalGameIntent = (totals.game_play_intent || 0) + (totals.game_fullscreen_open || 0) + (totals.game_embed_open || 0);
       const sponsorInvoiceRequests = data.sponsorInvoiceRequests || totals.sponsor_invoice_request || 0;
+      const serviceLeadCount = Number.isFinite(Number(serviceLeadCheck?.leadCount)) ? Number(serviceLeadCheck.leadCount) : 0;
       const dataQualityNotice = data.dataQuality && data.dataQuality !== "rollup"
         ? `<p class="notice">Metrics are using a protected baseline because live KV reads are currently limited. Treat counts as conservative until the API returns rollup quality again.</p>`
         : "";
@@ -8441,10 +8588,12 @@ ${paragraphs.join("\n")}
           <div class="metric-tile"><strong>${totalDownloads}</strong><span>tool downloads</span></div>
           <div class="metric-tile"><strong>${totalGenerations}</strong><span>tool generations</span></div>
           <div class="metric-tile"><strong>${data.sponsorLeads || 0}</strong><span>sponsor leads</span></div>
+          <div class="metric-tile"><strong>${serviceLeadCount}</strong><span>service leads</span></div>
           <div class="metric-tile"><strong>${sponsorInvoiceRequests}</strong><span>invoice requests</span></div>
           <div class="metric-tile"><strong>${totalGameIntent}</strong><span>game play signals</span></div>
         </div>
         ${sponsorSprintHtml(data, leadCheck, publicReplies)}
+        ${serviceLeadCheckHtml(serviceLeadCheck)}
         <div class="ops-project-list">
           ${projects.map(projectOpsHtml).join("") || `<div class="panel"><p>No project rows returned yet.</p></div>`}
         </div>
@@ -8494,6 +8643,36 @@ ${paragraphs.join("\n")}
     } catch (error) {
       return { ok: false, available: false, dataQuality: "unavailable", dataWarning: error.message || "Sponsor public replies unavailable", publicReplyCount: 0, invoiceRequestCount: 0, readyForReviewCount: 0 };
     }
+  }
+
+  async function loadServiceLeadCheck() {
+    try {
+      const response = await fetch("/api/service-lead", { cache: "no-store" });
+      const data = await response.json();
+      if (!response.ok || !data.ok) throw new Error("Service lead check unavailable");
+      return data;
+    } catch (error) {
+      return { ok: false, dataQuality: "unavailable", dataWarning: error.message || "Service lead check unavailable" };
+    }
+  }
+
+  function serviceLeadCheckHtml(serviceLeadCheck) {
+    if (!serviceLeadCheck) return "";
+    const quality = serviceLeadCheck.dataQuality || "unknown";
+    const leadCount = Number.isFinite(Number(serviceLeadCheck.leadCount)) ? Number(serviceLeadCheck.leadCount) : "n/a";
+    const serviceCount = Number.isFinite(Number(serviceLeadCheck.serviceRequestCount)) ? Number(serviceLeadCheck.serviceRequestCount) : "n/a";
+    const auditCount = Number.isFinite(Number(serviceLeadCheck.auditRequestCount)) ? Number(serviceLeadCheck.auditRequestCount) : "n/a";
+    const sellerCount = Number.isFinite(Number(serviceLeadCheck.sellerKitRequestCount)) ? Number(serviceLeadCheck.sellerKitRequestCount) : "n/a";
+    const latest = serviceLeadCheck.latestCreatedAt || "none";
+    const warning = serviceLeadCheck.dataWarning ? `<p class="notice">${escapeHtml(serviceLeadCheck.dataWarning)}</p>` : "";
+    return `
+      <div class="notice sponsor-lead-check service-lead-check">
+        <strong>Service lead index check</strong>
+        <p>Private details stay hidden. Public-safe check: ${escapeHtml(String(leadCount))} indexed service lead(s), ${escapeHtml(String(serviceCount))} paid setup request(s), ${escapeHtml(String(auditCount))} free audit request(s), ${escapeHtml(String(sellerCount))} seller kit request(s), latest ${escapeHtml(latest)}, quality ${escapeHtml(quality)}.</p>
+        <p><a href="/api/service-lead" target="_blank" rel="noreferrer">Open public-safe service lead JSON</a></p>
+        ${warning}
+      </div>
+    `;
   }
 
   function sponsorSprintHtml(data, leadCheck, publicReplies) {
@@ -13280,6 +13459,145 @@ ${paragraphs.join("\n")}
         await submitSponsorQuickLeadForm(form);
       });
     });
+  }
+
+  function initServiceLeadForms(root = document) {
+    root.querySelectorAll("[data-service-lead-form]").forEach((form) => {
+      if (form.dataset.boundServiceLead === "true") return;
+      form.dataset.boundServiceLead = "true";
+      updateServiceLeadFallbackLink(form);
+      form.addEventListener("input", () => updateServiceLeadFallbackLink(form));
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        await submitServiceLeadForm(form);
+      });
+    });
+  }
+
+  function clearServiceLeadFallback(form) {
+    const fallback = form.querySelector("[data-service-lead-fallback]");
+    if (fallback) fallback.remove();
+  }
+
+  function clearServiceLeadSuccess(form) {
+    const success = form.querySelector("[data-service-lead-success]");
+    if (success) success.remove();
+  }
+
+  function serviceLeadPayload(form) {
+    const values = getFormValues(form);
+    const params = new URLSearchParams(window.location.search || "");
+    return {
+      ...values,
+      serviceType: values.serviceType || form.dataset.serviceType || "custom-local-print-pack",
+      consent: Boolean(form.querySelector("input[name='consent']")?.checked),
+      path: getCurrentRoutePath(),
+      source: getTrafficSource(),
+      utmSource: params.get("utm_source") || "",
+      utmMedium: params.get("utm_medium") || "",
+      utmCampaign: params.get("utm_campaign") || "",
+      utmContent: params.get("utm_content") || "",
+    };
+  }
+
+  function updateServiceLeadFallbackLink(form) {
+    const link = form.querySelector("[data-service-lead-fallback-link]");
+    if (!link) return;
+    const values = serviceLeadPayload(form);
+    const fallbackUrl = serviceLeadFallbackUrl(values);
+    link.href = fallbackUrl;
+    form.dataset.serviceFallbackUrl = fallbackUrl;
+  }
+
+  function renderServiceLeadSuccess(form, values, response = {}) {
+    const serviceType = values.serviceType || form.dataset.serviceType || "custom-local-print-pack";
+    const copy = serviceLeadFallbackText(values);
+    let panel = form.querySelector("[data-service-lead-success]");
+    if (!panel) {
+      panel = document.createElement("div");
+      panel.className = "notice service-lead-success";
+      panel.dataset.serviceLeadSuccess = "true";
+      const status = form.querySelector("[data-service-lead-status]");
+      if (status && status.parentNode) status.parentNode.insertBefore(panel, status.nextSibling);
+      else form.appendChild(panel);
+    }
+    panel.innerHTML = `
+      <p><strong>Request received.</strong> Your request ID is ${escapeHtml(response.id || "pending-review")}. Fit is reviewed manually; payment still counts only after a real external checkout, invoice, or platform balance proves it.</p>
+      <textarea class="request-copy-output service-lead-success-output" readonly>${escapeHtml(copy)}</textarea>
+      <div class="actions">
+        <button class="button" type="button" data-copy-text="${escapeHtml(copy)}">Copy request summary</button>
+        <a class="button ghost" data-track-event="${escapeHtml(serviceLeadTrackEvent(serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(serviceType))}" href="${escapeHtml(serviceLeadFallbackUrl(values))}" target="_blank" rel="noreferrer">Open GitHub backup</a>
+      </div>
+    `;
+  }
+
+  function renderServiceLeadFallback(form, values, publicReplyUrl = "") {
+    const serviceType = values.serviceType || form.dataset.serviceType || "custom-local-print-pack";
+    const text = typeof values === "string" ? values : serviceLeadFallbackText(values);
+    if (!text.trim()) return;
+    let panel = form.querySelector("[data-service-lead-fallback]");
+    if (!panel) {
+      panel = document.createElement("div");
+      panel.className = "notice service-lead-fallback";
+      panel.dataset.serviceLeadFallback = "true";
+      const status = form.querySelector("[data-service-lead-status]");
+      if (status && status.parentNode) status.parentNode.insertBefore(panel, status.nextSibling);
+      else form.appendChild(panel);
+    }
+    const replyUrl = publicReplyUrl || (typeof values === "string" ? "" : serviceLeadFallbackUrl(values));
+    panel.innerHTML = `
+      <p><strong>Backup request ready.</strong> Lead storage is temporarily limited, so open the public-safe GitHub request or copy this text before leaving the page.</p>
+      <textarea class="request-copy-output service-lead-fallback-output" readonly>${escapeHtml(text)}</textarea>
+      <div class="actions">
+        ${replyUrl ? `<a class="button" data-track-event="${escapeHtml(serviceLeadTrackEvent(serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(serviceType))}" href="${escapeHtml(replyUrl)}" target="_blank" rel="noreferrer">Open GitHub backup</a>` : ""}
+        <button class="button" type="button" data-copy-text="${escapeHtml(text)}">Copy backup request</button>
+      </div>
+    `;
+  }
+
+  async function submitServiceLeadForm(form) {
+    const status = form.querySelector("[data-service-lead-status]");
+    const submit = form.querySelector("button[type='submit']");
+    const setStatus = (message, kind = "") => {
+      if (!status) return;
+      status.textContent = message;
+      status.dataset.status = kind;
+    };
+    const values = serviceLeadPayload(form);
+    setStatus("Sending request...", "pending");
+    clearServiceLeadFallback(form);
+    clearServiceLeadSuccess(form);
+    updateServiceLeadFallbackLink(form);
+    if (submit) submit.disabled = true;
+    try {
+      const response = await fetch("/api/service-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data.ok) {
+        if (data.fallbackRequired) {
+          renderServiceLeadFallback(form, data.fallbackBody || values, data.fallbackPublicReplyUrl || "");
+          setStatus(data.error || "Lead storage is temporarily limited. Copy the backup request below.", "error");
+          return;
+        }
+        const apiError = new Error(data.error || "Could not send request.");
+        apiError.skipFallback = Boolean(data.error);
+        throw apiError;
+      }
+      track(serviceLeadTrackEvent(values.serviceType), { tool: serviceLeadTrackTool(values.serviceType) });
+      setStatus("Request received. Fit will be reviewed manually before any external checkout or invoice is sent.", "success");
+      clearServiceLeadFallback(form);
+      renderServiceLeadSuccess(form, values, data);
+      form.reset();
+      updateServiceLeadFallbackLink(form);
+    } catch (error) {
+      if (!error.skipFallback) renderServiceLeadFallback(form, values);
+      setStatus(error.message || "Could not send request. Please use the GitHub backup or copy the backup request.", "error");
+    } finally {
+      if (submit) submit.disabled = false;
+    }
   }
 
   function sponsorDealPrefillFromUrl() {
