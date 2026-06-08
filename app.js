@@ -75,6 +75,19 @@
     "remove-background",
   ]);
 
+  const UPLOAD_FIX_FUNNEL_TOOL_IDS = new Set([
+    "compress-pdf",
+    "compress-image",
+    "compress-image-to-kb",
+    "resize-image",
+    "convert-image",
+    "crop-image",
+    "passport-photo",
+    "pdf-to-images",
+    "image-to-pdf",
+    "multi-image-pdf",
+  ]);
+
   bootstrapConfiguredIntegrations();
 
   const AI_FIELD_ALLOWLIST = {
@@ -8657,7 +8670,9 @@ ${paragraphs.join("\n")}
   }
 
   function renderDownloadAfterAction(tool) {
-    if (!tool || !LOCAL_SELLER_FUNNEL_TOOL_IDS.has(tool.id)) return "";
+    if (!tool) return "";
+    if (UPLOAD_FIX_FUNNEL_TOOL_IDS.has(tool.id)) return renderDownloadUploadFixAfterAction(tool);
+    if (!LOCAL_SELLER_FUNNEL_TOOL_IDS.has(tool.id)) return "";
     const content = encodeURIComponent(tool.id);
     const uploadHref = `/upload-limit-fixer/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     const finderHref = `/free-pdf-tools/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
@@ -8700,6 +8715,35 @@ ${paragraphs.join("\n")}
           ${invoiceSponsorAction}
           <a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(uploadHref)}">Fix upload limits</a>
           <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(finderHref)}">Browse more free tools</a>
+        </div>
+        <p class="help">Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
+      </div>
+    `;
+  }
+
+  function renderDownloadUploadFixAfterAction(tool) {
+    const toolId = tool.id || "download";
+    const content = encodeURIComponent(toolId);
+    const uploadHref = `/upload-limit-fixer/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
+    const cheatsheetHref = `/upload-error-cheatsheet/?utm_source=download_success&utm_medium=site&utm_campaign=upload_error_cheatsheet_fix_plan&utm_content=${content}`;
+    const serviceHref = `/upload-limit-fix-plan/?utm_source=download_success&utm_medium=site&utm_campaign=upload_limit_fix_plan&utm_content=${content}#service-request`;
+    return `
+      <div class="download-after-action download-upload-fix-action" aria-label="Upload check after download">
+        <div>
+          <p class="eyebrow">Before uploading</p>
+          <strong>Still worried the next site will reject this file?</strong>
+          <p class="help">Use the free upload matcher, or send one public-safe $9 request for target settings, fallback steps, and a review checklist.</p>
+        </div>
+        <div class="download-service-close">
+          <p class="eyebrow">Optional paid help</p>
+          <strong>Get a $9 Upload Limit Fix Plan for this result.</strong>
+          <p class="help">No file upload. Send only the public error text, file type, and target rule. Payment starts only after fit is confirmed and a real external checkout or invoice is paid.</p>
+        </div>
+        ${renderDownloadUploadFixLeadForm(tool)}
+        <div class="download-after-actions">
+          <a class="button" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(serviceHref)}">Open full $9 service page</a>
+          <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolId)}" href="${escapeHtml(uploadHref)}">Check another upload error</a>
+          <a class="button ghost" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolId)}" href="${escapeHtml(cheatsheetHref)}">Open cheatsheet</a>
         </div>
         <p class="help">Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
       </div>
@@ -8755,6 +8799,47 @@ ${paragraphs.join("\n")}
           <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="${escapeHtml(serviceTool)}" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
         </div>
         <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send a public-safe fit check here. Payment still happens only through a real external checkout or invoice after fit is confirmed.</p>
+      </form>
+    `;
+  }
+
+  function renderDownloadUploadFixLeadForm(tool) {
+    const toolId = tool.id || "download";
+    const sourcePath = `/tools/${toolId}/`;
+    const toolLabel = tool.shortTitle || tool.title || toolId;
+    const defaultSummary = `I just downloaded ${toolLabel} and want the $9 Upload Limit Fix Plan before submitting it to another website. Public-safe details only: file type, target rule, upload error text if any, fallback steps, and a review-before-upload checklist. No actual file, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.`;
+    const fallbackUrl = serviceLeadFallbackUrl({
+      serviceType: "upload-limit-fix-plan",
+      businessName: "",
+      contact: "",
+      needBy: "",
+      requestSummary: defaultSummary,
+      path: sourcePath,
+    });
+    return `
+      <form class="download-service-lead-form download-upload-fix-lead-form" data-service-lead-form data-upload-fix-plan-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(sourcePath)}" data-utm-source="download_success" data-utm-medium="site" data-utm-campaign="upload_limit_fix_plan" data-utm-content="${escapeHtml(toolId)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+        <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
+        <input type="hidden" name="businessName" value="Downloaded ${escapeHtml(toolLabel)}">
+        <input type="hidden" name="needBy" value="">
+        <input type="hidden" name="utmSource" value="download_success">
+        <input type="hidden" name="utmMedium" value="site">
+        <input type="hidden" name="utmCampaign" value="upload_limit_fix_plan">
+        <input type="hidden" name="utmContent" value="${escapeHtml(toolId)}">
+        <input type="hidden" name="requestSummary" value="${escapeHtml(defaultSummary)}" data-upload-fix-plan-summary>
+        <label class="field">
+          <span>Reply email or public contact</span>
+          <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or @publichandle" required>
+        </label>
+        <label class="check-row">
+          <input name="consent" type="checkbox" checked required>
+          <span>I will not upload or paste the actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details.</span>
+        </label>
+        <div class="actions">
+          <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Send $9 upload check request</button>
+          <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
+        </div>
+        <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send a public-safe upload check here. Payment still happens only through a real external checkout or invoice after fit is confirmed.</p>
       </form>
     `;
   }

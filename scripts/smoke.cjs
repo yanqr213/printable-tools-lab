@@ -895,6 +895,16 @@ function delay(ms) {
       if (!/compressed\.pdf$/.test(name)) throw new Error(`Expected compressed PDF filename on ${route}, got ${name}`);
       const exported = await PDFDocument.load(fs.readFileSync(await download.path()));
       if (exported.getPageCount() !== 1) throw new Error("Compressed PDF should contain one selected rendered page.");
+      const uploadFixForm = page.locator('[data-service-type="upload-limit-fix-plan"][data-utm-source="download_success"][data-utm-campaign="upload_limit_fix_plan"][data-utm-content="compress-pdf"]').first();
+      if (!(await uploadFixForm.count())) throw new Error("Compress PDF download success is missing the upload-limit fix-plan request form.");
+      const uploadFixText = await page.locator("#downloadComplete").innerText();
+      if (!uploadFixText.includes("Still worried the next site will reject this file?") || !uploadFixText.includes("Send $9 upload check request")) {
+        throw new Error("Compress PDF download success is missing the $9 upload check close copy.");
+      }
+      const uploadFixSummary = await uploadFixForm.locator('[data-upload-fix-plan-summary]').inputValue();
+      if (!uploadFixSummary.includes("I just downloaded Compress PDF") || !uploadFixSummary.includes("$9 Upload Limit Fix Plan")) {
+        throw new Error("Compress PDF download success did not prefill the upload fix-plan request summary.");
+      }
     }
     if (!name.endsWith(".pdf")) throw new Error(`Expected PDF download on ${route}, got ${name}`);
     if (route === "/tools/multi-image-pdf/") {

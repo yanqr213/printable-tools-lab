@@ -817,6 +817,11 @@ canvas.preview-canvas {
   background: rgba(255, 255, 255, 0.72);
 }
 
+.download-upload-fix-action {
+  border-color: rgba(90, 147, 103, 0.32);
+  background: #f7fbf8;
+}
+
 .download-service-close {
   display: grid;
   gap: 4px;
@@ -824,6 +829,10 @@ canvas.preview-canvas {
   border: 1px solid rgba(23, 107, 135, 0.16);
   border-radius: 8px;
   background: #fff;
+}
+
+.download-upload-fix-lead-form {
+  border-color: rgba(37, 94, 103, 0.22);
 }
 
 .download-service-close p,
