@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-08T18:36:01.185Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Image Dimensions 600x600 Upload Fix by PrintableTools Lab",
+    "tagline": "No-signup 600 x 600 image resize/crop fix with a public-safe $9 upload plan request.",
+    "description": "PrintableTools Lab Image Dimensions 600x600 Upload Fix helps people blocked by image dimensions must be 600 x 600 px, square profile photo, school form, application portal, and marketplace image rejection errors. The page points to the browser image resizer with 600 x 600 cover settings and includes a public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist without uploading the private image.",
+    "url": "https://printable-tools-lab.pages.dev/image-dimensions-600x600/?utm_source=techtools&utm_medium=directory&utm_campaign=image_dimensions_600x600_fix_2026_06&utm_content=image_dimensions_600x600_landing",
+    "category": "utilities",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 image dimensions 600x600 upload fix path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 184,
+      "name": "Image Dimensions 600x600 Upload Fix by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/image-dimensions-600x600/?utm_source=techtools&utm_medium=directory&utm_campaign=image_dimensions_600x600_fix_2026_06&utm_content=image_dimensions_600x600_landing",
+      "tagline": "No-signup 600 x 600 image resize/crop fix with a public-safe $9 upload plan request.",
+      "description": "PrintableTools Lab Image Dimensions 600x600 Upload Fix helps people blocked by image dimensions must be 600 x 600 px, square profile photo, school form, application portal, and marketplace image rejection errors. The page points to the browser image resizer with 600 x 600 cover settings and includes a public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist without uploading the private image.",
+      "category": "utilities",
+      "category_label": "Utilities",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 image dimensions 600x600 upload fix path",
+      "launch_date": "2026-06-08",
+      "created_at": "2026-06-08T18:36:01Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=184"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=184"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=184",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/184"
+}

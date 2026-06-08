@@ -73,14 +73,12 @@
           <input type="hidden" name="utmCampaign" value="upload_error_cheatsheet_fix_plan">
           <input type="hidden" name="utmContent" value="cheatsheet-row-quick">
           <input type="hidden" name="requestSummary" value="I need a $9 Upload Limit Fix Plan after checking the upload error cheatsheet. Public-safe error text: [paste the exact message]. File type and target rule: [PDF/image/JPG/PNG, size limit, dimensions, or portal rule]. Please send target settings, fallback steps, and a review-before-upload checklist. No actual file, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included." data-upload-fix-plan-summary>
+          <p class="notice compact-notice">Shortest path: the selected error is already written. Add one reply email or public handle to unlock the private $9 follow-up path.</p>
           <label class="field">
             <span>Email or public contact link</span>
             <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
           </label>
-          <label class="field">
-            <span>Need-by time (optional)</span>
-            <input name="needBy" maxlength="80" placeholder="Today, tomorrow morning, or before the portal deadline">
-          </label>
+          <input type="hidden" name="needBy" value="">
           <label class="check-row">
             <input name="consent" type="checkbox" checked required>
             <span>I will not upload or paste the actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details.</span>

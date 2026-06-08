@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-08T17:26:39.563Z",
+  "generatedAt": "2026-06-08T18:42:28.585Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 23,
+  "listedCount": 26,
   "pendingCount": 11,
   "errorCount": 1,
   "results": [
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 117879,
+          "bytes": 117848,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 117879,
+          "bytes": 117848,
           "matched": false
         }
       ]
@@ -49,14 +49,14 @@
           "url": "https://listai.cc/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 318794,
+          "bytes": 318805,
           "matched": false
         },
         {
           "url": "https://listai.cc/",
           "ok": true,
           "status": 200,
-          "bytes": 318794,
+          "bytes": 318805,
           "matched": false
         }
       ]
@@ -78,7 +78,7 @@
           "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
           "ok": true,
           "status": 200,
-          "bytes": 93717,
+          "bytes": 95273,
           "matched": true
         }
       ]
@@ -458,6 +458,72 @@
       ]
     },
     {
+      "name": "TechTools Launchpad image dimensions 600x600 upload fix listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=184",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/184",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Image Dimensions 600x600 Upload Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the 600 x 600 image dimensions upload fix path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/184",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/184",
+          "ok": true,
+          "status": 200,
+          "bytes": 1369,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad PDF not accepted JPG required fix listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=185",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/185",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "PDF Not Accepted JPG Required Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the PDF-to-JPG required upload fix path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/185",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/185",
+          "ok": true,
+          "status": 200,
+          "bytes": 1343,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad email attachment too large PDF fix listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=186",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/186",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Email Attachment Too Large PDF Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the email attachment too large upload fix path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/186",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/186",
+          "ok": true,
+          "status": 200,
+          "bytes": 1402,
+          "matched": true
+        }
+      ]
+    },
+    {
       "name": "NoSignupTools",
       "url": "https://nosignuptools.com/",
       "searchUrl": "https://nosignuptools.com/?q=PrintableTools+Lab",
@@ -567,7 +633,7 @@
           "url": "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20060,
+          "bytes": 20103,
           "matched": false
         }
       ]
@@ -873,49 +939,34 @@
       "reviewWindow": "maintainer review",
       "status": "error",
       "evidenceUrl": "https://github.com/js-org/js.org/pull/11512",
-      "apiAvailable": true,
-      "checksAvailable": true,
-      "templateOk": true,
-      "checksOk": true,
-      "checks": [
-        {
-          "name": "PR description",
-          "status": "completed",
-          "conclusion": "success",
-          "startedAt": "2026-06-01T22:34:58Z",
-          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353230"
-        },
-        {
-          "name": "cnames_active.js",
-          "status": "completed",
-          "conclusion": "success",
-          "startedAt": "2026-06-01T22:34:57Z",
-          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353223"
-        }
-      ],
-      "prState": "closed",
-      "mergeable": true,
+      "apiAvailable": false,
+      "checksAvailable": false,
+      "templateOk": null,
+      "checksOk": null,
+      "checks": [],
+      "prState": "unknown",
+      "mergeable": null,
       "checked": [
         {
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 299192,
+          "bytes": 299229,
           "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/pulls/11512",
-          "ok": true,
-          "status": 200,
-          "bytes": 16307,
-          "matched": true
+          "ok": false,
+          "status": 403,
+          "bytes": 277,
+          "matched": false
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs",
-          "ok": true,
-          "status": 200,
-          "bytes": 18122,
-          "matched": true
+          "ok": false,
+          "status": 403,
+          "bytes": 277,
+          "matched": false
         }
       ]
     }

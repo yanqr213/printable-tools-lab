@@ -5435,7 +5435,7 @@
   }
 
   const sponsorExternalDiscoveryProof = {
-    directoryListedCount: 23,
+    directoryListedCount: 26,
     directoryPendingCount: 11,
     indexNowAcceptedTargets: ["github-pages"],
     listedDirectories: [
@@ -5457,6 +5457,9 @@
       { name: "TechTools Launchpad passport photo 50KB upload fix listing", evidenceUrl: "https://techtools.cz/launchpad-api/tools/181" },
       { name: "TechTools Launchpad PDF under 500KB upload fix listing", evidenceUrl: "https://techtools.cz/launchpad-api/tools/182" },
       { name: "TechTools Launchpad image under 500KB upload fix listing", evidenceUrl: "https://techtools.cz/launchpad-api/tools/183" },
+      { name: "TechTools Launchpad image dimensions 600x600 upload fix listing", evidenceUrl: "https://techtools.cz/launchpad-api/tools/184" },
+      { name: "TechTools Launchpad PDF not accepted JPG required fix listing", evidenceUrl: "https://techtools.cz/launchpad-api/tools/185" },
+      { name: "TechTools Launchpad email attachment too large PDF fix listing", evidenceUrl: "https://techtools.cz/launchpad-api/tools/186" },
       { name: "NoLogin.tools", evidenceUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev" },
       { name: "NoLogin.tools upload-limit listing", evidenceUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer" },
       { name: "NoLogin.tools upload error cheatsheet listing", evidenceUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet" },
@@ -6089,6 +6092,13 @@
             <span>Upload error and target rule</span>
             <textarea name="requestSummary" maxlength="1000" required data-upload-fix-plan-summary>${escapeHtml(requestSummary)}</textarea>
           </label>`;
+    const needByField = compact
+      ? `<input type="hidden" name="needBy" value="${escapeHtml(options.needBy || "")}">`
+      : `<label class="field">
+            <span>Need-by time (optional)</span>
+            <input name="needBy" maxlength="80" placeholder="Today, tomorrow morning, or before the portal deadline">
+          </label>`;
+    const extraNote = options.extraNote ? `\n          <p class="notice compact-notice">${escapeHtml(options.extraNote)}</p>` : "";
     return `<form class="panel form-grid service-lead-form ${escapeHtml(className)}" data-service-lead-form data-upload-fix-plan-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
           <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
@@ -6096,16 +6106,13 @@
           <input type="hidden" name="utmMedium" value="${escapeHtml(utmMedium)}">
           <input type="hidden" name="utmCampaign" value="${escapeHtml(utmCampaign)}">
           <input type="hidden" name="utmContent" value="${escapeHtml(utmContent)}">
-          ${requestSummaryField}
+          ${requestSummaryField}${extraNote}
           ${uploadFixPaidPathNote()}
           <label class="field">
             <span>Email or public contact link</span>
             <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
           </label>
-          <label class="field">
-            <span>Need-by time (optional)</span>
-            <input name="needBy" maxlength="80" placeholder="Today, tomorrow morning, or before the portal deadline">
-          </label>
+          ${needByField}
           <label class="check-row">
             <input name="consent" type="checkbox" checked required>
             <span>I will not upload or paste the actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details.</span>
@@ -6136,6 +6143,7 @@
               requestSummary,
               className: "upload-limit-fix-plan-micro-lead-form upload-error-quick-lead-form",
               submitLabel: "Send selected error request",
+              extraNote: "Shortest path: the selected error is already written. Add one reply email or public handle to unlock the private $9 follow-up path.",
               compact: true,
             })}
           </div>

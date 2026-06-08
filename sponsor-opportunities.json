@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Sponsor Opportunities",
-  "generatedAt": "2026-06-08T06:19:22.278Z",
+  "generatedAt": "2026-06-08T18:45:50.099Z",
   "canonical": "https://printable-tools-lab.pages.dev/sponsor-opportunities/",
   "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
   "sponsorCall": "https://printable-tools-lab.pages.dev/sponsor-call/",
@@ -12,9 +12,9 @@
   "recommendedNextStep": "Request the USD 49 starter invoice review before any visible sponsor placement is discussed.",
   "publicReplyUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Sponsor+pilot+review&body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+%0APublic+website+URL%3A+%0AAudience+fit%3A+%0ASelected+pilot+deal%3A+%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-starter-review%2F%3Futm_source%3Dsponsor-opportunities%26utm_medium%3Dorganic%26utm_campaign%3Dsponsor_starter_review%26utm_content%3Dboard-hero%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&labels=sponsor%2Cpartner%2Cbusiness-review",
   "externalDiscoveryProof": {
-    "generatedAt": "2026-06-08T05:49:33.332Z",
-    "directoryListedCount": 7,
-    "directoryPendingCount": 6,
+    "generatedAt": "2026-06-08T18:42:28.585Z",
+    "directoryListedCount": 26,
+    "directoryPendingCount": 11,
     "directoryErrorCount": 1,
     "listedDirectories": [
       {
@@ -48,6 +48,102 @@
         "reviewWindow": "auto-approved API listing for the invoice follow-up email generator path"
       },
       {
+        "name": "TechTools Launchpad overdue invoice reminder listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/171",
+        "submittedAt": "2026-06-08",
+        "reviewWindow": "auto-approved API listing for the overdue invoice reminder service-lead path"
+      },
+      {
+        "name": "TechTools Launchpad upload limit fix plan service listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/172",
+        "submittedAt": "2026-06-08",
+        "reviewWindow": "auto-approved API listing for the $9 upload fix plan service path"
+      },
+      {
+        "name": "TechTools Launchpad upload error cheatsheet listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/173",
+        "submittedAt": "2026-06-08",
+        "reviewWindow": "auto-approved API listing for the upload error cheatsheet path"
+      },
+      {
+        "name": "TechTools Launchpad compress PDF to 1MB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/174",
+        "submittedAt": "2026-06-08",
+        "reviewWindow": "auto-approved API listing for the high-intent PDF 1MB upload-error path"
+      },
+      {
+        "name": "TechTools Launchpad PDF under 1MB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/175",
+        "submittedAt": "2026-06-08",
+        "reviewWindow": "auto-approved API listing for the tool-level pre-download upload fix path"
+      },
+      {
+        "name": "TechTools Launchpad photo under 100KB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/176",
+        "submittedAt": "2026-06-08",
+        "reviewWindow": "auto-approved API listing for the tool-level photo 100KB upload fix path"
+      },
+      {
+        "name": "TechTools Launchpad image under 2MB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/177",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the tool-level image 2MB upload fix path"
+      },
+      {
+        "name": "TechTools Launchpad JPG under 200KB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/178",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the tool-level JPG 200KB upload fix path"
+      },
+      {
+        "name": "TechTools Launchpad resume PDF too large upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/179",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the resume PDF upload fix path"
+      },
+      {
+        "name": "TechTools Launchpad PNG screenshot too large upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/180",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the PNG screenshot upload fix path"
+      },
+      {
+        "name": "TechTools Launchpad passport photo 50KB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/181",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the passport photo 50KB upload fix path"
+      },
+      {
+        "name": "TechTools Launchpad PDF under 500KB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/182",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the strict PDF 500KB upload fix path"
+      },
+      {
+        "name": "TechTools Launchpad image under 500KB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/183",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the image 500KB upload fix path"
+      },
+      {
+        "name": "TechTools Launchpad image dimensions 600x600 upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/184",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the 600 x 600 image dimensions upload fix path"
+      },
+      {
+        "name": "TechTools Launchpad PDF not accepted JPG required fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/185",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the PDF-to-JPG required upload fix path"
+      },
+      {
+        "name": "TechTools Launchpad email attachment too large PDF fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/186",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the email attachment too large upload fix path"
+      },
+      {
         "name": "NoLogin.tools",
         "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev",
         "submittedAt": "2026-06-03",
@@ -58,13 +154,31 @@
         "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer",
         "submittedAt": "2026-06-06",
         "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-upload-limit-fixer"
+      },
+      {
+        "name": "NoLogin.tools upload error cheatsheet listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet",
+        "submittedAt": "2026-06-08",
+        "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-upload-error-cheatsheet"
+      },
+      {
+        "name": "NoLogin.tools invoice follow-up email generator listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-invoice-followup-email",
+        "submittedAt": "2026-06-08",
+        "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-tools-invoice-followup-email"
+      },
+      {
+        "name": "NoLogin.tools overdue invoice reminder listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-overdue-invoice-reminder-email",
+        "submittedAt": "2026-06-08",
+        "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-overdue-invoice-reminder-email"
       }
     ],
     "indexNowAcceptedTargets": [
       "github-pages"
     ],
     "indexNowSubmittedUrls": 263,
-    "publicProofLine": "External discovery proof: 7 public directory listing(s) are live; 6 more listing(s) remain pending; IndexNow accepted 1 target(s). These are discovery signals, not revenue.",
+    "publicProofLine": "External discovery proof: 26 public directory listing(s) are live; 11 more listing(s) remain pending; IndexNow accepted 1 target(s). These are discovery signals, not revenue.",
     "moneyBoundary": "Directory listings, IndexNow submissions, clicks, and views are discovery signals only. Revenue is real only after a signed sponsor agreement or settled external payment."
   },
   "opportunities": [

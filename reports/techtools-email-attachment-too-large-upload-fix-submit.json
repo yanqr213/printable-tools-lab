@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-08T18:36:07.861Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Email Attachment Too Large PDF Fix by PrintableTools Lab",
+    "tagline": "No-signup PDF and image attachment-size fix with a public-safe $9 upload plan request.",
+    "description": "PrintableTools Lab Email Attachment Too Large PDF Fix helps people blocked by email attachment too large, Gmail attachment size, Outlook attachment size, scanned PDF too large, and photo attachment too large errors. The page points to the browser PDF compressor and image-to-KB compressor, starts from practical email-friendly targets, and includes a public-safe $9 Upload Limit Fix Plan request without asking for private files, inbox access, IDs, logins, payment, or tax details.",
+    "url": "https://printable-tools-lab.pages.dev/email-attachment-too-large/?utm_source=techtools&utm_medium=directory&utm_campaign=email_attachment_too_large_fix_2026_06&utm_content=email_attachment_too_large_landing",
+    "category": "utilities",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 email attachment too large upload fix path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 186,
+      "name": "Email Attachment Too Large PDF Fix by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/email-attachment-too-large/?utm_source=techtools&utm_medium=directory&utm_campaign=email_attachment_too_large_fix_2026_06&utm_content=email_attachment_too_large_landing",
+      "tagline": "No-signup PDF and image attachment-size fix with a public-safe $9 upload plan request.",
+      "description": "PrintableTools Lab Email Attachment Too Large PDF Fix helps people blocked by email attachment too large, Gmail attachment size, Outlook attachment size, scanned PDF too large, and photo attachment too large errors. The page points to the browser PDF compressor and image-to-KB compressor, starts from practical email-friendly targets, and includes a public-safe $9 Upload Limit Fix Plan request without asking for private files, inbox access, IDs, logins, payment, or tax details.",
+      "category": "utilities",
+      "category_label": "Utilities",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 email attachment too large upload fix path",
+      "launch_date": "2026-06-08",
+      "created_at": "2026-06-08T18:36:07Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=186"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=186"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=186",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/186"
+}

@@ -583,6 +583,7 @@ else {
   if (!script.includes("initServiceLeadForms") || !script.includes("submitServiceLeadForm") || !script.includes("/api/service-lead") || !script.includes("Service lead index check")) failures.push("app.js missing low-friction service lead capture and ops index check.");
   if (!script.includes('form.setAttribute("novalidate", "")') || !script.includes("Public-safe request ready.") || !script.includes("public-safe-no-contact") || !script.includes("serviceLeadContactValue")) failures.push("Service lead forms should show the public-safe request fallback when no contact is entered instead of being blocked by browser required validation.");
   if (!script.includes("uploadFixPaidPathNote") || !script.includes("30-second paid path") || !script.includes("private $9 follow-up path")) failures.push("Upload fix service forms should explain the low-friction paid follow-up path.");
+  if (!script.includes("Shortest path: the selected error is already written") || !script.includes('type="hidden" name="needBy"') || !script.includes("extraNote")) failures.push("Upload error quick request should keep the selected-error $9 path to one visible contact field.");
   if (!script.includes("isQaTraffic") || !script.includes('params.get("ptl_qa")') || !script.includes('details.qa = true') || !script.includes("if (qaTraffic) return")) failures.push("app.js should keep QA validation traffic out of remote production metrics.");
   if (!script.includes("loadServicePublicRequests") || !script.includes("Public-safe service request evidence") || !script.includes("/api/service-public-requests")) failures.push("app.js ops monitor should independently check public-safe service request issue evidence.");
   if (!script.includes("Payment starts only after fit is confirmed") || !script.includes("real external checkout or invoice") || !script.includes("Requests and clicks are not revenue")) failures.push("app.js restored service path missing real-payment gate.");
@@ -637,6 +638,9 @@ else {
   if (!directoryMonitorScript.includes("TechTools Launchpad passport photo 50KB upload fix listing") || !directoryMonitorScript.includes("Passport Photo 50KB Upload Fix")) failures.push("Directory monitor missing TechTools passport photo 50KB upload fix listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad PDF under 500KB upload fix listing") || !directoryMonitorScript.includes("PDF Under 500KB Upload Fix")) failures.push("Directory monitor missing TechTools PDF under 500KB upload fix listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad image under 500KB upload fix listing") || !directoryMonitorScript.includes("Image Under 500KB Upload Fix")) failures.push("Directory monitor missing TechTools image under 500KB upload fix listing tracking.");
+  if (!directoryMonitorScript.includes("TechTools Launchpad image dimensions 600x600 upload fix listing") || !directoryMonitorScript.includes("Image Dimensions 600x600 Upload Fix")) failures.push("Directory monitor missing TechTools image dimensions 600x600 upload fix listing tracking.");
+  if (!directoryMonitorScript.includes("TechTools Launchpad PDF not accepted JPG required fix listing") || !directoryMonitorScript.includes("PDF Not Accepted JPG Required Fix")) failures.push("Directory monitor missing TechTools PDF not accepted JPG required listing tracking.");
+  if (!directoryMonitorScript.includes("TechTools Launchpad email attachment too large PDF fix listing") || !directoryMonitorScript.includes("Email Attachment Too Large PDF Fix")) failures.push("Directory monitor missing TechTools email attachment too large PDF fix listing tracking.");
   if (!directoryMonitorScript.includes("NoLogin.tools upload error cheatsheet listing") || !directoryMonitorScript.includes("Upload+Error+Cheatsheet")) failures.push("Directory monitor missing NoLogin upload error cheatsheet submission tracking.");
   if (!directoryMonitorScript.includes("expected.every")) failures.push("Directory monitor should require all expected listing markers to avoid search-query echo false positives.");
 }
@@ -699,6 +703,24 @@ if (!fs.existsSync(techtoolsImage500kbReportFile)) failures.push("Missing TechTo
 else {
   const report = fs.readFileSync(techtoolsImage500kbReportFile, "utf8");
   if (!report.includes("https://techtools.cz/tools/launchpad/?tool=183") || !report.includes("image_500kb_tool_fix_2026_06") || !report.includes("compress_image_kb_tool_target_500kb")) failures.push("TechTools image under 500KB upload-fix submission report missing live evidence.");
+}
+const techtoolsImageDimensions600ReportFile = path.join(root, "reports", "techtools-image-dimensions-600x600-upload-fix-submit.json");
+if (!fs.existsSync(techtoolsImageDimensions600ReportFile)) failures.push("Missing TechTools image dimensions 600x600 upload-fix submission evidence report.");
+else {
+  const report = fs.readFileSync(techtoolsImageDimensions600ReportFile, "utf8");
+  if (!report.includes("https://techtools.cz/tools/launchpad/?tool=184") || !report.includes("image_dimensions_600x600_fix_2026_06") || !report.includes("Image Dimensions 600x600 Upload Fix")) failures.push("TechTools image dimensions 600x600 upload-fix submission report missing live evidence.");
+}
+const techtoolsPdfNotAcceptedJpgReportFile = path.join(root, "reports", "techtools-pdf-not-accepted-jpg-required-submit.json");
+if (!fs.existsSync(techtoolsPdfNotAcceptedJpgReportFile)) failures.push("Missing TechTools PDF not accepted JPG required submission evidence report.");
+else {
+  const report = fs.readFileSync(techtoolsPdfNotAcceptedJpgReportFile, "utf8");
+  if (!report.includes("https://techtools.cz/tools/launchpad/?tool=185") || !report.includes("pdf_not_accepted_jpg_required_fix_2026_06") || !report.includes("PDF Not Accepted JPG Required Fix")) failures.push("TechTools PDF not accepted JPG required submission report missing live evidence.");
+}
+const techtoolsEmailAttachmentTooLargeReportFile = path.join(root, "reports", "techtools-email-attachment-too-large-upload-fix-submit.json");
+if (!fs.existsSync(techtoolsEmailAttachmentTooLargeReportFile)) failures.push("Missing TechTools email attachment too large submission evidence report.");
+else {
+  const report = fs.readFileSync(techtoolsEmailAttachmentTooLargeReportFile, "utf8");
+  if (!report.includes("https://techtools.cz/tools/launchpad/?tool=186") || !report.includes("email_attachment_too_large_fix_2026_06") || !report.includes("Email Attachment Too Large PDF Fix")) failures.push("TechTools email attachment too large submission report missing live evidence.");
 }
 const techtoolsUploadBacklogScriptFile = path.join(root, "scripts", "submit-techtools-upload-error-backlog.cjs");
 if (!fs.existsSync(techtoolsUploadBacklogScriptFile)) failures.push("Missing TechTools upload-error backlog retry script.");
