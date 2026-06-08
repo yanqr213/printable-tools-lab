@@ -522,7 +522,7 @@ function serviceLeadFallbackUrl(serviceType, pathName) {
   return url.toString();
 }
 
-function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, pathName }) {
+function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, pathName, defaultSummary = "" }) {
   const eventName = serviceLeadTrackEvent(serviceType);
   const tool = serviceLeadTrackTool(serviceType);
   const fallbackUrl = serviceLeadFallbackUrl(serviceType, pathName || serviceType);
@@ -550,7 +550,7 @@ function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, path
             </label>
             <label class="field">
               <span>What do you need?</span>
-              <textarea name="requestSummary" maxlength="1000" required placeholder="${escapeHtml(placeholder)}"></textarea>
+              <textarea name="requestSummary" maxlength="1000" required placeholder="${escapeHtml(placeholder)}">${escapeHtml(defaultSummary)}</textarea>
             </label>
             <label class="field">
               <span>Need-by date (optional)</span>
@@ -3231,6 +3231,30 @@ const landingPages = [
       ["Best fit", "Use it for freelancers, consultants, local services, or small teams who need relationship-safe wording after sending an invoice."],
     ],
     relatedTools: ["tools/invoice-generator", "tools/estimate-generator", "tools/receipt-generator"],
+  },
+  {
+    path: "overdue-invoice-reminder-email",
+    title: "Overdue Invoice Reminder Email",
+    description: "Write a first overdue invoice reminder email without uploading private invoice details, then request a $19 follow-up sequence if you want it polished.",
+    headline: "Overdue invoice reminder email",
+    lead: "Use this when an invoice is already late and you need a calm first follow-up that asks for an update without making legal, tax, accounting, or collections claims.",
+    primaryTool: "tools/invoice-followup-email",
+    primaryToolQuery: "invoiceStatus=overdue&tone=friendly&dueTiming=overdue&context=I%20wanted%20to%20keep%20this%20easy%20to%20find%20and%20check%20whether%20anything%20else%20is%20needed%20on%20my%20side.&paymentWording=Please%20use%20the%20payment%20link%20or%20invoice%20portal%20already%20sent.",
+    intent: "overdue invoice reminder email, first overdue invoice follow up, late payment reminder wording",
+    sections: [
+      ["Use a first overdue tone", "Keep the message short, specific, and relationship-safe. Mention that the invoice is overdue, ask whether anything else is needed, and point back to the existing payment path without adding private account details."],
+      ["Avoid risky claims", "This page is communication copy only. It does not make legal threats, collections claims, tax statements, interest demands, or accounting judgments."],
+      ["When to request the $19 pack", "If you need the reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording to match one workflow, send the 30-second fit check below before any external checkout is sent."],
+    ],
+    relatedTools: ["tools/invoice-followup-email", "tools/invoice-generator", "tools/receipt-generator"],
+    serviceLead: {
+      serviceType: "invoice-followup-copy-pack",
+      title: "Need the full overdue follow-up sequence?",
+      cta: "Send overdue invoice fit check",
+      intro: "Use the free overdue draft now, or send this public-safe 30-second fit check for the optional $19 Invoice Follow-up Copy Pack.",
+      placeholder: "I need a friendly first overdue invoice follow-up plus a firmer next message. No invoice numbers, client names, bank details, or private customer data included.",
+      defaultSummary: "I need a first overdue invoice reminder sequence for one client-work workflow: friendly reminder, firmer first overdue follow-up, paid thank-you, and next-invoice wording. No private invoice numbers, client names, bank details, tax IDs, or customer lists included.",
+    },
   },
   {
     path: "jpg-to-pdf-no-upload",
@@ -9005,7 +9029,7 @@ function trackedSharePostUrl(post) {
 function landingPageHtml(page) {
   const primaryToolPath = cleanToolPath(page.primaryTool);
   const tool = tools.find((item) => item.path === primaryToolPath);
-  const primaryToolHref = toolHref(page.primaryTool);
+  const primaryToolHref = toolHref(page.primaryTool, page.primaryToolQuery);
   const related = uniqueBy(page.relatedTools
     .map((toolPath) => tools.find((item) => item.path === cleanToolPath(toolPath)))
     .filter(Boolean), (item) => item.path);
@@ -9025,12 +9049,16 @@ function landingPageHtml(page) {
   const uploadShortcutsHtml = page.path === "upload-limit-fixer"
     ? `\n${uploadLimitShortcutsHtml("Fast upload limit shortcuts", "If the error message names a file size, start with the matching target page instead of browsing every tool.")}`
     : "";
+  const serviceLeadHtml = page.serviceLead ? `\n${serviceLeadFormHtml({ ...page.serviceLead, pathName: page.path })}` : "";
+  const secondaryActionHtml = page.serviceLead
+    ? `<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a>`
+    : `<a class="button secondary" href="/pdf-tool-finder/">Compare tools</a>`;
   return `
       <section class="shell page-title section">
         <a href="/free-pdf-tools/">Free file tools</a>
         <h1>${escapeHtml(page.headline)}</h1>
         <p>${escapeHtml(page.lead)}</p>
-        <p><a class="button" href="${primaryToolHref}">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> <a class="button secondary" href="/pdf-tool-finder/">Compare tools</a></p>
+        <p><a class="button" href="${primaryToolHref}">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> ${secondaryActionHtml}</p>
       </section>
       <section class="shell section">
         <h2>Why this matches the search</h2>
@@ -9040,7 +9068,7 @@ function landingPageHtml(page) {
           <article class="panel"><h3>Ad-safe</h3><p>Downloads are not gated behind ad interactions or ad impressions. Ads remain disabled until policy review and search visibility are ready.</p></article>
         </div>
       </section>
-      ${sectionHtml}${uploadMatcherHtml}${targetLinksHtml}${uploadShortcutsHtml}
+      ${sectionHtml}${uploadMatcherHtml}${targetLinksHtml}${uploadShortcutsHtml}${serviceLeadHtml}
       <section class="shell section">
         <h2>Related free tools</h2>
         <div class="grid-3">
@@ -9147,9 +9175,10 @@ function cleanToolPath(toolPath) {
   return String(toolPath).split("?")[0];
 }
 
-function toolHref(toolPath) {
+function toolHref(toolPath, extraQuery = "") {
   const [pathname, query] = String(toolPath).split("?");
-  return `/${pathname}/${query ? `?${query}` : ""}`;
+  const finalQuery = extraQuery || query || "";
+  return `/${pathname}/${finalQuery ? `?${finalQuery}` : ""}`;
 }
 
 function toolDetails(tool) {

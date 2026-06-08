@@ -2361,6 +2361,30 @@
       related: ["invoice-generator", "estimate-generator", "receipt-generator"],
     },
     {
+      slug: "overdue-invoice-reminder-email",
+      title: "Overdue Invoice Reminder Email",
+      headline: "Overdue invoice reminder email",
+      description: "Write a first overdue invoice reminder email without uploading private invoice details, then request a $19 follow-up sequence if you want it polished.",
+      lead: "Use this when an invoice is already late and you need a calm first follow-up that asks for an update without making legal, tax, accounting, or collections claims.",
+      tool: "invoice-followup-email",
+      toolQuery: "invoiceStatus=overdue&tone=friendly&dueTiming=overdue&context=I%20wanted%20to%20keep%20this%20easy%20to%20find%20and%20check%20whether%20anything%20else%20is%20needed%20on%20my%20side.&paymentWording=Please%20use%20the%20payment%20link%20or%20invoice%20portal%20already%20sent.",
+      intent: "overdue invoice reminder email, first overdue invoice follow up, late payment reminder wording",
+      sections: [
+        ["Use a first overdue tone", "Keep the message short, specific, and relationship-safe. Mention that the invoice is overdue, ask whether anything else is needed, and point back to the existing payment path without adding private account details."],
+        ["Avoid risky claims", "This page is communication copy only. It does not make legal threats, collections claims, tax statements, interest demands, or accounting judgments."],
+        ["When to request the $19 pack", "If you need the reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording to match one workflow, send the 30-second fit check below before any external checkout is sent."],
+      ],
+      related: ["invoice-followup-email", "invoice-generator", "receipt-generator"],
+      serviceLead: {
+        serviceType: "invoice-followup-copy-pack",
+        title: "Need the full overdue follow-up sequence?",
+        cta: "Send overdue invoice fit check",
+        intro: "Use the free overdue draft now, or send this public-safe 30-second fit check for the optional $19 Invoice Follow-up Copy Pack.",
+        placeholder: "I need a friendly first overdue invoice follow-up plus a firmer next message. No invoice numbers, client names, bank details, or private customer data included.",
+        defaultSummary: "I need a first overdue invoice reminder sequence for one client-work workflow: friendly reminder, firmer first overdue follow-up, paid thank-you, and next-invoice wording. No private invoice numbers, client names, bank details, tax IDs, or customer lists included.",
+      },
+    },
+    {
       slug: "jpg-to-pdf-no-upload",
       title: "JPG to PDF Without Uploading",
       headline: "JPG to PDF without uploading",
@@ -6411,7 +6435,7 @@
         <a href="/free-pdf-tools/">Free file tools</a>
         <h1>${escapeHtml(page.headline)}</h1>
         <p>${escapeHtml(page.lead)}</p>
-        <p><a class="button" href="${toolUrl(page)}">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> <a class="button secondary" href="/pdf-tool-finder/">Compare tools</a></p>
+        <p><a class="button" href="${toolUrl(page)}">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> ${page.serviceLead ? `<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a>` : `<a class="button secondary" href="/pdf-tool-finder/">Compare tools</a>`}</p>
       </section>
       <section class="shell section">
         <h2>Why this matches the search</h2>
@@ -6433,6 +6457,7 @@
         <div class="grid-3">${page.targetLinks.map(([label, pathName, text]) => `<article class="tool-card"><h3>${escapeHtml(label)}</h3><p>${escapeHtml(text)}</p><a class="button" href="/${escapeHtml(pathName)}/">Open target</a></article>`).join("")}</div>
       </section>` : ""}
       ${page.slug === "upload-limit-fixer" ? renderUploadLimitShortcuts("Fast upload limit shortcuts", "If the error message names a file size, start with the matching target page instead of browsing every tool.") : ""}
+      ${page.serviceLead ? renderServiceLeadForm({ ...page.serviceLead, pathName: page.slug }) : ""}
       <section class="shell section">
         <h2>Related free tools</h2>
         <div class="grid-3">${related.map(toolCard).join("")}</div>
@@ -6520,6 +6545,7 @@
     if (tool.pdfTool) return renderPdfUtilityTool(tool);
     if (tool.outputKind === "image") return renderImageUtilityTool(tool);
     const count = getDailyCount();
+    const initialValues = initialToolValues(tool);
     app.innerHTML = `
       <section class="shell tool-header">
         <a href="/">Back to all tools</a>
@@ -6533,7 +6559,7 @@
             <span class="counter" id="limitCounter">${SITE.dailyLimit - count} free left today</span>
           </div>
           <form id="generatorForm" class="form-grid">
-            ${tool.fields.map((field) => renderField(field, tool.defaultValues[field.id])).join("")}
+            ${tool.fields.map((field) => renderField(field, initialValues[field.id])).join("")}
             <div class="actions">
               <button class="button" type="submit">Generate PDF</button>
               ${tool.ai === false ? "" : `<button class="button secondary" type="button" id="aiIdeas">AI ideas</button>`}
@@ -6998,13 +7024,14 @@
     const cta = options.cta || "Send request";
     const intro = options.intro || "Send one public-safe note and a reply contact. Fit is reviewed manually before any external checkout or invoice is sent.";
     const placeholder = options.placeholder || "Tell us what you sell, what print pieces you need, and any date that matters.";
+    const defaultSummary = options.defaultSummary || "";
     const fallbackUrl = options.fallbackUrl || serviceLeadFallbackUrl({
       serviceType,
       businessName: "",
       contact: "",
       needBy: "",
       requestSummary: "",
-      path: `/${serviceType}/`,
+      path: `/${options.pathName || serviceType}/`,
     });
     return `
       <section class="shell section service-lead-section" id="service-request">
@@ -7031,7 +7058,7 @@
             </label>
             <label class="field">
               <span>What do you need?</span>
-              <textarea name="requestSummary" maxlength="1000" required placeholder="${escapeHtml(placeholder)}"></textarea>
+              <textarea name="requestSummary" maxlength="1000" required placeholder="${escapeHtml(placeholder)}">${escapeHtml(defaultSummary)}</textarea>
             </label>
             <label class="field">
               <span>Need-by date (optional)</span>
@@ -9965,6 +9992,19 @@ ${paragraphs.join("\n")}
         values.targetSize = targetSize;
         values.mode = targetSize === "5mb" ? "balanced" : "small";
       }
+    }
+    if (tool.id === "invoice-followup-email") {
+      const params = new URLSearchParams(window.location.search || "");
+      const invoiceStatus = String(params.get("invoiceStatus") || "").toLowerCase();
+      const tone = String(params.get("tone") || "").toLowerCase();
+      const dueTiming = params.get("dueTiming");
+      const context = params.get("context");
+      const paymentWording = params.get("paymentWording");
+      if (["sent", "due-today", "overdue", "paid", "next-invoice"].includes(invoiceStatus)) values.invoiceStatus = invoiceStatus;
+      if (["friendly", "firm", "concise", "warm"].includes(tone)) values.tone = tone;
+      if (dueTiming) values.dueTiming = String(dueTiming).slice(0, 80);
+      if (context) values.context = String(context).slice(0, 260);
+      if (paymentWording) values.paymentWording = String(paymentWording).slice(0, 220);
     }
     return values;
   }

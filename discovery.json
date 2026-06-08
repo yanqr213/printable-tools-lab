@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-08T06:19:22.278Z",
+  "generatedAt": "2026-06-08T07:03:24.949Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -60,6 +60,7 @@
     "https://printable-tools-lab.pages.dev/email-attachment-too-large/",
     "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/invoice-follow-up-email-template/",
+    "https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email/",
     "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/compress-pdf-no-upload/",
@@ -586,6 +587,12 @@
       "title": "Free Invoice Follow-up Email Template",
       "url": "https://printable-tools-lab.pages.dev/invoice-follow-up-email-template/",
       "intent": "invoice follow-up email, payment reminder wording, overdue invoice reminder",
+      "tool": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/"
+    },
+    {
+      "title": "Overdue Invoice Reminder Email",
+      "url": "https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email/",
+      "intent": "overdue invoice reminder email, first overdue invoice follow up, late payment reminder wording",
       "tool": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/"
     },
     {

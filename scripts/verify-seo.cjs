@@ -426,6 +426,19 @@ else {
   if (!html.includes("Payment happens only through a real external checkout or invoice")) failures.push("Invoice follow-up email route missing external-payment gate.");
 }
 
+const overdueInvoiceReminderFile = path.join(root, "overdue-invoice-reminder-email", "index.html");
+if (!fs.existsSync(overdueInvoiceReminderFile)) failures.push("Missing overdue invoice reminder landing page.");
+else {
+  const html = fs.readFileSync(overdueInvoiceReminderFile, "utf8");
+  if (!html.includes("Overdue invoice reminder email") || !html.includes("first overdue invoice follow up")) failures.push("Overdue invoice reminder page missing high-intent copy.");
+  if (!html.includes("/tools/invoice-followup-email/?invoiceStatus=overdue") || !html.includes("tone=friendly")) failures.push("Overdue invoice reminder page missing prefilled overdue generator link.");
+  if (!html.includes('data-service-type="invoice-followup-copy-pack"') || !html.includes("Send overdue invoice fit check") || !html.includes("$19")) failures.push("Overdue invoice reminder page missing $19 invoice follow-up fit-check form.");
+  if (!html.includes("I need a first overdue invoice reminder sequence")) failures.push("Overdue invoice reminder page missing prefilled fit-check request text.");
+  if (!html.includes("Source+path%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Foverdue-invoice-reminder-email%2F")) failures.push("Overdue invoice reminder backup request should preserve landing page source path.");
+  if (html.includes("/ops/") || html.includes("market-table-print-audit") || html.includes("custom-local-print-pack")) failures.push("Overdue invoice reminder page should stay focused and not expose ops or print-pack CTAs.");
+  if (!sitemap.includes(`<loc>${siteUrl("overdue-invoice-reminder-email")}</loc>`)) failures.push("Sitemap missing overdue invoice reminder landing page.");
+}
+
 const appScriptFile = path.join(root, "app.js");
 if (!fs.existsSync(appScriptFile)) failures.push("Missing app.js.");
 else {
@@ -441,6 +454,8 @@ else {
   if (!script.includes("Payment starts only after fit is confirmed and a real external checkout or invoice is paid")) failures.push("Missing download success external-payment gate.");
   if (!script.includes("renderDownloadServiceLeadForm") || !script.includes("download-service-lead-form") || !script.includes("Send free fit check") || !script.includes("Send invoice fit check") || !script.includes("free fit check for the $19 invoice follow-up copy pack") || !script.includes("free fit check for the $29 local print pack")) failures.push("Missing inline low-friction service lead form after download success.");
   if (!script.includes("renderInvoiceFollowupOutputServiceLeadForm") || !script.includes("tool-output-service-lead-form") || !script.includes('data-utm-source="tool_output"') || !script.includes("Generated draft excerpt to refine")) failures.push("Invoice follow-up email output missing inline low-friction service lead form.");
+  if (!script.includes("overdue-invoice-reminder-email") || !script.includes("invoiceStatus=overdue") || !script.includes("Send overdue invoice fit check")) failures.push("app.js missing high-intent overdue invoice reminder landing route.");
+  if (!script.includes('tool.id === "invoice-followup-email"') || !script.includes('values.invoiceStatus = invoiceStatus') || !script.includes("const initialValues = initialToolValues(tool)") || !script.includes("renderField(field, initialValues[field.id])")) failures.push("app.js should prefill invoice follow-up generator from URL params.");
   if (!script.includes('data-utm-source="download_success"') || !script.includes("form.dataset.leadPath") || !script.includes("fieldOrDataOrParam")) failures.push("Download success service lead form missing attribution preservation.");
   if (!script.includes("Future ads must stay separated from generator controls")) failures.push("Missing download success ad-safety warning.");
   if (!script.includes("renderInvoiceSponsorCloseCta") || !script.includes("invoice-sponsor-close-cta") || !script.includes("utm_source=download_success") || !script.includes("small-business-paperwork-sponsors")) failures.push("app.js missing invoice-specific sponsor close CTA on tool/download success.");
