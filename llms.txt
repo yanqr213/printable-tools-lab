@@ -18,6 +18,9 @@ Monetization model: Free tools stay live for search demand and future display ad
 - Sponsor deal room: https://printable-tools-lab.pages.dev/sponsor-deal-room/
 - Machine-readable sponsor deal room: https://printable-tools-lab.pages.dev/sponsor-deal-room.json
 - Machine-readable sponsor intent feed: https://printable-tools-lab.pages.dev/sponsor-intent-feed.json
+- Custom Local Print Pack Setup: https://printable-tools-lab.pages.dev/custom-local-print-pack/
+- Free Market Table Print Audit: https://printable-tools-lab.pages.dev/market-table-print-audit/
+- Local seller services JSON: https://printable-tools-lab.pages.dev/services.json
 - Organic push kit: https://printable-tools-lab.pages.dev/organic-push-kit/
 - Upload error cheatsheet: https://printable-tools-lab.pages.dev/upload-error-cheatsheet/
 - Machine-readable organic push kit: https://printable-tools-lab.pages.dev/organic-push-kit.json
@@ -257,4 +260,4 @@ Monetization model: Free tools stay live for search demand and future display ad
 - Optional AI idea suggestions are server-side and limited to non-sensitive fields.
 - Ads are disabled during validation and are never used as a gate for downloading files.
 - Future ad units must stay away from generator controls and must never ask visitors to interact with ads.
-- Legacy paid product and service experiments are retired from the public product path; the current route is free tools plus future ad-network payout.
+- Optional service requests do not collect payment on-site. Count revenue only after an external provider proves a paid order, payout balance, or settled payment.

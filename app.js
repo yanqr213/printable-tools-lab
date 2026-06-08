@@ -5496,12 +5496,10 @@
       if (vertical) return renderSponsorVerticalPage(vertical);
     }
     if (parts[0] === "sponsor") return renderSponsorPage();
-    if ([
-      "local-seller-starter-kit",
-      "custom-local-print-pack",
-      "market-table-print-audit",
-      "custom-local-print-pack-sales-pack",
-    ].includes(parts[0])) return renderRetiredPaidExperiment(parts[0]);
+    if (parts[0] === "local-seller-starter-kit") return renderLocalSellerStarterKit();
+    if (parts[0] === "custom-local-print-pack") return renderCustomLocalPrintPackService();
+    if (parts[0] === "market-table-print-audit") return renderMarketTablePrintAudit();
+    if (parts[0] === "custom-local-print-pack-sales-pack") return renderServiceSalesPack();
     if (landingPagesBySlug[parts[0]]) return renderLandingPage(parts[0]);
     if (parts[0] === "dashboard") return renderDashboard();
     if (parts[0] === "ops") return renderOpsMonitor();
@@ -6088,19 +6086,136 @@
   }
 
   function renderLocalSellerStarterKit() {
-    return renderRetiredPaidExperiment("local-seller-starter-kit");
+    setMeta("Local Seller Starter Kit", "Request the $9 editable local seller starter kit sample and checkout link for price tags, coupon copy, QR sign wording, packing slips, and launch checklists.");
+    setJsonLd({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: "Local Seller Starter Kit",
+      description: "Editable starter templates for small local selling workflows.",
+      offers: { "@type": "Offer", price: "9", priceCurrency: "USD", availability: "https://schema.org/PreOrder" },
+    });
+    app.innerHTML = `
+      <section class="shell page-title section product-hero">
+        <a href="/tools/price-tag/">Price tag generator</a>
+        <h1>Local Seller Starter Kit</h1>
+        <p>A small editable template kit for market tables, pop-up sellers, service providers, and first-time local offers: price tags, coupon copy, QR sign wording, pickup notes, and a launch checklist.</p>
+        <div class="hero-actions">
+          <a class="button" data-track-event="seller_checkout_intent" data-track-tool="local-seller-starter-kit" href="${escapeHtml(localSellerCheckoutRequestUrl())}" target="_blank" rel="noreferrer">Request checkout link</a>
+          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="/custom-local-print-pack/?utm_source=seller-kit&utm_medium=site&utm_campaign=service_request">Want it assembled for you?</a>
+          <a class="button ghost" href="/tools/price-tag/">Try the free tools first</a>
+        </div>
+        <p class="notice">No payment is collected on this site. Revenue is real only after a payment provider shows a paid order or settled payment.</p>
+        <div class="hero-proof" aria-label="Kit readiness">
+          <div class="proof-tile"><strong>$9</strong><span>target kit price</span></div>
+          <div class="proof-tile"><strong>editable</strong><span>templates</span></div>
+          <div class="proof-tile"><strong>free</strong><span>tools remain free</span></div>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Best for</h2>
+        <div class="grid-3">
+          <article class="panel"><h3>Market tables</h3><p>Use it for simple price tags, bundle notes, and a QR/contact sign.</p></article>
+          <article class="panel"><h3>Local services</h3><p>Use it for a one-page offer, coupon wording, and pickup or booking notes.</p></article>
+          <article class="panel"><h3>First offers</h3><p>Use it when you need practical print pieces before learning design software.</p></article>
+        </div>
+      </section>
+      ${renderServiceUpgradeCta({ id: "local-seller-starter-kit" })}
+    `;
   }
 
   function renderCustomLocalPrintPackService() {
-    return renderRetiredPaidExperiment("custom-local-print-pack");
+    const requestUrl = "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml";
+    setMeta("Custom Local Print Pack Setup", "Request a $29 done-for-you printable setup for price tags, flyer copy, QR sign wording, coupon ideas, packing notes, and a launch checklist.");
+    setJsonLd({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "Custom Local Print Pack Setup",
+      description: "A done-for-you printable starter pack setup for local sellers and small service providers.",
+      offers: { "@type": "Offer", price: "29", priceCurrency: "USD", availability: "https://schema.org/PreOrder" },
+    });
+    app.innerHTML = `
+      <section class="shell page-title section product-hero">
+        <a href="/tools/price-tag/">Free price tag generator</a>
+        <h1>Custom Local Print Pack Setup</h1>
+        <p>A $29 done-for-you setup for local sellers who want one simple printable pack assembled from their own items, prices, and contact link: price tag rows, flyer copy, QR sign wording, coupon ideas, packing or pickup notes, and a launch checklist.</p>
+        <div class="hero-actions">
+          <a class="button" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="${requestUrl}" target="_blank" rel="noreferrer">Request $29 setup</a>
+          <a class="button secondary" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="/market-table-print-audit/?utm_source=service-page&utm_medium=site&utm_campaign=audit_request">Start with free audit</a>
+          <button class="button ghost" type="button" data-copy-text="${escapeHtml(customLocalPrintPackRequestCopy())}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Copy request brief</button>
+        </div>
+        <p class="notice">Payment starts only after fit is confirmed and a real external checkout or invoice link is paid. Do not send card, bank, tax, identity, password, or customer-list data.</p>
+        <div class="hero-proof" aria-label="Service readiness">
+          <div class="proof-tile"><strong>$29</strong><span>setup price</span></div>
+          <div class="proof-tile"><strong>6</strong><span>deliverables</span></div>
+          <div class="proof-tile"><strong>2 days</strong><span>target turnaround</span></div>
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>What you get</h2>
+        <div class="grid-3">
+          ${customLocalPrintPackDeliverables().map((item) => `<article class="panel"><h3>${escapeHtml(item)}</h3><p>Delivered as editable copy or rows you can review and paste into the free generators.</p></article>`).join("")}
+        </div>
+      </section>
+      <section class="shell section">
+        <h2>Details needed</h2>
+        <ul>
+          <li>Business, event, booth, or service name.</li>
+          <li>Up to 12 items or services with prices.</li>
+          <li>One URL, social profile, phone, or email for QR sign wording.</li>
+          <li>Preferred style: clean, cute, bold, minimal, local, premium, or practical.</li>
+          <li>Any claims, words, discounts, or offers to avoid.</li>
+        </ul>
+      </section>
+      ${renderServiceUpgradeTools()}
+      <section class="shell section">
+        <h2>Money gate</h2>
+        <p>Requests and clicks are not revenue. Count revenue only after an external provider shows paid order, payout balance, or settled payment for this service.</p>
+      </section>
+    `;
   }
 
   function renderMarketTablePrintAudit() {
-    return renderRetiredPaidExperiment("market-table-print-audit");
+    const auditUrl = "https://github.com/yanqr213/printable-tools-lab/issues/new?template=market-table-print-audit.yml";
+    setMeta("Free Market Table Print Audit", "Request a free public-safe print audit before deciding whether the $29 Custom Local Print Pack Setup is useful.");
+    app.innerHTML = `
+      <section class="shell page-title section product-hero">
+        <a href="/custom-local-print-pack/">Done-for-you setup</a>
+        <h1>Free Market Table Print Audit</h1>
+        <p>A free checklist request for craft sellers, home bakers, local services, tutors, cleaners, repair providers, and pop-up organizers who need clearer price tags, QR signs, flyer copy, coupons, or pickup notes.</p>
+        <div class="hero-actions">
+          <a class="button" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${auditUrl}" target="_blank" rel="noreferrer">Request free audit</a>
+          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="/custom-local-print-pack/?utm_source=audit-page&utm_medium=site&utm_campaign=service_request">See $29 setup</a>
+          <button class="button ghost" type="button" data-copy-text="${escapeHtml(marketTableAuditRequestCopy())}" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit">Copy audit request</button>
+        </div>
+        <p class="notice">The audit is free and does not collect payment. The optional setup starts only after a real external checkout is paid.</p>
+      </section>
+      <section class="shell section">
+        <h2>Audit checklist</h2>
+        <div class="grid-3">
+          ${marketTableAuditChecks().map((item) => `<article class="panel"><h3>${escapeHtml(item)}</h3><p>Use this as practical feedback before printing more table or local-service materials.</p></article>`).join("")}
+        </div>
+      </section>
+      ${renderServiceUpgradeTools()}
+    `;
   }
 
   function renderServiceSalesPack() {
-    return renderRetiredPaidExperiment("custom-local-print-pack-sales-pack");
+    setMeta("Custom Local Print Pack Sales Pack", "Copy-ready outreach and close path for the $29 Custom Local Print Pack Setup.");
+    app.innerHTML = `
+      <section class="shell page-title section">
+        <a href="/custom-local-print-pack/">Paid service</a>
+        <h1>Custom Local Print Pack Sales Pack</h1>
+        <p>Use this page to promote the $29 done-for-you setup through low-risk manual outreach. Do not count revenue until a real external payment provider proves a paid order.</p>
+        <p><a class="button" href="/custom-local-print-pack/">Open service page</a> <a class="button secondary" href="/market-table-print-audit/">Open free audit</a></p>
+      </section>
+      <section class="shell section">
+        <h2>Copy-ready outreach</h2>
+        <div class="grid-2">
+          <article class="panel"><h3>Market seller</h3><p>Hi, I noticed your table could use simple printable pieces: price tags, QR/contact sign wording, one flyer note, coupon ideas, and pickup or packing notes. I have a $29 setup if you want the first pack assembled from your own item list.</p></article>
+          <article class="panel"><h3>Local service</h3><p>Hi, if you need quick printable promo pieces for your service, I can prepare one small starter pack with flyer copy, QR sign wording, coupon ideas, and a print checklist after fit is confirmed.</p></article>
+        </div>
+      </section>
+    `;
   }
   function renderLandingPage(slug) {
     const page = landingPagesBySlug[slug];
@@ -6279,6 +6394,7 @@
         </div>
       </section>
       ${renderFreeToolDepthCta(tool)}
+      ${renderServiceUpgradeCta(tool)}
       ${renderInvoiceSponsorCloseCta(tool, "tool_cta")}
       <section class="shell section">
         <div class="section-head">
@@ -6551,6 +6667,105 @@
         </div>
       </section>
     `;
+  }
+
+  function renderServiceUpgradeCta(tool) {
+    if (!tool || !LOCAL_SELLER_FUNNEL_TOOL_IDS.has(tool.id)) return "";
+    const content = encodeURIComponent(tool.id);
+    return `
+      <section class="shell section service-upgrade-cta" aria-label="Optional done-for-you setup">
+        <div>
+          <p class="eyebrow">Optional done-for-you help</p>
+          <h2>Want the first local seller print pack assembled?</h2>
+          <p>The free generators stay free. If you want a practical starter pack prepared from your item list, the $29 Custom Local Print Pack Setup can create price tag rows, flyer copy, QR sign wording, coupon ideas, pickup notes, and a print checklist.</p>
+        </div>
+        <div class="free-tool-depth-actions">
+          <a class="button" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="/custom-local-print-pack/?utm_source=tool_cta&utm_medium=site&utm_campaign=service_request&utm_content=${content}">Request $29 setup</a>
+          <a class="button secondary" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="/market-table-print-audit/?utm_source=tool_cta&utm_medium=site&utm_campaign=audit_request&utm_content=${content}">Free print audit first</a>
+          <p class="help">Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
+        </div>
+      </section>`;
+  }
+
+  function renderServiceUpgradeTools() {
+    const links = [
+      ["Price tags", "/tools/price-tag/"],
+      ["Flyer", "/tools/flyer-maker/"],
+      ["Coupon", "/tools/coupon-maker/"],
+      ["Packing slip", "/tools/packing-slip/"],
+      ["Business card", "/tools/business-card/"],
+      ["QR code", "/tools/qr-code/"],
+    ];
+    return `
+      <section class="shell section">
+        <h2>Use the finished pack with free tools</h2>
+        <div class="cluster-links">${links.map(([label, href]) => `<a href="${href}">${escapeHtml(label)}</a>`).join("")}</div>
+      </section>`;
+  }
+
+  function customLocalPrintPackDeliverables() {
+    return [
+      "price tag starter CSV for up to 12 items",
+      "one small flyer copy draft",
+      "QR sign wording for one link or contact method",
+      "three coupon or bundle offer ideas",
+      "packing slip or pickup note starter rows",
+      "one-page launch checklist for printing and first outreach",
+    ];
+  }
+
+  function customLocalPrintPackRequestCopy() {
+    return [
+      "I want to request the Custom Local Print Pack Setup for $29 USD.",
+      "",
+      "Business/event/service name:",
+      "Items or services with prices:",
+      "Link or contact method for QR sign:",
+      "Preferred style:",
+      "Words, claims, or offers to avoid:",
+      "Preferred checkout provider:",
+      "",
+      "No payment is collected by this request. Please reply with a real external checkout or invoice link only if the service fits.",
+    ].join("\n");
+  }
+
+  function marketTableAuditChecks() {
+    return [
+      "Do shoppers see a clear price for each item or service?",
+      "Is there one QR/contact sign that opens a public-safe page or contact method?",
+      "Is there one simple flyer or table note that says what is available today?",
+      "Is there a coupon, bundle, or follow-up offer the seller can actually honor?",
+      "Are pickup, packing, or ordering notes clear enough to reduce repeated questions?",
+      "Are claims, deadlines, food/health language, and discount rules safe for the seller to review before printing?",
+    ];
+  }
+
+  function marketTableAuditRequestCopy() {
+    return [
+      "I want a free Market Table Print Audit.",
+      "",
+      "What I sell or offer:",
+      "Current prices or menu:",
+      "Current QR/contact method:",
+      "Current print pieces:",
+      "Would I want the optional $29 setup if obvious gaps show up? yes / maybe / no:",
+      "",
+      "Do not include private payment, tax, bank, identity, password, customer-list, or regulated details.",
+    ].join("\n");
+  }
+
+  function localSellerCheckoutRequestUrl() {
+    const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+    url.searchParams.set("title", "Checkout request: Local Seller Starter Kit");
+    url.searchParams.set("body", [
+      "I want to request the Local Seller Starter Kit checkout link.",
+      "",
+      "Store or project name:",
+      "Preferred checkout provider: Gumroad / Payhip / Ko-fi / Stripe / other",
+      "",
+      "No payment is collected by this request. Please reply with a real external checkout link only after the payment product is ready.",
+    ].join("\n"));
+    return url.toString();
   }
 
   function bindImageUtilityTool(tool) {

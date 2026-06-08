@@ -57,6 +57,27 @@ const discoveryRoutes = [
     url: pagesUrl(page.path),
     mainUrl: siteUrl(page.path),
   })),
+  ...DIGITAL_PRODUCTS.map((product) => ({
+    path: product.slug,
+    title: product.name,
+    description: product.shortDescription,
+    url: pagesUrl(product.slug),
+    mainUrl: siteUrl(product.slug),
+  })),
+  ...PAID_SERVICES.map((service) => ({
+    path: service.slug,
+    title: service.name,
+    description: service.shortDescription,
+    url: pagesUrl(service.slug),
+    mainUrl: siteUrl(service.slug),
+  })),
+  {
+    path: MARKET_TABLE_PRINT_AUDIT.slug,
+    title: MARKET_TABLE_PRINT_AUDIT.name,
+    description: MARKET_TABLE_PRINT_AUDIT.shortDescription,
+    url: pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug),
+    mainUrl: siteUrl(MARKET_TABLE_PRINT_AUDIT.slug),
+  },
   ...toolDiscoveryRoutes,
   ...guideDiscoveryRoutes,
   {
@@ -236,6 +257,13 @@ for (const tool of allDiscoveryTools) {
   fs.writeFileSync(path.join(toolDir, "index.html"), toolDiscoveryHtml(tool, relatedLandingPages));
 }
 writeGuideDiscoveryPages();
+writeDigitalProductDiscoveryPages();
+copyDigitalProductPublicAssets();
+writePaidServiceDiscoveryPages();
+copyPaidServicePublicAssets();
+writeAuditLeadMagnetDiscoveryPage();
+copyAuditLeadMagnetPublicAssets();
+writeServiceSalesPackDiscoveryPage();
 writeOrganicPushKitDiscoveryPage();
 writeUploadErrorCheatsheetDiscoveryPage();
 writeSponsorDealRoomDiscoveryPage();
@@ -295,6 +323,24 @@ fs.writeFileSync(path.join(docsDir, "tools.json"), `${JSON.stringify({
 
 fs.writeFileSync(path.join(docsDir, "organic-push-kit.json"), `${JSON.stringify(organicPushKitEntry(), null, 2)}\n`);
 fs.writeFileSync(path.join(docsDir, "upload-error-cheatsheet.json"), `${JSON.stringify(uploadErrorCheatsheetEntry(), null, 2)}\n`);
+fs.writeFileSync(path.join(docsDir, "products.json"), `${JSON.stringify({
+  name: "PrintableTools Lab Digital Products Mirror",
+  generatedAt: generatedAtIso,
+  directory: pagesUrl(""),
+  liveJson: siteUrl("digital-products.json").replace(/\/$/, ""),
+  products: DIGITAL_PRODUCTS.map(productFeedEntry),
+  moneyGate: "Digital product requests and checkout-link clicks are not revenue. Count revenue only after an external provider proves a paid order, payout balance, or settled payment.",
+}, null, 2)}\n`);
+fs.writeFileSync(path.join(docsDir, "services.json"), `${JSON.stringify({
+  name: "PrintableTools Lab Paid Services Mirror",
+  generatedAt: generatedAtIso,
+  directory: pagesUrl(""),
+  liveJson: siteUrl("services.json").replace(/\/$/, ""),
+  services: PAID_SERVICES.map(serviceFeedEntry),
+  leadMagnets: [auditLeadMagnetEntry()],
+  moneyGate: "Service requests and audit requests are not revenue. Count revenue only after an external provider proves a paid order, payout balance, or settled payment.",
+}, null, 2)}\n`);
+fs.writeFileSync(path.join(docsDir, "service-sales-pack.json"), `${JSON.stringify(serviceSalesPackEntry(), null, 2)}\n`);
 fs.writeFileSync(path.join(docsDir, "sponsor-deal-room.json"), `${JSON.stringify(sponsorDealRoomMirrorEntry(), null, 2)}\n`);
 fs.writeFileSync(path.join(docsDir, "sponsor-starter-review.json"), `${JSON.stringify(sponsorStarterReviewMirrorEntry(), null, 2)}\n`);
 fs.writeFileSync(path.join(docsDir, "sponsor-call.json"), `${JSON.stringify(sponsorCallMirrorEntry(), null, 2)}\n`);

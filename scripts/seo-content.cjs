@@ -23,7 +23,7 @@ const LOCAL_SELLER_STARTER_KIT = {
   publicSamplePath: "assets/digital-products/local-seller-starter-kit-sample.zip",
   publicRequestPath: "assets/digital-products/local-seller-starter-kit-buy-request.txt",
   privatePackagePath: "paid-deliverables/local-seller-starter-kit.zip",
-  packageReportPath: "reports/local-seller-starter-kit-package.json",
+  packageReportPath: "assets/digital-products/local-seller-starter-kit-package.json",
   audience: [
     "craft fair and market table sellers",
     "local service providers",
@@ -82,7 +82,7 @@ const CUSTOM_LOCAL_PRINT_PACK_SERVICE = {
   publicOutreachBatchPath: "assets/services/custom-local-print-pack-outreach-batch.txt",
   publicSampleDeliveryPath: "assets/services/custom-local-print-pack-sample-delivery.zip",
   publicDeliveryInputExamplePath: "assets/services/custom-local-print-pack-delivery-input.example.json",
-  publicDeliveryReportPath: "reports/custom-local-print-pack-sample-delivery.json",
+  publicDeliveryReportPath: "assets/services/custom-local-print-pack-sample-delivery.json",
   issueTemplatePath: ".github/ISSUE_TEMPLATE/custom-local-print-pack-service.yml",
   issueFormUrl: "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml",
   turnaround: "Target delivery is 2 business days after real payment and complete buyer details.",
@@ -202,7 +202,7 @@ const SERVICE_SALES_PACK = {
   deliveryInputExampleUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryInputExamplePath).replace(/\/$/, ""),
   githubPagesDeliveryInputExampleUrl: "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json",
   deliveryReportUrl: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryReportPath).replace(/\/$/, ""),
-  githubPagesDeliveryReportUrl: "https://yanqr213.github.io/printable-tools-lab/reports/custom-local-print-pack-sample-delivery.json",
+  githubPagesDeliveryReportUrl: "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.json",
   issueFormUrl: CUSTOM_LOCAL_PRINT_PACK_SERVICE.issueFormUrl,
   audience: [
     "craft fair and market table sellers",
@@ -270,7 +270,7 @@ const SERVICE_SALES_PACK = {
     ["Copy/paste outreach batch", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-outreach-batch.txt"],
     ["Sample delivery ZIP", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.zip"],
     ["Delivery input example", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-delivery-input.example.json"],
-    ["Sample delivery report", "https://yanqr213.github.io/printable-tools-lab/reports/custom-local-print-pack-sample-delivery.json"],
+    ["Sample delivery report", "https://yanqr213.github.io/printable-tools-lab/assets/services/custom-local-print-pack-sample-delivery.json"],
   ],
   executionChecklist: [
     "Start with 5 to 10 manual, relevant, non-spam contacts where the service solves an immediate print or market-table problem.",
@@ -5598,30 +5598,27 @@ const pages = [
   },
   {
     path: LOCAL_SELLER_STARTER_KIT.slug,
-    title: "Retired payment experiment",
-    description: "This older payment experiment is retired from the public site. PrintableTools Lab is focused on free no-signup tools and future ad-supported monetization.",
-    html: retiredPaidExperimentHtml("Retired seller kit experiment"),
-    index: false,
+    title: LOCAL_SELLER_STARTER_KIT.name,
+    description: LOCAL_SELLER_STARTER_KIT.shortDescription,
+    html: localSellerStarterKitHtml(),
   },
   {
     path: CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug,
-    title: "Retired payment experiment",
-    description: "This older payment experiment is retired from the public site. PrintableTools Lab is focused on free no-signup tools and future ad-supported monetization.",
-    html: retiredPaidExperimentHtml("Retired custom print pack experiment"),
-    index: false,
+    title: CUSTOM_LOCAL_PRINT_PACK_SERVICE.name,
+    description: CUSTOM_LOCAL_PRINT_PACK_SERVICE.shortDescription,
+    html: customLocalPrintPackServiceHtml(),
   },
   {
     path: MARKET_TABLE_PRINT_AUDIT.slug,
-    title: "Retired payment experiment",
-    description: "This older direct-payment experiment is retired from the public site. PrintableTools Lab is focused on free no-signup tools and future ad-supported monetization.",
-    html: retiredPaidExperimentHtml("Retired print audit experiment"),
-    index: false,
+    title: MARKET_TABLE_PRINT_AUDIT.name,
+    description: MARKET_TABLE_PRINT_AUDIT.shortDescription,
+    html: marketTablePrintAuditHtml(),
   },
   {
     path: SERVICE_SALES_PACK.slug,
-    title: "Retired payment experiment",
-    description: "This older payment experiment is retired from the public site. PrintableTools Lab is focused on free no-signup tools and future ad-supported monetization.",
-    html: retiredPaidExperimentHtml("Retired service sales pack experiment"),
+    title: SERVICE_SALES_PACK.name,
+    description: SERVICE_SALES_PACK.shortDescription,
+    html: serviceSalesPackHtml(),
     index: false,
   },
   {
@@ -6150,7 +6147,8 @@ ${freeToolDepthCtaHtml(tool)}${invoiceSponsorCloseCtaHtml(tool)}
         <p>${related.map((guide) => `<a class="tag" href="/${guide.path}/">${escapeHtml(guide.title)}</a>`).join(" ")}</p>
         ${jsonLdHtml(softwareSchema(tool))}
         ${jsonLdHtml(faqSchema(details.faq))}
-      </section>`;
+      </section>
+      ${serviceUpgradeCtaHtml(tool)}`;
 }
 
 function invoiceSponsorCloseCtaHtml(tool) {
@@ -6454,6 +6452,26 @@ ${sponsorExternalDiscoveryProofHtml()}
           description: "Sponsor and partner inquiry page for PrintableTools Lab.",
           about: ["PDF tools", "image tools", "QR tools", "browser utilities", "sponsorship"],
         })}
+      </section>`;
+}
+
+function serviceUpgradeCtaHtml(tool) {
+  if (!LOCAL_SELLER_FUNNEL_TOOL_PATH_SET.has(tool.path)) return "";
+  const toolSlug = tool.path.replace(/^tools\//, "");
+  const serviceHref = `/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug}/?utm_source=tool_cta&utm_medium=site&utm_campaign=service_request&utm_content=${encodeURIComponent(toolSlug)}`;
+  const auditHref = `/${MARKET_TABLE_PRINT_AUDIT.slug}/?utm_source=tool_cta&utm_medium=site&utm_campaign=audit_request&utm_content=${encodeURIComponent(toolSlug)}`;
+  return `
+      <section class="shell section service-upgrade-cta" aria-label="Optional done-for-you setup">
+        <div>
+          <p class="eyebrow">Optional done-for-you help</p>
+          <h2>Want the first local seller print pack assembled?</h2>
+          <p>The free generators stay free. If you want a practical starter pack prepared from your item list, the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} ${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.name)} can create price tag rows, flyer copy, QR sign wording, coupon ideas, pickup notes, and a print checklist.</p>
+        </div>
+        <div class="free-tool-depth-actions">
+          <a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.id)}" href="${escapeHtml(serviceHref)}">Request $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup</a>
+          <a class="button secondary" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(MARKET_TABLE_PRINT_AUDIT.id)}" href="${escapeHtml(auditHref)}">Free print audit first</a>
+          <p class="help">Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
+        </div>
       </section>`;
 }
 

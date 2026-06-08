@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-08T01:52:22.072Z",
+  "generatedAt": "2026-06-08T02:20:07.082Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -33,6 +33,8 @@
     "https://printable-tools-lab.pages.dev/sponsor-deal-room/",
     "https://printable-tools-lab.pages.dev/sponsor-opportunities/",
     "https://printable-tools-lab.pages.dev/sponsor/",
+    "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
+    "https://printable-tools-lab.pages.dev/market-table-print-audit/",
     "https://printable-tools-lab.pages.dev/sponsor/pdf-image-qr-saas/",
     "https://printable-tools-lab.pages.dev/sponsor/resume-career-sponsors/",
     "https://printable-tools-lab.pages.dev/sponsor/classroom-printable-sponsors/",
@@ -340,6 +342,15 @@
         "sponsorFit": "QR platforms, review-request tools, local SEO products, print shops, signage services, event tools, and small-business marketing software."
       }
     ],
+    "localSellerService": {
+      "servicePage": "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
+      "auditPage": "https://printable-tools-lab.pages.dev/market-table-print-audit/",
+      "servicesJson": "https://printable-tools-lab.pages.dev/services.json",
+      "requestTemplate": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-request.txt",
+      "sampleDelivery": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-sample-delivery.zip",
+      "priceUsd": 29,
+      "moneyGate": "Service requests and audit requests are not revenue. Money is real only after an external provider proves a paid order, payout balance, or settled payment."
+    },
     "platformSubmitQueue": "https://printable-tools-lab.pages.dev/platform-submit-queue/",
     "platformSubmitQueueJson": "https://printable-tools-lab.pages.dev/platform-submit-queue.json",
     "platformSubmitCockpit": "https://printable-tools-lab.pages.dev/platform-submit-cockpit/",

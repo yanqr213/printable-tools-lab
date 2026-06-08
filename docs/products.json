@@ -1,0 +1,42 @@
+{
+  "name": "PrintableTools Lab Digital Products Mirror",
+  "generatedAt": "2026-06-08T02:20:07.191Z",
+  "directory": "https://yanqr213.github.io/printable-tools-lab/",
+  "liveJson": "https://printable-tools-lab.pages.dev/digital-products.json",
+  "products": [
+    {
+      "id": "local-seller-starter-kit",
+      "name": "Local Seller Starter Kit",
+      "description": "A checkout-ready digital pack of editable local-selling templates: price tags, coupon copy, packing slips, QR sign wording, inventory starters, promo posts, and market-day checklists.",
+      "url": "https://printable-tools-lab.pages.dev/local-seller-starter-kit/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/local-seller-starter-kit/",
+      "priceUsd": 9,
+      "currency": "USD",
+      "checkoutConfigured": false,
+      "checkoutUrl": "",
+      "checkoutRequestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=Checkout+request%3A+Local+Seller+Starter+Kit&body=I+want+to+buy+the+Local+Seller+Starter+Kit+for+%249+USD.%0A%0ASample+checked%3A+https%3A%2F%2Fyanqr213.github.io%2Fprintable-tools-lab%2Fassets%2Fdigital-products%2Flocal-seller-starter-kit-sample.zip%0APreferred+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+other%0ABest+contact+method%3A%0ACountry+or+region+%28optional%29%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+reply+with+a+real+external+checkout+link+only+after+the+payment+product+is+ready.",
+      "checkoutEmailUrl": "",
+      "sampleUrl": "https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-sample.zip",
+      "discoverySampleUrl": "https://yanqr213.github.io/printable-tools-lab/assets/digital-products/local-seller-starter-kit-sample.zip",
+      "requestTemplateUrl": "https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-buy-request.txt",
+      "discoveryRequestTemplateUrl": "https://yanqr213.github.io/printable-tools-lab/assets/digital-products/local-seller-starter-kit-buy-request.txt",
+      "packageReportUrl": "https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-package.json",
+      "discoveryPackageReportUrl": "https://yanqr213.github.io/printable-tools-lab/assets/digital-products/local-seller-starter-kit-package.json",
+      "privatePackagePath": "paid-deliverables/local-seller-starter-kit.zip",
+      "contents": [
+        "30-day local promo calendar CSV",
+        "price tag and SKU starter CSV",
+        "coupon offer and fine-print examples",
+        "packing slip batch CSV",
+        "inventory starter sheet",
+        "flyer and QR sign copy bank",
+        "market-day checklist",
+        "product listing copy for Gumroad, Payhip, Ko-fi, or Stripe Payment Links",
+        "checkout publishing checklist and buyer request template",
+        "simple commercial-use license for the buyer's own business"
+      ],
+      "successGate": "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this kit."
+    }
+  ],
+  "moneyGate": "Digital product requests and checkout-link clicks are not revenue. Count revenue only after an external provider proves a paid order, payout balance, or settled payment."
+}

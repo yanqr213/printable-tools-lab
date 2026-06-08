@@ -1,0 +1,21 @@
+{
+  "service": "Custom Local Print Pack Setup",
+  "generatedAt": "2026-06-08T02:20:07.082Z",
+  "sampleOnly": true,
+  "sampleDelivery": {
+    "path": "assets/services/custom-local-print-pack-sample-delivery.zip",
+    "url": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-sample-delivery.zip",
+    "sizeBytes": 4263,
+    "sha256": "dc5d68ec38ec82e8e2cede5beffa0c009051820ebc1ee70209dce08588ac7f67"
+  },
+  "deliveryInputExample": {
+    "path": "assets/services/custom-local-print-pack-delivery-input.example.json",
+    "url": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-delivery-input.example.json",
+    "sizeBytes": 1210,
+    "sha256": "cc7bb204fc8da14ab5a878b0079dc19a8fb0acad8753e7715c6e7a6a7db32956"
+  },
+  "privateDeliveryCommand": "npm.cmd run service:delivery -- --input path/to/paid-order.json",
+  "privateDeliveryOutput": "paid-deliverables/service-orders/<order-id>.zip",
+  "moneyGate": "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this service.",
+  "buyerReviewRequired": true
+}

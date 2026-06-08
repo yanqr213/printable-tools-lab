@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-06-08T01:50:01.524Z",
+  "generatedAt": "2026-06-08T02:21:02.018Z",
   "repo": "yanqr213/printable-tools-lab",
   "sourceUrl": "https://github.com/yanqr213/printable-tools-lab/issues?q=is%3Aissue%20label%3Asponsor%20label%3Apartner%20label%3Abusiness-review",
   "available": true,
-  "dataQuality": "github-issues-html-fallback",
-  "dataWarning": "API unavailable; HTML fallback used. GitHub issues API 403: API rate limit exceeded for unauthenticated requests.",
+  "dataQuality": "github-issues-api",
+  "dataWarning": "",
   "publicMetricsOnly": true,
   "privateFields": "not exposed; rows contain only public GitHub issue metadata and public-safe URL fields",
   "publicReplyCount": 0,

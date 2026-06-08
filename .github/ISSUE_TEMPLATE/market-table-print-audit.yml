@@ -1,0 +1,71 @@
+name: Free Market Table Print Audit
+description: Public-safe free audit request for local sellers and small service providers.
+title: "[Free audit]: Market Table Print Audit"
+labels: ["audit-request", "business-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This free audit is practical feedback only. It is not revenue and does not collect payment.
+
+        The optional $29 Custom Local Print Pack Setup starts only after fit is confirmed and a real external checkout or invoice is paid.
+
+  - type: textarea
+    id: offer
+    attributes:
+      label: What do you sell or offer?
+      placeholder: Handmade candles, tutoring sessions, cleaning service, craft table, workshop tickets...
+    validations:
+      required: true
+
+  - type: textarea
+    id: prices
+    attributes:
+      label: Current prices or menu
+      placeholder: |
+        Small candle - $8
+        Large candle - $15
+        2 for $25
+    validations:
+      required: false
+
+  - type: input
+    id: qr_contact
+    attributes:
+      label: Current QR/contact method
+      placeholder: Website, public profile, email, or "none yet"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: print_pieces
+    attributes:
+      label: Current print pieces
+      options:
+        - label: Price tags
+        - label: QR/contact sign
+        - label: Flyer or menu
+        - label: Coupon or bundle offer
+        - label: Packing or pickup notes
+        - label: None yet
+
+  - type: dropdown
+    id: upgrade_interest
+    attributes:
+      label: Would you want the optional $29 setup if obvious gaps show up?
+      options:
+        - maybe
+        - yes
+        - no
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Public safety confirmations
+      options:
+        - label: I understand this public issue is a free audit request and does not collect payment.
+          required: true
+        - label: I did not include payment, tax, bank, card, identity, password, customer-list, private address, or regulated details.
+          required: true

@@ -116,3 +116,30 @@
 
 /dashboard/
   X-Robots-Tag: noindex, nofollow
+
+/digital-products.json
+  Content-Type: application/json; charset=utf-8
+
+/services.json
+  Content-Type: application/json; charset=utf-8
+
+/service-sales-pack.json
+  Content-Type: application/json; charset=utf-8
+
+/assets/services/*.txt
+  Content-Type: text/plain; charset=utf-8
+
+/assets/services/*.json
+  Content-Type: application/json; charset=utf-8
+
+/assets/services/*.zip
+  Content-Type: application/zip
+
+/assets/digital-products/*.txt
+  Content-Type: text/plain; charset=utf-8
+
+/assets/digital-products/*.json
+  Content-Type: application/json; charset=utf-8
+
+/assets/digital-products/*.zip
+  Content-Type: application/zip

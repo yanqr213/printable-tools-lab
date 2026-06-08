@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Share Kit",
-  "generatedAt": "2026-06-08T01:52:22.072Z",
+  "generatedAt": "2026-06-08T02:20:07.082Z",
   "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
   "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
   "featuredLinks": [
@@ -573,6 +573,14 @@
       "moneyBoundary": "Directory listings, IndexNow submissions, clicks, and views are discovery signals only. Revenue is real only after a signed sponsor agreement or settled external payment."
     },
     "successGate": "Commercial discovery is working only when a qualified sponsor lead, signed agreement, or settled external payment is verified. Clicks alone are not revenue."
+  },
+  "localSellerService": {
+    "servicePage": "https://printable-tools-lab.pages.dev/custom-local-print-pack/",
+    "auditPage": "https://printable-tools-lab.pages.dev/market-table-print-audit/",
+    "requestTemplate": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-request.txt",
+    "sampleDelivery": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-sample-delivery.zip",
+    "priceUsd": 29,
+    "moneyGate": "Service requests and audit requests are not revenue. Money is real only after an external provider proves a paid order, payout balance, or settled payment."
   },
   "zeroDomainGameExperiment": {
     "name": "Upload Limit Panic",

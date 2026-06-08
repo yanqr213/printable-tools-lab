@@ -1,0 +1,87 @@
+name: Custom Local Print Pack Setup request
+description: Public-safe request for the $29 done-for-you local print pack setup.
+title: "[Service request]: Custom Local Print Pack"
+labels: ["service-request", "business-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this public issue only for non-sensitive service-fit details. Payment starts only after fit is confirmed and a real external checkout or invoice link is paid.
+
+        Do not include private payment, tax, bank, card, identity, password, customer-list, private address, or regulated details.
+
+  - type: input
+    id: business_name
+    attributes:
+      label: Business, event, booth, or service name
+      placeholder: Example: Maple Street Candles
+    validations:
+      required: true
+
+  - type: textarea
+    id: items_services
+    attributes:
+      label: Items or services with prices
+      description: List up to 12 public-safe items or services.
+      placeholder: |
+        Small candle - $8
+        Large candle - $15
+        Bundle - 2 for $25
+    validations:
+      required: true
+
+  - type: input
+    id: qr_contact
+    attributes:
+      label: Public link or contact method for QR sign wording
+      placeholder: https://example.com/menu
+    validations:
+      required: false
+
+  - type: dropdown
+    id: style
+    attributes:
+      label: Preferred style
+      options:
+        - practical
+        - clean
+        - cute
+        - bold
+        - minimal
+        - local
+        - premium
+    validations:
+      required: true
+
+  - type: textarea
+    id: avoid
+    attributes:
+      label: Words, claims, or offers to avoid
+      placeholder: No health claims, no limited-time discount, avoid premium wording.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: checkout_provider
+    attributes:
+      label: Preferred external checkout or invoice provider
+      description: No payment is collected in this issue.
+      options:
+        - Gumroad
+        - Payhip
+        - Ko-fi
+        - Stripe
+        - Invoice link
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Public safety confirmations
+      options:
+        - label: I understand this public issue does not collect payment and the $29 service starts only after a real external checkout or invoice is paid.
+          required: true
+        - label: I did not include payment, tax, bank, card, identity, password, customer-list, private address, or regulated details.
+          required: true

@@ -14,6 +14,9 @@ const campaignAssets = readCampaignAssets();
 const gistDiscovery = readGistDiscovery();
 const issueDiscovery = readIssueDiscovery();
 const externalDiscoveryProof = sponsorExternalDiscoveryProof();
+const digitalProductPackages = buildDigitalProductPackages();
+const paidServiceAssets = buildPaidServiceAssets();
+const auditLeadMagnetAssets = buildAuditLeadMagnetAssets();
 
 function pageHtml(route) {
   const rendered = renderRoute(route);
@@ -195,8 +198,35 @@ if (!headers.includes("/portal-submission-pack.json")) {
 if (!headers.includes("/game-submission-feed.json")) {
   fs.appendFileSync(headersPath, "\n/game-submission-feed.json\n  Content-Type: application/json; charset=utf-8\n");
 }
-if (!headers.includes("/zero-cost-monetization-map.json")) {
+  if (!headers.includes("/zero-cost-monetization-map.json")) {
   fs.appendFileSync(headersPath, "\n/zero-cost-monetization-map.json\n  Content-Type: application/json; charset=utf-8\n");
+}
+if (!headers.includes("/digital-products.json")) {
+  fs.appendFileSync(headersPath, "\n/digital-products.json\n  Content-Type: application/json; charset=utf-8\n");
+}
+if (!headers.includes("/services.json")) {
+  fs.appendFileSync(headersPath, "\n/services.json\n  Content-Type: application/json; charset=utf-8\n");
+}
+if (!headers.includes("/service-sales-pack.json")) {
+  fs.appendFileSync(headersPath, "\n/service-sales-pack.json\n  Content-Type: application/json; charset=utf-8\n");
+}
+if (!headers.includes("/assets/services/*.txt")) {
+  fs.appendFileSync(headersPath, "\n/assets/services/*.txt\n  Content-Type: text/plain; charset=utf-8\n");
+}
+if (!headers.includes("/assets/services/*.json")) {
+  fs.appendFileSync(headersPath, "\n/assets/services/*.json\n  Content-Type: application/json; charset=utf-8\n");
+}
+if (!headers.includes("/assets/services/*.zip")) {
+  fs.appendFileSync(headersPath, "\n/assets/services/*.zip\n  Content-Type: application/zip\n");
+}
+if (!headers.includes("/assets/digital-products/*.txt")) {
+  fs.appendFileSync(headersPath, "\n/assets/digital-products/*.txt\n  Content-Type: text/plain; charset=utf-8\n");
+}
+if (!headers.includes("/assets/digital-products/*.json")) {
+  fs.appendFileSync(headersPath, "\n/assets/digital-products/*.json\n  Content-Type: application/json; charset=utf-8\n");
+}
+if (!headers.includes("/assets/digital-products/*.zip")) {
+  fs.appendFileSync(headersPath, "\n/assets/digital-products/*.zip\n  Content-Type: application/zip\n");
 }
   if (!headers.includes("/assets/vendor/fflate.min.js")) {
     fs.appendFileSync(headersPath, "\n/assets/vendor/fflate.min.js\n  Content-Type: application/javascript; charset=utf-8\n");
@@ -239,6 +269,28 @@ const toolsJson = {
 };
 fs.writeFileSync(path.join(root, "tools.json"), `${JSON.stringify(toolsJson, null, 2)}\n`);
 
+const digitalProductsJson = {
+  name: "PrintableTools Lab Digital Products",
+  generatedAt: generatedAtIso,
+  canonical: fileUrl("digital-products.json"),
+  products: DIGITAL_PRODUCTS.map(digitalProductEntry),
+  moneyGate: "Digital product requests and checkout-link clicks are not revenue. Count revenue only after an external provider proves a paid order, payout balance, or settled payment.",
+};
+fs.writeFileSync(path.join(root, "digital-products.json"), `${JSON.stringify(digitalProductsJson, null, 2)}\n`);
+
+const servicesJson = {
+  name: "PrintableTools Lab Paid Services",
+  generatedAt: generatedAtIso,
+  canonical: fileUrl("services.json"),
+  services: PAID_SERVICES.map(paidServiceEntry),
+  leadMagnets: [marketTablePrintAuditEntry()],
+  moneyGate: "Service requests and audit requests are not revenue. Count revenue only after an external provider proves a paid order, payout balance, or settled payment.",
+};
+fs.writeFileSync(path.join(root, "services.json"), `${JSON.stringify(servicesJson, null, 2)}\n`);
+
+const serviceSalesPackJson = serviceSalesPackEntry();
+fs.writeFileSync(path.join(root, "service-sales-pack.json"), `${JSON.stringify(serviceSalesPackJson, null, 2)}\n`);
+
 const shareKitJson = {
   name: "PrintableTools Lab Share Kit",
   generatedAt: generatedAtIso,
@@ -275,6 +327,14 @@ const shareKitJson = {
     links: SPONSOR_DISCOVERY_LINKS,
     externalDiscoveryProof,
     successGate: "Commercial discovery is working only when a qualified sponsor lead, signed agreement, or settled external payment is verified. Clicks alone are not revenue.",
+  },
+  localSellerService: {
+    servicePage: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug),
+    auditPage: siteUrl(MARKET_TABLE_PRINT_AUDIT.slug),
+    requestTemplate: fileUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicRequestPath),
+    sampleDelivery: fileUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicSampleDeliveryPath),
+    priceUsd: CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd,
+    moneyGate: "Service requests and audit requests are not revenue. Money is real only after an external provider proves a paid order, payout balance, or settled payment.",
   },
   zeroDomainGameExperiment: ZERO_DOMAIN_GAME_EXPERIMENT,
   zeroDomainGameExperiments: ZERO_DOMAIN_GAME_EXPERIMENTS,
@@ -537,6 +597,9 @@ const llms = [
   `- Sponsor deal room: ${siteUrl("sponsor-deal-room")}`,
   `- Machine-readable sponsor deal room: ${fileUrl("sponsor-deal-room.json")}`,
   `- Machine-readable sponsor intent feed: ${fileUrl("sponsor-intent-feed.json")}`,
+  `- Custom Local Print Pack Setup: ${siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}`,
+  `- Free Market Table Print Audit: ${siteUrl(MARKET_TABLE_PRINT_AUDIT.slug)}`,
+  `- Local seller services JSON: ${fileUrl("services.json")}`,
   `- Organic push kit: ${siteUrl("organic-push-kit")}`,
   `- Upload error cheatsheet: ${siteUrl("upload-error-cheatsheet")}`,
   `- Machine-readable organic push kit: ${fileUrl("organic-push-kit.json")}`,
@@ -588,7 +651,7 @@ const llms = [
   "- Optional AI idea suggestions are server-side and limited to non-sensitive fields.",
   "- Ads are disabled during validation and are never used as a gate for downloading files.",
   "- Future ad units must stay away from generator controls and must never ask visitors to interact with ads.",
-  "- Legacy paid product and service experiments are retired from the public product path; the current route is free tools plus future ad-network payout.",
+  "- Optional service requests do not collect payment on-site. Count revenue only after an external provider proves a paid order, payout balance, or settled payment.",
   "",
 ].join("\n");
 fs.writeFileSync(path.join(root, "llms.txt"), llms);
@@ -616,7 +679,7 @@ const discoveryIndex = {
   portalSubmissionPack: fileUrl("portal-submission-pack.json"),
   gameSubmissionFeed: fileUrl("game-submission-feed.json"),
   zeroCostMonetizationMap: fileUrl("zero-cost-monetization-map.json"),
-  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("upload-limit-fixer"), siteUrl("organic-push-kit"), siteUrl("upload-error-cheatsheet"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl("sponsor-call"), siteUrl("sponsor-deal-room"), siteUrl("sponsor-opportunities"), siteUrl("sponsor"), ...SPONSOR_VERTICALS.map((vertical) => siteUrl(`sponsor/${vertical.slug}`)), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
+  highIntentEntryPoints: [siteUrl("free-pdf-tools"), siteUrl("pdf-tool-finder"), siteUrl("upload-limit-fixer"), siteUrl("organic-push-kit"), siteUrl("upload-error-cheatsheet"), siteUrl("submit-directory"), siteUrl("share-kit"), siteUrl("sponsor-call"), siteUrl("sponsor-deal-room"), siteUrl("sponsor-opportunities"), siteUrl("sponsor"), siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug), siteUrl(MARKET_TABLE_PRINT_AUDIT.slug), ...SPONSOR_VERTICALS.map((vertical) => siteUrl(`sponsor/${vertical.slug}`)), siteUrl("platform-submit-queue"), siteUrl("platform-submit-cockpit"), siteUrl("platform-outreach-tracker"), siteUrl("portal-submission-pack"), siteUrl("zero-cost-monetization-map"), ...HIGH_INTENT_LANDING_PATHS.map(siteUrl), ...HIGH_INTENT_TOOL_PATHS.map(siteUrl)],
   distributionAssets: {
     shareKit: siteUrl("share-kit"),
     shareKitJson: fileUrl("share-kit.json"),
@@ -642,6 +705,15 @@ const discoveryIndex = {
       trackedUrl: `${siteUrl(`sponsor/${vertical.slug}`).replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=${encodeURIComponent(vertical.campaign)}`,
       sponsorFit: vertical.sponsorFit,
     })),
+    localSellerService: {
+      servicePage: siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug),
+      auditPage: siteUrl(MARKET_TABLE_PRINT_AUDIT.slug),
+      servicesJson: fileUrl("services.json"),
+      requestTemplate: fileUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicRequestPath),
+      sampleDelivery: fileUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicSampleDeliveryPath),
+      priceUsd: CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd,
+      moneyGate: "Service requests and audit requests are not revenue. Money is real only after an external provider proves a paid order, payout balance, or settled payment.",
+    },
     platformSubmitQueue: siteUrl("platform-submit-queue"),
     platformSubmitQueueJson: fileUrl("platform-submit-queue.json"),
     platformSubmitCockpit: siteUrl("platform-submit-cockpit"),

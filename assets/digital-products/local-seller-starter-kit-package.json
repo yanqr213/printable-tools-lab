@@ -1,0 +1,33 @@
+{
+  "product": "Local Seller Starter Kit",
+  "generatedAt": "2026-06-08T02:20:07.082Z",
+  "priceUsd": 9,
+  "checkoutConfigured": false,
+  "publicSample": {
+    "path": "assets/digital-products/local-seller-starter-kit-sample.zip",
+    "url": "https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-sample.zip",
+    "fileCount": 4,
+    "sizeBytes": 1790,
+    "sha256": "c071854ad2eb7b0e216e4bfeee58d5bbe50fa1839c22835ce9e9d1fbcca7f1ef"
+  },
+  "publicRequestTemplate": {
+    "path": "assets/digital-products/local-seller-starter-kit-buy-request.txt",
+    "url": "https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-buy-request.txt",
+    "sizeBytes": 430,
+    "sha256": "a355ce501bbbc0a3922e2cd9c3cd55dc4e55160fe68bcad07e9843035f429d1f"
+  },
+  "privatePackage": {
+    "path": "paid-deliverables/local-seller-starter-kit.zip",
+    "gitIgnored": true,
+    "fileCount": 13,
+    "sizeBytes": 7576,
+    "sha256": "919b8ecd701d234fb18c8068d150604be15760edfc97c8b043a7ff0c5b352373"
+  },
+  "moneyGate": "Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this kit.",
+  "riskControls": [
+    "No private payout, tax, bank, card, or platform credential is stored in the repository.",
+    "The full paid ZIP is generated locally under paid-deliverables and is ignored by git.",
+    "The public site exposes a sample ZIP and checkout status, not fake purchase or fake revenue claims.",
+    "Buyers are licensed to use the templates for their own business, not to resell the kit itself."
+  ]
+}
