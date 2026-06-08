@@ -9986,6 +9986,7 @@ ${paragraphs.join("\n")}
           <div class="metric-tile"><strong>${totalGameIntent}</strong><span>game play signals</span></div>
         </div>
         ${checkoutActivationHtml(totals)}
+        ${uploadFixInvoiceCloseQueueHtml(data, serviceLeadCheck, servicePublicRequests)}
         ${leadToPaymentCloseHtml(data, leadCheck, serviceLeadCheck, publicReplies, servicePublicRequests)}
         ${sponsorSprintHtml(data, leadCheck, publicReplies)}
         ${serviceLeadCheckHtml(serviceLeadCheck)}
@@ -10013,6 +10014,7 @@ ${paragraphs.join("\n")}
       `;
     } catch (error) {
       target.innerHTML = `
+        ${uploadFixInvoiceCloseQueueHtml({}, {}, {})}
         ${sponsorSprintHtml({ totals: {}, projects: [] }, null, null)}
         <div class="panel"><p>Live project metrics are not available yet.</p><p class="help">${escapeHtml(error.message || "Metrics unavailable")}</p></div>
       `;
@@ -10276,6 +10278,123 @@ ${paragraphs.join("\n")}
         </div>
       </section>
     `;
+  }
+
+  function uploadFixInvoiceCloseQueueHtml(data = {}, serviceLeadCheck = {}, servicePublicRequests = {}) {
+    const totals = data.totals || {};
+    const todayTotals = data.todayTotals || {};
+    const serviceTypes = serviceLeadCheck?.serviceTypes || {};
+    const uploadLeadCount = numberSignal(serviceTypes["upload-limit-fix-plan"]);
+    const publicUploadCount = numberSignal(servicePublicRequests?.uploadLimitFixPlanRequestCount);
+    const serviceInvoiceRequests = numberSignal(totals.service_invoice_request);
+    const todayServiceInvoiceRequests = numberSignal(todayTotals.service_invoice_request);
+    const serviceIntent = numberSignal(totals.service_request_intent);
+    const todayServiceIntent = numberSignal(todayTotals.service_request_intent);
+    const checkoutConfigured = Boolean(serviceCheckoutUrlFor("upload-limit-fix-plan"));
+    const needsReply = uploadLeadCount + publicUploadCount + serviceInvoiceRequests;
+    const closeState = needsReply
+      ? "invoice request needs reply"
+      : serviceIntent
+        ? "intent, no lead yet"
+        : "waiting for first request";
+    const nextAction = needsReply
+      ? "Open the service index or public issue, confirm the request has no file or private data, then send the external $9 checkout or invoice link."
+      : serviceIntent
+        ? "Keep the one-contact invoice form primary on upload-error pages and watch for the first lead before sending a payment link."
+        : "Keep the upload-error landing pages live; this queue is ready for the first qualified $9 request.";
+    const paymentReply = serviceLeadPaymentReplyCopy({ serviceType: "upload-limit-fix-plan", path: "/upload-limit-fix-plan/" });
+    const triageChecklist = [
+      "Upload Fix invoice close checklist",
+      "",
+      "1. Open /api/service-lead or the public service issue search.",
+      "2. Confirm the buyer gave only public-safe error text, file type, target rule, and timeline.",
+      "3. Reject or ask them to remove any actual file, ID photo, resume, portal login, card, bank, tax, identity, or private account data.",
+      "4. Send only a real external $9 checkout or invoice link.",
+      "5. Start work only after the external provider shows paid_order_verified, paid order, payout balance, or settled payment.",
+    ].join("\n");
+    const checkoutCommand = "npm.cmd run configure:checkout -- --upload-limit-fix-plan-url https://your-payment-provider.example/upload-limit-fix-plan";
+    const publicSourceUrl = servicePublicRequests?.sourceUrl || "/api/service-public-requests";
+    const warmRows = uploadFixInvoicePathRows(data);
+    return `
+      <section class="panel ops-upload-fix-invoice-close" data-upload-fix-invoice-close-queue>
+        <div class="ops-project-head">
+          <div>
+            <p class="eyebrow">$9 service close</p>
+            <h2>$9 Upload Fix invoice close queue</h2>
+            <p>${escapeHtml(nextAction)}</p>
+          </div>
+          <div class="actions">
+            <a class="button secondary" href="/api/service-lead" target="_blank" rel="noreferrer">Open service index</a>
+            <a class="button ghost" href="${escapeHtml(publicSourceUrl)}" target="_blank" rel="noreferrer">Open public issues</a>
+            <a class="button ghost" href="/upload-limit-fix-plan/">Open $9 page</a>
+          </div>
+        </div>
+        <div class="metric-grid compact ops-project-grid">
+          <div class="metric-tile"><strong>${serviceInvoiceRequests}</strong><span>invoice requests</span></div>
+          <div class="metric-tile"><strong>${todayServiceInvoiceRequests}</strong><span>today invoices</span></div>
+          <div class="metric-tile"><strong>${uploadLeadCount}</strong><span>upload fix leads</span></div>
+          <div class="metric-tile"><strong>${publicUploadCount}</strong><span>public upload issues</span></div>
+          <div class="metric-tile"><strong>${serviceIntent}</strong><span>service intent</span></div>
+          <div class="metric-tile"><strong>${todayServiceIntent}</strong><span>today intent</span></div>
+          <div class="metric-tile"><strong>${checkoutConfigured ? "configured" : "missing"}</strong><span>checkout URL</span></div>
+          <div class="metric-tile"><strong>paid_order_verified</strong><span>revenue gate</span></div>
+        </div>
+        <div class="ops-action-list">
+          <article class="ops-action-card lead-close-card">
+            <div>
+              <p class="eyebrow">${escapeHtml(closeState)}</p>
+              <h4>Reply with the $9 external payment link</h4>
+              <p>Use this only after fit is confirmed. No payment is collected on PrintableTools Lab itself.</p>
+              <p class="help">Checkout status: ${checkoutConfigured ? "configured" : "missing uploadLimitFixPlanCheckoutUrl"}. Revenue is still zero until external paid proof exists.</p>
+            </div>
+            <div class="ops-action-buttons">
+              <button class="button secondary" type="button" data-copy-text="${escapeHtml(paymentReply)}">Copy $9 payment reply</button>
+              <button class="button ghost" type="button" data-copy-text="${escapeHtml(triageChecklist)}">Copy triage checklist</button>
+              <button class="button ghost" type="button" data-copy-text="${escapeHtml(checkoutCommand)}">Copy config command</button>
+            </div>
+          </article>
+        </div>
+        ${opsTable(["Upload path", "Views", "Today", "Intent", "Invoice requests"], warmRows.map((row) => [
+          row.path,
+          row.page_view || 0,
+          row.today_page_view || 0,
+          row.service_request_intent || 0,
+          row.service_invoice_request || 0,
+        ]))}
+      </section>
+    `;
+  }
+
+  function uploadFixInvoicePathRows(data = {}) {
+    const uploadPaths = [
+      "/upload-limit-fix-plan/",
+      "/upload-error-cheatsheet/",
+      "/image-dimensions-600x600/",
+      "/pdf-not-accepted-jpg-required/",
+      "/email-attachment-too-large/",
+      "/file-must-be-less-than-1mb/",
+      "/pdf-must-be-under-500kb/",
+      "/photo-must-be-under-100kb/",
+      "/invalid-file-type-jpg-png/",
+      "/image-must-be-less-than-2mb/",
+      "/image-must-be-under-500kb/",
+      "/jpg-must-be-under-200kb/",
+      "/png-screenshot-too-large/",
+      "/resume-pdf-too-large/",
+    ];
+    const project = (Array.isArray(data.projects) ? data.projects : []).find((item) => item.id === "printable-tools-lab") || {};
+    const rowsByPath = new Map((Array.isArray(project.paths) ? project.paths : []).map((row) => [String(row.path || ""), row]));
+    const rows = uploadPaths.map((path) => ({ path, ...(rowsByPath.get(path) || {}) }));
+    return rows
+      .sort((a, b) => uploadFixPathScore(b) - uploadFixPathScore(a))
+      .slice(0, 8);
+  }
+
+  function uploadFixPathScore(row = {}) {
+    return numberSignal(row.service_invoice_request) * 100
+      + numberSignal(row.service_request_intent) * 50
+      + numberSignal(row.today_page_view) * 3
+      + numberSignal(row.page_view);
   }
 
   function serviceLeadPaymentReplyCopy(values = {}) {
