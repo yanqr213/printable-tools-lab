@@ -24,6 +24,17 @@ const UPLOAD_LIMIT_DECISION_LINKS = [
   ["/tools/pdf-to-images/", "pdf-to-images"],
   ["/tools/image-to-pdf/", "image-to-pdf"],
 ];
+const PUBLIC_ENTRY_FILES = [
+  ["Homepage", "index.html"],
+  ["Free PDF tools", path.join("free-pdf-tools", "index.html")],
+  ["Tools index", path.join("tools", "index.html")],
+  ["PDF tool finder", path.join("pdf-tool-finder", "index.html")],
+  ["Directory submission pack", path.join("submit-directory", "index.html")],
+  ["RSS feed", "feed.xml"],
+  ["Sitemap", "sitemap.xml"],
+  ["Tools JSON", "tools.json"],
+  ["Discovery JSON", "discovery.json"],
+];
 
 function hasPrefilledSponsorReplyUrl(text) {
   return (
@@ -63,6 +74,20 @@ function requireUploadLimitShortcuts(html, label) {
   if (html.includes('data-track-event="free_tool_depth" data-track-tool="site"')) failures.push(`${label} has generic upload limit depth tracking.`);
 }
 
+function requireNoDirectInternalEntryLinks(text, label) {
+  const checks = [
+    ["/ops/", "ops monitor"],
+    [siteUrl("ops"), "ops monitor"],
+    ["/dashboard/", "dashboard"],
+    [siteUrl("dashboard"), "dashboard"],
+    ["/sponsor-proposal/", "direct sponsor proposal"],
+    [siteUrl("sponsor-proposal"), "direct sponsor proposal"],
+  ];
+  for (const [needle, name] of checks) {
+    if (text.includes(needle)) failures.push(`${label} exposes ${name} from a public entry file.`);
+  }
+}
+
 for (const route of routes) {
   if (route.index === false) continue;
   const file = route.path ? path.join(root, route.path, "index.html") : path.join(root, "index.html");
@@ -92,6 +117,15 @@ for (const route of routes) {
   if (route.index === false) continue;
   const loc = siteUrl(route.path);
   if (!sitemap.includes(`<loc>${loc}</loc>`)) failures.push(`Missing sitemap loc: ${loc}`);
+}
+
+for (const [label, relativePath] of PUBLIC_ENTRY_FILES) {
+  const file = path.join(root, relativePath);
+  if (!fs.existsSync(file)) {
+    failures.push(`Missing public entry file: ${relativePath}`);
+    continue;
+  }
+  requireNoDirectInternalEntryLinks(fs.readFileSync(file, "utf8"), label);
 }
 
 const homeFile = path.join(root, "index.html");
