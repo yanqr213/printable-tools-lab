@@ -5,19 +5,44 @@ const root = path.resolve(__dirname, "..");
 const configPath = path.join(root, "site-config.js");
 const args = parseArgs(process.argv.slice(2));
 const disable = args.disable === true || String(process.env.CHECKOUT_DISABLE || "").toLowerCase() === "true";
-const checkoutUrl = disable ? "" : normalizeCheckoutUrl(args.url || process.env.PUBLIC_SELLER_KIT_CHECKOUT_URL || process.env.PUBLIC_CHECKOUT_URL || "");
+const sellerKitCheckoutUrl = disable ? "" : normalizeCheckoutUrl(
+  args["seller-kit-url"]
+    || args.url
+    || process.env.PUBLIC_SELLER_KIT_CHECKOUT_URL
+    || process.env.PUBLIC_CHECKOUT_URL
+    || "",
+  "seller kit checkout URL",
+);
+const serviceCheckoutUrl = disable ? "" : normalizeCheckoutUrl(
+  args["service-url"]
+    || process.env.PUBLIC_CUSTOM_PRINT_PACK_CHECKOUT_URL
+    || process.env.PUBLIC_SERVICE_CHECKOUT_URL
+    || "",
+  "service checkout URL",
+);
+const auditUpgradeCheckoutUrl = disable ? "" : normalizeCheckoutUrl(
+  args["audit-upgrade-url"]
+    || process.env.PUBLIC_AUDIT_UPGRADE_CHECKOUT_URL
+    || serviceCheckoutUrl
+    || "",
+  "audit upgrade checkout URL",
+);
 
-if (!disable && !checkoutUrl) {
-  throw new Error("Provide --url https://checkout.example/product or PUBLIC_SELLER_KIT_CHECKOUT_URL.");
+if (!disable && !sellerKitCheckoutUrl && !serviceCheckoutUrl && !auditUpgradeCheckoutUrl) {
+  throw new Error("Provide --seller-kit-url, --service-url, --audit-upgrade-url, PUBLIC_SELLER_KIT_CHECKOUT_URL, or PUBLIC_SERVICE_CHECKOUT_URL.");
 }
 
 const existing = readConfig();
 writeConfig({
   ...existing,
-  sellerKitCheckoutUrl: checkoutUrl,
+  sellerKitCheckoutUrl,
+  serviceCheckoutUrl,
+  auditUpgradeCheckoutUrl,
 });
 
-console.log(checkoutUrl ? `Seller kit checkout URL configured: ${checkoutUrl}` : "Seller kit checkout disabled.");
+console.log(sellerKitCheckoutUrl ? "Seller kit checkout URL configured." : "Seller kit checkout disabled.");
+console.log(serviceCheckoutUrl ? "Service checkout URL configured." : "Service checkout disabled.");
+console.log(auditUpgradeCheckoutUrl ? "Audit upgrade checkout URL configured." : "Audit upgrade checkout disabled.");
 console.log("Next: run npm.cmd run build:routes, verify, commit, and deploy.");
 
 function parseArgs(argv) {
@@ -36,19 +61,19 @@ function parseArgs(argv) {
   return parsed;
 }
 
-function normalizeCheckoutUrl(value) {
+function normalizeCheckoutUrl(value, label = "checkout URL") {
   const raw = String(value || "").trim();
   if (!raw) return "";
   let url;
   try {
     url = new URL(raw);
   } catch {
-    throw new Error("Checkout URL must be a valid https URL.");
+    throw new Error(`${label} must be a valid https URL.`);
   }
-  if (url.protocol !== "https:") throw new Error("Checkout URL must use https.");
-  if (!url.hostname.includes(".")) throw new Error("Checkout URL hostname looks invalid.");
+  if (url.protocol !== "https:") throw new Error(`${label} must use https.`);
+  if (!url.hostname.includes(".")) throw new Error(`${label} hostname looks invalid.`);
   if (url.hostname.endsWith("pages.dev") || url.hostname.endsWith("github.io")) {
-    throw new Error("Checkout URL should point to a real payment provider, not the free site itself.");
+    throw new Error(`${label} should point to a real payment provider, not the free site itself.`);
   }
   return url.toString();
 }
@@ -63,6 +88,8 @@ function readConfig() {
     adsenseToolSlot: readString(source, "adsenseToolSlot"),
     adsenseContentSlot: readString(source, "adsenseContentSlot"),
     sellerKitCheckoutUrl: readString(source, "sellerKitCheckoutUrl"),
+    serviceCheckoutUrl: readString(source, "serviceCheckoutUrl"),
+    auditUpgradeCheckoutUrl: readString(source, "auditUpgradeCheckoutUrl"),
     contactEmail: readString(source, "contactEmail"),
     enableAds: readBool(source, "enableAds"),
     enableAnalytics: readBool(source, "enableAnalytics"),
@@ -89,6 +116,8 @@ function writeConfig(config) {
     `  adsenseToolSlot: ${JSON.stringify(config.adsenseToolSlot || "")},`,
     `  adsenseContentSlot: ${JSON.stringify(config.adsenseContentSlot || "")},`,
     `  sellerKitCheckoutUrl: ${JSON.stringify(config.sellerKitCheckoutUrl || "")},`,
+    `  serviceCheckoutUrl: ${JSON.stringify(config.serviceCheckoutUrl || "")},`,
+    `  auditUpgradeCheckoutUrl: ${JSON.stringify(config.auditUpgradeCheckoutUrl || "")},`,
     `  contactEmail: ${JSON.stringify(config.contactEmail || "")},`,
     `  enableAds: ${config.enableAds ? "true" : "false"},`,
     `  enableAnalytics: ${config.enableAnalytics ? "true" : "false"}`,

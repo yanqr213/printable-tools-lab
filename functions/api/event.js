@@ -14,6 +14,7 @@ const ALLOWED_EVENTS = new Set([
   "seller_sample_download",
   "seller_checkout_intent",
   "seller_checkout_click",
+  "service_checkout_click",
   "service_request_intent",
   "audit_request_intent",
   "sponsor_request_intent",

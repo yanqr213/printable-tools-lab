@@ -6,6 +6,8 @@ window.PTL_CONFIG = {
   adsenseToolSlot: "",
   adsenseContentSlot: "",
   sellerKitCheckoutUrl: "",
+  serviceCheckoutUrl: "",
+  auditUpgradeCheckoutUrl: "",
   contactEmail: "",
   enableAds: false,
   enableAnalytics: false

@@ -73,6 +73,7 @@ const CUSTOM_LOCAL_PRINT_PACK_SERVICE = {
   description: "A lightweight service offer for buyers who like the free generators but do not want to assemble the first local-selling print pack themselves. The buyer sends product, service, or event details; the seller returns editable starter content that can be pasted into the PrintableTools Lab generators and printed.",
   priceUsd: 29,
   currency: "USD",
+  checkoutUrl: configuredServiceCheckoutUrl(),
   contactEmail: configuredContactEmail(),
   publicRequestPath: "assets/services/custom-local-print-pack-request.txt",
   publicPaymentReplyPath: "assets/services/custom-local-print-pack-payment-reply.txt",
@@ -296,6 +297,28 @@ function configuredCheckoutUrl() {
   const source = fs.readFileSync(configPath, "utf8");
   const match = source.match(/sellerKitCheckoutUrl:\s*"([^"]*)"/);
   return match ? match[1].trim() : "";
+}
+
+function configuredServiceCheckoutUrl() {
+  const envUrl = (process.env.PUBLIC_CUSTOM_PRINT_PACK_CHECKOUT_URL || process.env.PUBLIC_SERVICE_CHECKOUT_URL || "").trim();
+  if (envUrl) return envUrl;
+  const configPath = path.join(__dirname, "..", "site-config.js");
+  if (!fs.existsSync(configPath)) return "";
+  const source = fs.readFileSync(configPath, "utf8");
+  const match = source.match(/serviceCheckoutUrl:\s*"([^"]*)"/);
+  return match ? match[1].trim() : "";
+}
+
+function configuredAuditUpgradeCheckoutUrl() {
+  const envUrl = (process.env.PUBLIC_AUDIT_UPGRADE_CHECKOUT_URL || process.env.PUBLIC_CUSTOM_PRINT_PACK_CHECKOUT_URL || process.env.PUBLIC_SERVICE_CHECKOUT_URL || "").trim();
+  if (envUrl) return envUrl;
+  const configPath = path.join(__dirname, "..", "site-config.js");
+  if (!fs.existsSync(configPath)) return "";
+  const source = fs.readFileSync(configPath, "utf8");
+  const upgradeMatch = source.match(/auditUpgradeCheckoutUrl:\s*"([^"]*)"/);
+  if (upgradeMatch && upgradeMatch[1].trim()) return upgradeMatch[1].trim();
+  const serviceMatch = source.match(/serviceCheckoutUrl:\s*"([^"]*)"/);
+  return serviceMatch ? serviceMatch[1].trim() : "";
 }
 
 function configuredContactEmail() {
@@ -6163,6 +6186,8 @@ function opsSourceScore(row) {
   return (row.page_view || 0)
     + ((row.download_pdf || 0) + (row.download_file || 0)) * 4
     + ((row.free_tool_depth || 0) + (row.guide_depth || 0)) * 3
+    + (row.seller_checkout_click || 0) * 6
+    + (row.service_checkout_click || 0) * 6
     + (row.sponsor_request_intent || 0) * 5;
 }
 
@@ -6170,12 +6195,17 @@ function opsToolScore(row) {
   return ((row.download_pdf || 0) + (row.download_file || 0)) * 4
     + ((row.generate_pdf || 0) + (row.generate_file || 0)) * 2
     + ((row.free_tool_depth || 0) + (row.guide_depth || 0)) * 3
+    + (row.seller_checkout_click || 0) * 6
+    + (row.service_checkout_click || 0) * 6
+    + (row.service_request_intent || 0) * 5
+    + (row.audit_request_intent || 0) * 4
     + (row.sponsor_request_intent || 0) * 5;
 }
 
 function opsCommercialIntent(totals) {
   return (totals.seller_checkout_intent || 0)
     + (totals.seller_checkout_click || 0)
+    + (totals.service_checkout_click || 0)
     + (totals.service_request_intent || 0)
     + (totals.audit_request_intent || 0)
     + (totals.sponsor_request_intent || 0)
@@ -7389,9 +7419,13 @@ function checkoutCopy(product) {
 
 function customLocalPrintPackServiceHtml() {
   const service = CUSTOM_LOCAL_PRINT_PACK_SERVICE;
+  const checkoutConfigured = Boolean(service.checkoutUrl);
   const requestUrl = serviceRequestUrl(service);
   const emailUrl = serviceRequestEmailUrl(service);
   const pipeline = serviceOrderPipeline(service);
+  const primaryServiceUrl = checkoutConfigured ? service.checkoutUrl : requestUrl;
+  const primaryServiceText = checkoutConfigured ? `Buy setup for $${service.priceUsd}` : "Request service checkout";
+  const primaryServiceEvent = checkoutConfigured ? "service_checkout_click" : "service_request_intent";
   const orderAssets = [
     ["Structured request form", service.issueFormUrl],
     ["Payment-before-work reply", `/${service.publicPaymentReplyPath}`],
@@ -7404,7 +7438,7 @@ function customLocalPrintPackServiceHtml() {
     ["Sample delivery report", `/${service.publicDeliveryReportPath}`],
   ];
   const actions = [
-    `<a class="button" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(requestUrl)}">Request service checkout</a>`,
+    `<a class="button" data-service-checkout data-track-event="${escapeHtml(primaryServiceEvent)}" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(primaryServiceUrl)}">${escapeHtml(primaryServiceText)}</a>`,
     `<a class="button secondary" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(service.issueFormUrl)}">Open structured request form</a>`,
     `<a class="button secondary" data-track-event="audit_request_intent" data-track-tool="${escapeHtml(MARKET_TABLE_PRINT_AUDIT.id)}" href="/${escapeHtml(MARKET_TABLE_PRINT_AUDIT.slug)}/">Start with free audit</a>`,
     `<a class="button secondary" href="/${escapeHtml(service.publicRequestPath)}" download>Download service brief</a>`,
@@ -7421,7 +7455,7 @@ function customLocalPrintPackServiceHtml() {
         <div class="hero-actions">
           ${actions}
         </div>
-        <p class="notice">Manual service checkout pending: this page captures buyer intent only. No payment is collected here until a real Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link is sent and paid.</p>
+        <p class="notice" data-service-checkout-status>${checkoutConfigured ? "Checkout is configured through the external payment provider linked above. Revenue is still proven only after that provider shows a paid or settled order." : "Manual service checkout pending: this page captures buyer intent only. No payment is collected here until a real Gumroad, Payhip, Ko-fi, Stripe, or invoice checkout link is sent and paid."}</p>
         <div class="hero-proof" aria-label="Service readiness">
           <div class="proof-tile"><strong>$${service.priceUsd}</strong><span>setup price</span></div>
           <div class="proof-tile"><strong>${service.deliverables.length}</strong><span>deliverables</span></div>
@@ -7472,12 +7506,29 @@ function customLocalPrintPackServiceHtml() {
         <ul>${service.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
         <p><strong>Money gate:</strong> ${escapeHtml(service.successGate)}</p>
         ${jsonLdHtml(serviceSchema(service))}
-      </section>`;
+      </section>
+      <script>
+        (function () {
+          var config = window.PTL_CONFIG || {};
+          var checkoutUrl = config.serviceCheckoutUrl || config.customPrintPackCheckoutUrl || "";
+          var button = document.querySelector("[data-service-checkout]");
+          var status = document.querySelector("[data-service-checkout-status]");
+          if (!checkoutUrl || !button) return;
+          button.href = checkoutUrl;
+          button.textContent = "Buy setup for $${service.priceUsd}";
+          button.dataset.trackEvent = "service_checkout_click";
+          if (status) status.textContent = "Checkout is configured through the external payment provider linked above. Revenue is still proven only after that provider shows a paid or settled order.";
+        }());
+      </script>`;
 }
 
 function marketTablePrintAuditHtml() {
   const audit = MARKET_TABLE_PRINT_AUDIT;
   const requestUrl = marketTableAuditRequestUrl(audit);
+  const upgradeCheckoutUrl = configuredAuditUpgradeCheckoutUrl();
+  const upgradeUrl = upgradeCheckoutUrl || `/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug}/`;
+  const upgradeEvent = upgradeCheckoutUrl ? "service_checkout_click" : "service_request_intent";
+  const upgradeText = upgradeCheckoutUrl ? `Buy $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup` : `See the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} done-for-you setup`;
   const checklist = marketTableAuditChecklist(audit);
   const toolCards = audit.freeToolPaths.map((toolPath) => {
     const tool = tools.find((item) => item.path === toolPath);
@@ -7523,7 +7574,7 @@ function marketTablePrintAuditHtml() {
       <section class="shell section">
         <h2>Upgrade path</h2>
         <ol>${checklist.upgradePath.map((status) => `<li><strong>${escapeHtml(status)}</strong></li>`).join("")}</ol>
-        <p><a class="button" href="/${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}/">See the $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} done-for-you setup</a></p>
+        <p><a class="button" data-audit-upgrade-checkout data-track-event="${escapeHtml(upgradeEvent)}" data-track-tool="${escapeHtml(CUSTOM_LOCAL_PRINT_PACK_SERVICE.id)}" href="${escapeHtml(upgradeUrl)}">${escapeHtml(upgradeText)}</a></p>
       </section>
       <section class="shell section" id="audit-request">
         <h2>Audit request copy</h2>
@@ -7535,7 +7586,18 @@ function marketTablePrintAuditHtml() {
         <ul>${audit.riskControls.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
         <p><strong>Money gate:</strong> ${escapeHtml(audit.moneyGate)}</p>
         ${jsonLdHtml(itemListSchema(audit.name, audit.auditQuestions.map((item) => ({ title: item, path: audit.slug }))))}
-      </section>`;
+      </section>
+      <script>
+        (function () {
+          var config = window.PTL_CONFIG || {};
+          var checkoutUrl = config.auditUpgradeCheckoutUrl || config.serviceCheckoutUrl || config.customPrintPackCheckoutUrl || "";
+          var button = document.querySelector("[data-audit-upgrade-checkout]");
+          if (!checkoutUrl || !button) return;
+          button.href = checkoutUrl;
+          button.textContent = "Buy $${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup";
+          button.dataset.trackEvent = "service_checkout_click";
+        }());
+      </script>`;
 }
 
 function serviceSalesPackHtml() {
@@ -7642,7 +7704,7 @@ function serviceSchema(service) {
       price: String(service.priceUsd),
       priceCurrency: service.currency,
       availability: "https://schema.org/PreOrder",
-      url: siteUrl(service.slug),
+      url: service.checkoutUrl || siteUrl(service.slug),
     },
   };
 }

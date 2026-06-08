@@ -689,6 +689,7 @@ function freeToolDepthIntent(totals) {
 function commercialIntent(totals) {
   return (totals.seller_checkout_intent || 0)
     + (totals.seller_checkout_click || 0)
+    + (totals.service_checkout_click || 0)
     + (totals.service_request_intent || 0)
     + (totals.audit_request_intent || 0)
     + (totals.sponsor_request_intent || 0)

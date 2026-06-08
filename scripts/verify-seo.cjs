@@ -453,6 +453,7 @@ else {
   if (!script.includes("renderLocalSellerStarterKit") || !script.includes("Request checkout link")) failures.push("app.js missing restored seller kit checkout-request path.");
   if (!script.includes("renderCustomLocalPrintPackService") || !script.includes("Request $29 setup") || !script.includes("customLocalPrintPackRequestCopy")) failures.push("app.js missing restored custom print pack service request path.");
   if (!script.includes("renderMarketTablePrintAudit") || !script.includes("Request free audit") || !script.includes("marketTableAuditRequestCopy")) failures.push("app.js missing restored free audit lead magnet path.");
+  if (!script.includes("serviceCheckoutUrl") || !script.includes("service_checkout_click") || !script.includes("Buy setup for $29")) failures.push("app.js missing direct external service checkout support.");
   if (!script.includes("initServiceLeadForms") || !script.includes("submitServiceLeadForm") || !script.includes("/api/service-lead") || !script.includes("Service lead index check")) failures.push("app.js missing low-friction service lead capture and ops index check.");
   if (!script.includes("Payment starts only after fit is confirmed") || !script.includes("real external checkout or invoice") || !script.includes("Requests and clicks are not revenue")) failures.push("app.js restored service path missing real-payment gate.");
   if (script.includes("seller-funnel-cta") || script.includes("seller-help-directory")) failures.push("app.js should use free-tool depth naming, not seller funnel naming.");
@@ -466,9 +467,17 @@ const sponsorProspectScriptFile = path.join(root, "scripts", "generate-sponsor-p
 const sponsorOutreachLogScriptFile = path.join(root, "scripts", "sponsor-outreach-log.cjs");
 const sponsorContactProbeScriptFile = path.join(root, "scripts", "probe-sponsor-contact-routes.cjs");
 if (!fs.existsSync(eventFunctionFile)) failures.push("Missing event API function.");
-else if (!fs.readFileSync(eventFunctionFile, "utf8").includes('"sponsor-outreach"')) failures.push("Event API missing sponsor-outreach source tracking.");
+else {
+  const eventFunction = fs.readFileSync(eventFunctionFile, "utf8");
+  if (!eventFunction.includes('"sponsor-outreach"')) failures.push("Event API missing sponsor-outreach source tracking.");
+  if (!eventFunction.includes('"service_checkout_click"')) failures.push("Event API missing direct service checkout click tracking.");
+}
 if (!fs.existsSync(metricsFunctionFile)) failures.push("Missing metrics API function.");
-else if (!fs.readFileSync(metricsFunctionFile, "utf8").includes('"sponsor-outreach"')) failures.push("Metrics API missing sponsor-outreach source row.");
+else {
+  const metricsFunction = fs.readFileSync(metricsFunctionFile, "utf8");
+  if (!metricsFunction.includes("service_checkout_click")) failures.push("Metrics API missing direct service checkout click totals.");
+  if (!metricsFunction.includes('"sponsor-outreach"')) failures.push("Metrics API missing sponsor-outreach source row.");
+}
 const opsMetricsFunctionFile = path.join(root, "functions", "api", "ops-metrics.js");
 if (!fs.existsSync(opsMetricsFunctionFile)) failures.push("Missing ops metrics API function.");
 else {
@@ -687,6 +696,14 @@ if (!fs.existsSync(siteConfigFile)) failures.push("Missing site-config.js.");
 else {
   const siteConfig = fs.readFileSync(siteConfigFile, "utf8");
   if (!siteConfig.includes("sellerKitCheckoutUrl")) failures.push("site-config.js missing sellerKitCheckoutUrl.");
+  if (!siteConfig.includes("serviceCheckoutUrl") || !siteConfig.includes("auditUpgradeCheckoutUrl")) failures.push("site-config.js missing service checkout URL slots.");
+}
+
+const checkoutConfigScriptFile = path.join(root, "scripts", "configure-checkout.cjs");
+if (!fs.existsSync(checkoutConfigScriptFile)) failures.push("Missing checkout configuration script.");
+else {
+  const checkoutConfigScript = fs.readFileSync(checkoutConfigScriptFile, "utf8");
+  if (!checkoutConfigScript.includes("seller-kit-url") || !checkoutConfigScript.includes("service-url") || !checkoutConfigScript.includes("audit-upgrade-url")) failures.push("Checkout configuration script should support seller, service, and audit upgrade payment URLs.");
 }
 
 const opensearchFile = path.join(root, "opensearch.xml");

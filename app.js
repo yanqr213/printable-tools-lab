@@ -14,6 +14,8 @@
     adsenseToolSlot: "",
     adsenseContentSlot: "",
     sellerKitCheckoutUrl: "",
+    serviceCheckoutUrl: "",
+    auditUpgradeCheckoutUrl: "",
     contactEmail: "",
     enableAds: false,
     enableAnalytics: false,
@@ -6087,13 +6089,15 @@
   }
 
   function renderLocalSellerStarterKit() {
+    const checkoutUrl = CONFIG.sellerKitCheckoutUrl || CONFIG.checkoutUrl || "";
+    const checkoutConfigured = Boolean(checkoutUrl);
     setMeta("Local Seller Starter Kit", "Request the $9 editable local seller starter kit sample and checkout link for price tags, coupon copy, QR sign wording, packing slips, and launch checklists.");
     setJsonLd({
       "@context": "https://schema.org",
       "@type": "Product",
       name: "Local Seller Starter Kit",
       description: "Editable starter templates for small local selling workflows.",
-      offers: { "@type": "Offer", price: "9", priceCurrency: "USD", availability: "https://schema.org/PreOrder" },
+      offers: { "@type": "Offer", price: "9", priceCurrency: "USD", availability: checkoutConfigured ? "https://schema.org/InStock" : "https://schema.org/PreOrder", url: checkoutUrl || absoluteUrl("/local-seller-starter-kit/") },
     });
     app.innerHTML = `
       <section class="shell page-title section product-hero">
@@ -6101,11 +6105,11 @@
         <h1>Local Seller Starter Kit</h1>
         <p>A small editable template kit for market tables, pop-up sellers, service providers, and first-time local offers: price tags, coupon copy, QR sign wording, pickup notes, and a launch checklist.</p>
         <div class="hero-actions">
-          <a class="button" data-track-event="seller_checkout_intent" data-track-tool="local-seller-starter-kit" href="${escapeHtml(localSellerCheckoutRequestUrl())}" target="_blank" rel="noreferrer">Request checkout link</a>
+          <a class="button" data-track-event="${checkoutConfigured ? "seller_checkout_click" : "seller_checkout_intent"}" data-track-tool="local-seller-starter-kit" href="${escapeHtml(checkoutUrl || localSellerCheckoutRequestUrl())}" target="_blank" rel="noreferrer">${checkoutConfigured ? "Buy for $9" : "Request checkout link"}</a>
           <a class="button secondary" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="/custom-local-print-pack/?utm_source=seller-kit&utm_medium=site&utm_campaign=service_request">Want it assembled for you?</a>
           <a class="button ghost" href="/tools/price-tag/">Try the free tools first</a>
         </div>
-        <p class="notice">No payment is collected on this site. Revenue is real only after a payment provider shows a paid order or settled payment.</p>
+        <p class="notice">${checkoutConfigured ? "Checkout is configured through an external payment provider. Revenue is real only after that provider shows a paid order or settled payment." : "No payment is collected on this site. Revenue is real only after a payment provider shows a paid order or settled payment."}</p>
         <div class="hero-proof" aria-label="Kit readiness">
           <div class="proof-tile"><strong>$9</strong><span>target kit price</span></div>
           <div class="proof-tile"><strong>editable</strong><span>templates</span></div>
@@ -6133,13 +6137,15 @@
 
   function renderCustomLocalPrintPackService() {
     const requestUrl = "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml";
+    const checkoutUrl = CONFIG.serviceCheckoutUrl || CONFIG.customPrintPackCheckoutUrl || "";
+    const checkoutConfigured = Boolean(checkoutUrl);
     setMeta("Custom Local Print Pack Setup", "Request a $29 done-for-you printable setup for price tags, flyer copy, QR sign wording, coupon ideas, packing notes, and a launch checklist.");
     setJsonLd({
       "@context": "https://schema.org",
       "@type": "Service",
       name: "Custom Local Print Pack Setup",
       description: "A done-for-you printable starter pack setup for local sellers and small service providers.",
-      offers: { "@type": "Offer", price: "29", priceCurrency: "USD", availability: "https://schema.org/PreOrder" },
+      offers: { "@type": "Offer", price: "29", priceCurrency: "USD", availability: checkoutConfigured ? "https://schema.org/InStock" : "https://schema.org/PreOrder", url: checkoutUrl || absoluteUrl("/custom-local-print-pack/") },
     });
     app.innerHTML = `
       <section class="shell page-title section product-hero">
@@ -6147,11 +6153,11 @@
         <h1>Custom Local Print Pack Setup</h1>
         <p>A $29 done-for-you setup for local sellers who want one simple printable pack assembled from their own items, prices, and contact link: price tag rows, flyer copy, QR sign wording, coupon ideas, packing or pickup notes, and a launch checklist.</p>
         <div class="hero-actions">
-          <a class="button" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="${requestUrl}" target="_blank" rel="noreferrer">Request $29 setup</a>
+          <a class="button" data-track-event="${checkoutConfigured ? "service_checkout_click" : "service_request_intent"}" data-track-tool="custom-local-print-pack" href="${escapeHtml(checkoutUrl || requestUrl)}" target="_blank" rel="noreferrer">${checkoutConfigured ? "Buy setup for $29" : "Request $29 setup"}</a>
           <a class="button secondary" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="/market-table-print-audit/?utm_source=service-page&utm_medium=site&utm_campaign=audit_request">Start with free audit</a>
           <button class="button ghost" type="button" data-copy-text="${escapeHtml(customLocalPrintPackRequestCopy())}" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack">Copy request brief</button>
         </div>
-        <p class="notice">Payment starts only after fit is confirmed and a real external checkout or invoice link is paid. Do not send card, bank, tax, identity, password, or customer-list data.</p>
+        <p class="notice">${checkoutConfigured ? "Checkout is configured through an external payment provider. Revenue is still proven only after that provider shows a paid or settled order." : "Payment starts only after fit is confirmed and a real external checkout or invoice link is paid. Do not send card, bank, tax, identity, password, or customer-list data."}</p>
         <div class="hero-proof" aria-label="Service readiness">
           <div class="proof-tile"><strong>$29</strong><span>setup price</span></div>
           <div class="proof-tile"><strong>6</strong><span>deliverables</span></div>
@@ -6191,6 +6197,8 @@
 
   function renderMarketTablePrintAudit() {
     const auditUrl = "https://github.com/yanqr213/printable-tools-lab/issues/new?template=market-table-print-audit.yml";
+    const upgradeCheckoutUrl = CONFIG.auditUpgradeCheckoutUrl || CONFIG.serviceCheckoutUrl || CONFIG.customPrintPackCheckoutUrl || "";
+    const upgradeConfigured = Boolean(upgradeCheckoutUrl);
     setMeta("Free Market Table Print Audit", "Request a free public-safe print audit before deciding whether the $29 Custom Local Print Pack Setup is useful.");
     app.innerHTML = `
       <section class="shell page-title section product-hero">
@@ -6199,7 +6207,7 @@
         <p>A free checklist request for craft sellers, home bakers, local services, tutors, cleaners, repair providers, and pop-up organizers who need clearer price tags, QR signs, flyer copy, coupons, or pickup notes.</p>
         <div class="hero-actions">
           <a class="button" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${auditUrl}" target="_blank" rel="noreferrer">Request free audit</a>
-          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="/custom-local-print-pack/?utm_source=audit-page&utm_medium=site&utm_campaign=service_request">See $29 setup</a>
+          <a class="button secondary" data-track-event="${upgradeConfigured ? "service_checkout_click" : "service_request_intent"}" data-track-tool="custom-local-print-pack" href="${escapeHtml(upgradeCheckoutUrl || "/custom-local-print-pack/?utm_source=audit-page&utm_medium=site&utm_campaign=service_request")}" target="${upgradeConfigured ? "_blank" : "_self"}" rel="${upgradeConfigured ? "noreferrer" : ""}">${upgradeConfigured ? "Buy $29 setup" : "See $29 setup"}</a>
           <button class="button ghost" type="button" data-copy-text="${escapeHtml(marketTableAuditRequestCopy())}" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit">Copy audit request</button>
         </div>
         <p class="notice">The audit is free and does not collect payment. The optional setup starts only after a real external checkout is paid.</p>
@@ -13352,7 +13360,7 @@ ${paragraphs.join("\n")}
       const response = await fetch("/api/metrics", { cache: "no-store" });
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error("Metrics unavailable");
-      const depthSignal = (row) => (row.free_tool_depth || 0) + (row.guide_depth || 0) + (row.seller_sample_download || 0) + (row.seller_checkout_intent || 0) + (row.seller_checkout_click || 0) + (row.service_request_intent || 0) + (row.audit_request_intent || 0) + (row.sponsor_request_intent || 0) + (row.sponsor_lead_submit || 0);
+      const depthSignal = (row) => (row.free_tool_depth || 0) + (row.guide_depth || 0) + (row.seller_sample_download || 0) + (row.seller_checkout_intent || 0) + (row.seller_checkout_click || 0) + (row.service_checkout_click || 0) + (row.service_request_intent || 0) + (row.audit_request_intent || 0) + (row.sponsor_request_intent || 0) + (row.sponsor_lead_submit || 0);
       const rows = (data.tools || []).slice().sort((a, b) => {
         const bScore = ((b.download_pdf || 0) + (b.download_file || 0)) * 3 + depthSignal(b) * 4 + (b.generate_pdf || 0) + (b.generate_file || 0);
         const aScore = ((a.download_pdf || 0) + (a.download_file || 0)) * 3 + depthSignal(a) * 4 + (a.generate_pdf || 0) + (a.generate_file || 0);
