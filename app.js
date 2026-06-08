@@ -8920,7 +8920,7 @@ ${paragraphs.join("\n")}
             <p>Share only business-safe details. The inquiry is stored for follow-up review, while public dashboards show only aggregate lead counts.</p>
             <div class="notice sponsor-close-path">
               <strong>Fastest paid pilot path</strong>
-              <p>Start with the USD 49 starter fit review. The lowest-friction path is the public invoice request; the private fast form needs only business email and website.</p>
+              <p>Start with the USD 49 starter fit review. The lowest-friction private form needs only a business email; website is optional and can be inferred from the email domain.</p>
               <p><a class="button" data-sponsor-public-invoice-request data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open USD 49 invoice request</a> <a class="button secondary" data-sponsor-deal-select ${sponsorDealPrefillAttrs(defaultDeal)} data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="#sponsor-quick-form">Use USD 49 starter review</a></p>
             </div>
             <ul>
@@ -8934,28 +8934,25 @@ ${paragraphs.join("\n")}
               <p><a class="button" data-sponsor-public-invoice-request data-track-event="sponsor_request_intent" data-track-tool="sponsor" href="${escapeHtml(publicReplyUrl)}" target="_blank" rel="noreferrer">Open USD 49 invoice request</a></p>
             </div>
           </div>
-          <form class="panel form-grid sponsor-quick-form" id="sponsor-quick-form" data-sponsor-quick-form>
+          <form class="panel form-grid sponsor-quick-form sponsor-micro-lead-form" id="sponsor-quick-form" data-sponsor-quick-form>
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="dealId">
-            <h3>2-minute pilot invoice review</h3>
-            <p class="help">Pick a starter pilot and send two business-safe fields. This requests manual fit review only; any invoice or agreement is sent later through an external provider.</p>
-            <label class="field sponsor-deal-picker">
+            <h3>One-field USD 49 invoice review</h3>
+            <p class="help">Send one business-safe field for manual fit review. Any invoice or agreement is sent later through an external provider.</p>
+            <label class="field sponsor-deal-picker sr-only">
               <span>Selected pilot</span>
-              <select name="quickDealId" data-sponsor-quick-deal>
+              <select name="quickDealId" data-sponsor-quick-deal aria-label="Selected pilot" tabindex="-1">
                 ${sponsorQuickDealOptions()}
               </select>
             </label>
-            <label class="field">
-              <span>Company or project (optional)</span>
-              <input name="company" maxlength="90" autocomplete="organization" placeholder="Auto-filled from website if blank">
-            </label>
+            <input type="hidden" name="company" value="">
             <label class="field">
               <span>Business email</span>
               <input name="contactEmail" type="email" maxlength="140" autocomplete="email" required>
             </label>
             <label class="field">
-              <span>Website</span>
-              <input name="website" type="url" maxlength="220" placeholder="https://example.com" autocomplete="url" required>
+              <span>Website (optional)</span>
+              <input name="website" type="url" maxlength="220" placeholder="https://example.com or leave blank" autocomplete="url">
             </label>
             <div class="actions">
               <button class="button" type="submit" data-track-event="sponsor_request_intent" data-track-tool="sponsor">Send USD 49 invoice review request</button>

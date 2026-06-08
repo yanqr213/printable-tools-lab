@@ -609,10 +609,48 @@ async function main() {
   const inferredCompanyLead = JSON.parse(store.data.get(`sponsor:lead:${inferredCompanyPayload.id}`));
   assert(inferredCompanyLead.company === "Lowfriction", "Sponsor lead endpoint should infer a company label from the website when quick form company is blank");
   assert(inferredCompanyLead.commitment === "request-invoice", "Inferred-company quick sponsor lead should keep invoice request commitment");
+  const emailOnlySponsorResponse = await sponsorLeadSource.onRequestPost({
+    request: new Request("https://example.test/api/sponsor-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.20" },
+      body: JSON.stringify(sponsorLeadBody({
+        company: "",
+        contactEmail: "buyer@onefield-sponsor.example",
+        website: "",
+        dealId: "starter-fit-review",
+      })),
+    }),
+    env,
+  });
+  const emailOnlySponsorPayload = await emailOnlySponsorResponse.json();
+  assert(emailOnlySponsorResponse.status === 200 && emailOnlySponsorPayload.ok, "Sponsor lead endpoint should accept one-field business-email invoice review requests");
+  const emailOnlySponsorLead = JSON.parse(store.data.get(`sponsor:lead:${emailOnlySponsorPayload.id}`));
+  assert(emailOnlySponsorLead.company === "Onefield Sponsor", "Sponsor lead endpoint should infer a company label from the email domain");
+  assert(emailOnlySponsorLead.website === "https://onefield-sponsor.example/", "Sponsor lead endpoint should infer a website from a business email domain");
+  assert(emailOnlySponsorLead.commitment === "request-invoice", "One-field sponsor lead should keep invoice request commitment");
+  const personalEmailSponsorResponse = await sponsorLeadSource.onRequestPost({
+    request: new Request("https://example.test/api/sponsor-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "CF-Connecting-IP": "203.0.113.21" },
+      body: JSON.stringify(sponsorLeadBody({
+        company: "",
+        contactEmail: "buyer@gmail.com",
+        website: "",
+        dealId: "starter-fit-review",
+      })),
+    }),
+    env,
+  });
+  const personalEmailSponsorPayload = await personalEmailSponsorResponse.json();
+  assert(personalEmailSponsorResponse.status === 200 && personalEmailSponsorPayload.ok, "Sponsor lead endpoint should accept one-field email requests even when a website cannot be inferred");
+  const personalEmailSponsorLead = JSON.parse(store.data.get(`sponsor:lead:${personalEmailSponsorPayload.id}`));
+  assert(personalEmailSponsorLead.company === "Gmail", "Sponsor lead endpoint should keep an inferred review label for personal email domains");
+  assert(personalEmailSponsorLead.website === "", "Sponsor lead endpoint should not invent a sponsor website from a personal email domain");
+  assert(personalEmailSponsorLead.commitment === "request-invoice", "Personal-email sponsor lead should keep invoice request commitment");
   const finalOpsMetrics = await (await opsMetricsSource.onRequestGet({ env })).json();
   const finalPrintableProject = finalOpsMetrics.projects.find((row) => row.id === "printable-tools-lab");
-  assert(finalOpsMetrics.sponsorInvoiceRequests === 3, "Ops metrics should count full, quick, and inferred-company sponsor invoice requests");
-  assert(finalPrintableProject.summary.sponsorInvoiceRequests === 3, "Project ops metrics should count full, quick, and inferred-company sponsor invoice requests");
+  assert(finalOpsMetrics.sponsorInvoiceRequests === 5, "Ops metrics should count full, quick, inferred-company, and one-field sponsor invoice requests");
+  assert(finalPrintableProject.summary.sponsorInvoiceRequests === 5, "Project ops metrics should count full, quick, inferred-company, and one-field sponsor invoice requests");
   assert([...store.data.keys()].some((key) => key.startsWith("sponsor:validation:")), "Validation sponsor lead should use isolated KV keys");
   assert(Number(store.data.get("total:sponsor_lead_tests")) === 1, "Validation sponsor lead should count only validation tests");
   const githubPages = sellerMetrics.sources.find((row) => row.source === "github-pages");

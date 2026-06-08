@@ -172,7 +172,7 @@ export async function onRequestGet({ env }) {
 function normalizeLead(body, request) {
   const rawCompany = cleanText(body.company, 90);
   const contactEmail = cleanEmail(body.contactEmail);
-  const website = cleanUrl(body.website, 220);
+  const website = cleanUrl(body.website, 220) || inferWebsiteFromEmail(contactEmail);
   const company = rawCompany || inferCompanyFromContact(website, contactEmail);
   const placement = cleanChoice(body.placement, PLACEMENTS, "media-kit-review");
   const budgetRange = cleanChoice(body.budgetRange, BUDGET_RANGES, "exploratory");
@@ -192,7 +192,6 @@ function normalizeLead(body, request) {
 
   if (company.length < 2) return { error: "Company or project name is required." };
   if (!contactEmail) return { error: "A valid business email is required." };
-  if (!website) return { error: "A valid website URL is required." };
   if (audienceFit.length < 12) return { error: "Audience fit needs a short public-safe note." };
   if (!consent) return { error: "Confirm that the inquiry avoids private payment, tax, or customer files." };
 
@@ -391,6 +390,12 @@ function hostFromUrl(value) {
 
 function hostFromEmail(value) {
   return String(value || "").split("@").pop()?.toLowerCase() || "";
+}
+
+function inferWebsiteFromEmail(value) {
+  const host = hostFromEmail(value);
+  if (!host || host === "gmail.com" || host === "yahoo.com" || host === "outlook.com" || host === "hotmail.com" || host === "icloud.com" || host === "proton.me" || host === "protonmail.com") return "";
+  return cleanUrl(`https://${host}`, 220);
 }
 
 function cleanChoice(value, allowed, fallback) {
