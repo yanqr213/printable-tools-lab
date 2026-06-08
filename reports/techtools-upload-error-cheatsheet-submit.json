@@ -1,0 +1,42 @@
+﻿{
+    "generatedAt":  "2026-06-08T12:53:18.4248345Z",
+    "endpoint":  "https://techtools.cz/launchpad-api/tools",
+    "status":  201,
+    "ok":  true,
+    "payload":  {
+                    "name":  "Upload Error Cheatsheet by PrintableTools Lab",
+                    "url":  "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/?utm_source=techtools\u0026utm_medium=directory\u0026utm_campaign=upload_error_cheatsheet_2026_06\u0026utm_content=upload_error_cheatsheet",
+                    "tagline":  "Free no-signup map from upload error text to the right PDF or image fixer.",
+                    "description":  "PrintableTools Lab Upload Error Cheatsheet is a free no-signup reference page for people blocked by exact messages such as PDF must be under 1MB, image must be less than 2MB, photo must be under 100KB, JPG must be under 200KB, invalid JPG or PNG type, PDF not accepted, resume PDF too large, or email attachment too large. It maps each error to a direct browser tool and also points users with messy portal rules to the public-safe $9 Upload Limit Fix Plan request path. No files, IDs, logins, bank details, or private documents are required.",
+                    "category":  "utilities",
+                    "maker_name":  "PrintableTools Lab",
+                    "maker_url":  "https://printable-tools-lab.pages.dev/",
+                    "logo_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                    "submitted_by":  "Codex traffic acquisition run 2026-06-08 upload error cheatsheet path"
+                },
+    "response":  {
+                     "success":  true,
+                     "message":  "Tool submitted successfully! It is now live.",
+                     "data":  {
+                                  "id":  173,
+                                  "name":  "Upload Error Cheatsheet by PrintableTools Lab",
+                                  "url":  "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/?utm_source=techtools\u0026utm_medium=directory\u0026utm_campaign=upload_error_cheatsheet_2026_06\u0026utm_content=upload_error_cheatsheet",
+                                  "tagline":  "Free no-signup map from upload error text to the right PDF or image fixer.",
+                                  "description":  "PrintableTools Lab Upload Error Cheatsheet is a free no-signup reference page for people blocked by exact messages such as PDF must be under 1MB, image must be less than 2MB, photo must be under 100KB, JPG must be under 200KB, invalid JPG or PNG type, PDF not accepted, resume PDF too large, or email attachment too large. It maps each error to a direct browser tool and also points users with messy portal rules to the public-safe $9 Upload Limit Fix Plan request path. No files, IDs, logins, bank details, or private documents are required.",
+                                  "category":  "utilities",
+                                  "category_label":  "Utilities",
+                                  "maker_name":  "PrintableTools Lab",
+                                  "maker_url":  "https://printable-tools-lab.pages.dev/",
+                                  "logo_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                                  "upvotes":  0,
+                                  "featured":  false,
+                                  "submitted_by":  "Codex traffic acquisition run 2026-06-08 upload error cheatsheet path",
+                                  "launch_date":  "2026-06-08",
+                                  "created_at":  "2026-06-08T12:53:18Z",
+                                  "share_url":  "https://techtools.cz/tools/launchpad/?tool=173"
+                              },
+                     "share_url":  "https://techtools.cz/tools/launchpad/?tool=173"
+                 },
+    "shareUrl":  "https://techtools.cz/tools/launchpad/?tool=173",
+    "evidenceApiUrl":  "https://techtools.cz/launchpad-api/tools/173"
+}

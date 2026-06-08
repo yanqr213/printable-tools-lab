@@ -80,6 +80,14 @@ const directories = [
     reviewWindow: "auto-approved API listing for the $9 upload fix plan service path",
   },
   {
+    name: "TechTools Launchpad upload error cheatsheet listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=173",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/173",
+    expected: [siteHost, "Upload Error Cheatsheet"],
+    submittedAt: "2026-06-08",
+    reviewWindow: "auto-approved API listing for the upload error cheatsheet path",
+  },
+  {
     name: "NoSignupTools",
     url: "https://nosignuptools.com/",
     searchUrl: "https://nosignuptools.com/?q=PrintableTools+Lab",

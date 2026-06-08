@@ -5401,14 +5401,22 @@
   }
 
   const sponsorExternalDiscoveryProof = {
-    directoryListedCount: 4,
-    directoryPendingCount: 5,
+    directoryListedCount: 12,
+    directoryPendingCount: 9,
     indexNowAcceptedTargets: ["github-pages"],
     listedDirectories: [
       { name: "TechTools Launchpad site listing", evidenceUrl: "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent" },
       { name: "TechTools Launchpad upload-limit listing", evidenceUrl: "https://techtools.cz/launchpad-api/tools/162" },
+      { name: "TechTools Launchpad invoice listing", evidenceUrl: "https://techtools.cz/launchpad-api/tools/168" },
+      { name: "TechTools Launchpad invoice follow-up service listing", evidenceUrl: "https://techtools.cz/launchpad-api/tools/169" },
+      { name: "TechTools Launchpad invoice follow-up email generator listing", evidenceUrl: "https://techtools.cz/launchpad-api/tools/170" },
+      { name: "TechTools Launchpad overdue invoice reminder listing", evidenceUrl: "https://techtools.cz/launchpad-api/tools/171" },
+      { name: "TechTools Launchpad upload limit fix plan service listing", evidenceUrl: "https://techtools.cz/launchpad-api/tools/172" },
+      { name: "TechTools Launchpad upload error cheatsheet listing", evidenceUrl: "https://techtools.cz/launchpad-api/tools/173" },
       { name: "NoLogin.tools", evidenceUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev" },
       { name: "NoLogin.tools upload-limit listing", evidenceUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer" },
+      { name: "NoLogin.tools invoice follow-up email generator listing", evidenceUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-invoice-followup-email" },
+      { name: "NoLogin.tools overdue invoice reminder listing", evidenceUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-overdue-invoice-reminder-email" },
     ],
   };
 

@@ -8603,6 +8603,7 @@ function directorySubmissionHtml() {
     ["TechTools Invoice Follow-up Email Generator", "https://techtools.cz/tools/launchpad/?tool=170", "Free-tool discovery listing for invoice reminder visitors before the $19 service CTA."],
     ["TechTools Overdue Invoice Reminder Email", "https://techtools.cz/tools/launchpad/?tool=171", "High-intent overdue invoice reminder listing that points to a service-lead landing page."],
     ["TechTools Upload Limit Fix Plan", "https://techtools.cz/tools/launchpad/?tool=172", "Direct discovery listing for the $9 upload-limit troubleshooting service path."],
+    ["TechTools Upload Error Cheatsheet", "https://techtools.cz/tools/launchpad/?tool=173", "High-intent listing for exact PDF, image, resume, and portal upload errors."],
     ["NoSignupTools Upload Limit Fixer", "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab", "Pending public API submission for a no-signup upload error matcher."],
     ["FreeNoSignup Upload Limit Fixer", "https://freenosignup.com/?s=Upload+Limit+Fixer", "Pending Google Form submission for the free upload error matcher."],
     ["NoLogin.tools", "https://nologin.tools/tool/printable-tools-lab-pages-dev", "Privacy-friendly no-login tool listing."],
