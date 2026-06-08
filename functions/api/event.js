@@ -158,6 +158,7 @@ export async function onRequestPost({ request, env }) {
     const body = await request.json();
     const name = cleanKey(body.name, 40);
     if (!ALLOWED_EVENTS.has(name)) return json({ ok: false, error: "Unsupported event" }, 400);
+    if (isQaEvent(body)) return json({ ok: true, ignored: true, reason: "qa_event" });
     const tool = cleanTool(body.tool || "site");
     const source = cleanSource(body.source || "direct");
     const path = cleanPath(body.path || "/");
@@ -259,6 +260,11 @@ function isKvLimitError(error) {
     || message.includes("write limit")
     || message.includes("read limit")
     || message.includes("too many requests");
+}
+
+function isQaEvent(body) {
+  const raw = String(body.qa || body.validation || body.test || "").toLowerCase();
+  return ["1", "true", "yes", "qa"].includes(raw);
 }
 
 function cleanKey(value, maxLength) {

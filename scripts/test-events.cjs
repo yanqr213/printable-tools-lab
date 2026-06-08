@@ -32,6 +32,17 @@ async function main() {
   assert(initialRollup.totals.sources.nosignuptools.download_pdf === 1, "Event rollup should count per-source events");
   assert(initialRollup.totals.projects["printable-tools-lab"].paths["/tools/invoice-generator/"].download_pdf === 1, "Event rollup should count per-path download events for ops funnels");
   assert(store.putCount === 1, "Event collector should use one KV write per regular event");
+  const qaEventResponse = await eventSource.onRequestPost({
+    request: new Request("https://example.test/api/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "service_request_intent", tool: "upload-limit-fix-plan", path: "/tools/compress-image-to-kb/", source: "techtools", qa: true }),
+    }),
+    env,
+  });
+  const qaEventPayload = await qaEventResponse.json();
+  assert(qaEventResponse.status === 200 && qaEventPayload.ignored && qaEventPayload.reason === "qa_event", "Event collector should ignore QA validation events");
+  assert(store.putCount === 1, "QA validation events should not write to the public metrics rollup");
   const limitedStore = new MemoryStore({ failWritesWith: "KV put() limit exceeded for the day." });
   const limitedEventResponse = await eventSource.onRequestPost({
     request: new Request("https://example.test/api/event", {

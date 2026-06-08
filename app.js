@@ -15211,7 +15211,9 @@ ${paragraphs.join("\n")}
 
   function track(name, data) {
     const source = getTrafficSource();
+    const qaTraffic = isQaTraffic();
     const details = Object.assign({}, data || {}, { source });
+    if (qaTraffic) details.qa = true;
     const events = getEvents();
     events.push({
       time: new Date().toISOString(),
@@ -15219,6 +15221,7 @@ ${paragraphs.join("\n")}
       data: details,
     });
     localStorage.setItem("ptl_events", JSON.stringify(events.slice(-1000)));
+    if (qaTraffic) return;
     if (window.gtag && CONFIG.enableAnalytics) {
       window.gtag("event", name, details);
     }
@@ -15226,6 +15229,7 @@ ${paragraphs.join("\n")}
   }
 
   function sendRemoteEvent(name, data) {
+    if (isQaTraffic()) return;
     if (!navigator.sendBeacon && !window.fetch) return;
     const payload = JSON.stringify({
       name,
@@ -15243,6 +15247,24 @@ ${paragraphs.join("\n")}
       body: payload,
       keepalive: true,
     }).catch(() => {});
+  }
+
+  function isQaTraffic() {
+    try {
+      const params = new URLSearchParams(window.location.search || "");
+      const raw = String(params.get("ptl_qa") || "").toLowerCase();
+      if (["1", "true", "yes"].includes(raw)) {
+        sessionStorage.setItem("ptl_qa", "1");
+        return true;
+      }
+      if (["0", "false", "no"].includes(raw)) {
+        sessionStorage.removeItem("ptl_qa");
+        return false;
+      }
+      return sessionStorage.getItem("ptl_qa") === "1";
+    } catch (error) {
+      return false;
+    }
   }
 
   async function loadRemoteMetrics() {

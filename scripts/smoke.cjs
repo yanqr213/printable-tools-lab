@@ -219,18 +219,18 @@ function delay(ms) {
     if (!title.includes("PrintableTools Lab")) throw new Error(`Bad title for ${route}: ${title}`);
   }
 
-  await page.goto(`${base}/?utm_source=github`, { waitUntil: "networkidle" });
+  await page.goto(`${base}/?utm_source=github&ptl_qa=1`, { waitUntil: "networkidle" });
   let latestSource = await page.evaluate(() => {
     const events = JSON.parse(localStorage.getItem("ptl_events") || "[]");
-    return events.at(-1)?.data?.source;
+    return events.at(-1)?.data;
   });
-  if (latestSource !== "github") throw new Error(`Campaign source was not captured: ${latestSource}`);
+  if (latestSource?.source !== "github" || latestSource?.qa !== true) throw new Error(`Campaign source or QA flag was not captured: ${JSON.stringify(latestSource)}`);
   await page.goto(`${base}/tools/invoice-generator/`, { waitUntil: "networkidle" });
   latestSource = await page.evaluate(() => {
     const events = JSON.parse(localStorage.getItem("ptl_events") || "[]");
-    return events.at(-1)?.data?.source;
+    return events.at(-1)?.data;
   });
-  if (latestSource !== "github") throw new Error(`Campaign source did not persist for the session: ${latestSource}`);
+  if (latestSource?.source !== "github" || latestSource?.qa !== true) throw new Error(`Campaign source or QA flag did not persist for the session: ${JSON.stringify(latestSource)}`);
 
   await page.goto(`${base}/free-pdf-tools/`, { waitUntil: "networkidle" });
   const freePdfText = await page.locator("main").innerText();
@@ -293,9 +293,9 @@ function delay(ms) {
   }
   const noContactIntent = await page.evaluate(() => {
     const events = JSON.parse(localStorage.getItem("ptl_events") || "[]");
-    return events.some((event) => event.name === "service_request_intent" && event.data?.tool === "upload-limit-fix-plan" && event.data?.fallback === "public-safe-no-contact");
+    return events.some((event) => event.name === "service_request_intent" && event.data?.tool === "upload-limit-fix-plan" && event.data?.fallback === "public-safe-no-contact" && event.data?.qa === true);
   });
-  if (!noContactIntent) throw new Error("No-contact public fallback did not record a service_request_intent event.");
+  if (!noContactIntent) throw new Error("No-contact public fallback did not record a QA-tagged service_request_intent event.");
 
   for (const [targetSize, pageSlug] of [["500kb", "compress-pdf-to-500kb"], ["1mb", "compress-pdf-to-1mb"], ["2mb", "compress-pdf-to-2mb"], ["5mb", "compress-pdf-to-5mb"]]) {
     await page.goto(`${base}/${pageSlug}/`, { waitUntil: "networkidle" });
