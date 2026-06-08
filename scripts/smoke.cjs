@@ -901,6 +901,12 @@ function delay(ms) {
       if (!uploadFixText.includes("Still worried the next site will reject this file?") || !uploadFixText.includes("Send $9 upload check request")) {
         throw new Error("Compress PDF download success is missing the $9 upload check close copy.");
       }
+      const publicRequest = page.locator('[data-download-upload-fix-public-request][data-track-event="service_request_intent"][data-track-tool="upload-limit-fix-plan"]').first();
+      if (!(await publicRequest.count())) throw new Error("Compress PDF download success is missing the direct public-safe $9 request CTA.");
+      const publicRequestHref = await publicRequest.getAttribute("href");
+      if (!publicRequestHref || !publicRequestHref.includes("github.com") || !publicRequestHref.includes("Upload+Limit+Fix+Plan")) {
+        throw new Error(`Compress PDF direct public-safe request CTA has an unexpected href: ${publicRequestHref || "missing"}`);
+      }
       const uploadFixSummary = await uploadFixForm.locator('[data-upload-fix-plan-summary]').inputValue();
       if (!uploadFixSummary.includes("I just downloaded Compress PDF") || !uploadFixSummary.includes("$9 Upload Limit Fix Plan")) {
         throw new Error("Compress PDF download success did not prefill the upload fix-plan request summary.");

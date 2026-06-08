@@ -8727,6 +8727,14 @@ ${paragraphs.join("\n")}
     const uploadHref = `/upload-limit-fixer/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     const cheatsheetHref = `/upload-error-cheatsheet/?utm_source=download_success&utm_medium=site&utm_campaign=upload_error_cheatsheet_fix_plan&utm_content=${content}`;
     const serviceHref = `/upload-limit-fix-plan/?utm_source=download_success&utm_medium=site&utm_campaign=upload_limit_fix_plan&utm_content=${content}#service-request`;
+    const publicRequestHref = serviceLeadFallbackUrl({
+      serviceType: "upload-limit-fix-plan",
+      businessName: "",
+      contact: "",
+      needBy: "",
+      requestSummary: uploadLimitDownloadFixSummary(tool),
+      path: `/tools/${toolId}/`,
+    });
     return `
       <div class="download-after-action download-upload-fix-action" aria-label="Upload check after download">
         <div>
@@ -8741,7 +8749,8 @@ ${paragraphs.join("\n")}
         </div>
         ${renderDownloadUploadFixLeadForm(tool)}
         <div class="download-after-actions">
-          <a class="button" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(serviceHref)}">Open full $9 service page</a>
+          <a class="button" data-download-upload-fix-public-request data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(publicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe $9 request</a>
+          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(serviceHref)}">Full $9 service page</a>
           <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolId)}" href="${escapeHtml(uploadHref)}">Check another upload error</a>
           <a class="button ghost" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolId)}" href="${escapeHtml(cheatsheetHref)}">Open cheatsheet</a>
         </div>
@@ -8807,7 +8816,7 @@ ${paragraphs.join("\n")}
     const toolId = tool.id || "download";
     const sourcePath = `/tools/${toolId}/`;
     const toolLabel = tool.shortTitle || tool.title || toolId;
-    const defaultSummary = `I just downloaded ${toolLabel} and want the $9 Upload Limit Fix Plan before submitting it to another website. Public-safe details only: file type, target rule, upload error text if any, fallback steps, and a review-before-upload checklist. No actual file, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.`;
+    const defaultSummary = uploadLimitDownloadFixSummary(tool);
     const fallbackUrl = serviceLeadFallbackUrl({
       serviceType: "upload-limit-fix-plan",
       businessName: "",
@@ -8842,6 +8851,12 @@ ${paragraphs.join("\n")}
         <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send a public-safe upload check here. Payment still happens only through a real external checkout or invoice after fit is confirmed.</p>
       </form>
     `;
+  }
+
+  function uploadLimitDownloadFixSummary(tool) {
+    const toolId = tool && tool.id ? tool.id : "download";
+    const toolLabel = tool && (tool.shortTitle || tool.title) ? (tool.shortTitle || tool.title) : toolId;
+    return `I just downloaded ${toolLabel} and want the $9 Upload Limit Fix Plan before submitting it to another website. Public-safe details only: file type, target rule, upload error text if any, fallback steps, and a review-before-upload checklist. No actual file, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.`;
   }
 
   function renderInvoiceFollowupOutputServiceLeadForm(values, message) {
