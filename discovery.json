@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-08T07:03:24.949Z",
+  "generatedAt": "2026-06-08T08:48:48.054Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -61,6 +61,8 @@
     "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/invoice-follow-up-email-template/",
     "https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email/",
+    "https://printable-tools-lab.pages.dev/polite-payment-reminder-email/",
+    "https://printable-tools-lab.pages.dev/freelance-invoice-follow-up-email/",
     "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
     "https://printable-tools-lab.pages.dev/compress-pdf-no-upload/",
@@ -593,6 +595,18 @@
       "title": "Overdue Invoice Reminder Email",
       "url": "https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email/",
       "intent": "overdue invoice reminder email, first overdue invoice follow up, late payment reminder wording",
+      "tool": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/"
+    },
+    {
+      "title": "Polite Payment Reminder Email",
+      "url": "https://printable-tools-lab.pages.dev/polite-payment-reminder-email/",
+      "intent": "polite payment reminder email, gentle invoice reminder, friendly payment follow up",
+      "tool": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/"
+    },
+    {
+      "title": "Freelance Invoice Follow-up Email",
+      "url": "https://printable-tools-lab.pages.dev/freelance-invoice-follow-up-email/",
+      "intent": "freelance invoice follow-up email, freelancer payment reminder, client invoice follow up",
       "tool": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/"
     },
     {

@@ -447,6 +447,36 @@ else {
   if (!sitemap.includes(`<loc>${siteUrl("overdue-invoice-reminder-email")}</loc>`)) failures.push("Sitemap missing overdue invoice reminder landing page.");
 }
 
+for (const page of [
+  {
+    pathName: "polite-payment-reminder-email",
+    headline: "Polite payment reminder email",
+    cta: "Send polite reminder fit check",
+    summary: "I need a polite payment reminder sequence",
+    sourcePath: "polite-payment-reminder-email",
+  },
+  {
+    pathName: "freelance-invoice-follow-up-email",
+    headline: "Freelance invoice follow-up email",
+    cta: "Send freelance invoice fit check",
+    summary: "I need a freelance invoice follow-up copy pack",
+    sourcePath: "freelance-invoice-follow-up-email",
+  },
+]) {
+  const file = path.join(root, page.pathName, "index.html");
+  if (!fs.existsSync(file)) {
+    failures.push(`Missing high-intent invoice follow-up landing page: ${page.pathName}`);
+  } else {
+    const html = fs.readFileSync(file, "utf8");
+    if (!html.includes(page.headline) || !html.includes("/tools/invoice-followup-email/?invoiceStatus=sent")) failures.push(`${page.pathName} missing focused invoice follow-up copy or prefilled generator link.`);
+    if (!html.includes('data-service-type="invoice-followup-copy-pack"') || !html.includes(page.cta) || !html.includes("$19")) failures.push(`${page.pathName} missing $19 invoice follow-up fit-check form.`);
+    if (!html.includes(page.summary)) failures.push(`${page.pathName} missing prefilled fit-check request text.`);
+    if (!html.includes(`Source+path%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2F${page.sourcePath}%2F`)) failures.push(`${page.pathName} backup request should preserve landing page source path.`);
+    if (html.includes("/ops/") || html.includes("market-table-print-audit") || html.includes("custom-local-print-pack")) failures.push(`${page.pathName} should stay focused and not expose ops or print-pack CTAs.`);
+  }
+  if (!sitemap.includes(`<loc>${siteUrl(page.pathName)}</loc>`)) failures.push(`Sitemap missing high-intent invoice follow-up landing page: ${page.pathName}`);
+}
+
 const appScriptFile = path.join(root, "app.js");
 if (!fs.existsSync(appScriptFile)) failures.push("Missing app.js.");
 else {
@@ -463,6 +493,7 @@ else {
   if (!script.includes("renderDownloadServiceLeadForm") || !script.includes("download-service-lead-form") || !script.includes("Send free fit check") || !script.includes("Send invoice fit check") || !script.includes("free fit check for the $19 invoice follow-up copy pack") || !script.includes("free fit check for the $29 local print pack")) failures.push("Missing inline low-friction service lead form after download success.");
   if (!script.includes("renderInvoiceFollowupOutputServiceLeadForm") || !script.includes("tool-output-service-lead-form") || !script.includes('data-utm-source="tool_output"') || !script.includes("Generated draft excerpt to refine")) failures.push("Invoice follow-up email output missing inline low-friction service lead form.");
   if (!script.includes("overdue-invoice-reminder-email") || !script.includes("invoiceStatus=overdue") || !script.includes("Send overdue invoice fit check")) failures.push("app.js missing high-intent overdue invoice reminder landing route.");
+  if (!script.includes("polite-payment-reminder-email") || !script.includes("Send polite reminder fit check") || !script.includes("freelance-invoice-follow-up-email") || !script.includes("Send freelance invoice fit check")) failures.push("app.js missing high-intent polite/freelance invoice reminder landing routes.");
   if (!script.includes('tool.id === "invoice-followup-email"') || !script.includes('values.invoiceStatus = invoiceStatus') || !script.includes("const initialValues = initialToolValues(tool)") || !script.includes("renderField(field, initialValues[field.id])")) failures.push("app.js should prefill invoice follow-up generator from URL params.");
   if (!script.includes('data-utm-source="download_success"') || !script.includes("form.dataset.leadPath") || !script.includes("fieldOrDataOrParam")) failures.push("Download success service lead form missing attribution preservation.");
   if (!script.includes("Future ads must stay separated from generator controls")) failures.push("Missing download success ad-safety warning.");

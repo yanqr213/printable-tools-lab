@@ -151,6 +151,8 @@ Monetization model: Free tools stay live for search demand and future display ad
 - [Free Invoice Generator Without Signup](https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/): invoice PDF now, no account, no hidden export fee
 - [Free Invoice Follow-up Email Template](https://printable-tools-lab.pages.dev/invoice-follow-up-email-template/): invoice follow-up email, payment reminder wording, overdue invoice reminder
 - [Overdue Invoice Reminder Email](https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email/): overdue invoice reminder email, first overdue invoice follow up, late payment reminder wording
+- [Polite Payment Reminder Email](https://printable-tools-lab.pages.dev/polite-payment-reminder-email/): polite payment reminder email, gentle invoice reminder, friendly payment follow up
+- [Freelance Invoice Follow-up Email](https://printable-tools-lab.pages.dev/freelance-invoice-follow-up-email/): freelance invoice follow-up email, freelancer payment reminder, client invoice follow up
 - [JPG to PDF Without Uploading](https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/): private image conversion, no upload, fast PDF
 - [Multiple Images to PDF Without Uploading](https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/): combine images into one PDF without upload
 - [Compress PDF Without Uploading](https://printable-tools-lab.pages.dev/compress-pdf-no-upload/): compress PDF, reduce PDF size, no upload
