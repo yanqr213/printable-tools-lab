@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-08T17:11:36.010Z",
+  "generatedAt": "2026-06-08T17:26:39.563Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 21,
+  "listedCount": 23,
   "pendingCount": 11,
   "errorCount": 1,
   "results": [
@@ -49,14 +49,14 @@
           "url": "https://listai.cc/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 318805,
+          "bytes": 318794,
           "matched": false
         },
         {
           "url": "https://listai.cc/",
           "ok": true,
           "status": 200,
-          "bytes": 318805,
+          "bytes": 318794,
           "matched": false
         }
       ]
@@ -78,7 +78,7 @@
           "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
           "ok": true,
           "status": 200,
-          "bytes": 93137,
+          "bytes": 93717,
           "matched": true
         }
       ]
@@ -414,6 +414,50 @@
       ]
     },
     {
+      "name": "TechTools Launchpad PDF under 500KB upload fix listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=182",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/182",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "PDF Under 500KB Upload Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the strict PDF 500KB upload fix path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/182",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/182",
+          "ok": true,
+          "status": 200,
+          "bytes": 1355,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad image under 500KB upload fix listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=183",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/183",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Image Under 500KB Upload Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the image 500KB upload fix path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/183",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/183",
+          "ok": true,
+          "status": 200,
+          "bytes": 1363,
+          "matched": true
+        }
+      ]
+    },
+    {
       "name": "NoSignupTools",
       "url": "https://nosignuptools.com/",
       "searchUrl": "https://nosignuptools.com/?q=PrintableTools+Lab",
@@ -523,7 +567,7 @@
           "url": "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20103,
+          "bytes": 20060,
           "matched": false
         }
       ]
@@ -856,7 +900,7 @@
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 299188,
+          "bytes": 299192,
           "matched": true
         },
         {

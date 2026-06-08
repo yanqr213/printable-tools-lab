@@ -40,6 +40,8 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - TechTools Resume PDF Too Large Upload Fix listing: https://printable-tools-lab.pages.dev/tools/compress-pdf?targetSize=1mb&utm_source=techtools&utm_medium=directory&utm_campaign=resume_pdf_too_large_fix_2026_06&utm_content=compress_pdf_resume_1mb_fix
 - TechTools PNG Screenshot Too Large Upload Fix listing: https://printable-tools-lab.pages.dev/tools/compress-image-to-kb?targetKb=500&utm_source=techtools&utm_medium=directory&utm_campaign=png_screenshot_too_large_fix_2026_06&utm_content=compress_image_kb_png_500kb_fix
 - TechTools Passport Photo 50KB Upload Fix listing: https://printable-tools-lab.pages.dev/tools/compress-image-to-kb?targetKb=50&utm_source=techtools&utm_medium=directory&utm_campaign=passport_photo_50kb_fix_2026_06&utm_content=compress_image_kb_passport_50kb_fix
+- TechTools PDF Under 500KB Upload Fix listing: https://printable-tools-lab.pages.dev/tools/compress-pdf?targetSize=500kb&utm_source=techtools&utm_medium=directory&utm_campaign=pdf_500kb_tool_fix_2026_06&utm_content=compress_pdf_tool_target_500kb
+- TechTools Image Under 500KB Upload Fix listing: https://printable-tools-lab.pages.dev/tools/compress-image-to-kb?targetKb=500&utm_source=techtools&utm_medium=directory&utm_campaign=image_500kb_tool_fix_2026_06&utm_content=compress_image_kb_tool_target_500kb
 - NoSignupTools Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_limit_2026_06&utm_content=upload_limit_fixer
 - NoSignupTools Upload Error Cheatsheet listing: https://printable-tools-lab.pages.dev/upload-error-cheatsheet?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_error_cheatsheet_2026_06&utm_content=upload_error_cheatsheet
 - FreeNoSignup Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=freenosignup
@@ -342,6 +344,8 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - TechTools Resume PDF Too Large Upload Fix listing; submitted on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=179
 - TechTools PNG Screenshot Too Large Upload Fix listing; submitted on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=180
 - TechTools Passport Photo 50KB Upload Fix listing; submitted on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=181
+- TechTools PDF Under 500KB Upload Fix listing; submitted on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=182
+- TechTools Image Under 500KB Upload Fix listing; submitted on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=183
 - NoSignupTools Upload Limit Fixer submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
 - NoSignupTools Upload Error Cheatsheet submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
 - FreeNoSignup Upload Limit Fixer submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review

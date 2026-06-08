@@ -8672,6 +8672,8 @@ function directorySubmissionHtml() {
     ["TechTools Resume PDF Too Large Upload Fix", "https://techtools.cz/tools/launchpad/?tool=179", "Resume PDF 1MB listing that opens the PDF compressor with the pre-download $9 upload fix request ready."],
     ["TechTools PNG Screenshot Too Large Upload Fix", "https://techtools.cz/tools/launchpad/?tool=180", "PNG screenshot 500KB listing that opens the image compressor with the pre-download $9 upload fix request ready."],
     ["TechTools Passport Photo 50KB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=181", "Passport photo 50KB listing that opens the image compressor with the pre-download $9 upload fix request ready."],
+    ["TechTools PDF Under 500KB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=182", "Strict PDF 500KB listing that opens the compressor with the pre-download $9 upload fix request ready."],
+    ["TechTools Image Under 500KB Upload Fix", "https://techtools.cz/tools/launchpad/?tool=183", "Image 500KB listing that opens the image compressor with the pre-download $9 upload fix request ready."],
     ["NoSignupTools Upload Limit Fixer", "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab", "Pending public API submission for a no-signup upload error matcher."],
     ["NoSignupTools Upload Error Cheatsheet", "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab", "Pending public API submission for exact upload-error fix routing."],
     ["FreeNoSignup Upload Limit Fixer", "https://freenosignup.com/?s=Upload+Limit+Fixer", "Pending Google Form submission for the free upload error matcher."],

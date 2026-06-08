@@ -1,0 +1,42 @@
+﻿{
+    "generatedAt":  "2026-06-08T17:23:57.5637510Z",
+    "endpoint":  "https://techtools.cz/launchpad-api/tools",
+    "status":  201,
+    "ok":  true,
+    "payload":  {
+                    "name":  "Image Under 500KB Upload Fix by PrintableTools Lab",
+                    "tagline":  "No-signup image-to-500KB compressor with a public-safe $9 upload fix request.",
+                    "description":  "PrintableTools Lab Image Under 500KB Upload Fix opens the browser image-to-KB compressor with a 500KB target for profile images, marketplace photos, support screenshots, school forms, and image upload rejection errors. Images stay in the browser for ordinary compression. Before download, visitors can send a public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist without uploading the private image.",
+                    "url":  "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=500\u0026utm_source=techtools\u0026utm_medium=directory\u0026utm_campaign=image_500kb_tool_fix_2026_06\u0026utm_content=compress_image_kb_tool_target_500kb",
+                    "category":  "utilities",
+                    "maker_name":  "PrintableTools Lab",
+                    "maker_url":  "https://printable-tools-lab.pages.dev/",
+                    "logo_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                    "submitted_by":  "Codex traffic acquisition run 2026-06-09 image 500KB upload fix path"
+                },
+    "response":  {
+                     "success":  true,
+                     "message":  "Tool submitted successfully! It is now live.",
+                     "data":  {
+                                  "id":  183,
+                                  "name":  "Image Under 500KB Upload Fix by PrintableTools Lab",
+                                  "url":  "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetkb=500\u0026utm_source=techtools\u0026utm_medium=directory\u0026utm_campaign=image_500kb_tool_fix_2026_06\u0026utm_content=compress_image_kb_tool_target_500kb",
+                                  "tagline":  "No-signup image-to-500KB compressor with a public-safe $9 upload fix request.",
+                                  "description":  "PrintableTools Lab Image Under 500KB Upload Fix opens the browser image-to-KB compressor with a 500KB target for profile images, marketplace photos, support screenshots, school forms, and image upload rejection errors. Images stay in the browser for ordinary compression. Before download, visitors can send a public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist without uploading the private image.",
+                                  "category":  "utilities",
+                                  "category_label":  "Utilities",
+                                  "maker_name":  "PrintableTools Lab",
+                                  "maker_url":  "https://printable-tools-lab.pages.dev/",
+                                  "logo_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                                  "upvotes":  0,
+                                  "featured":  false,
+                                  "submitted_by":  "Codex traffic acquisition run 2026-06-09 image 500KB upload fix path",
+                                  "launch_date":  "2026-06-08",
+                                  "created_at":  "2026-06-08T17:23:57Z",
+                                  "share_url":  "https://techtools.cz/tools/launchpad/?tool=183"
+                              },
+                     "share_url":  "https://techtools.cz/tools/launchpad/?tool=183"
+                 },
+    "shareUrl":  "https://techtools.cz/tools/launchpad/?tool=183",
+    "evidenceApiUrl":  "https://techtools.cz/launchpad-api/tools/183"
+}

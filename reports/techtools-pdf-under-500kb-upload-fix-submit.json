@@ -1,0 +1,42 @@
+﻿{
+    "generatedAt":  "2026-06-08T17:23:56.3482037Z",
+    "endpoint":  "https://techtools.cz/launchpad-api/tools",
+    "status":  201,
+    "ok":  true,
+    "payload":  {
+                    "name":  "PDF Under 500KB Upload Fix by PrintableTools Lab",
+                    "tagline":  "No-signup PDF-to-500KB compressor with a public-safe $9 upload fix request.",
+                    "description":  "PrintableTools Lab PDF Under 500KB Upload Fix opens the browser PDF compressor with the strict 500KB target selected for exam forms, application portals, government-style forms, school uploads, and PDF size rejection errors. Files stay in the browser for ordinary compression. Before download, visitors can send a public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist without uploading the private PDF.",
+                    "url":  "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=500kb\u0026utm_source=techtools\u0026utm_medium=directory\u0026utm_campaign=pdf_500kb_tool_fix_2026_06\u0026utm_content=compress_pdf_tool_target_500kb",
+                    "category":  "productivity",
+                    "maker_name":  "PrintableTools Lab",
+                    "maker_url":  "https://printable-tools-lab.pages.dev/",
+                    "logo_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                    "submitted_by":  "Codex traffic acquisition run 2026-06-09 PDF 500KB upload fix path"
+                },
+    "response":  {
+                     "success":  true,
+                     "message":  "Tool submitted successfully! It is now live.",
+                     "data":  {
+                                  "id":  182,
+                                  "name":  "PDF Under 500KB Upload Fix by PrintableTools Lab",
+                                  "url":  "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetsize=500kb\u0026utm_source=techtools\u0026utm_medium=directory\u0026utm_campaign=pdf_500kb_tool_fix_2026_06\u0026utm_content=compress_pdf_tool_target_500kb",
+                                  "tagline":  "No-signup PDF-to-500KB compressor with a public-safe $9 upload fix request.",
+                                  "description":  "PrintableTools Lab PDF Under 500KB Upload Fix opens the browser PDF compressor with the strict 500KB target selected for exam forms, application portals, government-style forms, school uploads, and PDF size rejection errors. Files stay in the browser for ordinary compression. Before download, visitors can send a public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist without uploading the private PDF.",
+                                  "category":  "productivity",
+                                  "category_label":  "Productivity",
+                                  "maker_name":  "PrintableTools Lab",
+                                  "maker_url":  "https://printable-tools-lab.pages.dev/",
+                                  "logo_url":  "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+                                  "upvotes":  0,
+                                  "featured":  false,
+                                  "submitted_by":  "Codex traffic acquisition run 2026-06-09 PDF 500KB upload fix path",
+                                  "launch_date":  "2026-06-08",
+                                  "created_at":  "2026-06-08T17:23:56Z",
+                                  "share_url":  "https://techtools.cz/tools/launchpad/?tool=182"
+                              },
+                     "share_url":  "https://techtools.cz/tools/launchpad/?tool=182"
+                 },
+    "shareUrl":  "https://techtools.cz/tools/launchpad/?tool=182",
+    "evidenceApiUrl":  "https://techtools.cz/launchpad-api/tools/182"
+}

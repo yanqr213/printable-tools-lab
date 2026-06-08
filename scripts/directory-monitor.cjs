@@ -152,6 +152,22 @@ const directories = [
     reviewWindow: "auto-approved API listing for the passport photo 50KB upload fix path",
   },
   {
+    name: "TechTools Launchpad PDF under 500KB upload fix listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=182",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/182",
+    expected: [siteHost, "PDF Under 500KB Upload Fix"],
+    submittedAt: "2026-06-09",
+    reviewWindow: "auto-approved API listing for the strict PDF 500KB upload fix path",
+  },
+  {
+    name: "TechTools Launchpad image under 500KB upload fix listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=183",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/183",
+    expected: [siteHost, "Image Under 500KB Upload Fix"],
+    submittedAt: "2026-06-09",
+    reviewWindow: "auto-approved API listing for the image 500KB upload fix path",
+  },
+  {
     name: "NoSignupTools",
     url: "https://nosignuptools.com/",
     searchUrl: "https://nosignuptools.com/?q=PrintableTools+Lab",
