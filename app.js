@@ -7125,7 +7125,7 @@
         ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">Request $19 invoice link</a> `
         : "";
     const secondaryAction = page.uploadErrorMatcher
-      ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="#invoice-request">Request $9 invoice link</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(uploadFixPublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>`
+      ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="#invoice-request">Request $9 invoice link</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(uploadFixPublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a>`
       : page.serviceLead
         ? `${serviceInvoiceAction}<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>`
         : `<a class="button secondary" href="/pdf-tool-finder/">Compare tools</a>`;
@@ -7307,7 +7307,7 @@
           <tbody>
             ${uploadErrorCheatsheetRows.map((row) => {
               const [message, href, label, why, trackTool] = row;
-              return `<tr data-upload-error-row data-upload-error-text="${escapeHtml(message)}" data-upload-error-format="${escapeHtml(label)}" data-upload-error-response="${escapeHtml(why)}"><td>${escapeHtml(message)}</td><td><a href="${escapeHtml(href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(trackTool)}">${escapeHtml(label)}</a></td><td>${escapeHtml(why)}</td><td><a class="button secondary table-action" data-upload-error-invoice-request data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(rowInvoiceRequestHref(row))}" target="_blank" rel="noreferrer">Request $9 invoice link</a><br><a class="table-secondary-link" data-upload-error-fix-plan data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(rowFixPlanHref(row))}" target="_blank" rel="noreferrer">Open public-safe request</a></td></tr>`;
+              return `<tr data-upload-error-row data-upload-error-text="${escapeHtml(message)}" data-upload-error-format="${escapeHtml(label)}" data-upload-error-response="${escapeHtml(why)}"><td>${escapeHtml(message)}</td><td><a href="${escapeHtml(href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(trackTool)}">${escapeHtml(label)}</a></td><td>${escapeHtml(why)}</td><td><a class="button secondary table-action" data-upload-error-invoice-request data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(rowInvoiceRequestHref(row))}" target="_blank" rel="noreferrer">Request $9 invoice link</a><br><a class="table-secondary-link" data-upload-error-fix-plan data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(rowInvoiceRequestHref(row))}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a></td></tr>`;
             }).join("")}
           </tbody>
         </table>
@@ -8004,7 +8004,8 @@
   function serviceLeadFallbackUrl(values = {}) {
     const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
     const serviceType = values.serviceType || "custom-local-print-pack";
-    const titlePrefix = serviceType === "market-table-print-audit" ? "Audit request" : serviceType === "local-seller-starter-kit" ? "Seller kit request" : "Service request";
+    const invoiceRequest = Boolean(values.invoiceLinkRequest) || /invoice|checkout/i.test(String(values.requestedNextStep || ""));
+    const titlePrefix = serviceType === "market-table-print-audit" ? "Audit request" : serviceType === "local-seller-starter-kit" ? "Seller kit request" : invoiceRequest ? "Invoice request" : "Service request";
     url.searchParams.set("title", `${titlePrefix}: ${serviceLeadTitle(serviceType)}`);
     url.searchParams.set("body", serviceLeadPublicIssueText(values));
     url.searchParams.set("labels", "service-request,business-review");
@@ -8027,8 +8028,9 @@
   }
 
   function serviceLeadFallbackText(values = {}) {
+    const invoiceRequest = Boolean(values.invoiceLinkRequest) || /invoice|checkout/i.test(String(values.requestedNextStep || ""));
     return [
-      "Public-safe service request.",
+      invoiceRequest ? "Public-safe invoice request." : "Public-safe service request.",
       "",
       `Service: ${serviceLeadTitle(values.serviceType)}`,
       `Business or project: ${values.businessName || ""}`,
@@ -8045,8 +8047,9 @@
   }
 
   function serviceLeadPublicIssueText(values = {}) {
+    const invoiceRequest = Boolean(values.invoiceLinkRequest) || /invoice|checkout/i.test(String(values.requestedNextStep || ""));
     return [
-      "Public-safe service request.",
+      invoiceRequest ? "Public-safe invoice request." : "Public-safe service request.",
       "",
       `Service: ${serviceLeadTitle(values.serviceType)}`,
       `Business or project: ${values.businessName || ""}`,
@@ -15788,6 +15791,20 @@ ${paragraphs.join("\n")}
     return price ? `private ${price} follow-up path` : "private follow-up path";
   }
 
+  function serviceLeadPublicRequestEvent(values = {}) {
+    return values.invoiceLinkRequest ? "service_invoice_request" : serviceLeadTrackEvent(values.serviceType);
+  }
+
+  function serviceLeadPublicRequestUrl(values = {}) {
+    return values.invoiceLinkRequest ? serviceInvoiceRequestUrl(values) : serviceLeadFallbackUrl(values);
+  }
+
+  function serviceLeadPublicRequestLabel(values = {}) {
+    if (!values.invoiceLinkRequest) return "Open public-safe request";
+    const price = serviceLeadInvoiceRequestPrice(values.serviceType) || serviceLeadPriceHint(values.serviceType);
+    return `Open public-safe ${price ? `${price} ` : ""}invoice request`;
+  }
+
   function serviceLeadContactCueText(form, needed = false) {
     const serviceType = form.dataset.serviceType || form.querySelector("[name='serviceType']")?.value || "custom-local-print-pack";
     const privatePath = serviceLeadPrivatePathLabel(serviceType);
@@ -15918,7 +15935,7 @@ ${paragraphs.join("\n")}
       <div class="actions">
         <button class="button" type="button" data-copy-text="${escapeHtml(copy)}">Copy request summary</button>
         <button class="button secondary" type="button" data-copy-text="${escapeHtml(paymentReply)}">Copy payment reply</button>
-        <a class="button ghost" data-track-event="${escapeHtml(serviceLeadTrackEvent(serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(serviceType))}" href="${escapeHtml(serviceLeadFallbackUrl(values))}" target="_blank" rel="noreferrer">Open public-safe request</a>
+        <a class="button ghost" data-track-event="${escapeHtml(serviceLeadPublicRequestEvent(values))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(serviceType))}" href="${escapeHtml(serviceLeadPublicRequestUrl(values))}" target="_blank" rel="noreferrer">${escapeHtml(serviceLeadPublicRequestLabel(values))}</a>
       </div>
     `;
   }
@@ -15936,18 +15953,20 @@ ${paragraphs.join("\n")}
       if (status && status.parentNode) status.parentNode.insertBefore(panel, status.nextSibling);
       else form.appendChild(panel);
     }
-    const replyUrl = publicReplyUrl || (typeof values === "string" ? "" : serviceLeadFallbackUrl(values));
+    const replyUrl = publicReplyUrl || (typeof values === "string" ? "" : serviceLeadPublicRequestUrl(values));
     const noContactFallback = options.reason === "no-contact";
     const privatePath = serviceLeadPrivatePathLabel(serviceType);
+    const publicRequestLabel = typeof values === "string" ? "Open public-safe request" : serviceLeadPublicRequestLabel(values);
+    const publicRequestEvent = typeof values === "string" ? serviceLeadTrackEvent(serviceType) : serviceLeadPublicRequestEvent(values);
     const intro = noContactFallback
-      ? `The paid request is one field away. Add one reply email, @handle, or public contact URL above, then press Send again for the ${privatePath}. Use the public-safe GitHub request only if public contact is acceptable.`
+      ? `The paid request is one field away. Add one reply email, @handle, or public contact URL above, then press Send again for the ${privatePath}. Or open the public-safe invoice request with a GitHub account if a public reply is acceptable.`
       : "Lead storage is temporarily limited, so open the public-safe GitHub request or copy this text before leaving the page.";
     panel.innerHTML = `
       <p><strong>${noContactFallback ? "One reply contact needed." : "Backup request ready."}</strong> ${escapeHtml(intro)}</p>
       <textarea class="request-copy-output service-lead-fallback-output" readonly>${escapeHtml(text)}</textarea>
       <div class="actions">
         ${noContactFallback ? `<button class="button" type="button" data-service-lead-focus-contact>Add reply contact</button>` : ""}
-        ${replyUrl ? `<a class="button ghost" data-track-event="${escapeHtml(serviceLeadTrackEvent(serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(serviceType))}" href="${escapeHtml(replyUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>` : ""}
+        ${replyUrl ? `<a class="button ghost" data-track-event="${escapeHtml(publicRequestEvent)}" data-track-tool="${escapeHtml(serviceLeadTrackTool(serviceType))}" href="${escapeHtml(replyUrl)}" target="_blank" rel="noreferrer">${escapeHtml(publicRequestLabel)}</a>` : ""}
         <button class="button" type="button" data-copy-text="${escapeHtml(text)}">${noContactFallback ? "Copy public-safe request" : "Copy backup request"}</button>
       </div>
     `;

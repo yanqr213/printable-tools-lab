@@ -281,14 +281,14 @@ function delay(ms) {
   const imageKbFormNoValidate = await lowercaseImageKbFixForm.evaluate((form) => form.noValidate && form.hasAttribute("novalidate"));
   if (!imageKbFormNoValidate) throw new Error("Service lead form should bypass browser required validation so no-contact public fallback can render.");
   const initialContactCue = await lowercaseImageKbFixForm.locator("[data-service-lead-contact-cue]").innerText();
-  if (!initialContactCue.includes("One reply email or public handle") || !initialContactCue.includes("private $9 follow-up path") || !initialContactCue.includes("No payment is collected here")) {
+  if (!initialContactCue.includes("One reply email, @handle, or public contact URL") || !initialContactCue.includes("private $9 follow-up path") || !initialContactCue.includes("No payment is collected here")) {
     throw new Error(`Service lead contact cue is missing the low-friction private follow-up copy: ${initialContactCue}`);
   }
   await lowercaseImageKbFixForm.locator('button[type="submit"]').click();
   const noContactFallback = lowercaseImageKbFixForm.locator("[data-service-lead-fallback]").first();
   await noContactFallback.waitFor({ state: "visible", timeout: 5000 });
   const noContactFallbackText = await noContactFallback.innerText();
-  if (!noContactFallbackText.includes("Public-safe request ready.") || !noContactFallbackText.includes("private $9 follow-up path") || !noContactFallbackText.includes("Add reply contact") || !noContactFallbackText.includes("Copy public-safe request")) {
+  if (!noContactFallbackText.includes("One reply contact needed.") || !noContactFallbackText.includes("public-safe invoice request") || !noContactFallbackText.includes("private $9 follow-up path") || !noContactFallbackText.includes("Add reply contact") || !noContactFallbackText.includes("Copy public-safe request")) {
     throw new Error(`No-contact service fallback copy is missing: ${noContactFallbackText}`);
   }
   await noContactFallback.locator("[data-service-lead-focus-contact]").click();
@@ -300,7 +300,7 @@ function delay(ms) {
     fieldNeeded: cue.closest(".field")?.dataset.serviceContactNeeded,
     invalid: cue.closest(".field")?.querySelector('input[name="contact"]')?.getAttribute("aria-invalid"),
   }));
-  if (contactNeededState.state !== "needed" || contactNeededState.fieldNeeded !== "true" || contactNeededState.invalid !== "true" || !contactNeededState.text.includes("Add one reply email or public handle")) {
+  if (contactNeededState.state !== "needed" || contactNeededState.fieldNeeded !== "true" || contactNeededState.invalid !== "true" || !contactNeededState.text.includes("Add one reply email, @handle, or public contact URL")) {
     throw new Error(`No-contact service cue did not mark the reply contact as required: ${JSON.stringify(contactNeededState)}`);
   }
   await lowercaseImageKbFixForm.locator('input[name="contact"]').fill("buyer@example.com");
@@ -310,22 +310,22 @@ function delay(ms) {
     fieldNeeded: cue.closest(".field")?.dataset.serviceContactNeeded,
     invalid: cue.closest(".field")?.querySelector('input[name="contact"]')?.getAttribute("aria-invalid"),
   }));
-  if (contactReadyState.state !== "ready" || contactReadyState.fieldNeeded !== "false" || contactReadyState.invalid !== null || !contactReadyState.text.includes("One reply email or public handle")) {
+  if (contactReadyState.state !== "ready" || contactReadyState.fieldNeeded !== "false" || contactReadyState.invalid !== null || !contactReadyState.text.includes("One reply email, @handle, or public contact URL")) {
     throw new Error(`Service contact cue did not recover after a valid reply contact: ${JSON.stringify(contactReadyState)}`);
   }
   const noContactFallbackBody = await noContactFallback.locator(".service-lead-fallback-output").inputValue();
   if (!noContactFallbackBody.includes("image or photo under 100 KB") || noContactFallbackBody.includes("you@example.com")) {
     throw new Error(`No-contact public request body is not target-aware or public-safe: ${noContactFallbackBody}`);
   }
-  const noContactPublicRequestHref = await noContactFallback.locator('a:has-text("Open public-safe request")').getAttribute("href");
-  if (!noContactPublicRequestHref || !noContactPublicRequestHref.includes("github.com") || !noContactPublicRequestHref.includes(encodeURIComponent("image or photo under 100 KB").replace(/%20/g, "+"))) {
+  const noContactPublicRequestHref = await noContactFallback.locator('a:has-text("Open public-safe $9 invoice request")').getAttribute("href");
+  if (!noContactPublicRequestHref || !noContactPublicRequestHref.includes("github.com") || !noContactPublicRequestHref.includes("Invoice+request%3A+Upload+Limit+Fix+Plan") || !noContactPublicRequestHref.includes("Public-safe+invoice+request") || !noContactPublicRequestHref.includes(encodeURIComponent("image or photo under 100 KB").replace(/%20/g, "+"))) {
     throw new Error(`No-contact public-safe request link is not prefilled for 100KB target: ${noContactPublicRequestHref || "missing"}`);
   }
   const noContactIntent = await page.evaluate(() => {
     const events = JSON.parse(localStorage.getItem("ptl_events") || "[]");
-    return events.some((event) => event.name === "service_request_intent" && event.data?.tool === "upload-limit-fix-plan" && event.data?.fallback === "public-safe-no-contact" && event.data?.qa === true);
+    return events.some((event) => event.name === "service_invoice_request" && event.data?.tool === "upload-limit-fix-plan" && event.data?.fallback === "public-safe-no-contact" && event.data?.qa === true);
   });
-  if (!noContactIntent) throw new Error("No-contact public fallback did not record a QA-tagged service_request_intent event.");
+  if (!noContactIntent) throw new Error("No-contact public invoice fallback did not record a QA-tagged service_invoice_request event.");
 
   for (const [targetSize, pageSlug] of [["500kb", "compress-pdf-to-500kb"], ["1mb", "compress-pdf-to-1mb"], ["2mb", "compress-pdf-to-2mb"], ["5mb", "compress-pdf-to-5mb"]]) {
     await page.goto(`${base}/${pageSlug}/`, { waitUntil: "networkidle" });
@@ -461,14 +461,20 @@ function delay(ms) {
 
   await page.goto(`${base}/upload-error-cheatsheet/`, { waitUntil: "networkidle" });
   const cheatsheetText = await page.locator("main").innerText();
-  for (const phrase of ["Upload error cheatsheet", "PDF must be under 1MB", "Image must be less than 2MB", "Email attachment too large", "Still blocked? Get a $9 upload fix plan.", "Send $9 fix-plan request"]) {
+  for (const phrase of ["Upload error cheatsheet", "PDF must be under 1MB", "Image must be less than 2MB", "Email attachment too large", "Still blocked? Get a $9 upload fix plan.", "Request $9 invoice link", "Open public-safe $9 invoice request"]) {
     if (!cheatsheetText.includes(phrase)) throw new Error(`Upload error cheatsheet is missing ${phrase}`);
   }
   if (!(await page.locator('[data-service-type="upload-limit-fix-plan"][data-utm-source="upload-error-cheatsheet"]').count())) throw new Error("Upload error cheatsheet is missing tracked upload fix-plan request form");
-  const rowFixPlanCta = page.locator('[data-upload-error-row][data-upload-error-text="PDF must be under 1MB"] [data-upload-error-fix-plan][data-track-event="service_request_intent"][data-track-tool="upload-limit-fix-plan"]').first();
-  if (!(await rowFixPlanCta.count())) throw new Error("Upload error cheatsheet is missing row-level $9 fix-plan CTA.");
+  const rowFixPlanCta = page.locator('[data-upload-error-row][data-upload-error-text="PDF must be under 1MB"] [data-upload-error-invoice-request][data-track-event="service_invoice_request"][data-track-tool="upload-limit-fix-plan"]').first();
+  if (!(await rowFixPlanCta.count())) throw new Error("Upload error cheatsheet is missing row-level $9 invoice CTA.");
   await rowFixPlanCta.click();
   await page.waitForURL(/#upload-error-quick-request$/);
+  const rowPublicInvoiceCta = page.locator('[data-upload-error-row][data-upload-error-text="PDF must be under 1MB"] [data-upload-error-fix-plan][data-track-event="service_invoice_request"][data-track-tool="upload-limit-fix-plan"]:has-text("Open public-safe $9 invoice request")').first();
+  if (!(await rowPublicInvoiceCta.count())) throw new Error("Upload error cheatsheet is missing row-level public-safe $9 invoice request CTA.");
+  const rowPublicInvoiceHref = await rowPublicInvoiceCta.getAttribute("href");
+  if (!rowPublicInvoiceHref || !rowPublicInvoiceHref.includes("Invoice+request%3A+Upload+Limit+Fix+Plan") || !rowPublicInvoiceHref.includes("Public-safe+invoice+request") || !rowPublicInvoiceHref.includes("PDF+must+be+under+1MB")) {
+    throw new Error(`Upload error row public invoice request was not prefilled: ${rowPublicInvoiceHref || "missing"}`);
+  }
   const quickRequestVisible = await page.locator("[data-upload-error-quick-request]").first().isVisible();
   if (!quickRequestVisible) throw new Error("Upload error cheatsheet row-level CTA did not reveal the quick request panel.");
   const quickCopy = await page.locator("[data-upload-error-quick-copy]").first().innerText();

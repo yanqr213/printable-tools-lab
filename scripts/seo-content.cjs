@@ -595,8 +595,9 @@ function serviceLeadFallbackText(serviceType, pathName, options = {}) {
   const sourcePath = pathName === "/" ? "" : (pathName || serviceType);
   const requestSummary = String(options.requestSummary || "").trim();
   const requestedNextStep = String(options.requestedNextStep || "").trim() || "Request service fit review";
+  const invoiceRequest = Boolean(options.invoiceLinkRequest) || /invoice|checkout/i.test(requestedNextStep);
   return [
-    "Public-safe service request.",
+    invoiceRequest ? "Public-safe invoice request." : "Public-safe service request.",
     "",
     `Service: ${serviceLeadTitle(serviceType)}`,
     "Business or project:",
@@ -616,7 +617,8 @@ function serviceLeadFallbackUrl(serviceTypeOrOptions, pathName) {
   const serviceType = input.serviceType || serviceTypeOrOptions;
   const sourcePath = input.pathName || input.path || pathName;
   const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
-  const titlePrefix = serviceType === "market-table-print-audit" ? "Audit request" : serviceType === "local-seller-starter-kit" ? "Seller kit request" : "Service request";
+  const invoiceRequest = Boolean(input.invoiceLinkRequest) || /invoice|checkout/i.test(String(input.requestedNextStep || ""));
+  const titlePrefix = serviceType === "market-table-print-audit" ? "Audit request" : serviceType === "local-seller-starter-kit" ? "Seller kit request" : invoiceRequest ? "Invoice request" : "Service request";
   url.searchParams.set("title", `${titlePrefix}: ${serviceLeadTitle(serviceType)}`);
   url.searchParams.set("body", serviceLeadFallbackText(serviceType, sourcePath, input));
   url.searchParams.set("labels", "service-request,business-review");
@@ -637,6 +639,7 @@ function serviceInvoiceRequestUrl(serviceTypeOrOptions, pathName) {
     ...input,
     serviceType,
     pathName: input.pathName || input.path || pathName,
+    invoiceLinkRequest: true,
     requestedNextStep: `Request external ${price} checkout or invoice link after fit is confirmed`,
     requestSummary: [
       input.requestSummary || "",
@@ -8992,6 +8995,11 @@ function uploadErrorCheatsheetHtml() {
     pathName: "/upload-error-cheatsheet/",
     requestSummary: rowFixPlanSummary(item),
   });
+  const rowInvoiceRequestHref = (item) => serviceInvoiceRequestUrl({
+    serviceType: "upload-limit-fix-plan",
+    pathName: "/upload-error-cheatsheet/",
+    requestSummary: rowFixPlanSummary(item),
+  });
   return `
       <section class="shell page-title section">
         <a href="/upload-limit-fixer/">Upload limit fixer</a>
@@ -9005,7 +9013,7 @@ function uploadErrorCheatsheetHtml() {
         <table class="event-table">
           <thead><tr><th>Error text</th><th>Use this link</th><th>Response</th><th>Optional plan</th></tr></thead>
           <tbody>
-            ${UPLOAD_ERROR_CHEATSHEET.map((item) => `<tr data-upload-error-row data-upload-error-text="${escapeHtml(item.errorText)}" data-upload-error-format="${escapeHtml(item.format)}" data-upload-error-target="${escapeHtml(item.target)}" data-upload-error-response="${escapeHtml(item.response)}"><td>${escapeHtml(item.errorText)}</td><td><a href="/${escapeHtml(item.landingPath)}/">${escapeHtml(item.format)} ${escapeHtml(item.target)}</a></td><td>${escapeHtml(item.response)}</td><td><a class="button secondary table-action" data-upload-error-invoice-request data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="#upload-error-quick-request">Request $9 invoice link</a><br><a class="table-secondary-link" data-upload-error-fix-plan data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(rowFixPlanHref(item))}" target="_blank" rel="noreferrer">Open public-safe request</a></td></tr>`).join("\n")}
+            ${UPLOAD_ERROR_CHEATSHEET.map((item) => `<tr data-upload-error-row data-upload-error-text="${escapeHtml(item.errorText)}" data-upload-error-format="${escapeHtml(item.format)}" data-upload-error-target="${escapeHtml(item.target)}" data-upload-error-response="${escapeHtml(item.response)}"><td>${escapeHtml(item.errorText)}</td><td><a href="/${escapeHtml(item.landingPath)}/">${escapeHtml(item.format)} ${escapeHtml(item.target)}</a></td><td>${escapeHtml(item.response)}</td><td><a class="button secondary table-action" data-upload-error-invoice-request data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="#upload-error-quick-request">Request $9 invoice link</a><br><a class="table-secondary-link" data-upload-error-fix-plan data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(rowInvoiceRequestHref(item))}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a></td></tr>`).join("\n")}
           </tbody>
         </table>
       </section>
@@ -10277,7 +10285,7 @@ function landingPageHtml(page) {
       : "";
   const serviceInvoiceRequestHref = page.serviceLead?.serviceType === "upload-limit-fix-plan" ? "#invoice-request" : "#service-request";
   const secondaryActionHtml = page.uploadErrorMatcher
-    ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="#invoice-request">Request $9 invoice link</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(uploadFixPublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>`
+    ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="#invoice-request">Request $9 invoice link</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(uploadFixPublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a>`
     : page.serviceLead
     ? `${serviceInvoiceRequestText ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(serviceInvoiceRequestHref)}">${escapeHtml(serviceInvoiceRequestText)}</a> ` : ""}<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>`
     : `<a class="button secondary" href="/pdf-tool-finder/">Compare tools</a>`;
