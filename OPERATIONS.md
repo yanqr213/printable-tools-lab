@@ -552,6 +552,7 @@ Completed:
 - `2026-06-06`: NoLogin.tools accepted the `Upload Limit Fixer` high-intent submission with slug `printable-tools-lab-pages-dev-upload-limit-fixer`; directory monitoring now confirms the public listing live at `https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer`.
 - `2026-06-09`: directory monitoring confirmed the NoLogin.tools `Upload Error Cheatsheet`, `Invoice Follow-up Email Generator`, and `Overdue Invoice Reminder Email` listings are live.
 - `2026-06-09`: NoLogin.tools accepted the `Image Dimensions 600x600 Upload Fix`, `PDF Not Accepted JPG Required Fix`, and retried `Email Attachment Too Large Fix` high-intent submissions; monitor them as pending until public detail pages appear.
+- `2026-06-09`: upload-limit funnel tightened after live metrics showed fresh `service_request_intent` on `/upload-error-cheatsheet/` and `/tools/compress-image-to-kb/` but no service lead or invoice request. Upload-fix tool panels, target PDF landing pages, cheatsheet rows, and the service page now point their public-safe fallback to the `$9` invoice-request issue flow and track `service_invoice_request`.
 - `2026-06-03`: superseded by the 2026-06-06 retirement decision. Older external-discovery notes that promoted a buyer-intent path should not be used; refresh GitHub/Gist/issue growth surfaces with free-tool, upload-limit, and ad-safe discovery links only. Revenue remains `$0` until an ad network or approved platform reports a payable balance or settled payout.
 
 Submit Google sitemap:

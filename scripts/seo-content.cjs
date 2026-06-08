@@ -676,6 +676,11 @@ function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, path
     utmCampaign: campaign,
     utmContent: `${slugPath}-invoice-request`,
   }) : "";
+  const primaryInvoiceFallback = serviceType === UPLOAD_LIMIT_FIX_PLAN_SERVICE.id;
+  const publicFallbackUrl = primaryInvoiceFallback ? invoiceRequestUrl : fallbackUrl;
+  const publicFallbackEvent = primaryInvoiceFallback ? "service_invoice_request" : eventName;
+  const publicFallbackLabel = primaryInvoiceFallback ? `Open public-safe ${price} invoice request` : "Open public-safe request";
+  const primaryInvoiceAttr = primaryInvoiceFallback ? ' data-service-primary-invoice-request="true"' : "";
   return `<section class="shell section service-lead-section" id="service-request">
         <div class="grid-2">
           <div>
@@ -687,7 +692,7 @@ function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, path
               <li>Do not send payment, tax, bank, identity, password, customer-list, or private file data.</li>
             </ul>
           </div>
-          <form class="panel form-grid service-lead-form" data-service-lead-form data-service-type="${escapeHtml(serviceType)}" data-lead-path="${escapeHtml(sourcePath)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(campaign)}" data-utm-content="${escapeHtml(content)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+          <form class="panel form-grid service-lead-form" data-service-lead-form${primaryInvoiceAttr} data-service-type="${escapeHtml(serviceType)}" data-lead-path="${escapeHtml(sourcePath)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(campaign)}" data-utm-content="${escapeHtml(content)}" data-service-fallback-url="${escapeHtml(publicFallbackUrl)}"${invoiceRequestUrl ? ` data-service-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}"` : ""}>
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="serviceType" value="${escapeHtml(serviceType)}">
             <input type="hidden" name="utmSource" value="${escapeHtml(utmSource)}">
@@ -717,7 +722,7 @@ function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, path
             <div class="actions">
               <button class="button" type="submit" data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}">${escapeHtml(cta)}</button>
               ${invoiceRequestUrl ? `<button class="button secondary" type="submit" data-service-invoice-submit data-track-tool="${escapeHtml(tool)}" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request ${escapeHtml(price)} invoice link</button>` : ""}
-              <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
+              <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(publicFallbackEvent)}" data-track-tool="${escapeHtml(tool)}" href="${escapeHtml(publicFallbackUrl)}" target="_blank" rel="noreferrer">${escapeHtml(publicFallbackLabel)}</a>
             </div>
             <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No payment is collected here. A real external checkout or invoice is sent only after fit is confirmed.</p>
           </form>
@@ -6880,6 +6885,10 @@ function uploadLimitFixPlanInlineLeadFormHtml(options = {}) {
     pathName,
     requestSummary,
   });
+  const publicRequestUrl = primaryInvoiceRequest ? invoiceRequestUrl : fallbackUrl;
+  const publicRequestEvent = primaryInvoiceRequest ? "service_invoice_request" : "service_request_intent";
+  const publicRequestLabel = primaryInvoiceRequest ? "Open public-safe $9 invoice request" : "Open public-safe request";
+  const primaryInvoiceAttr = primaryInvoiceRequest ? ' data-service-primary-invoice-request="true"' : "";
   const requestSummaryField = compact
     ? `<input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}" data-upload-fix-plan-summary>`
     : `<label class="field">
@@ -6904,7 +6913,7 @@ function uploadLimitFixPlanInlineLeadFormHtml(options = {}) {
     `<button class="button" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">${escapeHtml(submitLabel)}</button>`,
     oneFieldInvoiceRequest ? "" : `<button class="button secondary" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Send $9 fix-plan request</button>`,
   ].filter(Boolean).join("\n            ");
-  return `<form class="panel form-grid service-lead-form ${escapeHtml(className)}" data-service-lead-form data-upload-fix-plan-form${imageKbToolFixFormAttr} data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+  return `<form class="panel form-grid service-lead-form ${escapeHtml(className)}" data-service-lead-form data-upload-fix-plan-form${imageKbToolFixFormAttr}${primaryInvoiceAttr} data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(publicRequestUrl)}" data-service-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">
           <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
           <input type="hidden" name="utmSource" value="${escapeHtml(utmSource)}">
@@ -6923,7 +6932,7 @@ function uploadLimitFixPlanInlineLeadFormHtml(options = {}) {
               ? primaryInvoiceButtons
               : `<button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">${escapeHtml(submitLabel)}</button>
             <button class="button secondary" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $9 invoice link</button>`}
-            <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
+            <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(publicRequestEvent)}" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(publicRequestUrl)}" target="_blank" rel="noreferrer">${escapeHtml(publicRequestLabel)}</a>
           </div>
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No file upload. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
           <p class="help" data-upload-fix-plan-prefill-status hidden>Request note updated from the upload error matcher.</p>
@@ -9332,6 +9341,7 @@ function paidServiceHtml(service, options = {}) {
   const checkoutConfigured = Boolean(service.checkoutUrl);
   const emailUrl = serviceRequestEmailUrl(service);
   const heroRequestSummary = options.formDefaultSummary || invoiceFollowupHeroRequestSummary(service) || (service.id === UPLOAD_LIMIT_FIX_PLAN_SERVICE.id ? uploadLimitFixPlanRequestSummary(service) : "");
+  const isUploadLimitFixPlan = service.id === UPLOAD_LIMIT_FIX_PLAN_SERVICE.id;
   const publicFitCheckUrl = serviceLeadFallbackUrl({
     serviceType: service.id,
     pathName: service.slug,
@@ -9342,10 +9352,13 @@ function paidServiceHtml(service, options = {}) {
     pathName: service.slug,
     requestSummary: heroRequestSummary,
   });
-  const primaryServiceUrl = checkoutConfigured ? service.checkoutUrl : service.id === UPLOAD_LIMIT_FIX_PLAN_SERVICE.id ? "#invoice-request" : "#service-request";
-  const primaryServiceText = checkoutConfigured ? `Buy for $${service.priceUsd}` : service.id === UPLOAD_LIMIT_FIX_PLAN_SERVICE.id ? "Request $9 invoice link" : "Request free fit check";
-  const primaryServiceEvent = checkoutConfigured ? "service_checkout_click" : service.id === UPLOAD_LIMIT_FIX_PLAN_SERVICE.id ? "service_invoice_request" : "service_request_intent";
-  const primaryServiceInvoiceJump = !checkoutConfigured && service.id === UPLOAD_LIMIT_FIX_PLAN_SERVICE.id ? " data-service-invoice-jump" : "";
+  const publicServiceFallbackUrl = isUploadLimitFixPlan ? publicInvoiceRequestUrl : publicFitCheckUrl;
+  const publicServiceFallbackEvent = isUploadLimitFixPlan ? "service_invoice_request" : "service_request_intent";
+  const publicServiceFallbackLabel = isUploadLimitFixPlan ? `Open public-safe $${service.priceUsd} invoice request` : "Open public-safe request";
+  const primaryServiceUrl = checkoutConfigured ? service.checkoutUrl : isUploadLimitFixPlan ? "#invoice-request" : "#service-request";
+  const primaryServiceText = checkoutConfigured ? `Buy for $${service.priceUsd}` : isUploadLimitFixPlan ? "Request $9 invoice link" : "Request free fit check";
+  const primaryServiceEvent = checkoutConfigured ? "service_checkout_click" : isUploadLimitFixPlan ? "service_invoice_request" : "service_request_intent";
+  const primaryServiceInvoiceJump = !checkoutConfigured && isUploadLimitFixPlan ? " data-service-invoice-jump" : "";
   const orderAssets = [
     ["Request brief", `/${service.publicRequestPath}`],
     ["Payment-before-work reply", `/${service.publicPaymentReplyPath}`],
@@ -9358,7 +9371,7 @@ function paidServiceHtml(service, options = {}) {
   const actions = [
     `<a class="button" data-service-checkout${primaryServiceInvoiceJump} data-track-event="${escapeHtml(primaryServiceEvent)}" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(primaryServiceUrl)}">${escapeHtml(primaryServiceText)}</a>`,
     service.id === UPLOAD_LIMIT_FIX_PLAN_SERVICE.id || service.id === INVOICE_FOLLOWUP_COPY_PACK_SERVICE.id ? `<a class="button secondary" data-track-event="service_invoice_request" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(publicInvoiceRequestUrl)}" target="_blank" rel="noreferrer">Request $${service.priceUsd} invoice link</a>` : "",
-    `<a class="button secondary" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(publicFitCheckUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>`,
+    `<a class="button secondary" data-service-lead-fallback-link data-track-event="${escapeHtml(publicServiceFallbackEvent)}" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(publicServiceFallbackUrl)}" target="_blank" rel="noreferrer">${escapeHtml(publicServiceFallbackLabel)}</a>`,
     options.secondaryHref ? `<a class="button secondary" href="${escapeHtml(options.secondaryHref)}">${escapeHtml(options.secondaryText || "Open related free tool")}</a>` : "",
     `<a class="button secondary" href="/${escapeHtml(service.publicRequestPath)}" download>Download request brief</a>`,
     emailUrl ? `<a class="button ghost" data-track-event="service_request_intent" data-track-tool="${escapeHtml(service.id)}" href="${escapeHtml(emailUrl)}">Email service request</a>` : "",
@@ -10260,7 +10273,8 @@ function landingPageHtml(page) {
           })}
         </div>
       </section>` : "";
-  const servicePublicRequestHref = page.serviceLead ? serviceLeadFallbackUrl({
+  const serviceLeadIsUploadInvoice = page.serviceLead?.serviceType === "upload-limit-fix-plan";
+  const servicePublicRequestHref = page.serviceLead ? (serviceLeadIsUploadInvoice ? serviceInvoiceRequestUrl : serviceLeadFallbackUrl)({
     serviceType: page.serviceLead.serviceType,
     pathName: page.path,
     requestSummary: page.serviceLead.defaultSummary || "",
@@ -10269,6 +10283,8 @@ function landingPageHtml(page) {
     utmCampaign: page.serviceLead.utmCampaign || "service_request",
     utmContent: `${page.path}-public-request`,
   }) : "";
+  const servicePublicRequestEvent = serviceLeadIsUploadInvoice ? "service_invoice_request" : page.serviceLead ? serviceLeadTrackEvent(page.serviceLead.serviceType) : "";
+  const servicePublicRequestLabel = serviceLeadIsUploadInvoice ? "Open public-safe $9 invoice request" : "Open public-safe request";
   const uploadFixPublicRequestHref = page.uploadErrorMatcher ? serviceInvoiceRequestUrl({
     serviceType: "upload-limit-fix-plan",
     pathName: page.path,
@@ -10287,7 +10303,7 @@ function landingPageHtml(page) {
   const secondaryActionHtml = page.uploadErrorMatcher
     ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="#invoice-request">Request $9 invoice link</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(uploadFixPublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a>`
     : page.serviceLead
-    ? `${serviceInvoiceRequestText ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(serviceInvoiceRequestHref)}">${escapeHtml(serviceInvoiceRequestText)}</a> ` : ""}<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>`
+    ? `${serviceInvoiceRequestText ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(serviceInvoiceRequestHref)}">${escapeHtml(serviceInvoiceRequestText)}</a> ` : ""}<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(servicePublicRequestEvent)}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">${escapeHtml(servicePublicRequestLabel)}</a>`
     : `<a class="button secondary" href="/pdf-tool-finder/">Compare tools</a>`;
   return `
       <section class="shell page-title section">

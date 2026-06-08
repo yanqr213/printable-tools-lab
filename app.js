@@ -5982,7 +5982,7 @@
             <strong>Portal still rejecting this PDF?</strong>
             <p class="help">Send a public-safe $9 request for exact target settings, fallback steps, and a review-before-upload checklist. Do not upload the file.</p>
             ${uploadFixPaidPathNote()}
-            <form class="download-service-lead-form tool-upload-fix-lead-form" data-service-lead-form data-upload-fix-plan-form data-compress-pdf-tool-fix-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="compress-pdf-tool" data-utm-medium="site" data-utm-campaign="upload_limit_fix_plan" data-utm-content="compress-pdf-target-panel" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+            <form class="download-service-lead-form tool-upload-fix-lead-form" data-service-lead-form data-upload-fix-plan-form data-compress-pdf-tool-fix-form data-service-primary-invoice-request="true" data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="compress-pdf-tool" data-utm-medium="site" data-utm-campaign="upload_limit_fix_plan" data-utm-content="compress-pdf-target-panel" data-service-fallback-url="${escapeHtml(invoiceRequestUrl)}" data-service-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">
               <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
               <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
               <input type="hidden" name="businessName" value="Compress PDF target-size workflow">
@@ -6004,8 +6004,8 @@
                 <span>I will not upload or paste the actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details.</span>
               </label>
               <div class="actions">
-                <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Send $9 target request</button>
-                <a class="button ghost" data-service-lead-fallback-link data-compress-pdf-tool-public-request data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
+                <button class="button" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $9 invoice link</button>
+                <a class="button ghost" data-service-lead-fallback-link data-compress-pdf-tool-public-request data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a>
               </div>
               <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send only the public error text and target rule. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
             </form>
@@ -6050,7 +6050,7 @@
             <strong>Portal still rejecting this image or photo?</strong>
             <p class="help">Send a public-safe $9 request for exact KB settings, fallback steps, and a review-before-upload checklist. Do not upload the image.</p>
             ${uploadFixPaidPathNote()}
-            <form class="download-service-lead-form tool-upload-fix-lead-form" data-service-lead-form data-upload-fix-plan-form data-compress-image-kb-tool-fix-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="compress-image-kb-tool" data-utm-medium="site" data-utm-campaign="upload_limit_fix_plan" data-utm-content="compress-image-kb-target-panel" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+            <form class="download-service-lead-form tool-upload-fix-lead-form" data-service-lead-form data-upload-fix-plan-form data-compress-image-kb-tool-fix-form data-service-primary-invoice-request="true" data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="compress-image-kb-tool" data-utm-medium="site" data-utm-campaign="upload_limit_fix_plan" data-utm-content="compress-image-kb-target-panel" data-service-fallback-url="${escapeHtml(invoiceRequestUrl)}" data-service-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">
               <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
               <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
               <input type="hidden" name="businessName" value="Compress image to KB workflow">
@@ -6068,7 +6068,7 @@
               <p class="help compact-consent-note">By sending, you confirm no actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details are included.</p>
               <div class="actions">
                 <button class="button" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $9 invoice link</button>
-                <a class="button ghost" data-service-lead-fallback-link data-compress-image-kb-tool-public-request data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
+                <a class="button ghost" data-service-lead-fallback-link data-compress-image-kb-tool-public-request data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a>
               </div>
               <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send only the public error text and target rule. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
             </form>
@@ -6118,6 +6118,10 @@
       requestSummary,
       path: pathName,
     });
+    const publicRequestUrl = primaryInvoiceRequest ? invoiceRequestUrl : fallbackUrl;
+    const publicRequestEvent = primaryInvoiceRequest ? "service_invoice_request" : "service_request_intent";
+    const publicRequestLabel = primaryInvoiceRequest ? "Open public-safe $9 invoice request" : "Open public-safe request";
+    const primaryInvoiceAttr = primaryInvoiceRequest ? ' data-service-primary-invoice-request="true"' : "";
     const requestSummaryField = compact
       ? `<input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}" data-upload-fix-plan-summary>`
       : `<label class="field">
@@ -6142,7 +6146,7 @@
       `<button class="button" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">${escapeHtml(submitLabel)}</button>`,
       oneFieldInvoiceRequest ? "" : `<button class="button secondary" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Send $9 fix-plan request</button>`,
     ].filter(Boolean).join("\n            ");
-    return `<form class="panel form-grid service-lead-form ${escapeHtml(className)}" data-service-lead-form data-upload-fix-plan-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+    return `<form class="panel form-grid service-lead-form ${escapeHtml(className)}" data-service-lead-form data-upload-fix-plan-form${primaryInvoiceAttr} data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(publicRequestUrl)}" data-service-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">
           <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
           <input type="hidden" name="utmSource" value="${escapeHtml(utmSource)}">
@@ -6162,7 +6166,7 @@
               ? primaryInvoiceButtons
               : `<button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">${escapeHtml(submitLabel)}</button>
             <button class="button secondary" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $9 invoice link</button>`}
-            <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
+            <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(publicRequestEvent)}" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(publicRequestUrl)}" target="_blank" rel="noreferrer">${escapeHtml(publicRequestLabel)}</a>
           </div>
           <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No file upload. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
           <p class="help" data-upload-fix-plan-prefill-status hidden>Request note updated from the upload error matcher.</p>
@@ -6991,6 +6995,18 @@
       utmCampaign: "upload_limit_fix_plan",
       utmContent: "hero-public-request",
     });
+    const invoiceRequestHref = serviceInvoiceRequestUrl({
+      serviceType: "upload-limit-fix-plan",
+      businessName: "",
+      contact: "",
+      needBy: "",
+      requestSummary,
+      path: "/upload-limit-fix-plan/",
+      utmSource: "service-page",
+      utmMedium: "site",
+      utmCampaign: "upload_limit_fix_plan",
+      utmContent: "hero-invoice-request",
+    });
     setMeta("Upload Limit Fix Plan", "Request a $9 public-safe fix plan for one rejected PDF, image, photo, resume, or portal file upload.");
     setJsonLd({
       "@context": "https://schema.org",
@@ -7012,7 +7028,7 @@
         <p>A $9 public-safe plan for one rejected PDF, image, photo, resume, screenshot, or portal file upload: which free no-upload tool to use, the target settings to try, fallback steps, and a review checklist. Do not upload or send the actual file.</p>
         <div class="hero-actions">
           <a class="button" data-track-event="${checkoutConfigured ? "service_checkout_click" : "service_invoice_request"}" data-track-tool="upload-limit-fix-plan"${primaryServiceInvoiceJump} href="${escapeHtml(primaryServiceHref)}"${primaryServiceTarget}>${checkoutConfigured ? "Buy fix plan for $9" : "Request $9 invoice link"}</a>
-          <a class="button secondary" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(publicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>
+          <a class="button secondary" data-service-lead-fallback-link data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(invoiceRequestHref)}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a>
           <a class="button secondary" href="/upload-limit-fixer/">Open free upload limit fixer</a>
           <button class="button ghost" type="button" data-copy-text="${escapeHtml(uploadLimitFixPlanRequestCopy())}" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Copy request brief</button>
         </div>
@@ -7079,7 +7095,8 @@
     const uploadFixMicroSummary = page.uploadErrorMatcher
       ? `I need a $9 Upload Limit Fix Plan for the ${page.headline} workflow: best free tool, target settings, fallback steps, and a review checklist. No file upload, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.`
       : "";
-    const servicePublicRequestHref = page.serviceLead ? serviceLeadFallbackUrl({
+    const serviceLeadIsUploadInvoice = page.serviceLead?.serviceType === "upload-limit-fix-plan";
+    const servicePublicRequestHref = page.serviceLead ? (serviceLeadIsUploadInvoice ? serviceInvoiceRequestUrl : serviceLeadFallbackUrl)({
       serviceType: page.serviceLead.serviceType,
       businessName: "",
       contact: "",
@@ -7124,10 +7141,12 @@
       : page.serviceLead?.serviceType === "invoice-followup-copy-pack"
         ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">Request $19 invoice link</a> `
         : "";
+    const servicePublicRequestEvent = serviceLeadIsUploadInvoice ? "service_invoice_request" : page.serviceLead ? serviceLeadTrackEvent(page.serviceLead.serviceType) : "";
+    const servicePublicRequestLabel = serviceLeadIsUploadInvoice ? "Open public-safe $9 invoice request" : "Open public-safe request";
     const secondaryAction = page.uploadErrorMatcher
       ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="#invoice-request">Request $9 invoice link</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(uploadFixPublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a>`
       : page.serviceLead
-        ? `${serviceInvoiceAction}<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe request</a>`
+        ? `${serviceInvoiceAction}<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(servicePublicRequestEvent)}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">${escapeHtml(servicePublicRequestLabel)}</a>`
         : `<a class="button secondary" href="/pdf-tool-finder/">Compare tools</a>`;
     app.innerHTML = `
       <section class="shell page-title section">
@@ -7921,6 +7940,11 @@
       utmCampaign,
       utmContent,
     }) : "";
+    const primaryInvoiceFallback = serviceType === "upload-limit-fix-plan";
+    const publicFallbackUrl = primaryInvoiceFallback ? invoiceRequestUrl : fallbackUrl;
+    const publicFallbackEvent = primaryInvoiceFallback ? "service_invoice_request" : eventName;
+    const publicFallbackLabel = primaryInvoiceFallback ? `Open public-safe ${price} invoice request` : "Open public-safe request";
+    const primaryInvoiceAttr = primaryInvoiceFallback ? ' data-service-primary-invoice-request="true"' : "";
     return `
       <section class="shell section service-lead-section" id="service-request">
         <div class="grid-2">
@@ -7933,7 +7957,7 @@
               <li>Do not send payment, tax, bank, identity, password, customer-list, or private file data.</li>
             </ul>
           </div>
-          <form class="panel form-grid service-lead-form" data-service-lead-form data-service-type="${escapeHtml(serviceType)}" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+          <form class="panel form-grid service-lead-form" data-service-lead-form${primaryInvoiceAttr} data-service-type="${escapeHtml(serviceType)}" data-lead-path="${escapeHtml(pathName)}" data-utm-source="${escapeHtml(utmSource)}" data-utm-medium="${escapeHtml(utmMedium)}" data-utm-campaign="${escapeHtml(utmCampaign)}" data-utm-content="${escapeHtml(utmContent)}" data-service-fallback-url="${escapeHtml(publicFallbackUrl)}"${invoiceRequestUrl ? ` data-service-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}"` : ""}>
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="serviceType" value="${escapeHtml(serviceType)}">
             <input type="hidden" name="utmSource" value="${escapeHtml(utmSource)}">
@@ -7963,7 +7987,7 @@
             <div class="actions">
               <button class="button" type="submit" data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}">${escapeHtml(cta)}</button>
               ${invoiceRequestUrl ? `<button class="button secondary" type="submit" data-service-invoice-submit data-track-tool="${escapeHtml(tool)}" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request ${escapeHtml(price)} invoice link</button>` : ""}
-              <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
+              <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(publicFallbackEvent)}" data-track-tool="${escapeHtml(tool)}" href="${escapeHtml(publicFallbackUrl)}" target="_blank" rel="noreferrer">${escapeHtml(publicFallbackLabel)}</a>
             </div>
             <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No payment is collected here. A real external checkout or invoice is sent only after fit is confirmed.</p>
           </form>
@@ -15900,9 +15924,16 @@ ${paragraphs.join("\n")}
     const link = form.querySelector("[data-service-lead-fallback-link]");
     if (!link) return;
     const values = serviceLeadPayload(form);
-    const fallbackUrl = serviceLeadFallbackUrl(values);
+    const invoiceFallbackUrl = serviceInvoiceRequestUrl({ ...values, invoiceLinkRequest: true });
+    const useInvoiceRequest = values.invoiceLinkRequest || form.dataset.servicePrimaryInvoiceRequest === "true" || form.dataset.uploadErrorInvoiceRequest === "true" || link.dataset.trackEvent === "service_invoice_request";
+    const fallbackUrl = useInvoiceRequest ? invoiceFallbackUrl : serviceLeadFallbackUrl(values);
     link.href = fallbackUrl;
     form.dataset.serviceFallbackUrl = fallbackUrl;
+    if (useInvoiceRequest) {
+      form.dataset.serviceInvoiceFallbackUrl = invoiceFallbackUrl;
+      link.dataset.trackEvent = "service_invoice_request";
+      link.textContent = serviceLeadPublicRequestLabel({ ...values, invoiceLinkRequest: true });
+    }
   }
 
   function serviceLeadContactValue(values = {}) {

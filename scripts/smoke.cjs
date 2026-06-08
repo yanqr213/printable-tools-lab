@@ -334,9 +334,9 @@ function delay(ms) {
     if (!landingLinkCount) throw new Error(`Target-size PDF landing page is missing prefilled tool link ${landingHref}`);
     const uploadFixForm = page.locator('[data-service-type="upload-limit-fix-plan"][data-utm-source="landing-page"][data-utm-campaign="upload_limit_fix_plan"]').first();
     if (!(await uploadFixForm.count())) throw new Error(`${pageSlug} missing upload fix-plan lead form`);
-    const publicRequest = page.locator('[data-service-lead-fallback-link][data-track-tool="upload-limit-fix-plan"]').first();
+    const publicRequest = page.locator('[data-service-lead-fallback-link][data-track-event="service_invoice_request"][data-track-tool="upload-limit-fix-plan"]:has-text("Open public-safe $9 invoice request")').first();
     const publicRequestHref = await publicRequest.getAttribute("href");
-    if (!publicRequestHref || !publicRequestHref.includes("github.com") || !publicRequestHref.includes("Upload+Limit+Fix+Plan") || !publicRequestHref.includes("compress+PDF")) throw new Error(`${pageSlug} upload fix-plan public request is not prefilled`);
+    if (!publicRequestHref || !publicRequestHref.includes("github.com") || !publicRequestHref.includes("Invoice+request%3A+Upload+Limit+Fix+Plan") || !publicRequestHref.includes("Public-safe+invoice+request") || !publicRequestHref.includes("compress+PDF")) throw new Error(`${pageSlug} upload fix-plan public invoice request is not prefilled`);
     await page.goto(`${base}${landingHref}`, { waitUntil: "networkidle" });
     const selectedTarget = await page.locator("#targetSize").inputValue();
     if (selectedTarget !== targetSize) throw new Error(`PDF target-size tool did not preselect ${targetSize}, got ${selectedTarget}`);
@@ -347,10 +347,10 @@ function delay(ms) {
     if (!targetPanelSummary.includes("$9 Upload Limit Fix Plan") || !targetPanelSummary.includes(`PDF under ${expectedTargetLabel}`)) {
       throw new Error(`Compress PDF pre-download request summary is not target-aware for ${targetSize}: ${targetPanelSummary}`);
     }
-    const targetPanelPublicRequest = page.locator('[data-compress-pdf-tool-public-request][data-track-event="service_request_intent"][data-track-tool="upload-limit-fix-plan"]').first();
+    const targetPanelPublicRequest = page.locator('[data-compress-pdf-tool-public-request][data-track-event="service_invoice_request"][data-track-tool="upload-limit-fix-plan"]:has-text("Open public-safe $9 invoice request")').first();
     const targetPanelPublicRequestHref = await targetPanelPublicRequest.getAttribute("href");
-    if (!targetPanelPublicRequestHref || !targetPanelPublicRequestHref.includes("github.com") || !targetPanelPublicRequestHref.includes(encodeURIComponent(`PDF under ${expectedTargetLabel}`).replace(/%20/g, "+"))) {
-      throw new Error(`Compress PDF pre-download public-safe request has an unexpected href for ${targetSize}: ${targetPanelPublicRequestHref || "missing"}`);
+    if (!targetPanelPublicRequestHref || !targetPanelPublicRequestHref.includes("github.com") || !targetPanelPublicRequestHref.includes("Invoice+request%3A+Upload+Limit+Fix+Plan") || !targetPanelPublicRequestHref.includes("Public-safe+invoice+request") || !targetPanelPublicRequestHref.includes(encodeURIComponent(`PDF under ${expectedTargetLabel}`).replace(/%20/g, "+"))) {
+      throw new Error(`Compress PDF pre-download public-safe invoice request has an unexpected href for ${targetSize}: ${targetPanelPublicRequestHref || "missing"}`);
     }
   }
   await page.goto(`${base}/tools/compress-pdf/?targetsize=1mb&utm_source=techtools&utm_medium=directory&utm_campaign=pdf_1mb_tool_fix_2026_06&utm_content=compress_pdf_tool_target_1mb`, { waitUntil: "networkidle" });
@@ -853,10 +853,10 @@ function delay(ms) {
       if (!targetPanelSummary.includes("$9 Upload Limit Fix Plan") || !targetPanelSummary.includes("PDF under the selected target")) {
         throw new Error(`Compress PDF pre-download request summary is not present: ${targetPanelSummary}`);
       }
-      const targetPanelPublicRequest = page.locator('[data-compress-pdf-tool-public-request][data-track-event="service_request_intent"][data-track-tool="upload-limit-fix-plan"]').first();
+      const targetPanelPublicRequest = page.locator('[data-compress-pdf-tool-public-request][data-track-event="service_invoice_request"][data-track-tool="upload-limit-fix-plan"]:has-text("Open public-safe $9 invoice request")').first();
       const targetPanelPublicRequestHref = await targetPanelPublicRequest.getAttribute("href");
-      if (!targetPanelPublicRequestHref || !targetPanelPublicRequestHref.includes("github.com") || !targetPanelPublicRequestHref.includes("Upload+Limit+Fix+Plan")) {
-        throw new Error(`Compress PDF pre-download public-safe request has an unexpected href: ${targetPanelPublicRequestHref || "missing"}`);
+      if (!targetPanelPublicRequestHref || !targetPanelPublicRequestHref.includes("github.com") || !targetPanelPublicRequestHref.includes("Invoice+request%3A+Upload+Limit+Fix+Plan") || !targetPanelPublicRequestHref.includes("Public-safe+invoice+request")) {
+        throw new Error(`Compress PDF pre-download public-safe invoice request has an unexpected href: ${targetPanelPublicRequestHref || "missing"}`);
       }
       await page.setInputFiles("input[type=file]", { name: "large-scan.pdf", mimeType: "application/pdf", buffer: twoPagePdf });
       await page.selectOption("#mode", "small");
