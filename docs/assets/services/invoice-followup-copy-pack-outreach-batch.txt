@@ -4,7 +4,7 @@ Use this batch only for relevant public-safe contacts. Do not scrape, spam, repe
 
 Primary service page: https://yanqr213.github.io/printable-tools-lab/invoice-followup-copy-pack/
 Request brief: https://yanqr213.github.io/printable-tools-lab/assets/services/invoice-followup-copy-pack-request.txt
-Structured request form: https://github.com/yanqr213/printable-tools-lab/issues/new
+Structured request form: https://github.com/yanqr213/printable-tools-lab/issues/new?template=invoice-followup-copy-pack-service.yml
 Money gate: Revenue is proven only after a real payment provider shows a paid order, payout balance, or settled payment for this invoice follow-up service.
 
 Daily cap: no more than 10 relevant cold contacts per day unless people are replying first.
@@ -172,7 +172,7 @@ Before I send the checkout link, please confirm:
 Revenue is counted only after the external provider shows a paid order, payout balance, or settled payment.
 
 CTA: Please confirm the scope bullets, then I can send the external checkout link.
-Tracked URL: https://github.com/yanqr213/printable-tools-lab/issues/new
+Tracked URL: https://github.com/yanqr213/printable-tools-lab/issues/new?template=invoice-followup-copy-pack-service.yml
 Fallback URL: https://yanqr213.github.io/printable-tools-lab/assets/services/invoice-followup-copy-pack-payment-reply.txt?utm_source=warm-followup&utm_medium=manual&utm_campaign=invoice_followup_service
 Stop rule: Use this only after a real reply. Do not send payment language to cold contacts.
 Status: reply_only

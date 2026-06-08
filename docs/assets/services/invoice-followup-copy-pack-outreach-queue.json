@@ -7,7 +7,7 @@
   "purpose": "Manual, low-risk outreach queue for finding qualified freelancers or service teams who may need simple invoice follow-up wording.",
   "primaryServiceUrl": "https://yanqr213.github.io/printable-tools-lab/invoice-followup-copy-pack/",
   "requestBriefUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/invoice-followup-copy-pack-request.txt",
-  "issueFormUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new",
+  "issueFormUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=invoice-followup-copy-pack-service.yml",
   "paymentReplyTemplateUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/invoice-followup-copy-pack-payment-reply.txt",
   "fulfillmentChecklistUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/invoice-followup-copy-pack-fulfillment-checklist.txt",
   "orderPipelineUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/invoice-followup-copy-pack-order-pipeline.json",
@@ -162,7 +162,7 @@
       "qualification": "They asked a question, requested the brief, or confirmed the wording pack might help.",
       "opener": "Subject: Invoice Follow-up Copy Pack - fit confirmed, payment link before work starts\n\nThanks for sending the public-safe invoice follow-up request. This looks like it may fit the simple copy-pack scope.\n\nScope after payment:\n- one polite payment reminder email\n- one due-today payment note\n- one first overdue follow-up\n- one paid thank-you message\n- one next-invoice or recurring-work note\n\nPrice: $19 USD\nTarget delivery is 1 business day after real payment and complete public-safe details.\n\nNext step:\n1. I will send one real external checkout or invoice link from Gumroad, Payhip, Ko-fi, Stripe, or an invoice provider.\n2. Please pay only through that external provider. Do not post card, bank, payout, tax, identity, customer, or private invoice details in GitHub or email.\n3. After the provider shows the order as paid, I will mark the request as paid_order_verified and prepare the copy pack.\n\nBefore I send the checkout link, please confirm:\n- The request is for editable wording only, not legal, tax, accounting, debt-collection, or financial advice.\n- You will review the final copy for accuracy, tone, client relationship, and local rules before sending it.\n- No private invoice numbers, client private data, bank details, tax IDs, or full customer lists are included.\n\nRevenue is counted only after the external provider shows a paid order, payout balance, or settled payment.",
       "cta": "Please confirm the scope bullets, then I can send the external checkout link.",
-      "trackedUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new",
+      "trackedUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=invoice-followup-copy-pack-service.yml",
       "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/invoice-followup-copy-pack-payment-reply.txt?utm_source=warm-followup&utm_medium=manual&utm_campaign=invoice_followup_service",
       "stopRule": "Use this only after a real reply. Do not send payment language to cold contacts.",
       "status": "reply_only"

@@ -1231,8 +1231,10 @@ function auditLeadMagnetHtml() {
           if (output) output.value = body;
           if (openLink) {
             var url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+            url.searchParams.set("template", "market-table-print-audit.yml");
             url.searchParams.set("title", issueTitle);
             url.searchParams.set("body", body);
+            url.searchParams.set("labels", "audit-request,business-review");
             openLink.href = url.toString();
           }
         }
@@ -1480,8 +1482,10 @@ function serviceHtml(service) {
           output.value = body;
           if (openLink) {
             var url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+            if ("${escapeScript(service.issueTemplatePath || "")}") url.searchParams.set("template", "${escapeScript(path.basename(service.issueTemplatePath || ""))}");
             url.searchParams.set("title", issueTitle);
             url.searchParams.set("body", body);
+            url.searchParams.set("labels", "service-request,business-review");
             openLink.href = url.toString();
           }
         }

@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-08T05:51:51.599Z
+Last generated: 2026-06-08T06:18:35.383Z
 
 ## Current Automated Status
 
@@ -18,6 +18,8 @@ Last generated: 2026-06-08T05:51:51.599Z
 - Lead-to-payment close cockpit ready: yes.
 - Sponsor leads captured: 0.
 - Sponsor invoice requests: 0.
+- Public-safe service request issues: 0.
+- Public-safe invoice follow-up request issues: 0.
 - Public-safe sponsor replies: 0.
 - Public-safe invoice issue requests: 0.
 - Sponsor outreach queued/sent/settled: 10/0/0.
@@ -75,6 +77,7 @@ Last generated: 2026-06-08T05:51:51.599Z
 
 ```powershell
 npm.cmd run validate:ops
+npm.cmd run service:public-requests
 npm.cmd run sponsor:public-replies
 npm.cmd run verify:seo
 npm.cmd run verify:adsense

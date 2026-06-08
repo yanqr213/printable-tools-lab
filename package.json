@@ -37,6 +37,7 @@
     "sponsor:leads": "node scripts/export-sponsor-leads.cjs",
     "service:leads": "node scripts/export-service-leads.cjs",
     "sponsor:public-replies": "node scripts/sponsor-public-reply-evidence.cjs",
+    "service:public-requests": "node scripts/service-public-request-evidence.cjs",
     "sponsor:prospects": "node scripts/generate-sponsor-prospect-queue.cjs",
     "sponsor:outreach-log": "node scripts/sponsor-outreach-log.cjs",
     "sponsor:contact-probe": "node scripts/probe-sponsor-contact-routes.cjs",

@@ -18,7 +18,7 @@ const SERVICE_META = {
     event: "service_request_intent",
     tool: "invoice-followup-copy-pack",
     fallbackTitle: "[Service request]: Invoice Follow-up Copy Pack",
-    fallbackTemplate: "",
+    fallbackTemplate: "invoice-followup-copy-pack-service.yml",
   },
   "market-table-print-audit": {
     label: "Free Market Table Print Audit",
@@ -470,7 +470,7 @@ function serviceLeadPublicReplyUrl(lead) {
     "",
     "Do not include payment, tax, bank, phone, identity, password, customer-list, or private file data in this public issue.",
   ].join("\n"));
-  url.searchParams.set("labels", "service,business-review");
+  url.searchParams.set("labels", "service-request,business-review");
   return url.toString();
 }
 

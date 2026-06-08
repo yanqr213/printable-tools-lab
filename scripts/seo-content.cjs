@@ -140,8 +140,8 @@ const INVOICE_FOLLOWUP_COPY_PACK_SERVICE = {
   publicSampleDeliveryPath: "assets/services/invoice-followup-copy-pack-sample-delivery.zip",
   publicDeliveryInputExamplePath: "assets/services/invoice-followup-copy-pack-delivery-input.example.json",
   publicDeliveryReportPath: "assets/services/invoice-followup-copy-pack-sample-delivery.json",
-  issueTemplatePath: "",
-  issueFormUrl: "https://github.com/yanqr213/printable-tools-lab/issues/new",
+  issueTemplatePath: ".github/ISSUE_TEMPLATE/invoice-followup-copy-pack-service.yml",
+  issueFormUrl: "https://github.com/yanqr213/printable-tools-lab/issues/new?template=invoice-followup-copy-pack-service.yml",
   turnaround: "Target delivery is 1 business day after real payment and complete public-safe details.",
   deliverables: [
     "one polite payment reminder email",
@@ -467,8 +467,10 @@ function serviceRequestEmailUrl(service, contactEmail = service.contactEmail) {
 
 function serviceRequestUrl(service) {
   const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+  if (service.issueTemplatePath) url.searchParams.set("template", path.basename(service.issueTemplatePath));
   url.searchParams.set("title", `Service request: ${service.name}`);
   url.searchParams.set("body", serviceRequestCopy(service));
+  url.searchParams.set("labels", "service-request,business-review");
   return url.toString();
 }
 
@@ -511,9 +513,12 @@ function serviceLeadFallbackText(serviceType, pathName) {
 function serviceLeadFallbackUrl(serviceType, pathName) {
   const url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
   const titlePrefix = serviceType === "market-table-print-audit" ? "Audit request" : serviceType === "local-seller-starter-kit" ? "Seller kit request" : "Service request";
+  if (serviceType === "invoice-followup-copy-pack") url.searchParams.set("template", "invoice-followup-copy-pack-service.yml");
+  if (serviceType === "custom-local-print-pack") url.searchParams.set("template", "custom-local-print-pack-service.yml");
+  if (serviceType === "market-table-print-audit") url.searchParams.set("template", "market-table-print-audit.yml");
   url.searchParams.set("title", `${titlePrefix}: ${serviceLeadTitle(serviceType)}`);
   url.searchParams.set("body", serviceLeadFallbackText(serviceType, pathName));
-  url.searchParams.set("labels", "service,business-review");
+  url.searchParams.set("labels", "service-request,business-review");
   return url.toString();
 }
 
@@ -6345,6 +6350,7 @@ function opsMonitorStaticHtml() {
   const sponsorInvoiceRequests = Number(metrics.sponsorInvoiceRequests ?? apiMetrics.sponsorInvoiceRequests ?? totals.sponsor_invoice_request ?? 0) || 0;
   const serviceLeadJson = report?.live?.checks?.["/api/service-lead"]?.json || {};
   const serviceLeads = Number(serviceLeadJson.leadCount ?? 0) || 0;
+  const servicePublicRequests = report?.live?.checks?.["/api/service-public-requests"]?.json || report?.local?.servicePublicRequests || {};
   const generatedAt = report?.generatedAt || "No validation snapshot yet";
   const sponsorOutreach = report?.local?.sponsorOutreach || {};
   const publicReplies = report?.local?.sponsorPublicReplies || {};
@@ -6412,14 +6418,16 @@ function opsMonitorStaticHtml() {
           ${opsMetricTile(commercialIntent, "commercial intent")}
           ${opsMetricTile(sponsorLeads, "sponsor leads")}
           ${opsMetricTile(serviceLeads, "service leads")}
+          ${opsMetricTile(servicePublicRequests.publicRequestCount || 0, "public service issues")}
           ${opsMetricTile(sponsorInvoiceRequests, "invoice requests")}
           ${opsMetricTile(publicReplies.publicReplyCount || 0, "public sponsor replies")}
           ${opsMetricTile(publicReplies.invoiceRequestCount || 0, "public invoice issues")}
+          ${opsMetricTile(servicePublicRequests.invoiceFollowupRequestCount || 0, "public invoice follow-ups")}
           ${opsMetricTile(`${sponsorOutreach.queued || 0}/${sponsorOutreach.sent || 0}/${sponsorOutreach.settled || 0}`, "outreach queued/sent/settled")}
         </div>
         <div id="opsMetrics" class="metric-remote">
           ${opsCheckoutActivationHtml(totals)}
-          ${opsLeadToPaymentCloseHtml({ totals, sponsorLeads, sponsorInvoiceRequests, serviceLeadJson, publicReplies })}
+          ${opsLeadToPaymentCloseHtml({ totals, sponsorLeads, sponsorInvoiceRequests, serviceLeadJson, publicReplies, servicePublicRequests })}
           <section class="panel ops-sponsor-sprint">
             <div class="ops-project-head">
               <div>
@@ -6448,6 +6456,7 @@ ${opsSponsorNextSubmissionHtml(nextSubmissionRows)}
             <p>Private details stay hidden. Public-safe check: ${serviceLeads} indexed service lead(s). Runtime refresh reads /api/service-lead for service, audit, seller-kit, source, and latest-created counts.</p>
             <p><a href="/api/service-lead" target="_blank" rel="noreferrer">Open public-safe service lead JSON</a></p>
           </section>
+${opsServicePublicRequestSnapshotHtml(servicePublicRequests)}
           <section class="panel ops-project">
             <div class="ops-project-head">
               <div>
@@ -6500,6 +6509,16 @@ function opsPublicReplySnapshotHtml(publicReplies) {
               <p>${escapeHtml(publicReplies?.publicReplyCount || 0)} public GitHub sponsor reply issue(s), ${escapeHtml(publicReplies?.invoiceRequestCount || 0)} public invoice request issue(s), ${escapeHtml(publicReplies?.readyForReviewCount || 0)} ready for manual review. Quality ${escapeHtml(publicReplies?.dataQuality || "missing")}.</p>
               <p><a href="${escapeHtml(sourceUrl)}" target="_blank" rel="noreferrer">Open public evidence search</a></p>${warning}
             </div>`;
+}
+
+function opsServicePublicRequestSnapshotHtml(servicePublicRequests) {
+  const sourceUrl = servicePublicRequests?.sourceUrl || "https://github.com/yanqr213/printable-tools-lab/issues?q=is%3Aissue%20label%3Aservice-request%20label%3Abusiness-review";
+  const warning = servicePublicRequests?.dataWarning ? `\n              <p class="notice">${escapeHtml(servicePublicRequests.dataWarning)}</p>` : "";
+  return `          <section class="notice sponsor-lead-check service-public-request-check">
+            <strong>Public-safe service request evidence</strong>
+            <p>${escapeHtml(servicePublicRequests?.publicRequestCount || 0)} public GitHub service request issue(s), ${escapeHtml(servicePublicRequests?.invoiceFollowupRequestCount || 0)} invoice follow-up issue(s), ${escapeHtml(servicePublicRequests?.paidServiceRequestCount || 0)} paid service issue(s), ${escapeHtml(servicePublicRequests?.readyForReviewCount || 0)} ready for manual review. Quality ${escapeHtml(servicePublicRequests?.dataQuality || "missing")}.</p>
+            <p><a href="/api/service-public-requests" target="_blank" rel="noreferrer">Open public-safe service request JSON</a> · <a href="${escapeHtml(sourceUrl)}" target="_blank" rel="noreferrer">Open GitHub evidence search</a></p>${warning}
+          </section>`;
 }
 
 function opsSponsorNextSubmissionRows(rows) {
@@ -6635,62 +6654,76 @@ function opsCheckoutActivationHtml(totals = {}) {
           </section>`;
 }
 
-function opsLeadToPaymentCloseRows({ totals = {}, sponsorLeads = 0, sponsorInvoiceRequests = 0, serviceLeadJson = {}, publicReplies = {} } = {}) {
+function opsLeadToPaymentCloseRows({ totals = {}, sponsorLeads = 0, sponsorInvoiceRequests = 0, serviceLeadJson = {}, publicReplies = {}, servicePublicRequests = {} } = {}) {
   const serviceTypes = serviceLeadJson.serviceTypes || {};
   const localPrintRequests = numberSignal(serviceTypes[CUSTOM_LOCAL_PRINT_PACK_SERVICE.id]);
   const invoiceFollowupRequests = numberSignal(serviceTypes[INVOICE_FOLLOWUP_COPY_PACK_SERVICE.id]);
   const serviceRequests = numberSignal(serviceLeadJson.serviceRequestCount);
   const auditRequests = numberSignal(serviceLeadJson.auditRequestCount);
   const sellerRequests = numberSignal(serviceLeadJson.sellerKitRequestCount);
+  const publicSourceUrl = servicePublicRequests.sourceUrl || "/api/service-public-requests";
+  const publicLocalPrintRequests = numberSignal(servicePublicRequests.customLocalPrintRequestCount);
+  const publicInvoiceFollowupRequests = numberSignal(servicePublicRequests.invoiceFollowupRequestCount);
+  const publicAuditRequests = numberSignal(servicePublicRequests.auditRequestCount);
+  const publicSellerRequests = numberSignal(servicePublicRequests.sellerKitRequestCount);
+  const publicPaidServiceRequests = numberSignal(servicePublicRequests.paidServiceRequestCount);
   const sponsorInvoices = Math.max(numberSignal(sponsorInvoiceRequests), numberSignal(publicReplies.invoiceRequestCount));
   return [
     {
       lane: "$29 service setup",
-      signal: `${localPrintRequests} lead(s), ${numberSignal(totals.service_request_intent)} shared request intent`,
-      state: localPrintRequests ? "lead captured" : numberSignal(totals.service_request_intent) ? "intent only" : "waiting",
+      signal: `${localPrintRequests} lead(s), ${publicLocalPrintRequests} public issue(s), ${numberSignal(totals.service_request_intent)} shared request intent`,
+      state: localPrintRequests ? "lead captured" : publicLocalPrintRequests ? "public request" : numberSignal(totals.service_request_intent) ? "intent only" : "waiting",
       nextAction: localPrintRequests
         ? "Export service leads, confirm fit, then send the external checkout or invoice reply."
+        : publicLocalPrintRequests
+          ? "Open public service request issues, confirm fit, then send the external checkout or invoice reply."
         : "Keep the request form live and use the payment reply as soon as a qualified service lead arrives.",
       proofGate: "paid_order_verified from external provider",
-      command: "npm.cmd run service:leads",
+      command: publicLocalPrintRequests && !localPrintRequests ? "npm.cmd run service:public-requests" : "npm.cmd run service:leads",
       copy: opsServicePaymentReplyCopy("custom-local-print-pack"),
-      link: "/api/service-lead",
+      link: publicLocalPrintRequests && !localPrintRequests ? publicSourceUrl : "/api/service-lead",
     },
     {
       lane: "$19 invoice follow-up copy",
-      signal: `${invoiceFollowupRequests} lead(s), ${serviceRequests} total service lead(s)`,
-      state: invoiceFollowupRequests ? "lead captured" : "waiting",
+      signal: `${invoiceFollowupRequests} lead(s), ${publicInvoiceFollowupRequests} public issue(s), ${publicPaidServiceRequests} paid public issue(s), ${serviceRequests} total service lead(s)`,
+      state: invoiceFollowupRequests ? "lead captured" : publicInvoiceFollowupRequests ? "public request" : "waiting",
       nextAction: invoiceFollowupRequests
         ? "Export service leads, confirm the invoice copy scope, then send the external checkout or invoice reply."
+        : publicInvoiceFollowupRequests
+          ? "Review the public invoice follow-up request issue, confirm scope, then send the external checkout or invoice reply."
         : "Keep the invoice download form live and use this reply as soon as a qualified invoice follow-up lead arrives.",
       proofGate: "paid_order_verified from external provider",
-      command: "npm.cmd run service:leads",
+      command: publicInvoiceFollowupRequests && !invoiceFollowupRequests ? "npm.cmd run service:public-requests" : "npm.cmd run service:leads",
       copy: opsServicePaymentReplyCopy("invoice-followup-copy-pack"),
-      link: "/api/service-lead",
+      link: publicInvoiceFollowupRequests && !invoiceFollowupRequests ? publicSourceUrl : "/api/service-lead",
     },
     {
       lane: "Free audit to $29 upgrade",
-      signal: `${auditRequests} audit lead(s), ${numberSignal(totals.audit_request_intent)} audit intent`,
-      state: auditRequests ? "audit follow-up" : numberSignal(totals.audit_request_intent) ? "intent only" : "waiting",
+      signal: `${auditRequests} audit lead(s), ${publicAuditRequests} public issue(s), ${numberSignal(totals.audit_request_intent)} audit intent`,
+      state: auditRequests ? "audit follow-up" : publicAuditRequests ? "public request" : numberSignal(totals.audit_request_intent) ? "intent only" : "waiting",
       nextAction: auditRequests
         ? "Export the audit lead, send useful free checks, then offer the $29 setup only if they want assembly."
+        : publicAuditRequests
+          ? "Open public audit request issues, answer the free check, then offer the $29 setup only if they ask for assembly."
         : "Use the audit as a low-friction lead magnet before asking for a paid setup.",
       proofGate: "separate paid setup order",
-      command: "npm.cmd run service:leads",
+      command: publicAuditRequests && !auditRequests ? "npm.cmd run service:public-requests" : "npm.cmd run service:leads",
       copy: opsServicePaymentReplyCopy("market-table-print-audit"),
-      link: `/${MARKET_TABLE_PRINT_AUDIT.slug}/`,
+      link: publicAuditRequests && !auditRequests ? publicSourceUrl : `/${MARKET_TABLE_PRINT_AUDIT.slug}/`,
     },
     {
       lane: "$9 seller kit",
-      signal: `${sellerRequests} seller request(s), ${numberSignal(totals.seller_checkout_intent)} checkout intent`,
-      state: sellerRequests ? "buyer requested" : numberSignal(totals.seller_checkout_intent) ? "intent only" : "waiting",
+      signal: `${sellerRequests} seller request(s), ${publicSellerRequests} public issue(s), ${numberSignal(totals.seller_checkout_intent)} checkout intent`,
+      state: sellerRequests ? "buyer requested" : publicSellerRequests ? "public request" : numberSignal(totals.seller_checkout_intent) ? "intent only" : "waiting",
       nextAction: sellerRequests
         ? "Export seller kit requests and reply with the real external checkout link once the product is configured."
+        : publicSellerRequests
+          ? "Open public seller-kit request issues and reply with the real external checkout link once the product is configured."
         : "Connect a real checkout URL before treating clicks as purchase demand.",
       proofGate: "paid digital product order",
-      command: "npm.cmd run service:leads",
+      command: publicSellerRequests && !sellerRequests ? "npm.cmd run service:public-requests" : "npm.cmd run service:leads",
       copy: opsServicePaymentReplyCopy("local-seller-starter-kit"),
-      link: `/${LOCAL_SELLER_STARTER_KIT.slug}/`,
+      link: publicSellerRequests && !sellerRequests ? publicSourceUrl : `/${LOCAL_SELLER_STARTER_KIT.slug}/`,
     },
     {
       lane: "Sponsor invoice review",
@@ -6710,7 +6743,7 @@ function opsLeadToPaymentCloseRows({ totals = {}, sponsorLeads = 0, sponsorInvoi
 function opsLeadToPaymentCloseHtml(state = {}) {
   const rows = opsLeadToPaymentCloseRows(state);
   const activeRows = rows.filter((row) => row.state !== "waiting");
-  const needsReply = rows.filter((row) => ["lead captured", "buyer requested", "audit follow-up", "invoice review"].includes(row.state)).length;
+  const needsReply = rows.filter((row) => ["lead captured", "buyer requested", "audit follow-up", "invoice review", "public request"].includes(row.state)).length;
   return `          <section class="panel ops-lead-close-cockpit">
             <div class="ops-project-head">
               <div>
@@ -6720,6 +6753,7 @@ function opsLeadToPaymentCloseHtml(state = {}) {
               </div>
               <div class="actions">
                 <a class="button secondary" href="/api/service-lead" target="_blank" rel="noreferrer">Open service index</a>
+                <a class="button ghost" href="/api/service-public-requests" target="_blank" rel="noreferrer">Open service issues</a>
                 <a class="button ghost" href="/api/sponsor-lead" target="_blank" rel="noreferrer">Open sponsor index</a>
               </div>
             </div>

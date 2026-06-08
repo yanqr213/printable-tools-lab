@@ -193,8 +193,10 @@ No payment is collected for this audit request. Do not include card, bank, payou
           if (output) output.value = body;
           if (openLink) {
             var url = new URL("https://github.com/yanqr213/printable-tools-lab/issues/new");
+            url.searchParams.set("template", "market-table-print-audit.yml");
             url.searchParams.set("title", issueTitle);
             url.searchParams.set("body", body);
+            url.searchParams.set("labels", "audit-request,business-review");
             openLink.href = url.toString();
           }
         }

@@ -10,6 +10,7 @@ async function main() {
   const sponsorLeadSource = loadFunction("functions/api/sponsor-lead.js", ["onRequestPost", "onRequestGet"]);
   const sponsorPublicRepliesSource = loadFunction("functions/api/sponsor-public-replies.js", ["onRequestGet"]);
   const serviceLeadSource = loadFunction("functions/api/service-lead.js", ["onRequestPost", "onRequestGet"]);
+  const servicePublicRequestsSource = loadFunction("functions/api/service-public-requests.js", ["onRequestGet"]);
   const store = new MemoryStore();
   const env = { PTL_EVENTS: store, PTL_METRICS_BASELINE: "off" };
 
@@ -112,6 +113,30 @@ async function main() {
   assert(publicReplies.invoiceRequestCount === 1, "Public replies API should detect public invoice issue requests");
   assert(publicReplies.rows[0].prospect === "example-partner", "Public replies API should preserve proposal attribution");
   assert(!JSON.stringify(publicReplies).includes("sponsor@example.com"), "Public replies API should not expose private lead details");
+
+  globalThis.fetch = async (url) => {
+    assert(String(url).includes("api.github.com/repos/yanqr213/printable-tools-lab/issues"), "Service public requests API should query GitHub issues");
+    return new Response(JSON.stringify([
+      {
+        number: 43,
+        state: "open",
+        title: "Service request: Invoice Follow-up Copy Pack",
+        html_url: "https://github.com/yanqr213/printable-tools-lab/issues/43",
+        created_at: "2026-06-08T00:10:00Z",
+        updated_at: "2026-06-08T00:15:00Z",
+        labels: [{ name: "service-request" }, { name: "business-review" }],
+        body: "Public-safe service request.\n\nService: Invoice Follow-up Copy Pack\nBusiness or project: Example Market Booth\nNeed-by / timeline: this week\nSource path: https://printable-tools-lab.pages.dev/invoice-followup-copy-pack/\n\nRequest note:\nPlease draft a friendly first follow-up without invoice numbers or private client details.\n\nDo not include payment, tax, bank, phone, identity, password, customer-list, or private file data in this public issue.",
+      },
+    ]), { status: 200, headers: { "Content-Type": "application/json" } });
+  };
+  const publicServiceRequests = await (await servicePublicRequestsSource.onRequestGet({ env: {} })).json();
+  globalThis.fetch = mockedFetch;
+  assert(publicServiceRequests.ok && publicServiceRequests.publicMetricsOnly, "Service public requests API should expose a public-safe summary");
+  assert(publicServiceRequests.publicRequestCount === 1, "Service public requests API should count service request issues");
+  assert(publicServiceRequests.invoiceFollowupRequestCount === 1, "Service public requests API should detect invoice follow-up requests");
+  assert(publicServiceRequests.paidServiceRequestCount === 1, "Service public requests API should count paid service request issues");
+  assert(publicServiceRequests.readyForReviewCount === 1, "Service public requests API should flag open service requests for review");
+  assert(!JSON.stringify(publicServiceRequests).includes("buyer@example.com"), "Service public requests API should not expose private lead details");
 
   const gameIntentResponse = await eventSource.onRequestPost({
     request: new Request("https://printable-tools-lab.pages.dev/api/event", {
@@ -801,7 +826,7 @@ function assertServicePublicReplyUrl(value, label) {
   const text = String(value || "");
   assert(text.includes("https://github.com/yanqr213/printable-tools-lab/issues/new?"), `${label} should include a public-safe service URL`);
   assert(text.includes("body=Public-safe+service+request"), `${label} should prefill the public-safe service issue body`);
-  assert(text.includes("labels=service%2Cbusiness-review"), `${label} should pre-label the service issue`);
+  assert(text.includes("labels=service-request%2Cbusiness-review"), `${label} should pre-label the service issue`);
 }
 
 function assert(condition, message) {

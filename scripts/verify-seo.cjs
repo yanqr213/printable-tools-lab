@@ -467,6 +467,7 @@ else {
   if (!script.includes("checkoutActivationHtml") || !script.includes("External payment link readiness") || !script.includes("Copy config command")) failures.push("app.js ops monitor missing checkout activation panel.");
   if (!script.includes("leadToPaymentCloseHtml") || !script.includes("Lead-to-payment close cockpit") || !script.includes("serviceLeadPaymentReplyCopy") || !script.includes("Copy payment reply")) failures.push("app.js ops monitor missing lead-to-payment close cockpit.");
   if (!script.includes("initServiceLeadForms") || !script.includes("submitServiceLeadForm") || !script.includes("/api/service-lead") || !script.includes("Service lead index check")) failures.push("app.js missing low-friction service lead capture and ops index check.");
+  if (!script.includes("loadServicePublicRequests") || !script.includes("Public-safe service request evidence") || !script.includes("/api/service-public-requests")) failures.push("app.js ops monitor should independently check public-safe service request issue evidence.");
   if (!script.includes("Payment starts only after fit is confirmed") || !script.includes("real external checkout or invoice") || !script.includes("Requests and clicks are not revenue")) failures.push("app.js restored service path missing real-payment gate.");
   if (script.includes("seller-funnel-cta") || script.includes("seller-help-directory")) failures.push("app.js should use free-tool depth naming, not seller funnel naming.");
 }
@@ -475,6 +476,7 @@ const eventFunctionFile = path.join(root, "functions", "api", "event.js");
 const metricsFunctionFile = path.join(root, "functions", "api", "metrics.js");
 const sponsorLeadFunctionFile = path.join(root, "functions", "api", "sponsor-lead.js");
 const serviceLeadFunctionFile = path.join(root, "functions", "api", "service-lead.js");
+const servicePublicRequestsFunctionFile = path.join(root, "functions", "api", "service-public-requests.js");
 const sponsorProspectScriptFile = path.join(root, "scripts", "generate-sponsor-prospect-queue.cjs");
 const sponsorOutreachLogScriptFile = path.join(root, "scripts", "sponsor-outreach-log.cjs");
 const sponsorContactProbeScriptFile = path.join(root, "scripts", "probe-sponsor-contact-routes.cjs");
@@ -509,6 +511,20 @@ else {
   const publicReplyScript = fs.readFileSync(sponsorPublicReplyScriptFile, "utf8");
   if (!publicReplyScript.includes("sponsor-public-reply-evidence.json") || !publicReplyScript.includes("publicMetricsOnly")) failures.push("Sponsor public reply evidence script should write a public-safe report.");
 }
+if (!fs.existsSync(servicePublicRequestsFunctionFile)) failures.push("Missing service public request API function.");
+else {
+  const servicePublicRequestScript = fs.readFileSync(servicePublicRequestsFunctionFile, "utf8");
+  if (!servicePublicRequestScript.includes("publicMetricsOnly") || !servicePublicRequestScript.includes("privateFields") || !servicePublicRequestScript.includes("GitHub issues API")) failures.push("Service public request API should expose only public-safe GitHub issue evidence.");
+  if (!servicePublicRequestScript.includes("service-request") || !servicePublicRequestScript.includes("business-review")) failures.push("Service public request API should use public-safe service request labels.");
+  if (!servicePublicRequestScript.includes("invoiceFollowupRequestCount") || !servicePublicRequestScript.includes("paidServiceRequestCount")) failures.push("Service public request API should summarize invoice follow-up and paid service request issues.");
+  if (!servicePublicRequestScript.includes("Do not treat zero as confirmed")) failures.push("Service public request API should warn when evidence is unavailable.");
+}
+const servicePublicRequestScriptFile = path.join(root, "scripts", "service-public-request-evidence.cjs");
+if (!fs.existsSync(servicePublicRequestScriptFile)) failures.push("Missing service public request evidence script.");
+else {
+  const publicServiceRequestScript = fs.readFileSync(servicePublicRequestScriptFile, "utf8");
+  if (!publicServiceRequestScript.includes("service-public-request-evidence.json") || !publicServiceRequestScript.includes("publicMetricsOnly")) failures.push("Service public request evidence script should write a public-safe report.");
+}
 if (!fs.existsSync(sponsorLeadFunctionFile)) failures.push("Missing sponsor lead API function.");
 else {
   const sponsorLeadScript = fs.readFileSync(sponsorLeadFunctionFile, "utf8");
@@ -528,6 +544,7 @@ else {
   if (!serviceLeadScript.includes("invoice-followup-copy-pack") || !serviceLeadScript.includes("Invoice Follow-up Copy Pack")) failures.push("Service lead API missing invoice follow-up service type.");
   if (!serviceLeadScript.includes("publicLeadSummary") || !serviceLeadScript.includes("privateFields") || !serviceLeadScript.includes("not exposed")) failures.push("Service lead API should expose only public-safe summary counts.");
   if (!serviceLeadScript.includes("fallbackPublicReplyUrl") || !serviceLeadScript.includes("Public-safe service request")) failures.push("Service lead API should provide a public-safe GitHub fallback.");
+  if (!serviceLeadScript.includes('fallbackTemplate: "invoice-followup-copy-pack-service.yml"') || !serviceLeadScript.includes('url.searchParams.set("labels", "service-request,business-review")')) failures.push("Service lead API should route invoice follow-up fallback issues to the public service request workflow.");
 }
 if (!fs.existsSync(sponsorProspectScriptFile)) failures.push("Missing sponsor prospect queue generator.");
 else {
@@ -568,6 +585,14 @@ else {
   if (!issueTemplate.includes("requested_next_step") || !issueTemplate.includes("Request pilot invoice review") || !issueTemplate.includes("proposal_url") || !issueTemplate.includes("selected_deal")) failures.push("Sponsor public issue template missing invoice review fallback fields.");
   if (!issueTemplate.includes("sponsor-starter-review") || !issueTemplate.includes("Starter fit review") || !issueTemplate.includes("Under USD 250")) failures.push("Sponsor public issue template should prioritize the USD 49 starter review path.");
   if (!issueTemplate.includes("private payment") || !issueTemplate.includes("confidential file")) failures.push("Sponsor public issue template missing public safety warning.");
+}
+const invoiceFollowupIssueTemplateFile = path.join(root, ".github", "ISSUE_TEMPLATE", "invoice-followup-copy-pack-service.yml");
+if (!fs.existsSync(invoiceFollowupIssueTemplateFile)) failures.push("Missing invoice follow-up service issue template.");
+else {
+  const issueTemplate = fs.readFileSync(invoiceFollowupIssueTemplateFile, "utf8");
+  if (!issueTemplate.includes("Invoice Follow-up Copy Pack") || !issueTemplate.includes("service-request") || !issueTemplate.includes("business-review")) failures.push("Invoice follow-up service issue template missing service request labels.");
+  if (!issueTemplate.includes("invoice_status") || !issueTemplate.includes("payment_wording") || !issueTemplate.includes("checkout_provider")) failures.push("Invoice follow-up service issue template missing invoice-specific fit-check fields.");
+  if (!issueTemplate.includes("invoice numbers") || !issueTemplate.includes("bank") || !issueTemplate.includes("client private")) failures.push("Invoice follow-up service issue template missing public safety warnings.");
 }
 
 const readmeFile = path.join(root, "README.md");
@@ -1166,6 +1191,7 @@ else {
     if (html.includes(retiredInvoiceCopy)) failures.push(`Invoice follow-up route should not include custom print-pack request copy: ${retiredInvoiceCopy}`);
   }
   if (!html.includes("real external checkout") || !html.includes("No payment is collected")) failures.push("Invoice follow-up route missing external-payment gate.");
+  if (!html.includes("invoice-followup-copy-pack-service.yml") || !html.includes("service-request%2Cbusiness-review")) failures.push("Invoice follow-up route missing public-safe service request issue fallback.");
   if (!html.includes("not legal, tax, accounting, debt-collection, or financial advice")) failures.push("Invoice follow-up route missing advice-risk boundary.");
   if (!sitemap.includes(`<loc>${siteUrl(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug)}</loc>`)) failures.push("Sitemap should include invoice follow-up service route.");
 }
@@ -1215,6 +1241,7 @@ const requiredServiceArtifacts = [
   CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicSampleDeliveryPath,
   CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryInputExamplePath,
   CUSTOM_LOCAL_PRINT_PACK_SERVICE.publicDeliveryReportPath,
+  INVOICE_FOLLOWUP_COPY_PACK_SERVICE.issueTemplatePath,
   MARKET_TABLE_PRINT_AUDIT.publicRequestPath,
   MARKET_TABLE_PRINT_AUDIT.publicChecklistPath,
   CUSTOM_LOCAL_PRINT_PACK_SERVICE.issueTemplatePath,

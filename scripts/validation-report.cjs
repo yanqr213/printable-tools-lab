@@ -48,6 +48,7 @@ function readLocalState() {
   const sponsorProspects = readJson("reports/sponsor-prospect-queue.json", {});
   const sponsorOutreachLog = readJson("reports/sponsor-outreach-log.json", {});
   const sponsorPublicReplies = readJson("reports/sponsor-public-reply-evidence.json", {});
+  const servicePublicRequests = readJson("reports/service-public-request-evidence.json", {});
   const adsTxt = readText("ads.txt").trim();
   const config = readText("site-config.js");
   const indexableRoutes = routes.filter((route) => route.index !== false).length;
@@ -79,11 +80,13 @@ function readLocalState() {
       sponsorProspectQueue: sponsorProspectQueueReady(sponsorProspects),
       sponsorOutreachLog: sponsorOutreachLogReady(sponsorOutreachLog),
       sponsorPublicReplyEvidence: sponsorPublicReplyEvidenceReady(sponsorPublicReplies),
+      servicePublicRequestEvidence: servicePublicRequestEvidenceReady(servicePublicRequests),
     },
     sponsorOutreach: sponsorOutreachSummary(sponsorOutreachLog),
     sponsorPublicReplies: sponsorPublicReplySummary(sponsorPublicReplies),
+    servicePublicRequests: servicePublicRequestSummary(servicePublicRequests),
     checkout: checkoutReadinessSummary(config),
-    closeReadiness: closeReadinessSummary(config, sponsorPublicReplies),
+    closeReadiness: closeReadinessSummary(config, sponsorPublicReplies, servicePublicRequests),
     ads: {
       enabled: readBool(config, "enableAds"),
       publisherConfigured: /^ca-pub-\d{10,30}$/.test(readString(config, "adsenseClientId")),
@@ -153,6 +156,33 @@ function sponsorPublicReplySummary(data) {
   };
 }
 
+function servicePublicRequestEvidenceReady(data) {
+  return data
+    && typeof data === "object"
+    && typeof data.publicRequestCount === "number"
+    && typeof data.invoiceFollowupRequestCount === "number"
+    && String(data.sourceUrl || "").includes("github.com/")
+    && data.publicMetricsOnly === true;
+}
+
+function servicePublicRequestSummary(data) {
+  return {
+    available: Boolean(data?.available),
+    dataQuality: data?.dataQuality || "missing",
+    publicRequestCount: Number(data?.publicRequestCount) || 0,
+    openCount: Number(data?.openCount) || 0,
+    paidServiceRequestCount: Number(data?.paidServiceRequestCount) || 0,
+    invoiceFollowupRequestCount: Number(data?.invoiceFollowupRequestCount) || 0,
+    customLocalPrintRequestCount: Number(data?.customLocalPrintRequestCount) || 0,
+    auditRequestCount: Number(data?.auditRequestCount) || 0,
+    sellerKitRequestCount: Number(data?.sellerKitRequestCount) || 0,
+    readyForReviewCount: Number(data?.readyForReviewCount) || 0,
+    latestUpdatedAt: data?.latestUpdatedAt || "",
+    sourceUrl: data?.sourceUrl || "",
+    dataWarning: data?.dataWarning || "",
+  };
+}
+
 function checkoutReadinessSummary(config) {
   const sellerKitCheckoutConfigured = Boolean(readString(config, "sellerKitCheckoutUrl"));
   const serviceCheckoutConfigured = Boolean(readString(config, "serviceCheckoutUrl"));
@@ -174,7 +204,7 @@ function checkoutReadinessSummary(config) {
   };
 }
 
-function closeReadinessSummary(config, sponsorPublicReplies = {}) {
+function closeReadinessSummary(config, sponsorPublicReplies = {}, servicePublicRequests = {}) {
   const paymentReplyTemplatesReady = fs.existsSync(path.join(root, "assets", "services", "custom-local-print-pack-payment-reply.txt"))
     && fs.existsSync(path.join(root, "assets", "services", "custom-local-print-pack-fulfillment-checklist.txt"))
     && fs.existsSync(path.join(root, "assets", "services", "invoice-followup-copy-pack-payment-reply.txt"))
@@ -194,6 +224,8 @@ function closeReadinessSummary(config, sponsorPublicReplies = {}) {
     sponsorExportReady,
     paymentReplyTemplatesReady,
     publicInvoiceIssueCount: Number(sponsorPublicReplies?.invoiceRequestCount) || 0,
+    publicServiceRequestCount: Number(servicePublicRequests?.publicRequestCount) || 0,
+    publicInvoiceFollowupRequestCount: Number(servicePublicRequests?.invoiceFollowupRequestCount) || 0,
     directCheckoutConfigured: checkout.readyForDirectPayment,
     readyForManualClose: serviceExportReady && sponsorExportReady && paymentReplyTemplatesReady,
     nextCommands: [
@@ -207,7 +239,7 @@ function closeReadinessSummary(config, sponsorPublicReplies = {}) {
 }
 
 async function readLiveState() {
-  const paths = ["/", "/tools/", "/share-kit/", "/sitemap.xml", "/robots.txt", "/ads.txt", "/llms.txt", "/feed.xml", "/tools.json", "/discovery.json", "/share-kit.json", "/site.webmanifest", "/opensearch.xml", "/api/metrics", "/api/service-lead"];
+  const paths = ["/", "/tools/", "/share-kit/", "/sitemap.xml", "/robots.txt", "/ads.txt", "/llms.txt", "/feed.xml", "/tools.json", "/discovery.json", "/share-kit.json", "/site.webmanifest", "/opensearch.xml", "/api/metrics", "/api/service-lead", "/api/service-public-requests"];
   const checks = {};
   for (const pathname of paths) {
     checks[pathname] = await liveCheck(pathname);
@@ -613,6 +645,7 @@ function buildNextActions(gates, local, live, searchConsole, discovery, director
   const sponsorLeads = live.metrics?.sponsorLeads || 0;
   const sponsorInvoiceRequests = live.metrics?.sponsorInvoiceRequests || 0;
   const publicReplies = local.sponsorPublicReplies || {};
+  const servicePublicRequests = local.servicePublicRequests || {};
   const checkout = local.checkout || {};
   const actions = [];
   if (!gates.productReady) actions.push("Fix product readiness failures before adding more tools.");
@@ -630,6 +663,8 @@ function buildNextActions(gates, local, live, searchConsole, discovery, director
   if (depthIntent === 0) actions.push("Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces.");
   if (local.closeReadiness?.readyForManualClose) actions.push("Use the internal lead-to-payment close cockpit after every service, seller-kit, audit, or sponsor lead: export, confirm fit, copy the payment reply, and count revenue only after external proof.");
   if (!checkout.readyForDirectPayment) actions.push("Create one real external payment-provider product for the $29 service or $9 kit, then run configure:checkout with the public checkout URL only.");
+  if ((servicePublicRequests.invoiceFollowupRequestCount || 0) > 0) actions.push("Review public-safe GitHub invoice follow-up service request issues, confirm fit, then send only an external $19 checkout or invoice link.");
+  else if ((servicePublicRequests.paidServiceRequestCount || 0) > 0) actions.push("Review public-safe GitHub service request issues and move qualified buyers to an external checkout or invoice link.");
   if (commercial === 0) actions.push("Keep the sponsorship and partner inquiry page visible as a no-payment commercial-intent surface while ad-network setup waits.");
   if (sponsorInvoiceRequests > 0) actions.push("Export the invoice-request sponsor lead, verify policy fit, and send only an external invoice or agreement; do not collect payment details in this site.");
   else if (sponsorLeads > 0) actions.push("Review sponsor lead details in private KV/export workflow and reply only to policy-fit business inquiries.");
@@ -651,6 +686,7 @@ function renderValidationMarkdown(report) {
   const sponsorLeads = report.live.metrics?.sponsorLeads || 0;
   const sponsorInvoiceRequests = report.live.metrics?.sponsorInvoiceRequests || 0;
   const publicReplies = report.local.sponsorPublicReplies || {};
+  const servicePublicRequests = report.local.servicePublicRequests || {};
   const perf = report.searchConsole.performance;
   const sitemap = Array.isArray(report.searchConsole.sitemaps?.sitemap) ? report.searchConsole.sitemaps.sitemap[0] : null;
   const githubPagesSitemap = Array.isArray(report.searchConsole.githubPagesSitemaps?.sitemap) ? report.searchConsole.githubPagesSitemaps.sitemap[0] : null;
@@ -675,6 +711,8 @@ function renderValidationMarkdown(report) {
     `- Lead-to-payment close cockpit ready: ${yesNo(report.local.closeReadiness?.readyForManualClose)}.`,
     `- Sponsor leads captured: ${sponsorLeads}.`,
     `- Sponsor invoice requests: ${sponsorInvoiceRequests}.`,
+    `- Public-safe service request issues: ${servicePublicRequests.publicRequestCount || 0}.`,
+    `- Public-safe invoice follow-up request issues: ${servicePublicRequests.invoiceFollowupRequestCount || 0}.`,
     `- Public-safe sponsor replies: ${publicReplies.publicReplyCount || 0}.`,
     `- Public-safe invoice issue requests: ${publicReplies.invoiceRequestCount || 0}.`,
     `- Sponsor outreach queued/sent/settled: ${report.local.sponsorOutreach.queued}/${report.local.sponsorOutreach.sent}/${report.local.sponsorOutreach.settled}.`,
@@ -716,6 +754,7 @@ function renderValidationMarkdown(report) {
     "",
     "```powershell",
     "npm.cmd run validate:ops",
+    "npm.cmd run service:public-requests",
     "npm.cmd run sponsor:public-replies",
     "npm.cmd run verify:seo",
     "npm.cmd run verify:adsense",
@@ -729,9 +768,10 @@ function printSummary(report) {
   const sponsorLeads = report.live.metrics?.sponsorLeads || 0;
   const sponsorInvoiceRequests = report.live.metrics?.sponsorInvoiceRequests || 0;
   const publicReplies = report.local.sponsorPublicReplies || {};
+  const servicePublicRequests = report.local.servicePublicRequests || {};
   console.log(`Validation report written to ${path.relative(root, reportPath)} and VALIDATION.md`);
   console.log(`Product ready: ${yesNo(report.gates.productReady)} | Tools: ${report.local.toolCount} | Guides: ${report.local.guideCount} | Landing pages: ${report.local.landingPageCount}`);
-  console.log(`Downloads: ${totalDownloads(totals)} | Generations: ${totalGenerations(totals)} | Free-tool depth intent: ${freeToolDepthIntent(totals)} | Commercial intent: ${commercialIntent(totals)} | Sponsor leads: ${sponsorLeads} | Sponsor invoice requests: ${sponsorInvoiceRequests} | Public replies: ${publicReplies.publicReplyCount || 0} | Public invoice issues: ${publicReplies.invoiceRequestCount || 0} | Search visible: ${yesNo(report.gates.searchVisible)} | External discovery: ${yesNo(report.gates.externalDiscoveryReady)} | AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}`);
+  console.log(`Downloads: ${totalDownloads(totals)} | Generations: ${totalGenerations(totals)} | Free-tool depth intent: ${freeToolDepthIntent(totals)} | Commercial intent: ${commercialIntent(totals)} | Sponsor leads: ${sponsorLeads} | Sponsor invoice requests: ${sponsorInvoiceRequests} | Public service issues: ${servicePublicRequests.publicRequestCount || 0} | Public invoice follow-up issues: ${servicePublicRequests.invoiceFollowupRequestCount || 0} | Public replies: ${publicReplies.publicReplyCount || 0} | Public invoice issues: ${publicReplies.invoiceRequestCount || 0} | Search visible: ${yesNo(report.gates.searchVisible)} | External discovery: ${yesNo(report.gates.externalDiscoveryReady)} | AdSense apply-ready: ${yesNo(report.gates.adsenseApplyReady)}`);
 }
 
 function totalDownloads(totals) {

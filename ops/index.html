@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="notice compact-notice">
-          <strong>Runtime refresh:</strong> the app replaces this snapshot with live project rows from /api/ops-metrics after loading. Snapshot generated: 2026-06-08T05:50:30.799Z.
+          <strong>Runtime refresh:</strong> the app replaces this snapshot with live project rows from /api/ops-metrics after loading. Snapshot generated: 2026-06-08T06:18:35.383Z.
         </div>
         <div class="metric-grid ops-summary-grid">
           <div class="metric-tile"><strong>507</strong><span>all page views</span></div>
@@ -53,9 +53,11 @@
           <div class="metric-tile"><strong>2</strong><span>commercial intent</span></div>
           <div class="metric-tile"><strong>0</strong><span>sponsor leads</span></div>
           <div class="metric-tile"><strong>0</strong><span>service leads</span></div>
+          <div class="metric-tile"><strong>0</strong><span>public service issues</span></div>
           <div class="metric-tile"><strong>0</strong><span>invoice requests</span></div>
           <div class="metric-tile"><strong>0</strong><span>public sponsor replies</span></div>
           <div class="metric-tile"><strong>0</strong><span>public invoice issues</span></div>
+          <div class="metric-tile"><strong>0</strong><span>public invoice follow-ups</span></div>
           <div class="metric-tile"><strong>10/0/0</strong><span>outreach queued/sent/settled</span></div>
         </div>
         <div id="opsMetrics" class="metric-remote">
@@ -186,6 +188,7 @@ Buyer safety: Do not send tax, bank, card, password, private identity, customer-
               </div>
               <div class="actions">
                 <a class="button secondary" href="/api/service-lead" target="_blank" rel="noreferrer">Open service index</a>
+                <a class="button ghost" href="/api/service-public-requests" target="_blank" rel="noreferrer">Open service issues</a>
                 <a class="button ghost" href="/api/sponsor-lead" target="_blank" rel="noreferrer">Open sponsor index</a>
               </div>
             </div>
@@ -195,10 +198,10 @@ Buyer safety: Do not send tax, bank, card, password, private identity, customer-
               <div class="metric-tile"><strong>external only</strong><span>payment channel</span></div>
               <div class="metric-tile"><strong>paid proof</strong><span>revenue gate</span></div>
             </div>
-            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Lane</th><th>Signal</th><th>State</th><th>Next cash action</th><th>Proof gate</th></tr></thead><tbody><tr><td>$29 service setup</td><td>0 lead(s), 0 shared request intent</td><td>waiting</td><td>Keep the request form live and use the payment reply as soon as a qualified service lead arrives.</td><td>paid_order_verified from external provider</td></tr>
-<tr><td>$19 invoice follow-up copy</td><td>0 lead(s), 0 total service lead(s)</td><td>waiting</td><td>Keep the invoice download form live and use this reply as soon as a qualified invoice follow-up lead arrives.</td><td>paid_order_verified from external provider</td></tr>
-<tr><td>Free audit to $29 upgrade</td><td>0 audit lead(s), 0 audit intent</td><td>waiting</td><td>Use the audit as a low-friction lead magnet before asking for a paid setup.</td><td>separate paid setup order</td></tr>
-<tr><td>$9 seller kit</td><td>0 seller request(s), 0 checkout intent</td><td>waiting</td><td>Connect a real checkout URL before treating clicks as purchase demand.</td><td>paid digital product order</td></tr>
+            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Lane</th><th>Signal</th><th>State</th><th>Next cash action</th><th>Proof gate</th></tr></thead><tbody><tr><td>$29 service setup</td><td>0 lead(s), 0 public issue(s), 0 shared request intent</td><td>waiting</td><td>Keep the request form live and use the payment reply as soon as a qualified service lead arrives.</td><td>paid_order_verified from external provider</td></tr>
+<tr><td>$19 invoice follow-up copy</td><td>0 lead(s), 0 public issue(s), 0 paid public issue(s), 0 total service lead(s)</td><td>waiting</td><td>Keep the invoice download form live and use this reply as soon as a qualified invoice follow-up lead arrives.</td><td>paid_order_verified from external provider</td></tr>
+<tr><td>Free audit to $29 upgrade</td><td>0 audit lead(s), 0 public issue(s), 0 audit intent</td><td>waiting</td><td>Use the audit as a low-friction lead magnet before asking for a paid setup.</td><td>separate paid setup order</td></tr>
+<tr><td>$9 seller kit</td><td>0 seller request(s), 0 public issue(s), 0 checkout intent</td><td>waiting</td><td>Connect a real checkout URL before treating clicks as purchase demand.</td><td>paid digital product order</td></tr>
 <tr><td>Sponsor invoice review</td><td>0 invoice request(s), 0 lead(s), 2 intent</td><td>intent only</td><td>Use the starter review path for sponsor clicks until a qualified lead arrives.</td><td>signed sponsor agreement or settled external payment</td></tr></tbody></table></div>
             <div class="ops-action-list">
               <article class="ops-action-card lead-close-card">
@@ -462,6 +465,11 @@ We will keep payment, tax, bank, phone, and private customer details outside the
             <strong>Service lead index check</strong>
             <p>Private details stay hidden. Public-safe check: 0 indexed service lead(s). Runtime refresh reads /api/service-lead for service, audit, seller-kit, source, and latest-created counts.</p>
             <p><a href="/api/service-lead" target="_blank" rel="noreferrer">Open public-safe service lead JSON</a></p>
+          </section>
+          <section class="notice sponsor-lead-check service-public-request-check">
+            <strong>Public-safe service request evidence</strong>
+            <p>0 public GitHub service request issue(s), 0 invoice follow-up issue(s), 0 paid service issue(s), 0 ready for manual review. Quality github-issues-api.</p>
+            <p><a href="/api/service-public-requests" target="_blank" rel="noreferrer">Open public-safe service request JSON</a> · <a href="https://github.com/yanqr213/printable-tools-lab/issues?q=is%3Aissue%20label%3Abusiness-review%20label%3Aservice-request%20OR%20label%3Aaudit-request" target="_blank" rel="noreferrer">Open GitHub evidence search</a></p>
           </section>
           <section class="panel ops-project">
             <div class="ops-project-head">

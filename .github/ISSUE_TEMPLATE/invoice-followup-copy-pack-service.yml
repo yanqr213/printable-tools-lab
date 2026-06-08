@@ -1,0 +1,95 @@
+name: Invoice Follow-up Copy Pack request
+description: Public-safe request for the $19 invoice follow-up copy pack.
+title: "[Service request]: Invoice Follow-up Copy Pack"
+labels: ["service-request", "business-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this public issue only for non-sensitive service-fit details. Payment starts only after fit is confirmed and a real external checkout or invoice link is paid.
+
+        Do not include invoice numbers, bank details, card data, tax IDs, client private data, private customer lists, legal dispute details, passwords, or private account details.
+
+  - type: input
+    id: business_name
+    attributes:
+      label: Business, client-work, or project name
+      placeholder: Example: Freelance design project
+    validations:
+      required: true
+
+  - type: dropdown
+    id: invoice_status
+    attributes:
+      label: Invoice status
+      options:
+        - draft
+        - sent
+        - due today
+        - overdue
+        - paid
+        - recurring
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tone
+    attributes:
+      label: Preferred tone
+      options:
+        - friendly
+        - firm
+        - concise
+        - warm
+    validations:
+      required: true
+
+  - type: textarea
+    id: copy_needed
+    attributes:
+      label: What kind of follow-up copy do you need?
+      description: Keep this public-safe and generic.
+      placeholder: Friendly reminder plus a firmer first overdue follow-up for one freelance invoice workflow.
+    validations:
+      required: true
+
+  - type: input
+    id: payment_wording
+    attributes:
+      label: Payment wording to mention without private account details
+      placeholder: Please use the payment link or invoice portal already sent.
+    validations:
+      required: false
+
+  - type: input
+    id: timeline
+    attributes:
+      label: Need-by date or follow-up timeline
+      placeholder: Tomorrow morning, this week, before the due date
+    validations:
+      required: false
+
+  - type: dropdown
+    id: checkout_provider
+    attributes:
+      label: Preferred external checkout or invoice provider
+      description: No payment is collected in this issue.
+      options:
+        - Gumroad
+        - Payhip
+        - Ko-fi
+        - Stripe
+        - Invoice link
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Public safety confirmations
+      options:
+        - label: I understand this public issue does not collect payment and the $19 service starts only after a real external checkout or invoice is paid.
+          required: true
+        - label: I did not include invoice numbers, bank details, card data, tax IDs, client private data, private customer lists, legal dispute details, passwords, or private account details.
+          required: true

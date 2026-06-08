@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Paid Services",
-  "generatedAt": "2026-06-08T05:50:56.148Z",
+  "generatedAt": "2026-06-08T06:19:22.278Z",
   "canonical": "https://printable-tools-lab.pages.dev/services.json",
   "services": [
     {
@@ -12,7 +12,7 @@
       "githubPagesServiceUrl": "https://yanqr213.github.io/printable-tools-lab/custom-local-print-pack/",
       "priceUsd": 29,
       "currency": "USD",
-      "requestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=Service+request%3A+Custom+Local+Print+Pack+Setup&body=I+want+a+free+fit+check+for+the+Custom+Local+Print+Pack+Setup+%28%2429+USD+only+if+it+fits%29.%0A%0ABusiness%2C+booth%2C+event%2C+or+service+name%3A%0AWhat+do+you+sell+or+promote%3F%0AUp+to+12+items%2Fservices+with+prices%3A%0ALink+or+contact+method+for+QR+sign+wording%3A%0APreferred+style%3A+clean+%2F+cute+%2F+bold+%2F+minimal+%2F+local+%2F+premium+%2F+practical%0ANeed-by+date%3A%0AIf+it+fits%2C+preferred+external+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+invoice+%2F+other%0ABest+contact+method%3A%0ACountry+or+region+%28optional%29%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+review+fit+first%3B+send+a+real+external+checkout+or+invoice+link+only+if+the+service+is+useful+and+available.",
+      "requestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml&title=Service+request%3A+Custom+Local+Print+Pack+Setup&body=I+want+a+free+fit+check+for+the+Custom+Local+Print+Pack+Setup+%28%2429+USD+only+if+it+fits%29.%0A%0ABusiness%2C+booth%2C+event%2C+or+service+name%3A%0AWhat+do+you+sell+or+promote%3F%0AUp+to+12+items%2Fservices+with+prices%3A%0ALink+or+contact+method+for+QR+sign+wording%3A%0APreferred+style%3A+clean+%2F+cute+%2F+bold+%2F+minimal+%2F+local+%2F+premium+%2F+practical%0ANeed-by+date%3A%0AIf+it+fits%2C+preferred+external+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+invoice+%2F+other%0ABest+contact+method%3A%0ACountry+or+region+%28optional%29%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+review+fit+first%3B+send+a+real+external+checkout+or+invoice+link+only+if+the+service+is+useful+and+available.&labels=service-request%2Cbusiness-review",
       "issueFormUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=custom-local-print-pack-service.yml",
       "requestEmailUrl": "",
       "requestTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-request.txt",
@@ -22,7 +22,7 @@
       "fulfillmentChecklistUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-fulfillment-checklist.txt",
       "fulfillmentChecklistSha256": "888719ae6c46a9537f0e258488dc7cfe08a272806adac74cea7fd008a8c4f202",
       "orderPipelineUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-order-pipeline.json",
-      "orderPipelineSha256": "f35bc46c936c5e23d7926ceccb0d69068ff58ebebe5c5829ec1887edfdb74d9d",
+      "orderPipelineSha256": "ba4aac4ad0224ab10559c9e0b12bcef8c144755b836c3f9183586e39069f97be",
       "orderPipeline": [
         {
           "id": "intent_received",
@@ -220,11 +220,11 @@
         }
       ],
       "sampleDeliveryUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-sample-delivery.zip",
-      "sampleDeliverySha256": "84a768309768e2ca08dd982523d14028e7c2d15114a467e484f7236d93497fab",
+      "sampleDeliverySha256": "84f50d0886ce90f9603b979f77923585135639700085c3c1c86b5fc50a5b8019",
       "deliveryInputExampleUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-delivery-input.example.json",
       "deliveryInputExampleSha256": "cc7bb204fc8da14ab5a878b0079dc19a8fb0acad8753e7715c6e7a6a7db32956",
       "deliveryReportUrl": "https://printable-tools-lab.pages.dev/assets/services/custom-local-print-pack-sample-delivery.json",
-      "deliveryReportSha256": "98d1a1768b184fa96bfd53b54e6807774c5339243513c8899f85d4d7d1bbf7b2",
+      "deliveryReportSha256": "debef9e2bb02482db85ca41885ba978592087d39976058cc4f12de66dc0e0255",
       "privateDeliveryCommand": "npm.cmd run service:delivery -- --input path/to/paid-order.json",
       "turnaround": "Target delivery is 2 business days after real payment and complete buyer details.",
       "deliverables": [
@@ -268,8 +268,8 @@
       "githubPagesServiceUrl": "",
       "priceUsd": 19,
       "currency": "USD",
-      "requestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=Service+request%3A+Invoice+Follow-up+Copy+Pack&body=I+want+a+free+fit+check+for+the+Invoice+Follow-up+Copy+Pack+%28%2419+USD+only+if+it+fits%29.%0A%0ABusiness+or+project+name%3A%0AInvoice+status%3A+draft+%2F+sent+%2F+due+today+%2F+overdue+%2F+paid+%2F+recurring%0APreferred+tone%3A+friendly+%2F+firm+%2F+concise+%2F+warm%0AWhat+kind+of+follow-up+do+you+need%3F%0APayment+method+wording+to+mention%2C+without+private+account+details%3A%0ANeed-by+date+or+follow-up+timeline%3A%0AIf+it+fits%2C+preferred+external+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+invoice+%2F+other%0ABest+contact+method%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+review+fit+first%3B+send+a+real+external+checkout+or+invoice+link+only+if+the+service+is+useful+and+available.%0ADo+not+include+invoice+numbers%2C+bank+details%2C+card+data%2C+tax+IDs%2C+client+private+data%2C+private+customer+lists%2C+or+legal+dispute+details.",
-      "issueFormUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new",
+      "requestUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=invoice-followup-copy-pack-service.yml&title=Service+request%3A+Invoice+Follow-up+Copy+Pack&body=I+want+a+free+fit+check+for+the+Invoice+Follow-up+Copy+Pack+%28%2419+USD+only+if+it+fits%29.%0A%0ABusiness+or+project+name%3A%0AInvoice+status%3A+draft+%2F+sent+%2F+due+today+%2F+overdue+%2F+paid+%2F+recurring%0APreferred+tone%3A+friendly+%2F+firm+%2F+concise+%2F+warm%0AWhat+kind+of+follow-up+do+you+need%3F%0APayment+method+wording+to+mention%2C+without+private+account+details%3A%0ANeed-by+date+or+follow-up+timeline%3A%0AIf+it+fits%2C+preferred+external+checkout+provider%3A+Gumroad+%2F+Payhip+%2F+Ko-fi+%2F+Stripe+%2F+invoice+%2F+other%0ABest+contact+method%3A%0ANotes%3A%0A%0ANo+payment+is+collected+by+this+request.+Please+review+fit+first%3B+send+a+real+external+checkout+or+invoice+link+only+if+the+service+is+useful+and+available.%0ADo+not+include+invoice+numbers%2C+bank+details%2C+card+data%2C+tax+IDs%2C+client+private+data%2C+private+customer+lists%2C+or+legal+dispute+details.&labels=service-request%2Cbusiness-review",
+      "issueFormUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=invoice-followup-copy-pack-service.yml",
       "requestEmailUrl": "",
       "requestTemplateUrl": "https://printable-tools-lab.pages.dev/assets/services/invoice-followup-copy-pack-request.txt",
       "requestTemplateSha256": "0fc25a84693dc67c408491ca43ce4d41fd96fb7e7c100876633c42f9337de51c",
@@ -278,7 +278,7 @@
       "fulfillmentChecklistUrl": "https://printable-tools-lab.pages.dev/assets/services/invoice-followup-copy-pack-fulfillment-checklist.txt",
       "fulfillmentChecklistSha256": "f18aa34f9009c7fc68cb60dec5ffbcc38a56158e9c418ba4c558f54cbcd81099",
       "orderPipelineUrl": "https://printable-tools-lab.pages.dev/assets/services/invoice-followup-copy-pack-order-pipeline.json",
-      "orderPipelineSha256": "71aab4de7abc3c542d04b033230d46dedef8a7f006788162a926f344ef66fbcb",
+      "orderPipelineSha256": "30c5e47eb34d6e69aef4c0680a8607c06037ad6b44ab5d27d10cbd4de865a862",
       "orderPipeline": [
         {
           "id": "intent_received",
@@ -330,9 +330,9 @@
         }
       ],
       "outreachQueueUrl": "https://printable-tools-lab.pages.dev/assets/services/invoice-followup-copy-pack-outreach-queue.json",
-      "outreachQueueSha256": "545017808e6aaa6f6ea899bb2ce4d880df690ffa19e4c814f2bd0abb6dd8b6a6",
+      "outreachQueueSha256": "332394d3b829d96c9ed01f82479c674d9efb00c8228f43b6a1aacdcdfbdda74d",
       "outreachBatchUrl": "https://printable-tools-lab.pages.dev/assets/services/invoice-followup-copy-pack-outreach-batch.txt",
-      "outreachBatchSha256": "1f8b269ca285a1c37769f467540c1197623c5ca277780e5ac89435b2f706b92b",
+      "outreachBatchSha256": "272cb8ea16af3943d76de44acfbac5180794ac8b107fae181c1a2032f02bf211",
       "outreachQueue": [
         {
           "id": "invoice-generator-inbound-lead-01",
@@ -455,7 +455,7 @@
           "qualification": "They asked a question, requested the brief, or confirmed the wording pack might help.",
           "opener": "Subject: Invoice Follow-up Copy Pack - fit confirmed, payment link before work starts\n\nThanks for sending the public-safe invoice follow-up request. This looks like it may fit the simple copy-pack scope.\n\nScope after payment:\n- one polite payment reminder email\n- one due-today payment note\n- one first overdue follow-up\n- one paid thank-you message\n- one next-invoice or recurring-work note\n\nPrice: $19 USD\nTarget delivery is 1 business day after real payment and complete public-safe details.\n\nNext step:\n1. I will send one real external checkout or invoice link from Gumroad, Payhip, Ko-fi, Stripe, or an invoice provider.\n2. Please pay only through that external provider. Do not post card, bank, payout, tax, identity, customer, or private invoice details in GitHub or email.\n3. After the provider shows the order as paid, I will mark the request as paid_order_verified and prepare the copy pack.\n\nBefore I send the checkout link, please confirm:\n- The request is for editable wording only, not legal, tax, accounting, debt-collection, or financial advice.\n- You will review the final copy for accuracy, tone, client relationship, and local rules before sending it.\n- No private invoice numbers, client private data, bank details, tax IDs, or full customer lists are included.\n\nRevenue is counted only after the external provider shows a paid order, payout balance, or settled payment.",
           "cta": "Please confirm the scope bullets, then I can send the external checkout link.",
-          "trackedUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new",
+          "trackedUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?template=invoice-followup-copy-pack-service.yml",
           "fallbackUrl": "https://yanqr213.github.io/printable-tools-lab/assets/services/invoice-followup-copy-pack-payment-reply.txt?utm_source=warm-followup&utm_medium=manual&utm_campaign=invoice_followup_service",
           "stopRule": "Use this only after a real reply. Do not send payment language to cold contacts.",
           "status": "reply_only"
@@ -476,11 +476,11 @@
         }
       ],
       "sampleDeliveryUrl": "https://printable-tools-lab.pages.dev/assets/services/invoice-followup-copy-pack-sample-delivery.zip",
-      "sampleDeliverySha256": "7976fd6901cb3e1338be5a87773f623a2607d806bfae0d62a7e26d9d1a0db327",
+      "sampleDeliverySha256": "7d187eb639c01fbb1f84b73eda8ab7080d0f3380cd06512cdfa7a49cc6563f0d",
       "deliveryInputExampleUrl": "https://printable-tools-lab.pages.dev/assets/services/invoice-followup-copy-pack-delivery-input.example.json",
       "deliveryInputExampleSha256": "c8e8e7048653c2b52895210cae348e59d12700b49141c82ea1237a63adc88f0e",
       "deliveryReportUrl": "https://printable-tools-lab.pages.dev/assets/services/invoice-followup-copy-pack-sample-delivery.json",
-      "deliveryReportSha256": "1b3b699cdc1b1f2c08676f7dc4ef32c9c9123ed83e172c79fb7dcbc97210427b",
+      "deliveryReportSha256": "e24a7546ed96589f92203da64606a9831bbdd4822a3075021c484cd234f86721",
       "privateDeliveryCommand": "npm.cmd run service:delivery -- --input path/to/paid-order.json",
       "turnaround": "Target delivery is 1 business day after real payment and complete public-safe details.",
       "deliverables": [
