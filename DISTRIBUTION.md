@@ -251,6 +251,9 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - Passport Photo Compress to 100KB: https://printable-tools-lab.pages.dev/passport-photo-compress-to-100kb/
 - Passport Photo Compress to 200KB: https://printable-tools-lab.pages.dev/passport-photo-compress-to-200kb/
 - Passport Photo Size Fixer: https://printable-tools-lab.pages.dev/passport-photo-size-fixer/
+- Passport Photo 35x45mm Without Uploading: https://printable-tools-lab.pages.dev/passport-photo-35x45mm/
+- Signature Under 20KB Without Uploading: https://printable-tools-lab.pages.dev/signature-under-20kb/
+- Resize Signature to 140x60 Pixels: https://printable-tools-lab.pages.dev/resize-signature-140x60/
 - Resize Photo to 413x531: https://printable-tools-lab.pages.dev/resize-photo-413x531/
 - Resize Image Without Uploading: https://printable-tools-lab.pages.dev/resize-image-no-upload/
 - Convert Image Format Without Uploading: https://printable-tools-lab.pages.dev/convert-image-format-no-upload/

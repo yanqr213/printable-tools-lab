@@ -2092,6 +2092,9 @@
     ["Compress JPG to 100KB", "/compress-jpg-to-100kb/", "Use this when the destination asks for JPG and a fixed 100KB limit.", "compress-image-to-kb"],
     ["Compress PNG to 100KB", "/compress-png-to-100kb/", "Use this when a screenshot, graphic, or form upload must stay PNG under 100KB.", "compress-image-to-kb"],
     ["Passport photo size fixer", "/passport-photo-size-fixer/", "Crop, resize, and compress ID-style photos for dimension and file-size rules.", "passport-photo"],
+    ["Passport photo 35x45mm", "/passport-photo-35x45mm/", "Open the local passport photo cropper with a common 35 x 45 mm preset.", "passport-photo"],
+    ["Resize signature to 140x60", "/resize-signature-140x60/", "Resize a signature image to a strict 140 x 60 pixel portal rule.", "resize-image"],
+    ["Signature under 20KB", "/signature-under-20kb/", "Compress a scanned or drawn signature image toward a strict 20KB upload cap.", "compress-image-to-kb"],
   ];
 
   const uploadLimitDecisions = [
@@ -2108,6 +2111,9 @@
     ["Wrong file type: needs JPG or PNG", "/tools/convert-image/", "Convert image", "Convert JPG, PNG, or WebP locally when the upload form rejects the current image type.", "convert-image"],
     ["Wrong image dimensions", "/tools/resize-image/", "Resize image", "Resize first when the portal gives width, height, square, thumbnail, or profile-photo dimensions.", "resize-image"],
     ["Passport or ID photo rejected", "/passport-photo-size-fixer/", "Fix passport photo", "Crop, resize, and compress ID-style photos when both dimensions and KB limits matter.", "passport-photo"],
+    ["Signature image must be under 20KB", "/signature-under-20kb/", "Compress signature", "Use the image-to-KB compressor for scanned or drawn signature uploads with a tiny file-size cap.", "compress-image-to-kb"],
+    ["Signature dimensions must be 140 x 60 px", "/resize-signature-140x60/", "Resize signature", "Use the image resizer with 140 x 60 pixels prefilled before compressing if the portal also has a KB cap.", "resize-image"],
+    ["Passport photo must be 35 x 45 mm", "/passport-photo-35x45mm/", "Make 35 x 45 photo", "Use a 35 x 45 mm passport-style preset, then compare the result with the destination site's current rules.", "passport-photo"],
     ["Website accepts image but rejects PDF", "/tools/pdf-to-images/", "PDF to JPG", "Convert PDF pages to JPG or PNG when a form wants image files instead of a PDF.", "pdf-to-images"],
     ["Website accepts PDF but I only have photos", "/tools/image-to-pdf/", "Image to PDF", "Turn a photo, scan, screenshot, or receipt image into a PDF locally.", "image-to-pdf"],
   ];
@@ -2689,8 +2695,11 @@
         ["Passport photo to 50KB", "passport-photo-compress-to-50kb", "For strict ID-style photo file-size limits."],
         ["Passport photo to 100KB", "passport-photo-compress-to-100kb", "For common passport-style and application photo upload limits."],
         ["Passport photo to 200KB", "passport-photo-compress-to-200kb", "For ID-style uploads that allow more detail."],
+        ["Signature under 20KB", "signature-under-20kb", "For strict signature image upload caps on forms and portals."],
+        ["Resize signature to 140x60", "resize-signature-140x60", "For signature boxes that validate exact pixel dimensions."],
+        ["Passport photo 35x45mm", "passport-photo-35x45mm", "For common ID-style photo forms that name a 35 x 45 mm requirement."],
       ],
-      related: ["compress-image-to-kb", "resize-image", "crop-image", "passport-photo"],
+      related: ["compress-image-to-kb", "resize-image", "crop-image", "passport-photo", "signature-png"],
     },
     {
       slug: "compress-image-to-10kb",
@@ -3006,6 +3015,57 @@
         ["Official rules still matter", "This page helps with crop, dimensions, format, and file size. It does not verify lighting, background, expression, age, pose, or acceptance by any authority."],
       ],
       related: ["resize-image", "compress-image-to-kb", "crop-image"],
+    },
+    {
+      slug: "passport-photo-35x45mm",
+      title: "Passport Photo 35x45mm Without Uploading",
+      headline: "Make a 35 x 45 mm passport photo without uploading",
+      description: "Crop a passport-style or ID-style photo to a common 35 x 45 mm layout locally before checking the destination form rules.",
+      lead: "Use this when a visa, exam, school, profile, or application form asks for a 35 x 45 mm passport-style photo. Open the local passport photo cropper with the 35 x 45 mm preset, then review the result against the destination site's current rules.",
+      tool: "passport-photo",
+      toolQuery: "preset=uk-passport",
+      intent: "passport photo 35x45mm, 35 x 45 mm photo maker, no upload",
+      sections: [
+        ["Start with a 35 x 45 mm preset", "The passport photo tool includes 35 x 45 mm presets for common passport-style and ID-style workflows. Choose the closest preset named by the receiving site."],
+        ["Crop before compressing", "Face placement and photo proportions should be handled before file-size compression. After exporting the 35 x 45 mm photo, use the image-to-KB tool if the portal also names a KB limit."],
+        ["Check official rules", "This page helps with local crop and export only. It does not verify lighting, background, expression, recency, identity, or official acceptance."],
+      ],
+      serviceLead: uploadLimitLandingServiceLead("make a 35 x 45 mm passport photo"),
+      related: ["passport-photo", "compress-image-to-kb", "resize-image", "crop-image"],
+    },
+    {
+      slug: "signature-under-20kb",
+      title: "Signature Under 20KB Without Uploading",
+      headline: "Make a signature image under 20KB",
+      description: "Compress a scanned, drawn, or transparent signature image toward a strict 20KB upload limit locally.",
+      lead: "Use this when a form, exam portal, job application, admin page, or document upload rejects a signature image because it must be under 20KB.",
+      tool: "compress-image-to-kb",
+      toolQuery: "targetKb=20",
+      intent: "signature under 20KB, compress signature image, signature upload too large",
+      sections: [
+        ["Use the 20KB target", "Open the image-to-KB compressor with 20KB prefilled. A signature usually compresses better than a photo because the image has fewer colors and details."],
+        ["Resize first if pixels are required", "Some portals ask for both a signature size and an exact dimension such as 140 x 60 pixels. Resize the signature first, then compress the resized output."],
+        ["Avoid legal claims", "This creates or compresses a visual signature image only. It does not verify identity, collect consent, notarize documents, or replace a regulated e-signature service."],
+      ],
+      serviceLead: uploadLimitLandingServiceLead("make a signature image under 20KB"),
+      related: ["compress-image-to-kb", "resize-image", "signature-png", "remove-background"],
+    },
+    {
+      slug: "resize-signature-140x60",
+      title: "Resize Signature to 140x60 Pixels",
+      headline: "Resize signature to 140 x 60 pixels",
+      description: "Resize a signature image to 140 x 60 pixels locally for strict form, exam, and admin upload rules.",
+      lead: "Use this when an upload page says a signature image must be exactly 140 x 60 pixels before it will accept the file.",
+      tool: "resize-image",
+      toolQuery: "width=140&height=60&fit=contain",
+      intent: "resize signature 140x60, signature dimensions 140 x 60, no upload",
+      sections: [
+        ["Match the pixel rule first", "Open the image resizer with 140 x 60 pixels prefilled. Fit-inside mode keeps the full signature visible instead of cropping off strokes."],
+        ["Then check file size", "After resizing, use the image-to-KB compressor if the same portal also says the signature must be under 20KB, 50KB, or another limit."],
+        ["Review the visual signature", "Make sure the signature remains readable, centered, and not accidentally cropped. This is a visual file helper, not identity verification."],
+      ],
+      serviceLead: uploadLimitLandingServiceLead("resize a signature to 140 x 60 pixels"),
+      related: ["resize-image", "compress-image-to-kb", "signature-png", "crop-image"],
     },
     {
       slug: "resize-photo-413x531",
@@ -7149,7 +7209,7 @@
       },
     });
     const serviceInvoiceAction = page.serviceLead?.serviceType === "upload-limit-fix-plan"
-      ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#invoice-request">Get a $9 upload fix plan</a> `
+      ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${page.uploadErrorMatcher ? "#invoice-request" : "#service-request"}">Get a $9 upload fix plan</a> `
       : page.serviceLead?.serviceType === "invoice-followup-copy-pack"
         ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">Request $19 invoice link</a> `
         : "";
@@ -10464,6 +10524,9 @@ ${paragraphs.join("\n")}
       "/jpg-must-be-under-200kb/",
       "/png-screenshot-too-large/",
       "/resume-pdf-too-large/",
+      "/passport-photo-35x45mm/",
+      "/signature-under-20kb/",
+      "/resize-signature-140x60/",
     ];
     const project = (Array.isArray(data.projects) ? data.projects : []).find((item) => item.id === "printable-tools-lab") || {};
     const rowsByPath = new Map((Array.isArray(project.paths) ? project.paths : []).map((row) => [String(row.path || ""), row]));
@@ -11444,6 +11507,11 @@ ${paragraphs.join("\n")}
         values.targetSize = targetSize;
         values.mode = targetSize === "5mb" ? "balanced" : "small";
       }
+    }
+    if (tool.id === "passport-photo") {
+      const params = new URLSearchParams(window.location.search || "");
+      const preset = String(params.get("preset") || params.get("size") || "").toLowerCase();
+      if (["us-passport", "uk-passport", "eu-35x45", "canada-passport", "australia-passport"].includes(preset)) values.preset = preset;
     }
     if (tool.id === "invoice-followup-email") {
       const params = new URLSearchParams(window.location.search || "");

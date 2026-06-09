@@ -186,6 +186,9 @@ Monetization model: Free tools stay live for search demand and future display ad
 - [Passport Photo Compress to 100KB](https://printable-tools-lab.pages.dev/passport-photo-compress-to-100kb/): passport photo compress to 100KB, ID photo size reducer, no upload
 - [Passport Photo Compress to 200KB](https://printable-tools-lab.pages.dev/passport-photo-compress-to-200kb/): passport photo compress to 200KB, ID photo size reducer, no upload
 - [Passport Photo Size Fixer](https://printable-tools-lab.pages.dev/passport-photo-size-fixer/): passport photo size fixer, ID photo dimensions, compress passport photo, no upload
+- [Passport Photo 35x45mm Without Uploading](https://printable-tools-lab.pages.dev/passport-photo-35x45mm/): passport photo 35x45mm, 35 x 45 mm photo maker, no upload
+- [Signature Under 20KB Without Uploading](https://printable-tools-lab.pages.dev/signature-under-20kb/): signature under 20KB, compress signature image, signature upload too large
+- [Resize Signature to 140x60 Pixels](https://printable-tools-lab.pages.dev/resize-signature-140x60/): resize signature 140x60, signature dimensions 140 x 60, no upload
 - [Resize Photo to 413x531](https://printable-tools-lab.pages.dev/resize-photo-413x531/): resize photo to 413x531, exam photo size, application photo dimensions, no upload
 - [Resize Image Without Uploading](https://printable-tools-lab.pages.dev/resize-image-no-upload/): resize image online, change image dimensions, no upload
 - [Convert Image Format Without Uploading](https://printable-tools-lab.pages.dev/convert-image-format-no-upload/): convert image format, JPG to PNG, PNG to WebP, no upload

@@ -1107,7 +1107,7 @@ else {
   const html = fs.readFileSync(imageKbHubFile, "utf8");
   if (!html.includes("Image size reducer in KB without uploading")) failures.push("Image KB hub page missing headline.");
   if (!html.includes("/tools/compress-image-to-kb/")) failures.push("Image KB hub page missing image-to-KB tool link.");
-  for (const pagePath of ["compress-image-to-10kb", "compress-image-to-20kb", "compress-image-to-30kb", "compress-image-to-50kb", "compress-image-to-100kb", "compress-image-to-150kb", "compress-image-to-200kb", "compress-image-to-300kb", "compress-image-to-500kb", "compress-jpg-to-50kb", "compress-jpg-to-100kb", "compress-jpg-to-200kb", "compress-png-to-50kb", "compress-png-to-100kb", "compress-png-to-200kb", "passport-photo-compress-to-50kb", "passport-photo-compress-to-100kb", "passport-photo-compress-to-200kb"]) {
+  for (const pagePath of ["compress-image-to-10kb", "compress-image-to-20kb", "compress-image-to-30kb", "compress-image-to-50kb", "compress-image-to-100kb", "compress-image-to-150kb", "compress-image-to-200kb", "compress-image-to-300kb", "compress-image-to-500kb", "compress-jpg-to-50kb", "compress-jpg-to-100kb", "compress-jpg-to-200kb", "compress-png-to-50kb", "compress-png-to-100kb", "compress-png-to-200kb", "passport-photo-compress-to-50kb", "passport-photo-compress-to-100kb", "passport-photo-compress-to-200kb", "signature-under-20kb", "resize-signature-140x60", "passport-photo-35x45mm"]) {
     if (!html.includes(`/${pagePath}/`)) failures.push(`Image KB hub page missing target link: ${pagePath}`);
   }
   if (!sitemap.includes(`<loc>${siteUrl("image-size-reducer-in-kb")}</loc>`)) failures.push("Sitemap missing image KB hub page.");
@@ -1827,7 +1827,7 @@ else {
   if (!discovery.distributionAssets || !discovery.distributionAssets.zeroDomainGames?.every((item) => String(item.cleanZipUrl || "").includes("portal-clean.zip"))) failures.push("discovery.json missing clean portal ZIP URLs.");
   if (!discovery.distributionAssets || !Array.isArray(discovery.distributionAssets.zeroDomainGames) || !discovery.distributionAssets.zeroDomainGames.some((item) => item.url === "https://neon-lane-dash.pages.dev/")) failures.push("discovery.json missing Neon Lane Dash URL.");
   if (discovery.feed !== siteUrl("feed.xml").replace(/\/$/, "")) failures.push("discovery.json missing RSS feed URL.");
-  if (!Array.isArray(discovery.landingPages) || discovery.landingPages.length < 61) failures.push("discovery.json missing high-intent landing pages.");
+  if (!Array.isArray(discovery.landingPages) || discovery.landingPages.length < 64) failures.push("discovery.json missing high-intent landing pages.");
   if (discovery.manifest !== siteUrl("site.webmanifest").replace(/\/$/, "")) failures.push("discovery.json missing manifest URL.");
   if (discovery.opensearch !== siteUrl("opensearch.xml").replace(/\/$/, "")) failures.push("discovery.json missing OpenSearch URL.");
 }
@@ -1862,6 +1862,9 @@ for (const [pagePath, headline, toolFragment] of [
   ["passport-photo-compress-to-100kb", "Compress a passport photo to 100KB", "/tools/compress-image-to-kb/?targetKb=100"],
   ["passport-photo-compress-to-200kb", "Compress a passport photo to 200KB", "/tools/compress-image-to-kb/?targetKb=200"],
   ["passport-photo-size-fixer", "Fix passport photo size and file limit", "/tools/passport-photo/"],
+  ["passport-photo-35x45mm", "Make a 35 x 45 mm passport photo without uploading", "/tools/passport-photo/?preset=uk-passport"],
+  ["signature-under-20kb", "Make a signature image under 20KB", "/tools/compress-image-to-kb/?targetKb=20"],
+  ["resize-signature-140x60", "Resize signature to 140 x 60 pixels", "/tools/resize-image/?width=140&height=60&fit=contain"],
   ["resize-photo-413x531", "Resize photo to 413 x 531 pixels", "/tools/resize-image/?width=413&height=531&fit=cover"],
 ]) {
   const file = path.join(root, pagePath, "index.html");
@@ -1873,6 +1876,9 @@ for (const [pagePath, headline, toolFragment] of [
   if (!html.includes(headline)) failures.push(`Photo upload landing page missing headline: ${pagePath}`);
   if (!html.includes(toolFragment)) failures.push(`Photo upload landing page missing prefilled tool link: ${pagePath}`);
   if (!sitemap.includes(`<loc>${siteUrl(pagePath)}</loc>`)) failures.push(`Sitemap missing photo upload landing page: ${pagePath}`);
+  if (["passport-photo-35x45mm", "signature-under-20kb", "resize-signature-140x60"].includes(pagePath)) {
+    if (!html.includes('data-service-primary-invoice-request="true"') || !html.includes("One-contact $9 invoice request") || !html.includes("Where should the external $9 invoice link go?") || !html.includes('data-track-event="service_invoice_request"')) failures.push(`New signature/passport landing page missing one-contact $9 invoice request path: ${pagePath}`);
+  }
   if (["file-must-be-less-than-1mb", "pdf-must-be-under-500kb", "photo-must-be-under-100kb", "invalid-file-type-jpg-png", "image-dimensions-600x600", "pdf-not-accepted-jpg-required", "image-must-be-less-than-2mb", "image-must-be-under-500kb", "jpg-must-be-under-200kb", "png-screenshot-too-large", "resume-pdf-too-large", "email-attachment-too-large"].includes(pagePath)) {
     if (!html.includes("data-upload-limit-helper")) failures.push(`Upload-error landing page missing matcher: ${pagePath}`);
     if (!html.includes('href="#invoice-request"') || !html.includes('id="invoice-request"') || !html.includes("Request the $9 invoice link in 30 seconds") || !html.includes("data-service-invoice-submit") || !html.includes(`data-utm-content="${pagePath}-invoice"`) || !html.includes('type="hidden" name="consent" value="on"') || html.includes("Send $9 fix-plan request</button>")) failures.push(`Upload-error landing page missing one-field direct $9 invoice request path: ${pagePath}`);
