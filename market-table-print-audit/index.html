@@ -78,12 +78,16 @@
               <li>Do not send payment, tax, bank, identity, password, customer-list, or private file data.</li>
             </ul>
           </div>
-          <form class="panel form-grid service-lead-form" data-service-lead-form data-service-type="market-table-print-audit" data-service-fallback-url="https://github.com/yanqr213/printable-tools-lab/issues/new?template=market-table-print-audit.yml&amp;title=Audit+request%3A+Free+Market+Table+Print+Audit&amp;body=Public-safe+service+request.%0A%0AService%3A+Free+Market+Table+Print+Audit%0ABusiness+or+project%3A%0APublic+contact%3A+add+only+if+you+want+it+visible+in+a+public+GitHub+issue%0ANeed-by+%2F+timeline%3A%0ASource+path%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fmarket-table-print-audit%2F%0A%0ARequest+note%3A%0A%0ADo+not+include+payment%2C+tax%2C+bank%2C+phone%2C+identity%2C+password%2C+customer-list%2C+or+private+file+data+in+this+public+issue.&amp;labels=service-request%2Cbusiness-review">
+          <form class="panel form-grid service-lead-form" data-service-lead-form data-service-type="market-table-print-audit" data-lead-path="/market-table-print-audit/" data-utm-source="landing-page" data-utm-medium="site" data-utm-campaign="market_table_audit" data-utm-content="market-table-print-audit-service-request" data-service-fallback-url="https://github.com/yanqr213/printable-tools-lab/issues/new?title=Audit+request%3A+Free+Market+Table+Print+Audit&amp;body=Public-safe+service+request.%0A%0AService%3A+Free+Market+Table+Print+Audit%0ABusiness+or+project%3A%0APublic+contact%3A+add+only+if+you+want+it+visible+in+a+public+GitHub+issue%0ANeed-by+%2F+timeline%3A%0ASource+path%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fmarket-table-print-audit%2F%0ARequested+next+step%3A+Request+service+fit+review%0A%0ARequest+note%3A%0A%0ADo+not+include+payment%2C+tax%2C+bank%2C+phone%2C+identity%2C+password%2C+customer-list%2C+or+private+file+data+in+this+public+issue.&amp;labels=service-request%2Cbusiness-review">
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="serviceType" value="market-table-print-audit">
+            <input type="hidden" name="utmSource" value="landing-page">
+            <input type="hidden" name="utmMedium" value="site">
+            <input type="hidden" name="utmCampaign" value="market_table_audit">
+            <input type="hidden" name="utmContent" value="market-table-print-audit-service-request">
             <label class="field">
-              <span>Email or public contact link</span>
-              <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
+              <span>Reply email, @handle, or public contact URL</span>
+              <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com, @publichandle, or https://example.com/contact" required>
             </label>
             <label class="field">
               <span>Business or project (optional)</span>
@@ -103,7 +107,7 @@
             </label>
             <div class="actions">
               <button class="button" type="submit" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit">Send audit request</button>
-              <a class="button ghost" data-service-lead-fallback-link data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="https://github.com/yanqr213/printable-tools-lab/issues/new?template=market-table-print-audit.yml&amp;title=Audit+request%3A+Free+Market+Table+Print+Audit&amp;body=Public-safe+service+request.%0A%0AService%3A+Free+Market+Table+Print+Audit%0ABusiness+or+project%3A%0APublic+contact%3A+add+only+if+you+want+it+visible+in+a+public+GitHub+issue%0ANeed-by+%2F+timeline%3A%0ASource+path%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fmarket-table-print-audit%2F%0A%0ARequest+note%3A%0A%0ADo+not+include+payment%2C+tax%2C+bank%2C+phone%2C+identity%2C+password%2C+customer-list%2C+or+private+file+data+in+this+public+issue.&amp;labels=service-request%2Cbusiness-review" target="_blank" rel="noreferrer">Open GitHub backup</a>
+              <a class="button ghost" data-service-lead-fallback-link data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="https://github.com/yanqr213/printable-tools-lab/issues/new?title=Audit+request%3A+Free+Market+Table+Print+Audit&amp;body=Public-safe+service+request.%0A%0AService%3A+Free+Market+Table+Print+Audit%0ABusiness+or+project%3A%0APublic+contact%3A+add+only+if+you+want+it+visible+in+a+public+GitHub+issue%0ANeed-by+%2F+timeline%3A%0ASource+path%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fmarket-table-print-audit%2F%0ARequested+next+step%3A+Request+service+fit+review%0A%0ARequest+note%3A%0A%0ADo+not+include+payment%2C+tax%2C+bank%2C+phone%2C+identity%2C+password%2C+customer-list%2C+or+private+file+data+in+this+public+issue.&amp;labels=service-request%2Cbusiness-review" target="_blank" rel="noreferrer">Open public-safe request</a>
             </div>
             <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No payment is collected here. A real external checkout or invoice is sent only after fit is confirmed.</p>
           </form>
@@ -252,7 +256,7 @@ No payment is collected for this audit request. Do not include card, bank, payou
       <script>
         (function () {
           var config = window.PTL_CONFIG || {};
-          var checkoutUrl = config.auditUpgradeCheckoutUrl || config.serviceCheckoutUrl || config.customPrintPackCheckoutUrl || "";
+          var checkoutUrl = config.auditUpgradeCheckoutUrl || config.customPrintPackCheckoutUrl || config.serviceCheckoutUrl || "";
           var button = document.querySelector("[data-audit-upgrade-checkout]");
           if (!checkoutUrl || !button) return;
           button.href = checkoutUrl;

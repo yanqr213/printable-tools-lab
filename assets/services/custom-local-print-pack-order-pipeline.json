@@ -16,7 +16,7 @@
     "up to 12 items or services with prices",
     "public QR/contact link or public-safe reply preference",
     "style preference",
-    "need-by date",
+    "need-by date or timeline",
     "preferred external checkout provider",
     "notes that do not include private payment or identity data"
   ],
@@ -28,6 +28,8 @@
     "identity documents",
     "invoice numbers",
     "client private data",
+    "actual uploaded files",
+    "portal login details",
     "platform credentials",
     "private account passwords"
   ],

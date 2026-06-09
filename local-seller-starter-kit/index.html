@@ -79,12 +79,16 @@
               <li>Do not send payment, tax, bank, identity, password, customer-list, or private file data.</li>
             </ul>
           </div>
-          <form class="panel form-grid service-lead-form" data-service-lead-form data-service-type="local-seller-starter-kit" data-service-fallback-url="https://github.com/yanqr213/printable-tools-lab/issues/new?title=Seller+kit+request%3A+Local+Seller+Starter+Kit&amp;body=Public-safe+service+request.%0A%0AService%3A+Local+Seller+Starter+Kit%0ABusiness+or+project%3A%0APublic+contact%3A+add+only+if+you+want+it+visible+in+a+public+GitHub+issue%0ANeed-by+%2F+timeline%3A%0ASource+path%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Flocal-seller-starter-kit%2F%0A%0ARequest+note%3A%0A%0ADo+not+include+payment%2C+tax%2C+bank%2C+phone%2C+identity%2C+password%2C+customer-list%2C+or+private+file+data+in+this+public+issue.&amp;labels=service-request%2Cbusiness-review">
+          <form class="panel form-grid service-lead-form" data-service-lead-form data-service-type="local-seller-starter-kit" data-lead-path="/local-seller-starter-kit/" data-utm-source="landing-page" data-utm-medium="site" data-utm-campaign="seller_kit" data-utm-content="local-seller-starter-kit-service-request" data-service-fallback-url="https://github.com/yanqr213/printable-tools-lab/issues/new?title=Seller+kit+request%3A+Local+Seller+Starter+Kit&amp;body=Public-safe+service+request.%0A%0AService%3A+Local+Seller+Starter+Kit%0ABusiness+or+project%3A%0APublic+contact%3A+add+only+if+you+want+it+visible+in+a+public+GitHub+issue%0ANeed-by+%2F+timeline%3A%0ASource+path%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Flocal-seller-starter-kit%2F%0ARequested+next+step%3A+Request+service+fit+review%0A%0ARequest+note%3A%0A%0ADo+not+include+payment%2C+tax%2C+bank%2C+phone%2C+identity%2C+password%2C+customer-list%2C+or+private+file+data+in+this+public+issue.&amp;labels=service-request%2Cbusiness-review">
             <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="serviceType" value="local-seller-starter-kit">
+            <input type="hidden" name="utmSource" value="landing-page">
+            <input type="hidden" name="utmMedium" value="site">
+            <input type="hidden" name="utmCampaign" value="seller_kit">
+            <input type="hidden" name="utmContent" value="local-seller-starter-kit-service-request">
             <label class="field">
-              <span>Email or public contact link</span>
-              <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
+              <span>Reply email, @handle, or public contact URL</span>
+              <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com, @publichandle, or https://example.com/contact" required>
             </label>
             <label class="field">
               <span>Business or project (optional)</span>
@@ -104,7 +108,7 @@
             </label>
             <div class="actions">
               <button class="button" type="submit" data-track-event="seller_checkout_intent" data-track-tool="local-seller-starter-kit">Send checkout request</button>
-              <a class="button ghost" data-service-lead-fallback-link data-track-event="seller_checkout_intent" data-track-tool="local-seller-starter-kit" href="https://github.com/yanqr213/printable-tools-lab/issues/new?title=Seller+kit+request%3A+Local+Seller+Starter+Kit&amp;body=Public-safe+service+request.%0A%0AService%3A+Local+Seller+Starter+Kit%0ABusiness+or+project%3A%0APublic+contact%3A+add+only+if+you+want+it+visible+in+a+public+GitHub+issue%0ANeed-by+%2F+timeline%3A%0ASource+path%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Flocal-seller-starter-kit%2F%0A%0ARequest+note%3A%0A%0ADo+not+include+payment%2C+tax%2C+bank%2C+phone%2C+identity%2C+password%2C+customer-list%2C+or+private+file+data+in+this+public+issue.&amp;labels=service-request%2Cbusiness-review" target="_blank" rel="noreferrer">Open GitHub backup</a>
+              <a class="button ghost" data-service-lead-fallback-link data-track-event="seller_checkout_intent" data-track-tool="local-seller-starter-kit" href="https://github.com/yanqr213/printable-tools-lab/issues/new?title=Seller+kit+request%3A+Local+Seller+Starter+Kit&amp;body=Public-safe+service+request.%0A%0AService%3A+Local+Seller+Starter+Kit%0ABusiness+or+project%3A%0APublic+contact%3A+add+only+if+you+want+it+visible+in+a+public+GitHub+issue%0ANeed-by+%2F+timeline%3A%0ASource+path%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Flocal-seller-starter-kit%2F%0ARequested+next+step%3A+Request+service+fit+review%0A%0ARequest+note%3A%0A%0ADo+not+include+payment%2C+tax%2C+bank%2C+phone%2C+identity%2C+password%2C+customer-list%2C+or+private+file+data+in+this+public+issue.&amp;labels=service-request%2Cbusiness-review" target="_blank" rel="noreferrer">Open public-safe request</a>
             </div>
             <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No payment is collected here. A real external checkout or invoice is sent only after fit is confirmed.</p>
           </form>

@@ -168,8 +168,23 @@ No payment is collected by this request. Please review fit first; send a real ex
           return label + (/[?:]$/.test(label) ? " " : ": ") + (value || "");
         }
         function update() {
+          var isUploadLimitFix = "custom-local-print-pack" === "upload-limit-fix-plan";
           var isInvoiceFollowup = "custom-local-print-pack" === "invoice-followup-copy-pack";
-          var body = isInvoiceFollowup ? [
+          var body = isUploadLimitFix ? [
+            "I want a free fit check for the Custom Local Print Pack Setup ($29 USD only if it fits).",
+            "",
+            line("Public-safe project label", read("business")),
+            line("Upload error text", read("sells")),
+            line("File type and target rule", read("items")),
+            line("What have you already tried?", read("contact")),
+            line("Blocked file type: PDF / JPG / PNG / screenshot / resume PDF / passport photo / other", read("style")),
+            line("Need-by time or deadline", read("date")),
+            line("If it fits, preferred external checkout provider: Gumroad / Payhip / Ko-fi / Stripe / Invoice provider / No preference", read("checkout")),
+            line("Best public-safe contact method", read("preference")),
+            line("Notes", read("notes")),
+            "",
+            "No payment is collected by this request. Please review fit first; send a real external checkout or invoice link only if the service is useful and available. Do not attach or include the actual file, ID photo, resume, private form, portal login, account details, tax IDs, bank details, card data, or private identity details."
+          ].join("\n") : isInvoiceFollowup ? [
             "I want a free fit check for the Custom Local Print Pack Setup ($29 USD only if it fits).",
             "",
             line("Business or project name", read("business")),

@@ -16,7 +16,7 @@
     "preferred tone and follow-up type",
     "payment method wording without private account details",
     "public-safe reply preference",
-    "need-by date",
+    "need-by date or timeline",
     "preferred external checkout provider",
     "notes that do not include private payment or identity data"
   ],
@@ -28,6 +28,8 @@
     "identity documents",
     "invoice numbers",
     "client private data",
+    "actual uploaded files",
+    "portal login details",
     "platform credentials",
     "private account passwords"
   ],

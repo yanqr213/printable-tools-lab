@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Sponsor Outreach Pack",
-  "generatedAt": "2026-06-08T20:16:16.901Z",
+  "generatedAt": "2026-06-09T08:08:50.967Z",
   "canonical": "https://printable-tools-lab.pages.dev/sponsor-outreach-pack.json",
   "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
   "sponsorIntentFeed": "https://printable-tools-lab.pages.dev/sponsor-intent-feed.json",
@@ -69,9 +69,9 @@
   },
   "mediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
   "externalDiscoveryProof": {
-    "generatedAt": "2026-06-08T20:13:14.700Z",
-    "directoryListedCount": 26,
-    "directoryPendingCount": 11,
+    "generatedAt": "2026-06-09T07:58:10.215Z",
+    "directoryListedCount": 74,
+    "directoryPendingCount": 100,
     "directoryErrorCount": 1,
     "listedDirectories": [
       {
@@ -201,6 +201,258 @@
         "reviewWindow": "auto-approved API listing for the email attachment too large upload fix path"
       },
       {
+        "name": "TechTools Launchpad compress image to KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/187",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the invoice-first image-to-KB tool path"
+      },
+      {
+        "name": "TechTools Launchpad compress PDF to 500KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/188",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the strict PDF 500KB landing path"
+      },
+      {
+        "name": "TechTools Launchpad compress image to 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/189",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the strict image 50KB landing path"
+      },
+      {
+        "name": "TechTools Launchpad compress image to 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/190",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the strict image 100KB landing path"
+      },
+      {
+        "name": "TechTools Launchpad compress image to 200KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/191",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the strict image 200KB landing path"
+      },
+      {
+        "name": "TechTools Launchpad compress JPG to 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/192",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the strict JPG 50KB landing path"
+      },
+      {
+        "name": "TechTools Launchpad compress JPG to 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/193",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the strict JPG 100KB landing path"
+      },
+      {
+        "name": "TechTools Launchpad compress JPG to 200KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/194",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the strict JPG 200KB landing path"
+      },
+      {
+        "name": "TechTools Launchpad compress PNG to 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/195",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the strict PNG 50KB landing path"
+      },
+      {
+        "name": "TechTools Launchpad compress PNG to 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/196",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the strict PNG 100KB landing path"
+      },
+      {
+        "name": "TechTools Launchpad compress PNG to 200KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/197",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the strict PNG 200KB landing path"
+      },
+      {
+        "name": "TechTools Launchpad passport photo compress to 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/198",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the passport photo 50KB landing path"
+      },
+      {
+        "name": "TechTools Launchpad passport photo compress to 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/199",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the passport photo 100KB landing path"
+      },
+      {
+        "name": "TechTools Launchpad passport photo compress to 200KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/200",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the passport photo 200KB landing path"
+      },
+      {
+        "name": "TechTools Launchpad PDF under 2MB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/201",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the PDF under 2MB upload-fix landing path"
+      },
+      {
+        "name": "TechTools Launchpad PDF under 5MB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/202",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the PDF under 5MB upload-fix landing path"
+      },
+      {
+        "name": "TechTools Launchpad resume PDF under 2MB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/203",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the resume PDF under 2MB upload-fix landing path"
+      },
+      {
+        "name": "TechTools Launchpad document under 5MB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/204",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the document under 5MB upload-fix landing path"
+      },
+      {
+        "name": "TechTools Launchpad PDF size reducer listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/205",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the PDF size reducer hub path"
+      },
+      {
+        "name": "TechTools Launchpad compress PDF to 2MB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/206",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the PDF 2MB target-size landing path"
+      },
+      {
+        "name": "TechTools Launchpad compress PDF to 5MB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/207",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the PDF 5MB target-size landing path"
+      },
+      {
+        "name": "TechTools Launchpad compress PDF without uploading listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/208",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the no-upload PDF compressor landing path"
+      },
+      {
+        "name": "TechTools Launchpad PDF to JPG without uploading listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/209",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the no-upload PDF-to-JPG landing path"
+      },
+      {
+        "name": "TechTools Launchpad JPG to PDF without uploading listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/210",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the no-upload JPG-to-PDF landing path"
+      },
+      {
+        "name": "TechTools Launchpad extract text from PDF without uploading listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/212",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the no-upload PDF text extraction landing path"
+      },
+      {
+        "name": "TechTools Launchpad merge PDF without uploading listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/213",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the no-upload PDF merge landing path"
+      },
+      {
+        "name": "TechTools Launchpad split PDF without uploading listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/214",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the no-upload PDF split landing path"
+      },
+      {
+        "name": "TechTools Launchpad signature under 20KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/215",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the strict signature 20KB upload-fix landing path"
+      },
+      {
+        "name": "TechTools Launchpad passport photo size fixer listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/216",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the passport photo dimension-and-KB upload-fix path"
+      },
+      {
+        "name": "TechTools Launchpad resize photo 413x531 listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/217",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 413 x 531 px photo resize path"
+      },
+      {
+        "name": "TechTools Launchpad signature under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/218",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the signature 50KB upload-fix landing path"
+      },
+      {
+        "name": "TechTools Launchpad resize signature 140x60 listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/219",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 140 x 60 px signature resize path"
+      },
+      {
+        "name": "TechTools Launchpad photo 200x230 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/220",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 200 x 230 px and 50KB photo path"
+      },
+      {
+        "name": "TechTools Launchpad photo 200x230 under 20KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/224",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 200 x 230 px and 20KB photo path"
+      },
+      {
+        "name": "TechTools Launchpad photo 200x230 under 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/225",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 200 x 230 px and 100KB photo path"
+      },
+      {
+        "name": "TechTools Launchpad photo 413x531 under 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/226",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 413 x 531 px and 100KB photo path"
+      },
+      {
+        "name": "TechTools Launchpad resize signature 200x100 listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/221",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 200 x 100 px signature resize path"
+      },
+      {
+        "name": "TechTools Launchpad signature 140x60 under 20KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/227",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 140 x 60 px and 20KB signature path"
+      },
+      {
+        "name": "TechTools Launchpad signature 140x60 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/228",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 140 x 60 px and 50KB signature path"
+      },
+      {
+        "name": "TechTools Launchpad signature 200x100 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/229",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 200 x 100 px and 50KB signature path"
+      },
+      {
+        "name": "TechTools Launchpad resize photo 200x230 listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/222",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 200 x 230 px photo resize path"
+      },
+      {
+        "name": "TechTools Launchpad passport photo 35x45mm listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/223",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the common 35 x 45 mm passport-style photo workflow"
+      },
+      {
         "name": "NoLogin.tools",
         "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev",
         "submittedAt": "2026-06-03",
@@ -229,13 +481,49 @@
         "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-overdue-invoice-reminder-email",
         "submittedAt": "2026-06-08",
         "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-overdue-invoice-reminder-email"
+      },
+      {
+        "name": "NoLogin.tools compress image to KB listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-compress-image-to-kb",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-tools-compress-image-to-kb"
+      },
+      {
+        "name": "NoLogin.tools image dimensions 600x600 upload fix listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-image-dimensions-600x600",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-image-dimensions-600x600"
+      },
+      {
+        "name": "NoLogin.tools PDF not accepted JPG required upload fix listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required"
+      },
+      {
+        "name": "NoLogin.tools email attachment too large fix listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-email-attachment-too-large",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-email-attachment-too-large"
+      },
+      {
+        "name": "NoLogin.tools compress image to 50KB listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-50kb",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-compress-image-to-50kb"
+      },
+      {
+        "name": "NoLogin.tools compress image to 100KB listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-100kb",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-compress-image-to-100kb"
       }
     ],
     "indexNowAcceptedTargets": [
       "github-pages"
     ],
-    "indexNowSubmittedUrls": 273,
-    "publicProofLine": "External discovery proof: 26 public directory listing(s) are live; 11 more listing(s) remain pending; IndexNow accepted 273 URL(s) across 1 target(s). These are discovery signals, not revenue.",
+    "indexNowSubmittedUrls": 284,
+    "publicProofLine": "External discovery proof: 74 public directory listing(s) are live; 100 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue.",
     "moneyBoundary": "Directory listings, IndexNow submissions, clicks, and views are discovery signals only. Revenue is real only after a signed sponsor agreement or settled external payment."
   },
   "placements": [
