@@ -9162,6 +9162,16 @@ function directorySubmissionHtml() {
     ["Tagline", "Free no-signup browser PDF, image, and QR tools"],
     ["Short description", "Create practical PDFs, image files, and static QR codes in the browser, including image compression, resizing, cropping, rotation, watermarking, QR codes, WiFi QR signs, contact QR codes, image-to-PDF, invoices, receipts, work orders, packing slips, inventory sheets, labels, resumes, certificates, and printable tools."],
   ];
+  const freenosignupUploadFixListings = [
+    ["FreeNoSignup Compress PDF to 500KB", "https://freenosignup.com/?s=Compress+PDF+to+500KB", "Pending Google Form submission for the exact 500KB PDF upload-limit path."],
+    ["FreeNoSignup Compress PDF to 1MB", "https://freenosignup.com/?s=Compress+PDF+to+1MB", "Pending Google Form submission for the common 1MB PDF upload-limit path."],
+    ["FreeNoSignup Compress Image to 100KB", "https://freenosignup.com/?s=Compress+Image+to+100KB", "Pending Google Form submission for the 100KB image upload-limit path."],
+    ["FreeNoSignup Image Must Be Under 500KB Fix", "https://freenosignup.com/?s=Image+Must+Be+Under+500KB+Fix", "Pending Google Form submission for the image under 500KB upload-error path."],
+    ["FreeNoSignup Passport Photo Size Fixer", "https://freenosignup.com/?s=Passport+Photo+Size+Fixer", "Pending Google Form submission for the passport-style photo size workflow."],
+    ["FreeNoSignup Photo 200x230 Under 50KB", "https://freenosignup.com/?s=Photo+200x230+Under+50KB", "Pending Google Form submission for the exact 200 x 230 px and 50KB photo path."],
+    ["FreeNoSignup Signature Under 20KB", "https://freenosignup.com/?s=Signature+Under+20KB", "Pending Google Form submission for the strict 20KB signature image path."],
+    ["FreeNoSignup Resize Signature 200x100", "https://freenosignup.com/?s=Resize+Signature+200x100", "Pending Google Form submission for the exact 200 x 100 px signature resize path."],
+  ];
   const liveDirectoryListings = [
     ["TechTools Launchpad", "https://techtools.cz/tools/launchpad/?tool=161", "Homepage listing for the free no-signup tool collection."],
     ["TechTools Upload Limit Fixer", "https://techtools.cz/tools/launchpad/?tool=162", "High-intent listing for file-size and format upload errors."],
@@ -9218,7 +9228,8 @@ function directorySubmissionHtml() {
     ["TechTools Resize Signature 140x60", "https://techtools.cz/tools/launchpad/?tool=219", "Exact 140 x 60 px signature resize listing for exam, job, school, and admin upload visitors."],
     ["TechTools Photo 200x230 Under 50KB", "https://techtools.cz/tools/launchpad/?tool=220", "Combined 200 x 230 px and 50KB photo listing for exam, profile, job, and application upload visitors."],
     ["TechTools Resize Signature 200x100", "https://techtools.cz/tools/launchpad/?tool=221", "Exact 200 x 100 px signature resize listing for job, school, exam, document, and admin upload visitors."],
-    ["TechTools resize photo 200x230 and passport photo 35x45mm retry", "https://techtools.cz/tools/launchpad/", "Rate-limited after the 200 x 100 signature listing; retry the remaining exact-photo listings after the one-hour API window."],
+    ["TechTools Resize Photo 200x230", "https://techtools.cz/tools/launchpad/?tool=222", "Exact 200 x 230 px photo resize listing for exam, job, profile, school, and application upload visitors."],
+    ["TechTools Passport Photo 35x45mm", "https://techtools.cz/tools/launchpad/?tool=223", "Common 35 x 45 mm passport-style photo listing for ID-style upload visitors who need shape and size guidance."],
     ["NoSignupTools Upload Limit Fixer", "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab", "Pending public API submission for a no-signup upload error matcher."],
     ["NoSignupTools Upload Error Cheatsheet", "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab", "Pending public API submission for exact upload-error fix routing."],
     ["NoSignupTools PDF Under 2MB Upload Fix", "https://nosignuptools.com/tools/pdf-under-2mb-upload-fix-by-printabletools-lab", "Pending public API submission for the PDF 2MB upload-limit page with the $9 fix request path."],
@@ -9279,6 +9290,7 @@ function directorySubmissionHtml() {
     ["NoSignupTools PNG Screenshot Too Large Fix", "https://nosignuptools.com/tools/png-screenshot-too-large-fix-by-printabletools-lab", "Pending public API submission for the PNG screenshot too large upload-error path."],
     ["FreeNoSignup Upload Limit Fixer", "https://freenosignup.com/?s=Upload+Limit+Fixer", "Pending Google Form submission for the free upload error matcher."],
     ["FreeNoSignup Upload Error Cheatsheet", "https://freenosignup.com/?s=Upload+Error+Cheatsheet", "Pending Google Form submission for exact upload-error fix routing."],
+    ...freenosignupUploadFixListings,
     ["NoLogin.tools", "https://nologin.tools/tool/printable-tools-lab-pages-dev", "Privacy-friendly no-login tool listing."],
     ["NoLogin.tools Upload Limit Fixer", "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer", "No-login listing for upload-limit fixes."],
     ["NoLogin.tools Upload Error Cheatsheet", "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet", "Pending no-login submission for exact upload-error fix routing."],

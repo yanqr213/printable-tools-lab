@@ -8,5 +8,18 @@
   "remaining": [
     "Resize Photo 200x230 by PrintableTools Lab",
     "Passport Photo 35x45mm by PrintableTools Lab"
+  ],
+  "resolvedAt": "2026-06-09T06:40:07.736Z",
+  "resolvedBy": [
+    {
+      "report": "techtools-resize-photo-200x230-submit.json",
+      "shareUrl": "https://techtools.cz/tools/launchpad/?tool=222",
+      "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/222"
+    },
+    {
+      "report": "techtools-passport-photo-35x45mm-submit.json",
+      "shareUrl": "https://techtools.cz/tools/launchpad/?tool=223",
+      "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/223"
+    }
   ]
 }

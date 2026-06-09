@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-06-09T06:19:57.789Z",
+  "directory": "FreeNoSignup",
+  "submitPage": "https://freenosignup.com/submit/",
+  "formResponseUrl": "https://docs.google.com/forms/d/e/1FAIpQLScZ3rCt9k2vlaHcT7d1ABmgtezWN-fZLcH_YcxJdexm8aOzRg/formResponse",
+  "status": 200,
+  "ok": true,
+  "confirmationMatched": true,
+  "preSubmitEvidence": {
+    "url": "https://freenosignup.com/?s=Passport+Photo+Size+Fixer",
+    "ok": true,
+    "status": 200,
+    "matchedSite": false,
+    "matchedTitle": true,
+    "bytes": 273889
+  },
+  "mappedEntryIds": {
+    "toolName": "entry.269597412",
+    "toolUrl": "entry.201672753",
+    "category": "entry.1927966242",
+    "description": "entry.88575082",
+    "keyFeatures": "entry.1466984240",
+    "submitterName": "entry.1476070271",
+    "additionalNotes": "entry.183902111",
+    "submitterEmail": "entry.1308873964"
+  },
+  "payload": {
+    "toolName": "Passport Photo Size Fixer by PrintableTools Lab",
+    "toolUrl": "https://printable-tools-lab.pages.dev/passport-photo-size-fixer/?utm_source=freenosignup&utm_medium=directory&utm_campaign=passport_photo_size_fixer_2026_06&utm_content=passport_photo_size_fixer_landing",
+    "category": "Productivity",
+    "description": "Free no-signup browser workflow for passport-style photo size issues, including crop, resize, and KB-limit routing. It is intended for generic photo upload requirements and tells users to review official rules before submitting.",
+    "keyFeatures": "No signup. Browser-based photo crop and resize routing. KB-limit guidance. Passport-style photo workflow. Public-safe notes only. Free tool path.",
+    "submitterName": "PrintableTools Lab",
+    "additionalNotes": "Specific free photo-size utility page. It does not claim official passport or visa approval and does not ask for ID documents, logins, payment, or private account data.",
+    "submitterEmail": ""
+  },
+  "searchUrl": "https://freenosignup.com/?s=Passport+Photo+Size+Fixer",
+  "responseEvidenceSnippet": "<!DOCTYPE html><html class=\"HB1eCd-UMrnmb PHOcVb\"><head><style nonce=\"Bo4UgSBp_qbcVTUcz2Lojg\">.iPj4P { background-color: #5746e3 !important; }</style><link rel=\"shortcut icon\" sizes=\"16x16\" href=\"https://www.gstatic.com/images/branding/productlogos/forms_2026/",
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "3-5 business days"
+}

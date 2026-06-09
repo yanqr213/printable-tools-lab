@@ -79,7 +79,8 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - TechTools Resize Signature 140x60 listing: https://techtools.cz/tools/launchpad/?tool=219
 - TechTools Photo 200x230 Under 50KB listing: https://techtools.cz/tools/launchpad/?tool=220
 - TechTools Resize Signature 200x100 listing: https://techtools.cz/tools/launchpad/?tool=221
-- TechTools resize photo 200x230 and passport photo 35x45mm submissions; rate limited after tool 221, retry after the one-hour API window.
+- TechTools Resize Photo 200x230 listing: https://techtools.cz/tools/launchpad/?tool=222
+- TechTools Passport Photo 35x45mm listing: https://techtools.cz/tools/launchpad/?tool=223
 - NoSignupTools Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_limit_2026_06&utm_content=upload_limit_fixer
 - NoSignupTools Upload Error Cheatsheet listing: https://printable-tools-lab.pages.dev/upload-error-cheatsheet?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_error_cheatsheet_2026_06&utm_content=upload_error_cheatsheet
 - NoSignupTools Image Dimensions 600x600 Upload Fix listing: https://printable-tools-lab.pages.dev/image-dimensions-600x600?utm_source=nosignuptools&utm_medium=directory&utm_campaign=image_dimensions_600x600_fix_2026_06&utm_content=image_dimensions_600x600_landing
@@ -147,6 +148,14 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - NoSignupTools PNG Screenshot Too Large Fix listing: https://printable-tools-lab.pages.dev/png-screenshot-too-large?utm_source=nosignuptools&utm_medium=directory&utm_campaign=png_screenshot_too_large_fix_2026_06&utm_content=png_screenshot_too_large_landing
 - FreeNoSignup Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=freenosignup
 - FreeNoSignup Upload Error Cheatsheet listing: https://printable-tools-lab.pages.dev/upload-error-cheatsheet?utm_source=freenosignup&utm_medium=directory&utm_campaign=upload_error_cheatsheet_2026_06&utm_content=upload_error_cheatsheet
+- FreeNoSignup Compress PDF to 500KB listing: https://printable-tools-lab.pages.dev/compress-pdf-to-500kb?utm_source=freenosignup&utm_medium=directory&utm_campaign=pdf_500kb_2026_06&utm_content=compress_pdf_to_500kb_landing
+- FreeNoSignup Compress PDF to 1MB listing: https://printable-tools-lab.pages.dev/compress-pdf-to-1mb?utm_source=freenosignup&utm_medium=directory&utm_campaign=pdf_1mb_2026_06&utm_content=compress_pdf_to_1mb_landing
+- FreeNoSignup Compress Image to 100KB listing: https://printable-tools-lab.pages.dev/compress-image-to-100kb?utm_source=freenosignup&utm_medium=directory&utm_campaign=image_100kb_2026_06&utm_content=compress_image_to_100kb_landing
+- FreeNoSignup Image Must Be Under 500KB Fix listing: https://printable-tools-lab.pages.dev/image-must-be-under-500kb?utm_source=freenosignup&utm_medium=directory&utm_campaign=image_under_500kb_upload_fix_2026_06&utm_content=image_must_be_under_500kb_landing
+- FreeNoSignup Passport Photo Size Fixer listing: https://printable-tools-lab.pages.dev/passport-photo-size-fixer?utm_source=freenosignup&utm_medium=directory&utm_campaign=passport_photo_size_fixer_2026_06&utm_content=passport_photo_size_fixer_landing
+- FreeNoSignup Photo 200x230 Under 50KB listing: https://printable-tools-lab.pages.dev/photo-200x230-50kb?utm_source=freenosignup&utm_medium=directory&utm_campaign=photo_200x230_50kb_2026_06&utm_content=photo_200x230_50kb_landing
+- FreeNoSignup Signature Under 20KB listing: https://printable-tools-lab.pages.dev/signature-under-20kb?utm_source=freenosignup&utm_medium=directory&utm_campaign=signature_20kb_upload_fix_2026_06&utm_content=signature_under_20kb_landing
+- FreeNoSignup Resize Signature 200x100 listing: https://printable-tools-lab.pages.dev/resize-signature-200x100?utm_source=freenosignup&utm_medium=directory&utm_campaign=resize_signature_200x100_2026_06&utm_content=resize_signature_200x100_landing
 - NoSignupTools Overdue Invoice Reminder listing: https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email?utm_source=nosignuptools&utm_medium=directory&utm_campaign=overdue_invoice_2026_06&utm_content=overdue_invoice_reminder_email
 - FreeNoSignup Overdue Invoice Reminder listing: https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email?utm_source=freenosignup&utm_medium=directory&utm_campaign=overdue_invoice_2026_06&utm_content=overdue_invoice_reminder_email
 - NoLogin.tools tracked upload-limit URL: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nologin&utm_medium=directory&utm_campaign=zero_cost_push
@@ -487,9 +496,12 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - NoSignupTools no-upload PDF extract/merge/split submissions; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
 - NoSignupTools no-upload PDF rotate/remove/reorder submissions; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
 - NoSignupTools PDF page-number/stamp/sign submissions; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
-- TechTools no-upload PDF extract/merge/split submissions; rate limited on 2026-06-09 by the directory's Wait 1 hour response and queued for retry after the backoff window
+- TechTools no-upload PDF extract/merge/split submissions; retried after the 1-hour API limit on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=212, https://techtools.cz/tools/launchpad/?tool=213, and https://techtools.cz/tools/launchpad/?tool=214
+- TechTools exact photo resize submissions; retried after the 1-hour API limit on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=222 and https://techtools.cz/tools/launchpad/?tool=223
 - FreeNoSignup Upload Limit Fixer submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
 - FreeNoSignup Upload Error Cheatsheet submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
+- FreeNoSignup exact upload-limit submissions for PDF 500KB, PDF 1MB, image 100KB, and image under 500KB; submitted on 2026-06-09 through the public Google Form and awaiting 3-5 business day manual review
+- FreeNoSignup photo/signature upload-limit submissions for passport photo size, photo 200x230 under 50KB, signature under 20KB, and resize signature 200x100; submitted on 2026-06-09 through the public Google Form and awaiting 3-5 business day manual review
 - NoSignupTools Overdue Invoice Reminder Email submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
 - FreeNoSignup Overdue Invoice Reminder Email submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
 - NoLogin.tools free no-login/privacy tool submission; submitted on 2026-06-03 and monitoring confirms live at https://nologin.tools/tool/printable-tools-lab-pages-dev

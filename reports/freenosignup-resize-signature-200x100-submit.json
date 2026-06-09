@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-06-09T06:20:04.660Z",
+  "directory": "FreeNoSignup",
+  "submitPage": "https://freenosignup.com/submit/",
+  "formResponseUrl": "https://docs.google.com/forms/d/e/1FAIpQLScZ3rCt9k2vlaHcT7d1ABmgtezWN-fZLcH_YcxJdexm8aOzRg/formResponse",
+  "status": 200,
+  "ok": true,
+  "confirmationMatched": true,
+  "preSubmitEvidence": {
+    "url": "https://freenosignup.com/?s=Resize+Signature+200x100",
+    "ok": true,
+    "status": 200,
+    "matchedSite": false,
+    "matchedTitle": true,
+    "bytes": 273887
+  },
+  "mappedEntryIds": {
+    "toolName": "entry.269597412",
+    "toolUrl": "entry.201672753",
+    "category": "entry.1927966242",
+    "description": "entry.88575082",
+    "keyFeatures": "entry.1466984240",
+    "submitterName": "entry.1476070271",
+    "additionalNotes": "entry.183902111",
+    "submitterEmail": "entry.1308873964"
+  },
+  "payload": {
+    "toolName": "Resize Signature 200x100 by PrintableTools Lab",
+    "toolUrl": "https://printable-tools-lab.pages.dev/resize-signature-200x100/?utm_source=freenosignup&utm_medium=directory&utm_campaign=resize_signature_200x100_2026_06&utm_content=resize_signature_200x100_landing",
+    "category": "Productivity",
+    "description": "Free no-signup browser workflow for resizing a signature image to 200 x 100 px. It points users to local image resizing and compression steps for application and portal upload requirements.",
+    "keyFeatures": "No signup. Exact 200 x 100 px signature target. Browser-based resize path. Optional KB compression guidance. Free export path. Public-safe notes.",
+    "submitterName": "PrintableTools Lab",
+    "additionalNotes": "Specific exact-size signature utility page for people blocked by signature upload dimensions.",
+    "submitterEmail": ""
+  },
+  "searchUrl": "https://freenosignup.com/?s=Resize+Signature+200x100",
+  "responseEvidenceSnippet": "<!DOCTYPE html><html class=\"HB1eCd-UMrnmb PHOcVb\"><head><style nonce=\"5T3EpusHuWUS5TkjBAD9dA\">.iPj4P { background-color: #5746e3 !important; }</style><link rel=\"shortcut icon\" sizes=\"16x16\" href=\"https://www.gstatic.com/images/branding/productlogos/forms_2026/",
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "3-5 business days"
+}

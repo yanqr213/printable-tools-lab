@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-09T06:40:04.398Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Resize Photo 200x230 by PrintableTools Lab",
+    "tagline": "Free no-signup 200 x 230 photo resize workflow for upload forms.",
+    "description": "PrintableTools Lab Resize Photo 200x230 helps people blocked by exact 200 x 230 px photo requirements on exam, job, profile, school, and application upload forms. The page opens the browser image resizer with width 200, height 230, and cover fit settings, keeps ordinary files local, and includes an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+    "url": "https://printable-tools-lab.pages.dev/resize-photo-200x230/?utm_source=techtools&utm_medium=directory&utm_campaign=resize_photo_200x230_2026_06&utm_content=resize_photo_200x230_landing",
+    "category": "utilities",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 resize photo 200x230 upload-fix landing path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 222,
+      "name": "Resize Photo 200x230 by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/resize-photo-200x230/?utm_source=techtools&utm_medium=directory&utm_campaign=resize_photo_200x230_2026_06&utm_content=resize_photo_200x230_landing",
+      "tagline": "Free no-signup 200 x 230 photo resize workflow for upload forms.",
+      "description": "PrintableTools Lab Resize Photo 200x230 helps people blocked by exact 200 x 230 px photo requirements on exam, job, profile, school, and application upload forms. The page opens the browser image resizer with width 200, height 230, and cover fit settings, keeps ordinary files local, and includes an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+      "category": "utilities",
+      "category_label": "Utilities",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 resize photo 200x230 upload-fix landing path",
+      "launch_date": "2026-06-09",
+      "created_at": "2026-06-09T06:40:04Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=222"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=222"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=222",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/222"
+}

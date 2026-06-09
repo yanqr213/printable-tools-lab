@@ -27,6 +27,17 @@ const nosignupExactUploadLimitListings = [
   ["PNG Screenshot Too Large Fix", "PNG screenshot upload error fix"],
 ];
 
+const freenosignupUploadFixListings = [
+  ["Compress PDF to 500KB", "PDF 500KB upload-limit path"],
+  ["Compress PDF to 1MB", "PDF 1MB upload-limit path"],
+  ["Compress Image to 100KB", "image 100KB upload-limit path"],
+  ["Image Must Be Under 500KB Fix", "image under 500KB upload-error path"],
+  ["Passport Photo Size Fixer", "passport-style photo resize and KB fix path"],
+  ["Photo 200x230 Under 50KB", "exact 200 x 230 px and 50KB photo path"],
+  ["Signature Under 20KB", "strict 20KB signature image path"],
+  ["Resize Signature 200x100", "exact 200 x 100 px signature resize path"],
+];
+
 const directories = [
   {
     name: "Zearches",
@@ -485,6 +496,22 @@ const directories = [
     reviewWindow: "auto-approved API listing for the exact 200 x 100 px signature resize path",
   },
   {
+    name: "TechTools Launchpad resize photo 200x230 listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=222",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/222",
+    expected: [siteHost, "Resize Photo 200x230"],
+    submittedAt: "2026-06-09",
+    reviewWindow: "auto-approved API listing for the exact 200 x 230 px photo resize path",
+  },
+  {
+    name: "TechTools Launchpad passport photo 35x45mm listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=223",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/223",
+    expected: [siteHost, "Passport Photo 35x45mm"],
+    submittedAt: "2026-06-09",
+    reviewWindow: "auto-approved API listing for the common 35 x 45 mm passport-style photo workflow",
+  },
+  {
     name: "NoSignupTools",
     url: "https://nosignuptools.com/",
     searchUrl: "https://nosignuptools.com/?q=PrintableTools+Lab",
@@ -916,6 +943,14 @@ const directories = [
     submittedAt: "2026-06-08",
     reviewWindow: "3-5 business day manual review after public Google Form confirmation",
   },
+  ...freenosignupUploadFixListings.map(([title, reason]) => ({
+    name: `FreeNoSignup ${title} listing`,
+    url: "https://freenosignup.com/",
+    searchUrl: `https://freenosignup.com/?s=${encodeURIComponent(title).replace(/%20/g, "+")}`,
+    expected: [siteHost, title],
+    submittedAt: "2026-06-09",
+    reviewWindow: `3-5 business day manual review after public Google Form confirmation for the ${reason}`,
+  })),
   {
     name: "NoLogin.tools",
     url: "https://nologin.tools/tool/printable-tools-lab-pages-dev",

@@ -1,0 +1,254 @@
+const fs = require("fs");
+const path = require("path");
+const { URLSearchParams } = require("url");
+
+const root = path.resolve(__dirname, "..");
+const reportsDir = path.join(root, "reports");
+const formResponseUrl = "https://docs.google.com/forms/d/e/1FAIpQLScZ3rCt9k2vlaHcT7d1ABmgtezWN-fZLcH_YcxJdexm8aOzRg/formResponse";
+const submitPage = "https://freenosignup.com/submit/";
+const mappedEntryIds = {
+  toolName: "entry.269597412",
+  toolUrl: "entry.201672753",
+  category: "entry.1927966242",
+  description: "entry.88575082",
+  keyFeatures: "entry.1466984240",
+  submitterName: "entry.1476070271",
+  additionalNotes: "entry.183902111",
+  submitterEmail: "entry.1308873964",
+};
+
+const backlog = [
+  {
+    report: "freenosignup-compress-pdf-to-500kb-submit.json",
+    searchUrl: "https://freenosignup.com/?s=Compress+PDF+to+500KB",
+    payload: {
+      toolName: "Compress PDF to 500KB by PrintableTools Lab",
+      toolUrl: "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=pdf_500kb_2026_06&utm_content=compress_pdf_to_500kb_landing",
+      category: "Productivity",
+      description: "Free no-signup browser PDF compressor for strict 500KB upload limits on forms, exam portals, school uploads, application portals, and email-style document limits. It keeps ordinary files local during use and includes an optional public-safe USD 9 upload fix-plan request only after users confirm fit.",
+      keyFeatures: "No signup. Browser-based PDF compression. 500KB target page. No server file upload for ordinary use. Free export path. Optional public-safe upload fix-plan request is separate.",
+      submitterName: "PrintableTools Lab",
+      additionalNotes: "Specific free upload-limit tool submission. The page is useful for people searching exact 500KB PDF errors and is not a paid-only product.",
+      submitterEmail: "",
+    },
+  },
+  {
+    report: "freenosignup-compress-pdf-to-1mb-submit.json",
+    searchUrl: "https://freenosignup.com/?s=Compress+PDF+to+1MB",
+    payload: {
+      toolName: "Compress PDF to 1MB by PrintableTools Lab",
+      toolUrl: "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=pdf_1mb_2026_06&utm_content=compress_pdf_to_1mb_landing",
+      category: "Productivity",
+      description: "Free no-signup browser PDF compressor for common 1MB upload limits on forms, portals, applications, and email attachments. It opens a practical 1MB target workflow and keeps ordinary files local during use.",
+      keyFeatures: "No signup. Browser-based PDF compression. Common 1MB target. No ordinary server upload. Free download path. Public-safe upload-error guidance.",
+      submitterName: "PrintableTools Lab",
+      additionalNotes: "Specific free exact-size PDF tool submission for people blocked by PDF under 1MB upload messages.",
+      submitterEmail: "",
+    },
+  },
+  {
+    report: "freenosignup-compress-image-to-100kb-submit.json",
+    searchUrl: "https://freenosignup.com/?s=Compress+Image+to+100KB",
+    payload: {
+      toolName: "Compress Image to 100KB by PrintableTools Lab",
+      toolUrl: "https://printable-tools-lab.pages.dev/compress-image-to-100kb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=image_100kb_2026_06&utm_content=compress_image_to_100kb_landing",
+      category: "Productivity",
+      description: "Free no-signup browser image compressor for 100KB profile photo, school form, job portal, and application upload limits. It routes users to a local image-to-KB workflow and does not require account creation.",
+      keyFeatures: "No signup. Browser image compression. 100KB target. Useful for profile photos and application uploads. No ordinary server file upload. Free download path.",
+      submitterName: "PrintableTools Lab",
+      additionalNotes: "Specific free image upload-limit page submission, not a paid-only product.",
+      submitterEmail: "",
+    },
+  },
+  {
+    report: "freenosignup-image-must-be-under-500kb-submit.json",
+    searchUrl: "https://freenosignup.com/?s=Image+Must+Be+Under+500KB+Fix",
+    payload: {
+      toolName: "Image Must Be Under 500KB Fix by PrintableTools Lab",
+      toolUrl: "https://printable-tools-lab.pages.dev/image-must-be-under-500kb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=image_under_500kb_upload_fix_2026_06&utm_content=image_must_be_under_500kb_landing",
+      category: "Productivity",
+      description: "Free no-signup upload-error page for forms that reject an image because it must be under 500KB. It points users to the browser image-to-KB compressor with practical target settings and public-safe guidance.",
+      keyFeatures: "No signup. Exact upload-error wording. Browser-based image compression path. 500KB target. Public-safe notes only. Free tool before any optional service request.",
+      submitterName: "PrintableTools Lab",
+      additionalNotes: "Specific free upload-error fix page for exact 500KB image rejection messages.",
+      submitterEmail: "",
+    },
+  },
+  {
+    report: "freenosignup-passport-photo-size-fixer-submit.json",
+    searchUrl: "https://freenosignup.com/?s=Passport+Photo+Size+Fixer",
+    payload: {
+      toolName: "Passport Photo Size Fixer by PrintableTools Lab",
+      toolUrl: "https://printable-tools-lab.pages.dev/passport-photo-size-fixer/?utm_source=freenosignup&utm_medium=directory&utm_campaign=passport_photo_size_fixer_2026_06&utm_content=passport_photo_size_fixer_landing",
+      category: "Productivity",
+      description: "Free no-signup browser workflow for passport-style photo size issues, including crop, resize, and KB-limit routing. It is intended for generic photo upload requirements and tells users to review official rules before submitting.",
+      keyFeatures: "No signup. Browser-based photo crop and resize routing. KB-limit guidance. Passport-style photo workflow. Public-safe notes only. Free tool path.",
+      submitterName: "PrintableTools Lab",
+      additionalNotes: "Specific free photo-size utility page. It does not claim official passport or visa approval and does not ask for ID documents, logins, payment, or private account data.",
+      submitterEmail: "",
+    },
+  },
+  {
+    report: "freenosignup-photo-200x230-50kb-submit.json",
+    searchUrl: "https://freenosignup.com/?s=Photo+200x230+Under+50KB",
+    payload: {
+      toolName: "Photo 200x230 Under 50KB by PrintableTools Lab",
+      toolUrl: "https://printable-tools-lab.pages.dev/photo-200x230-50kb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=photo_200x230_50kb_2026_06&utm_content=photo_200x230_50kb_landing",
+      category: "Productivity",
+      description: "Free no-signup browser workflow for forms that need a 200 x 230 px photo under 50KB. It routes users through local resize and image-to-KB steps, with reminders to check the downloaded result before uploading elsewhere.",
+      keyFeatures: "No signup. Exact 200 x 230 px photo target. 50KB size guidance. Browser resize and compression steps. Free tool path. Public-safe upload notes.",
+      submitterName: "PrintableTools Lab",
+      additionalNotes: "Specific exact-dimension photo upload-limit page for long-tail search and directory discovery.",
+      submitterEmail: "",
+    },
+  },
+  {
+    report: "freenosignup-signature-under-20kb-submit.json",
+    searchUrl: "https://freenosignup.com/?s=Signature+Under+20KB",
+    payload: {
+      toolName: "Signature Under 20KB by PrintableTools Lab",
+      toolUrl: "https://printable-tools-lab.pages.dev/signature-under-20kb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=signature_20kb_upload_fix_2026_06&utm_content=signature_under_20kb_landing",
+      category: "Productivity",
+      description: "Free no-signup browser workflow for signature image files that must be under 20KB. It routes users to local signature PNG/image compression settings and public-safe upload guidance.",
+      keyFeatures: "No signup. Signature image compression path. 20KB target. Browser-based workflow. No ordinary server file upload. Free tool path.",
+      submitterName: "PrintableTools Lab",
+      additionalNotes: "Specific free signature image upload-limit page; users should review the downloaded file before submitting it to external portals.",
+      submitterEmail: "",
+    },
+  },
+  {
+    report: "freenosignup-resize-signature-200x100-submit.json",
+    searchUrl: "https://freenosignup.com/?s=Resize+Signature+200x100",
+    payload: {
+      toolName: "Resize Signature 200x100 by PrintableTools Lab",
+      toolUrl: "https://printable-tools-lab.pages.dev/resize-signature-200x100/?utm_source=freenosignup&utm_medium=directory&utm_campaign=resize_signature_200x100_2026_06&utm_content=resize_signature_200x100_landing",
+      category: "Productivity",
+      description: "Free no-signup browser workflow for resizing a signature image to 200 x 100 px. It points users to local image resizing and compression steps for application and portal upload requirements.",
+      keyFeatures: "No signup. Exact 200 x 100 px signature target. Browser-based resize path. Optional KB compression guidance. Free export path. Public-safe notes.",
+      submitterName: "PrintableTools Lab",
+      additionalNotes: "Specific exact-size signature utility page for people blocked by signature upload dimensions.",
+      submitterEmail: "",
+    },
+  },
+];
+
+async function main() {
+  fs.mkdirSync(reportsDir, { recursive: true });
+  const results = [];
+  for (const item of backlog) {
+    const result = await submitOrSkip(item);
+    results.push(result);
+    await delay(1500);
+  }
+  console.log(JSON.stringify({ ok: results.every((item) => item.ok || item.skipped), results }, null, 2));
+  if (results.some((item) => !item.ok && !item.skipped)) process.exitCode = 1;
+}
+
+async function submitOrSkip(item) {
+  const reportPath = path.join(reportsDir, item.report);
+  const existing = readJson(reportPath);
+  if (existing?.ok) {
+    return { report: item.report, skipped: true, reason: "existing_confirmation", searchUrl: item.searchUrl };
+  }
+
+  const preSubmitEvidence = await checkUrl(item.searchUrl, item.payload.toolName);
+  if (preSubmitEvidence.matchedSite && preSubmitEvidence.matchedTitle) {
+    const report = makeReport(item, 200, true, preSubmitEvidence, "already_public_before_submit", "FreeNoSignup search already matched the site and title.");
+    writeReport(item.report, report);
+    return { report: item.report, skipped: true, reason: "already_public_before_submit", searchUrl: item.searchUrl };
+  }
+
+  const response = await fetch(formResponseUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+    body: toFormBody(item.payload),
+    redirect: "follow",
+  });
+  const text = await response.text().catch(() => "");
+  const accepted = response.ok && /form|response|recorded|docs/i.test(text);
+  const report = makeReport(
+    item,
+    response.status,
+    accepted,
+    preSubmitEvidence,
+    accepted ? "pending_manual_review" : "google_form_submit_failed_pending_retry",
+    text.slice(0, 260),
+  );
+  writeReport(accepted ? item.report : item.report.replace(/\.json$/, "-failed.json"), report);
+  return { report: item.report, ok: accepted, status: response.status, searchUrl: item.searchUrl };
+}
+
+function makeReport(item, status, ok, preSubmitEvidence, reviewStatus, responseEvidenceSnippet) {
+  return {
+    generatedAt: new Date().toISOString(),
+    directory: "FreeNoSignup",
+    submitPage,
+    formResponseUrl,
+    status,
+    ok,
+    confirmationMatched: ok,
+    preSubmitEvidence,
+    mappedEntryIds,
+    payload: item.payload,
+    searchUrl: item.searchUrl,
+    responseEvidenceSnippet,
+    reviewStatus,
+    reviewWindow: ok ? "3-5 business days" : "",
+  };
+}
+
+function toFormBody(payload) {
+  const params = new URLSearchParams();
+  for (const [key, value] of Object.entries(payload)) {
+    const field = mappedEntryIds[key];
+    if (field) params.set(field, value || "");
+  }
+  params.set("fvv", "1");
+  params.set("pageHistory", "0");
+  return params.toString();
+}
+
+async function checkUrl(url, title) {
+  try {
+    const response = await fetch(url, { redirect: "follow" });
+    const text = await response.text().catch(() => "");
+    return {
+      url,
+      ok: response.ok,
+      status: response.status,
+      matchedSite: text.includes("printable-tools-lab.pages.dev") || text.includes("PrintableTools Lab"),
+      matchedTitle: text.includes(title.replace(" by PrintableTools Lab", "")),
+      bytes: text.length,
+    };
+  } catch (error) {
+    return {
+      url,
+      ok: false,
+      status: 0,
+      matchedSite: false,
+      matchedTitle: false,
+      error: error.message,
+    };
+  }
+}
+
+function writeReport(name, data) {
+  fs.writeFileSync(path.join(reportsDir, name), `${JSON.stringify(data, null, 2)}\n`);
+}
+
+function readJson(file) {
+  try {
+    return JSON.parse(fs.readFileSync(file, "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+main().catch((error) => {
+  console.error(error.stack || error.message);
+  process.exit(1);
+});

@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-06-09T06:19:50.575Z",
+  "directory": "FreeNoSignup",
+  "submitPage": "https://freenosignup.com/submit/",
+  "formResponseUrl": "https://docs.google.com/forms/d/e/1FAIpQLScZ3rCt9k2vlaHcT7d1ABmgtezWN-fZLcH_YcxJdexm8aOzRg/formResponse",
+  "status": 200,
+  "ok": true,
+  "confirmationMatched": true,
+  "preSubmitEvidence": {
+    "url": "https://freenosignup.com/?s=Compress+PDF+to+1MB",
+    "ok": true,
+    "status": 200,
+    "matchedSite": false,
+    "matchedTitle": true,
+    "bytes": 273877
+  },
+  "mappedEntryIds": {
+    "toolName": "entry.269597412",
+    "toolUrl": "entry.201672753",
+    "category": "entry.1927966242",
+    "description": "entry.88575082",
+    "keyFeatures": "entry.1466984240",
+    "submitterName": "entry.1476070271",
+    "additionalNotes": "entry.183902111",
+    "submitterEmail": "entry.1308873964"
+  },
+  "payload": {
+    "toolName": "Compress PDF to 1MB by PrintableTools Lab",
+    "toolUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=pdf_1mb_2026_06&utm_content=compress_pdf_to_1mb_landing",
+    "category": "Productivity",
+    "description": "Free no-signup browser PDF compressor for common 1MB upload limits on forms, portals, applications, and email attachments. It opens a practical 1MB target workflow and keeps ordinary files local during use.",
+    "keyFeatures": "No signup. Browser-based PDF compression. Common 1MB target. No ordinary server upload. Free download path. Public-safe upload-error guidance.",
+    "submitterName": "PrintableTools Lab",
+    "additionalNotes": "Specific free exact-size PDF tool submission for people blocked by PDF under 1MB upload messages.",
+    "submitterEmail": ""
+  },
+  "searchUrl": "https://freenosignup.com/?s=Compress+PDF+to+1MB",
+  "responseEvidenceSnippet": "<!DOCTYPE html><html class=\"HB1eCd-UMrnmb PHOcVb\"><head><style nonce=\"R1ZWt2FM12IG2-MJCQ-Xlw\">.iPj4P { background-color: #5746e3 !important; }</style><link rel=\"shortcut icon\" sizes=\"16x16\" href=\"https://www.gstatic.com/images/branding/productlogos/forms_2026/",
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "3-5 business days"
+}
