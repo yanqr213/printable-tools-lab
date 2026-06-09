@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T05:50:49.560Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "Resize Photo 200x230 by PrintableTools Lab",
+    "slug": "resize-photo-200x230-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/resize-photo-200x230/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=resize_photo_200x230_2026_06&utm_content=resize_photo_200x230_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup 200 x 230 photo resize workflow for upload forms.",
+    "long_description": "A free browser-based 200 x 230 photo resize helper for exam, job, profile, school, and application upload forms that validate exact pixel dimensions. It opens a local resize workflow, keeps ordinary files on the device, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/resize-photo-200x230-by-printabletools-lab"
+}

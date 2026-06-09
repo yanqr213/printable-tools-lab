@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T05:50:41.553Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "Passport Photo 35x45mm by PrintableTools Lab",
+    "slug": "passport-photo-35x45mm-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/passport-photo-35x45mm/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=passport_photo_35x45mm_2026_06&utm_content=passport_photo_35x45mm_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup 35 x 45 mm passport-style photo workflow.",
+    "long_description": "A free browser-based passport photo 35 x 45 mm workflow for forms that ask for a common ID-style photo shape before file-size checks. It routes visitors to local crop and resize steps, requires no account and no server file upload, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/passport-photo-35x45mm-by-printabletools-lab"
+}

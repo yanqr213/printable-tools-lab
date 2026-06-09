@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-09T05:40:28.273Z",
+  "generatedAt": "2026-06-09T05:52:35.777Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 66,
-  "pendingCount": 47,
+  "pendingCount": 56,
   "errorCount": 1,
   "results": [
     {
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 117915,
+          "bytes": 118000,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 117915,
+          "bytes": 118000,
           "matched": false
         }
       ]
@@ -1555,7 +1555,7 @@
           "url": "https://nosignuptools.com/tools/pdf-under-5mb-upload-fix-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20063,
+          "bytes": 20106,
           "matched": false
         }
       ]
@@ -1584,7 +1584,7 @@
           "url": "https://nosignuptools.com/tools/resume-pdf-under-2mb-upload-fix-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20084,
+          "bytes": 20127,
           "matched": false
         }
       ]
@@ -1990,7 +1990,7 @@
           "url": "https://nosignuptools.com/tools/extract-text-from-pdf-without-uploading-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20151,
+          "bytes": 20108,
           "matched": false
         }
       ]
@@ -2193,7 +2193,7 @@
           "url": "https://nosignuptools.com/tools/stamp-pdf-without-uploading-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20072,
+          "bytes": 20115,
           "matched": false
         }
       ]
@@ -2280,7 +2280,7 @@
           "url": "https://nosignuptools.com/tools/resize-image-without-uploading-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20081,
+          "bytes": 20124,
           "matched": false
         }
       ]
@@ -2309,7 +2309,7 @@
           "url": "https://nosignuptools.com/tools/convert-image-format-without-uploading-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20148,
+          "bytes": 20105,
           "matched": false
         }
       ]
@@ -2426,6 +2426,267 @@
           "ok": false,
           "status": 404,
           "bytes": 20133,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools passport photo size fixer listing",
+      "url": "https://nosignuptools.com/tools/passport-photo-size-fixer-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Passport+Photo+Size+Fixer",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Passport Photo Size Fixer"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Passport+Photo+Size+Fixer",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/passport-photo-size-fixer-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20109,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools resize photo 413x531 listing",
+      "url": "https://nosignuptools.com/tools/resize-photo-413x531-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Resize+Photo+413x531",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Resize Photo 413x531"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Resize+Photo+413x531",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/resize-photo-413x531-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20094,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools passport photo 35x45mm listing",
+      "url": "https://nosignuptools.com/tools/passport-photo-35x45mm-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Passport+Photo+35x45mm",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Passport Photo 35x45mm"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Passport+Photo+35x45mm",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/passport-photo-35x45mm-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20057,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools photo 200x230 under 50KB listing",
+      "url": "https://nosignuptools.com/tools/photo-200x230-under-50kb-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Photo+200x230+Under+50KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Photo 200x230 Under 50KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Photo+200x230+Under+50KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/photo-200x230-under-50kb-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20106,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools resize photo 200x230 listing",
+      "url": "https://nosignuptools.com/tools/resize-photo-200x230-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Resize+Photo+200x230",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Resize Photo 200x230"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Resize+Photo+200x230",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/resize-photo-200x230-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20094,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools signature under 20KB listing",
+      "url": "https://nosignuptools.com/tools/signature-under-20kb-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Signature+Under+20KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Signature Under 20KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Signature+Under+20KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/signature-under-20kb-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20094,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools signature under 50KB listing",
+      "url": "https://nosignuptools.com/tools/signature-under-50kb-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Signature+Under+50KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Signature Under 50KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Signature+Under+50KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/signature-under-50kb-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20051,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools resize signature 140x60 listing",
+      "url": "https://nosignuptools.com/tools/resize-signature-140x60-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Resize+Signature+140x60",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Resize Signature 140x60"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Resize+Signature+140x60",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/resize-signature-140x60-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20103,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools resize signature 200x100 listing",
+      "url": "https://nosignuptools.com/tools/resize-signature-200x100-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Resize+Signature+200x100",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Resize Signature 200x100"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Resize+Signature+200x100",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/resize-signature-200x100-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20106,
           "matched": false
         }
       ]
@@ -2917,7 +3178,7 @@
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 298675,
+          "bytes": 298680,
           "matched": true
         },
         {
