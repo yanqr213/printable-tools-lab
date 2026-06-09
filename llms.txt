@@ -137,9 +137,13 @@ Monetization model: Free tools stay live for search demand and future display ad
 
 - [Free Upload Limit Fixer](https://printable-tools-lab.pages.dev/upload-limit-fixer/): file upload limit fixer, reduce file size, convert file format, resize photo
 - [File Must Be Less Than 1MB Fix](https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb/): file must be less than 1MB, upload file too large, reduce file size
+- [PDF Must Be Under 100KB Fix](https://printable-tools-lab.pages.dev/pdf-must-be-under-100kb/): PDF must be under 100KB, compress PDF to 100KB, upload limit error
+- [PDF Must Be Under 200KB Fix](https://printable-tools-lab.pages.dev/pdf-must-be-under-200kb/): PDF must be under 200KB, compress PDF to 200KB, upload limit error
+- [PDF Must Be Under 300KB Fix](https://printable-tools-lab.pages.dev/pdf-must-be-under-300kb/): PDF must be under 300KB, compress PDF to 300KB, upload limit error
 - [PDF Must Be Under 500KB Fix](https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/): PDF must be under 500KB, compress PDF to 500KB, upload limit error
 - [PDF Must Be Under 2MB Fix](https://printable-tools-lab.pages.dev/pdf-must-be-under-2mb/): PDF must be under 2MB, compress PDF to 2MB, upload limit error
 - [PDF Must Be Under 5MB Fix](https://printable-tools-lab.pages.dev/pdf-must-be-under-5mb/): PDF must be under 5MB, compress PDF to 5MB, upload PDF too large
+- [PDF Must Be Under 10MB Fix](https://printable-tools-lab.pages.dev/pdf-must-be-under-10mb/): PDF must be under 10MB, compress PDF to 10MB, upload PDF too large
 - [Photo Must Be Under 100KB Fix](https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/): photo must be under 100KB, image under 100KB, upload photo too large
 - [Invalid File Type JPG or PNG Fix](https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/): invalid file type JPG PNG, upload JPG or PNG, convert image type
 - [Image Dimensions 600x600 Fix](https://printable-tools-lab.pages.dev/image-dimensions-600x600/): image dimensions 600x600, resize image to 600x600, exact pixel upload error

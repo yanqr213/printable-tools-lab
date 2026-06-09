@@ -321,9 +321,13 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - Free ATS resume checker page: https://printable-tools-lab.pages.dev/ats-resume-checker-free/
 - Free Upload Limit Fixer: https://printable-tools-lab.pages.dev/upload-limit-fixer/
 - File Must Be Less Than 1MB Fix: https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb/
+- PDF Must Be Under 100KB Fix: https://printable-tools-lab.pages.dev/pdf-must-be-under-100kb/
+- PDF Must Be Under 200KB Fix: https://printable-tools-lab.pages.dev/pdf-must-be-under-200kb/
+- PDF Must Be Under 300KB Fix: https://printable-tools-lab.pages.dev/pdf-must-be-under-300kb/
 - PDF Must Be Under 500KB Fix: https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/
 - PDF Must Be Under 2MB Fix: https://printable-tools-lab.pages.dev/pdf-must-be-under-2mb/
 - PDF Must Be Under 5MB Fix: https://printable-tools-lab.pages.dev/pdf-must-be-under-5mb/
+- PDF Must Be Under 10MB Fix: https://printable-tools-lab.pages.dev/pdf-must-be-under-10mb/
 - Photo Must Be Under 100KB Fix: https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/
 - Invalid File Type JPG or PNG Fix: https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/
 - Image Dimensions 600x600 Fix: https://printable-tools-lab.pages.dev/image-dimensions-600x600/

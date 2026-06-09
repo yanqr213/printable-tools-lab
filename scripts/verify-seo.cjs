@@ -8,11 +8,15 @@ const GITHUB_PAGES_EVENT_ENDPOINT = "https://printable-tools-lab.pages.dev/api/e
 const UPLOAD_LIMIT_SHORTCUT_PATHS = [
   "/pdf-size-reducer/",
   "/image-size-reducer-in-kb/",
+  "/pdf-must-be-under-100kb/",
+  "/pdf-must-be-under-200kb/",
+  "/pdf-must-be-under-300kb/",
   "/compress-pdf-to-100kb/",
   "/compress-pdf-to-200kb/",
   "/compress-pdf-to-300kb/",
   "/compress-pdf-to-1mb/",
   "/compress-pdf-to-500kb/",
+  "/pdf-must-be-under-10mb/",
   "/compress-pdf-to-10mb/",
   "/compress-image-to-100kb/",
   "/compress-jpg-to-100kb/",
@@ -57,12 +61,12 @@ const UPLOAD_LIMIT_SHORTCUT_PATHS = [
   "/signature-400x200-100kb/",
 ];
 const UPLOAD_LIMIT_DECISION_LINKS = [
-  ["/tools/compress-pdf/?targetSize=100kb", "compress-pdf"],
-  ["/tools/compress-pdf/?targetSize=200kb", "compress-pdf"],
-  ["/tools/compress-pdf/?targetSize=300kb", "compress-pdf"],
+  ["/pdf-must-be-under-100kb/", "compress-pdf"],
+  ["/pdf-must-be-under-200kb/", "compress-pdf"],
+  ["/pdf-must-be-under-300kb/", "compress-pdf"],
   ["/tools/compress-pdf/?targetSize=1mb", "compress-pdf"],
   ["/tools/compress-pdf/?targetSize=500kb", "compress-pdf"],
-  ["/tools/compress-pdf/?targetSize=10mb", "compress-pdf"],
+  ["/pdf-must-be-under-10mb/", "compress-pdf"],
   ["/tools/compress-image-to-kb/?targetKb=100", "compress-image-to-kb"],
   ["/tools/convert-image/", "convert-image"],
   ["/tools/resize-image/", "resize-image"],
@@ -1647,7 +1651,7 @@ else {
   if (!html.includes("PDF size reducer without uploading")) failures.push("PDF size hub page missing headline.");
   if (!html.includes("/tools/compress-pdf/")) failures.push("PDF size hub page missing PDF compressor link.");
   if (!html.includes("Need a $9 upload fix plan?") || !html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes('data-utm-campaign="upload_limit_fix_plan"') || !html.includes('data-service-primary-invoice-request="true"') || !html.includes('data-track-event="service_invoice_request"') || !html.includes("Open public-safe $9 invoice request")) failures.push("PDF size hub page missing $9 upload fix invoice request path.");
-  for (const pagePath of ["compress-pdf-to-100kb", "compress-pdf-to-200kb", "compress-pdf-to-300kb", "compress-pdf-to-500kb", "compress-pdf-to-1mb", "compress-pdf-to-2mb", "compress-pdf-to-5mb", "compress-pdf-to-10mb", "pdf-must-be-under-2mb", "pdf-must-be-under-5mb", "resume-pdf-under-2mb", "document-must-be-under-5mb"]) {
+  for (const pagePath of ["pdf-must-be-under-100kb", "pdf-must-be-under-200kb", "pdf-must-be-under-300kb", "compress-pdf-to-100kb", "compress-pdf-to-200kb", "compress-pdf-to-300kb", "compress-pdf-to-500kb", "compress-pdf-to-1mb", "compress-pdf-to-2mb", "compress-pdf-to-5mb", "compress-pdf-to-10mb", "pdf-must-be-under-2mb", "pdf-must-be-under-5mb", "pdf-must-be-under-10mb", "resume-pdf-under-2mb", "document-must-be-under-5mb"]) {
     if (!html.includes(`/${pagePath}/`)) failures.push(`PDF size hub page missing target link: ${pagePath}`);
   }
   if (!sitemap.includes(`<loc>${siteUrl("pdf-size-reducer")}</loc>`)) failures.push("Sitemap missing PDF size hub page.");
@@ -2459,9 +2463,13 @@ for (const page of landingPages) {
 
 for (const [pagePath, headline, toolFragment] of [
   ["file-must-be-less-than-1mb", "Fix file must be less than 1 MB", "/tools/compress-pdf/?targetSize=1mb"],
+  ["pdf-must-be-under-100kb", "Fix PDF must be under 100KB", "/tools/compress-pdf/?targetSize=100kb"],
+  ["pdf-must-be-under-200kb", "Fix PDF must be under 200KB", "/tools/compress-pdf/?targetSize=200kb"],
+  ["pdf-must-be-under-300kb", "Fix PDF must be under 300KB", "/tools/compress-pdf/?targetSize=300kb"],
   ["pdf-must-be-under-500kb", "Fix PDF must be under 500KB", "/tools/compress-pdf/?targetSize=500kb"],
   ["pdf-must-be-under-2mb", "Fix PDF must be under 2 MB", "/tools/compress-pdf/?targetSize=2mb"],
   ["pdf-must-be-under-5mb", "Fix PDF must be under 5 MB", "/tools/compress-pdf/?targetSize=5mb"],
+  ["pdf-must-be-under-10mb", "Fix PDF must be under 10 MB", "/tools/compress-pdf/?targetSize=10mb"],
   ["photo-must-be-under-100kb", "Fix photo must be under 100KB", "/tools/compress-image-to-kb/?targetKb=100"],
   ["invalid-file-type-jpg-png", "Fix invalid file type: upload JPG or PNG", "/tools/convert-image/"],
   ["image-dimensions-600x600", "Fix image dimensions must be 600 x 600", "/tools/resize-image/?width=600&height=600&fit=cover"],
@@ -2535,7 +2543,7 @@ for (const [pagePath, headline, toolFragment] of [
   if (["passport-photo-35x45mm", "photo-200x230-50kb", "photo-200x230-20kb", "photo-200x230-100kb", "photo-240x320-50kb", "photo-295x413-35kb", "photo-413x531-100kb", "photo-413x531-50kb", "photo-354x472-100kb", "photo-300x300-100kb", "photo-600x600-100kb", "photo-480x640-200kb", "photo-512x512-100kb", "photo-150x200-20kb", "photo-180x240-50kb", "photo-400x514-100kb", "photo-600x800-200kb", "photo-120x160-20kb", "photo-160x200-30kb", "photo-300x400-100kb", "photo-350x450-100kb", "photo-360x480-100kb", "photo-420x560-200kb", "signature-under-20kb", "signature-under-50kb", "resize-signature-140x60", "resize-signature-200x100", "resize-photo-200x230", "signature-140x60-20kb", "signature-140x60-50kb", "signature-150x50-20kb", "signature-160x70-20kb", "signature-200x50-20kb", "signature-200x100-50kb", "signature-250x80-50kb", "signature-300x60-20kb", "signature-300x80-50kb", "signature-300x100-50kb", "signature-400x150-50kb", "signature-100x50-10kb", "signature-200x60-20kb", "signature-256x64-20kb", "signature-400x200-100kb"].includes(pagePath)) {
     if (!html.includes('data-service-primary-invoice-request="true"') || !html.includes("One-contact $9 invoice request") || !html.includes("Where should the external $9 invoice link go?") || !html.includes('data-track-event="service_invoice_request"')) failures.push(`New signature/passport landing page missing one-contact $9 invoice request path: ${pagePath}`);
   }
-  if (["file-must-be-less-than-1mb", "pdf-must-be-under-500kb", "pdf-must-be-under-2mb", "pdf-must-be-under-5mb", "photo-must-be-under-100kb", "invalid-file-type-jpg-png", "image-dimensions-600x600", "pdf-not-accepted-jpg-required", "image-must-be-less-than-2mb", "image-must-be-under-500kb", "jpg-must-be-under-200kb", "png-screenshot-too-large", "resume-pdf-too-large", "resume-pdf-under-2mb", "email-attachment-too-large", "document-must-be-under-5mb"].includes(pagePath)) {
+  if (["file-must-be-less-than-1mb", "pdf-must-be-under-100kb", "pdf-must-be-under-200kb", "pdf-must-be-under-300kb", "pdf-must-be-under-500kb", "pdf-must-be-under-2mb", "pdf-must-be-under-5mb", "pdf-must-be-under-10mb", "photo-must-be-under-100kb", "invalid-file-type-jpg-png", "image-dimensions-600x600", "pdf-not-accepted-jpg-required", "image-must-be-less-than-2mb", "image-must-be-under-500kb", "jpg-must-be-under-200kb", "png-screenshot-too-large", "resume-pdf-too-large", "resume-pdf-under-2mb", "email-attachment-too-large", "document-must-be-under-5mb"].includes(pagePath)) {
     if (!html.includes("data-upload-limit-helper")) failures.push(`Upload-error landing page missing matcher: ${pagePath}`);
     if (!html.includes('href="#invoice-request"') || !html.includes('id="invoice-request"') || !html.includes("Request the $9 invoice link in 30 seconds") || !html.includes("data-service-invoice-submit") || !html.includes(`data-utm-content="${pagePath}-invoice"`) || !html.includes('type="hidden" name="consent" value="on"') || html.includes("Send $9 fix-plan request</button>")) failures.push(`Upload-error landing page missing one-field direct $9 invoice request path: ${pagePath}`);
   }

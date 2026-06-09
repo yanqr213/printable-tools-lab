@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-09T13:11:01.225Z",
+  "generatedAt": "2026-06-09T13:27:15.799Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -47,9 +47,13 @@
     "https://printable-tools-lab.pages.dev/zero-cost-monetization-map/",
     "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
     "https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb/",
+    "https://printable-tools-lab.pages.dev/pdf-must-be-under-100kb/",
+    "https://printable-tools-lab.pages.dev/pdf-must-be-under-200kb/",
+    "https://printable-tools-lab.pages.dev/pdf-must-be-under-300kb/",
     "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/",
     "https://printable-tools-lab.pages.dev/pdf-must-be-under-2mb/",
     "https://printable-tools-lab.pages.dev/pdf-must-be-under-5mb/",
+    "https://printable-tools-lab.pages.dev/pdf-must-be-under-10mb/",
     "https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/",
     "https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/",
     "https://printable-tools-lab.pages.dev/image-dimensions-600x600/",
@@ -565,6 +569,24 @@
       "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=1mb"
     },
     {
+      "title": "PDF Must Be Under 100KB Fix",
+      "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-100kb/",
+      "intent": "PDF must be under 100KB, compress PDF to 100KB, upload limit error",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=100kb"
+    },
+    {
+      "title": "PDF Must Be Under 200KB Fix",
+      "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-200kb/",
+      "intent": "PDF must be under 200KB, compress PDF to 200KB, upload limit error",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=200kb"
+    },
+    {
+      "title": "PDF Must Be Under 300KB Fix",
+      "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-300kb/",
+      "intent": "PDF must be under 300KB, compress PDF to 300KB, upload limit error",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=300kb"
+    },
+    {
       "title": "PDF Must Be Under 500KB Fix",
       "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/",
       "intent": "PDF must be under 500KB, compress PDF to 500KB, upload limit error",
@@ -581,6 +603,12 @@
       "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-5mb/",
       "intent": "PDF must be under 5MB, compress PDF to 5MB, upload PDF too large",
       "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=5mb"
+    },
+    {
+      "title": "PDF Must Be Under 10MB Fix",
+      "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-10mb/",
+      "intent": "PDF must be under 10MB, compress PDF to 10MB, upload PDF too large",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=10mb"
     },
     {
       "title": "Photo Must Be Under 100KB Fix",

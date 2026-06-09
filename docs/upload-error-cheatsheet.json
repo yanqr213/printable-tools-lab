@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Upload Error Cheatsheet Mirror",
-  "generatedAt": "2026-06-09T13:11:01.388Z",
+  "generatedAt": "2026-06-09T13:27:15.978Z",
   "directory": "https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/",
   "livePage": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
   "liveJson": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",
@@ -20,34 +20,34 @@
     {
       "errorText": "PDF must be under 100KB",
       "problem": "A tiny exam, school, or form upload cap rejects a PDF above 100KB.",
-      "response": "Use the strictest 100KB PDF target and review readability before submitting.",
+      "response": "Use the strictest 100KB PDF upload-error page and review readability before submitting.",
       "format": "PDF",
       "target": "100KB",
-      "landingPage": "https://printable-tools-lab.pages.dev/compress-pdf-to-100kb/",
-      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-pdf-to-100kb/",
-      "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-100kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=pdf-must-be-under-100kb",
+      "landingPage": "https://printable-tools-lab.pages.dev/pdf-must-be-under-100kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/pdf-must-be-under-100kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-must-be-under-100kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=pdf-must-be-under-100kb",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=100kb"
     },
     {
       "errorText": "PDF must be under 200KB",
       "problem": "A strict portal allows only a very small scanned PDF or short form.",
-      "response": "Use the severe 200KB PDF target for short scanned forms and keep the original nearby.",
+      "response": "Use the severe 200KB PDF upload-error page for short scanned forms and keep the original nearby.",
       "format": "PDF",
       "target": "200KB",
-      "landingPage": "https://printable-tools-lab.pages.dev/compress-pdf-to-200kb/",
-      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-pdf-to-200kb/",
-      "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-200kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=pdf-must-be-under-200kb",
+      "landingPage": "https://printable-tools-lab.pages.dev/pdf-must-be-under-200kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/pdf-must-be-under-200kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-must-be-under-200kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=pdf-must-be-under-200kb",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=200kb"
     },
     {
       "errorText": "PDF must be under 300KB",
       "problem": "A form, application, or admin portal requires a strict PDF cap below 300KB.",
-      "response": "Use the 300KB PDF target when the portal allows a little more detail than 100KB or 200KB.",
+      "response": "Use the 300KB PDF upload-error page when the portal allows a little more detail than 100KB or 200KB.",
       "format": "PDF",
       "target": "300KB",
-      "landingPage": "https://printable-tools-lab.pages.dev/compress-pdf-to-300kb/",
-      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-pdf-to-300kb/",
-      "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-300kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=pdf-must-be-under-300kb",
+      "landingPage": "https://printable-tools-lab.pages.dev/pdf-must-be-under-300kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/pdf-must-be-under-300kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-must-be-under-300kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=pdf-must-be-under-300kb",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=300kb"
     },
     {
@@ -64,12 +64,12 @@
     {
       "errorText": "PDF must be under 10MB",
       "problem": "An email, support, or document portal still rejects a large scanned PDF.",
-      "response": "Use the 10MB PDF target for wider caps that still reject very large scans.",
+      "response": "Use the 10MB PDF upload-error page for wider caps that still reject very large scans.",
       "format": "PDF",
       "target": "10MB",
-      "landingPage": "https://printable-tools-lab.pages.dev/compress-pdf-to-10mb/",
-      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/compress-pdf-to-10mb/",
-      "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-10mb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=pdf-must-be-under-10mb",
+      "landingPage": "https://printable-tools-lab.pages.dev/pdf-must-be-under-10mb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/pdf-must-be-under-10mb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-must-be-under-10mb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=pdf-must-be-under-10mb",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=10mb"
     },
     {
