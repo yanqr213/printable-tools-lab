@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-09T13:41:41.160Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Compress PDF to 200KB by PrintableTools Lab",
+    "tagline": "Free no-signup PDF compressor for strict 200KB upload limits.",
+    "description": "PrintableTools Lab Compress PDF to 200KB helps people blocked by application, exam, school, and admin upload pages with strict 200KB PDF caps. The page opens the browser PDF compressor with the 200KB target selected, keeps ordinary files local, and includes an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+    "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-200kb/?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_200kb_2026_06&utm_content=compress_pdf_to_200kb_landing",
+    "category": "utilities",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 compress pdf to 200kb upload-fix landing path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 256,
+      "name": "Compress PDF to 200KB by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-200kb/?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_200kb_2026_06&utm_content=compress_pdf_to_200kb_landing",
+      "tagline": "Free no-signup PDF compressor for strict 200KB upload limits.",
+      "description": "PrintableTools Lab Compress PDF to 200KB helps people blocked by application, exam, school, and admin upload pages with strict 200KB PDF caps. The page opens the browser PDF compressor with the 200KB target selected, keeps ordinary files local, and includes an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+      "category": "utilities",
+      "category_label": "Utilities",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 compress pdf to 200kb upload-fix landing path",
+      "launch_date": "2026-06-09",
+      "created_at": "2026-06-09T13:41:41Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=256"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=256"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=256",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/256"
+}

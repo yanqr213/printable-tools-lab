@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T13:42:34.086Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "Compress PDF to 200KB by PrintableTools Lab",
+    "slug": "compress-pdf-to-200kb-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-200kb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=pdf_200kb_2026_06&utm_content=compress_pdf_to_200kb_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup PDF compressor for strict 200KB upload limits.",
+    "long_description": "A free browser-based PDF compressor for strict 200KB upload limits on application forms, exam portals, school uploads, and admin pages. It opens the local PDF compressor with a 200KB target, keeps ordinary files on the device during use, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/compress-pdf-to-200kb-by-printabletools-lab"
+}

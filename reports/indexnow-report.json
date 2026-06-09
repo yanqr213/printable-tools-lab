@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-09T06:23:47.888Z",
+  "generatedAt": "2026-06-09T13:50:50.795Z",
   "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
   "results": [
     {
@@ -9,13 +9,13 @@
       "keyReachable": true,
       "keyStatus": 200,
       "keyMessage": "ok",
-      "urlCount": 302,
+      "urlCount": 346,
       "submittedUrls": 0,
       "accepted": false,
       "status": 403,
       "message": "{\"errorCode\":\"UserForbiddedToAccessSite\",\"message\":\"User is unauthorized to access the site. Please verify the site using the key and try again\",\"details\":null}",
       "fallbackAccepted": 0,
-      "fallbackFailed": 23
+      "fallbackFailed": 31
     },
     {
       "label": "github-pages",
@@ -24,8 +24,8 @@
       "keyReachable": true,
       "keyStatus": 200,
       "keyMessage": "ok",
-      "urlCount": 284,
-      "submittedUrls": 284,
+      "urlCount": 328,
+      "submittedUrls": 328,
       "accepted": true,
       "status": 200,
       "message": "",
