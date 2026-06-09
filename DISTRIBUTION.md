@@ -94,6 +94,9 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - NoSignupTools Extract Text From PDF Without Uploading listing: https://printable-tools-lab.pages.dev/extract-text-from-pdf-no-upload?utm_source=nosignuptools&utm_medium=directory&utm_campaign=extract_text_pdf_no_upload_2026_06&utm_content=extract_text_pdf_no_upload_landing
 - NoSignupTools Merge PDF Without Uploading listing: https://printable-tools-lab.pages.dev/merge-pdf-no-upload?utm_source=nosignuptools&utm_medium=directory&utm_campaign=merge_pdf_no_upload_2026_06&utm_content=merge_pdf_no_upload_landing
 - NoSignupTools Split PDF Without Uploading listing: https://printable-tools-lab.pages.dev/split-pdf-no-upload?utm_source=nosignuptools&utm_medium=directory&utm_campaign=split_pdf_no_upload_2026_06&utm_content=split_pdf_no_upload_landing
+- NoSignupTools Rotate PDF Pages Without Uploading listing: https://printable-tools-lab.pages.dev/rotate-pdf-no-upload?utm_source=nosignuptools&utm_medium=directory&utm_campaign=rotate_pdf_no_upload_2026_06&utm_content=rotate_pdf_no_upload_landing
+- NoSignupTools Remove Pages From PDF Without Uploading listing: https://printable-tools-lab.pages.dev/remove-pages-from-pdf-no-upload?utm_source=nosignuptools&utm_medium=directory&utm_campaign=remove_pages_pdf_no_upload_2026_06&utm_content=remove_pages_pdf_no_upload_landing
+- NoSignupTools Reorder PDF Pages Without Uploading listing: https://printable-tools-lab.pages.dev/reorder-pdf-pages-no-upload?utm_source=nosignuptools&utm_medium=directory&utm_campaign=reorder_pdf_pages_no_upload_2026_06&utm_content=reorder_pdf_pages_no_upload_landing
 - FreeNoSignup Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=freenosignup
 - FreeNoSignup Upload Error Cheatsheet listing: https://printable-tools-lab.pages.dev/upload-error-cheatsheet?utm_source=freenosignup&utm_medium=directory&utm_campaign=upload_error_cheatsheet_2026_06&utm_content=upload_error_cheatsheet
 - NoSignupTools Overdue Invoice Reminder listing: https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email?utm_source=nosignuptools&utm_medium=directory&utm_campaign=overdue_invoice_2026_06&utm_content=overdue_invoice_reminder_email
@@ -433,6 +436,7 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - NoSignupTools Passport Photo Compress to 50KB, 100KB, and 200KB submissions; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
 - NoSignupTools PDF and document upload-limit submissions for 2MB/5MB intents; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
 - NoSignupTools no-upload PDF extract/merge/split submissions; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
+- NoSignupTools no-upload PDF rotate/remove/reorder submissions; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
 - TechTools no-upload PDF extract/merge/split submissions; rate limited on 2026-06-09 by the directory's Wait 1 hour response and queued for retry after the backoff window
 - FreeNoSignup Upload Limit Fixer submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
 - FreeNoSignup Upload Error Cheatsheet submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review

@@ -336,6 +336,48 @@ const backlog = [
       long_description: "A free browser-based PDF splitter for separating pages, trimming document packets, pulling one form from a multi-page file, or preparing smaller upload-ready PDFs. It requires no account, keeps ordinary files local during use, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check.",
     },
   },
+  {
+    report: "nosignuptools-rotate-pdf-no-upload-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/rotate-pdf-pages-without-uploading-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Rotate+PDF+Pages+Without+Uploading",
+    payload: {
+      ...common,
+      name: "Rotate PDF Pages Without Uploading by PrintableTools Lab",
+      slug: "rotate-pdf-pages-without-uploading-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/rotate-pdf-no-upload/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=rotate_pdf_no_upload_2026_06&utm_content=rotate_pdf_no_upload_landing",
+      category: "productivity",
+      short_description: "Free no-signup browser PDF page rotator for sideways scans and forms.",
+      long_description: "A free browser-based PDF page rotator for fixing sideways scans, forms, notes, packets, and document uploads. It requires no account, keeps ordinary files local during use, and helps users prepare cleaner upload-ready PDFs before sharing or submitting them.",
+    },
+  },
+  {
+    report: "nosignuptools-remove-pages-from-pdf-no-upload-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/remove-pages-from-pdf-without-uploading-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Remove+Pages+From+PDF+Without+Uploading",
+    payload: {
+      ...common,
+      name: "Remove Pages From PDF Without Uploading by PrintableTools Lab",
+      slug: "remove-pages-from-pdf-without-uploading-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/remove-pages-from-pdf-no-upload/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=remove_pages_pdf_no_upload_2026_06&utm_content=remove_pages_pdf_no_upload_landing",
+      category: "productivity",
+      short_description: "Free no-signup browser PDF page remover for trimming extra pages before upload.",
+      long_description: "A free browser-based PDF page remover for deleting blank pages, extra scans, unneeded covers, and private pages before uploading a document. It requires no account, keeps ordinary files local during use, and helps reduce upload risk and file size before submission.",
+    },
+  },
+  {
+    report: "nosignuptools-reorder-pdf-pages-no-upload-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/reorder-pdf-pages-without-uploading-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Reorder+PDF+Pages+Without+Uploading",
+    payload: {
+      ...common,
+      name: "Reorder PDF Pages Without Uploading by PrintableTools Lab",
+      slug: "reorder-pdf-pages-without-uploading-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/reorder-pdf-pages-no-upload/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=reorder_pdf_pages_no_upload_2026_06&utm_content=reorder_pdf_pages_no_upload_landing",
+      category: "productivity",
+      short_description: "Free no-signup browser PDF page reorder tool for arranging packets.",
+      long_description: "A free browser-based PDF page reorder tool for arranging application packets, scans, forms, receipts, and document bundles before upload. It requires no account, keeps ordinary files local during use, and helps users prepare correctly ordered PDFs without a full PDF editor.",
+    },
+  },
 ];
 
 async function main() {
