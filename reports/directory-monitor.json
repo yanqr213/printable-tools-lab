@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-08T23:47:53.647Z",
+  "generatedAt": "2026-06-09T00:07:12.551Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 26,
+  "listedCount": 28,
   "pendingCount": 19,
   "errorCount": 1,
   "results": [
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 117939,
+          "bytes": 117955,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 117939,
+          "bytes": 117955,
           "matched": false
         }
       ]
@@ -78,7 +78,7 @@
           "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
           "ok": true,
           "status": 200,
-          "bytes": 95273,
+          "bytes": 95501,
           "matched": true
         }
       ]
@@ -519,6 +519,50 @@
           "ok": true,
           "status": 200,
           "bytes": 1402,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad compress image to KB listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=187",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/187",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress Image to KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the invoice-first image-to-KB tool path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/187",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/187",
+          "ok": true,
+          "status": 200,
+          "bytes": 1276,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad compress PDF to 500KB listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=188",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/188",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress PDF to 500KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the strict PDF 500KB landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/188",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/188",
+          "ok": true,
+          "status": 200,
+          "bytes": 1271,
           "matched": true
         }
       ]
@@ -1198,7 +1242,7 @@
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 298706,
+          "bytes": 298666,
           "matched": true
         },
         {

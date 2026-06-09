@@ -850,6 +850,8 @@ const distribution = [
   "- TechTools Image Dimensions 600x600 Upload Fix listing: https://techtools.cz/tools/launchpad/?tool=184",
   "- TechTools PDF Not Accepted JPG Required Fix listing: https://techtools.cz/tools/launchpad/?tool=185",
   "- TechTools Email Attachment Too Large PDF Fix listing: https://techtools.cz/tools/launchpad/?tool=186",
+  `- TechTools Compress Image to KB listing: ${siteUrl("tools/compress-image-to-kb").replace(/\/$/, "")}?utm_source=techtools&utm_medium=directory&utm_campaign=compress_image_kb_invoice_first_2026_06&utm_content=compress_image_kb_tool`,
+  `- TechTools Compress PDF to 500KB listing: ${siteUrl("compress-pdf-to-500kb").replace(/\/$/, "")}?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_500kb_2026_06&utm_content=compress_pdf_to_500kb_landing`,
   `- NoSignupTools Upload Limit Fixer listing: ${siteUrl("upload-limit-fixer").replace(/\/$/, "")}?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_limit_2026_06&utm_content=upload_limit_fixer`,
   `- NoSignupTools Upload Error Cheatsheet listing: ${siteUrl("upload-error-cheatsheet").replace(/\/$/, "")}?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_error_cheatsheet_2026_06&utm_content=upload_error_cheatsheet`,
   `- NoSignupTools Image Dimensions 600x600 Upload Fix listing: ${siteUrl("image-dimensions-600x600").replace(/\/$/, "")}?utm_source=nosignuptools&utm_medium=directory&utm_campaign=image_dimensions_600x600_fix_2026_06&utm_content=image_dimensions_600x600_landing`,

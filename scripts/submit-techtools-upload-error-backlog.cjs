@@ -48,6 +48,34 @@ const backlog = [
       submitted_by: "Codex traffic acquisition run 2026-06-09 email attachment too large upload fix path",
     },
   },
+  {
+    report: "techtools-compress-image-to-kb-submit.json",
+    payload: {
+      name: "Compress Image to KB by PrintableTools Lab",
+      tagline: "No-signup image-to-KB compressor with a one-contact $9 upload fix request.",
+      description: "PrintableTools Lab Compress Image to KB helps people blocked by photo, profile, application, marketplace, and portal file-size limits. The free tool runs in the browser without account creation or server upload, supports exact target KB settings, and includes an optional public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist.",
+      url: "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?utm_source=techtools&utm_medium=directory&utm_campaign=compress_image_kb_invoice_first_2026_06&utm_content=compress_image_kb_tool",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 compress image to KB invoice-first tool path",
+    },
+  },
+  {
+    report: "techtools-compress-pdf-to-500kb-submit.json",
+    payload: {
+      name: "Compress PDF to 500KB by PrintableTools Lab",
+      tagline: "Free no-signup PDF compressor for strict 500KB upload limits.",
+      description: "PrintableTools Lab Compress PDF to 500KB helps people blocked by strict PDF must be under 500KB limits on forms, exam portals, school uploads, application portals, and government-style upload pages. It opens the browser PDF compressor with the 500KB target selected, keeps files local, and offers an optional public-safe $9 Upload Limit Fix Plan request for exact settings and fallback steps after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_500kb_2026_06&utm_content=compress_pdf_to_500kb_landing",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 compress PDF to 500KB high-intent landing path",
+    },
+  },
 ];
 
 async function main() {

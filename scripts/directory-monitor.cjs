@@ -192,6 +192,22 @@ const directories = [
     reviewWindow: "auto-approved API listing for the email attachment too large upload fix path",
   },
   {
+    name: "TechTools Launchpad compress image to KB listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=187",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/187",
+    expected: [siteHost, "Compress Image to KB"],
+    submittedAt: "2026-06-09",
+    reviewWindow: "auto-approved API listing for the invoice-first image-to-KB tool path",
+  },
+  {
+    name: "TechTools Launchpad compress PDF to 500KB listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=188",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/188",
+    expected: [siteHost, "Compress PDF to 500KB"],
+    submittedAt: "2026-06-09",
+    reviewWindow: "auto-approved API listing for the strict PDF 500KB landing path",
+  },
+  {
     name: "NoSignupTools",
     url: "https://nosignuptools.com/",
     searchUrl: "https://nosignuptools.com/?q=PrintableTools+Lab",

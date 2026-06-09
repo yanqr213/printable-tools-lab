@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-09T00:05:18.711Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Compress Image to KB by PrintableTools Lab",
+    "tagline": "No-signup image-to-KB compressor with a one-contact $9 upload fix request.",
+    "description": "PrintableTools Lab Compress Image to KB helps people blocked by photo, profile, application, marketplace, and portal file-size limits. The free tool runs in the browser without account creation or server upload, supports exact target KB settings, and includes an optional public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist.",
+    "url": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?utm_source=techtools&utm_medium=directory&utm_campaign=compress_image_kb_invoice_first_2026_06&utm_content=compress_image_kb_tool",
+    "category": "utilities",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 compress image to KB invoice-first tool path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 187,
+      "name": "Compress Image to KB by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?utm_source=techtools&utm_medium=directory&utm_campaign=compress_image_kb_invoice_first_2026_06&utm_content=compress_image_kb_tool",
+      "tagline": "No-signup image-to-KB compressor with a one-contact $9 upload fix request.",
+      "description": "PrintableTools Lab Compress Image to KB helps people blocked by photo, profile, application, marketplace, and portal file-size limits. The free tool runs in the browser without account creation or server upload, supports exact target KB settings, and includes an optional public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist.",
+      "category": "utilities",
+      "category_label": "Utilities",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 compress image to KB invoice-first tool path",
+      "launch_date": "2026-06-09",
+      "created_at": "2026-06-09T00:05:18Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=187"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=187"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=187",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/187"
+}

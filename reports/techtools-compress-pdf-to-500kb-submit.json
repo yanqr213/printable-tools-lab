@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-09T00:05:22.052Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Compress PDF to 500KB by PrintableTools Lab",
+    "tagline": "Free no-signup PDF compressor for strict 500KB upload limits.",
+    "description": "PrintableTools Lab Compress PDF to 500KB helps people blocked by strict PDF must be under 500KB limits on forms, exam portals, school uploads, application portals, and government-style upload pages. It opens the browser PDF compressor with the 500KB target selected, keeps files local, and offers an optional public-safe $9 Upload Limit Fix Plan request for exact settings and fallback steps after fit is confirmed.",
+    "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_500kb_2026_06&utm_content=compress_pdf_to_500kb_landing",
+    "category": "utilities",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 compress PDF to 500KB high-intent landing path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 188,
+      "name": "Compress PDF to 500KB by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_500kb_2026_06&utm_content=compress_pdf_to_500kb_landing",
+      "tagline": "Free no-signup PDF compressor for strict 500KB upload limits.",
+      "description": "PrintableTools Lab Compress PDF to 500KB helps people blocked by strict PDF must be under 500KB limits on forms, exam portals, school uploads, application portals, and government-style upload pages. It opens the browser PDF compressor with the 500KB target selected, keeps files local, and offers an optional public-safe $9 Upload Limit Fix Plan request for exact settings and fallback steps after fit is confirmed.",
+      "category": "utilities",
+      "category_label": "Utilities",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 compress PDF to 500KB high-intent landing path",
+      "launch_date": "2026-06-09",
+      "created_at": "2026-06-09T00:05:21Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=188"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=188"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=188",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/188"
+}
