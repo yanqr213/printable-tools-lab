@@ -378,6 +378,48 @@ const backlog = [
       long_description: "A free browser-based PDF page reorder tool for arranging application packets, scans, forms, receipts, and document bundles before upload. It requires no account, keeps ordinary files local during use, and helps users prepare correctly ordered PDFs without a full PDF editor.",
     },
   },
+  {
+    report: "nosignuptools-add-page-numbers-to-pdf-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/add-page-numbers-to-pdf-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Add+Page+Numbers+to+PDF",
+    payload: {
+      ...common,
+      name: "Add Page Numbers to PDF by PrintableTools Lab",
+      slug: "add-page-numbers-to-pdf-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/add-page-numbers-to-pdf/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=add_page_numbers_pdf_2026_06&utm_content=add_page_numbers_pdf_landing",
+      category: "productivity",
+      short_description: "Free no-signup browser tool for adding simple page numbers to a PDF.",
+      long_description: "A free browser-based PDF page numbering tool for reports, packets, forms, drafts, handouts, and document reviews. It requires no account, keeps ordinary files local during use, and helps users make multi-page PDFs easier to reference before sharing or uploading.",
+    },
+  },
+  {
+    report: "nosignuptools-stamp-pdf-no-upload-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/stamp-pdf-without-uploading-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Stamp+PDF+Without+Uploading",
+    payload: {
+      ...common,
+      name: "Stamp PDF Without Uploading by PrintableTools Lab",
+      slug: "stamp-pdf-without-uploading-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/stamp-pdf-no-upload/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=stamp_pdf_no_upload_2026_06&utm_content=stamp_pdf_no_upload_landing",
+      category: "productivity",
+      short_description: "Free no-signup browser PDF stamp tool for labels, notes, and draft marks.",
+      long_description: "A free browser-based PDF stamping tool for adding simple draft marks, labels, notes, received stamps, or status text before sharing a document. It requires no account, keeps ordinary files local during use, and helps users prepare clearer PDFs without a full PDF editor.",
+    },
+  },
+  {
+    report: "nosignuptools-sign-pdf-no-upload-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/sign-pdf-without-uploading-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Sign+PDF+Without+Uploading",
+    payload: {
+      ...common,
+      name: "Sign PDF Without Uploading by PrintableTools Lab",
+      slug: "sign-pdf-without-uploading-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/sign-pdf-no-upload/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=sign_pdf_no_upload_2026_06&utm_content=sign_pdf_no_upload_landing",
+      category: "productivity",
+      short_description: "Free no-signup browser PDF signing helper for simple signature text placement.",
+      long_description: "A free browser-based PDF signing helper for placing simple signature text, names, initials, or approval notes on a PDF before sharing. It requires no account, keeps ordinary files local during use, and gives users a quick lightweight option for non-legal, low-risk document marking.",
+    },
+  },
 ];
 
 async function main() {

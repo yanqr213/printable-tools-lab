@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-09T04:20:33.992Z",
+  "generatedAt": "2026-06-09T04:28:24.332Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 56,
-  "pendingCount": 37,
+  "pendingCount": 40,
   "errorCount": 1,
   "results": [
     {
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 117948,
+          "bytes": 117966,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 117948,
+          "bytes": 117966,
           "matched": false
         }
       ]
@@ -1219,7 +1219,7 @@
           "url": "https://nosignuptools.com/tools/pdf-not-accepted-jpg-required-fix-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20090,
+          "bytes": 20133,
           "matched": false
         }
       ]
@@ -1277,7 +1277,7 @@
           "url": "https://nosignuptools.com/tools/email-attachment-too-large-fix-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20124,
+          "bytes": 20081,
           "matched": false
         }
       ]
@@ -1741,7 +1741,7 @@
           "url": "https://nosignuptools.com/tools/passport-photo-compress-to-200kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20087,
+          "bytes": 20130,
           "matched": false
         }
       ]
@@ -1857,7 +1857,7 @@
           "url": "https://nosignuptools.com/tools/rotate-pdf-pages-without-uploading-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20136,
+          "bytes": 20093,
           "matched": false
         }
       ]
@@ -1915,7 +1915,94 @@
           "url": "https://nosignuptools.com/tools/reorder-pdf-pages-without-uploading-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20139,
+          "bytes": 20096,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools add page numbers to PDF listing",
+      "url": "https://nosignuptools.com/tools/add-page-numbers-to-pdf-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Add+Page+Numbers+to+PDF",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Add Page Numbers to PDF"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Add+Page+Numbers+to+PDF",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/add-page-numbers-to-pdf-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20103,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools stamp PDF without uploading listing",
+      "url": "https://nosignuptools.com/tools/stamp-pdf-without-uploading-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Stamp+PDF+Without+Uploading",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Stamp PDF Without Uploading"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Stamp+PDF+Without+Uploading",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/stamp-pdf-without-uploading-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20115,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools sign PDF without uploading listing",
+      "url": "https://nosignuptools.com/tools/sign-pdf-without-uploading-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Sign+PDF+Without+Uploading",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Sign PDF Without Uploading"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Sign+PDF+Without+Uploading",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/sign-pdf-without-uploading-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20112,
           "matched": false
         }
       ]
@@ -2407,7 +2494,7 @@
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 298675,
+          "bytes": 298680,
           "matched": true
         },
         {

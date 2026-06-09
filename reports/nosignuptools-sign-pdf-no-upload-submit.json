@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T04:26:03.712Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "Sign PDF Without Uploading by PrintableTools Lab",
+    "slug": "sign-pdf-without-uploading-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/sign-pdf-no-upload/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=sign_pdf_no_upload_2026_06&utm_content=sign_pdf_no_upload_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup browser PDF signing helper for simple signature text placement.",
+    "long_description": "A free browser-based PDF signing helper for placing simple signature text, names, initials, or approval notes on a PDF before sharing. It requires no account, keeps ordinary files local during use, and gives users a quick lightweight option for non-legal, low-risk document marking."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/sign-pdf-without-uploading-by-printabletools-lab"
+}
