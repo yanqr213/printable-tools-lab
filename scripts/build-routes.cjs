@@ -20,10 +20,11 @@ const auditLeadMagnetAssets = buildAuditLeadMagnetAssets();
 
 function pageHtml(route) {
   const rendered = renderRoute(route);
+  const robots = route.robots || (route.index === false ? "noindex,follow" : "index,follow");
   let html = template
     .replace(/<title>.*?<\/title>/, `<title>${rendered.title} - PrintableTools Lab</title>`)
     .replace(/<meta name="description" content=".*?">/, `<meta name="description" content="${escapeAttr(rendered.description)}">`)
-    .replace(/<meta name="robots" content=".*?">/, `<meta name="robots" content="${route.index === false ? "noindex,follow" : "index,follow"}">`)
+    .replace(/<meta name="robots" content=".*?">/, `<meta name="robots" content="${robots}">`)
     .replace(/<meta property="og:title" content=".*?">/, `<meta property="og:title" content="${escapeAttr(rendered.title)}">`)
     .replace(/<meta property="og:description" content=".*?">/, `<meta property="og:description" content="${escapeAttr(rendered.description)}">`)
     .replace(/<meta property="og:image" content=".*?">/, `<meta property="og:image" content="${siteUrl("assets/images/social-card.webp").replace(/\/$/, "")}">`)

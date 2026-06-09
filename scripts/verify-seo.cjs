@@ -293,7 +293,8 @@ for (const routePath of ["dashboard", "ops"]) {
   const html = fs.readFileSync(file, "utf8");
   if (!html.includes('<body class="internal-route">')) failures.push(`${routePath} should use internal route chrome.`);
   if (html.includes("site-header") || html.includes("top-nav") || html.includes("site-footer")) failures.push(`${routePath} should not render public site navigation chrome.`);
-  if (!html.includes('content="noindex,follow"')) failures.push(`${routePath} should be noindex.`);
+  const expectedRobots = routePath === "ops" ? "noindex,nofollow" : "noindex,follow";
+  if (!html.includes(`content="${expectedRobots}"`)) failures.push(`${routePath} should be ${expectedRobots}.`);
   if (sitemap.includes(`<loc>${siteUrl(routePath)}</loc>`)) failures.push(`Sitemap should not include noindex internal route: ${routePath}.`);
   if (routePath === "ops" && (!html.includes("/sponsor-starter-review/?utm_source=ops") || !html.includes("Open invoice review form"))) failures.push("Ops monitor should route sponsor close work to the invoice review form.");
   if (routePath === "ops" && (!html.includes("/api/ops-metrics") || !html.includes("Project detail rows") || !html.includes("Source breakdown") || !html.includes("Tool and game signal snapshot") || !html.includes("Path breakdown") || !html.includes("/polite-payment-reminder-email/") || !html.includes("/freelance-invoice-follow-up-email/"))) failures.push("Ops monitor should render detailed project traffic sections and high-intent path funnel access.");

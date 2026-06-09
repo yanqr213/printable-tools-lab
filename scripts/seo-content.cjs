@@ -6772,6 +6772,7 @@ const pages = [
     title: "Project Operations Monitor",
     description: "Noindex operations monitor for project-level traffic, sponsor close actions, source, path, tool, game, and monetization signals.",
     index: false,
+    robots: "noindex,nofollow",
     chrome: "internal",
     html: opsMonitorStaticHtml(),
   },

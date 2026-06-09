@@ -10000,6 +10000,7 @@ ${paragraphs.join("\n")}
 
   function renderOpsMonitor() {
     setMeta("Project Operations Monitor", "Noindex operations monitor for project traffic, source, path, tool, game, and monetization signals.");
+    setMetaTag("robots", "noindex,nofollow");
     app.innerHTML = `
       <section class="shell dashboard ops-monitor">
         <div class="section-head">
