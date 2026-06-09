@@ -785,6 +785,8 @@ else {
   if (!directoryMonitorScript.includes("TechTools Launchpad signature under 50KB listing") || !directoryMonitorScript.includes("Signature Under 50KB")) failures.push("Directory monitor missing TechTools signature 50KB listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad resize signature 140x60 listing") || !directoryMonitorScript.includes("Resize Signature 140x60")) failures.push("Directory monitor missing TechTools resize signature 140x60 listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad photo 200x230 under 50KB listing") || !directoryMonitorScript.includes("Photo 200x230 Under 50KB")) failures.push("Directory monitor missing TechTools photo 200x230 under 50KB listing tracking.");
+  if (!directoryMonitorScript.includes("TechTools Launchpad photo 240x320 under 50KB listing") || !directoryMonitorScript.includes("Photo 240x320 Under 50KB")) failures.push("Directory monitor missing TechTools photo 240x320 under 50KB listing tracking.");
+  if (!directoryMonitorScript.includes("TechTools Launchpad signature 300x80 under 50KB listing") || !directoryMonitorScript.includes("Signature 300x80 Under 50KB")) failures.push("Directory monitor missing TechTools signature 300x80 under 50KB listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad resize signature 200x100 listing") || !directoryMonitorScript.includes("Resize Signature 200x100")) failures.push("Directory monitor missing TechTools resize signature 200x100 listing tracking.");
   if (!directoryMonitorScript.includes("NoLogin.tools upload error cheatsheet listing") || !directoryMonitorScript.includes("Upload+Error+Cheatsheet")) failures.push("Directory monitor missing NoLogin upload error cheatsheet submission tracking.");
   if (!directoryMonitorScript.includes("expected.every")) failures.push("Directory monitor should require all expected listing markers to avoid search-query echo false positives.");
@@ -829,6 +831,14 @@ for (const [reportName, shareUrl, campaign] of [
   ["techtools-resize-signature-200x100-submit.json", "https://techtools.cz/tools/launchpad/?tool=221", "resize_signature_200x100_2026_06"],
   ["techtools-resize-photo-200x230-submit.json", "https://techtools.cz/tools/launchpad/?tool=222", "resize_photo_200x230_2026_06"],
   ["techtools-passport-photo-35x45mm-submit.json", "https://techtools.cz/tools/launchpad/?tool=223", "passport_photo_35x45mm_2026_06"],
+  ["techtools-photo-240x320-50kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=230", "photo_240x320_50kb_2026_06"],
+  ["techtools-photo-413x531-50kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=231", "photo_413x531_50kb_2026_06"],
+  ["techtools-photo-300x300-100kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=232", "photo_300x300_100kb_2026_06"],
+  ["techtools-photo-600x600-100kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=233", "photo_600x600_100kb_2026_06"],
+  ["techtools-signature-150x50-20kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=234", "signature_150x50_20kb_2026_06"],
+  ["techtools-signature-200x50-20kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=235", "signature_200x50_20kb_2026_06"],
+  ["techtools-signature-300x80-50kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=236", "signature_300x80_50kb_2026_06"],
+  ["techtools-signature-300x100-50kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=237", "signature_300x100_50kb_2026_06"],
 ]) {
   const reportFile = path.join(root, "reports", reportName);
   if (!fs.existsSync(reportFile)) failures.push(`Missing TechTools high-intent photo/signature submission evidence report: ${reportName}`);
@@ -1011,6 +1021,14 @@ for (const [name, reportName, campaign, reviewUrl] of [
   ["image under 2MB", "nosignuptools-image-must-be-less-than-2mb-submit.json", "image_under_2mb_upload_fix_2026_06", "https://nosignuptools.com/tools/image-must-be-less-than-2mb-fix-by-printabletools-lab"],
   ["JPG under 200KB", "nosignuptools-jpg-must-be-under-200kb-submit.json", "jpg_under_200kb_upload_fix_2026_06", "https://nosignuptools.com/tools/jpg-must-be-under-200kb-fix-by-printabletools-lab"],
   ["PNG screenshot too large", "nosignuptools-png-screenshot-too-large-submit.json", "png_screenshot_too_large_fix_2026_06", "https://nosignuptools.com/tools/png-screenshot-too-large-fix-by-printabletools-lab"],
+  ["photo 240x320 under 50KB", "nosignuptools-photo-240x320-50kb-submit.json", "photo_240x320_50kb_2026_06", "https://nosignuptools.com/tools/photo-240x320-under-50kb-by-printabletools-lab"],
+  ["photo 413x531 under 50KB", "nosignuptools-photo-413x531-50kb-submit.json", "photo_413x531_50kb_2026_06", "https://nosignuptools.com/tools/photo-413x531-under-50kb-by-printabletools-lab"],
+  ["photo 300x300 under 100KB", "nosignuptools-photo-300x300-100kb-submit.json", "photo_300x300_100kb_2026_06", "https://nosignuptools.com/tools/photo-300x300-under-100kb-by-printabletools-lab"],
+  ["photo 600x600 under 100KB", "nosignuptools-photo-600x600-100kb-submit.json", "photo_600x600_100kb_2026_06", "https://nosignuptools.com/tools/photo-600x600-under-100kb-by-printabletools-lab"],
+  ["signature 150x50 under 20KB", "nosignuptools-signature-150x50-20kb-submit.json", "signature_150x50_20kb_2026_06", "https://nosignuptools.com/tools/signature-150x50-under-20kb-by-printabletools-lab"],
+  ["signature 200x50 under 20KB", "nosignuptools-signature-200x50-20kb-submit.json", "signature_200x50_20kb_2026_06", "https://nosignuptools.com/tools/signature-200x50-under-20kb-by-printabletools-lab"],
+  ["signature 300x80 under 50KB", "nosignuptools-signature-300x80-50kb-submit.json", "signature_300x80_50kb_2026_06", "https://nosignuptools.com/tools/signature-300x80-under-50kb-by-printabletools-lab"],
+  ["signature 300x100 under 50KB", "nosignuptools-signature-300x100-50kb-submit.json", "signature_300x100_50kb_2026_06", "https://nosignuptools.com/tools/signature-300x100-under-50kb-by-printabletools-lab"],
 ]) {
   const reportFile = path.join(root, "reports", reportName);
   if (!fs.existsSync(reportFile)) failures.push(`Missing NoSignupTools ${name} submission evidence report.`);
@@ -1026,7 +1044,15 @@ for (const [name, reportName, campaign, searchUrl] of [
   ["image under 500KB", "freenosignup-image-must-be-under-500kb-submit.json", "image_under_500kb_upload_fix_2026_06", "https://freenosignup.com/?s=Image+Must+Be+Under+500KB+Fix"],
   ["passport photo size fixer", "freenosignup-passport-photo-size-fixer-submit.json", "passport_photo_size_fixer_2026_06", "https://freenosignup.com/?s=Passport+Photo+Size+Fixer"],
   ["photo 200x230 under 50KB", "freenosignup-photo-200x230-50kb-submit.json", "photo_200x230_50kb_2026_06", "https://freenosignup.com/?s=Photo+200x230+Under+50KB"],
+  ["photo 240x320 under 50KB", "freenosignup-photo-240x320-50kb-submit.json", "photo_240x320_50kb_2026_06", "https://freenosignup.com/?s=Photo+240x320+Under+50KB"],
+  ["photo 413x531 under 50KB", "freenosignup-photo-413x531-50kb-submit.json", "photo_413x531_50kb_2026_06", "https://freenosignup.com/?s=Photo+413x531+Under+50KB"],
+  ["photo 300x300 under 100KB", "freenosignup-photo-300x300-100kb-submit.json", "photo_300x300_100kb_2026_06", "https://freenosignup.com/?s=Photo+300x300+Under+100KB"],
+  ["photo 600x600 under 100KB", "freenosignup-photo-600x600-100kb-submit.json", "photo_600x600_100kb_2026_06", "https://freenosignup.com/?s=Photo+600x600+Under+100KB"],
   ["signature under 20KB", "freenosignup-signature-under-20kb-submit.json", "signature_20kb_upload_fix_2026_06", "https://freenosignup.com/?s=Signature+Under+20KB"],
+  ["signature 150x50 under 20KB", "freenosignup-signature-150x50-20kb-submit.json", "signature_150x50_20kb_2026_06", "https://freenosignup.com/?s=Signature+150x50+Under+20KB"],
+  ["signature 200x50 under 20KB", "freenosignup-signature-200x50-20kb-submit.json", "signature_200x50_20kb_2026_06", "https://freenosignup.com/?s=Signature+200x50+Under+20KB"],
+  ["signature 300x80 under 50KB", "freenosignup-signature-300x80-50kb-submit.json", "signature_300x80_50kb_2026_06", "https://freenosignup.com/?s=Signature+300x80+Under+50KB"],
+  ["signature 300x100 under 50KB", "freenosignup-signature-300x100-50kb-submit.json", "signature_300x100_50kb_2026_06", "https://freenosignup.com/?s=Signature+300x100+Under+50KB"],
   ["resize signature 200x100", "freenosignup-resize-signature-200x100-submit.json", "resize_signature_200x100_2026_06", "https://freenosignup.com/?s=Resize+Signature+200x100"],
 ]) {
   const reportFile = path.join(root, "reports", reportName);

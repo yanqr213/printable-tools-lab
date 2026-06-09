@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-06-09T09:00:26.034Z",
+  "directory": "FreeNoSignup",
+  "submitPage": "https://freenosignup.com/submit/",
+  "formResponseUrl": "https://docs.google.com/forms/d/e/1FAIpQLScZ3rCt9k2vlaHcT7d1ABmgtezWN-fZLcH_YcxJdexm8aOzRg/formResponse",
+  "status": 200,
+  "ok": true,
+  "confirmationMatched": true,
+  "preSubmitEvidence": {
+    "url": "https://freenosignup.com/?s=Photo+600x600+Under+100KB",
+    "ok": true,
+    "status": 200,
+    "matchedSite": false,
+    "matchedTitle": true,
+    "bytes": 273889
+  },
+  "mappedEntryIds": {
+    "toolName": "entry.269597412",
+    "toolUrl": "entry.201672753",
+    "category": "entry.1927966242",
+    "description": "entry.88575082",
+    "keyFeatures": "entry.1466984240",
+    "submitterName": "entry.1476070271",
+    "additionalNotes": "entry.183902111",
+    "submitterEmail": "entry.1308873964"
+  },
+  "payload": {
+    "toolName": "Photo 600x600 Under 100KB by PrintableTools Lab",
+    "toolUrl": "https://printable-tools-lab.pages.dev/photo-600x600-100kb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=photo_600x600_100kb_2026_06&utm_content=photo_600x600_100kb_landing",
+    "category": "Productivity",
+    "description": "Free no-signup browser workflow for forms that need a square 600 x 600 px photo under 100KB. It routes users through local square photo resizing and image-to-KB compression.",
+    "keyFeatures": "No signup. Exact 600 x 600 px square photo target. 100KB size guidance. Browser resize and compression steps. Free tool path. Public-safe upload notes.",
+    "submitterName": "PrintableTools Lab",
+    "additionalNotes": "Specific exact-dimension photo upload-limit page for long-tail search and directory discovery.",
+    "submitterEmail": ""
+  },
+  "searchUrl": "https://freenosignup.com/?s=Photo+600x600+Under+100KB",
+  "responseEvidenceSnippet": "<!DOCTYPE html><html class=\"HB1eCd-UMrnmb PHOcVb\"><head><style nonce=\"ME64O3DBoxsNsAa0znWeNQ\">.iPj4P { background-color: #5746e3 !important; }</style><link rel=\"shortcut icon\" sizes=\"16x16\" href=\"https://www.gstatic.com/images/branding/productlogos/forms_2026/",
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "3-5 business days"
+}

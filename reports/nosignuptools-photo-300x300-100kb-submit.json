@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T08:59:33.307Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "Photo 300x300 Under 100KB by PrintableTools Lab",
+    "slug": "photo-300x300-under-100kb-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/photo-300x300-100kb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=photo_300x300_100kb_2026_06&utm_content=photo_300x300_100kb_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup 300 x 300 square photo workflow for 100KB upload limits.",
+    "long_description": "A free browser-based 300 x 300 photo under 100KB workflow for profile, job, school, marketplace, and application portals that validate both square pixels and file size. It points to local resize and image-to-KB steps, requires no account and no server file upload, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/photo-300x300-under-100kb-by-printabletools-lab"
+}

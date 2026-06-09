@@ -186,6 +186,74 @@ const backlog = [
     },
   },
   {
+    report: "nologin-photo-240x320-50kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-240x320-50kb",
+    payload: {
+      name: "Photo 240x320 Under 50KB",
+      url: "https://printable-tools-lab.pages.dev/photo-240x320-50kb/?utm_source=nologin&utm_medium=directory&utm_campaign=photo_240x320_50kb_2026_06&utm_content=photo_240x320_50kb_landing",
+      description: "Free no-signup 240 x 320 photo under 50KB workflow for application, exam, school, profile, and admin upload forms. It points to local browser portrait resize and image-to-KB compression steps with an optional USD 9 public-safe upload fix-plan request.",
+      pledge: true,
+      coreTask: "Resize and compress a photo toward 240 x 320 pixels under 50KB without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
+  {
+    report: "nologin-photo-413x531-50kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-413x531-50kb",
+    payload: {
+      name: "Photo 413x531 Under 50KB",
+      url: "https://printable-tools-lab.pages.dev/photo-413x531-50kb/?utm_source=nologin&utm_medium=directory&utm_campaign=photo_413x531_50kb_2026_06&utm_content=photo_413x531_50kb_landing",
+      description: "Free no-signup 413 x 531 photo under 50KB workflow for application, profile, exam, and document upload forms. It points to local browser portrait resize and strict image-to-KB compression steps with an optional USD 9 public-safe upload fix-plan request.",
+      pledge: true,
+      coreTask: "Resize and compress a photo toward 413 x 531 pixels under 50KB without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
+  {
+    report: "nologin-photo-300x300-100kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-300x300-100kb",
+    payload: {
+      name: "Photo 300x300 Under 100KB",
+      url: "https://printable-tools-lab.pages.dev/photo-300x300-100kb/?utm_source=nologin&utm_medium=directory&utm_campaign=photo_300x300_100kb_2026_06&utm_content=photo_300x300_100kb_landing",
+      description: "Free no-signup 300 x 300 photo under 100KB workflow for profile, job, school, marketplace, and application upload forms. It runs through local browser square resize and image-to-KB compression steps with an optional USD 9 public-safe upload fix-plan request.",
+      pledge: true,
+      coreTask: "Resize and compress a photo toward 300 x 300 pixels under 100KB without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
+  {
+    report: "nologin-photo-600x600-100kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-600x600-100kb",
+    payload: {
+      name: "Photo 600x600 Under 100KB",
+      url: "https://printable-tools-lab.pages.dev/photo-600x600-100kb/?utm_source=nologin&utm_medium=directory&utm_campaign=photo_600x600_100kb_2026_06&utm_content=photo_600x600_100kb_landing",
+      description: "Free no-signup 600 x 600 photo under 100KB workflow for profile, school, marketplace, application, and admin upload forms. It points to local browser square resize and image-to-KB compression steps with an optional USD 9 public-safe upload fix-plan request.",
+      pledge: true,
+      coreTask: "Resize and compress a photo toward 600 x 600 pixels under 100KB without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
+  {
     report: "nologin-signature-140x60-20kb-submit.json",
     reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-140x60-20kb",
     payload: {
@@ -203,6 +271,40 @@ const backlog = [
     },
   },
   {
+    report: "nologin-signature-150x50-20kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-150x50-20kb",
+    payload: {
+      name: "Signature 150x50 Under 20KB",
+      url: "https://printable-tools-lab.pages.dev/signature-150x50-20kb/?utm_source=nologin&utm_medium=directory&utm_campaign=signature_150x50_20kb_2026_06&utm_content=signature_150x50_20kb_landing",
+      description: "Free no-signup 150 x 50 signature under 20KB workflow for exam, job, school, bank, and admin upload pages. It routes users to local browser signature resize and compression steps with an optional USD 9 public-safe upload fix-plan request.",
+      pledge: true,
+      coreTask: "Resize and compress a signature image toward 150 x 50 pixels under 20KB without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
+  {
+    report: "nologin-signature-200x50-20kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-200x50-20kb",
+    payload: {
+      name: "Signature 200x50 Under 20KB",
+      url: "https://printable-tools-lab.pages.dev/signature-200x50-20kb/?utm_source=nologin&utm_medium=directory&utm_campaign=signature_200x50_20kb_2026_06&utm_content=signature_200x50_20kb_landing",
+      description: "Free no-signup 200 x 50 signature under 20KB workflow for exam, job, school, bank, and admin upload pages. It routes users to local browser signature resize and compression steps with an optional USD 9 public-safe upload fix-plan request.",
+      pledge: true,
+      coreTask: "Resize and compress a signature image toward 200 x 50 pixels under 20KB without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
+  {
     report: "nologin-signature-140x60-50kb-submit.json",
     reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-140x60-50kb",
     payload: {
@@ -211,6 +313,40 @@ const backlog = [
       description: "Free no-signup 140 x 60 signature under 50KB workflow for application, school, job, and admin upload forms. It points to local browser signature resize and compression checks with an optional USD 9 public-safe upload fix-plan request.",
       pledge: true,
       coreTask: "Resize and compress a signature image toward 140 x 60 pixels under 50KB without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
+  {
+    report: "nologin-signature-300x80-50kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-300x80-50kb",
+    payload: {
+      name: "Signature 300x80 Under 50KB",
+      url: "https://printable-tools-lab.pages.dev/signature-300x80-50kb/?utm_source=nologin&utm_medium=directory&utm_campaign=signature_300x80_50kb_2026_06&utm_content=signature_300x80_50kb_landing",
+      description: "Free no-signup 300 x 80 signature under 50KB workflow for application, school, job, bank, and admin upload forms. It points to local browser signature resize and compression checks with an optional USD 9 public-safe upload fix-plan request.",
+      pledge: true,
+      coreTask: "Resize and compress a signature image toward 300 x 80 pixels under 50KB without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
+  {
+    report: "nologin-signature-300x100-50kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-300x100-50kb",
+    payload: {
+      name: "Signature 300x100 Under 50KB",
+      url: "https://printable-tools-lab.pages.dev/signature-300x100-50kb/?utm_source=nologin&utm_medium=directory&utm_campaign=signature_300x100_50kb_2026_06&utm_content=signature_300x100_50kb_landing",
+      description: "Free no-signup 300 x 100 signature under 50KB workflow for job, exam, school, bank, document, and admin upload pages. It routes users to local browser resize and image-to-KB compression steps with an optional USD 9 public-safe upload fix-plan request.",
+      pledge: true,
+      coreTask: "Resize and compress a signature image toward 300 x 100 pixels under 50KB without creating an account.",
       submitterEmail: "",
       repoUrl: "",
       twitterUrl: "",
@@ -241,9 +377,10 @@ const backlog = [
 async function main() {
   fs.mkdirSync(reportsDir, { recursive: true });
   const results = [];
+  const recentRateLimit = findRecentRateLimit();
 
   for (const item of backlog) {
-    const result = await submitOrSkip(item);
+    const result = await submitOrSkip(item, recentRateLimit);
     results.push(result);
     if (result.rateLimited) break;
     if (!result.skipped) await delay(3000);
@@ -253,7 +390,7 @@ async function main() {
   if (results.some((item) => !item.ok && !item.skipped)) process.exitCode = 1;
 }
 
-async function submitOrSkip(item) {
+async function submitOrSkip(item, recentRateLimit) {
   const reportPath = path.join(reportsDir, item.report);
   const existing = readJson(reportPath);
   if (existing && existing.ok && existing.response?.data?.slug) {
@@ -265,6 +402,9 @@ async function submitOrSkip(item) {
   const rateLimitedRecently = failed?.postSubmitCheck?.result === "rate_limited_pending_retry" && Number.isFinite(failedAt) && Date.now() - failedAt < rateLimitBackoffMs;
   if (rateLimitedRecently) {
     return { report: item.report, skipped: true, reason: "recent_rate_limit_pending_retry", reviewUrl: failed.reviewUrl };
+  }
+  if (recentRateLimit) {
+    return { report: item.report, skipped: true, reason: "global_recent_rate_limit_pending_retry", blockedBy: recentRateLimit.name, retryAfter: recentRateLimit.retryAfter };
   }
 
   const preSubmitCheck = await checkReviewUrl(item.reviewUrl);
@@ -321,6 +461,22 @@ async function submitOrSkip(item) {
 
   writeReport(accepted ? item.report : item.report.replace(/\.json$/, "-failed.json"), report);
   return { report: item.report, ok: accepted, status: response.status, rateLimited, reviewUrl, slug, postSubmitStatus: postSubmitCheck.status };
+}
+
+function findRecentRateLimit() {
+  const now = Date.now();
+  const files = fs.existsSync(reportsDir) ? fs.readdirSync(reportsDir) : [];
+  const recent = [];
+  for (const name of files) {
+    if (!/^nologin-.*-failed\.json$/.test(name)) continue;
+    const report = readJson(path.join(reportsDir, name));
+    const failedAt = Date.parse(report?.generatedAt || "");
+    if (report?.postSubmitCheck?.result !== "rate_limited_pending_retry") continue;
+    if (!Number.isFinite(failedAt) || now - failedAt >= rateLimitBackoffMs) continue;
+    recent.push({ name, failedAt, retryAfter: new Date(failedAt + rateLimitBackoffMs).toISOString() });
+  }
+  recent.sort((a, b) => b.failedAt - a.failedAt);
+  return recent[0] || null;
 }
 
 async function checkReviewUrl(url) {

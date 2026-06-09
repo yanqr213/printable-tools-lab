@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T08:59:29.252Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "Photo 413x531 Under 50KB by PrintableTools Lab",
+    "slug": "photo-413x531-under-50kb-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/photo-413x531-50kb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=photo_413x531_50kb_2026_06&utm_content=photo_413x531_50kb_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup 413 x 531 photo workflow for strict 50KB upload limits.",
+    "long_description": "A free browser-based 413 x 531 photo under 50KB workflow for application, profile, exam, and document upload forms that require exact portrait pixels plus a strict KB cap. It keeps ordinary files local during use and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/photo-413x531-under-50kb-by-printabletools-lab"
+}

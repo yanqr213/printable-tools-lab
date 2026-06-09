@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T08:59:45.100Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "Signature 200x50 Under 20KB by PrintableTools Lab",
+    "slug": "signature-200x50-under-20kb-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/signature-200x50-20kb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=signature_200x50_20kb_2026_06&utm_content=signature_200x50_20kb_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup 200 x 50 signature workflow for strict 20KB upload limits.",
+    "long_description": "A free browser-based 200 x 50 signature under 20KB workflow for exam, job, school, bank, and admin upload pages that require both exact signature dimensions and a tiny file-size cap. It points to local resize and compression steps and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/signature-200x50-under-20kb-by-printabletools-lab"
+}

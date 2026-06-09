@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-09T08:58:34.808Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Photo 413x531 Under 50KB by PrintableTools Lab",
+    "tagline": "Free no-signup 413 x 531 photo and 50KB upload workflow.",
+    "description": "PrintableTools Lab Photo 413x531 Under 50KB helps people blocked by application, profile, exam, and document upload forms that require exact 413 x 531 px portrait dimensions plus a strict 50KB cap. The page points visitors through local browser resize and compression steps, then offers an optional public-safe $9 Upload Limit Fix Plan request without asking for private files, IDs, logins, or payment details.",
+    "url": "https://printable-tools-lab.pages.dev/photo-413x531-50kb/?utm_source=techtools&utm_medium=directory&utm_campaign=photo_413x531_50kb_2026_06&utm_content=photo_413x531_50kb_landing",
+    "category": "utilities",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 photo 413x531 50KB upload-fix landing path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 231,
+      "name": "Photo 413x531 Under 50KB by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/photo-413x531-50kb/?utm_source=techtools&utm_medium=directory&utm_campaign=photo_413x531_50kb_2026_06&utm_content=photo_413x531_50kb_landing",
+      "tagline": "Free no-signup 413 x 531 photo and 50KB upload workflow.",
+      "description": "PrintableTools Lab Photo 413x531 Under 50KB helps people blocked by application, profile, exam, and document upload forms that require exact 413 x 531 px portrait dimensions plus a strict 50KB cap. The page points visitors through local browser resize and compression steps, then offers an optional public-safe $9 Upload Limit Fix Plan request without asking for private files, IDs, logins, or payment details.",
+      "category": "utilities",
+      "category_label": "Utilities",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 photo 413x531 50KB upload-fix landing path",
+      "launch_date": "2026-06-09",
+      "created_at": "2026-06-09T08:58:34Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=231"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=231"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=231",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/231"
+}

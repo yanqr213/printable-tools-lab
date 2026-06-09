@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-09T08:58:51.578Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Signature 300x80 Under 50KB by PrintableTools Lab",
+    "tagline": "Free no-signup 300 x 80 signature and 50KB upload workflow.",
+    "description": "PrintableTools Lab Signature 300x80 Under 50KB helps people blocked when an application, school, job, bank, or admin upload page requires both an exact 300 x 80 px signature image and a 50KB cap. The page opens browser resize and compression steps, keeps ordinary files local, and includes an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+    "url": "https://printable-tools-lab.pages.dev/signature-300x80-50kb/?utm_source=techtools&utm_medium=directory&utm_campaign=signature_300x80_50kb_2026_06&utm_content=signature_300x80_50kb_landing",
+    "category": "utilities",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 signature 300x80 50KB upload-fix landing path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 236,
+      "name": "Signature 300x80 Under 50KB by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/signature-300x80-50kb/?utm_source=techtools&utm_medium=directory&utm_campaign=signature_300x80_50kb_2026_06&utm_content=signature_300x80_50kb_landing",
+      "tagline": "Free no-signup 300 x 80 signature and 50KB upload workflow.",
+      "description": "PrintableTools Lab Signature 300x80 Under 50KB helps people blocked when an application, school, job, bank, or admin upload page requires both an exact 300 x 80 px signature image and a 50KB cap. The page opens browser resize and compression steps, keeps ordinary files local, and includes an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+      "category": "utilities",
+      "category_label": "Utilities",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 signature 300x80 50KB upload-fix landing path",
+      "launch_date": "2026-06-09",
+      "created_at": "2026-06-09T08:58:51Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=236"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=236"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=236",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/236"
+}

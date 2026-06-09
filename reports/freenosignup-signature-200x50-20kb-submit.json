@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-06-09T09:00:32.155Z",
+  "directory": "FreeNoSignup",
+  "submitPage": "https://freenosignup.com/submit/",
+  "formResponseUrl": "https://docs.google.com/forms/d/e/1FAIpQLScZ3rCt9k2vlaHcT7d1ABmgtezWN-fZLcH_YcxJdexm8aOzRg/formResponse",
+  "status": 200,
+  "ok": true,
+  "confirmationMatched": true,
+  "preSubmitEvidence": {
+    "url": "https://freenosignup.com/?s=Signature+200x50+Under+20KB",
+    "ok": true,
+    "status": 200,
+    "matchedSite": false,
+    "matchedTitle": true,
+    "bytes": 273893
+  },
+  "mappedEntryIds": {
+    "toolName": "entry.269597412",
+    "toolUrl": "entry.201672753",
+    "category": "entry.1927966242",
+    "description": "entry.88575082",
+    "keyFeatures": "entry.1466984240",
+    "submitterName": "entry.1476070271",
+    "additionalNotes": "entry.183902111",
+    "submitterEmail": "entry.1308873964"
+  },
+  "payload": {
+    "toolName": "Signature 200x50 Under 20KB by PrintableTools Lab",
+    "toolUrl": "https://printable-tools-lab.pages.dev/signature-200x50-20kb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=signature_200x50_20kb_2026_06&utm_content=signature_200x50_20kb_landing",
+    "category": "Productivity",
+    "description": "Free no-signup browser workflow for signature images that must be 200 x 50 px and under 20KB. It routes users to local signature resize and compression steps.",
+    "keyFeatures": "No signup. Exact 200 x 50 px signature target. Strict 20KB size guidance. Browser resize and compression path. Free tool path. Public-safe upload notes.",
+    "submitterName": "PrintableTools Lab",
+    "additionalNotes": "Specific exact-size signature upload-limit page for long-tail search and directory discovery.",
+    "submitterEmail": ""
+  },
+  "searchUrl": "https://freenosignup.com/?s=Signature+200x50+Under+20KB",
+  "responseEvidenceSnippet": "<!DOCTYPE html><html class=\"HB1eCd-UMrnmb PHOcVb\"><head><style nonce=\"p8zBkWTN6uXf7dj7iNwXUw\">.iPj4P { background-color: #5746e3 !important; }</style><link rel=\"shortcut icon\" sizes=\"16x16\" href=\"https://www.gstatic.com/images/branding/productlogos/forms_2026/",
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "3-5 business days"
+}
