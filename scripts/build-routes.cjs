@@ -884,6 +884,8 @@ const distribution = [
   "- TechTools Signature Under 50KB listing: https://techtools.cz/tools/launchpad/?tool=218",
   "- TechTools Resize Signature 140x60 listing: https://techtools.cz/tools/launchpad/?tool=219",
   "- TechTools Photo 200x230 Under 50KB listing: https://techtools.cz/tools/launchpad/?tool=220",
+  "- TechTools Resize Signature 200x100 listing: https://techtools.cz/tools/launchpad/?tool=221",
+  "- TechTools resize photo 200x230 and passport photo 35x45mm submissions; rate limited after tool 221, retry after the one-hour API window.",
   `- NoSignupTools Upload Limit Fixer listing: ${siteUrl("upload-limit-fixer").replace(/\/$/, "")}?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_limit_2026_06&utm_content=upload_limit_fixer`,
   `- NoSignupTools Upload Error Cheatsheet listing: ${siteUrl("upload-error-cheatsheet").replace(/\/$/, "")}?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_error_cheatsheet_2026_06&utm_content=upload_error_cheatsheet`,
   `- NoSignupTools Image Dimensions 600x600 Upload Fix listing: ${siteUrl("image-dimensions-600x600").replace(/\/$/, "")}?utm_source=nosignuptools&utm_medium=directory&utm_campaign=image_dimensions_600x600_fix_2026_06&utm_content=image_dimensions_600x600_landing`,

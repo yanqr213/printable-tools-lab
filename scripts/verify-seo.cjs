@@ -709,6 +709,7 @@ else {
   if (!directoryMonitorScript.includes("TechTools Launchpad signature under 50KB listing") || !directoryMonitorScript.includes("Signature Under 50KB")) failures.push("Directory monitor missing TechTools signature 50KB listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad resize signature 140x60 listing") || !directoryMonitorScript.includes("Resize Signature 140x60")) failures.push("Directory monitor missing TechTools resize signature 140x60 listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad photo 200x230 under 50KB listing") || !directoryMonitorScript.includes("Photo 200x230 Under 50KB")) failures.push("Directory monitor missing TechTools photo 200x230 under 50KB listing tracking.");
+  if (!directoryMonitorScript.includes("TechTools Launchpad resize signature 200x100 listing") || !directoryMonitorScript.includes("Resize Signature 200x100")) failures.push("Directory monitor missing TechTools resize signature 200x100 listing tracking.");
   if (!directoryMonitorScript.includes("NoLogin.tools upload error cheatsheet listing") || !directoryMonitorScript.includes("Upload+Error+Cheatsheet")) failures.push("Directory monitor missing NoLogin upload error cheatsheet submission tracking.");
   if (!directoryMonitorScript.includes("expected.every")) failures.push("Directory monitor should require all expected listing markers to avoid search-query echo false positives.");
 }
@@ -749,6 +750,7 @@ for (const [reportName, shareUrl, campaign] of [
   ["techtools-signature-under-50kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=218", "signature_50kb_upload_fix_2026_06"],
   ["techtools-resize-signature-140x60-submit.json", "https://techtools.cz/tools/launchpad/?tool=219", "resize_signature_140x60_2026_06"],
   ["techtools-photo-200x230-50kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=220", "photo_200x230_50kb_2026_06"],
+  ["techtools-resize-signature-200x100-submit.json", "https://techtools.cz/tools/launchpad/?tool=221", "resize_signature_200x100_2026_06"],
 ]) {
   const reportFile = path.join(root, "reports", reportName);
   if (!fs.existsSync(reportFile)) failures.push(`Missing TechTools high-intent photo/signature submission evidence report: ${reportName}`);
@@ -1390,6 +1392,8 @@ else {
   if (!html.includes("TechTools Signature Under 50KB") || !html.includes("https://techtools.cz/tools/launchpad/?tool=218")) failures.push("Directory submission pack missing TechTools signature 50KB live listing.");
   if (!html.includes("TechTools Resize Signature 140x60") || !html.includes("https://techtools.cz/tools/launchpad/?tool=219")) failures.push("Directory submission pack missing TechTools resize signature 140x60 live listing.");
   if (!html.includes("TechTools Photo 200x230 Under 50KB") || !html.includes("https://techtools.cz/tools/launchpad/?tool=220")) failures.push("Directory submission pack missing TechTools photo 200x230 under 50KB live listing.");
+  if (!html.includes("TechTools Resize Signature 200x100") || !html.includes("https://techtools.cz/tools/launchpad/?tool=221")) failures.push("Directory submission pack missing TechTools resize signature 200x100 live listing.");
+  if (!html.includes("TechTools resize photo 200x230 and passport photo 35x45mm retry") || !html.includes("Rate-limited after the 200 x 100 signature listing")) failures.push("Directory submission pack missing TechTools photo retry note.");
   if (!html.includes("NoLogin.tools Upload Error Cheatsheet") || !html.includes("https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet")) failures.push("Directory submission pack missing NoLogin upload error cheatsheet submission.");
   if (!html.includes("NoSignupTools Upload Limit Fixer") || !html.includes("https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools upload limit fixer submission.");
   if (!html.includes("NoSignupTools Upload Error Cheatsheet") || !html.includes("https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools upload error cheatsheet submission.");
@@ -1941,6 +1945,8 @@ else {
   if (!distribution.includes("TechTools Signature Under 50KB listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=218")) failures.push("DISTRIBUTION.md missing TechTools signature 50KB live listing.");
   if (!distribution.includes("TechTools Resize Signature 140x60 listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=219")) failures.push("DISTRIBUTION.md missing TechTools resize signature 140x60 live listing.");
   if (!distribution.includes("TechTools Photo 200x230 Under 50KB listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=220")) failures.push("DISTRIBUTION.md missing TechTools photo 200x230 under 50KB live listing.");
+  if (!distribution.includes("TechTools Resize Signature 200x100 listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=221")) failures.push("DISTRIBUTION.md missing TechTools resize signature 200x100 live listing.");
+  if (!distribution.includes("TechTools resize photo 200x230 and passport photo 35x45mm submissions; rate limited")) failures.push("DISTRIBUTION.md missing TechTools exact-photo retry note.");
   if (!distribution.includes("NoLogin.tools Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing NoLogin upload error cheatsheet submission.");
   if (!distribution.includes("NoSignupTools Upload Limit Fixer listing") || !distribution.includes("upload_limit_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools upload limit fixer submission.");
   if (!distribution.includes("NoSignupTools Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools upload error cheatsheet submission.");

@@ -456,6 +456,14 @@ const directories = [
     reviewWindow: "auto-approved API listing for the exact 200 x 230 px and 50KB photo path",
   },
   {
+    name: "TechTools Launchpad resize signature 200x100 listing",
+    url: "https://techtools.cz/tools/launchpad/?tool=221",
+    searchUrl: "https://techtools.cz/launchpad-api/tools/221",
+    expected: [siteHost, "Resize Signature 200x100"],
+    submittedAt: "2026-06-09",
+    reviewWindow: "auto-approved API listing for the exact 200 x 100 px signature resize path",
+  },
+  {
     name: "NoSignupTools",
     url: "https://nosignuptools.com/",
     searchUrl: "https://nosignuptools.com/?q=PrintableTools+Lab",

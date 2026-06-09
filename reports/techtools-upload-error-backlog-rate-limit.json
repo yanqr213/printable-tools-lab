@@ -1,13 +1,12 @@
 {
-  "generatedAt": "2026-06-09T04:07:42.983Z",
+  "generatedAt": "2026-06-09T05:38:37.821Z",
   "endpoint": "https://techtools.cz/launchpad-api/tools",
   "ok": false,
   "rateLimited": true,
   "retryAfter": "Wait 1 hour",
-  "blockedAt": "Extract Text From PDF Without Uploading by PrintableTools Lab",
+  "blockedAt": "Resize Photo 200x230 by PrintableTools Lab",
   "remaining": [
-    "Extract Text From PDF Without Uploading by PrintableTools Lab",
-    "Merge PDF Without Uploading by PrintableTools Lab",
-    "Split PDF Without Uploading by PrintableTools Lab"
+    "Resize Photo 200x230 by PrintableTools Lab",
+    "Passport Photo 35x45mm by PrintableTools Lab"
   ]
 }

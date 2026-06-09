@@ -510,6 +510,48 @@ const backlog = [
       submitted_by: "Codex traffic acquisition run 2026-06-09 photo 200x230 50KB upload-fix landing path",
     },
   },
+  {
+    report: "techtools-resize-signature-200x100-submit.json",
+    payload: {
+      name: "Resize Signature 200x100 by PrintableTools Lab",
+      tagline: "Free no-signup 200 x 100 signature resize workflow for upload forms.",
+      description: "PrintableTools Lab Resize Signature 200x100 helps people blocked when a job, school, exam, document, or admin upload page requires an exact 200 x 100 px signature image. The page opens the browser image resizer with width 200, height 100, and contain fit settings, keeps ordinary files local, and includes an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/resize-signature-200x100/?utm_source=techtools&utm_medium=directory&utm_campaign=resize_signature_200x100_2026_06&utm_content=resize_signature_200x100_landing",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 resize signature 200x100 upload-fix landing path",
+    },
+  },
+  {
+    report: "techtools-resize-photo-200x230-submit.json",
+    payload: {
+      name: "Resize Photo 200x230 by PrintableTools Lab",
+      tagline: "Free no-signup 200 x 230 photo resize workflow for upload forms.",
+      description: "PrintableTools Lab Resize Photo 200x230 helps people blocked by exact 200 x 230 px photo requirements on exam, job, profile, school, and application upload forms. The page opens the browser image resizer with width 200, height 230, and cover fit settings, keeps ordinary files local, and includes an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/resize-photo-200x230/?utm_source=techtools&utm_medium=directory&utm_campaign=resize_photo_200x230_2026_06&utm_content=resize_photo_200x230_landing",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 resize photo 200x230 upload-fix landing path",
+    },
+  },
+  {
+    report: "techtools-passport-photo-35x45mm-submit.json",
+    payload: {
+      name: "Passport Photo 35x45mm by PrintableTools Lab",
+      tagline: "Free no-signup 35 x 45 mm passport-style photo workflow.",
+      description: "PrintableTools Lab Passport Photo 35x45mm helps people blocked by ID-style upload forms that ask for a common 35 x 45 mm passport photo shape before file-size checks. The page opens the local browser passport photo workflow, keeps ordinary files local during use, and includes an optional public-safe $9 Upload Limit Fix Plan request for exact settings and fallback steps after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/passport-photo-35x45mm/?utm_source=techtools&utm_medium=directory&utm_campaign=passport_photo_35x45mm_2026_06&utm_content=passport_photo_35x45mm_landing",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 passport photo 35x45mm upload-fix landing path",
+    },
+  },
 ];
 
 async function main() {

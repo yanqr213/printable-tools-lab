@@ -9217,6 +9217,8 @@ function directorySubmissionHtml() {
     ["TechTools Signature Under 50KB", "https://techtools.cz/tools/launchpad/?tool=218", "Signature 50KB listing for school, job, admin, and document upload visitors with the $9 upload fix request path."],
     ["TechTools Resize Signature 140x60", "https://techtools.cz/tools/launchpad/?tool=219", "Exact 140 x 60 px signature resize listing for exam, job, school, and admin upload visitors."],
     ["TechTools Photo 200x230 Under 50KB", "https://techtools.cz/tools/launchpad/?tool=220", "Combined 200 x 230 px and 50KB photo listing for exam, profile, job, and application upload visitors."],
+    ["TechTools Resize Signature 200x100", "https://techtools.cz/tools/launchpad/?tool=221", "Exact 200 x 100 px signature resize listing for job, school, exam, document, and admin upload visitors."],
+    ["TechTools resize photo 200x230 and passport photo 35x45mm retry", "https://techtools.cz/tools/launchpad/", "Rate-limited after the 200 x 100 signature listing; retry the remaining exact-photo listings after the one-hour API window."],
     ["NoSignupTools Upload Limit Fixer", "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab", "Pending public API submission for a no-signup upload error matcher."],
     ["NoSignupTools Upload Error Cheatsheet", "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab", "Pending public API submission for exact upload-error fix routing."],
     ["NoSignupTools PDF Under 2MB Upload Fix", "https://nosignuptools.com/tools/pdf-under-2mb-upload-fix-by-printabletools-lab", "Pending public API submission for the PDF 2MB upload-limit page with the $9 fix request path."],

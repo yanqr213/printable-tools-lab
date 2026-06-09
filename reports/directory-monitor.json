@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-09T05:34:45.937Z",
+  "generatedAt": "2026-06-09T05:40:28.273Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 65,
+  "listedCount": 66,
   "pendingCount": 47,
   "errorCount": 1,
   "results": [
@@ -78,7 +78,7 @@
           "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
           "ok": true,
           "status": 200,
-          "bytes": 107000,
+          "bytes": 107561,
           "matched": true
         }
       ]
@@ -1250,6 +1250,28 @@
       ]
     },
     {
+      "name": "TechTools Launchpad resize signature 200x100 listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=221",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/221",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Resize Signature 200x100"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the exact 200 x 100 px signature resize path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/221",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/221",
+          "ok": true,
+          "status": 200,
+          "bytes": 1275,
+          "matched": true
+        }
+      ]
+    },
+    {
       "name": "NoSignupTools",
       "url": "https://nosignuptools.com/",
       "searchUrl": "https://nosignuptools.com/?q=PrintableTools+Lab",
@@ -1533,7 +1555,7 @@
           "url": "https://nosignuptools.com/tools/pdf-under-5mb-upload-fix-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20106,
+          "bytes": 20063,
           "matched": false
         }
       ]
@@ -1562,7 +1584,7 @@
           "url": "https://nosignuptools.com/tools/resume-pdf-under-2mb-upload-fix-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20127,
+          "bytes": 20084,
           "matched": false
         }
       ]
@@ -1939,7 +1961,7 @@
           "url": "https://nosignuptools.com/tools/passport-photo-compress-to-200kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20087,
+          "bytes": 20130,
           "matched": false
         }
       ]
@@ -2171,7 +2193,7 @@
           "url": "https://nosignuptools.com/tools/stamp-pdf-without-uploading-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20115,
+          "bytes": 20072,
           "matched": false
         }
       ]
@@ -2258,7 +2280,7 @@
           "url": "https://nosignuptools.com/tools/resize-image-without-uploading-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20124,
+          "bytes": 20081,
           "matched": false
         }
       ]
@@ -2895,7 +2917,7 @@
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 298676,
+          "bytes": 298675,
           "matched": true
         },
         {
