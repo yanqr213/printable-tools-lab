@@ -594,6 +594,7 @@ else {
   if (!script.includes("initServiceLeadForms") || !script.includes("submitServiceLeadForm") || !script.includes("/api/service-lead") || !script.includes("Service lead index check")) failures.push("app.js missing low-friction service lead capture and ops index check.");
   if (!script.includes('form.setAttribute("novalidate", "")') || !script.includes("One reply contact needed.") || !script.includes("Add one reply email, @handle, or public contact URL") || !script.includes("public-safe-no-contact") || !script.includes("serviceLeadContactValue")) failures.push("Service lead forms should convert no-contact service intent into a one-contact paid-path prompt instead of being blocked by browser required validation.");
   if (!script.includes("uploadFixPaidPathNote") || !script.includes("30-second paid path") || !script.includes("private $9 follow-up path") || !script.includes("oneFieldInvoiceRequest") || !script.includes("serviceLeadConsentAccepted")) failures.push("Upload fix service forms should explain and support the one-field paid follow-up path.");
+  if (!script.includes("One-contact $9 invoice request") || !script.includes("oneContactInvoiceRequest") || !script.includes('data-track-event="${escapeHtml(primarySubmitEvent)}"') || !script.includes('name="consent" value="on"')) failures.push("Upload-limit landing service forms should reduce the $9 invoice path to one visible contact field.");
   if (!script.includes("data-upload-error-invoice-request") || !script.includes("Request $9 invoice link") || !script.includes("data-service-invoice-submit") || !script.includes("invoiceLinkRequest") || !script.includes("requestedNextStep")) failures.push("Upload error and service pages should expose explicit invoice-link request CTAs.");
   if (!script.includes("data-service-invoice-jump") || !script.includes("focusHashServiceInvoiceForm") || !script.includes('data-track-event="service_invoice_request"') || !script.includes('track(values.invoiceLinkRequest ? "service_invoice_request"')) failures.push("Invoice-link jump CTAs should track invoice intent and focus the one-contact service form.");
   if (!/const invoiceLinkRequest = Boolean\(\s*options\.invoiceLinkRequest\s*\|\|\s*values\.invoiceLinkRequest === "true"\s*\|\|\s*form\.dataset\.servicePrimaryInvoiceRequest === "true"\s*\|\|\s*form\.dataset\.uploadErrorInvoiceRequest === "true"\s*\);/.test(script)) failures.push("Primary invoice service forms should submit as service_invoice_request even when the visitor uses the ordinary submit button.");
@@ -1518,11 +1519,20 @@ else {
   if (!html.includes("Request $9 invoice link") || !html.includes("data-service-invoice-submit") || !html.includes("data-invoice-fallback-url")) failures.push("Upload limit fix plan route missing explicit external invoice request CTA.");
   if (!html.includes("data-upload-fix-plan-form") || !html.includes("data-upload-fix-plan-summary")) failures.push("Upload limit fix plan route missing upload fix paid-request prefill markers.");
   if (!html.includes("Open public-safe $9 invoice request") || !html.includes('data-service-lead-fallback-link') || !html.includes('data-track-event="service_invoice_request"')) failures.push("Upload limit fix plan route missing public-safe invoice request CTA.");
-  if (!html.includes('data-service-lead-form') || !html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("Send upload fix fit check")) failures.push("Upload limit fix plan route missing service lead form.");
+  if (!html.includes('data-service-lead-form') || !html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("One-contact $9 invoice request") || !html.includes('data-track-event="service_invoice_request"')) failures.push("Upload limit fix plan route missing one-contact service invoice form.");
   if (!html.includes("Upload error text") || !html.includes("File type and target rule") || !html.includes("Blocked file type")) failures.push("Upload limit fix plan route request builder should use upload-specific fields.");
   if (!html.includes("No file upload") || !html.includes("Do not include or attach the actual file") || (!html.includes("cannot guarantee") && !html.includes("does not guarantee"))) failures.push("Upload limit fix plan route missing no-file safety boundary.");
   if (!html.includes("Request+note%3A") || !html.includes("I+need+a+%249+Upload+Limit+Fix+Plan") || !html.includes("service-request%2Cbusiness-review")) failures.push("Upload limit fix plan route missing complete public-safe service request issue fallback.");
   if (!sitemap.includes(`<loc>${siteUrl(UPLOAD_LIMIT_FIX_PLAN_SERVICE.slug)}</loc>`)) failures.push("Sitemap should include upload limit fix plan service route.");
+}
+
+for (const imageInvoicePath of ["compress-image-to-50kb", "compress-image-to-100kb", "compress-image-to-200kb"]) {
+  const file = path.join(root, imageInvoicePath, "index.html");
+  if (!fs.existsSync(file)) failures.push(`Missing exact-image upload invoice route: ${imageInvoicePath}`);
+  else {
+    const html = fs.readFileSync(file, "utf8");
+    if (!html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("One-contact $9 invoice request") || !html.includes('data-track-event="service_invoice_request"') || !html.includes('name="consent" value="on"')) failures.push(`Exact-image route missing one-contact $9 invoice request path: ${imageInvoicePath}`);
+  }
 }
 
 const invoiceFollowupDocsRouteFile = path.join(root, "docs", INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug, "index.html");

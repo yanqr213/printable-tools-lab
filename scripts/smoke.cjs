@@ -350,8 +350,11 @@ function delay(ms) {
       await page.route("**/api/service-lead", leadRoute);
       try {
         await uploadFixForm.locator('input[name="contact"]').fill("smoke@example.com");
-        await uploadFixForm.locator('input[name="consent"]').check();
-        await uploadFixForm.locator('button[type="submit"][data-track-event="service_request_intent"]').first().click();
+        const visibleSummaryFields = await uploadFixForm.locator('textarea[name="requestSummary"]:visible').count();
+        if (visibleSummaryFields) throw new Error("Primary upload-fix landing form should keep the request note hidden and prefilled.");
+        const hiddenConsent = await uploadFixForm.locator('input[type="hidden"][name="consent"][value="on"]').count();
+        if (!hiddenConsent) throw new Error("Primary upload-fix landing form should use one-contact consent copy.");
+        await uploadFixForm.locator('button[type="submit"][data-track-event="service_invoice_request"][data-service-invoice-submit]').first().click();
         for (let attempt = 0; attempt < 50 && !capturedLead; attempt += 1) await delay(100);
       } finally {
         await page.unroute("**/api/service-lead", leadRoute);

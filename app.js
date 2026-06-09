@@ -2754,6 +2754,7 @@
         ["Local target-size workflow", "The tool tries several quality and width combinations in the browser and picks the smallest acceptable result it can produce for the selected target."],
         ["Quality tradeoff", "Very small targets can blur text, faces, IDs, or product details. Always open the downloaded image before submitting it elsewhere."],
       ],
+      serviceLead: uploadLimitLandingServiceLead("compress image to 100KB"),
       related: ["compress-image-to-kb", "compress-image", "resize-image"],
     },
     {
@@ -2786,6 +2787,7 @@
         ["Local target-size workflow", "The compressor runs in the browser, tries smaller dimensions and compression levels, and downloads a new file without uploading the source image."],
         ["Quality tradeoff", "50KB can be severe for faces, IDs, product details, or screenshots. Review the downloaded file before submitting it to a portal."],
       ],
+      serviceLead: uploadLimitLandingServiceLead("compress image to 50KB"),
       related: ["compress-image-to-kb", "compress-image", "resize-image"],
     },
     {
@@ -2802,6 +2804,7 @@
         ["Local target-size workflow", "The tool attempts several quality and width combinations locally, then exports the closest matching image it can produce."],
         ["Before uploading elsewhere", "Open the result and confirm important details still look clear enough for the destination site."],
       ],
+      serviceLead: uploadLimitLandingServiceLead("compress image to 200KB"),
       related: ["compress-image-to-kb", "compress-image", "resize-image"],
     },
     {
@@ -7945,6 +7948,36 @@
     const publicFallbackEvent = primaryInvoiceFallback ? "service_invoice_request" : eventName;
     const publicFallbackLabel = primaryInvoiceFallback ? `Open public-safe ${price} invoice request` : "Open public-safe request";
     const primaryInvoiceAttr = primaryInvoiceFallback ? ' data-service-primary-invoice-request="true"' : "";
+    const oneContactInvoiceRequest = primaryInvoiceFallback;
+    const primarySubmitEvent = oneContactInvoiceRequest ? "service_invoice_request" : eventName;
+    const primarySubmitText = oneContactInvoiceRequest ? `Request ${price} invoice link` : cta;
+    const primaryInvoiceSubmitAttrs = oneContactInvoiceRequest ? ` data-service-invoice-submit data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}"` : "";
+    const businessNameField = oneContactInvoiceRequest
+      ? `<input type="hidden" name="businessName" value="">`
+      : `<label class="field">
+              <span>Business or project (optional)</span>
+              <input name="businessName" maxlength="90" autocomplete="organization" placeholder="Market booth, service name, or shop">
+            </label>`;
+    const requestSummaryField = oneContactInvoiceRequest
+      ? `<input type="hidden" name="requestSummary" value="${escapeHtml(defaultSummary)}" data-upload-fix-plan-summary>
+            <p class="notice compact-notice">One-contact $9 invoice request: the public-safe upload fix note is already written. Add a reply email, @handle, or public contact URL to request the external invoice link after fit is confirmed.</p>`
+      : `<label class="field">
+              <span>What do you need?</span>
+              <textarea name="requestSummary" maxlength="1000" required placeholder="${escapeHtml(placeholder)}">${escapeHtml(defaultSummary)}</textarea>
+            </label>`;
+    const needByField = oneContactInvoiceRequest
+      ? `<input type="hidden" name="needBy" value="">`
+      : `<label class="field">
+              <span>Need-by date (optional)</span>
+              <input name="needBy" maxlength="80" placeholder="Event date, this week, this month">
+            </label>`;
+    const consentField = oneContactInvoiceRequest
+      ? `<input type="hidden" name="consent" value="on">
+            <p class="help compact-consent-note">By sending, you confirm no actual file, private document, ID photo, resume, portal login, payment, tax, identity, customer-list, or account details are included.</p>`
+      : `<label class="check-row">
+              <input name="consent" type="checkbox" required>
+              <span>I will keep payment, tax, identity, passwords, customer lists, and private files outside this form.</span>
+            </label>`;
     return `
       <section class="shell section service-lead-section" id="service-request">
         <div class="grid-2">
@@ -7968,25 +8001,13 @@
               <span>Email or public contact link</span>
               <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
             </label>
-            <label class="field">
-              <span>Business or project (optional)</span>
-              <input name="businessName" maxlength="90" autocomplete="organization" placeholder="Market booth, service name, or shop">
-            </label>
-            <label class="field">
-              <span>What do you need?</span>
-              <textarea name="requestSummary" maxlength="1000" required placeholder="${escapeHtml(placeholder)}">${escapeHtml(defaultSummary)}</textarea>
-            </label>
-            <label class="field">
-              <span>Need-by date (optional)</span>
-              <input name="needBy" maxlength="80" placeholder="Event date, this week, this month">
-            </label>
-            <label class="check-row">
-              <input name="consent" type="checkbox" required>
-              <span>I will keep payment, tax, identity, passwords, customer lists, and private files outside this form.</span>
-            </label>
+            ${businessNameField}
+            ${requestSummaryField}
+            ${needByField}
+            ${consentField}
             <div class="actions">
-              <button class="button" type="submit" data-track-event="${escapeHtml(eventName)}" data-track-tool="${escapeHtml(tool)}">${escapeHtml(cta)}</button>
-              ${invoiceRequestUrl ? `<button class="button secondary" type="submit" data-service-invoice-submit data-track-tool="${escapeHtml(tool)}" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request ${escapeHtml(price)} invoice link</button>` : ""}
+              <button class="button" type="submit" data-track-event="${escapeHtml(primarySubmitEvent)}" data-track-tool="${escapeHtml(tool)}"${primaryInvoiceSubmitAttrs}>${escapeHtml(primarySubmitText)}</button>
+              ${invoiceRequestUrl && !oneContactInvoiceRequest ? `<button class="button secondary" type="submit" data-service-invoice-submit data-track-tool="${escapeHtml(tool)}" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request ${escapeHtml(price)} invoice link</button>` : ""}
               <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(publicFallbackEvent)}" data-track-tool="${escapeHtml(tool)}" href="${escapeHtml(publicFallbackUrl)}" target="_blank" rel="noreferrer">${escapeHtml(publicFallbackLabel)}</a>
             </div>
             <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No payment is collected here. A real external checkout or invoice is sent only after fit is confirmed.</p>
