@@ -36,6 +36,10 @@ const nosignupExactUploadLimitListings = [
   ["Photo 600x600 Under 100KB", "exact 600 x 600 px and 100KB photo path"],
   ["Photo 480x640 Under 200KB", "exact 480 x 640 px and 200KB photo path"],
   ["Photo 512x512 Under 100KB", "exact 512 x 512 px and 100KB photo path"],
+  ["Photo 150x200 Under 20KB", "exact 150 x 200 px and 20KB photo path"],
+  ["Photo 180x240 Under 50KB", "exact 180 x 240 px and 50KB photo path"],
+  ["Photo 400x514 Under 100KB", "exact 400 x 514 px and 100KB photo path"],
+  ["Photo 600x800 Under 200KB", "exact 600 x 800 px and 200KB photo path"],
   ["Signature 140x60 Under 20KB", "exact 140 x 60 px and 20KB signature path"],
   ["Signature 140x60 Under 50KB", "exact 140 x 60 px and 50KB signature path"],
   ["Signature 200x100 Under 50KB", "exact 200 x 100 px and 50KB signature path"],
@@ -47,6 +51,10 @@ const nosignupExactUploadLimitListings = [
   ["Signature 300x80 Under 50KB", "exact 300 x 80 px and 50KB signature path"],
   ["Signature 300x100 Under 50KB", "exact 300 x 100 px and 50KB signature path"],
   ["Signature 400x150 Under 50KB", "exact 400 x 150 px and 50KB signature path"],
+  ["Signature 100x50 Under 10KB", "exact 100 x 50 px and 10KB signature path"],
+  ["Signature 200x60 Under 20KB", "exact 200 x 60 px and 20KB signature path"],
+  ["Signature 256x64 Under 20KB", "exact 256 x 64 px and 20KB signature path"],
+  ["Signature 400x200 Under 100KB", "exact 400 x 200 px and 100KB signature path"],
 ];
 
 const freenosignupUploadFixListings = [
@@ -67,6 +75,10 @@ const freenosignupUploadFixListings = [
   ["Photo 600x600 Under 100KB", "exact 600 x 600 px and 100KB photo path"],
   ["Photo 480x640 Under 200KB", "exact 480 x 640 px and 200KB photo path"],
   ["Photo 512x512 Under 100KB", "exact 512 x 512 px and 100KB photo path"],
+  ["Photo 150x200 Under 20KB", "exact 150 x 200 px and 20KB photo path"],
+  ["Photo 180x240 Under 50KB", "exact 180 x 240 px and 50KB photo path"],
+  ["Photo 400x514 Under 100KB", "exact 400 x 514 px and 100KB photo path"],
+  ["Photo 600x800 Under 200KB", "exact 600 x 800 px and 200KB photo path"],
   ["Signature Under 20KB", "strict 20KB signature image path"],
   ["Signature 140x60 Under 20KB", "exact 140 x 60 px and 20KB signature path"],
   ["Signature 140x60 Under 50KB", "exact 140 x 60 px and 50KB signature path"],
@@ -79,6 +91,10 @@ const freenosignupUploadFixListings = [
   ["Signature 300x80 Under 50KB", "exact 300 x 80 px and 50KB signature path"],
   ["Signature 300x100 Under 50KB", "exact 300 x 100 px and 50KB signature path"],
   ["Signature 400x150 Under 50KB", "exact 400 x 150 px and 50KB signature path"],
+  ["Signature 100x50 Under 10KB", "exact 100 x 50 px and 10KB signature path"],
+  ["Signature 200x60 Under 20KB", "exact 200 x 60 px and 20KB signature path"],
+  ["Signature 256x64 Under 20KB", "exact 256 x 64 px and 20KB signature path"],
+  ["Signature 400x200 Under 100KB", "exact 400 x 200 px and 100KB signature path"],
   ["Resize Signature 200x100", "exact 200 x 100 px signature resize path"],
 ];
 

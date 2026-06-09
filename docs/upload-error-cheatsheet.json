@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Upload Error Cheatsheet Mirror",
-  "generatedAt": "2026-06-09T09:28:36.315Z",
+  "generatedAt": "2026-06-09T10:23:04.905Z",
   "directory": "https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/",
   "livePage": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
   "liveJson": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",
@@ -194,6 +194,50 @@
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=512&height=512&fit=cover"
     },
     {
+      "errorText": "Photo must be 150 x 200 px and under 20KB",
+      "problem": "A compact exam or application photo must be 150 x 200 pixels and below 20KB.",
+      "response": "Resize to 150 x 200 pixels first, then compress the exported photo toward 20KB.",
+      "format": "Photo",
+      "target": "150 x 200 / 20KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/photo-150x200-20kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/photo-150x200-20kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/photo-150x200-20kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=photo-must-be-150-x-200-px-and-under-20kb",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=150&height=200&fit=cover"
+    },
+    {
+      "errorText": "Photo must be 180 x 240 px and under 50KB",
+      "problem": "A portrait upload box requires exact 180 x 240 pixels and rejects files above 50KB.",
+      "response": "Resize to 180 x 240 pixels first, then compress the exported photo toward 50KB if needed.",
+      "format": "Photo",
+      "target": "180 x 240 / 50KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/photo-180x240-50kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/photo-180x240-50kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/photo-180x240-50kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=photo-must-be-180-x-240-px-and-under-50kb",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=180&height=240&fit=cover"
+    },
+    {
+      "errorText": "Photo must be 400 x 514 px and under 100KB",
+      "problem": "An ID-style upload requires exact 400 x 514 pixels and a 100KB cap.",
+      "response": "Resize to 400 x 514 pixels first, then compress toward 100KB only if the export is still too large.",
+      "format": "Photo",
+      "target": "400 x 514 / 100KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/photo-400x514-100kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/photo-400x514-100kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/photo-400x514-100kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=photo-must-be-400-x-514-px-and-under-100kb",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=400&height=514&fit=cover"
+    },
+    {
+      "errorText": "Photo must be 600 x 800 px and under 200KB",
+      "problem": "A larger portrait photo upload requires 600 x 800 pixels and rejects files above 200KB.",
+      "response": "Resize to 600 x 800 pixels first, then compress the exported photo toward 200KB.",
+      "format": "Photo",
+      "target": "600 x 800 / 200KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/photo-600x800-200kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/photo-600x800-200kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/photo-600x800-200kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=photo-must-be-600-x-800-px-and-under-200kb",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=800&fit=cover"
+    },
+    {
       "errorText": "JPG must be under 200KB",
       "problem": "A portal accepts JPG/JPEG but rejects the image as too large.",
       "response": "Use the 200KB image target and keep output as JPG if the destination requires it.",
@@ -357,6 +401,50 @@
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/signature-400x150-50kb/",
       "trackedUrl": "https://printable-tools-lab.pages.dev/signature-400x150-50kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=signature-must-be-400-x-150-px-and-under-50kb",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=400&height=150&fit=contain"
+    },
+    {
+      "errorText": "Signature must be 100 x 50 px and under 10KB",
+      "problem": "A tiny signature upload box requires exact 100 x 50 pixels and a strict 10KB cap.",
+      "response": "Resize to 100 x 50 pixels first, then compress the exported signature toward 10KB.",
+      "format": "Signature",
+      "target": "100 x 50 / 10KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/signature-100x50-10kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/signature-100x50-10kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/signature-100x50-10kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=signature-must-be-100-x-50-px-and-under-10kb",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=100&height=50&fit=contain"
+    },
+    {
+      "errorText": "Signature must be 200 x 60 px and under 20KB",
+      "problem": "A signature strip requires exact 200 x 60 pixels and a 20KB file limit.",
+      "response": "Resize to 200 x 60 pixels first, then compress the exported signature toward 20KB if needed.",
+      "format": "Signature",
+      "target": "200 x 60 / 20KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/signature-200x60-20kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/signature-200x60-20kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/signature-200x60-20kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=signature-must-be-200-x-60-px-and-under-20kb",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=60&fit=contain"
+    },
+    {
+      "errorText": "Signature must be 256 x 64 px and under 20KB",
+      "problem": "A signature upload box requires exact 256 x 64 pixels and a strict 20KB cap.",
+      "response": "Resize to 256 x 64 pixels first, then compress the exported signature toward 20KB.",
+      "format": "Signature",
+      "target": "256 x 64 / 20KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/signature-256x64-20kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/signature-256x64-20kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/signature-256x64-20kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=signature-must-be-256-x-64-px-and-under-20kb",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=256&height=64&fit=contain"
+    },
+    {
+      "errorText": "Signature must be 400 x 200 px and under 100KB",
+      "problem": "A larger signature upload box requires exact 400 x 200 pixels and a 100KB file limit.",
+      "response": "Resize to 400 x 200 pixels first, then compress toward 100KB only if the exported image is still too large.",
+      "format": "Signature",
+      "target": "400 x 200 / 100KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/signature-400x200-100kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/signature-400x200-100kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/signature-400x200-100kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=signature-must-be-400-x-200-px-and-under-100kb",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=400&height=200&fit=contain"
     },
     {
       "errorText": "PDF not accepted, JPG required",

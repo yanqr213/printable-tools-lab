@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T10:23:15.388Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "Photo 150x200 Under 20KB by PrintableTools Lab",
+    "slug": "photo-150x200-under-20kb-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/photo-150x200-20kb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=photo_150x200_20kb_2026_06&utm_content=photo_150x200_20kb_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup 150 x 200 photo workflow for strict 20KB upload limits.",
+    "long_description": "A free browser-based 150 x 200 photo under 20KB workflow for forms that require exact portrait pixels plus a tiny file-size cap. It points to local resize and image-to-KB compression steps, requires no account and no server file upload, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/photo-150x200-under-20kb-by-printabletools-lab"
+}

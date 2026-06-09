@@ -26,6 +26,10 @@ const UPLOAD_LIMIT_SHORTCUT_PATHS = [
   "/photo-600x600-100kb/",
   "/photo-480x640-200kb/",
   "/photo-512x512-100kb/",
+  "/photo-150x200-20kb/",
+  "/photo-180x240-50kb/",
+  "/photo-400x514-100kb/",
+  "/photo-600x800-200kb/",
   "/signature-140x60-20kb/",
   "/signature-140x60-50kb/",
   "/signature-150x50-20kb/",
@@ -37,6 +41,10 @@ const UPLOAD_LIMIT_SHORTCUT_PATHS = [
   "/signature-300x80-50kb/",
   "/signature-300x100-50kb/",
   "/signature-400x150-50kb/",
+  "/signature-100x50-10kb/",
+  "/signature-200x60-20kb/",
+  "/signature-256x64-20kb/",
+  "/signature-400x200-100kb/",
 ];
 const UPLOAD_LIMIT_DECISION_LINKS = [
   ["/tools/compress-pdf/?targetSize=1mb", "compress-pdf"],
@@ -57,6 +65,10 @@ const UPLOAD_LIMIT_DECISION_LINKS = [
   ["/photo-600x600-100kb/", "resize-image"],
   ["/photo-480x640-200kb/", "resize-image"],
   ["/photo-512x512-100kb/", "resize-image"],
+  ["/photo-150x200-20kb/", "resize-image"],
+  ["/photo-180x240-50kb/", "resize-image"],
+  ["/photo-400x514-100kb/", "resize-image"],
+  ["/photo-600x800-200kb/", "resize-image"],
   ["/signature-140x60-20kb/", "resize-image"],
   ["/signature-140x60-50kb/", "resize-image"],
   ["/signature-150x50-20kb/", "resize-image"],
@@ -68,6 +80,10 @@ const UPLOAD_LIMIT_DECISION_LINKS = [
   ["/signature-300x80-50kb/", "resize-image"],
   ["/signature-300x100-50kb/", "resize-image"],
   ["/signature-400x150-50kb/", "resize-image"],
+  ["/signature-100x50-10kb/", "resize-image"],
+  ["/signature-200x60-20kb/", "resize-image"],
+  ["/signature-256x64-20kb/", "resize-image"],
+  ["/signature-400x200-100kb/", "resize-image"],
 ];
 const PUBLIC_ENTRY_FILES = [
   ["Homepage", "index.html"],
@@ -684,7 +700,7 @@ else {
   const opsMetricsScript = fs.readFileSync(opsMetricsFunctionFile, "utf8");
   if (!opsMetricsScript.includes("nextActions") || !opsMetricsScript.includes("pathRows") || !opsMetricsScript.includes("countPathEvent") || !opsMetricsScript.includes("/polite-payment-reminder-email/") || !opsMetricsScript.includes("row[`today_${event}`]") || !opsMetricsScript.includes("projectNextAction")) failures.push("Ops metrics API should expose project next actions and today source/tool/path fields.");
   if (!opsMetricsScript.includes("serviceInvoiceRequests") || !opsMetricsScript.includes("Fresh service invoice request today")) failures.push("Ops metrics API should prioritize explicit service invoice request close actions.");
-  for (const opsPath of ["/signature-under-20kb/", "/signature-under-50kb/", "/passport-photo-size-fixer/", "/resize-photo-413x531/", "/photo-295x413-35kb/", "/photo-512x512-100kb/", "/signature-160x70-20kb/", "/signature-400x150-50kb/"]) {
+  for (const opsPath of ["/signature-under-20kb/", "/signature-under-50kb/", "/passport-photo-size-fixer/", "/resize-photo-413x531/", "/photo-295x413-35kb/", "/photo-512x512-100kb/", "/photo-150x200-20kb/", "/photo-600x800-200kb/", "/signature-160x70-20kb/", "/signature-400x150-50kb/", "/signature-100x50-10kb/", "/signature-400x200-100kb/"]) {
     if (!opsMetricsScript.includes(opsPath)) failures.push(`Ops metrics API missing high-intent photo/signature path: ${opsPath}`);
   }
 }
@@ -715,10 +731,18 @@ else {
     "Photo 354x472 Under 100KB",
     "Photo 480x640 Under 200KB",
     "Photo 512x512 Under 100KB",
+    "Photo 150x200 Under 20KB",
+    "Photo 180x240 Under 50KB",
+    "Photo 400x514 Under 100KB",
+    "Photo 600x800 Under 200KB",
     "Signature 160x70 Under 20KB",
     "Signature 250x80 Under 50KB",
     "Signature 300x60 Under 20KB",
     "Signature 400x150 Under 50KB",
+    "Signature 100x50 Under 10KB",
+    "Signature 200x60 Under 20KB",
+    "Signature 256x64 Under 20KB",
+    "Signature 400x200 Under 100KB",
   ];
   const freenosignupUploadFixTitles = [
     "Compress PDF to 500KB",
@@ -731,11 +755,19 @@ else {
     "Photo 354x472 Under 100KB",
     "Photo 480x640 Under 200KB",
     "Photo 512x512 Under 100KB",
+    "Photo 150x200 Under 20KB",
+    "Photo 180x240 Under 50KB",
+    "Photo 400x514 Under 100KB",
+    "Photo 600x800 Under 200KB",
     "Signature Under 20KB",
     "Signature 160x70 Under 20KB",
     "Signature 250x80 Under 50KB",
     "Signature 300x60 Under 20KB",
     "Signature 400x150 Under 50KB",
+    "Signature 100x50 Under 10KB",
+    "Signature 200x60 Under 20KB",
+    "Signature 256x64 Under 20KB",
+    "Signature 400x200 Under 100KB",
     "Resize Signature 200x100",
   ];
   if (!directoryMonitorScript.includes("NoSignupTools overdue invoice reminder listing") || !directoryMonitorScript.includes("Overdue+Invoice+Reminder+Email")) failures.push("Directory monitor missing NoSignupTools overdue invoice reminder submission tracking.");
@@ -1073,6 +1105,10 @@ for (const [name, reportName, campaign, reviewUrl] of [
   ["photo 600x600 under 100KB", "nosignuptools-photo-600x600-100kb-submit.json", "photo_600x600_100kb_2026_06", "https://nosignuptools.com/tools/photo-600x600-under-100kb-by-printabletools-lab"],
   ["photo 480x640 under 200KB", "nosignuptools-photo-480x640-200kb-submit.json", "photo_480x640_200kb_2026_06", "https://nosignuptools.com/tools/photo-480x640-under-200kb-by-printabletools-lab"],
   ["photo 512x512 under 100KB", "nosignuptools-photo-512x512-100kb-submit.json", "photo_512x512_100kb_2026_06", "https://nosignuptools.com/tools/photo-512x512-under-100kb-by-printabletools-lab"],
+  ["photo 150x200 under 20KB", "nosignuptools-photo-150x200-20kb-submit.json", "photo_150x200_20kb_2026_06", "https://nosignuptools.com/tools/photo-150x200-under-20kb-by-printabletools-lab"],
+  ["photo 180x240 under 50KB", "nosignuptools-photo-180x240-50kb-submit.json", "photo_180x240_50kb_2026_06", "https://nosignuptools.com/tools/photo-180x240-under-50kb-by-printabletools-lab"],
+  ["photo 400x514 under 100KB", "nosignuptools-photo-400x514-100kb-submit.json", "photo_400x514_100kb_2026_06", "https://nosignuptools.com/tools/photo-400x514-under-100kb-by-printabletools-lab"],
+  ["photo 600x800 under 200KB", "nosignuptools-photo-600x800-200kb-submit.json", "photo_600x800_200kb_2026_06", "https://nosignuptools.com/tools/photo-600x800-under-200kb-by-printabletools-lab"],
   ["signature 150x50 under 20KB", "nosignuptools-signature-150x50-20kb-submit.json", "signature_150x50_20kb_2026_06", "https://nosignuptools.com/tools/signature-150x50-under-20kb-by-printabletools-lab"],
   ["signature 160x70 under 20KB", "nosignuptools-signature-160x70-20kb-submit.json", "signature_160x70_20kb_2026_06", "https://nosignuptools.com/tools/signature-160x70-under-20kb-by-printabletools-lab"],
   ["signature 200x50 under 20KB", "nosignuptools-signature-200x50-20kb-submit.json", "signature_200x50_20kb_2026_06", "https://nosignuptools.com/tools/signature-200x50-under-20kb-by-printabletools-lab"],
@@ -1081,6 +1117,10 @@ for (const [name, reportName, campaign, reviewUrl] of [
   ["signature 300x80 under 50KB", "nosignuptools-signature-300x80-50kb-submit.json", "signature_300x80_50kb_2026_06", "https://nosignuptools.com/tools/signature-300x80-under-50kb-by-printabletools-lab"],
   ["signature 300x100 under 50KB", "nosignuptools-signature-300x100-50kb-submit.json", "signature_300x100_50kb_2026_06", "https://nosignuptools.com/tools/signature-300x100-under-50kb-by-printabletools-lab"],
   ["signature 400x150 under 50KB", "nosignuptools-signature-400x150-50kb-submit.json", "signature_400x150_50kb_2026_06", "https://nosignuptools.com/tools/signature-400x150-under-50kb-by-printabletools-lab"],
+  ["signature 100x50 under 10KB", "nosignuptools-signature-100x50-10kb-submit.json", "signature_100x50_10kb_2026_06", "https://nosignuptools.com/tools/signature-100x50-under-10kb-by-printabletools-lab"],
+  ["signature 200x60 under 20KB", "nosignuptools-signature-200x60-20kb-submit.json", "signature_200x60_20kb_2026_06", "https://nosignuptools.com/tools/signature-200x60-under-20kb-by-printabletools-lab"],
+  ["signature 256x64 under 20KB", "nosignuptools-signature-256x64-20kb-submit.json", "signature_256x64_20kb_2026_06", "https://nosignuptools.com/tools/signature-256x64-under-20kb-by-printabletools-lab"],
+  ["signature 400x200 under 100KB", "nosignuptools-signature-400x200-100kb-submit.json", "signature_400x200_100kb_2026_06", "https://nosignuptools.com/tools/signature-400x200-under-100kb-by-printabletools-lab"],
 ]) {
   const reportFile = path.join(root, "reports", reportName);
   if (!fs.existsSync(reportFile)) failures.push(`Missing NoSignupTools ${name} submission evidence report.`);
@@ -1104,6 +1144,10 @@ for (const [name, reportName, campaign, searchUrl] of [
   ["photo 600x600 under 100KB", "freenosignup-photo-600x600-100kb-submit.json", "photo_600x600_100kb_2026_06", "https://freenosignup.com/?s=Photo+600x600+Under+100KB"],
   ["photo 480x640 under 200KB", "freenosignup-photo-480x640-200kb-submit.json", "photo_480x640_200kb_2026_06", "https://freenosignup.com/?s=Photo+480x640+Under+200KB"],
   ["photo 512x512 under 100KB", "freenosignup-photo-512x512-100kb-submit.json", "photo_512x512_100kb_2026_06", "https://freenosignup.com/?s=Photo+512x512+Under+100KB"],
+  ["photo 150x200 under 20KB", "freenosignup-photo-150x200-20kb-submit.json", "photo_150x200_20kb_2026_06", "https://freenosignup.com/?s=Photo+150x200+Under+20KB"],
+  ["photo 180x240 under 50KB", "freenosignup-photo-180x240-50kb-submit.json", "photo_180x240_50kb_2026_06", "https://freenosignup.com/?s=Photo+180x240+Under+50KB"],
+  ["photo 400x514 under 100KB", "freenosignup-photo-400x514-100kb-submit.json", "photo_400x514_100kb_2026_06", "https://freenosignup.com/?s=Photo+400x514+Under+100KB"],
+  ["photo 600x800 under 200KB", "freenosignup-photo-600x800-200kb-submit.json", "photo_600x800_200kb_2026_06", "https://freenosignup.com/?s=Photo+600x800+Under+200KB"],
   ["signature under 20KB", "freenosignup-signature-under-20kb-submit.json", "signature_20kb_upload_fix_2026_06", "https://freenosignup.com/?s=Signature+Under+20KB"],
   ["signature 150x50 under 20KB", "freenosignup-signature-150x50-20kb-submit.json", "signature_150x50_20kb_2026_06", "https://freenosignup.com/?s=Signature+150x50+Under+20KB"],
   ["signature 160x70 under 20KB", "freenosignup-signature-160x70-20kb-submit.json", "signature_160x70_20kb_2026_06", "https://freenosignup.com/?s=Signature+160x70+Under+20KB"],
@@ -1113,6 +1157,10 @@ for (const [name, reportName, campaign, searchUrl] of [
   ["signature 300x80 under 50KB", "freenosignup-signature-300x80-50kb-submit.json", "signature_300x80_50kb_2026_06", "https://freenosignup.com/?s=Signature+300x80+Under+50KB"],
   ["signature 300x100 under 50KB", "freenosignup-signature-300x100-50kb-submit.json", "signature_300x100_50kb_2026_06", "https://freenosignup.com/?s=Signature+300x100+Under+50KB"],
   ["signature 400x150 under 50KB", "freenosignup-signature-400x150-50kb-submit.json", "signature_400x150_50kb_2026_06", "https://freenosignup.com/?s=Signature+400x150+Under+50KB"],
+  ["signature 100x50 under 10KB", "freenosignup-signature-100x50-10kb-submit.json", "signature_100x50_10kb_2026_06", "https://freenosignup.com/?s=Signature+100x50+Under+10KB"],
+  ["signature 200x60 under 20KB", "freenosignup-signature-200x60-20kb-submit.json", "signature_200x60_20kb_2026_06", "https://freenosignup.com/?s=Signature+200x60+Under+20KB"],
+  ["signature 256x64 under 20KB", "freenosignup-signature-256x64-20kb-submit.json", "signature_256x64_20kb_2026_06", "https://freenosignup.com/?s=Signature+256x64+Under+20KB"],
+  ["signature 400x200 under 100KB", "freenosignup-signature-400x200-100kb-submit.json", "signature_400x200_100kb_2026_06", "https://freenosignup.com/?s=Signature+400x200+Under+100KB"],
   ["resize signature 200x100", "freenosignup-resize-signature-200x100-submit.json", "resize_signature_200x100_2026_06", "https://freenosignup.com/?s=Resize+Signature+200x100"],
 ]) {
   const reportFile = path.join(root, "reports", reportName);
@@ -2354,6 +2402,10 @@ for (const [pagePath, headline, toolFragment] of [
   ["photo-600x600-100kb", "Make a 600 x 600 px photo under 100KB", "/tools/resize-image/?width=600&height=600&fit=cover"],
   ["photo-480x640-200kb", "Make a 480 x 640 px photo under 200KB", "/tools/resize-image/?width=480&height=640&fit=cover"],
   ["photo-512x512-100kb", "Make a 512 x 512 px photo under 100KB", "/tools/resize-image/?width=512&height=512&fit=cover"],
+  ["photo-150x200-20kb", "Make a 150 x 200 px photo under 20KB", "/tools/resize-image/?width=150&height=200&fit=cover"],
+  ["photo-180x240-50kb", "Make a 180 x 240 px photo under 50KB", "/tools/resize-image/?width=180&height=240&fit=cover"],
+  ["photo-400x514-100kb", "Make a 400 x 514 px photo under 100KB", "/tools/resize-image/?width=400&height=514&fit=cover"],
+  ["photo-600x800-200kb", "Make a 600 x 800 px photo under 200KB", "/tools/resize-image/?width=600&height=800&fit=cover"],
   ["signature-under-20kb", "Make a signature image under 20KB", "/tools/compress-image-to-kb/?targetKb=20"],
   ["signature-under-50kb", "Make a signature image under 50KB", "/tools/compress-image-to-kb/?targetKb=50"],
   ["resize-signature-140x60", "Resize signature to 140 x 60 pixels", "/tools/resize-image/?width=140&height=60&fit=contain"],
@@ -2369,6 +2421,10 @@ for (const [pagePath, headline, toolFragment] of [
   ["signature-300x80-50kb", "Make a 300 x 80 px signature under 50KB", "/tools/resize-image/?width=300&height=80&fit=contain"],
   ["signature-300x100-50kb", "Make a 300 x 100 px signature under 50KB", "/tools/resize-image/?width=300&height=100&fit=contain"],
   ["signature-400x150-50kb", "Make a 400 x 150 px signature under 50KB", "/tools/resize-image/?width=400&height=150&fit=contain"],
+  ["signature-100x50-10kb", "Make a 100 x 50 px signature under 10KB", "/tools/resize-image/?width=100&height=50&fit=contain"],
+  ["signature-200x60-20kb", "Make a 200 x 60 px signature under 20KB", "/tools/resize-image/?width=200&height=60&fit=contain"],
+  ["signature-256x64-20kb", "Make a 256 x 64 px signature under 20KB", "/tools/resize-image/?width=256&height=64&fit=contain"],
+  ["signature-400x200-100kb", "Make a 400 x 200 px signature under 100KB", "/tools/resize-image/?width=400&height=200&fit=contain"],
   ["resize-photo-200x230", "Resize photo to 200 x 230 pixels", "/tools/resize-image/?width=200&height=230&fit=cover"],
   ["resize-photo-413x531", "Resize photo to 413 x 531 pixels", "/tools/resize-image/?width=413&height=531&fit=cover"],
 ]) {
@@ -2381,7 +2437,7 @@ for (const [pagePath, headline, toolFragment] of [
   if (!html.includes(headline)) failures.push(`Photo upload landing page missing headline: ${pagePath}`);
   if (!html.includes(toolFragment)) failures.push(`Photo upload landing page missing prefilled tool link: ${pagePath}`);
   if (!sitemap.includes(`<loc>${siteUrl(pagePath)}</loc>`)) failures.push(`Sitemap missing photo upload landing page: ${pagePath}`);
-  if (["passport-photo-35x45mm", "photo-200x230-50kb", "photo-200x230-20kb", "photo-200x230-100kb", "photo-240x320-50kb", "photo-295x413-35kb", "photo-413x531-100kb", "photo-413x531-50kb", "photo-354x472-100kb", "photo-300x300-100kb", "photo-600x600-100kb", "photo-480x640-200kb", "photo-512x512-100kb", "signature-under-20kb", "signature-under-50kb", "resize-signature-140x60", "resize-signature-200x100", "resize-photo-200x230", "signature-140x60-20kb", "signature-140x60-50kb", "signature-150x50-20kb", "signature-160x70-20kb", "signature-200x50-20kb", "signature-200x100-50kb", "signature-250x80-50kb", "signature-300x60-20kb", "signature-300x80-50kb", "signature-300x100-50kb", "signature-400x150-50kb"].includes(pagePath)) {
+  if (["passport-photo-35x45mm", "photo-200x230-50kb", "photo-200x230-20kb", "photo-200x230-100kb", "photo-240x320-50kb", "photo-295x413-35kb", "photo-413x531-100kb", "photo-413x531-50kb", "photo-354x472-100kb", "photo-300x300-100kb", "photo-600x600-100kb", "photo-480x640-200kb", "photo-512x512-100kb", "photo-150x200-20kb", "photo-180x240-50kb", "photo-400x514-100kb", "photo-600x800-200kb", "signature-under-20kb", "signature-under-50kb", "resize-signature-140x60", "resize-signature-200x100", "resize-photo-200x230", "signature-140x60-20kb", "signature-140x60-50kb", "signature-150x50-20kb", "signature-160x70-20kb", "signature-200x50-20kb", "signature-200x100-50kb", "signature-250x80-50kb", "signature-300x60-20kb", "signature-300x80-50kb", "signature-300x100-50kb", "signature-400x150-50kb", "signature-100x50-10kb", "signature-200x60-20kb", "signature-256x64-20kb", "signature-400x200-100kb"].includes(pagePath)) {
     if (!html.includes('data-service-primary-invoice-request="true"') || !html.includes("One-contact $9 invoice request") || !html.includes("Where should the external $9 invoice link go?") || !html.includes('data-track-event="service_invoice_request"')) failures.push(`New signature/passport landing page missing one-contact $9 invoice request path: ${pagePath}`);
   }
   if (["file-must-be-less-than-1mb", "pdf-must-be-under-500kb", "pdf-must-be-under-2mb", "pdf-must-be-under-5mb", "photo-must-be-under-100kb", "invalid-file-type-jpg-png", "image-dimensions-600x600", "pdf-not-accepted-jpg-required", "image-must-be-less-than-2mb", "image-must-be-under-500kb", "jpg-must-be-under-200kb", "png-screenshot-too-large", "resume-pdf-too-large", "resume-pdf-under-2mb", "email-attachment-too-large", "document-must-be-under-5mb"].includes(pagePath)) {

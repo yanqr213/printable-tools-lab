@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-06-09T10:24:00.129Z",
+  "directory": "FreeNoSignup",
+  "submitPage": "https://freenosignup.com/submit/",
+  "formResponseUrl": "https://docs.google.com/forms/d/e/1FAIpQLScZ3rCt9k2vlaHcT7d1ABmgtezWN-fZLcH_YcxJdexm8aOzRg/formResponse",
+  "status": 200,
+  "ok": true,
+  "confirmationMatched": true,
+  "preSubmitEvidence": {
+    "url": "https://freenosignup.com/?s=Photo+150x200+Under+20KB",
+    "ok": true,
+    "status": 200,
+    "matchedSite": false,
+    "matchedTitle": true,
+    "bytes": 273887
+  },
+  "mappedEntryIds": {
+    "toolName": "entry.269597412",
+    "toolUrl": "entry.201672753",
+    "category": "entry.1927966242",
+    "description": "entry.88575082",
+    "keyFeatures": "entry.1466984240",
+    "submitterName": "entry.1476070271",
+    "additionalNotes": "entry.183902111",
+    "submitterEmail": "entry.1308873964"
+  },
+  "payload": {
+    "toolName": "Photo 150x200 Under 20KB by PrintableTools Lab",
+    "toolUrl": "https://printable-tools-lab.pages.dev/photo-150x200-20kb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=photo_150x200_20kb_2026_06&utm_content=photo_150x200_20kb_landing",
+    "category": "Productivity",
+    "description": "Free no-signup browser workflow for forms that need a 150 x 200 px photo under 20KB. It routes users through local resize and image-to-KB steps, with reminders to check the downloaded result before uploading elsewhere.",
+    "keyFeatures": "No signup. Exact 150 x 200 px photo target. Strict 20KB size guidance. Browser resize and compression steps. Free tool path. Public-safe upload notes.",
+    "submitterName": "PrintableTools Lab",
+    "additionalNotes": "Specific exact-size photo/signature upload-limit page for long-tail search and directory discovery.",
+    "submitterEmail": ""
+  },
+  "searchUrl": "https://freenosignup.com/?s=Photo+150x200+Under+20KB",
+  "responseEvidenceSnippet": "<!DOCTYPE html><html class=\"HB1eCd-UMrnmb PHOcVb\"><head><style nonce=\"JiTOgIlBMPU0AMWa7MrLYA\">.iPj4P { background-color: #5746e3 !important; }</style><link rel=\"shortcut icon\" sizes=\"16x16\" href=\"https://www.gstatic.com/images/branding/productlogos/forms_2026/",
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "3-5 business days"
+}

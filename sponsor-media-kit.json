@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Sponsor Media Kit",
-  "generatedAt": "2026-06-09T09:28:36.170Z",
+  "generatedAt": "2026-06-09T10:23:04.754Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
   "sponsorStarterReview": "https://printable-tools-lab.pages.dev/sponsor-starter-review/",
@@ -11,15 +11,15 @@
   "facts": {
     "tools": 67,
     "guides": 95,
-    "landingPages": 129,
-    "indexableRoutes": 324,
+    "landingPages": 137,
+    "indexableRoutes": 332,
     "exports": "Free browser exports; no signup required for core tools.",
     "ads": "Ads disabled during validation. Downloads must never be gated by sponsor or ad interaction."
   },
   "externalDiscoveryProof": {
-    "generatedAt": "2026-06-09T09:07:33.366Z",
-    "directoryListedCount": 82,
-    "directoryPendingCount": 116,
+    "generatedAt": "2026-06-09T10:00:51.522Z",
+    "directoryListedCount": 84,
+    "directoryPendingCount": 132,
     "directoryErrorCount": 1,
     "listedDirectories": [
       {
@@ -371,6 +371,18 @@
         "reviewWindow": "auto-approved API listing for the exact 240 x 320 px and 50KB photo path"
       },
       {
+        "name": "TechTools Launchpad photo 295x413 under 35KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/238",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 295 x 413 px and 35KB photo path"
+      },
+      {
+        "name": "TechTools Launchpad photo 354x472 under 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/239",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 354 x 472 px and 100KB photo path"
+      },
+      {
         "name": "TechTools Launchpad photo 413x531 under 50KB listing",
         "evidenceUrl": "https://techtools.cz/launchpad-api/tools/231",
         "submittedAt": "2026-06-09",
@@ -519,7 +531,7 @@
       "github-pages"
     ],
     "indexNowSubmittedUrls": 284,
-    "publicProofLine": "External discovery proof: 82 public directory listing(s) are live; 116 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue.",
+    "publicProofLine": "External discovery proof: 84 public directory listing(s) are live; 132 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue.",
     "moneyBoundary": "Directory listings, IndexNow submissions, clicks, and views are discovery signals only. Revenue is real only after a signed sponsor agreement or settled external payment."
   },
   "placements": [

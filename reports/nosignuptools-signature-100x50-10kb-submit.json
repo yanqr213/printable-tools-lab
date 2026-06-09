@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T10:23:31.795Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "Signature 100x50 Under 10KB by PrintableTools Lab",
+    "slug": "signature-100x50-under-10kb-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/signature-100x50-10kb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=signature_100x50_10kb_2026_06&utm_content=signature_100x50_10kb_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup 100 x 50 signature workflow for strict 10KB upload limits.",
+    "long_description": "A free browser-based 100 x 50 signature under 10KB workflow for forms that require a small signature image plus an extremely tight KB cap. It points to local resize and compression steps, requires no account and no server file upload, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/signature-100x50-under-10kb-by-printabletools-lab"
+}

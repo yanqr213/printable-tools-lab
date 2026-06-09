@@ -17,6 +17,17 @@ const mappedEntryIds = {
   submitterEmail: "entry.1308873964",
 };
 
+const exactUploadLimitBacklog = [
+  ["photo-150x200-20kb", "Photo 150x200 Under 20KB", "photo_150x200_20kb_2026_06", "photo_150x200_20kb_landing", "Free no-signup browser workflow for forms that need a 150 x 200 px photo under 20KB. It routes users through local resize and image-to-KB steps, with reminders to check the downloaded result before uploading elsewhere.", "No signup. Exact 150 x 200 px photo target. Strict 20KB size guidance. Browser resize and compression steps. Free tool path. Public-safe upload notes."],
+  ["photo-180x240-50kb", "Photo 180x240 Under 50KB", "photo_180x240_50kb_2026_06", "photo_180x240_50kb_landing", "Free no-signup browser workflow for forms that need a 180 x 240 px photo under 50KB. It routes users through local portrait photo resizing and image-to-KB compression.", "No signup. Exact 180 x 240 px photo target. 50KB size guidance. Browser resize and compression steps. Free tool path. Public-safe upload notes."],
+  ["photo-400x514-100kb", "Photo 400x514 Under 100KB", "photo_400x514_100kb_2026_06", "photo_400x514_100kb_landing", "Free no-signup browser workflow for forms that need a 400 x 514 px photo under 100KB. It points users to local portrait photo resizing and compression checks before uploading elsewhere.", "No signup. Exact 400 x 514 px photo target. 100KB size guidance. Browser resize and compression steps. Free tool path. Public-safe upload notes."],
+  ["photo-600x800-200kb", "Photo 600x800 Under 200KB", "photo_600x800_200kb_2026_06", "photo_600x800_200kb_landing", "Free no-signup browser workflow for forms that need a 600 x 800 px photo under 200KB. It routes users through local portrait photo resizing and image-to-KB compression.", "No signup. Exact 600 x 800 px photo target. 200KB size guidance. Browser resize and compression steps. Free tool path. Public-safe upload notes."],
+  ["signature-100x50-10kb", "Signature 100x50 Under 10KB", "signature_100x50_10kb_2026_06", "signature_100x50_10kb_landing", "Free no-signup browser workflow for signature images that must be 100 x 50 px and under 10KB. It routes users to local signature resize and strict image-to-KB compression.", "No signup. Exact 100 x 50 px signature target. Strict 10KB size guidance. Browser resize and compression path. Free tool path. Public-safe upload notes."],
+  ["signature-200x60-20kb", "Signature 200x60 Under 20KB", "signature_200x60_20kb_2026_06", "signature_200x60_20kb_landing", "Free no-signup browser workflow for signature images that must be 200 x 60 px and under 20KB. It points users to local signature resize and strict image-to-KB compression.", "No signup. Exact 200 x 60 px signature target. Strict 20KB size guidance. Browser resize and compression path. Free tool path. Public-safe upload notes."],
+  ["signature-256x64-20kb", "Signature 256x64 Under 20KB", "signature_256x64_20kb_2026_06", "signature_256x64_20kb_landing", "Free no-signup browser workflow for signature images that must be 256 x 64 px and under 20KB. It routes users to local signature resize and compression steps.", "No signup. Exact 256 x 64 px signature target. Strict 20KB size guidance. Browser resize and compression path. Free tool path. Public-safe upload notes."],
+  ["signature-400x200-100kb", "Signature 400x200 Under 100KB", "signature_400x200_100kb_2026_06", "signature_400x200_100kb_landing", "Free no-signup browser workflow for signature images that must be 400 x 200 px and under 100KB. It routes users to local resize and image-to-KB compression steps.", "No signup. Exact 400 x 200 px signature target. 100KB size guidance. Browser resize and compression path. Free tool path. Public-safe upload notes."],
+];
+
 const backlog = [
   {
     report: "freenosignup-compress-pdf-to-500kb-submit.json",
@@ -438,6 +449,20 @@ const backlog = [
       submitterEmail: "",
     },
   },
+  ...exactUploadLimitBacklog.map(([pathName, name, campaign, content, description, keyFeatures]) => ({
+    report: `freenosignup-${pathName}-submit.json`,
+    searchUrl: `https://freenosignup.com/?s=${encodeURIComponent(name).replace(/%20/g, "+")}`,
+    payload: {
+      toolName: `${name} by PrintableTools Lab`,
+      toolUrl: `https://printable-tools-lab.pages.dev/${pathName}/?utm_source=freenosignup&utm_medium=directory&utm_campaign=${campaign}&utm_content=${content}`,
+      category: "Productivity",
+      description,
+      keyFeatures,
+      submitterName: "PrintableTools Lab",
+      additionalNotes: "Specific exact-size photo/signature upload-limit page for long-tail search and directory discovery.",
+      submitterEmail: "",
+    },
+  })),
 ];
 
 async function main() {
