@@ -30,6 +30,12 @@ const UPLOAD_LIMIT_SHORTCUT_PATHS = [
   "/photo-180x240-50kb/",
   "/photo-400x514-100kb/",
   "/photo-600x800-200kb/",
+  "/photo-120x160-20kb/",
+  "/photo-160x200-30kb/",
+  "/photo-300x400-100kb/",
+  "/photo-350x450-100kb/",
+  "/photo-360x480-100kb/",
+  "/photo-420x560-200kb/",
   "/signature-140x60-20kb/",
   "/signature-140x60-50kb/",
   "/signature-150x50-20kb/",
@@ -69,6 +75,12 @@ const UPLOAD_LIMIT_DECISION_LINKS = [
   ["/photo-180x240-50kb/", "resize-image"],
   ["/photo-400x514-100kb/", "resize-image"],
   ["/photo-600x800-200kb/", "resize-image"],
+  ["/photo-120x160-20kb/", "resize-image"],
+  ["/photo-160x200-30kb/", "resize-image"],
+  ["/photo-300x400-100kb/", "resize-image"],
+  ["/photo-350x450-100kb/", "resize-image"],
+  ["/photo-360x480-100kb/", "resize-image"],
+  ["/photo-420x560-200kb/", "resize-image"],
   ["/signature-140x60-20kb/", "resize-image"],
   ["/signature-140x60-50kb/", "resize-image"],
   ["/signature-150x50-20kb/", "resize-image"],
@@ -2472,6 +2484,12 @@ for (const [pagePath, headline, toolFragment] of [
   ["photo-180x240-50kb", "Make a 180 x 240 px photo under 50KB", "/tools/resize-image/?width=180&height=240&fit=cover"],
   ["photo-400x514-100kb", "Make a 400 x 514 px photo under 100KB", "/tools/resize-image/?width=400&height=514&fit=cover"],
   ["photo-600x800-200kb", "Make a 600 x 800 px photo under 200KB", "/tools/resize-image/?width=600&height=800&fit=cover"],
+  ["photo-120x160-20kb", "Make a 120 x 160 px photo under 20KB", "/tools/resize-image/?width=120&height=160&fit=cover"],
+  ["photo-160x200-30kb", "Make a 160 x 200 px photo under 30KB", "/tools/resize-image/?width=160&height=200&fit=cover"],
+  ["photo-300x400-100kb", "Make a 300 x 400 px photo under 100KB", "/tools/resize-image/?width=300&height=400&fit=cover"],
+  ["photo-350x450-100kb", "Make a 350 x 450 px photo under 100KB", "/tools/resize-image/?width=350&height=450&fit=cover"],
+  ["photo-360x480-100kb", "Make a 360 x 480 px photo under 100KB", "/tools/resize-image/?width=360&height=480&fit=cover"],
+  ["photo-420x560-200kb", "Make a 420 x 560 px photo under 200KB", "/tools/resize-image/?width=420&height=560&fit=cover"],
   ["signature-under-20kb", "Make a signature image under 20KB", "/tools/compress-image-to-kb/?targetKb=20"],
   ["signature-under-50kb", "Make a signature image under 50KB", "/tools/compress-image-to-kb/?targetKb=50"],
   ["resize-signature-140x60", "Resize signature to 140 x 60 pixels", "/tools/resize-image/?width=140&height=60&fit=contain"],
@@ -2503,7 +2521,7 @@ for (const [pagePath, headline, toolFragment] of [
   if (!html.includes(headline)) failures.push(`Photo upload landing page missing headline: ${pagePath}`);
   if (!html.includes(toolFragment)) failures.push(`Photo upload landing page missing prefilled tool link: ${pagePath}`);
   if (!sitemap.includes(`<loc>${siteUrl(pagePath)}</loc>`)) failures.push(`Sitemap missing photo upload landing page: ${pagePath}`);
-  if (["passport-photo-35x45mm", "photo-200x230-50kb", "photo-200x230-20kb", "photo-200x230-100kb", "photo-240x320-50kb", "photo-295x413-35kb", "photo-413x531-100kb", "photo-413x531-50kb", "photo-354x472-100kb", "photo-300x300-100kb", "photo-600x600-100kb", "photo-480x640-200kb", "photo-512x512-100kb", "photo-150x200-20kb", "photo-180x240-50kb", "photo-400x514-100kb", "photo-600x800-200kb", "signature-under-20kb", "signature-under-50kb", "resize-signature-140x60", "resize-signature-200x100", "resize-photo-200x230", "signature-140x60-20kb", "signature-140x60-50kb", "signature-150x50-20kb", "signature-160x70-20kb", "signature-200x50-20kb", "signature-200x100-50kb", "signature-250x80-50kb", "signature-300x60-20kb", "signature-300x80-50kb", "signature-300x100-50kb", "signature-400x150-50kb", "signature-100x50-10kb", "signature-200x60-20kb", "signature-256x64-20kb", "signature-400x200-100kb"].includes(pagePath)) {
+  if (["passport-photo-35x45mm", "photo-200x230-50kb", "photo-200x230-20kb", "photo-200x230-100kb", "photo-240x320-50kb", "photo-295x413-35kb", "photo-413x531-100kb", "photo-413x531-50kb", "photo-354x472-100kb", "photo-300x300-100kb", "photo-600x600-100kb", "photo-480x640-200kb", "photo-512x512-100kb", "photo-150x200-20kb", "photo-180x240-50kb", "photo-400x514-100kb", "photo-600x800-200kb", "photo-120x160-20kb", "photo-160x200-30kb", "photo-300x400-100kb", "photo-350x450-100kb", "photo-360x480-100kb", "photo-420x560-200kb", "signature-under-20kb", "signature-under-50kb", "resize-signature-140x60", "resize-signature-200x100", "resize-photo-200x230", "signature-140x60-20kb", "signature-140x60-50kb", "signature-150x50-20kb", "signature-160x70-20kb", "signature-200x50-20kb", "signature-200x100-50kb", "signature-250x80-50kb", "signature-300x60-20kb", "signature-300x80-50kb", "signature-300x100-50kb", "signature-400x150-50kb", "signature-100x50-10kb", "signature-200x60-20kb", "signature-256x64-20kb", "signature-400x200-100kb"].includes(pagePath)) {
     if (!html.includes('data-service-primary-invoice-request="true"') || !html.includes("One-contact $9 invoice request") || !html.includes("Where should the external $9 invoice link go?") || !html.includes('data-track-event="service_invoice_request"')) failures.push(`New signature/passport landing page missing one-contact $9 invoice request path: ${pagePath}`);
   }
   if (["file-must-be-less-than-1mb", "pdf-must-be-under-500kb", "pdf-must-be-under-2mb", "pdf-must-be-under-5mb", "photo-must-be-under-100kb", "invalid-file-type-jpg-png", "image-dimensions-600x600", "pdf-not-accepted-jpg-required", "image-must-be-less-than-2mb", "image-must-be-under-500kb", "jpg-must-be-under-200kb", "png-screenshot-too-large", "resume-pdf-too-large", "resume-pdf-under-2mb", "email-attachment-too-large", "document-must-be-under-5mb"].includes(pagePath)) {

@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-09T11:56:16.526Z",
+  "generatedAt": "2026-06-09T12:46:21.601Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -117,6 +117,12 @@
     "https://printable-tools-lab.pages.dev/photo-180x240-50kb/",
     "https://printable-tools-lab.pages.dev/photo-400x514-100kb/",
     "https://printable-tools-lab.pages.dev/photo-600x800-200kb/",
+    "https://printable-tools-lab.pages.dev/photo-120x160-20kb/",
+    "https://printable-tools-lab.pages.dev/photo-160x200-30kb/",
+    "https://printable-tools-lab.pages.dev/photo-300x400-100kb/",
+    "https://printable-tools-lab.pages.dev/photo-350x450-100kb/",
+    "https://printable-tools-lab.pages.dev/photo-360x480-100kb/",
+    "https://printable-tools-lab.pages.dev/photo-420x560-200kb/",
     "https://printable-tools-lab.pages.dev/signature-under-20kb/",
     "https://printable-tools-lab.pages.dev/signature-under-50kb/",
     "https://printable-tools-lab.pages.dev/resize-signature-140x60/",
@@ -973,6 +979,42 @@
       "url": "https://printable-tools-lab.pages.dev/photo-600x800-200kb/",
       "intent": "photo 600x800 200KB, resize photo 600 x 800 under 200KB, portrait application upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=800&fit=cover"
+    },
+    {
+      "title": "Photo 120x160 Pixels Under 20KB",
+      "url": "https://printable-tools-lab.pages.dev/photo-120x160-20kb/",
+      "intent": "photo 120x160 20KB, resize photo 120 x 160 under 20KB, exam photo upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=120&height=160&fit=cover"
+    },
+    {
+      "title": "Photo 160x200 Pixels Under 30KB",
+      "url": "https://printable-tools-lab.pages.dev/photo-160x200-30kb/",
+      "intent": "photo 160x200 30KB, resize photo 160 x 200 under 30KB, application photo upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=160&height=200&fit=cover"
+    },
+    {
+      "title": "Photo 300x400 Pixels Under 100KB",
+      "url": "https://printable-tools-lab.pages.dev/photo-300x400-100kb/",
+      "intent": "photo 300x400 100KB, resize photo 300 x 400 under 100KB, portrait application photo",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=300&height=400&fit=cover"
+    },
+    {
+      "title": "Photo 350x450 Pixels Under 100KB",
+      "url": "https://printable-tools-lab.pages.dev/photo-350x450-100kb/",
+      "intent": "photo 350x450 100KB, resize photo 350 x 450 under 100KB, ID photo upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=350&height=450&fit=cover"
+    },
+    {
+      "title": "Photo 360x480 Pixels Under 100KB",
+      "url": "https://printable-tools-lab.pages.dev/photo-360x480-100kb/",
+      "intent": "photo 360x480 100KB, resize photo 360 x 480 under 100KB, portrait photo upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=360&height=480&fit=cover"
+    },
+    {
+      "title": "Photo 420x560 Pixels Under 200KB",
+      "url": "https://printable-tools-lab.pages.dev/photo-420x560-200kb/",
+      "intent": "photo 420x560 200KB, resize photo 420 x 560 under 200KB, portrait application upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=420&height=560&fit=cover"
     },
     {
       "title": "Signature Under 20KB Without Uploading",

@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Upload Error Cheatsheet",
-  "generatedAt": "2026-06-09T11:56:16.526Z",
+  "generatedAt": "2026-06-09T12:46:21.601Z",
   "canonical": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
   "purpose": "Machine-readable reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup fixes.",
   "entries": [
@@ -213,6 +213,66 @@
       "landingPage": "https://printable-tools-lab.pages.dev/photo-600x800-200kb/",
       "trackedUrl": "https://printable-tools-lab.pages.dev/photo-600x800-200kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=800&fit=cover"
+    },
+    {
+      "errorText": "Photo must be 120 x 160 px and under 20KB",
+      "problem": "A tiny exam or application photo upload requires 120 x 160 pixels and a strict 20KB cap.",
+      "response": "Resize to 120 x 160 pixels first, then compress the exported photo toward 20KB.",
+      "format": "Photo",
+      "target": "120 x 160 / 20KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/photo-120x160-20kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/photo-120x160-20kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=120&height=160&fit=cover"
+    },
+    {
+      "errorText": "Photo must be 160 x 200 px and under 30KB",
+      "problem": "A compact portrait upload requires exact 160 x 200 pixels and rejects files above 30KB.",
+      "response": "Resize to 160 x 200 pixels first, then compress the exported photo toward 30KB if needed.",
+      "format": "Photo",
+      "target": "160 x 200 / 30KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/photo-160x200-30kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/photo-160x200-30kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=160&height=200&fit=cover"
+    },
+    {
+      "errorText": "Photo must be 300 x 400 px and under 100KB",
+      "problem": "A portrait application photo upload requires 300 x 400 pixels and a 100KB cap.",
+      "response": "Resize to 300 x 400 pixels first, then compress the exported photo toward 100KB.",
+      "format": "Photo",
+      "target": "300 x 400 / 100KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/photo-300x400-100kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/photo-300x400-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=300&height=400&fit=cover"
+    },
+    {
+      "errorText": "Photo must be 350 x 450 px and under 100KB",
+      "problem": "An ID-style portrait upload requires exact 350 x 450 pixels and rejects files above 100KB.",
+      "response": "Resize to 350 x 450 pixels first, then compress the exported photo toward 100KB if needed.",
+      "format": "Photo",
+      "target": "350 x 450 / 100KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/photo-350x450-100kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/photo-350x450-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=350&height=450&fit=cover"
+    },
+    {
+      "errorText": "Photo must be 360 x 480 px and under 100KB",
+      "problem": "A portrait photo upload requires exact 360 x 480 pixels and a file below 100KB.",
+      "response": "Resize to 360 x 480 pixels first, then compress the exported photo toward 100KB.",
+      "format": "Photo",
+      "target": "360 x 480 / 100KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/photo-360x480-100kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/photo-360x480-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=360&height=480&fit=cover"
+    },
+    {
+      "errorText": "Photo must be 420 x 560 px and under 200KB",
+      "problem": "A larger portrait photo upload requires 420 x 560 pixels and rejects files above 200KB.",
+      "response": "Resize to 420 x 560 pixels first, then compress the exported photo toward 200KB if needed.",
+      "format": "Photo",
+      "target": "420 x 560 / 200KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/photo-420x560-200kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/photo-420x560-200kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=420&height=560&fit=cover"
     },
     {
       "errorText": "JPG must be under 200KB",

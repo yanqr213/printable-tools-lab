@@ -207,6 +207,12 @@ Monetization model: Free tools stay live for search demand and future display ad
 - [Photo 180x240 Pixels Under 50KB](https://printable-tools-lab.pages.dev/photo-180x240-50kb/): photo 180x240 50KB, resize photo 180 x 240 under 50KB, portrait upload
 - [Photo 400x514 Pixels Under 100KB](https://printable-tools-lab.pages.dev/photo-400x514-100kb/): photo 400x514 100KB, resize photo 400 x 514 under 100KB, ID photo upload
 - [Photo 600x800 Pixels Under 200KB](https://printable-tools-lab.pages.dev/photo-600x800-200kb/): photo 600x800 200KB, resize photo 600 x 800 under 200KB, portrait application upload
+- [Photo 120x160 Pixels Under 20KB](https://printable-tools-lab.pages.dev/photo-120x160-20kb/): photo 120x160 20KB, resize photo 120 x 160 under 20KB, exam photo upload
+- [Photo 160x200 Pixels Under 30KB](https://printable-tools-lab.pages.dev/photo-160x200-30kb/): photo 160x200 30KB, resize photo 160 x 200 under 30KB, application photo upload
+- [Photo 300x400 Pixels Under 100KB](https://printable-tools-lab.pages.dev/photo-300x400-100kb/): photo 300x400 100KB, resize photo 300 x 400 under 100KB, portrait application photo
+- [Photo 350x450 Pixels Under 100KB](https://printable-tools-lab.pages.dev/photo-350x450-100kb/): photo 350x450 100KB, resize photo 350 x 450 under 100KB, ID photo upload
+- [Photo 360x480 Pixels Under 100KB](https://printable-tools-lab.pages.dev/photo-360x480-100kb/): photo 360x480 100KB, resize photo 360 x 480 under 100KB, portrait photo upload
+- [Photo 420x560 Pixels Under 200KB](https://printable-tools-lab.pages.dev/photo-420x560-200kb/): photo 420x560 200KB, resize photo 420 x 560 under 200KB, portrait application upload
 - [Signature Under 20KB Without Uploading](https://printable-tools-lab.pages.dev/signature-under-20kb/): signature under 20KB, compress signature image, signature upload too large
 - [Signature Under 50KB Without Uploading](https://printable-tools-lab.pages.dev/signature-under-50kb/): signature under 50KB, compress signature image, signature upload too large
 - [Resize Signature to 140x60 Pixels](https://printable-tools-lab.pages.dev/resize-signature-140x60/): resize signature 140x60, signature dimensions 140 x 60, no upload
