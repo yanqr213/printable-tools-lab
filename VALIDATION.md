@@ -1,25 +1,26 @@
 # Validation Gates
 
-Last generated: 2026-06-08T06:18:35.383Z
+Last generated: 2026-06-09T11:02:33.646Z
 
 ## Current Automated Status
 
 - Product ready: yes.
 - Tools live in inventory: 67.
 - Guide pages live in inventory: 95.
-- High-intent landing pages: 93.
-- Indexable routes: 287.
+- High-intent landing pages: 137.
+- Indexable routes: 332.
 - Custom domain configured: no.
 - Live downloads: 2.
 - Live generations: 0.
 - Free-tool depth intent events: 0.
-- Commercial intent events: 2.
-- Checkout links configured: 0/3.
+- Commercial intent events: 4.
+- Checkout links configured: 0/5.
 - Lead-to-payment close cockpit ready: yes.
 - Sponsor leads captured: 0.
 - Sponsor invoice requests: 0.
 - Public-safe service request issues: 0.
 - Public-safe invoice follow-up request issues: 0.
+- Public-safe upload fix plan request issues: 0.
 - Public-safe sponsor replies: 0.
 - Public-safe invoice issue requests: 0.
 - Sponsor outreach queued/sent/settled: 10/0/0.
@@ -31,7 +32,7 @@ Last generated: 2026-06-08T06:18:35.383Z
 
 ## Product Gate
 
-- 67 tools, 95 guides, 93 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
+- 67 tools, 95 guides, 137 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
 
 ## Search Console Gate
 
@@ -43,11 +44,11 @@ Last generated: 2026-06-08T06:18:35.383Z
 
 - GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.
 - GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.
-- GitHub Pages discovery directory is live with 93 landing page link(s), 67 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).
-- GitHub Pages discovery sitemap has 269 URL(s), including 67 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 269.
+- GitHub Pages discovery directory is live with 137 landing page link(s), 67 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).
+- GitHub Pages discovery sitemap has 314 URL(s), including 67 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 314.
 - IndexNow key file is reachable from the site root.
-- IndexNow latest report accepted 263 URL(s) for github-pages.
-- Directory monitor shows 7 listed, 6 pending, and 1 error directory target(s).
+- IndexNow latest report accepted 284 URL(s) for github-pages.
+- Directory monitor shows 94 listed, 152 pending, and 1 error directory target(s).
 
 ## Monetization Gate
 
@@ -70,7 +71,7 @@ Last generated: 2026-06-08T06:18:35.383Z
 - Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.
 - Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces.
 - Use the internal lead-to-payment close cockpit after every service, seller-kit, audit, or sponsor lead: export, confirm fit, copy the payment reply, and count revenue only after external proof.
-- Create one real external payment-provider product for the $29 service or $9 kit, then run configure:checkout with the public checkout URL only.
+- Create real external payment-provider products for the $9 upload fix plan, $19 invoice follow-up copy pack, and $29 custom print pack, then configure only their public checkout URLs in the matching per-SKU slots.
 - Submit the first sponsor outreach batch using reports/sponsor-next-submission-batch.md, but mark rows sent only after real public-form submission evidence exists.
 
 ## Commands

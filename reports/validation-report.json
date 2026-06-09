@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-08T06:18:35.383Z",
+  "generatedAt": "2026-06-09T11:02:33.646Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
     "customDomainConfigured": false,
     "toolCount": 67,
     "guideCount": 95,
-    "landingPageCount": 93,
-    "indexableRoutes": 287,
-    "sitemapLocCount": 287,
-    "generatedToolInventoryAt": "2026-06-08T06:18:06.070Z",
+    "landingPageCount": 137,
+    "indexableRoutes": 332,
+    "sitemapLocCount": 332,
+    "generatedToolInventoryAt": "2026-06-09T10:30:26.193Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -59,6 +59,7 @@
       "openCount": 0,
       "paidServiceRequestCount": 0,
       "invoiceFollowupRequestCount": 0,
+      "uploadLimitFixPlanRequestCount": 0,
       "customLocalPrintRequestCount": 0,
       "auditRequestCount": 0,
       "sellerKitRequestCount": 0,
@@ -70,13 +71,19 @@
     "checkout": {
       "sellerKitCheckoutConfigured": false,
       "serviceCheckoutConfigured": false,
+      "customPrintPackCheckoutConfigured": false,
+      "invoiceFollowupCheckoutConfigured": false,
+      "uploadLimitFixPlanCheckoutConfigured": false,
       "auditUpgradeCheckoutConfigured": false,
       "configuredCount": 0,
-      "requiredCount": 3,
+      "requiredCount": 5,
       "readyForDirectPayment": false,
+      "readyForSkuDirectPayment": false,
       "missing": [
         "sellerKitCheckoutUrl",
-        "serviceCheckoutUrl",
+        "customPrintPackCheckoutUrl",
+        "invoiceFollowupCheckoutUrl",
+        "uploadLimitFixPlanCheckoutUrl",
         "auditUpgradeCheckoutUrl"
       ],
       "note": "Only public checkout URLs belong in site-config.js. Do not store payment credentials, payout details, tax IDs, bank data, card data, or private customer lists in this repo."
@@ -85,6 +92,7 @@
       "activeCloseLanes": [
         "custom-local-print-pack",
         "invoice-followup-copy-pack",
+        "upload-limit-fix-plan",
         "market-table-print-audit-upgrade",
         "local-seller-starter-kit",
         "sponsor-invoice-review"
@@ -95,13 +103,15 @@
       "publicInvoiceIssueCount": 0,
       "publicServiceRequestCount": 0,
       "publicInvoiceFollowupRequestCount": 0,
+      "publicUploadLimitFixPlanRequestCount": 0,
       "directCheckoutConfigured": false,
       "readyForManualClose": true,
       "nextCommands": [
         "npm.cmd run service:leads",
         "npm.cmd run sponsor:leads",
-        "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/custom-local-print-pack",
-        "npm.cmd run configure:checkout -- --service-url https://your-payment-provider.example/invoice-followup-copy-pack"
+        "npm.cmd run configure:checkout -- --custom-print-pack-url https://your-payment-provider.example/custom-local-print-pack",
+        "npm.cmd run configure:checkout -- --invoice-followup-url https://your-payment-provider.example/invoice-followup-copy-pack",
+        "npm.cmd run configure:checkout -- --upload-limit-fix-plan-url https://your-payment-provider.example/upload-limit-fix-plan"
       ],
       "moneyGate": "Lead close work is operational only. Revenue is proven only after an external paid/settled order, platform balance, or signed sponsor agreement."
     },
@@ -119,28 +129,28 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 38031,
+        "bytes": 80304,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 40184,
+        "bytes": 40185,
         "json": null
       },
       "/share-kit/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 37522,
+        "bytes": 50169,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 34557,
+        "bytes": 39689,
         "json": null
       },
       "/robots.txt": {
@@ -163,7 +173,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 40893,
+        "bytes": 48706,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for"
       },
@@ -171,7 +181,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 74602,
+        "bytes": 94504,
         "json": null
       },
       "/tools.json": {
@@ -183,7 +193,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-08T05:50:56.148Z",
+          "generatedAt": "2026-06-09T10:30:26.193Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -1071,11 +1081,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 64087,
+        "bytes": 82017,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-08T05:50:56.148Z",
+          "generatedAt": "2026-06-09T10:30:26.193Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1122,6 +1132,8 @@
             "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
             "https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb/",
             "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/",
+            "https://printable-tools-lab.pages.dev/pdf-must-be-under-2mb/",
+            "https://printable-tools-lab.pages.dev/pdf-must-be-under-5mb/",
             "https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/",
             "https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/",
             "https://printable-tools-lab.pages.dev/image-dimensions-600x600/",
@@ -1131,9 +1143,14 @@
             "https://printable-tools-lab.pages.dev/jpg-must-be-under-200kb/",
             "https://printable-tools-lab.pages.dev/png-screenshot-too-large/",
             "https://printable-tools-lab.pages.dev/resume-pdf-too-large/",
+            "https://printable-tools-lab.pages.dev/resume-pdf-under-2mb/",
             "https://printable-tools-lab.pages.dev/email-attachment-too-large/",
+            "https://printable-tools-lab.pages.dev/document-must-be-under-5mb/",
             "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
             "https://printable-tools-lab.pages.dev/invoice-follow-up-email-template/",
+            "https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email/",
+            "https://printable-tools-lab.pages.dev/polite-payment-reminder-email/",
+            "https://printable-tools-lab.pages.dev/freelance-invoice-follow-up-email/",
             "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/compress-pdf-no-upload/",
@@ -1167,6 +1184,43 @@
             "https://printable-tools-lab.pages.dev/passport-photo-compress-to-100kb/",
             "https://printable-tools-lab.pages.dev/passport-photo-compress-to-200kb/",
             "https://printable-tools-lab.pages.dev/passport-photo-size-fixer/",
+            "https://printable-tools-lab.pages.dev/passport-photo-35x45mm/",
+            "https://printable-tools-lab.pages.dev/photo-200x230-50kb/",
+            "https://printable-tools-lab.pages.dev/photo-200x230-20kb/",
+            "https://printable-tools-lab.pages.dev/photo-200x230-100kb/",
+            "https://printable-tools-lab.pages.dev/photo-240x320-50kb/",
+            "https://printable-tools-lab.pages.dev/photo-413x531-100kb/",
+            "https://printable-tools-lab.pages.dev/photo-413x531-50kb/",
+            "https://printable-tools-lab.pages.dev/photo-300x300-100kb/",
+            "https://printable-tools-lab.pages.dev/photo-600x600-100kb/",
+            "https://printable-tools-lab.pages.dev/photo-295x413-35kb/",
+            "https://printable-tools-lab.pages.dev/photo-354x472-100kb/",
+            "https://printable-tools-lab.pages.dev/photo-480x640-200kb/",
+            "https://printable-tools-lab.pages.dev/photo-512x512-100kb/",
+            "https://printable-tools-lab.pages.dev/photo-150x200-20kb/",
+            "https://printable-tools-lab.pages.dev/photo-180x240-50kb/",
+            "https://printable-tools-lab.pages.dev/photo-400x514-100kb/",
+            "https://printable-tools-lab.pages.dev/photo-600x800-200kb/",
+            "https://printable-tools-lab.pages.dev/signature-under-20kb/",
+            "https://printable-tools-lab.pages.dev/signature-under-50kb/",
+            "https://printable-tools-lab.pages.dev/resize-signature-140x60/",
+            "https://printable-tools-lab.pages.dev/resize-signature-200x100/",
+            "https://printable-tools-lab.pages.dev/signature-140x60-20kb/",
+            "https://printable-tools-lab.pages.dev/signature-140x60-50kb/",
+            "https://printable-tools-lab.pages.dev/signature-150x50-20kb/",
+            "https://printable-tools-lab.pages.dev/signature-200x50-20kb/",
+            "https://printable-tools-lab.pages.dev/signature-200x100-50kb/",
+            "https://printable-tools-lab.pages.dev/signature-300x80-50kb/",
+            "https://printable-tools-lab.pages.dev/signature-300x100-50kb/",
+            "https://printable-tools-lab.pages.dev/signature-160x70-20kb/",
+            "https://printable-tools-lab.pages.dev/signature-250x80-50kb/",
+            "https://printable-tools-lab.pages.dev/signature-300x60-20kb/",
+            "https://printable-tools-lab.pages.dev/signature-400x150-50kb/",
+            "https://printable-tools-lab.pages.dev/signature-100x50-10kb/",
+            "https://printable-tools-lab.pages.dev/signature-200x60-20kb/",
+            "https://printable-tools-lab.pages.dev/signature-256x64-20kb/",
+            "https://printable-tools-lab.pages.dev/signature-400x200-100kb/",
+            "https://printable-tools-lab.pages.dev/resize-photo-200x230/",
             "https://printable-tools-lab.pages.dev/resize-photo-413x531/",
             "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
             "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
@@ -1591,6 +1645,18 @@
               "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=500kb"
             },
             {
+              "title": "PDF Must Be Under 2MB Fix",
+              "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-2mb/",
+              "intent": "PDF must be under 2MB, compress PDF to 2MB, upload limit error",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=2mb"
+            },
+            {
+              "title": "PDF Must Be Under 5MB Fix",
+              "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-5mb/",
+              "intent": "PDF must be under 5MB, compress PDF to 5MB, upload PDF too large",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=5mb"
+            },
+            {
               "title": "Photo Must Be Under 100KB Fix",
               "url": "https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/",
               "intent": "photo must be under 100KB, image under 100KB, upload photo too large",
@@ -1645,9 +1711,21 @@
               "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=1mb"
             },
             {
+              "title": "Resume PDF Under 2MB Fix",
+              "url": "https://printable-tools-lab.pages.dev/resume-pdf-under-2mb/",
+              "intent": "resume PDF under 2MB, compress resume PDF to 2MB, job application upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=2mb"
+            },
+            {
               "title": "Email Attachment Too Large Fix",
               "url": "https://printable-tools-lab.pages.dev/email-attachment-too-large/",
               "intent": "email attachment too large, compress PDF for email, reduce image before email",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=5mb"
+            },
+            {
+              "title": "Document Must Be Under 5MB Fix",
+              "url": "https://printable-tools-lab.pages.dev/document-must-be-under-5mb/",
+              "intent": "document must be under 5MB, file upload 5MB limit, compress document PDF",
               "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=5mb"
             },
             {
@@ -1660,6 +1738,24 @@
               "title": "Free Invoice Follow-up Email Template",
               "url": "https://printable-tools-lab.pages.dev/invoice-follow-up-email-template/",
               "intent": "invoice follow-up email, payment reminder wording, overdue invoice reminder",
+              "tool": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/"
+            },
+            {
+              "title": "Overdue Invoice Reminder Email",
+              "url": "https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email/",
+              "intent": "overdue invoice reminder email, first overdue invoice follow up, late payment reminder wording",
+              "tool": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/"
+            },
+            {
+              "title": "Polite Payment Reminder Email",
+              "url": "https://printable-tools-lab.pages.dev/polite-payment-reminder-email/",
+              "intent": "polite payment reminder email, gentle invoice reminder, friendly payment follow up",
+              "tool": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/"
+            },
+            {
+              "title": "Freelance Invoice Follow-up Email",
+              "url": "https://printable-tools-lab.pages.dev/freelance-invoice-follow-up-email/",
+              "intent": "freelance invoice follow-up email, freelancer payment reminder, client invoice follow up",
               "tool": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/"
             },
             {
@@ -1859,6 +1955,228 @@
               "url": "https://printable-tools-lab.pages.dev/passport-photo-size-fixer/",
               "intent": "passport photo size fixer, ID photo dimensions, compress passport photo, no upload",
               "tool": "https://printable-tools-lab.pages.dev/tools/passport-photo/"
+            },
+            {
+              "title": "Passport Photo 35x45mm Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/passport-photo-35x45mm/",
+              "intent": "passport photo 35x45mm, 35 x 45 mm photo maker, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/passport-photo/?preset=uk-passport"
+            },
+            {
+              "title": "Photo 200x230 Pixels Under 50KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-200x230-50kb/",
+              "intent": "photo 200x230 50KB, resize photo 200 x 230, exam photo upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=230&fit=cover"
+            },
+            {
+              "title": "Photo 200x230 Pixels Under 20KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-200x230-20kb/",
+              "intent": "photo 200x230 20KB, resize photo 200 x 230 under 20KB, exam photo upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=230&fit=cover"
+            },
+            {
+              "title": "Photo 200x230 Pixels Under 100KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-200x230-100kb/",
+              "intent": "photo 200x230 100KB, resize photo 200 x 230 under 100KB, application photo size",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=230&fit=cover"
+            },
+            {
+              "title": "Photo 240x320 Pixels Under 50KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-240x320-50kb/",
+              "intent": "photo 240x320 50KB, resize photo 240 x 320 under 50KB, portrait photo upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=240&height=320&fit=cover"
+            },
+            {
+              "title": "Photo 413x531 Pixels Under 100KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-413x531-100kb/",
+              "intent": "photo 413x531 100KB, resize photo 413 x 531 under 100KB, ID photo upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=413&height=531&fit=cover"
+            },
+            {
+              "title": "Photo 413x531 Pixels Under 50KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-413x531-50kb/",
+              "intent": "photo 413x531 50KB, resize photo 413 x 531 under 50KB, strict ID photo upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=413&height=531&fit=cover"
+            },
+            {
+              "title": "Photo 300x300 Pixels Under 100KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-300x300-100kb/",
+              "intent": "photo 300x300 100KB, resize square photo 300 x 300, profile photo upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=300&height=300&fit=cover"
+            },
+            {
+              "title": "Photo 600x600 Pixels Under 100KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-600x600-100kb/",
+              "intent": "photo 600x600 100KB, resize photo 600 x 600 under 100KB, square profile photo",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=600&fit=cover"
+            },
+            {
+              "title": "Photo 295x413 Pixels Under 35KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-295x413-35kb/",
+              "intent": "photo 295x413 35KB, resize photo 295 x 413 under 35KB, application photo upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=295&height=413&fit=cover"
+            },
+            {
+              "title": "Photo 354x472 Pixels Under 100KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-354x472-100kb/",
+              "intent": "photo 354x472 100KB, resize photo 354 x 472 under 100KB, ID photo upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=354&height=472&fit=cover"
+            },
+            {
+              "title": "Photo 480x640 Pixels Under 200KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-480x640-200kb/",
+              "intent": "photo 480x640 200KB, resize photo 480 x 640 under 200KB, portrait photo upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=480&height=640&fit=cover"
+            },
+            {
+              "title": "Photo 512x512 Pixels Under 100KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-512x512-100kb/",
+              "intent": "photo 512x512 100KB, resize square photo 512 x 512 under 100KB, avatar upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=512&height=512&fit=cover"
+            },
+            {
+              "title": "Photo 150x200 Pixels Under 20KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-150x200-20kb/",
+              "intent": "photo 150x200 20KB, resize photo 150 x 200 under 20KB, exam photo upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=150&height=200&fit=cover"
+            },
+            {
+              "title": "Photo 180x240 Pixels Under 50KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-180x240-50kb/",
+              "intent": "photo 180x240 50KB, resize photo 180 x 240 under 50KB, portrait upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=180&height=240&fit=cover"
+            },
+            {
+              "title": "Photo 400x514 Pixels Under 100KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-400x514-100kb/",
+              "intent": "photo 400x514 100KB, resize photo 400 x 514 under 100KB, ID photo upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=400&height=514&fit=cover"
+            },
+            {
+              "title": "Photo 600x800 Pixels Under 200KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-600x800-200kb/",
+              "intent": "photo 600x800 200KB, resize photo 600 x 800 under 200KB, portrait application upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=800&fit=cover"
+            },
+            {
+              "title": "Signature Under 20KB Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/signature-under-20kb/",
+              "intent": "signature under 20KB, compress signature image, signature upload too large",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=20"
+            },
+            {
+              "title": "Signature Under 50KB Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/signature-under-50kb/",
+              "intent": "signature under 50KB, compress signature image, signature upload too large",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=50"
+            },
+            {
+              "title": "Resize Signature to 140x60 Pixels",
+              "url": "https://printable-tools-lab.pages.dev/resize-signature-140x60/",
+              "intent": "resize signature 140x60, signature dimensions 140 x 60, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=140&height=60&fit=contain"
+            },
+            {
+              "title": "Resize Signature to 200x100 Pixels",
+              "url": "https://printable-tools-lab.pages.dev/resize-signature-200x100/",
+              "intent": "resize signature 200x100, signature dimensions 200 x 100, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=100&fit=contain"
+            },
+            {
+              "title": "Signature 140x60 Pixels Under 20KB",
+              "url": "https://printable-tools-lab.pages.dev/signature-140x60-20kb/",
+              "intent": "signature 140x60 20KB, resize signature 140 x 60 under 20KB, signature upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=140&height=60&fit=contain"
+            },
+            {
+              "title": "Signature 140x60 Pixels Under 50KB",
+              "url": "https://printable-tools-lab.pages.dev/signature-140x60-50kb/",
+              "intent": "signature 140x60 50KB, resize signature 140 x 60 under 50KB, signature image size",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=140&height=60&fit=contain"
+            },
+            {
+              "title": "Signature 150x50 Pixels Under 20KB",
+              "url": "https://printable-tools-lab.pages.dev/signature-150x50-20kb/",
+              "intent": "signature 150x50 20KB, resize signature 150 x 50 under 20KB, signature upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=150&height=50&fit=contain"
+            },
+            {
+              "title": "Signature 200x50 Pixels Under 20KB",
+              "url": "https://printable-tools-lab.pages.dev/signature-200x50-20kb/",
+              "intent": "signature 200x50 20KB, resize signature 200 x 50 under 20KB, signature upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=50&fit=contain"
+            },
+            {
+              "title": "Signature 200x100 Pixels Under 50KB",
+              "url": "https://printable-tools-lab.pages.dev/signature-200x100-50kb/",
+              "intent": "signature 200x100 50KB, resize signature 200 x 100 under 50KB, signature upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=100&fit=contain"
+            },
+            {
+              "title": "Signature 300x80 Pixels Under 50KB",
+              "url": "https://printable-tools-lab.pages.dev/signature-300x80-50kb/",
+              "intent": "signature 300x80 50KB, resize signature 300 x 80 under 50KB, signature image upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=300&height=80&fit=contain"
+            },
+            {
+              "title": "Signature 300x100 Pixels Under 50KB",
+              "url": "https://printable-tools-lab.pages.dev/signature-300x100-50kb/",
+              "intent": "signature 300x100 50KB, resize signature 300 x 100 under 50KB, signature image upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=300&height=100&fit=contain"
+            },
+            {
+              "title": "Signature 160x70 Pixels Under 20KB",
+              "url": "https://printable-tools-lab.pages.dev/signature-160x70-20kb/",
+              "intent": "signature 160x70 20KB, resize signature 160 x 70 under 20KB, signature upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=160&height=70&fit=contain"
+            },
+            {
+              "title": "Signature 250x80 Pixels Under 50KB",
+              "url": "https://printable-tools-lab.pages.dev/signature-250x80-50kb/",
+              "intent": "signature 250x80 50KB, resize signature 250 x 80 under 50KB, signature image upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=250&height=80&fit=contain"
+            },
+            {
+              "title": "Signature 300x60 Pixels Under 20KB",
+              "url": "https://printable-tools-lab.pages.dev/signature-300x60-20kb/",
+              "intent": "signature 300x60 20KB, resize signature 300 x 60 under 20KB, signature upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=300&height=60&fit=contain"
+            },
+            {
+              "title": "Signature 400x150 Pixels Under 50KB",
+              "url": "https://printable-tools-lab.pages.dev/signature-400x150-50kb/",
+              "intent": "signature 400x150 50KB, resize signature 400 x 150 under 50KB, signature image upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=400&height=150&fit=contain"
+            },
+            {
+              "title": "Signature 100x50 Pixels Under 10KB",
+              "url": "https://printable-tools-lab.pages.dev/signature-100x50-10kb/",
+              "intent": "signature 100x50 10KB, resize signature 100 x 50 under 10KB, tiny signature upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=100&height=50&fit=contain"
+            },
+            {
+              "title": "Signature 200x60 Pixels Under 20KB",
+              "url": "https://printable-tools-lab.pages.dev/signature-200x60-20kb/",
+              "intent": "signature 200x60 20KB, resize signature 200 x 60 under 20KB, signature upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=60&fit=contain"
+            },
+            {
+              "title": "Signature 256x64 Pixels Under 20KB",
+              "url": "https://printable-tools-lab.pages.dev/signature-256x64-20kb/",
+              "intent": "signature 256x64 20KB, resize signature 256 x 64 under 20KB, signature image upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=256&height=64&fit=contain"
+            },
+            {
+              "title": "Signature 400x200 Pixels Under 100KB",
+              "url": "https://printable-tools-lab.pages.dev/signature-400x200-100kb/",
+              "intent": "signature 400x200 100KB, resize signature 400 x 200 under 100KB, large signature upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=400&height=200&fit=contain"
+            },
+            {
+              "title": "Resize Photo to 200x230 Pixels",
+              "url": "https://printable-tools-lab.pages.dev/resize-photo-200x230/",
+              "intent": "resize photo to 200x230, 200 x 230 photo size, application photo dimensions",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=230&fit=cover"
             },
             {
               "title": "Resize Photo to 413x531",
@@ -2148,10 +2466,10 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 47534,
+        "bytes": 99747,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-08T05:50:56.148Z",
+          "generatedAt": "2026-06-09T10:30:26.193Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -2232,6 +2550,12 @@
               "url": "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup?utm_source=share-kit&utm_medium=organic",
               "canonicalUrl": "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
               "reason": "Small-business PDF document with no signup and no hidden export fee."
+            },
+            {
+              "title": "Invoice follow-up email generator",
+              "url": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email?utm_source=share-kit&utm_medium=organic",
+              "canonicalUrl": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/",
+              "reason": "High-intent freelancer workflow with a free email generator and optional $19 wording pack fit check."
             }
           ],
           "posts": [
@@ -2297,6 +2621,28 @@
               "cta": "List as a free productivity and file utility tool.",
               "linkPath": "submit-directory",
               "url": "https://printable-tools-lab.pages.dev/submit-directory?utm_source=directory&utm_medium=organic"
+            },
+            {
+              "channel": "community",
+              "title": "Invoice follow-up wording helper",
+              "hook": "Need polite wording after sending an invoice?",
+              "body": "The free invoice follow-up email generator drafts reminder, due-today, overdue, thank-you, and next-invoice wording in the browser. There is also an optional $19 copy pack fit check for people who want one workflow drafted in their own tone; it is wording-only and not legal, tax, accounting, collections, or financial advice.",
+              "cta": "Open the invoice follow-up generator",
+              "linkPath": "tools/invoice-followup-email",
+              "campaign": "invoice_followup_service",
+              "content": "share-kit-community",
+              "url": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email?utm_source=community&utm_medium=organic&utm_campaign=invoice_followup_service&utm_content=share-kit-community"
+            },
+            {
+              "channel": "directory",
+              "title": "Invoice reminder resource listing",
+              "hook": "Free invoice generator plus optional follow-up wording pack.",
+              "body": "PrintableTools Lab has a free no-signup invoice generator and a free invoice follow-up email generator for freelancers and small service teams. The optional $19 Invoice Follow-up Copy Pack is manually reviewed, payment happens only through an external provider after fit is confirmed, and no private invoice, bank, tax, card, or client details are requested on-site.",
+              "cta": "List as an invoice communication resource",
+              "linkPath": "invoice-followup-copy-pack",
+              "campaign": "invoice_followup_service",
+              "content": "share-kit-directory",
+              "url": "https://printable-tools-lab.pages.dev/invoice-followup-copy-pack?utm_source=directory&utm_medium=organic&utm_campaign=invoice_followup_service&utm_content=share-kit-directory"
             },
             {
               "channel": "game-platform",
@@ -2498,6 +2844,26 @@
                 "copy": "If the site gives a file-size or format error, this free upload-limit fixer maps the message to the right no-signup PDF or image tool: https://printable-tools-lab.pages.dev/upload-limit-fixer/?utm_source=community&utm_medium=organic&utm_campaign=free_tool_depth&utm_content=free-tool-depth-upload-limit",
                 "successSignal": "free_tool_depth visits increase and at least one visitor opens a fixer tool or downloads a processed file.",
                 "riskRule": "Answer the specific upload problem only; do not ask for ad clicks, payments, or private files."
+              },
+              {
+                "id": "community-invoice-followup-copy",
+                "channel": "community",
+                "title": "Helpful reply for polite invoice follow-up wording",
+                "trigger": "Use only when a freelancer, consultant, or small service owner asks how to write a polite invoice reminder, due-today note, overdue follow-up, paid thank-you, or next-invoice message.",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/tools/invoice-followup-email/?utm_source=community&utm_medium=organic&utm_campaign=invoice_followup_service&utm_content=community-invoice-followup-copy",
+                "copy": "For wording only, this free invoice follow-up email generator can draft a polite reminder, due-today note, overdue follow-up, paid thank-you, or next-invoice message: https://printable-tools-lab.pages.dev/tools/invoice-followup-email/?utm_source=community&utm_medium=organic&utm_campaign=invoice_followup_service&utm_content=community-invoice-followup-copy. There is an optional $19 copy pack fit check if someone wants one workflow drafted in their own tone; it is not legal, tax, accounting, collections, or financial advice.",
+                "successSignal": "invoice_followup_service UTM visits appear and at least one visitor submits a service fit check or opens the invoice generator path.",
+                "riskRule": "Lead with the free generator, avoid regulated advice, and do not ask for invoice numbers, client names, bank, tax, card, or private payment details."
+              },
+              {
+                "id": "directory-invoice-followup-resource",
+                "channel": "directory",
+                "title": "Directory listing for invoice follow-up wording resource",
+                "trigger": "Use on directories or resource pages that accept freelancer, invoice, admin-template, small-business, or business-writing resources.",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/invoice-followup-copy-pack/?utm_source=directory&utm_medium=organic&utm_campaign=invoice_followup_service&utm_content=directory-invoice-followup-resource",
+                "copy": "PrintableTools Lab offers a free no-signup invoice generator, a free invoice follow-up email generator, and an optional USD 19 Invoice Follow-up Copy Pack for editable reminder, due-today, overdue, thank-you, and next-invoice wording. Listing URL: https://printable-tools-lab.pages.dev/invoice-followup-copy-pack/?utm_source=directory&utm_medium=organic&utm_campaign=invoice_followup_service&utm_content=directory-invoice-followup-resource",
+                "successSignal": "A directory referral or resource-page UTM visit appears, followed by a service_request_intent or service lead.",
+                "riskRule": "Submit only where resource listings are welcome; do not claim payment recovery, legal compliance, tax/accounting outcomes, or guaranteed collections."
               }
             ]
           },
@@ -2556,6 +2922,166 @@
                 "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=100"
               },
               {
+                "errorText": "Photo must be 200 x 230 px and under 20KB",
+                "problem": "An exam, job, or application portal combines exact photo dimensions with a very small file cap.",
+                "response": "Resize to 200 x 230 pixels first, then compress the exported photo toward 20KB.",
+                "format": "Photo",
+                "target": "200 x 230 / 20KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-200x230-20kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-200x230-20kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=230&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 200 x 230 px and under 50KB",
+                "problem": "A photo upload box validates both exact 200 x 230 pixel dimensions and a small KB limit.",
+                "response": "Resize to 200 x 230 pixels first, then compress toward 50KB if the resized output is still too large.",
+                "format": "Photo",
+                "target": "200 x 230 / 50KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-200x230-50kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-200x230-50kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=230&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 200 x 230 px and under 100KB",
+                "problem": "A profile, exam, or application form requires 200 x 230 pixels with a 100KB cap.",
+                "response": "Create the exact 200 x 230 image, then use the 100KB image target only if needed.",
+                "format": "Photo",
+                "target": "200 x 230 / 100KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-200x230-100kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-200x230-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=230&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 240 x 320 px and under 50KB",
+                "problem": "A portrait photo upload requires exact 240 x 320 pixels and rejects files above 50KB.",
+                "response": "Resize to 240 x 320 pixels first, then compress the exported photo toward 50KB.",
+                "format": "Photo",
+                "target": "240 x 320 / 50KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-240x320-50kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-240x320-50kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=240&height=320&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 295 x 413 px and under 35KB",
+                "problem": "A portrait photo upload requires exact 295 x 413 pixels and rejects files above 35KB.",
+                "response": "Resize to 295 x 413 pixels first, then compress the exported photo toward 35KB.",
+                "format": "Photo",
+                "target": "295 x 413 / 35KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-295x413-35kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-295x413-35kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=295&height=413&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 413 x 531 px and under 100KB",
+                "problem": "An ID-style or application photo upload requires 413 x 531 pixels and rejects files above 100KB.",
+                "response": "Resize to 413 x 531 pixels, then compress the exported photo toward 100KB.",
+                "format": "Photo",
+                "target": "413 x 531 / 100KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-413x531-100kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-413x531-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=413&height=531&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 413 x 531 px and under 50KB",
+                "problem": "A stricter ID-style photo upload requires 413 x 531 pixels and a 50KB cap.",
+                "response": "Resize to 413 x 531 pixels first, then use the 50KB image target only if the portal requires it.",
+                "format": "Photo",
+                "target": "413 x 531 / 50KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-413x531-50kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-413x531-50kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=413&height=531&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 354 x 472 px and under 100KB",
+                "problem": "An ID-style or application photo upload requires exact 354 x 472 pixels and rejects files above 100KB.",
+                "response": "Resize to 354 x 472 pixels first, then compress the exported photo toward 100KB.",
+                "format": "Photo",
+                "target": "354 x 472 / 100KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-354x472-100kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-354x472-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=354&height=472&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 300 x 300 px and under 100KB",
+                "problem": "A square profile, school, or application photo must be exactly 300 x 300 pixels and below 100KB.",
+                "response": "Crop to a 300 x 300 square first, then compress toward 100KB if the output is still too large.",
+                "format": "Photo",
+                "target": "300 x 300 / 100KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-300x300-100kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-300x300-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=300&height=300&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 600 x 600 px and under 100KB",
+                "problem": "A larger square profile, marketplace, or application photo must be 600 x 600 pixels with a 100KB cap.",
+                "response": "Resize or crop to 600 x 600 pixels, then compress toward 100KB if needed.",
+                "format": "Photo",
+                "target": "600 x 600 / 100KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-600x600-100kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-600x600-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=600&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 480 x 640 px and under 200KB",
+                "problem": "A portrait profile or application upload requires 480 x 640 pixels and rejects files above 200KB.",
+                "response": "Resize to 480 x 640 pixels first, then compress the exported photo toward 200KB.",
+                "format": "Photo",
+                "target": "480 x 640 / 200KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-480x640-200kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-480x640-200kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=480&height=640&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 512 x 512 px and under 100KB",
+                "problem": "A square avatar, profile, or application photo must be exactly 512 x 512 pixels and below 100KB.",
+                "response": "Crop or resize to 512 x 512 pixels first, then compress the exported photo toward 100KB.",
+                "format": "Photo",
+                "target": "512 x 512 / 100KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-512x512-100kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-512x512-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=512&height=512&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 150 x 200 px and under 20KB",
+                "problem": "A compact exam or application photo must be 150 x 200 pixels and below 20KB.",
+                "response": "Resize to 150 x 200 pixels first, then compress the exported photo toward 20KB.",
+                "format": "Photo",
+                "target": "150 x 200 / 20KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-150x200-20kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-150x200-20kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=150&height=200&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 180 x 240 px and under 50KB",
+                "problem": "A portrait upload box requires exact 180 x 240 pixels and rejects files above 50KB.",
+                "response": "Resize to 180 x 240 pixels first, then compress the exported photo toward 50KB if needed.",
+                "format": "Photo",
+                "target": "180 x 240 / 50KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-180x240-50kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-180x240-50kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=180&height=240&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 400 x 514 px and under 100KB",
+                "problem": "An ID-style upload requires exact 400 x 514 pixels and a 100KB cap.",
+                "response": "Resize to 400 x 514 pixels first, then compress toward 100KB only if the export is still too large.",
+                "format": "Photo",
+                "target": "400 x 514 / 100KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-400x514-100kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-400x514-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=400&height=514&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 600 x 800 px and under 200KB",
+                "problem": "A larger portrait photo upload requires 600 x 800 pixels and rejects files above 200KB.",
+                "response": "Resize to 600 x 800 pixels first, then compress the exported photo toward 200KB.",
+                "format": "Photo",
+                "target": "600 x 800 / 200KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-600x800-200kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-600x800-200kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=800&fit=cover"
+              },
+              {
                 "errorText": "JPG must be under 200KB",
                 "problem": "A portal accepts JPG/JPEG but rejects the image as too large.",
                 "response": "Use the 200KB image target and keep output as JPG if the destination requires it.",
@@ -2594,6 +3120,156 @@
                 "landingPage": "https://printable-tools-lab.pages.dev/image-dimensions-600x600/",
                 "trackedUrl": "https://printable-tools-lab.pages.dev/image-dimensions-600x600?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
                 "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=600&fit=cover"
+              },
+              {
+                "errorText": "Signature must be 140 x 60 px and under 20KB",
+                "problem": "A form requires a tiny signature image with both exact dimensions and a strict 20KB cap.",
+                "response": "Resize to 140 x 60 pixels first, then compress the resized signature toward 20KB.",
+                "format": "Signature",
+                "target": "140 x 60 / 20KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/signature-140x60-20kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/signature-140x60-20kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=140&height=60&fit=contain"
+              },
+              {
+                "errorText": "Signature must be 140 x 60 px and under 50KB",
+                "problem": "A signature upload box uses 140 x 60 pixels and a wider 50KB cap.",
+                "response": "Resize the signature to 140 x 60 pixels and compress toward 50KB if needed.",
+                "format": "Signature",
+                "target": "140 x 60 / 50KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/signature-140x60-50kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/signature-140x60-50kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=140&height=60&fit=contain"
+              },
+              {
+                "errorText": "Signature must be 150 x 50 px and under 20KB",
+                "problem": "A narrow signature strip requires exact 150 x 50 pixels and a strict 20KB file limit.",
+                "response": "Resize to 150 x 50 pixels first, then compress the exported signature toward 20KB.",
+                "format": "Signature",
+                "target": "150 x 50 / 20KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/signature-150x50-20kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/signature-150x50-20kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=150&height=50&fit=contain"
+              },
+              {
+                "errorText": "Signature must be 160 x 70 px and under 20KB",
+                "problem": "A compact signature upload box requires exact 160 x 70 pixels and a strict 20KB cap.",
+                "response": "Resize to 160 x 70 pixels first, then compress the exported signature toward 20KB.",
+                "format": "Signature",
+                "target": "160 x 70 / 20KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/signature-160x70-20kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/signature-160x70-20kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=160&height=70&fit=contain"
+              },
+              {
+                "errorText": "Signature must be 200 x 50 px and under 20KB",
+                "problem": "A wide signature strip requires exact 200 x 50 pixels and a strict 20KB cap.",
+                "response": "Resize to 200 x 50 pixels, then compress the exported signature toward 20KB.",
+                "format": "Signature",
+                "target": "200 x 50 / 20KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/signature-200x50-20kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/signature-200x50-20kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=50&fit=contain"
+              },
+              {
+                "errorText": "Signature must be 200 x 100 px and under 50KB",
+                "problem": "A wider signature upload box requires 200 x 100 pixels and a file below 50KB.",
+                "response": "Resize to 200 x 100 pixels, then compress the exported signature toward 50KB.",
+                "format": "Signature",
+                "target": "200 x 100 / 50KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/signature-200x100-50kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/signature-200x100-50kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=100&fit=contain"
+              },
+              {
+                "errorText": "Signature must be 250 x 80 px and under 50KB",
+                "problem": "A long signature upload box requires 250 x 80 pixels and a file below 50KB.",
+                "response": "Resize to 250 x 80 pixels first, then compress the exported signature toward 50KB.",
+                "format": "Signature",
+                "target": "250 x 80 / 50KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/signature-250x80-50kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/signature-250x80-50kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=250&height=80&fit=contain"
+              },
+              {
+                "errorText": "Signature must be 300 x 60 px and under 20KB",
+                "problem": "A long narrow signature upload box requires 300 x 60 pixels and a strict 20KB cap.",
+                "response": "Resize to 300 x 60 pixels first, then compress the exported signature toward 20KB.",
+                "format": "Signature",
+                "target": "300 x 60 / 20KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/signature-300x60-20kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/signature-300x60-20kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=300&height=60&fit=contain"
+              },
+              {
+                "errorText": "Signature must be 300 x 80 px and under 50KB",
+                "problem": "A long signature upload box requires 300 x 80 pixels and a file below 50KB.",
+                "response": "Resize to 300 x 80 pixels first, then compress the exported signature toward 50KB.",
+                "format": "Signature",
+                "target": "300 x 80 / 50KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/signature-300x80-50kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/signature-300x80-50kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=300&height=80&fit=contain"
+              },
+              {
+                "errorText": "Signature must be 300 x 100 px and under 50KB",
+                "problem": "A wide signature upload box requires 300 x 100 pixels and a 50KB file cap.",
+                "response": "Resize to 300 x 100 pixels, then compress the exported signature toward 50KB.",
+                "format": "Signature",
+                "target": "300 x 100 / 50KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/signature-300x100-50kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/signature-300x100-50kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=300&height=100&fit=contain"
+              },
+              {
+                "errorText": "Signature must be 400 x 150 px and under 50KB",
+                "problem": "A larger signature upload box requires 400 x 150 pixels and a 50KB file cap.",
+                "response": "Resize to 400 x 150 pixels first, then compress the exported signature toward 50KB.",
+                "format": "Signature",
+                "target": "400 x 150 / 50KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/signature-400x150-50kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/signature-400x150-50kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=400&height=150&fit=contain"
+              },
+              {
+                "errorText": "Signature must be 100 x 50 px and under 10KB",
+                "problem": "A tiny signature upload box requires exact 100 x 50 pixels and a strict 10KB cap.",
+                "response": "Resize to 100 x 50 pixels first, then compress the exported signature toward 10KB.",
+                "format": "Signature",
+                "target": "100 x 50 / 10KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/signature-100x50-10kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/signature-100x50-10kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=100&height=50&fit=contain"
+              },
+              {
+                "errorText": "Signature must be 200 x 60 px and under 20KB",
+                "problem": "A signature strip requires exact 200 x 60 pixels and a 20KB file limit.",
+                "response": "Resize to 200 x 60 pixels first, then compress the exported signature toward 20KB if needed.",
+                "format": "Signature",
+                "target": "200 x 60 / 20KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/signature-200x60-20kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/signature-200x60-20kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=60&fit=contain"
+              },
+              {
+                "errorText": "Signature must be 256 x 64 px and under 20KB",
+                "problem": "A signature upload box requires exact 256 x 64 pixels and a strict 20KB cap.",
+                "response": "Resize to 256 x 64 pixels first, then compress the exported signature toward 20KB.",
+                "format": "Signature",
+                "target": "256 x 64 / 20KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/signature-256x64-20kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/signature-256x64-20kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=256&height=64&fit=contain"
+              },
+              {
+                "errorText": "Signature must be 400 x 200 px and under 100KB",
+                "problem": "A larger signature upload box requires exact 400 x 200 pixels and a 100KB file limit.",
+                "response": "Resize to 400 x 200 pixels first, then compress toward 100KB only if the exported image is still too large.",
+                "format": "Signature",
+                "target": "400 x 200 / 100KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/signature-400x200-100kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/signature-400x200-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=400&height=200&fit=contain"
               },
               {
                 "errorText": "PDF not accepted, JPG required",
@@ -2686,10 +3362,10 @@
               }
             ],
             "externalDiscoveryProof": {
-              "generatedAt": "2026-06-08T05:49:33.332Z",
-              "directoryListedCount": 7,
-              "directoryPendingCount": 6,
-              "directoryErrorCount": 1,
+              "generatedAt": "2026-06-09T10:28:27.515Z",
+              "directoryListedCount": 84,
+              "directoryPendingCount": 144,
+              "directoryErrorCount": 5,
               "listedDirectories": [
                 {
                   "name": "TechTools Launchpad site listing",
@@ -2722,6 +3398,414 @@
                   "reviewWindow": "auto-approved API listing for the invoice follow-up email generator path"
                 },
                 {
+                  "name": "TechTools Launchpad overdue invoice reminder listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/171",
+                  "submittedAt": "2026-06-08",
+                  "reviewWindow": "auto-approved API listing for the overdue invoice reminder service-lead path"
+                },
+                {
+                  "name": "TechTools Launchpad upload limit fix plan service listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/172",
+                  "submittedAt": "2026-06-08",
+                  "reviewWindow": "auto-approved API listing for the $9 upload fix plan service path"
+                },
+                {
+                  "name": "TechTools Launchpad upload error cheatsheet listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/173",
+                  "submittedAt": "2026-06-08",
+                  "reviewWindow": "auto-approved API listing for the upload error cheatsheet path"
+                },
+                {
+                  "name": "TechTools Launchpad compress PDF to 1MB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/174",
+                  "submittedAt": "2026-06-08",
+                  "reviewWindow": "auto-approved API listing for the high-intent PDF 1MB upload-error path"
+                },
+                {
+                  "name": "TechTools Launchpad PDF under 1MB upload fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/175",
+                  "submittedAt": "2026-06-08",
+                  "reviewWindow": "auto-approved API listing for the tool-level pre-download upload fix path"
+                },
+                {
+                  "name": "TechTools Launchpad photo under 100KB upload fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/176",
+                  "submittedAt": "2026-06-08",
+                  "reviewWindow": "auto-approved API listing for the tool-level photo 100KB upload fix path"
+                },
+                {
+                  "name": "TechTools Launchpad image under 2MB upload fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/177",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the tool-level image 2MB upload fix path"
+                },
+                {
+                  "name": "TechTools Launchpad JPG under 200KB upload fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/178",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the tool-level JPG 200KB upload fix path"
+                },
+                {
+                  "name": "TechTools Launchpad resume PDF too large upload fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/179",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the resume PDF upload fix path"
+                },
+                {
+                  "name": "TechTools Launchpad PNG screenshot too large upload fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/180",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the PNG screenshot upload fix path"
+                },
+                {
+                  "name": "TechTools Launchpad passport photo 50KB upload fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/181",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the passport photo 50KB upload fix path"
+                },
+                {
+                  "name": "TechTools Launchpad PDF under 500KB upload fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/182",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the strict PDF 500KB upload fix path"
+                },
+                {
+                  "name": "TechTools Launchpad image under 500KB upload fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/183",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the image 500KB upload fix path"
+                },
+                {
+                  "name": "TechTools Launchpad image dimensions 600x600 upload fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/184",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the 600 x 600 image dimensions upload fix path"
+                },
+                {
+                  "name": "TechTools Launchpad PDF not accepted JPG required fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/185",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the PDF-to-JPG required upload fix path"
+                },
+                {
+                  "name": "TechTools Launchpad email attachment too large PDF fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/186",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the email attachment too large upload fix path"
+                },
+                {
+                  "name": "TechTools Launchpad compress image to KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/187",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the invoice-first image-to-KB tool path"
+                },
+                {
+                  "name": "TechTools Launchpad compress PDF to 500KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/188",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the strict PDF 500KB landing path"
+                },
+                {
+                  "name": "TechTools Launchpad compress image to 50KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/189",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the strict image 50KB landing path"
+                },
+                {
+                  "name": "TechTools Launchpad compress image to 100KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/190",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the strict image 100KB landing path"
+                },
+                {
+                  "name": "TechTools Launchpad compress image to 200KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/191",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the strict image 200KB landing path"
+                },
+                {
+                  "name": "TechTools Launchpad compress JPG to 50KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/192",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the strict JPG 50KB landing path"
+                },
+                {
+                  "name": "TechTools Launchpad compress JPG to 100KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/193",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the strict JPG 100KB landing path"
+                },
+                {
+                  "name": "TechTools Launchpad compress JPG to 200KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/194",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the strict JPG 200KB landing path"
+                },
+                {
+                  "name": "TechTools Launchpad compress PNG to 50KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/195",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the strict PNG 50KB landing path"
+                },
+                {
+                  "name": "TechTools Launchpad compress PNG to 100KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/196",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the strict PNG 100KB landing path"
+                },
+                {
+                  "name": "TechTools Launchpad compress PNG to 200KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/197",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the strict PNG 200KB landing path"
+                },
+                {
+                  "name": "TechTools Launchpad passport photo compress to 50KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/198",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the passport photo 50KB landing path"
+                },
+                {
+                  "name": "TechTools Launchpad passport photo compress to 100KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/199",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the passport photo 100KB landing path"
+                },
+                {
+                  "name": "TechTools Launchpad passport photo compress to 200KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/200",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the passport photo 200KB landing path"
+                },
+                {
+                  "name": "TechTools Launchpad PDF under 2MB upload fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/201",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the PDF under 2MB upload-fix landing path"
+                },
+                {
+                  "name": "TechTools Launchpad PDF under 5MB upload fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/202",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the PDF under 5MB upload-fix landing path"
+                },
+                {
+                  "name": "TechTools Launchpad resume PDF under 2MB upload fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/203",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the resume PDF under 2MB upload-fix landing path"
+                },
+                {
+                  "name": "TechTools Launchpad document under 5MB upload fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/204",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the document under 5MB upload-fix landing path"
+                },
+                {
+                  "name": "TechTools Launchpad PDF size reducer listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/205",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the PDF size reducer hub path"
+                },
+                {
+                  "name": "TechTools Launchpad compress PDF to 2MB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/206",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the PDF 2MB target-size landing path"
+                },
+                {
+                  "name": "TechTools Launchpad compress PDF to 5MB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/207",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the PDF 5MB target-size landing path"
+                },
+                {
+                  "name": "TechTools Launchpad compress PDF without uploading listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/208",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the no-upload PDF compressor landing path"
+                },
+                {
+                  "name": "TechTools Launchpad PDF to JPG without uploading listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/209",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the no-upload PDF-to-JPG landing path"
+                },
+                {
+                  "name": "TechTools Launchpad JPG to PDF without uploading listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/210",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the no-upload JPG-to-PDF landing path"
+                },
+                {
+                  "name": "TechTools Launchpad extract text from PDF without uploading listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/212",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the no-upload PDF text extraction landing path"
+                },
+                {
+                  "name": "TechTools Launchpad merge PDF without uploading listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/213",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the no-upload PDF merge landing path"
+                },
+                {
+                  "name": "TechTools Launchpad split PDF without uploading listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/214",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the no-upload PDF split landing path"
+                },
+                {
+                  "name": "TechTools Launchpad signature under 20KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/215",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the strict signature 20KB upload-fix landing path"
+                },
+                {
+                  "name": "TechTools Launchpad passport photo size fixer listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/216",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the passport photo dimension-and-KB upload-fix path"
+                },
+                {
+                  "name": "TechTools Launchpad resize photo 413x531 listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/217",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 413 x 531 px photo resize path"
+                },
+                {
+                  "name": "TechTools Launchpad signature under 50KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/218",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the signature 50KB upload-fix landing path"
+                },
+                {
+                  "name": "TechTools Launchpad resize signature 140x60 listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/219",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 140 x 60 px signature resize path"
+                },
+                {
+                  "name": "TechTools Launchpad photo 200x230 under 50KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/220",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 200 x 230 px and 50KB photo path"
+                },
+                {
+                  "name": "TechTools Launchpad photo 200x230 under 20KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/224",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 200 x 230 px and 20KB photo path"
+                },
+                {
+                  "name": "TechTools Launchpad photo 200x230 under 100KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/225",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 200 x 230 px and 100KB photo path"
+                },
+                {
+                  "name": "TechTools Launchpad photo 413x531 under 100KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/226",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 413 x 531 px and 100KB photo path"
+                },
+                {
+                  "name": "TechTools Launchpad photo 240x320 under 50KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/230",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 240 x 320 px and 50KB photo path"
+                },
+                {
+                  "name": "TechTools Launchpad photo 295x413 under 35KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/238",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 295 x 413 px and 35KB photo path"
+                },
+                {
+                  "name": "TechTools Launchpad photo 354x472 under 100KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/239",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 354 x 472 px and 100KB photo path"
+                },
+                {
+                  "name": "TechTools Launchpad photo 413x531 under 50KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/231",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 413 x 531 px and 50KB photo path"
+                },
+                {
+                  "name": "TechTools Launchpad photo 300x300 under 100KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/232",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 300 x 300 px and 100KB photo path"
+                },
+                {
+                  "name": "TechTools Launchpad photo 600x600 under 100KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/233",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 600 x 600 px and 100KB photo path"
+                },
+                {
+                  "name": "TechTools Launchpad resize signature 200x100 listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/221",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 200 x 100 px signature resize path"
+                },
+                {
+                  "name": "TechTools Launchpad signature 140x60 under 20KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/227",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 140 x 60 px and 20KB signature path"
+                },
+                {
+                  "name": "TechTools Launchpad signature 140x60 under 50KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/228",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 140 x 60 px and 50KB signature path"
+                },
+                {
+                  "name": "TechTools Launchpad signature 200x100 under 50KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/229",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 200 x 100 px and 50KB signature path"
+                },
+                {
+                  "name": "TechTools Launchpad signature 150x50 under 20KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/234",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 150 x 50 px and 20KB signature path"
+                },
+                {
+                  "name": "TechTools Launchpad signature 200x50 under 20KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/235",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 200 x 50 px and 20KB signature path"
+                },
+                {
+                  "name": "TechTools Launchpad signature 300x80 under 50KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/236",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 300 x 80 px and 50KB signature path"
+                },
+                {
+                  "name": "TechTools Launchpad signature 300x100 under 50KB listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/237",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 300 x 100 px and 50KB signature path"
+                },
+                {
+                  "name": "TechTools Launchpad resize photo 200x230 listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/222",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 200 x 230 px photo resize path"
+                },
+                {
+                  "name": "TechTools Launchpad passport photo 35x45mm listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/223",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the common 35 x 45 mm passport-style photo workflow"
+                },
+                {
                   "name": "NoLogin.tools",
                   "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev",
                   "submittedAt": "2026-06-03",
@@ -2732,13 +3816,67 @@
                   "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer",
                   "submittedAt": "2026-06-06",
                   "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-upload-limit-fixer"
+                },
+                {
+                  "name": "NoLogin.tools upload error cheatsheet listing",
+                  "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet",
+                  "submittedAt": "2026-06-08",
+                  "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-upload-error-cheatsheet"
+                },
+                {
+                  "name": "NoLogin.tools invoice follow-up email generator listing",
+                  "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-invoice-followup-email",
+                  "submittedAt": "2026-06-08",
+                  "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-tools-invoice-followup-email"
+                },
+                {
+                  "name": "NoLogin.tools overdue invoice reminder listing",
+                  "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-overdue-invoice-reminder-email",
+                  "submittedAt": "2026-06-08",
+                  "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-overdue-invoice-reminder-email"
+                },
+                {
+                  "name": "NoLogin.tools compress image to KB listing",
+                  "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-compress-image-to-kb",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-tools-compress-image-to-kb"
+                },
+                {
+                  "name": "NoLogin.tools image dimensions 600x600 upload fix listing",
+                  "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-image-dimensions-600x600",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-image-dimensions-600x600"
+                },
+                {
+                  "name": "NoLogin.tools PDF not accepted JPG required upload fix listing",
+                  "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required"
+                },
+                {
+                  "name": "NoLogin.tools email attachment too large fix listing",
+                  "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-email-attachment-too-large",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-email-attachment-too-large"
+                },
+                {
+                  "name": "NoLogin.tools compress image to 50KB listing",
+                  "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-50kb",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-compress-image-to-50kb"
+                },
+                {
+                  "name": "NoLogin.tools compress image to 100KB listing",
+                  "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-100kb",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-compress-image-to-100kb"
                 }
               ],
               "indexNowAcceptedTargets": [
                 "github-pages"
               ],
-              "indexNowSubmittedUrls": 263,
-              "publicProofLine": "External discovery proof: 7 public directory listing(s) are live; 6 more listing(s) remain pending; IndexNow accepted 1 target(s). These are discovery signals, not revenue.",
+              "indexNowSubmittedUrls": 284,
+              "publicProofLine": "External discovery proof: 84 public directory listing(s) are live; 144 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue.",
               "moneyBoundary": "Directory listings, IndexNow submissions, clicks, and views are discovery signals only. Revenue is real only after a signed sponsor agreement or settled external payment."
             },
             "successGate": "Commercial discovery is working only when a qualified sponsor lead, signed agreement, or settled external payment is verified. Clicks alone are not revenue."
@@ -2842,14 +3980,14 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 34840,
+        "bytes": 37902,
         "json": {
           "ok": true,
-          "today": "2026-06-08",
+          "today": "2026-06-09",
           "dataQuality": "rollup",
           "dataWarning": "",
           "totals": {
-            "page_view": 507,
+            "page_view": 527,
             "generate_pdf": 0,
             "download_pdf": 2,
             "generate_file": 0,
@@ -2863,14 +4001,15 @@
             "seller_checkout_intent": 0,
             "seller_checkout_click": 0,
             "service_checkout_click": 0,
-            "service_request_intent": 0,
+            "service_request_intent": 2,
+            "service_invoice_request": 0,
             "audit_request_intent": 0,
             "sponsor_request_intent": 2,
             "sponsor_lead_submit": 0,
             "sponsor_invoice_request": 0
           },
           "todayTotals": {
-            "page_view": 13,
+            "page_view": 5,
             "generate_pdf": 0,
             "download_pdf": 0,
             "generate_file": 0,
@@ -2885,6 +4024,7 @@
             "seller_checkout_click": 0,
             "service_checkout_click": 0,
             "service_request_intent": 0,
+            "service_invoice_request": 0,
             "audit_request_intent": 0,
             "sponsor_request_intent": 0,
             "sponsor_lead_submit": 0,
@@ -2897,7 +4037,7 @@
           "todaySponsorLeads": 0,
           "sponsorInvoiceRequests": 0,
           "todaySponsorInvoiceRequests": 0,
-          "commercialIntent": 2,
+          "commercialIntent": 4,
           "tools": [
             {
               "tool": "invoice-generator",
@@ -2912,6 +4052,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -2930,6 +4071,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -2948,6 +4090,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -2966,6 +4109,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -2984,6 +4128,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3002,6 +4147,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3020,6 +4166,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3038,6 +4185,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3056,6 +4204,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3074,6 +4223,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3092,6 +4242,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3110,6 +4261,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3128,6 +4280,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3146,6 +4299,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3164,6 +4318,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3182,6 +4337,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3200,6 +4356,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3218,6 +4375,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3236,6 +4394,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3254,6 +4413,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3272,6 +4432,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3290,6 +4451,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3308,6 +4470,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3326,6 +4489,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3344,6 +4508,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3362,6 +4527,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3380,6 +4546,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3398,6 +4565,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3416,6 +4584,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3434,6 +4603,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3452,6 +4622,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3470,6 +4641,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3488,6 +4660,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3506,6 +4679,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3524,6 +4698,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3542,6 +4717,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3560,6 +4736,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3578,6 +4755,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3596,6 +4774,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3614,6 +4793,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3632,6 +4812,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3650,6 +4831,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3668,6 +4850,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3686,6 +4869,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3704,6 +4888,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3722,6 +4907,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3740,6 +4926,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3758,6 +4945,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3776,6 +4964,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3794,6 +4983,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3812,6 +5002,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3830,6 +5021,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3848,6 +5040,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3866,6 +5059,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3884,6 +5078,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3902,6 +5097,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3920,6 +5116,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3938,6 +5135,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3956,6 +5154,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3974,6 +5173,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -3992,6 +5192,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4010,6 +5211,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4028,6 +5230,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4046,6 +5249,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4064,6 +5268,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4082,6 +5287,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4100,6 +5306,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4118,6 +5325,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4136,6 +5344,26 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
+              "audit_request_intent": 0,
+              "sponsor_request_intent": 0,
+              "sponsor_lead_submit": 0,
+              "sponsor_invoice_request": 0
+            },
+            {
+              "tool": "upload-limit-fix-plan",
+              "generate_pdf": 0,
+              "download_pdf": 0,
+              "generate_file": 0,
+              "download_file": 0,
+              "free_tool_depth": 0,
+              "limit_hit": 0,
+              "seller_sample_download": 0,
+              "seller_checkout_intent": 0,
+              "seller_checkout_click": 0,
+              "service_checkout_click": 0,
+              "service_request_intent": 2,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4154,6 +5382,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4172,6 +5401,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 2,
               "sponsor_lead_submit": 0,
@@ -4181,7 +5411,7 @@
           "sources": [
             {
               "source": "direct",
-              "page_view": 506,
+              "page_view": 515,
               "download_pdf": 0,
               "download_file": 0,
               "free_tool_depth": 0,
@@ -4190,7 +5420,8 @@
               "seller_checkout_intent": 0,
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
-              "service_request_intent": 0,
+              "service_request_intent": 1,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4208,6 +5439,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4225,6 +5457,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4242,6 +5475,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4259,6 +5493,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4276,6 +5511,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4293,6 +5529,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4310,6 +5547,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4327,6 +5565,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4334,7 +5573,7 @@
             },
             {
               "source": "techtools",
-              "page_view": 0,
+              "page_view": 3,
               "download_pdf": 0,
               "download_file": 0,
               "free_tool_depth": 0,
@@ -4343,7 +5582,8 @@
               "seller_checkout_intent": 0,
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
-              "service_request_intent": 0,
+              "service_request_intent": 1,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4361,6 +5601,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4378,6 +5619,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4385,7 +5627,7 @@
             },
             {
               "source": "nologin",
-              "page_view": 1,
+              "page_view": 9,
               "download_pdf": 0,
               "download_file": 0,
               "free_tool_depth": 0,
@@ -4395,6 +5637,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4412,6 +5655,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4429,6 +5673,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4446,6 +5691,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4463,6 +5709,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4480,6 +5727,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4497,6 +5745,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 2,
               "sponsor_lead_submit": 0,
@@ -4514,6 +5763,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4531,6 +5781,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4548,6 +5799,7 @@
               "seller_checkout_click": 0,
               "service_checkout_click": 0,
               "service_request_intent": 0,
+              "service_invoice_request": 0,
               "audit_request_intent": 0,
               "sponsor_request_intent": 0,
               "sponsor_lead_submit": 0,
@@ -4560,7 +5812,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 326,
+        "bytes": 357,
         "json": {
           "ok": true,
           "service": "PrintableTools Lab service lead intake",
@@ -4569,6 +5821,7 @@
           "month": "2026-06",
           "leadCount": 0,
           "serviceRequestCount": 0,
+          "serviceInvoiceRequestCount": 0,
           "auditRequestCount": 0,
           "sellerKitRequestCount": 0,
           "latestCreatedAt": "",
@@ -4582,15 +5835,38 @@
       "/api/service-public-requests": {
         "ok": true,
         "status": 200,
-        "contentType": "text/html; charset=utf-8",
-        "bytes": 38031,
-        "json": null
+        "contentType": "application/json; charset=utf-8",
+        "bytes": 768,
+        "json": {
+          "ok": true,
+          "generatedAt": "2026-06-09T11:02:30.424Z",
+          "repo": "yanqr213/printable-tools-lab",
+          "sourceUrl": "https://github.com/yanqr213/printable-tools-lab/issues?q=is%3Aissue%20label%3Abusiness-review%20label%3Aservice-request%20OR%20label%3Aaudit-request",
+          "available": true,
+          "dataQuality": "github-issues-api",
+          "dataWarning": "",
+          "publicMetricsOnly": true,
+          "privateFields": "not exposed; rows contain only public GitHub issue metadata and public-safe service fields",
+          "publicRequestCount": 0,
+          "openCount": 0,
+          "closedCount": 0,
+          "paidServiceRequestCount": 0,
+          "invoiceFollowupRequestCount": 0,
+          "uploadLimitFixPlanRequestCount": 0,
+          "customLocalPrintRequestCount": 0,
+          "auditRequestCount": 0,
+          "sellerKitRequestCount": 0,
+          "readyForReviewCount": 0,
+          "publicSafetyWarningCount": 0,
+          "latestUpdatedAt": "",
+          "rows": []
+        }
       }
     },
     "metrics": {
-      "today": "2026-06-08",
+      "today": "2026-06-09",
       "totals": {
-        "page_view": 507,
+        "page_view": 527,
         "generate_pdf": 0,
         "download_pdf": 2,
         "generate_file": 0,
@@ -4604,14 +5880,15 @@
         "seller_checkout_intent": 0,
         "seller_checkout_click": 0,
         "service_checkout_click": 0,
-        "service_request_intent": 0,
+        "service_request_intent": 2,
+        "service_invoice_request": 0,
         "audit_request_intent": 0,
         "sponsor_request_intent": 2,
         "sponsor_lead_submit": 0,
         "sponsor_invoice_request": 0
       },
       "todayTotals": {
-        "page_view": 13,
+        "page_view": 5,
         "generate_pdf": 0,
         "download_pdf": 0,
         "generate_file": 0,
@@ -4626,6 +5903,7 @@
         "seller_checkout_click": 0,
         "service_checkout_click": 0,
         "service_request_intent": 0,
+        "service_invoice_request": 0,
         "audit_request_intent": 0,
         "sponsor_request_intent": 0,
         "sponsor_lead_submit": 0,
@@ -4634,7 +5912,7 @@
       "totalDownloads": 2,
       "totalGenerations": 0,
       "freeToolDepthIntent": 0,
-      "commercialIntent": 2,
+      "commercialIntent": 4,
       "sponsorLeads": 0,
       "sponsorInvoiceRequests": 0,
       "topTools": [
@@ -4651,6 +5929,7 @@
           "seller_checkout_click": 0,
           "service_checkout_click": 0,
           "service_request_intent": 0,
+          "service_invoice_request": 0,
           "audit_request_intent": 0,
           "sponsor_request_intent": 0,
           "sponsor_lead_submit": 0,
@@ -4669,6 +5948,7 @@
           "seller_checkout_click": 0,
           "service_checkout_click": 0,
           "service_request_intent": 0,
+          "service_invoice_request": 0,
           "audit_request_intent": 0,
           "sponsor_request_intent": 0,
           "sponsor_lead_submit": 0,
@@ -4687,6 +5967,7 @@
           "seller_checkout_click": 0,
           "service_checkout_click": 0,
           "service_request_intent": 0,
+          "service_invoice_request": 0,
           "audit_request_intent": 0,
           "sponsor_request_intent": 0,
           "sponsor_lead_submit": 0,
@@ -4705,6 +5986,7 @@
           "seller_checkout_click": 0,
           "service_checkout_click": 0,
           "service_request_intent": 0,
+          "service_invoice_request": 0,
           "audit_request_intent": 0,
           "sponsor_request_intent": 0,
           "sponsor_lead_submit": 0,
@@ -4723,6 +6005,7 @@
           "seller_checkout_click": 0,
           "service_checkout_click": 0,
           "service_request_intent": 0,
+          "service_invoice_request": 0,
           "audit_request_intent": 0,
           "sponsor_request_intent": 0,
           "sponsor_lead_submit": 0,
@@ -4741,6 +6024,7 @@
           "seller_checkout_click": 0,
           "service_checkout_click": 0,
           "service_request_intent": 0,
+          "service_invoice_request": 0,
           "audit_request_intent": 0,
           "sponsor_request_intent": 0,
           "sponsor_lead_submit": 0,
@@ -4759,6 +6043,7 @@
           "seller_checkout_click": 0,
           "service_checkout_click": 0,
           "service_request_intent": 0,
+          "service_invoice_request": 0,
           "audit_request_intent": 0,
           "sponsor_request_intent": 0,
           "sponsor_lead_submit": 0,
@@ -4777,6 +6062,7 @@
           "seller_checkout_click": 0,
           "service_checkout_click": 0,
           "service_request_intent": 0,
+          "service_invoice_request": 0,
           "audit_request_intent": 0,
           "sponsor_request_intent": 0,
           "sponsor_lead_submit": 0,
@@ -4814,15 +6100,15 @@
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 269,
-      "landingPagesLinked": 93,
+      "sitemapUrlCount": 314,
+      "landingPagesLinked": 137,
       "toolPagesLinked": 67,
       "toolPagesInSitemap": 67,
       "guidePagesLinked": 95,
       "guidePagesInSitemap": 95,
       "gamePagesLinked": 1,
       "gamePagesInSitemap": 3,
-      "expectedUrlCount": 269,
+      "expectedUrlCount": 314,
       "error": ""
     },
     "indexNow": {
@@ -4833,7 +6119,7 @@
       "keyFileReachable": true,
       "singleUrlAccepted": false,
       "latestReport": {
-        "generatedAt": "2026-06-08T01:19:51.486Z",
+        "generatedAt": "2026-06-09T06:23:47.888Z",
         "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
         "results": [
           {
@@ -4843,13 +6129,13 @@
             "keyReachable": true,
             "keyStatus": 200,
             "keyMessage": "ok",
-            "urlCount": 281,
+            "urlCount": 302,
             "submittedUrls": 0,
             "accepted": false,
             "status": 403,
             "message": "{\"errorCode\":\"UserForbiddedToAccessSite\",\"message\":\"User is unauthorized to access the site. Please verify the site using the key and try again\",\"details\":null}",
             "fallbackAccepted": 0,
-            "fallbackFailed": 13
+            "fallbackFailed": 23
           },
           {
             "label": "github-pages",
@@ -4858,8 +6144,8 @@
             "keyReachable": true,
             "keyStatus": 200,
             "keyMessage": "ok",
-            "urlCount": 263,
-            "submittedUrls": 263,
+            "urlCount": 284,
+            "submittedUrls": 284,
             "accepted": true,
             "status": 200,
             "message": "",
@@ -4874,16 +6160,16 @@
       "acceptedTargets": [
         "github-pages"
       ],
-      "acceptedUrlCount": 263,
+      "acceptedUrlCount": 284,
       "error": ""
     },
     "externalDiscoveryReady": true
   },
   "directories": {
     "available": true,
-    "generatedAt": "2026-06-08T05:49:33.332Z",
-    "listedCount": 7,
-    "pendingCount": 6,
+    "generatedAt": "2026-06-09T10:54:33.602Z",
+    "listedCount": 94,
+    "pendingCount": 152,
     "errorCount": 1,
     "listed": [
       {
@@ -4907,12 +6193,360 @@
         "evidenceUrl": "https://techtools.cz/launchpad-api/tools/170"
       },
       {
+        "name": "TechTools Launchpad overdue invoice reminder listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/171"
+      },
+      {
+        "name": "TechTools Launchpad upload limit fix plan service listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/172"
+      },
+      {
+        "name": "TechTools Launchpad upload error cheatsheet listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/173"
+      },
+      {
+        "name": "TechTools Launchpad compress PDF to 1MB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/174"
+      },
+      {
+        "name": "TechTools Launchpad PDF under 1MB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/175"
+      },
+      {
+        "name": "TechTools Launchpad photo under 100KB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/176"
+      },
+      {
+        "name": "TechTools Launchpad image under 2MB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/177"
+      },
+      {
+        "name": "TechTools Launchpad JPG under 200KB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/178"
+      },
+      {
+        "name": "TechTools Launchpad resume PDF too large upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/179"
+      },
+      {
+        "name": "TechTools Launchpad PNG screenshot too large upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/180"
+      },
+      {
+        "name": "TechTools Launchpad passport photo 50KB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/181"
+      },
+      {
+        "name": "TechTools Launchpad PDF under 500KB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/182"
+      },
+      {
+        "name": "TechTools Launchpad image under 500KB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/183"
+      },
+      {
+        "name": "TechTools Launchpad image dimensions 600x600 upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/184"
+      },
+      {
+        "name": "TechTools Launchpad PDF not accepted JPG required fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/185"
+      },
+      {
+        "name": "TechTools Launchpad email attachment too large PDF fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/186"
+      },
+      {
+        "name": "TechTools Launchpad compress image to KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/187"
+      },
+      {
+        "name": "TechTools Launchpad compress PDF to 500KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/188"
+      },
+      {
+        "name": "TechTools Launchpad compress image to 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/189"
+      },
+      {
+        "name": "TechTools Launchpad compress image to 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/190"
+      },
+      {
+        "name": "TechTools Launchpad compress image to 200KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/191"
+      },
+      {
+        "name": "TechTools Launchpad compress JPG to 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/192"
+      },
+      {
+        "name": "TechTools Launchpad compress JPG to 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/193"
+      },
+      {
+        "name": "TechTools Launchpad compress JPG to 200KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/194"
+      },
+      {
+        "name": "TechTools Launchpad compress PNG to 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/195"
+      },
+      {
+        "name": "TechTools Launchpad compress PNG to 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/196"
+      },
+      {
+        "name": "TechTools Launchpad compress PNG to 200KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/197"
+      },
+      {
+        "name": "TechTools Launchpad passport photo compress to 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/198"
+      },
+      {
+        "name": "TechTools Launchpad passport photo compress to 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/199"
+      },
+      {
+        "name": "TechTools Launchpad passport photo compress to 200KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/200"
+      },
+      {
+        "name": "TechTools Launchpad PDF under 2MB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/201"
+      },
+      {
+        "name": "TechTools Launchpad PDF under 5MB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/202"
+      },
+      {
+        "name": "TechTools Launchpad resume PDF under 2MB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/203"
+      },
+      {
+        "name": "TechTools Launchpad document under 5MB upload fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/204"
+      },
+      {
+        "name": "TechTools Launchpad PDF size reducer listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/205"
+      },
+      {
+        "name": "TechTools Launchpad compress PDF to 2MB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/206"
+      },
+      {
+        "name": "TechTools Launchpad compress PDF to 5MB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/207"
+      },
+      {
+        "name": "TechTools Launchpad compress PDF without uploading listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/208"
+      },
+      {
+        "name": "TechTools Launchpad PDF to JPG without uploading listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/209"
+      },
+      {
+        "name": "TechTools Launchpad JPG to PDF without uploading listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/210"
+      },
+      {
+        "name": "TechTools Launchpad extract text from PDF without uploading listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/212"
+      },
+      {
+        "name": "TechTools Launchpad merge PDF without uploading listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/213"
+      },
+      {
+        "name": "TechTools Launchpad split PDF without uploading listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/214"
+      },
+      {
+        "name": "TechTools Launchpad signature under 20KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/215"
+      },
+      {
+        "name": "TechTools Launchpad passport photo size fixer listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/216"
+      },
+      {
+        "name": "TechTools Launchpad resize photo 413x531 listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/217"
+      },
+      {
+        "name": "TechTools Launchpad signature under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/218"
+      },
+      {
+        "name": "TechTools Launchpad resize signature 140x60 listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/219"
+      },
+      {
+        "name": "TechTools Launchpad photo 200x230 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/220"
+      },
+      {
+        "name": "TechTools Launchpad photo 200x230 under 20KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/224"
+      },
+      {
+        "name": "TechTools Launchpad photo 200x230 under 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/225"
+      },
+      {
+        "name": "TechTools Launchpad photo 413x531 under 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/226"
+      },
+      {
+        "name": "TechTools Launchpad photo 240x320 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/230"
+      },
+      {
+        "name": "TechTools Launchpad photo 295x413 under 35KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/238"
+      },
+      {
+        "name": "TechTools Launchpad photo 354x472 under 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/239"
+      },
+      {
+        "name": "TechTools Launchpad photo 413x531 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/231"
+      },
+      {
+        "name": "TechTools Launchpad photo 300x300 under 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/232"
+      },
+      {
+        "name": "TechTools Launchpad photo 600x600 under 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/233"
+      },
+      {
+        "name": "TechTools Launchpad resize signature 200x100 listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/221"
+      },
+      {
+        "name": "TechTools Launchpad signature 140x60 under 20KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/227"
+      },
+      {
+        "name": "TechTools Launchpad signature 140x60 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/228"
+      },
+      {
+        "name": "TechTools Launchpad signature 200x100 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/229"
+      },
+      {
+        "name": "TechTools Launchpad signature 150x50 under 20KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/234"
+      },
+      {
+        "name": "TechTools Launchpad signature 200x50 under 20KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/235"
+      },
+      {
+        "name": "TechTools Launchpad signature 300x80 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/236"
+      },
+      {
+        "name": "TechTools Launchpad signature 300x100 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/237"
+      },
+      {
+        "name": "TechTools Launchpad resize photo 200x230 listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/222"
+      },
+      {
+        "name": "TechTools Launchpad passport photo 35x45mm listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/223"
+      },
+      {
+        "name": "TechTools Launchpad photo 480x640 under 200kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/240"
+      },
+      {
+        "name": "TechTools Launchpad photo 512x512 under 100kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/241"
+      },
+      {
+        "name": "TechTools Launchpad signature 160x70 under 20kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/242"
+      },
+      {
+        "name": "TechTools Launchpad signature 250x80 under 50kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/243"
+      },
+      {
+        "name": "TechTools Launchpad signature 300x60 under 20kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/244"
+      },
+      {
+        "name": "TechTools Launchpad signature 400x150 under 50kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/245"
+      },
+      {
+        "name": "TechTools Launchpad photo 150x200 under 20kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/246"
+      },
+      {
+        "name": "TechTools Launchpad photo 180x240 under 50kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/247"
+      },
+      {
+        "name": "TechTools Launchpad photo 400x514 under 100kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/248"
+      },
+      {
+        "name": "TechTools Launchpad photo 600x800 under 200kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/249"
+      },
+      {
         "name": "NoLogin.tools",
         "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev"
       },
       {
         "name": "NoLogin.tools upload-limit listing",
         "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer"
+      },
+      {
+        "name": "NoLogin.tools upload error cheatsheet listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet"
+      },
+      {
+        "name": "NoLogin.tools invoice follow-up email generator listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-invoice-followup-email"
+      },
+      {
+        "name": "NoLogin.tools overdue invoice reminder listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-overdue-invoice-reminder-email"
+      },
+      {
+        "name": "NoLogin.tools compress image to KB listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-compress-image-to-kb"
+      },
+      {
+        "name": "NoLogin.tools image dimensions 600x600 upload fix listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-image-dimensions-600x600"
+      },
+      {
+        "name": "NoLogin.tools PDF not accepted JPG required upload fix listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required"
+      },
+      {
+        "name": "NoLogin.tools email attachment too large fix listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-email-attachment-too-large"
+      },
+      {
+        "name": "NoLogin.tools compress image to 50KB listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-50kb"
+      },
+      {
+        "name": "NoLogin.tools compress image to 100KB listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-100kb"
       }
     ],
     "pending": [
@@ -4925,16 +6559,600 @@
         "evidenceUrl": "https://listai.cc/"
       },
       {
+        "name": "TechTools Launchpad signature 100x50 under 10kb listing",
+        "evidenceUrl": "https://techtools.cz/tools/launchpad/"
+      },
+      {
+        "name": "TechTools Launchpad signature 200x60 under 20kb listing",
+        "evidenceUrl": "https://techtools.cz/tools/launchpad/"
+      },
+      {
+        "name": "TechTools Launchpad signature 256x64 under 20kb listing",
+        "evidenceUrl": "https://techtools.cz/tools/launchpad/"
+      },
+      {
+        "name": "TechTools Launchpad signature 400x200 under 100kb listing",
+        "evidenceUrl": "https://techtools.cz/tools/launchpad/"
+      },
+      {
         "name": "NoSignupTools",
         "evidenceUrl": "https://nosignuptools.com/"
+      },
+      {
+        "name": "NoSignupTools overdue invoice reminder listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/overdue-invoice-reminder-email-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools upload limit fixer listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools upload error cheatsheet listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools image dimensions 600x600 upload fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/image-dimensions-600x600-upload-fix-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools PDF not accepted JPG required upload fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/pdf-not-accepted-jpg-required-fix-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools compress image to KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-image-to-kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools email attachment too large fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/email-attachment-too-large-fix-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools PDF under 2MB upload fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/pdf-under-2mb-upload-fix-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools PDF under 5MB upload fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/pdf-under-5mb-upload-fix-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools resume PDF under 2MB upload fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/resume-pdf-under-2mb-upload-fix-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools document under 5MB upload fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/document-under-5mb-upload-fix-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools compress image to 50KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-image-to-50kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools compress image to 100KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-image-to-100kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools compress image to 200KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-image-to-200kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools compress JPG to 50KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-jpg-to-50kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools compress JPG to 100KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-jpg-to-100kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools compress JPG to 200KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-jpg-to-200kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools compress PNG to 50KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-png-to-50kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools compress PNG to 100KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-png-to-100kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools compress PNG to 200KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-png-to-200kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools passport photo compress to 50KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/passport-photo-compress-to-50kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools passport photo compress to 100KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/passport-photo-compress-to-100kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools passport photo compress to 200KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/passport-photo-compress-to-200kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools extract text from PDF without uploading listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/extract-text-from-pdf-without-uploading-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools merge PDF without uploading listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/merge-pdf-without-uploading-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools split PDF without uploading listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/split-pdf-without-uploading-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools rotate PDF pages without uploading listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/rotate-pdf-pages-without-uploading-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools remove pages from PDF without uploading listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/remove-pages-from-pdf-without-uploading-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools reorder PDF pages without uploading listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/reorder-pdf-pages-without-uploading-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools add page numbers to PDF listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/add-page-numbers-to-pdf-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools stamp PDF without uploading listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/stamp-pdf-without-uploading-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools sign PDF without uploading listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/sign-pdf-without-uploading-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools compress image without uploading listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-image-without-uploading-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools resize image without uploading listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/resize-image-without-uploading-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools convert image format without uploading listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/convert-image-format-without-uploading-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools remove background without uploading listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/remove-background-without-uploading-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools crop image without uploading listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/crop-image-without-uploading-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools rotate image without uploading listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/rotate-image-without-uploading-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools watermark image without uploading listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/watermark-image-without-uploading-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools passport photo size fixer listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/passport-photo-size-fixer-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools resize photo 413x531 listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/resize-photo-413x531-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools passport photo 35x45mm listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/passport-photo-35x45mm-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools photo 200x230 under 50KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-200x230-under-50kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools resize photo 200x230 listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/resize-photo-200x230-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools signature under 20KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/signature-under-20kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools signature under 50KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/signature-under-50kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools resize signature 140x60 listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/resize-signature-140x60-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools resize signature 200x100 listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/resize-signature-200x100-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Compress Image to 10KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-image-to-10kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Compress Image to 20KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-image-to-20kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Compress Image to 30KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-image-to-30kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Compress Image to 150KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-image-to-150kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Compress Image to 300KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-image-to-300kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Compress Image to 500KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-image-to-500kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Compress PDF to 500KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-pdf-to-500kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Compress PDF to 1MB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-pdf-to-1mb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Compress PDF to 2MB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-pdf-to-2mb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Compress PDF to 5MB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-pdf-to-5mb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools PDF Size Reducer listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/pdf-size-reducer-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools File Must Be Less Than 1MB Fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/file-must-be-less-than-1mb-fix-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools PDF Must Be Under 500KB Fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/pdf-must-be-under-500kb-fix-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo Must Be Under 100KB Fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-must-be-under-100kb-fix-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Image Must Be Under 500KB Fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/image-must-be-under-500kb-fix-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Image Must Be Less Than 2MB Fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/image-must-be-less-than-2mb-fix-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools JPG Must Be Under 200KB Fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/jpg-must-be-under-200kb-fix-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools PNG Screenshot Too Large Fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/png-screenshot-too-large-fix-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 200x230 Under 20KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-200x230-under-20kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 200x230 Under 100KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-200x230-under-100kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 413x531 Under 100KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-413x531-under-100kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 240x320 Under 50KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-240x320-under-50kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 295x413 Under 35KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-295x413-under-35kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 413x531 Under 50KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-413x531-under-50kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 354x472 Under 100KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-354x472-under-100kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 300x300 Under 100KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-300x300-under-100kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 600x600 Under 100KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-600x600-under-100kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 480x640 Under 200KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-480x640-under-200kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 512x512 Under 100KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-512x512-under-100kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 150x200 Under 20KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-150x200-under-20kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 180x240 Under 50KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-180x240-under-50kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 400x514 Under 100KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-400x514-under-100kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 600x800 Under 200KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-600x800-under-200kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Signature 140x60 Under 20KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/signature-140x60-under-20kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Signature 140x60 Under 50KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/signature-140x60-under-50kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Signature 200x100 Under 50KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/signature-200x100-under-50kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Signature 150x50 Under 20KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/signature-150x50-under-20kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Signature 160x70 Under 20KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/signature-160x70-under-20kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Signature 200x50 Under 20KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/signature-200x50-under-20kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Signature 250x80 Under 50KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/signature-250x80-under-50kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Signature 300x60 Under 20KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/signature-300x60-under-20kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Signature 300x80 Under 50KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/signature-300x80-under-50kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Signature 300x100 Under 50KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/signature-300x100-under-50kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Signature 400x150 Under 50KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/signature-400x150-under-50kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Signature 100x50 Under 10KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/signature-100x50-under-10kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Signature 200x60 Under 20KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/signature-200x60-under-20kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Signature 256x64 Under 20KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/signature-256x64-under-20kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Signature 400x200 Under 100KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/signature-400x200-under-100kb-by-printabletools-lab"
       },
       {
         "name": "FreeNoSignup",
         "evidenceUrl": "https://freenosignup.com/"
       },
       {
-        "name": "NoLogin.tools invoice follow-up email generator listing",
-        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-invoice-followup-email"
+        "name": "FreeNoSignup overdue invoice reminder listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup upload limit fixer listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup upload error cheatsheet listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Compress PDF to 500KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Compress PDF to 1MB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Compress Image to 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Image Must Be Under 500KB Fix listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Passport Photo Size Fixer listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 200x230 Under 50KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 200x230 Under 20KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 200x230 Under 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 413x531 Under 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 240x320 Under 50KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 295x413 Under 35KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 413x531 Under 50KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 354x472 Under 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 300x300 Under 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 600x600 Under 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 480x640 Under 200KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 512x512 Under 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 150x200 Under 20KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 180x240 Under 50KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 400x514 Under 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 600x800 Under 200KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Signature Under 20KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Signature 140x60 Under 20KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Signature 140x60 Under 50KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Signature 200x100 Under 50KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Signature 150x50 Under 20KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Signature 160x70 Under 20KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Signature 200x50 Under 20KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Signature 250x80 Under 50KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Signature 300x60 Under 20KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Signature 300x80 Under 50KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Signature 300x100 Under 50KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Signature 400x150 Under 50KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Signature 100x50 Under 10KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Signature 200x60 Under 20KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Signature 256x64 Under 20KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Signature 400x200 Under 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Resize Signature 200x100 listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "NoLogin.tools photo 200x230 under 20KB listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-200x230-20kb"
+      },
+      {
+        "name": "NoLogin.tools photo 200x230 under 100KB listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-200x230-100kb"
+      },
+      {
+        "name": "NoLogin.tools photo 413x531 under 100KB listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-413x531-100kb"
+      },
+      {
+        "name": "NoLogin.tools signature 140x60 under 20KB listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-140x60-20kb"
+      },
+      {
+        "name": "NoLogin.tools signature 140x60 under 50KB listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-140x60-50kb"
+      },
+      {
+        "name": "NoLogin.tools signature 200x100 under 50KB listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-200x100-50kb"
       },
       {
         "name": "NoSubscription.org",
@@ -4960,7 +7178,7 @@
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "67 tools, 95 guides, 93 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "67 tools, 95 guides, 137 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
@@ -4974,11 +7192,11 @@
       "externalDiscovery": [
         "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
-        "GitHub Pages discovery directory is live with 93 landing page link(s), 67 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).",
-        "GitHub Pages discovery sitemap has 269 URL(s), including 67 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 269.",
+        "GitHub Pages discovery directory is live with 137 landing page link(s), 67 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).",
+        "GitHub Pages discovery sitemap has 314 URL(s), including 67 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 314.",
         "IndexNow key file is reachable from the site root.",
-        "IndexNow latest report accepted 263 URL(s) for github-pages.",
-        "Directory monitor shows 7 listed, 6 pending, and 1 error directory target(s)."
+        "IndexNow latest report accepted 284 URL(s) for github-pages.",
+        "Directory monitor shows 94 listed, 152 pending, and 1 error directory target(s)."
       ]
     }
   },
@@ -4989,7 +7207,7 @@
     "Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.",
     "Keep pushing free-tool depth links and watch for audit or directory-browse events before adding more monetization surfaces.",
     "Use the internal lead-to-payment close cockpit after every service, seller-kit, audit, or sponsor lead: export, confirm fit, copy the payment reply, and count revenue only after external proof.",
-    "Create one real external payment-provider product for the $29 service or $9 kit, then run configure:checkout with the public checkout URL only.",
+    "Create real external payment-provider products for the $9 upload fix plan, $19 invoice follow-up copy pack, and $29 custom print pack, then configure only their public checkout URLs in the matching per-SKU slots.",
     "Submit the first sponsor outreach batch using reports/sponsor-next-submission-batch.md, but mark rows sent only after real public-form submission evidence exists."
   ]
 }
