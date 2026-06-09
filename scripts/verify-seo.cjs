@@ -62,7 +62,7 @@ function requireUploadLimitShortcuts(html, label) {
   if (!html.includes("data-upload-fix-plan-jump") || !html.includes("Need a $9 fix plan?")) failures.push(`${label} missing direct upload matcher $9 fix-plan CTA.`);
   if (!html.includes("PDF must be less than 1 MB") || !html.includes("Invalid file type. Please upload JPG or PNG")) failures.push(`${label} missing upload matcher examples.`);
   if (!html.includes('data-track-event="free_tool_depth"')) failures.push(`${label} missing upload limit depth tracking.`);
-  if (!html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("Send $9 fix-plan request") || !html.includes("/upload-limit-fix-plan/?utm_source=upload-limit") || !html.includes("No file upload")) failures.push(`${label} missing $9 upload fix plan service request path.`);
+  if (!html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("Request $9 invoice link") || !html.includes('data-service-primary-invoice-request="true"') || !html.includes('data-track-event="service_invoice_request"') || !html.includes("/upload-limit-fix-plan/?utm_source=upload-limit") || !html.includes("No file upload")) failures.push(`${label} missing primary $9 upload fix invoice request path.`);
   if (!html.includes("data-upload-fix-plan-form") || !html.includes("data-upload-fix-plan-summary") || !html.includes("Request note updated from the upload error matcher.")) failures.push(`${label} missing upload matcher paid-request prefill path.`);
   for (const pathName of UPLOAD_LIMIT_SHORTCUT_PATHS) {
     if (!html.includes(pathName)) failures.push(`${label} missing upload limit shortcut: ${pathName}`);
@@ -133,7 +133,8 @@ if (!fs.existsSync(homeFile)) failures.push("Missing homepage.");
 else {
   const html = fs.readFileSync(homeFile, "utf8");
   requireUploadLimitShortcuts(html, "Homepage");
-  if (!html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("Send $9 fix-plan request") || !html.includes("/upload-limit-fix-plan/?utm_source=upload-limit")) failures.push("Homepage upload-limit shortcuts missing $9 upload fix plan request form.");
+  if (!html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("Request $9 invoice link") || !html.includes('data-service-primary-invoice-request="true"') || !html.includes("/upload-limit-fix-plan/?utm_source=upload-limit")) failures.push("Homepage upload-limit shortcuts missing primary $9 upload fix invoice request form.");
+  if (!html.includes('data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="/upload-limit-fix-plan/?utm_source=home&utm_medium=site&utm_campaign=upload_limit_fix_plan&utm_content=hero#invoice-request"') || !html.includes('data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="/upload-limit-fix-plan/?utm_source=home&utm_medium=site&utm_campaign=upload_limit_fix_plan&utm_content=validation-band#invoice-request"')) failures.push("Homepage should route existing traffic directly to the $9 upload-fix invoice request path.");
   if (!html.includes("Request $19 follow-up copy") || !html.includes("Made an invoice? Get the follow-up sequence written for $19.")) failures.push("Homepage missing above-fold invoice follow-up service offer.");
   if (!html.includes('data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack"')) failures.push("Homepage invoice follow-up offer missing service intent tracking.");
   if (!html.includes("/invoice-followup-copy-pack/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=hero#service-request")) failures.push("Homepage hero should route to invoice follow-up service fit check.");

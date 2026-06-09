@@ -5797,7 +5797,7 @@
             <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
             <a class="button secondary" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="/invoice-followup-copy-pack/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=hero#service-request">Request $19 follow-up copy</a>
-            <a class="button ghost" href="/upload-limit-fixer/">Fix upload limits</a>
+            <a class="button ghost" data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="/upload-limit-fix-plan/?utm_source=home&utm_medium=site&utm_campaign=upload_limit_fix_plan&utm_content=hero#invoice-request">Request $9 upload fix</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
             <div class="proof-tile"><strong>${toolCount}</strong><span>high-frequency tools</span></div>
@@ -5830,7 +5830,7 @@
           <article class="panel">
             <h3>Free tools first</h3>
             <p>The site earns attention by solving useful file jobs: compressing PDFs and images, fixing upload limits, making QR codes, and creating simple business paperwork without signup.</p>
-            <p><a class="button" href="/free-pdf-tools/">Browse free tools</a> <a class="button secondary" href="/upload-limit-fixer/">Open upload limit fixer</a></p>
+            <p><a class="button" href="/free-pdf-tools/">Browse free tools</a> <a class="button secondary" data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="/upload-limit-fix-plan/?utm_source=home&utm_medium=site&utm_campaign=upload_limit_fix_plan&utm_content=validation-band#invoice-request">Request $9 upload fix</a></p>
           </article>
           <article class="panel">
             <h3>Ad safety gate</h3>
@@ -7289,16 +7289,17 @@
           <div>
             <p class="eyebrow">Optional paid help</p>
             <h3>Still blocked? Get a $9 upload fix plan.</h3>
-            <p>Send one public-safe request for the recommended free tool, target settings, fallback steps, and a review checklist. No file upload or private document details.</p>
-            <p><a class="button secondary" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="/upload-limit-fix-plan/?utm_source=upload-limit&utm_medium=site&utm_campaign=upload_limit_fix_plan&utm_content=shortcuts#service-request">Open full $9 service page</a></p>
+            <p>Request the external $9 invoice link after fit is confirmed. The note is already public-safe; add only where the invoice link should go.</p>
+            <p><a class="button secondary" data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="/upload-limit-fix-plan/?utm_source=upload-limit&utm_medium=site&utm_campaign=upload_limit_fix_plan&utm_content=shortcuts#invoice-request">Open full $9 invoice request</a></p>
           </div>
           ${uploadLimitFixPlanInlineLeadForm({
             path: "/upload-limit-fixer/",
             utmSource: "upload-limit",
             utmContent: "shortcut-inline",
-            submitLabel: "Send $9 fix-plan request",
+            submitLabel: "Request $9 invoice link",
             className: "upload-limit-fix-plan-micro-lead-form",
             compact: true,
+            primaryInvoiceRequest: true,
           })}
         </div>
       </section>
