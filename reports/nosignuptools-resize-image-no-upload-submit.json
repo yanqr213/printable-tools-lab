@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T04:39:07.133Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "Resize Image Without Uploading by PrintableTools Lab",
+    "slug": "resize-image-without-uploading-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/resize-image-no-upload/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=resize_image_no_upload_2026_06&utm_content=resize_image_no_upload_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup browser image resizer for exact pixel dimensions.",
+    "long_description": "A free browser-based image resizer for profile photos, school forms, marketplace images, support screenshots, and application portals that ask for exact pixel dimensions. It requires no account, keeps ordinary files local during use, and helps users prepare upload-ready images quickly."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/resize-image-without-uploading-by-printabletools-lab"
+}

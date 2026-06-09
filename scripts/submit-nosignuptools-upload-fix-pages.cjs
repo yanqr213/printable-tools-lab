@@ -420,6 +420,104 @@ const backlog = [
       long_description: "A free browser-based PDF signing helper for placing simple signature text, names, initials, or approval notes on a PDF before sharing. It requires no account, keeps ordinary files local during use, and gives users a quick lightweight option for non-legal, low-risk document marking.",
     },
   },
+  {
+    report: "nosignuptools-compress-image-no-upload-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/compress-image-without-uploading-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Compress+Image+Without+Uploading",
+    payload: {
+      ...common,
+      name: "Compress Image Without Uploading by PrintableTools Lab",
+      slug: "compress-image-without-uploading-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/compress-image-no-upload/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=compress_image_no_upload_2026_06&utm_content=compress_image_no_upload_landing",
+      category: "productivity",
+      short_description: "Free no-signup browser image compressor that keeps ordinary files local.",
+      long_description: "A free browser-based image compressor for people who need smaller JPG, PNG, WebP, profile photos, screenshots, and form uploads without creating an account or sending ordinary files to a server. It helps users test quality and target size locally before sharing, submitting, or requesting a public-safe upload fix plan.",
+    },
+  },
+  {
+    report: "nosignuptools-resize-image-no-upload-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/resize-image-without-uploading-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Resize+Image+Without+Uploading",
+    payload: {
+      ...common,
+      name: "Resize Image Without Uploading by PrintableTools Lab",
+      slug: "resize-image-without-uploading-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/resize-image-no-upload/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=resize_image_no_upload_2026_06&utm_content=resize_image_no_upload_landing",
+      category: "productivity",
+      short_description: "Free no-signup browser image resizer for exact pixel dimensions.",
+      long_description: "A free browser-based image resizer for profile photos, school forms, marketplace images, support screenshots, and application portals that ask for exact pixel dimensions. It requires no account, keeps ordinary files local during use, and helps users prepare upload-ready images quickly.",
+    },
+  },
+  {
+    report: "nosignuptools-convert-image-format-no-upload-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/convert-image-format-without-uploading-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Convert+Image+Format+Without+Uploading",
+    payload: {
+      ...common,
+      name: "Convert Image Format Without Uploading by PrintableTools Lab",
+      slug: "convert-image-format-without-uploading-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=convert_image_format_no_upload_2026_06&utm_content=convert_image_format_no_upload_landing",
+      category: "productivity",
+      short_description: "Free no-signup browser image converter for JPG, PNG, and WebP-style workflows.",
+      long_description: "A free browser-based image format converter for upload forms that require JPG, PNG, or a smaller web-friendly image file. It requires no account, keeps ordinary files local during use, and helps users fix invalid image type errors before submitting to portals.",
+    },
+  },
+  {
+    report: "nosignuptools-remove-background-no-upload-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/remove-background-without-uploading-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Remove+Background+Without+Uploading",
+    payload: {
+      ...common,
+      name: "Remove Background Without Uploading by PrintableTools Lab",
+      slug: "remove-background-without-uploading-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/remove-background-no-upload/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=remove_background_no_upload_2026_06&utm_content=remove_background_no_upload_landing",
+      category: "productivity",
+      short_description: "Free no-signup transparent PNG helper for simple image backgrounds.",
+      long_description: "A free browser-based background removal helper for simple product photos, logos, signatures, and profile graphics. It requires no account, keeps ordinary files local during use, and gives users a lightweight transparent PNG workflow before posting or uploading images.",
+    },
+  },
+  {
+    report: "nosignuptools-crop-image-no-upload-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/crop-image-without-uploading-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Crop+Image+Without+Uploading",
+    payload: {
+      ...common,
+      name: "Crop Image Without Uploading by PrintableTools Lab",
+      slug: "crop-image-without-uploading-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/crop-image-no-upload/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=crop_image_no_upload_2026_06&utm_content=crop_image_no_upload_landing",
+      category: "productivity",
+      short_description: "Free no-signup browser crop tool for profile photos, forms, and product images.",
+      long_description: "A free browser-based crop tool for profile photos, document images, support screenshots, marketplace photos, and application portals that require a tighter image area. It requires no account, keeps ordinary files local during use, and helps users prepare cleaner upload-ready images.",
+    },
+  },
+  {
+    report: "nosignuptools-rotate-image-no-upload-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/rotate-image-without-uploading-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Rotate+Image+Without+Uploading",
+    payload: {
+      ...common,
+      name: "Rotate Image Without Uploading by PrintableTools Lab",
+      slug: "rotate-image-without-uploading-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/rotate-image-no-upload/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=rotate_image_no_upload_2026_06&utm_content=rotate_image_no_upload_landing",
+      category: "productivity",
+      short_description: "Free no-signup browser image rotator for sideways photos and scans.",
+      long_description: "A free browser-based image rotator for sideways photos, scans, screenshots, receipts, and document images. It requires no account, keeps ordinary files local during use, and helps users fix orientation before upload or sharing.",
+    },
+  },
+  {
+    report: "nosignuptools-watermark-image-no-upload-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/watermark-image-without-uploading-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Watermark+Image+Without+Uploading",
+    payload: {
+      ...common,
+      name: "Watermark Image Without Uploading by PrintableTools Lab",
+      slug: "watermark-image-without-uploading-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/watermark-image-no-upload/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=watermark_image_no_upload_2026_06&utm_content=watermark_image_no_upload_landing",
+      category: "productivity",
+      short_description: "Free no-signup browser watermark tool for simple image labels.",
+      long_description: "A free browser-based image watermark tool for adding simple text labels, draft marks, source notes, shop names, or proof marks before posting or sharing an image. It requires no account, keeps ordinary files local during use, and gives users a quick lightweight editing step.",
+    },
+  },
 ];
 
 async function main() {
@@ -429,7 +527,7 @@ async function main() {
   for (const item of backlog) {
     const result = await submitOrSkip(item);
     results.push(result);
-    await delay(3000);
+    if (!result.skipped) await delay(3000);
   }
 
   console.log(JSON.stringify({ ok: results.every((item) => item.ok || item.skipped), results }, null, 2));
