@@ -770,6 +770,22 @@ else {
     "Signature 400x200 Under 100KB",
     "Resize Signature 200x100",
   ];
+  const techtoolsExactUploadTitles = [
+    "Photo 480x640 Under 200KB",
+    "Photo 512x512 Under 100KB",
+    "Signature 160x70 Under 20KB",
+    "Signature 250x80 Under 50KB",
+    "Signature 300x60 Under 20KB",
+    "Signature 400x150 Under 50KB",
+    "Photo 150x200 Under 20KB",
+    "Photo 180x240 Under 50KB",
+    "Photo 400x514 Under 100KB",
+    "Photo 600x800 Under 200KB",
+    "Signature 100x50 Under 10KB",
+    "Signature 200x60 Under 20KB",
+    "Signature 256x64 Under 20KB",
+    "Signature 400x200 Under 100KB",
+  ];
   if (!directoryMonitorScript.includes("NoSignupTools overdue invoice reminder listing") || !directoryMonitorScript.includes("Overdue+Invoice+Reminder+Email")) failures.push("Directory monitor missing NoSignupTools overdue invoice reminder submission tracking.");
   if (!directoryMonitorScript.includes("NoSignupTools upload limit fixer listing") || !directoryMonitorScript.includes("Upload+Limit+Fixer")) failures.push("Directory monitor missing NoSignupTools upload limit fixer submission tracking.");
   if (!directoryMonitorScript.includes("NoSignupTools upload error cheatsheet listing") || !directoryMonitorScript.includes("Upload+Error+Cheatsheet")) failures.push("Directory monitor missing NoSignupTools upload error cheatsheet submission tracking.");
@@ -849,6 +865,10 @@ else {
   if (!directoryMonitorScript.includes("TechTools Launchpad signature under 50KB listing") || !directoryMonitorScript.includes("Signature Under 50KB")) failures.push("Directory monitor missing TechTools signature 50KB listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad resize signature 140x60 listing") || !directoryMonitorScript.includes("Resize Signature 140x60")) failures.push("Directory monitor missing TechTools resize signature 140x60 listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad photo 200x230 under 50KB listing") || !directoryMonitorScript.includes("Photo 200x230 Under 50KB")) failures.push("Directory monitor missing TechTools photo 200x230 under 50KB listing tracking.");
+  if (!directoryMonitorScript.includes("techtoolsExactUploadLimitListings")) failures.push("Directory monitor missing data-driven TechTools exact upload-limit retry tracking.");
+  for (const title of techtoolsExactUploadTitles) {
+    if (!directoryMonitorScript.includes(title)) failures.push(`Directory monitor missing TechTools exact upload-limit tracking: ${title}.`);
+  }
   if (!directoryMonitorScript.includes("TechTools Launchpad photo 240x320 under 50KB listing") || !directoryMonitorScript.includes("Photo 240x320 Under 50KB")) failures.push("Directory monitor missing TechTools photo 240x320 under 50KB listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad photo 295x413 under 35KB listing") || !directoryMonitorScript.includes("Photo 295x413 Under 35KB")) failures.push("Directory monitor missing TechTools photo 295x413 under 35KB listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad photo 354x472 under 100KB listing") || !directoryMonitorScript.includes("Photo 354x472 Under 100KB")) failures.push("Directory monitor missing TechTools photo 354x472 under 100KB listing tracking.");
@@ -916,11 +936,32 @@ for (const [reportName, shareUrl, campaign] of [
   }
 }
 const techtoolsLatestExactRateLimitFile = path.join(root, "reports", "techtools-upload-error-backlog-rate-limit.json");
-if (!fs.existsSync(techtoolsLatestExactRateLimitFile)) failures.push("Missing TechTools latest exact upload-limit rate-limit retry report.");
-else {
-  const report = fs.readFileSync(techtoolsLatestExactRateLimitFile, "utf8");
-  for (const pending of ["Photo 480x640 Under 200KB", "Photo 512x512 Under 100KB", "Signature 160x70 Under 20KB", "Signature 250x80 Under 50KB", "Signature 300x60 Under 20KB", "Signature 400x150 Under 50KB"]) {
-    if (!report.includes(pending)) failures.push(`TechTools latest exact upload-limit rate-limit report missing pending retry item: ${pending}.`);
+const techtoolsLatestExactRateLimitReport = fs.existsSync(techtoolsLatestExactRateLimitFile) ? fs.readFileSync(techtoolsLatestExactRateLimitFile, "utf8") : "";
+const techtoolsUploadBacklogScriptFile = path.join(root, "scripts", "submit-techtools-upload-error-backlog.cjs");
+const techtoolsUploadBacklogScript = fs.existsSync(techtoolsUploadBacklogScriptFile) ? fs.readFileSync(techtoolsUploadBacklogScriptFile, "utf8") : "";
+if (!techtoolsLatestExactRateLimitReport && !techtoolsUploadBacklogScript) failures.push("Missing TechTools latest exact upload-limit retry evidence.");
+for (const [pending, reportName, campaign] of [
+  ["Photo 480x640 Under 200KB", "techtools-photo-480x640-200kb-submit.json", "photo_480x640_200kb_2026_06"],
+  ["Photo 512x512 Under 100KB", "techtools-photo-512x512-100kb-submit.json", "photo_512x512_100kb_2026_06"],
+  ["Signature 160x70 Under 20KB", "techtools-signature-160x70-20kb-submit.json", "signature_160x70_20kb_2026_06"],
+  ["Signature 250x80 Under 50KB", "techtools-signature-250x80-50kb-submit.json", "signature_250x80_50kb_2026_06"],
+  ["Signature 300x60 Under 20KB", "techtools-signature-300x60-20kb-submit.json", "signature_300x60_20kb_2026_06"],
+  ["Signature 400x150 Under 50KB", "techtools-signature-400x150-50kb-submit.json", "signature_400x150_50kb_2026_06"],
+  ["Photo 150x200 Under 20KB", "techtools-photo-150x200-20kb-submit.json", "photo_150x200_20kb_2026_06"],
+  ["Photo 180x240 Under 50KB", "techtools-photo-180x240-50kb-submit.json", "photo_180x240_50kb_2026_06"],
+  ["Photo 400x514 Under 100KB", "techtools-photo-400x514-100kb-submit.json", "photo_400x514_100kb_2026_06"],
+  ["Photo 600x800 Under 200KB", "techtools-photo-600x800-200kb-submit.json", "photo_600x800_200kb_2026_06"],
+  ["Signature 100x50 Under 10KB", "techtools-signature-100x50-10kb-submit.json", "signature_100x50_10kb_2026_06"],
+  ["Signature 200x60 Under 20KB", "techtools-signature-200x60-20kb-submit.json", "signature_200x60_20kb_2026_06"],
+  ["Signature 256x64 Under 20KB", "techtools-signature-256x64-20kb-submit.json", "signature_256x64_20kb_2026_06"],
+  ["Signature 400x200 Under 100KB", "techtools-signature-400x200-100kb-submit.json", "signature_400x200_100kb_2026_06"],
+]) {
+  const reportFile = path.join(root, "reports", reportName);
+  if (fs.existsSync(reportFile)) {
+    const report = fs.readFileSync(reportFile, "utf8");
+    if (!report.includes(campaign) || !report.includes("https://techtools.cz/tools/launchpad/?tool=")) failures.push(`TechTools exact upload-limit report missing live evidence: ${reportName}`);
+  } else if (!techtoolsLatestExactRateLimitReport.includes(pending) && (!techtoolsUploadBacklogScript.includes(pending) || !techtoolsUploadBacklogScript.includes(campaign))) {
+    failures.push(`TechTools exact upload-limit item is neither live, rate-limited, nor queued for retry: ${pending}.`);
   }
 }
 const techtoolsResumePdfTooLargeReportFile = path.join(root, "reports", "techtools-resume-pdf-too-large-upload-fix-submit.json");
@@ -1043,11 +1084,10 @@ for (const [label, fileName, campaign, liveUrl, title] of [
     if (!report.includes(liveUrl) || !report.includes(campaign) || !report.includes(title)) failures.push(`TechTools ${label} submission report missing live evidence.`);
   }
 }
-const techtoolsUploadBacklogScriptFile = path.join(root, "scripts", "submit-techtools-upload-error-backlog.cjs");
-if (!fs.existsSync(techtoolsUploadBacklogScriptFile)) failures.push("Missing TechTools upload-error backlog retry script.");
+if (!techtoolsUploadBacklogScript) failures.push("Missing TechTools upload-error backlog retry script.");
 else {
-  const script = fs.readFileSync(techtoolsUploadBacklogScriptFile, "utf8");
-  if (!script.includes("Image Dimensions 600x600 Upload Fix") || !script.includes("PDF Not Accepted JPG Required Fix") || !script.includes("Email Attachment Too Large PDF Fix") || !script.includes("PDF Under 2MB Upload Fix") || !script.includes("Resume PDF Under 2MB Upload Fix") || !script.includes("Document Under 5MB Upload Fix") || !script.includes("PDF Size Reducer") || !script.includes("Compress PDF to 2MB") || !script.includes("Compress PDF to 5MB") || !script.includes("Compress PDF Without Uploading") || !script.includes("PDF to JPG Without Uploading") || !script.includes("JPG to PDF Without Uploading") || !script.includes("Extract Text From PDF Without Uploading") || !script.includes("Merge PDF Without Uploading") || !script.includes("Split PDF Without Uploading") || !script.includes("rateLimited") || !script.includes("techtools-upload-error-backlog-rate-limit.json")) failures.push("TechTools upload-error backlog retry script missing remaining high-intent listing payloads or rate-limit handling.");
+  const script = techtoolsUploadBacklogScript;
+  if (!script.includes("Image Dimensions 600x600 Upload Fix") || !script.includes("PDF Not Accepted JPG Required Fix") || !script.includes("Email Attachment Too Large PDF Fix") || !script.includes("PDF Under 2MB Upload Fix") || !script.includes("Resume PDF Under 2MB Upload Fix") || !script.includes("Document Under 5MB Upload Fix") || !script.includes("PDF Size Reducer") || !script.includes("Compress PDF to 2MB") || !script.includes("Compress PDF to 5MB") || !script.includes("Compress PDF Without Uploading") || !script.includes("PDF to JPG Without Uploading") || !script.includes("JPG to PDF Without Uploading") || !script.includes("Extract Text From PDF Without Uploading") || !script.includes("Merge PDF Without Uploading") || !script.includes("Split PDF Without Uploading") || !script.includes("Photo 150x200 Under 20KB") || !script.includes("Signature 400x200 Under 100KB") || !script.includes("rateLimited") || !script.includes("techtools-upload-error-backlog-rate-limit.json")) failures.push("TechTools upload-error backlog retry script missing remaining high-intent listing payloads or rate-limit handling.");
 }
 for (const [name, reportName, campaign, reviewUrl] of [
   ["PDF under 2MB", "nosignuptools-pdf-under-2mb-upload-fix-submit.json", "pdf_under_2mb_upload_fix_2026_06", "https://nosignuptools.com/tools/pdf-under-2mb-upload-fix-by-printabletools-lab"],

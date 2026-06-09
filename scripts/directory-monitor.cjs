@@ -98,6 +98,23 @@ const freenosignupUploadFixListings = [
   ["Resize Signature 200x100", "exact 200 x 100 px signature resize path"],
 ];
 
+const techtoolsExactUploadLimitListings = [
+  ["Photo 480x640 Under 200KB", "exact 480 x 640 px and 200KB photo path"],
+  ["Photo 512x512 Under 100KB", "exact 512 x 512 px and 100KB photo path"],
+  ["Signature 160x70 Under 20KB", "exact 160 x 70 px and 20KB signature path"],
+  ["Signature 250x80 Under 50KB", "exact 250 x 80 px and 50KB signature path"],
+  ["Signature 300x60 Under 20KB", "exact 300 x 60 px and 20KB signature path"],
+  ["Signature 400x150 Under 50KB", "exact 400 x 150 px and 50KB signature path"],
+  ["Photo 150x200 Under 20KB", "exact 150 x 200 px and 20KB photo path"],
+  ["Photo 180x240 Under 50KB", "exact 180 x 240 px and 50KB photo path"],
+  ["Photo 400x514 Under 100KB", "exact 400 x 514 px and 100KB photo path"],
+  ["Photo 600x800 Under 200KB", "exact 600 x 800 px and 200KB photo path"],
+  ["Signature 100x50 Under 10KB", "exact 100 x 50 px and 10KB signature path"],
+  ["Signature 200x60 Under 20KB", "exact 200 x 60 px and 20KB signature path"],
+  ["Signature 256x64 Under 20KB", "exact 256 x 64 px and 20KB signature path"],
+  ["Signature 400x200 Under 100KB", "exact 400 x 200 px and 100KB signature path"],
+];
+
 const directories = [
   {
     name: "Zearches",
@@ -699,6 +716,14 @@ const directories = [
     submittedAt: "2026-06-09",
     reviewWindow: "auto-approved API listing for the common 35 x 45 mm passport-style photo workflow",
   },
+  ...techtoolsExactUploadLimitListings.map(([title, reason]) => ({
+    name: `TechTools Launchpad ${title.toLowerCase()} listing`,
+    url: "https://techtools.cz/tools/launchpad/",
+    searchUrl: "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
+    expected: [siteHost, title],
+    submittedAt: "2026-06-09",
+    reviewWindow: `auto-approved API listing after rate-limit retry for the ${reason}`,
+  })),
   {
     name: "NoSignupTools",
     url: "https://nosignuptools.com/",
