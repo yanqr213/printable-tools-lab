@@ -75,6 +75,9 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - TechTools Signature Under 20KB listing: https://techtools.cz/tools/launchpad/?tool=215
 - TechTools Passport Photo Size Fixer listing: https://techtools.cz/tools/launchpad/?tool=216
 - TechTools Resize Photo 413x531 listing: https://techtools.cz/tools/launchpad/?tool=217
+- TechTools Signature Under 50KB listing: https://techtools.cz/tools/launchpad/?tool=218
+- TechTools Resize Signature 140x60 listing: https://techtools.cz/tools/launchpad/?tool=219
+- TechTools Photo 200x230 Under 50KB listing: https://techtools.cz/tools/launchpad/?tool=220
 - NoSignupTools Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_limit_2026_06&utm_content=upload_limit_fixer
 - NoSignupTools Upload Error Cheatsheet listing: https://printable-tools-lab.pages.dev/upload-error-cheatsheet?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_error_cheatsheet_2026_06&utm_content=upload_error_cheatsheet
 - NoSignupTools Image Dimensions 600x600 Upload Fix listing: https://printable-tools-lab.pages.dev/image-dimensions-600x600?utm_source=nosignuptools&utm_medium=directory&utm_campaign=image_dimensions_600x600_fix_2026_06&utm_content=image_dimensions_600x600_landing

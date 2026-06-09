@@ -468,6 +468,48 @@ const backlog = [
       submitted_by: "Codex traffic acquisition run 2026-06-09 resize photo 413x531 upload-fix landing path",
     },
   },
+  {
+    report: "techtools-signature-under-50kb-submit.json",
+    payload: {
+      name: "Signature Under 50KB by PrintableTools Lab",
+      tagline: "Free no-signup signature image compressor for 50KB upload limits.",
+      description: "PrintableTools Lab Signature Under 50KB helps people blocked by scanned signature, school portal, job application, admin form, and document upload caps. The page opens the browser image-to-KB compressor with a 50KB target, keeps ordinary files local during use, and includes an optional public-safe $9 Upload Limit Fix Plan request for exact settings and fallback steps after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/signature-under-50kb/?utm_source=techtools&utm_medium=directory&utm_campaign=signature_50kb_upload_fix_2026_06&utm_content=signature_under_50kb_landing",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 signature 50KB upload-fix landing path",
+    },
+  },
+  {
+    report: "techtools-resize-signature-140x60-submit.json",
+    payload: {
+      name: "Resize Signature 140x60 by PrintableTools Lab",
+      tagline: "Free no-signup 140 x 60 signature resize workflow for upload forms.",
+      description: "PrintableTools Lab Resize Signature 140x60 helps people blocked when an exam, job, school, or admin upload page requires an exact 140 x 60 px signature image. The page opens the browser image resizer with width 140, height 60, and contain fit settings, keeps ordinary files local, and includes an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/resize-signature-140x60/?utm_source=techtools&utm_medium=directory&utm_campaign=resize_signature_140x60_2026_06&utm_content=resize_signature_140x60_landing",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 resize signature 140x60 upload-fix landing path",
+    },
+  },
+  {
+    report: "techtools-photo-200x230-50kb-submit.json",
+    payload: {
+      name: "Photo 200x230 Under 50KB by PrintableTools Lab",
+      tagline: "Free no-signup 200 x 230 photo and 50KB upload workflow.",
+      description: "PrintableTools Lab Photo 200x230 Under 50KB helps people blocked by exam, job, profile, school, and application portals that require both exact 200 x 230 px dimensions and a small 50KB file-size cap. The page points visitors through local browser resize and compression steps, then offers an optional public-safe $9 Upload Limit Fix Plan request without asking for private files, IDs, logins, or payment details.",
+      url: "https://printable-tools-lab.pages.dev/photo-200x230-50kb/?utm_source=techtools&utm_medium=directory&utm_campaign=photo_200x230_50kb_2026_06&utm_content=photo_200x230_50kb_landing",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 photo 200x230 50KB upload-fix landing path",
+    },
+  },
 ];
 
 async function main() {
