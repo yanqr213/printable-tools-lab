@@ -10042,6 +10042,8 @@ ${paragraphs.join("\n")}
       const totalGenerations = (totals.generate_pdf || 0) + (totals.generate_file || 0);
       const totalGameIntent = (totals.game_play_intent || 0) + (totals.game_fullscreen_open || 0) + (totals.game_embed_open || 0);
       const sponsorInvoiceRequests = data.sponsorInvoiceRequests || totals.sponsor_invoice_request || 0;
+      const serviceInvoiceRequests = totals.service_invoice_request || 0;
+      const totalInvoiceRequests = sponsorInvoiceRequests + serviceInvoiceRequests;
       const serviceLeadCount = Number.isFinite(Number(serviceLeadCheck?.leadCount)) ? Number(serviceLeadCheck.leadCount) : 0;
       const publicServiceRequestCount = Number.isFinite(Number(servicePublicRequests?.publicRequestCount)) ? Number(servicePublicRequests.publicRequestCount) : 0;
       const dataQualityNotice = data.dataQuality && data.dataQuality !== "rollup"
@@ -10057,7 +10059,8 @@ ${paragraphs.join("\n")}
           <div class="metric-tile"><strong>${data.sponsorLeads || 0}</strong><span>sponsor leads</span></div>
           <div class="metric-tile"><strong>${serviceLeadCount}</strong><span>service leads</span></div>
           <div class="metric-tile"><strong>${publicServiceRequestCount}</strong><span>public service issues</span></div>
-          <div class="metric-tile"><strong>${sponsorInvoiceRequests}</strong><span>invoice requests</span></div>
+          <div class="metric-tile"><strong>${totalInvoiceRequests}</strong><span>invoice requests</span></div>
+          <div class="metric-tile"><strong>${serviceInvoiceRequests}</strong><span>service invoices</span></div>
           <div class="metric-tile"><strong>${totalGameIntent}</strong><span>game play signals</span></div>
         </div>
         ${checkoutActivationHtml(totals)}
@@ -10071,13 +10074,14 @@ ${paragraphs.join("\n")}
         </div>
         <div class="panel">
           <h2>Global source mix</h2>
-          ${opsTable(["Source", "Views", "Today", "Downloads", "Depth", "Sponsor intent", "Game intent"], activeRows(data.sources || [], sourceScore).slice(0, 12).map((row) => [
+          ${opsTable(["Source", "Views", "Today", "Downloads", "Invoice", "Service", "Sponsor", "Game"], activeRows(data.sources || [], sourceScore).slice(0, 12).map((row) => [
             row.source,
             row.page_view || 0,
             row.today_page_view || 0,
             (row.download_pdf || 0) + (row.download_file || 0),
-            (row.free_tool_depth || 0) + (row.guide_depth || 0),
-            row.sponsor_request_intent || 0,
+            (row.service_invoice_request || 0) + (row.sponsor_invoice_request || 0),
+            (row.service_request_intent || 0) + (row.service_checkout_click || 0) + (row.seller_checkout_intent || 0) + (row.seller_checkout_click || 0),
+            (row.sponsor_request_intent || 0) + (row.sponsor_lead_submit || 0),
             (row.game_play_intent || 0) + (row.game_fullscreen_open || 0) + (row.game_embed_open || 0),
           ]))}
         </div>
@@ -11124,8 +11128,9 @@ ${paragraphs.join("\n")}
     const summary = project.summary || {};
     const totals = project.totals || {};
     const isGameProject = project.id === "pocket-arcade-shelf";
-    const primarySignal = isGameProject ? (summary.gamePlayIntent || 0) : (summary.sponsorLeads || 0);
-    const primaryLabel = isGameProject ? "play intent" : "sponsor leads";
+    const primary = primaryProjectSignal(summary, isGameProject);
+    const primarySignal = primary.value;
+    const primaryLabel = primary.label;
     const sourceRows = activeRows(project.sources || [], sourceScore).slice(0, 10);
     const pathRows = projectPathRows(project.paths || []).slice(0, 12);
     const toolRows = activeRows(project.tools || [], toolScore).slice(0, 12);
@@ -11147,6 +11152,7 @@ ${paragraphs.join("\n")}
           <div class="metric-tile"><strong>${summary.todayDownloads || 0}</strong><span>today downloads</span></div>
           <div class="metric-tile"><strong>${summary.generations || 0}</strong><span>generations</span></div>
           <div class="metric-tile"><strong>${summary.todayGenerations || summary.todayGamePlayIntent || 0}</strong><span>${isGameProject ? "today plays" : "today generations"}</span></div>
+          <div class="metric-tile"><strong>${summary.serviceInvoiceRequests || summary.gameEmbedOpen || 0}</strong><span>${isGameProject ? "embed opens" : "service invoices"}</span></div>
           <div class="metric-tile"><strong>${summary.commercialIntent || summary.gameFullscreenOpen || 0}</strong><span>${isGameProject ? "fullscreen opens" : "commercial intent"}</span></div>
           <div class="metric-tile"><strong>${summary.todayCommercialIntent || summary.todayGameFullscreenOpen || 0}</strong><span>${isGameProject ? "today fullscreen" : "today commercial"}</span></div>
         </div>
@@ -11154,30 +11160,36 @@ ${paragraphs.join("\n")}
         <div class="ops-detail-grid">
           <section>
             <h3>Sources</h3>
-            ${opsTable(["Source", "Views", "Today", "Intent", "Today intent"], sourceRows.map((row) => [
+            ${opsTable(["Source", "Views", "Today", "Invoice", "Service", "Sponsor", "Game"], sourceRows.map((row) => [
               row.source,
               row.page_view || 0,
               row.today_page_view || 0,
-              (row.sponsor_request_intent || 0) + (row.game_play_intent || 0) + (row.game_fullscreen_open || 0) + (row.game_embed_open || 0),
-              (row.today_sponsor_request_intent || 0) + (row.today_game_play_intent || 0) + (row.today_game_fullscreen_open || 0) + (row.today_game_embed_open || 0),
+              (row.service_invoice_request || 0) + (row.sponsor_invoice_request || 0),
+              (row.service_request_intent || 0) + (row.service_checkout_click || 0) + (row.seller_checkout_intent || 0) + (row.seller_checkout_click || 0),
+              (row.sponsor_request_intent || 0) + (row.sponsor_lead_submit || 0),
+              (row.game_play_intent || 0) + (row.game_fullscreen_open || 0) + (row.game_embed_open || 0),
             ]))}
           </section>
           <section>
             <h3>Pages</h3>
-            ${opsTable(["Path", "Views", "Today", "Leads", "Intent"], pathRows.map((row) => [
+            ${opsTable(["Path", "Views", "Today", "Invoice", "Service", "Leads", "Intent"], pathRows.map((row) => [
               row.path,
               row.page_view || 0,
               row.today_page_view || 0,
-              (row.service_request_intent || 0) + (row.audit_request_intent || 0) + (row.sponsor_lead_submit || 0) + (row.sponsor_invoice_request || 0),
+              (row.service_invoice_request || 0) + (row.sponsor_invoice_request || 0),
+              (row.service_request_intent || 0) + (row.service_checkout_click || 0) + (row.seller_checkout_intent || 0) + (row.seller_checkout_click || 0),
+              (row.audit_request_intent || 0) + (row.sponsor_lead_submit || 0),
               pathIntentScore(row),
             ]))}
           </section>
           <section>
             <h3>${isGameProject ? "Games" : "Tools and offers"}</h3>
-            ${opsTable([isGameProject ? "Game" : "Tool", "Score", "Today", "Downloads"], toolRows.map((row) => [
+            ${opsTable([isGameProject ? "Game" : "Tool", "Score", "Today", "Invoice", "Service", "Downloads"], toolRows.map((row) => [
               row.tool,
               toolScore(row),
               todayToolScore(row),
+              (row.service_invoice_request || 0) + (row.sponsor_invoice_request || 0),
+              (row.service_request_intent || 0) + (row.service_checkout_click || 0) + (row.seller_checkout_intent || 0) + (row.seller_checkout_click || 0),
               (row.download_pdf || 0) + (row.download_file || 0),
             ]))}
           </section>
@@ -11196,9 +11208,15 @@ ${paragraphs.join("\n")}
       ["download_pdf", "PDF downloads"],
       ["download_file", "File downloads"],
       ["free_tool_depth", "Free-tool depth"],
+      ["seller_checkout_intent", "Seller checkout intent"],
+      ["seller_checkout_click", "Seller checkout clicks"],
+      ["service_checkout_click", "Service checkout clicks"],
+      ["service_request_intent", "Service requests"],
+      ["service_invoice_request", "Service invoice requests"],
+      ["audit_request_intent", "Audit requests"],
       ["sponsor_request_intent", "Sponsor intent"],
       ["sponsor_lead_submit", "Sponsor leads"],
-      ["sponsor_invoice_request", "Invoice requests"],
+      ["sponsor_invoice_request", "Sponsor invoice requests"],
       ["game_play_intent", "Game play intent"],
       ["game_fullscreen_open", "Fullscreen opens"],
       ["game_embed_open", "Embed opens"],
@@ -11226,7 +11244,7 @@ ${paragraphs.join("\n")}
     return (row.page_view || 0)
       + ((row.download_pdf || 0) + (row.download_file || 0)) * 4
       + ((row.free_tool_depth || 0) + (row.guide_depth || 0)) * 3
-      + (row.sponsor_request_intent || 0) * 5
+      + sourceIntentScore(row) * 5
       + ((row.game_play_intent || 0) + (row.game_fullscreen_open || 0) + (row.game_embed_open || 0)) * 4;
   }
 
@@ -11236,9 +11254,14 @@ ${paragraphs.join("\n")}
       + (row.free_tool_depth || 0) * 3
       + (row.limit_hit || 0)
       + (row.seller_checkout_intent || 0) * 4
+      + (row.seller_checkout_click || 0) * 5
+      + (row.service_checkout_click || 0) * 5
       + (row.service_request_intent || 0) * 4
+      + (row.service_invoice_request || 0) * 8
       + (row.audit_request_intent || 0) * 4
       + (row.sponsor_request_intent || 0) * 5
+      + (row.sponsor_lead_submit || 0) * 7
+      + (row.sponsor_invoice_request || 0) * 8
       + ((row.game_play_intent || 0) + (row.game_fullscreen_open || 0) + (row.game_embed_open || 0)) * 4;
   }
 
@@ -11247,6 +11270,22 @@ ${paragraphs.join("\n")}
       + (row.seller_checkout_click || 0)
       + (row.service_checkout_click || 0)
       + (row.service_request_intent || 0)
+      + (row.service_invoice_request || 0)
+      + (row.audit_request_intent || 0)
+      + (row.sponsor_request_intent || 0)
+      + (row.sponsor_lead_submit || 0)
+      + (row.sponsor_invoice_request || 0)
+      + (row.game_play_intent || 0)
+      + (row.game_fullscreen_open || 0)
+      + (row.game_embed_open || 0);
+  }
+
+  function sourceIntentScore(row) {
+    return (row.seller_checkout_intent || 0)
+      + (row.seller_checkout_click || 0)
+      + (row.service_checkout_click || 0)
+      + (row.service_request_intent || 0)
+      + (row.service_invoice_request || 0)
       + (row.audit_request_intent || 0)
       + (row.sponsor_request_intent || 0)
       + (row.sponsor_lead_submit || 0)
@@ -11272,6 +11311,10 @@ ${paragraphs.join("\n")}
       "/overdue-invoice-reminder-email/",
       "/tools/invoice-followup-email/",
       "/tools/invoice-generator/",
+      "/upload-limit-fix-plan/",
+      "/upload-error-cheatsheet/",
+      "/tools/compress-image-to-kb/",
+      "/upload-limit-fixer/",
       "/sponsor-starter-review/",
       "/sponsor/",
     ];
@@ -11285,10 +11328,24 @@ ${paragraphs.join("\n")}
       + (row.today_free_tool_depth || 0) * 3
       + (row.today_limit_hit || 0)
       + (row.today_seller_checkout_intent || 0) * 4
+      + (row.today_seller_checkout_click || 0) * 5
+      + (row.today_service_checkout_click || 0) * 5
       + (row.today_service_request_intent || 0) * 4
+      + (row.today_service_invoice_request || 0) * 8
       + (row.today_audit_request_intent || 0) * 4
       + (row.today_sponsor_request_intent || 0) * 5
+      + (row.today_sponsor_lead_submit || 0) * 7
+      + (row.today_sponsor_invoice_request || 0) * 8
       + ((row.today_game_play_intent || 0) + (row.today_game_fullscreen_open || 0) + (row.today_game_embed_open || 0)) * 4;
+  }
+
+  function primaryProjectSignal(summary, isGameProject) {
+    if (isGameProject) return { value: summary.gamePlayIntent || 0, label: "play intent" };
+    if (summary.serviceInvoiceRequests) return { value: summary.serviceInvoiceRequests, label: "service invoices" };
+    if (summary.sponsorInvoiceRequests) return { value: summary.sponsorInvoiceRequests, label: "sponsor invoices" };
+    if (summary.serviceRequestIntent) return { value: summary.serviceRequestIntent, label: "service intent" };
+    if (summary.sponsorLeads) return { value: summary.sponsorLeads, label: "sponsor leads" };
+    return { value: summary.commercialIntent || 0, label: "commercial intent" };
   }
 
   function opsTable(headers, rows) {
