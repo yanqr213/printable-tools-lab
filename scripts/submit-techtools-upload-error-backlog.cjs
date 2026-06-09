@@ -77,6 +77,48 @@ const backlog = [
     },
   },
   {
+    report: "techtools-pdf-size-reducer-submit.json",
+    payload: {
+      name: "PDF Size Reducer by PrintableTools Lab",
+      tagline: "Free no-signup PDF size reducer for exact upload limits.",
+      description: "PrintableTools Lab PDF Size Reducer helps people blocked by PDF file-size limits on job, school, support, exam, admin, email, and application portals. It points to a local browser PDF compressor with 500KB, 1MB, 2MB, and 5MB target paths, keeps ordinary files on the device, and includes an optional public-safe $9 Upload Limit Fix Plan request for exact settings and fallback steps after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/pdf-size-reducer/?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_size_reducer_2026_06&utm_content=pdf_size_reducer_hub",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 PDF size reducer hub path",
+    },
+  },
+  {
+    report: "techtools-compress-pdf-to-2mb-submit.json",
+    payload: {
+      name: "Compress PDF to 2MB by PrintableTools Lab",
+      tagline: "Free no-signup PDF compressor for common 2MB upload limits.",
+      description: "PrintableTools Lab Compress PDF to 2MB helps people blocked by 2MB PDF limits on proposal, application, school, support, and document portals. It opens the browser PDF compressor with the 2MB target selected, keeps ordinary files local, and offers an optional public-safe $9 Upload Limit Fix Plan request for exact settings and fallback steps after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/compress-pdf-to-2mb/?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_2mb_2026_06&utm_content=compress_pdf_to_2mb_landing",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 compress PDF to 2MB high-intent landing path",
+    },
+  },
+  {
+    report: "techtools-compress-pdf-to-5mb-submit.json",
+    payload: {
+      name: "Compress PDF to 5MB by PrintableTools Lab",
+      tagline: "Free no-signup PDF compressor for readable 5MB upload limits.",
+      description: "PrintableTools Lab Compress PDF to 5MB helps people blocked by 5MB PDF limits on scanned documents, support tickets, email attachments, application portals, and admin upload pages. It opens the browser PDF compressor with the 5MB target selected, keeps ordinary files local, and offers an optional public-safe $9 Upload Limit Fix Plan request for exact settings and fallback steps after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/compress-pdf-to-5mb/?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_5mb_2026_06&utm_content=compress_pdf_to_5mb_landing",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 compress PDF to 5MB high-intent landing path",
+    },
+  },
+  {
     report: "techtools-pdf-under-2mb-upload-fix-submit.json",
     payload: {
       name: "PDF Under 2MB Upload Fix by PrintableTools Lab",

@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-09T03:47:42.246Z",
+  "generatedAt": "2026-06-09T03:55:22.634Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 50,
+  "listedCount": 53,
   "pendingCount": 31,
   "errorCount": 1,
   "results": [
@@ -78,7 +78,7 @@
           "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
           "ok": true,
           "status": 200,
-          "bytes": 101037,
+          "bytes": 101914,
           "matched": true
         }
       ]
@@ -920,6 +920,72 @@
       ]
     },
     {
+      "name": "TechTools Launchpad PDF size reducer listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=205",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/205",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "PDF Size Reducer"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the PDF size reducer hub path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/205",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/205",
+          "ok": true,
+          "status": 200,
+          "bytes": 1224,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad compress PDF to 2MB listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=206",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/206",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress PDF to 2MB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the PDF 2MB target-size landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/206",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/206",
+          "ok": true,
+          "status": 200,
+          "bytes": 1210,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad compress PDF to 5MB listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=207",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/207",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress PDF to 5MB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the PDF 5MB target-size landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/207",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/207",
+          "ok": true,
+          "status": 200,
+          "bytes": 1250,
+          "matched": true
+        }
+      ]
+    },
+    {
       "name": "NoSignupTools",
       "url": "https://nosignuptools.com/",
       "searchUrl": "https://nosignuptools.com/?q=PrintableTools+Lab",
@@ -971,7 +1037,7 @@
           "url": "https://nosignuptools.com/tools/overdue-invoice-reminder-email-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20081,
+          "bytes": 20124,
           "matched": false
         }
       ]
@@ -1116,7 +1182,7 @@
           "url": "https://nosignuptools.com/tools/compress-image-to-kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20051,
+          "bytes": 20094,
           "matched": false
         }
       ]
@@ -1174,7 +1240,7 @@
           "url": "https://nosignuptools.com/tools/pdf-under-2mb-upload-fix-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20063,
+          "bytes": 20106,
           "matched": false
         }
       ]
@@ -1348,7 +1414,7 @@
           "url": "https://nosignuptools.com/tools/compress-image-to-200kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20103,
+          "bytes": 20060,
           "matched": false
         }
       ]
@@ -2101,7 +2167,7 @@
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 298678,
+          "bytes": 298891,
           "matched": true
         },
         {

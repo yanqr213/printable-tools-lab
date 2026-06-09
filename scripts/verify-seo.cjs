@@ -675,6 +675,9 @@ else {
   if (!directoryMonitorScript.includes("TechTools Launchpad PDF under 5MB upload fix listing") || !directoryMonitorScript.includes("PDF Under 5MB Upload Fix")) failures.push("Directory monitor missing TechTools PDF under 5MB upload fix listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad resume PDF under 2MB upload fix listing") || !directoryMonitorScript.includes("Resume PDF Under 2MB Upload Fix")) failures.push("Directory monitor missing TechTools resume PDF under 2MB upload fix listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad document under 5MB upload fix listing") || !directoryMonitorScript.includes("Document Under 5MB Upload Fix")) failures.push("Directory monitor missing TechTools document under 5MB upload fix listing tracking.");
+  if (!directoryMonitorScript.includes("TechTools Launchpad PDF size reducer listing") || !directoryMonitorScript.includes("PDF Size Reducer")) failures.push("Directory monitor missing TechTools PDF size reducer listing tracking.");
+  if (!directoryMonitorScript.includes("TechTools Launchpad compress PDF to 2MB listing") || !directoryMonitorScript.includes("Compress PDF to 2MB")) failures.push("Directory monitor missing TechTools compress PDF to 2MB listing tracking.");
+  if (!directoryMonitorScript.includes("TechTools Launchpad compress PDF to 5MB listing") || !directoryMonitorScript.includes("Compress PDF to 5MB")) failures.push("Directory monitor missing TechTools compress PDF to 5MB listing tracking.");
   if (!directoryMonitorScript.includes("NoLogin.tools upload error cheatsheet listing") || !directoryMonitorScript.includes("Upload+Error+Cheatsheet")) failures.push("Directory monitor missing NoLogin upload error cheatsheet submission tracking.");
   if (!directoryMonitorScript.includes("expected.every")) failures.push("Directory monitor should require all expected listing markers to avoid search-query echo false positives.");
 }
@@ -780,11 +783,29 @@ else {
   const report = fs.readFileSync(techtoolsDocumentUnder5mbReportFile, "utf8");
   if (!report.includes("https://techtools.cz/tools/launchpad/?tool=204") || !report.includes("document_under_5mb_upload_fix_2026_06") || !report.includes("Document Under 5MB Upload Fix")) failures.push("TechTools document under 5MB upload-fix submission report missing live evidence.");
 }
+const techtoolsPdfSizeReducerReportFile = path.join(root, "reports", "techtools-pdf-size-reducer-submit.json");
+if (!fs.existsSync(techtoolsPdfSizeReducerReportFile)) failures.push("Missing TechTools PDF size reducer submission evidence report.");
+else {
+  const report = fs.readFileSync(techtoolsPdfSizeReducerReportFile, "utf8");
+  if (!report.includes("https://techtools.cz/tools/launchpad/?tool=205") || !report.includes("pdf_size_reducer_2026_06") || !report.includes("PDF Size Reducer")) failures.push("TechTools PDF size reducer submission report missing live evidence.");
+}
+const techtoolsCompressPdf2mbReportFile = path.join(root, "reports", "techtools-compress-pdf-to-2mb-submit.json");
+if (!fs.existsSync(techtoolsCompressPdf2mbReportFile)) failures.push("Missing TechTools compress PDF to 2MB submission evidence report.");
+else {
+  const report = fs.readFileSync(techtoolsCompressPdf2mbReportFile, "utf8");
+  if (!report.includes("https://techtools.cz/tools/launchpad/?tool=206") || !report.includes("pdf_2mb_2026_06") || !report.includes("Compress PDF to 2MB")) failures.push("TechTools compress PDF to 2MB submission report missing live evidence.");
+}
+const techtoolsCompressPdf5mbReportFile = path.join(root, "reports", "techtools-compress-pdf-to-5mb-submit.json");
+if (!fs.existsSync(techtoolsCompressPdf5mbReportFile)) failures.push("Missing TechTools compress PDF to 5MB submission evidence report.");
+else {
+  const report = fs.readFileSync(techtoolsCompressPdf5mbReportFile, "utf8");
+  if (!report.includes("https://techtools.cz/tools/launchpad/?tool=207") || !report.includes("pdf_5mb_2026_06") || !report.includes("Compress PDF to 5MB")) failures.push("TechTools compress PDF to 5MB submission report missing live evidence.");
+}
 const techtoolsUploadBacklogScriptFile = path.join(root, "scripts", "submit-techtools-upload-error-backlog.cjs");
 if (!fs.existsSync(techtoolsUploadBacklogScriptFile)) failures.push("Missing TechTools upload-error backlog retry script.");
 else {
   const script = fs.readFileSync(techtoolsUploadBacklogScriptFile, "utf8");
-  if (!script.includes("Image Dimensions 600x600 Upload Fix") || !script.includes("PDF Not Accepted JPG Required Fix") || !script.includes("Email Attachment Too Large PDF Fix") || !script.includes("PDF Under 2MB Upload Fix") || !script.includes("Resume PDF Under 2MB Upload Fix") || !script.includes("Document Under 5MB Upload Fix") || !script.includes("rateLimited") || !script.includes("techtools-upload-error-backlog-rate-limit.json")) failures.push("TechTools upload-error backlog retry script missing remaining high-intent listing payloads or rate-limit handling.");
+  if (!script.includes("Image Dimensions 600x600 Upload Fix") || !script.includes("PDF Not Accepted JPG Required Fix") || !script.includes("Email Attachment Too Large PDF Fix") || !script.includes("PDF Under 2MB Upload Fix") || !script.includes("Resume PDF Under 2MB Upload Fix") || !script.includes("Document Under 5MB Upload Fix") || !script.includes("PDF Size Reducer") || !script.includes("Compress PDF to 2MB") || !script.includes("Compress PDF to 5MB") || !script.includes("rateLimited") || !script.includes("techtools-upload-error-backlog-rate-limit.json")) failures.push("TechTools upload-error backlog retry script missing remaining high-intent listing payloads or rate-limit handling.");
 }
 for (const [name, reportName, campaign, reviewUrl] of [
   ["PDF under 2MB", "nosignuptools-pdf-under-2mb-upload-fix-submit.json", "pdf_under_2mb_upload_fix_2026_06", "https://nosignuptools.com/tools/pdf-under-2mb-upload-fix-by-printabletools-lab"],
@@ -1262,6 +1283,9 @@ else {
   if (!html.includes("TechTools PDF Under 5MB Upload Fix") || !html.includes("https://techtools.cz/tools/launchpad/?tool=202")) failures.push("Directory submission pack missing TechTools PDF under 5MB live listing.");
   if (!html.includes("TechTools Resume PDF Under 2MB Upload Fix") || !html.includes("https://techtools.cz/tools/launchpad/?tool=203")) failures.push("Directory submission pack missing TechTools resume PDF under 2MB live listing.");
   if (!html.includes("TechTools Document Under 5MB Upload Fix") || !html.includes("https://techtools.cz/tools/launchpad/?tool=204")) failures.push("Directory submission pack missing TechTools document under 5MB live listing.");
+  if (!html.includes("TechTools PDF Size Reducer") || !html.includes("https://techtools.cz/tools/launchpad/?tool=205")) failures.push("Directory submission pack missing TechTools PDF size reducer live listing.");
+  if (!html.includes("TechTools Compress PDF to 2MB") || !html.includes("https://techtools.cz/tools/launchpad/?tool=206")) failures.push("Directory submission pack missing TechTools compress PDF to 2MB live listing.");
+  if (!html.includes("TechTools Compress PDF to 5MB") || !html.includes("https://techtools.cz/tools/launchpad/?tool=207")) failures.push("Directory submission pack missing TechTools compress PDF to 5MB live listing.");
   if (!html.includes("NoLogin.tools Upload Error Cheatsheet") || !html.includes("https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet")) failures.push("Directory submission pack missing NoLogin upload error cheatsheet submission.");
   if (!html.includes("NoSignupTools Upload Limit Fixer") || !html.includes("https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools upload limit fixer submission.");
   if (!html.includes("NoSignupTools Upload Error Cheatsheet") || !html.includes("https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools upload error cheatsheet submission.");
@@ -1782,6 +1806,9 @@ else {
   if (!distribution.includes("TechTools PDF Under 5MB Upload Fix listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=202")) failures.push("DISTRIBUTION.md missing TechTools PDF under 5MB live listing.");
   if (!distribution.includes("TechTools Resume PDF Under 2MB Upload Fix listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=203")) failures.push("DISTRIBUTION.md missing TechTools resume PDF under 2MB live listing.");
   if (!distribution.includes("TechTools Document Under 5MB Upload Fix listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=204")) failures.push("DISTRIBUTION.md missing TechTools document under 5MB live listing.");
+  if (!distribution.includes("TechTools PDF Size Reducer listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=205")) failures.push("DISTRIBUTION.md missing TechTools PDF size reducer live listing.");
+  if (!distribution.includes("TechTools Compress PDF to 2MB listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=206")) failures.push("DISTRIBUTION.md missing TechTools compress PDF to 2MB live listing.");
+  if (!distribution.includes("TechTools Compress PDF to 5MB listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=207")) failures.push("DISTRIBUTION.md missing TechTools compress PDF to 5MB live listing.");
   if (!distribution.includes("NoLogin.tools Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing NoLogin upload error cheatsheet submission.");
   if (!distribution.includes("NoSignupTools Upload Limit Fixer listing") || !distribution.includes("upload_limit_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools upload limit fixer submission.");
   if (!distribution.includes("NoSignupTools Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools upload error cheatsheet submission.");

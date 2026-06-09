@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-09T03:53:06.071Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "PDF Size Reducer by PrintableTools Lab",
+    "tagline": "Free no-signup PDF size reducer for exact upload limits.",
+    "description": "PrintableTools Lab PDF Size Reducer helps people blocked by PDF file-size limits on job, school, support, exam, admin, email, and application portals. It points to a local browser PDF compressor with 500KB, 1MB, 2MB, and 5MB target paths, keeps ordinary files on the device, and includes an optional public-safe $9 Upload Limit Fix Plan request for exact settings and fallback steps after fit is confirmed.",
+    "url": "https://printable-tools-lab.pages.dev/pdf-size-reducer/?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_size_reducer_2026_06&utm_content=pdf_size_reducer_hub",
+    "category": "utilities",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 PDF size reducer hub path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 205,
+      "name": "PDF Size Reducer by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/pdf-size-reducer/?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_size_reducer_2026_06&utm_content=pdf_size_reducer_hub",
+      "tagline": "Free no-signup PDF size reducer for exact upload limits.",
+      "description": "PrintableTools Lab PDF Size Reducer helps people blocked by PDF file-size limits on job, school, support, exam, admin, email, and application portals. It points to a local browser PDF compressor with 500KB, 1MB, 2MB, and 5MB target paths, keeps ordinary files on the device, and includes an optional public-safe $9 Upload Limit Fix Plan request for exact settings and fallback steps after fit is confirmed.",
+      "category": "utilities",
+      "category_label": "Utilities",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 PDF size reducer hub path",
+      "launch_date": "2026-06-09",
+      "created_at": "2026-06-09T03:53:06Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=205"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=205"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=205",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/205"
+}
