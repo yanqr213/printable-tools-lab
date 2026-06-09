@@ -650,6 +650,10 @@ else {
   if (!directoryMonitorScript.includes("NoSignupTools compress JPG to 50KB listing") || !directoryMonitorScript.includes("Compress+JPG+to+50KB")) failures.push("Directory monitor missing NoSignupTools JPG 50KB submission tracking.");
   if (!directoryMonitorScript.includes("NoSignupTools compress PNG to 200KB listing") || !directoryMonitorScript.includes("Compress+PNG+to+200KB")) failures.push("Directory monitor missing NoSignupTools PNG 200KB submission tracking.");
   if (!directoryMonitorScript.includes("NoSignupTools passport photo compress to 200KB listing") || !directoryMonitorScript.includes("Passport+Photo+Compress+to+200KB")) failures.push("Directory monitor missing NoSignupTools passport photo 200KB submission tracking.");
+  if (!directoryMonitorScript.includes("NoSignupTools PDF under 2MB upload fix listing") || !directoryMonitorScript.includes("PDF+Under+2MB+Upload+Fix")) failures.push("Directory monitor missing NoSignupTools PDF under 2MB submission tracking.");
+  if (!directoryMonitorScript.includes("NoSignupTools PDF under 5MB upload fix listing") || !directoryMonitorScript.includes("PDF+Under+5MB+Upload+Fix")) failures.push("Directory monitor missing NoSignupTools PDF under 5MB submission tracking.");
+  if (!directoryMonitorScript.includes("NoSignupTools resume PDF under 2MB upload fix listing") || !directoryMonitorScript.includes("Resume+PDF+Under+2MB+Upload+Fix")) failures.push("Directory monitor missing NoSignupTools resume PDF under 2MB submission tracking.");
+  if (!directoryMonitorScript.includes("NoSignupTools document under 5MB upload fix listing") || !directoryMonitorScript.includes("Document+Under+5MB+Upload+Fix")) failures.push("Directory monitor missing NoSignupTools document under 5MB submission tracking.");
   if (!directoryMonitorScript.includes("FreeNoSignup overdue invoice reminder listing") || !directoryMonitorScript.includes("Overdue+Invoice+Reminder+Email")) failures.push("Directory monitor missing FreeNoSignup overdue invoice reminder submission tracking.");
   if (!directoryMonitorScript.includes("FreeNoSignup upload limit fixer listing") || !directoryMonitorScript.includes("Upload+Limit+Fixer")) failures.push("Directory monitor missing FreeNoSignup upload limit fixer submission tracking.");
   if (!directoryMonitorScript.includes("FreeNoSignup upload error cheatsheet listing") || !directoryMonitorScript.includes("Upload+Error+Cheatsheet")) failures.push("Directory monitor missing FreeNoSignup upload error cheatsheet submission tracking.");
@@ -781,6 +785,25 @@ if (!fs.existsSync(techtoolsUploadBacklogScriptFile)) failures.push("Missing Tec
 else {
   const script = fs.readFileSync(techtoolsUploadBacklogScriptFile, "utf8");
   if (!script.includes("Image Dimensions 600x600 Upload Fix") || !script.includes("PDF Not Accepted JPG Required Fix") || !script.includes("Email Attachment Too Large PDF Fix") || !script.includes("PDF Under 2MB Upload Fix") || !script.includes("Resume PDF Under 2MB Upload Fix") || !script.includes("Document Under 5MB Upload Fix") || !script.includes("rateLimited") || !script.includes("techtools-upload-error-backlog-rate-limit.json")) failures.push("TechTools upload-error backlog retry script missing remaining high-intent listing payloads or rate-limit handling.");
+}
+for (const [name, reportName, campaign, reviewUrl] of [
+  ["PDF under 2MB", "nosignuptools-pdf-under-2mb-upload-fix-submit.json", "pdf_under_2mb_upload_fix_2026_06", "https://nosignuptools.com/tools/pdf-under-2mb-upload-fix-by-printabletools-lab"],
+  ["PDF under 5MB", "nosignuptools-pdf-under-5mb-upload-fix-submit.json", "pdf_under_5mb_upload_fix_2026_06", "https://nosignuptools.com/tools/pdf-under-5mb-upload-fix-by-printabletools-lab"],
+  ["resume PDF under 2MB", "nosignuptools-resume-pdf-under-2mb-upload-fix-submit.json", "resume_pdf_under_2mb_upload_fix_2026_06", "https://nosignuptools.com/tools/resume-pdf-under-2mb-upload-fix-by-printabletools-lab"],
+  ["document under 5MB", "nosignuptools-document-under-5mb-upload-fix-submit.json", "document_under_5mb_upload_fix_2026_06", "https://nosignuptools.com/tools/document-under-5mb-upload-fix-by-printabletools-lab"],
+]) {
+  const reportFile = path.join(root, "reports", reportName);
+  if (!fs.existsSync(reportFile)) failures.push(`Missing NoSignupTools ${name} submission evidence report.`);
+  else {
+    const report = fs.readFileSync(reportFile, "utf8");
+    if (!report.includes('"ok": true') || !report.includes(campaign) || !report.includes(reviewUrl) || !report.includes("pending_manual_review")) failures.push(`NoSignupTools ${name} submission report missing API acceptance evidence.`);
+  }
+}
+const nosignuptoolsUploadBacklogScriptFile = path.join(root, "scripts", "submit-nosignuptools-upload-fix-pages.cjs");
+if (!fs.existsSync(nosignuptoolsUploadBacklogScriptFile)) failures.push("Missing NoSignupTools upload-fix submission script.");
+else {
+  const script = fs.readFileSync(nosignuptoolsUploadBacklogScriptFile, "utf8");
+  if (!script.includes("PDF Under 2MB Upload Fix") || !script.includes("PDF Under 5MB Upload Fix") || !script.includes("Resume PDF Under 2MB Upload Fix") || !script.includes("Document Under 5MB Upload Fix")) failures.push("NoSignupTools upload-fix submission script missing PDF/document limit payloads.");
 }
 const packageJsonFile = path.join(root, "package.json");
 if (!fs.existsSync(packageJsonFile)) failures.push("Missing package.json.");
@@ -1245,6 +1268,10 @@ else {
   if (!html.includes("NoSignupTools Compress JPG to 50KB") || !html.includes("https://nosignuptools.com/tools/compress-jpg-to-50kb-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools JPG 50KB submission.");
   if (!html.includes("NoSignupTools Compress PNG to 200KB") || !html.includes("https://nosignuptools.com/tools/compress-png-to-200kb-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools PNG 200KB submission.");
   if (!html.includes("NoSignupTools Passport Photo Compress to 200KB") || !html.includes("https://nosignuptools.com/tools/passport-photo-compress-to-200kb-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools passport photo 200KB submission.");
+  if (!html.includes("NoSignupTools PDF Under 2MB Upload Fix") || !html.includes("https://nosignuptools.com/tools/pdf-under-2mb-upload-fix-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools PDF under 2MB submission.");
+  if (!html.includes("NoSignupTools PDF Under 5MB Upload Fix") || !html.includes("https://nosignuptools.com/tools/pdf-under-5mb-upload-fix-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools PDF under 5MB submission.");
+  if (!html.includes("NoSignupTools Resume PDF Under 2MB Upload Fix") || !html.includes("https://nosignuptools.com/tools/resume-pdf-under-2mb-upload-fix-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools resume PDF under 2MB submission.");
+  if (!html.includes("NoSignupTools Document Under 5MB Upload Fix") || !html.includes("https://nosignuptools.com/tools/document-under-5mb-upload-fix-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools document under 5MB submission.");
   if (!html.includes("FreeNoSignup Upload Limit Fixer") || !html.includes("https://freenosignup.com/?s=Upload+Limit+Fixer")) failures.push("Directory submission pack missing FreeNoSignup upload limit fixer submission.");
   if (!html.includes("FreeNoSignup Upload Error Cheatsheet") || !html.includes("https://freenosignup.com/?s=Upload+Error+Cheatsheet")) failures.push("Directory submission pack missing FreeNoSignup upload error cheatsheet submission.");
   if (!html.includes(siteUrl("submit-directory"))) failures.push("Directory submission pack missing canonical.");
@@ -1764,6 +1791,10 @@ else {
   if (!distribution.includes("NoSignupTools Compress JPG to 50KB listing") || !distribution.includes("jpg_50kb_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools compress JPG to 50KB submission.");
   if (!distribution.includes("NoSignupTools Compress PNG to 200KB listing") || !distribution.includes("png_200kb_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools compress PNG to 200KB submission.");
   if (!distribution.includes("NoSignupTools Passport Photo Compress to 200KB listing") || !distribution.includes("passport_200kb_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools passport photo 200KB submission.");
+  if (!distribution.includes("NoSignupTools PDF Under 2MB Upload Fix listing") || !distribution.includes("pdf_under_2mb_upload_fix_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools PDF under 2MB submission.");
+  if (!distribution.includes("NoSignupTools PDF Under 5MB Upload Fix listing") || !distribution.includes("pdf_under_5mb_upload_fix_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools PDF under 5MB submission.");
+  if (!distribution.includes("NoSignupTools Resume PDF Under 2MB Upload Fix listing") || !distribution.includes("resume_pdf_under_2mb_upload_fix_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools resume PDF under 2MB submission.");
+  if (!distribution.includes("NoSignupTools Document Under 5MB Upload Fix listing") || !distribution.includes("document_under_5mb_upload_fix_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools document under 5MB submission.");
   if (!distribution.includes("FreeNoSignup Upload Limit Fixer listing") || !distribution.includes("utm_source=freenosignup")) failures.push("DISTRIBUTION.md missing FreeNoSignup upload limit fixer submission.");
   if (!distribution.includes("FreeNoSignup Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing FreeNoSignup upload error cheatsheet submission.");
   if (!distribution.includes("NoSignupTools Overdue Invoice Reminder listing") || !distribution.includes("utm_source=nosignuptools")) failures.push("DISTRIBUTION.md missing NoSignupTools overdue invoice reminder submission.");

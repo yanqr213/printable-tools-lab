@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T03:44:36.421Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "Resume PDF Under 2MB Upload Fix by PrintableTools Lab",
+    "slug": "resume-pdf-under-2mb-upload-fix-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/resume-pdf-under-2mb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=resume_pdf_under_2mb_upload_fix_2026_06&utm_content=resume_pdf_under_2mb_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup resume PDF compressor for 2MB job-portal upload limits.",
+    "long_description": "A free browser-based resume PDF under 2MB upload fixer for applicant tracking systems, career portals, and job application forms that reject large resume PDFs. It points to local PDF compression, requires no account and no server file upload, and includes an optional USD 9 manual Upload Limit Fix Plan request only after a public-safe fit check."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/resume-pdf-under-2mb-upload-fix-by-printabletools-lab"
+}

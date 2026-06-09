@@ -69,6 +69,10 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - NoSignupTools PDF Not Accepted JPG Required Fix listing: https://printable-tools-lab.pages.dev/pdf-not-accepted-jpg-required?utm_source=nosignuptools&utm_medium=directory&utm_campaign=pdf_not_accepted_jpg_required_fix_2026_06&utm_content=pdf_to_jpg_required_landing
 - NoSignupTools Compress Image to KB listing: https://printable-tools-lab.pages.dev/tools/compress-image-to-kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=compress_image_kb_invoice_first_2026_06&utm_content=compress_image_kb_tool
 - NoSignupTools Email Attachment Too Large Fix listing: https://printable-tools-lab.pages.dev/email-attachment-too-large?utm_source=nosignuptools&utm_medium=directory&utm_campaign=email_attachment_too_large_fix_2026_06&utm_content=email_attachment_too_large_landing
+- NoSignupTools PDF Under 2MB Upload Fix listing: https://printable-tools-lab.pages.dev/pdf-must-be-under-2mb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=pdf_under_2mb_upload_fix_2026_06&utm_content=pdf_must_be_under_2mb_landing
+- NoSignupTools PDF Under 5MB Upload Fix listing: https://printable-tools-lab.pages.dev/pdf-must-be-under-5mb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=pdf_under_5mb_upload_fix_2026_06&utm_content=pdf_must_be_under_5mb_landing
+- NoSignupTools Resume PDF Under 2MB Upload Fix listing: https://printable-tools-lab.pages.dev/resume-pdf-under-2mb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=resume_pdf_under_2mb_upload_fix_2026_06&utm_content=resume_pdf_under_2mb_landing
+- NoSignupTools Document Under 5MB Upload Fix listing: https://printable-tools-lab.pages.dev/document-must-be-under-5mb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=document_under_5mb_upload_fix_2026_06&utm_content=document_must_be_under_5mb_landing
 - NoSignupTools Compress Image to 50KB listing: https://printable-tools-lab.pages.dev/compress-image-to-50kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=image_50kb_2026_06&utm_content=compress_image_to_50kb_landing
 - NoSignupTools Compress Image to 100KB listing: https://printable-tools-lab.pages.dev/compress-image-to-100kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=image_100kb_2026_06&utm_content=compress_image_to_100kb_landing
 - NoSignupTools Compress Image to 200KB listing: https://printable-tools-lab.pages.dev/compress-image-to-200kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=image_200kb_2026_06&utm_content=compress_image_to_200kb_landing
@@ -416,6 +420,7 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - NoSignupTools Compress JPG to 50KB, 100KB, and 200KB submissions; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
 - NoSignupTools Compress PNG to 50KB, 100KB, and 200KB submissions; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
 - NoSignupTools Passport Photo Compress to 50KB, 100KB, and 200KB submissions; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
+- NoSignupTools PDF and document upload-limit submissions for 2MB/5MB intents; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
 - FreeNoSignup Upload Limit Fixer submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
 - FreeNoSignup Upload Error Cheatsheet submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
 - NoSignupTools Overdue Invoice Reminder Email submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
