@@ -1,73 +1,106 @@
 {
-  "generatedAt": "2026-06-03T04:17:36.1713282Z",
+  "generatedAt": "2026-06-09T04:49:03.188Z",
+  "localCheckedAt": "2026-06-09T12:49:03+08:00",
   "question": "Is there traffic now?",
-  "answer": "There is small verified traffic on the utility site and light package-download interest, but no proven game plays, seller intent, platform payout balance, or revenue.",
+  "answer": "There is small verified traffic and early commercial intent, especially from no-login and TechTools directory distribution, but no verified revenue, sponsor agreement, payout balance, or paid order yet.",
   "siteMetrics": {
     "source": "https://printable-tools-lab.pages.dev/api/metrics",
-    "today": "2026-06-03",
+    "today": "2026-06-09",
     "totals": {
-      "page_view": 272,
+      "page_view": 525,
       "generate_pdf": 0,
-      "download_pdf": 1,
+      "download_pdf": 2,
       "generate_file": 0,
       "download_file": 0,
-      "limit_hit": 0,
-      "ai_ideas": 0,
-      "ai_ideas_apply": 0
+      "free_tool_depth": 0,
+      "guide_depth": 0,
+      "service_request_intent": 2,
+      "service_invoice_request": 0,
+      "audit_request_intent": 0,
+      "sponsor_request_intent": 2,
+      "sponsor_lead_submit": 0,
+      "sponsor_invoice_request": 0
     },
     "todayTotals": {
-      "page_view": 14,
+      "page_view": 3,
       "generate_pdf": 0,
       "download_pdf": 0,
       "generate_file": 0,
       "download_file": 0,
-      "limit_hit": 0,
-      "ai_ideas": 0,
-      "ai_ideas_apply": 0
+      "free_tool_depth": 0,
+      "guide_depth": 0,
+      "service_request_intent": 0,
+      "service_invoice_request": 0,
+      "audit_request_intent": 0,
+      "sponsor_request_intent": 0,
+      "sponsor_lead_submit": 0,
+      "sponsor_invoice_request": 0
+    },
+    "sourceSignals": {
+      "direct": {
+        "page_view": 513,
+        "service_request_intent": 1
+      },
+      "nologin": {
+        "page_view": 9,
+        "today_page_view": 2
+      },
+      "techtools": {
+        "page_view": 3,
+        "service_request_intent": 1
+      },
+      "nosignuptools": {
+        "page_view": 0,
+        "download_pdf": 0
+      },
+      "freenosignup": {
+        "page_view": 0,
+        "download_pdf": 0
+      },
+      "sponsor-outreach": {
+        "sponsor_request_intent": 2
+      }
     },
     "topToolSignal": {
       "tool": "invoice-generator",
-      "download_pdf": 1
+      "download_pdf": 2
     },
-    "sellerIntent": 0
+    "commercialIntent": 4
   },
-  "gameReleaseDownloads": {
-    "source": "GitHub Releases API",
-    "neonLaneDash": {
-      "html5Zip": 3,
-      "gameSnacksZip": 4,
-      "gamesnacksVerification": 3,
-      "otherAssetsMostly": "2 downloads each"
-    },
-    "uploadLimitPanic": {
-      "html5Zip": 3,
-      "otherAssetsMostly": "1 download each"
-    },
-    "interpretation": "Release asset downloads show package interest only. They do not prove platform plays, accepted review status, ad impressions, or revenue."
+  "opsMetrics": {
+    "source": "https://printable-tools-lab.pages.dev/api/ops-metrics",
+    "nextActions": [
+      "Service request intent exists; keep the one-reply-contact path primary, then send the matching external $9 or $19 checkout only after a qualified reply.",
+      "Sponsor clicks exist without lead capture; send the starter review proposal to the highest-fit sponsor prospects."
+    ],
+    "pathTrackingUpdate": "Ops metrics now seeds the directory-distributed no-upload, exact-size compression, and upload-error landing pages so /ops/ can show path-level traffic before those rows have events."
   },
   "directoryStatus": {
-    "listedCount": 1,
-    "listed": [
-      {
-        "name": "NoLogin.tools",
-        "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev"
-      }
-    ],
-    "pending": [
-      "Zearches",
-      "ListAi.cc",
-      "NoSignupTools",
-      "FreeNoSignup",
-      "NoSubscription.org"
-    ],
-    "error": [
-      "JS.ORG free subdomain PR closed even though checks passed"
-    ]
+    "source": "reports/directory-monitor.json",
+    "generatedAt": "2026-06-09T04:40:44.718Z",
+    "listedCount": 56,
+    "pendingCount": 47,
+    "errorCount": 1,
+    "interpretation": "Directory coverage is broad enough to watch source and path-level signal, but many listings are still pending review and should not be treated as traffic guarantees."
+  },
+  "indexNow": {
+    "source": "reports/indexnow-report.json",
+    "generatedAt": "2026-06-09T04:45:05.815Z",
+    "githubPages": {
+      "accepted": true,
+      "submittedUrls": 284
+    },
+    "pagesDev": {
+      "accepted": false,
+      "status": 403,
+      "message": "UserForbiddedToAccessSite"
+    },
+    "interpretation": "GitHub Pages URLs were accepted by IndexNow; pages.dev still has a site authorization issue despite the key file being reachable."
   },
   "platformReviewStatus": {
-    "crazyGames": "Last verified state remains Neon Lane Dash submitted_awaiting_review from 2026-06-02. Current Edge/Playwright check on 2026-06-03 reached only the public CrazyGames developer portal with a Log in CTA, so live dashboard review status needs session restore.",
-    "playgama": "Last verified state remains Waiting for review from 2026-06-02. Current Edge/Playwright check on 2026-06-03 redirected to https://developer.playgama.com/auth?redirect=/, so live dashboard review status needs session restore.",
-    "uploadLimitPanicBackup": "Ready package. Keep as backup; do not submit it to the same active reviewing account until Neon receives a first moderation signal unless a separate portal specifically asks for a second package."
+    "crazyGames": "No new verified platform acceptance or payout signal in this check.",
+    "playgama": "No new verified platform acceptance or payout signal in this check.",
+    "uploadLimitPanicBackup": "Ready package remains a backup; do not count platform revenue until an accepted platform dashboard or payout balance confirms it."
   },
-  "moneyGate": "Revenue remains 0 until a payment provider or game platform shows a paid order, payout balance, settled payment, or platform earnings."
+  "moneyGate": "Revenue remains 0 until an external payment provider, sponsor agreement, paid order, settled payment, or platform earnings balance is verified."
 }

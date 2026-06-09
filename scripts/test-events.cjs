@@ -99,6 +99,10 @@ async function main() {
   assert(opsInvoicePath.download_pdf === 1 && opsInvoicePath.today_download_pdf === 1, "Project ops metrics should expose path-level download funnels");
   const opsPolitePath = printableProject.paths.find((row) => row.path === "/polite-payment-reminder-email/");
   assert(opsPolitePath && opsPolitePath.service_request_intent === 0, "Project ops metrics should include high-intent invoice reminder paths before first signal");
+  for (const opsSeedPath of ["/upload-error-cheatsheet/", "/compress-image-no-upload/", "/pdf-to-jpg-no-upload/", "/merge-pdf-no-upload/"]) {
+    const row = printableProject.paths.find((pathRow) => pathRow.path === opsSeedPath);
+    assert(row && row.page_view === 0 && row.service_request_intent === 0, `Project ops metrics should seed ${opsSeedPath} before first signal`);
+  }
   const opsNoSignupSource = opsMetricsPayload.sources.find((row) => row.source === "nosignuptools");
   assert(opsNoSignupSource.download_pdf === 1, "Ops metrics should expose global source totals");
   assert(opsNoSignupSource.today_download_pdf === 1, "Ops metrics should expose global source today totals");
