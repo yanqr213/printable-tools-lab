@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T01:47:16.158Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "Compress PNG to 100KB by PrintableTools Lab",
+    "slug": "compress-png-to-100kb-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/compress-png-to-100kb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=png_100kb_2026_06&utm_content=compress_png_to_100kb_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup PNG 100KB compressor with an optional one-contact USD 9 upload fix-plan request.",
+    "long_description": "A free browser-based PNG compressor for 100KB screenshots, school forms, profile uploads, and application portals. It works without an account or server upload and exposes a one-contact optional USD 9 Upload Limit Fix Plan request for exact public-safe settings, fallback steps, and a review-before-upload checklist after fit is confirmed."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/compress-png-to-100kb-by-printabletools-lab"
+}
