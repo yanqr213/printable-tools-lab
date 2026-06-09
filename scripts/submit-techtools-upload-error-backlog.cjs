@@ -384,6 +384,48 @@ const backlog = [
       submitted_by: "Codex traffic acquisition run 2026-06-09 JPG to PDF no-upload landing path",
     },
   },
+  {
+    report: "techtools-extract-text-from-pdf-no-upload-submit.json",
+    payload: {
+      name: "Extract Text From PDF Without Uploading by PrintableTools Lab",
+      tagline: "Free browser PDF text extractor for copied notes, forms, and drafts.",
+      description: "PrintableTools Lab Extract Text From PDF Without Uploading helps people copy text from PDFs, resumes, support files, application documents, notes, and simple scanned-looking exports without signup or server upload during ordinary use. The page routes visitors to a local browser PDF-to-text workflow, explains public-safe checks before pasting private text elsewhere, and connects upload-limit visitors to the optional $9 Upload Limit Fix Plan after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/extract-text-from-pdf-no-upload/?utm_source=techtools&utm_medium=directory&utm_campaign=extract_text_pdf_no_upload_2026_06&utm_content=extract_text_pdf_no_upload_landing",
+      category: "productivity",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 extract text from PDF no-upload landing path",
+    },
+  },
+  {
+    report: "techtools-merge-pdf-no-upload-submit.json",
+    payload: {
+      name: "Merge PDF Without Uploading by PrintableTools Lab",
+      tagline: "Free browser PDF merger for combining documents without signup.",
+      description: "PrintableTools Lab Merge PDF Without Uploading helps people combine application pages, receipts, scans, forms, invoices, notes, and document packets into one PDF without account creation or server upload during ordinary use. The page is useful when a portal asks for one PDF instead of several files, and it includes practical file-size checks plus an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/merge-pdf-no-upload/?utm_source=techtools&utm_medium=directory&utm_campaign=merge_pdf_no_upload_2026_06&utm_content=merge_pdf_no_upload_landing",
+      category: "productivity",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 merge PDF no-upload landing path",
+    },
+  },
+  {
+    report: "techtools-split-pdf-no-upload-submit.json",
+    payload: {
+      name: "Split PDF Without Uploading by PrintableTools Lab",
+      tagline: "Free browser PDF splitter for removing extra pages before upload.",
+      description: "PrintableTools Lab Split PDF Without Uploading helps people separate pages from a PDF, trim document packets, pull one form from a multi-page file, or prepare smaller upload-ready PDFs without signup or server upload during ordinary use. It is useful for application portals, support forms, resumes, scanned documents, and file-size limits, with an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/split-pdf-no-upload/?utm_source=techtools&utm_medium=directory&utm_campaign=split_pdf_no_upload_2026_06&utm_content=split_pdf_no_upload_landing",
+      category: "productivity",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 split PDF no-upload landing path",
+    },
+  },
 ];
 
 async function main() {

@@ -654,6 +654,9 @@ else {
   if (!directoryMonitorScript.includes("NoSignupTools PDF under 5MB upload fix listing") || !directoryMonitorScript.includes("PDF+Under+5MB+Upload+Fix")) failures.push("Directory monitor missing NoSignupTools PDF under 5MB submission tracking.");
   if (!directoryMonitorScript.includes("NoSignupTools resume PDF under 2MB upload fix listing") || !directoryMonitorScript.includes("Resume+PDF+Under+2MB+Upload+Fix")) failures.push("Directory monitor missing NoSignupTools resume PDF under 2MB submission tracking.");
   if (!directoryMonitorScript.includes("NoSignupTools document under 5MB upload fix listing") || !directoryMonitorScript.includes("Document+Under+5MB+Upload+Fix")) failures.push("Directory monitor missing NoSignupTools document under 5MB submission tracking.");
+  if (!directoryMonitorScript.includes("NoSignupTools extract text from PDF without uploading listing") || !directoryMonitorScript.includes("Extract+Text+From+PDF+Without+Uploading")) failures.push("Directory monitor missing NoSignupTools extract text from PDF submission tracking.");
+  if (!directoryMonitorScript.includes("NoSignupTools merge PDF without uploading listing") || !directoryMonitorScript.includes("Merge+PDF+Without+Uploading")) failures.push("Directory monitor missing NoSignupTools merge PDF submission tracking.");
+  if (!directoryMonitorScript.includes("NoSignupTools split PDF without uploading listing") || !directoryMonitorScript.includes("Split+PDF+Without+Uploading")) failures.push("Directory monitor missing NoSignupTools split PDF submission tracking.");
   if (!directoryMonitorScript.includes("FreeNoSignup overdue invoice reminder listing") || !directoryMonitorScript.includes("Overdue+Invoice+Reminder+Email")) failures.push("Directory monitor missing FreeNoSignup overdue invoice reminder submission tracking.");
   if (!directoryMonitorScript.includes("FreeNoSignup upload limit fixer listing") || !directoryMonitorScript.includes("Upload+Limit+Fixer")) failures.push("Directory monitor missing FreeNoSignup upload limit fixer submission tracking.");
   if (!directoryMonitorScript.includes("FreeNoSignup upload error cheatsheet listing") || !directoryMonitorScript.includes("Upload+Error+Cheatsheet")) failures.push("Directory monitor missing FreeNoSignup upload error cheatsheet submission tracking.");
@@ -822,17 +825,26 @@ else {
   const report = fs.readFileSync(techtoolsJpgToPdfNoUploadReportFile, "utf8");
   if (!report.includes("https://techtools.cz/tools/launchpad/?tool=210") || !report.includes("jpg_to_pdf_no_upload_2026_06") || !report.includes("JPG to PDF Without Uploading")) failures.push("TechTools JPG to PDF without uploading submission report missing live evidence.");
 }
+const techtoolsBacklogRateLimitReportFile = path.join(root, "reports", "techtools-upload-error-backlog-rate-limit.json");
+if (!fs.existsSync(techtoolsBacklogRateLimitReportFile)) failures.push("Missing TechTools backlog rate-limit evidence report for no-upload PDF extract/merge/split retry.");
+else {
+  const report = fs.readFileSync(techtoolsBacklogRateLimitReportFile, "utf8");
+  if (!report.includes('"rateLimited": true') || !report.includes("Wait 1 hour") || !report.includes("Extract Text From PDF Without Uploading") || !report.includes("Merge PDF Without Uploading") || !report.includes("Split PDF Without Uploading")) failures.push("TechTools backlog rate-limit report missing no-upload PDF extract/merge/split retry evidence.");
+}
 const techtoolsUploadBacklogScriptFile = path.join(root, "scripts", "submit-techtools-upload-error-backlog.cjs");
 if (!fs.existsSync(techtoolsUploadBacklogScriptFile)) failures.push("Missing TechTools upload-error backlog retry script.");
 else {
   const script = fs.readFileSync(techtoolsUploadBacklogScriptFile, "utf8");
-  if (!script.includes("Image Dimensions 600x600 Upload Fix") || !script.includes("PDF Not Accepted JPG Required Fix") || !script.includes("Email Attachment Too Large PDF Fix") || !script.includes("PDF Under 2MB Upload Fix") || !script.includes("Resume PDF Under 2MB Upload Fix") || !script.includes("Document Under 5MB Upload Fix") || !script.includes("PDF Size Reducer") || !script.includes("Compress PDF to 2MB") || !script.includes("Compress PDF to 5MB") || !script.includes("Compress PDF Without Uploading") || !script.includes("PDF to JPG Without Uploading") || !script.includes("JPG to PDF Without Uploading") || !script.includes("rateLimited") || !script.includes("techtools-upload-error-backlog-rate-limit.json")) failures.push("TechTools upload-error backlog retry script missing remaining high-intent listing payloads or rate-limit handling.");
+  if (!script.includes("Image Dimensions 600x600 Upload Fix") || !script.includes("PDF Not Accepted JPG Required Fix") || !script.includes("Email Attachment Too Large PDF Fix") || !script.includes("PDF Under 2MB Upload Fix") || !script.includes("Resume PDF Under 2MB Upload Fix") || !script.includes("Document Under 5MB Upload Fix") || !script.includes("PDF Size Reducer") || !script.includes("Compress PDF to 2MB") || !script.includes("Compress PDF to 5MB") || !script.includes("Compress PDF Without Uploading") || !script.includes("PDF to JPG Without Uploading") || !script.includes("JPG to PDF Without Uploading") || !script.includes("Extract Text From PDF Without Uploading") || !script.includes("Merge PDF Without Uploading") || !script.includes("Split PDF Without Uploading") || !script.includes("rateLimited") || !script.includes("techtools-upload-error-backlog-rate-limit.json")) failures.push("TechTools upload-error backlog retry script missing remaining high-intent listing payloads or rate-limit handling.");
 }
 for (const [name, reportName, campaign, reviewUrl] of [
   ["PDF under 2MB", "nosignuptools-pdf-under-2mb-upload-fix-submit.json", "pdf_under_2mb_upload_fix_2026_06", "https://nosignuptools.com/tools/pdf-under-2mb-upload-fix-by-printabletools-lab"],
   ["PDF under 5MB", "nosignuptools-pdf-under-5mb-upload-fix-submit.json", "pdf_under_5mb_upload_fix_2026_06", "https://nosignuptools.com/tools/pdf-under-5mb-upload-fix-by-printabletools-lab"],
   ["resume PDF under 2MB", "nosignuptools-resume-pdf-under-2mb-upload-fix-submit.json", "resume_pdf_under_2mb_upload_fix_2026_06", "https://nosignuptools.com/tools/resume-pdf-under-2mb-upload-fix-by-printabletools-lab"],
   ["document under 5MB", "nosignuptools-document-under-5mb-upload-fix-submit.json", "document_under_5mb_upload_fix_2026_06", "https://nosignuptools.com/tools/document-under-5mb-upload-fix-by-printabletools-lab"],
+  ["extract text from PDF without uploading", "nosignuptools-extract-text-from-pdf-no-upload-submit.json", "extract_text_pdf_no_upload_2026_06", "https://nosignuptools.com/tools/extract-text-from-pdf-without-uploading-by-printabletools-lab"],
+  ["merge PDF without uploading", "nosignuptools-merge-pdf-no-upload-submit.json", "merge_pdf_no_upload_2026_06", "https://nosignuptools.com/tools/merge-pdf-without-uploading-by-printabletools-lab"],
+  ["split PDF without uploading", "nosignuptools-split-pdf-no-upload-submit.json", "split_pdf_no_upload_2026_06", "https://nosignuptools.com/tools/split-pdf-without-uploading-by-printabletools-lab"],
 ]) {
   const reportFile = path.join(root, "reports", reportName);
   if (!fs.existsSync(reportFile)) failures.push(`Missing NoSignupTools ${name} submission evidence report.`);
@@ -845,7 +857,7 @@ const nosignuptoolsUploadBacklogScriptFile = path.join(root, "scripts", "submit-
 if (!fs.existsSync(nosignuptoolsUploadBacklogScriptFile)) failures.push("Missing NoSignupTools upload-fix submission script.");
 else {
   const script = fs.readFileSync(nosignuptoolsUploadBacklogScriptFile, "utf8");
-  if (!script.includes("PDF Under 2MB Upload Fix") || !script.includes("PDF Under 5MB Upload Fix") || !script.includes("Resume PDF Under 2MB Upload Fix") || !script.includes("Document Under 5MB Upload Fix")) failures.push("NoSignupTools upload-fix submission script missing PDF/document limit payloads.");
+  if (!script.includes("PDF Under 2MB Upload Fix") || !script.includes("PDF Under 5MB Upload Fix") || !script.includes("Resume PDF Under 2MB Upload Fix") || !script.includes("Document Under 5MB Upload Fix") || !script.includes("Extract Text From PDF Without Uploading") || !script.includes("Merge PDF Without Uploading") || !script.includes("Split PDF Without Uploading")) failures.push("NoSignupTools upload-fix submission script missing PDF/document limit payloads.");
 }
 const packageJsonFile = path.join(root, "package.json");
 if (!fs.existsSync(packageJsonFile)) failures.push("Missing package.json.");
@@ -1320,6 +1332,9 @@ else {
   if (!html.includes("NoSignupTools PDF Under 5MB Upload Fix") || !html.includes("https://nosignuptools.com/tools/pdf-under-5mb-upload-fix-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools PDF under 5MB submission.");
   if (!html.includes("NoSignupTools Resume PDF Under 2MB Upload Fix") || !html.includes("https://nosignuptools.com/tools/resume-pdf-under-2mb-upload-fix-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools resume PDF under 2MB submission.");
   if (!html.includes("NoSignupTools Document Under 5MB Upload Fix") || !html.includes("https://nosignuptools.com/tools/document-under-5mb-upload-fix-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools document under 5MB submission.");
+  if (!html.includes("NoSignupTools Extract Text From PDF Without Uploading") || !html.includes("https://nosignuptools.com/tools/extract-text-from-pdf-without-uploading-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools extract text from PDF submission.");
+  if (!html.includes("NoSignupTools Merge PDF Without Uploading") || !html.includes("https://nosignuptools.com/tools/merge-pdf-without-uploading-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools merge PDF submission.");
+  if (!html.includes("NoSignupTools Split PDF Without Uploading") || !html.includes("https://nosignuptools.com/tools/split-pdf-without-uploading-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools split PDF submission.");
   if (!html.includes("FreeNoSignup Upload Limit Fixer") || !html.includes("https://freenosignup.com/?s=Upload+Limit+Fixer")) failures.push("Directory submission pack missing FreeNoSignup upload limit fixer submission.");
   if (!html.includes("FreeNoSignup Upload Error Cheatsheet") || !html.includes("https://freenosignup.com/?s=Upload+Error+Cheatsheet")) failures.push("Directory submission pack missing FreeNoSignup upload error cheatsheet submission.");
   if (!html.includes(siteUrl("submit-directory"))) failures.push("Directory submission pack missing canonical.");
@@ -1849,6 +1864,10 @@ else {
   if (!distribution.includes("NoSignupTools PDF Under 5MB Upload Fix listing") || !distribution.includes("pdf_under_5mb_upload_fix_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools PDF under 5MB submission.");
   if (!distribution.includes("NoSignupTools Resume PDF Under 2MB Upload Fix listing") || !distribution.includes("resume_pdf_under_2mb_upload_fix_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools resume PDF under 2MB submission.");
   if (!distribution.includes("NoSignupTools Document Under 5MB Upload Fix listing") || !distribution.includes("document_under_5mb_upload_fix_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools document under 5MB submission.");
+  if (!distribution.includes("NoSignupTools Extract Text From PDF Without Uploading listing") || !distribution.includes("extract_text_pdf_no_upload_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools extract text from PDF submission.");
+  if (!distribution.includes("NoSignupTools Merge PDF Without Uploading listing") || !distribution.includes("merge_pdf_no_upload_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools merge PDF submission.");
+  if (!distribution.includes("NoSignupTools Split PDF Without Uploading listing") || !distribution.includes("split_pdf_no_upload_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools split PDF submission.");
+  if (!distribution.includes("TechTools no-upload PDF extract/merge/split submissions; rate limited")) failures.push("DISTRIBUTION.md missing TechTools no-upload PDF extract/merge/split rate-limit retry note.");
   if (!distribution.includes("FreeNoSignup Upload Limit Fixer listing") || !distribution.includes("utm_source=freenosignup")) failures.push("DISTRIBUTION.md missing FreeNoSignup upload limit fixer submission.");
   if (!distribution.includes("FreeNoSignup Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing FreeNoSignup upload error cheatsheet submission.");
   if (!distribution.includes("NoSignupTools Overdue Invoice Reminder listing") || !distribution.includes("utm_source=nosignuptools")) failures.push("DISTRIBUTION.md missing NoSignupTools overdue invoice reminder submission.");

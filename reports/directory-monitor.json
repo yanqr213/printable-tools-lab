@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-09T04:04:30.572Z",
+  "generatedAt": "2026-06-09T04:13:19.927Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 56,
-  "pendingCount": 31,
+  "pendingCount": 34,
   "errorCount": 1,
   "results": [
     {
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 117900,
+          "bytes": 117928,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 117900,
+          "bytes": 117928,
           "matched": false
         }
       ]
@@ -1190,7 +1190,7 @@
           "url": "https://nosignuptools.com/tools/image-dimensions-600x600-upload-fix-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20096,
+          "bytes": 20139,
           "matched": false
         }
       ]
@@ -1683,7 +1683,7 @@
           "url": "https://nosignuptools.com/tools/passport-photo-compress-to-50kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20084,
+          "bytes": 20127,
           "matched": false
         }
       ]
@@ -1742,6 +1742,93 @@
           "ok": false,
           "status": 404,
           "bytes": 20130,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools extract text from PDF without uploading listing",
+      "url": "https://nosignuptools.com/tools/extract-text-from-pdf-without-uploading-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Extract+Text+From+PDF+Without+Uploading",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Extract Text From PDF Without Uploading"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Extract+Text+From+PDF+Without+Uploading",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/extract-text-from-pdf-without-uploading-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20151,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools merge PDF without uploading listing",
+      "url": "https://nosignuptools.com/tools/merge-pdf-without-uploading-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Merge+PDF+Without+Uploading",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Merge PDF Without Uploading"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Merge+PDF+Without+Uploading",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/merge-pdf-without-uploading-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20115,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools split PDF without uploading listing",
+      "url": "https://nosignuptools.com/tools/split-pdf-without-uploading-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Split+PDF+Without+Uploading",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Split PDF Without Uploading"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Split+PDF+Without+Uploading",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/split-pdf-without-uploading-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20115,
           "matched": false
         }
       ]
@@ -2221,49 +2308,34 @@
       "reviewWindow": "maintainer review",
       "status": "error",
       "evidenceUrl": "https://github.com/js-org/js.org/pull/11512",
-      "apiAvailable": true,
-      "checksAvailable": true,
-      "templateOk": true,
-      "checksOk": true,
-      "checks": [
-        {
-          "name": "PR description",
-          "status": "completed",
-          "conclusion": "success",
-          "startedAt": "2026-06-01T22:34:58Z",
-          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353230"
-        },
-        {
-          "name": "cnames_active.js",
-          "status": "completed",
-          "conclusion": "success",
-          "startedAt": "2026-06-01T22:34:57Z",
-          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353223"
-        }
-      ],
-      "prState": "closed",
-      "mergeable": true,
+      "apiAvailable": false,
+      "checksAvailable": false,
+      "templateOk": null,
+      "checksOk": null,
+      "checks": [],
+      "prState": "unknown",
+      "mergeable": null,
       "checked": [
         {
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 298675,
+          "bytes": 298674,
           "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/pulls/11512",
-          "ok": true,
-          "status": 200,
-          "bytes": 16307,
-          "matched": true
+          "ok": false,
+          "status": 403,
+          "bytes": 277,
+          "matched": false
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs",
-          "ok": true,
-          "status": 200,
-          "bytes": 18122,
-          "matched": true
+          "ok": false,
+          "status": 403,
+          "bytes": 277,
+          "matched": false
         }
       ]
     }

@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-06-09T04:07:42.983Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "ok": false,
+  "rateLimited": true,
+  "retryAfter": "Wait 1 hour",
+  "blockedAt": "Extract Text From PDF Without Uploading by PrintableTools Lab",
+  "remaining": [
+    "Extract Text From PDF Without Uploading by PrintableTools Lab",
+    "Merge PDF Without Uploading by PrintableTools Lab",
+    "Split PDF Without Uploading by PrintableTools Lab"
+  ]
+}

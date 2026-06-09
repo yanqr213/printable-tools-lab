@@ -294,6 +294,48 @@ const backlog = [
       long_description: "A free browser-based passport photo compressor for 200KB application, visa, exam, school, and document upload limits. It works without an account or server upload and exposes a one-contact optional USD 9 Upload Limit Fix Plan request for exact public-safe settings, fallback steps, and a review-before-upload checklist after fit is confirmed.",
     },
   },
+  {
+    report: "nosignuptools-extract-text-from-pdf-no-upload-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/extract-text-from-pdf-without-uploading-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Extract+Text+From+PDF+Without+Uploading",
+    payload: {
+      ...common,
+      name: "Extract Text From PDF Without Uploading by PrintableTools Lab",
+      slug: "extract-text-from-pdf-without-uploading-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/extract-text-from-pdf-no-upload/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=extract_text_pdf_no_upload_2026_06&utm_content=extract_text_pdf_no_upload_landing",
+      category: "productivity",
+      short_description: "Free no-signup browser PDF text extractor for notes, forms, resumes, and drafts.",
+      long_description: "A free browser-based PDF text extractor for people who need to copy text from PDFs, resumes, support files, application documents, notes, or simple document exports. It requires no account, keeps ordinary files local during use, and connects upload-limit visitors to an optional USD 9 Upload Limit Fix Plan request only after a public-safe fit check.",
+    },
+  },
+  {
+    report: "nosignuptools-merge-pdf-no-upload-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/merge-pdf-without-uploading-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Merge+PDF+Without+Uploading",
+    payload: {
+      ...common,
+      name: "Merge PDF Without Uploading by PrintableTools Lab",
+      slug: "merge-pdf-without-uploading-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/merge-pdf-no-upload/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=merge_pdf_no_upload_2026_06&utm_content=merge_pdf_no_upload_landing",
+      category: "productivity",
+      short_description: "Free no-signup browser PDF merger for combining documents before upload.",
+      long_description: "A free browser-based PDF merger for combining application pages, receipts, scans, forms, invoices, notes, and document packets into one PDF. It requires no account, keeps ordinary files local during use, and includes practical upload-size checks plus an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check.",
+    },
+  },
+  {
+    report: "nosignuptools-split-pdf-no-upload-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/split-pdf-without-uploading-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Split+PDF+Without+Uploading",
+    payload: {
+      ...common,
+      name: "Split PDF Without Uploading by PrintableTools Lab",
+      slug: "split-pdf-without-uploading-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/split-pdf-no-upload/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=split_pdf_no_upload_2026_06&utm_content=split_pdf_no_upload_landing",
+      category: "productivity",
+      short_description: "Free no-signup browser PDF splitter for removing or separating pages.",
+      long_description: "A free browser-based PDF splitter for separating pages, trimming document packets, pulling one form from a multi-page file, or preparing smaller upload-ready PDFs. It requires no account, keeps ordinary files local during use, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check.",
+    },
+  },
 ];
 
 async function main() {

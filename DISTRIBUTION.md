@@ -91,6 +91,9 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - NoSignupTools Passport Photo Compress to 50KB listing: https://printable-tools-lab.pages.dev/passport-photo-compress-to-50kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=passport_50kb_2026_06&utm_content=passport_photo_compress_to_50kb_landing
 - NoSignupTools Passport Photo Compress to 100KB listing: https://printable-tools-lab.pages.dev/passport-photo-compress-to-100kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=passport_100kb_2026_06&utm_content=passport_photo_compress_to_100kb_landing
 - NoSignupTools Passport Photo Compress to 200KB listing: https://printable-tools-lab.pages.dev/passport-photo-compress-to-200kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=passport_200kb_2026_06&utm_content=passport_photo_compress_to_200kb_landing
+- NoSignupTools Extract Text From PDF Without Uploading listing: https://printable-tools-lab.pages.dev/extract-text-from-pdf-no-upload?utm_source=nosignuptools&utm_medium=directory&utm_campaign=extract_text_pdf_no_upload_2026_06&utm_content=extract_text_pdf_no_upload_landing
+- NoSignupTools Merge PDF Without Uploading listing: https://printable-tools-lab.pages.dev/merge-pdf-no-upload?utm_source=nosignuptools&utm_medium=directory&utm_campaign=merge_pdf_no_upload_2026_06&utm_content=merge_pdf_no_upload_landing
+- NoSignupTools Split PDF Without Uploading listing: https://printable-tools-lab.pages.dev/split-pdf-no-upload?utm_source=nosignuptools&utm_medium=directory&utm_campaign=split_pdf_no_upload_2026_06&utm_content=split_pdf_no_upload_landing
 - FreeNoSignup Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=freenosignup
 - FreeNoSignup Upload Error Cheatsheet listing: https://printable-tools-lab.pages.dev/upload-error-cheatsheet?utm_source=freenosignup&utm_medium=directory&utm_campaign=upload_error_cheatsheet_2026_06&utm_content=upload_error_cheatsheet
 - NoSignupTools Overdue Invoice Reminder listing: https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email?utm_source=nosignuptools&utm_medium=directory&utm_campaign=overdue_invoice_2026_06&utm_content=overdue_invoice_reminder_email
@@ -429,6 +432,8 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - NoSignupTools Compress PNG to 50KB, 100KB, and 200KB submissions; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
 - NoSignupTools Passport Photo Compress to 50KB, 100KB, and 200KB submissions; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
 - NoSignupTools PDF and document upload-limit submissions for 2MB/5MB intents; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
+- NoSignupTools no-upload PDF extract/merge/split submissions; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
+- TechTools no-upload PDF extract/merge/split submissions; rate limited on 2026-06-09 by the directory's Wait 1 hour response and queued for retry after the backoff window
 - FreeNoSignup Upload Limit Fixer submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
 - FreeNoSignup Upload Error Cheatsheet submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
 - NoSignupTools Overdue Invoice Reminder Email submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
