@@ -1033,15 +1033,37 @@ function delay(ms) {
       if (!uploadFixText.includes("Still worried the next site will reject this file?") || !uploadFixText.includes("Send $9 upload check request")) {
         throw new Error("Compress PDF download success is missing the $9 upload check close copy.");
       }
-      const publicRequest = page.locator('[data-download-upload-fix-public-request][data-track-event="service_request_intent"][data-track-tool="upload-limit-fix-plan"]').first();
-      if (!(await publicRequest.count())) throw new Error("Compress PDF download success is missing the direct public-safe $9 request CTA.");
+      const publicRequest = page.locator('[data-download-upload-fix-public-request][data-track-event="service_invoice_request"][data-track-tool="upload-limit-fix-plan"]:has-text("Open public-safe $9 invoice request")').first();
+      if (!(await publicRequest.count())) throw new Error("Compress PDF download success is missing the direct public-safe $9 invoice request CTA.");
       const publicRequestHref = await publicRequest.getAttribute("href");
-      if (!publicRequestHref || !publicRequestHref.includes("github.com") || !publicRequestHref.includes("Upload+Limit+Fix+Plan")) {
+      if (!publicRequestHref || !publicRequestHref.includes("github.com") || !publicRequestHref.includes("Invoice+request%3A+Upload+Limit+Fix+Plan") || !publicRequestHref.includes("Public-safe+invoice+request")) {
         throw new Error(`Compress PDF direct public-safe request CTA has an unexpected href: ${publicRequestHref || "missing"}`);
       }
       const uploadFixSummary = await uploadFixForm.locator('[data-upload-fix-plan-summary]').inputValue();
       if (!uploadFixSummary.includes("I just downloaded Compress PDF") || !uploadFixSummary.includes("$9 Upload Limit Fix Plan")) {
         throw new Error("Compress PDF download success did not prefill the upload fix-plan request summary.");
+      }
+      let capturedLead = null;
+      const leadRoute = async (route) => {
+        capturedLead = JSON.parse(route.request().postData() || "{}");
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json; charset=utf-8",
+          body: JSON.stringify({ ok: true, id: "smoke-download-upload-fix-invoice" }),
+        });
+      };
+      await page.route("**/api/service-lead", leadRoute);
+      try {
+        await uploadFixForm.locator('input[name="contact"]').fill("smoke@example.com");
+        await uploadFixForm.locator('button[type="submit"][data-track-event="service_invoice_request"]').first().click();
+        for (let attempt = 0; attempt < 50 && !capturedLead; attempt += 1) await delay(100);
+      } finally {
+        await page.unroute("**/api/service-lead", leadRoute);
+      }
+      if (!capturedLead) throw new Error("Download success upload-fix form did not submit a service lead payload.");
+      if (capturedLead.invoiceLinkRequest !== true) throw new Error(`Download success upload-fix form was not recorded as an invoice request: ${JSON.stringify(capturedLead)}`);
+      if (capturedLead.utmSource !== "download_success" || capturedLead.utmCampaign !== "upload_limit_fix_plan" || capturedLead.serviceType !== "upload-limit-fix-plan") {
+        throw new Error(`Download success upload-fix form lost attribution: ${JSON.stringify(capturedLead)}`);
       }
     }
     if (!name.endsWith(".pdf")) throw new Error(`Expected PDF download on ${route}, got ${name}`);

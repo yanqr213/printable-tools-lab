@@ -9106,7 +9106,7 @@ ${paragraphs.join("\n")}
     const uploadHref = `/upload-limit-fixer/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     const cheatsheetHref = `/upload-error-cheatsheet/?utm_source=download_success&utm_medium=site&utm_campaign=upload_error_cheatsheet_fix_plan&utm_content=${content}`;
     const serviceHref = `/upload-limit-fix-plan/?utm_source=download_success&utm_medium=site&utm_campaign=upload_limit_fix_plan&utm_content=${content}#service-request`;
-    const publicRequestHref = serviceLeadFallbackUrl({
+    const publicRequestHref = serviceInvoiceRequestUrl({
       serviceType: "upload-limit-fix-plan",
       businessName: "",
       contact: "",
@@ -9128,8 +9128,8 @@ ${paragraphs.join("\n")}
         </div>
         ${renderDownloadUploadFixLeadForm(tool)}
         <div class="download-after-actions">
-          <a class="button" data-download-upload-fix-public-request data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(publicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe $9 request</a>
-          <a class="button secondary" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(serviceHref)}">Full $9 service page</a>
+          <a class="button" data-download-upload-fix-public-request data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(publicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a>
+          <a class="button secondary" data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(serviceHref)}">Full $9 service page</a>
           <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolId)}" href="${escapeHtml(uploadHref)}">Check another upload error</a>
           <a class="button ghost" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolId)}" href="${escapeHtml(cheatsheetHref)}">Open cheatsheet</a>
         </div>
@@ -9196,14 +9196,6 @@ ${paragraphs.join("\n")}
     const sourcePath = `/tools/${toolId}/`;
     const toolLabel = tool.shortTitle || tool.title || toolId;
     const defaultSummary = uploadLimitDownloadFixSummary(tool);
-    const fallbackUrl = serviceLeadFallbackUrl({
-      serviceType: "upload-limit-fix-plan",
-      businessName: "",
-      contact: "",
-      needBy: "",
-      requestSummary: defaultSummary,
-      path: sourcePath,
-    });
     const invoiceRequestUrl = serviceInvoiceRequestUrl({
       serviceType: "upload-limit-fix-plan",
       businessName: "",
@@ -9213,7 +9205,7 @@ ${paragraphs.join("\n")}
       path: sourcePath,
     });
     return `
-      <form class="download-service-lead-form download-upload-fix-lead-form" data-service-lead-form data-upload-fix-plan-form data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(sourcePath)}" data-utm-source="download_success" data-utm-medium="site" data-utm-campaign="upload_limit_fix_plan" data-utm-content="${escapeHtml(toolId)}" data-service-fallback-url="${escapeHtml(fallbackUrl)}">
+      <form class="download-service-lead-form download-upload-fix-lead-form" data-service-lead-form data-upload-fix-plan-form data-service-primary-invoice-request="true" data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(sourcePath)}" data-utm-source="download_success" data-utm-medium="site" data-utm-campaign="upload_limit_fix_plan" data-utm-content="${escapeHtml(toolId)}" data-service-fallback-url="${escapeHtml(invoiceRequestUrl)}" data-service-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">
         <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
         <input type="hidden" name="businessName" value="Downloaded ${escapeHtml(toolLabel)}">
@@ -9232,9 +9224,9 @@ ${paragraphs.join("\n")}
           <span>I will not upload or paste the actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details.</span>
         </label>
         <div class="actions">
-          <button class="button" type="submit" data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan">Send $9 upload check request</button>
+          <button class="button" type="submit" data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan">Send $9 upload check request</button>
           <button class="button secondary" type="submit" data-download-upload-fix-invoice-request data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $9 invoice link</button>
-          <a class="button ghost" data-service-lead-fallback-link data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(fallbackUrl)}" target="_blank" rel="noreferrer">Open public-safe request</a>
+          <a class="button ghost" data-service-lead-fallback-link data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a>
         </div>
         <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send a public-safe upload check here. Payment still happens only through a real external checkout or invoice after fit is confirmed.</p>
       </form>
@@ -16713,7 +16705,7 @@ ${paragraphs.join("\n")}
         if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
         event.preventDefault();
         event.stopPropagation();
-        track(link.dataset.trackEvent || "service_request_intent", { tool: link.dataset.trackTool || "upload-limit-fix-plan" });
+        track(link.dataset.trackEvent || "service_invoice_request", { tool: link.dataset.trackTool || "upload-limit-fix-plan" });
         const section = helper.closest("section") || document;
         const form = section.querySelector("[data-upload-fix-plan-form]") || document.querySelector("[data-upload-fix-plan-form]");
         if (!form) return;
