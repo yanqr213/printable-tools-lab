@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T09:49:00.329Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "Photo 295x413 Under 35KB by PrintableTools Lab",
+    "slug": "photo-295x413-under-35kb-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/photo-295x413-35kb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=photo_295x413_35kb_2026_06&utm_content=photo_295x413_35kb_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup 295 x 413 photo workflow for strict 35KB upload limits.",
+    "long_description": "A free browser-based 295 x 413 photo under 35KB workflow for application, profile, exam, school, and admin upload forms that require exact portrait pixels plus a strict KB cap. It points to local resize and image-to-KB steps, requires no account and no server file upload, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/photo-295x413-under-35kb-by-printabletools-lab"
+}

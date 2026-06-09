@@ -5,7 +5,32 @@ const root = path.resolve(__dirname, "..");
 const reportsDir = path.join(root, "reports");
 const endpoint = "https://techtools.cz/launchpad-api/tools";
 
+const latestExactUploadLimitBacklog = [
+  ["photo-295x413-35kb", "Photo 295x413 Under 35KB", "photo_295x413_35kb_2026_06", "photo_295x413_35kb_landing", "Free no-signup 295 x 413 photo and 35KB upload workflow.", "PrintableTools Lab Photo 295x413 Under 35KB helps people blocked by application, profile, exam, school, and admin upload forms that require exact 295 x 413 px portrait dimensions plus a strict 35KB cap. The page points visitors through local browser resize and image-to-KB steps, then offers an optional public-safe $9 Upload Limit Fix Plan request without asking for private files, IDs, logins, or payment details."],
+  ["photo-354x472-100kb", "Photo 354x472 Under 100KB", "photo_354x472_100kb_2026_06", "photo_354x472_100kb_landing", "Free no-signup 354 x 472 photo and 100KB upload workflow.", "PrintableTools Lab Photo 354x472 Under 100KB helps people blocked by application, profile, exam, school, and admin upload forms that require exact 354 x 472 px portrait dimensions plus a 100KB file-size cap. The page points visitors through local browser resize and compression steps, then offers an optional public-safe $9 Upload Limit Fix Plan request without asking for private files, IDs, logins, or payment details."],
+  ["photo-480x640-200kb", "Photo 480x640 Under 200KB", "photo_480x640_200kb_2026_06", "photo_480x640_200kb_landing", "Free no-signup 480 x 640 photo and 200KB upload workflow.", "PrintableTools Lab Photo 480x640 Under 200KB helps people blocked by application, profile, school, marketplace, and admin upload forms that require exact 480 x 640 px portrait dimensions plus a 200KB file-size cap. The page points visitors through local browser resize and compression steps, then offers an optional public-safe $9 Upload Limit Fix Plan request without asking for private files, IDs, logins, or payment details."],
+  ["photo-512x512-100kb", "Photo 512x512 Under 100KB", "photo_512x512_100kb_2026_06", "photo_512x512_100kb_landing", "Free no-signup 512 x 512 photo and 100KB upload workflow.", "PrintableTools Lab Photo 512x512 Under 100KB helps people blocked by profile, application, school, marketplace, and admin upload forms that require exact square 512 x 512 px photos plus a 100KB file-size cap. The page points visitors through local browser resize and compression steps, then offers an optional public-safe $9 Upload Limit Fix Plan request without asking for private files, IDs, logins, or payment details."],
+  ["signature-160x70-20kb", "Signature 160x70 Under 20KB", "signature_160x70_20kb_2026_06", "signature_160x70_20kb_landing", "Free no-signup 160 x 70 signature and strict 20KB upload workflow.", "PrintableTools Lab Signature 160x70 Under 20KB helps people blocked when an exam, job, school, bank, or admin upload page requires both an exact 160 x 70 px signature image and a tiny 20KB cap. The page opens browser resize and compression steps, keeps ordinary files local, and includes an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed."],
+  ["signature-250x80-50kb", "Signature 250x80 Under 50KB", "signature_250x80_50kb_2026_06", "signature_250x80_50kb_landing", "Free no-signup 250 x 80 signature and 50KB upload workflow.", "PrintableTools Lab Signature 250x80 Under 50KB helps people blocked when an application, school, job, bank, or admin upload page requires both an exact 250 x 80 px signature image and a 50KB cap. The page opens browser resize and compression steps, keeps ordinary files local, and includes an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed."],
+  ["signature-300x60-20kb", "Signature 300x60 Under 20KB", "signature_300x60_20kb_2026_06", "signature_300x60_20kb_landing", "Free no-signup 300 x 60 signature and strict 20KB upload workflow.", "PrintableTools Lab Signature 300x60 Under 20KB helps people blocked when an exam, job, school, bank, or admin upload page requires both an exact 300 x 60 px signature image and a tiny 20KB cap. The page opens browser resize and compression steps, keeps ordinary files local, and includes an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed."],
+  ["signature-400x150-50kb", "Signature 400x150 Under 50KB", "signature_400x150_50kb_2026_06", "signature_400x150_50kb_landing", "Free no-signup 400 x 150 signature and 50KB upload workflow.", "PrintableTools Lab Signature 400x150 Under 50KB helps people blocked when a document, job, school, bank, or admin upload page requires both an exact 400 x 150 px signature image and a 50KB cap. The page opens browser resize and compression steps, keeps ordinary files local, and includes an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed."],
+];
+
 const backlog = [
+  ...latestExactUploadLimitBacklog.map(([pathName, name, campaign, content, tagline, description]) => ({
+    report: `techtools-${pathName}-submit.json`,
+    payload: {
+      name: `${name} by PrintableTools Lab`,
+      tagline,
+      description,
+      url: `https://printable-tools-lab.pages.dev/${pathName}/?utm_source=techtools&utm_medium=directory&utm_campaign=${campaign}&utm_content=${content}`,
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: `Codex traffic acquisition run 2026-06-09 ${name.toLowerCase()} upload-fix landing path`,
+    },
+  })),
   {
     report: "techtools-image-dimensions-600x600-upload-fix-submit.json",
     payload: {

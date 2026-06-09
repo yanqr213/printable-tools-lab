@@ -159,6 +159,20 @@ const backlog = [
     },
   },
   {
+    report: "freenosignup-photo-295x413-35kb-submit.json",
+    searchUrl: "https://freenosignup.com/?s=Photo+295x413+Under+35KB",
+    payload: {
+      toolName: "Photo 295x413 Under 35KB by PrintableTools Lab",
+      toolUrl: "https://printable-tools-lab.pages.dev/photo-295x413-35kb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=photo_295x413_35kb_2026_06&utm_content=photo_295x413_35kb_landing",
+      category: "Productivity",
+      description: "Free no-signup browser workflow for forms that need a 295 x 413 px photo under 35KB. It routes users through local portrait photo resizing and strict image-to-KB compression, with reminders to check the downloaded result before uploading elsewhere.",
+      keyFeatures: "No signup. Exact 295 x 413 px photo target. Strict 35KB size guidance. Browser resize and compression steps. Free tool path. Public-safe upload notes.",
+      submitterName: "PrintableTools Lab",
+      additionalNotes: "Specific exact-dimension photo upload-limit page for long-tail search and directory discovery.",
+      submitterEmail: "",
+    },
+  },
+  {
     report: "freenosignup-photo-413x531-50kb-submit.json",
     searchUrl: "https://freenosignup.com/?s=Photo+413x531+Under+50KB",
     payload: {
@@ -167,6 +181,20 @@ const backlog = [
       category: "Productivity",
       description: "Free no-signup browser workflow for forms that need a 413 x 531 px photo under 50KB. It routes users through local portrait photo resizing and strict image-to-KB compression.",
       keyFeatures: "No signup. Exact 413 x 531 px photo target. 50KB size guidance. Browser resize and compression steps. Free tool path. Public-safe upload notes.",
+      submitterName: "PrintableTools Lab",
+      additionalNotes: "Specific exact-dimension photo upload-limit page for long-tail search and directory discovery.",
+      submitterEmail: "",
+    },
+  },
+  {
+    report: "freenosignup-photo-354x472-100kb-submit.json",
+    searchUrl: "https://freenosignup.com/?s=Photo+354x472+Under+100KB",
+    payload: {
+      toolName: "Photo 354x472 Under 100KB by PrintableTools Lab",
+      toolUrl: "https://printable-tools-lab.pages.dev/photo-354x472-100kb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=photo_354x472_100kb_2026_06&utm_content=photo_354x472_100kb_landing",
+      category: "Productivity",
+      description: "Free no-signup browser workflow for forms that need a 354 x 472 px photo under 100KB. It routes users through local portrait photo resizing and image-to-KB compression before uploading elsewhere.",
+      keyFeatures: "No signup. Exact 354 x 472 px photo target. 100KB size guidance. Browser resize and compression steps. Free tool path. Public-safe upload notes.",
       submitterName: "PrintableTools Lab",
       additionalNotes: "Specific exact-dimension photo upload-limit page for long-tail search and directory discovery.",
       submitterEmail: "",
@@ -201,6 +229,34 @@ const backlog = [
     },
   },
   {
+    report: "freenosignup-photo-480x640-200kb-submit.json",
+    searchUrl: "https://freenosignup.com/?s=Photo+480x640+Under+200KB",
+    payload: {
+      toolName: "Photo 480x640 Under 200KB by PrintableTools Lab",
+      toolUrl: "https://printable-tools-lab.pages.dev/photo-480x640-200kb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=photo_480x640_200kb_2026_06&utm_content=photo_480x640_200kb_landing",
+      category: "Productivity",
+      description: "Free no-signup browser workflow for forms that need a 480 x 640 px photo under 200KB. It routes users through local portrait photo resizing and image-to-KB compression.",
+      keyFeatures: "No signup. Exact 480 x 640 px photo target. 200KB size guidance. Browser resize and compression steps. Free tool path. Public-safe upload notes.",
+      submitterName: "PrintableTools Lab",
+      additionalNotes: "Specific exact-dimension photo upload-limit page for long-tail search and directory discovery.",
+      submitterEmail: "",
+    },
+  },
+  {
+    report: "freenosignup-photo-512x512-100kb-submit.json",
+    searchUrl: "https://freenosignup.com/?s=Photo+512x512+Under+100KB",
+    payload: {
+      toolName: "Photo 512x512 Under 100KB by PrintableTools Lab",
+      toolUrl: "https://printable-tools-lab.pages.dev/photo-512x512-100kb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=photo_512x512_100kb_2026_06&utm_content=photo_512x512_100kb_landing",
+      category: "Productivity",
+      description: "Free no-signup browser workflow for forms that need a square 512 x 512 px photo under 100KB. It routes users through local square photo resizing and image-to-KB compression.",
+      keyFeatures: "No signup. Exact 512 x 512 px square photo target. 100KB size guidance. Browser resize and compression steps. Free tool path. Public-safe upload notes.",
+      submitterName: "PrintableTools Lab",
+      additionalNotes: "Specific exact-dimension photo upload-limit page for long-tail search and directory discovery.",
+      submitterEmail: "",
+    },
+  },
+  {
     report: "freenosignup-signature-under-20kb-submit.json",
     searchUrl: "https://freenosignup.com/?s=Signature+Under+20KB",
     payload: {
@@ -223,6 +279,20 @@ const backlog = [
       category: "Productivity",
       description: "Free no-signup browser workflow for signature images that must be 150 x 50 px and under 20KB. It routes users to local signature resize and compression steps.",
       keyFeatures: "No signup. Exact 150 x 50 px signature target. Strict 20KB size guidance. Browser resize and compression path. Free tool path. Public-safe upload notes.",
+      submitterName: "PrintableTools Lab",
+      additionalNotes: "Specific exact-size signature upload-limit page for long-tail search and directory discovery.",
+      submitterEmail: "",
+    },
+  },
+  {
+    report: "freenosignup-signature-160x70-20kb-submit.json",
+    searchUrl: "https://freenosignup.com/?s=Signature+160x70+Under+20KB",
+    payload: {
+      toolName: "Signature 160x70 Under 20KB by PrintableTools Lab",
+      toolUrl: "https://printable-tools-lab.pages.dev/signature-160x70-20kb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=signature_160x70_20kb_2026_06&utm_content=signature_160x70_20kb_landing",
+      category: "Productivity",
+      description: "Free no-signup browser workflow for signature images that must be 160 x 70 px and under 20KB. It routes users to local signature resize and compression steps.",
+      keyFeatures: "No signup. Exact 160 x 70 px signature target. Strict 20KB size guidance. Browser resize and compression path. Free tool path. Public-safe upload notes.",
       submitterName: "PrintableTools Lab",
       additionalNotes: "Specific exact-size signature upload-limit page for long-tail search and directory discovery.",
       submitterEmail: "",
@@ -271,6 +341,34 @@ const backlog = [
     },
   },
   {
+    report: "freenosignup-signature-250x80-50kb-submit.json",
+    searchUrl: "https://freenosignup.com/?s=Signature+250x80+Under+50KB",
+    payload: {
+      toolName: "Signature 250x80 Under 50KB by PrintableTools Lab",
+      toolUrl: "https://printable-tools-lab.pages.dev/signature-250x80-50kb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=signature_250x80_50kb_2026_06&utm_content=signature_250x80_50kb_landing",
+      category: "Productivity",
+      description: "Free no-signup browser workflow for signature images that must be 250 x 80 px and under 50KB. It points users to local signature resize and compression checks.",
+      keyFeatures: "No signup. Exact 250 x 80 px signature target. 50KB size guidance. Browser resize and compression path. Free tool path. Public-safe upload notes.",
+      submitterName: "PrintableTools Lab",
+      additionalNotes: "Specific exact-size signature upload-limit page for long-tail search and directory discovery.",
+      submitterEmail: "",
+    },
+  },
+  {
+    report: "freenosignup-signature-300x60-20kb-submit.json",
+    searchUrl: "https://freenosignup.com/?s=Signature+300x60+Under+20KB",
+    payload: {
+      toolName: "Signature 300x60 Under 20KB by PrintableTools Lab",
+      toolUrl: "https://printable-tools-lab.pages.dev/signature-300x60-20kb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=signature_300x60_20kb_2026_06&utm_content=signature_300x60_20kb_landing",
+      category: "Productivity",
+      description: "Free no-signup browser workflow for signature images that must be 300 x 60 px and under 20KB. It points users to local signature resize and strict image-to-KB compression.",
+      keyFeatures: "No signup. Exact 300 x 60 px signature target. Strict 20KB size guidance. Browser resize and compression path. Free tool path. Public-safe upload notes.",
+      submitterName: "PrintableTools Lab",
+      additionalNotes: "Specific exact-size signature upload-limit page for long-tail search and directory discovery.",
+      submitterEmail: "",
+    },
+  },
+  {
     report: "freenosignup-signature-300x100-50kb-submit.json",
     searchUrl: "https://freenosignup.com/?s=Signature+300x100+Under+50KB",
     payload: {
@@ -279,6 +377,20 @@ const backlog = [
       category: "Productivity",
       description: "Free no-signup browser workflow for signature images that must be 300 x 100 px and under 50KB. It routes users to local resize and image-to-KB compression steps.",
       keyFeatures: "No signup. Exact 300 x 100 px signature target. 50KB size guidance. Browser resize and compression path. Free tool path. Public-safe upload notes.",
+      submitterName: "PrintableTools Lab",
+      additionalNotes: "Specific exact-size signature upload-limit page for long-tail search and directory discovery.",
+      submitterEmail: "",
+    },
+  },
+  {
+    report: "freenosignup-signature-400x150-50kb-submit.json",
+    searchUrl: "https://freenosignup.com/?s=Signature+400x150+Under+50KB",
+    payload: {
+      toolName: "Signature 400x150 Under 50KB by PrintableTools Lab",
+      toolUrl: "https://printable-tools-lab.pages.dev/signature-400x150-50kb/?utm_source=freenosignup&utm_medium=directory&utm_campaign=signature_400x150_50kb_2026_06&utm_content=signature_400x150_50kb_landing",
+      category: "Productivity",
+      description: "Free no-signup browser workflow for signature images that must be 400 x 150 px and under 50KB. It routes users to local resize and image-to-KB compression steps.",
+      keyFeatures: "No signup. Exact 400 x 150 px signature target. 50KB size guidance. Browser resize and compression path. Free tool path. Public-safe upload notes.",
       submitterName: "PrintableTools Lab",
       additionalNotes: "Specific exact-size signature upload-limit page for long-tail search and directory discovery.",
       submitterEmail: "",
@@ -334,7 +446,7 @@ async function main() {
   for (const item of backlog) {
     const result = await submitOrSkip(item);
     results.push(result);
-    await delay(1500);
+    if (!result.skipped) await delay(1500);
   }
   console.log(JSON.stringify({ ok: results.every((item) => item.ok || item.skipped), results }, null, 2));
   if (results.some((item) => !item.ok && !item.skipped)) process.exitCode = 1;

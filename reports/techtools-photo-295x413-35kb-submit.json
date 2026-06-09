@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-09T09:48:14.626Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Photo 295x413 Under 35KB by PrintableTools Lab",
+    "tagline": "Free no-signup 295 x 413 photo and 35KB upload workflow.",
+    "description": "PrintableTools Lab Photo 295x413 Under 35KB helps people blocked by application, profile, exam, school, and admin upload forms that require exact 295 x 413 px portrait dimensions plus a strict 35KB cap. The page points visitors through local browser resize and image-to-KB steps, then offers an optional public-safe $9 Upload Limit Fix Plan request without asking for private files, IDs, logins, or payment details.",
+    "url": "https://printable-tools-lab.pages.dev/photo-295x413-35kb/?utm_source=techtools&utm_medium=directory&utm_campaign=photo_295x413_35kb_2026_06&utm_content=photo_295x413_35kb_landing",
+    "category": "utilities",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 photo 295x413 under 35kb upload-fix landing path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 238,
+      "name": "Photo 295x413 Under 35KB by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/photo-295x413-35kb/?utm_source=techtools&utm_medium=directory&utm_campaign=photo_295x413_35kb_2026_06&utm_content=photo_295x413_35kb_landing",
+      "tagline": "Free no-signup 295 x 413 photo and 35KB upload workflow.",
+      "description": "PrintableTools Lab Photo 295x413 Under 35KB helps people blocked by application, profile, exam, school, and admin upload forms that require exact 295 x 413 px portrait dimensions plus a strict 35KB cap. The page points visitors through local browser resize and image-to-KB steps, then offers an optional public-safe $9 Upload Limit Fix Plan request without asking for private files, IDs, logins, or payment details.",
+      "category": "utilities",
+      "category_label": "Utilities",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 photo 295x413 under 35kb upload-fix landing path",
+      "launch_date": "2026-06-09",
+      "created_at": "2026-06-09T09:48:14Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=238"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=238"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=238",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/238"
+}
