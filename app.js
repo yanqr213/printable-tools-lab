@@ -5965,7 +5965,7 @@
   }
 
   function uploadFixPaidPathNote() {
-    return `<p class="notice compact-notice" data-upload-fix-paid-path><strong>30-second paid path:</strong> add one reply contact, send the public-safe request, then receive a real external $9 checkout or invoice only after fit is confirmed.</p>`;
+    return `<p class="notice compact-notice" data-upload-fix-paid-path><strong>30-second paid path:</strong> add where the external $9 invoice link should go, send the public-safe request, then receive the real checkout or invoice only after fit is confirmed.</p>`;
   }
 
   function renderPdfToolUploadFixRequest(tool, initialValues = {}) {
@@ -6168,8 +6168,8 @@
           ${requestSummaryField}${extraNote}
           ${uploadFixPaidPathNote()}
           <label class="field">
-            <span>Email or public contact link</span>
-            <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
+            <span>Where should the external $9 invoice link go?</span>
+            <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com, @publichandle, or https://example.com/contact" required>
           </label>
           ${needByField}
           ${consentField}
@@ -7055,7 +7055,7 @@
         <div class="grid-2">
           <div>
             <h2>Request the $9 invoice link in 30 seconds</h2>
-            <p>Use this if the free chooser is not enough and you want the paid path. Add one reply contact only; the public-safe request already says no file upload.</p>
+            <p>Use this if the free chooser is not enough and you want the paid path. Add where the external $9 invoice link should go; the public-safe request already says no file upload.</p>
           </div>
           ${uploadLimitFixPlanInlineLeadForm({
             path: "/upload-limit-fix-plan/",
@@ -7203,7 +7203,7 @@
         <div class="grid-2">
           <div>
             <h2>Need a $9 upload fix plan?</h2>
-            <p>Request the $9 invoice link in 30 seconds if the free tool is not enough. Add one reply contact only; the public-safe request already says no file upload.</p>
+            <p>Request the $9 invoice link in 30 seconds if the free tool is not enough. Add where the external $9 invoice link should go; the public-safe request already says no file upload.</p>
           </div>
           ${uploadLimitFixPlanInlineLeadForm({
             path: `/${page.slug}/`,
@@ -7997,6 +7997,7 @@
               <input name="consent" type="checkbox" required>
               <span>I will keep payment, tax, identity, passwords, customer lists, and private files outside this form.</span>
             </label>`;
+    const contactLabel = oneContactInvoiceRequest ? `Where should the external ${price} invoice link go?` : "Reply email, @handle, or public contact URL";
     return `
       <section class="shell section service-lead-section" id="service-request">
         <div class="grid-2">
@@ -8017,8 +8018,8 @@
             <input type="hidden" name="utmCampaign" value="${escapeHtml(utmCampaign)}">
             <input type="hidden" name="utmContent" value="${escapeHtml(utmContent)}">
             <label class="field">
-              <span>Email or public contact link</span>
-              <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or https://example.com/contact" required>
+              <span>${escapeHtml(contactLabel)}</span>
+              <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com, @publichandle, or https://example.com/contact" required>
             </label>
             ${businessNameField}
             ${requestSummaryField}
@@ -15813,6 +15814,12 @@ ${paragraphs.join("\n")}
     if (!contact) return;
     const field = contact.closest(".field") || contact.parentElement;
     const labelText = field?.querySelector("span");
+    const serviceType = form.dataset.serviceType || form.querySelector("[name='serviceType']")?.value || "";
+    const invoiceRequest = form.dataset.servicePrimaryInvoiceRequest === "true" || form.dataset.uploadErrorInvoiceRequest === "true";
+    const price = serviceLeadInvoiceRequestPrice(serviceType) || serviceLeadPriceHint(serviceType);
+    if (labelText && invoiceRequest && price) {
+      labelText.textContent = `Where should the external ${price} invoice link go?`;
+    }
     if (labelText && /email or public contact link/i.test(labelText.textContent || "")) {
       labelText.textContent = "Reply email, @handle, or public contact URL";
     }
@@ -15863,6 +15870,14 @@ ${paragraphs.join("\n")}
   function serviceLeadContactCueText(form, needed = false) {
     const serviceType = form.dataset.serviceType || form.querySelector("[name='serviceType']")?.value || "custom-local-print-pack";
     const privatePath = serviceLeadPrivatePathLabel(serviceType);
+    const invoiceRequest = form.dataset.servicePrimaryInvoiceRequest === "true" || form.dataset.uploadErrorInvoiceRequest === "true";
+    const price = serviceLeadInvoiceRequestPrice(serviceType) || serviceLeadPriceHint(serviceType);
+    if (invoiceRequest && price) {
+      if (needed) {
+        return `Add one reply email, @handle, or public contact URL so the external ${price} invoice link can be sent after fit is confirmed.`;
+      }
+      return `This is where the external ${price} invoice link will be sent after fit is confirmed. No payment is collected here.`;
+    }
     if (needed) {
       return `Add one reply email, @handle, or public contact URL, then press Send again for the ${privatePath}. No payment is collected here.`;
     }

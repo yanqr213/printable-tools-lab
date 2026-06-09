@@ -719,6 +719,7 @@ function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, path
               <input name="consent" type="checkbox" required>
               <span>I will keep payment, tax, identity, passwords, customer lists, and private files outside this form.</span>
             </label>`;
+  const contactLabel = oneContactInvoiceRequest ? `Where should the external ${price} invoice link go?` : "Reply email, @handle, or public contact URL";
   return `<section class="shell section service-lead-section" id="service-request">
         <div class="grid-2">
           <div>
@@ -738,7 +739,7 @@ function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, path
             <input type="hidden" name="utmCampaign" value="${escapeHtml(campaign)}">
             <input type="hidden" name="utmContent" value="${escapeHtml(content)}">
             <label class="field">
-              <span>Reply email, @handle, or public contact URL</span>
+              <span>${escapeHtml(contactLabel)}</span>
               <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com, @publichandle, or https://example.com/contact" required>
             </label>
             ${businessNameField}
@@ -6959,7 +6960,7 @@ function uploadLimitFixPlanInlineLeadFormHtml(options = {}) {
           <input type="hidden" name="utmContent" value="${escapeHtml(utmContent)}">
           ${requestSummaryField}${extraNote}
           <label class="field">
-            <span>Reply email, @handle, or public contact URL</span>
+            <span>Where should the external $9 invoice link go?</span>
             <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com, @publichandle, or https://example.com/contact" required>
           </label>
           ${needByField}
@@ -9472,7 +9473,7 @@ function paidServiceHtml(service, options = {}) {
         <div class="grid-2">
           <div>
             <h2>Request the $9 invoice link in 30 seconds</h2>
-            <p>Use this if the free chooser is not enough and you want the paid path. Add one reply contact only; the public-safe request already says no file upload.</p>
+            <p>Use this if the free chooser is not enough and you want the paid path. Add where the external $9 invoice link should go; the public-safe request already says no file upload.</p>
           </div>
           ${uploadLimitFixPlanInlineLeadFormHtml({
             pathName: service.slug,
@@ -10300,7 +10301,7 @@ function landingPageHtml(page) {
         <div class="grid-2">
           <div>
             <h2>Need a $9 upload fix plan?</h2>
-            <p>Request the $9 invoice link in 30 seconds if the free tool is not enough. Add one reply contact only; the public-safe request already says no file upload.</p>
+            <p>Request the $9 invoice link in 30 seconds if the free tool is not enough. Add where the external $9 invoice link should go; the public-safe request already says no file upload.</p>
           </div>
           ${uploadLimitFixPlanInlineLeadFormHtml({
             pathName: page.path,
