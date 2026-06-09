@@ -7149,16 +7149,18 @@
       },
     });
     const serviceInvoiceAction = page.serviceLead?.serviceType === "upload-limit-fix-plan"
-      ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#invoice-request">Request $9 invoice link</a> `
+      ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#invoice-request">Get a $9 upload fix plan</a> `
       : page.serviceLead?.serviceType === "invoice-followup-copy-pack"
         ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">Request $19 invoice link</a> `
         : "";
     const servicePublicRequestEvent = serviceLeadIsUploadInvoice ? "service_invoice_request" : page.serviceLead ? serviceLeadTrackEvent(page.serviceLead.serviceType) : "";
     const servicePublicRequestLabel = serviceLeadIsUploadInvoice ? "Open public-safe $9 invoice request" : "Open public-safe request";
     const secondaryAction = page.uploadErrorMatcher
-      ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="#invoice-request">Request $9 invoice link</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(uploadFixPublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a>`
+      ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="#invoice-request">Get a $9 upload fix plan</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(uploadFixPublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a>`
       : page.serviceLead
-        ? `${serviceInvoiceAction}<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(servicePublicRequestEvent)}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">${escapeHtml(servicePublicRequestLabel)}</a>`
+        ? page.serviceLead.serviceType === "upload-limit-fix-plan"
+          ? `${serviceInvoiceAction}<a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(servicePublicRequestEvent)}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">${escapeHtml(servicePublicRequestLabel)}</a>`
+          : `${serviceInvoiceAction}<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(servicePublicRequestEvent)}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">${escapeHtml(servicePublicRequestLabel)}</a>`
         : `<a class="button secondary" href="/pdf-tool-finder/">Compare tools</a>`;
     app.innerHTML = `
       <section class="shell page-title section">

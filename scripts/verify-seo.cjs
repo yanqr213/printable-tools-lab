@@ -1092,6 +1092,8 @@ for (const [pagePath, formatLabel, target] of [
   const html = fs.readFileSync(file, "utf8");
   if (!html.includes(`Compress ${formatLabel} to ${target}KB without uploading`)) failures.push(`Format target-KB page missing headline: ${pagePath}`);
   if (!html.includes(`/tools/compress-image-to-kb/?targetKb=${target}`)) failures.push(`Format target-KB page missing prefilled tool link: ${pagePath}`);
+  if (!html.includes("Get a $9 upload fix plan")) failures.push(`Format target-KB page missing clear $9 upload fix CTA: ${pagePath}`);
+  if (html.includes('href="#service-request">Send $9 upload fix request</a>')) failures.push(`Format target-KB page should not show duplicate $9 request CTA in the hero: ${pagePath}`);
   if (!sitemap.includes(`<loc>${siteUrl(pagePath)}</loc>`)) failures.push(`Sitemap missing format target-KB page: ${pagePath}`);
 }
 
@@ -1116,6 +1118,8 @@ for (const [pagePath, targetSize, headlineSize] of [["compress-pdf-to-500kb", "5
   const html = fs.readFileSync(file, "utf8");
   if (!html.includes(`Compress PDF to ${headlineSize} without uploading`)) failures.push(`Target-size PDF landing page missing headline: ${pagePath}`);
   if (!html.includes(`/tools/compress-pdf/?targetSize=${targetSize}`)) failures.push(`Target-size PDF landing page missing prefilled tool link: ${pagePath}`);
+  if (!html.includes("Get a $9 upload fix plan")) failures.push(`Target-size PDF landing page missing clear $9 upload fix CTA: ${pagePath}`);
+  if (html.includes('href="#service-request">Send $9 upload fix request</a>')) failures.push(`Target-size PDF landing page should not show duplicate $9 request CTA in the hero: ${pagePath}`);
     if (!html.includes("Need a $9 upload fix plan?") || !html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes('data-track-tool="upload-limit-fix-plan"') || !html.includes('data-utm-campaign="upload_limit_fix_plan"') || !html.includes('data-service-primary-invoice-request="true"') || !html.includes('data-track-event="service_invoice_request"') || !html.includes("Open public-safe $9 invoice request")) failures.push(`Target-size PDF landing page missing $9 upload fix invoice request path: ${pagePath}`);
   if (!sitemap.includes(`<loc>${siteUrl(pagePath)}</loc>`)) failures.push(`Sitemap missing target-size PDF landing page: ${pagePath}`);
 }
