@@ -15997,7 +15997,7 @@ ${paragraphs.join("\n")}
   function serviceLeadPayload(form, options = {}) {
     const values = getFormValues(form);
     const params = new URLSearchParams(window.location.search || "");
-    const fieldOrDataOrParam = (field, data, param) => values[field] || form.dataset[data] || params.get(param) || "";
+    const paramOrFieldOrData = (param, field, data) => params.get(param) || values[field] || form.dataset[data] || "";
     const serviceType = values.serviceType || form.dataset.serviceType || "custom-local-print-pack";
     const invoiceLinkRequest = Boolean(
       options.invoiceLinkRequest ||
@@ -16014,10 +16014,10 @@ ${paragraphs.join("\n")}
       consent: serviceLeadConsentAccepted(form, values),
       path: values.path || form.dataset.leadPath || getCurrentRoutePath(),
       source: getTrafficSource(),
-      utmSource: fieldOrDataOrParam("utmSource", "utmSource", "utm_source"),
-      utmMedium: fieldOrDataOrParam("utmMedium", "utmMedium", "utm_medium"),
-      utmCampaign: fieldOrDataOrParam("utmCampaign", "utmCampaign", "utm_campaign"),
-      utmContent: fieldOrDataOrParam("utmContent", "utmContent", "utm_content"),
+      utmSource: paramOrFieldOrData("utm_source", "utmSource", "utmSource"),
+      utmMedium: paramOrFieldOrData("utm_medium", "utmMedium", "utmMedium"),
+      utmCampaign: paramOrFieldOrData("utm_campaign", "utmCampaign", "utmCampaign"),
+      utmContent: paramOrFieldOrData("utm_content", "utmContent", "utmContent"),
       ...(requestedNextStep ? { requestedNextStep } : {}),
       ...(invoiceLinkRequest ? { invoiceLinkRequest: true } : {}),
     };
