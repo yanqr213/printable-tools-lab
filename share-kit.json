@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Share Kit",
-  "generatedAt": "2026-06-09T08:32:47.159Z",
+  "generatedAt": "2026-06-09T09:28:36.170Z",
   "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
   "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
   "featuredLinks": [
@@ -493,6 +493,16 @@
         "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=240&height=320&fit=cover"
       },
       {
+        "errorText": "Photo must be 295 x 413 px and under 35KB",
+        "problem": "A portrait photo upload requires exact 295 x 413 pixels and rejects files above 35KB.",
+        "response": "Resize to 295 x 413 pixels first, then compress the exported photo toward 35KB.",
+        "format": "Photo",
+        "target": "295 x 413 / 35KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/photo-295x413-35kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/photo-295x413-35kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=295&height=413&fit=cover"
+      },
+      {
         "errorText": "Photo must be 413 x 531 px and under 100KB",
         "problem": "An ID-style or application photo upload requires 413 x 531 pixels and rejects files above 100KB.",
         "response": "Resize to 413 x 531 pixels, then compress the exported photo toward 100KB.",
@@ -513,6 +523,16 @@
         "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=413&height=531&fit=cover"
       },
       {
+        "errorText": "Photo must be 354 x 472 px and under 100KB",
+        "problem": "An ID-style or application photo upload requires exact 354 x 472 pixels and rejects files above 100KB.",
+        "response": "Resize to 354 x 472 pixels first, then compress the exported photo toward 100KB.",
+        "format": "Photo",
+        "target": "354 x 472 / 100KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/photo-354x472-100kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/photo-354x472-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=354&height=472&fit=cover"
+      },
+      {
         "errorText": "Photo must be 300 x 300 px and under 100KB",
         "problem": "A square profile, school, or application photo must be exactly 300 x 300 pixels and below 100KB.",
         "response": "Crop to a 300 x 300 square first, then compress toward 100KB if the output is still too large.",
@@ -531,6 +551,26 @@
         "landingPage": "https://printable-tools-lab.pages.dev/photo-600x600-100kb/",
         "trackedUrl": "https://printable-tools-lab.pages.dev/photo-600x600-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
         "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=600&fit=cover"
+      },
+      {
+        "errorText": "Photo must be 480 x 640 px and under 200KB",
+        "problem": "A portrait profile or application upload requires 480 x 640 pixels and rejects files above 200KB.",
+        "response": "Resize to 480 x 640 pixels first, then compress the exported photo toward 200KB.",
+        "format": "Photo",
+        "target": "480 x 640 / 200KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/photo-480x640-200kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/photo-480x640-200kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=480&height=640&fit=cover"
+      },
+      {
+        "errorText": "Photo must be 512 x 512 px and under 100KB",
+        "problem": "A square avatar, profile, or application photo must be exactly 512 x 512 pixels and below 100KB.",
+        "response": "Crop or resize to 512 x 512 pixels first, then compress the exported photo toward 100KB.",
+        "format": "Photo",
+        "target": "512 x 512 / 100KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/photo-512x512-100kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/photo-512x512-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=512&height=512&fit=cover"
       },
       {
         "errorText": "JPG must be under 200KB",
@@ -603,6 +643,16 @@
         "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=150&height=50&fit=contain"
       },
       {
+        "errorText": "Signature must be 160 x 70 px and under 20KB",
+        "problem": "A compact signature upload box requires exact 160 x 70 pixels and a strict 20KB cap.",
+        "response": "Resize to 160 x 70 pixels first, then compress the exported signature toward 20KB.",
+        "format": "Signature",
+        "target": "160 x 70 / 20KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/signature-160x70-20kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/signature-160x70-20kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=160&height=70&fit=contain"
+      },
+      {
         "errorText": "Signature must be 200 x 50 px and under 20KB",
         "problem": "A wide signature strip requires exact 200 x 50 pixels and a strict 20KB cap.",
         "response": "Resize to 200 x 50 pixels, then compress the exported signature toward 20KB.",
@@ -623,6 +673,26 @@
         "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=100&fit=contain"
       },
       {
+        "errorText": "Signature must be 250 x 80 px and under 50KB",
+        "problem": "A long signature upload box requires 250 x 80 pixels and a file below 50KB.",
+        "response": "Resize to 250 x 80 pixels first, then compress the exported signature toward 50KB.",
+        "format": "Signature",
+        "target": "250 x 80 / 50KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/signature-250x80-50kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/signature-250x80-50kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=250&height=80&fit=contain"
+      },
+      {
+        "errorText": "Signature must be 300 x 60 px and under 20KB",
+        "problem": "A long narrow signature upload box requires 300 x 60 pixels and a strict 20KB cap.",
+        "response": "Resize to 300 x 60 pixels first, then compress the exported signature toward 20KB.",
+        "format": "Signature",
+        "target": "300 x 60 / 20KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/signature-300x60-20kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/signature-300x60-20kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=300&height=60&fit=contain"
+      },
+      {
         "errorText": "Signature must be 300 x 80 px and under 50KB",
         "problem": "A long signature upload box requires 300 x 80 pixels and a file below 50KB.",
         "response": "Resize to 300 x 80 pixels first, then compress the exported signature toward 50KB.",
@@ -641,6 +711,16 @@
         "landingPage": "https://printable-tools-lab.pages.dev/signature-300x100-50kb/",
         "trackedUrl": "https://printable-tools-lab.pages.dev/signature-300x100-50kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
         "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=300&height=100&fit=contain"
+      },
+      {
+        "errorText": "Signature must be 400 x 150 px and under 50KB",
+        "problem": "A larger signature upload box requires 400 x 150 pixels and a 50KB file cap.",
+        "response": "Resize to 400 x 150 pixels first, then compress the exported signature toward 50KB.",
+        "format": "Signature",
+        "target": "400 x 150 / 50KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/signature-400x150-50kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/signature-400x150-50kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=400&height=150&fit=contain"
       },
       {
         "errorText": "PDF not accepted, JPG required",
@@ -733,9 +813,9 @@
       }
     ],
     "externalDiscoveryProof": {
-      "generatedAt": "2026-06-09T07:58:10.215Z",
-      "directoryListedCount": 74,
-      "directoryPendingCount": 100,
+      "generatedAt": "2026-06-09T09:07:33.366Z",
+      "directoryListedCount": 82,
+      "directoryPendingCount": 116,
       "directoryErrorCount": 1,
       "listedDirectories": [
         {
@@ -1081,6 +1161,30 @@
           "reviewWindow": "auto-approved API listing for the exact 413 x 531 px and 100KB photo path"
         },
         {
+          "name": "TechTools Launchpad photo 240x320 under 50KB listing",
+          "evidenceUrl": "https://techtools.cz/launchpad-api/tools/230",
+          "submittedAt": "2026-06-09",
+          "reviewWindow": "auto-approved API listing for the exact 240 x 320 px and 50KB photo path"
+        },
+        {
+          "name": "TechTools Launchpad photo 413x531 under 50KB listing",
+          "evidenceUrl": "https://techtools.cz/launchpad-api/tools/231",
+          "submittedAt": "2026-06-09",
+          "reviewWindow": "auto-approved API listing for the exact 413 x 531 px and 50KB photo path"
+        },
+        {
+          "name": "TechTools Launchpad photo 300x300 under 100KB listing",
+          "evidenceUrl": "https://techtools.cz/launchpad-api/tools/232",
+          "submittedAt": "2026-06-09",
+          "reviewWindow": "auto-approved API listing for the exact 300 x 300 px and 100KB photo path"
+        },
+        {
+          "name": "TechTools Launchpad photo 600x600 under 100KB listing",
+          "evidenceUrl": "https://techtools.cz/launchpad-api/tools/233",
+          "submittedAt": "2026-06-09",
+          "reviewWindow": "auto-approved API listing for the exact 600 x 600 px and 100KB photo path"
+        },
+        {
           "name": "TechTools Launchpad resize signature 200x100 listing",
           "evidenceUrl": "https://techtools.cz/launchpad-api/tools/221",
           "submittedAt": "2026-06-09",
@@ -1103,6 +1207,30 @@
           "evidenceUrl": "https://techtools.cz/launchpad-api/tools/229",
           "submittedAt": "2026-06-09",
           "reviewWindow": "auto-approved API listing for the exact 200 x 100 px and 50KB signature path"
+        },
+        {
+          "name": "TechTools Launchpad signature 150x50 under 20KB listing",
+          "evidenceUrl": "https://techtools.cz/launchpad-api/tools/234",
+          "submittedAt": "2026-06-09",
+          "reviewWindow": "auto-approved API listing for the exact 150 x 50 px and 20KB signature path"
+        },
+        {
+          "name": "TechTools Launchpad signature 200x50 under 20KB listing",
+          "evidenceUrl": "https://techtools.cz/launchpad-api/tools/235",
+          "submittedAt": "2026-06-09",
+          "reviewWindow": "auto-approved API listing for the exact 200 x 50 px and 20KB signature path"
+        },
+        {
+          "name": "TechTools Launchpad signature 300x80 under 50KB listing",
+          "evidenceUrl": "https://techtools.cz/launchpad-api/tools/236",
+          "submittedAt": "2026-06-09",
+          "reviewWindow": "auto-approved API listing for the exact 300 x 80 px and 50KB signature path"
+        },
+        {
+          "name": "TechTools Launchpad signature 300x100 under 50KB listing",
+          "evidenceUrl": "https://techtools.cz/launchpad-api/tools/237",
+          "submittedAt": "2026-06-09",
+          "reviewWindow": "auto-approved API listing for the exact 300 x 100 px and 50KB signature path"
         },
         {
           "name": "TechTools Launchpad resize photo 200x230 listing",
@@ -1187,7 +1315,7 @@
         "github-pages"
       ],
       "indexNowSubmittedUrls": 284,
-      "publicProofLine": "External discovery proof: 74 public directory listing(s) are live; 100 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue.",
+      "publicProofLine": "External discovery proof: 82 public directory listing(s) are live; 116 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue.",
       "moneyBoundary": "Directory listings, IndexNow submissions, clicks, and views are discovery signals only. Revenue is real only after a signed sponsor agreement or settled external payment."
     },
     "successGate": "Commercial discovery is working only when a qualified sponsor lead, signed agreement, or settled external payment is verified. Clicks alone are not revenue."

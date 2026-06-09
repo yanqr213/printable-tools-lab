@@ -1,14 +1,14 @@
 {
   "name": "PrintableTools Lab Sponsor Deal Room",
-  "generatedAt": "2026-06-09T08:08:50.967Z",
+  "generatedAt": "2026-06-09T09:28:36.170Z",
   "canonical": "https://printable-tools-lab.pages.dev/sponsor-deal-room/",
   "inquiryUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=direct#sponsor-inquiry",
   "starterReviewPage": "https://printable-tools-lab.pages.dev/sponsor-starter-review/",
   "publicReplyUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Sponsor+pilot+review&body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+%0APublic+website+URL%3A+%0AAudience+fit%3A+%0ASelected+pilot+deal%3A+%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-deal-room%3Futm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_deal_room%26utm_content%3Ddirect%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&labels=sponsor%2Cpartner%2Cbusiness-review",
   "externalDiscoveryProof": {
-    "generatedAt": "2026-06-09T07:58:10.215Z",
-    "directoryListedCount": 74,
-    "directoryPendingCount": 100,
+    "generatedAt": "2026-06-09T09:07:33.366Z",
+    "directoryListedCount": 82,
+    "directoryPendingCount": 116,
     "directoryErrorCount": 1,
     "listedDirectories": [
       {
@@ -354,6 +354,30 @@
         "reviewWindow": "auto-approved API listing for the exact 413 x 531 px and 100KB photo path"
       },
       {
+        "name": "TechTools Launchpad photo 240x320 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/230",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 240 x 320 px and 50KB photo path"
+      },
+      {
+        "name": "TechTools Launchpad photo 413x531 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/231",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 413 x 531 px and 50KB photo path"
+      },
+      {
+        "name": "TechTools Launchpad photo 300x300 under 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/232",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 300 x 300 px and 100KB photo path"
+      },
+      {
+        "name": "TechTools Launchpad photo 600x600 under 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/233",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 600 x 600 px and 100KB photo path"
+      },
+      {
         "name": "TechTools Launchpad resize signature 200x100 listing",
         "evidenceUrl": "https://techtools.cz/launchpad-api/tools/221",
         "submittedAt": "2026-06-09",
@@ -376,6 +400,30 @@
         "evidenceUrl": "https://techtools.cz/launchpad-api/tools/229",
         "submittedAt": "2026-06-09",
         "reviewWindow": "auto-approved API listing for the exact 200 x 100 px and 50KB signature path"
+      },
+      {
+        "name": "TechTools Launchpad signature 150x50 under 20KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/234",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 150 x 50 px and 20KB signature path"
+      },
+      {
+        "name": "TechTools Launchpad signature 200x50 under 20KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/235",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 200 x 50 px and 20KB signature path"
+      },
+      {
+        "name": "TechTools Launchpad signature 300x80 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/236",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 300 x 80 px and 50KB signature path"
+      },
+      {
+        "name": "TechTools Launchpad signature 300x100 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/237",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 300 x 100 px and 50KB signature path"
       },
       {
         "name": "TechTools Launchpad resize photo 200x230 listing",
@@ -460,7 +508,7 @@
       "github-pages"
     ],
     "indexNowSubmittedUrls": 284,
-    "publicProofLine": "External discovery proof: 74 public directory listing(s) are live; 100 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue.",
+    "publicProofLine": "External discovery proof: 82 public directory listing(s) are live; 116 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue.",
     "moneyBoundary": "Directory listings, IndexNow submissions, clicks, and views are discovery signals only. Revenue is real only after a signed sponsor agreement or settled external payment."
   },
   "deals": [

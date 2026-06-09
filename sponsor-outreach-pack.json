@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Sponsor Outreach Pack",
-  "generatedAt": "2026-06-09T08:08:50.967Z",
+  "generatedAt": "2026-06-09T09:28:36.170Z",
   "canonical": "https://printable-tools-lab.pages.dev/sponsor-outreach-pack.json",
   "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
   "sponsorIntentFeed": "https://printable-tools-lab.pages.dev/sponsor-intent-feed.json",
@@ -69,9 +69,9 @@
   },
   "mediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
   "externalDiscoveryProof": {
-    "generatedAt": "2026-06-09T07:58:10.215Z",
-    "directoryListedCount": 74,
-    "directoryPendingCount": 100,
+    "generatedAt": "2026-06-09T09:07:33.366Z",
+    "directoryListedCount": 82,
+    "directoryPendingCount": 116,
     "directoryErrorCount": 1,
     "listedDirectories": [
       {
@@ -417,6 +417,30 @@
         "reviewWindow": "auto-approved API listing for the exact 413 x 531 px and 100KB photo path"
       },
       {
+        "name": "TechTools Launchpad photo 240x320 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/230",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 240 x 320 px and 50KB photo path"
+      },
+      {
+        "name": "TechTools Launchpad photo 413x531 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/231",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 413 x 531 px and 50KB photo path"
+      },
+      {
+        "name": "TechTools Launchpad photo 300x300 under 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/232",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 300 x 300 px and 100KB photo path"
+      },
+      {
+        "name": "TechTools Launchpad photo 600x600 under 100KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/233",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 600 x 600 px and 100KB photo path"
+      },
+      {
         "name": "TechTools Launchpad resize signature 200x100 listing",
         "evidenceUrl": "https://techtools.cz/launchpad-api/tools/221",
         "submittedAt": "2026-06-09",
@@ -439,6 +463,30 @@
         "evidenceUrl": "https://techtools.cz/launchpad-api/tools/229",
         "submittedAt": "2026-06-09",
         "reviewWindow": "auto-approved API listing for the exact 200 x 100 px and 50KB signature path"
+      },
+      {
+        "name": "TechTools Launchpad signature 150x50 under 20KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/234",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 150 x 50 px and 20KB signature path"
+      },
+      {
+        "name": "TechTools Launchpad signature 200x50 under 20KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/235",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 200 x 50 px and 20KB signature path"
+      },
+      {
+        "name": "TechTools Launchpad signature 300x80 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/236",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 300 x 80 px and 50KB signature path"
+      },
+      {
+        "name": "TechTools Launchpad signature 300x100 under 50KB listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/237",
+        "submittedAt": "2026-06-09",
+        "reviewWindow": "auto-approved API listing for the exact 300 x 100 px and 50KB signature path"
       },
       {
         "name": "TechTools Launchpad resize photo 200x230 listing",
@@ -523,7 +571,7 @@
       "github-pages"
     ],
     "indexNowSubmittedUrls": 284,
-    "publicProofLine": "External discovery proof: 74 public directory listing(s) are live; 100 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue.",
+    "publicProofLine": "External discovery proof: 82 public directory listing(s) are live; 116 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue.",
     "moneyBoundary": "Directory listings, IndexNow submissions, clicks, and views are discovery signals only. Revenue is real only after a signed sponsor agreement or settled external payment."
   },
   "placements": [

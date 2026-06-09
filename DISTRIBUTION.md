@@ -341,6 +341,10 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - Photo 413x531 Pixels Under 50KB: https://printable-tools-lab.pages.dev/photo-413x531-50kb/
 - Photo 300x300 Pixels Under 100KB: https://printable-tools-lab.pages.dev/photo-300x300-100kb/
 - Photo 600x600 Pixels Under 100KB: https://printable-tools-lab.pages.dev/photo-600x600-100kb/
+- Photo 295x413 Pixels Under 35KB: https://printable-tools-lab.pages.dev/photo-295x413-35kb/
+- Photo 354x472 Pixels Under 100KB: https://printable-tools-lab.pages.dev/photo-354x472-100kb/
+- Photo 480x640 Pixels Under 200KB: https://printable-tools-lab.pages.dev/photo-480x640-200kb/
+- Photo 512x512 Pixels Under 100KB: https://printable-tools-lab.pages.dev/photo-512x512-100kb/
 - Signature Under 20KB Without Uploading: https://printable-tools-lab.pages.dev/signature-under-20kb/
 - Signature Under 50KB Without Uploading: https://printable-tools-lab.pages.dev/signature-under-50kb/
 - Resize Signature to 140x60 Pixels: https://printable-tools-lab.pages.dev/resize-signature-140x60/
@@ -352,6 +356,10 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - Signature 200x100 Pixels Under 50KB: https://printable-tools-lab.pages.dev/signature-200x100-50kb/
 - Signature 300x80 Pixels Under 50KB: https://printable-tools-lab.pages.dev/signature-300x80-50kb/
 - Signature 300x100 Pixels Under 50KB: https://printable-tools-lab.pages.dev/signature-300x100-50kb/
+- Signature 160x70 Pixels Under 20KB: https://printable-tools-lab.pages.dev/signature-160x70-20kb/
+- Signature 250x80 Pixels Under 50KB: https://printable-tools-lab.pages.dev/signature-250x80-50kb/
+- Signature 300x60 Pixels Under 20KB: https://printable-tools-lab.pages.dev/signature-300x60-20kb/
+- Signature 400x150 Pixels Under 50KB: https://printable-tools-lab.pages.dev/signature-400x150-50kb/
 - Resize Photo to 200x230 Pixels: https://printable-tools-lab.pages.dev/resize-photo-200x230/
 - Resize Photo to 413x531: https://printable-tools-lab.pages.dev/resize-photo-413x531/
 - Resize Image Without Uploading: https://printable-tools-lab.pages.dev/resize-image-no-upload/
