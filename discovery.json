@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-09T02:54:21.505Z",
+  "generatedAt": "2026-06-09T03:13:51.057Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -97,8 +97,12 @@
     "https://printable-tools-lab.pages.dev/passport-photo-compress-to-200kb/",
     "https://printable-tools-lab.pages.dev/passport-photo-size-fixer/",
     "https://printable-tools-lab.pages.dev/passport-photo-35x45mm/",
+    "https://printable-tools-lab.pages.dev/photo-200x230-50kb/",
     "https://printable-tools-lab.pages.dev/signature-under-20kb/",
+    "https://printable-tools-lab.pages.dev/signature-under-50kb/",
     "https://printable-tools-lab.pages.dev/resize-signature-140x60/",
+    "https://printable-tools-lab.pages.dev/resize-signature-200x100/",
+    "https://printable-tools-lab.pages.dev/resize-photo-200x230/",
     "https://printable-tools-lab.pages.dev/resize-photo-413x531/",
     "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
     "https://printable-tools-lab.pages.dev/convert-image-format-no-upload/",
@@ -817,16 +821,40 @@
       "tool": "https://printable-tools-lab.pages.dev/tools/passport-photo/?preset=uk-passport"
     },
     {
+      "title": "Photo 200x230 Pixels Under 50KB",
+      "url": "https://printable-tools-lab.pages.dev/photo-200x230-50kb/",
+      "intent": "photo 200x230 50KB, resize photo 200 x 230, exam photo upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=230&fit=cover"
+    },
+    {
       "title": "Signature Under 20KB Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/signature-under-20kb/",
       "intent": "signature under 20KB, compress signature image, signature upload too large",
       "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=20"
     },
     {
+      "title": "Signature Under 50KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/signature-under-50kb/",
+      "intent": "signature under 50KB, compress signature image, signature upload too large",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=50"
+    },
+    {
       "title": "Resize Signature to 140x60 Pixels",
       "url": "https://printable-tools-lab.pages.dev/resize-signature-140x60/",
       "intent": "resize signature 140x60, signature dimensions 140 x 60, no upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=140&height=60&fit=contain"
+    },
+    {
+      "title": "Resize Signature to 200x100 Pixels",
+      "url": "https://printable-tools-lab.pages.dev/resize-signature-200x100/",
+      "intent": "resize signature 200x100, signature dimensions 200 x 100, no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=100&fit=contain"
+    },
+    {
+      "title": "Resize Photo to 200x230 Pixels",
+      "url": "https://printable-tools-lab.pages.dev/resize-photo-200x230/",
+      "intent": "resize photo to 200x230, 200 x 230 photo size, application photo dimensions",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=230&fit=cover"
     },
     {
       "title": "Resize Photo to 413x531",

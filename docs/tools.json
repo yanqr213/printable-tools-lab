@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-09T02:54:21.643Z",
+  "generatedAt": "2026-06-09T03:13:51.195Z",
   "landingPages": [
     {
       "title": "Free Upload Limit Fixer",
@@ -320,16 +320,40 @@
       "intent": "passport photo 35x45mm, 35 x 45 mm photo maker, no upload"
     },
     {
+      "title": "Photo 200x230 Pixels Under 50KB",
+      "url": "https://printable-tools-lab.pages.dev/photo-200x230-50kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/photo-200x230-50kb/",
+      "intent": "photo 200x230 50KB, resize photo 200 x 230, exam photo upload"
+    },
+    {
       "title": "Signature Under 20KB Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/signature-under-20kb/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/signature-under-20kb/",
       "intent": "signature under 20KB, compress signature image, signature upload too large"
     },
     {
+      "title": "Signature Under 50KB Without Uploading",
+      "url": "https://printable-tools-lab.pages.dev/signature-under-50kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/signature-under-50kb/",
+      "intent": "signature under 50KB, compress signature image, signature upload too large"
+    },
+    {
       "title": "Resize Signature to 140x60 Pixels",
       "url": "https://printable-tools-lab.pages.dev/resize-signature-140x60/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/resize-signature-140x60/",
       "intent": "resize signature 140x60, signature dimensions 140 x 60, no upload"
+    },
+    {
+      "title": "Resize Signature to 200x100 Pixels",
+      "url": "https://printable-tools-lab.pages.dev/resize-signature-200x100/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/resize-signature-200x100/",
+      "intent": "resize signature 200x100, signature dimensions 200 x 100, no upload"
+    },
+    {
+      "title": "Resize Photo to 200x230 Pixels",
+      "url": "https://printable-tools-lab.pages.dev/resize-photo-200x230/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/resize-photo-200x230/",
+      "intent": "resize photo to 200x230, 200 x 230 photo size, application photo dimensions"
     },
     {
       "title": "Resize Photo to 413x531",
@@ -1607,7 +1631,7 @@
   },
   "organicPushKit": {
     "name": "PrintableTools Lab Organic Push Kit Mirror",
-    "generatedAt": "2026-06-09T02:54:21.643Z",
+    "generatedAt": "2026-06-09T03:13:51.195Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/organic-push-kit/",
     "livePage": "https://printable-tools-lab.pages.dev/organic-push-kit/",
     "liveJson": "https://printable-tools-lab.pages.dev/organic-push-kit.json",
@@ -1724,7 +1748,7 @@
   },
   "uploadErrorCheatsheet": {
     "name": "PrintableTools Lab Upload Error Cheatsheet Mirror",
-    "generatedAt": "2026-06-09T02:54:21.643Z",
+    "generatedAt": "2026-06-09T03:13:51.195Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/",
     "livePage": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
     "liveJson": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",
@@ -1871,7 +1895,7 @@
   },
   "sponsorDealRoom": {
     "name": "PrintableTools Lab Sponsor Deal Room Mirror",
-    "generatedAt": "2026-06-09T02:54:21.643Z",
+    "generatedAt": "2026-06-09T03:13:51.195Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-deal-room/",
     "livePage": "https://printable-tools-lab.pages.dev/sponsor-deal-room/",
     "liveJson": "https://printable-tools-lab.pages.dev/sponsor-deal-room.json",
@@ -1975,7 +1999,7 @@
   },
   "sponsorStarterReview": {
     "name": "PrintableTools Lab USD 49 Starter Sponsor Review Mirror",
-    "generatedAt": "2026-06-09T02:54:21.643Z",
+    "generatedAt": "2026-06-09T03:13:51.195Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-starter-review/",
     "livePage": "https://printable-tools-lab.pages.dev/sponsor-starter-review/",
     "trackedReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=github-pages-starter-review#sponsor-inquiry",
@@ -2011,7 +2035,7 @@
   },
   "sponsorCall": {
     "name": "PrintableTools Lab Sponsor Call Mirror",
-    "generatedAt": "2026-06-09T02:54:21.643Z",
+    "generatedAt": "2026-06-09T03:13:51.195Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-call/",
     "livePage": "https://printable-tools-lab.pages.dev/sponsor-call/",
     "liveJson": "https://printable-tools-lab.pages.dev/sponsor-call.json",
@@ -2135,7 +2159,7 @@
   },
   "sponsorOpportunities": {
     "name": "PrintableTools Lab Sponsor Opportunities Mirror",
-    "generatedAt": "2026-06-09T02:54:21.643Z",
+    "generatedAt": "2026-06-09T03:13:51.195Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-opportunities/",
     "livePage": "https://printable-tools-lab.pages.dev/sponsor-opportunities/",
     "liveJson": "https://printable-tools-lab.pages.dev/sponsor-opportunities.json",
