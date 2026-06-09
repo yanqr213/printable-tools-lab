@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-09T04:40:44.718Z",
+  "generatedAt": "2026-06-09T05:13:00.573Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 56,
+  "listedCount": 59,
   "pendingCount": 47,
   "errorCount": 1,
   "results": [
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 117966,
+          "bytes": 117915,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 117966,
+          "bytes": 117915,
           "matched": false
         }
       ]
@@ -49,14 +49,14 @@
           "url": "https://listai.cc/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 318805,
+          "bytes": 318832,
           "matched": false
         },
         {
           "url": "https://listai.cc/",
           "ok": true,
           "status": 200,
-          "bytes": 318805,
+          "bytes": 318832,
           "matched": false
         }
       ]
@@ -78,7 +78,7 @@
           "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
           "ok": true,
           "status": 200,
-          "bytes": 102926,
+          "bytes": 104290,
           "matched": true
         }
       ]
@@ -1052,6 +1052,72 @@
       ]
     },
     {
+      "name": "TechTools Launchpad extract text from PDF without uploading listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=212",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/212",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Extract Text From PDF Without Uploading"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the no-upload PDF text extraction landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/212",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/212",
+          "ok": true,
+          "status": 200,
+          "bytes": 1384,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad merge PDF without uploading listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=213",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/213",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Merge PDF Without Uploading"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the no-upload PDF merge landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/213",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/213",
+          "ok": true,
+          "status": 200,
+          "bytes": 1291,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad split PDF without uploading listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=214",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/214",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Split PDF Without Uploading"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the no-upload PDF split landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/214",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/214",
+          "ok": true,
+          "status": 200,
+          "bytes": 1290,
+          "matched": true
+        }
+      ]
+    },
+    {
       "name": "NoSignupTools",
       "url": "https://nosignuptools.com/",
       "searchUrl": "https://nosignuptools.com/?q=PrintableTools+Lab",
@@ -1335,7 +1401,7 @@
           "url": "https://nosignuptools.com/tools/pdf-under-5mb-upload-fix-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20106,
+          "bytes": 20063,
           "matched": false
         }
       ]
@@ -1857,7 +1923,7 @@
           "url": "https://nosignuptools.com/tools/rotate-pdf-pages-without-uploading-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20093,
+          "bytes": 20136,
           "matched": false
         }
       ]
@@ -1886,7 +1952,7 @@
           "url": "https://nosignuptools.com/tools/remove-pages-from-pdf-without-uploading-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20108,
+          "bytes": 20151,
           "matched": false
         }
       ]
@@ -2685,34 +2751,49 @@
       "reviewWindow": "maintainer review",
       "status": "error",
       "evidenceUrl": "https://github.com/js-org/js.org/pull/11512",
-      "apiAvailable": false,
-      "checksAvailable": false,
-      "templateOk": null,
-      "checksOk": null,
-      "checks": [],
-      "prState": "unknown",
-      "mergeable": null,
+      "apiAvailable": true,
+      "checksAvailable": true,
+      "templateOk": true,
+      "checksOk": true,
+      "checks": [
+        {
+          "name": "PR description",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:58Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353230"
+        },
+        {
+          "name": "cnames_active.js",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:57Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353223"
+        }
+      ],
+      "prState": "closed",
+      "mergeable": true,
       "checked": [
         {
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 298675,
+          "bytes": 298680,
           "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/pulls/11512",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 16307,
+          "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 18122,
+          "matched": true
         }
       ]
     }

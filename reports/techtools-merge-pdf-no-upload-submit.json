@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-09T05:09:13.280Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Merge PDF Without Uploading by PrintableTools Lab",
+    "tagline": "Free browser PDF merger for combining documents without signup.",
+    "description": "PrintableTools Lab Merge PDF Without Uploading helps people combine application pages, receipts, scans, forms, invoices, notes, and document packets into one PDF without account creation or server upload during ordinary use. The page is useful when a portal asks for one PDF instead of several files, and it includes practical file-size checks plus an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+    "url": "https://printable-tools-lab.pages.dev/merge-pdf-no-upload/?utm_source=techtools&utm_medium=directory&utm_campaign=merge_pdf_no_upload_2026_06&utm_content=merge_pdf_no_upload_landing",
+    "category": "productivity",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 merge PDF no-upload landing path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 213,
+      "name": "Merge PDF Without Uploading by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/merge-pdf-no-upload/?utm_source=techtools&utm_medium=directory&utm_campaign=merge_pdf_no_upload_2026_06&utm_content=merge_pdf_no_upload_landing",
+      "tagline": "Free browser PDF merger for combining documents without signup.",
+      "description": "PrintableTools Lab Merge PDF Without Uploading helps people combine application pages, receipts, scans, forms, invoices, notes, and document packets into one PDF without account creation or server upload during ordinary use. The page is useful when a portal asks for one PDF instead of several files, and it includes practical file-size checks plus an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+      "category": "productivity",
+      "category_label": "Productivity",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 merge PDF no-upload landing path",
+      "launch_date": "2026-06-09",
+      "created_at": "2026-06-09T05:09:13Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=213"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=213"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=213",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/213"
+}

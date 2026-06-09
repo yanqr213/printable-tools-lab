@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-09T05:09:16.624Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Split PDF Without Uploading by PrintableTools Lab",
+    "tagline": "Free browser PDF splitter for removing extra pages before upload.",
+    "description": "PrintableTools Lab Split PDF Without Uploading helps people separate pages from a PDF, trim document packets, pull one form from a multi-page file, or prepare smaller upload-ready PDFs without signup or server upload during ordinary use. It is useful for application portals, support forms, resumes, scanned documents, and file-size limits, with an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+    "url": "https://printable-tools-lab.pages.dev/split-pdf-no-upload/?utm_source=techtools&utm_medium=directory&utm_campaign=split_pdf_no_upload_2026_06&utm_content=split_pdf_no_upload_landing",
+    "category": "productivity",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 split PDF no-upload landing path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 214,
+      "name": "Split PDF Without Uploading by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/split-pdf-no-upload/?utm_source=techtools&utm_medium=directory&utm_campaign=split_pdf_no_upload_2026_06&utm_content=split_pdf_no_upload_landing",
+      "tagline": "Free browser PDF splitter for removing extra pages before upload.",
+      "description": "PrintableTools Lab Split PDF Without Uploading helps people separate pages from a PDF, trim document packets, pull one form from a multi-page file, or prepare smaller upload-ready PDFs without signup or server upload during ordinary use. It is useful for application portals, support forms, resumes, scanned documents, and file-size limits, with an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+      "category": "productivity",
+      "category_label": "Productivity",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 split PDF no-upload landing path",
+      "launch_date": "2026-06-09",
+      "created_at": "2026-06-09T05:09:16Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=214"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=214"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=214",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/214"
+}

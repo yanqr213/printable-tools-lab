@@ -77,10 +77,15 @@
   },
   "directoryStatus": {
     "source": "reports/directory-monitor.json",
-    "generatedAt": "2026-06-09T04:40:44.718Z",
-    "listedCount": 56,
+    "generatedAt": "2026-06-09T05:13:00.573Z",
+    "listedCount": 59,
     "pendingCount": 47,
     "errorCount": 1,
+    "newlyListed": [
+      "TechTools Extract Text From PDF Without Uploading - https://techtools.cz/tools/launchpad/?tool=212",
+      "TechTools Merge PDF Without Uploading - https://techtools.cz/tools/launchpad/?tool=213",
+      "TechTools Split PDF Without Uploading - https://techtools.cz/tools/launchpad/?tool=214"
+    ],
     "interpretation": "Directory coverage is broad enough to watch source and path-level signal, but many listings are still pending review and should not be treated as traffic guarantees."
   },
   "indexNow": {

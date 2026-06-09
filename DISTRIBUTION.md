@@ -69,6 +69,9 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - TechTools Compress PDF Without Uploading listing: https://techtools.cz/tools/launchpad/?tool=208
 - TechTools PDF to JPG Without Uploading listing: https://techtools.cz/tools/launchpad/?tool=209
 - TechTools JPG to PDF Without Uploading listing: https://techtools.cz/tools/launchpad/?tool=210
+- TechTools Extract Text From PDF Without Uploading listing: https://techtools.cz/tools/launchpad/?tool=212
+- TechTools Merge PDF Without Uploading listing: https://techtools.cz/tools/launchpad/?tool=213
+- TechTools Split PDF Without Uploading listing: https://techtools.cz/tools/launchpad/?tool=214
 - NoSignupTools Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_limit_2026_06&utm_content=upload_limit_fixer
 - NoSignupTools Upload Error Cheatsheet listing: https://printable-tools-lab.pages.dev/upload-error-cheatsheet?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_error_cheatsheet_2026_06&utm_content=upload_error_cheatsheet
 - NoSignupTools Image Dimensions 600x600 Upload Fix listing: https://printable-tools-lab.pages.dev/image-dimensions-600x600?utm_source=nosignuptools&utm_medium=directory&utm_campaign=image_dimensions_600x600_fix_2026_06&utm_content=image_dimensions_600x600_landing
@@ -434,6 +437,7 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - TechTools PDF and document upload-limit listings for 2MB/5MB intents; submitted on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=201, https://techtools.cz/tools/launchpad/?tool=202, https://techtools.cz/tools/launchpad/?tool=203, and https://techtools.cz/tools/launchpad/?tool=204
 - TechTools PDF size reducer and 2MB/5MB target-size listings; submitted on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=205, https://techtools.cz/tools/launchpad/?tool=206, and https://techtools.cz/tools/launchpad/?tool=207
 - TechTools no-upload PDF conversion listings; submitted on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=208, https://techtools.cz/tools/launchpad/?tool=209, and https://techtools.cz/tools/launchpad/?tool=210
+- TechTools no-upload PDF extract, merge, and split listings; retried after the 1-hour API limit on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=212, https://techtools.cz/tools/launchpad/?tool=213, and https://techtools.cz/tools/launchpad/?tool=214
 - NoSignupTools Upload Limit Fixer submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
 - NoSignupTools Upload Error Cheatsheet submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
 - NoSignupTools Image Dimensions 600x600 Upload Fix submission; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
