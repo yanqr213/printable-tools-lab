@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-09T03:35:13.971Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Document Under 5MB Upload Fix by PrintableTools Lab",
+    "tagline": "Free no-signup document compressor for 5MB PDF upload limits.",
+    "description": "PrintableTools Lab Document Under 5MB Upload Fix helps people blocked by document must be under 5MB, scanned document PDF too large, application document upload limit, and admin portal PDF size errors. It routes visitors to a local browser PDF compressor, keeps ordinary files on the device, and includes an optional public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist without private files, logins, or payment details.",
+    "url": "https://printable-tools-lab.pages.dev/document-must-be-under-5mb/?utm_source=techtools&utm_medium=directory&utm_campaign=document_under_5mb_upload_fix_2026_06&utm_content=document_must_be_under_5mb_landing",
+    "category": "utilities",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 document under 5MB upload fix path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 204,
+      "name": "Document Under 5MB Upload Fix by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/document-must-be-under-5mb/?utm_source=techtools&utm_medium=directory&utm_campaign=document_under_5mb_upload_fix_2026_06&utm_content=document_must_be_under_5mb_landing",
+      "tagline": "Free no-signup document compressor for 5MB PDF upload limits.",
+      "description": "PrintableTools Lab Document Under 5MB Upload Fix helps people blocked by document must be under 5MB, scanned document PDF too large, application document upload limit, and admin portal PDF size errors. It routes visitors to a local browser PDF compressor, keeps ordinary files on the device, and includes an optional public-safe $9 Upload Limit Fix Plan request for exact settings, fallback steps, and a review-before-upload checklist without private files, logins, or payment details.",
+      "category": "utilities",
+      "category_label": "Utilities",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 document under 5MB upload fix path",
+      "launch_date": "2026-06-09",
+      "created_at": "2026-06-09T03:35:13Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=204"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=204"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=204",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/204"
+}

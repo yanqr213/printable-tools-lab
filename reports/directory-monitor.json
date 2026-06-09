@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-09T01:48:26.272Z",
+  "generatedAt": "2026-06-09T03:37:55.751Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 40,
-  "pendingCount": 33,
+  "listedCount": 50,
+  "pendingCount": 27,
   "errorCount": 1,
   "results": [
     {
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 117920,
+          "bytes": 117900,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 117920,
+          "bytes": 117900,
           "matched": false
         }
       ]
@@ -78,7 +78,7 @@
           "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
           "ok": true,
           "status": 200,
-          "bytes": 99799,
+          "bytes": 101037,
           "matched": true
         }
       ]
@@ -832,6 +832,94 @@
       ]
     },
     {
+      "name": "TechTools Launchpad PDF under 2MB upload fix listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=201",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/201",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "PDF Under 2MB Upload Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the PDF under 2MB upload-fix landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/201",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/201",
+          "ok": true,
+          "status": 200,
+          "bytes": 1331,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad PDF under 5MB upload fix listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=202",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/202",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "PDF Under 5MB Upload Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the PDF under 5MB upload-fix landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/202",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/202",
+          "ok": true,
+          "status": 200,
+          "bytes": 1322,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad resume PDF under 2MB upload fix listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=203",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/203",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Resume PDF Under 2MB Upload Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the resume PDF under 2MB upload-fix landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/203",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/203",
+          "ok": true,
+          "status": 200,
+          "bytes": 1374,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad document under 5MB upload fix listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=204",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/204",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Document Under 5MB Upload Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the document under 5MB upload-fix landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/204",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/204",
+          "ok": true,
+          "status": 200,
+          "bytes": 1367,
+          "matched": true
+        }
+      ]
+    },
+    {
       "name": "NoSignupTools",
       "url": "https://nosignuptools.com/",
       "searchUrl": "https://nosignuptools.com/?q=PrintableTools+Lab",
@@ -1549,7 +1637,7 @@
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev",
           "ok": true,
           "status": 200,
-          "bytes": 44824,
+          "bytes": 44823,
           "matched": true
         }
       ]
@@ -1578,7 +1666,7 @@
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-limit-fixer",
           "ok": true,
           "status": 200,
-          "bytes": 45902,
+          "bytes": 45901,
           "matched": true
         }
       ]
@@ -1636,7 +1724,7 @@
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-invoice-followup-email",
           "ok": true,
           "status": 200,
-          "bytes": 45093,
+          "bytes": 45092,
           "matched": true
         }
       ]
@@ -1665,7 +1753,7 @@
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-overdue-invoice-reminder-email",
           "ok": true,
           "status": 200,
-          "bytes": 45157,
+          "bytes": 45156,
           "matched": true
         }
       ]
@@ -1680,8 +1768,8 @@
       ],
       "submittedAt": "2026-06-09",
       "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-tools-compress-image-to-kb",
-      "status": "pending",
-      "evidenceUrl": "",
+      "status": "listed",
+      "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-compress-image-to-kb",
       "checked": [
         {
           "url": "https://nologin.tools/?q=Compress+Image+to+KB",
@@ -1692,10 +1780,10 @@
         },
         {
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-tools-compress-image-to-kb",
-          "ok": false,
-          "status": 404,
-          "bytes": 10724,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 45031,
+          "matched": true
         }
       ]
     },
@@ -1709,8 +1797,8 @@
       ],
       "submittedAt": "2026-06-09",
       "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-image-dimensions-600x600",
-      "status": "pending",
-      "evidenceUrl": "",
+      "status": "listed",
+      "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-image-dimensions-600x600",
       "checked": [
         {
           "url": "https://nologin.tools/?q=Image+Dimensions+600x600+Upload+Fix",
@@ -1721,10 +1809,10 @@
         },
         {
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-image-dimensions-600x600",
-          "ok": false,
-          "status": 404,
-          "bytes": 10724,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 45051,
+          "matched": true
         }
       ]
     },
@@ -1738,8 +1826,8 @@
       ],
       "submittedAt": "2026-06-09",
       "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required",
-      "status": "pending",
-      "evidenceUrl": "",
+      "status": "listed",
+      "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required",
       "checked": [
         {
           "url": "https://nologin.tools/?q=PDF+Not+Accepted+JPG+Required+Fix",
@@ -1750,10 +1838,10 @@
         },
         {
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-pdf-not-accepted-jpg-required",
-          "ok": false,
-          "status": 404,
-          "bytes": 10724,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 45176,
+          "matched": true
         }
       ]
     },
@@ -1767,8 +1855,8 @@
       ],
       "submittedAt": "2026-06-09",
       "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-email-attachment-too-large",
-      "status": "pending",
-      "evidenceUrl": "",
+      "status": "listed",
+      "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-email-attachment-too-large",
       "checked": [
         {
           "url": "https://nologin.tools/?q=Email+Attachment+Too+Large+Fix",
@@ -1779,10 +1867,10 @@
         },
         {
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-email-attachment-too-large",
-          "ok": false,
-          "status": 404,
-          "bytes": 10724,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 45083,
+          "matched": true
         }
       ]
     },
@@ -1796,8 +1884,8 @@
       ],
       "submittedAt": "2026-06-09",
       "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-compress-image-to-50kb",
-      "status": "pending",
-      "evidenceUrl": "",
+      "status": "listed",
+      "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-50kb",
       "checked": [
         {
           "url": "https://nologin.tools/?q=Compress+Image+to+50KB",
@@ -1808,10 +1896,10 @@
         },
         {
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-50kb",
-          "ok": false,
-          "status": 404,
-          "bytes": 10724,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 44870,
+          "matched": true
         }
       ]
     },
@@ -1825,8 +1913,8 @@
       ],
       "submittedAt": "2026-06-09",
       "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-compress-image-to-100kb",
-      "status": "pending",
-      "evidenceUrl": "",
+      "status": "listed",
+      "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-100kb",
       "checked": [
         {
           "url": "https://nologin.tools/?q=Compress+Image+to+100KB",
@@ -1837,10 +1925,10 @@
         },
         {
           "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-100kb",
-          "ok": false,
-          "status": 404,
-          "bytes": 10724,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 44890,
+          "matched": true
         }
       ]
     },
