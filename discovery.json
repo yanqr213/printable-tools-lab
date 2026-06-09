@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-09T03:13:51.057Z",
+  "generatedAt": "2026-06-09T03:27:25.172Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -48,6 +48,8 @@
     "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
     "https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb/",
     "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/",
+    "https://printable-tools-lab.pages.dev/pdf-must-be-under-2mb/",
+    "https://printable-tools-lab.pages.dev/pdf-must-be-under-5mb/",
     "https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/",
     "https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/",
     "https://printable-tools-lab.pages.dev/image-dimensions-600x600/",
@@ -57,7 +59,9 @@
     "https://printable-tools-lab.pages.dev/jpg-must-be-under-200kb/",
     "https://printable-tools-lab.pages.dev/png-screenshot-too-large/",
     "https://printable-tools-lab.pages.dev/resume-pdf-too-large/",
+    "https://printable-tools-lab.pages.dev/resume-pdf-under-2mb/",
     "https://printable-tools-lab.pages.dev/email-attachment-too-large/",
+    "https://printable-tools-lab.pages.dev/document-must-be-under-5mb/",
     "https://printable-tools-lab.pages.dev/free-invoice-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/invoice-follow-up-email-template/",
     "https://printable-tools-lab.pages.dev/overdue-invoice-reminder-email/",
@@ -527,6 +531,18 @@
       "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=500kb"
     },
     {
+      "title": "PDF Must Be Under 2MB Fix",
+      "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-2mb/",
+      "intent": "PDF must be under 2MB, compress PDF to 2MB, upload limit error",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=2mb"
+    },
+    {
+      "title": "PDF Must Be Under 5MB Fix",
+      "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-5mb/",
+      "intent": "PDF must be under 5MB, compress PDF to 5MB, upload PDF too large",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=5mb"
+    },
+    {
       "title": "Photo Must Be Under 100KB Fix",
       "url": "https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/",
       "intent": "photo must be under 100KB, image under 100KB, upload photo too large",
@@ -581,9 +597,21 @@
       "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=1mb"
     },
     {
+      "title": "Resume PDF Under 2MB Fix",
+      "url": "https://printable-tools-lab.pages.dev/resume-pdf-under-2mb/",
+      "intent": "resume PDF under 2MB, compress resume PDF to 2MB, job application upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=2mb"
+    },
+    {
       "title": "Email Attachment Too Large Fix",
       "url": "https://printable-tools-lab.pages.dev/email-attachment-too-large/",
       "intent": "email attachment too large, compress PDF for email, reduce image before email",
+      "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=5mb"
+    },
+    {
+      "title": "Document Must Be Under 5MB Fix",
+      "url": "https://printable-tools-lab.pages.dev/document-must-be-under-5mb/",
+      "intent": "document must be under 5MB, file upload 5MB limit, compress document PDF",
       "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=5mb"
     },
     {

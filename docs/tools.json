@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-09T03:13:51.195Z",
+  "generatedAt": "2026-06-09T03:27:25.304Z",
   "landingPages": [
     {
       "title": "Free Upload Limit Fixer",
@@ -24,6 +24,18 @@
       "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/pdf-must-be-under-500kb/",
       "intent": "PDF must be under 500KB, compress PDF to 500KB, upload limit error"
+    },
+    {
+      "title": "PDF Must Be Under 2MB Fix",
+      "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-2mb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/pdf-must-be-under-2mb/",
+      "intent": "PDF must be under 2MB, compress PDF to 2MB, upload limit error"
+    },
+    {
+      "title": "PDF Must Be Under 5MB Fix",
+      "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-5mb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/pdf-must-be-under-5mb/",
+      "intent": "PDF must be under 5MB, compress PDF to 5MB, upload PDF too large"
     },
     {
       "title": "Photo Must Be Under 100KB Fix",
@@ -80,10 +92,22 @@
       "intent": "resume PDF too large, compress resume PDF, job application PDF upload limit"
     },
     {
+      "title": "Resume PDF Under 2MB Fix",
+      "url": "https://printable-tools-lab.pages.dev/resume-pdf-under-2mb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/resume-pdf-under-2mb/",
+      "intent": "resume PDF under 2MB, compress resume PDF to 2MB, job application upload"
+    },
+    {
       "title": "Email Attachment Too Large Fix",
       "url": "https://printable-tools-lab.pages.dev/email-attachment-too-large/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/email-attachment-too-large/",
       "intent": "email attachment too large, compress PDF for email, reduce image before email"
+    },
+    {
+      "title": "Document Must Be Under 5MB Fix",
+      "url": "https://printable-tools-lab.pages.dev/document-must-be-under-5mb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/document-must-be-under-5mb/",
+      "intent": "document must be under 5MB, file upload 5MB limit, compress document PDF"
     },
     {
       "title": "Free Invoice Generator Without Signup",
@@ -1631,7 +1655,7 @@
   },
   "organicPushKit": {
     "name": "PrintableTools Lab Organic Push Kit Mirror",
-    "generatedAt": "2026-06-09T03:13:51.195Z",
+    "generatedAt": "2026-06-09T03:27:25.304Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/organic-push-kit/",
     "livePage": "https://printable-tools-lab.pages.dev/organic-push-kit/",
     "liveJson": "https://printable-tools-lab.pages.dev/organic-push-kit.json",
@@ -1748,7 +1772,7 @@
   },
   "uploadErrorCheatsheet": {
     "name": "PrintableTools Lab Upload Error Cheatsheet Mirror",
-    "generatedAt": "2026-06-09T03:13:51.195Z",
+    "generatedAt": "2026-06-09T03:27:25.304Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/",
     "livePage": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
     "liveJson": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",
@@ -1895,7 +1919,7 @@
   },
   "sponsorDealRoom": {
     "name": "PrintableTools Lab Sponsor Deal Room Mirror",
-    "generatedAt": "2026-06-09T03:13:51.195Z",
+    "generatedAt": "2026-06-09T03:27:25.304Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-deal-room/",
     "livePage": "https://printable-tools-lab.pages.dev/sponsor-deal-room/",
     "liveJson": "https://printable-tools-lab.pages.dev/sponsor-deal-room.json",
@@ -1999,7 +2023,7 @@
   },
   "sponsorStarterReview": {
     "name": "PrintableTools Lab USD 49 Starter Sponsor Review Mirror",
-    "generatedAt": "2026-06-09T03:13:51.195Z",
+    "generatedAt": "2026-06-09T03:27:25.304Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-starter-review/",
     "livePage": "https://printable-tools-lab.pages.dev/sponsor-starter-review/",
     "trackedReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=github-pages-starter-review#sponsor-inquiry",
@@ -2035,7 +2059,7 @@
   },
   "sponsorCall": {
     "name": "PrintableTools Lab Sponsor Call Mirror",
-    "generatedAt": "2026-06-09T03:13:51.195Z",
+    "generatedAt": "2026-06-09T03:27:25.304Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-call/",
     "livePage": "https://printable-tools-lab.pages.dev/sponsor-call/",
     "liveJson": "https://printable-tools-lab.pages.dev/sponsor-call.json",
@@ -2159,7 +2183,7 @@
   },
   "sponsorOpportunities": {
     "name": "PrintableTools Lab Sponsor Opportunities Mirror",
-    "generatedAt": "2026-06-09T03:13:51.195Z",
+    "generatedAt": "2026-06-09T03:27:25.304Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-opportunities/",
     "livePage": "https://printable-tools-lab.pages.dev/sponsor-opportunities/",
     "liveJson": "https://printable-tools-lab.pages.dev/sponsor-opportunities.json",
