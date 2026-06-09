@@ -927,6 +927,16 @@ for (const [reportName, shareUrl, campaign] of [
   ["techtools-signature-200x50-20kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=235", "signature_200x50_20kb_2026_06"],
   ["techtools-signature-300x80-50kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=236", "signature_300x80_50kb_2026_06"],
   ["techtools-signature-300x100-50kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=237", "signature_300x100_50kb_2026_06"],
+  ["techtools-photo-480x640-200kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=240", "photo_480x640_200kb_2026_06"],
+  ["techtools-photo-512x512-100kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=241", "photo_512x512_100kb_2026_06"],
+  ["techtools-signature-160x70-20kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=242", "signature_160x70_20kb_2026_06"],
+  ["techtools-signature-250x80-50kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=243", "signature_250x80_50kb_2026_06"],
+  ["techtools-signature-300x60-20kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=244", "signature_300x60_20kb_2026_06"],
+  ["techtools-signature-400x150-50kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=245", "signature_400x150_50kb_2026_06"],
+  ["techtools-photo-150x200-20kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=246", "photo_150x200_20kb_2026_06"],
+  ["techtools-photo-180x240-50kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=247", "photo_180x240_50kb_2026_06"],
+  ["techtools-photo-400x514-100kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=248", "photo_400x514_100kb_2026_06"],
+  ["techtools-photo-600x800-200kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=249", "photo_600x800_200kb_2026_06"],
 ]) {
   const reportFile = path.join(root, "reports", reportName);
   if (!fs.existsSync(reportFile)) failures.push(`Missing TechTools high-intent photo/signature submission evidence report: ${reportName}`);
@@ -941,16 +951,6 @@ const techtoolsUploadBacklogScriptFile = path.join(root, "scripts", "submit-tech
 const techtoolsUploadBacklogScript = fs.existsSync(techtoolsUploadBacklogScriptFile) ? fs.readFileSync(techtoolsUploadBacklogScriptFile, "utf8") : "";
 if (!techtoolsLatestExactRateLimitReport && !techtoolsUploadBacklogScript) failures.push("Missing TechTools latest exact upload-limit retry evidence.");
 for (const [pending, reportName, campaign] of [
-  ["Photo 480x640 Under 200KB", "techtools-photo-480x640-200kb-submit.json", "photo_480x640_200kb_2026_06"],
-  ["Photo 512x512 Under 100KB", "techtools-photo-512x512-100kb-submit.json", "photo_512x512_100kb_2026_06"],
-  ["Signature 160x70 Under 20KB", "techtools-signature-160x70-20kb-submit.json", "signature_160x70_20kb_2026_06"],
-  ["Signature 250x80 Under 50KB", "techtools-signature-250x80-50kb-submit.json", "signature_250x80_50kb_2026_06"],
-  ["Signature 300x60 Under 20KB", "techtools-signature-300x60-20kb-submit.json", "signature_300x60_20kb_2026_06"],
-  ["Signature 400x150 Under 50KB", "techtools-signature-400x150-50kb-submit.json", "signature_400x150_50kb_2026_06"],
-  ["Photo 150x200 Under 20KB", "techtools-photo-150x200-20kb-submit.json", "photo_150x200_20kb_2026_06"],
-  ["Photo 180x240 Under 50KB", "techtools-photo-180x240-50kb-submit.json", "photo_180x240_50kb_2026_06"],
-  ["Photo 400x514 Under 100KB", "techtools-photo-400x514-100kb-submit.json", "photo_400x514_100kb_2026_06"],
-  ["Photo 600x800 Under 200KB", "techtools-photo-600x800-200kb-submit.json", "photo_600x800_200kb_2026_06"],
   ["Signature 100x50 Under 10KB", "techtools-signature-100x50-10kb-submit.json", "signature_100x50_10kb_2026_06"],
   ["Signature 200x60 Under 20KB", "techtools-signature-200x60-20kb-submit.json", "signature_200x60_20kb_2026_06"],
   ["Signature 256x64 Under 20KB", "techtools-signature-256x64-20kb-submit.json", "signature_256x64_20kb_2026_06"],
