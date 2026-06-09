@@ -43,14 +43,17 @@
           </div>
         </div>
         <div class="notice compact-notice">
-          <strong>Runtime refresh:</strong> the app replaces this snapshot with live project rows from /api/ops-metrics after loading. Snapshot generated: 2026-06-08T12:31:52.021Z.
+          <strong>Runtime refresh:</strong> the app replaces this snapshot with live project rows from /api/ops-metrics after loading. Snapshot generated: 2026-06-09T04:54:45.767Z.
+        </div>
+        <div class="notice compact-notice">
+          <strong>Direct route:</strong> open /ops/ when you need the operations monitor. Public visitors should not see a homepage, footer, sitemap, or tool-page link to this screen.
         </div>
         <div class="metric-grid ops-summary-grid">
-          <div class="metric-tile"><strong>510</strong><span>all page views</span></div>
-          <div class="metric-tile"><strong>16</strong><span>today views</span></div>
+          <div class="metric-tile"><strong>525</strong><span>all page views</span></div>
+          <div class="metric-tile"><strong>3</strong><span>today views</span></div>
           <div class="metric-tile"><strong>2</strong><span>tool downloads</span></div>
           <div class="metric-tile"><strong>0</strong><span>tool generations</span></div>
-          <div class="metric-tile"><strong>2</strong><span>commercial intent</span></div>
+          <div class="metric-tile"><strong>4</strong><span>commercial intent</span></div>
           <div class="metric-tile"><strong>0</strong><span>sponsor leads</span></div>
           <div class="metric-tile"><strong>0</strong><span>service leads</span></div>
           <div class="metric-tile"><strong>0</strong><span>public service issues</span></div>
@@ -73,13 +76,13 @@
             <div class="metric-grid compact ops-project-grid">
               <div class="metric-tile"><strong>0/5</strong><span>configured slots</span></div>
               <div class="metric-tile"><strong>0</strong><span>checkout clicks</span></div>
-              <div class="metric-tile"><strong>0</strong><span>request intent</span></div>
+              <div class="metric-tile"><strong>6</strong><span>request intent</span></div>
               <div class="metric-tile"><strong>settled only</strong><span>revenue proof</span></div>
             </div>
             <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>SKU</th><th>Price</th><th>Config key</th><th>Status</th><th>Checkout clicks</th><th>Requests</th><th>Page</th></tr></thead><tbody><tr><td>Local Seller Starter Kit</td><td>$9 USD</td><td>sellerKitCheckoutUrl</td><td>missing</td><td>0</td><td>0</td><td>/local-seller-starter-kit/</td></tr>
-<tr><td>Custom Local Print Pack Setup</td><td>$29 USD</td><td>customPrintPackCheckoutUrl</td><td>missing</td><td>0</td><td>0</td><td>/custom-local-print-pack/</td></tr>
-<tr><td>Invoice Follow-up Copy Pack</td><td>$19 USD</td><td>invoiceFollowupCheckoutUrl</td><td>missing</td><td>0</td><td>0</td><td>/invoice-followup-copy-pack/</td></tr>
-<tr><td>Upload Limit Fix Plan</td><td>$9 USD</td><td>uploadLimitFixPlanCheckoutUrl</td><td>missing</td><td>0</td><td>0</td><td>/upload-limit-fix-plan/</td></tr>
+<tr><td>Custom Local Print Pack Setup</td><td>$29 USD</td><td>customPrintPackCheckoutUrl</td><td>missing</td><td>0</td><td>2</td><td>/custom-local-print-pack/</td></tr>
+<tr><td>Invoice Follow-up Copy Pack</td><td>$19 USD</td><td>invoiceFollowupCheckoutUrl</td><td>missing</td><td>0</td><td>2</td><td>/invoice-followup-copy-pack/</td></tr>
+<tr><td>Upload Limit Fix Plan</td><td>$9 USD</td><td>uploadLimitFixPlanCheckoutUrl</td><td>missing</td><td>0</td><td>2</td><td>/upload-limit-fix-plan/</td></tr>
 <tr><td>Audit upgrade checkout</td><td>$29 USD</td><td>auditUpgradeCheckoutUrl</td><td>missing</td><td>0</td><td>0</td><td>/market-table-print-audit/</td></tr></tbody></table></div>
             <div class="ops-action-list">
               <article class="ops-action-card checkout-activation-card">
@@ -208,7 +211,7 @@ Buyer safety: Do not send tax, bank, card, password, private identity, customer-
               <div>
                 <p class="eyebrow">$9 service close</p>
                 <h2>$9 Upload Fix invoice close queue</h2>
-                <p>Keep the upload-error landing pages live; this queue is ready for the first qualified $9 request.</p>
+                <p>Keep the one-contact invoice form primary on upload-error pages and watch for the first lead before sending a payment link.</p>
               </div>
               <div class="actions">
                 <a class="button secondary" href="/api/service-lead" target="_blank" rel="noreferrer">Open service index</a>
@@ -221,7 +224,7 @@ Buyer safety: Do not send tax, bank, card, password, private identity, customer-
               <div class="metric-tile"><strong>0</strong><span>today invoices</span></div>
               <div class="metric-tile"><strong>0</strong><span>upload fix leads</span></div>
               <div class="metric-tile"><strong>0</strong><span>public upload issues</span></div>
-              <div class="metric-tile"><strong>0</strong><span>service intent</span></div>
+              <div class="metric-tile"><strong>2</strong><span>service intent</span></div>
               <div class="metric-tile"><strong>0</strong><span>today intent</span></div>
               <div class="metric-tile"><strong>missing</strong><span>checkout URL</span></div>
               <div class="metric-tile"><strong>paid_order_verified</strong><span>revenue gate</span></div>
@@ -229,7 +232,7 @@ Buyer safety: Do not send tax, bank, card, password, private identity, customer-
             <div class="ops-action-list">
               <article class="ops-action-card lead-close-card">
                 <div>
-                  <p class="eyebrow">waiting for first request</p>
+                  <p class="eyebrow">intent, no lead yet</p>
                   <h4>Capture one reply contact first</h4>
                   <p>A click is not enough to invoice. Wait for one reply email, @handle, public contact URL, or public issue before sending an external payment link.</p>
                   <p class="help">Checkout status: missing uploadLimitFixPlanCheckoutUrl. Revenue is still zero until external paid proof exists.</p>
@@ -277,7 +280,7 @@ Revenue is counted only after the external provider shows a paid order, payout b
 <tr><td>/email-attachment-too-large/</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
 <tr><td>/file-must-be-less-than-1mb/</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
 <tr><td>/pdf-must-be-under-500kb/</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-<tr><td>/photo-must-be-under-100kb/</td><td>0</td><td>0</td><td>0</td><td>0</td></tr></tbody></table></div>
+<tr><td>/pdf-must-be-under-2mb/</td><td>0</td><td>0</td><td>0</td><td>0</td></tr></tbody></table></div>
           </section>
                     <section class="panel ops-lead-close-cockpit">
             <div class="ops-project-head">
@@ -293,13 +296,13 @@ Revenue is counted only after the external provider shows a paid order, payout b
               </div>
             </div>
             <div class="metric-grid compact ops-project-grid">
-              <div class="metric-tile"><strong>1/6</strong><span>active close lanes</span></div>
+              <div class="metric-tile"><strong>2/6</strong><span>active close lanes</span></div>
               <div class="metric-tile"><strong>0</strong><span>needs reply</span></div>
               <div class="metric-tile"><strong>external only</strong><span>payment channel</span></div>
               <div class="metric-tile"><strong>paid proof</strong><span>revenue gate</span></div>
             </div>
-            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Lane</th><th>Signal</th><th>State</th><th>Next cash action</th><th>Proof gate</th></tr></thead><tbody><tr><td>$29 service setup</td><td>0 lead(s), 0 public issue(s), 0 shared request intent</td><td>waiting</td><td>Keep the request form live and use the payment reply as soon as a qualified service lead arrives.</td><td>paid_order_verified from external provider</td></tr>
-<tr><td>$9 upload fix plan</td><td>0 lead(s), 0 public issue(s), 0 shared request intent</td><td>waiting</td><td>Keep the $9 request form on upload-limit pages and reply as soon as a qualified upload-error lead arrives.</td><td>paid_order_verified from external provider</td></tr>
+            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Lane</th><th>Signal</th><th>State</th><th>Next cash action</th><th>Proof gate</th></tr></thead><tbody><tr><td>$29 service setup</td><td>0 lead(s), 0 public issue(s), 2 shared request intent</td><td>intent only</td><td>Keep the request form live and use the payment reply as soon as a qualified service lead arrives.</td><td>paid_order_verified from external provider</td></tr>
+<tr><td>$9 upload fix plan</td><td>0 lead(s), 0 public issue(s), 2 shared request intent</td><td>waiting</td><td>Keep the $9 request form on upload-limit pages and reply as soon as a qualified upload-error lead arrives.</td><td>paid_order_verified from external provider</td></tr>
 <tr><td>$19 invoice follow-up copy</td><td>0 lead(s), 0 public issue(s), 0 paid public issue(s), 0 total service lead(s)</td><td>waiting</td><td>Keep the invoice download form live and use this reply as soon as a qualified invoice follow-up lead arrives.</td><td>paid_order_verified from external provider</td></tr>
 <tr><td>Free audit to $29 upgrade</td><td>0 audit lead(s), 0 public issue(s), 0 audit intent</td><td>waiting</td><td>Use the audit as a low-friction lead magnet before asking for a paid setup.</td><td>separate paid setup order</td></tr>
 <tr><td>$9 seller kit</td><td>0 seller request(s), 0 public issue(s), 0 checkout intent</td><td>waiting</td><td>Connect a real checkout URL before treating clicks as purchase demand.</td><td>paid digital product order</td></tr>
@@ -307,7 +310,7 @@ Revenue is counted only after the external provider shows a paid order, payout b
             <div class="ops-action-list">
               <article class="ops-action-card lead-close-card">
                 <div>
-                  <p class="eyebrow">waiting</p>
+                  <p class="eyebrow">intent only</p>
                   <h4>$29 service setup</h4>
                   <p>Keep the request form live and use the payment reply as soon as a qualified service lead arrives.</p>
                   <p class="help">Close proof: paid_order_verified from external provider. Requests, clicks, exports, and copied replies are not revenue.</p>
@@ -699,18 +702,38 @@ Sent only after a real manual submission or legitimate email send. Revenue remai
               <div>
                 <p class="eyebrow">project traffic</p>
                 <h2>Project detail rows</h2>
-                <p>Live mode expands this into per-project sources, paths, tools, games, and next actions.</p>
+                <p>Per-project source, path, tool, game, and monetization signals. Live mode expands this section after /api/ops-metrics loads.</p>
               </div>
               <button class="button" id="refreshOpsMetrics" type="button">Refresh</button>
             </div>
-            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Project</th><th>Goal</th><th>Views</th><th>Today</th><th>Downloads</th><th>Sponsor leads</th><th>Invoice requests</th><th>Intent</th></tr></thead><tbody><tr><td>PrintableTools Lab</td><td>Free browser tools and sponsor funnel</td><td>510</td><td>16</td><td>2</td><td>0</td><td>0</td><td>2</td></tr>
-<tr><td>Pocket Arcade Shelf</td><td>HTML5 game portal and platform revenue-share route</td><td>Live via /api/ops-metrics</td><td>Live via /api/ops-metrics</td><td>n/a</td><td>n/a</td><td>n/a</td><td>Game play/embed rows</td></tr></tbody></table></div>
+            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Project</th><th>Views / today</th><th>Top source</th><th>Top path</th><th>Top tool or game</th><th>Downloads or plays</th><th>Intent / today</th><th>Intent rate</th></tr></thead><tbody><tr><td>PrintableTools Lab</td><td>525 / 3</td><td>Live via /api/ops-metrics</td><td>Live via /api/ops-metrics</td><td>Live via /api/ops-metrics</td><td>2</td><td>4 / 0</td><td>0.8%</td></tr>
+<tr><td>Pocket Arcade Shelf</td><td>Live via /api/ops-metrics</td><td>Live via /api/ops-metrics</td><td>Live via /api/ops-metrics</td><td>Live via /api/ops-metrics</td><td>Game play rows</td><td>Game intent rows</td><td>n/a</td></tr></tbody></table></div>
+          </section>
+          <section class="panel ops-live-traffic-detail">
+            <div class="ops-project-head">
+              <div>
+                <p class="eyebrow">traffic detail</p>
+                <h2>Detailed traffic breakdown</h2>
+                <p>Static snapshot of source quality, hot paths, and tool or game demand. The browser refresh replaces this with live rows.</p>
+              </div>
+            </div>
+            <div class="ops-board-grid">
+              <section>
+                <h3>Hot paths</h3>
+                <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Project</th><th>Path</th><th>Views</th><th>Today</th><th>Downloads</th><th>Intent</th></tr></thead><tbody><tr><td colspan="6">No signal yet.</td></tr></tbody></table></div>
+              </section>
+              <section>
+                <h3>Tool and game demand</h3>
+                <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Project</th><th>Tool or game</th><th>Score</th><th>Today</th><th>Downloads</th><th>Intent</th></tr></thead><tbody><tr><td>PrintableTools Lab</td><td>invoice-generator</td><td>8</td><td>0</td><td>2</td><td>0</td></tr></tbody></table></div>
+              </section>
+            </div>
           </section>
           <section class="panel">
             <h2>Source breakdown</h2>
-            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Source</th><th>Views</th><th>Downloads</th><th>Depth</th><th>Sponsor intent</th></tr></thead><tbody><tr><td>direct</td><td>508</td><td>0</td><td>0</td><td>0</td></tr>
-<tr><td>sponsor-outreach</td><td>0</td><td>0</td><td>0</td><td>2</td></tr>
-<tr><td>nologin</td><td>2</td><td>0</td><td>0</td><td>0</td></tr></tbody></table></div>
+            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Source</th><th>Views</th><th>Today</th><th>Downloads</th><th>Intent</th><th>Intent rate</th></tr></thead><tbody><tr><td>direct</td><td>513</td><td>0</td><td>0</td><td>1</td><td>0.2%</td></tr>
+<tr><td>sponsor-outreach</td><td>0</td><td>0</td><td>0</td><td>2</td><td>0%</td></tr>
+<tr><td>nologin</td><td>9</td><td>0</td><td>0</td><td>0</td><td>0%</td></tr>
+<tr><td>techtools</td><td>3</td><td>0</td><td>0</td><td>1</td><td>33.3%</td></tr></tbody></table></div>
           </section>
           <section class="panel">
             <h2>Tool and game signal snapshot</h2>
@@ -722,7 +745,7 @@ Sent only after a real manual submission or legitimate email send. Revenue remai
           </section>
           <section class="panel">
             <h2>Operating actions</h2>
-            <ul class="ops-action-summary"><li>Fix product readiness failures before adding more tools.</li><li>Watch the newly listed directories for real referrals and depth events before adding another same-category submission.</li><li>Sync the generated docs/ discovery mirror to GitHub Pages; live sitemap has 272 URL(s), expected 273.</li><li>Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.</li><li>When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.</li></ul>
+            <ul class="ops-action-summary"><li>Watch the newly listed directories for real referrals and depth events before adding another same-category submission.</li><li>Sync the generated docs/ discovery mirror to GitHub Pages; live sitemap has 272 URL(s), expected 284.</li><li>Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.</li><li>When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.</li><li>Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.</li></ul>
           </section>
         </div>
         <p class="help">Revenue is still counted only after a platform balance, sponsor agreement, or settled payment is verified. Views and clicks are operating signals, not money.</p>

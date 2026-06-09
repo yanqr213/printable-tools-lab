@@ -10226,13 +10226,17 @@ ${paragraphs.join("\n")}
       <section class="shell dashboard ops-monitor">
         <div class="section-head">
           <div>
+            <p class="eyebrow">internal noindex route</p>
             <h1>Project operations monitor</h1>
-            <p>Aggregate traffic and monetization signals for the active money projects. This page shows counts only, not private sponsor or service lead details.</p>
+            <p>Detailed traffic, source, path, tool, game, sponsor, and monetization signals for the active projects. This route is direct-link only and is not exposed from the public site navigation.</p>
           </div>
           <div class="actions">
             <a class="button secondary" href="/api/ops-metrics" target="_blank" rel="noreferrer">Open JSON</a>
             <button class="button" id="refreshOpsMetrics" type="button">Refresh</button>
           </div>
+        </div>
+        <div class="notice compact-notice">
+          <strong>Direct route:</strong> open /ops/ when you need the operations monitor. Public visitors should not see a homepage, footer, sitemap, or tool-page link to this screen.
         </div>
         <div id="opsMetrics" class="metric-remote">Loading project metrics...</div>
       </section>
@@ -10258,6 +10262,7 @@ ${paragraphs.join("\n")}
       const totalDownloads = (totals.download_pdf || 0) + (totals.download_file || 0);
       const totalGenerations = (totals.generate_pdf || 0) + (totals.generate_file || 0);
       const totalGameIntent = (totals.game_play_intent || 0) + (totals.game_fullscreen_open || 0) + (totals.game_embed_open || 0);
+      const totalCommercialIntent = moneyIntentScore(totals);
       const sponsorInvoiceRequests = data.sponsorInvoiceRequests || totals.sponsor_invoice_request || 0;
       const serviceInvoiceRequests = totals.service_invoice_request || 0;
       const totalInvoiceRequests = sponsorInvoiceRequests + serviceInvoiceRequests;
@@ -10273,6 +10278,7 @@ ${paragraphs.join("\n")}
           <div class="metric-tile"><strong>${data.todayTotals?.page_view || 0}</strong><span>today views</span></div>
           <div class="metric-tile"><strong>${totalDownloads}</strong><span>tool downloads</span></div>
           <div class="metric-tile"><strong>${totalGenerations}</strong><span>tool generations</span></div>
+          <div class="metric-tile"><strong>${totalCommercialIntent}</strong><span>commercial intent</span></div>
           <div class="metric-tile"><strong>${data.sponsorLeads || 0}</strong><span>sponsor leads</span></div>
           <div class="metric-tile"><strong>${serviceLeadCount}</strong><span>service leads</span></div>
           <div class="metric-tile"><strong>${publicServiceRequestCount}</strong><span>public service issues</span></div>
@@ -10280,6 +10286,8 @@ ${paragraphs.join("\n")}
           <div class="metric-tile"><strong>${serviceInvoiceRequests}</strong><span>service invoices</span></div>
           <div class="metric-tile"><strong>${totalGameIntent}</strong><span>game play signals</span></div>
         </div>
+        ${opsProjectOverviewHtml(projects)}
+        ${opsTrafficBreakdownHtml(data, projects)}
         ${checkoutActivationHtml(totals)}
         ${uploadFixInvoiceCloseQueueHtml(data, serviceLeadCheck, servicePublicRequests)}
         ${leadToPaymentCloseHtml(data, leadCheck, serviceLeadCheck, publicReplies, servicePublicRequests)}
@@ -11430,6 +11438,125 @@ ${paragraphs.join("\n")}
     `;
   }
 
+  function opsProjectOverviewHtml(projects) {
+    const rows = (Array.isArray(projects) ? projects : []).map((project) => {
+      const summary = project.summary || {};
+      const isGameProject = project.id === "pocket-arcade-shelf";
+      const topSource = activeRows(project.sources || [], sourceScore)[0];
+      const topPath = activeRows(project.paths || [], pathRowScore)[0];
+      const topTool = activeRows(project.tools || [], toolScore)[0];
+      const intent = isGameProject
+        ? gameIntentScore(project.totals || {})
+        : moneyIntentScore(project.totals || {});
+      const todayIntent = isGameProject
+        ? gameIntentScore(project.todayTotals || {})
+        : moneyIntentScore(project.todayTotals || {});
+      const conversion = ratioLabel(intent, summary.pageViews || 0);
+      return [
+        project.name || project.id || "Project",
+        `${summary.pageViews || 0} / ${summary.todayPageViews || 0}`,
+        topSource ? `${topSource.source} (${topSource.page_view || 0})` : "none",
+        topPath ? `${topPath.path} (${topPath.page_view || 0})` : "none",
+        topTool ? `${topTool.tool} (${toolScore(topTool)})` : "none",
+        isGameProject ? gameIntentScore(project.totals || {}) : (summary.downloads || 0),
+        `${intent} / ${todayIntent}`,
+        conversion,
+      ];
+    });
+    return `
+      <section class="panel ops-traffic-overview">
+        <div class="ops-project-head">
+          <div>
+            <p class="eyebrow">project traffic</p>
+            <h2>Project traffic overview</h2>
+            <p>One screen for the projects, their warmest sources, highest-signal pages, strongest tool or game rows, and intent rate.</p>
+          </div>
+        </div>
+        ${opsTable(["Project", "Views / today", "Top source", "Top path", "Top tool or game", "Downloads or plays", "Intent / today", "Intent rate"], rows)}
+      </section>
+    `;
+  }
+
+  function opsTrafficBreakdownHtml(data = {}, projects = []) {
+    const sources = activeRows(data.sources || [], sourceScore).slice(0, 10);
+    const paths = flattenProjectRows(projects, "paths")
+      .filter((row) => pathRowScore(row) > 0)
+      .sort((a, b) => pathRowScore(b) - pathRowScore(a) || String(a.path).localeCompare(String(b.path)))
+      .slice(0, 12);
+    const tools = flattenProjectRows(projects, "tools")
+      .filter((row) => toolScore(row) > 0)
+      .sort((a, b) => toolScore(b) - toolScore(a) || String(a.tool).localeCompare(String(b.tool)))
+      .slice(0, 12);
+    return `
+      <section class="panel ops-live-traffic-detail">
+        <div class="ops-project-head">
+          <div>
+            <p class="eyebrow">traffic detail</p>
+            <h2>Detailed traffic breakdown</h2>
+            <p>Sorted live rows for source quality, hot paths, and tool or game demand. Intent includes service, sponsor, checkout, audit, and game actions.</p>
+          </div>
+        </div>
+        <div class="ops-board-grid">
+          <section>
+            <h3>Source quality</h3>
+            ${opsTable(["Source", "Views", "Today", "Downloads", "Intent", "Intent rate"], sources.map((row) => [
+              row.source,
+              row.page_view || 0,
+              row.today_page_view || 0,
+              downloadCount(row),
+              trafficIntentScore(row),
+              ratioLabel(trafficIntentScore(row), row.page_view || 0),
+            ]))}
+          </section>
+          <section>
+            <h3>Hot paths</h3>
+            ${opsTable(["Project", "Path", "Views", "Today", "Downloads", "Intent"], paths.map((row) => [
+              row.projectName,
+              row.path,
+              row.page_view || 0,
+              row.today_page_view || 0,
+              downloadCount(row),
+              pathIntentScore(row),
+            ]))}
+          </section>
+          <section>
+            <h3>Tools and games</h3>
+            ${opsTable(["Project", "Tool or game", "Score", "Today", "Downloads", "Intent"], tools.map((row) => [
+              row.projectName,
+              row.tool,
+              toolScore(row),
+              todayToolScore(row),
+              downloadCount(row),
+              trafficIntentScore(row),
+            ]))}
+          </section>
+          <section>
+            <h3>Project funnel</h3>
+            ${opsTable(["Project", "Views", "Downloads", "Generation", "Money intent", "Game intent"], (Array.isArray(projects) ? projects : []).map((project) => [
+              project.name || project.id || "Project",
+              project.summary?.pageViews || 0,
+              project.summary?.downloads || 0,
+              project.summary?.generations || 0,
+              moneyIntentScore(project.totals || {}),
+              gameIntentScore(project.totals || {}),
+            ]))}
+          </section>
+        </div>
+      </section>
+    `;
+  }
+
+  function flattenProjectRows(projects, key) {
+    return (Array.isArray(projects) ? projects : []).flatMap((project) => {
+      const rows = Array.isArray(project[key]) ? project[key] : [];
+      return rows.map((row) => ({
+        ...row,
+        projectId: project.id || "",
+        projectName: project.name || project.id || "Project",
+      }));
+    });
+  }
+
   function eventRows(totals, todayTotals) {
     const names = [
       ["page_view", "Page views"],
@@ -11521,6 +11648,38 @@ ${paragraphs.join("\n")}
       + (row.game_play_intent || 0)
       + (row.game_fullscreen_open || 0)
       + (row.game_embed_open || 0);
+  }
+
+  function moneyIntentScore(row) {
+    return (row.seller_checkout_intent || 0)
+      + (row.seller_checkout_click || 0)
+      + (row.service_checkout_click || 0)
+      + (row.service_request_intent || 0)
+      + (row.service_invoice_request || 0)
+      + (row.audit_request_intent || 0)
+      + (row.sponsor_request_intent || 0)
+      + (row.sponsor_lead_submit || 0)
+      + (row.sponsor_invoice_request || 0);
+  }
+
+  function gameIntentScore(row) {
+    return (row.game_play_intent || 0)
+      + (row.game_fullscreen_open || 0)
+      + (row.game_embed_open || 0);
+  }
+
+  function trafficIntentScore(row) {
+    return moneyIntentScore(row) + gameIntentScore(row);
+  }
+
+  function downloadCount(row) {
+    return (row.download_pdf || 0) + (row.download_file || 0);
+  }
+
+  function ratioLabel(numerator, denominator) {
+    const base = Number(denominator) || 0;
+    if (!base) return "0%";
+    return `${Math.round(((Number(numerator) || 0) / base) * 1000) / 10}%`;
   }
 
   function pathRowScore(row) {

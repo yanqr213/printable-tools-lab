@@ -7309,10 +7309,19 @@ function opsMonitorStaticHtml() {
   const report = readOpsValidationSnapshot();
   const metrics = report?.live?.metrics || {};
   const apiMetrics = report?.live?.checks?.["/api/metrics"]?.json || {};
+  const opsApiMetrics = report?.live?.checks?.["/api/ops-metrics"]?.json || {};
   const totals = metrics.totals || apiMetrics.totals || {};
   const todayTotals = metrics.todayTotals || apiMetrics.todayTotals || {};
-  const sourceRows = opsActiveRows(apiMetrics.sources || [], opsSourceScore).slice(0, 8);
-  const toolRows = opsActiveRows(metrics.topTools || apiMetrics.tools || [], opsToolScore).slice(0, 8);
+  const opsProjects = Array.isArray(opsApiMetrics.projects) ? opsApiMetrics.projects : [];
+  const sourceRows = opsActiveRows(opsApiMetrics.sources || apiMetrics.sources || [], opsSourceScore).slice(0, 8);
+  const projectToolRows = opsFlattenProjectRows(opsProjects, "tools");
+  const projectPathRows = opsFlattenProjectRows(opsProjects, "paths");
+  const fallbackToolRows = (metrics.topTools || apiMetrics.tools || []).map((row) => ({
+    projectName: "PrintableTools Lab",
+    ...row,
+  }));
+  const toolRows = opsActiveRows(projectToolRows.length ? projectToolRows : fallbackToolRows, opsToolScore).slice(0, 8);
+  const hotPathRows = opsActiveRows(projectPathRows, opsPathScore).slice(0, 8);
   const totalDownloads = Number(metrics.totalDownloads ?? apiMetrics.totalDownloads ?? ((totals.download_pdf || 0) + (totals.download_file || 0))) || 0;
   const totalGenerations = Number(metrics.totalGenerations ?? apiMetrics.totalGenerations ?? ((totals.generate_pdf || 0) + (totals.generate_file || 0))) || 0;
   const commercialIntent = Number(metrics.commercialIntent ?? apiMetrics.commercialIntent ?? opsCommercialIntent(totals)) || 0;
@@ -7336,28 +7345,14 @@ function opsMonitorStaticHtml() {
     dealPrice: defaultDeal?.price || "USD 49",
     proposalUrl: `${siteUrl("sponsor-starter-review").replace(/\/$/, "")}?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_close&utm_content=static-public-invoice&commitment=request-invoice#sponsor-inquiry`,
   });
-  const projectRows = [
-    [
-      "PrintableTools Lab",
-      "Free browser tools and sponsor funnel",
-      totals.page_view || 0,
-      todayTotals.page_view || 0,
-      totalDownloads,
-      sponsorLeads,
-      sponsorInvoiceRequests,
-      commercialIntent,
-    ],
-    [
-      "Pocket Arcade Shelf",
-      "HTML5 game portal and platform revenue-share route",
-      "Live via /api/ops-metrics",
-      "Live via /api/ops-metrics",
-      "n/a",
-      "n/a",
-      "n/a",
-      "Game play/embed rows",
-    ],
-  ];
+  const projectRows = opsProjectOverviewRows(opsProjects, {
+    totals,
+    todayTotals,
+    totalDownloads,
+    sponsorLeads,
+    sponsorInvoiceRequests,
+    commercialIntent,
+  });
   const nextActions = Array.isArray(report?.nextActions) ? report.nextActions.slice(0, 5) : [
     "Refresh live project metrics from /api/ops-metrics.",
     "Route sponsor clicks into the USD 49 starter review path.",
@@ -7379,6 +7374,9 @@ function opsMonitorStaticHtml() {
         </div>
         <div class="notice compact-notice">
           <strong>Runtime refresh:</strong> the app replaces this snapshot with live project rows from /api/ops-metrics after loading. Snapshot generated: ${escapeHtml(generatedAt)}.
+        </div>
+        <div class="notice compact-notice">
+          <strong>Direct route:</strong> open /ops/ when you need the operations monitor. Public visitors should not see a homepage, footer, sitemap, or tool-page link to this screen.
         </div>
         <div class="metric-grid ops-summary-grid">
           ${opsMetricTile(totals.page_view || 0, "all page views")}
@@ -7433,20 +7431,54 @@ ${opsServicePublicRequestSnapshotHtml(servicePublicRequests)}
               <div>
                 <p class="eyebrow">project traffic</p>
                 <h2>Project detail rows</h2>
-                <p>Live mode expands this into per-project sources, paths, tools, games, and next actions.</p>
+                <p>Per-project source, path, tool, game, and monetization signals. Live mode expands this section after /api/ops-metrics loads.</p>
               </div>
               <button class="button" id="refreshOpsMetrics" type="button">Refresh</button>
             </div>
-            ${opsStaticTable(["Project", "Goal", "Views", "Today", "Downloads", "Sponsor leads", "Invoice requests", "Intent"], projectRows)}
+            ${opsStaticTable(["Project", "Views / today", "Top source", "Top path", "Top tool or game", "Downloads or plays", "Intent / today", "Intent rate"], projectRows)}
+          </section>
+          <section class="panel ops-live-traffic-detail">
+            <div class="ops-project-head">
+              <div>
+                <p class="eyebrow">traffic detail</p>
+                <h2>Detailed traffic breakdown</h2>
+                <p>Static snapshot of source quality, hot paths, and tool or game demand. The browser refresh replaces this with live rows.</p>
+              </div>
+            </div>
+            <div class="ops-board-grid">
+              <section>
+                <h3>Hot paths</h3>
+                ${opsStaticTable(["Project", "Path", "Views", "Today", "Downloads", "Intent"], hotPathRows.map((row) => [
+                  row.projectName || "",
+                  row.path || "",
+                  row.page_view || 0,
+                  row.today_page_view || 0,
+                  opsDownloadCount(row),
+                  opsTrafficIntent(row),
+                ]))}
+              </section>
+              <section>
+                <h3>Tool and game demand</h3>
+                ${opsStaticTable(["Project", "Tool or game", "Score", "Today", "Downloads", "Intent"], toolRows.map((row) => [
+                  row.projectName || "",
+                  row.tool || "",
+                  opsToolScore(row),
+                  opsTodayToolScore(row),
+                  opsDownloadCount(row),
+                  opsTrafficIntent(row),
+                ]))}
+              </section>
+            </div>
           </section>
           <section class="panel">
             <h2>Source breakdown</h2>
-            ${opsStaticTable(["Source", "Views", "Downloads", "Depth", "Sponsor intent"], sourceRows.map((row) => [
+            ${opsStaticTable(["Source", "Views", "Today", "Downloads", "Intent", "Intent rate"], sourceRows.map((row) => [
               row.source,
               row.page_view || 0,
-              (row.download_pdf || 0) + (row.download_file || 0),
-              (row.free_tool_depth || 0) + (row.guide_depth || 0),
-              row.sponsor_request_intent || 0,
+              row.today_page_view || 0,
+              opsDownloadCount(row),
+              opsTrafficIntent(row),
+              opsRatioLabel(opsTrafficIntent(row), row.page_view || 0),
             ]))}
           </section>
           <section class="panel">
@@ -8217,7 +8249,7 @@ function opsStaticTable(headers, rows) {
 function opsActiveRows(rows, scoreFn) {
   return (Array.isArray(rows) ? rows : [])
     .filter((row) => scoreFn(row) > 0)
-    .sort((a, b) => scoreFn(b) - scoreFn(a) || String(a.tool || a.source || "").localeCompare(String(b.tool || b.source || "")));
+    .sort((a, b) => scoreFn(b) - scoreFn(a) || String(a.tool || a.source || a.path || "").localeCompare(String(b.tool || b.source || b.path || "")));
 }
 
 function opsSourceScore(row) {
@@ -8240,6 +8272,13 @@ function opsToolScore(row) {
     + (row.sponsor_request_intent || 0) * 5;
 }
 
+function opsPathScore(row) {
+  return (row.page_view || 0)
+    + (row.today_page_view || 0) * 2
+    + opsDownloadCount(row) * 4
+    + opsTrafficIntent(row) * 5;
+}
+
 function opsCommercialIntent(totals) {
   return (totals.seller_checkout_intent || 0)
     + (totals.seller_checkout_click || 0)
@@ -8249,6 +8288,93 @@ function opsCommercialIntent(totals) {
     + (totals.sponsor_request_intent || 0)
     + (totals.sponsor_lead_submit || 0)
     + (totals.sponsor_invoice_request || 0);
+}
+
+function opsGameIntent(totals) {
+  return (totals.game_play_intent || 0)
+    + (totals.game_fullscreen_open || 0)
+    + (totals.game_embed_open || 0);
+}
+
+function opsTrafficIntent(row) {
+  return opsCommercialIntent(row) + opsGameIntent(row);
+}
+
+function opsDownloadCount(row) {
+  return (row.download_pdf || 0) + (row.download_file || 0);
+}
+
+function opsTodayToolScore(row) {
+  return ((row.today_download_pdf || 0) + (row.today_download_file || 0)) * 4
+    + ((row.today_generate_pdf || 0) + (row.today_generate_file || 0)) * 2
+    + ((row.today_free_tool_depth || 0) + (row.today_guide_depth || 0)) * 3
+    + (row.today_service_request_intent || 0) * 5
+    + (row.today_audit_request_intent || 0) * 4
+    + (row.today_sponsor_request_intent || 0) * 5
+    + ((row.today_game_play_intent || 0) + (row.today_game_fullscreen_open || 0) + (row.today_game_embed_open || 0)) * 4;
+}
+
+function opsFlattenProjectRows(projects, key) {
+  return (Array.isArray(projects) ? projects : []).flatMap((project) => {
+    const rows = Array.isArray(project[key]) ? project[key] : [];
+    return rows.map((row) => ({
+      ...row,
+      projectId: project.id || "",
+      projectName: project.name || project.id || "Project",
+    }));
+  });
+}
+
+function opsProjectOverviewRows(projects, fallback) {
+  if (!Array.isArray(projects) || projects.length === 0) {
+    return [
+      [
+        "PrintableTools Lab",
+        `${fallback.totals.page_view || 0} / ${fallback.todayTotals.page_view || 0}`,
+        "Live via /api/ops-metrics",
+        "Live via /api/ops-metrics",
+        "Live via /api/ops-metrics",
+        fallback.totalDownloads || 0,
+        `${fallback.commercialIntent || 0} / ${opsCommercialIntent(fallback.todayTotals || {})}`,
+        opsRatioLabel(fallback.commercialIntent || 0, fallback.totals.page_view || 0),
+      ],
+      [
+        "Pocket Arcade Shelf",
+        "Live via /api/ops-metrics",
+        "Live via /api/ops-metrics",
+        "Live via /api/ops-metrics",
+        "Live via /api/ops-metrics",
+        "Game play rows",
+        "Game intent rows",
+        "n/a",
+      ],
+    ];
+  }
+  return projects.map((project) => {
+    const summary = project.summary || {};
+    const isGameProject = project.id === "pocket-arcade-shelf";
+    const topSource = opsActiveRows(project.sources || [], opsSourceScore)[0];
+    const topPath = opsActiveRows(project.paths || [], opsPathScore)[0];
+    const topTool = opsActiveRows(project.tools || [], opsToolScore)[0];
+    const intent = isGameProject ? opsGameIntent(project.totals || {}) : opsCommercialIntent(project.totals || {});
+    const todayIntent = isGameProject ? opsGameIntent(project.todayTotals || {}) : opsCommercialIntent(project.todayTotals || {});
+    return [
+      project.name || project.id || "Project",
+      `${summary.pageViews || 0} / ${summary.todayPageViews || 0}`,
+      topSource ? `${topSource.source} (${topSource.page_view || 0})` : "none",
+      topPath ? `${topPath.path} (${topPath.page_view || 0})` : "none",
+      topTool ? `${topTool.tool} (${opsToolScore(topTool)})` : "none",
+      isGameProject ? opsGameIntent(project.totals || {}) : (summary.downloads || 0),
+      `${intent} / ${todayIntent}`,
+      opsRatioLabel(intent, summary.pageViews || 0),
+    ];
+  });
+}
+
+function opsRatioLabel(numerator, denominator) {
+  const base = Number(denominator) || 0;
+  if (!base) return "0%";
+  return `${Math.round(((Number(numerator) || 0) / base) * 1000) / 10}%`;
 }
 
 function opsSponsorSnapshotAction(sponsorLeads, sponsorIntent, pageViews, downloads, sponsorInvoiceRequests) {
