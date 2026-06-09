@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Share Kit",
-  "generatedAt": "2026-06-09T12:46:21.601Z",
+  "generatedAt": "2026-06-09T13:11:01.225Z",
   "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
   "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
   "featuredLinks": [
@@ -20,7 +20,7 @@
       "title": "PDF size reducer",
       "url": "https://printable-tools-lab.pages.dev/pdf-size-reducer?utm_source=share-kit&utm_medium=organic",
       "canonicalUrl": "https://printable-tools-lab.pages.dev/pdf-size-reducer/",
-      "reason": "Hub for exact PDF upload limits including 500KB, 1MB, 2MB, and 5MB."
+      "reason": "Hub for exact PDF upload limits including 100KB, 200KB, 300KB, 500KB, 1MB, 2MB, 5MB, and 10MB."
     },
     {
       "title": "Compress image to 20KB",
@@ -35,6 +35,24 @@
       "reason": "Urgent ID-style photo crop, resize, and file-size workflow."
     },
     {
+      "title": "Compress PDF to 100KB",
+      "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-100kb?utm_source=share-kit&utm_medium=organic",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-100kb/",
+      "reason": "Strict exam, school, and tiny form upload limit intent."
+    },
+    {
+      "title": "Compress PDF to 200KB",
+      "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-200kb?utm_source=share-kit&utm_medium=organic",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-200kb/",
+      "reason": "Severe small-PDF upload limit for scanned forms."
+    },
+    {
+      "title": "Compress PDF to 300KB",
+      "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-300kb?utm_source=share-kit&utm_medium=organic",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-300kb/",
+      "reason": "Strict PDF upload limit with slightly more readable detail."
+    },
+    {
       "title": "Compress PDF to 1MB",
       "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb?utm_source=share-kit&utm_medium=organic",
       "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb/",
@@ -45,6 +63,12 @@
       "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb?utm_source=share-kit&utm_medium=organic",
       "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/",
       "reason": "Strict form and government-style upload limit intent."
+    },
+    {
+      "title": "Compress PDF to 10MB",
+      "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-10mb?utm_source=share-kit&utm_medium=organic",
+      "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-10mb/",
+      "reason": "Wider email, support, and portal PDF upload limit intent."
     },
     {
       "title": "Compress image to 100KB",
@@ -413,6 +437,36 @@
         "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=1mb"
       },
       {
+        "errorText": "PDF must be under 100KB",
+        "problem": "A tiny exam, school, or form upload cap rejects a PDF above 100KB.",
+        "response": "Use the strictest 100KB PDF target and review readability before submitting.",
+        "format": "PDF",
+        "target": "100KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/compress-pdf-to-100kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=100kb"
+      },
+      {
+        "errorText": "PDF must be under 200KB",
+        "problem": "A strict portal allows only a very small scanned PDF or short form.",
+        "response": "Use the severe 200KB PDF target for short scanned forms and keep the original nearby.",
+        "format": "PDF",
+        "target": "200KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/compress-pdf-to-200kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-200kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=200kb"
+      },
+      {
+        "errorText": "PDF must be under 300KB",
+        "problem": "A form, application, or admin portal requires a strict PDF cap below 300KB.",
+        "response": "Use the 300KB PDF target when the portal allows a little more detail than 100KB or 200KB.",
+        "format": "PDF",
+        "target": "300KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/compress-pdf-to-300kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-300kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=300kb"
+      },
+      {
         "errorText": "PDF must be under 500KB",
         "problem": "A strict form, exam upload, or school portal requires a very small PDF.",
         "response": "Use the strict 500KB PDF target and keep the original file in case the compressed copy loses detail.",
@@ -421,6 +475,16 @@
         "landingPage": "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/",
         "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
         "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=500kb"
+      },
+      {
+        "errorText": "PDF must be under 10MB",
+        "problem": "An email, support, or document portal still rejects a large scanned PDF.",
+        "response": "Use the 10MB PDF target for wider caps that still reject very large scans.",
+        "format": "PDF",
+        "target": "10MB",
+        "landingPage": "https://printable-tools-lab.pages.dev/compress-pdf-to-10mb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-10mb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=10mb"
       },
       {
         "errorText": "Image must be less than 2MB",

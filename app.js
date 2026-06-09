@@ -757,7 +757,7 @@
       fields: [
         { id: "pdfs", label: "PDF file", type: "file", accept: "application/pdf", multiple: false, help: "Select one PDF. It stays in your browser and is not uploaded." },
         { id: "mode", label: "Compression mode", type: "select", options: [["small", "Small file"], ["balanced", "Balanced"], ["readable", "More readable"]] },
-        { id: "targetSize", label: "Target size", type: "select", options: [["none", "No exact target"], ["500kb", "Try under 500 KB"], ["1mb", "Try under 1 MB"], ["2mb", "Try under 2 MB"], ["5mb", "Try under 5 MB"]] },
+        { id: "targetSize", label: "Target size", type: "select", options: [["none", "No exact target"], ["100kb", "Try under 100 KB"], ["200kb", "Try under 200 KB"], ["300kb", "Try under 300 KB"], ["500kb", "Try under 500 KB"], ["1mb", "Try under 1 MB"], ["2mb", "Try under 2 MB"], ["5mb", "Try under 5 MB"], ["10mb", "Try under 10 MB"]] },
         { id: "pageRange", label: "Pages to compress", type: "text", maxLength: 80, help: "Use all, 1, or ranges such as 1,3-5. Free compression exports up to 12 pages." },
       ],
     },
@@ -1929,10 +1929,14 @@
         ["Multiple images to PDF without uploading", "/multiple-images-to-pdf-no-upload/"],
         ["Compress PDF", "/tools/compress-pdf/"],
         ["Compress PDF without uploading", "/compress-pdf-no-upload/"],
+        ["Compress PDF to 100KB", "/compress-pdf-to-100kb/"],
+        ["Compress PDF to 200KB", "/compress-pdf-to-200kb/"],
+        ["Compress PDF to 300KB", "/compress-pdf-to-300kb/"],
         ["Compress PDF to 500KB", "/compress-pdf-to-500kb/"],
         ["Compress PDF to 1MB", "/compress-pdf-to-1mb/"],
         ["Compress PDF to 2MB", "/compress-pdf-to-2mb/"],
         ["Compress PDF to 5MB", "/compress-pdf-to-5mb/"],
+        ["Compress PDF to 10MB", "/compress-pdf-to-10mb/"],
         ["PDF to JPG converter", "/tools/pdf-to-images/"],
         ["PDF to JPG without uploading", "/pdf-to-jpg-no-upload/"],
         ["PDF to text converter", "/tools/pdf-to-text/"],
@@ -2084,12 +2088,16 @@
   ];
 
   const uploadLimitShortcuts = [
-    ["PDF size reducer", "/pdf-size-reducer/", "Pick 500KB, 1MB, 2MB, or 5MB PDF targets for scanned forms and portal uploads.", "compress-pdf"],
+    ["PDF size reducer", "/pdf-size-reducer/", "Pick 100KB, 200KB, 300KB, 500KB, 1MB, 2MB, 5MB, or 10MB PDF targets for scanned forms and portal uploads.", "compress-pdf"],
     ["Image size reducer in KB", "/image-size-reducer-in-kb/", "Choose exact image and photo targets from 10KB through 500KB without uploading.", "compress-image-to-kb"],
+    ["Compress PDF to 100KB", "/compress-pdf-to-100kb/", "The strictest PDF target for tiny exam, school, and form upload caps.", "compress-pdf"],
+    ["Compress PDF to 200KB", "/compress-pdf-to-200kb/", "A severe PDF target for portals that allow only a small scanned form.", "compress-pdf"],
+    ["Compress PDF to 300KB", "/compress-pdf-to-300kb/", "A strict PDF target with a little more room than 100KB or 200KB.", "compress-pdf"],
     ["Compress PDF to 1MB", "/compress-pdf-to-1mb/", "A common job, school, email, and admin portal PDF limit.", "compress-pdf"],
     ["Compress PDF to 500KB", "/compress-pdf-to-500kb/", "A strict PDF target for forms, exam portals, and government-style uploads.", "compress-pdf"],
     ["PDF under 2MB", "/pdf-must-be-under-2mb/", "A common application, proposal, and document portal PDF cap.", "compress-pdf"],
     ["Document under 5MB", "/document-must-be-under-5mb/", "A moderate upload limit for documents, scans, and email-style attachments.", "compress-pdf"],
+    ["Compress PDF to 10MB", "/compress-pdf-to-10mb/", "A wider PDF target for email, support, and document portals that still reject large scans.", "compress-pdf"],
     ["Compress image to 100KB", "/compress-image-to-100kb/", "A common profile, job, school, and form photo limit.", "compress-image-to-kb"],
     ["Compress JPG to 100KB", "/compress-jpg-to-100kb/", "Use this when the destination asks for JPG and a fixed 100KB limit.", "compress-image-to-kb"],
     ["Compress PNG to 100KB", "/compress-png-to-100kb/", "Use this when a screenshot, graphic, or form upload must stay PNG under 100KB.", "compress-image-to-kb"],
@@ -2132,10 +2140,14 @@
   ];
 
   const uploadLimitDecisions = [
+    ["PDF must be under 100KB", "/tools/compress-pdf/?targetSize=100kb", "Compress PDF", "Use the strictest 100KB target for tiny exam, school, and form upload caps.", "compress-pdf"],
+    ["PDF must be under 200KB", "/tools/compress-pdf/?targetSize=200kb", "Compress PDF", "Use the severe 200KB PDF target when the portal only allows a small scanned form.", "compress-pdf"],
+    ["PDF must be under 300KB", "/tools/compress-pdf/?targetSize=300kb", "Compress PDF", "Use the 300KB PDF target when the destination allows a little more detail than 100KB or 200KB.", "compress-pdf"],
     ["PDF must be under 1MB", "/tools/compress-pdf/?targetSize=1mb", "Compress PDF", "Use the PDF compressor with the 1MB target for job, school, email, and admin portals.", "compress-pdf"],
     ["PDF must be under 500KB", "/tools/compress-pdf/?targetSize=500kb", "Compress PDF", "Use the strict 500KB target for forms and exam-style upload limits.", "compress-pdf"],
     ["PDF must be under 2MB", "/pdf-must-be-under-2mb/", "Fix PDF under 2MB", "Use the 2MB PDF target when a proposal, application, school, or admin portal rejects a larger PDF.", "compress-pdf"],
     ["Document must be under 5MB", "/document-must-be-under-5mb/", "Fix document under 5MB", "Use the 5MB PDF target for document uploads, scans, and attachments that need readable detail.", "compress-pdf"],
+    ["PDF must be under 10MB", "/tools/compress-pdf/?targetSize=10mb", "Compress PDF", "Use the 10MB PDF target for email, support, and document portals with a wider cap.", "compress-pdf"],
     ["Image must be under 2MB", "/tools/compress-image-to-kb/?targetKb=2048", "Compress image", "Use a 2048KB custom target when the upload page names a 2MB image cap.", "compress-image-to-kb"],
     ["Image must be under 500KB", "/tools/compress-image-to-kb/?targetKb=500", "Compress image", "Use the 500KB image target for profile, marketplace, and portal uploads.", "compress-image-to-kb"],
     ["Photo or image must be under 100KB", "/tools/compress-image-to-kb/?targetKb=100", "Compress image to KB", "Use the image-to-KB compressor when the site names a fixed photo or image file-size limit.", "compress-image-to-kb"],
@@ -2187,6 +2199,9 @@
   ];
   const uploadErrorCheatsheetRows = [
     ["PDF must be under 1MB", "/file-must-be-less-than-1mb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PDF 1MB", "Open the PDF compressor with the 1MB target, compress locally, then review readability before submitting.", "compress-pdf"],
+    ["PDF must be under 100KB", "/compress-pdf-to-100kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PDF 100KB", "Use the strictest 100KB PDF target and review readability before submitting.", "compress-pdf"],
+    ["PDF must be under 200KB", "/compress-pdf-to-200kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PDF 200KB", "Use the severe 200KB PDF target for short scanned forms and keep the original nearby.", "compress-pdf"],
+    ["PDF must be under 300KB", "/compress-pdf-to-300kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PDF 300KB", "Use the 300KB PDF target when the portal allows a little more detail than 100KB or 200KB.", "compress-pdf"],
     ["PDF must be under 500KB", "/pdf-must-be-under-500kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PDF 500KB", "Use the strict 500KB PDF target and keep the original file in case the compressed copy loses detail.", "compress-pdf"],
     ["Image must be less than 2MB", "/image-must-be-less-than-2mb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Image 2MB", "Use the image-to-KB compressor with a 2048KB custom target.", "compress-image-to-kb"],
     ["Image must be under 500KB", "/image-must-be-under-500kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Image 500KB", "Use the 500KB image target, then resize if a large phone photo still misses the limit.", "compress-image-to-kb"],
@@ -2227,6 +2242,7 @@
     ["PDF not accepted, JPG required", "/pdf-not-accepted-jpg-required/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PDF JPG", "Convert PDF pages to JPG/PNG locally and upload the page image the destination expects.", "pdf-to-images"],
     ["Resume PDF too large", "/resume-pdf-too-large/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PDF 1MB", "Try the 1MB PDF target and confirm all resume text remains readable before applying.", "compress-pdf"],
     ["Email attachment too large", "/email-attachment-too-large/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PDF or image 5MB", "Compress PDFs toward 5MB or use the image-to-KB tool for photo attachments.", "compress-pdf"],
+    ["PDF must be under 10MB", "/compress-pdf-to-10mb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PDF 10MB", "Use the 10MB PDF target for email, support, and document portals that still reject large scans.", "compress-pdf"],
   ];
   const uploadLimitMatcherDefault = {
     badge: "Common match",
@@ -2950,27 +2966,82 @@
       slug: "pdf-size-reducer",
       title: "PDF Size Reducer Without Uploading",
       headline: "PDF size reducer without uploading",
-      description: "Reduce a scanned or image-heavy PDF toward exact upload limits locally, including 500KB, 1MB, 2MB, and 5MB targets.",
+      description: "Reduce a scanned or image-heavy PDF toward exact upload limits locally, including 100KB, 200KB, 300KB, 500KB, 1MB, 2MB, 5MB, and 10MB targets.",
       lead: "Start here when a job portal, school form, email system, exam site, or admin upload page rejects a PDF because the file is too large. Pick the target size, open the no-upload PDF compressor, and download a smaller copy from your browser.",
       tool: "compress-pdf",
-      intent: "PDF size reducer, compress PDF under 1MB, compress PDF under 500KB, no upload",
+      intent: "PDF size reducer, compress PDF under 100KB, compress PDF under 1MB, compress PDF under 10MB, no upload",
       sections: [
-        ["Pick the target from the upload rule", "Use the exact size from the destination site whenever possible. A 500KB target is strict, 1MB is common for forms, and 2MB or 5MB usually preserves more readable detail."],
+        ["Pick the target from the upload rule", "Use the exact size from the destination site whenever possible. 100KB, 200KB, and 300KB are severe targets for short files, 500KB and 1MB are common form caps, and 2MB, 5MB, or 10MB usually preserves more readable detail."],
         ["Best for scanned PDFs", "The compressor rebuilds image-based pages locally, so it is strongest for scanned forms, photo-heavy documents, and PDFs that are already mostly images."],
         ["Honest limits", "Very small PDF targets can flatten selectable text, lower image quality, or still miss the exact limit on long documents. Review the downloaded PDF before submitting it anywhere important."],
       ],
       serviceLead: uploadLimitLandingServiceLead("PDF size reducer"),
       targetLinks: [
+        ["Compress PDF to 100KB", "compress-pdf-to-100kb", "For the strictest exam, school, and tiny form PDF upload caps."],
+        ["Compress PDF to 200KB", "compress-pdf-to-200kb", "For severe PDF limits where the file is short and mostly scanned."],
+        ["Compress PDF to 300KB", "compress-pdf-to-300kb", "For strict upload limits that allow a little more detail than 100KB or 200KB."],
         ["Compress PDF to 500KB", "compress-pdf-to-500kb", "For strict form, school, government-style, and exam upload limits."],
         ["Compress PDF to 1MB", "compress-pdf-to-1mb", "For common job, school, email, and portal PDF limits."],
         ["Compress PDF to 2MB", "compress-pdf-to-2mb", "For upload forms that allow more readable scanned detail."],
         ["Compress PDF to 5MB", "compress-pdf-to-5mb", "For moderate limits where readability matters more than extreme compression."],
+        ["Compress PDF to 10MB", "compress-pdf-to-10mb", "For wider email, support, and document portal caps that still reject large scans."],
         ["PDF must be under 2MB", "pdf-must-be-under-2mb", "For proposal, portfolio, application, and school upload errors."],
         ["PDF must be under 5MB", "pdf-must-be-under-5mb", "For moderate PDF upload caps where readability still matters."],
         ["Resume PDF under 2MB", "resume-pdf-under-2mb", "For job application portals that reject larger resume PDFs."],
         ["Document must be under 5MB", "document-must-be-under-5mb", "For document portals, scans, and attachments with a 5MB cap."],
       ],
       related: ["compress-pdf", "pdf-to-images", "split-pdf", "merge-pdf"],
+    },
+    {
+      slug: "compress-pdf-to-100kb",
+      title: "Compress PDF to 100KB Without Uploading",
+      headline: "Compress PDF to 100KB without uploading",
+      description: "Try to compress a short scanned or image-heavy PDF toward a strict 100KB upload limit locally in your browser.",
+      lead: "Choose a PDF, use the 100KB target, and download a smaller image-based PDF copy without sending the document to a server. This is an aggressive target for short forms, exam uploads, and tiny portal caps.",
+      tool: "compress-pdf",
+      toolQuery: "targetSize=100kb",
+      intent: "compress PDF to 100KB, reduce PDF size, no upload",
+      sections: [
+        ["Strictest PDF target", "A 100KB PDF cap leaves very little room, so this target is best for one or two simple scanned pages, receipts, or forms with limited detail."],
+        ["Local target-size workflow", "The browser renders selected pages into smaller image-backed PDF pages and tries stronger compression passes when a target size is selected."],
+        ["Review readability", "A 100KB target can blur stamps, signatures, and small text. Keep the original and inspect the downloaded copy before submitting it anywhere important."],
+      ],
+      serviceLead: uploadLimitLandingServiceLead("compress PDF to 100KB"),
+      related: ["compress-pdf", "pdf-to-images", "compress-image-to-kb"],
+    },
+    {
+      slug: "compress-pdf-to-200kb",
+      title: "Compress PDF to 200KB Without Uploading",
+      headline: "Compress PDF to 200KB without uploading",
+      description: "Try to reduce a short scanned PDF toward a 200KB upload limit locally without uploading the document.",
+      lead: "Choose a PDF, use the 200KB target, and download a smaller local copy from your browser. This is for portals that allow only a tiny PDF but need a little more detail than a 100KB target.",
+      tool: "compress-pdf",
+      toolQuery: "targetSize=200kb",
+      intent: "compress PDF to 200KB, reduce PDF size, no upload",
+      sections: [
+        ["Severe upload cap", "A 200KB PDF limit usually means the destination expects a short scanned form, receipt, certificate, or one-page document."],
+        ["Browser-side compression", "The PDF stays local while the browser rebuilds selected pages into a smaller image-based PDF and tries aggressive target-size passes."],
+        ["Honest limit", "Long files or dense scans may still miss 200KB or lose clarity. Split the PDF first if only one page is required."],
+      ],
+      serviceLead: uploadLimitLandingServiceLead("compress PDF to 200KB"),
+      related: ["compress-pdf", "split-pdf", "pdf-to-images"],
+    },
+    {
+      slug: "compress-pdf-to-300kb",
+      title: "Compress PDF to 300KB Without Uploading",
+      headline: "Compress PDF to 300KB without uploading",
+      description: "Try to compress a scanned or image-heavy PDF toward a 300KB upload limit locally in your browser.",
+      lead: "Choose a PDF, use the 300KB target, and download a smaller image-based PDF copy without sending the file to a server. This target is strict, but it leaves more room than 100KB or 200KB.",
+      tool: "compress-pdf",
+      toolQuery: "targetSize=300kb",
+      intent: "compress PDF to 300KB, reduce PDF size, no upload",
+      sections: [
+        ["Strict but practical", "A 300KB cap often appears on application portals, school forms, and admin uploads that expect a compact scanned document."],
+        ["Local target-size workflow", "The browser renders pages and tries smaller compression passes when the 300KB target is selected."],
+        ["Review before upload", "The output can flatten selectable text and reduce image detail. Open the downloaded PDF before you submit it to a portal."],
+      ],
+      serviceLead: uploadLimitLandingServiceLead("compress PDF to 300KB"),
+      related: ["compress-pdf", "pdf-to-images", "compress-image-to-kb"],
     },
     {
       slug: "compress-pdf-to-500kb",
@@ -3039,6 +3110,23 @@
       ],
       serviceLead: uploadLimitLandingServiceLead("compress PDF to 5MB"),
       related: ["compress-pdf", "pdf-to-images", "split-pdf"],
+    },
+    {
+      slug: "compress-pdf-to-10mb",
+      title: "Compress PDF to 10MB Without Uploading",
+      headline: "Compress PDF to 10MB without uploading",
+      description: "Try to reduce a PDF toward a 10MB upload limit locally for email, support tickets, document portals, and applications.",
+      lead: "Choose a PDF, use the 10MB target, and download a smaller local copy from your browser. This target is useful when the destination allows more detail but still rejects very large scans.",
+      tool: "compress-pdf",
+      toolQuery: "targetSize=10mb",
+      intent: "compress PDF to 10MB, reduce PDF size, no upload",
+      sections: [
+        ["Wider upload cap", "A 10MB PDF limit is common for support forms, application portals, and email-style attachments that allow multi-page files but still reject oversized scans."],
+        ["Better readability", "The 10MB target uses a less severe path than tiny KB limits, so it usually keeps more visible detail on scanned pages."],
+        ["Local target-size workflow", "The browser renders and rebuilds selected pages locally, then downloads a smaller image-based PDF copy for review."],
+      ],
+      serviceLead: uploadLimitLandingServiceLead("compress PDF to 10MB"),
+      related: ["compress-pdf", "pdf-to-images", "merge-pdf"],
     },
     {
       slug: "pdf-to-jpg-no-upload",
@@ -7393,11 +7481,15 @@
     const featuredLinks = [
       ["Upload limit fixer", "/upload-limit-fixer/?utm_source=share-kit&utm_medium=organic", "Task-first entry for users blocked by file size, format, or photo dimension limits."],
       ["Image size reducer in KB", "/image-size-reducer-in-kb/?utm_source=share-kit&utm_medium=organic", "Hub for exact image and photo file-size limits from 10KB to 500KB."],
-      ["PDF size reducer", "/pdf-size-reducer/?utm_source=share-kit&utm_medium=organic", "Hub for exact PDF upload limits including 500KB, 1MB, 2MB, and 5MB."],
+      ["PDF size reducer", "/pdf-size-reducer/?utm_source=share-kit&utm_medium=organic", "Hub for exact PDF upload limits including 100KB, 200KB, 300KB, 500KB, 1MB, 2MB, 5MB, and 10MB."],
       ["Compress image to 20KB", "/compress-image-to-20kb/?utm_source=share-kit&utm_medium=organic", "Strict exam, profile, and application photo size limit intent."],
       ["Fix passport photo size", "/passport-photo-size-fixer/?utm_source=share-kit&utm_medium=organic", "Urgent ID-style photo crop, resize, and file-size workflow."],
+      ["Compress PDF to 100KB", "/compress-pdf-to-100kb/?utm_source=share-kit&utm_medium=organic", "Strict exam, school, and tiny form upload limit intent."],
+      ["Compress PDF to 200KB", "/compress-pdf-to-200kb/?utm_source=share-kit&utm_medium=organic", "Severe small-PDF upload limit for scanned forms."],
+      ["Compress PDF to 300KB", "/compress-pdf-to-300kb/?utm_source=share-kit&utm_medium=organic", "Strict PDF upload limit with slightly more readable detail."],
       ["Compress PDF to 1MB", "/compress-pdf-to-1mb/?utm_source=share-kit&utm_medium=organic", "Urgent upload-limit search for job, school, email, and portal PDFs."],
       ["Compress PDF to 500KB", "/compress-pdf-to-500kb/?utm_source=share-kit&utm_medium=organic", "Strict form and government-style upload limit intent."],
+      ["Compress PDF to 10MB", "/compress-pdf-to-10mb/?utm_source=share-kit&utm_medium=organic", "Wider email, support, and portal PDF upload limit intent."],
       ["Compress image to 100KB", "/compress-image-to-100kb/?utm_source=share-kit&utm_medium=organic", "Common profile, exam, job, and form image-size limit."],
       ["Compress image to 50KB", "/compress-image-to-50kb/?utm_source=share-kit&utm_medium=organic", "Severe image upload limit for small photos and documents."],
       ["PDF to JPG without upload", "/pdf-to-jpg-no-upload/?utm_source=share-kit&utm_medium=organic", "Works when a form accepts image files but rejects PDF."],
@@ -9648,18 +9740,26 @@ ${paragraphs.join("\n")}
   }
 
   function pdfTargetBytes(value) {
+    if (value === "100kb") return 100 * 1024;
+    if (value === "200kb") return 200 * 1024;
+    if (value === "300kb") return 300 * 1024;
     if (value === "500kb") return 500 * 1024;
     if (value === "1mb") return 1024 * 1024;
     if (value === "2mb") return 2 * 1024 * 1024;
     if (value === "5mb") return 5 * 1024 * 1024;
+    if (value === "10mb") return 10 * 1024 * 1024;
     return 0;
   }
 
   function pdfTargetLabel(value) {
+    if (value === "100kb") return "100 KB";
+    if (value === "200kb") return "200 KB";
+    if (value === "300kb") return "300 KB";
     if (value === "500kb") return "500 KB";
     if (value === "1mb") return "1 MB";
     if (value === "2mb") return "2 MB";
     if (value === "5mb") return "5 MB";
+    if (value === "10mb") return "10 MB";
     return "the selected target";
   }
 
@@ -12420,9 +12520,9 @@ ${paragraphs.join("\n")}
     if (tool.id === "compress-pdf") {
       const params = new URLSearchParams(window.location.search || "");
       const targetSize = String(params.get("targetSize") || params.get("targetsize") || params.get("target_size") || "").toLowerCase();
-      if (["500kb", "1mb", "2mb", "5mb"].includes(targetSize)) {
+      if (["100kb", "200kb", "300kb", "500kb", "1mb", "2mb", "5mb", "10mb"].includes(targetSize)) {
         values.targetSize = targetSize;
-        values.mode = targetSize === "5mb" ? "balanced" : "small";
+        values.mode = ["5mb", "10mb"].includes(targetSize) ? "balanced" : "small";
       }
     }
     if (tool.id === "passport-photo") {
@@ -17834,13 +17934,8 @@ ${paragraphs.join("\n")}
     }
 
     if (hasPdf && size) {
-      if (size.unit === "mb") {
-        if (size.value <= 0.6) return uploadLimitMatch("PDF under 500KB", "/tools/compress-pdf/?targetSize=500kb", "Open PDF compressor", "Uses the strict 500KB PDF target for small portal limits.", "compress-pdf");
-        if (size.value <= 1.2) return uploadLimitMatch("PDF under 1MB", "/tools/compress-pdf/?targetSize=1mb", "Open PDF compressor", "Uses the 1MB PDF target already selected.", "compress-pdf");
-        if (size.value <= 2.2) return uploadLimitMatch("PDF under 2MB", "/tools/compress-pdf/?targetSize=2mb", "Open PDF compressor", "Uses the 2MB PDF target for larger application and email limits.", "compress-pdf");
-        return uploadLimitMatch("PDF under 5MB", "/tools/compress-pdf/?targetSize=5mb", "Open PDF compressor", "Uses the 5MB PDF target for broad upload caps.", "compress-pdf");
-      }
-      return uploadLimitMatch(`PDF under ${size.value}KB`, `/tools/compress-pdf/?targetSize=${size.value <= 500 ? "500kb" : "1mb"}`, "Open PDF compressor", "Starts with the closest built-in PDF target. Review the result before uploading.", "compress-pdf");
+      const target = pdfUploadTargetFromSize(size);
+      return uploadLimitMatch(`PDF under ${target.label}`, `/tools/compress-pdf/?targetSize=${target.value}`, "Open PDF compressor", target.why, "compress-pdf");
     }
 
     if (hasImage && size) {
@@ -17887,6 +17982,18 @@ ${paragraphs.join("\n")}
   function targetKbFromUploadLimitSize(size) {
     if (!size) return null;
     return size.unit === "mb" ? Math.round(size.value * 1024) : Math.round(size.value);
+  }
+
+  function pdfUploadTargetFromSize(size) {
+    const targetKb = targetKbFromUploadLimitSize(size) || 1024;
+    if (targetKb <= 100) return { value: "100kb", label: "100KB", why: "Uses the strictest 100KB PDF target for tiny portal limits." };
+    if (targetKb <= 200) return { value: "200kb", label: "200KB", why: "Uses the severe 200KB PDF target for short scanned forms." };
+    if (targetKb <= 300) return { value: "300kb", label: "300KB", why: "Uses the 300KB PDF target for strict upload limits." };
+    if (targetKb <= 500) return { value: "500kb", label: "500KB", why: "Uses the strict 500KB PDF target for small portal limits." };
+    if (targetKb <= 1024) return { value: "1mb", label: "1MB", why: "Uses the 1MB PDF target already selected." };
+    if (targetKb <= 2048) return { value: "2mb", label: "2MB", why: "Uses the 2MB PDF target for larger application and email limits." };
+    if (targetKb <= 5120) return { value: "5mb", label: "5MB", why: "Uses the 5MB PDF target for broad upload caps." };
+    return { value: "10mb", label: "10MB", why: "Uses the 10MB PDF target for wider portal, support, and email limits." };
   }
 
   function matchExactUploadLimitLanding(normalized, dimensions, size) {

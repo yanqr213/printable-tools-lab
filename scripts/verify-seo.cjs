@@ -8,8 +8,12 @@ const GITHUB_PAGES_EVENT_ENDPOINT = "https://printable-tools-lab.pages.dev/api/e
 const UPLOAD_LIMIT_SHORTCUT_PATHS = [
   "/pdf-size-reducer/",
   "/image-size-reducer-in-kb/",
+  "/compress-pdf-to-100kb/",
+  "/compress-pdf-to-200kb/",
+  "/compress-pdf-to-300kb/",
   "/compress-pdf-to-1mb/",
   "/compress-pdf-to-500kb/",
+  "/compress-pdf-to-10mb/",
   "/compress-image-to-100kb/",
   "/compress-jpg-to-100kb/",
   "/compress-png-to-100kb/",
@@ -53,8 +57,12 @@ const UPLOAD_LIMIT_SHORTCUT_PATHS = [
   "/signature-400x200-100kb/",
 ];
 const UPLOAD_LIMIT_DECISION_LINKS = [
+  ["/tools/compress-pdf/?targetSize=100kb", "compress-pdf"],
+  ["/tools/compress-pdf/?targetSize=200kb", "compress-pdf"],
+  ["/tools/compress-pdf/?targetSize=300kb", "compress-pdf"],
   ["/tools/compress-pdf/?targetSize=1mb", "compress-pdf"],
   ["/tools/compress-pdf/?targetSize=500kb", "compress-pdf"],
+  ["/tools/compress-pdf/?targetSize=10mb", "compress-pdf"],
   ["/tools/compress-image-to-kb/?targetKb=100", "compress-image-to-kb"],
   ["/tools/convert-image/", "convert-image"],
   ["/tools/resize-image/", "resize-image"],
@@ -636,6 +644,9 @@ else {
   if (!script.includes("Future ads must stay separated from generator controls")) failures.push("Missing download success ad-safety warning.");
   if (!script.includes("UPLOAD_FIX_FUNNEL_TOOL_IDS") || !script.includes("renderDownloadUploadFixAfterAction") || !script.includes("download-upload-fix-lead-form") || !script.includes("Send $9 upload check request") || !script.includes("data-download-upload-fix-invoice-request") || !script.includes("Open public-safe $9 invoice request") || !script.includes("data-download-upload-fix-public-request") || !script.includes("I just downloaded") || !script.includes('data-utm-campaign="upload_limit_fix_plan"') || !script.includes('data-service-primary-invoice-request="true"')) failures.push("Missing download success upload-limit fix-plan invoice-request close CTA.");
   if (!script.includes("renderPdfToolUploadFixRequest") || !script.includes("data-compress-pdf-tool-fix-form") || !script.includes('data-utm-source="compress-pdf-tool"') || !script.includes("Request $9 invoice link") || !script.includes('data-service-primary-invoice-request="true"') || !script.includes('data-track-event="service_invoice_request"') || !script.includes("Open public-safe $9 invoice request") || !script.includes("uploadLimitCompressPdfToolSummary") || !script.includes("Portal target: PDF under") || !script.includes("pdfTargetLabel(targetSize")) failures.push("Compress PDF tool missing pre-download upload-limit invoice request path.");
+  for (const targetSize of ["100kb", "200kb", "300kb", "500kb", "1mb", "2mb", "5mb", "10mb"]) {
+    if (!script.includes(`"${targetSize}"`) || !script.includes(`targetSize=${targetSize}`)) failures.push(`Compress PDF tool missing target-size runtime support: ${targetSize}`);
+  }
   if (!script.includes("renderImageKbToolUploadFixRequest") || !script.includes("data-compress-image-kb-tool-fix-form") || !script.includes('data-utm-source="compress-image-kb-tool"') || !script.includes("Request $9 invoice link") || !script.includes("data-service-invoice-submit") || !script.includes("uploadLimitImageKbToolSummary") || !script.includes("Portal target: image or photo under") || !script.includes('params.get("targetkb")') || script.includes("Send $9 image target request</button>")) failures.push("Compress image-to-KB tool missing pre-download primary invoice-link upload-limit fix-plan request path.");
   if (!script.includes("data-service-lead-focus-contact") || !script.includes("Add reply contact") || !script.includes("private $9 follow-up path") || !script.includes('input[name="contact"]')) failures.push("Service lead no-contact fallback should focus visitors back to the reply contact field.");
   if (!script.includes("ensureServiceLeadContactCue") || !script.includes("data-service-lead-contact-cue") || !script.includes("One reply email, @handle, or public contact URL unlocks") || !script.includes("serviceLeadPrivatePathLabel") || !script.includes("aria-invalid")) failures.push("Service lead forms should make the reply-contact value prop and no-contact recovery state visible.");
@@ -1614,7 +1625,7 @@ else {
   if (!sitemap.includes(`<loc>${siteUrl("image-size-reducer-in-kb")}</loc>`)) failures.push("Sitemap missing image KB hub page.");
 }
 
-for (const [pagePath, targetSize, headlineSize] of [["compress-pdf-to-500kb", "500kb", "500KB"], ["compress-pdf-to-1mb", "1mb", "1MB"], ["compress-pdf-to-2mb", "2mb", "2MB"], ["compress-pdf-to-5mb", "5mb", "5MB"]]) {
+for (const [pagePath, targetSize, headlineSize] of [["compress-pdf-to-100kb", "100kb", "100KB"], ["compress-pdf-to-200kb", "200kb", "200KB"], ["compress-pdf-to-300kb", "300kb", "300KB"], ["compress-pdf-to-500kb", "500kb", "500KB"], ["compress-pdf-to-1mb", "1mb", "1MB"], ["compress-pdf-to-2mb", "2mb", "2MB"], ["compress-pdf-to-5mb", "5mb", "5MB"], ["compress-pdf-to-10mb", "10mb", "10MB"]]) {
   const file = path.join(root, pagePath, "index.html");
   if (!fs.existsSync(file)) {
     failures.push(`Missing target-size PDF landing page: ${pagePath}`);
@@ -1636,7 +1647,7 @@ else {
   if (!html.includes("PDF size reducer without uploading")) failures.push("PDF size hub page missing headline.");
   if (!html.includes("/tools/compress-pdf/")) failures.push("PDF size hub page missing PDF compressor link.");
   if (!html.includes("Need a $9 upload fix plan?") || !html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes('data-utm-campaign="upload_limit_fix_plan"') || !html.includes('data-service-primary-invoice-request="true"') || !html.includes('data-track-event="service_invoice_request"') || !html.includes("Open public-safe $9 invoice request")) failures.push("PDF size hub page missing $9 upload fix invoice request path.");
-  for (const pagePath of ["compress-pdf-to-500kb", "compress-pdf-to-1mb", "compress-pdf-to-2mb", "compress-pdf-to-5mb", "pdf-must-be-under-2mb", "pdf-must-be-under-5mb", "resume-pdf-under-2mb", "document-must-be-under-5mb"]) {
+  for (const pagePath of ["compress-pdf-to-100kb", "compress-pdf-to-200kb", "compress-pdf-to-300kb", "compress-pdf-to-500kb", "compress-pdf-to-1mb", "compress-pdf-to-2mb", "compress-pdf-to-5mb", "compress-pdf-to-10mb", "pdf-must-be-under-2mb", "pdf-must-be-under-5mb", "resume-pdf-under-2mb", "document-must-be-under-5mb"]) {
     if (!html.includes(`/${pagePath}/`)) failures.push(`PDF size hub page missing target link: ${pagePath}`);
   }
   if (!sitemap.includes(`<loc>${siteUrl("pdf-size-reducer")}</loc>`)) failures.push("Sitemap missing PDF size hub page.");
