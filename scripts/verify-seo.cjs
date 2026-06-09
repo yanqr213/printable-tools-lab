@@ -14,6 +14,13 @@ const UPLOAD_LIMIT_SHORTCUT_PATHS = [
   "/compress-jpg-to-100kb/",
   "/compress-png-to-100kb/",
   "/passport-photo-size-fixer/",
+  "/photo-200x230-20kb/",
+  "/photo-200x230-50kb/",
+  "/photo-200x230-100kb/",
+  "/photo-413x531-100kb/",
+  "/signature-140x60-20kb/",
+  "/signature-140x60-50kb/",
+  "/signature-200x100-50kb/",
 ];
 const UPLOAD_LIMIT_DECISION_LINKS = [
   ["/tools/compress-pdf/?targetSize=1mb", "compress-pdf"],
@@ -23,6 +30,12 @@ const UPLOAD_LIMIT_DECISION_LINKS = [
   ["/tools/resize-image/", "resize-image"],
   ["/tools/pdf-to-images/", "pdf-to-images"],
   ["/tools/image-to-pdf/", "image-to-pdf"],
+  ["/photo-200x230-20kb/", "resize-image"],
+  ["/photo-200x230-100kb/", "resize-image"],
+  ["/photo-413x531-100kb/", "resize-image"],
+  ["/signature-140x60-20kb/", "resize-image"],
+  ["/signature-140x60-50kb/", "resize-image"],
+  ["/signature-200x100-50kb/", "resize-image"],
 ];
 const PUBLIC_ENTRY_FILES = [
   ["Homepage", "index.html"],

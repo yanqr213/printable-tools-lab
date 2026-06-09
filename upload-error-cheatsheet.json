@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Upload Error Cheatsheet",
-  "generatedAt": "2026-06-08T06:19:22.278Z",
+  "generatedAt": "2026-06-09T07:27:54.163Z",
   "canonical": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
   "purpose": "Machine-readable reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup fixes.",
   "entries": [
@@ -55,6 +55,46 @@
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=100"
     },
     {
+      "errorText": "Photo must be 200 x 230 px and under 20KB",
+      "problem": "An exam, job, or application portal combines exact photo dimensions with a very small file cap.",
+      "response": "Resize to 200 x 230 pixels first, then compress the exported photo toward 20KB.",
+      "format": "Photo",
+      "target": "200 x 230 / 20KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/photo-200x230-20kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/photo-200x230-20kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=230&fit=cover"
+    },
+    {
+      "errorText": "Photo must be 200 x 230 px and under 50KB",
+      "problem": "A photo upload box validates both exact 200 x 230 pixel dimensions and a small KB limit.",
+      "response": "Resize to 200 x 230 pixels first, then compress toward 50KB if the resized output is still too large.",
+      "format": "Photo",
+      "target": "200 x 230 / 50KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/photo-200x230-50kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/photo-200x230-50kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=230&fit=cover"
+    },
+    {
+      "errorText": "Photo must be 200 x 230 px and under 100KB",
+      "problem": "A profile, exam, or application form requires 200 x 230 pixels with a 100KB cap.",
+      "response": "Create the exact 200 x 230 image, then use the 100KB image target only if needed.",
+      "format": "Photo",
+      "target": "200 x 230 / 100KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/photo-200x230-100kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/photo-200x230-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=230&fit=cover"
+    },
+    {
+      "errorText": "Photo must be 413 x 531 px and under 100KB",
+      "problem": "An ID-style or application photo upload requires 413 x 531 pixels and rejects files above 100KB.",
+      "response": "Resize to 413 x 531 pixels, then compress the exported photo toward 100KB.",
+      "format": "Photo",
+      "target": "413 x 531 / 100KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/photo-413x531-100kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/photo-413x531-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=413&height=531&fit=cover"
+    },
+    {
       "errorText": "JPG must be under 200KB",
       "problem": "A portal accepts JPG/JPEG but rejects the image as too large.",
       "response": "Use the 200KB image target and keep output as JPG if the destination requires it.",
@@ -93,6 +133,36 @@
       "landingPage": "https://printable-tools-lab.pages.dev/image-dimensions-600x600/",
       "trackedUrl": "https://printable-tools-lab.pages.dev/image-dimensions-600x600?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=600&fit=cover"
+    },
+    {
+      "errorText": "Signature must be 140 x 60 px and under 20KB",
+      "problem": "A form requires a tiny signature image with both exact dimensions and a strict 20KB cap.",
+      "response": "Resize to 140 x 60 pixels first, then compress the resized signature toward 20KB.",
+      "format": "Signature",
+      "target": "140 x 60 / 20KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/signature-140x60-20kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/signature-140x60-20kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=140&height=60&fit=contain"
+    },
+    {
+      "errorText": "Signature must be 140 x 60 px and under 50KB",
+      "problem": "A signature upload box uses 140 x 60 pixels and a wider 50KB cap.",
+      "response": "Resize the signature to 140 x 60 pixels and compress toward 50KB if needed.",
+      "format": "Signature",
+      "target": "140 x 60 / 50KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/signature-140x60-50kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/signature-140x60-50kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=140&height=60&fit=contain"
+    },
+    {
+      "errorText": "Signature must be 200 x 100 px and under 50KB",
+      "problem": "A wider signature upload box requires 200 x 100 pixels and a file below 50KB.",
+      "response": "Resize to 200 x 100 pixels, then compress the exported signature toward 50KB.",
+      "format": "Signature",
+      "target": "200 x 100 / 50KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/signature-200x100-50kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/signature-200x100-50kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=100&fit=contain"
     },
     {
       "errorText": "PDF not accepted, JPG required",

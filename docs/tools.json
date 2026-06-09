@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-09T03:27:25.304Z",
+  "generatedAt": "2026-06-09T07:27:54.346Z",
   "landingPages": [
     {
       "title": "Free Upload Limit Fixer",
@@ -350,6 +350,24 @@
       "intent": "photo 200x230 50KB, resize photo 200 x 230, exam photo upload"
     },
     {
+      "title": "Photo 200x230 Pixels Under 20KB",
+      "url": "https://printable-tools-lab.pages.dev/photo-200x230-20kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/photo-200x230-20kb/",
+      "intent": "photo 200x230 20KB, resize photo 200 x 230 under 20KB, exam photo upload"
+    },
+    {
+      "title": "Photo 200x230 Pixels Under 100KB",
+      "url": "https://printable-tools-lab.pages.dev/photo-200x230-100kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/photo-200x230-100kb/",
+      "intent": "photo 200x230 100KB, resize photo 200 x 230 under 100KB, application photo size"
+    },
+    {
+      "title": "Photo 413x531 Pixels Under 100KB",
+      "url": "https://printable-tools-lab.pages.dev/photo-413x531-100kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/photo-413x531-100kb/",
+      "intent": "photo 413x531 100KB, resize photo 413 x 531 under 100KB, ID photo upload"
+    },
+    {
       "title": "Signature Under 20KB Without Uploading",
       "url": "https://printable-tools-lab.pages.dev/signature-under-20kb/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/signature-under-20kb/",
@@ -372,6 +390,24 @@
       "url": "https://printable-tools-lab.pages.dev/resize-signature-200x100/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/resize-signature-200x100/",
       "intent": "resize signature 200x100, signature dimensions 200 x 100, no upload"
+    },
+    {
+      "title": "Signature 140x60 Pixels Under 20KB",
+      "url": "https://printable-tools-lab.pages.dev/signature-140x60-20kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/signature-140x60-20kb/",
+      "intent": "signature 140x60 20KB, resize signature 140 x 60 under 20KB, signature upload"
+    },
+    {
+      "title": "Signature 140x60 Pixels Under 50KB",
+      "url": "https://printable-tools-lab.pages.dev/signature-140x60-50kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/signature-140x60-50kb/",
+      "intent": "signature 140x60 50KB, resize signature 140 x 60 under 50KB, signature image size"
+    },
+    {
+      "title": "Signature 200x100 Pixels Under 50KB",
+      "url": "https://printable-tools-lab.pages.dev/signature-200x100-50kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/signature-200x100-50kb/",
+      "intent": "signature 200x100 50KB, resize signature 200 x 100 under 50KB, signature upload"
     },
     {
       "title": "Resize Photo to 200x230 Pixels",
@@ -1655,7 +1691,7 @@
   },
   "organicPushKit": {
     "name": "PrintableTools Lab Organic Push Kit Mirror",
-    "generatedAt": "2026-06-09T03:27:25.304Z",
+    "generatedAt": "2026-06-09T07:27:54.346Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/organic-push-kit/",
     "livePage": "https://printable-tools-lab.pages.dev/organic-push-kit/",
     "liveJson": "https://printable-tools-lab.pages.dev/organic-push-kit.json",
@@ -1772,7 +1808,7 @@
   },
   "uploadErrorCheatsheet": {
     "name": "PrintableTools Lab Upload Error Cheatsheet Mirror",
-    "generatedAt": "2026-06-09T03:27:25.304Z",
+    "generatedAt": "2026-06-09T07:27:54.346Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/",
     "livePage": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
     "liveJson": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",
@@ -1834,6 +1870,50 @@
         "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=100"
       },
       {
+        "errorText": "Photo must be 200 x 230 px and under 20KB",
+        "problem": "An exam, job, or application portal combines exact photo dimensions with a very small file cap.",
+        "response": "Resize to 200 x 230 pixels first, then compress the exported photo toward 20KB.",
+        "format": "Photo",
+        "target": "200 x 230 / 20KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/photo-200x230-20kb/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/photo-200x230-20kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/photo-200x230-20kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=photo-must-be-200-x-230-px-and-under-20kb",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=230&fit=cover"
+      },
+      {
+        "errorText": "Photo must be 200 x 230 px and under 50KB",
+        "problem": "A photo upload box validates both exact 200 x 230 pixel dimensions and a small KB limit.",
+        "response": "Resize to 200 x 230 pixels first, then compress toward 50KB if the resized output is still too large.",
+        "format": "Photo",
+        "target": "200 x 230 / 50KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/photo-200x230-50kb/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/photo-200x230-50kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/photo-200x230-50kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=photo-must-be-200-x-230-px-and-under-50kb",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=230&fit=cover"
+      },
+      {
+        "errorText": "Photo must be 200 x 230 px and under 100KB",
+        "problem": "A profile, exam, or application form requires 200 x 230 pixels with a 100KB cap.",
+        "response": "Create the exact 200 x 230 image, then use the 100KB image target only if needed.",
+        "format": "Photo",
+        "target": "200 x 230 / 100KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/photo-200x230-100kb/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/photo-200x230-100kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/photo-200x230-100kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=photo-must-be-200-x-230-px-and-under-100kb",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=230&fit=cover"
+      },
+      {
+        "errorText": "Photo must be 413 x 531 px and under 100KB",
+        "problem": "An ID-style or application photo upload requires 413 x 531 pixels and rejects files above 100KB.",
+        "response": "Resize to 413 x 531 pixels, then compress the exported photo toward 100KB.",
+        "format": "Photo",
+        "target": "413 x 531 / 100KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/photo-413x531-100kb/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/photo-413x531-100kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/photo-413x531-100kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=photo-must-be-413-x-531-px-and-under-100kb",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=413&height=531&fit=cover"
+      },
+      {
         "errorText": "JPG must be under 200KB",
         "problem": "A portal accepts JPG/JPEG but rejects the image as too large.",
         "response": "Use the 200KB image target and keep output as JPG if the destination requires it.",
@@ -1878,6 +1958,39 @@
         "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=600&fit=cover"
       },
       {
+        "errorText": "Signature must be 140 x 60 px and under 20KB",
+        "problem": "A form requires a tiny signature image with both exact dimensions and a strict 20KB cap.",
+        "response": "Resize to 140 x 60 pixels first, then compress the resized signature toward 20KB.",
+        "format": "Signature",
+        "target": "140 x 60 / 20KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/signature-140x60-20kb/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/signature-140x60-20kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/signature-140x60-20kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=signature-must-be-140-x-60-px-and-under-20kb",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=140&height=60&fit=contain"
+      },
+      {
+        "errorText": "Signature must be 140 x 60 px and under 50KB",
+        "problem": "A signature upload box uses 140 x 60 pixels and a wider 50KB cap.",
+        "response": "Resize the signature to 140 x 60 pixels and compress toward 50KB if needed.",
+        "format": "Signature",
+        "target": "140 x 60 / 50KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/signature-140x60-50kb/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/signature-140x60-50kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/signature-140x60-50kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=signature-must-be-140-x-60-px-and-under-50kb",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=140&height=60&fit=contain"
+      },
+      {
+        "errorText": "Signature must be 200 x 100 px and under 50KB",
+        "problem": "A wider signature upload box requires 200 x 100 pixels and a file below 50KB.",
+        "response": "Resize to 200 x 100 pixels, then compress the exported signature toward 50KB.",
+        "format": "Signature",
+        "target": "200 x 100 / 50KB",
+        "landingPage": "https://printable-tools-lab.pages.dev/signature-200x100-50kb/",
+        "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/signature-200x100-50kb/",
+        "trackedUrl": "https://printable-tools-lab.pages.dev/signature-200x100-50kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=signature-must-be-200-x-100-px-and-under-50kb",
+        "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=100&fit=contain"
+      },
+      {
         "errorText": "PDF not accepted, JPG required",
         "problem": "A form accepts images but rejects a PDF upload.",
         "response": "Convert PDF pages to JPG/PNG locally and upload the page image the destination expects.",
@@ -1919,7 +2032,7 @@
   },
   "sponsorDealRoom": {
     "name": "PrintableTools Lab Sponsor Deal Room Mirror",
-    "generatedAt": "2026-06-09T03:27:25.304Z",
+    "generatedAt": "2026-06-09T07:27:54.346Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-deal-room/",
     "livePage": "https://printable-tools-lab.pages.dev/sponsor-deal-room/",
     "liveJson": "https://printable-tools-lab.pages.dev/sponsor-deal-room.json",
@@ -2023,7 +2136,7 @@
   },
   "sponsorStarterReview": {
     "name": "PrintableTools Lab USD 49 Starter Sponsor Review Mirror",
-    "generatedAt": "2026-06-09T03:27:25.304Z",
+    "generatedAt": "2026-06-09T07:27:54.346Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-starter-review/",
     "livePage": "https://printable-tools-lab.pages.dev/sponsor-starter-review/",
     "trackedReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=github-pages-starter-review#sponsor-inquiry",
@@ -2059,7 +2172,7 @@
   },
   "sponsorCall": {
     "name": "PrintableTools Lab Sponsor Call Mirror",
-    "generatedAt": "2026-06-09T03:27:25.304Z",
+    "generatedAt": "2026-06-09T07:27:54.346Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-call/",
     "livePage": "https://printable-tools-lab.pages.dev/sponsor-call/",
     "liveJson": "https://printable-tools-lab.pages.dev/sponsor-call.json",
@@ -2183,7 +2296,7 @@
   },
   "sponsorOpportunities": {
     "name": "PrintableTools Lab Sponsor Opportunities Mirror",
-    "generatedAt": "2026-06-09T03:27:25.304Z",
+    "generatedAt": "2026-06-09T07:27:54.346Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-opportunities/",
     "livePage": "https://printable-tools-lab.pages.dev/sponsor-opportunities/",
     "liveJson": "https://printable-tools-lab.pages.dev/sponsor-opportunities.json",

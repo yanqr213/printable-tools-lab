@@ -334,10 +334,16 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - Passport Photo Size Fixer: https://printable-tools-lab.pages.dev/passport-photo-size-fixer/
 - Passport Photo 35x45mm Without Uploading: https://printable-tools-lab.pages.dev/passport-photo-35x45mm/
 - Photo 200x230 Pixels Under 50KB: https://printable-tools-lab.pages.dev/photo-200x230-50kb/
+- Photo 200x230 Pixels Under 20KB: https://printable-tools-lab.pages.dev/photo-200x230-20kb/
+- Photo 200x230 Pixels Under 100KB: https://printable-tools-lab.pages.dev/photo-200x230-100kb/
+- Photo 413x531 Pixels Under 100KB: https://printable-tools-lab.pages.dev/photo-413x531-100kb/
 - Signature Under 20KB Without Uploading: https://printable-tools-lab.pages.dev/signature-under-20kb/
 - Signature Under 50KB Without Uploading: https://printable-tools-lab.pages.dev/signature-under-50kb/
 - Resize Signature to 140x60 Pixels: https://printable-tools-lab.pages.dev/resize-signature-140x60/
 - Resize Signature to 200x100 Pixels: https://printable-tools-lab.pages.dev/resize-signature-200x100/
+- Signature 140x60 Pixels Under 20KB: https://printable-tools-lab.pages.dev/signature-140x60-20kb/
+- Signature 140x60 Pixels Under 50KB: https://printable-tools-lab.pages.dev/signature-140x60-50kb/
+- Signature 200x100 Pixels Under 50KB: https://printable-tools-lab.pages.dev/signature-200x100-50kb/
 - Resize Photo to 200x230 Pixels: https://printable-tools-lab.pages.dev/resize-photo-200x230/
 - Resize Photo to 413x531: https://printable-tools-lab.pages.dev/resize-photo-413x531/
 - Resize Image Without Uploading: https://printable-tools-lab.pages.dev/resize-image-no-upload/

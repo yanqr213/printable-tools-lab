@@ -192,10 +192,16 @@ Monetization model: Free tools stay live for search demand and future display ad
 - [Passport Photo Size Fixer](https://printable-tools-lab.pages.dev/passport-photo-size-fixer/): passport photo size fixer, ID photo dimensions, compress passport photo, no upload
 - [Passport Photo 35x45mm Without Uploading](https://printable-tools-lab.pages.dev/passport-photo-35x45mm/): passport photo 35x45mm, 35 x 45 mm photo maker, no upload
 - [Photo 200x230 Pixels Under 50KB](https://printable-tools-lab.pages.dev/photo-200x230-50kb/): photo 200x230 50KB, resize photo 200 x 230, exam photo upload
+- [Photo 200x230 Pixels Under 20KB](https://printable-tools-lab.pages.dev/photo-200x230-20kb/): photo 200x230 20KB, resize photo 200 x 230 under 20KB, exam photo upload
+- [Photo 200x230 Pixels Under 100KB](https://printable-tools-lab.pages.dev/photo-200x230-100kb/): photo 200x230 100KB, resize photo 200 x 230 under 100KB, application photo size
+- [Photo 413x531 Pixels Under 100KB](https://printable-tools-lab.pages.dev/photo-413x531-100kb/): photo 413x531 100KB, resize photo 413 x 531 under 100KB, ID photo upload
 - [Signature Under 20KB Without Uploading](https://printable-tools-lab.pages.dev/signature-under-20kb/): signature under 20KB, compress signature image, signature upload too large
 - [Signature Under 50KB Without Uploading](https://printable-tools-lab.pages.dev/signature-under-50kb/): signature under 50KB, compress signature image, signature upload too large
 - [Resize Signature to 140x60 Pixels](https://printable-tools-lab.pages.dev/resize-signature-140x60/): resize signature 140x60, signature dimensions 140 x 60, no upload
 - [Resize Signature to 200x100 Pixels](https://printable-tools-lab.pages.dev/resize-signature-200x100/): resize signature 200x100, signature dimensions 200 x 100, no upload
+- [Signature 140x60 Pixels Under 20KB](https://printable-tools-lab.pages.dev/signature-140x60-20kb/): signature 140x60 20KB, resize signature 140 x 60 under 20KB, signature upload
+- [Signature 140x60 Pixels Under 50KB](https://printable-tools-lab.pages.dev/signature-140x60-50kb/): signature 140x60 50KB, resize signature 140 x 60 under 50KB, signature image size
+- [Signature 200x100 Pixels Under 50KB](https://printable-tools-lab.pages.dev/signature-200x100-50kb/): signature 200x100 50KB, resize signature 200 x 100 under 50KB, signature upload
 - [Resize Photo to 200x230 Pixels](https://printable-tools-lab.pages.dev/resize-photo-200x230/): resize photo to 200x230, 200 x 230 photo size, application photo dimensions
 - [Resize Photo to 413x531](https://printable-tools-lab.pages.dev/resize-photo-413x531/): resize photo to 413x531, exam photo size, application photo dimensions, no upload
 - [Resize Image Without Uploading](https://printable-tools-lab.pages.dev/resize-image-no-upload/): resize image online, change image dimensions, no upload
