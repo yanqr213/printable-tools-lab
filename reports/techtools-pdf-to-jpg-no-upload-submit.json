@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-09T04:01:25.341Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "PDF to JPG Without Uploading by PrintableTools Lab",
+    "tagline": "Free browser PDF-to-JPG converter for upload portals that require images.",
+    "description": "PrintableTools Lab PDF to JPG Without Uploading helps people when a form, portal, listing, or support page rejects PDF files and asks for JPG or image uploads instead. The tool runs in the browser for ordinary files, keeps pages local during conversion, and points visitors to safe image export checks plus the optional $9 Upload Limit Fix Plan request when exact settings are unclear.",
+    "url": "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_to_jpg_no_upload_2026_06&utm_content=pdf_to_jpg_no_upload_landing",
+    "category": "productivity",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 PDF to JPG no-upload landing path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 209,
+      "name": "PDF to JPG Without Uploading by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_to_jpg_no_upload_2026_06&utm_content=pdf_to_jpg_no_upload_landing",
+      "tagline": "Free browser PDF-to-JPG converter for upload portals that require images.",
+      "description": "PrintableTools Lab PDF to JPG Without Uploading helps people when a form, portal, listing, or support page rejects PDF files and asks for JPG or image uploads instead. The tool runs in the browser for ordinary files, keeps pages local during conversion, and points visitors to safe image export checks plus the optional $9 Upload Limit Fix Plan request when exact settings are unclear.",
+      "category": "productivity",
+      "category_label": "Productivity",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 PDF to JPG no-upload landing path",
+      "launch_date": "2026-06-09",
+      "created_at": "2026-06-09T04:01:25Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=209"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=209"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=209",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/209"
+}

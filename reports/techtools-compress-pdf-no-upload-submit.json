@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-09T04:01:21.993Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Compress PDF Without Uploading by PrintableTools Lab",
+    "tagline": "Free browser PDF compressor that keeps ordinary files local.",
+    "description": "PrintableTools Lab Compress PDF Without Uploading helps people reduce scanned, photo-heavy, and portal-ready PDFs without account creation or server upload during ordinary use. The page routes visitors to browser compression settings for common upload limits, explains privacy-safe checks before sharing files, and includes an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+    "url": "https://printable-tools-lab.pages.dev/compress-pdf-no-upload/?utm_source=techtools&utm_medium=directory&utm_campaign=compress_pdf_no_upload_2026_06&utm_content=compress_pdf_no_upload_landing",
+    "category": "utilities",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 compress PDF no-upload landing path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 208,
+      "name": "Compress PDF Without Uploading by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/compress-pdf-no-upload/?utm_source=techtools&utm_medium=directory&utm_campaign=compress_pdf_no_upload_2026_06&utm_content=compress_pdf_no_upload_landing",
+      "tagline": "Free browser PDF compressor that keeps ordinary files local.",
+      "description": "PrintableTools Lab Compress PDF Without Uploading helps people reduce scanned, photo-heavy, and portal-ready PDFs without account creation or server upload during ordinary use. The page routes visitors to browser compression settings for common upload limits, explains privacy-safe checks before sharing files, and includes an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+      "category": "utilities",
+      "category_label": "Utilities",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 compress PDF no-upload landing path",
+      "launch_date": "2026-06-09",
+      "created_at": "2026-06-09T04:01:21Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=208"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=208"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=208",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/208"
+}

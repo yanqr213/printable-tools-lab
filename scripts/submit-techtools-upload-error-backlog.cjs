@@ -342,6 +342,48 @@ const backlog = [
       submitted_by: "Codex traffic acquisition run 2026-06-09 passport photo compress to 200KB invoice-ready landing path",
     },
   },
+  {
+    report: "techtools-compress-pdf-no-upload-submit.json",
+    payload: {
+      name: "Compress PDF Without Uploading by PrintableTools Lab",
+      tagline: "Free browser PDF compressor that keeps ordinary files local.",
+      description: "PrintableTools Lab Compress PDF Without Uploading helps people reduce scanned, photo-heavy, and portal-ready PDFs without account creation or server upload during ordinary use. The page routes visitors to browser compression settings for common upload limits, explains privacy-safe checks before sharing files, and includes an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/compress-pdf-no-upload/?utm_source=techtools&utm_medium=directory&utm_campaign=compress_pdf_no_upload_2026_06&utm_content=compress_pdf_no_upload_landing",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 compress PDF no-upload landing path",
+    },
+  },
+  {
+    report: "techtools-pdf-to-jpg-no-upload-submit.json",
+    payload: {
+      name: "PDF to JPG Without Uploading by PrintableTools Lab",
+      tagline: "Free browser PDF-to-JPG converter for upload portals that require images.",
+      description: "PrintableTools Lab PDF to JPG Without Uploading helps people when a form, portal, listing, or support page rejects PDF files and asks for JPG or image uploads instead. The tool runs in the browser for ordinary files, keeps pages local during conversion, and points visitors to safe image export checks plus the optional $9 Upload Limit Fix Plan request when exact settings are unclear.",
+      url: "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/?utm_source=techtools&utm_medium=directory&utm_campaign=pdf_to_jpg_no_upload_2026_06&utm_content=pdf_to_jpg_no_upload_landing",
+      category: "productivity",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 PDF to JPG no-upload landing path",
+    },
+  },
+  {
+    report: "techtools-jpg-to-pdf-no-upload-submit.json",
+    payload: {
+      name: "JPG to PDF Without Uploading by PrintableTools Lab",
+      tagline: "Free browser JPG-to-PDF maker for forms, receipts, and document uploads.",
+      description: "PrintableTools Lab JPG to PDF Without Uploading helps people combine photos, scans, receipts, and document images into a PDF without signup or server upload during ordinary use. It is useful when portals require a single PDF instead of separate JPG files, and it includes practical file-size checks plus an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/jpg-to-pdf-no-upload/?utm_source=techtools&utm_medium=directory&utm_campaign=jpg_to_pdf_no_upload_2026_06&utm_content=jpg_to_pdf_no_upload_landing",
+      category: "productivity",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 JPG to PDF no-upload landing path",
+    },
+  },
 ];
 
 async function main() {

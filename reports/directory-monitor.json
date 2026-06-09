@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-09T03:55:22.634Z",
+  "generatedAt": "2026-06-09T04:04:30.572Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 53,
+  "listedCount": 56,
   "pendingCount": 31,
   "errorCount": 1,
   "results": [
@@ -78,7 +78,7 @@
           "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
           "ok": true,
           "status": 200,
-          "bytes": 101914,
+          "bytes": 102926,
           "matched": true
         }
       ]
@@ -986,6 +986,72 @@
       ]
     },
     {
+      "name": "TechTools Launchpad compress PDF without uploading listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=208",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/208",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress PDF Without Uploading"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the no-upload PDF compressor landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/208",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/208",
+          "ok": true,
+          "status": 200,
+          "bytes": 1272,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad PDF to JPG without uploading listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=209",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/209",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "PDF to JPG Without Uploading"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the no-upload PDF-to-JPG landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/209",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/209",
+          "ok": true,
+          "status": 200,
+          "bytes": 1262,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad JPG to PDF without uploading listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=210",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/210",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "JPG to PDF Without Uploading"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the no-upload JPG-to-PDF landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/210",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/210",
+          "ok": true,
+          "status": 200,
+          "bytes": 1260,
+          "matched": true
+        }
+      ]
+    },
+    {
       "name": "NoSignupTools",
       "url": "https://nosignuptools.com/",
       "searchUrl": "https://nosignuptools.com/?q=PrintableTools+Lab",
@@ -1124,7 +1190,7 @@
           "url": "https://nosignuptools.com/tools/image-dimensions-600x600-upload-fix-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20139,
+          "bytes": 20096,
           "matched": false
         }
       ]
@@ -1414,7 +1480,7 @@
           "url": "https://nosignuptools.com/tools/compress-image-to-200kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20060,
+          "bytes": 20103,
           "matched": false
         }
       ]
@@ -1617,7 +1683,7 @@
           "url": "https://nosignuptools.com/tools/passport-photo-compress-to-50kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20127,
+          "bytes": 20084,
           "matched": false
         }
       ]
@@ -2155,34 +2221,49 @@
       "reviewWindow": "maintainer review",
       "status": "error",
       "evidenceUrl": "https://github.com/js-org/js.org/pull/11512",
-      "apiAvailable": false,
-      "checksAvailable": false,
-      "templateOk": null,
-      "checksOk": null,
-      "checks": [],
-      "prState": "unknown",
-      "mergeable": null,
+      "apiAvailable": true,
+      "checksAvailable": true,
+      "templateOk": true,
+      "checksOk": true,
+      "checks": [
+        {
+          "name": "PR description",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:58Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353230"
+        },
+        {
+          "name": "cnames_active.js",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:57Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353223"
+        }
+      ],
+      "prState": "closed",
+      "mergeable": true,
       "checked": [
         {
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 298891,
+          "bytes": 298675,
           "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/pulls/11512",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 16307,
+          "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 18122,
+          "matched": true
         }
       ]
     }
