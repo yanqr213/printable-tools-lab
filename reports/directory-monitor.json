@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-09T00:07:12.551Z",
+  "generatedAt": "2026-06-09T00:23:10.181Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 28,
+  "listedCount": 31,
   "pendingCount": 19,
   "errorCount": 1,
   "results": [
@@ -78,7 +78,7 @@
           "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
           "ok": true,
           "status": 200,
-          "bytes": 95501,
+          "bytes": 96212,
           "matched": true
         }
       ]
@@ -563,6 +563,72 @@
           "ok": true,
           "status": 200,
           "bytes": 1271,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad compress image to 50KB listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=189",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/189",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress Image to 50KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the strict image 50KB landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/189",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/189",
+          "ok": true,
+          "status": 200,
+          "bytes": 1226,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad compress image to 100KB listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=190",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/190",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress Image to 100KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the strict image 100KB landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/190",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/190",
+          "ok": true,
+          "status": 200,
+          "bytes": 1241,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad compress image to 200KB listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=191",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/191",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress Image to 200KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the strict image 200KB landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/191",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/191",
+          "ok": true,
+          "status": 200,
+          "bytes": 1218,
           "matched": true
         }
       ]
@@ -1242,7 +1308,7 @@
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 298666,
+          "bytes": 298672,
           "matched": true
         },
         {

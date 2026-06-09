@@ -76,6 +76,48 @@ const backlog = [
       submitted_by: "Codex traffic acquisition run 2026-06-09 compress PDF to 500KB high-intent landing path",
     },
   },
+  {
+    report: "techtools-compress-image-to-50kb-submit.json",
+    payload: {
+      name: "Compress Image to 50KB by PrintableTools Lab",
+      tagline: "Free no-signup image compressor for strict 50KB upload limits.",
+      description: "PrintableTools Lab Compress Image to 50KB helps people blocked by very small photo, profile, passport-style, school, and application upload limits. It opens the no-upload browser image-to-KB tool with a 50KB target, keeps files local, and offers an optional public-safe $9 Upload Limit Fix Plan request for exact settings and fallback steps after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/compress-image-to-50kb/?utm_source=techtools&utm_medium=directory&utm_campaign=image_50kb_2026_06&utm_content=compress_image_to_50kb_landing",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 compress image to 50KB high-intent landing path",
+    },
+  },
+  {
+    report: "techtools-compress-image-to-100kb-submit.json",
+    payload: {
+      name: "Compress Image to 100KB by PrintableTools Lab",
+      tagline: "Free no-signup image compressor for common 100KB photo limits.",
+      description: "PrintableTools Lab Compress Image to 100KB helps people blocked by profile photo, job application, school form, portal, and marketplace image upload limits. It opens the no-upload browser image-to-KB tool with a 100KB target, keeps files local, and offers an optional public-safe $9 Upload Limit Fix Plan request for exact settings and fallback steps after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/compress-image-to-100kb/?utm_source=techtools&utm_medium=directory&utm_campaign=image_100kb_2026_06&utm_content=compress_image_to_100kb_landing",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 compress image to 100KB high-intent landing path",
+    },
+  },
+  {
+    report: "techtools-compress-image-to-200kb-submit.json",
+    payload: {
+      name: "Compress Image to 200KB by PrintableTools Lab",
+      tagline: "Free no-signup image compressor for 200KB upload limits.",
+      description: "PrintableTools Lab Compress Image to 200KB helps people blocked by JPG, profile, document photo, application, and portal image size limits. It opens the no-upload browser image-to-KB tool with a 200KB target, keeps files local, and offers an optional public-safe $9 Upload Limit Fix Plan request for exact settings and fallback steps after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/compress-image-to-200kb/?utm_source=techtools&utm_medium=directory&utm_campaign=image_200kb_2026_06&utm_content=compress_image_to_200kb_landing",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 compress image to 200KB high-intent landing path",
+    },
+  },
 ];
 
 async function main() {
