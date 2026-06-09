@@ -875,6 +875,10 @@ else {
   if (!directoryMonitorScript.includes("TechTools Launchpad signature 300x80 under 50KB listing") || !directoryMonitorScript.includes("Signature 300x80 Under 50KB")) failures.push("Directory monitor missing TechTools signature 300x80 under 50KB listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad resize signature 200x100 listing") || !directoryMonitorScript.includes("Resize Signature 200x100")) failures.push("Directory monitor missing TechTools resize signature 200x100 listing tracking.");
   if (!directoryMonitorScript.includes("NoLogin.tools upload error cheatsheet listing") || !directoryMonitorScript.includes("Upload+Error+Cheatsheet")) failures.push("Directory monitor missing NoLogin upload error cheatsheet submission tracking.");
+  if (!directoryMonitorScript.includes("nologinQueuedExactUploadLimitListings") || !directoryMonitorScript.includes("queued for next NoLogin 3-per-24h submission window")) failures.push("Directory monitor missing NoLogin queued exact upload-limit tracking.");
+  for (const title of ["Photo 150x200 Under 20KB", "Photo 180x240 Under 50KB", "Photo 400x514 Under 100KB", "Photo 600x800 Under 200KB", "Signature 100x50 Under 10KB", "Signature 200x60 Under 20KB", "Signature 256x64 Under 20KB", "Signature 400x200 Under 100KB"]) {
+    if (!directoryMonitorScript.includes(title)) failures.push(`Directory monitor missing NoLogin exact upload-limit queued tracking: ${title}.`);
+  }
   if (!directoryMonitorScript.includes("expected.every")) failures.push("Directory monitor should require all expected listing markers to avoid search-query echo false positives.");
 }
 const techtoolsPdf1mbReportFile = path.join(root, "reports", "techtools-compress-pdf-to-1mb-submit.json");
@@ -937,6 +941,10 @@ for (const [reportName, shareUrl, campaign] of [
   ["techtools-photo-180x240-50kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=247", "photo_180x240_50kb_2026_06"],
   ["techtools-photo-400x514-100kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=248", "photo_400x514_100kb_2026_06"],
   ["techtools-photo-600x800-200kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=249", "photo_600x800_200kb_2026_06"],
+  ["techtools-signature-100x50-10kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=250", "signature_100x50_10kb_2026_06"],
+  ["techtools-signature-200x60-20kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=251", "signature_200x60_20kb_2026_06"],
+  ["techtools-signature-256x64-20kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=252", "signature_256x64_20kb_2026_06"],
+  ["techtools-signature-400x200-100kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=253", "signature_400x200_100kb_2026_06"],
 ]) {
   const reportFile = path.join(root, "reports", reportName);
   if (!fs.existsSync(reportFile)) failures.push(`Missing TechTools high-intent photo/signature submission evidence report: ${reportName}`);
@@ -1222,12 +1230,19 @@ else {
   const script = fs.readFileSync(freenosignupUploadBacklogScriptFile, "utf8");
   if (!script.includes("Compress PDF to 500KB") || !script.includes("Image Must Be Under 500KB Fix") || !script.includes("Passport Photo Size Fixer") || !script.includes("Resize Signature 200x100") || !script.includes("formResponseUrl")) failures.push("FreeNoSignup upload-fix submission script missing exact upload-limit/photo/signature payloads.");
 }
+const nologinUploadBacklogScriptFile = path.join(root, "scripts", "submit-nologin-upload-fix-pages.cjs");
+if (!fs.existsSync(nologinUploadBacklogScriptFile)) failures.push("Missing NoLogin upload-fix submission script.");
+else {
+  const script = fs.readFileSync(nologinUploadBacklogScriptFile, "utf8");
+  if (!script.includes("latestExactUploadLimitBacklog") || !script.includes("Photo 150x200 Under 20KB") || !script.includes("Signature 400x200 Under 100KB") || !script.includes("global_recent_rate_limit_pending_retry")) failures.push("NoLogin upload-fix submission script missing queued exact upload-limit payloads or 24h rate-limit handling.");
+}
 const packageJsonFile = path.join(root, "package.json");
 if (!fs.existsSync(packageJsonFile)) failures.push("Missing package.json.");
 else {
   const packageJson = readJsonFile(packageJsonFile, {});
   if (packageJson.scripts?.["submit:techtools-upload-backlog"] !== "node scripts/submit-techtools-upload-error-backlog.cjs") failures.push("package.json missing TechTools upload-error backlog retry command.");
   if (packageJson.scripts?.["submit:freenosignup-upload-fix-pages"] !== "node scripts/submit-freenosignup-upload-fix-pages.cjs") failures.push("package.json missing FreeNoSignup upload-fix submission command.");
+  if (packageJson.scripts?.["submit:nologin-upload-fix-pages"] !== "node scripts/submit-nologin-upload-fix-pages.cjs") failures.push("package.json missing NoLogin upload-fix submission command.");
 }
 const sponsorPublicRepliesFunctionFile = path.join(root, "functions", "api", "sponsor-public-replies.js");
 if (!fs.existsSync(sponsorPublicRepliesFunctionFile)) failures.push("Missing sponsor public replies API function.");
@@ -2299,6 +2314,12 @@ else {
   if (!distribution.includes("NoLogin.tools Compress Image to 50KB listing") || !distribution.includes("utm_source=nologin")) failures.push("DISTRIBUTION.md missing NoLogin compress image to 50KB submission.");
   if (!distribution.includes("NoLogin.tools Compress Image to 100KB listing") || !distribution.includes("image_100kb_2026_06")) failures.push("DISTRIBUTION.md missing NoLogin compress image to 100KB submission.");
   if (!distribution.includes("NoLogin.tools Compress Image to 200KB submission; rate limited")) failures.push("DISTRIBUTION.md missing NoLogin compress image to 200KB retry note.");
+  if (!distribution.includes("NoLogin.tools Photo 150x200 Under 20KB queued listing") || !distribution.includes("photo_150x200_20kb_2026_06")) failures.push("DISTRIBUTION.md missing NoLogin exact photo queued listing.");
+  if (!distribution.includes("NoLogin.tools Signature 400x200 Under 100KB queued listing") || !distribution.includes("signature_400x200_100kb_2026_06")) failures.push("DISTRIBUTION.md missing NoLogin exact signature queued listing.");
+  if (!distribution.includes("NoLogin.tools latest exact photo/signature upload-limit queue")) failures.push("DISTRIBUTION.md missing NoLogin exact upload-limit queue status note.");
+  if (!distribution.includes("TechTools Photo 480x640 Under 200KB listing: https://techtools.cz/tools/launchpad/?tool=240")) failures.push("DISTRIBUTION.md missing TechTools latest exact photo live listing.");
+  if (!distribution.includes("TechTools Signature 400x200 Under 100KB listing: https://techtools.cz/tools/launchpad/?tool=253")) failures.push("DISTRIBUTION.md missing TechTools latest exact signature live listing.");
+  if (!distribution.includes("TechTools exact upload-limit photo/signature submissions; retried after API limits")) failures.push("DISTRIBUTION.md missing TechTools latest exact upload-limit live status note.");
   if (!distribution.includes("free_tool_depth")) failures.push("DISTRIBUTION.md missing free-tool depth tracking campaign.");
   if (distribution.includes("Paid service sales pack")) failures.push("DISTRIBUTION.md should not promote paid service sales pack in the main distribution pack.");
   if (distribution.includes("service_sales_pack")) failures.push("DISTRIBUTION.md should not promote service sales tracking campaign.");

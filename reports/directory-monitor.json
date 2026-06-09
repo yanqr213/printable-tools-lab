@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-06-09T10:54:33.602Z",
+  "generatedAt": "2026-06-09T11:55:47.926Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 94,
+  "listedCount": 98,
   "pendingCount": 152,
-  "errorCount": 1,
+  "errorCount": 5,
   "results": [
     {
       "name": "Zearches",
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 118092,
+          "bytes": 118078,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 118092,
+          "bytes": 118078,
           "matched": false
         }
       ]
@@ -78,7 +78,7 @@
           "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
           "ok": true,
           "status": 200,
-          "bytes": 119648,
+          "bytes": 121111,
           "matched": true
         }
       ]
@@ -1889,117 +1889,89 @@
     },
     {
       "name": "TechTools Launchpad signature 100x50 under 10kb listing",
-      "url": "https://techtools.cz/tools/launchpad/",
-      "searchUrl": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
+      "url": "https://techtools.cz/tools/launchpad/?tool=250",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/250",
       "expected": [
         "printable-tools-lab.pages.dev",
         "Signature 100x50 Under 10KB"
       ],
       "submittedAt": "2026-06-09",
-      "reviewWindow": "pending next rate-limit retry for the exact 100 x 50 px and 10KB signature path",
-      "status": "pending",
-      "evidenceUrl": "",
+      "reviewWindow": "auto-approved API listing for the exact 100 x 50 px and 10KB signature path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/250",
       "checked": [
         {
-          "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
+          "url": "https://techtools.cz/launchpad-api/tools/250",
           "ok": true,
           "status": 200,
-          "bytes": 119648,
-          "matched": false
-        },
-        {
-          "url": "https://techtools.cz/tools/launchpad/",
-          "ok": true,
-          "status": 200,
-          "bytes": 19616,
-          "matched": false
+          "bytes": 1252,
+          "matched": true
         }
       ]
     },
     {
       "name": "TechTools Launchpad signature 200x60 under 20kb listing",
-      "url": "https://techtools.cz/tools/launchpad/",
-      "searchUrl": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
+      "url": "https://techtools.cz/tools/launchpad/?tool=251",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/251",
       "expected": [
         "printable-tools-lab.pages.dev",
         "Signature 200x60 Under 20KB"
       ],
       "submittedAt": "2026-06-09",
-      "reviewWindow": "pending next rate-limit retry for the exact 200 x 60 px and 20KB signature path",
-      "status": "pending",
-      "evidenceUrl": "",
+      "reviewWindow": "auto-approved API listing for the exact 200 x 60 px and 20KB signature path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/251",
       "checked": [
         {
-          "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
+          "url": "https://techtools.cz/launchpad-api/tools/251",
           "ok": true,
           "status": 200,
-          "bytes": 119648,
-          "matched": false
-        },
-        {
-          "url": "https://techtools.cz/tools/launchpad/",
-          "ok": true,
-          "status": 200,
-          "bytes": 19616,
-          "matched": false
+          "bytes": 1267,
+          "matched": true
         }
       ]
     },
     {
       "name": "TechTools Launchpad signature 256x64 under 20kb listing",
-      "url": "https://techtools.cz/tools/launchpad/",
-      "searchUrl": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
+      "url": "https://techtools.cz/tools/launchpad/?tool=252",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/252",
       "expected": [
         "printable-tools-lab.pages.dev",
         "Signature 256x64 Under 20KB"
       ],
       "submittedAt": "2026-06-09",
-      "reviewWindow": "pending next rate-limit retry for the exact 256 x 64 px and 20KB signature path",
-      "status": "pending",
-      "evidenceUrl": "",
+      "reviewWindow": "auto-approved API listing for the exact 256 x 64 px and 20KB signature path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/252",
       "checked": [
         {
-          "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
+          "url": "https://techtools.cz/launchpad-api/tools/252",
           "ok": true,
           "status": 200,
-          "bytes": 119648,
-          "matched": false
-        },
-        {
-          "url": "https://techtools.cz/tools/launchpad/",
-          "ok": true,
-          "status": 200,
-          "bytes": 19616,
-          "matched": false
+          "bytes": 1214,
+          "matched": true
         }
       ]
     },
     {
       "name": "TechTools Launchpad signature 400x200 under 100kb listing",
-      "url": "https://techtools.cz/tools/launchpad/",
-      "searchUrl": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
+      "url": "https://techtools.cz/tools/launchpad/?tool=253",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/253",
       "expected": [
         "printable-tools-lab.pages.dev",
         "Signature 400x200 Under 100KB"
       ],
       "submittedAt": "2026-06-09",
-      "reviewWindow": "pending next rate-limit retry for the exact 400 x 200 px and 100KB signature path",
-      "status": "pending",
-      "evidenceUrl": "",
+      "reviewWindow": "auto-approved API listing for the exact 400 x 200 px and 100KB signature path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/253",
       "checked": [
         {
-          "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
+          "url": "https://techtools.cz/launchpad-api/tools/253",
           "ok": true,
           "status": 200,
-          "bytes": 119648,
-          "matched": false
-        },
-        {
-          "url": "https://techtools.cz/tools/launchpad/",
-          "ok": true,
-          "status": 200,
-          "bytes": 19616,
-          "matched": false
+          "bytes": 1259,
+          "matched": true
         }
       ]
     },
@@ -2229,7 +2201,7 @@
           "url": "https://nosignuptools.com/tools/email-attachment-too-large-fix-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20081,
+          "bytes": 20124,
           "matched": false
         }
       ]
@@ -2374,7 +2346,7 @@
           "url": "https://nosignuptools.com/tools/compress-image-to-50kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20100,
+          "bytes": 20057,
           "matched": false
         }
       ]
@@ -2403,7 +2375,7 @@
           "url": "https://nosignuptools.com/tools/compress-image-to-100kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20060,
+          "bytes": 20103,
           "matched": false
         }
       ]
@@ -2432,7 +2404,7 @@
           "url": "https://nosignuptools.com/tools/compress-image-to-200kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20060,
+          "bytes": 20103,
           "matched": false
         }
       ]
@@ -2751,7 +2723,7 @@
           "url": "https://nosignuptools.com/tools/merge-pdf-without-uploading-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20072,
+          "bytes": 20115,
           "matched": false
         }
       ]
@@ -2780,7 +2752,7 @@
           "url": "https://nosignuptools.com/tools/split-pdf-without-uploading-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20115,
+          "bytes": 20072,
           "matched": false
         }
       ]
@@ -3215,7 +3187,7 @@
           "url": "https://nosignuptools.com/tools/resize-photo-413x531-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20094,
+          "bytes": 20051,
           "matched": false
         }
       ]
@@ -3621,7 +3593,7 @@
           "url": "https://nosignuptools.com/tools/compress-pdf-to-500kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20097,
+          "bytes": 20054,
           "matched": false
         }
       ]
@@ -3766,7 +3738,7 @@
           "url": "https://nosignuptools.com/tools/file-must-be-less-than-1mb-fix-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20124,
+          "bytes": 20081,
           "matched": false
         }
       ]
@@ -3795,7 +3767,7 @@
           "url": "https://nosignuptools.com/tools/pdf-must-be-under-500kb-fix-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20072,
+          "bytes": 20115,
           "matched": false
         }
       ]
@@ -3824,7 +3796,7 @@
           "url": "https://nosignuptools.com/tools/photo-must-be-under-100kb-fix-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20078,
+          "bytes": 20121,
           "matched": false
         }
       ]
@@ -4201,7 +4173,7 @@
           "url": "https://nosignuptools.com/tools/photo-600x600-under-100kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20109,
+          "bytes": 20066,
           "matched": false
         }
       ]
@@ -4375,7 +4347,7 @@
           "url": "https://nosignuptools.com/tools/photo-600x800-under-200kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20109,
+          "bytes": 20066,
           "matched": false
         }
       ]
@@ -4491,7 +4463,7 @@
           "url": "https://nosignuptools.com/tools/signature-150x50-under-20kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20072,
+          "bytes": 20115,
           "matched": false
         }
       ]
@@ -4520,7 +4492,7 @@
           "url": "https://nosignuptools.com/tools/signature-160x70-under-20kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20115,
+          "bytes": 20072,
           "matched": false
         }
       ]
@@ -4636,7 +4608,7 @@
           "url": "https://nosignuptools.com/tools/signature-300x80-under-50kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20072,
+          "bytes": 20115,
           "matched": false
         }
       ]
@@ -4723,7 +4695,7 @@
           "url": "https://nosignuptools.com/tools/signature-100x50-under-10kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20072,
+          "bytes": 20115,
           "matched": false
         }
       ]
@@ -4781,7 +4753,7 @@
           "url": "https://nosignuptools.com/tools/signature-256x64-under-20kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20115,
+          "bytes": 20072,
           "matched": false
         }
       ]
@@ -5288,22 +5260,23 @@
       ],
       "submittedAt": "2026-06-09",
       "reviewWindow": "3-5 business day manual review after public Google Form confirmation for the exact 354 x 472 px and 100KB photo path",
-      "status": "pending",
+      "status": "error",
       "evidenceUrl": "",
       "checked": [
         {
           "url": "https://freenosignup.com/?s=Photo+354x472+Under+100KB",
-          "ok": true,
-          "status": 200,
-          "bytes": 274074,
+          "ok": false,
+          "status": 503,
+          "bytes": 4641,
           "matched": false
         },
         {
           "url": "https://freenosignup.com/",
-          "ok": true,
-          "status": 200,
-          "bytes": 274000,
-          "matched": false
+          "ok": false,
+          "status": 0,
+          "bytes": 0,
+          "matched": false,
+          "error": "This operation was aborted"
         }
       ]
     },
@@ -5317,22 +5290,23 @@
       ],
       "submittedAt": "2026-06-09",
       "reviewWindow": "3-5 business day manual review after public Google Form confirmation for the exact 300 x 300 px and 100KB photo path",
-      "status": "pending",
+      "status": "error",
       "evidenceUrl": "",
       "checked": [
         {
           "url": "https://freenosignup.com/?s=Photo+300x300+Under+100KB",
-          "ok": true,
-          "status": 200,
-          "bytes": 274074,
+          "ok": false,
+          "status": 503,
+          "bytes": 4641,
           "matched": false
         },
         {
           "url": "https://freenosignup.com/",
-          "ok": true,
-          "status": 200,
-          "bytes": 274000,
-          "matched": false
+          "ok": false,
+          "status": 0,
+          "bytes": 0,
+          "matched": false,
+          "error": "This operation was aborted"
         }
       ]
     },
@@ -5346,22 +5320,24 @@
       ],
       "submittedAt": "2026-06-09",
       "reviewWindow": "3-5 business day manual review after public Google Form confirmation for the exact 600 x 600 px and 100KB photo path",
-      "status": "pending",
+      "status": "error",
       "evidenceUrl": "",
       "checked": [
         {
           "url": "https://freenosignup.com/?s=Photo+600x600+Under+100KB",
-          "ok": true,
-          "status": 200,
-          "bytes": 274074,
-          "matched": false
+          "ok": false,
+          "status": 0,
+          "bytes": 0,
+          "matched": false,
+          "error": "This operation was aborted"
         },
         {
           "url": "https://freenosignup.com/",
-          "ok": true,
-          "status": 200,
-          "bytes": 274000,
-          "matched": false
+          "ok": false,
+          "status": 0,
+          "bytes": 0,
+          "matched": false,
+          "error": "This operation was aborted"
         }
       ]
     },
@@ -5375,21 +5351,22 @@
       ],
       "submittedAt": "2026-06-09",
       "reviewWindow": "3-5 business day manual review after public Google Form confirmation for the exact 480 x 640 px and 200KB photo path",
-      "status": "pending",
+      "status": "error",
       "evidenceUrl": "",
       "checked": [
         {
           "url": "https://freenosignup.com/?s=Photo+480x640+Under+200KB",
-          "ok": true,
-          "status": 200,
-          "bytes": 274074,
-          "matched": false
+          "ok": false,
+          "status": 0,
+          "bytes": 0,
+          "matched": false,
+          "error": "This operation was aborted"
         },
         {
           "url": "https://freenosignup.com/",
-          "ok": true,
-          "status": 200,
-          "bytes": 274000,
+          "ok": false,
+          "status": 503,
+          "bytes": 4641,
           "matched": false
         }
       ]
@@ -5418,7 +5395,7 @@
           "url": "https://freenosignup.com/",
           "ok": true,
           "status": 200,
-          "bytes": 274000,
+          "bytes": 0,
           "matched": false
         }
       ]
@@ -5440,7 +5417,7 @@
           "url": "https://freenosignup.com/?s=Photo+150x200+Under+20KB",
           "ok": true,
           "status": 200,
-          "bytes": 274072,
+          "bytes": 274000,
           "matched": false
         },
         {
@@ -5467,9 +5444,9 @@
       "checked": [
         {
           "url": "https://freenosignup.com/?s=Photo+180x240+Under+50KB",
-          "ok": false,
-          "status": 503,
-          "bytes": 4640,
+          "ok": true,
+          "status": 200,
+          "bytes": 274000,
           "matched": false
         },
         {
@@ -5496,11 +5473,10 @@
       "checked": [
         {
           "url": "https://freenosignup.com/?s=Photo+400x514+Under+100KB",
-          "ok": false,
-          "status": 0,
-          "bytes": 0,
-          "matched": false,
-          "error": "This operation was aborted"
+          "ok": true,
+          "status": 200,
+          "bytes": 274000,
+          "matched": false
         },
         {
           "url": "https://freenosignup.com/",
@@ -5528,7 +5504,7 @@
           "url": "https://freenosignup.com/?s=Photo+600x800+Under+200KB",
           "ok": true,
           "status": 200,
-          "bytes": 274074,
+          "bytes": 274000,
           "matched": false
         },
         {
@@ -5557,14 +5533,14 @@
           "url": "https://freenosignup.com/?s=Signature+Under+20KB",
           "ok": true,
           "status": 200,
-          "bytes": 274064,
+          "bytes": 274000,
           "matched": false
         },
         {
           "url": "https://freenosignup.com/",
-          "ok": true,
-          "status": 200,
-          "bytes": 274000,
+          "ok": false,
+          "status": 503,
+          "bytes": 4641,
           "matched": false
         }
       ]
@@ -5586,14 +5562,14 @@
           "url": "https://freenosignup.com/?s=Signature+140x60+Under+20KB",
           "ok": true,
           "status": 200,
-          "bytes": 274078,
+          "bytes": 0,
           "matched": false
         },
         {
           "url": "https://freenosignup.com/",
           "ok": true,
           "status": 200,
-          "bytes": 274000,
+          "bytes": 0,
           "matched": false
         }
       ]
@@ -5615,7 +5591,7 @@
           "url": "https://freenosignup.com/?s=Signature+140x60+Under+50KB",
           "ok": true,
           "status": 200,
-          "bytes": 274078,
+          "bytes": 274000,
           "matched": false
         },
         {
@@ -5642,16 +5618,16 @@
       "checked": [
         {
           "url": "https://freenosignup.com/?s=Signature+200x100+Under+50KB",
-          "ok": true,
-          "status": 200,
-          "bytes": 274080,
+          "ok": false,
+          "status": 503,
+          "bytes": 4641,
           "matched": false
         },
         {
           "url": "https://freenosignup.com/",
           "ok": true,
           "status": 200,
-          "bytes": 274000,
+          "bytes": 0,
           "matched": false
         }
       ]
@@ -5673,7 +5649,7 @@
           "url": "https://freenosignup.com/?s=Signature+150x50+Under+20KB",
           "ok": true,
           "status": 200,
-          "bytes": 274078,
+          "bytes": 274000,
           "matched": false
         },
         {
@@ -5702,14 +5678,14 @@
           "url": "https://freenosignup.com/?s=Signature+160x70+Under+20KB",
           "ok": true,
           "status": 200,
-          "bytes": 274078,
+          "bytes": 274000,
           "matched": false
         },
         {
           "url": "https://freenosignup.com/",
           "ok": true,
           "status": 200,
-          "bytes": 274000,
+          "bytes": 0,
           "matched": false
         }
       ]
@@ -5731,14 +5707,14 @@
           "url": "https://freenosignup.com/?s=Signature+200x50+Under+20KB",
           "ok": true,
           "status": 200,
-          "bytes": 274078,
+          "bytes": 274000,
           "matched": false
         },
         {
           "url": "https://freenosignup.com/",
-          "ok": true,
-          "status": 200,
-          "bytes": 274000,
+          "ok": false,
+          "status": 503,
+          "bytes": 4641,
           "matched": false
         }
       ]
@@ -5760,14 +5736,14 @@
           "url": "https://freenosignup.com/?s=Signature+250x80+Under+50KB",
           "ok": true,
           "status": 200,
-          "bytes": 274078,
+          "bytes": 274000,
           "matched": false
         },
         {
           "url": "https://freenosignup.com/",
           "ok": true,
           "status": 200,
-          "bytes": 274000,
+          "bytes": 0,
           "matched": false
         }
       ]
@@ -5789,7 +5765,7 @@
           "url": "https://freenosignup.com/?s=Signature+300x60+Under+20KB",
           "ok": true,
           "status": 200,
-          "bytes": 274078,
+          "bytes": 274000,
           "matched": false
         },
         {
@@ -5818,14 +5794,14 @@
           "url": "https://freenosignup.com/?s=Signature+300x80+Under+50KB",
           "ok": true,
           "status": 200,
-          "bytes": 274078,
+          "bytes": 274000,
           "matched": false
         },
         {
           "url": "https://freenosignup.com/",
-          "ok": true,
-          "status": 200,
-          "bytes": 274000,
+          "ok": false,
+          "status": 503,
+          "bytes": 4641,
           "matched": false
         }
       ]
@@ -5847,7 +5823,7 @@
           "url": "https://freenosignup.com/?s=Signature+300x100+Under+50KB",
           "ok": true,
           "status": 200,
-          "bytes": 274080,
+          "bytes": 274000,
           "matched": false
         },
         {
@@ -5876,7 +5852,7 @@
           "url": "https://freenosignup.com/?s=Signature+400x150+Under+50KB",
           "ok": true,
           "status": 200,
-          "bytes": 274080,
+          "bytes": 274000,
           "matched": false
         },
         {
@@ -5905,14 +5881,14 @@
           "url": "https://freenosignup.com/?s=Signature+100x50+Under+10KB",
           "ok": true,
           "status": 200,
-          "bytes": 274078,
+          "bytes": 0,
           "matched": false
         },
         {
           "url": "https://freenosignup.com/",
           "ok": true,
           "status": 200,
-          "bytes": 274000,
+          "bytes": 0,
           "matched": false
         }
       ]
@@ -5934,14 +5910,14 @@
           "url": "https://freenosignup.com/?s=Signature+200x60+Under+20KB",
           "ok": true,
           "status": 200,
-          "bytes": 274078,
+          "bytes": 274000,
           "matched": false
         },
         {
           "url": "https://freenosignup.com/",
           "ok": true,
           "status": 200,
-          "bytes": 274000,
+          "bytes": 0,
           "matched": false
         }
       ]
@@ -5963,14 +5939,14 @@
           "url": "https://freenosignup.com/?s=Signature+256x64+Under+20KB",
           "ok": true,
           "status": 200,
-          "bytes": 274078,
+          "bytes": 0,
           "matched": false
         },
         {
           "url": "https://freenosignup.com/",
           "ok": true,
           "status": 200,
-          "bytes": 274000,
+          "bytes": 0,
           "matched": false
         }
       ]
@@ -5992,14 +5968,14 @@
           "url": "https://freenosignup.com/?s=Signature+400x200+Under+100KB",
           "ok": true,
           "status": 200,
-          "bytes": 274082,
+          "bytes": 274000,
           "matched": false
         },
         {
           "url": "https://freenosignup.com/",
           "ok": true,
           "status": 200,
-          "bytes": 274000,
+          "bytes": 0,
           "matched": false
         }
       ]
@@ -6021,7 +5997,7 @@
           "url": "https://freenosignup.com/?s=Resize+Signature+200x100",
           "ok": true,
           "status": 200,
-          "bytes": 274072,
+          "bytes": 274000,
           "matched": false
         },
         {
@@ -6527,6 +6503,238 @@
       ]
     },
     {
+      "name": "NoLogin.tools photo 150x200 under 20kb listing",
+      "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-150x200-20kb",
+      "searchUrl": "https://nologin.tools/?q=Photo+150x200+Under+20KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Photo 150x200 Under 20KB"
+      ],
+      "submittedAt": "queued 2026-06-09",
+      "reviewWindow": "queued for next NoLogin 3-per-24h submission window for the exact 150 x 200 px and 20KB photo path",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nologin.tools/?q=Photo+150x200+Under+20KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 188305,
+          "matched": false
+        },
+        {
+          "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-150x200-20kb",
+          "ok": false,
+          "status": 404,
+          "bytes": 10724,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoLogin.tools photo 180x240 under 50kb listing",
+      "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-180x240-50kb",
+      "searchUrl": "https://nologin.tools/?q=Photo+180x240+Under+50KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Photo 180x240 Under 50KB"
+      ],
+      "submittedAt": "queued 2026-06-09",
+      "reviewWindow": "queued for next NoLogin 3-per-24h submission window for the exact 180 x 240 px and 50KB photo path",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nologin.tools/?q=Photo+180x240+Under+50KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 188305,
+          "matched": false
+        },
+        {
+          "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-180x240-50kb",
+          "ok": false,
+          "status": 404,
+          "bytes": 10724,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoLogin.tools photo 400x514 under 100kb listing",
+      "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-400x514-100kb",
+      "searchUrl": "https://nologin.tools/?q=Photo+400x514+Under+100KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Photo 400x514 Under 100KB"
+      ],
+      "submittedAt": "queued 2026-06-09",
+      "reviewWindow": "queued for next NoLogin 3-per-24h submission window for the exact 400 x 514 px and 100KB photo path",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nologin.tools/?q=Photo+400x514+Under+100KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 188305,
+          "matched": false
+        },
+        {
+          "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-400x514-100kb",
+          "ok": false,
+          "status": 404,
+          "bytes": 10724,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoLogin.tools photo 600x800 under 200kb listing",
+      "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-600x800-200kb",
+      "searchUrl": "https://nologin.tools/?q=Photo+600x800+Under+200KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Photo 600x800 Under 200KB"
+      ],
+      "submittedAt": "queued 2026-06-09",
+      "reviewWindow": "queued for next NoLogin 3-per-24h submission window for the exact 600 x 800 px and 200KB photo path",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nologin.tools/?q=Photo+600x800+Under+200KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 188305,
+          "matched": false
+        },
+        {
+          "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-600x800-200kb",
+          "ok": false,
+          "status": 404,
+          "bytes": 10724,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoLogin.tools signature 100x50 under 10kb listing",
+      "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-100x50-10kb",
+      "searchUrl": "https://nologin.tools/?q=Signature+100x50+Under+10KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Signature 100x50 Under 10KB"
+      ],
+      "submittedAt": "queued 2026-06-09",
+      "reviewWindow": "queued for next NoLogin 3-per-24h submission window for the exact 100 x 50 px and 10KB signature path",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nologin.tools/?q=Signature+100x50+Under+10KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 188305,
+          "matched": false
+        },
+        {
+          "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-100x50-10kb",
+          "ok": false,
+          "status": 404,
+          "bytes": 10724,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoLogin.tools signature 200x60 under 20kb listing",
+      "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-200x60-20kb",
+      "searchUrl": "https://nologin.tools/?q=Signature+200x60+Under+20KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Signature 200x60 Under 20KB"
+      ],
+      "submittedAt": "queued 2026-06-09",
+      "reviewWindow": "queued for next NoLogin 3-per-24h submission window for the exact 200 x 60 px and 20KB signature path",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nologin.tools/?q=Signature+200x60+Under+20KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 188305,
+          "matched": false
+        },
+        {
+          "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-200x60-20kb",
+          "ok": false,
+          "status": 404,
+          "bytes": 10724,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoLogin.tools signature 256x64 under 20kb listing",
+      "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-256x64-20kb",
+      "searchUrl": "https://nologin.tools/?q=Signature+256x64+Under+20KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Signature 256x64 Under 20KB"
+      ],
+      "submittedAt": "queued 2026-06-09",
+      "reviewWindow": "queued for next NoLogin 3-per-24h submission window for the exact 256 x 64 px and 20KB signature path",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nologin.tools/?q=Signature+256x64+Under+20KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 188305,
+          "matched": false
+        },
+        {
+          "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-256x64-20kb",
+          "ok": false,
+          "status": 404,
+          "bytes": 10724,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoLogin.tools signature 400x200 under 100kb listing",
+      "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-400x200-100kb",
+      "searchUrl": "https://nologin.tools/?q=Signature+400x200+Under+100KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Signature 400x200 Under 100KB"
+      ],
+      "submittedAt": "queued 2026-06-09",
+      "reviewWindow": "queued for next NoLogin 3-per-24h submission window for the exact 400 x 200 px and 100KB signature path",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nologin.tools/?q=Signature+400x200+Under+100KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 188305,
+          "matched": false
+        },
+        {
+          "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-400x200-100kb",
+          "ok": false,
+          "status": 404,
+          "bytes": 10724,
+          "matched": false
+        }
+      ]
+    },
+    {
       "name": "NoSubscription.org",
       "url": "https://nosubscription.org/",
       "searchUrl": "https://nosubscription.org/?s=PrintableTools+Lab",
@@ -6567,34 +6775,49 @@
       "reviewWindow": "maintainer review",
       "status": "error",
       "evidenceUrl": "https://github.com/js-org/js.org/pull/11512",
-      "apiAvailable": false,
-      "checksAvailable": false,
-      "templateOk": null,
-      "checksOk": null,
-      "checks": [],
-      "prState": "unknown",
-      "mergeable": null,
+      "apiAvailable": true,
+      "checksAvailable": true,
+      "templateOk": true,
+      "checksOk": true,
+      "checks": [
+        {
+          "name": "PR description",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:58Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353230"
+        },
+        {
+          "name": "cnames_active.js",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:57Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353223"
+        }
+      ],
+      "prState": "closed",
+      "mergeable": true,
       "checked": [
         {
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 298680,
+          "bytes": 298674,
           "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/pulls/11512",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 16307,
+          "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 18122,
+          "matched": true
         }
       ]
     }

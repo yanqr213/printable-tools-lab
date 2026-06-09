@@ -81,6 +81,22 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - TechTools Resize Signature 200x100 listing: https://techtools.cz/tools/launchpad/?tool=221
 - TechTools Resize Photo 200x230 listing: https://techtools.cz/tools/launchpad/?tool=222
 - TechTools Passport Photo 35x45mm listing: https://techtools.cz/tools/launchpad/?tool=223
+- TechTools Photo 295x413 Under 35KB listing: https://techtools.cz/tools/launchpad/?tool=238
+- TechTools Photo 354x472 Under 100KB listing: https://techtools.cz/tools/launchpad/?tool=239
+- TechTools Photo 480x640 Under 200KB listing: https://techtools.cz/tools/launchpad/?tool=240
+- TechTools Photo 512x512 Under 100KB listing: https://techtools.cz/tools/launchpad/?tool=241
+- TechTools Signature 160x70 Under 20KB listing: https://techtools.cz/tools/launchpad/?tool=242
+- TechTools Signature 250x80 Under 50KB listing: https://techtools.cz/tools/launchpad/?tool=243
+- TechTools Signature 300x60 Under 20KB listing: https://techtools.cz/tools/launchpad/?tool=244
+- TechTools Signature 400x150 Under 50KB listing: https://techtools.cz/tools/launchpad/?tool=245
+- TechTools Photo 150x200 Under 20KB listing: https://techtools.cz/tools/launchpad/?tool=246
+- TechTools Photo 180x240 Under 50KB listing: https://techtools.cz/tools/launchpad/?tool=247
+- TechTools Photo 400x514 Under 100KB listing: https://techtools.cz/tools/launchpad/?tool=248
+- TechTools Photo 600x800 Under 200KB listing: https://techtools.cz/tools/launchpad/?tool=249
+- TechTools Signature 100x50 Under 10KB listing: https://techtools.cz/tools/launchpad/?tool=250
+- TechTools Signature 200x60 Under 20KB listing: https://techtools.cz/tools/launchpad/?tool=251
+- TechTools Signature 256x64 Under 20KB listing: https://techtools.cz/tools/launchpad/?tool=252
+- TechTools Signature 400x200 Under 100KB listing: https://techtools.cz/tools/launchpad/?tool=253
 - NoSignupTools Upload Limit Fixer listing: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_limit_2026_06&utm_content=upload_limit_fixer
 - NoSignupTools Upload Error Cheatsheet listing: https://printable-tools-lab.pages.dev/upload-error-cheatsheet?utm_source=nosignuptools&utm_medium=directory&utm_campaign=upload_error_cheatsheet_2026_06&utm_content=upload_error_cheatsheet
 - NoSignupTools Image Dimensions 600x600 Upload Fix listing: https://printable-tools-lab.pages.dev/image-dimensions-600x600?utm_source=nosignuptools&utm_medium=directory&utm_campaign=image_dimensions_600x600_fix_2026_06&utm_content=image_dimensions_600x600_landing
@@ -184,6 +200,14 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - NoLogin.tools Email Attachment Too Large Fix listing: https://printable-tools-lab.pages.dev/email-attachment-too-large?utm_source=nologin&utm_medium=directory&utm_campaign=email_attachment_too_large_fix_2026_06&utm_content=email_attachment_too_large_landing
 - NoLogin.tools Compress Image to 50KB listing: https://printable-tools-lab.pages.dev/compress-image-to-50kb?utm_source=nologin&utm_medium=directory&utm_campaign=image_50kb_2026_06&utm_content=compress_image_to_50kb_landing
 - NoLogin.tools Compress Image to 100KB listing: https://printable-tools-lab.pages.dev/compress-image-to-100kb?utm_source=nologin&utm_medium=directory&utm_campaign=image_100kb_2026_06&utm_content=compress_image_to_100kb_landing
+- NoLogin.tools Photo 150x200 Under 20KB queued listing: https://printable-tools-lab.pages.dev/photo-150x200-20kb?utm_source=nologin&utm_medium=directory&utm_campaign=photo_150x200_20kb_2026_06&utm_content=photo_150x200_20kb_landing
+- NoLogin.tools Photo 180x240 Under 50KB queued listing: https://printable-tools-lab.pages.dev/photo-180x240-50kb?utm_source=nologin&utm_medium=directory&utm_campaign=photo_180x240_50kb_2026_06&utm_content=photo_180x240_50kb_landing
+- NoLogin.tools Photo 400x514 Under 100KB queued listing: https://printable-tools-lab.pages.dev/photo-400x514-100kb?utm_source=nologin&utm_medium=directory&utm_campaign=photo_400x514_100kb_2026_06&utm_content=photo_400x514_100kb_landing
+- NoLogin.tools Photo 600x800 Under 200KB queued listing: https://printable-tools-lab.pages.dev/photo-600x800-200kb?utm_source=nologin&utm_medium=directory&utm_campaign=photo_600x800_200kb_2026_06&utm_content=photo_600x800_200kb_landing
+- NoLogin.tools Signature 100x50 Under 10KB queued listing: https://printable-tools-lab.pages.dev/signature-100x50-10kb?utm_source=nologin&utm_medium=directory&utm_campaign=signature_100x50_10kb_2026_06&utm_content=signature_100x50_10kb_landing
+- NoLogin.tools Signature 200x60 Under 20KB queued listing: https://printable-tools-lab.pages.dev/signature-200x60-20kb?utm_source=nologin&utm_medium=directory&utm_campaign=signature_200x60_20kb_2026_06&utm_content=signature_200x60_20kb_landing
+- NoLogin.tools Signature 256x64 Under 20KB queued listing: https://printable-tools-lab.pages.dev/signature-256x64-20kb?utm_source=nologin&utm_medium=directory&utm_campaign=signature_256x64_20kb_2026_06&utm_content=signature_256x64_20kb_landing
+- NoLogin.tools Signature 400x200 Under 100KB queued listing: https://printable-tools-lab.pages.dev/signature-400x200-100kb?utm_source=nologin&utm_medium=directory&utm_campaign=signature_400x200_100kb_2026_06&utm_content=signature_400x200_100kb_landing
 - NoSubscription.org tracked upload-limit URL: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=nosubscription&utm_medium=directory&utm_campaign=zero_cost_push
 - Share kit campaign: https://printable-tools-lab.pages.dev/share-kit?utm_source=share-kit&utm_medium=organic
 - Short-video campaign: https://printable-tools-lab.pages.dev/upload-limit-fixer?utm_source=short-video&utm_medium=organic&utm_campaign=zero_cost_push
@@ -528,6 +552,7 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - TechTools PDF size reducer and 2MB/5MB target-size listings; submitted on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=205, https://techtools.cz/tools/launchpad/?tool=206, and https://techtools.cz/tools/launchpad/?tool=207
 - TechTools no-upload PDF conversion listings; submitted on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=208, https://techtools.cz/tools/launchpad/?tool=209, and https://techtools.cz/tools/launchpad/?tool=210
 - TechTools no-upload PDF extract, merge, and split listings; retried after the 1-hour API limit on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=212, https://techtools.cz/tools/launchpad/?tool=213, and https://techtools.cz/tools/launchpad/?tool=214
+- TechTools latest exact photo/signature listings; retried through the 1-hour API windows on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=238 through https://techtools.cz/tools/launchpad/?tool=253
 - NoSignupTools Upload Limit Fixer submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
 - NoSignupTools Upload Error Cheatsheet submission; submitted on 2026-06-08 through the public API and awaiting 24-48 hour manual review
 - NoSignupTools Image Dimensions 600x600 Upload Fix submission; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
@@ -544,6 +569,7 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - NoSignupTools PDF page-number/stamp/sign submissions; submitted on 2026-06-09 through the public API and awaiting 24-48 hour manual review
 - TechTools no-upload PDF extract/merge/split submissions; retried after the 1-hour API limit on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=212, https://techtools.cz/tools/launchpad/?tool=213, and https://techtools.cz/tools/launchpad/?tool=214
 - TechTools exact photo resize submissions; retried after the 1-hour API limit on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=222 and https://techtools.cz/tools/launchpad/?tool=223
+- TechTools exact upload-limit photo/signature submissions; retried after API limits on 2026-06-09 and live at https://techtools.cz/tools/launchpad/?tool=238 through https://techtools.cz/tools/launchpad/?tool=253
 - FreeNoSignup Upload Limit Fixer submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
 - FreeNoSignup Upload Error Cheatsheet submission; submitted on 2026-06-08 through the public Google Form and awaiting 3-5 business day manual review
 - FreeNoSignup exact upload-limit submissions for PDF 500KB, PDF 1MB, image 100KB, and image under 500KB; submitted on 2026-06-09 through the public Google Form and awaiting 3-5 business day manual review
@@ -560,6 +586,7 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - NoLogin.tools Email Attachment Too Large Fix submission; submitted on 2026-06-09 with slug printable-tools-lab-pages-dev-email-attachment-too-large and awaiting human review
 - NoLogin.tools Compress Image to 50KB and 100KB submissions; submitted on 2026-06-09 with slugs printable-tools-lab-pages-dev-compress-image-to-50kb and printable-tools-lab-pages-dev-compress-image-to-100kb and awaiting human review
 - NoLogin.tools Compress Image to 200KB submission; rate limited on 2026-06-09 by the directory's 3 per 24h cap and queued for retry after the backoff window
+- NoLogin.tools latest exact photo/signature upload-limit queue; eight high-intent pages are staged for the next 3-per-24h window with UTM source nologin
 - NoSubscription.org free/open-source track; submitted on 2026-06-03 and awaiting slow review
 - FOSSHUNTER/open-source directories only when a normal public submit flow is available; do not bypass Cloudflare challenges or submit to directories that prohibit future ads/analytics
 - Reddit communities only when rules allow self-promotion and the tool directly solves a request

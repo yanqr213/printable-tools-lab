@@ -8416,17 +8416,17 @@ function opsSubmissionScore(row) {
 }
 
 function opsSponsorNextSubmissionHtml(rows) {
+  const fallbackSubject = "PrintableTools Lab sponsor fit review";
+  const fallbackMessage = [
+    "Hi, I am checking whether your product is a policy-fit sponsor for PrintableTools Lab's free invoice and small-business paperwork workflows.",
+    "",
+    "Current path: start with the USD 49 starter sponsor review before any visible placement or external invoice.",
+    "Review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=ops&utm_medium=internal&utm_campaign=sponsor_starter_review&utm_content=fallback-ops-draft#sponsor-inquiry",
+    "",
+    "Downloads stay free, sponsor copy must be labeled, and private payout, tax, bank, phone, identity, password, or customer-file data stays outside the site.",
+  ].join("\n");
+  const fallbackMailto = `mailto:?subject=${encodeURIComponent(fallbackSubject)}&body=${encodeURIComponent(fallbackMessage)}`;
   if (!rows.length) {
-    const fallbackSubject = "PrintableTools Lab sponsor fit review";
-    const fallbackMessage = [
-      "Hi, I am checking whether your product is a policy-fit sponsor for PrintableTools Lab's free invoice and small-business paperwork workflows.",
-      "",
-      "Current path: start with the USD 49 starter sponsor review before any visible placement or external invoice.",
-      "Review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=ops&utm_medium=internal&utm_campaign=sponsor_starter_review&utm_content=fallback-empty-queue#sponsor-inquiry",
-      "",
-      "Downloads stay free, sponsor copy must be labeled, and private payout, tax, bank, phone, identity, password, or customer-file data stays outside the site.",
-    ].join("\n");
-    const fallbackMailto = `mailto:?subject=${encodeURIComponent(fallbackSubject)}&body=${encodeURIComponent(fallbackMessage)}`;
     return `            <div class="notice sponsor-lead-check">
               <strong>Next sponsor submissions</strong>
               <p>No queued sponsor submission rows are available. Use this fallback only for a truthful sender identity, or regenerate reports with npm run sponsor:outreach-log.</p>
@@ -8439,6 +8439,14 @@ function opsSponsorNextSubmissionHtml(rows) {
   return `            <div class="ops-submission-queue">
               <h3>Next sponsor submissions</h3>
               <p class="help">Use only with a truthful sender identity. Mark sent only after a real public form submission or legitimate email send with evidence.</p>
+              <div class="notice sponsor-lead-check">
+                <strong>Owner fallback draft</strong>
+                <p>Use only if a prospect has a legitimate public partner or sales email and the sender identity is truthful.</p>
+                <div class="actions">
+                  <a class="button" href="${escapeHtml(fallbackMailto)}">Open email draft</a>
+                  <button class="button ghost" type="button" data-copy-text="${escapeHtml(fallbackMessage)}">Copy message</button>
+                </div>
+              </div>
               <div class="ops-action-list">
                 ${rows.map(opsSponsorSubmissionCardHtml).join("\n")}
               </div>

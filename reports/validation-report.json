@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-09T11:02:33.646Z",
+  "generatedAt": "2026-06-09T11:57:06.895Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 137,
     "indexableRoutes": 332,
     "sitemapLocCount": 332,
-    "generatedToolInventoryAt": "2026-06-09T10:30:26.193Z",
+    "generatedToolInventoryAt": "2026-06-09T11:56:16.526Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -5836,17 +5836,18 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 768,
+        "bytes": 890,
         "json": {
           "ok": true,
-          "generatedAt": "2026-06-09T11:02:30.424Z",
+          "generatedAt": "2026-06-09T11:57:02.857Z",
           "repo": "yanqr213/printable-tools-lab",
           "sourceUrl": "https://github.com/yanqr213/printable-tools-lab/issues?q=is%3Aissue%20label%3Abusiness-review%20label%3Aservice-request%20OR%20label%3Aaudit-request",
-          "available": true,
-          "dataQuality": "github-issues-api",
-          "dataWarning": "",
+          "available": false,
+          "dataQuality": "unavailable",
+          "dataWarning": "GitHub public service request evidence could not be read in this run. Do not treat zero as confirmed while unavailable.",
+          "error": "GitHub issues API 403: API rate limit exceeded for unauthenticated requests.",
           "publicMetricsOnly": true,
-          "privateFields": "not exposed; rows contain only public GitHub issue metadata and public-safe service fields",
+          "privateFields": "not exposed",
           "publicRequestCount": 0,
           "openCount": 0,
           "closedCount": 0,
@@ -6080,21 +6081,35 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
+      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF size targets, image KB targets, PDF-to-Word, ATS checks, background removal, text overlays, QR codes, PDF edits, paperwork, labels, resumes, and printables.",
       "topics": [
-        "pdf-tools",
+        "background-remover",
+        "compress-image-to-100kb",
+        "compress-pdf",
+        "compress-pdf-to-1mb",
+        "compress-pdf-to-500kb",
+        "free-tools",
+        "image-compressor",
+        "image-converter",
+        "image-resizer",
+        "image-to-pdf",
         "image-tools",
-        "qr-code",
+        "invoice-generator",
         "no-signup",
-        "browser-tools",
-        "free-tools"
+        "passport-photo",
+        "pdf-generator",
+        "pdf-to-jpg",
+        "pdf-to-word",
+        "pdf-tools",
+        "qr-code",
+        "resume-checker"
       ],
-      "error": "GitHub API fallback used: GitHub API 403",
       "discoveryRelease": {
         "tag": "free-pdf-tools",
         "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
         "name": "Free PDF, Image, and QR Tools Without Signup"
-      }
+      },
+      "error": ""
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
@@ -6167,10 +6182,10 @@
   },
   "directories": {
     "available": true,
-    "generatedAt": "2026-06-09T10:54:33.602Z",
-    "listedCount": 94,
+    "generatedAt": "2026-06-09T11:55:47.926Z",
+    "listedCount": 98,
     "pendingCount": 152,
-    "errorCount": 1,
+    "errorCount": 5,
     "listed": [
       {
         "name": "TechTools Launchpad site listing",
@@ -6505,6 +6520,22 @@
         "evidenceUrl": "https://techtools.cz/launchpad-api/tools/249"
       },
       {
+        "name": "TechTools Launchpad signature 100x50 under 10kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/250"
+      },
+      {
+        "name": "TechTools Launchpad signature 200x60 under 20kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/251"
+      },
+      {
+        "name": "TechTools Launchpad signature 256x64 under 20kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/252"
+      },
+      {
+        "name": "TechTools Launchpad signature 400x200 under 100kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/253"
+      },
+      {
         "name": "NoLogin.tools",
         "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev"
       },
@@ -6557,22 +6588,6 @@
       {
         "name": "ListAi.cc",
         "evidenceUrl": "https://listai.cc/"
-      },
-      {
-        "name": "TechTools Launchpad signature 100x50 under 10kb listing",
-        "evidenceUrl": "https://techtools.cz/tools/launchpad/"
-      },
-      {
-        "name": "TechTools Launchpad signature 200x60 under 20kb listing",
-        "evidenceUrl": "https://techtools.cz/tools/launchpad/"
-      },
-      {
-        "name": "TechTools Launchpad signature 256x64 under 20kb listing",
-        "evidenceUrl": "https://techtools.cz/tools/launchpad/"
-      },
-      {
-        "name": "TechTools Launchpad signature 400x200 under 100kb listing",
-        "evidenceUrl": "https://techtools.cz/tools/launchpad/"
       },
       {
         "name": "NoSignupTools",
@@ -7027,22 +7042,6 @@
         "evidenceUrl": "https://freenosignup.com/"
       },
       {
-        "name": "FreeNoSignup Photo 354x472 Under 100KB listing",
-        "evidenceUrl": "https://freenosignup.com/"
-      },
-      {
-        "name": "FreeNoSignup Photo 300x300 Under 100KB listing",
-        "evidenceUrl": "https://freenosignup.com/"
-      },
-      {
-        "name": "FreeNoSignup Photo 600x600 Under 100KB listing",
-        "evidenceUrl": "https://freenosignup.com/"
-      },
-      {
-        "name": "FreeNoSignup Photo 480x640 Under 200KB listing",
-        "evidenceUrl": "https://freenosignup.com/"
-      },
-      {
         "name": "FreeNoSignup Photo 512x512 Under 100KB listing",
         "evidenceUrl": "https://freenosignup.com/"
       },
@@ -7155,11 +7154,59 @@
         "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-200x100-50kb"
       },
       {
+        "name": "NoLogin.tools photo 150x200 under 20kb listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-150x200-20kb"
+      },
+      {
+        "name": "NoLogin.tools photo 180x240 under 50kb listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-180x240-50kb"
+      },
+      {
+        "name": "NoLogin.tools photo 400x514 under 100kb listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-400x514-100kb"
+      },
+      {
+        "name": "NoLogin.tools photo 600x800 under 200kb listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-600x800-200kb"
+      },
+      {
+        "name": "NoLogin.tools signature 100x50 under 10kb listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-100x50-10kb"
+      },
+      {
+        "name": "NoLogin.tools signature 200x60 under 20kb listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-200x60-20kb"
+      },
+      {
+        "name": "NoLogin.tools signature 256x64 under 20kb listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-256x64-20kb"
+      },
+      {
+        "name": "NoLogin.tools signature 400x200 under 100kb listing",
+        "evidenceUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-400x200-100kb"
+      },
+      {
         "name": "NoSubscription.org",
         "evidenceUrl": "https://nosubscription.org/"
       }
     ],
     "errors": [
+      {
+        "name": "FreeNoSignup Photo 354x472 Under 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 300x300 Under 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 600x600 Under 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 480x640 Under 200KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
       {
         "name": "JS.ORG free subdomain",
         "evidenceUrl": "https://github.com/js-org/js.org/pull/11512"
@@ -7190,13 +7237,13 @@
         "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
       ],
       "externalDiscovery": [
-        "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 137 landing page link(s), 67 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).",
         "GitHub Pages discovery sitemap has 314 URL(s), including 67 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 314.",
         "IndexNow key file is reachable from the site root.",
         "IndexNow latest report accepted 284 URL(s) for github-pages.",
-        "Directory monitor shows 94 listed, 152 pending, and 1 error directory target(s)."
+        "Directory monitor shows 98 listed, 152 pending, and 5 error directory target(s)."
       ]
     }
   },

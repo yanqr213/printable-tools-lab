@@ -43,17 +43,17 @@
           </div>
         </div>
         <div class="notice compact-notice">
-          <strong>Runtime refresh:</strong> the app replaces this snapshot with live project rows from /api/ops-metrics after loading. Snapshot generated: 2026-06-08T06:18:35.383Z.
+          <strong>Runtime refresh:</strong> the app replaces this snapshot with live project rows from /api/ops-metrics after loading. Snapshot generated: 2026-06-09T11:27:16.704Z.
         </div>
         <div class="notice compact-notice">
           <strong>Direct route:</strong> open /ops/ when you need the operations monitor. Public visitors should not see a homepage, footer, sitemap, or tool-page link to this screen.
         </div>
         <div class="metric-grid ops-summary-grid">
-          <div class="metric-tile"><strong>507</strong><span>all page views</span></div>
-          <div class="metric-tile"><strong>13</strong><span>today views</span></div>
+          <div class="metric-tile"><strong>527</strong><span>all page views</span></div>
+          <div class="metric-tile"><strong>5</strong><span>today views</span></div>
           <div class="metric-tile"><strong>2</strong><span>tool downloads</span></div>
           <div class="metric-tile"><strong>0</strong><span>tool generations</span></div>
-          <div class="metric-tile"><strong>2</strong><span>commercial intent</span></div>
+          <div class="metric-tile"><strong>4</strong><span>commercial intent</span></div>
           <div class="metric-tile"><strong>0</strong><span>sponsor leads</span></div>
           <div class="metric-tile"><strong>0</strong><span>service leads</span></div>
           <div class="metric-tile"><strong>0</strong><span>public service issues</span></div>
@@ -76,13 +76,13 @@
             <div class="metric-grid compact ops-project-grid">
               <div class="metric-tile"><strong>0/5</strong><span>configured slots</span></div>
               <div class="metric-tile"><strong>0</strong><span>checkout clicks</span></div>
-              <div class="metric-tile"><strong>0</strong><span>request intent</span></div>
+              <div class="metric-tile"><strong>6</strong><span>request intent</span></div>
               <div class="metric-tile"><strong>settled only</strong><span>revenue proof</span></div>
             </div>
             <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>SKU</th><th>Price</th><th>Config key</th><th>Status</th><th>Checkout clicks</th><th>Requests</th><th>Page</th></tr></thead><tbody><tr><td>Local Seller Starter Kit</td><td>$9 USD</td><td>sellerKitCheckoutUrl</td><td>missing</td><td>0</td><td>0</td><td>/local-seller-starter-kit/</td></tr>
-<tr><td>Custom Local Print Pack Setup</td><td>$29 USD</td><td>customPrintPackCheckoutUrl</td><td>missing</td><td>0</td><td>0</td><td>/custom-local-print-pack/</td></tr>
-<tr><td>Invoice Follow-up Copy Pack</td><td>$19 USD</td><td>invoiceFollowupCheckoutUrl</td><td>missing</td><td>0</td><td>0</td><td>/invoice-followup-copy-pack/</td></tr>
-<tr><td>Upload Limit Fix Plan</td><td>$9 USD</td><td>uploadLimitFixPlanCheckoutUrl</td><td>missing</td><td>0</td><td>0</td><td>/upload-limit-fix-plan/</td></tr>
+<tr><td>Custom Local Print Pack Setup</td><td>$29 USD</td><td>customPrintPackCheckoutUrl</td><td>missing</td><td>0</td><td>2</td><td>/custom-local-print-pack/</td></tr>
+<tr><td>Invoice Follow-up Copy Pack</td><td>$19 USD</td><td>invoiceFollowupCheckoutUrl</td><td>missing</td><td>0</td><td>2</td><td>/invoice-followup-copy-pack/</td></tr>
+<tr><td>Upload Limit Fix Plan</td><td>$9 USD</td><td>uploadLimitFixPlanCheckoutUrl</td><td>missing</td><td>0</td><td>2</td><td>/upload-limit-fix-plan/</td></tr>
 <tr><td>Audit upgrade checkout</td><td>$29 USD</td><td>auditUpgradeCheckoutUrl</td><td>missing</td><td>0</td><td>0</td><td>/market-table-print-audit/</td></tr></tbody></table></div>
             <div class="ops-action-list">
               <article class="ops-action-card checkout-activation-card">
@@ -211,7 +211,7 @@ Buyer safety: Do not send tax, bank, card, password, private identity, customer-
               <div>
                 <p class="eyebrow">$9 service close</p>
                 <h2>$9 Upload Fix invoice close queue</h2>
-                <p>Keep the upload-error landing pages live; this queue is ready for the first qualified $9 request.</p>
+                <p>Keep the one-contact invoice form primary on upload-error pages and watch for the first lead before sending a payment link.</p>
               </div>
               <div class="actions">
                 <a class="button secondary" href="/api/service-lead" target="_blank" rel="noreferrer">Open service index</a>
@@ -224,7 +224,7 @@ Buyer safety: Do not send tax, bank, card, password, private identity, customer-
               <div class="metric-tile"><strong>0</strong><span>today invoices</span></div>
               <div class="metric-tile"><strong>0</strong><span>upload fix leads</span></div>
               <div class="metric-tile"><strong>0</strong><span>public upload issues</span></div>
-              <div class="metric-tile"><strong>0</strong><span>service intent</span></div>
+              <div class="metric-tile"><strong>2</strong><span>service intent</span></div>
               <div class="metric-tile"><strong>0</strong><span>today intent</span></div>
               <div class="metric-tile"><strong>missing</strong><span>checkout URL</span></div>
               <div class="metric-tile"><strong>paid_order_verified</strong><span>revenue gate</span></div>
@@ -232,7 +232,7 @@ Buyer safety: Do not send tax, bank, card, password, private identity, customer-
             <div class="ops-action-list">
               <article class="ops-action-card lead-close-card">
                 <div>
-                  <p class="eyebrow">waiting for first request</p>
+                  <p class="eyebrow">intent, no lead yet</p>
                   <h4>Capture one reply contact first</h4>
                   <p>A click is not enough to invoice. Wait for one reply email, @handle, public contact URL, or public issue before sending an external payment link.</p>
                   <p class="help">Checkout status: missing uploadLimitFixPlanCheckoutUrl. Revenue is still zero until external paid proof exists.</p>
@@ -296,13 +296,13 @@ Revenue is counted only after the external provider shows a paid order, payout b
               </div>
             </div>
             <div class="metric-grid compact ops-project-grid">
-              <div class="metric-tile"><strong>1/6</strong><span>active close lanes</span></div>
+              <div class="metric-tile"><strong>2/6</strong><span>active close lanes</span></div>
               <div class="metric-tile"><strong>0</strong><span>needs reply</span></div>
               <div class="metric-tile"><strong>external only</strong><span>payment channel</span></div>
               <div class="metric-tile"><strong>paid proof</strong><span>revenue gate</span></div>
             </div>
-            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Lane</th><th>Signal</th><th>State</th><th>Next cash action</th><th>Proof gate</th></tr></thead><tbody><tr><td>$29 service setup</td><td>0 lead(s), 0 public issue(s), 0 shared request intent</td><td>waiting</td><td>Keep the request form live and use the payment reply as soon as a qualified service lead arrives.</td><td>paid_order_verified from external provider</td></tr>
-<tr><td>$9 upload fix plan</td><td>0 lead(s), 0 public issue(s), 0 shared request intent</td><td>waiting</td><td>Keep the $9 request form on upload-limit pages and reply as soon as a qualified upload-error lead arrives.</td><td>paid_order_verified from external provider</td></tr>
+            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Lane</th><th>Signal</th><th>State</th><th>Next cash action</th><th>Proof gate</th></tr></thead><tbody><tr><td>$29 service setup</td><td>0 lead(s), 0 public issue(s), 2 shared request intent</td><td>intent only</td><td>Keep the request form live and use the payment reply as soon as a qualified service lead arrives.</td><td>paid_order_verified from external provider</td></tr>
+<tr><td>$9 upload fix plan</td><td>0 lead(s), 0 public issue(s), 2 shared request intent</td><td>waiting</td><td>Keep the $9 request form on upload-limit pages and reply as soon as a qualified upload-error lead arrives.</td><td>paid_order_verified from external provider</td></tr>
 <tr><td>$19 invoice follow-up copy</td><td>0 lead(s), 0 public issue(s), 0 paid public issue(s), 0 total service lead(s)</td><td>waiting</td><td>Keep the invoice download form live and use this reply as soon as a qualified invoice follow-up lead arrives.</td><td>paid_order_verified from external provider</td></tr>
 <tr><td>Free audit to $29 upgrade</td><td>0 audit lead(s), 0 public issue(s), 0 audit intent</td><td>waiting</td><td>Use the audit as a low-friction lead magnet before asking for a paid setup.</td><td>separate paid setup order</td></tr>
 <tr><td>$9 seller kit</td><td>0 seller request(s), 0 public issue(s), 0 checkout intent</td><td>waiting</td><td>Connect a real checkout URL before treating clicks as purchase demand.</td><td>paid digital product order</td></tr>
@@ -310,7 +310,7 @@ Revenue is counted only after the external provider shows a paid order, payout b
             <div class="ops-action-list">
               <article class="ops-action-card lead-close-card">
                 <div>
-                  <p class="eyebrow">waiting</p>
+                  <p class="eyebrow">intent only</p>
                   <h4>$29 service setup</h4>
                   <p>Keep the request form live and use the payment reply as soon as a qualified service lead arrives.</p>
                   <p class="help">Close proof: paid_order_verified from external provider. Requests, clicks, exports, and copied replies are not revenue.</p>
@@ -514,33 +514,44 @@ We will keep payment, tax, bank, phone, and private customer details outside the
             <div class="ops-submission-queue">
               <h3>Next sponsor submissions</h3>
               <p class="help">Use only with a truthful sender identity. Mark sent only after a real public form submission or legitimate email send with evidence.</p>
+              <div class="notice sponsor-lead-check">
+                <strong>Owner fallback draft</strong>
+                <p>Use only if a prospect has a legitimate public partner or sales email and the sender identity is truthful.</p>
+                <div class="actions">
+                  <a class="button" href="mailto:?subject=PrintableTools%20Lab%20sponsor%20fit%20review&amp;body=Hi%2C%20I%20am%20checking%20whether%20your%20product%20is%20a%20policy-fit%20sponsor%20for%20PrintableTools%20Lab&#39;s%20free%20invoice%20and%20small-business%20paperwork%20workflows.%0A%0ACurrent%20path%3A%20start%20with%20the%20USD%2049%20starter%20sponsor%20review%20before%20any%20visible%20placement%20or%20external%20invoice.%0AReview%20URL%3A%20https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-starter-review%2F%3Futm_source%3Dops%26utm_medium%3Dinternal%26utm_campaign%3Dsponsor_starter_review%26utm_content%3Dfallback-ops-draft%23sponsor-inquiry%0A%0ADownloads%20stay%20free%2C%20sponsor%20copy%20must%20be%20labeled%2C%20and%20private%20payout%2C%20tax%2C%20bank%2C%20phone%2C%20identity%2C%20password%2C%20or%20customer-file%20data%20stays%20outside%20the%20site.">Open email draft</a>
+                  <button class="button ghost" type="button" data-copy-text="Hi, I am checking whether your product is a policy-fit sponsor for PrintableTools Lab&#39;s free invoice and small-business paperwork workflows.
+
+Current path: start with the USD 49 starter sponsor review before any visible placement or external invoice.
+Review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=ops&amp;utm_medium=internal&amp;utm_campaign=sponsor_starter_review&amp;utm_content=fallback-ops-draft#sponsor-inquiry
+
+Downloads stay free, sponsor copy must be labeled, and private payout, tax, bank, phone, identity, password, or customer-file data stays outside the site.">Copy message</button>
+                </div>
+              </div>
               <div class="ops-action-list">
                 <article class="ops-action-card sponsor-submission-card">
                   <div>
-                    <p class="eyebrow">review / Open email draft / email_draft</p>
+                    <p class="eyebrow">unknown / Open contact route / contact_route</p>
                     <h4>Invoice Ninja</h4>
                     <p><strong>Vertical category pilot</strong> USD 149-250</p>
                     <p>No required sender blocker detected by probe.</p>
-                    <p><strong>30-minute action:</strong> Open the email draft, review every copied line, send only from a truthful sender, then record timestamped evidence.</p>
-                    <p class="help"><strong>Do not send until:</strong> The public email is a legitimate business, partner, sales, or media route and the sender identity is truthful.</p>
-                    <p class="help"><strong>Evidence:</strong> route-fit note confirming sponsorship or partnership notes are allowed; submittedAt timestamp; bestContactUrl or public email used; proposalUrl or invoiceReviewUrl included; no private payment, tax, bank, phone, customer, identity, password, or file data submitted</p>
-                    <p class="help">Open the email draft, review every copied line, send only from a truthful sender, then record timestamped evidence.</p>
+                    <p><strong>30-minute action:</strong> Review the route first, confirm partner or sponsor notes are welcome, paste the short message only if allowed, then record timestamped evidence.</p>
+                    <p class="help"><strong>Do not send until:</strong> Manual review confirms the route accepts public-safe sponsor or partnership notes.</p>
+                    <p class="help"><strong>Evidence:</strong> submittedAt timestamp; bestContactUrl or public email used; proposalUrl or invoiceReviewUrl included; no private payment, tax, bank, phone, customer, identity, password, or file data submitted</p>
+                    <p class="help">Open bestContactUrl or contactUrl, submit contactFormMessage only after confirming the route allows a public-safe partner note, and include proposalUrl plus publicReplyUrl.</p>
                   </div>
                   <div class="ops-action-buttons">
                     <a class="button secondary" href="https://www.invoiceninja.com/contact/" target="_blank" rel="noreferrer">Open route</a>
-                    <a class="button" href="mailto:contact@invoiceninja.com">Open email draft</a>
                     <a class="button secondary" href="https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=invoice-ninja-small-business&amp;deal=vertical-category-pilot&amp;vertical=small-business-paperwork-sponsors#sponsor-inquiry" target="_blank" rel="noreferrer">Short proposal</a>
                     <a class="button ghost" href="https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=invoice-ninja-small-business&amp;deal=vertical-category-pilot&amp;vertical=small-business-paperwork-sponsors&amp;commitment=request-invoice#sponsor-inquiry" target="_blank" rel="noreferrer">Invoice URL</a>
-                    <a class="button ghost" href="https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Invoice+Ninja&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+Invoice+Ninja%0APublic+website+URL%3A+%0AAudience+fit%3A+Small+Business+Paperwork+Sponsorship%0ASelected+pilot+deal%3A+Vertical+category+pilot+%28USD+149-250%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Dinvoice-ninja-small-business%26deal%3Dvertical-category-pilot%26vertical%3Dsmall-business-paperwork-sponsors%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Dinvoice-ninja-small-business%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review" target="_blank" rel="noreferrer">Public reply</a>
-                    <button class="button ghost" type="button" data-copy-text="Hi Invoice Ninja team - I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, resume, classroom, and small-business document workflows. Your product looks relevant to this audience. Fast invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=invoice-ninja-small-business&amp;deal=vertical-category-pilot&amp;vertical=small-business-paperwork-sponsors&amp;commitment=request-invoice#sponsor-inquiry Sponsor proposal: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=invoice-ninja-small-business&amp;deal=vertical-category-pilot&amp;vertical=small-business-paperwork-sponsors#sponsor-inquiry Public-safe reply form: https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Invoice+Ninja&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+Invoice+Ninja%0APublic+website+URL%3A+%0AAudience+fit%3A+Small+Business+Paperwork+Sponsorship%0ASelected+pilot+deal%3A+Vertical+category+pilot+%28USD+149-250%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Dinvoice-ninja-small-business%26deal%3Dvertical-category-pilot%26vertical%3Dsmall-business-paperwork-sponsors%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Dinvoice-ninja-small-business%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review Please keep private payment, tax, bank, phone, customer, identity, password, or file data out of the public reply.">Copy message</button>
+                    <a class="button ghost" href="https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Invoice+Ninja&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+Invoice+Ninja%0APublic+website+URL%3A+https%3A%2F%2Fwww.invoiceninja.com%2F%0AAudience+fit%3A+Small+Business+Paperwork+Sponsorship%0ASelected+pilot+deal%3A+Vertical+category+pilot+%28USD+149-250%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Dinvoice-ninja-small-business%26deal%3Dvertical-category-pilot%26vertical%3Dsmall-business-paperwork-sponsors%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Dinvoice-ninja-small-business%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review" target="_blank" rel="noreferrer">Public reply</a>
+                    <button class="button ghost" type="button" data-copy-text="Hi Invoice Ninja team - I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, resume, classroom, and small-business document workflows. Your product looks relevant to this audience. Current validation snapshot: invoice-generator has 2 PDF downloads, sitewide sponsor intent is 2, and sponsor leads/invoice requests are still 0/0. External discovery proof: 94 public directory listing(s) are live (TechTools Launchpad site listing, TechTools Launchpad upload-limit listing, TechTools Launchpad invoice listing, TechTools Launchpad invoice follow-up service listing); 152 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue. Fast invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=invoice-ninja-small-business&amp;deal=vertical-category-pilot&amp;vertical=small-business-paperwork-sponsors&amp;commitment=request-invoice#sponsor-inquiry Sponsor proposal: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=invoice-ninja-small-business&amp;deal=vertical-category-pilot&amp;vertical=small-business-paperwork-sponsors#sponsor-inquiry Public-safe reply form: https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Invoice+Ninja&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+Invoice+Ninja%0APublic+website+URL%3A+https%3A%2F%2Fwww.invoiceninja.com%2F%0AAudience+fit%3A+Small+Business+Paperwork+Sponsorship%0ASelected+pilot+deal%3A+Vertical+category+pilot+%28USD+149-250%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Dinvoice-ninja-small-business%26deal%3Dvertical-category-pilot%26vertical%3Dsmall-business-paperwork-sponsors%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Dinvoice-ninja-small-business%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review Please keep private payment, tax, bank, phone, customer, identity, password, or file data out of the public reply.">Copy message</button>
                     <button class="button ghost" type="button" data-copy-text="Prospect: Invoice Ninja
-Execution mode: email_draft
-Status before action: review / Open email draft
-Open URL: mailto:contact@invoiceninja.com
+Execution mode: contact_route
+Status before action: unknown / Open contact route
+Open URL: https://www.invoiceninja.com/contact/
 Proposal URL: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=invoice-ninja-small-business&amp;deal=vertical-category-pilot&amp;vertical=small-business-paperwork-sponsors#sponsor-inquiry
 Invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=invoice-ninja-small-business&amp;deal=vertical-category-pilot&amp;vertical=small-business-paperwork-sponsors&amp;commitment=request-invoice#sponsor-inquiry
 Evidence to record after a real manual send:
-- route-fit note confirming sponsorship or partnership notes are allowed
 - submittedAt timestamp
 - bestContactUrl or public email used
 - proposalUrl or invoiceReviewUrl included
@@ -551,29 +562,28 @@ Sent only after a real manual submission or legitimate email send. Revenue remai
                 </article>
 <article class="ops-action-card sponsor-submission-card">
                   <div>
-                    <p class="eyebrow">review / Open contact route / contact_route</p>
+                    <p class="eyebrow">unknown / Open contact route / contact_route</p>
                     <h4>Zoho Invoice</h4>
                     <p><strong>Guide sponsor pilot</strong> USD 99-149</p>
                     <p>No required sender blocker detected by probe.</p>
                     <p><strong>30-minute action:</strong> Review the route first, confirm partner or sponsor notes are welcome, paste the short message only if allowed, then record timestamped evidence.</p>
                     <p class="help"><strong>Do not send until:</strong> Manual review confirms the route accepts public-safe sponsor or partnership notes.</p>
-                    <p class="help"><strong>Evidence:</strong> route-fit note confirming sponsorship or partnership notes are allowed; submittedAt timestamp; bestContactUrl or public email used; proposalUrl or invoiceReviewUrl included; no private payment, tax, bank, phone, customer, identity, password, or file data submitted</p>
-                    <p class="help">Review the route first, confirm partner or sponsor notes are welcome, paste the short message only if allowed, then record timestamped evidence.</p>
+                    <p class="help"><strong>Evidence:</strong> submittedAt timestamp; bestContactUrl or public email used; proposalUrl or invoiceReviewUrl included; no private payment, tax, bank, phone, customer, identity, password, or file data submitted</p>
+                    <p class="help">Open bestContactUrl or contactUrl, submit contactFormMessage only after confirming the route allows a public-safe partner note, and include proposalUrl plus publicReplyUrl.</p>
                   </div>
                   <div class="ops-action-buttons">
-                    <a class="button secondary" href="https://www.zoho.com/partners" target="_blank" rel="noreferrer">Open route</a>
+                    <a class="button secondary" href="https://www.zoho.com/contactus.html" target="_blank" rel="noreferrer">Open route</a>
                     <a class="button secondary" href="https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=zoho-invoice-small-business&amp;deal=guide-sponsor-pilot&amp;vertical=small-business-paperwork-sponsors#sponsor-inquiry" target="_blank" rel="noreferrer">Short proposal</a>
                     <a class="button ghost" href="https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=zoho-invoice-small-business&amp;deal=guide-sponsor-pilot&amp;vertical=small-business-paperwork-sponsors&amp;commitment=request-invoice#sponsor-inquiry" target="_blank" rel="noreferrer">Invoice URL</a>
-                    <a class="button ghost" href="https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Zoho+Invoice&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+Zoho+Invoice%0APublic+website+URL%3A+%0AAudience+fit%3A+Small+Business+Paperwork+Sponsorship%0ASelected+pilot+deal%3A+Guide+sponsor+pilot+%28USD+99-149%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Dzoho-invoice-small-business%26deal%3Dguide-sponsor-pilot%26vertical%3Dsmall-business-paperwork-sponsors%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Dzoho-invoice-small-business%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review" target="_blank" rel="noreferrer">Public reply</a>
-                    <button class="button ghost" type="button" data-copy-text="Hi Zoho Invoice team - I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, resume, classroom, and small-business document workflows. Your product looks relevant to this audience. Fast invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=zoho-invoice-small-business&amp;deal=guide-sponsor-pilot&amp;vertical=small-business-paperwork-sponsors&amp;commitment=request-invoice#sponsor-inquiry Sponsor proposal: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=zoho-invoice-small-business&amp;deal=guide-sponsor-pilot&amp;vertical=small-business-paperwork-sponsors#sponsor-inquiry Public-safe reply form: https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Zoho+Invoice&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+Zoho+Invoice%0APublic+website+URL%3A+%0AAudience+fit%3A+Small+Business+Paperwork+Sponsorship%0ASelected+pilot+deal%3A+Guide+sponsor+pilot+%28USD+99-149%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Dzoho-invoice-small-business%26deal%3Dguide-sponsor-pilot%26vertical%3Dsmall-business-paperwork-sponsors%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Dzoho-invoice-small-business%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review Please keep private payment, tax, bank, phone, customer, identity, password, or file data out of the public reply.">Copy message</button>
+                    <a class="button ghost" href="https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Zoho+Invoice&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+Zoho+Invoice%0APublic+website+URL%3A+https%3A%2F%2Fwww.zoho.com%2Finvoice%2F%0AAudience+fit%3A+Small+Business+Paperwork+Sponsorship%0ASelected+pilot+deal%3A+Guide+sponsor+pilot+%28USD+99-149%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Dzoho-invoice-small-business%26deal%3Dguide-sponsor-pilot%26vertical%3Dsmall-business-paperwork-sponsors%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Dzoho-invoice-small-business%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review" target="_blank" rel="noreferrer">Public reply</a>
+                    <button class="button ghost" type="button" data-copy-text="Hi Zoho Invoice team - I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, resume, classroom, and small-business document workflows. Your product looks relevant to this audience. Current validation snapshot: invoice-generator has 2 PDF downloads, sitewide sponsor intent is 2, and sponsor leads/invoice requests are still 0/0. External discovery proof: 94 public directory listing(s) are live (TechTools Launchpad site listing, TechTools Launchpad upload-limit listing, TechTools Launchpad invoice listing, TechTools Launchpad invoice follow-up service listing); 152 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue. Fast invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=zoho-invoice-small-business&amp;deal=guide-sponsor-pilot&amp;vertical=small-business-paperwork-sponsors&amp;commitment=request-invoice#sponsor-inquiry Sponsor proposal: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=zoho-invoice-small-business&amp;deal=guide-sponsor-pilot&amp;vertical=small-business-paperwork-sponsors#sponsor-inquiry Public-safe reply form: https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Zoho+Invoice&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+Zoho+Invoice%0APublic+website+URL%3A+https%3A%2F%2Fwww.zoho.com%2Finvoice%2F%0AAudience+fit%3A+Small+Business+Paperwork+Sponsorship%0ASelected+pilot+deal%3A+Guide+sponsor+pilot+%28USD+99-149%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Dzoho-invoice-small-business%26deal%3Dguide-sponsor-pilot%26vertical%3Dsmall-business-paperwork-sponsors%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Dzoho-invoice-small-business%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review Please keep private payment, tax, bank, phone, customer, identity, password, or file data out of the public reply.">Copy message</button>
                     <button class="button ghost" type="button" data-copy-text="Prospect: Zoho Invoice
 Execution mode: contact_route
-Status before action: review / Open contact route
-Open URL: https://www.zoho.com/partners
+Status before action: unknown / Open contact route
+Open URL: https://www.zoho.com/contactus.html
 Proposal URL: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=zoho-invoice-small-business&amp;deal=guide-sponsor-pilot&amp;vertical=small-business-paperwork-sponsors#sponsor-inquiry
 Invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=zoho-invoice-small-business&amp;deal=guide-sponsor-pilot&amp;vertical=small-business-paperwork-sponsors&amp;commitment=request-invoice#sponsor-inquiry
 Evidence to record after a real manual send:
-- route-fit note confirming sponsorship or partnership notes are allowed
 - submittedAt timestamp
 - bestContactUrl or public email used
 - proposalUrl or invoiceReviewUrl included
@@ -584,97 +594,92 @@ Sent only after a real manual submission or legitimate email send. Revenue remai
                 </article>
 <article class="ops-action-card sponsor-submission-card">
                   <div>
-                    <p class="eyebrow">review / Open email draft / email_draft</p>
-                    <h4>QRCodeChimp</h4>
-                    <p><strong>Guide sponsor pilot</strong> USD 99-149</p>
-                    <p>No required sender blocker detected by probe.</p>
-                    <p><strong>30-minute action:</strong> Open the email draft, review every copied line, send only from a truthful sender, then record timestamped evidence.</p>
-                    <p class="help"><strong>Do not send until:</strong> The public email is a legitimate business, partner, sales, or media route and the sender identity is truthful.</p>
-                    <p class="help"><strong>Evidence:</strong> route-fit note confirming sponsorship or partnership notes are allowed; submittedAt timestamp; bestContactUrl or public email used; proposalUrl or invoiceReviewUrl included; no private payment, tax, bank, phone, customer, identity, password, or file data submitted</p>
-                    <p class="help">Open the email draft, review every copied line, send only from a truthful sender, then record timestamped evidence.</p>
-                  </div>
-                  <div class="ops-action-buttons">
-                    <a class="button secondary" href="https://www.qrcodechimp.com/contact" target="_blank" rel="noreferrer">Open route</a>
-                    <a class="button" href="mailto:support@qrcodechimp.com">Open email draft</a>
-                    <a class="button secondary" href="https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=qrcodechimp-qr-marketing&amp;deal=guide-sponsor-pilot&amp;vertical=local-marketing-qr-sponsors#sponsor-inquiry" target="_blank" rel="noreferrer">Short proposal</a>
-                    <a class="button ghost" href="https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=qrcodechimp-qr-marketing&amp;deal=guide-sponsor-pilot&amp;vertical=local-marketing-qr-sponsors&amp;commitment=request-invoice#sponsor-inquiry" target="_blank" rel="noreferrer">Invoice URL</a>
-                    <a class="button ghost" href="https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+QRCodeChimp&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+QRCodeChimp%0APublic+website+URL%3A+%0AAudience+fit%3A+Local+Marketing+and+QR+Sponsorship%0ASelected+pilot+deal%3A+Guide+sponsor+pilot+%28USD+99-149%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Dqrcodechimp-qr-marketing%26deal%3Dguide-sponsor-pilot%26vertical%3Dlocal-marketing-qr-sponsors%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Dqrcodechimp-qr-marketing%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review" target="_blank" rel="noreferrer">Public reply</a>
-                    <button class="button ghost" type="button" data-copy-text="Hi QRCodeChimp team - I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, resume, classroom, and small-business document workflows. Your product looks relevant to this audience. Fast invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=qrcodechimp-qr-marketing&amp;deal=guide-sponsor-pilot&amp;vertical=local-marketing-qr-sponsors&amp;commitment=request-invoice#sponsor-inquiry Sponsor proposal: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=qrcodechimp-qr-marketing&amp;deal=guide-sponsor-pilot&amp;vertical=local-marketing-qr-sponsors#sponsor-inquiry Public-safe reply form: https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+QRCodeChimp&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+QRCodeChimp%0APublic+website+URL%3A+%0AAudience+fit%3A+Local+Marketing+and+QR+Sponsorship%0ASelected+pilot+deal%3A+Guide+sponsor+pilot+%28USD+99-149%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Dqrcodechimp-qr-marketing%26deal%3Dguide-sponsor-pilot%26vertical%3Dlocal-marketing-qr-sponsors%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Dqrcodechimp-qr-marketing%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review Please keep private payment, tax, bank, phone, customer, identity, password, or file data out of the public reply.">Copy message</button>
-                    <button class="button ghost" type="button" data-copy-text="Prospect: QRCodeChimp
-Execution mode: email_draft
-Status before action: review / Open email draft
-Open URL: mailto:support@qrcodechimp.com
-Proposal URL: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=qrcodechimp-qr-marketing&amp;deal=guide-sponsor-pilot&amp;vertical=local-marketing-qr-sponsors#sponsor-inquiry
-Invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=qrcodechimp-qr-marketing&amp;deal=guide-sponsor-pilot&amp;vertical=local-marketing-qr-sponsors&amp;commitment=request-invoice#sponsor-inquiry
-Evidence to record after a real manual send:
-- route-fit note confirming sponsorship or partnership notes are allowed
-- submittedAt timestamp
-- bestContactUrl or public email used
-- proposalUrl or invoiceReviewUrl included
-- no private payment, tax, bank, phone, customer, identity, password, or file data submitted
-
-Sent only after a real manual submission or legitimate email send. Revenue remains $0 until a signed agreement or settled external payment exists.">Copy evidence note</button>
-                  </div>
-                </article>
-<article class="ops-action-card sponsor-submission-card">
-                  <div>
-                    <p class="eyebrow">review / Open email draft / email_draft</p>
-                    <h4>Education.com</h4>
-                    <p><strong>Vertical category pilot</strong> USD 149-250</p>
-                    <p>No required sender blocker detected by probe.</p>
-                    <p><strong>30-minute action:</strong> Open the email draft only after a truthful sender name and business email are available, then record timestamped evidence.</p>
-                    <p class="help"><strong>Do not send until:</strong> The public email is a legitimate business, partner, sales, or media route and the sender identity is truthful.</p>
-                    <p class="help"><strong>Evidence:</strong> route-fit note confirming sponsorship or partnership notes are allowed; submittedAt timestamp; bestContactUrl or public email used; proposalUrl or invoiceReviewUrl included; no private payment, tax, bank, phone, customer, identity, password, or file data submitted</p>
-                    <p class="help">Open the email draft only after a truthful sender name and business email are available, then record timestamped evidence.</p>
-                  </div>
-                  <div class="ops-action-buttons">
-                    <a class="button secondary" href="https://www.education.com/support/contact/" target="_blank" rel="noreferrer">Open route</a>
-                    <a class="button" href="mailto:support@education.com">Open email draft</a>
-                    <a class="button secondary" href="https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=educationcom-worksheets&amp;deal=vertical-category-pilot&amp;vertical=classroom-printable-sponsors#sponsor-inquiry" target="_blank" rel="noreferrer">Short proposal</a>
-                    <a class="button ghost" href="https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=educationcom-worksheets&amp;deal=vertical-category-pilot&amp;vertical=classroom-printable-sponsors&amp;commitment=request-invoice#sponsor-inquiry" target="_blank" rel="noreferrer">Invoice URL</a>
-                    <a class="button ghost" href="https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Education.com&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+Education.com%0APublic+website+URL%3A+%0AAudience+fit%3A+Classroom+Printable+Sponsorship%0ASelected+pilot+deal%3A+Vertical+category+pilot+%28USD+149-250%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Deducationcom-worksheets%26deal%3Dvertical-category-pilot%26vertical%3Dclassroom-printable-sponsors%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Deducationcom-worksheets%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review" target="_blank" rel="noreferrer">Public reply</a>
-                    <button class="button ghost" type="button" data-copy-text="Hi Education.com team - I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, resume, classroom, and small-business document workflows. Your product looks relevant to this audience. Fast invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=educationcom-worksheets&amp;deal=vertical-category-pilot&amp;vertical=classroom-printable-sponsors&amp;commitment=request-invoice#sponsor-inquiry Sponsor proposal: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=educationcom-worksheets&amp;deal=vertical-category-pilot&amp;vertical=classroom-printable-sponsors#sponsor-inquiry Public-safe reply form: https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Education.com&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+Education.com%0APublic+website+URL%3A+%0AAudience+fit%3A+Classroom+Printable+Sponsorship%0ASelected+pilot+deal%3A+Vertical+category+pilot+%28USD+149-250%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Deducationcom-worksheets%26deal%3Dvertical-category-pilot%26vertical%3Dclassroom-printable-sponsors%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Deducationcom-worksheets%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review Please keep private payment, tax, bank, phone, customer, identity, password, or file data out of the public reply.">Copy message</button>
-                    <button class="button ghost" type="button" data-copy-text="Prospect: Education.com
-Execution mode: email_draft
-Status before action: review / Open email draft
-Open URL: mailto:support@education.com
-Proposal URL: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=educationcom-worksheets&amp;deal=vertical-category-pilot&amp;vertical=classroom-printable-sponsors#sponsor-inquiry
-Invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=educationcom-worksheets&amp;deal=vertical-category-pilot&amp;vertical=classroom-printable-sponsors&amp;commitment=request-invoice#sponsor-inquiry
-Evidence to record after a real manual send:
-- route-fit note confirming sponsorship or partnership notes are allowed
-- submittedAt timestamp
-- bestContactUrl or public email used
-- proposalUrl or invoiceReviewUrl included
-- no private payment, tax, bank, phone, customer, identity, password, or file data submitted
-
-Sent only after a real manual submission or legitimate email send. Revenue remains $0 until a signed agreement or settled external payment exists.">Copy evidence note</button>
-                  </div>
-                </article>
-<article class="ops-action-card sponsor-submission-card">
-                  <div>
-                    <p class="eyebrow">review / Open contact route / contact_route</p>
-                    <h4>Twinkl</h4>
+                    <p class="eyebrow">unknown / Open contact route / contact_route</p>
+                    <h4>PDF.co</h4>
                     <p><strong>Guide sponsor pilot</strong> USD 99-149</p>
                     <p>No required sender blocker detected by probe.</p>
                     <p><strong>30-minute action:</strong> Review the route first, confirm partner or sponsor notes are welcome, paste the short message only if allowed, then record timestamped evidence.</p>
                     <p class="help"><strong>Do not send until:</strong> Manual review confirms the route accepts public-safe sponsor or partnership notes.</p>
-                    <p class="help"><strong>Evidence:</strong> route-fit note confirming sponsorship or partnership notes are allowed; submittedAt timestamp; bestContactUrl or public email used; proposalUrl or invoiceReviewUrl included; no private payment, tax, bank, phone, customer, identity, password, or file data submitted</p>
-                    <p class="help">Review the route first, confirm partner or sponsor notes are welcome, paste the short message only if allowed, then record timestamped evidence.</p>
+                    <p class="help"><strong>Evidence:</strong> submittedAt timestamp; bestContactUrl or public email used; proposalUrl or invoiceReviewUrl included; no private payment, tax, bank, phone, customer, identity, password, or file data submitted</p>
+                    <p class="help">Open bestContactUrl or contactUrl, submit contactFormMessage only after confirming the route allows a public-safe partner note, and include proposalUrl plus publicReplyUrl.</p>
                   </div>
                   <div class="ops-action-buttons">
-                    <a class="button secondary" href="https://www.twinkl.com/contact" target="_blank" rel="noreferrer">Open route</a>
-                    <a class="button secondary" href="https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=twinkl-teacher-resources&amp;deal=guide-sponsor-pilot&amp;vertical=classroom-printable-sponsors#sponsor-inquiry" target="_blank" rel="noreferrer">Short proposal</a>
-                    <a class="button ghost" href="https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=twinkl-teacher-resources&amp;deal=guide-sponsor-pilot&amp;vertical=classroom-printable-sponsors&amp;commitment=request-invoice#sponsor-inquiry" target="_blank" rel="noreferrer">Invoice URL</a>
-                    <a class="button ghost" href="https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Twinkl&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+Twinkl%0APublic+website+URL%3A+%0AAudience+fit%3A+Classroom+Printable+Sponsorship%0ASelected+pilot+deal%3A+Guide+sponsor+pilot+%28USD+99-149%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Dtwinkl-teacher-resources%26deal%3Dguide-sponsor-pilot%26vertical%3Dclassroom-printable-sponsors%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Dtwinkl-teacher-resources%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review" target="_blank" rel="noreferrer">Public reply</a>
-                    <button class="button ghost" type="button" data-copy-text="Hi Twinkl team - I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, resume, classroom, and small-business document workflows. Your product looks relevant to this audience. Fast invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=twinkl-teacher-resources&amp;deal=guide-sponsor-pilot&amp;vertical=classroom-printable-sponsors&amp;commitment=request-invoice#sponsor-inquiry Sponsor proposal: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=twinkl-teacher-resources&amp;deal=guide-sponsor-pilot&amp;vertical=classroom-printable-sponsors#sponsor-inquiry Public-safe reply form: https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Twinkl&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+Twinkl%0APublic+website+URL%3A+%0AAudience+fit%3A+Classroom+Printable+Sponsorship%0ASelected+pilot+deal%3A+Guide+sponsor+pilot+%28USD+99-149%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Dtwinkl-teacher-resources%26deal%3Dguide-sponsor-pilot%26vertical%3Dclassroom-printable-sponsors%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Dtwinkl-teacher-resources%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review Please keep private payment, tax, bank, phone, customer, identity, password, or file data out of the public reply.">Copy message</button>
-                    <button class="button ghost" type="button" data-copy-text="Prospect: Twinkl
+                    <a class="button secondary" href="https://pdf.co/contact" target="_blank" rel="noreferrer">Open route</a>
+                    <a class="button secondary" href="https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=pdfco-pdf-api&amp;deal=guide-sponsor-pilot&amp;vertical=pdf-image-qr-saas#sponsor-inquiry" target="_blank" rel="noreferrer">Short proposal</a>
+                    <a class="button ghost" href="https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=pdfco-pdf-api&amp;deal=guide-sponsor-pilot&amp;vertical=pdf-image-qr-saas&amp;commitment=request-invoice#sponsor-inquiry" target="_blank" rel="noreferrer">Invoice URL</a>
+                    <a class="button ghost" href="https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+PDF.co&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+PDF.co%0APublic+website+URL%3A+https%3A%2F%2Fpdf.co%2F%0AAudience+fit%3A+PDF%2C+Image%2C+and+QR+SaaS+Sponsorship%0ASelected+pilot+deal%3A+Guide+sponsor+pilot+%28USD+99-149%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Dpdfco-pdf-api%26deal%3Dguide-sponsor-pilot%26vertical%3Dpdf-image-qr-saas%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Dpdfco-pdf-api%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review" target="_blank" rel="noreferrer">Public reply</a>
+                    <button class="button ghost" type="button" data-copy-text="Hi PDF.co team - I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, resume, classroom, and small-business document workflows. Your product looks relevant to this audience. Current validation snapshot: sitewide sponsor intent is 2, sponsor leads/invoice requests are 0/0, and any pilot is still early-stage. External discovery proof: 94 public directory listing(s) are live (TechTools Launchpad site listing, TechTools Launchpad upload-limit listing, TechTools Launchpad invoice listing, TechTools Launchpad invoice follow-up service listing); 152 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue. Fast invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=pdfco-pdf-api&amp;deal=guide-sponsor-pilot&amp;vertical=pdf-image-qr-saas&amp;commitment=request-invoice#sponsor-inquiry Sponsor proposal: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=pdfco-pdf-api&amp;deal=guide-sponsor-pilot&amp;vertical=pdf-image-qr-saas#sponsor-inquiry Public-safe reply form: https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+PDF.co&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+PDF.co%0APublic+website+URL%3A+https%3A%2F%2Fpdf.co%2F%0AAudience+fit%3A+PDF%2C+Image%2C+and+QR+SaaS+Sponsorship%0ASelected+pilot+deal%3A+Guide+sponsor+pilot+%28USD+99-149%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Dpdfco-pdf-api%26deal%3Dguide-sponsor-pilot%26vertical%3Dpdf-image-qr-saas%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Dpdfco-pdf-api%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review Please keep private payment, tax, bank, phone, customer, identity, password, or file data out of the public reply.">Copy message</button>
+                    <button class="button ghost" type="button" data-copy-text="Prospect: PDF.co
 Execution mode: contact_route
-Status before action: review / Open contact route
-Open URL: https://www.twinkl.com/contact
-Proposal URL: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=twinkl-teacher-resources&amp;deal=guide-sponsor-pilot&amp;vertical=classroom-printable-sponsors#sponsor-inquiry
-Invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=twinkl-teacher-resources&amp;deal=guide-sponsor-pilot&amp;vertical=classroom-printable-sponsors&amp;commitment=request-invoice#sponsor-inquiry
+Status before action: unknown / Open contact route
+Open URL: https://pdf.co/contact
+Proposal URL: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=pdfco-pdf-api&amp;deal=guide-sponsor-pilot&amp;vertical=pdf-image-qr-saas#sponsor-inquiry
+Invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=pdfco-pdf-api&amp;deal=guide-sponsor-pilot&amp;vertical=pdf-image-qr-saas&amp;commitment=request-invoice#sponsor-inquiry
 Evidence to record after a real manual send:
-- route-fit note confirming sponsorship or partnership notes are allowed
+- submittedAt timestamp
+- bestContactUrl or public email used
+- proposalUrl or invoiceReviewUrl included
+- no private payment, tax, bank, phone, customer, identity, password, or file data submitted
+
+Sent only after a real manual submission or legitimate email send. Revenue remains $0 until a signed agreement or settled external payment exists.">Copy evidence note</button>
+                  </div>
+                </article>
+<article class="ops-action-card sponsor-submission-card">
+                  <div>
+                    <p class="eyebrow">unknown / Open contact route / contact_route</p>
+                    <h4>Cloudmersive</h4>
+                    <p><strong>Starter fit review</strong> USD 49</p>
+                    <p>No required sender blocker detected by probe.</p>
+                    <p><strong>30-minute action:</strong> Review the route first, confirm partner or sponsor notes are welcome, paste the short message only if allowed, then record timestamped evidence.</p>
+                    <p class="help"><strong>Do not send until:</strong> Manual review confirms the route accepts public-safe sponsor or partnership notes.</p>
+                    <p class="help"><strong>Evidence:</strong> submittedAt timestamp; bestContactUrl or public email used; proposalUrl or invoiceReviewUrl included; no private payment, tax, bank, phone, customer, identity, password, or file data submitted</p>
+                    <p class="help">Open bestContactUrl or contactUrl, submit contactFormMessage only after confirming the route allows a public-safe partner note, and include proposalUrl plus publicReplyUrl.</p>
+                  </div>
+                  <div class="ops-action-buttons">
+                    <a class="button secondary" href="https://cloudmersive.com/contact-sales" target="_blank" rel="noreferrer">Open route</a>
+                    <a class="button secondary" href="https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=cloudmersive-document-api&amp;deal=starter-fit-review&amp;vertical=pdf-image-qr-saas#sponsor-inquiry" target="_blank" rel="noreferrer">Short proposal</a>
+                    <a class="button ghost" href="https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=cloudmersive-document-api&amp;deal=starter-fit-review&amp;vertical=pdf-image-qr-saas&amp;commitment=request-invoice#sponsor-inquiry" target="_blank" rel="noreferrer">Invoice URL</a>
+                    <a class="button ghost" href="https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Cloudmersive&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+Cloudmersive%0APublic+website+URL%3A+https%3A%2F%2Fcloudmersive.com%2F%0AAudience+fit%3A+PDF%2C+Image%2C+and+QR+SaaS+Sponsorship%0ASelected+pilot+deal%3A+Starter+fit+review+%28USD+49%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Dcloudmersive-document-api%26deal%3Dstarter-fit-review%26vertical%3Dpdf-image-qr-saas%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Dcloudmersive-document-api%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review" target="_blank" rel="noreferrer">Public reply</a>
+                    <button class="button ghost" type="button" data-copy-text="Hi Cloudmersive team - I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, resume, classroom, and small-business document workflows. Your product looks relevant to this audience. Current validation snapshot: sitewide sponsor intent is 2, sponsor leads/invoice requests are 0/0, and any pilot is still early-stage. External discovery proof: 94 public directory listing(s) are live (TechTools Launchpad site listing, TechTools Launchpad upload-limit listing, TechTools Launchpad invoice listing, TechTools Launchpad invoice follow-up service listing); 152 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue. Fast invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=cloudmersive-document-api&amp;deal=starter-fit-review&amp;vertical=pdf-image-qr-saas&amp;commitment=request-invoice#sponsor-inquiry Sponsor proposal: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=cloudmersive-document-api&amp;deal=starter-fit-review&amp;vertical=pdf-image-qr-saas#sponsor-inquiry Public-safe reply form: https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Cloudmersive&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+Cloudmersive%0APublic+website+URL%3A+https%3A%2F%2Fcloudmersive.com%2F%0AAudience+fit%3A+PDF%2C+Image%2C+and+QR+SaaS+Sponsorship%0ASelected+pilot+deal%3A+Starter+fit+review+%28USD+49%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Dcloudmersive-document-api%26deal%3Dstarter-fit-review%26vertical%3Dpdf-image-qr-saas%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Dcloudmersive-document-api%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review Please keep private payment, tax, bank, phone, customer, identity, password, or file data out of the public reply.">Copy message</button>
+                    <button class="button ghost" type="button" data-copy-text="Prospect: Cloudmersive
+Execution mode: contact_route
+Status before action: unknown / Open contact route
+Open URL: https://cloudmersive.com/contact-sales
+Proposal URL: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=cloudmersive-document-api&amp;deal=starter-fit-review&amp;vertical=pdf-image-qr-saas#sponsor-inquiry
+Invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=cloudmersive-document-api&amp;deal=starter-fit-review&amp;vertical=pdf-image-qr-saas&amp;commitment=request-invoice#sponsor-inquiry
+Evidence to record after a real manual send:
+- submittedAt timestamp
+- bestContactUrl or public email used
+- proposalUrl or invoiceReviewUrl included
+- no private payment, tax, bank, phone, customer, identity, password, or file data submitted
+
+Sent only after a real manual submission or legitimate email send. Revenue remains $0 until a signed agreement or settled external payment exists.">Copy evidence note</button>
+                  </div>
+                </article>
+<article class="ops-action-card sponsor-submission-card">
+                  <div>
+                    <p class="eyebrow">unknown / Open contact route / contact_route</p>
+                    <h4>Uniqode</h4>
+                    <p><strong>Vertical category pilot</strong> USD 149-250</p>
+                    <p>No required sender blocker detected by probe.</p>
+                    <p><strong>30-minute action:</strong> Review the route first, confirm partner or sponsor notes are welcome, paste the short message only if allowed, then record timestamped evidence.</p>
+                    <p class="help"><strong>Do not send until:</strong> Manual review confirms the route accepts public-safe sponsor or partnership notes.</p>
+                    <p class="help"><strong>Evidence:</strong> submittedAt timestamp; bestContactUrl or public email used; proposalUrl or invoiceReviewUrl included; no private payment, tax, bank, phone, customer, identity, password, or file data submitted</p>
+                    <p class="help">Open bestContactUrl or contactUrl, submit contactFormMessage only after confirming the route allows a public-safe partner note, and include proposalUrl plus publicReplyUrl.</p>
+                  </div>
+                  <div class="ops-action-buttons">
+                    <a class="button secondary" href="https://www.uniqode.com/contact-sales" target="_blank" rel="noreferrer">Open route</a>
+                    <a class="button secondary" href="https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=uniqode-qr-platform&amp;deal=vertical-category-pilot&amp;vertical=local-marketing-qr-sponsors#sponsor-inquiry" target="_blank" rel="noreferrer">Short proposal</a>
+                    <a class="button ghost" href="https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=uniqode-qr-platform&amp;deal=vertical-category-pilot&amp;vertical=local-marketing-qr-sponsors&amp;commitment=request-invoice#sponsor-inquiry" target="_blank" rel="noreferrer">Invoice URL</a>
+                    <a class="button ghost" href="https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Uniqode&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+Uniqode%0APublic+website+URL%3A+https%3A%2F%2Fwww.uniqode.com%2F%0AAudience+fit%3A+Local+Marketing+and+QR+Sponsorship%0ASelected+pilot+deal%3A+Vertical+category+pilot+%28USD+149-250%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Duniqode-qr-platform%26deal%3Dvertical-category-pilot%26vertical%3Dlocal-marketing-qr-sponsors%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Duniqode-qr-platform%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review" target="_blank" rel="noreferrer">Public reply</a>
+                    <button class="button ghost" type="button" data-copy-text="Hi Uniqode team - I run PrintableTools Lab, a free no-signup browser utility site for PDF, image, QR, resume, classroom, and small-business document workflows. Your product looks relevant to this audience. Current validation snapshot: sitewide sponsor intent is 2, sponsor leads/invoice requests are 0/0, and any pilot is still early-stage. External discovery proof: 94 public directory listing(s) are live (TechTools Launchpad site listing, TechTools Launchpad upload-limit listing, TechTools Launchpad invoice listing, TechTools Launchpad invoice follow-up service listing); 152 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue. Fast invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=uniqode-qr-platform&amp;deal=vertical-category-pilot&amp;vertical=local-marketing-qr-sponsors&amp;commitment=request-invoice#sponsor-inquiry Sponsor proposal: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=uniqode-qr-platform&amp;deal=vertical-category-pilot&amp;vertical=local-marketing-qr-sponsors#sponsor-inquiry Public-safe reply form: https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Uniqode&amp;body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+Uniqode%0APublic+website+URL%3A+https%3A%2F%2Fwww.uniqode.com%2F%0AAudience+fit%3A+Local+Marketing+and+QR+Sponsorship%0ASelected+pilot+deal%3A+Vertical+category+pilot+%28USD+149-250%29%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-proposal%3Fprospect%3Duniqode-qr-platform%26deal%3Dvertical-category-pilot%26vertical%3Dlocal-marketing-qr-sponsors%26utm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_proposal%26utm_content%3Duniqode-qr-platform%26commitment%3Drequest-invoice%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&amp;labels=sponsor%2Cpartner%2Cbusiness-review Please keep private payment, tax, bank, phone, customer, identity, password, or file data out of the public reply.">Copy message</button>
+                    <button class="button ghost" type="button" data-copy-text="Prospect: Uniqode
+Execution mode: contact_route
+Status before action: unknown / Open contact route
+Open URL: https://www.uniqode.com/contact-sales
+Proposal URL: https://printable-tools-lab.pages.dev/sponsor-proposal?prospect=uniqode-qr-platform&amp;deal=vertical-category-pilot&amp;vertical=local-marketing-qr-sponsors#sponsor-inquiry
+Invoice review URL: https://printable-tools-lab.pages.dev/sponsor-starter-review?utm_source=sponsor-outreach&amp;utm_medium=manual&amp;utm_campaign=sponsor_starter_review&amp;utm_content=uniqode-qr-platform&amp;deal=vertical-category-pilot&amp;vertical=local-marketing-qr-sponsors&amp;commitment=request-invoice#sponsor-inquiry
+Evidence to record after a real manual send:
 - submittedAt timestamp
 - bestContactUrl or public email used
 - proposalUrl or invoiceReviewUrl included
@@ -705,7 +710,7 @@ Sent only after a real manual submission or legitimate email send. Revenue remai
               </div>
               <button class="button" id="refreshOpsMetrics" type="button">Refresh</button>
             </div>
-            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Project</th><th>Views / today</th><th>Top source</th><th>Top path</th><th>Top tool or game</th><th>Downloads or plays</th><th>Intent / today</th><th>Intent rate</th></tr></thead><tbody><tr><td>PrintableTools Lab</td><td>507 / 13</td><td>Live via /api/ops-metrics</td><td>Live via /api/ops-metrics</td><td>Live via /api/ops-metrics</td><td>2</td><td>2 / 0</td><td>0.4%</td></tr>
+            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Project</th><th>Views / today</th><th>Top source</th><th>Top path</th><th>Top tool or game</th><th>Downloads or plays</th><th>Intent / today</th><th>Intent rate</th></tr></thead><tbody><tr><td>PrintableTools Lab</td><td>527 / 5</td><td>Live via /api/ops-metrics</td><td>Live via /api/ops-metrics</td><td>Live via /api/ops-metrics</td><td>2</td><td>4 / 0</td><td>0.8%</td></tr>
 <tr><td>Pocket Arcade Shelf</td><td>Live via /api/ops-metrics</td><td>Live via /api/ops-metrics</td><td>Live via /api/ops-metrics</td><td>Live via /api/ops-metrics</td><td>Game play rows</td><td>Game intent rows</td><td>n/a</td></tr></tbody></table></div>
           </section>
           <section class="panel ops-live-traffic-detail">
@@ -729,9 +734,10 @@ Sent only after a real manual submission or legitimate email send. Revenue remai
           </section>
           <section class="panel">
             <h2>Source breakdown</h2>
-            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Source</th><th>Views</th><th>Today</th><th>Downloads</th><th>Intent</th><th>Intent rate</th></tr></thead><tbody><tr><td>direct</td><td>506</td><td>0</td><td>0</td><td>0</td><td>0%</td></tr>
+            <div class="preview-stage compact-table"><table class="event-table"><thead><tr><th>Source</th><th>Views</th><th>Today</th><th>Downloads</th><th>Intent</th><th>Intent rate</th></tr></thead><tbody><tr><td>direct</td><td>515</td><td>0</td><td>0</td><td>1</td><td>0.2%</td></tr>
 <tr><td>sponsor-outreach</td><td>0</td><td>0</td><td>0</td><td>2</td><td>0%</td></tr>
-<tr><td>nologin</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0%</td></tr></tbody></table></div>
+<tr><td>nologin</td><td>9</td><td>0</td><td>0</td><td>0</td><td>0%</td></tr>
+<tr><td>techtools</td><td>3</td><td>0</td><td>0</td><td>1</td><td>33.3%</td></tr></tbody></table></div>
           </section>
           <section class="panel">
             <h2>Tool and game signal snapshot</h2>

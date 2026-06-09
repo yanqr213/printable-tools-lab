@@ -1,12 +1,12 @@
 {
   "service": "Invoice Follow-up Copy Pack",
-  "generatedAt": "2026-06-09T10:30:26.193Z",
+  "generatedAt": "2026-06-09T11:56:16.526Z",
   "sampleOnly": true,
   "sampleDelivery": {
     "path": "assets/services/invoice-followup-copy-pack-sample-delivery.zip",
     "url": "https://printable-tools-lab.pages.dev/assets/services/invoice-followup-copy-pack-sample-delivery.zip",
     "sizeBytes": 3714,
-    "sha256": "d86ee7b6cf84fd911ecda2d03ca0e4ec7274f19ce0590a7fc67ebd5543b605d0"
+    "sha256": "d5d48908d87f5743edb394d13463b319262c6ec003a389e3289f20f296dc6fa1"
   },
   "deliveryInputExample": {
     "path": "assets/services/invoice-followup-copy-pack-delivery-input.example.json",

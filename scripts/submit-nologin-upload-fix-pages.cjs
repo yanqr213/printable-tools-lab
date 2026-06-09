@@ -14,6 +14,17 @@ const tags = [
   { key: "pricing", value: "Free" },
 ];
 
+const latestExactUploadLimitBacklog = [
+  ["photo-150x200-20kb", "Photo 150x200 Under 20KB", "photo_150x200_20kb_2026_06", "photo_150x200_20kb_landing", "Free no-signup 150 x 200 photo under 20KB workflow for exam, profile, school, and application upload limits.", "Resize and compress a photo toward 150 x 200 pixels under 20KB without creating an account."],
+  ["photo-180x240-50kb", "Photo 180x240 Under 50KB", "photo_180x240_50kb_2026_06", "photo_180x240_50kb_landing", "Free no-signup 180 x 240 photo under 50KB workflow for school, exam, profile, and admin upload forms.", "Resize and compress a photo toward 180 x 240 pixels under 50KB without creating an account."],
+  ["photo-400x514-100kb", "Photo 400x514 Under 100KB", "photo_400x514_100kb_2026_06", "photo_400x514_100kb_landing", "Free no-signup 400 x 514 photo under 100KB workflow for portals that require exact portrait pixels and a strict file-size cap.", "Resize and compress a photo toward 400 x 514 pixels under 100KB without creating an account."],
+  ["photo-600x800-200kb", "Photo 600x800 Under 200KB", "photo_600x800_200kb_2026_06", "photo_600x800_200kb_landing", "Free no-signup 600 x 800 photo under 200KB workflow for applications, profile forms, school portals, and admin uploads.", "Resize and compress a photo toward 600 x 800 pixels under 200KB without creating an account."],
+  ["signature-100x50-10kb", "Signature 100x50 Under 10KB", "signature_100x50_10kb_2026_06", "signature_100x50_10kb_landing", "Free no-signup 100 x 50 signature under 10KB workflow for forms that require a very small signature image.", "Resize and compress a signature image toward 100 x 50 pixels under 10KB without creating an account."],
+  ["signature-200x60-20kb", "Signature 200x60 Under 20KB", "signature_200x60_20kb_2026_06", "signature_200x60_20kb_landing", "Free no-signup 200 x 60 signature under 20KB workflow for job, exam, school, bank, and admin upload pages.", "Resize and compress a signature image toward 200 x 60 pixels under 20KB without creating an account."],
+  ["signature-256x64-20kb", "Signature 256x64 Under 20KB", "signature_256x64_20kb_2026_06", "signature_256x64_20kb_landing", "Free no-signup 256 x 64 signature under 20KB workflow for portals that validate both exact signature pixels and file size.", "Resize and compress a signature image toward 256 x 64 pixels under 20KB without creating an account."],
+  ["signature-400x200-100kb", "Signature 400x200 Under 100KB", "signature_400x200_100kb_2026_06", "signature_400x200_100kb_landing", "Free no-signup 400 x 200 signature under 100KB workflow for document, job, school, bank, and admin upload pages.", "Resize and compress a signature image toward 400 x 200 pixels under 100KB without creating an account."],
+];
+
 const backlog = [
   {
     report: "nologin-compress-image-to-kb-submit.json",
@@ -117,6 +128,23 @@ const backlog = [
       tags,
     },
   },
+  ...latestExactUploadLimitBacklog.map(([slug, name, campaign, content, description, coreTask]) => ({
+    report: `nologin-${slug}-submit.json`,
+    reviewUrl: `https://nologin.tools/tool/printable-tools-lab-pages-dev-${slug}`,
+    payload: {
+      name,
+      url: `https://printable-tools-lab.pages.dev/${slug}/?utm_source=nologin&utm_medium=directory&utm_campaign=${campaign}&utm_content=${content}`,
+      description: `${description} It routes users to local browser resize and image-to-KB compression steps with an optional USD 9 public-safe upload fix-plan request.`,
+      pledge: true,
+      coreTask,
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  })),
   {
     report: "nologin-compress-image-to-200kb-submit.json",
     reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-200kb",

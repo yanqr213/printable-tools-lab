@@ -109,10 +109,21 @@ const techtoolsExactUploadLimitListings = [
   ["Photo 180x240 Under 50KB", "exact 180 x 240 px and 50KB photo path", 247],
   ["Photo 400x514 Under 100KB", "exact 400 x 514 px and 100KB photo path", 248],
   ["Photo 600x800 Under 200KB", "exact 600 x 800 px and 200KB photo path", 249],
-  ["Signature 100x50 Under 10KB", "exact 100 x 50 px and 10KB signature path", null],
-  ["Signature 200x60 Under 20KB", "exact 200 x 60 px and 20KB signature path", null],
-  ["Signature 256x64 Under 20KB", "exact 256 x 64 px and 20KB signature path", null],
-  ["Signature 400x200 Under 100KB", "exact 400 x 200 px and 100KB signature path", null],
+  ["Signature 100x50 Under 10KB", "exact 100 x 50 px and 10KB signature path", 250],
+  ["Signature 200x60 Under 20KB", "exact 200 x 60 px and 20KB signature path", 251],
+  ["Signature 256x64 Under 20KB", "exact 256 x 64 px and 20KB signature path", 252],
+  ["Signature 400x200 Under 100KB", "exact 400 x 200 px and 100KB signature path", 253],
+];
+
+const nologinQueuedExactUploadLimitListings = [
+  ["Photo 150x200 Under 20KB", "photo-150x200-20kb", "exact 150 x 200 px and 20KB photo path"],
+  ["Photo 180x240 Under 50KB", "photo-180x240-50kb", "exact 180 x 240 px and 50KB photo path"],
+  ["Photo 400x514 Under 100KB", "photo-400x514-100kb", "exact 400 x 514 px and 100KB photo path"],
+  ["Photo 600x800 Under 200KB", "photo-600x800-200kb", "exact 600 x 800 px and 200KB photo path"],
+  ["Signature 100x50 Under 10KB", "signature-100x50-10kb", "exact 100 x 50 px and 10KB signature path"],
+  ["Signature 200x60 Under 20KB", "signature-200x60-20kb", "exact 200 x 60 px and 20KB signature path"],
+  ["Signature 256x64 Under 20KB", "signature-256x64-20kb", "exact 256 x 64 px and 20KB signature path"],
+  ["Signature 400x200 Under 100KB", "signature-400x200-100kb", "exact 400 x 200 px and 100KB signature path"],
 ];
 
 const directories = [
@@ -1300,6 +1311,14 @@ const directories = [
     submittedAt: "2026-06-09",
     reviewWindow: "human review after API submission accepted with slug printable-tools-lab-pages-dev-signature-200x100-50kb",
   },
+  ...nologinQueuedExactUploadLimitListings.map(([title, slug, reason]) => ({
+    name: `NoLogin.tools ${title.toLowerCase()} listing`,
+    url: `https://nologin.tools/tool/printable-tools-lab-pages-dev-${slug}`,
+    searchUrl: `https://nologin.tools/?q=${encodeURIComponent(title).replace(/%20/g, "+")}`,
+    expected: [siteHost, title],
+    submittedAt: "queued 2026-06-09",
+    reviewWindow: `queued for next NoLogin 3-per-24h submission window for the ${reason}`,
+  })),
   {
     name: "NoSubscription.org",
     url: "https://nosubscription.org/",
