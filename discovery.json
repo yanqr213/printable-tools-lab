@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-09T08:08:50.967Z",
+  "generatedAt": "2026-06-09T08:32:47.159Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -104,14 +104,22 @@
     "https://printable-tools-lab.pages.dev/photo-200x230-50kb/",
     "https://printable-tools-lab.pages.dev/photo-200x230-20kb/",
     "https://printable-tools-lab.pages.dev/photo-200x230-100kb/",
+    "https://printable-tools-lab.pages.dev/photo-240x320-50kb/",
     "https://printable-tools-lab.pages.dev/photo-413x531-100kb/",
+    "https://printable-tools-lab.pages.dev/photo-413x531-50kb/",
+    "https://printable-tools-lab.pages.dev/photo-300x300-100kb/",
+    "https://printable-tools-lab.pages.dev/photo-600x600-100kb/",
     "https://printable-tools-lab.pages.dev/signature-under-20kb/",
     "https://printable-tools-lab.pages.dev/signature-under-50kb/",
     "https://printable-tools-lab.pages.dev/resize-signature-140x60/",
     "https://printable-tools-lab.pages.dev/resize-signature-200x100/",
     "https://printable-tools-lab.pages.dev/signature-140x60-20kb/",
     "https://printable-tools-lab.pages.dev/signature-140x60-50kb/",
+    "https://printable-tools-lab.pages.dev/signature-150x50-20kb/",
+    "https://printable-tools-lab.pages.dev/signature-200x50-20kb/",
     "https://printable-tools-lab.pages.dev/signature-200x100-50kb/",
+    "https://printable-tools-lab.pages.dev/signature-300x80-50kb/",
+    "https://printable-tools-lab.pages.dev/signature-300x100-50kb/",
     "https://printable-tools-lab.pages.dev/resize-photo-200x230/",
     "https://printable-tools-lab.pages.dev/resize-photo-413x531/",
     "https://printable-tools-lab.pages.dev/resize-image-no-upload/",
@@ -873,10 +881,34 @@
       "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=230&fit=cover"
     },
     {
+      "title": "Photo 240x320 Pixels Under 50KB",
+      "url": "https://printable-tools-lab.pages.dev/photo-240x320-50kb/",
+      "intent": "photo 240x320 50KB, resize photo 240 x 320 under 50KB, portrait photo upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=240&height=320&fit=cover"
+    },
+    {
       "title": "Photo 413x531 Pixels Under 100KB",
       "url": "https://printable-tools-lab.pages.dev/photo-413x531-100kb/",
       "intent": "photo 413x531 100KB, resize photo 413 x 531 under 100KB, ID photo upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=413&height=531&fit=cover"
+    },
+    {
+      "title": "Photo 413x531 Pixels Under 50KB",
+      "url": "https://printable-tools-lab.pages.dev/photo-413x531-50kb/",
+      "intent": "photo 413x531 50KB, resize photo 413 x 531 under 50KB, strict ID photo upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=413&height=531&fit=cover"
+    },
+    {
+      "title": "Photo 300x300 Pixels Under 100KB",
+      "url": "https://printable-tools-lab.pages.dev/photo-300x300-100kb/",
+      "intent": "photo 300x300 100KB, resize square photo 300 x 300, profile photo upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=300&height=300&fit=cover"
+    },
+    {
+      "title": "Photo 600x600 Pixels Under 100KB",
+      "url": "https://printable-tools-lab.pages.dev/photo-600x600-100kb/",
+      "intent": "photo 600x600 100KB, resize photo 600 x 600 under 100KB, square profile photo",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=600&fit=cover"
     },
     {
       "title": "Signature Under 20KB Without Uploading",
@@ -915,10 +947,34 @@
       "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=140&height=60&fit=contain"
     },
     {
+      "title": "Signature 150x50 Pixels Under 20KB",
+      "url": "https://printable-tools-lab.pages.dev/signature-150x50-20kb/",
+      "intent": "signature 150x50 20KB, resize signature 150 x 50 under 20KB, signature upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=150&height=50&fit=contain"
+    },
+    {
+      "title": "Signature 200x50 Pixels Under 20KB",
+      "url": "https://printable-tools-lab.pages.dev/signature-200x50-20kb/",
+      "intent": "signature 200x50 20KB, resize signature 200 x 50 under 20KB, signature upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=50&fit=contain"
+    },
+    {
       "title": "Signature 200x100 Pixels Under 50KB",
       "url": "https://printable-tools-lab.pages.dev/signature-200x100-50kb/",
       "intent": "signature 200x100 50KB, resize signature 200 x 100 under 50KB, signature upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=200&height=100&fit=contain"
+    },
+    {
+      "title": "Signature 300x80 Pixels Under 50KB",
+      "url": "https://printable-tools-lab.pages.dev/signature-300x80-50kb/",
+      "intent": "signature 300x80 50KB, resize signature 300 x 80 under 50KB, signature image upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=300&height=80&fit=contain"
+    },
+    {
+      "title": "Signature 300x100 Pixels Under 50KB",
+      "url": "https://printable-tools-lab.pages.dev/signature-300x100-50kb/",
+      "intent": "signature 300x100 50KB, resize signature 300 x 100 under 50KB, signature image upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=300&height=100&fit=contain"
     },
     {
       "title": "Resize Photo to 200x230 Pixels",

@@ -2098,13 +2098,21 @@
     ["Photo 200x230 under 50KB", "/photo-200x230-50kb/", "Resize an exam-style photo to 200 x 230 pixels before compressing toward a 50KB cap.", "resize-image"],
     ["Photo 200x230 under 20KB", "/photo-200x230-20kb/", "Use the strict 20KB variant when an exam or banking portal rejects a 200 x 230 photo by file size.", "resize-image"],
     ["Photo 200x230 under 100KB", "/photo-200x230-100kb/", "Use a wider 100KB cap when the portal needs exact 200 x 230 pixels but allows more detail.", "resize-image"],
+    ["Photo 240x320 under 50KB", "/photo-240x320-50kb/", "Prepare a 240 x 320 pixel portrait photo before compressing toward a 50KB cap.", "resize-image"],
     ["Photo 413x531 under 100KB", "/photo-413x531-100kb/", "Prepare a 413 x 531 pixel photo and compress it toward a 100KB upload cap.", "resize-image"],
+    ["Photo 413x531 under 50KB", "/photo-413x531-50kb/", "Use the stricter 50KB variant when a 413 x 531 photo upload rejects the file size.", "resize-image"],
+    ["Photo 300x300 under 100KB", "/photo-300x300-100kb/", "Resize square profile, school, or application photos to 300 x 300 pixels under 100KB.", "resize-image"],
+    ["Photo 600x600 under 100KB", "/photo-600x600-100kb/", "Resize larger square profile or marketplace photos to 600 x 600 pixels under 100KB.", "resize-image"],
     ["Resize photo to 200x230", "/resize-photo-200x230/", "Prepare a strict 200 x 230 pixel photo for exam, job, and application portals.", "resize-image"],
     ["Resize signature to 140x60", "/resize-signature-140x60/", "Resize a signature image to a strict 140 x 60 pixel portal rule.", "resize-image"],
     ["Resize signature to 200x100", "/resize-signature-200x100/", "Prepare a 200 x 100 pixel signature image for forms that use a wider signature box.", "resize-image"],
     ["Signature 140x60 under 20KB", "/signature-140x60-20kb/", "Match the common 140 x 60 signature box and a strict 20KB cap.", "resize-image"],
     ["Signature 140x60 under 50KB", "/signature-140x60-50kb/", "Use a 140 x 60 signature resize path before compressing to a wider 50KB limit.", "resize-image"],
+    ["Signature 150x50 under 20KB", "/signature-150x50-20kb/", "Match a narrow 150 x 50 signature box with a strict 20KB file cap.", "resize-image"],
+    ["Signature 200x50 under 20KB", "/signature-200x50-20kb/", "Prepare a wide 200 x 50 signature strip and compress it toward 20KB.", "resize-image"],
     ["Signature 200x100 under 50KB", "/signature-200x100-50kb/", "Prepare a wider 200 x 100 signature image and compress it under 50KB.", "resize-image"],
+    ["Signature 300x80 under 50KB", "/signature-300x80-50kb/", "Resize a 300 x 80 signature image before compressing toward a 50KB cap.", "resize-image"],
+    ["Signature 300x100 under 50KB", "/signature-300x100-50kb/", "Prepare a 300 x 100 signature box and keep the export below 50KB.", "resize-image"],
     ["Signature under 50KB", "/signature-under-50kb/", "Compress a scanned or drawn signature image toward a 50KB upload cap.", "compress-image-to-kb"],
     ["Signature under 20KB", "/signature-under-20kb/", "Compress a scanned or drawn signature image toward a strict 20KB upload cap.", "compress-image-to-kb"],
   ];
@@ -2128,15 +2136,23 @@
     ["Photo must be 200 x 230 px and under 20KB", "/photo-200x230-20kb/", "Make 200x230 photo under 20KB", "Use the strict 20KB page when the upload box combines exact 200 x 230 pixels with a tiny file cap.", "resize-image"],
     ["Photo must be 200 x 230 px and under 50KB", "/photo-200x230-50kb/", "Make 200x230 photo", "Resize the photo to exact 200 x 230 pixels first, then compress the result if the portal also enforces a 50KB cap.", "resize-image"],
     ["Photo must be 200 x 230 px and under 100KB", "/photo-200x230-100kb/", "Make 200x230 photo under 100KB", "Resize to 200 x 230 pixels first, then compress toward 100KB when the portal gives a wider cap.", "resize-image"],
+    ["Photo must be 240 x 320 px and under 50KB", "/photo-240x320-50kb/", "Make 240x320 photo", "Resize to 240 x 320 pixels first, then compress the portrait photo toward 50KB if needed.", "resize-image"],
     ["Photo must be 413 x 531 px and under 100KB", "/photo-413x531-100kb/", "Make 413x531 photo", "Use the exact 413 x 531 pixel path and then compress toward 100KB for ID-style uploads.", "resize-image"],
+    ["Photo must be 413 x 531 px and under 50KB", "/photo-413x531-50kb/", "Make 413x531 photo under 50KB", "Resize to 413 x 531 pixels first, then use a stricter 50KB target only if the portal requires it.", "resize-image"],
+    ["Photo must be 300 x 300 px and under 100KB", "/photo-300x300-100kb/", "Make 300x300 photo", "Use a square 300 x 300 crop first, then compress toward 100KB for profile and form uploads.", "resize-image"],
+    ["Photo must be 600 x 600 px and under 100KB", "/photo-600x600-100kb/", "Make 600x600 photo", "Resize or crop to 600 x 600 pixels, then compress toward 100KB if the square image is too large.", "resize-image"],
     ["Photo dimensions must be 200 x 230 px", "/resize-photo-200x230/", "Resize 200x230 photo", "Use the image resizer with 200 x 230 pixels prefilled for exam, job, and application photo boxes.", "resize-image"],
     ["Signature image must be under 20KB", "/signature-under-20kb/", "Compress signature", "Use the image-to-KB compressor for scanned or drawn signature uploads with a tiny file-size cap.", "compress-image-to-kb"],
     ["Signature dimensions must be 140 x 60 px", "/resize-signature-140x60/", "Resize signature", "Use the image resizer with 140 x 60 pixels prefilled before compressing if the portal also has a KB cap.", "resize-image"],
     ["Signature must be 140 x 60 px and under 20KB", "/signature-140x60-20kb/", "Make 140x60 signature", "Resize the signature to 140 x 60 pixels and compress toward a strict 20KB upload rule.", "resize-image"],
     ["Signature must be 140 x 60 px and under 50KB", "/signature-140x60-50kb/", "Make 140x60 signature under 50KB", "Use this when the signature box is 140 x 60 pixels but the file cap is closer to 50KB.", "resize-image"],
+    ["Signature must be 150 x 50 px and under 20KB", "/signature-150x50-20kb/", "Make 150x50 signature", "Resize the signature to 150 x 50 pixels, then compress the exported strip toward 20KB.", "resize-image"],
+    ["Signature must be 200 x 50 px and under 20KB", "/signature-200x50-20kb/", "Make 200x50 signature", "Use this for wide signature strips that must match 200 x 50 pixels and stay under 20KB.", "resize-image"],
     ["Signature image must be under 50KB", "/signature-under-50kb/", "Compress signature", "Use the image-to-KB compressor for signature uploads that allow more room than a 20KB cap.", "compress-image-to-kb"],
     ["Signature dimensions must be 200 x 100 px", "/resize-signature-200x100/", "Resize signature", "Use the image resizer with 200 x 100 pixels prefilled for wider signature upload boxes.", "resize-image"],
     ["Signature must be 200 x 100 px and under 50KB", "/signature-200x100-50kb/", "Make 200x100 signature", "Resize the signature to 200 x 100 pixels, then compress the exported image toward 50KB.", "resize-image"],
+    ["Signature must be 300 x 80 px and under 50KB", "/signature-300x80-50kb/", "Make 300x80 signature", "Resize to 300 x 80 pixels first, then compress toward 50KB if the portal checks file size.", "resize-image"],
+    ["Signature must be 300 x 100 px and under 50KB", "/signature-300x100-50kb/", "Make 300x100 signature", "Prepare a 300 x 100 signature box and compress the exported image toward 50KB.", "resize-image"],
     ["Passport photo must be 35 x 45 mm", "/passport-photo-35x45mm/", "Make 35 x 45 photo", "Use a 35 x 45 mm passport-style preset, then compare the result with the destination site's current rules.", "passport-photo"],
     ["Website accepts image but rejects PDF", "/tools/pdf-to-images/", "PDF to JPG", "Convert PDF pages to JPG or PNG when a form wants image files instead of a PDF.", "pdf-to-images"],
     ["Website accepts PDF but I only have photos", "/tools/image-to-pdf/", "Image to PDF", "Turn a photo, scan, screenshot, or receipt image into a PDF locally.", "image-to-pdf"],
@@ -2150,14 +2166,22 @@
     ["Photo must be 200 x 230 px and under 20KB", "/photo-200x230-20kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Photo 200 x 230 / 20KB", "Resize to 200 x 230 pixels first, then compress the exported photo toward 20KB.", "resize-image"],
     ["Photo must be 200 x 230 px and under 50KB", "/photo-200x230-50kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Photo 200 x 230 / 50KB", "Resize to 200 x 230 pixels first, then compress toward 50KB if the resized output is still too large.", "resize-image"],
     ["Photo must be 200 x 230 px and under 100KB", "/photo-200x230-100kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Photo 200 x 230 / 100KB", "Create the exact 200 x 230 image, then use the 100KB image target only if needed.", "resize-image"],
+    ["Photo must be 240 x 320 px and under 50KB", "/photo-240x320-50kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Photo 240 x 320 / 50KB", "Resize to 240 x 320 pixels first, then compress the exported photo toward 50KB.", "resize-image"],
     ["Photo must be 413 x 531 px and under 100KB", "/photo-413x531-100kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Photo 413 x 531 / 100KB", "Resize to 413 x 531 pixels, then compress the exported photo toward 100KB.", "resize-image"],
+    ["Photo must be 413 x 531 px and under 50KB", "/photo-413x531-50kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Photo 413 x 531 / 50KB", "Resize to 413 x 531 pixels first, then use the 50KB image target only if the portal requires it.", "resize-image"],
+    ["Photo must be 300 x 300 px and under 100KB", "/photo-300x300-100kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Photo 300 x 300 / 100KB", "Crop to a 300 x 300 square first, then compress toward 100KB if the output is still too large.", "resize-image"],
+    ["Photo must be 600 x 600 px and under 100KB", "/photo-600x600-100kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Photo 600 x 600 / 100KB", "Resize or crop to 600 x 600 pixels, then compress toward 100KB if needed.", "resize-image"],
     ["JPG must be under 200KB", "/jpg-must-be-under-200kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "JPG 200KB", "Use the 200KB image target and keep output as JPG if the destination requires it.", "compress-image-to-kb"],
     ["PNG screenshot too large", "/png-screenshot-too-large/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PNG 500KB", "Crop private areas first, then compress toward 500KB and review small UI text.", "compress-image-to-kb"],
     ["Invalid file type. Please upload JPG or PNG", "/invalid-file-type-jpg-png/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Image JPG or PNG", "Convert the image format locally, then compress if the converted file is still too large.", "convert-image"],
     ["Image dimensions must be 600 x 600 px", "/image-dimensions-600x600/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Image 600 x 600", "Resize or crop to 600 x 600 pixels, then compress only if the KB limit still fails.", "resize-image"],
     ["Signature must be 140 x 60 px and under 20KB", "/signature-140x60-20kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Signature 140 x 60 / 20KB", "Resize to 140 x 60 pixels first, then compress the resized signature toward 20KB.", "resize-image"],
     ["Signature must be 140 x 60 px and under 50KB", "/signature-140x60-50kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Signature 140 x 60 / 50KB", "Resize the signature to 140 x 60 pixels and compress toward 50KB if needed.", "resize-image"],
+    ["Signature must be 150 x 50 px and under 20KB", "/signature-150x50-20kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Signature 150 x 50 / 20KB", "Resize to 150 x 50 pixels first, then compress the exported signature toward 20KB.", "resize-image"],
+    ["Signature must be 200 x 50 px and under 20KB", "/signature-200x50-20kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Signature 200 x 50 / 20KB", "Resize to 200 x 50 pixels, then compress the exported signature toward 20KB.", "resize-image"],
     ["Signature must be 200 x 100 px and under 50KB", "/signature-200x100-50kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Signature 200 x 100 / 50KB", "Resize to 200 x 100 pixels, then compress the exported signature toward 50KB.", "resize-image"],
+    ["Signature must be 300 x 80 px and under 50KB", "/signature-300x80-50kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Signature 300 x 80 / 50KB", "Resize to 300 x 80 pixels first, then compress the exported signature toward 50KB.", "resize-image"],
+    ["Signature must be 300 x 100 px and under 50KB", "/signature-300x100-50kb/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "Signature 300 x 100 / 50KB", "Resize to 300 x 100 pixels, then compress the exported signature toward 50KB.", "resize-image"],
     ["PDF not accepted, JPG required", "/pdf-not-accepted-jpg-required/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PDF JPG", "Convert PDF pages to JPG/PNG locally and upload the page image the destination expects.", "pdf-to-images"],
     ["Resume PDF too large", "/resume-pdf-too-large/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PDF 1MB", "Try the 1MB PDF target and confirm all resume text remains readable before applying.", "compress-pdf"],
     ["Email attachment too large", "/email-attachment-too-large/?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet", "PDF or image 5MB", "Compress PDFs toward 5MB or use the image-to-KB tool for photo attachments.", "compress-pdf"],
@@ -2174,6 +2198,8 @@
     "PDF must be less than 1 MB",
     "Image must be less than 2 MB",
     "Photo must be under 100 KB",
+    "Photo must be 240 x 320 px and under 50KB",
+    "Signature must be 300 x 80 px and under 50KB",
     "Resume PDF too large",
     "Invalid file type. Please upload JPG or PNG",
     "Image dimensions must be 600 x 600 px",
@@ -3192,6 +3218,23 @@
       related: ["resize-image", "compress-image-to-kb", "passport-photo", "crop-image"],
     },
     {
+      slug: "photo-240x320-50kb",
+      title: "Photo 240x320 Pixels Under 50KB",
+      headline: "Make a 240 x 320 px photo under 50KB",
+      description: "Resize a portrait photo to 240 x 320 pixels locally and compress it toward a 50KB upload cap.",
+      lead: "Use this when an exam, profile, or application form asks for an exact 240 x 320 pixel portrait photo and rejects files above 50KB.",
+      tool: "resize-image",
+      toolQuery: "width=240&height=320&fit=cover",
+      intent: "photo 240x320 50KB, resize photo 240 x 320 under 50KB, portrait photo upload",
+      sections: [
+        ["Resize to the portrait box", "Open the resizer with 240 x 320 pixels prefilled. Cover mode fills the portrait frame, so crop or adjust face placement first if the receiving site is strict."],
+        ["Then compress toward 50KB", "A 50KB cap can soften details. Compress only after the dimensions are correct, then check the final image before uploading it anywhere important."],
+        ["Keep the rule visible", "Compare the downloaded file with the destination notice for pixel size, file size, background, and face placement. This local helper cannot guarantee portal acceptance."],
+      ],
+      serviceLead: uploadLimitLandingServiceLead("make a 240 x 320 px photo under 50KB"),
+      related: ["resize-image", "compress-image-to-kb", "passport-photo", "crop-image"],
+    },
+    {
       slug: "photo-413x531-100kb",
       title: "Photo 413x531 Pixels Under 100KB",
       headline: "Make a 413 x 531 px photo under 100KB",
@@ -3206,6 +3249,57 @@
         ["Avoid acceptance claims", "This page prepares dimensions and file size locally. It does not verify lighting, background, pose, identity, recency, or official photo rules."],
       ],
       serviceLead: uploadLimitLandingServiceLead("make a 413 x 531 px photo under 100KB"),
+      related: ["resize-image", "compress-image-to-kb", "passport-photo", "crop-image"],
+    },
+    {
+      slug: "photo-413x531-50kb",
+      title: "Photo 413x531 Pixels Under 50KB",
+      headline: "Make a 413 x 531 px photo under 50KB",
+      description: "Resize an ID-style or application photo to 413 x 531 pixels locally and compress it toward a strict 50KB upload cap.",
+      lead: "Use this stricter path when the destination asks for exact 413 x 531 pixels and a 50KB file-size limit. Resize first, then compress only as far as the portal requires.",
+      tool: "resize-image",
+      toolQuery: "width=413&height=531&fit=cover",
+      intent: "photo 413x531 50KB, resize photo 413 x 531 under 50KB, strict ID photo upload",
+      sections: [
+        ["Match 413 x 531 first", "Pixel validation usually fails before file-size validation. Create the exact 413 x 531 photo before trying to force the file below 50KB."],
+        ["Use the stricter KB target", "After resizing, open the image-to-KB compressor with a 50KB target if the resized output is still too large. Expect more visible quality loss than the 100KB version."],
+        ["Review before submitting", "Check face clarity, background, crop, and file properties against the destination notice. This page prepares a local image only and cannot verify official acceptance."],
+      ],
+      serviceLead: uploadLimitLandingServiceLead("make a 413 x 531 px photo under 50KB"),
+      related: ["resize-image", "compress-image-to-kb", "passport-photo", "crop-image"],
+    },
+    {
+      slug: "photo-300x300-100kb",
+      title: "Photo 300x300 Pixels Under 100KB",
+      headline: "Make a 300 x 300 px photo under 100KB",
+      description: "Resize a square profile, school, or application photo to 300 x 300 pixels locally and compress it toward a 100KB cap.",
+      lead: "Use this when an upload form requires a square 300 x 300 pixel photo and also rejects files above 100KB.",
+      tool: "resize-image",
+      toolQuery: "width=300&height=300&fit=cover",
+      intent: "photo 300x300 100KB, resize square photo 300 x 300, profile photo upload",
+      sections: [
+        ["Crop to a square", "Open the resizer with 300 x 300 pixels prefilled. Cover mode is useful for square profile boxes, but review whether the face or subject stays centered."],
+        ["Compress only after resizing", "A 300 x 300 image often fits under 100KB, but high-quality exports can still be too large. Use the image-to-KB compressor only after the square output is correct."],
+        ["Check the final file", "Open the downloaded image before using it in a profile, school, marketplace, or application portal. This helper does not verify identity or official photo rules."],
+      ],
+      serviceLead: uploadLimitLandingServiceLead("make a 300 x 300 px photo under 100KB"),
+      related: ["resize-image", "compress-image-to-kb", "passport-photo", "crop-image"],
+    },
+    {
+      slug: "photo-600x600-100kb",
+      title: "Photo 600x600 Pixels Under 100KB",
+      headline: "Make a 600 x 600 px photo under 100KB",
+      description: "Resize a square profile, marketplace, or application photo to 600 x 600 pixels locally and compress it toward a 100KB cap.",
+      lead: "Use this when a portal wants a larger square 600 x 600 pixel photo but still enforces a 100KB file-size limit.",
+      tool: "resize-image",
+      toolQuery: "width=600&height=600&fit=cover",
+      intent: "photo 600x600 100KB, resize photo 600 x 600 under 100KB, square profile photo",
+      sections: [
+        ["Create the square first", "Use the 600 x 600 pixel preset before compressing. A file that is under 100KB can still fail if it is not exactly square."],
+        ["Then reduce file size", "A 600 x 600 image under 100KB may need stronger compression than smaller square photos. Check edges, face detail, and text after export."],
+        ["Use for ordinary upload boxes", "This page helps with dimensions and file size for profile, marketplace, and application uploads. It does not validate official ID, visa, or portal-specific rules."],
+      ],
+      serviceLead: uploadLimitLandingServiceLead("make a 600 x 600 px photo under 100KB"),
       related: ["resize-image", "compress-image-to-kb", "passport-photo", "crop-image"],
     },
     {
@@ -3311,6 +3405,40 @@
       related: ["resize-image", "compress-image-to-kb", "signature-png", "crop-image"],
     },
     {
+      slug: "signature-150x50-20kb",
+      title: "Signature 150x50 Pixels Under 20KB",
+      headline: "Make a 150 x 50 px signature under 20KB",
+      description: "Resize a signature image to 150 x 50 pixels locally and compress it toward a strict 20KB upload cap.",
+      lead: "Use this when a form or portal requires a narrow 150 x 50 pixel signature strip and rejects files above 20KB.",
+      tool: "resize-image",
+      toolQuery: "width=150&height=50&fit=contain",
+      intent: "signature 150x50 20KB, resize signature 150 x 50 under 20KB, signature upload",
+      sections: [
+        ["Use the narrow strip preset", "Open the resizer with 150 x 50 pixels prefilled. Fit-inside mode keeps strokes visible and pads empty space instead of cropping the signature."],
+        ["Compress the resized copy", "After the dimensions match, run the result through image-to-KB with a 20KB target if the portal still rejects the file size."],
+        ["Check stroke clarity", "Review the downloaded signature for broken, faint, or clipped strokes. This prepares a visual signature image only and does not verify identity or consent."],
+      ],
+      serviceLead: uploadLimitLandingServiceLead("make a 150 x 50 px signature under 20KB"),
+      related: ["resize-image", "compress-image-to-kb", "signature-png", "remove-background"],
+    },
+    {
+      slug: "signature-200x50-20kb",
+      title: "Signature 200x50 Pixels Under 20KB",
+      headline: "Make a 200 x 50 px signature under 20KB",
+      description: "Resize a signature image to 200 x 50 pixels locally and compress it toward a strict 20KB upload cap.",
+      lead: "Use this when the receiving form needs a wide 200 x 50 pixel signature strip and a tiny 20KB file-size cap.",
+      tool: "resize-image",
+      toolQuery: "width=200&height=50&fit=contain",
+      intent: "signature 200x50 20KB, resize signature 200 x 50 under 20KB, signature upload",
+      sections: [
+        ["Match width and height first", "Use the 200 x 50 pixel resizer before compressing. Fit-inside mode preserves the full signature and pads the box if the original is taller."],
+        ["Then target 20KB", "A 20KB cap is strict but signatures usually compress better than photos. Compress the resized copy, then keep the original scan in case the result is too faint."],
+        ["Review the visual result", "Make sure the signature stays centered, legible, and complete. This is a visual file helper, not an e-signature or legal verification product."],
+      ],
+      serviceLead: uploadLimitLandingServiceLead("make a 200 x 50 px signature under 20KB"),
+      related: ["resize-image", "compress-image-to-kb", "signature-png", "crop-image"],
+    },
+    {
       slug: "signature-200x100-50kb",
       title: "Signature 200x100 Pixels Under 50KB",
       headline: "Make a 200 x 100 px signature under 50KB",
@@ -3325,6 +3453,40 @@
         ["Review before upload", "Check that strokes remain dark, centered, and readable. This is a file-preparation helper, not an e-signature, identity, or legal verification service."],
       ],
       serviceLead: uploadLimitLandingServiceLead("make a 200 x 100 px signature under 50KB"),
+      related: ["resize-image", "compress-image-to-kb", "signature-png", "crop-image"],
+    },
+    {
+      slug: "signature-300x80-50kb",
+      title: "Signature 300x80 Pixels Under 50KB",
+      headline: "Make a 300 x 80 px signature under 50KB",
+      description: "Resize a signature image to 300 x 80 pixels locally and compress it toward a 50KB upload cap.",
+      lead: "Use this when a long signature upload box requires exactly 300 x 80 pixels and the exported image must stay below 50KB.",
+      tool: "resize-image",
+      toolQuery: "width=300&height=80&fit=contain",
+      intent: "signature 300x80 50KB, resize signature 300 x 80 under 50KB, signature image upload",
+      sections: [
+        ["Use the 300 x 80 box", "Open the resizer with 300 x 80 pixels prefilled. Fit-inside mode helps preserve the full signature while filling the required canvas."],
+        ["Compress after resizing", "If the resized signature is still too large, use the 50KB image target and review whether the strokes remain dark enough."],
+        ["Avoid over-claiming", "This creates a compliant-looking visual file for ordinary upload forms. It does not verify identity, consent, legal signing authority, or portal acceptance."],
+      ],
+      serviceLead: uploadLimitLandingServiceLead("make a 300 x 80 px signature under 50KB"),
+      related: ["resize-image", "compress-image-to-kb", "signature-png", "crop-image"],
+    },
+    {
+      slug: "signature-300x100-50kb",
+      title: "Signature 300x100 Pixels Under 50KB",
+      headline: "Make a 300 x 100 px signature under 50KB",
+      description: "Resize a signature image to 300 x 100 pixels locally and compress it toward a 50KB upload cap.",
+      lead: "Use this when a wider signature upload box requires exactly 300 x 100 pixels and a file below 50KB.",
+      tool: "resize-image",
+      toolQuery: "width=300&height=100&fit=contain",
+      intent: "signature 300x100 50KB, resize signature 300 x 100 under 50KB, signature image upload",
+      sections: [
+        ["Match the wide signature box", "Open the resizer with 300 x 100 pixels prefilled. Fit-inside mode keeps the signature visible and adds empty space if needed."],
+        ["Use 50KB only after sizing", "A file can pass the KB check and still fail if the dimensions are wrong. Resize first, then compress the exported image toward 50KB."],
+        ["Review before upload", "Check for clipped strokes, blur, and weak contrast before submitting the file to a form. This is not identity verification or a regulated e-signature service."],
+      ],
+      serviceLead: uploadLimitLandingServiceLead("make a 300 x 100 px signature under 50KB"),
       related: ["resize-image", "compress-image-to-kb", "signature-png", "crop-image"],
     },
     {
@@ -17354,6 +17516,12 @@ ${paragraphs.join("\n")}
     const needsPdf = /\b(pdf only|pdf required|upload pdf|accepts pdf|must be pdf|as pdf)\b/.test(normalized);
     const rejectsPdfForImage = hasPdf && /\b(jpg|jpeg|png|image|photo)\b/.test(normalized) && /\b(need|needs|required|only|accepted|accepts|upload)\b/.test(normalized);
     const size = parseUploadLimitSize(normalized);
+    const dimensions = parseUploadLimitDimensions(normalized);
+
+    if (dimensions && (hasImage || /\b(signature|sign)\b/.test(normalized))) {
+      const exactMatch = matchExactUploadLimitLanding(normalized, dimensions, size);
+      if (exactMatch) return exactMatch;
+    }
 
     if (hasPdf && size) {
       if (size.unit === "mb") {
@@ -17395,6 +17563,53 @@ ${paragraphs.join("\n")}
     if (!Number.isFinite(value) || value <= 0) return null;
     const unit = match[2].toLowerCase().startsWith("m") ? "mb" : "kb";
     return { value: Math.round(value * 10) / 10, unit };
+  }
+
+  function parseUploadLimitDimensions(text) {
+    const match = String(text || "").match(/(\d{2,5})\s*(?:x|by|\*)\s*(\d{2,5})/i);
+    if (!match) return null;
+    const width = Number(match[1]);
+    const height = Number(match[2]);
+    if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) return null;
+    return { width, height };
+  }
+
+  function targetKbFromUploadLimitSize(size) {
+    if (!size) return null;
+    return size.unit === "mb" ? Math.round(size.value * 1024) : Math.round(size.value);
+  }
+
+  function matchExactUploadLimitLanding(normalized, dimensions, size) {
+    const targetKb = targetKbFromUploadLimitSize(size);
+    const key = `${dimensions.width}x${dimensions.height}-${targetKb || ""}`;
+    const isSignature = /\b(signature|sign)\b/.test(normalized);
+    const isPhoto = /\b(photo|picture|image|profile|avatar|passport|id)\b/.test(normalized);
+    const exact = {
+      "200x230-20": ["Photo 200 x 230 under 20KB", "/photo-200x230-20kb/", "Make 200x230 photo under 20KB", "Resize to 200 x 230 pixels first, then compress toward the strict 20KB cap.", "resize-image"],
+      "200x230-50": ["Photo 200 x 230 under 50KB", "/photo-200x230-50kb/", "Make 200x230 photo", "Resize to 200 x 230 pixels first, then compress toward 50KB if needed.", "resize-image"],
+      "200x230-100": ["Photo 200 x 230 under 100KB", "/photo-200x230-100kb/", "Make 200x230 photo under 100KB", "Resize to 200 x 230 pixels first, then compress toward 100KB if needed.", "resize-image"],
+      "240x320-50": ["Photo 240 x 320 under 50KB", "/photo-240x320-50kb/", "Make 240x320 photo", "Resize to 240 x 320 pixels first, then compress toward 50KB.", "resize-image"],
+      "413x531-50": ["Photo 413 x 531 under 50KB", "/photo-413x531-50kb/", "Make 413x531 photo under 50KB", "Resize to 413 x 531 pixels first, then use the strict 50KB target.", "resize-image"],
+      "413x531-100": ["Photo 413 x 531 under 100KB", "/photo-413x531-100kb/", "Make 413x531 photo", "Resize to 413 x 531 pixels first, then compress toward 100KB.", "resize-image"],
+      "300x300-100": ["Photo 300 x 300 under 100KB", "/photo-300x300-100kb/", "Make 300x300 photo", "Crop to 300 x 300 pixels first, then compress toward 100KB.", "resize-image"],
+      "600x600-100": ["Photo 600 x 600 under 100KB", "/photo-600x600-100kb/", "Make 600x600 photo", "Resize or crop to 600 x 600 pixels, then compress toward 100KB.", "resize-image"],
+      "140x60-20": ["Signature 140 x 60 under 20KB", "/signature-140x60-20kb/", "Make 140x60 signature", "Resize to 140 x 60 pixels first, then compress toward 20KB.", "resize-image"],
+      "140x60-50": ["Signature 140 x 60 under 50KB", "/signature-140x60-50kb/", "Make 140x60 signature", "Resize to 140 x 60 pixels first, then compress toward 50KB.", "resize-image"],
+      "150x50-20": ["Signature 150 x 50 under 20KB", "/signature-150x50-20kb/", "Make 150x50 signature", "Resize to 150 x 50 pixels first, then compress toward 20KB.", "resize-image"],
+      "200x50-20": ["Signature 200 x 50 under 20KB", "/signature-200x50-20kb/", "Make 200x50 signature", "Resize to 200 x 50 pixels first, then compress toward 20KB.", "resize-image"],
+      "200x100-50": ["Signature 200 x 100 under 50KB", "/signature-200x100-50kb/", "Make 200x100 signature", "Resize to 200 x 100 pixels first, then compress toward 50KB.", "resize-image"],
+      "300x80-50": ["Signature 300 x 80 under 50KB", "/signature-300x80-50kb/", "Make 300x80 signature", "Resize to 300 x 80 pixels first, then compress toward 50KB.", "resize-image"],
+      "300x100-50": ["Signature 300 x 100 under 50KB", "/signature-300x100-50kb/", "Make 300x100 signature", "Resize to 300 x 100 pixels first, then compress toward 50KB.", "resize-image"],
+    };
+    const row = exact[key];
+    if (!row) {
+      const kind = isSignature ? "signature" : isPhoto ? "photo" : "image";
+      return uploadLimitMatch(`Resize ${kind} to ${dimensions.width} x ${dimensions.height}`, `/tools/resize-image/?width=${dimensions.width}&height=${dimensions.height}&fit=${isSignature ? "contain" : "cover"}`, "Open image resizer", "Starts the resizer with the exact dimensions from the upload message.", "resize-image");
+    }
+    const signatureRoute = row[1].includes("/signature-");
+    const photoRoute = row[1].includes("/photo-");
+    if ((signatureRoute && !isSignature && isPhoto) || (photoRoute && isSignature)) return null;
+    return uploadLimitMatch(...row);
   }
 
   function uploadLimitMatch(title, href, label, why, trackTool) {
