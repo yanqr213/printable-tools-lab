@@ -1,6 +1,6 @@
 # Validation Gates
 
-Last generated: 2026-06-09T11:57:06.895Z
+Last generated: 2026-06-09T12:10:42.561Z
 
 ## Current Automated Status
 
@@ -42,7 +42,7 @@ Last generated: 2026-06-09T11:57:06.895Z
 
 ## External Discovery Gate
 
-- GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.
+- GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.
 - GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.
 - GitHub Pages discovery directory is live with 137 landing page link(s), 67 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).
 - GitHub Pages discovery sitemap has 314 URL(s), including 67 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 314.

@@ -8201,7 +8201,7 @@ function opsMonitorStaticHtml() {
   const sponsorOutreach = report?.local?.sponsorOutreach || {};
   const publicReplies = report?.local?.sponsorPublicReplies || {};
   const outreachLog = readPublicJsonReport("sponsor-outreach-log.json", { rows: [] });
-  const nextSubmissionRows = opsSponsorNextSubmissionRows(outreachLog.rows || []);
+  const nextSubmissionRows = opsSponsorNextSubmissionRows(outreachLog.rows || [], sponsorExternalDiscoveryProof().publicProofLine);
   const starterReviewUrl = "/sponsor-starter-review/?utm_source=ops&utm_medium=internal&utm_campaign=sponsor_close&utm_content=static-ops&commitment=request-invoice#sponsor-inquiry";
   const defaultDeal = SPONSOR_DEALS.find((deal) => deal.id === DEFAULT_SPONSOR_DEAL_ID) || SPONSOR_DEALS[0];
   const defaultVertical = SPONSOR_VERTICALS[0];
@@ -8391,12 +8391,25 @@ function opsServicePublicRequestSnapshotHtml(servicePublicRequests) {
           </section>`;
 }
 
-function opsSponsorNextSubmissionRows(rows) {
+function opsSponsorNextSubmissionRows(rows, externalProofLine = "") {
   const queued = (Array.isArray(rows) ? rows : [])
     .filter((row) => row.status === "queued")
+    .map((row) => opsRefreshSponsorSubmissionProof(row, externalProofLine))
     .sort((a, b) => opsSubmissionScore(b) - opsSubmissionScore(a) || Number(a.priority || 999) - Number(b.priority || 999))
     .slice(0, 5);
   return queued.length ? queued : opsSponsorFallbackSubmissionRows();
+}
+
+function opsRefreshSponsorSubmissionProof(row, externalProofLine = "") {
+  if (!externalProofLine || !row) return row;
+  const proofPattern = /External discovery proof: .*?These are discovery signals, not revenue\./g;
+  const refreshText = (value) => String(value || "").replace(proofPattern, externalProofLine);
+  return {
+    ...row,
+    contactFormMessage: refreshText(row.contactFormMessage),
+    body: refreshText(row.body),
+    messageToCopy: refreshText(row.messageToCopy),
+  };
 }
 
 function opsSubmissionScore(row) {
