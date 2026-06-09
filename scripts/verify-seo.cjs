@@ -1526,7 +1526,20 @@ else {
   if (!sitemap.includes(`<loc>${siteUrl(UPLOAD_LIMIT_FIX_PLAN_SERVICE.slug)}</loc>`)) failures.push("Sitemap should include upload limit fix plan service route.");
 }
 
-for (const imageInvoicePath of ["compress-image-to-50kb", "compress-image-to-100kb", "compress-image-to-200kb"]) {
+for (const imageInvoicePath of [
+  "compress-image-to-50kb",
+  "compress-image-to-100kb",
+  "compress-image-to-200kb",
+  "compress-jpg-to-50kb",
+  "compress-jpg-to-100kb",
+  "compress-jpg-to-200kb",
+  "compress-png-to-50kb",
+  "compress-png-to-100kb",
+  "compress-png-to-200kb",
+  "passport-photo-compress-to-50kb",
+  "passport-photo-compress-to-100kb",
+  "passport-photo-compress-to-200kb",
+]) {
   const file = path.join(root, imageInvoicePath, "index.html");
   if (!fs.existsSync(file)) failures.push(`Missing exact-image upload invoice route: ${imageInvoicePath}`);
   else {

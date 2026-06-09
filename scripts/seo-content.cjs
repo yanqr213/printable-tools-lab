@@ -685,6 +685,14 @@ function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, path
   const primarySubmitEvent = oneContactInvoiceRequest ? "service_invoice_request" : eventName;
   const primarySubmitText = oneContactInvoiceRequest ? `Request ${price} invoice link` : cta;
   const primaryInvoiceSubmitAttrs = oneContactInvoiceRequest ? ` data-service-invoice-submit data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}"` : "";
+  const secondaryInvoiceButton = invoiceRequestUrl && !oneContactInvoiceRequest
+    ? `<button class="button secondary" type="submit" data-service-invoice-submit data-track-tool="${escapeHtml(tool)}" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request ${escapeHtml(price)} invoice link</button>`
+    : "";
+  const actionButtons = [
+    `<button class="button" type="submit" data-track-event="${escapeHtml(primarySubmitEvent)}" data-track-tool="${escapeHtml(tool)}"${primaryInvoiceSubmitAttrs}>${escapeHtml(primarySubmitText)}</button>`,
+    secondaryInvoiceButton,
+    `<a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(publicFallbackEvent)}" data-track-tool="${escapeHtml(tool)}" href="${escapeHtml(publicFallbackUrl)}" target="_blank" rel="noreferrer">${escapeHtml(publicFallbackLabel)}</a>`,
+  ].filter(Boolean).join("\n              ");
   const businessNameField = oneContactInvoiceRequest
     ? `<input type="hidden" name="businessName" value="">`
     : `<label class="field">
@@ -738,9 +746,7 @@ function serviceLeadFormHtml({ serviceType, title, cta, intro, placeholder, path
             ${needByField}
             ${consentField}
             <div class="actions">
-              <button class="button" type="submit" data-track-event="${escapeHtml(primarySubmitEvent)}" data-track-tool="${escapeHtml(tool)}"${primaryInvoiceSubmitAttrs}>${escapeHtml(primarySubmitText)}</button>
-              ${invoiceRequestUrl && !oneContactInvoiceRequest ? `<button class="button secondary" type="submit" data-service-invoice-submit data-track-tool="${escapeHtml(tool)}" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request ${escapeHtml(price)} invoice link</button>` : ""}
-              <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(publicFallbackEvent)}" data-track-tool="${escapeHtml(tool)}" href="${escapeHtml(publicFallbackUrl)}" target="_blank" rel="noreferrer">${escapeHtml(publicFallbackLabel)}</a>
+              ${actionButtons}
             </div>
             <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">No payment is collected here. A real external checkout or invoice is sent only after fit is confirmed.</p>
           </form>
@@ -4149,6 +4155,7 @@ const landingPages = [
       ["Local target-size workflow", "The image-to-KB compressor runs in the browser, tries smaller dimensions and quality levels, and exports the closest JPG or WebP result it can make."],
       ["Quality tradeoff", "50KB can soften faces, IDs, and small text. Crop tightly and review the output before submitting it to a portal."],
     ],
+    serviceLead: uploadLimitLandingServiceLead("compress JPG to 50KB"),
     relatedTools: ["tools/compress-image-to-kb?targetKb=50", "tools/resize-image", "tools/crop-image"],
   },
   {
@@ -4164,6 +4171,7 @@ const landingPages = [
       ["Local target-size workflow", "The compressor re-encodes the image locally, tries smaller sizes, and downloads the closest result it can create for the selected target."],
       ["Before uploading elsewhere", "Open the downloaded JPG or WebP copy and confirm important face, document, or product details are still clear."],
     ],
+    serviceLead: uploadLimitLandingServiceLead("compress JPG to 100KB"),
     relatedTools: ["tools/compress-image-to-kb?targetKb=100", "tools/compress-image", "tools/resize-image"],
   },
   {
@@ -4179,6 +4187,7 @@ const landingPages = [
       ["Local target-size workflow", "The browser tries different quality and size combinations locally before exporting a smaller image file."],
       ["Review the output", "Compression can change sharpness or color. Open the downloaded file before submitting, sending, or printing it."],
     ],
+    serviceLead: uploadLimitLandingServiceLead("compress JPG to 200KB"),
     relatedTools: ["tools/compress-image-to-kb?targetKb=200", "tools/compress-image", "tools/resize-image"],
   },
   {
@@ -4194,6 +4203,7 @@ const landingPages = [
       ["Local target-size workflow", "The image-to-KB compressor works in the browser and tries smaller dimensions and export formats to get near the selected file-size target."],
       ["Transparency note", "If transparency matters, review the result carefully. Small target exports may use a non-transparent format to meet the file-size limit."],
     ],
+    serviceLead: uploadLimitLandingServiceLead("compress PNG to 50KB"),
     relatedTools: ["tools/compress-image-to-kb?targetKb=50", "tools/convert-image", "tools/resize-image"],
   },
   {
@@ -4209,6 +4219,7 @@ const landingPages = [
       ["Local target-size workflow", "The browser re-encodes the image, tries smaller dimensions, and exports the closest result it can create without uploading the source PNG."],
       ["Review before submitting", "Check text, edges, transparency, and colors in the downloaded file before sending it to another site."],
     ],
+    serviceLead: uploadLimitLandingServiceLead("compress PNG to 100KB"),
     relatedTools: ["tools/compress-image-to-kb?targetKb=100", "tools/compress-image", "tools/convert-image"],
   },
   {
@@ -4224,6 +4235,7 @@ const landingPages = [
       ["Local target-size workflow", "The compressor works locally and tries smaller dimensions and export formats before downloading a new file."],
       ["Check the result", "Open the downloaded file and confirm text, lines, transparency, and important details are acceptable for the destination portal."],
     ],
+    serviceLead: uploadLimitLandingServiceLead("compress PNG to 200KB"),
     relatedTools: ["tools/compress-image-to-kb?targetKb=200", "tools/compress-image", "tools/resize-image"],
   },
   {
@@ -4239,6 +4251,7 @@ const landingPages = [
       ["Local privacy positioning", "Face photos are sensitive, so the workflow keeps the image processing in the browser during ordinary use."],
       ["Review face clarity", "50KB can soften eyes, hair, background edges, and ID-style details. Open the result before uploading it to any official or school portal."],
     ],
+    serviceLead: uploadLimitLandingServiceLead("compress passport photo to 50KB"),
     relatedTools: ["tools/passport-photo", "tools/resize-image", "tools/compress-image-to-kb?targetKb=50"],
   },
   {
@@ -4254,6 +4267,7 @@ const landingPages = [
       ["Local privacy positioning", "The photo is processed in the browser during ordinary use. That matters because face photos and ID-style images are more sensitive than casual screenshots."],
       ["Review the face details", "Compression can soften eyes, hair, document edges, and background color. Open the result before submitting, and compare it with the destination's current photo rules."],
     ],
+    serviceLead: uploadLimitLandingServiceLead("compress passport photo to 100KB"),
     relatedTools: ["tools/passport-photo", "tools/resize-image", "tools/compress-image-to-kb?targetKb=100"],
   },
   {
@@ -4269,6 +4283,7 @@ const landingPages = [
       ["Local privacy positioning", "The face photo is processed in the browser during ordinary use, which is preferable for ID-style and application photos."],
       ["Check before submitting", "Open the downloaded result and compare it with the destination's current rules for file size, dimensions, background, lighting, and face placement."],
     ],
+    serviceLead: uploadLimitLandingServiceLead("compress passport photo to 200KB"),
     relatedTools: ["tools/passport-photo", "tools/resize-image", "tools/compress-image-to-kb?targetKb=200"],
   },
   {
