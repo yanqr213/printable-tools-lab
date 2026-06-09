@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-09T00:23:10.181Z",
+  "generatedAt": "2026-06-09T00:52:38.625Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 31,
-  "pendingCount": 19,
+  "pendingCount": 24,
   "errorCount": 1,
   "results": [
     {
@@ -49,14 +49,14 @@
           "url": "https://listai.cc/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 318665,
+          "bytes": 318805,
           "matched": false
         },
         {
           "url": "https://listai.cc/",
           "ok": true,
           "status": 200,
-          "bytes": 318665,
+          "bytes": 318805,
           "matched": false
         }
       ]
@@ -865,6 +865,93 @@
       ]
     },
     {
+      "name": "NoSignupTools compress image to 50KB listing",
+      "url": "https://nosignuptools.com/tools/compress-image-to-50kb-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Compress+Image+to+50KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress Image to 50KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Compress+Image+to+50KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/compress-image-to-50kb-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20100,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools compress image to 100KB listing",
+      "url": "https://nosignuptools.com/tools/compress-image-to-100kb-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Compress+Image+to+100KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress Image to 100KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Compress+Image+to+100KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/compress-image-to-100kb-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20103,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools compress image to 200KB listing",
+      "url": "https://nosignuptools.com/tools/compress-image-to-200kb-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Compress+Image+to+200KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress Image to 200KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Compress+Image+to+200KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/compress-image-to-200kb-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20103,
+          "matched": false
+        }
+      ]
+    },
+    {
       "name": "FreeNoSignup",
       "url": "https://freenosignup.com/",
       "searchUrl": "https://freenosignup.com/?s=PrintableTools+Lab",
@@ -1241,6 +1328,64 @@
       ]
     },
     {
+      "name": "NoLogin.tools compress image to 50KB listing",
+      "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-50kb",
+      "searchUrl": "https://nologin.tools/?q=Compress+Image+to+50KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress Image to 50KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-compress-image-to-50kb",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nologin.tools/?q=Compress+Image+to+50KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 188305,
+          "matched": false
+        },
+        {
+          "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-50kb",
+          "ok": false,
+          "status": 404,
+          "bytes": 10724,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoLogin.tools compress image to 100KB listing",
+      "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-100kb",
+      "searchUrl": "https://nologin.tools/?q=Compress+Image+to+100KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress Image to 100KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "human review after API submission accepted with slug printable-tools-lab-pages-dev-compress-image-to-100kb",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nologin.tools/?q=Compress+Image+to+100KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 188305,
+          "matched": false
+        },
+        {
+          "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-100kb",
+          "ok": false,
+          "status": 404,
+          "bytes": 10724,
+          "matched": false
+        }
+      ]
+    },
+    {
       "name": "NoSubscription.org",
       "url": "https://nosubscription.org/",
       "searchUrl": "https://nosubscription.org/?s=PrintableTools+Lab",
@@ -1281,49 +1426,34 @@
       "reviewWindow": "maintainer review",
       "status": "error",
       "evidenceUrl": "https://github.com/js-org/js.org/pull/11512",
-      "apiAvailable": true,
-      "checksAvailable": true,
-      "templateOk": true,
-      "checksOk": true,
-      "checks": [
-        {
-          "name": "PR description",
-          "status": "completed",
-          "conclusion": "success",
-          "startedAt": "2026-06-01T22:34:58Z",
-          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353230"
-        },
-        {
-          "name": "cnames_active.js",
-          "status": "completed",
-          "conclusion": "success",
-          "startedAt": "2026-06-01T22:34:57Z",
-          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353223"
-        }
-      ],
-      "prState": "closed",
-      "mergeable": true,
+      "apiAvailable": false,
+      "checksAvailable": false,
+      "templateOk": null,
+      "checksOk": null,
+      "checks": [],
+      "prState": "unknown",
+      "mergeable": null,
       "checked": [
         {
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 298672,
+          "bytes": 298680,
           "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/pulls/11512",
-          "ok": true,
-          "status": 200,
-          "bytes": 16307,
-          "matched": true
+          "ok": false,
+          "status": 403,
+          "bytes": 277,
+          "matched": false
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs",
-          "ok": true,
-          "status": 200,
-          "bytes": 18122,
-          "matched": true
+          "ok": false,
+          "status": 403,
+          "bytes": 277,
+          "matched": false
         }
       ]
     }

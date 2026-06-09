@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T00:49:31.488Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "Compress Image to 50KB by PrintableTools Lab",
+    "slug": "compress-image-to-50kb-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/compress-image-to-50kb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=image_50kb_2026_06&utm_content=compress_image_to_50kb_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup 50KB image compressor with an optional one-contact USD 9 upload fix-plan request.",
+    "long_description": "A free browser-based image compressor for strict 50KB upload limits, passport-style photos, forms, and application portals. It works without an account or server upload and now exposes a one-contact optional USD 9 Upload Limit Fix Plan request for exact public-safe settings, fallback steps, and a review-before-upload checklist after fit is confirmed."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/compress-image-to-50kb-by-printabletools-lab"
+}

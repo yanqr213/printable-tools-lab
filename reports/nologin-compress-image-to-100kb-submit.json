@@ -1,0 +1,60 @@
+{
+  "generatedAt": "2026-06-09T00:48:57.413Z",
+  "endpoint": "https://nologin.tools/api/submit",
+  "status": 201,
+  "ok": true,
+  "preSubmitCheck": {
+    "checkedAt": "2026-06-09T00:48:49.527Z",
+    "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-100kb",
+    "ok": false,
+    "status": 404,
+    "matched": false,
+    "bytes": 10717
+  },
+  "payload": {
+    "name": "Compress Image to 100KB",
+    "url": "https://printable-tools-lab.pages.dev/compress-image-to-100kb/?utm_source=nologin&utm_medium=directory&utm_campaign=image_100kb_2026_06&utm_content=compress_image_to_100kb_landing",
+    "description": "Free no-signup 100KB image compressor for profile photos, job portals, school forms, and application uploads. It runs locally in the browser without server upload and includes an optional one-contact USD 9 public-safe upload fix-plan invoice request for exact settings and fallback steps.",
+    "pledge": true,
+    "coreTask": "Compress an image toward a 100KB target without creating an account.",
+    "submitterEmail": "",
+    "repoUrl": "",
+    "twitterUrl": "",
+    "githubUrl": "",
+    "discordUrl": "",
+    "tags": [
+      {
+        "key": "category",
+        "value": "Productivity"
+      },
+      {
+        "key": "data",
+        "value": "Client-Side Only"
+      },
+      {
+        "key": "privacy",
+        "value": "Privacy Focused"
+      },
+      {
+        "key": "type",
+        "value": "Web App"
+      },
+      {
+        "key": "pricing",
+        "value": "Free"
+      }
+    ]
+  },
+  "response": {
+    "ok": true,
+    "data": {
+      "slug": "printable-tools-lab-pages-dev-compress-image-to-100kb"
+    }
+  },
+  "reviewUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-100kb",
+  "postSubmitCheck": {
+    "checkedAt": "2026-06-09T00:48:50.388Z",
+    "status": 404,
+    "result": "accepted_by_api_pending_public_review"
+  }
+}

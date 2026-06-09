@@ -1,0 +1,60 @@
+{
+  "generatedAt": "2026-06-09T00:48:46.522Z",
+  "endpoint": "https://nologin.tools/api/submit",
+  "status": 201,
+  "ok": true,
+  "preSubmitCheck": {
+    "checkedAt": "2026-06-09T00:48:44.725Z",
+    "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-50kb",
+    "ok": false,
+    "status": 404,
+    "matched": false,
+    "bytes": 10717
+  },
+  "payload": {
+    "name": "Compress Image to 50KB",
+    "url": "https://printable-tools-lab.pages.dev/compress-image-to-50kb/?utm_source=nologin&utm_medium=directory&utm_campaign=image_50kb_2026_06&utm_content=compress_image_to_50kb_landing",
+    "description": "Free no-signup 50KB image compressor for strict upload forms, passport-style photos, portals, and applications. It runs locally in the browser without server upload and includes an optional one-contact USD 9 public-safe upload fix-plan invoice request for exact settings and fallback steps.",
+    "pledge": true,
+    "coreTask": "Compress an image toward a 50KB target without creating an account.",
+    "submitterEmail": "",
+    "repoUrl": "",
+    "twitterUrl": "",
+    "githubUrl": "",
+    "discordUrl": "",
+    "tags": [
+      {
+        "key": "category",
+        "value": "Productivity"
+      },
+      {
+        "key": "data",
+        "value": "Client-Side Only"
+      },
+      {
+        "key": "privacy",
+        "value": "Privacy Focused"
+      },
+      {
+        "key": "type",
+        "value": "Web App"
+      },
+      {
+        "key": "pricing",
+        "value": "Free"
+      }
+    ]
+  },
+  "response": {
+    "ok": true,
+    "data": {
+      "slug": "printable-tools-lab-pages-dev-compress-image-to-50kb"
+    }
+  },
+  "reviewUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-50kb",
+  "postSubmitCheck": {
+    "checkedAt": "2026-06-09T00:48:46.263Z",
+    "status": 404,
+    "result": "accepted_by_api_pending_public_review"
+  }
+}

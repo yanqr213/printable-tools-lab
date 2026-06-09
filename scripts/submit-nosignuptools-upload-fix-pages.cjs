@@ -70,6 +70,48 @@ const backlog = [
       long_description: "A free browser-based email attachment too large fixer for Gmail, Outlook, webmail, and inbox size errors. It points to PDF compression and image-to-KB tools without an account or server upload and includes an optional USD 9 Upload Limit Fix Plan request for public-safe target settings, fallback steps, and a review-before-upload checklist after fit is confirmed.",
     },
   },
+  {
+    report: "nosignuptools-compress-image-to-50kb-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/compress-image-to-50kb-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Compress+Image+to+50KB",
+    payload: {
+      ...common,
+      name: "Compress Image to 50KB by PrintableTools Lab",
+      slug: "compress-image-to-50kb-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/compress-image-to-50kb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=image_50kb_2026_06&utm_content=compress_image_to_50kb_landing",
+      category: "productivity",
+      short_description: "Free no-signup 50KB image compressor with an optional one-contact USD 9 upload fix-plan request.",
+      long_description: "A free browser-based image compressor for strict 50KB upload limits, passport-style photos, forms, and application portals. It works without an account or server upload and now exposes a one-contact optional USD 9 Upload Limit Fix Plan request for exact public-safe settings, fallback steps, and a review-before-upload checklist after fit is confirmed.",
+    },
+  },
+  {
+    report: "nosignuptools-compress-image-to-100kb-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/compress-image-to-100kb-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Compress+Image+to+100KB",
+    payload: {
+      ...common,
+      name: "Compress Image to 100KB by PrintableTools Lab",
+      slug: "compress-image-to-100kb-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/compress-image-to-100kb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=image_100kb_2026_06&utm_content=compress_image_to_100kb_landing",
+      category: "productivity",
+      short_description: "Free no-signup 100KB image compressor with an optional one-contact USD 9 upload fix-plan request.",
+      long_description: "A free browser-based image compressor for 100KB photo upload limits on job portals, school forms, profile pages, and applications. It works without an account or server upload and now exposes a one-contact optional USD 9 Upload Limit Fix Plan request for exact public-safe settings, fallback steps, and a review-before-upload checklist after fit is confirmed.",
+    },
+  },
+  {
+    report: "nosignuptools-compress-image-to-200kb-submit.json",
+    expectedReviewUrl: "https://nosignuptools.com/tools/compress-image-to-200kb-by-printabletools-lab",
+    searchUrl: "https://nosignuptools.com/?q=Compress+Image+to+200KB",
+    payload: {
+      ...common,
+      name: "Compress Image to 200KB by PrintableTools Lab",
+      slug: "compress-image-to-200kb-by-printabletools-lab",
+      url: "https://printable-tools-lab.pages.dev/compress-image-to-200kb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=image_200kb_2026_06&utm_content=compress_image_to_200kb_landing",
+      category: "productivity",
+      short_description: "Free no-signup 200KB image compressor with an optional one-contact USD 9 upload fix-plan request.",
+      long_description: "A free browser-based image compressor for 200KB JPG, PNG, portal, and form upload limits. It works without an account or server upload and now exposes a one-contact optional USD 9 Upload Limit Fix Plan request for exact public-safe settings, fallback steps, and a review-before-upload checklist after fit is confirmed.",
+    },
+  },
 ];
 
 async function main() {

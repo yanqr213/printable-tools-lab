@@ -4,6 +4,7 @@ const path = require("path");
 const root = path.resolve(__dirname, "..");
 const reportsDir = path.join(root, "reports");
 const endpoint = "https://nologin.tools/api/submit";
+const rateLimitBackoffMs = 24 * 60 * 60 * 1000;
 
 const tags = [
   { key: "category", value: "Productivity" },
@@ -82,6 +83,57 @@ const backlog = [
       tags,
     },
   },
+  {
+    report: "nologin-compress-image-to-50kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-50kb",
+    payload: {
+      name: "Compress Image to 50KB",
+      url: "https://printable-tools-lab.pages.dev/compress-image-to-50kb/?utm_source=nologin&utm_medium=directory&utm_campaign=image_50kb_2026_06&utm_content=compress_image_to_50kb_landing",
+      description: "Free no-signup 50KB image compressor for strict upload forms, passport-style photos, portals, and applications. It runs locally in the browser without server upload and includes an optional one-contact USD 9 public-safe upload fix-plan invoice request for exact settings and fallback steps.",
+      pledge: true,
+      coreTask: "Compress an image toward a 50KB target without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
+  {
+    report: "nologin-compress-image-to-100kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-100kb",
+    payload: {
+      name: "Compress Image to 100KB",
+      url: "https://printable-tools-lab.pages.dev/compress-image-to-100kb/?utm_source=nologin&utm_medium=directory&utm_campaign=image_100kb_2026_06&utm_content=compress_image_to_100kb_landing",
+      description: "Free no-signup 100KB image compressor for profile photos, job portals, school forms, and application uploads. It runs locally in the browser without server upload and includes an optional one-contact USD 9 public-safe upload fix-plan invoice request for exact settings and fallback steps.",
+      pledge: true,
+      coreTask: "Compress an image toward a 100KB target without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
+  {
+    report: "nologin-compress-image-to-200kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-compress-image-to-200kb",
+    payload: {
+      name: "Compress Image to 200KB",
+      url: "https://printable-tools-lab.pages.dev/compress-image-to-200kb/?utm_source=nologin&utm_medium=directory&utm_campaign=image_200kb_2026_06&utm_content=compress_image_to_200kb_landing",
+      description: "Free no-signup 200KB image compressor for JPG, PNG, portal, and form upload limits. It runs locally in the browser without server upload and includes an optional one-contact USD 9 public-safe upload fix-plan invoice request for exact settings and fallback steps.",
+      pledge: true,
+      coreTask: "Compress an image toward a 200KB target without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
 ];
 
 async function main() {
@@ -103,6 +155,13 @@ async function submitOrSkip(item) {
   const existing = readJson(reportPath);
   if (existing && existing.ok && existing.response?.data?.slug) {
     return { report: item.report, skipped: true, reason: "existing_api_acceptance", reviewUrl: existing.reviewUrl };
+  }
+  const failedReportPath = path.join(reportsDir, item.report.replace(/\.json$/, "-failed.json"));
+  const failed = readJson(failedReportPath);
+  const failedAt = Date.parse(failed?.generatedAt || "");
+  const rateLimitedRecently = failed?.postSubmitCheck?.result === "rate_limited_pending_retry" && Number.isFinite(failedAt) && Date.now() - failedAt < rateLimitBackoffMs;
+  if (rateLimitedRecently) {
+    return { report: item.report, skipped: true, reason: "recent_rate_limit_pending_retry", reviewUrl: failed.reviewUrl };
   }
 
   const preSubmitCheck = await checkReviewUrl(item.reviewUrl);

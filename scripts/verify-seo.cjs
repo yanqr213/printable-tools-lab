@@ -1671,11 +1671,17 @@ else {
   if (!distribution.includes("NoLogin.tools Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing NoLogin upload error cheatsheet submission.");
   if (!distribution.includes("NoSignupTools Upload Limit Fixer listing") || !distribution.includes("upload_limit_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools upload limit fixer submission.");
   if (!distribution.includes("NoSignupTools Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools upload error cheatsheet submission.");
+  if (!distribution.includes("NoSignupTools Compress Image to 50KB listing") || !distribution.includes("image_50kb_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools compress image to 50KB submission.");
+  if (!distribution.includes("NoSignupTools Compress Image to 100KB listing") || !distribution.includes("image_100kb_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools compress image to 100KB submission.");
+  if (!distribution.includes("NoSignupTools Compress Image to 200KB listing") || !distribution.includes("image_200kb_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools compress image to 200KB submission.");
   if (!distribution.includes("FreeNoSignup Upload Limit Fixer listing") || !distribution.includes("utm_source=freenosignup")) failures.push("DISTRIBUTION.md missing FreeNoSignup upload limit fixer submission.");
   if (!distribution.includes("FreeNoSignup Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing FreeNoSignup upload error cheatsheet submission.");
   if (!distribution.includes("NoSignupTools Overdue Invoice Reminder listing") || !distribution.includes("utm_source=nosignuptools")) failures.push("DISTRIBUTION.md missing NoSignupTools overdue invoice reminder submission.");
   if (!distribution.includes("FreeNoSignup Overdue Invoice Reminder listing") || !distribution.includes("utm_source=freenosignup")) failures.push("DISTRIBUTION.md missing FreeNoSignup overdue invoice reminder submission.");
   if (!distribution.includes("NoLogin.tools Overdue Invoice Reminder listing") || !distribution.includes("utm_source=nologin")) failures.push("DISTRIBUTION.md missing NoLogin overdue invoice reminder submission.");
+  if (!distribution.includes("NoLogin.tools Compress Image to 50KB listing") || !distribution.includes("utm_source=nologin")) failures.push("DISTRIBUTION.md missing NoLogin compress image to 50KB submission.");
+  if (!distribution.includes("NoLogin.tools Compress Image to 100KB listing") || !distribution.includes("image_100kb_2026_06")) failures.push("DISTRIBUTION.md missing NoLogin compress image to 100KB submission.");
+  if (!distribution.includes("NoLogin.tools Compress Image to 200KB submission; rate limited")) failures.push("DISTRIBUTION.md missing NoLogin compress image to 200KB retry note.");
   if (!distribution.includes("free_tool_depth")) failures.push("DISTRIBUTION.md missing free-tool depth tracking campaign.");
   if (distribution.includes("Paid service sales pack")) failures.push("DISTRIBUTION.md should not promote paid service sales pack in the main distribution pack.");
   if (distribution.includes("service_sales_pack")) failures.push("DISTRIBUTION.md should not promote service sales tracking campaign.");
