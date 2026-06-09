@@ -1,0 +1,58 @@
+{
+  "generatedAt": "2026-06-09T07:54:57.559Z",
+  "endpoint": "https://nologin.tools/api/submit",
+  "status": 429,
+  "ok": false,
+  "preSubmitCheck": {
+    "checkedAt": "2026-06-09T07:54:56.895Z",
+    "url": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-140x60-50kb",
+    "ok": false,
+    "status": 404,
+    "matched": false,
+    "bytes": 10717
+  },
+  "payload": {
+    "name": "Signature 140x60 Under 50KB",
+    "url": "https://printable-tools-lab.pages.dev/signature-140x60-50kb/?utm_source=nologin&utm_medium=directory&utm_campaign=signature_140x60_50kb_2026_06&utm_content=signature_140x60_50kb_landing",
+    "description": "Free no-signup 140 x 60 signature under 50KB workflow for application, school, job, and admin upload forms. It points to local browser signature resize and compression checks with an optional USD 9 public-safe upload fix-plan request.",
+    "pledge": true,
+    "coreTask": "Resize and compress a signature image toward 140 x 60 pixels under 50KB without creating an account.",
+    "submitterEmail": "",
+    "repoUrl": "",
+    "twitterUrl": "",
+    "githubUrl": "",
+    "discordUrl": "",
+    "tags": [
+      {
+        "key": "category",
+        "value": "Productivity"
+      },
+      {
+        "key": "data",
+        "value": "Client-Side Only"
+      },
+      {
+        "key": "privacy",
+        "value": "Privacy Focused"
+      },
+      {
+        "key": "type",
+        "value": "Web App"
+      },
+      {
+        "key": "pricing",
+        "value": "Free"
+      }
+    ]
+  },
+  "response": {
+    "ok": false,
+    "error": "You have reached the daily submission limit (3 per 24h). Please try again later."
+  },
+  "reviewUrl": "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-140x60-50kb",
+  "postSubmitCheck": {
+    "checkedAt": "2026-06-09T07:54:57.436Z",
+    "status": 404,
+    "result": "rate_limited_pending_retry"
+  }
+}

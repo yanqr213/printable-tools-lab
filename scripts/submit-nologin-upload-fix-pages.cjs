@@ -134,6 +134,108 @@ const backlog = [
       tags,
     },
   },
+  {
+    report: "nologin-photo-200x230-20kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-200x230-20kb",
+    payload: {
+      name: "Photo 200x230 Under 20KB",
+      url: "https://printable-tools-lab.pages.dev/photo-200x230-20kb/?utm_source=nologin&utm_medium=directory&utm_campaign=photo_200x230_20kb_2026_06&utm_content=photo_200x230_20kb_landing",
+      description: "Free no-signup 200 x 230 photo under 20KB workflow for strict exam, profile, school, and application upload limits. It points to local browser resize and image-to-KB compression steps and includes an optional USD 9 public-safe upload fix-plan request.",
+      pledge: true,
+      coreTask: "Resize and compress a photo toward 200 x 230 pixels under 20KB without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
+  {
+    report: "nologin-photo-200x230-100kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-200x230-100kb",
+    payload: {
+      name: "Photo 200x230 Under 100KB",
+      url: "https://printable-tools-lab.pages.dev/photo-200x230-100kb/?utm_source=nologin&utm_medium=directory&utm_campaign=photo_200x230_100kb_2026_06&utm_content=photo_200x230_100kb_landing",
+      description: "Free no-signup 200 x 230 photo under 100KB workflow for job, profile, school, exam, and application upload forms. It runs through local browser resize and compression steps and includes an optional USD 9 public-safe upload fix-plan request.",
+      pledge: true,
+      coreTask: "Resize and compress a photo toward 200 x 230 pixels under 100KB without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
+  {
+    report: "nologin-photo-413x531-100kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-photo-413x531-100kb",
+    payload: {
+      name: "Photo 413x531 Under 100KB",
+      url: "https://printable-tools-lab.pages.dev/photo-413x531-100kb/?utm_source=nologin&utm_medium=directory&utm_campaign=photo_413x531_100kb_2026_06&utm_content=photo_413x531_100kb_landing",
+      description: "Free no-signup 413 x 531 photo under 100KB workflow for application, profile, exam, and document upload forms. It points to local browser portrait resize and image-to-KB compression steps with an optional USD 9 public-safe upload fix-plan request.",
+      pledge: true,
+      coreTask: "Resize and compress a photo toward 413 x 531 pixels under 100KB without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
+  {
+    report: "nologin-signature-140x60-20kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-140x60-20kb",
+    payload: {
+      name: "Signature 140x60 Under 20KB",
+      url: "https://printable-tools-lab.pages.dev/signature-140x60-20kb/?utm_source=nologin&utm_medium=directory&utm_campaign=signature_140x60_20kb_2026_06&utm_content=signature_140x60_20kb_landing",
+      description: "Free no-signup 140 x 60 signature under 20KB workflow for exam, job, school, and admin upload pages. It routes users to local browser signature resize and compression steps with an optional USD 9 public-safe upload fix-plan request.",
+      pledge: true,
+      coreTask: "Resize and compress a signature image toward 140 x 60 pixels under 20KB without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
+  {
+    report: "nologin-signature-140x60-50kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-140x60-50kb",
+    payload: {
+      name: "Signature 140x60 Under 50KB",
+      url: "https://printable-tools-lab.pages.dev/signature-140x60-50kb/?utm_source=nologin&utm_medium=directory&utm_campaign=signature_140x60_50kb_2026_06&utm_content=signature_140x60_50kb_landing",
+      description: "Free no-signup 140 x 60 signature under 50KB workflow for application, school, job, and admin upload forms. It points to local browser signature resize and compression checks with an optional USD 9 public-safe upload fix-plan request.",
+      pledge: true,
+      coreTask: "Resize and compress a signature image toward 140 x 60 pixels under 50KB without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
+  {
+    report: "nologin-signature-200x100-50kb-submit.json",
+    reviewUrl: "https://nologin.tools/tool/printable-tools-lab-pages-dev-signature-200x100-50kb",
+    payload: {
+      name: "Signature 200x100 Under 50KB",
+      url: "https://printable-tools-lab.pages.dev/signature-200x100-50kb/?utm_source=nologin&utm_medium=directory&utm_campaign=signature_200x100_50kb_2026_06&utm_content=signature_200x100_50kb_landing",
+      description: "Free no-signup 200 x 100 signature under 50KB workflow for job, exam, document, and admin upload pages. It routes users to local browser resize and image-to-KB compression steps with an optional USD 9 public-safe upload fix-plan request.",
+      pledge: true,
+      coreTask: "Resize and compress a signature image toward 200 x 100 pixels under 50KB without creating an account.",
+      submitterEmail: "",
+      repoUrl: "",
+      twitterUrl: "",
+      githubUrl: "",
+      discordUrl: "",
+      tags,
+    },
+  },
 ];
 
 async function main() {
@@ -143,7 +245,8 @@ async function main() {
   for (const item of backlog) {
     const result = await submitOrSkip(item);
     results.push(result);
-    await delay(3000);
+    if (result.rateLimited) break;
+    if (!result.skipped) await delay(3000);
   }
 
   console.log(JSON.stringify({ ok: results.every((item) => item.ok || item.skipped), results }, null, 2));
