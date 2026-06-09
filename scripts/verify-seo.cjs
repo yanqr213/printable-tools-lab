@@ -639,6 +639,9 @@ else {
   const opsMetricsScript = fs.readFileSync(opsMetricsFunctionFile, "utf8");
   if (!opsMetricsScript.includes("nextActions") || !opsMetricsScript.includes("pathRows") || !opsMetricsScript.includes("countPathEvent") || !opsMetricsScript.includes("/polite-payment-reminder-email/") || !opsMetricsScript.includes("row[`today_${event}`]") || !opsMetricsScript.includes("projectNextAction")) failures.push("Ops metrics API should expose project next actions and today source/tool/path fields.");
   if (!opsMetricsScript.includes("serviceInvoiceRequests") || !opsMetricsScript.includes("Fresh service invoice request today")) failures.push("Ops metrics API should prioritize explicit service invoice request close actions.");
+  for (const opsPath of ["/signature-under-20kb/", "/signature-under-50kb/", "/passport-photo-size-fixer/", "/resize-photo-413x531/"]) {
+    if (!opsMetricsScript.includes(opsPath)) failures.push(`Ops metrics API missing high-intent photo/signature path: ${opsPath}`);
+  }
 }
 const directoryMonitorFile = path.join(root, "scripts", "directory-monitor.cjs");
 if (!fs.existsSync(directoryMonitorFile)) failures.push("Missing directory monitor script.");
@@ -700,6 +703,9 @@ else {
   if (!directoryMonitorScript.includes("TechTools Launchpad extract text from PDF without uploading listing") || !directoryMonitorScript.includes("Extract Text From PDF Without Uploading")) failures.push("Directory monitor missing TechTools extract text from PDF without uploading listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad merge PDF without uploading listing") || !directoryMonitorScript.includes("Merge PDF Without Uploading")) failures.push("Directory monitor missing TechTools merge PDF without uploading listing tracking.");
   if (!directoryMonitorScript.includes("TechTools Launchpad split PDF without uploading listing") || !directoryMonitorScript.includes("Split PDF Without Uploading")) failures.push("Directory monitor missing TechTools split PDF without uploading listing tracking.");
+  if (!directoryMonitorScript.includes("TechTools Launchpad signature under 20KB listing") || !directoryMonitorScript.includes("Signature Under 20KB")) failures.push("Directory monitor missing TechTools signature 20KB listing tracking.");
+  if (!directoryMonitorScript.includes("TechTools Launchpad passport photo size fixer listing") || !directoryMonitorScript.includes("Passport Photo Size Fixer")) failures.push("Directory monitor missing TechTools passport photo size fixer listing tracking.");
+  if (!directoryMonitorScript.includes("TechTools Launchpad resize photo 413x531 listing") || !directoryMonitorScript.includes("Resize Photo 413x531")) failures.push("Directory monitor missing TechTools resize photo 413x531 listing tracking.");
   if (!directoryMonitorScript.includes("NoLogin.tools upload error cheatsheet listing") || !directoryMonitorScript.includes("Upload+Error+Cheatsheet")) failures.push("Directory monitor missing NoLogin upload error cheatsheet submission tracking.");
   if (!directoryMonitorScript.includes("expected.every")) failures.push("Directory monitor should require all expected listing markers to avoid search-query echo false positives.");
 }
@@ -732,6 +738,18 @@ if (!fs.existsSync(techtoolsJpg200kbToolFixReportFile)) failures.push("Missing T
 else {
   const report = fs.readFileSync(techtoolsJpg200kbToolFixReportFile, "utf8");
   if (!report.includes("https://techtools.cz/tools/launchpad/?tool=178") || !report.includes("jpg_200kb_tool_fix_2026_06") || !report.includes("compress_image_kb_tool_target_200kb")) failures.push("TechTools JPG under 200KB tool-fix submission report missing live evidence.");
+}
+for (const [reportName, shareUrl, campaign] of [
+  ["techtools-signature-under-20kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=215", "signature_20kb_upload_fix_2026_06"],
+  ["techtools-passport-photo-size-fixer-submit.json", "https://techtools.cz/tools/launchpad/?tool=216", "passport_photo_size_fixer_2026_06"],
+  ["techtools-resize-photo-413x531-submit.json", "https://techtools.cz/tools/launchpad/?tool=217", "resize_photo_413x531_2026_06"],
+]) {
+  const reportFile = path.join(root, "reports", reportName);
+  if (!fs.existsSync(reportFile)) failures.push(`Missing TechTools high-intent photo/signature submission evidence report: ${reportName}`);
+  else {
+    const report = fs.readFileSync(reportFile, "utf8");
+    if (!report.includes(shareUrl) || !report.includes(campaign)) failures.push(`TechTools high-intent photo/signature submission report missing live evidence: ${reportName}`);
+  }
 }
 const techtoolsResumePdfTooLargeReportFile = path.join(root, "reports", "techtools-resume-pdf-too-large-upload-fix-submit.json");
 if (!fs.existsSync(techtoolsResumePdfTooLargeReportFile)) failures.push("Missing TechTools resume PDF too large upload-fix submission evidence report.");
@@ -1360,6 +1378,9 @@ else {
   if (!html.includes("TechTools Extract Text From PDF Without Uploading") || !html.includes("https://techtools.cz/tools/launchpad/?tool=212")) failures.push("Directory submission pack missing TechTools extract text from PDF without uploading live listing.");
   if (!html.includes("TechTools Merge PDF Without Uploading") || !html.includes("https://techtools.cz/tools/launchpad/?tool=213")) failures.push("Directory submission pack missing TechTools merge PDF without uploading live listing.");
   if (!html.includes("TechTools Split PDF Without Uploading") || !html.includes("https://techtools.cz/tools/launchpad/?tool=214")) failures.push("Directory submission pack missing TechTools split PDF without uploading live listing.");
+  if (!html.includes("TechTools Signature Under 20KB") || !html.includes("https://techtools.cz/tools/launchpad/?tool=215")) failures.push("Directory submission pack missing TechTools signature 20KB live listing.");
+  if (!html.includes("TechTools Passport Photo Size Fixer") || !html.includes("https://techtools.cz/tools/launchpad/?tool=216")) failures.push("Directory submission pack missing TechTools passport photo size fixer live listing.");
+  if (!html.includes("TechTools Resize Photo 413x531") || !html.includes("https://techtools.cz/tools/launchpad/?tool=217")) failures.push("Directory submission pack missing TechTools resize photo 413x531 live listing.");
   if (!html.includes("NoLogin.tools Upload Error Cheatsheet") || !html.includes("https://nologin.tools/tool/printable-tools-lab-pages-dev-upload-error-cheatsheet")) failures.push("Directory submission pack missing NoLogin upload error cheatsheet submission.");
   if (!html.includes("NoSignupTools Upload Limit Fixer") || !html.includes("https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools upload limit fixer submission.");
   if (!html.includes("NoSignupTools Upload Error Cheatsheet") || !html.includes("https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab")) failures.push("Directory submission pack missing NoSignupTools upload error cheatsheet submission.");
@@ -1905,6 +1926,9 @@ else {
   if (!distribution.includes("TechTools Extract Text From PDF Without Uploading listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=212")) failures.push("DISTRIBUTION.md missing TechTools extract text from PDF without uploading live listing.");
   if (!distribution.includes("TechTools Merge PDF Without Uploading listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=213")) failures.push("DISTRIBUTION.md missing TechTools merge PDF without uploading live listing.");
   if (!distribution.includes("TechTools Split PDF Without Uploading listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=214")) failures.push("DISTRIBUTION.md missing TechTools split PDF without uploading live listing.");
+  if (!distribution.includes("TechTools Signature Under 20KB listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=215")) failures.push("DISTRIBUTION.md missing TechTools signature 20KB live listing.");
+  if (!distribution.includes("TechTools Passport Photo Size Fixer listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=216")) failures.push("DISTRIBUTION.md missing TechTools passport photo size fixer live listing.");
+  if (!distribution.includes("TechTools Resize Photo 413x531 listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=217")) failures.push("DISTRIBUTION.md missing TechTools resize photo 413x531 live listing.");
   if (!distribution.includes("NoLogin.tools Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing NoLogin upload error cheatsheet submission.");
   if (!distribution.includes("NoSignupTools Upload Limit Fixer listing") || !distribution.includes("upload_limit_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools upload limit fixer submission.");
   if (!distribution.includes("NoSignupTools Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools upload error cheatsheet submission.");

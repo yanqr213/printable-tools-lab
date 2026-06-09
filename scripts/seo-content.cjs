@@ -8035,6 +8035,7 @@ function opsUploadFixInvoicePathRows(paths = []) {
     "/jpg-must-be-under-200kb/",
     "/png-screenshot-too-large/",
     "/resume-pdf-too-large/",
+    "/passport-photo-size-fixer/",
     "/passport-photo-35x45mm/",
     "/photo-200x230-50kb/",
     "/signature-under-20kb/",
@@ -8042,6 +8043,7 @@ function opsUploadFixInvoicePathRows(paths = []) {
     "/signature-under-50kb/",
     "/resize-signature-200x100/",
     "/resize-photo-200x230/",
+    "/resize-photo-413x531/",
   ];
   const rowsByPath = new Map((Array.isArray(paths) ? paths : []).map((row) => [String(row.path || ""), row]));
   return uploadPaths
@@ -9209,6 +9211,9 @@ function directorySubmissionHtml() {
     ["TechTools Extract Text From PDF Without Uploading", "https://techtools.cz/tools/launchpad/?tool=212", "No-upload PDF text extraction listing for copying notes, forms, resumes, and public-safe drafts."],
     ["TechTools Merge PDF Without Uploading", "https://techtools.cz/tools/launchpad/?tool=213", "No-upload PDF merge listing for visitors combining forms, receipts, scans, and document packets."],
     ["TechTools Split PDF Without Uploading", "https://techtools.cz/tools/launchpad/?tool=214", "No-upload PDF split listing for visitors trimming packets, pulling pages, and preparing smaller upload-ready PDFs."],
+    ["TechTools Signature Under 20KB", "https://techtools.cz/tools/launchpad/?tool=215", "Strict signature 20KB listing for exam, job, admin, and application upload visitors with the $9 upload fix request path."],
+    ["TechTools Passport Photo Size Fixer", "https://techtools.cz/tools/launchpad/?tool=216", "Passport photo dimension-and-KB listing for ID-style upload visitors who need crop, resize, and compression steps."],
+    ["TechTools Resize Photo 413x531", "https://techtools.cz/tools/launchpad/?tool=217", "Exact 413 x 531 px photo resize listing for application and profile upload visitors."],
     ["NoSignupTools Upload Limit Fixer", "https://nosignuptools.com/tools/upload-limit-fixer-by-printabletools-lab", "Pending public API submission for a no-signup upload error matcher."],
     ["NoSignupTools Upload Error Cheatsheet", "https://nosignuptools.com/tools/upload-error-cheatsheet-by-printabletools-lab", "Pending public API submission for exact upload-error fix routing."],
     ["NoSignupTools PDF Under 2MB Upload Fix", "https://nosignuptools.com/tools/pdf-under-2mb-upload-fix-by-printabletools-lab", "Pending public API submission for the PDF 2MB upload-limit page with the $9 fix request path."],

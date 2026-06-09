@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-09T05:20:57.138Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Passport Photo Size Fixer by PrintableTools Lab",
+    "tagline": "Free no-signup passport photo resize and KB fix workflow.",
+    "description": "PrintableTools Lab Passport Photo Size Fixer helps people blocked when an ID-style photo needs both exact dimensions and a file-size cap. The page routes visitors to local browser crop, resize, and image-to-KB steps for passport-style, school, exam, and application uploads, then offers an optional public-safe $9 Upload Limit Fix Plan request without asking for private files, IDs, logins, or payment details.",
+    "url": "https://printable-tools-lab.pages.dev/passport-photo-size-fixer/?utm_source=techtools&utm_medium=directory&utm_campaign=passport_photo_size_fixer_2026_06&utm_content=passport_photo_size_fixer_landing",
+    "category": "utilities",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 passport photo size fixer upload-fix landing path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 216,
+      "name": "Passport Photo Size Fixer by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/passport-photo-size-fixer/?utm_source=techtools&utm_medium=directory&utm_campaign=passport_photo_size_fixer_2026_06&utm_content=passport_photo_size_fixer_landing",
+      "tagline": "Free no-signup passport photo resize and KB fix workflow.",
+      "description": "PrintableTools Lab Passport Photo Size Fixer helps people blocked when an ID-style photo needs both exact dimensions and a file-size cap. The page routes visitors to local browser crop, resize, and image-to-KB steps for passport-style, school, exam, and application uploads, then offers an optional public-safe $9 Upload Limit Fix Plan request without asking for private files, IDs, logins, or payment details.",
+      "category": "utilities",
+      "category_label": "Utilities",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 passport photo size fixer upload-fix landing path",
+      "launch_date": "2026-06-09",
+      "created_at": "2026-06-09T05:20:57Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=216"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=216"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=216",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/216"
+}

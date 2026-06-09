@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-09T05:13:00.573Z",
+  "generatedAt": "2026-06-09T05:25:45.664Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 59,
+  "listedCount": 62,
   "pendingCount": 47,
   "errorCount": 1,
   "results": [
@@ -78,7 +78,7 @@
           "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
           "ok": true,
           "status": 200,
-          "bytes": 104290,
+          "bytes": 105892,
           "matched": true
         }
       ]
@@ -1118,6 +1118,72 @@
       ]
     },
     {
+      "name": "TechTools Launchpad signature under 20KB listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=215",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/215",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Signature Under 20KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the strict signature 20KB upload-fix landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/215",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/215",
+          "ok": true,
+          "status": 200,
+          "bytes": 1259,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad passport photo size fixer listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=216",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/216",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Passport Photo Size Fixer"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the passport photo dimension-and-KB upload-fix path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/216",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/216",
+          "ok": true,
+          "status": 200,
+          "bytes": 1293,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad resize photo 413x531 listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=217",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/217",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Resize Photo 413x531"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the exact 413 x 531 px photo resize path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/217",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/217",
+          "ok": true,
+          "status": 200,
+          "bytes": 1246,
+          "matched": true
+        }
+      ]
+    },
+    {
       "name": "NoSignupTools",
       "url": "https://nosignuptools.com/",
       "searchUrl": "https://nosignuptools.com/?q=PrintableTools+Lab",
@@ -1343,7 +1409,7 @@
           "url": "https://nosignuptools.com/tools/email-attachment-too-large-fix-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20124,
+          "bytes": 20081,
           "matched": false
         }
       ]
@@ -1401,7 +1467,7 @@
           "url": "https://nosignuptools.com/tools/pdf-under-5mb-upload-fix-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20063,
+          "bytes": 20106,
           "matched": false
         }
       ]
@@ -2155,7 +2221,7 @@
           "url": "https://nosignuptools.com/tools/convert-image-format-without-uploading-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20148,
+          "bytes": 20105,
           "matched": false
         }
       ]
@@ -2778,7 +2844,7 @@
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 298680,
+          "bytes": 298684,
           "matched": true
         },
         {

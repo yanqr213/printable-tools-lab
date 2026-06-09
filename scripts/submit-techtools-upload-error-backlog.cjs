@@ -426,6 +426,48 @@ const backlog = [
       submitted_by: "Codex traffic acquisition run 2026-06-09 split PDF no-upload landing path",
     },
   },
+  {
+    report: "techtools-signature-under-20kb-submit.json",
+    payload: {
+      name: "Signature Under 20KB by PrintableTools Lab",
+      tagline: "Free no-signup signature image compressor for strict 20KB upload limits.",
+      description: "PrintableTools Lab Signature Under 20KB helps people blocked by tiny scanned signature, exam form, job portal, admin, and application upload caps. The page opens the browser image-to-KB compressor with a 20KB target, keeps ordinary files local during use, and includes an optional public-safe $9 Upload Limit Fix Plan request for exact settings and fallback steps after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/signature-under-20kb/?utm_source=techtools&utm_medium=directory&utm_campaign=signature_20kb_upload_fix_2026_06&utm_content=signature_under_20kb_landing",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 signature 20KB upload-fix landing path",
+    },
+  },
+  {
+    report: "techtools-passport-photo-size-fixer-submit.json",
+    payload: {
+      name: "Passport Photo Size Fixer by PrintableTools Lab",
+      tagline: "Free no-signup passport photo resize and KB fix workflow.",
+      description: "PrintableTools Lab Passport Photo Size Fixer helps people blocked when an ID-style photo needs both exact dimensions and a file-size cap. The page routes visitors to local browser crop, resize, and image-to-KB steps for passport-style, school, exam, and application uploads, then offers an optional public-safe $9 Upload Limit Fix Plan request without asking for private files, IDs, logins, or payment details.",
+      url: "https://printable-tools-lab.pages.dev/passport-photo-size-fixer/?utm_source=techtools&utm_medium=directory&utm_campaign=passport_photo_size_fixer_2026_06&utm_content=passport_photo_size_fixer_landing",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 passport photo size fixer upload-fix landing path",
+    },
+  },
+  {
+    report: "techtools-resize-photo-413x531-submit.json",
+    payload: {
+      name: "Resize Photo 413x531 by PrintableTools Lab",
+      tagline: "Free no-signup 413 x 531 photo resize workflow for upload forms.",
+      description: "PrintableTools Lab Resize Photo 413x531 helps people blocked by exact 413 x 531 px photo requirements on application, profile, exam, admin, and document upload forms. The page opens the browser image resizer with width 413, height 531, and cover fit settings, keeps ordinary files local, and includes an optional public-safe $9 Upload Limit Fix Plan request after fit is confirmed.",
+      url: "https://printable-tools-lab.pages.dev/resize-photo-413x531/?utm_source=techtools&utm_medium=directory&utm_campaign=resize_photo_413x531_2026_06&utm_content=resize_photo_413x531_landing",
+      category: "utilities",
+      maker_name: "PrintableTools Lab",
+      maker_url: "https://printable-tools-lab.pages.dev/",
+      logo_url: "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      submitted_by: "Codex traffic acquisition run 2026-06-09 resize photo 413x531 upload-fix landing path",
+    },
+  },
 ];
 
 async function main() {
