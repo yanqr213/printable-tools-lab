@@ -6181,7 +6181,7 @@
   }
 
   function uploadFixPaidPathNote() {
-    return `<p class="notice compact-notice" data-upload-fix-paid-path><strong>30-second paid path:</strong> add where the external $9 invoice link should go, send the public-safe request, then receive the real checkout or invoice only after fit is confirmed.</p>`;
+    return `<p class="notice compact-notice" data-upload-fix-paid-path><strong>30-second paid path:</strong> add where the external $9 checkout or invoice link should go, send the public-safe request, then receive the real checkout or invoice only after fit is confirmed.</p>`;
   }
 
   function renderPdfToolUploadFixRequest(tool, initialValues = {}) {
@@ -6288,9 +6288,10 @@
               <input type="hidden" name="utmContent" value="compress-image-kb-target-panel">
               <input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}" data-upload-fix-plan-summary data-compress-image-kb-tool-fix-summary>
               <label class="field">
-                <span>Reply email or public contact</span>
-                <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or @publichandle" required>
+                <span>Where should the external $9 checkout or invoice link go?</span>
+                <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com, @publichandle, or https://example.com/contact" required>
               </label>
+              <p class="help">One reply email, @handle, or public contact URL unlocks the private $9 follow-up path. No payment is collected here.</p>
               <input type="hidden" name="needBy" value="">
               <input type="hidden" name="consent" value="on">
               <p class="help compact-consent-note">By sending, you confirm no actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details are included.</p>
@@ -16166,7 +16167,7 @@ ${paragraphs.join("\n")}
       if (needed) {
         return `Add one reply email, @handle, or public contact URL so the external ${price} invoice link can be sent after fit is confirmed.`;
       }
-      return `This is where the external ${price} invoice link will be sent after fit is confirmed. No payment is collected here.`;
+      return `One reply email, @handle, or public contact URL unlocks the private ${price} follow-up path. This is where the external ${price} checkout or invoice link will be sent after fit is confirmed. No payment is collected here.`;
     }
     if (needed) {
       return `Add one reply email, @handle, or public contact URL, then press Send again for the ${privatePath}. No payment is collected here.`;

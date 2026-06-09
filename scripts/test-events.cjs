@@ -99,7 +99,17 @@ async function main() {
   assert(opsInvoicePath.download_pdf === 1 && opsInvoicePath.today_download_pdf === 1, "Project ops metrics should expose path-level download funnels");
   const opsPolitePath = printableProject.paths.find((row) => row.path === "/polite-payment-reminder-email/");
   assert(opsPolitePath && opsPolitePath.service_request_intent === 0, "Project ops metrics should include high-intent invoice reminder paths before first signal");
-  for (const opsSeedPath of ["/upload-error-cheatsheet/", "/compress-image-no-upload/", "/pdf-to-jpg-no-upload/", "/merge-pdf-no-upload/"]) {
+  for (const opsSeedPath of [
+    "/upload-error-cheatsheet/",
+    "/pdf-size-reducer/",
+    "/pdf-must-be-under-2mb/",
+    "/document-must-be-under-5mb/",
+    "/image-must-be-under-500kb/",
+    "/compress-image-to-20kb/",
+    "/compress-image-no-upload/",
+    "/pdf-to-jpg-no-upload/",
+    "/merge-pdf-no-upload/",
+  ]) {
     const row = printableProject.paths.find((pathRow) => pathRow.path === opsSeedPath);
     assert(row && row.page_view === 0 && row.service_request_intent === 0, `Project ops metrics should seed ${opsSeedPath} before first signal`);
   }
