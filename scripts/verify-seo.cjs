@@ -497,7 +497,7 @@ const indexNowScriptFile = path.join(root, "scripts", "indexnow.cjs");
 if (!fs.existsSync(indexNowScriptFile)) failures.push("Missing IndexNow submission script.");
 else {
   const indexNowScript = fs.readFileSync(indexNowScriptFile, "utf8");
-  for (const route of ["upload-error-cheatsheet", "upload-limit-fix-plan", "invoice-followup-copy-pack", "image-dimensions-600x600", "pdf-not-accepted-jpg-required", "email-attachment-too-large", "pdf-must-be-under-100kb", "pdf-must-be-under-200kb", "pdf-must-be-under-300kb", "pdf-must-be-under-10mb", "compress-pdf-to-100kb", "compress-pdf-to-200kb", "compress-pdf-to-300kb", "compress-pdf-to-10mb"]) {
+  for (const route of ["upload-error-cheatsheet", "upload-limit-fix-plan", "invoice-followup-copy-pack", "image-dimensions-600x600", "pdf-not-accepted-jpg-required", "email-attachment-too-large", "pdf-must-be-under-100kb", "pdf-must-be-under-200kb", "pdf-must-be-under-300kb", "pdf-must-be-under-10mb", "compress-pdf-to-100kb", "compress-pdf-to-200kb", "compress-pdf-to-300kb", "compress-pdf-to-10mb", "photo-120x160-20kb", "photo-160x200-30kb", "photo-300x400-100kb", "photo-350x450-100kb", "photo-360x480-100kb", "photo-420x560-200kb"]) {
     if (!indexNowScript.includes(`siteUrl("${route}")`)) failures.push(`IndexNow priority list missing ${route}.`);
   }
 }
@@ -732,7 +732,7 @@ else {
   const opsMetricsScript = fs.readFileSync(opsMetricsFunctionFile, "utf8");
   if (!opsMetricsScript.includes("nextActions") || !opsMetricsScript.includes("pathRows") || !opsMetricsScript.includes("countPathEvent") || !opsMetricsScript.includes("/polite-payment-reminder-email/") || !opsMetricsScript.includes("row[`today_${event}`]") || !opsMetricsScript.includes("projectNextAction")) failures.push("Ops metrics API should expose project next actions and today source/tool/path fields.");
   if (!opsMetricsScript.includes("serviceInvoiceRequests") || !opsMetricsScript.includes("Fresh service invoice request today")) failures.push("Ops metrics API should prioritize explicit service invoice request close actions.");
-  for (const opsPath of ["/signature-under-20kb/", "/signature-under-50kb/", "/passport-photo-size-fixer/", "/resize-photo-413x531/", "/photo-295x413-35kb/", "/photo-512x512-100kb/", "/photo-150x200-20kb/", "/photo-600x800-200kb/", "/signature-160x70-20kb/", "/signature-400x150-50kb/", "/signature-100x50-10kb/", "/signature-400x200-100kb/"]) {
+  for (const opsPath of ["/signature-under-20kb/", "/signature-under-50kb/", "/passport-photo-size-fixer/", "/resize-photo-413x531/", "/photo-295x413-35kb/", "/photo-512x512-100kb/", "/photo-150x200-20kb/", "/photo-600x800-200kb/", "/photo-120x160-20kb/", "/photo-160x200-30kb/", "/photo-300x400-100kb/", "/photo-350x450-100kb/", "/photo-360x480-100kb/", "/photo-420x560-200kb/", "/signature-160x70-20kb/", "/signature-400x150-50kb/", "/signature-100x50-10kb/", "/signature-400x200-100kb/"]) {
     if (!opsMetricsScript.includes(opsPath)) failures.push(`Ops metrics API missing high-intent photo/signature path: ${opsPath}`);
   }
 }
@@ -775,6 +775,12 @@ else {
     "Photo 180x240 Under 50KB",
     "Photo 400x514 Under 100KB",
     "Photo 600x800 Under 200KB",
+    "Photo 120x160 Under 20KB",
+    "Photo 160x200 Under 30KB",
+    "Photo 300x400 Under 100KB",
+    "Photo 350x450 Under 100KB",
+    "Photo 360x480 Under 100KB",
+    "Photo 420x560 Under 200KB",
     "Signature 160x70 Under 20KB",
     "Signature 250x80 Under 50KB",
     "Signature 300x60 Under 20KB",
@@ -807,6 +813,12 @@ else {
     "Photo 180x240 Under 50KB",
     "Photo 400x514 Under 100KB",
     "Photo 600x800 Under 200KB",
+    "Photo 120x160 Under 20KB",
+    "Photo 160x200 Under 30KB",
+    "Photo 300x400 Under 100KB",
+    "Photo 350x450 Under 100KB",
+    "Photo 360x480 Under 100KB",
+    "Photo 420x560 Under 200KB",
     "Signature Under 20KB",
     "Signature 160x70 Under 20KB",
     "Signature 250x80 Under 50KB",
@@ -827,6 +839,12 @@ else {
     "PDF Must Be Under 200KB Fix",
     "PDF Must Be Under 300KB Fix",
     "PDF Must Be Under 10MB Fix",
+    "Photo 120x160 Under 20KB",
+    "Photo 160x200 Under 30KB",
+    "Photo 300x400 Under 100KB",
+    "Photo 350x450 Under 100KB",
+    "Photo 360x480 Under 100KB",
+    "Photo 420x560 Under 200KB",
     "Photo 480x640 Under 200KB",
     "Photo 512x512 Under 100KB",
     "Signature 160x70 Under 20KB",
@@ -997,6 +1015,12 @@ for (const [reportName, shareUrl, campaign] of [
   ["techtools-photo-180x240-50kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=247", "photo_180x240_50kb_2026_06"],
   ["techtools-photo-400x514-100kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=248", "photo_400x514_100kb_2026_06"],
   ["techtools-photo-600x800-200kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=249", "photo_600x800_200kb_2026_06"],
+  ["techtools-photo-120x160-20kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=263", "photo_120x160_20kb_2026_06"],
+  ["techtools-photo-160x200-30kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=264", "photo_160x200_30kb_2026_06"],
+  ["techtools-photo-300x400-100kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=265", "photo_300x400_100kb_2026_06"],
+  ["techtools-photo-350x450-100kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=266", "photo_350x450_100kb_2026_06"],
+  ["techtools-photo-360x480-100kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=267", "photo_360x480_100kb_2026_06"],
+  ["techtools-photo-420x560-200kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=268", "photo_420x560_200kb_2026_06"],
   ["techtools-signature-100x50-10kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=250", "signature_100x50_10kb_2026_06"],
   ["techtools-signature-200x60-20kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=251", "signature_200x60_20kb_2026_06"],
   ["techtools-signature-256x64-20kb-submit.json", "https://techtools.cz/tools/launchpad/?tool=252", "signature_256x64_20kb_2026_06"],
@@ -1127,6 +1151,12 @@ for (const [label, reportName, campaign, liveUrl, title] of [
   ["PDF must be under 200KB", "techtools-pdf-must-be-under-200kb-submit.json", "pdf_under_200kb_upload_fix_2026_06", "https://techtools.cz/tools/launchpad/?tool=260", "PDF Must Be Under 200KB Fix"],
   ["PDF must be under 300KB", "techtools-pdf-must-be-under-300kb-submit.json", "pdf_under_300kb_upload_fix_2026_06", "https://techtools.cz/tools/launchpad/?tool=261", "PDF Must Be Under 300KB Fix"],
   ["PDF must be under 10MB", "techtools-pdf-must-be-under-10mb-submit.json", "pdf_under_10mb_upload_fix_2026_06", "https://techtools.cz/tools/launchpad/?tool=262", "PDF Must Be Under 10MB Fix"],
+  ["photo 120x160 under 20KB", "techtools-photo-120x160-20kb-submit.json", "photo_120x160_20kb_2026_06", "https://techtools.cz/tools/launchpad/?tool=263", "Photo 120x160 Under 20KB"],
+  ["photo 160x200 under 30KB", "techtools-photo-160x200-30kb-submit.json", "photo_160x200_30kb_2026_06", "https://techtools.cz/tools/launchpad/?tool=264", "Photo 160x200 Under 30KB"],
+  ["photo 300x400 under 100KB", "techtools-photo-300x400-100kb-submit.json", "photo_300x400_100kb_2026_06", "https://techtools.cz/tools/launchpad/?tool=265", "Photo 300x400 Under 100KB"],
+  ["photo 350x450 under 100KB", "techtools-photo-350x450-100kb-submit.json", "photo_350x450_100kb_2026_06", "https://techtools.cz/tools/launchpad/?tool=266", "Photo 350x450 Under 100KB"],
+  ["photo 360x480 under 100KB", "techtools-photo-360x480-100kb-submit.json", "photo_360x480_100kb_2026_06", "https://techtools.cz/tools/launchpad/?tool=267", "Photo 360x480 Under 100KB"],
+  ["photo 420x560 under 200KB", "techtools-photo-420x560-200kb-submit.json", "photo_420x560_200kb_2026_06", "https://techtools.cz/tools/launchpad/?tool=268", "Photo 420x560 Under 200KB"],
 ]) {
   const reportFile = path.join(root, "reports", reportName);
   if (!fs.existsSync(reportFile)) failures.push(`Missing TechTools ${label} submission evidence report.`);
@@ -1168,7 +1198,7 @@ for (const [label, fileName, campaign, liveUrl, title] of [
 if (!techtoolsUploadBacklogScript) failures.push("Missing TechTools upload-error backlog retry script.");
 else {
   const script = techtoolsUploadBacklogScript;
-  if (!script.includes("Image Dimensions 600x600 Upload Fix") || !script.includes("PDF Not Accepted JPG Required Fix") || !script.includes("Email Attachment Too Large PDF Fix") || !script.includes("PDF Under 2MB Upload Fix") || !script.includes("Resume PDF Under 2MB Upload Fix") || !script.includes("Document Under 5MB Upload Fix") || !script.includes("PDF Size Reducer") || !script.includes("Compress PDF to 100KB") || !script.includes("Compress PDF to 200KB") || !script.includes("Compress PDF to 300KB") || !script.includes("Compress PDF to 10MB") || !script.includes("PDF Must Be Under 100KB Fix") || !script.includes("PDF Must Be Under 200KB Fix") || !script.includes("PDF Must Be Under 300KB Fix") || !script.includes("PDF Must Be Under 10MB Fix") || !script.includes("Compress PDF to 2MB") || !script.includes("Compress PDF to 5MB") || !script.includes("Compress PDF Without Uploading") || !script.includes("PDF to JPG Without Uploading") || !script.includes("JPG to PDF Without Uploading") || !script.includes("Extract Text From PDF Without Uploading") || !script.includes("Merge PDF Without Uploading") || !script.includes("Split PDF Without Uploading") || !script.includes("Photo 150x200 Under 20KB") || !script.includes("Signature 400x200 Under 100KB") || !script.includes("rateLimited") || !script.includes("techtools-upload-error-backlog-rate-limit.json")) failures.push("TechTools upload-error backlog retry script missing remaining high-intent listing payloads or rate-limit handling.");
+  if (!script.includes("Image Dimensions 600x600 Upload Fix") || !script.includes("PDF Not Accepted JPG Required Fix") || !script.includes("Email Attachment Too Large PDF Fix") || !script.includes("PDF Under 2MB Upload Fix") || !script.includes("Resume PDF Under 2MB Upload Fix") || !script.includes("Document Under 5MB Upload Fix") || !script.includes("PDF Size Reducer") || !script.includes("Compress PDF to 100KB") || !script.includes("Compress PDF to 200KB") || !script.includes("Compress PDF to 300KB") || !script.includes("Compress PDF to 10MB") || !script.includes("PDF Must Be Under 100KB Fix") || !script.includes("PDF Must Be Under 200KB Fix") || !script.includes("PDF Must Be Under 300KB Fix") || !script.includes("PDF Must Be Under 10MB Fix") || !script.includes("Compress PDF to 2MB") || !script.includes("Compress PDF to 5MB") || !script.includes("Compress PDF Without Uploading") || !script.includes("PDF to JPG Without Uploading") || !script.includes("JPG to PDF Without Uploading") || !script.includes("Extract Text From PDF Without Uploading") || !script.includes("Merge PDF Without Uploading") || !script.includes("Split PDF Without Uploading") || !script.includes("Photo 120x160 Under 20KB") || !script.includes("Photo 160x200 Under 30KB") || !script.includes("Photo 300x400 Under 100KB") || !script.includes("Photo 350x450 Under 100KB") || !script.includes("Photo 360x480 Under 100KB") || !script.includes("Photo 420x560 Under 200KB") || !script.includes("Photo 150x200 Under 20KB") || !script.includes("Signature 400x200 Under 100KB") || !script.includes("rateLimited") || !script.includes("techtools-upload-error-backlog-rate-limit.json")) failures.push("TechTools upload-error backlog retry script missing remaining high-intent listing payloads or rate-limit handling.");
 }
 for (const [name, reportName, campaign, reviewUrl] of [
   ["PDF under 2MB", "nosignuptools-pdf-under-2mb-upload-fix-submit.json", "pdf_under_2mb_upload_fix_2026_06", "https://nosignuptools.com/tools/pdf-under-2mb-upload-fix-by-printabletools-lab"],
@@ -1238,6 +1268,12 @@ for (const [name, reportName, campaign, reviewUrl] of [
   ["photo 180x240 under 50KB", "nosignuptools-photo-180x240-50kb-submit.json", "photo_180x240_50kb_2026_06", "https://nosignuptools.com/tools/photo-180x240-under-50kb-by-printabletools-lab"],
   ["photo 400x514 under 100KB", "nosignuptools-photo-400x514-100kb-submit.json", "photo_400x514_100kb_2026_06", "https://nosignuptools.com/tools/photo-400x514-under-100kb-by-printabletools-lab"],
   ["photo 600x800 under 200KB", "nosignuptools-photo-600x800-200kb-submit.json", "photo_600x800_200kb_2026_06", "https://nosignuptools.com/tools/photo-600x800-under-200kb-by-printabletools-lab"],
+  ["photo 120x160 under 20KB", "nosignuptools-photo-120x160-20kb-submit.json", "photo_120x160_20kb_2026_06", "https://nosignuptools.com/tools/photo-120x160-under-20kb-by-printabletools-lab"],
+  ["photo 160x200 under 30KB", "nosignuptools-photo-160x200-30kb-submit.json", "photo_160x200_30kb_2026_06", "https://nosignuptools.com/tools/photo-160x200-under-30kb-by-printabletools-lab"],
+  ["photo 300x400 under 100KB", "nosignuptools-photo-300x400-100kb-submit.json", "photo_300x400_100kb_2026_06", "https://nosignuptools.com/tools/photo-300x400-under-100kb-by-printabletools-lab"],
+  ["photo 350x450 under 100KB", "nosignuptools-photo-350x450-100kb-submit.json", "photo_350x450_100kb_2026_06", "https://nosignuptools.com/tools/photo-350x450-under-100kb-by-printabletools-lab"],
+  ["photo 360x480 under 100KB", "nosignuptools-photo-360x480-100kb-submit.json", "photo_360x480_100kb_2026_06", "https://nosignuptools.com/tools/photo-360x480-under-100kb-by-printabletools-lab"],
+  ["photo 420x560 under 200KB", "nosignuptools-photo-420x560-200kb-submit.json", "photo_420x560_200kb_2026_06", "https://nosignuptools.com/tools/photo-420x560-under-200kb-by-printabletools-lab"],
   ["signature 150x50 under 20KB", "nosignuptools-signature-150x50-20kb-submit.json", "signature_150x50_20kb_2026_06", "https://nosignuptools.com/tools/signature-150x50-under-20kb-by-printabletools-lab"],
   ["signature 160x70 under 20KB", "nosignuptools-signature-160x70-20kb-submit.json", "signature_160x70_20kb_2026_06", "https://nosignuptools.com/tools/signature-160x70-under-20kb-by-printabletools-lab"],
   ["signature 200x50 under 20KB", "nosignuptools-signature-200x50-20kb-submit.json", "signature_200x50_20kb_2026_06", "https://nosignuptools.com/tools/signature-200x50-under-20kb-by-printabletools-lab"],
@@ -1285,6 +1321,12 @@ for (const [name, reportName, campaign, searchUrl] of [
   ["photo 180x240 under 50KB", "freenosignup-photo-180x240-50kb-submit.json", "photo_180x240_50kb_2026_06", "https://freenosignup.com/?s=Photo+180x240+Under+50KB"],
   ["photo 400x514 under 100KB", "freenosignup-photo-400x514-100kb-submit.json", "photo_400x514_100kb_2026_06", "https://freenosignup.com/?s=Photo+400x514+Under+100KB"],
   ["photo 600x800 under 200KB", "freenosignup-photo-600x800-200kb-submit.json", "photo_600x800_200kb_2026_06", "https://freenosignup.com/?s=Photo+600x800+Under+200KB"],
+  ["photo 120x160 under 20KB", "freenosignup-photo-120x160-20kb-submit.json", "photo_120x160_20kb_2026_06", "https://freenosignup.com/?s=Photo+120x160+Under+20KB"],
+  ["photo 160x200 under 30KB", "freenosignup-photo-160x200-30kb-submit.json", "photo_160x200_30kb_2026_06", "https://freenosignup.com/?s=Photo+160x200+Under+30KB"],
+  ["photo 300x400 under 100KB", "freenosignup-photo-300x400-100kb-submit.json", "photo_300x400_100kb_2026_06", "https://freenosignup.com/?s=Photo+300x400+Under+100KB"],
+  ["photo 350x450 under 100KB", "freenosignup-photo-350x450-100kb-submit.json", "photo_350x450_100kb_2026_06", "https://freenosignup.com/?s=Photo+350x450+Under+100KB"],
+  ["photo 360x480 under 100KB", "freenosignup-photo-360x480-100kb-submit.json", "photo_360x480_100kb_2026_06", "https://freenosignup.com/?s=Photo+360x480+Under+100KB"],
+  ["photo 420x560 under 200KB", "freenosignup-photo-420x560-200kb-submit.json", "photo_420x560_200kb_2026_06", "https://freenosignup.com/?s=Photo+420x560+Under+200KB"],
   ["signature under 20KB", "freenosignup-signature-under-20kb-submit.json", "signature_20kb_upload_fix_2026_06", "https://freenosignup.com/?s=Signature+Under+20KB"],
   ["signature 150x50 under 20KB", "freenosignup-signature-150x50-20kb-submit.json", "signature_150x50_20kb_2026_06", "https://freenosignup.com/?s=Signature+150x50+Under+20KB"],
   ["signature 160x70 under 20KB", "freenosignup-signature-160x70-20kb-submit.json", "signature_160x70_20kb_2026_06", "https://freenosignup.com/?s=Signature+160x70+Under+20KB"],
@@ -1311,13 +1353,13 @@ const nosignuptoolsUploadBacklogScriptFile = path.join(root, "scripts", "submit-
 if (!fs.existsSync(nosignuptoolsUploadBacklogScriptFile)) failures.push("Missing NoSignupTools upload-fix submission script.");
 else {
   const script = fs.readFileSync(nosignuptoolsUploadBacklogScriptFile, "utf8");
-  if (!script.includes("PDF Under 2MB Upload Fix") || !script.includes("PDF Under 5MB Upload Fix") || !script.includes("Resume PDF Under 2MB Upload Fix") || !script.includes("Document Under 5MB Upload Fix") || !script.includes("Extract Text From PDF Without Uploading") || !script.includes("Merge PDF Without Uploading") || !script.includes("Split PDF Without Uploading") || !script.includes("Rotate PDF Pages Without Uploading") || !script.includes("Remove Pages From PDF Without Uploading") || !script.includes("Reorder PDF Pages Without Uploading") || !script.includes("Add Page Numbers to PDF") || !script.includes("Stamp PDF Without Uploading") || !script.includes("Sign PDF Without Uploading") || !script.includes("Compress Image Without Uploading") || !script.includes("Resize Image Without Uploading") || !script.includes("Convert Image Format Without Uploading") || !script.includes("Remove Background Without Uploading") || !script.includes("Crop Image Without Uploading") || !script.includes("Rotate Image Without Uploading") || !script.includes("Watermark Image Without Uploading") || !script.includes("Passport Photo Size Fixer") || !script.includes("Resize Photo 413x531") || !script.includes("Passport Photo 35x45mm") || !script.includes("Photo 200x230 Under 50KB") || !script.includes("Resize Photo 200x230") || !script.includes("Signature Under 20KB") || !script.includes("Signature Under 50KB") || !script.includes("Resize Signature 140x60") || !script.includes("Resize Signature 200x100") || !script.includes("Compress Image to 10KB") || !script.includes("Compress PDF to 100KB") || !script.includes("Compress PDF to 200KB") || !script.includes("Compress PDF to 300KB") || !script.includes("Compress PDF to 10MB") || !script.includes("PDF Must Be Under 100KB Fix") || !script.includes("PDF Must Be Under 200KB Fix") || !script.includes("PDF Must Be Under 300KB Fix") || !script.includes("PDF Must Be Under 10MB Fix") || !script.includes("Compress PDF to 1MB") || !script.includes("PNG Screenshot Too Large Fix")) failures.push("NoSignupTools upload-fix submission script missing PDF/document/image no-upload/photo/signature/exact upload-limit payloads.");
+  if (!script.includes("PDF Under 2MB Upload Fix") || !script.includes("PDF Under 5MB Upload Fix") || !script.includes("Resume PDF Under 2MB Upload Fix") || !script.includes("Document Under 5MB Upload Fix") || !script.includes("Extract Text From PDF Without Uploading") || !script.includes("Merge PDF Without Uploading") || !script.includes("Split PDF Without Uploading") || !script.includes("Rotate PDF Pages Without Uploading") || !script.includes("Remove Pages From PDF Without Uploading") || !script.includes("Reorder PDF Pages Without Uploading") || !script.includes("Add Page Numbers to PDF") || !script.includes("Stamp PDF Without Uploading") || !script.includes("Sign PDF Without Uploading") || !script.includes("Compress Image Without Uploading") || !script.includes("Resize Image Without Uploading") || !script.includes("Convert Image Format Without Uploading") || !script.includes("Remove Background Without Uploading") || !script.includes("Crop Image Without Uploading") || !script.includes("Rotate Image Without Uploading") || !script.includes("Watermark Image Without Uploading") || !script.includes("Passport Photo Size Fixer") || !script.includes("Resize Photo 413x531") || !script.includes("Passport Photo 35x45mm") || !script.includes("Photo 200x230 Under 50KB") || !script.includes("Resize Photo 200x230") || !script.includes("Signature Under 20KB") || !script.includes("Signature Under 50KB") || !script.includes("Resize Signature 140x60") || !script.includes("Resize Signature 200x100") || !script.includes("Compress Image to 10KB") || !script.includes("Compress PDF to 100KB") || !script.includes("Compress PDF to 200KB") || !script.includes("Compress PDF to 300KB") || !script.includes("Compress PDF to 10MB") || !script.includes("PDF Must Be Under 100KB Fix") || !script.includes("PDF Must Be Under 200KB Fix") || !script.includes("PDF Must Be Under 300KB Fix") || !script.includes("PDF Must Be Under 10MB Fix") || !script.includes("Compress PDF to 1MB") || !script.includes("PNG Screenshot Too Large Fix") || !script.includes("Photo 120x160 Under 20KB") || !script.includes("Photo 420x560 Under 200KB")) failures.push("NoSignupTools upload-fix submission script missing PDF/document/image no-upload/photo/signature/exact upload-limit payloads.");
 }
 const freenosignupUploadBacklogScriptFile = path.join(root, "scripts", "submit-freenosignup-upload-fix-pages.cjs");
 if (!fs.existsSync(freenosignupUploadBacklogScriptFile)) failures.push("Missing FreeNoSignup upload-fix submission script.");
 else {
   const script = fs.readFileSync(freenosignupUploadBacklogScriptFile, "utf8");
-  if (!script.includes("Compress PDF to 100KB") || !script.includes("Compress PDF to 200KB") || !script.includes("Compress PDF to 300KB") || !script.includes("Compress PDF to 10MB") || !script.includes("PDF Must Be Under 100KB Fix") || !script.includes("PDF Must Be Under 200KB Fix") || !script.includes("PDF Must Be Under 300KB Fix") || !script.includes("PDF Must Be Under 10MB Fix") || !script.includes("Compress PDF to 500KB") || !script.includes("Image Must Be Under 500KB Fix") || !script.includes("Passport Photo Size Fixer") || !script.includes("Resize Signature 200x100") || !script.includes("formResponseUrl")) failures.push("FreeNoSignup upload-fix submission script missing exact upload-limit/photo/signature payloads.");
+  if (!script.includes("Compress PDF to 100KB") || !script.includes("Compress PDF to 200KB") || !script.includes("Compress PDF to 300KB") || !script.includes("Compress PDF to 10MB") || !script.includes("PDF Must Be Under 100KB Fix") || !script.includes("PDF Must Be Under 200KB Fix") || !script.includes("PDF Must Be Under 300KB Fix") || !script.includes("PDF Must Be Under 10MB Fix") || !script.includes("Compress PDF to 500KB") || !script.includes("Image Must Be Under 500KB Fix") || !script.includes("Passport Photo Size Fixer") || !script.includes("Resize Signature 200x100") || !script.includes("Photo 120x160 Under 20KB") || !script.includes("Photo 420x560 Under 200KB") || !script.includes("formResponseUrl")) failures.push("FreeNoSignup upload-fix submission script missing exact upload-limit/photo/signature payloads.");
 }
 const nologinUploadBacklogScriptFile = path.join(root, "scripts", "submit-nologin-upload-fix-pages.cjs");
 if (!fs.existsSync(nologinUploadBacklogScriptFile)) failures.push("Missing NoLogin upload-fix submission script.");
@@ -2359,6 +2401,12 @@ else {
   if (!distribution.includes("TechTools Resize Signature 200x100 listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=221")) failures.push("DISTRIBUTION.md missing TechTools resize signature 200x100 live listing.");
   if (!distribution.includes("TechTools Resize Photo 200x230 listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=222")) failures.push("DISTRIBUTION.md missing TechTools resize photo 200x230 live listing.");
   if (!distribution.includes("TechTools Passport Photo 35x45mm listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=223")) failures.push("DISTRIBUTION.md missing TechTools passport photo 35x45mm live listing.");
+  if (!distribution.includes("TechTools Photo 120x160 Under 20KB listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=263")) failures.push("DISTRIBUTION.md missing TechTools photo 120x160 under 20KB live listing.");
+  if (!distribution.includes("TechTools Photo 160x200 Under 30KB listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=264")) failures.push("DISTRIBUTION.md missing TechTools photo 160x200 under 30KB live listing.");
+  if (!distribution.includes("TechTools Photo 300x400 Under 100KB listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=265")) failures.push("DISTRIBUTION.md missing TechTools photo 300x400 under 100KB live listing.");
+  if (!distribution.includes("TechTools Photo 350x450 Under 100KB listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=266")) failures.push("DISTRIBUTION.md missing TechTools photo 350x450 under 100KB live listing.");
+  if (!distribution.includes("TechTools Photo 360x480 Under 100KB listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=267")) failures.push("DISTRIBUTION.md missing TechTools photo 360x480 under 100KB live listing.");
+  if (!distribution.includes("TechTools Photo 420x560 Under 200KB listing") || !distribution.includes("https://techtools.cz/tools/launchpad/?tool=268")) failures.push("DISTRIBUTION.md missing TechTools photo 420x560 under 200KB live listing.");
   if (!distribution.includes("NoLogin.tools Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing NoLogin upload error cheatsheet submission.");
   if (!distribution.includes("NoSignupTools Upload Limit Fixer listing") || !distribution.includes("upload_limit_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools upload limit fixer submission.");
   if (!distribution.includes("NoSignupTools Upload Error Cheatsheet listing") || !distribution.includes("upload_error_cheatsheet_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools upload error cheatsheet submission.");
@@ -2368,6 +2416,8 @@ else {
   if (!distribution.includes("NoSignupTools Compress JPG to 50KB listing") || !distribution.includes("jpg_50kb_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools compress JPG to 50KB submission.");
   if (!distribution.includes("NoSignupTools Compress PNG to 200KB listing") || !distribution.includes("png_200kb_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools compress PNG to 200KB submission.");
   if (!distribution.includes("NoSignupTools Passport Photo Compress to 200KB listing") || !distribution.includes("passport_200kb_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools passport photo 200KB submission.");
+  if (!distribution.includes("NoSignupTools Photo 120x160 Under 20KB listing") || !distribution.includes("photo_120x160_20kb_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools photo 120x160 submission.");
+  if (!distribution.includes("NoSignupTools Photo 420x560 Under 200KB listing") || !distribution.includes("photo_420x560_200kb_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools photo 420x560 submission.");
   if (!distribution.includes("NoSignupTools PDF Under 2MB Upload Fix listing") || !distribution.includes("pdf_under_2mb_upload_fix_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools PDF under 2MB submission.");
   if (!distribution.includes("NoSignupTools PDF Under 5MB Upload Fix listing") || !distribution.includes("pdf_under_5mb_upload_fix_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools PDF under 5MB submission.");
   if (!distribution.includes("NoSignupTools Resume PDF Under 2MB Upload Fix listing") || !distribution.includes("resume_pdf_under_2mb_upload_fix_2026_06")) failures.push("DISTRIBUTION.md missing NoSignupTools resume PDF under 2MB submission.");
@@ -2395,6 +2445,8 @@ else {
   if (!distribution.includes("FreeNoSignup Compress PDF to 500KB listing") || !distribution.includes("pdf_500kb_2026_06")) failures.push("DISTRIBUTION.md missing FreeNoSignup PDF 500KB submission.");
   if (!distribution.includes("FreeNoSignup Image Must Be Under 500KB Fix listing") || !distribution.includes("image_under_500kb_upload_fix_2026_06")) failures.push("DISTRIBUTION.md missing FreeNoSignup image under 500KB submission.");
   if (!distribution.includes("FreeNoSignup Resize Signature 200x100 listing") || !distribution.includes("resize_signature_200x100_2026_06")) failures.push("DISTRIBUTION.md missing FreeNoSignup resize signature 200x100 submission.");
+  if (!distribution.includes("FreeNoSignup Photo 120x160 Under 20KB listing") || !distribution.includes("photo_120x160_20kb_2026_06")) failures.push("DISTRIBUTION.md missing FreeNoSignup photo 120x160 submission.");
+  if (!distribution.includes("FreeNoSignup Photo 420x560 Under 200KB listing") || !distribution.includes("photo_420x560_200kb_2026_06")) failures.push("DISTRIBUTION.md missing FreeNoSignup photo 420x560 submission.");
   if (!distribution.includes("FreeNoSignup exact upload-limit submissions for PDF 500KB")) failures.push("DISTRIBUTION.md missing FreeNoSignup exact upload-limit submission status note.");
   if (!distribution.includes("FreeNoSignup photo/signature upload-limit submissions")) failures.push("DISTRIBUTION.md missing FreeNoSignup photo/signature submission status note.");
   if (!distribution.includes("NoSignupTools Overdue Invoice Reminder listing") || !distribution.includes("utm_source=nosignuptools")) failures.push("DISTRIBUTION.md missing NoSignupTools overdue invoice reminder submission.");
@@ -2407,6 +2459,7 @@ else {
   if (!distribution.includes("NoLogin.tools Signature 400x200 Under 100KB queued listing") || !distribution.includes("signature_400x200_100kb_2026_06")) failures.push("DISTRIBUTION.md missing NoLogin exact signature queued listing.");
   if (!distribution.includes("NoLogin.tools latest exact photo/signature upload-limit queue")) failures.push("DISTRIBUTION.md missing NoLogin exact upload-limit queue status note.");
   if (!distribution.includes("TechTools Photo 480x640 Under 200KB listing: https://techtools.cz/tools/launchpad/?tool=240")) failures.push("DISTRIBUTION.md missing TechTools latest exact photo live listing.");
+  if (!distribution.includes("TechTools Photo 420x560 Under 200KB listing: https://techtools.cz/tools/launchpad/?tool=268")) failures.push("DISTRIBUTION.md missing TechTools newest exact photo live listing.");
   if (!distribution.includes("TechTools Signature 400x200 Under 100KB listing: https://techtools.cz/tools/launchpad/?tool=253")) failures.push("DISTRIBUTION.md missing TechTools latest exact signature live listing.");
   if (!distribution.includes("TechTools exact upload-limit photo/signature submissions; retried after API limits")) failures.push("DISTRIBUTION.md missing TechTools latest exact upload-limit live status note.");
   if (!distribution.includes("free_tool_depth")) failures.push("DISTRIBUTION.md missing free-tool depth tracking campaign.");

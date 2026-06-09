@@ -93,6 +93,12 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - TechTools Photo 180x240 Under 50KB listing: https://techtools.cz/tools/launchpad/?tool=247
 - TechTools Photo 400x514 Under 100KB listing: https://techtools.cz/tools/launchpad/?tool=248
 - TechTools Photo 600x800 Under 200KB listing: https://techtools.cz/tools/launchpad/?tool=249
+- TechTools Photo 120x160 Under 20KB listing: https://techtools.cz/tools/launchpad/?tool=263
+- TechTools Photo 160x200 Under 30KB listing: https://techtools.cz/tools/launchpad/?tool=264
+- TechTools Photo 300x400 Under 100KB listing: https://techtools.cz/tools/launchpad/?tool=265
+- TechTools Photo 350x450 Under 100KB listing: https://techtools.cz/tools/launchpad/?tool=266
+- TechTools Photo 360x480 Under 100KB listing: https://techtools.cz/tools/launchpad/?tool=267
+- TechTools Photo 420x560 Under 200KB listing: https://techtools.cz/tools/launchpad/?tool=268
 - TechTools Signature 100x50 Under 10KB listing: https://techtools.cz/tools/launchpad/?tool=250
 - TechTools Signature 200x60 Under 20KB listing: https://techtools.cz/tools/launchpad/?tool=251
 - TechTools Signature 256x64 Under 20KB listing: https://techtools.cz/tools/launchpad/?tool=252
@@ -144,6 +150,12 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - NoSignupTools Photo 180x240 Under 50KB listing: https://printable-tools-lab.pages.dev/photo-180x240-50kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=photo_180x240_50kb_2026_06&utm_content=photo_180x240_50kb_landing
 - NoSignupTools Photo 400x514 Under 100KB listing: https://printable-tools-lab.pages.dev/photo-400x514-100kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=photo_400x514_100kb_2026_06&utm_content=photo_400x514_100kb_landing
 - NoSignupTools Photo 600x800 Under 200KB listing: https://printable-tools-lab.pages.dev/photo-600x800-200kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=photo_600x800_200kb_2026_06&utm_content=photo_600x800_200kb_landing
+- NoSignupTools Photo 120x160 Under 20KB listing: https://printable-tools-lab.pages.dev/photo-120x160-20kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=photo_120x160_20kb_2026_06&utm_content=photo_120x160_20kb_landing
+- NoSignupTools Photo 160x200 Under 30KB listing: https://printable-tools-lab.pages.dev/photo-160x200-30kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=photo_160x200_30kb_2026_06&utm_content=photo_160x200_30kb_landing
+- NoSignupTools Photo 300x400 Under 100KB listing: https://printable-tools-lab.pages.dev/photo-300x400-100kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=photo_300x400_100kb_2026_06&utm_content=photo_300x400_100kb_landing
+- NoSignupTools Photo 350x450 Under 100KB listing: https://printable-tools-lab.pages.dev/photo-350x450-100kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=photo_350x450_100kb_2026_06&utm_content=photo_350x450_100kb_landing
+- NoSignupTools Photo 360x480 Under 100KB listing: https://printable-tools-lab.pages.dev/photo-360x480-100kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=photo_360x480_100kb_2026_06&utm_content=photo_360x480_100kb_landing
+- NoSignupTools Photo 420x560 Under 200KB listing: https://printable-tools-lab.pages.dev/photo-420x560-200kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=photo_420x560_200kb_2026_06&utm_content=photo_420x560_200kb_landing
 - NoSignupTools Signature Under 20KB listing: https://printable-tools-lab.pages.dev/signature-under-20kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=signature_20kb_upload_fix_2026_06&utm_content=signature_under_20kb_landing
 - NoSignupTools Signature Under 50KB listing: https://printable-tools-lab.pages.dev/signature-under-50kb?utm_source=nosignuptools&utm_medium=directory&utm_campaign=signature_50kb_upload_fix_2026_06&utm_content=signature_under_50kb_landing
 - NoSignupTools Resize Signature 140x60 listing: https://printable-tools-lab.pages.dev/resize-signature-140x60?utm_source=nosignuptools&utm_medium=directory&utm_campaign=resize_signature_140x60_2026_06&utm_content=resize_signature_140x60_landing
@@ -182,6 +194,12 @@ Use these only for posts or listings that allow URL parameters. Directory fields
 - FreeNoSignup Photo 180x240 Under 50KB listing: https://printable-tools-lab.pages.dev/photo-180x240-50kb?utm_source=freenosignup&utm_medium=directory&utm_campaign=photo_180x240_50kb_2026_06&utm_content=photo_180x240_50kb_landing
 - FreeNoSignup Photo 400x514 Under 100KB listing: https://printable-tools-lab.pages.dev/photo-400x514-100kb?utm_source=freenosignup&utm_medium=directory&utm_campaign=photo_400x514_100kb_2026_06&utm_content=photo_400x514_100kb_landing
 - FreeNoSignup Photo 600x800 Under 200KB listing: https://printable-tools-lab.pages.dev/photo-600x800-200kb?utm_source=freenosignup&utm_medium=directory&utm_campaign=photo_600x800_200kb_2026_06&utm_content=photo_600x800_200kb_landing
+- FreeNoSignup Photo 120x160 Under 20KB listing: https://printable-tools-lab.pages.dev/photo-120x160-20kb?utm_source=freenosignup&utm_medium=directory&utm_campaign=photo_120x160_20kb_2026_06&utm_content=photo_120x160_20kb_landing
+- FreeNoSignup Photo 160x200 Under 30KB listing: https://printable-tools-lab.pages.dev/photo-160x200-30kb?utm_source=freenosignup&utm_medium=directory&utm_campaign=photo_160x200_30kb_2026_06&utm_content=photo_160x200_30kb_landing
+- FreeNoSignup Photo 300x400 Under 100KB listing: https://printable-tools-lab.pages.dev/photo-300x400-100kb?utm_source=freenosignup&utm_medium=directory&utm_campaign=photo_300x400_100kb_2026_06&utm_content=photo_300x400_100kb_landing
+- FreeNoSignup Photo 350x450 Under 100KB listing: https://printable-tools-lab.pages.dev/photo-350x450-100kb?utm_source=freenosignup&utm_medium=directory&utm_campaign=photo_350x450_100kb_2026_06&utm_content=photo_350x450_100kb_landing
+- FreeNoSignup Photo 360x480 Under 100KB listing: https://printable-tools-lab.pages.dev/photo-360x480-100kb?utm_source=freenosignup&utm_medium=directory&utm_campaign=photo_360x480_100kb_2026_06&utm_content=photo_360x480_100kb_landing
+- FreeNoSignup Photo 420x560 Under 200KB listing: https://printable-tools-lab.pages.dev/photo-420x560-200kb?utm_source=freenosignup&utm_medium=directory&utm_campaign=photo_420x560_200kb_2026_06&utm_content=photo_420x560_200kb_landing
 - FreeNoSignup Signature Under 20KB listing: https://printable-tools-lab.pages.dev/signature-under-20kb?utm_source=freenosignup&utm_medium=directory&utm_campaign=signature_20kb_upload_fix_2026_06&utm_content=signature_under_20kb_landing
 - FreeNoSignup Resize Signature 200x100 listing: https://printable-tools-lab.pages.dev/resize-signature-200x100?utm_source=freenosignup&utm_medium=directory&utm_campaign=resize_signature_200x100_2026_06&utm_content=resize_signature_200x100_landing
 - FreeNoSignup Signature 100x50 Under 10KB listing: https://printable-tools-lab.pages.dev/signature-100x50-10kb?utm_source=freenosignup&utm_medium=directory&utm_campaign=signature_100x50_10kb_2026_06&utm_content=signature_100x50_10kb_landing
