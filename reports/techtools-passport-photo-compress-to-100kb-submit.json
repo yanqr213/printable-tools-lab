@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-09T01:23:43.288Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Passport Photo Compress to 100KB by PrintableTools Lab",
+    "tagline": "Free no-signup passport-style photo compressor for 100KB limits.",
+    "description": "PrintableTools Lab Passport Photo Compress to 100KB helps people blocked by ID-style photo, school, exam, application, visa-style, and profile upload file-size limits. It opens the no-upload browser image-to-KB tool with a 100KB target, keeps face photos local during ordinary use, and includes a one-contact public-safe $9 Upload Limit Fix Plan invoice request for exact settings and fallback steps after fit is confirmed.",
+    "url": "https://printable-tools-lab.pages.dev/passport-photo-compress-to-100kb/?utm_source=techtools&utm_medium=directory&utm_campaign=passport_photo_100kb_2026_06&utm_content=passport_photo_compress_to_100kb_landing",
+    "category": "utilities",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 passport photo compress to 100KB invoice-ready landing path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 199,
+      "name": "Passport Photo Compress to 100KB by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/passport-photo-compress-to-100kb/?utm_source=techtools&utm_medium=directory&utm_campaign=passport_photo_100kb_2026_06&utm_content=passport_photo_compress_to_100kb_landing",
+      "tagline": "Free no-signup passport-style photo compressor for 100KB limits.",
+      "description": "PrintableTools Lab Passport Photo Compress to 100KB helps people blocked by ID-style photo, school, exam, application, visa-style, and profile upload file-size limits. It opens the no-upload browser image-to-KB tool with a 100KB target, keeps face photos local during ordinary use, and includes a one-contact public-safe $9 Upload Limit Fix Plan invoice request for exact settings and fallback steps after fit is confirmed.",
+      "category": "utilities",
+      "category_label": "Utilities",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 passport photo compress to 100KB invoice-ready landing path",
+      "launch_date": "2026-06-09",
+      "created_at": "2026-06-09T01:23:43Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=199"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=199"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=199",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/199"
+}

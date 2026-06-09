@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-09T00:52:38.625Z",
+  "generatedAt": "2026-06-09T01:26:39.137Z",
   "site": "https://printable-tools-lab.pages.dev/",
-  "listedCount": 31,
+  "listedCount": 40,
   "pendingCount": 24,
   "errorCount": 1,
   "results": [
@@ -78,7 +78,7 @@
           "url": "https://techtools.cz/launchpad-api/tools?per_page=100&sort=recent",
           "ok": true,
           "status": 200,
-          "bytes": 96212,
+          "bytes": 99799,
           "matched": true
         }
       ]
@@ -634,6 +634,204 @@
       ]
     },
     {
+      "name": "TechTools Launchpad compress JPG to 50KB listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=192",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/192",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress JPG to 50KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the strict JPG 50KB landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/192",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/192",
+          "ok": true,
+          "status": 200,
+          "bytes": 1216,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad compress JPG to 100KB listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=193",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/193",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress JPG to 100KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the strict JPG 100KB landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/193",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/193",
+          "ok": true,
+          "status": 200,
+          "bytes": 1234,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad compress JPG to 200KB listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=194",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/194",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress JPG to 200KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the strict JPG 200KB landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/194",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/194",
+          "ok": true,
+          "status": 200,
+          "bytes": 1242,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad compress PNG to 50KB listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=195",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/195",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress PNG to 50KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the strict PNG 50KB landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/195",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/195",
+          "ok": true,
+          "status": 200,
+          "bytes": 1255,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad compress PNG to 100KB listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=196",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/196",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress PNG to 100KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the strict PNG 100KB landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/196",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/196",
+          "ok": true,
+          "status": 200,
+          "bytes": 1219,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad compress PNG to 200KB listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=197",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/197",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress PNG to 200KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the strict PNG 200KB landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/197",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/197",
+          "ok": true,
+          "status": 200,
+          "bytes": 1262,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad passport photo compress to 50KB listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=198",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/198",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Passport Photo Compress to 50KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the passport photo 50KB landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/198",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/198",
+          "ok": true,
+          "status": 200,
+          "bytes": 1340,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad passport photo compress to 100KB listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=199",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/199",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Passport Photo Compress to 100KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the passport photo 100KB landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/199",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/199",
+          "ok": true,
+          "status": 200,
+          "bytes": 1339,
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "TechTools Launchpad passport photo compress to 200KB listing",
+      "url": "https://techtools.cz/tools/launchpad/?tool=200",
+      "searchUrl": "https://techtools.cz/launchpad-api/tools/200",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Passport Photo Compress to 200KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "auto-approved API listing for the passport photo 200KB landing path",
+      "status": "listed",
+      "evidenceUrl": "https://techtools.cz/launchpad-api/tools/200",
+      "checked": [
+        {
+          "url": "https://techtools.cz/launchpad-api/tools/200",
+          "ok": true,
+          "status": 200,
+          "bytes": 1369,
+          "matched": true
+        }
+      ]
+    },
+    {
       "name": "NoSignupTools",
       "url": "https://nosignuptools.com/",
       "searchUrl": "https://nosignuptools.com/?q=PrintableTools+Lab",
@@ -830,7 +1028,7 @@
           "url": "https://nosignuptools.com/tools/compress-image-to-kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20094,
+          "bytes": 20051,
           "matched": false
         }
       ]

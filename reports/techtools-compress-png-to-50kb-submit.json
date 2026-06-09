@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-09T01:23:29.912Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Compress PNG to 50KB by PrintableTools Lab",
+    "tagline": "Free no-signup PNG compressor for strict 50KB upload limits.",
+    "description": "PrintableTools Lab Compress PNG to 50KB helps people blocked by strict PNG screenshot, graphic, form, and portal upload limits. It opens the no-upload browser image-to-KB tool with a 50KB target, explains that tiny PNG targets may require export format changes, and includes a one-contact public-safe $9 Upload Limit Fix Plan invoice request for exact settings and fallback steps after fit is confirmed.",
+    "url": "https://printable-tools-lab.pages.dev/compress-png-to-50kb/?utm_source=techtools&utm_medium=directory&utm_campaign=png_50kb_2026_06&utm_content=compress_png_to_50kb_landing",
+    "category": "utilities",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 compress PNG to 50KB invoice-ready landing path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 195,
+      "name": "Compress PNG to 50KB by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/compress-png-to-50kb/?utm_source=techtools&utm_medium=directory&utm_campaign=png_50kb_2026_06&utm_content=compress_png_to_50kb_landing",
+      "tagline": "Free no-signup PNG compressor for strict 50KB upload limits.",
+      "description": "PrintableTools Lab Compress PNG to 50KB helps people blocked by strict PNG screenshot, graphic, form, and portal upload limits. It opens the no-upload browser image-to-KB tool with a 50KB target, explains that tiny PNG targets may require export format changes, and includes a one-contact public-safe $9 Upload Limit Fix Plan invoice request for exact settings and fallback steps after fit is confirmed.",
+      "category": "utilities",
+      "category_label": "Utilities",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 compress PNG to 50KB invoice-ready landing path",
+      "launch_date": "2026-06-09",
+      "created_at": "2026-06-09T01:23:29Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=195"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=195"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=195",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/195"
+}

@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-09T01:23:26.576Z",
+  "endpoint": "https://techtools.cz/launchpad-api/tools",
+  "status": 201,
+  "ok": true,
+  "payload": {
+    "name": "Compress JPG to 200KB by PrintableTools Lab",
+    "tagline": "Free no-signup JPG compressor for 200KB upload limits.",
+    "description": "PrintableTools Lab Compress JPG to 200KB helps people blocked by JPG marketplace, support, school, profile, and portal upload limits where more detail is needed. It opens the no-upload browser image-to-KB tool with a 200KB target, keeps files local, and includes a one-contact public-safe $9 Upload Limit Fix Plan invoice request for exact settings and fallback steps after fit is confirmed.",
+    "url": "https://printable-tools-lab.pages.dev/compress-jpg-to-200kb/?utm_source=techtools&utm_medium=directory&utm_campaign=jpg_200kb_2026_06&utm_content=compress_jpg_to_200kb_landing",
+    "category": "utilities",
+    "maker_name": "PrintableTools Lab",
+    "maker_url": "https://printable-tools-lab.pages.dev/",
+    "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "submitted_by": "Codex traffic acquisition run 2026-06-09 compress JPG to 200KB invoice-ready landing path"
+  },
+  "response": {
+    "success": true,
+    "message": "Tool submitted successfully! It is now live.",
+    "data": {
+      "id": 194,
+      "name": "Compress JPG to 200KB by PrintableTools Lab",
+      "url": "https://printable-tools-lab.pages.dev/compress-jpg-to-200kb/?utm_source=techtools&utm_medium=directory&utm_campaign=jpg_200kb_2026_06&utm_content=compress_jpg_to_200kb_landing",
+      "tagline": "Free no-signup JPG compressor for 200KB upload limits.",
+      "description": "PrintableTools Lab Compress JPG to 200KB helps people blocked by JPG marketplace, support, school, profile, and portal upload limits where more detail is needed. It opens the no-upload browser image-to-KB tool with a 200KB target, keeps files local, and includes a one-contact public-safe $9 Upload Limit Fix Plan invoice request for exact settings and fallback steps after fit is confirmed.",
+      "category": "utilities",
+      "category_label": "Utilities",
+      "maker_name": "PrintableTools Lab",
+      "maker_url": "https://printable-tools-lab.pages.dev/",
+      "logo_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+      "upvotes": 0,
+      "featured": false,
+      "submitted_by": "Codex traffic acquisition run 2026-06-09 compress JPG to 200KB invoice-ready landing path",
+      "launch_date": "2026-06-09",
+      "created_at": "2026-06-09T01:23:26Z",
+      "share_url": "https://techtools.cz/tools/launchpad/?tool=194"
+    },
+    "share_url": "https://techtools.cz/tools/launchpad/?tool=194"
+  },
+  "shareUrl": "https://techtools.cz/tools/launchpad/?tool=194",
+  "evidenceApiUrl": "https://techtools.cz/launchpad-api/tools/194"
+}
