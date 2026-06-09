@@ -1,15 +1,15 @@
 {
   "name": "PrintableTools Lab Sponsor Deal Room",
-  "generatedAt": "2026-06-09T10:23:04.754Z",
+  "generatedAt": "2026-06-09T10:30:26.193Z",
   "canonical": "https://printable-tools-lab.pages.dev/sponsor-deal-room/",
   "inquiryUrl": "https://printable-tools-lab.pages.dev/sponsor-deal-room?utm_source=sponsor-outreach&utm_medium=manual&utm_campaign=sponsor_deal_room&utm_content=direct#sponsor-inquiry",
   "starterReviewPage": "https://printable-tools-lab.pages.dev/sponsor-starter-review/",
   "publicReplyUrl": "https://github.com/yanqr213/printable-tools-lab/issues/new?title=%5BSponsor%2FPartner%5D%3A+Sponsor+pilot+review&body=Public-safe+sponsor+reply.%0A%0ACompany+%2F+project%3A+%0APublic+website+URL%3A+%0AAudience+fit%3A+%0ASelected+pilot+deal%3A+%0AProposal+or+deal+URL%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Fsponsor-deal-room%3Futm_source%3Dsponsor-outreach%26utm_medium%3Dmanual%26utm_campaign%3Dsponsor_deal_room%26utm_content%3Ddirect%23sponsor-inquiry%0A%0ARequested+next+step%3A+Request+pilot+invoice+review%0A%0ADo+not+include+private+payment%2C+tax%2C+bank%2C+phone%2C+customer%2C+identity%2C+password%2C+or+confidential+file+data+in+this+public+issue.&labels=sponsor%2Cpartner%2Cbusiness-review",
   "externalDiscoveryProof": {
-    "generatedAt": "2026-06-09T10:00:51.522Z",
+    "generatedAt": "2026-06-09T10:28:27.515Z",
     "directoryListedCount": 84,
-    "directoryPendingCount": 132,
-    "directoryErrorCount": 1,
+    "directoryPendingCount": 144,
+    "directoryErrorCount": 5,
     "listedDirectories": [
       {
         "name": "TechTools Launchpad site listing",
@@ -520,7 +520,7 @@
       "github-pages"
     ],
     "indexNowSubmittedUrls": 284,
-    "publicProofLine": "External discovery proof: 84 public directory listing(s) are live; 132 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue.",
+    "publicProofLine": "External discovery proof: 84 public directory listing(s) are live; 144 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue.",
     "moneyBoundary": "Directory listings, IndexNow submissions, clicks, and views are discovery signals only. Revenue is real only after a signed sponsor agreement or settled external payment."
   },
   "deals": [

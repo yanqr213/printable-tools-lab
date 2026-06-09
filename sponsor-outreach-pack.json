@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Sponsor Outreach Pack",
-  "generatedAt": "2026-06-09T10:23:04.754Z",
+  "generatedAt": "2026-06-09T10:30:26.193Z",
   "canonical": "https://printable-tools-lab.pages.dev/sponsor-outreach-pack.json",
   "sponsorPage": "https://printable-tools-lab.pages.dev/sponsor/",
   "sponsorIntentFeed": "https://printable-tools-lab.pages.dev/sponsor-intent-feed.json",
@@ -69,10 +69,10 @@
   },
   "mediaKit": "https://printable-tools-lab.pages.dev/sponsor-media-kit.json",
   "externalDiscoveryProof": {
-    "generatedAt": "2026-06-09T10:00:51.522Z",
+    "generatedAt": "2026-06-09T10:28:27.515Z",
     "directoryListedCount": 84,
-    "directoryPendingCount": 132,
-    "directoryErrorCount": 1,
+    "directoryPendingCount": 144,
+    "directoryErrorCount": 5,
     "listedDirectories": [
       {
         "name": "TechTools Launchpad site listing",
@@ -583,7 +583,7 @@
       "github-pages"
     ],
     "indexNowSubmittedUrls": 284,
-    "publicProofLine": "External discovery proof: 84 public directory listing(s) are live; 132 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue.",
+    "publicProofLine": "External discovery proof: 84 public directory listing(s) are live; 144 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue.",
     "moneyBoundary": "Directory listings, IndexNow submissions, clicks, and views are discovery signals only. Revenue is real only after a signed sponsor agreement or settled external payment."
   },
   "placements": [
