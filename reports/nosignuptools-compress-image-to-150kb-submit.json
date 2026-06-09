@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T06:04:21.801Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "Compress Image to 150KB by PrintableTools Lab",
+    "slug": "compress-image-to-150kb-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/compress-image-to-150kb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=image_150kb_2026_06&utm_content=compress_image_to_150kb_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup 150KB image compressor for upload forms and profiles.",
+    "long_description": "A free browser-based image compressor for 150KB upload forms, profiles, job portals, and support attachments. It keeps ordinary files local during use and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/compress-image-to-150kb-by-printabletools-lab"
+}

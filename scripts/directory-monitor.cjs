@@ -6,6 +6,27 @@ const reportDir = path.join(root, "reports");
 const reportPath = path.join(reportDir, "directory-monitor.json");
 const siteHost = "printable-tools-lab.pages.dev";
 
+const nosignupExactUploadLimitListings = [
+  ["Compress Image to 10KB", "image 10KB compressor for strict upload limits"],
+  ["Compress Image to 20KB", "image 20KB compressor for strict upload limits"],
+  ["Compress Image to 30KB", "image 30KB compressor for strict upload limits"],
+  ["Compress Image to 150KB", "image 150KB compressor for upload forms and profiles"],
+  ["Compress Image to 300KB", "image 300KB compressor for forms and attachments"],
+  ["Compress Image to 500KB", "image 500KB compressor for moderate upload limits"],
+  ["Compress PDF to 500KB", "PDF 500KB compressor for strict upload limits"],
+  ["Compress PDF to 1MB", "PDF 1MB compressor for common upload limits"],
+  ["Compress PDF to 2MB", "PDF 2MB compressor for upload forms"],
+  ["Compress PDF to 5MB", "PDF 5MB compressor for readable uploads"],
+  ["PDF Size Reducer", "PDF size reducer hub for exact targets"],
+  ["File Must Be Less Than 1MB Fix", "file under 1MB upload error fix"],
+  ["PDF Must Be Under 500KB Fix", "PDF under 500KB upload error fix"],
+  ["Photo Must Be Under 100KB Fix", "photo under 100KB upload error fix"],
+  ["Image Must Be Under 500KB Fix", "image under 500KB upload error fix"],
+  ["Image Must Be Less Than 2MB Fix", "image under 2MB upload error fix"],
+  ["JPG Must Be Under 200KB Fix", "JPG under 200KB upload error fix"],
+  ["PNG Screenshot Too Large Fix", "PNG screenshot upload error fix"],
+];
+
 const directories = [
   {
     name: "Zearches",
@@ -855,6 +876,14 @@ const directories = [
     submittedAt: "2026-06-09",
     reviewWindow: "24-48 hour manual review after public API success response",
   },
+  ...nosignupExactUploadLimitListings.map(([title, reason]) => ({
+    name: `NoSignupTools ${title} listing`,
+    url: `https://nosignuptools.com/tools/${slugify(title)}-by-printabletools-lab`,
+    searchUrl: `https://nosignuptools.com/?q=${encodeURIComponent(title).replace(/%20/g, "+")}`,
+    expected: [siteHost, title],
+    submittedAt: "2026-06-09",
+    reviewWindow: `24-48 hour manual review after public API success response for the ${reason}`,
+  })),
   {
     name: "FreeNoSignup",
     url: "https://freenosignup.com/",
@@ -1203,4 +1232,12 @@ function printReport(report) {
     console.log(`- ${item.name}: ${item.status}${suffix}`);
   }
   console.log(`Report written to ${path.relative(root, reportPath)}`);
+}
+
+function slugify(value) {
+  return String(value)
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }

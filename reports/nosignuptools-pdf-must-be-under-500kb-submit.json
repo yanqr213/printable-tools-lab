@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T06:04:58.765Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "PDF Must Be Under 500KB Fix by PrintableTools Lab",
+    "slug": "pdf-must-be-under-500kb-fix-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=pdf_under_500kb_upload_fix_2026_06&utm_content=pdf_must_be_under_500kb_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup PDF under 500KB upload-limit fix.",
+    "long_description": "A free browser-based PDF under 500KB upload fixer for forms that reject PDFs over 500KB. It routes visitors to local PDF compression, requires no account, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/pdf-must-be-under-500kb-fix-by-printabletools-lab"
+}

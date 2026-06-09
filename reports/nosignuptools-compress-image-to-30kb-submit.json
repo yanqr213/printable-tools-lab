@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T06:04:17.757Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "Compress Image to 30KB by PrintableTools Lab",
+    "slug": "compress-image-to-30kb-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/compress-image-to-30kb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=image_30kb_2026_06&utm_content=compress_image_to_30kb_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup 30KB image compressor for strict form upload limits.",
+    "long_description": "A free browser-based image compressor for strict 30KB form, profile, school, and exam upload limits. It runs locally in the browser, requires no signup, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/compress-image-to-30kb-by-printabletools-lab"
+}

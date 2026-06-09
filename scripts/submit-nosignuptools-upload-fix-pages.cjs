@@ -13,6 +13,27 @@ const common = {
   submitter_email: null,
 };
 
+const exactUploadLimitBacklog = [
+  ["compress-image-to-10kb", "Compress Image to 10KB", "image_10kb_2026_06", "compress_image_to_10kb_landing", "Free no-signup 10KB image compressor for extremely strict upload limits.", "A free browser-based image compressor for extremely strict 10KB upload limits on profile, exam, school, and application forms. It runs locally in the browser, requires no account and no server file upload, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+  ["compress-image-to-20kb", "Compress Image to 20KB", "image_20kb_2026_06", "compress_image_to_20kb_landing", "Free no-signup 20KB image compressor for strict photo upload limits.", "A free browser-based image compressor for strict 20KB exam, profile, school, and application photo limits. It keeps ordinary files local during use and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+  ["compress-image-to-30kb", "Compress Image to 30KB", "image_30kb_2026_06", "compress_image_to_30kb_landing", "Free no-signup 30KB image compressor for strict form upload limits.", "A free browser-based image compressor for strict 30KB form, profile, school, and exam upload limits. It runs locally in the browser, requires no signup, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+  ["compress-image-to-150kb", "Compress Image to 150KB", "image_150kb_2026_06", "compress_image_to_150kb_landing", "Free no-signup 150KB image compressor for upload forms and profiles.", "A free browser-based image compressor for 150KB upload forms, profiles, job portals, and support attachments. It keeps ordinary files local during use and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+  ["compress-image-to-300kb", "Compress Image to 300KB", "image_300kb_2026_06", "compress_image_to_300kb_landing", "Free no-signup 300KB image compressor for forms, listings, and attachments.", "A free browser-based image compressor for 300KB forms, listings, support tickets, and email attachments. It requires no account, keeps ordinary files local during use, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+  ["compress-image-to-500kb", "Compress Image to 500KB", "image_500kb_2026_06", "compress_image_to_500kb_landing", "Free no-signup 500KB image compressor for moderate upload limits.", "A free browser-based image compressor for 500KB upload limits where readability and detail still matter. It keeps ordinary files local, requires no signup, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+  ["compress-pdf-to-500kb", "Compress PDF to 500KB", "pdf_500kb_2026_06", "compress_pdf_to_500kb_landing", "Free no-signup PDF compressor for strict 500KB upload limits.", "A free browser-based PDF compressor for strict 500KB upload limits on forms, exam portals, school uploads, application portals, and government-style upload pages. It keeps ordinary files local and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+  ["compress-pdf-to-1mb", "Compress PDF to 1MB", "pdf_1mb_2026_06", "compress_pdf_to_1mb_landing", "Free no-signup PDF compressor for common 1MB upload limits.", "A free browser-based PDF compressor for common 1MB upload limits on forms, portals, email attachments, and applications. It keeps ordinary files local during use and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+  ["compress-pdf-to-2mb", "Compress PDF to 2MB", "pdf_2mb_2026_06", "compress_pdf_to_2mb_landing", "Free no-signup PDF compressor for 2MB upload limits.", "A free browser-based PDF compressor for 2MB proposal, school, support, and portal upload limits. It requires no account, keeps ordinary files local, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+  ["compress-pdf-to-5mb", "Compress PDF to 5MB", "pdf_5mb_2026_06", "compress_pdf_to_5mb_landing", "Free no-signup PDF compressor for readable 5MB upload limits.", "A free browser-based PDF compressor for 5MB email, portal, support ticket, and application upload limits. It keeps ordinary files local and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+  ["pdf-size-reducer", "PDF Size Reducer", "pdf_size_reducer_2026_06", "pdf_size_reducer_hub", "Free no-signup PDF size reducer for exact 500KB, 1MB, 2MB, and 5MB limits.", "A free browser-based PDF size reducer hub for people choosing between 500KB, 1MB, 2MB, and 5MB targets. It routes visitors to local PDF compression paths, requires no account, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+  ["file-must-be-less-than-1mb", "File Must Be Less Than 1MB Fix", "file_under_1mb_upload_fix_2026_06", "file_must_be_less_than_1mb_landing", "Free no-signup fix for file must be less than 1MB upload errors.", "A free browser-based upload error fixer for forms that say a file must be less than 1MB. It routes visitors to local PDF and image size tools, requires no account, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+  ["pdf-must-be-under-500kb", "PDF Must Be Under 500KB Fix", "pdf_under_500kb_upload_fix_2026_06", "pdf_must_be_under_500kb_landing", "Free no-signup PDF under 500KB upload-limit fix.", "A free browser-based PDF under 500KB upload fixer for forms that reject PDFs over 500KB. It routes visitors to local PDF compression, requires no account, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+  ["photo-must-be-under-100kb", "Photo Must Be Under 100KB Fix", "photo_under_100kb_upload_fix_2026_06", "photo_must_be_under_100kb_landing", "Free no-signup photo under 100KB upload-limit fix.", "A free browser-based photo under 100KB upload fixer for job, profile, school, and application forms that reject image file size. It keeps ordinary files local and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+  ["image-must-be-under-500kb", "Image Must Be Under 500KB Fix", "image_under_500kb_upload_fix_2026_06", "image_must_be_under_500kb_landing", "Free no-signup image under 500KB upload-limit fix.", "A free browser-based image under 500KB upload fixer for photos, screenshots, avatars, and product images. It runs locally in the browser and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+  ["image-must-be-less-than-2mb", "Image Must Be Less Than 2MB Fix", "image_under_2mb_upload_fix_2026_06", "image_must_be_less_than_2mb_landing", "Free no-signup image under 2MB upload-limit fix.", "A free browser-based image under 2MB upload fixer for profile, marketplace, support, and application forms. It keeps ordinary files local and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+  ["jpg-must-be-under-200kb", "JPG Must Be Under 200KB Fix", "jpg_under_200kb_upload_fix_2026_06", "jpg_must_be_under_200kb_landing", "Free no-signup JPG under 200KB upload-limit fix.", "A free browser-based JPG under 200KB upload fixer for applications, profiles, marketplaces, and school forms. It keeps ordinary files local during use and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+  ["png-screenshot-too-large", "PNG Screenshot Too Large Fix", "png_screenshot_too_large_fix_2026_06", "png_screenshot_too_large_landing", "Free no-signup PNG screenshot size fix for upload forms.", "A free browser-based PNG screenshot too large fixer for support forms, admin portals, and upload pages that reject screenshots as too large. It keeps ordinary files local and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."],
+];
+
 const backlog = [
   {
     report: "nosignuptools-image-dimensions-600x600-submit.json",
@@ -644,6 +665,20 @@ const backlog = [
       long_description: "A free browser-based 200 x 100 signature resize helper for job, school, exam, document, and admin upload pages that require a wider signature image. It keeps ordinary files local during use and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check.",
     },
   },
+  ...exactUploadLimitBacklog.map(([pathName, name, campaign, content, short_description, long_description]) => ({
+    report: `nosignuptools-${pathName}-submit.json`,
+    expectedReviewUrl: `https://nosignuptools.com/tools/${slugify(name)}-by-printabletools-lab`,
+    searchUrl: `https://nosignuptools.com/?q=${encodeURIComponent(name).replace(/%20/g, "+")}`,
+    payload: {
+      ...common,
+      name: `${name} by PrintableTools Lab`,
+      slug: `${slugify(name)}-by-printabletools-lab`,
+      url: `https://printable-tools-lab.pages.dev/${pathName}/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=${campaign}&utm_content=${content}`,
+      category: "productivity",
+      short_description,
+      long_description,
+    },
+  })),
 ];
 
 async function main() {
@@ -755,6 +790,14 @@ function readJson(file) {
 
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function slugify(value) {
+  return String(value)
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
 
 main().catch((error) => {

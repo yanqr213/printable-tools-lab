@@ -647,6 +647,26 @@ const directoryMonitorFile = path.join(root, "scripts", "directory-monitor.cjs")
 if (!fs.existsSync(directoryMonitorFile)) failures.push("Missing directory monitor script.");
 else {
   const directoryMonitorScript = fs.readFileSync(directoryMonitorFile, "utf8");
+  const nosignuptoolsExactUploadTitles = [
+    "Compress Image to 10KB",
+    "Compress Image to 20KB",
+    "Compress Image to 30KB",
+    "Compress Image to 150KB",
+    "Compress Image to 300KB",
+    "Compress Image to 500KB",
+    "Compress PDF to 500KB",
+    "Compress PDF to 1MB",
+    "Compress PDF to 2MB",
+    "Compress PDF to 5MB",
+    "PDF Size Reducer",
+    "File Must Be Less Than 1MB Fix",
+    "PDF Must Be Under 500KB Fix",
+    "Photo Must Be Under 100KB Fix",
+    "Image Must Be Under 500KB Fix",
+    "Image Must Be Less Than 2MB Fix",
+    "JPG Must Be Under 200KB Fix",
+    "PNG Screenshot Too Large Fix",
+  ];
   if (!directoryMonitorScript.includes("NoSignupTools overdue invoice reminder listing") || !directoryMonitorScript.includes("Overdue+Invoice+Reminder+Email")) failures.push("Directory monitor missing NoSignupTools overdue invoice reminder submission tracking.");
   if (!directoryMonitorScript.includes("NoSignupTools upload limit fixer listing") || !directoryMonitorScript.includes("Upload+Limit+Fixer")) failures.push("Directory monitor missing NoSignupTools upload limit fixer submission tracking.");
   if (!directoryMonitorScript.includes("NoSignupTools upload error cheatsheet listing") || !directoryMonitorScript.includes("Upload+Error+Cheatsheet")) failures.push("Directory monitor missing NoSignupTools upload error cheatsheet submission tracking.");
@@ -682,6 +702,10 @@ else {
   if (!directoryMonitorScript.includes("NoSignupTools signature under 50KB listing") || !directoryMonitorScript.includes("Signature+Under+50KB")) failures.push("Directory monitor missing NoSignupTools signature under 50KB submission tracking.");
   if (!directoryMonitorScript.includes("NoSignupTools resize signature 140x60 listing") || !directoryMonitorScript.includes("Resize+Signature+140x60")) failures.push("Directory monitor missing NoSignupTools resize signature 140x60 submission tracking.");
   if (!directoryMonitorScript.includes("NoSignupTools resize signature 200x100 listing") || !directoryMonitorScript.includes("Resize+Signature+200x100")) failures.push("Directory monitor missing NoSignupTools resize signature 200x100 submission tracking.");
+  if (!directoryMonitorScript.includes("nosignupExactUploadLimitListings") || !directoryMonitorScript.includes("slugify(title)")) failures.push("Directory monitor missing data-driven NoSignupTools exact upload-limit tracking.");
+  for (const title of nosignuptoolsExactUploadTitles) {
+    if (!directoryMonitorScript.includes(title)) failures.push(`Directory monitor missing NoSignupTools exact upload-limit tracking: ${title}.`);
+  }
   if (!directoryMonitorScript.includes("FreeNoSignup overdue invoice reminder listing") || !directoryMonitorScript.includes("Overdue+Invoice+Reminder+Email")) failures.push("Directory monitor missing FreeNoSignup overdue invoice reminder submission tracking.");
   if (!directoryMonitorScript.includes("FreeNoSignup upload limit fixer listing") || !directoryMonitorScript.includes("Upload+Limit+Fixer")) failures.push("Directory monitor missing FreeNoSignup upload limit fixer submission tracking.");
   if (!directoryMonitorScript.includes("FreeNoSignup upload error cheatsheet listing") || !directoryMonitorScript.includes("Upload+Error+Cheatsheet")) failures.push("Directory monitor missing FreeNoSignup upload error cheatsheet submission tracking.");
@@ -924,6 +948,24 @@ for (const [name, reportName, campaign, reviewUrl] of [
   ["signature under 50KB", "nosignuptools-signature-under-50kb-submit.json", "signature_50kb_upload_fix_2026_06", "https://nosignuptools.com/tools/signature-under-50kb-by-printabletools-lab"],
   ["resize signature 140x60", "nosignuptools-resize-signature-140x60-submit.json", "resize_signature_140x60_2026_06", "https://nosignuptools.com/tools/resize-signature-140x60-by-printabletools-lab"],
   ["resize signature 200x100", "nosignuptools-resize-signature-200x100-submit.json", "resize_signature_200x100_2026_06", "https://nosignuptools.com/tools/resize-signature-200x100-by-printabletools-lab"],
+  ["compress image to 10KB", "nosignuptools-compress-image-to-10kb-submit.json", "image_10kb_2026_06", "https://nosignuptools.com/tools/compress-image-to-10kb-by-printabletools-lab"],
+  ["compress image to 20KB", "nosignuptools-compress-image-to-20kb-submit.json", "image_20kb_2026_06", "https://nosignuptools.com/tools/compress-image-to-20kb-by-printabletools-lab"],
+  ["compress image to 30KB", "nosignuptools-compress-image-to-30kb-submit.json", "image_30kb_2026_06", "https://nosignuptools.com/tools/compress-image-to-30kb-by-printabletools-lab"],
+  ["compress image to 150KB", "nosignuptools-compress-image-to-150kb-submit.json", "image_150kb_2026_06", "https://nosignuptools.com/tools/compress-image-to-150kb-by-printabletools-lab"],
+  ["compress image to 300KB", "nosignuptools-compress-image-to-300kb-submit.json", "image_300kb_2026_06", "https://nosignuptools.com/tools/compress-image-to-300kb-by-printabletools-lab"],
+  ["compress image to 500KB", "nosignuptools-compress-image-to-500kb-submit.json", "image_500kb_2026_06", "https://nosignuptools.com/tools/compress-image-to-500kb-by-printabletools-lab"],
+  ["compress PDF to 500KB", "nosignuptools-compress-pdf-to-500kb-submit.json", "pdf_500kb_2026_06", "https://nosignuptools.com/tools/compress-pdf-to-500kb-by-printabletools-lab"],
+  ["compress PDF to 1MB", "nosignuptools-compress-pdf-to-1mb-submit.json", "pdf_1mb_2026_06", "https://nosignuptools.com/tools/compress-pdf-to-1mb-by-printabletools-lab"],
+  ["compress PDF to 2MB", "nosignuptools-compress-pdf-to-2mb-submit.json", "pdf_2mb_2026_06", "https://nosignuptools.com/tools/compress-pdf-to-2mb-by-printabletools-lab"],
+  ["compress PDF to 5MB", "nosignuptools-compress-pdf-to-5mb-submit.json", "pdf_5mb_2026_06", "https://nosignuptools.com/tools/compress-pdf-to-5mb-by-printabletools-lab"],
+  ["PDF size reducer", "nosignuptools-pdf-size-reducer-submit.json", "pdf_size_reducer_2026_06", "https://nosignuptools.com/tools/pdf-size-reducer-by-printabletools-lab"],
+  ["file under 1MB", "nosignuptools-file-must-be-less-than-1mb-submit.json", "file_under_1mb_upload_fix_2026_06", "https://nosignuptools.com/tools/file-must-be-less-than-1mb-fix-by-printabletools-lab"],
+  ["PDF under 500KB", "nosignuptools-pdf-must-be-under-500kb-submit.json", "pdf_under_500kb_upload_fix_2026_06", "https://nosignuptools.com/tools/pdf-must-be-under-500kb-fix-by-printabletools-lab"],
+  ["photo under 100KB", "nosignuptools-photo-must-be-under-100kb-submit.json", "photo_under_100kb_upload_fix_2026_06", "https://nosignuptools.com/tools/photo-must-be-under-100kb-fix-by-printabletools-lab"],
+  ["image under 500KB", "nosignuptools-image-must-be-under-500kb-submit.json", "image_under_500kb_upload_fix_2026_06", "https://nosignuptools.com/tools/image-must-be-under-500kb-fix-by-printabletools-lab"],
+  ["image under 2MB", "nosignuptools-image-must-be-less-than-2mb-submit.json", "image_under_2mb_upload_fix_2026_06", "https://nosignuptools.com/tools/image-must-be-less-than-2mb-fix-by-printabletools-lab"],
+  ["JPG under 200KB", "nosignuptools-jpg-must-be-under-200kb-submit.json", "jpg_under_200kb_upload_fix_2026_06", "https://nosignuptools.com/tools/jpg-must-be-under-200kb-fix-by-printabletools-lab"],
+  ["PNG screenshot too large", "nosignuptools-png-screenshot-too-large-submit.json", "png_screenshot_too_large_fix_2026_06", "https://nosignuptools.com/tools/png-screenshot-too-large-fix-by-printabletools-lab"],
 ]) {
   const reportFile = path.join(root, "reports", reportName);
   if (!fs.existsSync(reportFile)) failures.push(`Missing NoSignupTools ${name} submission evidence report.`);
@@ -936,7 +978,7 @@ const nosignuptoolsUploadBacklogScriptFile = path.join(root, "scripts", "submit-
 if (!fs.existsSync(nosignuptoolsUploadBacklogScriptFile)) failures.push("Missing NoSignupTools upload-fix submission script.");
 else {
   const script = fs.readFileSync(nosignuptoolsUploadBacklogScriptFile, "utf8");
-  if (!script.includes("PDF Under 2MB Upload Fix") || !script.includes("PDF Under 5MB Upload Fix") || !script.includes("Resume PDF Under 2MB Upload Fix") || !script.includes("Document Under 5MB Upload Fix") || !script.includes("Extract Text From PDF Without Uploading") || !script.includes("Merge PDF Without Uploading") || !script.includes("Split PDF Without Uploading") || !script.includes("Rotate PDF Pages Without Uploading") || !script.includes("Remove Pages From PDF Without Uploading") || !script.includes("Reorder PDF Pages Without Uploading") || !script.includes("Add Page Numbers to PDF") || !script.includes("Stamp PDF Without Uploading") || !script.includes("Sign PDF Without Uploading") || !script.includes("Compress Image Without Uploading") || !script.includes("Resize Image Without Uploading") || !script.includes("Convert Image Format Without Uploading") || !script.includes("Remove Background Without Uploading") || !script.includes("Crop Image Without Uploading") || !script.includes("Rotate Image Without Uploading") || !script.includes("Watermark Image Without Uploading") || !script.includes("Passport Photo Size Fixer") || !script.includes("Resize Photo 413x531") || !script.includes("Passport Photo 35x45mm") || !script.includes("Photo 200x230 Under 50KB") || !script.includes("Resize Photo 200x230") || !script.includes("Signature Under 20KB") || !script.includes("Signature Under 50KB") || !script.includes("Resize Signature 140x60") || !script.includes("Resize Signature 200x100")) failures.push("NoSignupTools upload-fix submission script missing PDF/document/image no-upload/photo/signature payloads.");
+  if (!script.includes("PDF Under 2MB Upload Fix") || !script.includes("PDF Under 5MB Upload Fix") || !script.includes("Resume PDF Under 2MB Upload Fix") || !script.includes("Document Under 5MB Upload Fix") || !script.includes("Extract Text From PDF Without Uploading") || !script.includes("Merge PDF Without Uploading") || !script.includes("Split PDF Without Uploading") || !script.includes("Rotate PDF Pages Without Uploading") || !script.includes("Remove Pages From PDF Without Uploading") || !script.includes("Reorder PDF Pages Without Uploading") || !script.includes("Add Page Numbers to PDF") || !script.includes("Stamp PDF Without Uploading") || !script.includes("Sign PDF Without Uploading") || !script.includes("Compress Image Without Uploading") || !script.includes("Resize Image Without Uploading") || !script.includes("Convert Image Format Without Uploading") || !script.includes("Remove Background Without Uploading") || !script.includes("Crop Image Without Uploading") || !script.includes("Rotate Image Without Uploading") || !script.includes("Watermark Image Without Uploading") || !script.includes("Passport Photo Size Fixer") || !script.includes("Resize Photo 413x531") || !script.includes("Passport Photo 35x45mm") || !script.includes("Photo 200x230 Under 50KB") || !script.includes("Resize Photo 200x230") || !script.includes("Signature Under 20KB") || !script.includes("Signature Under 50KB") || !script.includes("Resize Signature 140x60") || !script.includes("Resize Signature 200x100") || !script.includes("Compress Image to 10KB") || !script.includes("Compress PDF to 1MB") || !script.includes("PNG Screenshot Too Large Fix")) failures.push("NoSignupTools upload-fix submission script missing PDF/document/image no-upload/photo/signature/exact upload-limit payloads.");
 }
 const packageJsonFile = path.join(root, "package.json");
 if (!fs.existsSync(packageJsonFile)) failures.push("Missing package.json.");

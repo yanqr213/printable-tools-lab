@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-09T05:52:35.777Z",
+  "generatedAt": "2026-06-09T06:06:48.050Z",
   "site": "https://printable-tools-lab.pages.dev/",
   "listedCount": 66,
-  "pendingCount": 56,
+  "pendingCount": 74,
   "errorCount": 1,
   "results": [
     {
@@ -21,14 +21,14 @@
           "url": "https://zearches.com/?s=PrintableTools+Lab",
           "ok": true,
           "status": 200,
-          "bytes": 118000,
+          "bytes": 118074,
           "matched": false
         },
         {
           "url": "https://zearches.com/",
           "ok": true,
           "status": 200,
-          "bytes": 118000,
+          "bytes": 118074,
           "matched": false
         }
       ]
@@ -1990,7 +1990,7 @@
           "url": "https://nosignuptools.com/tools/extract-text-from-pdf-without-uploading-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20108,
+          "bytes": 20151,
           "matched": false
         }
       ]
@@ -2309,7 +2309,7 @@
           "url": "https://nosignuptools.com/tools/convert-image-format-without-uploading-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20105,
+          "bytes": 20148,
           "matched": false
         }
       ]
@@ -2367,7 +2367,7 @@
           "url": "https://nosignuptools.com/tools/crop-image-without-uploading-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20118,
+          "bytes": 20075,
           "matched": false
         }
       ]
@@ -2512,7 +2512,7 @@
           "url": "https://nosignuptools.com/tools/passport-photo-35x45mm-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20057,
+          "bytes": 20100,
           "matched": false
         }
       ]
@@ -2628,7 +2628,7 @@
           "url": "https://nosignuptools.com/tools/signature-under-50kb-by-printabletools-lab",
           "ok": false,
           "status": 404,
-          "bytes": 20051,
+          "bytes": 20094,
           "matched": false
         }
       ]
@@ -2687,6 +2687,528 @@
           "ok": false,
           "status": 404,
           "bytes": 20106,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools Compress Image to 10KB listing",
+      "url": "https://nosignuptools.com/tools/compress-image-to-10kb-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Compress+Image+to+10KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress Image to 10KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the image 10KB compressor for strict upload limits",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Compress+Image+to+10KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/compress-image-to-10kb-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20100,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools Compress Image to 20KB listing",
+      "url": "https://nosignuptools.com/tools/compress-image-to-20kb-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Compress+Image+to+20KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress Image to 20KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the image 20KB compressor for strict upload limits",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Compress+Image+to+20KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/compress-image-to-20kb-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20057,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools Compress Image to 30KB listing",
+      "url": "https://nosignuptools.com/tools/compress-image-to-30kb-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Compress+Image+to+30KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress Image to 30KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the image 30KB compressor for strict upload limits",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Compress+Image+to+30KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/compress-image-to-30kb-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20100,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools Compress Image to 150KB listing",
+      "url": "https://nosignuptools.com/tools/compress-image-to-150kb-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Compress+Image+to+150KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress Image to 150KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the image 150KB compressor for upload forms and profiles",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Compress+Image+to+150KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/compress-image-to-150kb-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20103,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools Compress Image to 300KB listing",
+      "url": "https://nosignuptools.com/tools/compress-image-to-300kb-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Compress+Image+to+300KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress Image to 300KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the image 300KB compressor for forms and attachments",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Compress+Image+to+300KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/compress-image-to-300kb-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20060,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools Compress Image to 500KB listing",
+      "url": "https://nosignuptools.com/tools/compress-image-to-500kb-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Compress+Image+to+500KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress Image to 500KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the image 500KB compressor for moderate upload limits",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Compress+Image+to+500KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/compress-image-to-500kb-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20103,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools Compress PDF to 500KB listing",
+      "url": "https://nosignuptools.com/tools/compress-pdf-to-500kb-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Compress+PDF+to+500KB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress PDF to 500KB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the PDF 500KB compressor for strict upload limits",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Compress+PDF+to+500KB",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/compress-pdf-to-500kb-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20097,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools Compress PDF to 1MB listing",
+      "url": "https://nosignuptools.com/tools/compress-pdf-to-1mb-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Compress+PDF+to+1MB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress PDF to 1MB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the PDF 1MB compressor for common upload limits",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Compress+PDF+to+1MB",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/compress-pdf-to-1mb-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20091,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools Compress PDF to 2MB listing",
+      "url": "https://nosignuptools.com/tools/compress-pdf-to-2mb-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Compress+PDF+to+2MB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress PDF to 2MB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the PDF 2MB compressor for upload forms",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Compress+PDF+to+2MB",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/compress-pdf-to-2mb-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20048,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools Compress PDF to 5MB listing",
+      "url": "https://nosignuptools.com/tools/compress-pdf-to-5mb-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Compress+PDF+to+5MB",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Compress PDF to 5MB"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the PDF 5MB compressor for readable uploads",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Compress+PDF+to+5MB",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/compress-pdf-to-5mb-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20048,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools PDF Size Reducer listing",
+      "url": "https://nosignuptools.com/tools/pdf-size-reducer-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=PDF+Size+Reducer",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "PDF Size Reducer"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the PDF size reducer hub for exact targets",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=PDF+Size+Reducer",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/pdf-size-reducer-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20039,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools File Must Be Less Than 1MB Fix listing",
+      "url": "https://nosignuptools.com/tools/file-must-be-less-than-1mb-fix-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=File+Must+Be+Less+Than+1MB+Fix",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "File Must Be Less Than 1MB Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the file under 1MB upload error fix",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=File+Must+Be+Less+Than+1MB+Fix",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/file-must-be-less-than-1mb-fix-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20124,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools PDF Must Be Under 500KB Fix listing",
+      "url": "https://nosignuptools.com/tools/pdf-must-be-under-500kb-fix-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=PDF+Must+Be+Under+500KB+Fix",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "PDF Must Be Under 500KB Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the PDF under 500KB upload error fix",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=PDF+Must+Be+Under+500KB+Fix",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/pdf-must-be-under-500kb-fix-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20115,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools Photo Must Be Under 100KB Fix listing",
+      "url": "https://nosignuptools.com/tools/photo-must-be-under-100kb-fix-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Photo+Must+Be+Under+100KB+Fix",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Photo Must Be Under 100KB Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the photo under 100KB upload error fix",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Photo+Must+Be+Under+100KB+Fix",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/photo-must-be-under-100kb-fix-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20121,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools Image Must Be Under 500KB Fix listing",
+      "url": "https://nosignuptools.com/tools/image-must-be-under-500kb-fix-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Image+Must+Be+Under+500KB+Fix",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Image Must Be Under 500KB Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the image under 500KB upload error fix",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Image+Must+Be+Under+500KB+Fix",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/image-must-be-under-500kb-fix-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20121,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools Image Must Be Less Than 2MB Fix listing",
+      "url": "https://nosignuptools.com/tools/image-must-be-less-than-2mb-fix-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=Image+Must+Be+Less+Than+2MB+Fix",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "Image Must Be Less Than 2MB Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the image under 2MB upload error fix",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=Image+Must+Be+Less+Than+2MB+Fix",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/image-must-be-less-than-2mb-fix-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20127,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools JPG Must Be Under 200KB Fix listing",
+      "url": "https://nosignuptools.com/tools/jpg-must-be-under-200kb-fix-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=JPG+Must+Be+Under+200KB+Fix",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "JPG Must Be Under 200KB Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the JPG under 200KB upload error fix",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=JPG+Must+Be+Under+200KB+Fix",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/jpg-must-be-under-200kb-fix-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20115,
+          "matched": false
+        }
+      ]
+    },
+    {
+      "name": "NoSignupTools PNG Screenshot Too Large Fix listing",
+      "url": "https://nosignuptools.com/tools/png-screenshot-too-large-fix-by-printabletools-lab",
+      "searchUrl": "https://nosignuptools.com/?q=PNG+Screenshot+Too+Large+Fix",
+      "expected": [
+        "printable-tools-lab.pages.dev",
+        "PNG Screenshot Too Large Fix"
+      ],
+      "submittedAt": "2026-06-09",
+      "reviewWindow": "24-48 hour manual review after public API success response for the PNG screenshot upload error fix",
+      "status": "pending",
+      "evidenceUrl": "",
+      "checked": [
+        {
+          "url": "https://nosignuptools.com/?q=PNG+Screenshot+Too+Large+Fix",
+          "ok": true,
+          "status": 200,
+          "bytes": 191815,
+          "matched": false
+        },
+        {
+          "url": "https://nosignuptools.com/tools/png-screenshot-too-large-fix-by-printabletools-lab",
+          "ok": false,
+          "status": 404,
+          "bytes": 20118,
           "matched": false
         }
       ]
@@ -3166,34 +3688,49 @@
       "reviewWindow": "maintainer review",
       "status": "error",
       "evidenceUrl": "https://github.com/js-org/js.org/pull/11512",
-      "apiAvailable": false,
-      "checksAvailable": false,
-      "templateOk": null,
-      "checksOk": null,
-      "checks": [],
-      "prState": "unknown",
-      "mergeable": null,
+      "apiAvailable": true,
+      "checksAvailable": true,
+      "templateOk": true,
+      "checksOk": true,
+      "checks": [
+        {
+          "name": "PR description",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:58Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353230"
+        },
+        {
+          "name": "cnames_active.js",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-06-01T22:34:57Z",
+          "url": "https://github.com/js-org/js.org/actions/runs/26786165997/job/78962353223"
+        }
+      ],
+      "prState": "closed",
+      "mergeable": true,
       "checked": [
         {
           "url": "https://github.com/js-org/js.org/pull/11512",
           "ok": true,
           "status": 200,
-          "bytes": 298680,
+          "bytes": 298674,
           "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/pulls/11512",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 16307,
+          "matched": true
         },
         {
           "url": "https://api.github.com/repos/js-org/js.org/commits/f68060b27af6e352d344ecedc64065d93911326b/check-runs",
-          "ok": false,
-          "status": 403,
-          "bytes": 277,
-          "matched": false
+          "ok": true,
+          "status": 200,
+          "bytes": 18122,
+          "matched": true
         }
       ]
     }

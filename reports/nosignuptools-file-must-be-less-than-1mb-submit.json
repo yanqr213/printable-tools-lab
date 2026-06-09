@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T06:04:54.787Z",
+  "directory": "NoSignupTools",
+  "endpoint": "https://nosignuptools.com/api/submit",
+  "status": 200,
+  "ok": true,
+  "preSubmitEvidence": {
+    "expectedReviewUrlStatus": 404,
+    "searchMatchedExistingListing": false
+  },
+  "payload": {
+    "icon_url": "https://printable-tools-lab.pages.dev/assets/images/app-icon-512.png",
+    "screenshots": [
+      "https://printable-tools-lab.pages.dev/assets/images/free-pdf-tools-screenshot.png"
+    ],
+    "tag_ids": [
+      3,
+      5
+    ],
+    "submitter_name": "PrintableTools Lab",
+    "submitter_email": null,
+    "name": "File Must Be Less Than 1MB Fix by PrintableTools Lab",
+    "slug": "file-must-be-less-than-1mb-fix-by-printabletools-lab",
+    "url": "https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb/?utm_source=nosignuptools&utm_medium=directory&utm_campaign=file_under_1mb_upload_fix_2026_06&utm_content=file_must_be_less_than_1mb_landing",
+    "category": "productivity",
+    "short_description": "Free no-signup fix for file must be less than 1MB upload errors.",
+    "long_description": "A free browser-based upload error fixer for forms that say a file must be less than 1MB. It routes visitors to local PDF and image size tools, requires no account, and includes an optional USD 9 Upload Limit Fix Plan request after a public-safe fit check."
+  },
+  "response": {
+    "success": true
+  },
+  "reviewStatus": "pending_manual_review",
+  "reviewWindow": "24-48 hours",
+  "expectedReviewUrl": "https://nosignuptools.com/tools/file-must-be-less-than-1mb-fix-by-printabletools-lab"
+}
