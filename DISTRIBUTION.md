@@ -491,6 +491,11 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - Preschool Name Tracing Worksheet: https://printable-tools-lab.pages.dev/preschool-name-tracing-worksheet/
 - Kindergarten Name Writing Practice: https://printable-tools-lab.pages.dev/kindergarten-name-writing-practice/
 - Custom Word Tracing Worksheet: https://printable-tools-lab.pages.dev/custom-word-tracing-worksheet/
+- Dot Grid Paper Printable: https://printable-tools-lab.pages.dev/dot-grid-paper-printable/
+- Half Inch Graph Paper PDF: https://printable-tools-lab.pages.dev/half-inch-graph-paper-pdf/
+- 5 Lines Per Inch Graph Paper: https://printable-tools-lab.pages.dev/five-lines-per-inch-graph-paper/
+- Blank Graph Paper PDF: https://printable-tools-lab.pages.dev/blank-graph-paper-pdf/
+- Math Graph Paper Printable: https://printable-tools-lab.pages.dev/math-graph-paper-printable/
 - Free Printable Business Card Generator: https://printable-tools-lab.pages.dev/free-business-card-generator-printable/
 - Free Printable Address Label Generator: https://printable-tools-lab.pages.dev/free-address-label-generator-printable/
 - Free Printable Barcode Label Generator: https://printable-tools-lab.pages.dev/free-barcode-label-generator-printable/

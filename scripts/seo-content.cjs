@@ -4173,6 +4173,32 @@ function nameTracingScenarioLandingPage({ path, title, description, headline, le
   };
 }
 
+function graphPaperScenarioLandingPage({ path, title, description, headline, lead, paperTitle, spacing, style = "major", color = "blue", paper = "letter", intent, sections, relatedTools = [] }) {
+  return {
+    path,
+    title,
+    description,
+    headline,
+    lead,
+    primaryTool: "tools/graph-paper",
+    primaryToolQuery: new URLSearchParams({
+      title: paperTitle,
+      spacing,
+      style,
+      color,
+      paper,
+    }).toString(),
+    intent,
+    sections,
+    relatedTools: [
+      "tools/graph-paper",
+      ...relatedTools,
+      "tools/todo-list",
+      "tools/weekly-planner",
+    ],
+  };
+}
+
 const QR_SCENARIO_LANDING_PAGES = [
   qrScenarioLandingPage({
     path: "google-review-qr-code-generator",
@@ -4346,6 +4372,99 @@ const NAME_TRACING_SCENARIO_LANDING_PAGES = [
       ["Review appropriateness", "Only use words that fit the learner, group, and setting. This tool does not choose age-appropriate vocabulary for you."],
     ],
     relatedTools: ["tools/name-tracing", "tools/flashcards", "tools/todo-list"],
+  }),
+];
+
+const GRAPH_PAPER_SCENARIO_LANDING_PAGES = [
+  graphPaperScenarioLandingPage({
+    path: "dot-grid-paper-printable",
+    title: "Dot Grid Paper Printable",
+    description: "Create a clean printable dot grid paper PDF for bullet journal layouts, notes, planning, and light sketching.",
+    headline: "Dot grid paper printable",
+    lead: "Open the graph paper generator with dot grid style selected, then download a simple one-page PDF without signup.",
+    paperTitle: "Printable Dot Grid Paper",
+    spacing: "0.25",
+    style: "dots",
+    color: "gray",
+    intent: "dot grid paper printable, printable dotted paper PDF, bullet journal dot grid",
+    sections: [
+      ["Why dot grid searches convert", "Dot grid paper is useful for bullet journals, layout planning, habit pages, classroom notes, and light design sketches because the marks guide writing without heavy grid lines."],
+      ["Start with quarter-inch spacing", "The prefilled page uses a quarter-inch dot interval, which keeps the dots visible while leaving enough open white space for notes and drawings."],
+      ["Print check", "Use actual size or 100 percent print scaling if dot placement matters. Print one test page before making a stack for a planner or class."],
+    ],
+    relatedTools: ["tools/graph-paper", "tools/habit-tracker", "tools/weekly-planner"],
+  }),
+  graphPaperScenarioLandingPage({
+    path: "half-inch-graph-paper-pdf",
+    title: "Half Inch Graph Paper PDF",
+    description: "Generate a half-inch graph paper PDF for handwriting support, young students, sketching, and large planning grids.",
+    headline: "Half inch graph paper PDF",
+    lead: "Use a larger half-inch grid when small graph paper feels crowded or hard to write on.",
+    paperTitle: "Half Inch Graph Paper",
+    spacing: "0.5",
+    style: "major",
+    color: "blue",
+    intent: "half inch graph paper PDF, printable half inch grid paper, large graph paper",
+    sections: [
+      ["Larger squares are easier to write in", "Half-inch graph paper works well for younger students, visual planning, simple charts, and sketches where a tight technical grid is not needed."],
+      ["Major lines help scanning", "The prefilled major-line style keeps the page easy to follow after printing, especially when notes or pencil marks sit on top of the grid."],
+      ["Before printing multiples", "Print one page at actual size and confirm the grid feels large enough for the intended handwriting or drawing task."],
+    ],
+    relatedTools: ["tools/graph-paper", "tools/name-tracing", "tools/todo-list"],
+  }),
+  graphPaperScenarioLandingPage({
+    path: "five-lines-per-inch-graph-paper",
+    title: "5 Lines Per Inch Graph Paper",
+    description: "Create a printable 5 lines per inch graph paper PDF for tighter math work, notes, diagrams, and design sketches.",
+    headline: "5 lines per inch graph paper",
+    lead: "Open the generator with the tighter 5-lines-per-inch grid selected and download a one-page printable PDF.",
+    paperTitle: "5 Lines Per Inch Graph Paper",
+    spacing: "0.2",
+    style: "major",
+    color: "blue",
+    intent: "5 lines per inch graph paper, printable 5 per inch grid paper, small graph paper PDF",
+    sections: [
+      ["Use it for tighter work", "Five lines per inch gives more boxes on one page than quarter-inch or half-inch paper, which helps for compact math notes, diagrams, and planning marks."],
+      ["Keep major lines on", "The major-line style gives a clearer one-inch rhythm so the tighter grid does not turn into visual noise after printing."],
+      ["Check printer scaling", "Exact grid spacing depends on printing at actual size. Disable fit-to-page scaling when the measurement matters."],
+    ],
+    relatedTools: ["tools/graph-paper", "tools/pdf-page-numbers", "tools/text-to-pdf"],
+  }),
+  graphPaperScenarioLandingPage({
+    path: "blank-graph-paper-pdf",
+    title: "Blank Graph Paper PDF",
+    description: "Make a simple blank graph paper PDF with a clean printable grid for school, planning, notes, and sketches.",
+    headline: "Blank graph paper PDF",
+    lead: "Use this when you need ordinary graph paper quickly, without decorative templates or a download paywall.",
+    paperTitle: "Blank Graph Paper",
+    spacing: "0.25",
+    style: "plain",
+    color: "gray",
+    intent: "blank graph paper PDF, printable blank grid paper, free graph paper",
+    sections: [
+      ["Simple grid, broad use", "Blank graph paper serves many practical searches: math homework, quick charts, room layouts, project notes, sewing sketches, and classroom handouts."],
+      ["Plain style reduces distraction", "The prefilled page uses a plain quarter-inch gray grid so pencil, pen, or colored marks remain easier to see."],
+      ["Review the output", "Generate the PDF, open it once, and confirm the title, paper size, and grid density before printing several pages."],
+    ],
+    relatedTools: ["tools/graph-paper", "tools/todo-list", "tools/monthly-calendar"],
+  }),
+  graphPaperScenarioLandingPage({
+    path: "math-graph-paper-printable",
+    title: "Math Graph Paper Printable",
+    description: "Create printable graph paper for math practice, coordinate work, charts, classroom handouts, and homework pages.",
+    headline: "Math graph paper printable",
+    lead: "Start with a readable quarter-inch major-line grid that works for many school math and homework needs.",
+    paperTitle: "Math Graph Paper",
+    spacing: "0.25",
+    style: "major",
+    color: "blue",
+    intent: "math graph paper printable, printable graph paper for math, school graph paper PDF",
+    sections: [
+      ["Good classroom default", "Quarter-inch major-line graph paper is a flexible default for arithmetic layouts, coordinate practice, simple charts, and homework scratch work."],
+      ["Avoid over-formatting", "A plain printable grid is often more useful than a decorative worksheet because teachers and students can adapt it to the current problem."],
+      ["Print at actual size", "When the grid needs to match measurement work, use actual-size printing and test one page before printing a class set."],
+    ],
+    relatedTools: ["tools/graph-paper", "tools/flashcards", "tools/name-tracing"],
   }),
 ];
 
@@ -6651,6 +6770,7 @@ const landingPages = [
     relatedTools: ["tools/sign-in-sheet", "tools/todo-list", "tools/flashcards"],
   },
   ...NAME_TRACING_SCENARIO_LANDING_PAGES,
+  ...GRAPH_PAPER_SCENARIO_LANDING_PAGES,
   {
     path: "free-business-card-generator-printable",
     title: "Free Printable Business Card Generator",

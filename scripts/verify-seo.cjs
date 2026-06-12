@@ -614,6 +614,47 @@ for (const page of [
   if (!sitemap.includes(`<loc>${siteUrl(page.pathName)}</loc>`)) failures.push(`Sitemap missing high-intent invoice follow-up landing page: ${page.pathName}`);
 }
 
+for (const page of [
+  {
+    pathName: "dot-grid-paper-printable",
+    headline: "Dot grid paper printable",
+    queryParts: ["spacing=0.25", "style=dots", "color=gray"],
+  },
+  {
+    pathName: "half-inch-graph-paper-pdf",
+    headline: "Half inch graph paper PDF",
+    queryParts: ["spacing=0.5", "style=major", "color=blue"],
+  },
+  {
+    pathName: "five-lines-per-inch-graph-paper",
+    headline: "5 lines per inch graph paper",
+    queryParts: ["spacing=0.2", "style=major", "color=blue"],
+  },
+  {
+    pathName: "blank-graph-paper-pdf",
+    headline: "Blank graph paper PDF",
+    queryParts: ["spacing=0.25", "style=plain", "color=gray"],
+  },
+  {
+    pathName: "math-graph-paper-printable",
+    headline: "Math graph paper printable",
+    queryParts: ["spacing=0.25", "style=major", "color=blue"],
+  },
+]) {
+  const file = path.join(root, page.pathName, "index.html");
+  if (!fs.existsSync(file)) {
+    failures.push(`Missing graph paper landing page: ${page.pathName}`);
+  } else {
+    const html = fs.readFileSync(file, "utf8");
+    if (!html.includes(page.headline) || !html.includes("/tools/graph-paper/?")) failures.push(`${page.pathName} missing focused graph paper copy or prefilled generator link.`);
+    for (const part of page.queryParts) {
+      if (!html.includes(part)) failures.push(`${page.pathName} missing graph paper prefill query part: ${part}`);
+    }
+    if (html.includes("/ops/") || html.includes("data-service-type=") || html.includes("Start USD")) failures.push(`${page.pathName} should stay focused on free graph paper traffic and not expose ops or paid CTAs.`);
+  }
+  if (!sitemap.includes(`<loc>${siteUrl(page.pathName)}</loc>`)) failures.push(`Sitemap missing graph paper landing page: ${page.pathName}`);
+}
+
 const appScriptFile = path.join(root, "app.js");
 if (!fs.existsSync(appScriptFile)) failures.push("Missing app.js.");
 else {
@@ -633,6 +674,7 @@ else {
   if (!script.includes('tool.id === "invoice-followup-email"') || !script.includes('values.invoiceStatus = invoiceStatus') || !script.includes("const initialValues = initialToolValues(tool)") || !script.includes("renderField(field, initialValues[field.id])")) failures.push("app.js should prefill invoice follow-up generator from URL params.");
   if (!script.includes('tool.id === "qr-code"') || !script.includes('values.content = String(content).slice(0, 700)') || !script.includes("values.errorCorrection = errorCorrection")) failures.push("app.js should prefill QR generator from URL params.");
   if (!script.includes('tool.id === "name-tracing"') || !script.includes('values.name = String(name).slice(0, 24)') || !script.includes('values.subtitle = String(subtitle).slice(0, 70)')) failures.push("app.js should prefill name tracing worksheet generator from URL params.");
+  if (!script.includes('tool.id === "graph-paper"') || !script.includes('values.spacing = spacing') || !script.includes('values.style = style') || !script.includes('values.color = color')) failures.push("app.js should prefill graph paper generator from URL params.");
   if (!script.includes('data-utm-source="download_success"') || !script.includes("form.dataset.leadPath") || !script.includes("paramOrFieldOrData")) failures.push("Download success service lead form missing attribution preservation.");
   if (!script.includes('utmSource: paramOrFieldOrData("utm_source", "utmSource", "utmSource")') || !script.includes('utmCampaign: paramOrFieldOrData("utm_campaign", "utmCampaign", "utmCampaign")')) failures.push("Service lead attribution should prefer live URL UTM params over static form defaults.");
   if (!script.includes("Future ads must stay separated from generator controls")) failures.push("Missing download success ad-safety warning.");

@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-12T15:26:40.445Z",
+  "generatedAt": "2026-06-12T15:38:52.013Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -202,6 +202,11 @@
     "https://printable-tools-lab.pages.dev/preschool-name-tracing-worksheet/",
     "https://printable-tools-lab.pages.dev/kindergarten-name-writing-practice/",
     "https://printable-tools-lab.pages.dev/custom-word-tracing-worksheet/",
+    "https://printable-tools-lab.pages.dev/dot-grid-paper-printable/",
+    "https://printable-tools-lab.pages.dev/half-inch-graph-paper-pdf/",
+    "https://printable-tools-lab.pages.dev/five-lines-per-inch-graph-paper/",
+    "https://printable-tools-lab.pages.dev/blank-graph-paper-pdf/",
+    "https://printable-tools-lab.pages.dev/math-graph-paper-printable/",
     "https://printable-tools-lab.pages.dev/free-business-card-generator-printable/",
     "https://printable-tools-lab.pages.dev/free-address-label-generator-printable/",
     "https://printable-tools-lab.pages.dev/free-barcode-label-generator-printable/",
@@ -1512,6 +1517,36 @@
       "url": "https://printable-tools-lab.pages.dev/custom-word-tracing-worksheet/",
       "intent": "custom word tracing worksheet, spelling word tracing, vocabulary tracing worksheet",
       "tool": "https://printable-tools-lab.pages.dev/tools/name-tracing/"
+    },
+    {
+      "title": "Dot Grid Paper Printable",
+      "url": "https://printable-tools-lab.pages.dev/dot-grid-paper-printable/",
+      "intent": "dot grid paper printable, printable dotted paper PDF, bullet journal dot grid",
+      "tool": "https://printable-tools-lab.pages.dev/tools/graph-paper/"
+    },
+    {
+      "title": "Half Inch Graph Paper PDF",
+      "url": "https://printable-tools-lab.pages.dev/half-inch-graph-paper-pdf/",
+      "intent": "half inch graph paper PDF, printable half inch grid paper, large graph paper",
+      "tool": "https://printable-tools-lab.pages.dev/tools/graph-paper/"
+    },
+    {
+      "title": "5 Lines Per Inch Graph Paper",
+      "url": "https://printable-tools-lab.pages.dev/five-lines-per-inch-graph-paper/",
+      "intent": "5 lines per inch graph paper, printable 5 per inch grid paper, small graph paper PDF",
+      "tool": "https://printable-tools-lab.pages.dev/tools/graph-paper/"
+    },
+    {
+      "title": "Blank Graph Paper PDF",
+      "url": "https://printable-tools-lab.pages.dev/blank-graph-paper-pdf/",
+      "intent": "blank graph paper PDF, printable blank grid paper, free graph paper",
+      "tool": "https://printable-tools-lab.pages.dev/tools/graph-paper/"
+    },
+    {
+      "title": "Math Graph Paper Printable",
+      "url": "https://printable-tools-lab.pages.dev/math-graph-paper-printable/",
+      "intent": "math graph paper printable, printable graph paper for math, school graph paper PDF",
+      "tool": "https://printable-tools-lab.pages.dev/tools/graph-paper/"
     },
     {
       "title": "Free Printable Business Card Generator",

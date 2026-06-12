@@ -2342,6 +2342,28 @@
     };
   }
 
+  function graphPaperScenarioPage({ slug, title, headline, description, lead, paperTitle, spacing, style = "major", color = "blue", paper = "letter", intent, sections, related }) {
+    const params = new URLSearchParams({
+      title: paperTitle,
+      spacing,
+      style,
+      color,
+      paper,
+    });
+    return {
+      slug,
+      title,
+      headline,
+      description,
+      lead,
+      tool: "graph-paper",
+      toolQuery: params.toString(),
+      intent,
+      sections,
+      related,
+    };
+  }
+
   const nextExactPhotoUploadPageSpecs = [
     {
       slug: "photo-120x160-20kb",
@@ -6139,6 +6161,96 @@
         ["p", "Major lines every inch make the page easier to scan after printing, especially when students or planners write over the grid."],
       ],
     },
+    graphPaperScenarioPage({
+      slug: "dot-grid-paper-printable",
+      title: "Dot Grid Paper Printable",
+      headline: "Dot grid paper printable",
+      description: "Create a clean printable dot grid paper PDF for bullet journal layouts, notes, planning, and light sketching.",
+      lead: "Open the graph paper generator with dot grid style selected, then download a simple one-page PDF without signup.",
+      paperTitle: "Printable Dot Grid Paper",
+      spacing: "0.25",
+      style: "dots",
+      color: "gray",
+      intent: "dot grid paper printable, printable dotted paper PDF, bullet journal dot grid",
+      sections: [
+        ["Why dot grid searches convert", "Dot grid paper is useful for bullet journals, layout planning, habit pages, classroom notes, and light design sketches because the marks guide writing without heavy grid lines."],
+        ["Start with quarter-inch spacing", "The prefilled page uses a quarter-inch dot interval, which keeps the dots visible while leaving enough open white space for notes and drawings."],
+        ["Print check", "Use actual size or 100 percent print scaling if dot placement matters. Print one test page before making a stack for a planner or class."],
+      ],
+      related: ["graph-paper", "habit-tracker", "weekly-planner"],
+    }),
+    graphPaperScenarioPage({
+      slug: "half-inch-graph-paper-pdf",
+      title: "Half Inch Graph Paper PDF",
+      headline: "Half inch graph paper PDF",
+      description: "Generate a half-inch graph paper PDF for handwriting support, young students, sketching, and large planning grids.",
+      lead: "Use a larger half-inch grid when small graph paper feels crowded or hard to write on.",
+      paperTitle: "Half Inch Graph Paper",
+      spacing: "0.5",
+      style: "major",
+      color: "blue",
+      intent: "half inch graph paper PDF, printable half inch grid paper, large graph paper",
+      sections: [
+        ["Larger squares are easier to write in", "Half-inch graph paper works well for younger students, visual planning, simple charts, and sketches where a tight technical grid is not needed."],
+        ["Major lines help scanning", "The prefilled major-line style keeps the page easy to follow after printing, especially when notes or pencil marks sit on top of the grid."],
+        ["Before printing multiples", "Print one page at actual size and confirm the grid feels large enough for the intended handwriting or drawing task."],
+      ],
+      related: ["graph-paper", "name-tracing", "todo-list"],
+    }),
+    graphPaperScenarioPage({
+      slug: "five-lines-per-inch-graph-paper",
+      title: "5 Lines Per Inch Graph Paper",
+      headline: "5 lines per inch graph paper",
+      description: "Create a printable 5 lines per inch graph paper PDF for tighter math work, notes, diagrams, and design sketches.",
+      lead: "Open the generator with the tighter 5-lines-per-inch grid selected and download a one-page printable PDF.",
+      paperTitle: "5 Lines Per Inch Graph Paper",
+      spacing: "0.2",
+      style: "major",
+      color: "blue",
+      intent: "5 lines per inch graph paper, printable 5 per inch grid paper, small graph paper PDF",
+      sections: [
+        ["Use it for tighter work", "Five lines per inch gives more boxes on one page than quarter-inch or half-inch paper, which helps for compact math notes, diagrams, and planning marks."],
+        ["Keep major lines on", "The major-line style gives a clearer one-inch rhythm so the tighter grid does not turn into visual noise after printing."],
+        ["Check printer scaling", "Exact grid spacing depends on printing at actual size. Disable fit-to-page scaling when the measurement matters."],
+      ],
+      related: ["graph-paper", "pdf-page-numbers", "text-to-pdf"],
+    }),
+    graphPaperScenarioPage({
+      slug: "blank-graph-paper-pdf",
+      title: "Blank Graph Paper PDF",
+      headline: "Blank graph paper PDF",
+      description: "Make a simple blank graph paper PDF with a clean printable grid for school, planning, notes, and sketches.",
+      lead: "Use this when you need ordinary graph paper quickly, without decorative templates or a download paywall.",
+      paperTitle: "Blank Graph Paper",
+      spacing: "0.25",
+      style: "plain",
+      color: "gray",
+      intent: "blank graph paper PDF, printable blank grid paper, free graph paper",
+      sections: [
+        ["Simple grid, broad use", "Blank graph paper serves many practical searches: math homework, quick charts, room layouts, project notes, sewing sketches, and classroom handouts."],
+        ["Plain style reduces distraction", "The prefilled page uses a plain quarter-inch gray grid so pencil, pen, or colored marks remain easier to see."],
+        ["Review the output", "Generate the PDF, open it once, and confirm the title, paper size, and grid density before printing several pages."],
+      ],
+      related: ["graph-paper", "todo-list", "monthly-calendar"],
+    }),
+    graphPaperScenarioPage({
+      slug: "math-graph-paper-printable",
+      title: "Math Graph Paper Printable",
+      headline: "Math graph paper printable",
+      description: "Create printable graph paper for math practice, coordinate work, charts, classroom handouts, and homework pages.",
+      lead: "Start with a readable quarter-inch major-line grid that works for many school math and homework needs.",
+      paperTitle: "Math Graph Paper",
+      spacing: "0.25",
+      style: "major",
+      color: "blue",
+      intent: "math graph paper printable, printable graph paper for math, school graph paper PDF",
+      sections: [
+        ["Good classroom default", "Quarter-inch major-line graph paper is a flexible default for arithmetic layouts, coordinate practice, simple charts, and homework scratch work."],
+        ["Avoid over-formatting", "A plain printable grid is often more useful than a decorative worksheet because teachers and students can adapt it to the current problem."],
+        ["Print at actual size", "When the grid needs to match measurement work, use actual-size printing and test one page before printing a class set."],
+      ],
+      related: ["graph-paper", "flashcards", "name-tracing"],
+    }),
     {
       slug: "free-packing-list-generator",
       title: "Free packing list generator",
@@ -12636,6 +12748,19 @@ ${paragraphs.join("\n")}
       if (["primary", "outline", "mixed"].includes(style)) values.style = style;
       if (["letter", "a4"].includes(paper)) values.paper = paper;
       if (["english", "jyutping", "pinyin"].includes(language)) values.language = language;
+    }
+    if (tool.id === "graph-paper") {
+      const params = new URLSearchParams(window.location.search || "");
+      const title = params.get("title");
+      const spacing = String(params.get("spacing") || params.get("grid") || "").toLowerCase();
+      const style = String(params.get("style") || "").toLowerCase();
+      const color = String(params.get("color") || "").toLowerCase();
+      const paper = String(params.get("paper") || "").toLowerCase();
+      if (title) values.title = String(title).slice(0, 70);
+      if (["0.2", "0.25", "0.5"].includes(spacing)) values.spacing = spacing;
+      if (["major", "plain", "dots"].includes(style)) values.style = style;
+      if (["blue", "gray", "green"].includes(color)) values.color = color;
+      if (["letter", "a4"].includes(paper)) values.paper = paper;
     }
     if (tool.id === "invoice-followup-email") {
       const params = new URLSearchParams(window.location.search || "");
