@@ -1,14 +1,14 @@
 # Validation Gates
 
-Last generated: 2026-06-09T12:10:42.561Z
+Last generated: 2026-06-12T14:07:06.239Z
 
 ## Current Automated Status
 
 - Product ready: yes.
 - Tools live in inventory: 67.
 - Guide pages live in inventory: 95.
-- High-intent landing pages: 137.
-- Indexable routes: 332.
+- High-intent landing pages: 151.
+- Indexable routes: 342.
 - Custom domain configured: no.
 - Live downloads: 2.
 - Live generations: 0.
@@ -32,7 +32,7 @@ Last generated: 2026-06-09T12:10:42.561Z
 
 ## Product Gate
 
-- 67 tools, 95 guides, 137 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
+- 67 tools, 95 guides, 151 high-intent landing pages, sitemap, discovery assets, and live metrics are present.
 
 ## Search Console Gate
 
@@ -42,13 +42,13 @@ Last generated: 2026-06-09T12:10:42.561Z
 
 ## External Discovery Gate
 
-- GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.
+- GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.
 - GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.
-- GitHub Pages discovery directory is live with 137 landing page link(s), 67 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).
-- GitHub Pages discovery sitemap has 314 URL(s), including 67 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 314.
+- GitHub Pages discovery directory is live with 151 landing page link(s), 67 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).
+- GitHub Pages discovery sitemap has 328 URL(s), including 67 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 324.
 - IndexNow key file is reachable from the site root.
-- IndexNow latest report accepted 284 URL(s) for github-pages.
-- Directory monitor shows 98 listed, 152 pending, and 5 error directory target(s).
+- IndexNow latest report accepted 328 URL(s) for github-pages.
+- Directory monitor shows 112 listed, 184 pending, and 1 error directory target(s).
 
 ## Monetization Gate
 

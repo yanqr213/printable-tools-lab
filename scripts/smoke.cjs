@@ -260,135 +260,47 @@ function delay(ms) {
     await page.goto(`${base}${landingHref}`, { waitUntil: "networkidle" });
     const selectedTarget = await page.locator("#targetKb").inputValue();
     if (selectedTarget !== targetKb) throw new Error(`Target-KB tool did not preselect ${targetKb}KB, got ${selectedTarget}`);
-    const imageKbFixForm = page.locator('[data-compress-image-kb-tool-fix-form][data-service-type="upload-limit-fix-plan"][data-utm-source="compress-image-kb-tool"][data-utm-campaign="upload_limit_fix_plan"]').first();
-    if (!(await imageKbFixForm.count())) throw new Error(`Image target-KB tool is missing the pre-download $9 upload target request form for ${targetKb}KB`);
-    const imageKbPaidPath = await page.locator("[data-upload-fix-paid-path]").first().innerText();
-    if (!imageKbPaidPath.includes("30-second paid path") || !imageKbPaidPath.includes("external $9 checkout or invoice")) {
-      throw new Error(`Image target-KB request is missing the low-friction paid path note: ${imageKbPaidPath}`);
+    const imageKbFreePanel = page.locator("[data-compress-image-kb-upload-fix-panel]").first();
+    if (!(await imageKbFreePanel.count())) throw new Error(`Image target-KB tool is missing free upload-ready guidance for ${targetKb}KB`);
+    const imageKbFreeText = await imageKbFreePanel.innerText();
+    if (!imageKbFreeText.includes("Match the exact KB rule before you upload.") || !imageKbFreeText.includes("Set the KB target, export locally, and use the free matcher")) {
+      throw new Error(`Image target-KB free guidance copy is incomplete for ${targetKb}KB: ${imageKbFreeText}`);
     }
-    const imageKbFixSummary = await imageKbFixForm.locator("[data-compress-image-kb-tool-fix-summary]").inputValue();
-    if (!imageKbFixSummary.includes("$9 Upload Limit Fix Plan") || !imageKbFixSummary.includes(`image or photo under ${targetKb} KB`)) {
-      throw new Error(`Image target-KB request summary is not target-aware for ${targetKb}KB: ${imageKbFixSummary}`);
-    }
+    if (!(await imageKbFreePanel.locator('a[data-track-event="free_tool_depth"][data-track-tool="upload-limit-fixer"]:has-text("Match upload error")').count())) throw new Error(`Image target-KB tool is missing free matcher CTA for ${targetKb}KB`);
+    if (!(await imageKbFreePanel.locator('a[data-track-event="free_tool_depth"][data-track-tool="upload-error-cheatsheet"]:has-text("Open cheatsheet")').count())) throw new Error(`Image target-KB tool is missing cheatsheet CTA for ${targetKb}KB`);
+    if (await page.locator('[data-compress-image-kb-tool-fix-form], [data-service-type="upload-limit-fix-plan"]').count()) throw new Error(`Image target-KB tool should not show paid upload-fix forms for ${targetKb}KB`);
   }
   await page.goto(`${base}/tools/compress-image-to-kb/?targetkb=100&utm_source=techtools&utm_medium=directory&utm_campaign=photo_100kb_tool_fix_2026_06&utm_content=compress_image_kb_tool_target_100kb`, { waitUntil: "networkidle" });
   const lowercaseKbSelectedTarget = await page.locator("#targetKb").inputValue();
   if (lowercaseKbSelectedTarget !== "100") throw new Error(`Lowercase targetkb query did not preselect 100KB, got ${lowercaseKbSelectedTarget}`);
-  const lowercaseImageKbFixForm = page.locator('[data-compress-image-kb-tool-fix-form][data-service-type="upload-limit-fix-plan"][data-utm-source="compress-image-kb-tool"][data-utm-campaign="upload_limit_fix_plan"]').first();
-  if (!(await lowercaseImageKbFixForm.count())) throw new Error("Lowercase targetkb query is missing the pre-download $9 image upload target request form.");
-  const lowercaseImageKbSummary = await lowercaseImageKbFixForm.locator("[data-compress-image-kb-tool-fix-summary]").inputValue();
-  if (!lowercaseImageKbSummary.includes("image or photo under 100 KB")) throw new Error(`Lowercase targetkb request summary is not target-aware: ${lowercaseImageKbSummary}`);
-  const imageKbFormNoValidate = await lowercaseImageKbFixForm.evaluate((form) => form.noValidate && form.hasAttribute("novalidate"));
-  if (!imageKbFormNoValidate) throw new Error("Service lead form should bypass browser required validation so no-contact public fallback can render.");
-  const initialContactCue = await lowercaseImageKbFixForm.locator("[data-service-lead-contact-cue]").innerText();
-  if (!initialContactCue.includes("One reply email, @handle, or public contact URL") || !initialContactCue.includes("private $9 follow-up path") || !initialContactCue.includes("No payment is collected here")) {
-    throw new Error(`Service lead contact cue is missing the low-friction private follow-up copy: ${initialContactCue}`);
-  }
-  await lowercaseImageKbFixForm.locator('button[type="submit"]').click();
-  const noContactFallback = lowercaseImageKbFixForm.locator("[data-service-lead-fallback]").first();
-  await noContactFallback.waitFor({ state: "visible", timeout: 5000 });
-  const noContactFallbackText = await noContactFallback.innerText();
-  if (!noContactFallbackText.includes("One reply contact needed.") || !noContactFallbackText.includes("public-safe invoice request") || !noContactFallbackText.includes("private $9 follow-up path") || !noContactFallbackText.includes("Add reply contact") || !noContactFallbackText.includes("Copy public-safe request")) {
-    throw new Error(`No-contact service fallback copy is missing: ${noContactFallbackText}`);
-  }
-  await noContactFallback.locator("[data-service-lead-focus-contact]").click();
-  const focusedContactName = await page.evaluate(() => document.activeElement && document.activeElement.getAttribute("name"));
-  if (focusedContactName !== "contact") throw new Error(`Add reply contact did not focus the contact field, focused ${focusedContactName || "nothing"}`);
-  const contactNeededState = await lowercaseImageKbFixForm.locator("[data-service-lead-contact-cue]").evaluate((cue) => ({
-    text: cue.textContent,
-    state: cue.dataset.state,
-    fieldNeeded: cue.closest(".field")?.dataset.serviceContactNeeded,
-    invalid: cue.closest(".field")?.querySelector('input[name="contact"]')?.getAttribute("aria-invalid"),
-  }));
-  if (contactNeededState.state !== "needed" || contactNeededState.fieldNeeded !== "true" || contactNeededState.invalid !== "true" || !contactNeededState.text.includes("Add one reply email, @handle, or public contact URL")) {
-    throw new Error(`No-contact service cue did not mark the reply contact as required: ${JSON.stringify(contactNeededState)}`);
-  }
-  await lowercaseImageKbFixForm.locator('input[name="contact"]').fill("buyer@example.com");
-  const contactReadyState = await lowercaseImageKbFixForm.locator("[data-service-lead-contact-cue]").evaluate((cue) => ({
-    text: cue.textContent,
-    state: cue.dataset.state,
-    fieldNeeded: cue.closest(".field")?.dataset.serviceContactNeeded,
-    invalid: cue.closest(".field")?.querySelector('input[name="contact"]')?.getAttribute("aria-invalid"),
-  }));
-  if (contactReadyState.state !== "ready" || contactReadyState.fieldNeeded !== "false" || contactReadyState.invalid !== null || !contactReadyState.text.includes("One reply email, @handle, or public contact URL")) {
-    throw new Error(`Service contact cue did not recover after a valid reply contact: ${JSON.stringify(contactReadyState)}`);
-  }
-  const noContactFallbackBody = await noContactFallback.locator(".service-lead-fallback-output").inputValue();
-  if (!noContactFallbackBody.includes("image or photo under 100 KB") || noContactFallbackBody.includes("you@example.com")) {
-    throw new Error(`No-contact public request body is not target-aware or public-safe: ${noContactFallbackBody}`);
-  }
-  const noContactPublicRequestHref = await noContactFallback.locator('a:has-text("Open public-safe $9 invoice request")').getAttribute("href");
-  if (!noContactPublicRequestHref || !noContactPublicRequestHref.includes("github.com") || !noContactPublicRequestHref.includes("Invoice+request%3A+Upload+Limit+Fix+Plan") || !noContactPublicRequestHref.includes("Public-safe+invoice+request") || !noContactPublicRequestHref.includes(encodeURIComponent("image or photo under 100 KB").replace(/%20/g, "+"))) {
-    throw new Error(`No-contact public-safe request link is not prefilled for 100KB target: ${noContactPublicRequestHref || "missing"}`);
-  }
-  const noContactIntent = await page.evaluate(() => {
-    const events = JSON.parse(localStorage.getItem("ptl_events") || "[]");
-    return events.some((event) => event.name === "service_invoice_request" && event.data?.tool === "upload-limit-fix-plan" && event.data?.fallback === "public-safe-no-contact" && event.data?.qa === true);
-  });
-  if (!noContactIntent) throw new Error("No-contact public invoice fallback did not record a QA-tagged service_invoice_request event.");
+  const lowercaseImageKbPanel = page.locator("[data-compress-image-kb-upload-fix-panel]").first();
+  if (!(await lowercaseImageKbPanel.count())) throw new Error("Lowercase targetkb query is missing free image upload-ready guidance.");
+  if (await page.locator('[data-compress-image-kb-tool-fix-form], [data-service-type="upload-limit-fix-plan"]').count()) throw new Error("Lowercase targetkb query should not show paid image upload-fix forms.");
 
   for (const [targetSize, pageSlug] of [["500kb", "compress-pdf-to-500kb"], ["1mb", "compress-pdf-to-1mb"], ["2mb", "compress-pdf-to-2mb"], ["5mb", "compress-pdf-to-5mb"]]) {
     await page.goto(`${base}/${pageSlug}/`, { waitUntil: "networkidle" });
     const landingHref = `/tools/compress-pdf/?targetSize=${targetSize}`;
     const landingLinkCount = await page.locator(`main a[href="${landingHref}"]`).count();
     if (!landingLinkCount) throw new Error(`Target-size PDF landing page is missing prefilled tool link ${landingHref}`);
-    const uploadFixForm = page.locator('[data-service-type="upload-limit-fix-plan"][data-utm-source="landing-page"][data-utm-campaign="upload_limit_fix_plan"]').first();
-    if (!(await uploadFixForm.count())) throw new Error(`${pageSlug} missing upload fix-plan lead form`);
-    const publicRequest = page.locator('[data-service-lead-fallback-link][data-track-event="service_invoice_request"][data-track-tool="upload-limit-fix-plan"]:has-text("Open public-safe $9 invoice request")').first();
-    const publicRequestHref = await publicRequest.getAttribute("href");
-    if (!publicRequestHref || !publicRequestHref.includes("github.com") || !publicRequestHref.includes("Invoice+request%3A+Upload+Limit+Fix+Plan") || !publicRequestHref.includes("Public-safe+invoice+request") || !publicRequestHref.includes("compress+PDF")) throw new Error(`${pageSlug} upload fix-plan public invoice request is not prefilled`);
-    if (pageSlug === "compress-pdf-to-500kb") {
-      let capturedLead = null;
-      const leadRoute = async (route) => {
-        capturedLead = JSON.parse(route.request().postData() || "{}");
-        await route.fulfill({
-          status: 200,
-          contentType: "application/json; charset=utf-8",
-          body: JSON.stringify({ ok: true, id: "smoke-upload-fix-invoice" }),
-        });
-      };
-      await page.route("**/api/service-lead", leadRoute);
-      try {
-        await uploadFixForm.locator('input[name="contact"]').fill("smoke@example.com");
-        const visibleSummaryFields = await uploadFixForm.locator('textarea[name="requestSummary"]:visible').count();
-        if (visibleSummaryFields) throw new Error("Primary upload-fix landing form should keep the request note hidden and prefilled.");
-        const hiddenConsent = await uploadFixForm.locator('input[type="hidden"][name="consent"][value="on"]').count();
-        if (!hiddenConsent) throw new Error("Primary upload-fix landing form should use one-contact consent copy.");
-        await uploadFixForm.locator('button[type="submit"][data-track-event="service_invoice_request"][data-service-invoice-submit]').first().click();
-        for (let attempt = 0; attempt < 50 && !capturedLead; attempt += 1) await delay(100);
-      } finally {
-        await page.unroute("**/api/service-lead", leadRoute);
-      }
-      if (!capturedLead) throw new Error("Primary invoice upload-fix form did not submit a service lead payload.");
-      if (capturedLead.invoiceLinkRequest !== true) throw new Error(`Primary invoice upload-fix form was not recorded as an invoice request: ${JSON.stringify(capturedLead)}`);
-      if (!String(capturedLead.requestedNextStep || "").includes("external $9 checkout or invoice link")) throw new Error(`Primary invoice upload-fix form did not request the $9 invoice path: ${JSON.stringify(capturedLead)}`);
-      if (capturedLead.utmSource !== "landing-page" || capturedLead.utmCampaign !== "upload_limit_fix_plan" || capturedLead.serviceType !== "upload-limit-fix-plan") {
-        throw new Error(`Primary invoice upload-fix form lost attribution: ${JSON.stringify(capturedLead)}`);
-      }
-    }
+    const landingText = await page.locator("main").innerText();
+    if (!landingText.includes("Match upload error") || !landingText.includes("Open cheatsheet")) throw new Error(`${pageSlug} missing free upload-fix CTAs.`);
+    if (await page.locator('[data-service-type="upload-limit-fix-plan"], [data-track-event="service_invoice_request"]').count()) throw new Error(`${pageSlug} should not show paid upload-fix invoice request CTAs.`);
     await page.goto(`${base}${landingHref}`, { waitUntil: "networkidle" });
     const selectedTarget = await page.locator("#targetSize").inputValue();
     if (selectedTarget !== targetSize) throw new Error(`PDF target-size tool did not preselect ${targetSize}, got ${selectedTarget}`);
-    const targetPanelForm = page.locator('[data-compress-pdf-tool-fix-form][data-service-type="upload-limit-fix-plan"][data-utm-source="compress-pdf-tool"][data-utm-campaign="upload_limit_fix_plan"]').first();
-    if (!(await targetPanelForm.count())) throw new Error(`PDF target-size tool is missing the pre-download $9 upload target request form for ${targetSize}`);
-    const targetPanelSummary = await targetPanelForm.locator("[data-compress-pdf-tool-fix-summary]").inputValue();
-    const expectedTargetLabel = targetSize === "500kb" ? "500 KB" : targetSize === "1mb" ? "1 MB" : targetSize === "2mb" ? "2 MB" : "5 MB";
-    if (!targetPanelSummary.includes("$9 Upload Limit Fix Plan") || !targetPanelSummary.includes(`PDF under ${expectedTargetLabel}`)) {
-      throw new Error(`Compress PDF pre-download request summary is not target-aware for ${targetSize}: ${targetPanelSummary}`);
+    const targetPanel = page.locator("[data-compress-pdf-upload-fix-panel]").first();
+    if (!(await targetPanel.count())) throw new Error(`PDF target-size tool is missing free upload-ready guidance for ${targetSize}`);
+    const targetPanelText = await targetPanel.innerText();
+    if (!targetPanelText.includes("Use the free matcher before another site rejects the PDF.") || !targetPanelText.includes("Match upload error")) {
+      throw new Error(`Compress PDF free upload-ready copy is incomplete for ${targetSize}: ${targetPanelText}`);
     }
-    const targetPanelPublicRequest = page.locator('[data-compress-pdf-tool-public-request][data-track-event="service_invoice_request"][data-track-tool="upload-limit-fix-plan"]:has-text("Open public-safe $9 invoice request")').first();
-    const targetPanelPublicRequestHref = await targetPanelPublicRequest.getAttribute("href");
-    if (!targetPanelPublicRequestHref || !targetPanelPublicRequestHref.includes("github.com") || !targetPanelPublicRequestHref.includes("Invoice+request%3A+Upload+Limit+Fix+Plan") || !targetPanelPublicRequestHref.includes("Public-safe+invoice+request") || !targetPanelPublicRequestHref.includes(encodeURIComponent(`PDF under ${expectedTargetLabel}`).replace(/%20/g, "+"))) {
-      throw new Error(`Compress PDF pre-download public-safe invoice request has an unexpected href for ${targetSize}: ${targetPanelPublicRequestHref || "missing"}`);
-    }
+    if (await page.locator('[data-compress-pdf-tool-fix-form], [data-service-type="upload-limit-fix-plan"], [data-track-event="service_invoice_request"]').count()) throw new Error(`Compress PDF target panel should not show paid upload-fix forms for ${targetSize}`);
   }
   await page.goto(`${base}/tools/compress-pdf/?targetsize=1mb&utm_source=techtools&utm_medium=directory&utm_campaign=pdf_1mb_tool_fix_2026_06&utm_content=compress_pdf_tool_target_1mb`, { waitUntil: "networkidle" });
   const lowercaseSelectedTarget = await page.locator("#targetSize").inputValue();
   if (lowercaseSelectedTarget !== "1mb") throw new Error(`Lowercase targetsize query did not preselect 1mb, got ${lowercaseSelectedTarget}`);
-  const lowercaseTargetPanelForm = page.locator('[data-compress-pdf-tool-fix-form][data-service-type="upload-limit-fix-plan"][data-utm-source="compress-pdf-tool"][data-utm-campaign="upload_limit_fix_plan"]').first();
-  if (!(await lowercaseTargetPanelForm.count())) throw new Error("Lowercase targetsize query is missing the pre-download $9 upload target request form.");
-  const lowercaseTargetPanelSummary = await lowercaseTargetPanelForm.locator("[data-compress-pdf-tool-fix-summary]").inputValue();
-  if (!lowercaseTargetPanelSummary.includes("PDF under 1 MB")) throw new Error(`Lowercase targetsize request summary is not target-aware: ${lowercaseTargetPanelSummary}`);
+  if (!(await page.locator("[data-compress-pdf-upload-fix-panel]").count())) throw new Error("Lowercase targetsize query is missing free PDF upload-ready guidance.");
+  if (await page.locator('[data-compress-pdf-tool-fix-form], [data-service-type="upload-limit-fix-plan"], [data-track-event="service_invoice_request"]').count()) throw new Error("Lowercase targetsize query should not show paid PDF upload-fix forms.");
 
   await page.goto(`${base}/upload-limit-fixer/`, { waitUntil: "networkidle" });
   const uploadLimitText = await page.locator("main").innerText();
@@ -401,7 +313,7 @@ function delay(ms) {
     ["Image must be less than 2 MB", "/tools/compress-image-to-kb/?targetKb=2048", "compress-image-to-kb"],
     ["Resume PDF too large", "/tools/compress-pdf/?targetSize=1mb", "compress-pdf"],
     ["PNG screenshot is too large", "/tools/compress-image-to-kb/?targetKb=500", "compress-image-to-kb"],
-    ["Image dimensions must be 600 x 600 px", "/tools/resize-image/", "resize-image"],
+    ["Image dimensions must be 600 x 600 px", "/tools/resize-image/?width=600&height=600&fit=cover", "resize-image"],
     ["Invalid file type. Please upload JPG or PNG", "/tools/convert-image/", "convert-image"],
   ];
   for (const [message, expectedHref, expectedTool] of matcherCases) {
@@ -410,18 +322,9 @@ function delay(ms) {
     if (!(await recommendation.count())) throw new Error(`Upload limit matcher did not recommend ${expectedHref} for ${message}`);
   }
   await page.fill("[data-upload-limit-input]", "PDF must be less than 1 MB");
-  const prefilledFixSummary = await page.locator("[data-upload-fix-plan-form] [data-upload-fix-plan-summary]").first().inputValue();
-  if (!prefilledFixSummary.includes("Public-safe error text: PDF must be less than 1 MB") || !prefilledFixSummary.includes("PDF under 1MB -> Open PDF compressor")) {
-    throw new Error("Upload limit matcher did not prefill the $9 fix-plan request summary.");
-  }
-  const prefillStatusVisible = await page.locator("[data-upload-fix-plan-prefill-status]").first().isVisible();
-  if (!prefillStatusVisible) throw new Error("Upload limit matcher did not show the $9 fix-plan prefill status.");
-  const fixPlanJump = page.locator('[data-upload-limit-result] a[data-upload-fix-plan-jump][href="#service-request"][data-track-event="service_request_intent"][data-track-tool="upload-limit-fix-plan"]').first();
-  if (!(await fixPlanJump.count())) throw new Error("Upload limit matcher is missing the direct $9 fix-plan CTA.");
-  await fixPlanJump.click();
-  await page.waitForURL(/#service-request$/);
-  const jumpedFixSummary = await page.locator("[data-upload-fix-plan-form] [data-upload-fix-plan-summary]").first().inputValue();
-  if (!jumpedFixSummary.includes("Public-safe error text: PDF must be less than 1 MB")) throw new Error("Upload limit $9 CTA did not preserve the prefilled fix-plan request summary.");
+  const freeCheatsheetCta = page.locator('[data-upload-limit-result] a[data-track-event="free_tool_depth"][data-track-tool="upload-error-cheatsheet"]:has-text("Open free cheatsheet")').first();
+  if (!(await freeCheatsheetCta.count())) throw new Error("Upload limit matcher is missing the free cheatsheet CTA.");
+  if (await page.locator("[data-upload-fix-plan-form], [data-upload-fix-plan-jump], [data-service-type=\"upload-limit-fix-plan\"]").count()) throw new Error("Upload limit matcher should not show paid upload-fix request controls.");
   const uploadLimitRoutes = [
     ["/tools/compress-pdf/?targetSize=1mb", "#targetSize", "1mb"],
     ["/tools/compress-image-to-kb/?targetKb=100", "#targetKb", "100"],
@@ -490,28 +393,16 @@ function delay(ms) {
 
   await page.goto(`${base}/upload-error-cheatsheet/`, { waitUntil: "networkidle" });
   const cheatsheetText = await page.locator("main").innerText();
-  for (const phrase of ["Upload error cheatsheet", "PDF must be under 1MB", "Image must be less than 2MB", "Email attachment too large", "Still blocked? Get a $9 upload fix plan.", "Request $9 invoice link", "Open public-safe $9 invoice request"]) {
+  for (const phrase of ["Upload error cheatsheet", "PDF must be under 1MB", "Image must be less than 2MB", "Email attachment too large", "Next free step", "Open free fix", "Before you upload again"]) {
     if (!cheatsheetText.includes(phrase)) throw new Error(`Upload error cheatsheet is missing ${phrase}`);
   }
-  if (!(await page.locator('[data-service-type="upload-limit-fix-plan"][data-utm-source="upload-error-cheatsheet"]').count())) throw new Error("Upload error cheatsheet is missing tracked upload fix-plan request form");
-  const rowFixPlanCta = page.locator('[data-upload-error-row][data-upload-error-text="PDF must be under 1MB"] [data-upload-error-invoice-request][data-track-event="service_invoice_request"][data-track-tool="upload-limit-fix-plan"]').first();
-  if (!(await rowFixPlanCta.count())) throw new Error("Upload error cheatsheet is missing row-level $9 invoice CTA.");
-  await rowFixPlanCta.click();
-  await page.waitForURL(/#upload-error-quick-request$/);
-  const rowPublicInvoiceCta = page.locator('[data-upload-error-row][data-upload-error-text="PDF must be under 1MB"] [data-upload-error-fix-plan][data-track-event="service_invoice_request"][data-track-tool="upload-limit-fix-plan"]:has-text("Open public-safe $9 invoice request")').first();
-  if (!(await rowPublicInvoiceCta.count())) throw new Error("Upload error cheatsheet is missing row-level public-safe $9 invoice request CTA.");
-  const rowPublicInvoiceHref = await rowPublicInvoiceCta.getAttribute("href");
-  if (!rowPublicInvoiceHref || !rowPublicInvoiceHref.includes("Invoice+request%3A+Upload+Limit+Fix+Plan") || !rowPublicInvoiceHref.includes("Public-safe+invoice+request") || !rowPublicInvoiceHref.includes("PDF+must+be+under+1MB")) {
-    throw new Error(`Upload error row public invoice request was not prefilled: ${rowPublicInvoiceHref || "missing"}`);
-  }
-  const quickRequestVisible = await page.locator("[data-upload-error-quick-request]").first().isVisible();
-  if (!quickRequestVisible) throw new Error("Upload error cheatsheet row-level CTA did not reveal the quick request panel.");
-  const quickCopy = await page.locator("[data-upload-error-quick-copy]").first().innerText();
-  if (!quickCopy.includes("PDF must be under 1MB")) throw new Error("Upload error cheatsheet quick request panel did not name the selected error.");
-  const rowFixSummary = await page.locator('[data-upload-error-quick-request] [data-service-type="upload-limit-fix-plan"][data-utm-source="upload-error-cheatsheet"][data-utm-content="cheatsheet-row-quick"] [data-upload-fix-plan-summary]').first().inputValue();
-  if (!rowFixSummary.includes("Public-safe error text: PDF must be under 1MB") || !rowFixSummary.includes("PDF 1MB")) {
-    throw new Error("Upload error cheatsheet row-level $9 CTA did not prefill the selected error.");
-  }
+  if (await page.locator('[data-service-type="upload-limit-fix-plan"], [data-track-event="service_invoice_request"], [data-upload-error-invoice-request], [data-upload-error-fix-plan], [data-upload-error-quick-request]').count()) throw new Error("Upload error cheatsheet should not show paid upload-fix request controls.");
+  const pdf1mbRow = page.locator('[data-upload-error-row][data-upload-error-text="PDF must be under 1MB"]').first();
+  if (!(await pdf1mbRow.count())) throw new Error("Upload error cheatsheet is missing the PDF 1MB row.");
+  const rowFreeFixCta = pdf1mbRow.locator('a[href^="/file-must-be-less-than-1mb/"]').filter({ hasText: "Open free fix" }).first();
+  if (!(await rowFreeFixCta.count())) throw new Error("Upload error cheatsheet is missing row-level free fix CTA.");
+  const rowMatcherCta = pdf1mbRow.locator('a[data-track-tool="upload-limit-fixer"]').filter({ hasText: "Match another error" }).first();
+  if (!(await rowMatcherCta.count())) throw new Error("Upload error cheatsheet is missing row-level matcher CTA.");
   const cheatsheetResponse = await page.goto(`${base}/upload-error-cheatsheet.json`, { waitUntil: "networkidle" });
   if (!cheatsheetResponse || !cheatsheetResponse.ok()) throw new Error("upload-error-cheatsheet.json route failed");
   const cheatsheetJson = await page.evaluate(() => JSON.parse(document.body.innerText));
@@ -876,17 +767,13 @@ function delay(ms) {
       if (!previewText.includes("word-source.pdf") || !previewText.includes("convert selectable text from 1 of 2 pages") || !previewText.includes("DOCX file")) throw new Error(`PDF-to-Word preview is incomplete: ${previewText}`);
     }
     if (route === "/tools/compress-pdf/") {
-      const targetPanelForm = page.locator('[data-compress-pdf-tool-fix-form][data-service-type="upload-limit-fix-plan"][data-utm-source="compress-pdf-tool"][data-utm-campaign="upload_limit_fix_plan"]').first();
-      if (!(await targetPanelForm.count())) throw new Error("Compress PDF tool is missing the pre-download $9 upload target request form.");
-      const targetPanelSummary = await targetPanelForm.locator("[data-compress-pdf-tool-fix-summary]").inputValue();
-      if (!targetPanelSummary.includes("$9 Upload Limit Fix Plan") || !targetPanelSummary.includes("PDF under the selected target")) {
-        throw new Error(`Compress PDF pre-download request summary is not present: ${targetPanelSummary}`);
+      const targetPanel = page.locator("[data-compress-pdf-upload-fix-panel]").first();
+      if (!(await targetPanel.count())) throw new Error("Compress PDF tool is missing free upload-ready guidance.");
+      const targetPanelText = await targetPanel.innerText();
+      if (!targetPanelText.includes("Use the free matcher before another site rejects the PDF.") || !targetPanelText.includes("Match upload error")) {
+        throw new Error(`Compress PDF free upload-ready guidance is incomplete: ${targetPanelText}`);
       }
-      const targetPanelPublicRequest = page.locator('[data-compress-pdf-tool-public-request][data-track-event="service_invoice_request"][data-track-tool="upload-limit-fix-plan"]:has-text("Open public-safe $9 invoice request")').first();
-      const targetPanelPublicRequestHref = await targetPanelPublicRequest.getAttribute("href");
-      if (!targetPanelPublicRequestHref || !targetPanelPublicRequestHref.includes("github.com") || !targetPanelPublicRequestHref.includes("Invoice+request%3A+Upload+Limit+Fix+Plan") || !targetPanelPublicRequestHref.includes("Public-safe+invoice+request")) {
-        throw new Error(`Compress PDF pre-download public-safe invoice request has an unexpected href: ${targetPanelPublicRequestHref || "missing"}`);
-      }
+      if (await page.locator('[data-compress-pdf-tool-fix-form], [data-service-type="upload-limit-fix-plan"], [data-track-event="service_invoice_request"]').count()) throw new Error("Compress PDF tool should not show paid upload-fix request controls.");
       await page.setInputFiles("input[type=file]", { name: "large-scan.pdf", mimeType: "application/pdf", buffer: twoPagePdf });
       await page.selectOption("#mode", "small");
       await page.fill("#pageRange", "1");
@@ -1030,44 +917,10 @@ function delay(ms) {
       if (!/compressed\.pdf$/.test(name)) throw new Error(`Expected compressed PDF filename on ${route}, got ${name}`);
       const exported = await PDFDocument.load(fs.readFileSync(await download.path()));
       if (exported.getPageCount() !== 1) throw new Error("Compressed PDF should contain one selected rendered page.");
-      const uploadFixForm = page.locator('[data-service-type="upload-limit-fix-plan"][data-utm-source="download_success"][data-utm-campaign="upload_limit_fix_plan"][data-utm-content="compress-pdf"]').first();
-      if (!(await uploadFixForm.count())) throw new Error("Compress PDF download success is missing the upload-limit fix-plan request form.");
       const uploadFixText = await page.locator("#downloadComplete").innerText();
-      if (!uploadFixText.includes("Still worried the next site will reject this file?") || !uploadFixText.includes("Send $9 upload check request")) {
-        throw new Error("Compress PDF download success is missing the $9 upload check close copy.");
-      }
-      const publicRequest = page.locator('[data-download-upload-fix-public-request][data-track-event="service_invoice_request"][data-track-tool="upload-limit-fix-plan"]:has-text("Open public-safe $9 invoice request")').first();
-      if (!(await publicRequest.count())) throw new Error("Compress PDF download success is missing the direct public-safe $9 invoice request CTA.");
-      const publicRequestHref = await publicRequest.getAttribute("href");
-      if (!publicRequestHref || !publicRequestHref.includes("github.com") || !publicRequestHref.includes("Invoice+request%3A+Upload+Limit+Fix+Plan") || !publicRequestHref.includes("Public-safe+invoice+request")) {
-        throw new Error(`Compress PDF direct public-safe request CTA has an unexpected href: ${publicRequestHref || "missing"}`);
-      }
-      const uploadFixSummary = await uploadFixForm.locator('[data-upload-fix-plan-summary]').inputValue();
-      if (!uploadFixSummary.includes("I just downloaded Compress PDF") || !uploadFixSummary.includes("$9 Upload Limit Fix Plan")) {
-        throw new Error("Compress PDF download success did not prefill the upload fix-plan request summary.");
-      }
-      let capturedLead = null;
-      const leadRoute = async (route) => {
-        capturedLead = JSON.parse(route.request().postData() || "{}");
-        await route.fulfill({
-          status: 200,
-          contentType: "application/json; charset=utf-8",
-          body: JSON.stringify({ ok: true, id: "smoke-download-upload-fix-invoice" }),
-        });
-      };
-      await page.route("**/api/service-lead", leadRoute);
-      try {
-        await uploadFixForm.locator('input[name="contact"]').fill("smoke@example.com");
-        await uploadFixForm.locator('button[type="submit"][data-track-event="service_invoice_request"]').first().click();
-        for (let attempt = 0; attempt < 50 && !capturedLead; attempt += 1) await delay(100);
-      } finally {
-        await page.unroute("**/api/service-lead", leadRoute);
-      }
-      if (!capturedLead) throw new Error("Download success upload-fix form did not submit a service lead payload.");
-      if (capturedLead.invoiceLinkRequest !== true) throw new Error(`Download success upload-fix form was not recorded as an invoice request: ${JSON.stringify(capturedLead)}`);
-      if (capturedLead.utmSource !== "download_success" || capturedLead.utmCampaign !== "upload_limit_fix_plan" || capturedLead.serviceType !== "upload-limit-fix-plan") {
-        throw new Error(`Download success upload-fix form lost attribution: ${JSON.stringify(capturedLead)}`);
-      }
+      if (!uploadFixText.includes("Use the free checklist before trying the destination site again.") || !uploadFixText.includes("Compress PDF again") || !uploadFixText.includes("Compress image again")) throw new Error("Compress PDF download success is missing free upload checklist close copy.");
+      if (!(await page.locator('.download-upload-fix-action a[data-track-event="free_tool_depth"]:has-text("Check another upload error")').count())) throw new Error("Compress PDF download success is missing free upload matcher CTA.");
+      if (await page.locator('[data-service-type="upload-limit-fix-plan"], [data-track-event="service_invoice_request"], [data-download-upload-fix-public-request]').count()) throw new Error("Compress PDF download success should not show paid upload-fix request controls.");
     }
     if (!name.endsWith(".pdf")) throw new Error(`Expected PDF download on ${route}, got ${name}`);
     if (route === "/tools/multi-image-pdf/") {

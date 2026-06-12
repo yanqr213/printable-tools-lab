@@ -144,11 +144,10 @@ function requireUploadLimitShortcuts(html, label) {
   if (!html.includes("Upload message") || !html.includes("PDF must be under 1MB") || !html.includes("Wrong image dimensions")) failures.push(`${label} missing upload limit decision table.`);
   if (!html.includes("Upload error text") || !html.includes("Local text match only") || !html.includes("data-upload-limit-helper")) failures.push(`${label} missing upload error matcher.`);
   if (!html.includes("data-upload-limit-tool-link")) failures.push(`${label} missing stable upload matcher tool-link marker.`);
-  if (!html.includes("data-upload-fix-plan-jump") || !html.includes("Need a $9 fix plan?")) failures.push(`${label} missing direct upload matcher $9 fix-plan CTA.`);
+  if (!html.includes("Open free cheatsheet") || !html.includes('data-track-tool="upload-error-cheatsheet"')) failures.push(`${label} missing free upload matcher cheatsheet CTA.`);
   if (!html.includes("PDF must be less than 1 MB") || !html.includes("Invalid file type. Please upload JPG or PNG")) failures.push(`${label} missing upload matcher examples.`);
   if (!html.includes('data-track-event="free_tool_depth"')) failures.push(`${label} missing upload limit depth tracking.`);
-  if (!html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("Request $9 invoice link") || !html.includes('data-service-primary-invoice-request="true"') || !html.includes('data-track-event="service_invoice_request"') || !html.includes("/upload-limit-fix-plan/?utm_source=upload-limit") || !html.includes("No file upload")) failures.push(`${label} missing primary $9 upload fix invoice request path.`);
-  if (!html.includes("data-upload-fix-plan-form") || !html.includes("data-upload-fix-plan-summary") || !html.includes("Request note updated from the upload error matcher.")) failures.push(`${label} missing upload matcher paid-request prefill path.`);
+  if (!html.includes("Free fix loop") || !html.includes("Before uploading again") || !html.includes("/free-pdf-tools/?utm_source=upload-limit")) failures.push(`${label} missing free upload fix loop.`);
   for (const pathName of UPLOAD_LIMIT_SHORTCUT_PATHS) {
     if (!html.includes(pathName)) failures.push(`${label} missing upload limit shortcut: ${pathName}`);
   }
@@ -218,14 +217,10 @@ if (!fs.existsSync(homeFile)) failures.push("Missing homepage.");
 else {
   const html = fs.readFileSync(homeFile, "utf8");
   requireUploadLimitShortcuts(html, "Homepage");
-  if (!html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("Request $9 invoice link") || !html.includes('data-service-primary-invoice-request="true"') || !html.includes("/upload-limit-fix-plan/?utm_source=upload-limit")) failures.push("Homepage upload-limit shortcuts missing primary $9 upload fix invoice request form.");
-  if (!html.includes('data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="/upload-limit-fix-plan/?utm_source=home&utm_medium=site&utm_campaign=upload_limit_fix_plan&utm_content=hero#invoice-request"') || !html.includes('data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="/upload-limit-fix-plan/?utm_source=home&utm_medium=site&utm_campaign=upload_limit_fix_plan&utm_content=validation-band#invoice-request"')) failures.push("Homepage should route existing traffic directly to the $9 upload-fix invoice request path.");
-  if (!html.includes("Request $19 follow-up copy") || !html.includes("Made an invoice? Get the follow-up sequence written for $19.")) failures.push("Homepage missing above-fold invoice follow-up service offer.");
-  if (!html.includes('data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack"')) failures.push("Homepage invoice follow-up offer missing service intent tracking.");
-  if (!html.includes("/invoice-followup-copy-pack/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=hero#service-request")) failures.push("Homepage hero should route to invoice follow-up service fit check.");
-  if (!html.includes('home-invoice-lead-form invoice-micro-lead-form') || !html.includes('data-lead-path="/"') || !html.includes('data-utm-content="homepage-inline"') || !html.includes('name="requestSummary"') || !html.includes("Send $19 sequence request")) failures.push("Homepage missing one-field invoice follow-up paid request form.");
-  if (!html.includes("/invoice-followup-copy-pack/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=inline-secondary#service-request")) failures.push("Homepage close band should keep a full invoice follow-up service page link.");
-  if (!html.includes("Payment happens only through a real external checkout or invoice after fit is confirmed.")) failures.push("Homepage paid service offer missing external-payment safety gate.");
+  if (!html.includes("free-workflow-cta") || !html.includes("Traffic-first product") || !html.includes("Start from the file problem, then keep moving for free.")) failures.push("Homepage missing traffic-first free workflow band.");
+  if (!html.includes('data-track-tool="upload-limit-fixer"') || !html.includes('data-track-tool="compress-image-to-kb"') || !html.includes('data-track-tool="upload-error-cheatsheet"')) failures.push("Homepage missing free traffic hero/workflow tracking.");
+  if (!html.includes("25/day") || !html.includes("free exports")) failures.push("Homepage should expose the expanded free export allowance.");
+  if (html.includes("Request $19 follow-up copy") || html.includes("Request $9 upload fix") || html.includes("Made an invoice? Get the follow-up sequence written for $19.")) failures.push("Homepage should not promote paid services in the main traffic path.");
 }
 
 const docsSellerIndexFile = path.join(root, "docs", "index.html");
@@ -549,21 +544,13 @@ for (const toolPath of ["tools/invoice-generator", "tools/price-tag", "tools/fly
   }
   const html = fs.readFileSync(file, "utf8");
   if (!html.includes("free-tool-depth-cta")) failures.push(`Missing free-tool depth CTA: ${toolPath}`);
-  if (!html.includes("service-upgrade-cta")) failures.push(`Local tool funnel missing optional service upgrade CTA: ${toolPath}`);
-  if (!html.includes(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug) || !html.includes("Start free fit check") || !html.includes(`$${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd}`)) failures.push(`Local tool funnel missing low-friction paid setup request path: ${toolPath}`);
-  if (!html.includes(MARKET_TABLE_PRINT_AUDIT.slug) || !html.includes("Free print audit first")) failures.push(`Local tool funnel missing free audit lead magnet: ${toolPath}`);
   if (!html.includes("free_tool_depth")) failures.push(`Missing free-tool depth campaign on CTA: ${toolPath}`);
   if (!html.includes('data-track-event="free_tool_depth"')) failures.push(`Missing free-tool depth event on CTA: ${toolPath}`);
-  if (!html.includes('data-track-event="service_request_intent"')) failures.push(`Local tool funnel missing service request intent tracking: ${toolPath}`);
-  if (!html.includes('data-track-event="audit_request_intent"')) failures.push(`Local tool funnel missing audit request intent tracking: ${toolPath}`);
   if (!html.includes("Browse more free tools")) failures.push(`Missing free-tool browse CTA: ${toolPath}`);
   if (!html.includes("Future ads must stay separated from generator controls")) failures.push(`Missing ad-safety warning on funnel CTA: ${toolPath}`);
-  if (!html.includes("Payment happens only through a real external checkout or invoice")) failures.push(`Local tool service CTA missing external-payment gate: ${toolPath}`);
+  if (html.includes("service-upgrade-cta") || html.includes(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug) || html.includes(MARKET_TABLE_PRINT_AUDIT.slug)) failures.push(`Local tool page should keep paid service/audit CTAs out of the main traffic path: ${toolPath}`);
   if (toolPath === "tools/invoice-generator") {
-    if (!html.includes("tool-invoice-lead-form invoice-micro-lead-form") || !html.includes('data-lead-path="/tools/invoice-generator/"') || !html.includes('data-utm-content="invoice-generator-inline"') || !html.includes('name="requestSummary"') || !html.includes("Send $19 sequence request")) failures.push("Invoice generator missing one-field invoice follow-up paid request form.");
-    if (!html.includes("invoice-sponsor-close-cta") || !html.includes("Sponsor the free invoice workflow")) failures.push("Invoice generator missing sponsor close CTA.");
-    if (!html.includes("utm_source=invoice_tool") || !html.includes("vertical=small-business-paperwork-sponsors") || !html.includes("commitment=request-invoice")) failures.push("Invoice sponsor close CTA missing tracked invoice sponsor review path.");
-    if (!html.includes('data-track-event="sponsor_request_intent"') || !html.includes('data-track-tool="invoice-generator"')) failures.push("Invoice sponsor close CTA missing sponsor intent tracking.");
+    if (html.includes("tool-invoice-lead-form") || html.includes("invoice-sponsor-close-cta")) failures.push("Invoice generator should not promote invoice service/sponsor CTAs in the main tool path.");
   }
 }
 
@@ -571,10 +558,9 @@ const invoiceFollowupToolFile = path.join(root, "tools", "invoice-followup-email
 if (!fs.existsSync(invoiceFollowupToolFile)) failures.push("Missing invoice follow-up email generator route.");
 else {
   const html = fs.readFileSync(invoiceFollowupToolFile, "utf8");
-  if (!html.includes("service-upgrade-cta") || !html.includes(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug) || !html.includes("Start invoice fit check")) failures.push("Invoice follow-up email route missing focused copy-pack service CTA.");
-  if (!html.includes("Create invoice first") || !html.includes("invoice_followup_tool")) failures.push("Invoice follow-up email route missing invoice-only free-tool path.");
+  if (!html.includes("free-tool-depth-cta") || !html.includes("Fix upload limits") || !html.includes("Browse more free tools")) failures.push("Invoice follow-up email route missing free-tool depth path.");
   if (html.includes(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug) || html.includes(MARKET_TABLE_PRINT_AUDIT.slug) || html.includes("Free print audit first")) failures.push("Invoice follow-up email route should not cross-sell local print-pack or print-audit CTAs.");
-  if (!html.includes("Payment happens only through a real external checkout or invoice")) failures.push("Invoice follow-up email route missing external-payment gate.");
+  if (html.includes("service-upgrade-cta") || html.includes(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug) || html.includes("Start invoice fit check")) failures.push("Invoice follow-up email route should not promote paid copy-pack CTA in the main tool path.");
 }
 
 const overdueInvoiceReminderFile = path.join(root, "overdue-invoice-reminder-email", "index.html");
@@ -583,9 +569,8 @@ else {
   const html = fs.readFileSync(overdueInvoiceReminderFile, "utf8");
   if (!html.includes("Overdue invoice reminder email") || !html.includes("first overdue invoice follow up")) failures.push("Overdue invoice reminder page missing high-intent copy.");
   if (!html.includes("/tools/invoice-followup-email/?invoiceStatus=overdue") || !html.includes("tone=friendly")) failures.push("Overdue invoice reminder page missing prefilled overdue generator link.");
-  if (!html.includes('data-service-type="invoice-followup-copy-pack"') || !html.includes("Send overdue invoice fit check") || !html.includes("$19")) failures.push("Overdue invoice reminder page missing $19 invoice follow-up fit-check form.");
-  if (!html.includes("I need a first overdue invoice reminder sequence")) failures.push("Overdue invoice reminder page missing prefilled fit-check request text.");
-  if (!html.includes("Source+path%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2Foverdue-invoice-reminder-email%2F")) failures.push("Overdue invoice reminder backup request should preserve landing page source path.");
+  if (!html.includes("Write follow-up free") || !html.includes("Create invoice free") || !html.includes('data-track-event="free_tool_depth"')) failures.push("Overdue invoice reminder page missing free follow-up next steps.");
+  if (html.includes('data-service-type="invoice-followup-copy-pack"') || html.includes("Send overdue invoice fit check") || html.includes("$19")) failures.push("Overdue invoice reminder page should not promote paid fit-check in the main traffic path.");
   if (html.includes("/ops/") || html.includes("market-table-print-audit") || html.includes("custom-local-print-pack")) failures.push("Overdue invoice reminder page should stay focused and not expose ops or print-pack CTAs.");
   if (!sitemap.includes(`<loc>${siteUrl("overdue-invoice-reminder-email")}</loc>`)) failures.push("Sitemap missing overdue invoice reminder landing page.");
 }
@@ -612,13 +597,8 @@ for (const page of [
   } else {
     const html = fs.readFileSync(file, "utf8");
     if (!html.includes(page.headline) || !html.includes("/tools/invoice-followup-email/?invoiceStatus=sent")) failures.push(`${page.pathName} missing focused invoice follow-up copy or prefilled generator link.`);
-    if (!html.includes('data-service-type="invoice-followup-copy-pack"') || !html.includes(page.cta) || !html.includes("$19")) failures.push(`${page.pathName} missing $19 invoice follow-up fit-check form.`);
-    if (!html.includes('data-service-invoice-submit') || !html.includes("Request $19 invoice link")) failures.push(`${page.pathName} missing above-fold $19 invoice-link request CTA.`);
-    if (!html.includes("Send a 30-second $19 sequence request") || !html.includes("invoice-micro-lead-form") || !html.includes("Send $19 sequence request")) failures.push(`${page.pathName} missing shortest paid request form.`);
-    if (!html.includes(page.summary)) failures.push(`${page.pathName} missing prefilled fit-check request text.`);
-    if (!html.includes("Open public-safe request") || !html.includes('data-service-lead-fallback-link')) failures.push(`${page.pathName} missing public-safe request CTA.`);
-    if (!html.includes(`Source+path%3A+https%3A%2F%2Fprintable-tools-lab.pages.dev%2F${page.sourcePath}%2F`)) failures.push(`${page.pathName} backup request should preserve landing page source path.`);
-    if (!html.includes("Request+note%3A") || !html.includes(page.summary.replace(/ /g, "+"))) failures.push(`${page.pathName} public-safe request should prefill the request note.`);
+    if (!html.includes("Write follow-up free") || !html.includes("Create invoice free") || !html.includes('data-track-event="free_tool_depth"')) failures.push(`${page.pathName} missing free invoice follow-up next steps.`);
+    if (html.includes('data-service-type="invoice-followup-copy-pack"') || html.includes(page.cta) || html.includes("$19") || html.includes("invoice-micro-lead-form")) failures.push(`${page.pathName} should not promote paid invoice follow-up in the main traffic path.`);
     if (html.includes("/ops/") || html.includes("market-table-print-audit") || html.includes("custom-local-print-pack")) failures.push(`${page.pathName} should stay focused and not expose ops or print-pack CTAs.`);
   }
   if (!sitemap.includes(`<loc>${siteUrl(page.pathName)}</loc>`)) failures.push(`Sitemap missing high-intent invoice follow-up landing page: ${page.pathName}`);
@@ -634,24 +614,22 @@ else {
   if (!script.includes("free_tool_depth")) failures.push("Missing download success free-tool depth campaign.");
   if (!script.includes('data-track-event="free_tool_depth"')) failures.push("Missing download success free-tool depth event tracking.");
   if (!script.includes("Browse more free tools")) failures.push("Missing download success free-tool browse CTA.");
-  if (!script.includes("download-service-close") || !script.includes("Want a practical local print pack?") || !script.includes("Need words to follow up on this invoice?") || !script.includes("one-field $19 Invoice Follow-up Copy Pack request") || !script.includes("30-second free fit check")) failures.push("Missing download success low-friction service close CTA.");
-  if (!script.includes("/custom-local-print-pack/?utm_source=download_success") || !script.includes("/invoice-followup-copy-pack/?utm_source=download_success") || !script.includes("/market-table-print-audit/?utm_source=download_success")) failures.push("Missing download success service/audit tracked paths.");
-  if (!script.includes('data-track-event="service_request_intent"') || !script.includes('data-track-event="audit_request_intent"')) failures.push("Missing download success service/audit intent tracking.");
-  if (!script.includes("Payment starts only after fit is confirmed and a real external checkout or invoice is paid")) failures.push("Missing download success external-payment gate.");
-  if (!script.includes("renderDownloadServiceLeadForm") || !script.includes("download-service-lead-form") || !script.includes("Send free fit check") || !script.includes("Send $19 sequence request") || !script.includes("want the $19 Invoice Follow-up Copy Pack") || !script.includes("free fit check for the $29 local print pack")) failures.push("Missing inline low-friction service lead form after download success.");
+  if (!script.includes("download-free-close") || !script.includes("Review before sharing") || !script.includes("If another site rejects the file, match the exact error text.")) failures.push("Missing download success free review/upload close CTA.");
+  if (!script.includes("/upload-error-cheatsheet/?utm_source=download_success") || !script.includes("/free-pdf-tools/?utm_source=download_success")) failures.push("Missing download success free next-step tracked paths.");
+  if (script.includes("Want a practical local print pack?") || script.includes("Get $19 follow-up copy") || script.includes("Full $9 service page")) failures.push("Download success should not promote paid service CTAs.");
   if (!script.includes("renderInvoiceFollowupOutputServiceLeadForm") || !script.includes("tool-output-service-lead-form") || !script.includes('data-utm-source="tool_output"') || !script.includes("Generated draft excerpt to refine") || !script.includes("data-invoice-followup-output-invoice-request") || !script.includes('name="requestSummary" value=')) failures.push("Invoice follow-up email output missing inline one-field service lead form.");
-  if (!script.includes("overdue-invoice-reminder-email") || !script.includes("invoiceStatus=overdue") || !script.includes("Send overdue invoice fit check")) failures.push("app.js missing high-intent overdue invoice reminder landing route.");
-  if (!script.includes("polite-payment-reminder-email") || !script.includes("Send polite reminder fit check") || !script.includes("freelance-invoice-follow-up-email") || !script.includes("Send freelance invoice fit check")) failures.push("app.js missing high-intent polite/freelance invoice reminder landing routes.");
+  if (!script.includes("overdue-invoice-reminder-email") || !script.includes("invoiceStatus=overdue") || !script.includes("Write follow-up free")) failures.push("app.js missing high-intent overdue invoice reminder landing route.");
+  if (!script.includes("polite-payment-reminder-email") || !script.includes("Write follow-up free") || !script.includes("freelance-invoice-follow-up-email") || !script.includes("Create invoice free")) failures.push("app.js missing high-intent polite/freelance invoice reminder landing routes.");
   if (!script.includes('tool.id === "invoice-followup-email"') || !script.includes('values.invoiceStatus = invoiceStatus') || !script.includes("const initialValues = initialToolValues(tool)") || !script.includes("renderField(field, initialValues[field.id])")) failures.push("app.js should prefill invoice follow-up generator from URL params.");
   if (!script.includes('data-utm-source="download_success"') || !script.includes("form.dataset.leadPath") || !script.includes("paramOrFieldOrData")) failures.push("Download success service lead form missing attribution preservation.");
   if (!script.includes('utmSource: paramOrFieldOrData("utm_source", "utmSource", "utmSource")') || !script.includes('utmCampaign: paramOrFieldOrData("utm_campaign", "utmCampaign", "utmCampaign")')) failures.push("Service lead attribution should prefer live URL UTM params over static form defaults.");
   if (!script.includes("Future ads must stay separated from generator controls")) failures.push("Missing download success ad-safety warning.");
-  if (!script.includes("UPLOAD_FIX_FUNNEL_TOOL_IDS") || !script.includes("renderDownloadUploadFixAfterAction") || !script.includes("download-upload-fix-lead-form") || !script.includes("Send $9 upload check request") || !script.includes("data-download-upload-fix-invoice-request") || !script.includes("Open public-safe $9 invoice request") || !script.includes("data-download-upload-fix-public-request") || !script.includes("I just downloaded") || !script.includes('data-utm-campaign="upload_limit_fix_plan"') || !script.includes('data-service-primary-invoice-request="true"')) failures.push("Missing download success upload-limit fix-plan invoice-request close CTA.");
-  if (!script.includes("renderPdfToolUploadFixRequest") || !script.includes("data-compress-pdf-tool-fix-form") || !script.includes('data-utm-source="compress-pdf-tool"') || !script.includes("Request $9 invoice link") || !script.includes('data-service-primary-invoice-request="true"') || !script.includes('data-track-event="service_invoice_request"') || !script.includes("Open public-safe $9 invoice request") || !script.includes("uploadLimitCompressPdfToolSummary") || !script.includes("Portal target: PDF under") || !script.includes("pdfTargetLabel(targetSize")) failures.push("Compress PDF tool missing pre-download upload-limit invoice request path.");
+  if (!script.includes("UPLOAD_FIX_FUNNEL_TOOL_IDS") || !script.includes("renderDownloadUploadFixAfterAction") || !script.includes("Use the free checklist before trying the destination site again.") || !script.includes("Compress PDF again") || !script.includes("Compress image again")) failures.push("Missing download success upload-limit free checklist close CTA.");
+  if (!script.includes("renderPdfToolUploadFixRequest") || !script.includes("data-compress-pdf-upload-fix-panel") || !script.includes("Upload-ready check") || !script.includes("Use the free matcher before another site rejects the PDF.") || !script.includes("pdfTargetLabel(targetSize")) failures.push("Compress PDF tool missing free upload-ready guidance.");
   for (const targetSize of ["100kb", "200kb", "300kb", "500kb", "1mb", "2mb", "5mb", "10mb"]) {
     if (!script.includes(`"${targetSize}"`) || !script.includes(`targetSize=${targetSize}`)) failures.push(`Compress PDF tool missing target-size runtime support: ${targetSize}`);
   }
-  if (!script.includes("renderImageKbToolUploadFixRequest") || !script.includes("data-compress-image-kb-tool-fix-form") || !script.includes('data-utm-source="compress-image-kb-tool"') || !script.includes("Request $9 invoice link") || !script.includes("data-service-invoice-submit") || !script.includes("uploadLimitImageKbToolSummary") || !script.includes("Portal target: image or photo under") || !script.includes('params.get("targetkb")') || script.includes("Send $9 image target request</button>")) failures.push("Compress image-to-KB tool missing pre-download primary invoice-link upload-limit fix-plan request path.");
+  if (!script.includes("renderImageKbToolUploadFixRequest") || !script.includes("data-compress-image-kb-upload-fix-panel") || !script.includes("Match the exact KB rule before you upload.") || !script.includes('params.get("targetkb")') || script.includes("Send $9 image target request</button>")) failures.push("Compress image-to-KB tool missing free upload-ready guidance.");
   if (!script.includes("data-service-lead-focus-contact") || !script.includes("Add reply contact") || !script.includes("private $9 follow-up path") || !script.includes('input[name="contact"]')) failures.push("Service lead no-contact fallback should focus visitors back to the reply contact field.");
   if (!script.includes("ensureServiceLeadContactCue") || !script.includes("data-service-lead-contact-cue") || !script.includes("One reply email, @handle, or public contact URL unlocks") || !script.includes("serviceLeadPrivatePathLabel") || !script.includes("aria-invalid")) failures.push("Service lead forms should make the reply-contact value prop and no-contact recovery state visible.");
   if (!script.includes("renderInvoiceSponsorCloseCta") || !script.includes("invoice-sponsor-close-cta") || !script.includes("utm_source=download_success") || !script.includes("small-business-paperwork-sponsors")) failures.push("app.js missing invoice-specific sponsor close CTA on tool/download success.");
@@ -689,8 +667,8 @@ else {
   if (!script.includes("leadToPaymentCloseHtml") || !script.includes("Lead-to-payment close cockpit") || !script.includes("serviceLeadPaymentReplyCopy") || !script.includes("Copy payment reply")) failures.push("app.js ops monitor missing lead-to-payment close cockpit.");
   if (!script.includes("initServiceLeadForms") || !script.includes("submitServiceLeadForm") || !script.includes("/api/service-lead") || !script.includes("Service lead index check")) failures.push("app.js missing low-friction service lead capture and ops index check.");
   if (!script.includes('form.setAttribute("novalidate", "")') || !script.includes("One reply contact needed.") || !script.includes("Add one reply email, @handle, or public contact URL") || !script.includes("public-safe-no-contact") || !script.includes("serviceLeadContactValue")) failures.push("Service lead forms should convert no-contact service intent into a one-contact paid-path prompt instead of being blocked by browser required validation.");
-  if (!script.includes("uploadFixPaidPathNote") || !script.includes("30-second paid path") || !script.includes("external $9 checkout or invoice") || !script.includes("private $9 follow-up path") || !script.includes("oneFieldInvoiceRequest") || !script.includes("serviceLeadConsentAccepted")) failures.push("Upload fix service forms should explain and support the one-field paid follow-up path.");
-  if (!script.includes("Where should the external $9 checkout or invoice link go?") || !script.includes("This is where the external ${price} checkout or invoice link will be sent after fit is confirmed")) failures.push("Upload fix invoice forms should frame the one field as the external payment-link destination.");
+  if (!script.includes("uploadFixPaidPathNote") || !script.includes("30-second paid path") || !script.includes("external $9 checkout or invoice") || !script.includes("private $9 follow-up path") || !script.includes("oneFieldInvoiceRequest") || !script.includes("serviceLeadConsentAccepted")) failures.push("Upload fix service route forms should explain and support the one-field paid follow-up path.");
+  if (!script.includes("Where should the external ${price} invoice link go?") || !script.includes("This is where the external ${price} checkout or invoice link will be sent after fit is confirmed")) failures.push("Upload fix invoice forms should frame the one field as the external payment-link destination.");
   if (!script.includes("One-contact $9 invoice request") || !script.includes("oneContactInvoiceRequest") || !script.includes('data-track-event="${escapeHtml(primarySubmitEvent)}"') || !script.includes('name="consent" value="on"')) failures.push("Upload-limit landing service forms should reduce the $9 invoice path to one visible contact field.");
   if (!script.includes("data-upload-error-invoice-request") || !script.includes("Request $9 invoice link") || !script.includes("data-service-invoice-submit") || !script.includes("invoiceLinkRequest") || !script.includes("requestedNextStep")) failures.push("Upload error and service pages should expose explicit invoice-link request CTAs.");
   if (!script.includes("data-service-invoice-jump") || !script.includes("focusHashServiceInvoiceForm") || !script.includes('data-track-event="service_invoice_request"') || !script.includes('track(values.invoiceLinkRequest ? "service_invoice_request"')) failures.push("Invoice-link jump CTAs should track invoice intent and focus the one-contact service form.");
@@ -1711,8 +1689,8 @@ for (const [pagePath, formatLabel, target] of [
   const html = fs.readFileSync(file, "utf8");
   if (!html.includes(`Compress ${formatLabel} to ${target}KB without uploading`)) failures.push(`Format target-KB page missing headline: ${pagePath}`);
   if (!html.includes(`/tools/compress-image-to-kb/?targetKb=${target}`)) failures.push(`Format target-KB page missing prefilled tool link: ${pagePath}`);
-  if (!html.includes("Get a $9 upload fix plan")) failures.push(`Format target-KB page missing clear $9 upload fix CTA: ${pagePath}`);
-  if (html.includes('href="#service-request">Send $9 upload fix request</a>')) failures.push(`Format target-KB page should not show duplicate $9 request CTA in the hero: ${pagePath}`);
+  if (!html.includes("Match upload error") || !html.includes("Open cheatsheet") || !html.includes('data-track-event="free_tool_depth"') || !html.includes('data-track-tool="upload-limit-fixer"') || !html.includes('data-track-tool="upload-error-cheatsheet"')) failures.push(`Format target-KB page missing free upload-fix next steps: ${pagePath}`);
+  if (html.includes("Get a $9 upload fix plan") || html.includes("Need a $9 upload fix plan?") || html.includes('data-service-type="upload-limit-fix-plan"') || html.includes('data-track-event="service_invoice_request"')) failures.push(`Format target-KB page should not promote paid upload-fix CTA: ${pagePath}`);
   if (!sitemap.includes(`<loc>${siteUrl(pagePath)}</loc>`)) failures.push(`Sitemap missing format target-KB page: ${pagePath}`);
 }
 
@@ -1737,9 +1715,8 @@ for (const [pagePath, targetSize, headlineSize] of [["compress-pdf-to-100kb", "1
   const html = fs.readFileSync(file, "utf8");
   if (!html.includes(`Compress PDF to ${headlineSize} without uploading`)) failures.push(`Target-size PDF landing page missing headline: ${pagePath}`);
   if (!html.includes(`/tools/compress-pdf/?targetSize=${targetSize}`)) failures.push(`Target-size PDF landing page missing prefilled tool link: ${pagePath}`);
-  if (!html.includes("Get a $9 upload fix plan")) failures.push(`Target-size PDF landing page missing clear $9 upload fix CTA: ${pagePath}`);
-  if (html.includes('href="#service-request">Send $9 upload fix request</a>')) failures.push(`Target-size PDF landing page should not show duplicate $9 request CTA in the hero: ${pagePath}`);
-    if (!html.includes("Need a $9 upload fix plan?") || !html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes('data-track-tool="upload-limit-fix-plan"') || !html.includes('data-utm-campaign="upload_limit_fix_plan"') || !html.includes('data-service-primary-invoice-request="true"') || !html.includes('data-track-event="service_invoice_request"') || !html.includes("Open public-safe $9 invoice request")) failures.push(`Target-size PDF landing page missing $9 upload fix invoice request path: ${pagePath}`);
+  if (!html.includes("Match upload error") || !html.includes("Open cheatsheet") || !html.includes('data-track-event="free_tool_depth"') || !html.includes('data-track-tool="upload-limit-fixer"') || !html.includes('data-track-tool="upload-error-cheatsheet"')) failures.push(`Target-size PDF landing page missing free upload-fix next steps: ${pagePath}`);
+  if (html.includes("Get a $9 upload fix plan") || html.includes("Need a $9 upload fix plan?") || html.includes('data-service-type="upload-limit-fix-plan"') || html.includes('data-track-event="service_invoice_request"')) failures.push(`Target-size PDF landing page should not promote paid upload-fix CTA: ${pagePath}`);
   if (!sitemap.includes(`<loc>${siteUrl(pagePath)}</loc>`)) failures.push(`Sitemap missing target-size PDF landing page: ${pagePath}`);
 }
 
@@ -1749,7 +1726,8 @@ else {
   const html = fs.readFileSync(pdfSizeHubFile, "utf8");
   if (!html.includes("PDF size reducer without uploading")) failures.push("PDF size hub page missing headline.");
   if (!html.includes("/tools/compress-pdf/")) failures.push("PDF size hub page missing PDF compressor link.");
-  if (!html.includes("Need a $9 upload fix plan?") || !html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes('data-utm-campaign="upload_limit_fix_plan"') || !html.includes('data-service-primary-invoice-request="true"') || !html.includes('data-track-event="service_invoice_request"') || !html.includes("Open public-safe $9 invoice request")) failures.push("PDF size hub page missing $9 upload fix invoice request path.");
+  if (!html.includes("Match upload error") || !html.includes("Open cheatsheet") || !html.includes('data-track-event="free_tool_depth"') || !html.includes('data-track-tool="upload-limit-fixer"')) failures.push("PDF size hub page missing free upload-fix next steps.");
+  if (html.includes("Need a $9 upload fix plan?") || html.includes('data-service-type="upload-limit-fix-plan"') || html.includes('data-track-event="service_invoice_request"')) failures.push("PDF size hub page should not promote paid upload-fix CTA.");
   for (const pagePath of ["pdf-must-be-under-100kb", "pdf-must-be-under-200kb", "pdf-must-be-under-300kb", "compress-pdf-to-100kb", "compress-pdf-to-200kb", "compress-pdf-to-300kb", "compress-pdf-to-500kb", "compress-pdf-to-1mb", "compress-pdf-to-2mb", "compress-pdf-to-5mb", "compress-pdf-to-10mb", "pdf-must-be-under-2mb", "pdf-must-be-under-5mb", "pdf-must-be-under-10mb", "resume-pdf-under-2mb", "document-must-be-under-5mb"]) {
     if (!html.includes(`/${pagePath}/`)) failures.push(`PDF size hub page missing target link: ${pagePath}`);
   }
@@ -1924,11 +1902,10 @@ else {
   if (!html.includes("PDF must be under 1MB")) failures.push("Upload error cheatsheet missing PDF 1MB row.");
   if (!html.includes("Image must be less than 2MB")) failures.push("Upload error cheatsheet missing image 2MB row.");
   if (!html.includes("Email attachment too large")) failures.push("Upload error cheatsheet missing email attachment row.");
-  if (!html.includes("Still blocked? Get a $9 upload fix plan.") || !html.includes('id="service-request"')) failures.push("Upload error cheatsheet missing direct $9 fix-plan service section.");
-  if (!html.includes('data-upload-error-invoice-request') || !html.includes('href="#upload-error-quick-request"') || !html.includes("Request $9 invoice link")) failures.push("Upload error cheatsheet missing row-level $9 invoice-link quick-form CTAs.");
-  if (!html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("upload_error_cheatsheet_fix_plan") || !html.includes("Request $9 invoice link") || html.includes("Send $9 fix-plan request</button>")) failures.push("Upload error cheatsheet missing primary invoice-link upload fix-plan form.");
-  if (!html.includes("Open public-safe $9 invoice request") || !html.includes('data-track-event="service_invoice_request"') || !html.includes("data-upload-error-fix-plan") || !html.includes("data-upload-error-text=\"PDF must be under 1MB\"")) failures.push("Upload error cheatsheet missing row-level public-safe $9 invoice request CTAs.");
-  if (!html.includes('id="upload-error-quick-request"') || !html.includes('data-upload-error-quick-request') || !html.includes('data-utm-content="cheatsheet-row-quick"') || !html.includes("Request $9 invoice link") || html.includes("Send selected error request")) failures.push("Upload error cheatsheet missing row-level quick invoice-link request panel.");
+  if (!html.includes("Next free step") || !html.includes("Open free fix") || !html.includes("Match another error")) failures.push("Upload error cheatsheet missing free row-level next steps.");
+  if (!html.includes('id="review-checklist"') || !html.includes("Before you upload again") || !html.includes("data-upload-error-text=\"PDF must be under 1MB\"")) failures.push("Upload error cheatsheet missing free review checklist or row tracking.");
+  if (!html.includes('data-track-event="free_tool_depth"') || !html.includes('data-track-tool="upload-limit-fixer"')) failures.push("Upload error cheatsheet missing free-tool depth tracking.");
+  if (html.includes("Still blocked? Get a $9 upload fix plan.") || html.includes("Request $9 invoice link") || html.includes("Open public-safe $9 invoice request") || html.includes('data-service-type="upload-limit-fix-plan"') || html.includes('data-track-event="service_invoice_request"')) failures.push("Upload error cheatsheet should not promote paid upload-fix CTA.");
   if (!html.includes("/upload-error-cheatsheet.json")) failures.push("Upload error cheatsheet missing JSON link.");
   if (!sitemap.includes(`<loc>${siteUrl("upload-error-cheatsheet")}</loc>`)) failures.push("Sitemap missing upload error cheatsheet.");
 }
@@ -1937,7 +1914,8 @@ const compressImageKbToolFile = path.join(root, "tools", "compress-image-to-kb",
 if (!fs.existsSync(compressImageKbToolFile)) failures.push("Missing compress image-to-KB tool page.");
 else {
   const html = fs.readFileSync(compressImageKbToolFile, "utf8");
-  if (!html.includes('data-compress-image-kb-tool-fix-form') || !html.includes("Request $9 invoice link") || !html.includes("data-service-invoice-submit") || !html.includes('data-utm-source="compress-image-kb-tool"') || html.includes("Send $9 image target request</button>")) failures.push("Compress image-to-KB static route missing primary one-field $9 invoice-link request form.");
+  if (!html.includes('data-compress-image-kb-upload-fix-panel') || !html.includes("Upload-ready check") || !html.includes("Match the exact KB rule before you upload.") || !html.includes("Match upload error") || !html.includes("Open cheatsheet")) failures.push("Compress image-to-KB static route missing free upload-ready guidance.");
+  if (html.includes('data-compress-image-kb-tool-fix-form') || html.includes("Request $9 invoice link") || html.includes("Send $9 image target request</button>") || html.includes('data-service-type="upload-limit-fix-plan"')) failures.push("Compress image-to-KB static route should not promote paid upload-fix CTA.");
 }
 
 const uploadErrorCheatsheetJsonFile = path.join(root, "upload-error-cheatsheet.json");
@@ -2172,17 +2150,19 @@ const serviceRouteFile = path.join(root, CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug, "
 if (!fs.existsSync(serviceRouteFile)) failures.push("Missing restored custom print pack service route.");
 else {
   const html = fs.readFileSync(serviceRouteFile, "utf8");
+  if (!html.includes('content="noindex,follow"')) failures.push("Custom print pack service route should remain noindex while traffic focuses on free tools.");
   if (!html.includes(CUSTOM_LOCAL_PRINT_PACK_SERVICE.name) || !html.includes("Request free fit check") || !html.includes(`$${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd}`)) failures.push("Service route missing low-friction paid setup request CTA.");
   if (!html.includes('data-service-lead-form') || !html.includes('data-service-type="custom-local-print-pack"') || !html.includes("Send free fit check")) failures.push("Service route missing low-friction service lead form.");
   if (!html.includes("real external checkout") || !html.includes("No payment is collected")) failures.push("Service route missing external-payment gate.");
   if (!html.includes("Copy generated service request") && !html.includes("Copy request brief")) failures.push("Service route missing copy-ready request.");
-  if (!sitemap.includes(`<loc>${siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}</loc>`)) failures.push("Sitemap should include restored service route.");
+  if (sitemap.includes(`<loc>${siteUrl(CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug)}</loc>`)) failures.push("Sitemap should not include noindex custom print pack service route.");
 }
 
 const invoiceFollowupRouteFile = path.join(root, INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug, "index.html");
 if (!fs.existsSync(invoiceFollowupRouteFile)) failures.push("Missing invoice follow-up copy pack service route.");
 else {
   const html = fs.readFileSync(invoiceFollowupRouteFile, "utf8");
+  if (!html.includes('content="noindex,follow"')) failures.push("Invoice follow-up service route should remain noindex while traffic focuses on the free generator.");
   if (!html.includes(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.name) || !html.includes("Request a free invoice follow-up fit check") || !html.includes(`$${INVOICE_FOLLOWUP_COPY_PACK_SERVICE.priceUsd}`)) failures.push("Invoice follow-up route missing low-friction paid service CTA.");
   if (!html.includes("Send the shortest $19 request") || !html.includes("invoice-micro-lead-form") || !html.includes("Send $19 sequence request")) failures.push("Invoice follow-up route missing shortest paid request form.");
   if (!html.includes("Request $19 invoice link") || !html.includes("data-service-invoice-submit") || !html.includes("data-invoice-fallback-url") || !html.includes("Requested+next+step%3A+Request+external+%2419+checkout+or+invoice+link")) failures.push("Invoice follow-up route missing explicit external invoice-link request CTA.");
@@ -2195,13 +2175,14 @@ else {
   if (!html.includes("real external checkout") || !html.includes("No payment is collected")) failures.push("Invoice follow-up route missing external-payment gate.");
   if (!html.includes("Request+note%3A") || !html.includes("I+need+a+%2419+invoice+follow-up+copy+pack") || !html.includes("service-request%2Cbusiness-review")) failures.push("Invoice follow-up route missing complete public-safe service request issue fallback.");
   if (!html.includes("not legal, tax, accounting, debt-collection, or financial advice")) failures.push("Invoice follow-up route missing advice-risk boundary.");
-  if (!sitemap.includes(`<loc>${siteUrl(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug)}</loc>`)) failures.push("Sitemap should include invoice follow-up service route.");
+  if (sitemap.includes(`<loc>${siteUrl(INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug)}</loc>`)) failures.push("Sitemap should not include noindex invoice follow-up service route.");
 }
 
 const uploadLimitFixPlanRouteFile = path.join(root, UPLOAD_LIMIT_FIX_PLAN_SERVICE.slug, "index.html");
 if (!fs.existsSync(uploadLimitFixPlanRouteFile)) failures.push("Missing upload limit fix plan service route.");
 else {
   const html = fs.readFileSync(uploadLimitFixPlanRouteFile, "utf8");
+  if (!html.includes('content="noindex,follow"')) failures.push("Upload limit fix plan route should remain noindex while traffic focuses on free upload fixes.");
   if (!html.includes(UPLOAD_LIMIT_FIX_PLAN_SERVICE.name) || !html.includes("Request a public-safe upload fix fit check") || !html.includes(`$${UPLOAD_LIMIT_FIX_PLAN_SERVICE.priceUsd}`)) failures.push("Upload limit fix plan route missing low-friction paid service CTA.");
   if (!html.includes('href="#invoice-request"') || !html.includes('id="invoice-request"') || !html.includes("Request the $9 invoice link in 30 seconds") || !html.includes("Where should the external $9 invoice link go?")) failures.push("Upload limit fix plan route should route the hero CTA to the one-contact invoice request form.");
   if (!html.includes("upload-limit-fix-plan-micro-lead-form") || !html.includes("service-page-invoice") || !html.includes(">Request $9 invoice link</button>") || !html.includes('type="hidden" name="consent" value="on"') || !html.includes("By sending, you confirm no actual file")) failures.push("Upload limit fix plan route missing primary one-field invoice request form.");
@@ -2212,7 +2193,7 @@ else {
   if (!html.includes("Upload error text") || !html.includes("File type and target rule") || !html.includes("Blocked file type")) failures.push("Upload limit fix plan route request builder should use upload-specific fields.");
   if (!html.includes("No file upload") || !html.includes("Do not include or attach the actual file") || (!html.includes("cannot guarantee") && !html.includes("does not guarantee"))) failures.push("Upload limit fix plan route missing no-file safety boundary.");
   if (!html.includes("Request+note%3A") || !html.includes("I+need+a+%249+Upload+Limit+Fix+Plan") || !html.includes("service-request%2Cbusiness-review")) failures.push("Upload limit fix plan route missing complete public-safe service request issue fallback.");
-  if (!sitemap.includes(`<loc>${siteUrl(UPLOAD_LIMIT_FIX_PLAN_SERVICE.slug)}</loc>`)) failures.push("Sitemap should include upload limit fix plan service route.");
+  if (sitemap.includes(`<loc>${siteUrl(UPLOAD_LIMIT_FIX_PLAN_SERVICE.slug)}</loc>`)) failures.push("Sitemap should not include noindex upload limit fix plan service route.");
 }
 
 for (const imageInvoicePath of [
@@ -2233,7 +2214,8 @@ for (const imageInvoicePath of [
   if (!fs.existsSync(file)) failures.push(`Missing exact-image upload invoice route: ${imageInvoicePath}`);
   else {
     const html = fs.readFileSync(file, "utf8");
-    if (!html.includes('data-service-type="upload-limit-fix-plan"') || !html.includes("One-contact $9 invoice request") || !html.includes("Where should the external $9 invoice link go?") || !html.includes('data-track-event="service_invoice_request"') || !html.includes('name="consent" value="on"')) failures.push(`Exact-image route missing one-contact $9 invoice request path: ${imageInvoicePath}`);
+    if (!html.includes("Match upload error") || !html.includes("Open cheatsheet") || !html.includes('data-track-event="free_tool_depth"') || !html.includes('data-track-tool="upload-limit-fixer"')) failures.push(`Exact-image route missing free upload-fix next steps: ${imageInvoicePath}`);
+    if (html.includes('data-service-type="upload-limit-fix-plan"') || html.includes("One-contact $9 invoice request") || html.includes('data-track-event="service_invoice_request"')) failures.push(`Exact-image route should not promote paid upload-fix CTA: ${imageInvoicePath}`);
   }
 }
 
@@ -2261,10 +2243,21 @@ const auditRouteFile = path.join(root, MARKET_TABLE_PRINT_AUDIT.slug, "index.htm
 if (!fs.existsSync(auditRouteFile)) failures.push("Missing restored market table print audit route.");
 else {
   const html = fs.readFileSync(auditRouteFile, "utf8");
+  if (!html.includes('content="noindex,follow"')) failures.push("Audit route should remain noindex while product quality and traffic are the priority.");
   if (!html.includes(MARKET_TABLE_PRINT_AUDIT.name) || !html.includes("Request free audit")) failures.push("Audit route missing free audit request CTA.");
   if (!html.includes('data-service-lead-form') || !html.includes('data-service-type="market-table-print-audit"') || !html.includes("Send audit request")) failures.push("Audit route missing low-friction audit lead form.");
   if (!html.includes(`$${CUSTOM_LOCAL_PRINT_PACK_SERVICE.priceUsd} setup`) || !html.includes("does not count as revenue")) failures.push("Audit route missing optional paid upgrade gate.");
-  if (!sitemap.includes(`<loc>${siteUrl(MARKET_TABLE_PRINT_AUDIT.slug)}</loc>`)) failures.push("Sitemap should include restored audit route.");
+  if (sitemap.includes(`<loc>${siteUrl(MARKET_TABLE_PRINT_AUDIT.slug)}</loc>`)) failures.push("Sitemap should not include noindex audit route.");
+}
+
+for (const service of [CUSTOM_LOCAL_PRINT_PACK_SERVICE, INVOICE_FOLLOWUP_COPY_PACK_SERVICE, UPLOAD_LIMIT_FIX_PLAN_SERVICE]) {
+  const file = path.join(root, service.slug, "index.html");
+  if (!fs.existsSync(file)) failures.push(`Missing direct service route: ${service.slug}`);
+  else {
+    const html = fs.readFileSync(file, "utf8");
+    if (!html.includes('content="noindex,follow"')) failures.push(`Direct service route should be noindex while traffic focuses on free tools: ${service.slug}`);
+    if (sitemap.includes(`<loc>${siteUrl(service.slug)}</loc>`)) failures.push(`Sitemap should not include noindex direct service route: ${service.slug}`);
+  }
 }
 
 const salesPackRouteFile = path.join(root, SERVICE_SALES_PACK.slug, "index.html");
@@ -2651,11 +2644,13 @@ for (const [pagePath, headline, toolFragment] of [
   if (!html.includes(toolFragment)) failures.push(`Photo upload landing page missing prefilled tool link: ${pagePath}`);
   if (!sitemap.includes(`<loc>${siteUrl(pagePath)}</loc>`)) failures.push(`Sitemap missing photo upload landing page: ${pagePath}`);
   if (["passport-photo-35x45mm", "photo-200x230-50kb", "photo-200x230-20kb", "photo-200x230-100kb", "photo-240x320-50kb", "photo-295x413-35kb", "photo-413x531-100kb", "photo-413x531-50kb", "photo-354x472-100kb", "photo-300x300-100kb", "photo-600x600-100kb", "photo-480x640-200kb", "photo-512x512-100kb", "photo-150x200-20kb", "photo-180x240-50kb", "photo-400x514-100kb", "photo-600x800-200kb", "photo-120x160-20kb", "photo-160x200-30kb", "photo-300x400-100kb", "photo-350x450-100kb", "photo-360x480-100kb", "photo-420x560-200kb", "signature-under-20kb", "signature-under-50kb", "resize-signature-140x60", "resize-signature-200x100", "resize-photo-200x230", "signature-140x60-20kb", "signature-140x60-50kb", "signature-150x50-20kb", "signature-160x70-20kb", "signature-200x50-20kb", "signature-200x100-50kb", "signature-250x80-50kb", "signature-300x60-20kb", "signature-300x80-50kb", "signature-300x100-50kb", "signature-400x150-50kb", "signature-100x50-10kb", "signature-200x60-20kb", "signature-256x64-20kb", "signature-400x200-100kb"].includes(pagePath)) {
-    if (!html.includes('data-service-primary-invoice-request="true"') || !html.includes("One-contact $9 invoice request") || !html.includes("Where should the external $9 invoice link go?") || !html.includes('data-track-event="service_invoice_request"')) failures.push(`New signature/passport landing page missing one-contact $9 invoice request path: ${pagePath}`);
+    if (!html.includes("Match upload error") || !html.includes("Open cheatsheet") || !html.includes('data-track-event="free_tool_depth"') || !html.includes('data-track-tool="upload-limit-fixer"')) failures.push(`New signature/passport landing page missing free upload-fix next steps: ${pagePath}`);
+    if (html.includes('data-service-primary-invoice-request="true"') || html.includes("One-contact $9 invoice request") || html.includes('data-track-event="service_invoice_request"')) failures.push(`New signature/passport landing page should not promote paid upload-fix CTA: ${pagePath}`);
   }
   if (["file-must-be-less-than-1mb", "pdf-must-be-under-100kb", "pdf-must-be-under-200kb", "pdf-must-be-under-300kb", "pdf-must-be-under-500kb", "pdf-must-be-under-2mb", "pdf-must-be-under-5mb", "pdf-must-be-under-10mb", "photo-must-be-under-100kb", "invalid-file-type-jpg-png", "image-dimensions-600x600", "pdf-not-accepted-jpg-required", "image-must-be-less-than-2mb", "image-must-be-under-500kb", "jpg-must-be-under-200kb", "png-screenshot-too-large", "resume-pdf-too-large", "resume-pdf-under-2mb", "email-attachment-too-large", "document-must-be-under-5mb"].includes(pagePath)) {
     if (!html.includes("data-upload-limit-helper")) failures.push(`Upload-error landing page missing matcher: ${pagePath}`);
-    if (!html.includes('href="#invoice-request"') || !html.includes('id="invoice-request"') || !html.includes("Request the $9 invoice link in 30 seconds") || !html.includes("data-service-invoice-submit") || !html.includes(`data-utm-content="${pagePath}-invoice"`) || !html.includes('type="hidden" name="consent" value="on"') || html.includes("Send $9 fix-plan request</button>")) failures.push(`Upload-error landing page missing one-field direct $9 invoice request path: ${pagePath}`);
+    if (!html.includes("Open upload cheatsheet") || !html.includes("Match another error") || !html.includes('data-track-event="free_tool_depth"') || !html.includes('data-track-tool="upload-error-cheatsheet"')) failures.push(`Upload-error landing page missing free upload-fix next steps: ${pagePath}`);
+    if (html.includes('href="#invoice-request"') || html.includes('id="invoice-request"') || html.includes("Request the $9 invoice link") || html.includes("data-service-invoice-submit") || html.includes("Send $9 fix-plan request</button>")) failures.push(`Upload-error landing page should not promote paid upload-fix invoice request: ${pagePath}`);
   }
 }
 
@@ -2971,8 +2966,10 @@ else {
   }
   if (!docsSitemap.includes("<loc>https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/</loc>")) failures.push("GitHub Pages sitemap missing upload error cheatsheet mirror page.");
   if (!docsSitemap.includes("<loc>https://yanqr213.github.io/printable-tools-lab/organic-push-kit/</loc>")) failures.push("GitHub Pages sitemap missing organic push kit mirror page.");
-  if (!docsSitemap.includes(`<loc>https://yanqr213.github.io/printable-tools-lab/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug}/</loc>`)) failures.push("GitHub Pages sitemap should include restored service route.");
-  if (!docsSitemap.includes(`<loc>https://yanqr213.github.io/printable-tools-lab/${MARKET_TABLE_PRINT_AUDIT.slug}/</loc>`)) failures.push("GitHub Pages sitemap should include restored audit route.");
+  if (docsSitemap.includes(`<loc>https://yanqr213.github.io/printable-tools-lab/${CUSTOM_LOCAL_PRINT_PACK_SERVICE.slug}/</loc>`)) failures.push("GitHub Pages sitemap should not include noindex custom print pack route.");
+  if (docsSitemap.includes(`<loc>https://yanqr213.github.io/printable-tools-lab/${INVOICE_FOLLOWUP_COPY_PACK_SERVICE.slug}/</loc>`)) failures.push("GitHub Pages sitemap should not include noindex invoice follow-up route.");
+  if (docsSitemap.includes(`<loc>https://yanqr213.github.io/printable-tools-lab/${UPLOAD_LIMIT_FIX_PLAN_SERVICE.slug}/</loc>`)) failures.push("GitHub Pages sitemap should not include noindex upload limit fix plan route.");
+  if (docsSitemap.includes(`<loc>https://yanqr213.github.io/printable-tools-lab/${MARKET_TABLE_PRINT_AUDIT.slug}/</loc>`)) failures.push("GitHub Pages sitemap should not include noindex market table audit route.");
   if (docsSitemap.includes(`<loc>https://yanqr213.github.io/printable-tools-lab/${SERVICE_SALES_PACK.slug}/</loc>`)) failures.push("GitHub Pages sitemap should not include noindex service sales pack route.");
 }
 

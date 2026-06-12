@@ -64,20 +64,6 @@ const discoveryRoutes = [
     url: pagesUrl(product.slug),
     mainUrl: siteUrl(product.slug),
   })),
-  ...PAID_SERVICES.map((service) => ({
-    path: service.slug,
-    title: service.name,
-    description: service.shortDescription,
-    url: pagesUrl(service.slug),
-    mainUrl: siteUrl(service.slug),
-  })),
-  {
-    path: MARKET_TABLE_PRINT_AUDIT.slug,
-    title: MARKET_TABLE_PRINT_AUDIT.name,
-    description: MARKET_TABLE_PRINT_AUDIT.shortDescription,
-    url: pagesUrl(MARKET_TABLE_PRINT_AUDIT.slug),
-    mainUrl: siteUrl(MARKET_TABLE_PRINT_AUDIT.slug),
-  },
   ...toolDiscoveryRoutes,
   ...guideDiscoveryRoutes,
   {

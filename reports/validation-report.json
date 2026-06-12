@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-09T12:10:42.561Z",
+  "generatedAt": "2026-06-12T14:07:06.239Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
     "customDomainConfigured": false,
     "toolCount": 67,
     "guideCount": 95,
-    "landingPageCount": 137,
-    "indexableRoutes": 332,
-    "sitemapLocCount": 332,
-    "generatedToolInventoryAt": "2026-06-09T12:09:55.256Z",
+    "landingPageCount": 151,
+    "indexableRoutes": 342,
+    "sitemapLocCount": 342,
+    "generatedToolInventoryAt": "2026-06-12T14:05:37.318Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -129,28 +129,28 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 80304,
+        "bytes": 88246,
         "json": null
       },
       "/tools/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 40185,
+        "bytes": 40419,
         "json": null
       },
       "/share-kit/": {
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 50169,
+        "bytes": 55439,
         "json": null
       },
       "/sitemap.xml": {
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 39689,
+        "bytes": 41277,
         "json": null
       },
       "/robots.txt": {
@@ -173,7 +173,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 48706,
+        "bytes": 51068,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for"
       },
@@ -181,7 +181,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 94504,
+        "bytes": 100805,
         "json": null
       },
       "/tools.json": {
@@ -193,7 +193,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-09T12:01:12.338Z",
+          "generatedAt": "2026-06-09T18:14:24.411Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -1081,11 +1081,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 82017,
+        "bytes": 87519,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-09T12:01:12.338Z",
+          "generatedAt": "2026-06-09T18:14:24.411Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1131,9 +1131,13 @@
             "https://printable-tools-lab.pages.dev/zero-cost-monetization-map/",
             "https://printable-tools-lab.pages.dev/upload-limit-fixer/",
             "https://printable-tools-lab.pages.dev/file-must-be-less-than-1mb/",
+            "https://printable-tools-lab.pages.dev/pdf-must-be-under-100kb/",
+            "https://printable-tools-lab.pages.dev/pdf-must-be-under-200kb/",
+            "https://printable-tools-lab.pages.dev/pdf-must-be-under-300kb/",
             "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/",
             "https://printable-tools-lab.pages.dev/pdf-must-be-under-2mb/",
             "https://printable-tools-lab.pages.dev/pdf-must-be-under-5mb/",
+            "https://printable-tools-lab.pages.dev/pdf-must-be-under-10mb/",
             "https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/",
             "https://printable-tools-lab.pages.dev/invalid-file-type-jpg-png/",
             "https://printable-tools-lab.pages.dev/image-dimensions-600x600/",
@@ -1155,10 +1159,14 @@
             "https://printable-tools-lab.pages.dev/multiple-images-to-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/compress-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/pdf-size-reducer/",
+            "https://printable-tools-lab.pages.dev/compress-pdf-to-100kb/",
+            "https://printable-tools-lab.pages.dev/compress-pdf-to-200kb/",
+            "https://printable-tools-lab.pages.dev/compress-pdf-to-300kb/",
             "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/",
             "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb/",
             "https://printable-tools-lab.pages.dev/compress-pdf-to-2mb/",
             "https://printable-tools-lab.pages.dev/compress-pdf-to-5mb/",
+            "https://printable-tools-lab.pages.dev/compress-pdf-to-10mb/",
             "https://printable-tools-lab.pages.dev/pdf-to-jpg-no-upload/",
             "https://printable-tools-lab.pages.dev/extract-text-from-pdf-no-upload/",
             "https://printable-tools-lab.pages.dev/signature-png-generator/",
@@ -1201,6 +1209,12 @@
             "https://printable-tools-lab.pages.dev/photo-180x240-50kb/",
             "https://printable-tools-lab.pages.dev/photo-400x514-100kb/",
             "https://printable-tools-lab.pages.dev/photo-600x800-200kb/",
+            "https://printable-tools-lab.pages.dev/photo-120x160-20kb/",
+            "https://printable-tools-lab.pages.dev/photo-160x200-30kb/",
+            "https://printable-tools-lab.pages.dev/photo-300x400-100kb/",
+            "https://printable-tools-lab.pages.dev/photo-350x450-100kb/",
+            "https://printable-tools-lab.pages.dev/photo-360x480-100kb/",
+            "https://printable-tools-lab.pages.dev/photo-420x560-200kb/",
             "https://printable-tools-lab.pages.dev/signature-under-20kb/",
             "https://printable-tools-lab.pages.dev/signature-under-50kb/",
             "https://printable-tools-lab.pages.dev/resize-signature-140x60/",
@@ -1639,6 +1653,24 @@
               "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=1mb"
             },
             {
+              "title": "PDF Must Be Under 100KB Fix",
+              "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-100kb/",
+              "intent": "PDF must be under 100KB, compress PDF to 100KB, upload limit error",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=100kb"
+            },
+            {
+              "title": "PDF Must Be Under 200KB Fix",
+              "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-200kb/",
+              "intent": "PDF must be under 200KB, compress PDF to 200KB, upload limit error",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=200kb"
+            },
+            {
+              "title": "PDF Must Be Under 300KB Fix",
+              "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-300kb/",
+              "intent": "PDF must be under 300KB, compress PDF to 300KB, upload limit error",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=300kb"
+            },
+            {
               "title": "PDF Must Be Under 500KB Fix",
               "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/",
               "intent": "PDF must be under 500KB, compress PDF to 500KB, upload limit error",
@@ -1655,6 +1687,12 @@
               "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-5mb/",
               "intent": "PDF must be under 5MB, compress PDF to 5MB, upload PDF too large",
               "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=5mb"
+            },
+            {
+              "title": "PDF Must Be Under 10MB Fix",
+              "url": "https://printable-tools-lab.pages.dev/pdf-must-be-under-10mb/",
+              "intent": "PDF must be under 10MB, compress PDF to 10MB, upload PDF too large",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=10mb"
             },
             {
               "title": "Photo Must Be Under 100KB Fix",
@@ -1779,8 +1817,26 @@
             {
               "title": "PDF Size Reducer Without Uploading",
               "url": "https://printable-tools-lab.pages.dev/pdf-size-reducer/",
-              "intent": "PDF size reducer, compress PDF under 1MB, compress PDF under 500KB, no upload",
+              "intent": "PDF size reducer, compress PDF under 100KB, compress PDF under 1MB, compress PDF under 10MB, no upload",
               "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/"
+            },
+            {
+              "title": "Compress PDF to 100KB Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-100kb/",
+              "intent": "compress PDF to 100KB, reduce PDF size, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=100kb"
+            },
+            {
+              "title": "Compress PDF to 200KB Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-200kb/",
+              "intent": "compress PDF to 200KB, reduce PDF size, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=200kb"
+            },
+            {
+              "title": "Compress PDF to 300KB Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-300kb/",
+              "intent": "compress PDF to 300KB, reduce PDF size, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=300kb"
             },
             {
               "title": "Compress PDF to 500KB Without Uploading",
@@ -1805,6 +1861,12 @@
               "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-5mb/",
               "intent": "compress PDF to 5MB, reduce PDF size, no upload",
               "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=5mb"
+            },
+            {
+              "title": "Compress PDF to 10MB Without Uploading",
+              "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-10mb/",
+              "intent": "compress PDF to 10MB, reduce PDF size, no upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=10mb"
             },
             {
               "title": "PDF to JPG Without Uploading",
@@ -2057,6 +2119,42 @@
               "url": "https://printable-tools-lab.pages.dev/photo-600x800-200kb/",
               "intent": "photo 600x800 200KB, resize photo 600 x 800 under 200KB, portrait application upload",
               "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=800&fit=cover"
+            },
+            {
+              "title": "Photo 120x160 Pixels Under 20KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-120x160-20kb/",
+              "intent": "photo 120x160 20KB, resize photo 120 x 160 under 20KB, exam photo upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=120&height=160&fit=cover"
+            },
+            {
+              "title": "Photo 160x200 Pixels Under 30KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-160x200-30kb/",
+              "intent": "photo 160x200 30KB, resize photo 160 x 200 under 30KB, application photo upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=160&height=200&fit=cover"
+            },
+            {
+              "title": "Photo 300x400 Pixels Under 100KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-300x400-100kb/",
+              "intent": "photo 300x400 100KB, resize photo 300 x 400 under 100KB, portrait application photo",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=300&height=400&fit=cover"
+            },
+            {
+              "title": "Photo 350x450 Pixels Under 100KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-350x450-100kb/",
+              "intent": "photo 350x450 100KB, resize photo 350 x 450 under 100KB, ID photo upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=350&height=450&fit=cover"
+            },
+            {
+              "title": "Photo 360x480 Pixels Under 100KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-360x480-100kb/",
+              "intent": "photo 360x480 100KB, resize photo 360 x 480 under 100KB, portrait photo upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=360&height=480&fit=cover"
+            },
+            {
+              "title": "Photo 420x560 Pixels Under 200KB",
+              "url": "https://printable-tools-lab.pages.dev/photo-420x560-200kb/",
+              "intent": "photo 420x560 200KB, resize photo 420 x 560 under 200KB, portrait application upload",
+              "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=420&height=560&fit=cover"
             },
             {
               "title": "Signature Under 20KB Without Uploading",
@@ -2466,10 +2564,10 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 104121,
+        "bytes": 116898,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-09T12:01:12.338Z",
+          "generatedAt": "2026-06-09T18:14:24.411Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -2489,7 +2587,7 @@
               "title": "PDF size reducer",
               "url": "https://printable-tools-lab.pages.dev/pdf-size-reducer?utm_source=share-kit&utm_medium=organic",
               "canonicalUrl": "https://printable-tools-lab.pages.dev/pdf-size-reducer/",
-              "reason": "Hub for exact PDF upload limits including 500KB, 1MB, 2MB, and 5MB."
+              "reason": "Hub for exact PDF upload limits including 100KB, 200KB, 300KB, 500KB, 1MB, 2MB, 5MB, and 10MB."
             },
             {
               "title": "Compress image to 20KB",
@@ -2504,6 +2602,24 @@
               "reason": "Urgent ID-style photo crop, resize, and file-size workflow."
             },
             {
+              "title": "Compress PDF to 100KB",
+              "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-100kb?utm_source=share-kit&utm_medium=organic",
+              "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-100kb/",
+              "reason": "Strict exam, school, and tiny form upload limit intent."
+            },
+            {
+              "title": "Compress PDF to 200KB",
+              "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-200kb?utm_source=share-kit&utm_medium=organic",
+              "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-200kb/",
+              "reason": "Severe small-PDF upload limit for scanned forms."
+            },
+            {
+              "title": "Compress PDF to 300KB",
+              "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-300kb?utm_source=share-kit&utm_medium=organic",
+              "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-300kb/",
+              "reason": "Strict PDF upload limit with slightly more readable detail."
+            },
+            {
               "title": "Compress PDF to 1MB",
               "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb?utm_source=share-kit&utm_medium=organic",
               "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-1mb/",
@@ -2514,6 +2630,12 @@
               "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb?utm_source=share-kit&utm_medium=organic",
               "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-500kb/",
               "reason": "Strict form and government-style upload limit intent."
+            },
+            {
+              "title": "Compress PDF to 10MB",
+              "url": "https://printable-tools-lab.pages.dev/compress-pdf-to-10mb?utm_source=share-kit&utm_medium=organic",
+              "canonicalUrl": "https://printable-tools-lab.pages.dev/compress-pdf-to-10mb/",
+              "reason": "Wider email, support, and portal PDF upload limit intent."
             },
             {
               "title": "Compress image to 100KB",
@@ -2882,6 +3004,36 @@
                 "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=1mb"
               },
               {
+                "errorText": "PDF must be under 100KB",
+                "problem": "A tiny exam, school, or form upload cap rejects a PDF above 100KB.",
+                "response": "Use the strictest 100KB PDF upload-error page and review readability before submitting.",
+                "format": "PDF",
+                "target": "100KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/pdf-must-be-under-100kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-must-be-under-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=100kb"
+              },
+              {
+                "errorText": "PDF must be under 200KB",
+                "problem": "A strict portal allows only a very small scanned PDF or short form.",
+                "response": "Use the severe 200KB PDF upload-error page for short scanned forms and keep the original nearby.",
+                "format": "PDF",
+                "target": "200KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/pdf-must-be-under-200kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-must-be-under-200kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=200kb"
+              },
+              {
+                "errorText": "PDF must be under 300KB",
+                "problem": "A form, application, or admin portal requires a strict PDF cap below 300KB.",
+                "response": "Use the 300KB PDF upload-error page when the portal allows a little more detail than 100KB or 200KB.",
+                "format": "PDF",
+                "target": "300KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/pdf-must-be-under-300kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-must-be-under-300kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=300kb"
+              },
+              {
                 "errorText": "PDF must be under 500KB",
                 "problem": "A strict form, exam upload, or school portal requires a very small PDF.",
                 "response": "Use the strict 500KB PDF target and keep the original file in case the compressed copy loses detail.",
@@ -2890,6 +3042,16 @@
                 "landingPage": "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb/",
                 "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-must-be-under-500kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
                 "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=500kb"
+              },
+              {
+                "errorText": "PDF must be under 10MB",
+                "problem": "An email, support, or document portal still rejects a large scanned PDF.",
+                "response": "Use the 10MB PDF upload-error page for wider caps that still reject very large scans.",
+                "format": "PDF",
+                "target": "10MB",
+                "landingPage": "https://printable-tools-lab.pages.dev/pdf-must-be-under-10mb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/pdf-must-be-under-10mb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-pdf/?targetSize=10mb"
               },
               {
                 "errorText": "Image must be less than 2MB",
@@ -3080,6 +3242,66 @@
                 "landingPage": "https://printable-tools-lab.pages.dev/photo-600x800-200kb/",
                 "trackedUrl": "https://printable-tools-lab.pages.dev/photo-600x800-200kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
                 "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=800&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 120 x 160 px and under 20KB",
+                "problem": "A tiny exam or application photo upload requires 120 x 160 pixels and a strict 20KB cap.",
+                "response": "Resize to 120 x 160 pixels first, then compress the exported photo toward 20KB.",
+                "format": "Photo",
+                "target": "120 x 160 / 20KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-120x160-20kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-120x160-20kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=120&height=160&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 160 x 200 px and under 30KB",
+                "problem": "A compact portrait upload requires exact 160 x 200 pixels and rejects files above 30KB.",
+                "response": "Resize to 160 x 200 pixels first, then compress the exported photo toward 30KB if needed.",
+                "format": "Photo",
+                "target": "160 x 200 / 30KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-160x200-30kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-160x200-30kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=160&height=200&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 300 x 400 px and under 100KB",
+                "problem": "A portrait application photo upload requires 300 x 400 pixels and a 100KB cap.",
+                "response": "Resize to 300 x 400 pixels first, then compress the exported photo toward 100KB.",
+                "format": "Photo",
+                "target": "300 x 400 / 100KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-300x400-100kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-300x400-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=300&height=400&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 350 x 450 px and under 100KB",
+                "problem": "An ID-style portrait upload requires exact 350 x 450 pixels and rejects files above 100KB.",
+                "response": "Resize to 350 x 450 pixels first, then compress the exported photo toward 100KB if needed.",
+                "format": "Photo",
+                "target": "350 x 450 / 100KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-350x450-100kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-350x450-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=350&height=450&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 360 x 480 px and under 100KB",
+                "problem": "A portrait photo upload requires exact 360 x 480 pixels and a file below 100KB.",
+                "response": "Resize to 360 x 480 pixels first, then compress the exported photo toward 100KB.",
+                "format": "Photo",
+                "target": "360 x 480 / 100KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-360x480-100kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-360x480-100kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=360&height=480&fit=cover"
+              },
+              {
+                "errorText": "Photo must be 420 x 560 px and under 200KB",
+                "problem": "A larger portrait photo upload requires 420 x 560 pixels and rejects files above 200KB.",
+                "response": "Resize to 420 x 560 pixels first, then compress the exported photo toward 200KB if needed.",
+                "format": "Photo",
+                "target": "420 x 560 / 200KB",
+                "landingPage": "https://printable-tools-lab.pages.dev/photo-420x560-200kb/",
+                "trackedUrl": "https://printable-tools-lab.pages.dev/photo-420x560-200kb?utm_source=upload-error-cheatsheet&utm_medium=organic&utm_campaign=upload_error_cheatsheet",
+                "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=420&height=560&fit=cover"
               },
               {
                 "errorText": "JPG must be under 200KB",
@@ -3362,10 +3584,10 @@
               }
             ],
             "externalDiscoveryProof": {
-              "generatedAt": "2026-06-09T11:55:47.926Z",
-              "directoryListedCount": 98,
-              "directoryPendingCount": 152,
-              "directoryErrorCount": 5,
+              "generatedAt": "2026-06-09T18:09:35.558Z",
+              "directoryListedCount": 112,
+              "directoryPendingCount": 184,
+              "directoryErrorCount": 1,
               "listedDirectories": [
                 {
                   "name": "TechTools Launchpad site listing",
@@ -3806,6 +4028,90 @@
                   "reviewWindow": "auto-approved API listing for the common 35 x 45 mm passport-style photo workflow"
                 },
                 {
+                  "name": "TechTools Launchpad compress pdf to 100kb listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/255",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the PDF 100KB target-size landing path"
+                },
+                {
+                  "name": "TechTools Launchpad compress pdf to 200kb listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/256",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the PDF 200KB target-size landing path"
+                },
+                {
+                  "name": "TechTools Launchpad compress pdf to 300kb listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/257",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the PDF 300KB target-size landing path"
+                },
+                {
+                  "name": "TechTools Launchpad compress pdf to 10mb listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/258",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the PDF 10MB target-size landing path"
+                },
+                {
+                  "name": "TechTools Launchpad pdf must be under 100kb fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/259",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the PDF under 100KB upload-error path"
+                },
+                {
+                  "name": "TechTools Launchpad pdf must be under 200kb fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/260",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the PDF under 200KB upload-error path"
+                },
+                {
+                  "name": "TechTools Launchpad pdf must be under 300kb fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/261",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the PDF under 300KB upload-error path"
+                },
+                {
+                  "name": "TechTools Launchpad pdf must be under 10mb fix listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/262",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the PDF under 10MB upload-error path"
+                },
+                {
+                  "name": "TechTools Launchpad photo 120x160 under 20kb listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/263",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 120 x 160 px and 20KB photo path"
+                },
+                {
+                  "name": "TechTools Launchpad photo 160x200 under 30kb listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/264",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 160 x 200 px and 30KB photo path"
+                },
+                {
+                  "name": "TechTools Launchpad photo 300x400 under 100kb listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/265",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 300 x 400 px and 100KB photo path"
+                },
+                {
+                  "name": "TechTools Launchpad photo 350x450 under 100kb listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/266",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 350 x 450 px and 100KB photo path"
+                },
+                {
+                  "name": "TechTools Launchpad photo 360x480 under 100kb listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/267",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 360 x 480 px and 100KB photo path"
+                },
+                {
+                  "name": "TechTools Launchpad photo 420x560 under 200kb listing",
+                  "evidenceUrl": "https://techtools.cz/launchpad-api/tools/268",
+                  "submittedAt": "2026-06-09",
+                  "reviewWindow": "auto-approved API listing for the exact 420 x 560 px and 200KB photo path"
+                },
+                {
                   "name": "TechTools Launchpad photo 480x640 under 200kb listing",
                   "evidenceUrl": "https://techtools.cz/launchpad-api/tools/240",
                   "submittedAt": "2026-06-09",
@@ -3959,8 +4265,8 @@
               "indexNowAcceptedTargets": [
                 "github-pages"
               ],
-              "indexNowSubmittedUrls": 284,
-              "publicProofLine": "External discovery proof: 98 public directory listing(s) are live; 152 more listing(s) remain pending; IndexNow accepted 284 URL(s) across 1 target(s). These are discovery signals, not revenue.",
+              "indexNowSubmittedUrls": 328,
+              "publicProofLine": "External discovery proof: 112 public directory listing(s) are live; 184 more listing(s) remain pending; IndexNow accepted 328 URL(s) across 1 target(s). These are discovery signals, not revenue.",
               "moneyBoundary": "Directory listings, IndexNow submissions, clicks, and views are discovery signals only. Revenue is real only after a signed sponsor agreement or settled external payment."
             },
             "successGate": "Commercial discovery is working only when a qualified sponsor lead, signed agreement, or settled external payment is verified. Clicks alone are not revenue."
@@ -4067,11 +4373,11 @@
         "bytes": 37902,
         "json": {
           "ok": true,
-          "today": "2026-06-09",
+          "today": "2026-06-12",
           "dataQuality": "rollup",
           "dataWarning": "",
           "totals": {
-            "page_view": 528,
+            "page_view": 535,
             "generate_pdf": 0,
             "download_pdf": 2,
             "generate_file": 0,
@@ -4093,7 +4399,7 @@
             "sponsor_invoice_request": 0
           },
           "todayTotals": {
-            "page_view": 6,
+            "page_view": 3,
             "generate_pdf": 0,
             "download_pdf": 0,
             "generate_file": 0,
@@ -5495,7 +5801,7 @@
           "sources": [
             {
               "source": "direct",
-              "page_view": 516,
+              "page_view": 523,
               "download_pdf": 0,
               "download_file": 0,
               "free_tool_depth": 0,
@@ -5923,7 +6229,7 @@
         "bytes": 768,
         "json": {
           "ok": true,
-          "generatedAt": "2026-06-09T12:10:38.660Z",
+          "generatedAt": "2026-06-12T14:07:00.547Z",
           "repo": "yanqr213/printable-tools-lab",
           "sourceUrl": "https://github.com/yanqr213/printable-tools-lab/issues?q=is%3Aissue%20label%3Abusiness-review%20label%3Aservice-request%20OR%20label%3Aaudit-request",
           "available": true,
@@ -5948,9 +6254,9 @@
       }
     },
     "metrics": {
-      "today": "2026-06-09",
+      "today": "2026-06-12",
       "totals": {
-        "page_view": 528,
+        "page_view": 535,
         "generate_pdf": 0,
         "download_pdf": 2,
         "generate_file": 0,
@@ -5972,7 +6278,7 @@
         "sponsor_invoice_request": 0
       },
       "todayTotals": {
-        "page_view": 6,
+        "page_view": 3,
         "generate_pdf": 0,
         "download_pdf": 0,
         "generate_file": 0,
@@ -6164,35 +6470,49 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
+      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF size targets, image KB targets, PDF-to-Word, ATS checks, background removal, text overlays, QR codes, PDF edits, paperwork, labels, resumes, and printables.",
       "topics": [
-        "pdf-tools",
+        "background-remover",
+        "compress-image-to-100kb",
+        "compress-pdf",
+        "compress-pdf-to-1mb",
+        "compress-pdf-to-500kb",
+        "free-tools",
+        "image-compressor",
+        "image-converter",
+        "image-resizer",
+        "image-to-pdf",
         "image-tools",
-        "qr-code",
+        "invoice-generator",
         "no-signup",
-        "browser-tools",
-        "free-tools"
+        "passport-photo",
+        "pdf-generator",
+        "pdf-to-jpg",
+        "pdf-to-word",
+        "pdf-tools",
+        "qr-code",
+        "resume-checker"
       ],
-      "error": "GitHub API fallback used: GitHub API 403",
       "discoveryRelease": {
         "tag": "free-pdf-tools",
         "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
         "name": "Free PDF, Image, and QR Tools Without Signup"
-      }
+      },
+      "error": ""
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
       "pageOk": true,
       "sitemapOk": true,
-      "sitemapUrlCount": 314,
-      "landingPagesLinked": 137,
+      "sitemapUrlCount": 328,
+      "landingPagesLinked": 151,
       "toolPagesLinked": 67,
       "toolPagesInSitemap": 67,
       "guidePagesLinked": 95,
       "guidePagesInSitemap": 95,
       "gamePagesLinked": 1,
       "gamePagesInSitemap": 3,
-      "expectedUrlCount": 314,
+      "expectedUrlCount": 324,
       "error": ""
     },
     "indexNow": {
@@ -6203,7 +6523,7 @@
       "keyFileReachable": true,
       "singleUrlAccepted": false,
       "latestReport": {
-        "generatedAt": "2026-06-09T06:23:47.888Z",
+        "generatedAt": "2026-06-09T18:10:06.089Z",
         "keyFile": "fb2b7a50e6a8b37f8d959a1c17b850eb.txt",
         "results": [
           {
@@ -6213,13 +6533,13 @@
             "keyReachable": true,
             "keyStatus": 200,
             "keyMessage": "ok",
-            "urlCount": 302,
+            "urlCount": 346,
             "submittedUrls": 0,
             "accepted": false,
             "status": 403,
             "message": "{\"errorCode\":\"UserForbiddedToAccessSite\",\"message\":\"User is unauthorized to access the site. Please verify the site using the key and try again\",\"details\":null}",
             "fallbackAccepted": 0,
-            "fallbackFailed": 23
+            "fallbackFailed": 37
           },
           {
             "label": "github-pages",
@@ -6228,8 +6548,8 @@
             "keyReachable": true,
             "keyStatus": 200,
             "keyMessage": "ok",
-            "urlCount": 284,
-            "submittedUrls": 284,
+            "urlCount": 328,
+            "submittedUrls": 328,
             "accepted": true,
             "status": 200,
             "message": "",
@@ -6244,17 +6564,17 @@
       "acceptedTargets": [
         "github-pages"
       ],
-      "acceptedUrlCount": 284,
+      "acceptedUrlCount": 328,
       "error": ""
     },
     "externalDiscoveryReady": true
   },
   "directories": {
     "available": true,
-    "generatedAt": "2026-06-09T11:55:47.926Z",
-    "listedCount": 98,
-    "pendingCount": 152,
-    "errorCount": 5,
+    "generatedAt": "2026-06-09T18:09:35.558Z",
+    "listedCount": 112,
+    "pendingCount": 184,
+    "errorCount": 1,
     "listed": [
       {
         "name": "TechTools Launchpad site listing",
@@ -6547,6 +6867,62 @@
       {
         "name": "TechTools Launchpad passport photo 35x45mm listing",
         "evidenceUrl": "https://techtools.cz/launchpad-api/tools/223"
+      },
+      {
+        "name": "TechTools Launchpad compress pdf to 100kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/255"
+      },
+      {
+        "name": "TechTools Launchpad compress pdf to 200kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/256"
+      },
+      {
+        "name": "TechTools Launchpad compress pdf to 300kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/257"
+      },
+      {
+        "name": "TechTools Launchpad compress pdf to 10mb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/258"
+      },
+      {
+        "name": "TechTools Launchpad pdf must be under 100kb fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/259"
+      },
+      {
+        "name": "TechTools Launchpad pdf must be under 200kb fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/260"
+      },
+      {
+        "name": "TechTools Launchpad pdf must be under 300kb fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/261"
+      },
+      {
+        "name": "TechTools Launchpad pdf must be under 10mb fix listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/262"
+      },
+      {
+        "name": "TechTools Launchpad photo 120x160 under 20kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/263"
+      },
+      {
+        "name": "TechTools Launchpad photo 160x200 under 30kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/264"
+      },
+      {
+        "name": "TechTools Launchpad photo 300x400 under 100kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/265"
+      },
+      {
+        "name": "TechTools Launchpad photo 350x450 under 100kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/266"
+      },
+      {
+        "name": "TechTools Launchpad photo 360x480 under 100kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/267"
+      },
+      {
+        "name": "TechTools Launchpad photo 420x560 under 200kb listing",
+        "evidenceUrl": "https://techtools.cz/launchpad-api/tools/268"
       },
       {
         "name": "TechTools Launchpad photo 480x640 under 200kb listing",
@@ -6879,6 +7255,18 @@
         "evidenceUrl": "https://nosignuptools.com/tools/compress-image-to-500kb-by-printabletools-lab"
       },
       {
+        "name": "NoSignupTools Compress PDF to 100KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-pdf-to-100kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Compress PDF to 200KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-pdf-to-200kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Compress PDF to 300KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-pdf-to-300kb-by-printabletools-lab"
+      },
+      {
         "name": "NoSignupTools Compress PDF to 500KB listing",
         "evidenceUrl": "https://nosignuptools.com/tools/compress-pdf-to-500kb-by-printabletools-lab"
       },
@@ -6895,6 +7283,10 @@
         "evidenceUrl": "https://nosignuptools.com/tools/compress-pdf-to-5mb-by-printabletools-lab"
       },
       {
+        "name": "NoSignupTools Compress PDF to 10MB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/compress-pdf-to-10mb-by-printabletools-lab"
+      },
+      {
         "name": "NoSignupTools PDF Size Reducer listing",
         "evidenceUrl": "https://nosignuptools.com/tools/pdf-size-reducer-by-printabletools-lab"
       },
@@ -6903,8 +7295,24 @@
         "evidenceUrl": "https://nosignuptools.com/tools/file-must-be-less-than-1mb-fix-by-printabletools-lab"
       },
       {
+        "name": "NoSignupTools PDF Must Be Under 100KB Fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/pdf-must-be-under-100kb-fix-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools PDF Must Be Under 200KB Fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/pdf-must-be-under-200kb-fix-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools PDF Must Be Under 300KB Fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/pdf-must-be-under-300kb-fix-by-printabletools-lab"
+      },
+      {
         "name": "NoSignupTools PDF Must Be Under 500KB Fix listing",
         "evidenceUrl": "https://nosignuptools.com/tools/pdf-must-be-under-500kb-fix-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools PDF Must Be Under 10MB Fix listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/pdf-must-be-under-10mb-fix-by-printabletools-lab"
       },
       {
         "name": "NoSignupTools Photo Must Be Under 100KB Fix listing",
@@ -6987,6 +7395,30 @@
         "evidenceUrl": "https://nosignuptools.com/tools/photo-600x800-under-200kb-by-printabletools-lab"
       },
       {
+        "name": "NoSignupTools Photo 120x160 Under 20KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-120x160-under-20kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 160x200 Under 30KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-160x200-under-30kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 300x400 Under 100KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-300x400-under-100kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 350x450 Under 100KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-350x450-under-100kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 360x480 Under 100KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-360x480-under-100kb-by-printabletools-lab"
+      },
+      {
+        "name": "NoSignupTools Photo 420x560 Under 200KB listing",
+        "evidenceUrl": "https://nosignuptools.com/tools/photo-420x560-under-200kb-by-printabletools-lab"
+      },
+      {
         "name": "NoSignupTools Signature 140x60 Under 20KB listing",
         "evidenceUrl": "https://nosignuptools.com/tools/signature-140x60-under-20kb-by-printabletools-lab"
       },
@@ -7063,11 +7495,43 @@
         "evidenceUrl": "https://freenosignup.com/"
       },
       {
+        "name": "FreeNoSignup Compress PDF to 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Compress PDF to 200KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Compress PDF to 300KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
         "name": "FreeNoSignup Compress PDF to 500KB listing",
         "evidenceUrl": "https://freenosignup.com/"
       },
       {
         "name": "FreeNoSignup Compress PDF to 1MB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Compress PDF to 10MB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup PDF Must Be Under 100KB Fix listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup PDF Must Be Under 200KB Fix listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup PDF Must Be Under 300KB Fix listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup PDF Must Be Under 10MB Fix listing",
         "evidenceUrl": "https://freenosignup.com/"
       },
       {
@@ -7111,6 +7575,22 @@
         "evidenceUrl": "https://freenosignup.com/"
       },
       {
+        "name": "FreeNoSignup Photo 354x472 Under 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 300x300 Under 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 600x600 Under 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 480x640 Under 200KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
         "name": "FreeNoSignup Photo 512x512 Under 100KB listing",
         "evidenceUrl": "https://freenosignup.com/"
       },
@@ -7128,6 +7608,30 @@
       },
       {
         "name": "FreeNoSignup Photo 600x800 Under 200KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 120x160 Under 20KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 160x200 Under 30KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 300x400 Under 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 350x450 Under 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 360x480 Under 100KB listing",
+        "evidenceUrl": "https://freenosignup.com/"
+      },
+      {
+        "name": "FreeNoSignup Photo 420x560 Under 200KB listing",
         "evidenceUrl": "https://freenosignup.com/"
       },
       {
@@ -7261,22 +7765,6 @@
     ],
     "errors": [
       {
-        "name": "FreeNoSignup Photo 354x472 Under 100KB listing",
-        "evidenceUrl": "https://freenosignup.com/"
-      },
-      {
-        "name": "FreeNoSignup Photo 300x300 Under 100KB listing",
-        "evidenceUrl": "https://freenosignup.com/"
-      },
-      {
-        "name": "FreeNoSignup Photo 600x600 Under 100KB listing",
-        "evidenceUrl": "https://freenosignup.com/"
-      },
-      {
-        "name": "FreeNoSignup Photo 480x640 Under 200KB listing",
-        "evidenceUrl": "https://freenosignup.com/"
-      },
-      {
         "name": "JS.ORG free subdomain",
         "evidenceUrl": "https://github.com/js-org/js.org/pull/11512"
       }
@@ -7294,7 +7782,7 @@
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "67 tools, 95 guides, 137 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "67 tools, 95 guides, 151 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
@@ -7306,13 +7794,13 @@
         "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
       ],
       "externalDiscovery": [
-        "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
-        "GitHub Pages discovery directory is live with 137 landing page link(s), 67 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).",
-        "GitHub Pages discovery sitemap has 314 URL(s), including 67 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 314.",
+        "GitHub Pages discovery directory is live with 151 landing page link(s), 67 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).",
+        "GitHub Pages discovery sitemap has 328 URL(s), including 67 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 324.",
         "IndexNow key file is reachable from the site root.",
-        "IndexNow latest report accepted 284 URL(s) for github-pages.",
-        "Directory monitor shows 98 listed, 152 pending, and 5 error directory target(s)."
+        "IndexNow latest report accepted 328 URL(s) for github-pages.",
+        "Directory monitor shows 112 listed, 184 pending, and 1 error directory target(s)."
       ]
     }
   },

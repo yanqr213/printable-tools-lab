@@ -3,7 +3,7 @@
 
   const SITE = {
     name: "PrintableTools Lab",
-    dailyLimit: 5,
+    dailyLimit: 25,
   };
 
   const CONFIG = Object.assign({
@@ -2921,7 +2921,7 @@
       slug: "overdue-invoice-reminder-email",
       title: "Overdue Invoice Reminder Email",
       headline: "Overdue invoice reminder email",
-      description: "Write a first overdue invoice reminder email without uploading private invoice details, then request a $19 follow-up sequence if you want it polished.",
+      description: "Write a first overdue invoice reminder email without uploading private invoice, bank, tax, card, or client details.",
       lead: "Use this when an invoice is already late and you need a calm first follow-up that asks for an update without making legal, tax, accounting, or collections claims.",
       tool: "invoice-followup-email",
       toolQuery: "invoiceStatus=overdue&tone=friendly&dueTiming=overdue&context=I%20wanted%20to%20keep%20this%20easy%20to%20find%20and%20check%20whether%20anything%20else%20is%20needed%20on%20my%20side.&paymentWording=Please%20use%20the%20payment%20link%20or%20invoice%20portal%20already%20sent.",
@@ -2929,7 +2929,7 @@
       sections: [
         ["Use a first overdue tone", "Keep the message short, specific, and relationship-safe. Mention that the invoice is overdue, ask whether anything else is needed, and point back to the existing payment path without adding private account details."],
         ["Avoid risky claims", "This page is communication copy only. It does not make legal threats, collections claims, tax statements, interest demands, or accounting judgments."],
-        ["When to request the $19 pack", "If you need the reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording to match one workflow, send the 30-second fit check below before any external checkout is sent."],
+        ["Keep the sequence free", "Draft the first reminder here, then use the same free generator for due-today, first overdue, paid thank-you, and next-invoice wording so the tone stays consistent."],
       ],
       related: ["invoice-followup-email", "invoice-generator", "receipt-generator"],
       serviceLead: {
@@ -2953,7 +2953,7 @@
       sections: [
         ["Keep it relationship-safe", "A useful reminder is short, specific, and easy to answer. Mention the invoice or work in general terms, ask whether anything else is needed, and point back to the payment method already shared."],
         ["Avoid private or risky details", "Do not paste invoice numbers, client names, bank details, card data, tax IDs, dispute details, or private customer data into a public form or generator."],
-        ["When the $19 pack fits", "If you need several versions in the same tone, the optional copy pack can prepare a polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice note for one workflow after fit is confirmed."],
+        ["Reuse the free generator", "If you need several versions in the same tone, create a polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice note from the free fields and review each one before sending."],
       ],
       related: ["invoice-followup-email", "invoice-generator", "receipt-generator"],
       serviceLead: {
@@ -2977,7 +2977,7 @@
       sections: [
         ["Use a client-work tone", "Freelancers often need to be clear without sounding harsh. State the work or milestone in general terms, keep the ask simple, and make the next action obvious."],
         ["Keep the copy editable", "The generator gives a starting draft, not legal, tax, accounting, collections, or financial advice. Review the wording for your client relationship before sending."],
-        ["Upgrade only if it saves time", "The $19 copy pack is meant for one small workflow where you want the reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording to match your tone."],
+        ["Build the sequence free", "Use the same free generator for reminder, due-today, first overdue, paid thank-you, and next-invoice wording so the follow-up sequence stays consistent."],
       ],
       related: ["invoice-followup-email", "invoice-generator", "estimate-generator"],
       serviceLead: {
@@ -6117,7 +6117,7 @@
         ["h2", "Machine-readable feed"],
         ["p", "JSON: https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json"],
         ["p", "Full upload limit matcher: https://printable-tools-lab.pages.dev/upload-limit-fixer/"],
-        ["p", "Still blocked? Send the shortest $9 fix-plan request: https://printable-tools-lab.pages.dev/upload-error-cheatsheet/#service-request"],
+        ["p", "Still blocked? Use the free checklist before trying again: https://printable-tools-lab.pages.dev/upload-error-cheatsheet/#review-checklist"],
       ],
     },
     "organic-push-kit": {
@@ -6773,12 +6773,12 @@
           <div class="hero-actions">
             <a class="button" href="/free-pdf-tools/">Browse free file tools</a>
             <a class="button secondary" href="/tools/invoice-generator/">Create an invoice</a>
-            <a class="button secondary" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="/invoice-followup-copy-pack/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=hero#service-request">Request $19 follow-up copy</a>
-            <a class="button ghost" data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="/upload-limit-fix-plan/?utm_source=home&utm_medium=site&utm_campaign=upload_limit_fix_plan&utm_content=hero#invoice-request">Request $9 upload fix</a>
+            <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="upload-limit-fixer" href="/upload-limit-fixer/?utm_source=home&utm_medium=site&utm_campaign=free_tool_depth&utm_content=hero">Fix upload limits</a>
+            <a class="button ghost" data-track-event="free_tool_depth" data-track-tool="compress-image-to-kb" href="/tools/compress-image-to-kb/?utm_source=home&utm_medium=site&utm_campaign=free_tool_depth&utm_content=hero&targetKb=100">Compress image to KB</a>
           </div>
           <div class="hero-proof" aria-label="Launch validation goals">
             <div class="proof-tile"><strong>${toolCount}</strong><span>high-frequency tools</span></div>
-            <div class="proof-tile"><strong>5/day</strong><span>free generations</span></div>
+            <div class="proof-tile"><strong>25/day</strong><span>free exports</span></div>
             <div class="proof-tile"><strong>${guideCount}</strong><span>SEO-ready guides</span></div>
           </div>
         </div>
@@ -6789,7 +6789,7 @@
           </picture>
         </div>
       </section>
-      ${renderHomeInvoiceFollowupClose()}
+      ${renderHomeFreeWorkflowClose()}
       <section class="shell section">
         <div class="section-head">
           <div>
@@ -6807,7 +6807,7 @@
           <article class="panel">
             <h3>Free tools first</h3>
             <p>The site earns attention by solving useful file jobs: compressing PDFs and images, fixing upload limits, making QR codes, and creating simple business paperwork without signup.</p>
-            <p><a class="button" href="/free-pdf-tools/">Browse free tools</a> <a class="button secondary" data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="/upload-limit-fix-plan/?utm_source=home&utm_medium=site&utm_campaign=upload_limit_fix_plan&utm_content=validation-band#invoice-request">Request $9 upload fix</a></p>
+            <p><a class="button" href="/free-pdf-tools/">Browse free tools</a> <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="upload-error-cheatsheet" href="/upload-error-cheatsheet/?utm_source=home&utm_medium=site&utm_campaign=free_tool_depth&utm_content=validation-band">Open upload cheatsheet</a></p>
           </article>
           <article class="panel">
             <h3>Ad safety gate</h3>
@@ -6829,7 +6829,7 @@
         <div class="section-head">
           <div>
             <h2>Built for cautious monetization</h2>
-            <p>The site keeps the free tools useful while preparing for responsible display ads. Ads stay disabled until content quality, traffic, and policy readiness are stronger.</p>
+            <p>The site is being optimized for useful free workflows, search coverage, repeat downloads, and responsible display ads only after traffic quality is strong.</p>
           </div>
         </div>
         <div class="grid-3">
@@ -6851,27 +6851,20 @@
     `;
   }
 
-  function renderHomeInvoiceFollowupClose() {
+  function renderHomeFreeWorkflowClose() {
     return `
-      <section class="shell section service-upgrade-cta" aria-label="Invoice follow-up copy service">
+      <section class="shell section free-workflow-cta" aria-label="Free file workflow">
         <div>
-          <p class="eyebrow">Quick paid help</p>
-          <h2>Made an invoice? Get the follow-up sequence written for $19.</h2>
-          <p>The free invoice generator stays free. If you want editable reminder, due-today, first-overdue, thank-you, and next-invoice wording for one workflow, send the one-field $19 request before any external checkout or invoice is sent.</p>
+          <p class="eyebrow">Traffic-first product</p>
+          <h2>Start from the file problem, then keep moving for free.</h2>
+          <p>Most visitors arrive with a rejected upload, a document to export, or a quick QR/business file to make. The main path now keeps them in free browser tools, exact-size shortcuts, and practical review steps before they leave.</p>
         </div>
-        <div class="home-service-lead-panel">
-          ${invoiceFollowupInlineLeadForm({
-            path: "/",
-            utmSource: "home",
-            utmContent: "homepage-inline",
-            submitLabel: "Send $19 sequence request",
-            className: "home-invoice-lead-form invoice-micro-lead-form",
-            compact: true,
-          })}
-          <div class="actions">
-            <a class="button secondary" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="/invoice-followup-copy-pack/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=inline-secondary#service-request">Open full $19 service page</a>
-            <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="invoice-followup-email" href="/tools/invoice-followup-email/?utm_source=home&utm_medium=site&utm_campaign=invoice_followup_tool&utm_content=close-band">Write one free follow-up first</a>
-          </div>
+        <div class="free-tool-depth-actions">
+          <a class="button" data-track-event="free_tool_depth" data-track-tool="upload-limit-fixer" href="/upload-limit-fixer/?utm_source=home&utm_medium=site&utm_campaign=free_tool_depth&utm_content=workflow-band">Match an upload error</a>
+          <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="pdf-size-reducer" href="/pdf-size-reducer/?utm_source=home&utm_medium=site&utm_campaign=free_tool_depth&utm_content=workflow-band">Reduce PDF size</a>
+          <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="compress-image-to-kb" href="/tools/compress-image-to-kb/?utm_source=home&utm_medium=site&utm_campaign=free_tool_depth&utm_content=workflow-band">Compress image to KB</a>
+          <a class="button ghost" data-track-event="free_tool_depth" data-track-tool="upload-error-cheatsheet" href="/upload-error-cheatsheet/?utm_source=home&utm_medium=site&utm_campaign=free_tool_depth&utm_content=workflow-band">Open upload cheatsheet</a>
+          <p class="help">Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
         </div>
       </section>`;
   }
@@ -6947,57 +6940,17 @@
 
   function renderPdfToolUploadFixRequest(tool, initialValues = {}) {
     if (!tool || tool.id !== "compress-pdf") return "";
-    const pathName = "/tools/compress-pdf/";
-    const requestSummary = uploadLimitCompressPdfToolSummary(initialValues.targetSize || "none");
-    const fallbackUrl = serviceLeadFallbackUrl({
-      serviceType: "upload-limit-fix-plan",
-      businessName: "Compress PDF target-size workflow",
-      contact: "",
-      needBy: "",
-      requestSummary,
-      path: pathName,
-    });
-    const invoiceRequestUrl = serviceInvoiceRequestUrl({
-      serviceType: "upload-limit-fix-plan",
-      businessName: "Compress image to KB workflow",
-      contact: "",
-      needBy: "",
-      requestSummary,
-      path: pathName,
-    });
+    const target = pdfTargetLabel(initialValues.targetSize || "none");
+    const targetCopy = target ? ` Current target: PDF under ${escapeHtml(target)}.` : "";
     return `
           <div class="tool-upload-fix-panel" data-compress-pdf-upload-fix-panel>
-            <p class="eyebrow">Optional paid help</p>
-            <strong>Portal still rejecting this PDF?</strong>
-            <p class="help">Send a public-safe $9 request for exact target settings, fallback steps, and a review-before-upload checklist. Do not upload the file.</p>
-            ${uploadFixPaidPathNote()}
-            <form class="download-service-lead-form tool-upload-fix-lead-form" data-service-lead-form data-upload-fix-plan-form data-compress-pdf-tool-fix-form data-service-primary-invoice-request="true" data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="compress-pdf-tool" data-utm-medium="site" data-utm-campaign="upload_limit_fix_plan" data-utm-content="compress-pdf-target-panel" data-service-fallback-url="${escapeHtml(invoiceRequestUrl)}" data-service-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">
-              <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
-              <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
-              <input type="hidden" name="businessName" value="Compress PDF target-size workflow">
-              <input type="hidden" name="utmSource" value="compress-pdf-tool">
-              <input type="hidden" name="utmMedium" value="site">
-              <input type="hidden" name="utmCampaign" value="upload_limit_fix_plan">
-              <input type="hidden" name="utmContent" value="compress-pdf-target-panel">
-              <input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}" data-upload-fix-plan-summary data-compress-pdf-tool-fix-summary>
-              <label class="field">
-                <span>Reply email or public contact</span>
-                <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com or @publichandle" required>
-              </label>
-              <label class="field">
-                <span>Portal error text (optional)</span>
-                <input name="needBy" maxlength="80" placeholder="PDF must be under 1MB, deadline today">
-              </label>
-              <label class="check-row">
-                <input name="consent" type="checkbox" checked required>
-                <span>I will not upload or paste the actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details.</span>
-              </label>
-              <div class="actions">
-                <button class="button" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $9 invoice link</button>
-                <a class="button ghost" data-service-lead-fallback-link data-compress-pdf-tool-public-request data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a>
-              </div>
-              <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send only the public error text and target rule. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
-            </form>
+            <p class="eyebrow">Upload-ready check</p>
+            <strong>Use the free matcher before another site rejects the PDF.</strong>
+            <p class="help">Pick the target size, download, then compare the result against the portal error text.${targetCopy} No file leaves this browser.</p>
+            <div class="actions">
+              <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="upload-limit-fixer" href="/upload-limit-fixer/?utm_source=compress-pdf-tool&utm_medium=site&utm_campaign=free_tool_depth&utm_content=target-panel">Match upload error</a>
+              <a class="button ghost" data-track-event="free_tool_depth" data-track-tool="upload-error-cheatsheet" href="/upload-error-cheatsheet/?utm_source=compress-pdf-tool&utm_medium=site&utm_campaign=free_tool_depth&utm_content=target-panel">Open cheatsheet</a>
+            </div>
           </div>`;
   }
 
@@ -7015,53 +6968,17 @@
 
   function renderImageKbToolUploadFixRequest(tool, initialValues = {}) {
     if (!tool || tool.id !== "compress-image-to-kb") return "";
-    const pathName = "/tools/compress-image-to-kb/";
-    const requestSummary = uploadLimitImageKbToolSummary(initialValues);
-    const fallbackUrl = serviceLeadFallbackUrl({
-      serviceType: "upload-limit-fix-plan",
-      businessName: "Compress image to KB workflow",
-      contact: "",
-      needBy: "",
-      requestSummary,
-      path: pathName,
-    });
-    const invoiceRequestUrl = serviceInvoiceRequestUrl({
-      serviceType: "upload-limit-fix-plan",
-      businessName: "Compress image to KB workflow",
-      contact: "",
-      needBy: "",
-      requestSummary,
-      path: pathName,
-    });
+    const targetKb = Number.parseInt(initialValues.targetKb || initialValues.targetkb || "", 10);
+    const targetCopy = Number.isFinite(targetKb) && targetKb > 0 ? ` Current target: image under ${targetKb}KB.` : "";
     return `
           <div class="tool-upload-fix-panel" data-compress-image-kb-upload-fix-panel>
-            <p class="eyebrow">Optional paid help</p>
-            <strong>Portal still rejecting this image or photo?</strong>
-            <p class="help">Send a public-safe $9 request for exact KB settings, fallback steps, and a review-before-upload checklist. Do not upload the image.</p>
-            ${uploadFixPaidPathNote()}
-            <form class="download-service-lead-form tool-upload-fix-lead-form" data-service-lead-form data-upload-fix-plan-form data-compress-image-kb-tool-fix-form data-service-primary-invoice-request="true" data-service-type="upload-limit-fix-plan" data-lead-path="${escapeHtml(pathName)}" data-utm-source="compress-image-kb-tool" data-utm-medium="site" data-utm-campaign="upload_limit_fix_plan" data-utm-content="compress-image-kb-target-panel" data-service-fallback-url="${escapeHtml(invoiceRequestUrl)}" data-service-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">
-              <input class="sr-only" type="text" name="websiteTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
-              <input type="hidden" name="serviceType" value="upload-limit-fix-plan">
-              <input type="hidden" name="businessName" value="Compress image to KB workflow">
-              <input type="hidden" name="utmSource" value="compress-image-kb-tool">
-              <input type="hidden" name="utmMedium" value="site">
-              <input type="hidden" name="utmCampaign" value="upload_limit_fix_plan">
-              <input type="hidden" name="utmContent" value="compress-image-kb-target-panel">
-              <input type="hidden" name="requestSummary" value="${escapeHtml(requestSummary)}" data-upload-fix-plan-summary data-compress-image-kb-tool-fix-summary>
-              <label class="field">
-                <span>Where should the external $9 checkout or invoice link go?</span>
-                <input name="contact" maxlength="180" autocomplete="email" placeholder="you@example.com, @publichandle, or https://example.com/contact" required>
-              </label>
-              <p class="help">One reply email, @handle, or public contact URL unlocks the private $9 follow-up path. No payment is collected here.</p>
-              <input type="hidden" name="needBy" value="">
-              <input type="hidden" name="consent" value="on">
-              <p class="help compact-consent-note">By sending, you confirm no actual file, private document, ID photo, resume, portal login, payment, tax, identity, or account details are included.</p>
-              <div class="actions">
-                <button class="button" type="submit" data-service-invoice-submit data-track-tool="upload-limit-fix-plan" data-invoice-fallback-url="${escapeHtml(invoiceRequestUrl)}">Request $9 invoice link</button>
-                <a class="button ghost" data-service-lead-fallback-link data-compress-image-kb-tool-public-request data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(invoiceRequestUrl)}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a>
-              </div>
-              <p class="help service-lead-status" data-service-lead-status role="status" aria-live="polite">Fastest path: send only the public error text and target rule. Payment happens only through a real external checkout or invoice after fit is confirmed.</p>
-            </form>
+            <p class="eyebrow">Upload-ready check</p>
+            <strong>Match the exact KB rule before you upload.</strong>
+            <p class="help">Set the KB target, export locally, and use the free matcher if the destination site names a size, format, or dimension rule.${targetCopy}</p>
+            <div class="actions">
+              <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="upload-limit-fixer" href="/upload-limit-fixer/?utm_source=compress-image-kb-tool&utm_medium=site&utm_campaign=free_tool_depth&utm_content=target-panel">Match upload error</a>
+              <a class="button ghost" data-track-event="free_tool_depth" data-track-tool="upload-error-cheatsheet" href="/upload-error-cheatsheet/?utm_source=compress-image-kb-tool&utm_medium=site&utm_campaign=free_tool_depth&utm_content=target-panel">Open cheatsheet</a>
+            </div>
           </div>`;
   }
 
@@ -8086,34 +8003,6 @@
     const page = landingPagesBySlug[slug];
     const tool = tools[page.tool];
     const related = page.related.map((id) => tools[id]).filter(Boolean);
-    const uploadFixMicroSummary = page.uploadErrorMatcher
-      ? `I need a $9 Upload Limit Fix Plan for the ${page.headline} workflow: best free tool, target settings, fallback steps, and a review checklist. No file upload, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.`
-      : "";
-    const serviceLeadIsUploadInvoice = page.serviceLead?.serviceType === "upload-limit-fix-plan";
-    const servicePublicRequestHref = page.serviceLead ? (serviceLeadIsUploadInvoice ? serviceInvoiceRequestUrl : serviceLeadFallbackUrl)({
-      serviceType: page.serviceLead.serviceType,
-      businessName: "",
-      contact: "",
-      needBy: "",
-      requestSummary: page.serviceLead.defaultSummary || "",
-      path: `/${page.slug}/`,
-      utmSource: "landing-page",
-      utmMedium: "site",
-      utmCampaign: page.serviceLead.utmCampaign || "service_request",
-      utmContent: `${page.slug}-public-request`,
-    }) : "";
-    const uploadFixPublicRequestHref = page.uploadErrorMatcher ? serviceInvoiceRequestUrl({
-      serviceType: "upload-limit-fix-plan",
-      businessName: "",
-      contact: "",
-      needBy: "",
-      requestSummary: uploadFixMicroSummary,
-      path: `/${page.slug}/`,
-      utmSource: "landing-page",
-      utmMedium: "site",
-      utmCampaign: "upload_limit_fix_plan",
-      utmContent: `${page.slug}-hero-invoice`,
-    }) : "";
     setMeta(page.title, page.description);
     setJsonLd({
       "@context": "https://schema.org",
@@ -8130,19 +8019,14 @@
         offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       },
     });
-    const serviceInvoiceAction = page.serviceLead?.serviceType === "upload-limit-fix-plan"
-      ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${page.uploadErrorMatcher ? "#invoice-request" : "#service-request"}">Get a $9 upload fix plan</a> `
-      : page.serviceLead?.serviceType === "invoice-followup-copy-pack"
-        ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">Request $19 invoice link</a> `
-        : "";
-    const servicePublicRequestEvent = serviceLeadIsUploadInvoice ? "service_invoice_request" : page.serviceLead ? serviceLeadTrackEvent(page.serviceLead.serviceType) : "";
-    const servicePublicRequestLabel = serviceLeadIsUploadInvoice ? "Open public-safe $9 invoice request" : "Open public-safe request";
     const secondaryAction = page.uploadErrorMatcher
-      ? `<a class="button secondary" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="#invoice-request">Get a $9 upload fix plan</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(uploadFixPublicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a>`
+      ? `<a class="button secondary" data-track-event="free_tool_depth" data-track-tool="upload-error-cheatsheet" href="/upload-error-cheatsheet/?utm_source=landing-page&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${escapeHtml(page.slug)}">Open upload cheatsheet</a> <a class="button ghost" data-track-event="free_tool_depth" data-track-tool="upload-limit-fixer" href="/upload-limit-fixer/?utm_source=landing-page&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${escapeHtml(page.slug)}">Match another error</a>`
       : page.serviceLead
         ? page.serviceLead.serviceType === "upload-limit-fix-plan"
-          ? `${serviceInvoiceAction}<a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(servicePublicRequestEvent)}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">${escapeHtml(servicePublicRequestLabel)}</a>`
-          : `${serviceInvoiceAction}<a class="button secondary" data-track-event="${escapeHtml(serviceLeadTrackEvent(page.serviceLead.serviceType))}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="#service-request">${escapeHtml(page.serviceLead.cta || "Send fit check")}</a> <a class="button ghost" data-service-lead-fallback-link data-track-event="${escapeHtml(servicePublicRequestEvent)}" data-track-tool="${escapeHtml(serviceLeadTrackTool(page.serviceLead.serviceType))}" href="${escapeHtml(servicePublicRequestHref)}" target="_blank" rel="noreferrer">${escapeHtml(servicePublicRequestLabel)}</a>`
+          ? `<a class="button secondary" data-track-event="free_tool_depth" data-track-tool="upload-limit-fixer" href="/upload-limit-fixer/?utm_source=landing-page&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${escapeHtml(page.slug)}">Match upload error</a> <a class="button ghost" data-track-event="free_tool_depth" data-track-tool="upload-error-cheatsheet" href="/upload-error-cheatsheet/?utm_source=landing-page&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${escapeHtml(page.slug)}">Open cheatsheet</a>`
+          : page.serviceLead.serviceType === "invoice-followup-copy-pack"
+            ? `<a class="button secondary" data-track-event="free_tool_depth" data-track-tool="invoice-followup-email" href="/tools/invoice-followup-email/?utm_source=landing-page&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${escapeHtml(page.slug)}">Write follow-up free</a> <a class="button ghost" data-track-event="free_tool_depth" data-track-tool="invoice-generator" href="/tools/invoice-generator/?utm_source=landing-page&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${escapeHtml(page.slug)}">Create invoice free</a>`
+            : `<a class="button secondary" data-track-event="free_tool_depth" data-track-tool="free-pdf-tools" href="/free-pdf-tools/?utm_source=landing-page&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${escapeHtml(page.slug)}">Browse free tools</a>`
         : `<a class="button secondary" href="/pdf-tool-finder/">Compare tools</a>`;
     app.innerHTML = `
       <section class="shell page-title section">
@@ -8151,23 +8035,6 @@
         <p>${escapeHtml(page.lead)}</p>
         <p><a class="button" href="${toolUrl(page)}">Open ${escapeHtml(tool.shortTitle || tool.title)}</a> ${secondaryAction}</p>
       </section>
-      ${page.serviceLead?.serviceType === "invoice-followup-copy-pack" ? `<section class="shell section service-micro-intent-section">
-        <div class="grid-2">
-          <div>
-            <h2>Send a 30-second $19 sequence request</h2>
-            <p>Use this if the free draft is not enough. Add one reply contact; the invoice follow-up request is already written from this page.</p>
-          </div>
-          ${invoiceFollowupInlineLeadForm({
-            path: `/${page.slug}/`,
-            utmSource: "landing-page",
-            utmContent: `${page.slug}-micro`,
-            submitLabel: "Send $19 sequence request",
-            className: "invoice-micro-lead-form",
-            compact: true,
-            requestSummary: page.serviceLead.defaultSummary || "",
-          })}
-        </div>
-      </section>` : ""}
       <section class="shell section">
         <h2>Why this matches the search</h2>
         <div class="grid-3">
@@ -8181,24 +8048,6 @@
         <h2>${escapeHtml(heading)}</h2>
         <p>${escapeHtml(text)}</p>
       </section>`).join("")}
-      ${page.uploadErrorMatcher ? `<section class="shell section service-micro-intent-section" id="invoice-request">
-        <div class="grid-2">
-          <div>
-            <h2>Need a $9 upload fix plan?</h2>
-            <p>Request the $9 invoice link in 30 seconds if the free tool is not enough. Add where the external $9 invoice link should go; the public-safe request already says no file upload.</p>
-          </div>
-          ${uploadLimitFixPlanInlineLeadForm({
-            path: `/${page.slug}/`,
-            utmSource: "landing-page",
-            utmContent: `${page.slug}-invoice`,
-            submitLabel: "Request $9 invoice link",
-            className: "upload-limit-fix-plan-micro-lead-form",
-            compact: true,
-            primaryInvoiceRequest: true,
-            requestSummary: uploadFixMicroSummary,
-          })}
-        </div>
-      </section>` : ""}
       ${page.uploadErrorMatcher ? renderUploadLimitMatcher() : ""}
       ${page.targetLinks ? `
       <section class="shell section">
@@ -8206,7 +8055,6 @@
         <div class="grid-3">${page.targetLinks.map(([label, pathName, text]) => `<article class="tool-card"><h3>${escapeHtml(label)}</h3><p>${escapeHtml(text)}</p><a class="button" href="/${escapeHtml(pathName)}/">Open target</a></article>`).join("")}</div>
       </section>` : ""}
       ${page.slug === "upload-limit-fixer" ? renderUploadLimitShortcuts("Fast upload limit shortcuts", "If the error message names a file size, start with the matching target page instead of browsing every tool.") : ""}
-      ${page.serviceLead ? renderServiceLeadForm({ ...page.serviceLead, pathName: page.slug }) : ""}
       <section class="shell section">
         <h2>Related free tools</h2>
         <div class="grid-3">${related.map(toolCard).join("")}</div>
@@ -8267,63 +8115,40 @@
         <div class="grid-3">
           ${uploadLimitShortcuts.map(([label, href, description, trackTool]) => `<article class="tool-card"><h3>${escapeHtml(label)}</h3><p>${escapeHtml(description)}</p><a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(trackTool)}" href="${escapeHtml(href)}">Open fixer</a></article>`).join("")}
         </div>
-        <div class="grid-2 service-micro-intent-section">
+        <div class="grid-2 free-workflow-cta">
           <div>
-            <p class="eyebrow">Optional paid help</p>
-            <h3>Still blocked? Get a $9 upload fix plan.</h3>
-            <p>Request the external $9 invoice link after fit is confirmed. The note is already public-safe; add only where the invoice link should go.</p>
-            <p><a class="button secondary" data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="/upload-limit-fix-plan/?utm_source=upload-limit&utm_medium=site&utm_campaign=upload_limit_fix_plan&utm_content=shortcuts#invoice-request">Open full $9 invoice request</a></p>
+            <p class="eyebrow">Free fix loop</p>
+            <h3>If one target fails, try the next stricter free route.</h3>
+            <p>Compress below the stated limit, keep the accepted format exactly right, and reopen the matcher with the exact portal wording if the file is rejected again.</p>
+            <p><a class="button secondary" data-track-event="free_tool_depth" data-track-tool="upload-error-cheatsheet" href="/upload-error-cheatsheet/?utm_source=upload-limit&utm_medium=site&utm_campaign=free_tool_depth&utm_content=shortcuts">Open upload cheatsheet</a></p>
           </div>
-          ${uploadLimitFixPlanInlineLeadForm({
-            path: "/upload-limit-fixer/",
-            utmSource: "upload-limit",
-            utmContent: "shortcut-inline",
-            submitLabel: "Request $9 invoice link",
-            className: "upload-limit-fix-plan-micro-lead-form",
-            compact: true,
-            primaryInvoiceRequest: true,
-          })}
+          <div class="panel">
+            <h3>Before uploading again</h3>
+            <p>Check file size, extension, pixel dimensions, page count, and whether the destination asks for PDF, JPG, PNG, or a specific KB/MB limit.</p>
+            <p><a class="button ghost" data-track-event="free_tool_depth" data-track-tool="free-pdf-tools" href="/free-pdf-tools/?utm_source=upload-limit&utm_medium=site&utm_campaign=free_tool_depth&utm_content=shortcuts">Browse all free tools</a></p>
+          </div>
         </div>
       </section>
     `;
   }
 
   function renderUploadErrorCheatsheet() {
-    const fixPlanSummary = "I need a $9 Upload Limit Fix Plan after checking the upload error cheatsheet. Public-safe error text: [paste the exact message]. File type and target rule: [PDF/image/JPG/PNG, size limit, dimensions, or portal rule]. Please send target settings, fallback steps, and a review-before-upload checklist. No actual file, private document, ID photo, resume, portal login, bank details, tax IDs, or private account data included.";
-    const rowFixPlanSummary = ([message, , label, why]) => uploadLimitFixPlanSummaryFromCheatsheetRow(message, label, "", why);
-    const rowFixPlanHref = (row) => serviceLeadFallbackUrl({
-      serviceType: "upload-limit-fix-plan",
-      businessName: "",
-      contact: "",
-      needBy: "",
-      requestSummary: rowFixPlanSummary(row),
-      path: "/upload-error-cheatsheet/",
-    });
-    const rowInvoiceRequestHref = (row) => serviceInvoiceRequestUrl({
-      serviceType: "upload-limit-fix-plan",
-      businessName: "",
-      contact: "",
-      needBy: "",
-      requestSummary: rowFixPlanSummary(row),
-      path: "/upload-error-cheatsheet/",
-    });
     setMeta("Upload error cheatsheet", "Copy-ready reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors with direct free no-signup tool fixes.");
     app.innerHTML = `
       <section class="shell page-title section">
         <a href="/upload-limit-fixer/">Upload limit fixer</a>
         <h1>Upload error cheatsheet</h1>
         <p>A copy-ready reference for common PDF, image, JPG, PNG, resume, and email attachment upload errors. Each row links to a free no-signup browser tool and a specific landing page that explains the fix.</p>
-        <p><a class="button" data-service-invoice-jump data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="#service-request">Request $9 invoice link</a> <a class="button secondary" href="#service-request">Use one-contact form</a> <a class="button ghost" href="/upload-error-cheatsheet.json">Open JSON feed</a></p>
+        <p><a class="button" data-track-event="free_tool_depth" data-track-tool="upload-limit-fixer" href="/upload-limit-fixer/?utm_source=upload-error-cheatsheet&utm_medium=site&utm_campaign=free_tool_depth&utm_content=hero">Match an upload error</a> <a class="button secondary" href="/free-pdf-tools/">Browse free tools</a> <a class="button ghost" href="/upload-error-cheatsheet.json">Open JSON feed</a></p>
       </section>
       <section class="shell section">
         <h2>Common upload errors and direct fixes</h2>
-        ${uploadErrorQuickRequestPanel(fixPlanSummary)}
         <table class="event-table">
-          <thead><tr><th>Error text</th><th>Use this link</th><th>Response</th><th>Optional plan</th></tr></thead>
+          <thead><tr><th>Error text</th><th>Use this link</th><th>Response</th><th>Next free step</th></tr></thead>
           <tbody>
             ${uploadErrorCheatsheetRows.map((row) => {
               const [message, href, label, why, trackTool] = row;
-              return `<tr data-upload-error-row data-upload-error-text="${escapeHtml(message)}" data-upload-error-format="${escapeHtml(label)}" data-upload-error-response="${escapeHtml(why)}"><td>${escapeHtml(message)}</td><td><a href="${escapeHtml(href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(trackTool)}">${escapeHtml(label)}</a></td><td>${escapeHtml(why)}</td><td><a class="button secondary table-action" data-upload-error-invoice-request data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(rowInvoiceRequestHref(row))}" target="_blank" rel="noreferrer">Request $9 invoice link</a><br><a class="table-secondary-link" data-upload-error-fix-plan data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(rowInvoiceRequestHref(row))}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a></td></tr>`;
+              return `<tr data-upload-error-row data-upload-error-text="${escapeHtml(message)}" data-upload-error-format="${escapeHtml(label)}" data-upload-error-response="${escapeHtml(why)}"><td>${escapeHtml(message)}</td><td><a href="${escapeHtml(href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(trackTool)}">${escapeHtml(label)}</a></td><td>${escapeHtml(why)}</td><td><a class="button secondary table-action" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(trackTool)}" href="${escapeHtml(href)}">Open free fix</a><br><a class="table-secondary-link" data-track-event="free_tool_depth" data-track-tool="upload-limit-fixer" href="/upload-limit-fixer/?utm_source=upload-error-cheatsheet&utm_medium=site&utm_campaign=free_tool_depth&utm_content=row">Match another error</a></td></tr>`;
             }).join("")}
           </tbody>
         </table>
@@ -8333,21 +8158,13 @@
         <p>PrintableTools Lab has a free upload error cheatsheet for common file rejections: PDF under 1MB or 500KB, image under 2MB or 500KB, photo under 100KB, JPG under 200KB, PNG screenshot too large, invalid JPG/PNG file type, 600 x 600 image dimensions, PDF not accepted JPG required, resume PDF too large, and email attachment too large.</p>
         <p><a class="button" href="/upload-limit-fixer/">Open upload limit fixer</a> <a class="button secondary" href="/free-pdf-tools/">Browse all free file tools</a></p>
       </section>
-      <section class="shell section" id="service-request">
-        <h2>Still blocked? Get a $9 upload fix plan.</h2>
-        <p>Use this when your portal has a mixed rule, repeated rejection, strict deadline, or unclear error message. Send only public-safe details; do not upload the actual file.</p>
-        ${uploadLimitFixPlanInlineLeadForm({
-          path: "/upload-error-cheatsheet/",
-          utmSource: "upload-error-cheatsheet",
-          utmMedium: "site",
-          utmCampaign: "upload_error_cheatsheet_fix_plan",
-          utmContent: "cheatsheet-inline",
-          requestSummary: fixPlanSummary,
-              className: "upload-limit-fix-plan-micro-lead-form upload-error-cheatsheet-fix-plan-form",
-          submitLabel: "Request $9 invoice link",
-          primaryInvoiceRequest: true,
-          oneFieldInvoiceRequest: true,
-        })}
+      <section class="shell section" id="review-checklist">
+        <h2>Before you upload again</h2>
+        <div class="grid-3">
+          <article class="panel"><h3>Check the target</h3><p>Confirm the exact file type, KB/MB size, pixel dimensions, and page-count rule from the destination site.</p></article>
+          <article class="panel"><h3>Export below the limit</h3><p>Aim slightly under the stated limit so metadata, color conversion, or browser rounding does not push the file over.</p></article>
+          <article class="panel"><h3>Retry with exact wording</h3><p>If it fails again, copy the public error text into the matcher and open the closest free tool route.</p></article>
+        </div>
       </section>
       <section class="shell section">
         <h2>Machine-readable fields</h2>
@@ -8386,7 +8203,7 @@
                 <p>${escapeHtml(match.why)}</p>
                 <div class="actions">
                   <a class="button" data-upload-limit-tool-link href="${escapeHtml(match.href)}" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(match.trackTool)}">${escapeHtml(match.label)}</a>
-                  <a class="button secondary" data-upload-fix-plan-jump data-track-event="service_request_intent" data-track-tool="upload-limit-fix-plan" href="#service-request">Need a $9 fix plan?</a>
+                  <a class="button secondary" data-upload-limit-tool-link data-track-event="free_tool_depth" data-track-tool="upload-error-cheatsheet" href="/upload-error-cheatsheet/">Open free cheatsheet</a>
                 </div>
               </article>`;
   }
@@ -8443,8 +8260,6 @@
         </div>
       </section>
       ${renderFreeToolDepthCta(tool)}
-      ${renderServiceUpgradeCta(tool)}
-      ${renderInvoiceSponsorCloseCta(tool, "tool_cta")}
       <section class="shell section">
         <div class="section-head">
           <div>
@@ -10081,49 +9896,26 @@ ${paragraphs.join("\n")}
   function renderDownloadAfterAction(tool) {
     if (!tool) return "";
     if (UPLOAD_FIX_FUNNEL_TOOL_IDS.has(tool.id)) return renderDownloadUploadFixAfterAction(tool);
-    if (!LOCAL_SELLER_FUNNEL_TOOL_IDS.has(tool.id)) return "";
     const content = encodeURIComponent(tool.id);
     const uploadHref = `/upload-limit-fixer/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     const finderHref = `/free-pdf-tools/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
-    const serviceHref = `/custom-local-print-pack/?utm_source=download_success&utm_medium=site&utm_campaign=service_request&utm_content=${content}#service-request`;
-    const invoiceFollowupHref = `/invoice-followup-copy-pack/?utm_source=download_success&utm_medium=site&utm_campaign=invoice_followup_service&utm_content=${content}#service-request`;
-    const auditHref = `/market-table-print-audit/?utm_source=download_success&utm_medium=site&utm_campaign=audit_request&utm_content=${content}#service-request`;
-    const sponsorHref = `/sponsor-starter-review/?utm_source=download_success&utm_medium=site&utm_campaign=sponsor_starter_review&utm_content=${content}&vertical=small-business-paperwork-sponsors&commitment=request-invoice#sponsor-inquiry`;
-    const invoiceSponsorAction = tool.id === "invoice-generator"
-      ? `<a class="button" data-track-event="sponsor_request_intent" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(sponsorHref)}">Request USD 49 invoice review</a>`
-      : "";
-    const invoiceFollowupAction = isInvoiceFollowupTool(tool.id)
-      ? `<a class="button" data-track-event="service_request_intent" data-track-tool="invoice-followup-copy-pack" href="${escapeHtml(invoiceFollowupHref)}">Get $19 follow-up copy</a>`
-      : "";
-    const serviceAction = isInvoiceFollowupTool(tool.id)
-      ? invoiceFollowupAction
-      : `<a class="button" data-track-event="service_request_intent" data-track-tool="custom-local-print-pack" href="${escapeHtml(serviceHref)}">Start free fit check</a>`;
-    const serviceHeadline = isInvoiceFollowupTool(tool.id) ? "Need words to follow up on this invoice?" : "Want a practical local print pack?";
-    const serviceHelp = isInvoiceFollowupTool(tool.id)
-      ? "Send a one-field $19 Invoice Follow-up Copy Pack request for polite reminder, due-today note, first overdue follow-up, paid thank-you, and next-invoice wording. Payment starts only after fit is confirmed and a real external checkout or invoice is paid."
-      : "Send a 30-second free fit check for the $29 Custom Local Print Pack Setup, or start with a free Market Table Print Audit. Payment starts only after fit is confirmed and a real external checkout or invoice is paid.";
-    const auditAction = tool.id === "invoice-followup-email"
-      ? ""
-      : `<a class="button secondary" data-track-event="audit_request_intent" data-track-tool="market-table-print-audit" href="${escapeHtml(auditHref)}">Free print audit first</a>`;
+    const cheatsheetHref = `/upload-error-cheatsheet/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     return `
       <div class="download-after-action" aria-label="Next step after download">
         <div>
-          <p class="eyebrow">Keep working free</p>
-          <strong>Need another business PDF, label, QR code, or image fix?</strong>
-          <p class="help">Try another free browser tool, or use the upload limit fixer if another site rejects a PDF, image, or photo size.</p>
+          <p class="eyebrow">Review before sharing</p>
+          <strong>Check the file once, then keep the next fix free.</strong>
+          <p class="help">Open the download, confirm names, dates, page order, QR code text, image size, and spelling before you upload or send it.</p>
         </div>
-        <div class="download-service-close">
-          <p class="eyebrow">Optional done-for-you help</p>
-          <strong>${escapeHtml(serviceHeadline)}</strong>
-          <p class="help">${escapeHtml(serviceHelp)}</p>
+        <div class="download-free-close">
+          <p class="eyebrow">Free next step</p>
+          <strong>If another site rejects the file, match the exact error text.</strong>
+          <p class="help">Use the upload matcher for PDF, image, photo, signature, resume, and attachment size rules. No file upload is needed.</p>
         </div>
-        ${renderDownloadServiceLeadForm(tool)}
         <div class="download-after-actions">
-          ${serviceAction}
-          ${auditAction}
-          ${invoiceSponsorAction}
           <a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(uploadHref)}">Fix upload limits</a>
           <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(finderHref)}">Browse more free tools</a>
+          <a class="button ghost" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(tool.id)}" href="${escapeHtml(cheatsheetHref)}">Open cheatsheet</a>
         </div>
         <p class="help">Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
       </div>
@@ -10135,32 +9927,24 @@ ${paragraphs.join("\n")}
     const content = encodeURIComponent(toolId);
     const uploadHref = `/upload-limit-fixer/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     const cheatsheetHref = `/upload-error-cheatsheet/?utm_source=download_success&utm_medium=site&utm_campaign=upload_error_cheatsheet_fix_plan&utm_content=${content}`;
-    const serviceHref = `/upload-limit-fix-plan/?utm_source=download_success&utm_medium=site&utm_campaign=upload_limit_fix_plan&utm_content=${content}#service-request`;
-    const publicRequestHref = serviceInvoiceRequestUrl({
-      serviceType: "upload-limit-fix-plan",
-      businessName: "",
-      contact: "",
-      needBy: "",
-      requestSummary: uploadLimitDownloadFixSummary(tool),
-      path: `/tools/${toolId}/`,
-    });
+    const pdfHref = `/tools/compress-pdf/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
+    const imageHref = `/tools/compress-image-to-kb/?utm_source=download_success&utm_medium=site&utm_campaign=free_tool_depth&utm_content=${content}`;
     return `
       <div class="download-after-action download-upload-fix-action" aria-label="Upload check after download">
         <div>
           <p class="eyebrow">Before uploading</p>
-          <strong>Still worried the next site will reject this file?</strong>
-          <p class="help">Use the free upload matcher, or send one public-safe $9 request for target settings, fallback steps, and a review checklist.</p>
+          <strong>Use the free checklist before trying the destination site again.</strong>
+          <p class="help">Confirm file size, format, dimensions, page count, and the exact portal wording. If it fails again, paste that public error text into the matcher.</p>
         </div>
-        <div class="download-service-close">
-          <p class="eyebrow">Optional paid help</p>
-          <strong>Get a $9 Upload Limit Fix Plan for this result.</strong>
-          <p class="help">No file upload. Send only the public error text, file type, and target rule. Payment starts only after fit is confirmed and a real external checkout or invoice is paid.</p>
+        <div class="download-free-close">
+          <p class="eyebrow">Free next step</p>
+          <strong>Try the closest tool again with a stricter target.</strong>
+          <p class="help">For stubborn portals, reduce below the stated limit and keep dimensions or accepted formats exactly as requested.</p>
         </div>
-        ${renderDownloadUploadFixLeadForm(tool)}
         <div class="download-after-actions">
-          <a class="button" data-download-upload-fix-public-request data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(publicRequestHref)}" target="_blank" rel="noreferrer">Open public-safe $9 invoice request</a>
-          <a class="button secondary" data-track-event="service_invoice_request" data-track-tool="upload-limit-fix-plan" href="${escapeHtml(serviceHref)}">Full $9 service page</a>
-          <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolId)}" href="${escapeHtml(uploadHref)}">Check another upload error</a>
+          <a class="button" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolId)}" href="${escapeHtml(uploadHref)}">Check another upload error</a>
+          <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolId)}" href="${escapeHtml(pdfHref)}">Compress PDF again</a>
+          <a class="button secondary" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolId)}" href="${escapeHtml(imageHref)}">Compress image again</a>
           <a class="button ghost" data-track-event="free_tool_depth" data-track-tool="${escapeHtml(toolId)}" href="${escapeHtml(cheatsheetHref)}">Open cheatsheet</a>
         </div>
         <p class="help">Downloads stay free. Future ads must stay separated from generator controls and never block a file download.</p>
