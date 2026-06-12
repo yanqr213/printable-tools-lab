@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Digital Products",
-  "generatedAt": "2026-06-12T14:29:09.183Z",
+  "generatedAt": "2026-06-12T14:40:51.927Z",
   "canonical": "https://printable-tools-lab.pages.dev/digital-products.json",
   "products": [
     {
@@ -19,7 +19,7 @@
       "packageReportUrl": "https://printable-tools-lab.pages.dev/assets/digital-products/local-seller-starter-kit-package.json",
       "privatePackagePath": "paid-deliverables/local-seller-starter-kit.zip",
       "privatePackageReady": true,
-      "privatePackageSha256": "bdc1a64d06358872d5e32baa4e28d0a352d86cdad844b1760988210c1bad0d3c",
+      "privatePackageSha256": "b5cf93a9415faacc59a0d2563ad3b5fbdbba5deb86a450b33980a98b0c196137",
       "contents": [
         "30-day local promo calendar CSV",
         "price tag and SKU starter CSV",
