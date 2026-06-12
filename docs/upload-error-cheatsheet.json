@@ -1,6 +1,6 @@
 {
   "name": "PrintableTools Lab Upload Error Cheatsheet Mirror",
-  "generatedAt": "2026-06-12T14:40:52.170Z",
+  "generatedAt": "2026-06-12T14:49:59.517Z",
   "directory": "https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/",
   "livePage": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
   "liveJson": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",
@@ -104,6 +104,61 @@
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/photo-must-be-under-100kb/",
       "trackedUrl": "https://printable-tools-lab.pages.dev/photo-must-be-under-100kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=photo-must-be-under-100kb",
       "toolUrl": "https://printable-tools-lab.pages.dev/tools/compress-image-to-kb/?targetKb=100"
+    },
+    {
+      "errorText": "US passport photo must be 2 x 2 inches",
+      "problem": "A passport-style workflow needs a square 2 x 2 inch photo before final official review.",
+      "response": "Use the US 2 x 2 inch crop helper, export locally, then compare the result with the current official photo rules.",
+      "format": "Photo",
+      "target": "2 x 2 in",
+      "landingPage": "https://printable-tools-lab.pages.dev/us-passport-photo-2x2/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/us-passport-photo-2x2/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/us-passport-photo-2x2/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=us-passport-photo-must-be-2-x-2-inches",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/passport-photo/?preset=us-passport"
+    },
+    {
+      "errorText": "US visa photo must be 600 x 600 px and under 240KB",
+      "problem": "A visa-style digital upload expects a square photo and rejects files over a fixed KB cap.",
+      "response": "Resize to 600 x 600 pixels first, then compress the square image toward a custom 240KB target if needed.",
+      "format": "Photo",
+      "target": "600 x 600 / 240KB",
+      "landingPage": "https://printable-tools-lab.pages.dev/us-visa-photo-600x600-240kb/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/us-visa-photo-600x600-240kb/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/us-visa-photo-600x600-240kb/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=us-visa-photo-must-be-600-x-600-px-and-under-240kb",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=600&fit=cover"
+    },
+    {
+      "errorText": "UK digital passport photo rejected",
+      "problem": "A UK digital passport-style upload rejects the prepared image by crop, size, format, or quality.",
+      "response": "Prepare the UK-style crop locally, then review the downloaded image against the current GOV.UK digital-photo rules.",
+      "format": "Photo",
+      "target": "UK digital photo",
+      "landingPage": "https://printable-tools-lab.pages.dev/uk-passport-photo-digital/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/uk-passport-photo-digital/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/uk-passport-photo-digital/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=uk-digital-passport-photo-rejected",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/passport-photo/?preset=uk-passport"
+    },
+    {
+      "errorText": "Canada passport photo must be 50 x 70 mm",
+      "problem": "A Canada-style passport photo workflow needs a 50 x 70 mm crop before final official review.",
+      "response": "Use the Canada 50 x 70 mm crop helper, export locally, then compare the result with current official instructions.",
+      "format": "Photo",
+      "target": "50 x 70 mm",
+      "landingPage": "https://printable-tools-lab.pages.dev/canada-passport-photo-50x70mm/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/canada-passport-photo-50x70mm/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/canada-passport-photo-50x70mm/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=canada-passport-photo-must-be-50-x-70-mm",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/passport-photo/?preset=canada-passport"
+    },
+    {
+      "errorText": "Australia passport photo must be 35 x 45 mm",
+      "problem": "An Australia-style passport photo workflow needs a 35 x 45 mm preparation crop before official checks.",
+      "response": "Use the Australia-style crop helper locally, then compare the output with current official passport-photo guidance.",
+      "format": "Photo",
+      "target": "35 x 45 mm",
+      "landingPage": "https://printable-tools-lab.pages.dev/australia-passport-photo-35x45mm/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/australia-passport-photo-35x45mm/",
+      "trackedUrl": "https://printable-tools-lab.pages.dev/australia-passport-photo-35x45mm/?utm_source=github-pages&utm_medium=organic&utm_campaign=upload_error_cheatsheet&utm_content=australia-passport-photo-must-be-35-x-45-mm",
+      "toolUrl": "https://printable-tools-lab.pages.dev/tools/passport-photo/?preset=australia-passport"
     },
     {
       "errorText": "Photo must be 200 x 230 px and under 20KB",

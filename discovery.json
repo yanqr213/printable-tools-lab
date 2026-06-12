@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-12T14:40:51.927Z",
+  "generatedAt": "2026-06-12T14:49:59.366Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -109,6 +109,11 @@
     "https://printable-tools-lab.pages.dev/passport-photo-compress-to-200kb/",
     "https://printable-tools-lab.pages.dev/passport-photo-size-fixer/",
     "https://printable-tools-lab.pages.dev/passport-photo-35x45mm/",
+    "https://printable-tools-lab.pages.dev/us-passport-photo-2x2/",
+    "https://printable-tools-lab.pages.dev/us-visa-photo-600x600-240kb/",
+    "https://printable-tools-lab.pages.dev/uk-passport-photo-digital/",
+    "https://printable-tools-lab.pages.dev/canada-passport-photo-50x70mm/",
+    "https://printable-tools-lab.pages.dev/australia-passport-photo-35x45mm/",
     "https://printable-tools-lab.pages.dev/photo-200x230-50kb/",
     "https://printable-tools-lab.pages.dev/photo-200x230-20kb/",
     "https://printable-tools-lab.pages.dev/photo-200x230-100kb/",
@@ -939,6 +944,36 @@
       "url": "https://printable-tools-lab.pages.dev/passport-photo-35x45mm/",
       "intent": "passport photo 35x45mm, 35 x 45 mm photo maker, no upload",
       "tool": "https://printable-tools-lab.pages.dev/tools/passport-photo/?preset=uk-passport"
+    },
+    {
+      "title": "US Passport Photo 2x2 Maker",
+      "url": "https://printable-tools-lab.pages.dev/us-passport-photo-2x2/",
+      "intent": "US passport photo 2x2, 2 x 2 inch passport photo maker, passport photo crop no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/passport-photo/?preset=us-passport"
+    },
+    {
+      "title": "US Visa Photo 600x600 Under 240KB",
+      "url": "https://printable-tools-lab.pages.dev/us-visa-photo-600x600-240kb/",
+      "intent": "US visa photo 600x600 240KB, DV lottery photo 600 x 600, visa photo under 240KB",
+      "tool": "https://printable-tools-lab.pages.dev/tools/resize-image/?width=600&height=600&fit=cover"
+    },
+    {
+      "title": "UK Digital Passport Photo Helper",
+      "url": "https://printable-tools-lab.pages.dev/uk-passport-photo-digital/",
+      "intent": "UK digital passport photo, UK passport photo 35x45, passport photo 600x750 pixels",
+      "tool": "https://printable-tools-lab.pages.dev/tools/passport-photo/?preset=uk-passport"
+    },
+    {
+      "title": "Canada Passport Photo 50x70mm Maker",
+      "url": "https://printable-tools-lab.pages.dev/canada-passport-photo-50x70mm/",
+      "intent": "Canada passport photo 50x70mm, Canadian passport photo size, 50 x 70 mm photo maker",
+      "tool": "https://printable-tools-lab.pages.dev/tools/passport-photo/?preset=canada-passport"
+    },
+    {
+      "title": "Australia Passport Photo 35x45mm Helper",
+      "url": "https://printable-tools-lab.pages.dev/australia-passport-photo-35x45mm/",
+      "intent": "Australia passport photo 35x45mm, Australian passport photo size, passport photo crop no upload",
+      "tool": "https://printable-tools-lab.pages.dev/tools/passport-photo/?preset=australia-passport"
     },
     {
       "title": "Photo 200x230 Pixels Under 50KB",

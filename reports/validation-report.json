@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-12T14:07:06.239Z",
+  "generatedAt": "2026-06-12T14:50:46.186Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
     "customDomainConfigured": false,
     "toolCount": 67,
     "guideCount": 95,
-    "landingPageCount": 151,
-    "indexableRoutes": 342,
-    "sitemapLocCount": 342,
-    "generatedToolInventoryAt": "2026-06-12T14:05:37.318Z",
+    "landingPageCount": 156,
+    "indexableRoutes": 347,
+    "sitemapLocCount": 347,
+    "generatedToolInventoryAt": "2026-06-12T14:49:59.366Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -129,7 +129,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 88246,
+        "bytes": 75245,
         "json": null
       },
       "/tools/": {
@@ -150,7 +150,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 41277,
+        "bytes": 40811,
         "json": null
       },
       "/robots.txt": {
@@ -181,7 +181,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 100805,
+        "bytes": 100770,
         "json": null
       },
       "/tools.json": {
@@ -193,7 +193,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-09T18:14:24.411Z",
+          "generatedAt": "2026-06-12T14:40:51.927Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -1085,7 +1085,7 @@
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-09T18:14:24.411Z",
+          "generatedAt": "2026-06-12T14:40:51.927Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -2567,7 +2567,7 @@
         "bytes": 116898,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-09T18:14:24.411Z",
+          "generatedAt": "2026-06-12T14:40:51.927Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -6229,7 +6229,7 @@
         "bytes": 768,
         "json": {
           "ok": true,
-          "generatedAt": "2026-06-12T14:07:00.547Z",
+          "generatedAt": "2026-06-12T14:50:41.035Z",
           "repo": "yanqr213/printable-tools-lab",
           "sourceUrl": "https://github.com/yanqr213/printable-tools-lab/issues?q=is%3Aissue%20label%3Abusiness-review%20label%3Aservice-request%20OR%20label%3Aaudit-request",
           "available": true,
@@ -6470,35 +6470,21 @@
       "available": true,
       "repoUrl": "https://github.com/yanqr213/printable-tools-lab",
       "homepage": "https://printable-tools-lab.pages.dev/",
-      "description": "Free no-signup browser PDF, image, QR, and text-data tools for PDF size targets, image KB targets, PDF-to-Word, ATS checks, background removal, text overlays, QR codes, PDF edits, paperwork, labels, resumes, and printables.",
+      "description": "Public GitHub metadata fallback used because the GitHub API was unavailable without credentials.",
       "topics": [
-        "background-remover",
-        "compress-image-to-100kb",
-        "compress-pdf",
-        "compress-pdf-to-1mb",
-        "compress-pdf-to-500kb",
-        "free-tools",
-        "image-compressor",
-        "image-converter",
-        "image-resizer",
-        "image-to-pdf",
-        "image-tools",
-        "invoice-generator",
-        "no-signup",
-        "passport-photo",
-        "pdf-generator",
-        "pdf-to-jpg",
-        "pdf-to-word",
         "pdf-tools",
+        "image-tools",
         "qr-code",
-        "resume-checker"
+        "no-signup",
+        "browser-tools",
+        "free-tools"
       ],
+      "error": "GitHub API fallback used: GitHub API 403",
       "discoveryRelease": {
         "tag": "free-pdf-tools",
         "url": "https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools",
         "name": "Free PDF, Image, and QR Tools Without Signup"
-      },
-      "error": ""
+      }
     },
     "githubPages": {
       "base": "https://yanqr213.github.io/printable-tools-lab/",
@@ -6512,7 +6498,7 @@
       "guidePagesInSitemap": 95,
       "gamePagesLinked": 1,
       "gamePagesInSitemap": 3,
-      "expectedUrlCount": 324,
+      "expectedUrlCount": 329,
       "error": ""
     },
     "indexNow": {
@@ -6567,7 +6553,7 @@
       "acceptedUrlCount": 328,
       "error": ""
     },
-    "externalDiscoveryReady": true
+    "externalDiscoveryReady": false
   },
   "directories": {
     "available": true,
@@ -7782,7 +7768,7 @@
     "review90Day": false,
     "reasons": {
       "productReady": [
-        "67 tools, 95 guides, 151 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
+        "67 tools, 95 guides, 156 high-intent landing pages, sitemap, discovery assets, and live metrics are present."
       ],
       "adsenseApplyReady": [
         "Custom domain is not configured yet; keep pages.dev for validation but use a real domain before ad-network review.",
@@ -7794,10 +7780,10 @@
         "GOOGLE_APPLICATION_CREDENTIALS is not set or the file is missing."
       ],
       "externalDiscovery": [
-        "GitHub repo has 20 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
+        "GitHub repo has 6 topic(s) and homepage https://printable-tools-lab.pages.dev/.",
         "GitHub discovery release is live: https://github.com/yanqr213/printable-tools-lab/releases/tag/free-pdf-tools.",
         "GitHub Pages discovery directory is live with 151 landing page link(s), 67 tool mirror link(s), 95 guide mirror link(s), and 1 game submission link(s).",
-        "GitHub Pages discovery sitemap has 328 URL(s), including 67 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 324.",
+        "GitHub Pages discovery sitemap has 328 URL(s), including 67 tool mirror URL(s), 95 guide mirror URL(s), and 3 game submission URL(s); expected at least 329.",
         "IndexNow key file is reachable from the site root.",
         "IndexNow latest report accepted 328 URL(s) for github-pages.",
         "Directory monitor shows 112 listed, 184 pending, and 1 error directory target(s)."
@@ -7806,6 +7792,7 @@
   },
   "nextActions": [
     "Watch the newly listed directories for real referrals and depth events before adding another same-category submission.",
+    "Sync the generated docs/ discovery mirror to GitHub Pages; live sitemap has 328 URL(s), expected 329.",
     "Buy and attach a custom domain before submitting broad ad-network review; pages.dev remains the zero-cost validation host.",
     "When AdSense provides the real ca-pub publisher ID, run configure:adsense; do not deploy fake IDs.",
     "Keep the current free product live and track downloads/generations until the 30-day gate has enough signal.",

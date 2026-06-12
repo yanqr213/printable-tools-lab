@@ -399,6 +399,11 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - Passport Photo Compress to 200KB: https://printable-tools-lab.pages.dev/passport-photo-compress-to-200kb/
 - Passport Photo Size Fixer: https://printable-tools-lab.pages.dev/passport-photo-size-fixer/
 - Passport Photo 35x45mm Without Uploading: https://printable-tools-lab.pages.dev/passport-photo-35x45mm/
+- US Passport Photo 2x2 Maker: https://printable-tools-lab.pages.dev/us-passport-photo-2x2/
+- US Visa Photo 600x600 Under 240KB: https://printable-tools-lab.pages.dev/us-visa-photo-600x600-240kb/
+- UK Digital Passport Photo Helper: https://printable-tools-lab.pages.dev/uk-passport-photo-digital/
+- Canada Passport Photo 50x70mm Maker: https://printable-tools-lab.pages.dev/canada-passport-photo-50x70mm/
+- Australia Passport Photo 35x45mm Helper: https://printable-tools-lab.pages.dev/australia-passport-photo-35x45mm/
 - Photo 200x230 Pixels Under 50KB: https://printable-tools-lab.pages.dev/photo-200x230-50kb/
 - Photo 200x230 Pixels Under 20KB: https://printable-tools-lab.pages.dev/photo-200x230-20kb/
 - Photo 200x230 Pixels Under 100KB: https://printable-tools-lab.pages.dev/photo-200x230-100kb/

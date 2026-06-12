@@ -199,6 +199,11 @@ Monetization model: Free tools stay live for search demand and future display ad
 - [Passport Photo Compress to 200KB](https://printable-tools-lab.pages.dev/passport-photo-compress-to-200kb/): passport photo compress to 200KB, ID photo size reducer, no upload
 - [Passport Photo Size Fixer](https://printable-tools-lab.pages.dev/passport-photo-size-fixer/): passport photo size fixer, ID photo dimensions, compress passport photo, no upload
 - [Passport Photo 35x45mm Without Uploading](https://printable-tools-lab.pages.dev/passport-photo-35x45mm/): passport photo 35x45mm, 35 x 45 mm photo maker, no upload
+- [US Passport Photo 2x2 Maker](https://printable-tools-lab.pages.dev/us-passport-photo-2x2/): US passport photo 2x2, 2 x 2 inch passport photo maker, passport photo crop no upload
+- [US Visa Photo 600x600 Under 240KB](https://printable-tools-lab.pages.dev/us-visa-photo-600x600-240kb/): US visa photo 600x600 240KB, DV lottery photo 600 x 600, visa photo under 240KB
+- [UK Digital Passport Photo Helper](https://printable-tools-lab.pages.dev/uk-passport-photo-digital/): UK digital passport photo, UK passport photo 35x45, passport photo 600x750 pixels
+- [Canada Passport Photo 50x70mm Maker](https://printable-tools-lab.pages.dev/canada-passport-photo-50x70mm/): Canada passport photo 50x70mm, Canadian passport photo size, 50 x 70 mm photo maker
+- [Australia Passport Photo 35x45mm Helper](https://printable-tools-lab.pages.dev/australia-passport-photo-35x45mm/): Australia passport photo 35x45mm, Australian passport photo size, passport photo crop no upload
 - [Photo 200x230 Pixels Under 50KB](https://printable-tools-lab.pages.dev/photo-200x230-50kb/): photo 200x230 50KB, resize photo 200 x 230, exam photo upload
 - [Photo 200x230 Pixels Under 20KB](https://printable-tools-lab.pages.dev/photo-200x230-20kb/): photo 200x230 20KB, resize photo 200 x 230 under 20KB, exam photo upload
 - [Photo 200x230 Pixels Under 100KB](https://printable-tools-lab.pages.dev/photo-200x230-100kb/): photo 200x230 100KB, resize photo 200 x 230 under 100KB, application photo size
