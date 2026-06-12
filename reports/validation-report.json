@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-12T15:06:01.542Z",
+  "generatedAt": "2026-06-12T15:13:28.657Z",
   "siteUrl": "https://printable-tools-lab.pages.dev/",
   "local": {
     "siteUrl": "https://printable-tools-lab.pages.dev",
@@ -9,7 +9,7 @@
     "landingPageCount": 161,
     "indexableRoutes": 352,
     "sitemapLocCount": 352,
-    "generatedToolInventoryAt": "2026-06-12T15:05:25.111Z",
+    "generatedToolInventoryAt": "2026-06-12T15:10:48.904Z",
     "discoveryAssets": {
       "sitemap": true,
       "sitemapLastmod": true,
@@ -129,7 +129,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=utf-8",
-        "bytes": 78801,
+        "bytes": 79192,
         "json": null
       },
       "/tools/": {
@@ -150,7 +150,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/xml; charset=utf-8",
-        "bytes": 41410,
+        "bytes": 42017,
         "json": null
       },
       "/robots.txt": {
@@ -173,7 +173,7 @@
         "ok": true,
         "status": 200,
         "contentType": "text/plain; charset=utf-8",
-        "bytes": 52031,
+        "bytes": 52891,
         "json": null,
         "sample": "# PrintableTools Lab\n\nFree browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for"
       },
@@ -181,7 +181,7 @@
         "ok": true,
         "status": 200,
         "contentType": "application/rss+xml; charset=utf-8",
-        "bytes": 103193,
+        "bytes": 105542,
         "json": null
       },
       "/tools.json": {
@@ -193,7 +193,7 @@
           "name": "PrintableTools Lab",
           "description": "Free browser-based PDF generators, no-upload PDF tools, local image tools, PDF compression, background removal for simple image backgrounds, text overlays for images, passport photo sizing, transparent signature PNG generation, static QR code tools, and text-data converters for compressing PDFs, compressing images, compressing images to target KB sizes, resizing images, converting image formats, removing solid image backgrounds, cropping images, rotating images, watermarking images, adding text to photos, creating passport-style photos, creating signature images, creating QR codes, creating WiFi QR codes, creating contact QR codes, converting PDF pages to JPG or PNG images, extracting PDF text, converting selectable PDF text to Word DOCX, merging PDFs, splitting PDFs, rotating pages, removing pages, reordering pages, watermarking PDFs, stamping PDFs, adding typed signatures, adding page numbers, image-to-PDF conversion, text conversion, Markdown-to-PDF, CSV-to-PDF, JSON-to-PDF, invoices, receipts, labels, business cards, timesheets, resumes, certificates, worksheets, graph paper, sign-in sheets, packing lists, to-do lists, and habit trackers.",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-12T14:55:24.147Z",
+          "generatedAt": "2026-06-12T15:10:48.904Z",
           "tools": [
             {
               "title": "Name Tracing Worksheet Generator",
@@ -1081,11 +1081,11 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 89647,
+        "bytes": 91529,
         "json": {
           "name": "PrintableTools Lab",
           "url": "https://printable-tools-lab.pages.dev/",
-          "generatedAt": "2026-06-12T14:55:24.147Z",
+          "generatedAt": "2026-06-12T15:10:48.904Z",
           "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
           "feed": "https://printable-tools-lab.pages.dev/feed.xml",
           "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -1249,6 +1249,11 @@
             "https://printable-tools-lab.pages.dev/watermark-image-no-upload/",
             "https://printable-tools-lab.pages.dev/add-text-to-image-no-upload/",
             "https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/",
+            "https://printable-tools-lab.pages.dev/google-review-qr-code-generator/",
+            "https://printable-tools-lab.pages.dev/menu-qr-code-generator/",
+            "https://printable-tools-lab.pages.dev/whatsapp-qr-code-generator/",
+            "https://printable-tools-lab.pages.dev/event-registration-qr-code-generator/",
+            "https://printable-tools-lab.pages.dev/instagram-qr-code-generator/",
             "https://printable-tools-lab.pages.dev/wifi-qr-code-generator/",
             "https://printable-tools-lab.pages.dev/contact-qr-code-generator/",
             "https://printable-tools-lab.pages.dev/compress-jpg-no-upload/",
@@ -2366,6 +2371,36 @@
               "tool": "https://printable-tools-lab.pages.dev/tools/qr-code/"
             },
             {
+              "title": "Google Review QR Code Generator",
+              "url": "https://printable-tools-lab.pages.dev/google-review-qr-code-generator/",
+              "intent": "Google review QR code generator, review QR sign, local business review link QR",
+              "tool": "https://printable-tools-lab.pages.dev/tools/qr-code/"
+            },
+            {
+              "title": "Menu QR Code Generator",
+              "url": "https://printable-tools-lab.pages.dev/menu-qr-code-generator/",
+              "intent": "menu QR code generator, restaurant menu QR, cafe menu QR sign",
+              "tool": "https://printable-tools-lab.pages.dev/tools/qr-code/"
+            },
+            {
+              "title": "WhatsApp QR Code Generator",
+              "url": "https://printable-tools-lab.pages.dev/whatsapp-qr-code-generator/",
+              "intent": "WhatsApp QR code generator, WhatsApp chat QR, wa.me QR code",
+              "tool": "https://printable-tools-lab.pages.dev/tools/qr-code/"
+            },
+            {
+              "title": "Event Registration QR Code Generator",
+              "url": "https://printable-tools-lab.pages.dev/event-registration-qr-code-generator/",
+              "intent": "event registration QR code, RSVP QR code, event signup QR generator",
+              "tool": "https://printable-tools-lab.pages.dev/tools/qr-code/"
+            },
+            {
+              "title": "Instagram QR Code Generator",
+              "url": "https://printable-tools-lab.pages.dev/instagram-qr-code-generator/",
+              "intent": "Instagram QR code generator, Instagram profile QR, social media QR code",
+              "tool": "https://printable-tools-lab.pages.dev/tools/qr-code/"
+            },
+            {
               "title": "WiFi QR Code Generator",
               "url": "https://printable-tools-lab.pages.dev/wifi-qr-code-generator/",
               "intent": "WiFi QR code generator, guest WiFi sign, printable QR",
@@ -2602,7 +2637,7 @@
         "bytes": 120775,
         "json": {
           "name": "PrintableTools Lab Share Kit",
-          "generatedAt": "2026-06-12T14:55:24.147Z",
+          "generatedAt": "2026-06-12T15:10:48.904Z",
           "canonical": "https://printable-tools-lab.pages.dev/share-kit/",
           "purpose": "Zero-budget distribution assets for useful, compliant sharing of PrintableTools Lab.",
           "featuredLinks": [
@@ -6311,17 +6346,18 @@
         "ok": true,
         "status": 200,
         "contentType": "application/json; charset=utf-8",
-        "bytes": 768,
+        "bytes": 890,
         "json": {
           "ok": true,
-          "generatedAt": "2026-06-12T15:05:54.182Z",
+          "generatedAt": "2026-06-12T15:13:23.244Z",
           "repo": "yanqr213/printable-tools-lab",
           "sourceUrl": "https://github.com/yanqr213/printable-tools-lab/issues?q=is%3Aissue%20label%3Abusiness-review%20label%3Aservice-request%20OR%20label%3Aaudit-request",
-          "available": true,
-          "dataQuality": "github-issues-api",
-          "dataWarning": "",
+          "available": false,
+          "dataQuality": "unavailable",
+          "dataWarning": "GitHub public service request evidence could not be read in this run. Do not treat zero as confirmed while unavailable.",
+          "error": "GitHub issues API 403: API rate limit exceeded for unauthenticated requests.",
           "publicMetricsOnly": true,
-          "privateFields": "not exposed; rows contain only public GitHub issue metadata and public-safe service fields",
+          "privateFields": "not exposed",
           "publicRequestCount": 0,
           "openCount": 0,
           "closedCount": 0,
