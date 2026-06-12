@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-12T15:13:32.936Z",
+  "generatedAt": "2026-06-12T15:21:33.719Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -197,6 +197,11 @@
     "https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/",
     "https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/",
     "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
+    "https://printable-tools-lab.pages.dev/name-tracing-worksheet-generator/",
+    "https://printable-tools-lab.pages.dev/free-printable-handwriting-practice-worksheet/",
+    "https://printable-tools-lab.pages.dev/preschool-name-tracing-worksheet/",
+    "https://printable-tools-lab.pages.dev/kindergarten-name-writing-practice/",
+    "https://printable-tools-lab.pages.dev/custom-word-tracing-worksheet/",
     "https://printable-tools-lab.pages.dev/free-business-card-generator-printable/",
     "https://printable-tools-lab.pages.dev/free-address-label-generator-printable/",
     "https://printable-tools-lab.pages.dev/free-barcode-label-generator-printable/",
@@ -1477,6 +1482,36 @@
       "url": "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
       "intent": "certificate PDF download without account",
       "tool": "https://printable-tools-lab.pages.dev/tools/certificate-generator/"
+    },
+    {
+      "title": "Name Tracing Worksheet Generator",
+      "url": "https://printable-tools-lab.pages.dev/name-tracing-worksheet-generator/",
+      "intent": "name tracing worksheet generator, printable name tracing, preschool name worksheet",
+      "tool": "https://printable-tools-lab.pages.dev/tools/name-tracing/"
+    },
+    {
+      "title": "Free Printable Handwriting Practice Worksheet",
+      "url": "https://printable-tools-lab.pages.dev/free-printable-handwriting-practice-worksheet/",
+      "intent": "free printable handwriting practice worksheet, handwriting worksheet generator, trace and write worksheet",
+      "tool": "https://printable-tools-lab.pages.dev/tools/name-tracing/"
+    },
+    {
+      "title": "Preschool Name Tracing Worksheet",
+      "url": "https://printable-tools-lab.pages.dev/preschool-name-tracing-worksheet/",
+      "intent": "preschool name tracing worksheet, preschool handwriting printable, trace my name worksheet",
+      "tool": "https://printable-tools-lab.pages.dev/tools/name-tracing/"
+    },
+    {
+      "title": "Kindergarten Name Writing Practice",
+      "url": "https://printable-tools-lab.pages.dev/kindergarten-name-writing-practice/",
+      "intent": "kindergarten name writing practice, name writing worksheet, trace and write name",
+      "tool": "https://printable-tools-lab.pages.dev/tools/name-tracing/"
+    },
+    {
+      "title": "Custom Word Tracing Worksheet",
+      "url": "https://printable-tools-lab.pages.dev/custom-word-tracing-worksheet/",
+      "intent": "custom word tracing worksheet, spelling word tracing, vocabulary tracing worksheet",
+      "tool": "https://printable-tools-lab.pages.dev/tools/name-tracing/"
     },
     {
       "title": "Free Printable Business Card Generator",

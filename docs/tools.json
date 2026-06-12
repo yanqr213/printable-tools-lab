@@ -5,7 +5,7 @@
   "finder": "https://printable-tools-lab.pages.dev/pdf-tool-finder/",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "githubPagesDirectory": "https://yanqr213.github.io/printable-tools-lab/",
-  "generatedAt": "2026-06-12T15:13:33.086Z",
+  "generatedAt": "2026-06-12T15:21:33.873Z",
   "landingPages": [
     {
       "title": "Free Upload Limit Fixer",
@@ -918,6 +918,36 @@
       "url": "https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/",
       "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/free-certificate-maker-no-signup/",
       "intent": "certificate PDF download without account"
+    },
+    {
+      "title": "Name Tracing Worksheet Generator",
+      "url": "https://printable-tools-lab.pages.dev/name-tracing-worksheet-generator/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/name-tracing-worksheet-generator/",
+      "intent": "name tracing worksheet generator, printable name tracing, preschool name worksheet"
+    },
+    {
+      "title": "Free Printable Handwriting Practice Worksheet",
+      "url": "https://printable-tools-lab.pages.dev/free-printable-handwriting-practice-worksheet/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/free-printable-handwriting-practice-worksheet/",
+      "intent": "free printable handwriting practice worksheet, handwriting worksheet generator, trace and write worksheet"
+    },
+    {
+      "title": "Preschool Name Tracing Worksheet",
+      "url": "https://printable-tools-lab.pages.dev/preschool-name-tracing-worksheet/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/preschool-name-tracing-worksheet/",
+      "intent": "preschool name tracing worksheet, preschool handwriting printable, trace my name worksheet"
+    },
+    {
+      "title": "Kindergarten Name Writing Practice",
+      "url": "https://printable-tools-lab.pages.dev/kindergarten-name-writing-practice/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/kindergarten-name-writing-practice/",
+      "intent": "kindergarten name writing practice, name writing worksheet, trace and write name"
+    },
+    {
+      "title": "Custom Word Tracing Worksheet",
+      "url": "https://printable-tools-lab.pages.dev/custom-word-tracing-worksheet/",
+      "discoveryUrl": "https://yanqr213.github.io/printable-tools-lab/custom-word-tracing-worksheet/",
+      "intent": "custom word tracing worksheet, spelling word tracing, vocabulary tracing worksheet"
     },
     {
       "title": "Free Printable Business Card Generator",
@@ -1979,7 +2009,7 @@
   },
   "organicPushKit": {
     "name": "PrintableTools Lab Organic Push Kit Mirror",
-    "generatedAt": "2026-06-12T15:13:33.086Z",
+    "generatedAt": "2026-06-12T15:21:33.873Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/organic-push-kit/",
     "livePage": "https://printable-tools-lab.pages.dev/organic-push-kit/",
     "liveJson": "https://printable-tools-lab.pages.dev/organic-push-kit.json",
@@ -2096,7 +2126,7 @@
   },
   "uploadErrorCheatsheet": {
     "name": "PrintableTools Lab Upload Error Cheatsheet Mirror",
-    "generatedAt": "2026-06-12T15:13:33.086Z",
+    "generatedAt": "2026-06-12T15:21:33.873Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/upload-error-cheatsheet/",
     "livePage": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet/",
     "liveJson": "https://printable-tools-lab.pages.dev/upload-error-cheatsheet.json",
@@ -2749,7 +2779,7 @@
   },
   "sponsorDealRoom": {
     "name": "PrintableTools Lab Sponsor Deal Room Mirror",
-    "generatedAt": "2026-06-12T15:13:33.086Z",
+    "generatedAt": "2026-06-12T15:21:33.873Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-deal-room/",
     "livePage": "https://printable-tools-lab.pages.dev/sponsor-deal-room/",
     "liveJson": "https://printable-tools-lab.pages.dev/sponsor-deal-room.json",
@@ -2853,7 +2883,7 @@
   },
   "sponsorStarterReview": {
     "name": "PrintableTools Lab USD 49 Starter Sponsor Review Mirror",
-    "generatedAt": "2026-06-12T15:13:33.086Z",
+    "generatedAt": "2026-06-12T15:21:33.873Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-starter-review/",
     "livePage": "https://printable-tools-lab.pages.dev/sponsor-starter-review/",
     "trackedReviewUrl": "https://printable-tools-lab.pages.dev/sponsor-starter-review/?utm_source=sponsor-outreach&utm_medium=organic&utm_campaign=sponsor_call&utm_content=github-pages-starter-review#sponsor-inquiry",
@@ -2889,7 +2919,7 @@
   },
   "sponsorCall": {
     "name": "PrintableTools Lab Sponsor Call Mirror",
-    "generatedAt": "2026-06-12T15:13:33.086Z",
+    "generatedAt": "2026-06-12T15:21:33.873Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-call/",
     "livePage": "https://printable-tools-lab.pages.dev/sponsor-call/",
     "liveJson": "https://printable-tools-lab.pages.dev/sponsor-call.json",
@@ -3013,7 +3043,7 @@
   },
   "sponsorOpportunities": {
     "name": "PrintableTools Lab Sponsor Opportunities Mirror",
-    "generatedAt": "2026-06-12T15:13:33.086Z",
+    "generatedAt": "2026-06-12T15:21:33.873Z",
     "directory": "https://yanqr213.github.io/printable-tools-lab/sponsor-opportunities/",
     "livePage": "https://printable-tools-lab.pages.dev/sponsor-opportunities/",
     "liveJson": "https://printable-tools-lab.pages.dev/sponsor-opportunities.json",

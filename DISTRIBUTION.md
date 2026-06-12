@@ -486,6 +486,11 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - Free Receipt Generator Without Signup: https://printable-tools-lab.pages.dev/free-receipt-generator-no-signup/
 - Weekly Timesheet PDF Without Signup: https://printable-tools-lab.pages.dev/weekly-timesheet-pdf-no-signup/
 - Free Certificate Maker Without Signup: https://printable-tools-lab.pages.dev/free-certificate-maker-no-signup/
+- Name Tracing Worksheet Generator: https://printable-tools-lab.pages.dev/name-tracing-worksheet-generator/
+- Free Printable Handwriting Practice Worksheet: https://printable-tools-lab.pages.dev/free-printable-handwriting-practice-worksheet/
+- Preschool Name Tracing Worksheet: https://printable-tools-lab.pages.dev/preschool-name-tracing-worksheet/
+- Kindergarten Name Writing Practice: https://printable-tools-lab.pages.dev/kindergarten-name-writing-practice/
+- Custom Word Tracing Worksheet: https://printable-tools-lab.pages.dev/custom-word-tracing-worksheet/
 - Free Printable Business Card Generator: https://printable-tools-lab.pages.dev/free-business-card-generator-printable/
 - Free Printable Address Label Generator: https://printable-tools-lab.pages.dev/free-address-label-generator-printable/
 - Free Printable Barcode Label Generator: https://printable-tools-lab.pages.dev/free-barcode-label-generator-printable/

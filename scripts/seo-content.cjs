@@ -4146,6 +4146,33 @@ function qrScenarioLandingPage({ path, title, description, headline, lead, qrTit
   };
 }
 
+function nameTracingScenarioLandingPage({ path, title, description, headline, lead, worksheetName, subtitle, style = "primary", paper = "letter", language = "english", intent, sections, relatedTools = [] }) {
+  return {
+    path,
+    title,
+    description,
+    headline,
+    lead,
+    primaryTool: "tools/name-tracing",
+    primaryToolQuery: new URLSearchParams({
+      name: worksheetName,
+      subtitle,
+      style,
+      paper,
+      language,
+    }).toString(),
+    intent,
+    sections,
+    relatedTools: [
+      "tools/name-tracing",
+      ...relatedTools,
+      "tools/flashcards",
+      "tools/reward-chart",
+      "tools/chore-chart",
+    ],
+  };
+}
+
 const QR_SCENARIO_LANDING_PAGES = [
   qrScenarioLandingPage({
     path: "google-review-qr-code-generator",
@@ -4231,6 +4258,94 @@ const QR_SCENARIO_LANDING_PAGES = [
       ["Print test", "Scan the QR code from the same distance and lighting where people will see the sign, then confirm the profile opens without requiring extra context."],
     ],
     relatedTools: ["tools/qr-code", "tools/business-card", "tools/add-text-image"],
+  }),
+];
+
+const NAME_TRACING_SCENARIO_LANDING_PAGES = [
+  nameTracingScenarioLandingPage({
+    path: "name-tracing-worksheet-generator",
+    title: "Name Tracing Worksheet Generator",
+    description: "Create a free printable name tracing worksheet PDF for preschool, kindergarten, homeschool, or classroom handwriting practice.",
+    headline: "Name tracing worksheet generator",
+    lead: "Type one name or short word, open the generator with a clean handwriting worksheet already set up, and download a one-page printable PDF without signup.",
+    worksheetName: "Maya",
+    subtitle: "Trace, write, and color your name",
+    style: "primary",
+    intent: "name tracing worksheet generator, printable name tracing, preschool name worksheet",
+    sections: [
+      ["Why this search has steady traffic", "Parents, preschool teachers, kindergarten teachers, and homeschool families often need one child-specific handwriting page today instead of a full worksheet bundle."],
+      ["Best first worksheet", "Use one name or one short word, keep the instruction line short, and print one page before making a whole batch for a group."],
+      ["Adult review", "Check letter shapes, spelling, paper size, and whether the page is appropriate for the child or class before sharing it."],
+    ],
+    relatedTools: ["tools/name-tracing", "tools/flashcards", "tools/chore-chart"],
+  }),
+  nameTracingScenarioLandingPage({
+    path: "free-printable-handwriting-practice-worksheet",
+    title: "Free Printable Handwriting Practice Worksheet",
+    description: "Make a simple handwriting practice PDF for a name, sight word, spelling word, or short classroom word without creating an account.",
+    headline: "Free printable handwriting practice worksheet",
+    lead: "Open a prefilled handwriting worksheet, replace the sample word with your own, and download a clean printable page for quick practice.",
+    worksheetName: "hello",
+    subtitle: "Trace the word, then write it on your own",
+    style: "mixed",
+    intent: "free printable handwriting practice worksheet, handwriting worksheet generator, trace and write worksheet",
+    sections: [
+      ["Good for short words", "This format works best for one name, sight word, spelling word, or classroom word. Long phrases are harder for young writers to copy cleanly."],
+      ["Trace plus blank lines", "The mixed style gives model lines first and blank lines after, which helps when a child is ready to move from tracing to independent writing."],
+      ["Print-light design", "The worksheet uses simple black-and-white-friendly lines so it stays practical on ordinary home and classroom printers."],
+    ],
+    relatedTools: ["tools/name-tracing", "tools/flashcards", "tools/weekly-planner"],
+  }),
+  nameTracingScenarioLandingPage({
+    path: "preschool-name-tracing-worksheet",
+    title: "Preschool Name Tracing Worksheet",
+    description: "Create a large, simple name tracing worksheet PDF for preschool pencil-control and early handwriting practice.",
+    headline: "Preschool name tracing worksheet",
+    lead: "Start with a preschool-friendly outline worksheet that leaves room for tracing, writing, and a small drawing prompt.",
+    worksheetName: "Maya",
+    subtitle: "Trace your name slowly",
+    style: "outline",
+    intent: "preschool name tracing worksheet, preschool handwriting printable, trace my name worksheet",
+    sections: [
+      ["Use a larger format", "Outline style keeps the name large and gives more space for pencil-control practice before asking for smaller writing."],
+      ["Keep sessions short", "One page is enough for a quick warmup. Stop before the worksheet turns into a negotiation or fatigue exercise."],
+      ["No learning guarantee", "This is a printable practice page, not a curriculum or assessment. Adults should decide whether the format fits the child."],
+    ],
+    relatedTools: ["tools/name-tracing", "tools/reward-chart", "tools/chore-chart"],
+  }),
+  nameTracingScenarioLandingPage({
+    path: "kindergarten-name-writing-practice",
+    title: "Kindergarten Name Writing Practice",
+    description: "Generate a printable kindergarten name writing worksheet with trace lines and blank writing lines.",
+    headline: "Kindergarten name writing practice",
+    lead: "Use a mixed trace-and-write page when a child can copy a familiar name and is ready for a little more independence.",
+    worksheetName: "Avery",
+    subtitle: "Trace first, then try the blank lines",
+    style: "mixed",
+    intent: "kindergarten name writing practice, name writing worksheet, trace and write name",
+    sections: [
+      ["Why mixed pages work", "Model lines give support first, then blank lines let the child try writing without every letter already shown."],
+      ["Classroom and home fit", "Teachers can print one page per child, while parents can use the same format for a short daily practice routine."],
+      ["Check the result", "Review uppercase and lowercase choices, spelling, and spacing before printing several copies."],
+    ],
+    relatedTools: ["tools/name-tracing", "tools/certificate-generator", "tools/flashcards"],
+  }),
+  nameTracingScenarioLandingPage({
+    path: "custom-word-tracing-worksheet",
+    title: "Custom Word Tracing Worksheet",
+    description: "Create a printable tracing worksheet for one custom word, spelling word, vocabulary word, or short classroom phrase.",
+    headline: "Custom word tracing worksheet",
+    lead: "Use the name tracing generator as a quick custom word worksheet maker when you need one clean page for a short word.",
+    worksheetName: "sun",
+    subtitle: "Trace the word and draw a picture",
+    style: "primary",
+    intent: "custom word tracing worksheet, spelling word tracing, vocabulary tracing worksheet",
+    sections: [
+      ["Use one word at a time", "The page is intentionally simple. One word per worksheet is easier to scan, copy, and review than a crowded multi-word sheet."],
+      ["Good traffic fit", "Custom tracing searches come from teachers, parents, and homeschool users who need immediate printable output instead of a template marketplace."],
+      ["Review appropriateness", "Only use words that fit the learner, group, and setting. This tool does not choose age-appropriate vocabulary for you."],
+    ],
+    relatedTools: ["tools/name-tracing", "tools/flashcards", "tools/todo-list"],
   }),
 ];
 
@@ -6535,6 +6650,7 @@ const landingPages = [
     ],
     relatedTools: ["tools/sign-in-sheet", "tools/todo-list", "tools/flashcards"],
   },
+  ...NAME_TRACING_SCENARIO_LANDING_PAGES,
   {
     path: "free-business-card-generator-printable",
     title: "Free Printable Business Card Generator",
