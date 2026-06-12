@@ -4120,6 +4120,120 @@ const PASSPORT_SPEC_LANDING_PAGES = [
   }),
 ];
 
+function qrScenarioLandingPage({ path, title, description, headline, lead, qrTitle, content, caption, intent, sections, relatedTools = [] }) {
+  return {
+    path,
+    title,
+    description,
+    headline,
+    lead,
+    primaryTool: "tools/qr-code",
+    primaryToolQuery: new URLSearchParams({
+      title: qrTitle,
+      content,
+      caption,
+      errorCorrection: "Q",
+    }).toString(),
+    intent,
+    sections,
+    relatedTools: [
+      "tools/qr-code",
+      ...relatedTools,
+      "tools/flyer-maker",
+      "tools/business-card",
+      "tools/coupon-maker",
+    ],
+  };
+}
+
+const QR_SCENARIO_LANDING_PAGES = [
+  qrScenarioLandingPage({
+    path: "google-review-qr-code-generator",
+    title: "Google Review QR Code Generator",
+    description: "Create a printable static QR code for a Google review link, receipt insert, counter sign, or local-service follow-up card.",
+    headline: "Make a Google review QR code sign",
+    lead: "Paste your public Google review link into a static QR code, download a printable PDF, and test it with a phone before putting it on a counter, invoice, receipt, or flyer.",
+    qrTitle: "Leave Us a Review",
+    content: "https://example.com/google-review-link",
+    caption: "Scan to open our public review page",
+    intent: "Google review QR code generator, review QR sign, local business review link QR",
+    sections: [
+      ["Best traffic fit", "Review QR searches usually come from local businesses that already have a real offline touchpoint: receipt, table tent, counter sign, service card, or follow-up handout."],
+      ["Static QR boundary", "This creates a static code for the exact review link you paste. If the review URL changes later, print a new code instead of reusing the old sign."],
+      ["Keep it policy-safe", "Do not offer rewards, discounts, or pressure for positive reviews. Ask for honest feedback and follow the review platform's current policies."],
+    ],
+    relatedTools: ["tools/qr-code", "tools/receipt-generator", "tools/flyer-maker"],
+  }),
+  qrScenarioLandingPage({
+    path: "menu-qr-code-generator",
+    title: "Menu QR Code Generator",
+    description: "Create a printable static QR code for a restaurant, cafe, food truck, or pop-up menu link without signup.",
+    headline: "Make a menu QR code for a table sign",
+    lead: "Paste the public menu URL, generate a static QR code PDF, and test the scan before printing it for tables, counters, flyers, or event booths.",
+    qrTitle: "View Our Menu",
+    content: "https://example.com/menu",
+    caption: "Scan to view the menu",
+    intent: "menu QR code generator, restaurant menu QR, cafe menu QR sign",
+    sections: [
+      ["Why users search", "Menu QR searches usually happen right before printing signs for a restaurant, cafe, food truck, market table, or pop-up event."],
+      ["Static QR fit", "A static QR code is simple and durable when the public menu URL is stable. If the menu link changes, generate a new QR before reprinting."],
+      ["Before printing", "Scan the code from the same distance guests will use, check mobile readability, and leave enough white space around the QR code."],
+    ],
+    relatedTools: ["tools/qr-code", "tools/flyer-maker", "tools/price-tag"],
+  }),
+  qrScenarioLandingPage({
+    path: "whatsapp-qr-code-generator",
+    title: "WhatsApp QR Code Generator",
+    description: "Create a printable static QR code for a WhatsApp chat link, local-service inquiry, booth sign, or customer support card.",
+    headline: "Make a WhatsApp chat QR code",
+    lead: "Paste a public WhatsApp click-to-chat link, generate a static QR code PDF, and test the scan before printing it on a sign, card, flyer, or package insert.",
+    qrTitle: "Message Us on WhatsApp",
+    content: "https://wa.me/15550100",
+    caption: "Scan to start a WhatsApp chat",
+    intent: "WhatsApp QR code generator, WhatsApp chat QR, wa.me QR code",
+    sections: [
+      ["Immediate business use", "WhatsApp QR searches fit service businesses, local sellers, event booths, and customer-support signs where the goal is one tap from offline interest to chat."],
+      ["Use a public chat link", "The QR code should point to a valid wa.me or WhatsApp business link. Avoid embedding private notes, passwords, or customer-specific details in the QR payload."],
+      ["Test before posting", "Scan on iOS and Android if possible, confirm it opens the expected chat, and make sure the printed sign says what the user should expect."],
+    ],
+    relatedTools: ["tools/qr-code", "tools/business-card", "tools/flyer-maker"],
+  }),
+  qrScenarioLandingPage({
+    path: "event-registration-qr-code-generator",
+    title: "Event Registration QR Code Generator",
+    description: "Create a printable static QR code for an event registration, RSVP, ticketing, signup, or check-in link.",
+    headline: "Make an event registration QR code",
+    lead: "Paste your event registration or RSVP URL, download a printable static QR PDF, and test it before adding it to posters, sign-in sheets, table signs, or handouts.",
+    qrTitle: "Register for This Event",
+    content: "https://example.com/register",
+    caption: "Scan to register or RSVP",
+    intent: "event registration QR code, RSVP QR code, event signup QR generator",
+    sections: [
+      ["Offline-to-online intent", "Event QR searches happen when someone needs printed posters, badges, handouts, classroom sheets, or check-in signs to send people to a registration link."],
+      ["Static QR boundary", "This works best when the registration URL will not change. If you switch ticketing pages or forms, regenerate the QR code before reprinting."],
+      ["Operational check", "Scan the code from poster distance, confirm the form is mobile-friendly, and keep a plain short URL nearby as a fallback."],
+    ],
+    relatedTools: ["tools/qr-code", "tools/sign-in-sheet", "tools/flyer-maker"],
+  }),
+  qrScenarioLandingPage({
+    path: "instagram-qr-code-generator",
+    title: "Instagram QR Code Generator",
+    description: "Create a printable static QR code for an Instagram profile, creator page, shop, event account, or local business page.",
+    headline: "Make an Instagram profile QR code",
+    lead: "Paste your public Instagram profile URL, generate a static QR code PDF, and test it before printing it on a flyer, sign, package insert, or business card.",
+    qrTitle: "Follow Us on Instagram",
+    content: "https://www.instagram.com/example",
+    caption: "Scan to open our Instagram profile",
+    intent: "Instagram QR code generator, Instagram profile QR, social media QR code",
+    sections: [
+      ["Why it attracts traffic", "Instagram QR searches are practical for creators, local shops, market tables, events, and service businesses that want offline visitors to follow a public profile."],
+      ["Use the public profile URL", "Paste a stable public profile link instead of private messages, campaign dashboards, or temporary logged-in URLs."],
+      ["Print test", "Scan the QR code from the same distance and lighting where people will see the sign, then confirm the profile opens without requiring extra context."],
+    ],
+    relatedTools: ["tools/qr-code", "tools/business-card", "tools/add-text-image"],
+  }),
+];
+
 const NEXT_EXACT_PHOTO_UPLOAD_PAGE_SPECS = [
   {
     path: "photo-120x160-20kb",
@@ -6015,6 +6129,7 @@ const landingPages = [
     ],
     relatedTools: ["tools/wifi-qr-code", "tools/vcard-qr-code", "tools/flyer-maker"],
   },
+  ...QR_SCENARIO_LANDING_PAGES,
   {
     path: "wifi-qr-code-generator",
     title: "WiFi QR Code Generator",

@@ -2216,7 +2216,10 @@ function removeUndefined(value) {
 
 function copyGoogleVerificationFiles() {
   const verificationFiles = fs.readdirSync(root)
-    .filter((fileName) => /^google[a-zA-Z0-9_-]+(?:\.html)?$/.test(fileName));
+    .filter((fileName) => {
+      const filePath = path.join(root, fileName);
+      return fs.statSync(filePath).isFile() && /^google[a-zA-Z0-9_-]+(?:\.html)?$/.test(fileName);
+    });
   for (const fileName of verificationFiles) {
     fs.copyFileSync(path.join(root, fileName), path.join(docsDir, fileName));
   }

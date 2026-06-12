@@ -455,6 +455,11 @@ Machine-readable JSON: https://printable-tools-lab.pages.dev/upload-error-cheats
 - Watermark Image Without Uploading: https://printable-tools-lab.pages.dev/watermark-image-no-upload/
 - Add Text to Image Without Uploading: https://printable-tools-lab.pages.dev/add-text-to-image-no-upload/
 - Free QR Code Generator Without Signup: https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/
+- Google Review QR Code Generator: https://printable-tools-lab.pages.dev/google-review-qr-code-generator/
+- Menu QR Code Generator: https://printable-tools-lab.pages.dev/menu-qr-code-generator/
+- WhatsApp QR Code Generator: https://printable-tools-lab.pages.dev/whatsapp-qr-code-generator/
+- Event Registration QR Code Generator: https://printable-tools-lab.pages.dev/event-registration-qr-code-generator/
+- Instagram QR Code Generator: https://printable-tools-lab.pages.dev/instagram-qr-code-generator/
 - WiFi QR Code Generator: https://printable-tools-lab.pages.dev/wifi-qr-code-generator/
 - Contact QR Code Generator: https://printable-tools-lab.pages.dev/contact-qr-code-generator/
 - Compress JPG Without Uploading: https://printable-tools-lab.pages.dev/compress-jpg-no-upload/

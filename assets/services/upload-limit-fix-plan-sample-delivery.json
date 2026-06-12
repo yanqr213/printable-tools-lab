@@ -1,12 +1,12 @@
 {
   "service": "Upload Limit Fix Plan",
-  "generatedAt": "2026-06-12T14:55:24.147Z",
+  "generatedAt": "2026-06-12T15:05:25.111Z",
   "sampleOnly": true,
   "sampleDelivery": {
     "path": "assets/services/upload-limit-fix-plan-sample-delivery.zip",
     "url": "https://printable-tools-lab.pages.dev/assets/services/upload-limit-fix-plan-sample-delivery.zip",
-    "sizeBytes": 2924,
-    "sha256": "8a5a03a52aa87b6e932fe07f7a397cb9a0889d66085112d698ff95625216818d"
+    "sizeBytes": 2923,
+    "sha256": "5d3e0d6f64de02f15485c0a71c32c52f6da5681cfc9766a8a902250588ebd163"
   },
   "deliveryInputExample": {
     "path": "assets/services/upload-limit-fix-plan-delivery-input.example.json",

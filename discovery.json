@@ -1,7 +1,7 @@
 {
   "name": "PrintableTools Lab",
   "url": "https://printable-tools-lab.pages.dev/",
-  "generatedAt": "2026-06-12T14:55:24.147Z",
+  "generatedAt": "2026-06-12T15:05:25.111Z",
   "positioning": "Free no-signup browser PDF, image, and QR tools with local generation, original guides, and responsible ad placement after approval.",
   "feed": "https://printable-tools-lab.pages.dev/feed.xml",
   "manifest": "https://printable-tools-lab.pages.dev/site.webmanifest",
@@ -165,6 +165,11 @@
     "https://printable-tools-lab.pages.dev/watermark-image-no-upload/",
     "https://printable-tools-lab.pages.dev/add-text-to-image-no-upload/",
     "https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/",
+    "https://printable-tools-lab.pages.dev/google-review-qr-code-generator/",
+    "https://printable-tools-lab.pages.dev/menu-qr-code-generator/",
+    "https://printable-tools-lab.pages.dev/whatsapp-qr-code-generator/",
+    "https://printable-tools-lab.pages.dev/event-registration-qr-code-generator/",
+    "https://printable-tools-lab.pages.dev/instagram-qr-code-generator/",
     "https://printable-tools-lab.pages.dev/wifi-qr-code-generator/",
     "https://printable-tools-lab.pages.dev/contact-qr-code-generator/",
     "https://printable-tools-lab.pages.dev/compress-jpg-no-upload/",
@@ -1279,6 +1284,36 @@
       "title": "Free QR Code Generator Without Signup",
       "url": "https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/",
       "intent": "QR code generator, no signup, printable static QR",
+      "tool": "https://printable-tools-lab.pages.dev/tools/qr-code/"
+    },
+    {
+      "title": "Google Review QR Code Generator",
+      "url": "https://printable-tools-lab.pages.dev/google-review-qr-code-generator/",
+      "intent": "Google review QR code generator, review QR sign, local business review link QR",
+      "tool": "https://printable-tools-lab.pages.dev/tools/qr-code/"
+    },
+    {
+      "title": "Menu QR Code Generator",
+      "url": "https://printable-tools-lab.pages.dev/menu-qr-code-generator/",
+      "intent": "menu QR code generator, restaurant menu QR, cafe menu QR sign",
+      "tool": "https://printable-tools-lab.pages.dev/tools/qr-code/"
+    },
+    {
+      "title": "WhatsApp QR Code Generator",
+      "url": "https://printable-tools-lab.pages.dev/whatsapp-qr-code-generator/",
+      "intent": "WhatsApp QR code generator, WhatsApp chat QR, wa.me QR code",
+      "tool": "https://printable-tools-lab.pages.dev/tools/qr-code/"
+    },
+    {
+      "title": "Event Registration QR Code Generator",
+      "url": "https://printable-tools-lab.pages.dev/event-registration-qr-code-generator/",
+      "intent": "event registration QR code, RSVP QR code, event signup QR generator",
+      "tool": "https://printable-tools-lab.pages.dev/tools/qr-code/"
+    },
+    {
+      "title": "Instagram QR Code Generator",
+      "url": "https://printable-tools-lab.pages.dev/instagram-qr-code-generator/",
+      "intent": "Instagram QR code generator, Instagram profile QR, social media QR code",
       "tool": "https://printable-tools-lab.pages.dev/tools/qr-code/"
     },
     {

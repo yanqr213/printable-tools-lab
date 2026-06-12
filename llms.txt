@@ -255,6 +255,11 @@ Monetization model: Free tools stay live for search demand and future display ad
 - [Watermark Image Without Uploading](https://printable-tools-lab.pages.dev/watermark-image-no-upload/): watermark image online, add text watermark, no upload
 - [Add Text to Image Without Uploading](https://printable-tools-lab.pages.dev/add-text-to-image-no-upload/): add text to image, text on photo, caption image, no upload
 - [Free QR Code Generator Without Signup](https://printable-tools-lab.pages.dev/free-qr-code-generator-no-signup/): QR code generator, no signup, printable static QR
+- [Google Review QR Code Generator](https://printable-tools-lab.pages.dev/google-review-qr-code-generator/): Google review QR code generator, review QR sign, local business review link QR
+- [Menu QR Code Generator](https://printable-tools-lab.pages.dev/menu-qr-code-generator/): menu QR code generator, restaurant menu QR, cafe menu QR sign
+- [WhatsApp QR Code Generator](https://printable-tools-lab.pages.dev/whatsapp-qr-code-generator/): WhatsApp QR code generator, WhatsApp chat QR, wa.me QR code
+- [Event Registration QR Code Generator](https://printable-tools-lab.pages.dev/event-registration-qr-code-generator/): event registration QR code, RSVP QR code, event signup QR generator
+- [Instagram QR Code Generator](https://printable-tools-lab.pages.dev/instagram-qr-code-generator/): Instagram QR code generator, Instagram profile QR, social media QR code
 - [WiFi QR Code Generator](https://printable-tools-lab.pages.dev/wifi-qr-code-generator/): WiFi QR code generator, guest WiFi sign, printable QR
 - [Contact QR Code Generator](https://printable-tools-lab.pages.dev/contact-qr-code-generator/): contact QR code, vCard QR generator, printable business contact
 - [Compress JPG Without Uploading](https://printable-tools-lab.pages.dev/compress-jpg-no-upload/): compress JPG online, reduce JPG file size, no upload
